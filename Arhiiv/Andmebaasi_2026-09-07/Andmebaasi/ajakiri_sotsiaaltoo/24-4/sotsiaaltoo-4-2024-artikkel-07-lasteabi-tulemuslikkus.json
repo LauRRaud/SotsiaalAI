@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-4-2024",
+  "issueLabel": "4/2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "lasteabi-tulemuslikkus-2024-4",
+  "title": "Lasteabi tulemuslikkus oleneb koostöö kvaliteedist",
+  "authors": [
+    "Kristi Asser",
+    "Anna Karolin"
+  ],
+  "section": "Korraldus",
+  "pageRange": "44–49",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "source_path": "sotsiaaltoo_4_2024_web_Part9.pdf",
+  "description": "Artikkel võtab kokku lasteabi abiliini tulemuslikkuse uuringu. Kirjeldatakse lasteabi rolli lastekaitsesüsteemis – teavituste vastuvõtmine, pöördujate nõustamine, hädaohus laste abistamine väljaspool KOV-i tööaega – ning koostööd kohalike omavalitsuste, politsei, häirekeskuse, haridus- ja tervishoiuasutustega. Analüüsitakse STAR-andmestikku, pöördumiste liike ja kvaliteeti ning tuuakse välja, et teenuse mõju sõltub ametkondadevahelise koostöö, info liikumise ja spetsialistide pädevuse tasemest. Esitatakse soovitusi, kuidas tõhustada andmevahetust, teadlikkuse tõstmist ja lasteabi rolli lastekaitse tugisambaks.",
+  "tags": [
+    "lasteabi",
+    "lastekaitse",
+    "koostöö",
+    "teenuse mõju hindamine",
+    "STAR register",
+    "hädaohus lapsed",
+    "telefoninõustamine",
+    "andmevahetus"
+  ],
+  "document_id": "sotsiaaltoo-4-2024-lasteabi-tulemuslikkus-2024-4",
+  "source_format": "pdf",
+  "source_sha256": "d500df9379929696cbfcdd86468c8ce03970954e46813c0116aa5530fb835a68",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2024-lasteabi-tulemuslikkus-2024-4",
+    "previous_source_path": "sotsiaaltoo_4_2024_web_Part9.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d500df9379929696cbfcdd86468c8ce03970954e46813c0116aa5530fb835a68",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

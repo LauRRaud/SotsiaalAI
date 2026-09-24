@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2025",
+  "articleId": "voim-ja-vastastikkus-abistavates-suhetes-2025-3",
+  "title": "Võim ja vastastikkus abistavates suhetes",
+  "authors": [
+    "Katrin Tsuiman"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2025",
+  "section": "Eetika",
+  "pageRange": "73-83",
+  "pdf_start_page": 1,
+  "pdf_end_page": 11,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel analüüsib võimu ja vastastikuse mõju toimimist sotsiaalvaldkonna abistavates suhetes ning seob selle inimõiguste, autonoomia ja toetatud otsustamise põhimõtetega. Autor käsitleb ka võimu kuritarvitamise, ülehoolitsemise ja abi kasutaja hääle nõrgestamise riske.",
+  "tags": [
+    "eetika",
+    "võim",
+    "abistavad suhted",
+    "inimõigused",
+    "toetatud otsustamine",
+    "autonoomia",
+    "eneseteadlikkus",
+    "vastastikkus"
+  ],
+  "source_type": "file",
+  "source_path": "13web_sotsiaaltoo_3-2025.pdf",
+  "document_id": "sotsiaaltoo-3-2025-voim-ja-vastastikkus-abistavates-suhetes-2025-3",
+  "source_format": "pdf",
+  "source_sha256": "950484deaf5eb6760cee6717658d06bbb7f9101e3e375cf2520a1ab94f056ac6",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2025-voim-ja-vastastikkus-abistavates-suhetes-2025-3",
+    "previous_source_path": "13web_sotsiaaltoo_3-2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "950484deaf5eb6760cee6717658d06bbb7f9101e3e375cf2520a1ab94f056ac6",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

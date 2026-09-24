@@ -1,0 +1,92 @@
+{
+  "docId": "sotsiaaltoo-erinumber-2016",
+  "articleId": "sotsiaaltoo-erinumber-2016-artikkel-07-tootaja-tervis-on-tookeskkonna-nagu",
+  "title": "Töötaja tervis on töökeskkonna nägu",
+  "authors": [
+    "Mari Liis Räis",
+    "Epp Kallaste",
+    "Mart Kaska"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "erinumber 2016",
+  "section": "Tööhõive",
+  "pageRange": "21-24",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "CentARi uurijad esitavad uuringu „Töötingimuste ja töökeskkonna mõju ajutise ja püsiva töövõimetuse kujunemisel\" tulemused ja väidavad, et töövõimereform tegeleb praegu tagajärgedega — juba tekkinud töövõimekaoga — ning vajab kõrvale ennetust, mis vaatab töötamise mõju tervisele.",
+  "tags": [
+    "töövõimereform",
+    "töökeskkond",
+    "ennetus",
+    "töövõimetus",
+    "uuring"
+  ],
+  "source_type": "file",
+  "source_path": "2016_eri_artikkel_07_tootaja_tervis_on_tookeskkonna_nagu.pdf",
+  "added": "2026-08-18",
+  "fulltext_note": "Erinumber „Sotsiaaltöö ; erinumber 2016\" (DIGAR nlib-digar:390083), pühendatud heaolu arengukavale 2016–2023. Lisatud korpusesse 18.08.2026.",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-07-tootaja-tervis-on-tookeskkonna-nagu",
+  "source_sha256": "0d74443e78100fa18c474d1fea59086d399ac954941cc97537d33aaf0dfa0498",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-07-tootaja-tervis-on-tookeskkonna-nagu",
+    "previous_source_path": "2016_eri_artikkel_07_tootaja_tervis_on_tookeskkonna_nagu.txt",
+    "previous_source_original_path": "2016_erinumber.pdf",
+    "reference_stored_source_sha256": "3aab6616fd02893f24b99666ea815c94c3aa9fbec5bd3fa8bcfb388d1cdcc142",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2016_erinumber.pdf",
+      "source_sha256": "ae3bbf0a621beae80ae1e05a13206ffa00c6811806397ee8ac925f3762d93c70",
+      "pdf_start_page": 23,
+      "pdf_end_page": 26,
+      "printed_page_range": "21-24",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 26,
+      "source_regions": [
+        {
+          "source_pdf_page": 23,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 24,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 25,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 26,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "21-24"
+    },
+    "server_page_range": "21-24"
+  }
+}

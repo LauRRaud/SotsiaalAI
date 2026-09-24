@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2021",
+  "articleId": "riskihindamine-tuleviku-prognoosimise-vahend-ja-juhtumikorralduse-alus-2021-2",
+  "title": "Riskihindamine – tuleviku prognoosimise vahend ja juhtumikorralduse alus",
+  "authors": [
+    "Kristi Loide"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2021",
+  "section": "Metoodika",
+  "pageRange": "32-36",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Metoodikaartikkel selgitab riskihindamise olemust ja rolli sotsiaaltöös, eriti ennetustöös ja juhtumikorralduses. Autor käsitleb, kuidas hinnata riskide tõenäosust ja mõju, millised omadused peavad olema heale riskihindamisvahendile (usaldusväärsus, tõhusus, tundlikkus muutustele) ning kuidas tagada kvaliteetsed andmed ja nende õige tõlgendamine. Näidete abil avatakse riskihindamise kasutamist ohvriabis ja muudes valdkondades, kus otsused mõjutavad inimeste elu ja turvalisust.",
+  "tags": [
+    "riskihindamine",
+    "juhtumikorraldus",
+    "ennetustöö",
+    "ohvriabi",
+    "hindamisvahendid",
+    "andmekvaliteet",
+    "sotsiaaltöö metoodika"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2021_web_link_Part9.pdf",
+  "document_id": "sotsiaaltoo-2-2021-riskihindamine-tuleviku-prognoosimise-vahend-ja-juhtumikorralduse-alus-2021-2",
+  "source_format": "pdf",
+  "source_sha256": "cc2d5e838b9c3a46d26a51427e5c2a7d6d30d47db1a296fd65a1e82403f2fede",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2021-riskihindamine-tuleviku-prognoosimise-vahend-ja-juhtumikorralduse-alus-2021-2",
+    "previous_source_path": "Sotsiaaltoo_2_2021_web_link_Part9.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "cc2d5e838b9c3a46d26a51427e5c2a7d6d30d47db1a296fd65a1e82403f2fede",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

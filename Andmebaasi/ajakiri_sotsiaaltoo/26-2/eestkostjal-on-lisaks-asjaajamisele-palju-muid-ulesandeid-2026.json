@@ -1,0 +1,50 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "eestkostjal-on-lisaks-asjaajamisele-palju-muid-ulesandeid-2026",
+  "title": "Eestkostjal on lisaks asjaajamisele palju muid ülesandeid",
+  "authors": [
+    "Heli Ferschel",
+    "Ksenia Repson-Deforge"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Õigus",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb täisealiste eestkostet kui üht sotsiaaltöö keerukamat valdkonda, mis nõuab kohtute, omavalitsuste ja teenuseosutajate koordineeritud tööd. Rõhutatakse, et eestkoste peab jääma viimaseks võimaluseks ning eestkostja peab järgima eestkostetava õigusi ja soove. Praktikas vajavad spetsialistid täienduskoolitust ja paremat juriidilist tuge.",
+  "tags": [
+    "eestkoste",
+    "teovõime",
+    "täisealiste õigused",
+    "kohalik omavalitsus",
+    "toetatud otsustamine",
+    "kohtumenetlus",
+    "sotsiaaltöö korraldus",
+    "enesemääramisõigus"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-06-05",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/eestkostjal-lisaks-asjaajamisele-palju-muid-ulesandeid",
+  "source_type": "web",
+  "source_path": "eestkostjal-on-lisaks-asjaajamisele-palju-muid-ulesandeid.html",
+  "lead": "Eestkoste on sotsiaaltöö üks keerulisemaid valdkondi. See ühendab õiguslikud küsimused, õiguste kaitse, igapäevase suhtlemise ja vastutuse, kui inimene vajab otsustamisel tuge. Eestkoste mõjutab tuhandeid inimesi, selle korraldamine eeldab kohalike omavalitsuste, kohtute, teenuseosutajate ja riigiasutuste tihedat koostööd.",
+  "document_id": "sotsiaaltoo-2-2026-eestkostjal-on-lisaks-asjaajamisele-palju-muid-ulesandeid-2026",
+  "source_format": "html",
+  "source_sha256": "e1b0082f3c1f0b295f36694561041adb89856079579170c4d96cd0c4c4d98f11",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-eestkostjal-on-lisaks-asjaajamisele-palju-muid-ulesandeid-2026",
+    "previous_source_path": "eestkostjal-on-lisaks-asjaajamisele-palju-muid-ulesandeid.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "97cae55360a28b3ed15afd04b78556dc1f022352d6afdc1efc8afe8777aa54e9",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "e5fb230e101fa3f96d4a81c9f55886bab5e1630eb713e9f9bd2e7eba288237d2",
+    "observed_web_title": "Eestkostjal on lisaks asjaajamisele palju muid ülesandeid"
+  },
+  "retrieved_at": "2026-09-07T19:39:36.192242+00:00"
+}

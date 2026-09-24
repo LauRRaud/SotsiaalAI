@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-1-2023",
+  "articleId": "kas-ukraina-sojapogenikud-on-eestis-kogukond-2023-1",
+  "title": "Kas Ukraina sõjapõgenikud on Eestis kogukond?",
+  "authors": [
+    "Astrid Org"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2023",
+  "section": "Kogemus",
+  "pageRange": "29-32",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kogemuslugu Võrumaalt arutleb, kas ja millistel tingimustel kujuneb Eestis elavatest Ukraina sõjapõgenikest\ntegelik kogukond. Autor kirjeldab Ukraina keskuse käivitamist, infolünkade täitmist ja vabatahtlike rolli\nesmases toetuses ning toob esile, et paljudel põgenikel kulub turvatunde taastamiseks ja igapäevaeluga\nkohanemiseks aega. Artiklis eristatakse sõjapõgenike mitmekesisust – keele, tausta ja hoiakute poolest – ning\ntuuakse välja, kuidas nii kohaliku kogukonna sidumine kui ka oma kogukonna eestvedajate toetamine aitab\nluua kestvamaid suhteid ja kuuluvustunnet.",
+  "tags": [
+    "Ukraina sõjapõgenikud",
+    "kogukonnatöö",
+    "Võru",
+    "MTÜ Saagu Parem",
+    "Ukraina keskus",
+    "vabatahtlik töö",
+    "kohanemine",
+    "kogukonna arendamine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_1_2023_web_Part8.pdf",
+  "document_id": "sotsiaaltoo-1-2023-kas-ukraina-sojapogenikud-on-eestis-kogukond-2023-1",
+  "source_format": "pdf",
+  "source_sha256": "09d00ac6cadfc8bb03f883a674fd374b36a53a9354e690d40601f818e6490a2f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2023-kas-ukraina-sojapogenikud-on-eestis-kogukond-2023-1",
+    "previous_source_path": "Sotsiaaltoo_1_2023_web_Part8.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "09d00ac6cadfc8bb03f883a674fd374b36a53a9354e690d40601f818e6490a2f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

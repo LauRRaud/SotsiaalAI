@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-2-2024",
+  "articleId": "kujundame-tuge-vajavale-lapsele-ja-perele-algusest-peale-toetatud-teekonna-2024-2",
+  "title": "Kujundame tuge vajavale lapsele ja perele algusest peale toetatud teekonna",
+  "authors": [
+    "Brit Tammiste"
+  ],
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2024",
+  "section": "Korraldus",
+  "pageRange": "15-20",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab lastele sotsiaal-, tervise- ja haridusvaldkonnas kavandatud vajaduspõhise integreeritud toe ja hindamiste konsolideerimise kava. Avatakse, kuidas luuakse valdkondadeülest andmevahetust, koordineeritud võrgustikutööd ja juhtumikorraldust, et erivajadusega lapsed ja nende pered saaksid õigeaegset ning terviklikku abi. Käsitletakse hindamissüsteemide ühtlustamist, spetsialistide töö tõhustamist ning põhimõtet, et abi peab lähtuma lapse tegelikust abivajadusest, mitte üksnes diagnoosist või puude raskusastmest.",
+  "tags": [
+    "erivajadusega lapsed",
+    "integreeritud tugi",
+    "juhtumikorraldus",
+    "andmevahetus",
+    "tugiteenused",
+    "haridus",
+    "tervishoid",
+    "sotsiaalteenused",
+    "reform"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2024_web_Part5.pdf",
+  "document_id": "sotsiaaltoo-2-2024-kujundame-tuge-vajavale-lapsele-ja-perele-algusest-peale-toetatud-teekonna-2024-2",
+  "source_format": "pdf",
+  "source_sha256": "a838dde636d433e81bff32916cfd77809bdfa5052223644c063fcf4af5aea921",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2024-kujundame-tuge-vajavale-lapsele-ja-perele-algusest-peale-toetatud-teekonna-2024-2",
+    "previous_source_path": "Sotsiaaltoo_2_2024_web_Part5.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "a838dde636d433e81bff32916cfd77809bdfa5052223644c063fcf4af5aea921",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

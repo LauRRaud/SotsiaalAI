@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2019",
+  "articleId": "sytik-tugiisiku-programm-narkootikume-tarvitavatele-inimestele-2019",
+  "title": "Tugiisiku programm SÜTIK narkootikume tarvitavatele inimestele",
+  "authors": [
+    "Marin Vaher",
+    "Mart Kalvet"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2019",
+  "section": "Kogemus",
+  "pageRange": "40-42",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade Tervise Arengu Instituudi algatatud tugiisiku programmist SÜTIK, mis toetab narkootikume tarvitavaid inimesi kahjude vähendamisel, teenustele jõudmisel ja toimetuleku parandamisel.",
+  "tags": [
+    "tugiisik",
+    "narkosõltuvus",
+    "kahjude vähendamine",
+    "Tervise Arengu Instituut",
+    "SÜTIK programm",
+    "riskikäitumise vähendamine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part10.pdf",
+  "document_id": "sotsiaaltoo-2-2019-sytik-tugiisiku-programm-narkootikume-tarvitavatele-inimestele-2019",
+  "source_format": "pdf",
+  "source_sha256": "ee5513957c442893cb6608faed9444a87aff9dad559e56e0d9fc4e6dc5515129",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2019-sytik-tugiisiku-programm-narkootikume-tarvitavatele-inimestele-2019",
+    "previous_source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part10.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ee5513957c442893cb6608faed9444a87aff9dad559e56e0d9fc4e6dc5515129",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

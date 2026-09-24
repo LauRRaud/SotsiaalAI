@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2019",
+  "articleId": "mari-liis-veski-mind-on-alati-huvitanud-elukaik-2019",
+  "title": "Mari-Liis Veski: mind on alati huvitanud inimeste elukäik",
+  "authors": [
+    "Annika Poldre"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2019",
+  "section": "Persoon",
+  "pageRange": "3-7",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu aasta sotsiaaltöötajast Mari-Liis Veskist, tema tööst Pärnu haigla sotsiaalravi teenistuses, koostööst arstidega ja peredega ning rollist keeruliste haiguslugudega inimeste toetamisel.",
+  "tags": [
+    "persoonilugu",
+    "Mari-Liis Veski",
+    "haigla sotsiaaltöö",
+    "psühhiaatria",
+    "palliatiivne ravi",
+    "perega tehtav töö",
+    "aasta sotsiaaltöötaja"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part3.pdf",
+  "document_id": "sotsiaaltoo-2-2019-mari-liis-veski-mind-on-alati-huvitanud-elukaik-2019",
+  "source_format": "pdf",
+  "source_sha256": "c2a40a0a7623ceac8445e45a15e8389a34a1d78f969b303a1e2982f89dc99ff1",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2019-mari-liis-veski-mind-on-alati-huvitanud-elukaik-2019",
+    "previous_source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part3.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "c2a40a0a7623ceac8445e45a15e8389a34a1d78f969b303a1e2982f89dc99ff1",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

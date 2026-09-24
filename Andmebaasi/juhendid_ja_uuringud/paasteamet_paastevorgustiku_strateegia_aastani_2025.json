@@ -1,0 +1,142 @@
+{
+  "source_path": "paasteamet_paastevorgustiku_strateegia_aastani_2025.pdf",
+  "source_format": "pdf",
+  "sha256": "d8094ac8460ccda66fd6ae43bdc6150f1e956f91b3ccb2e10576acf7407a3a8b",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/paasteamet_paastevorgustiku_strateegia_aastani_2025.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "paasteamet_paastevorgustiku_strateegia_aastani_2025",
+          "title": "Päästevõrgustiku strateegia aastani 2025",
+          "url": "https://www.rescue.ee/files/dokumendid/paastevorgustiku-strateegia-aastani-2025-est.pdf",
+          "normalized_url": "https://www.rescue.ee/files/dokumendid/paastevorgustiku-strateegia-aastani-2025-est.pdf",
+          "source_format": "pdf",
+          "source_type": "policy_analysis",
+          "resource_type": "policy_context",
+          "publisher": "Päästeamet",
+          "organization_id": "paasteamet",
+          "collection_hint": "policy_and_strategy",
+          "evidence_role": "policy_context",
+          "topic_tags": [
+            "Päästeamet",
+            "tuleohutus",
+            "pääste",
+            "evakuatsioon",
+            "kriisivalmidus",
+            "strateegia",
+            "poliitika planeerimine"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 405,
+            "order": 222
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Päästevõrgustiku strateegia aastani 2025"
+          ],
+          "collection_hints": [
+            "policy_analyses"
+          ],
+          "source_types_seen": [
+            "policy_analysis"
+          ],
+          "resource_types_seen": [
+            "policy_context"
+          ],
+          "publishers_seen": [
+            "Päästeamet"
+          ],
+          "organizations_seen": [
+            "paasteamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+              "line": 405,
+              "order": 222
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.rescue.ee/files/dokumendid/paastevorgustiku-strateegia-aastani-2025-est.pdf"
+        },
+        "final_url": "https://www.rescue.ee/files/dokumendid/paastevorgustiku-strateegia-aastani-2025-est.pdf",
+        "redirects": [],
+        "sha256": "d8094ac8460ccda66fd6ae43bdc6150f1e956f91b3ccb2e10576acf7407a3a8b",
+        "bytes": 1729643,
+        "downloaded_at": "2026-08-14T08:00:46.184Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "paasteamet_paastevorgustiku_strateegia_aastani_2025",
+      "metadata": {
+        "createdAt": "2026-06-12T03:46:18.749257+00:00",
+        "type": "FILE",
+        "fileName": "paastevorgustiku-strateegia-aastani-2025-est.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:46:18.681051+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/bf25ebc72494/paastevorgustiku-strateegia-aastani-2025-est.pdf",
+        "title": "Päästevõrgustiku strateegia aastani 2025",
+        "description": "Source master headings: Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2025,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–44",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "policy_analyses",
+        "source_id": "paasteamet_paastevorgustiku_strateegia_aastani_2025",
+        "document_id": "paasteamet_paastevorgustiku_strateegia_aastani_2025",
+        "source_type": "policy_analysis",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "714df17123e55766a93fa66076a7ed6fab4b69446aa265afffaca6c026ef4d98",
+        "url": "https://www.rescue.ee/files/dokumendid/paastevorgustiku-strateegia-aastani-2025-est.pdf",
+        "url_canonical": "https://www.rescue.ee/files/dokumendid/paastevorgustiku-strateegia-aastani-2025-est.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "paasteamet_paastevorgustiku_strateegia_aastani_2025",
+        "updatedAt": "2026-06-12T03:46:18.749281+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

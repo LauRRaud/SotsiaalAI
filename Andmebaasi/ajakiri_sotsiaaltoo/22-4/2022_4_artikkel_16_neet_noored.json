@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-4-2022",
+  "articleId": "neet-noored-teenuste-ja-programmide-vorgusilmas-2022-4",
+  "title": "NEET-staatuses noored teenuste ja programmide võrgusilmas",
+  "authors": [
+    "Mai Beilmann",
+    "Sirje Otstavel",
+    "Kerli Kõiv",
+    "Heidi Paabort"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2022",
+  "section": "Eelretsenseeritud artikkel",
+  "pageRange": "81-93",
+  "pdf_start_page": 1,
+  "pdf_end_page": 13,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel uurib NEET-noorte kogemusi teenuste ja programmidega, rõhutades takistusi abi kättesaamisel ning noorte usaldamatuse põhjuseid. Analüüs pakub soovitusi noortekeskse lähenemise tugevdamiseks.",
+  "tags": [
+    "NEET-noored",
+    "noorsootöö",
+    "väljalangemine",
+    "teenused",
+    "eelretsenseeritud"
+  ],
+  "source_type": "file",
+  "source_path": "2022_4_artikkel_16_neet_noored.pdf",
+  "document_id": "sotsiaaltoo-4-2022-neet-noored-teenuste-ja-programmide-vorgusilmas-2022-4",
+  "source_format": "pdf",
+  "source_sha256": "fdf55f31a4166c29818bab84d26550bf7743fc7a420d10ca06704b0fe0ceca72",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2022-neet-noored-teenuste-ja-programmide-vorgusilmas-2022-4",
+    "previous_source_path": "2022_4_artikkel_16_neet_noored.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "fdf55f31a4166c29818bab84d26550bf7743fc7a420d10ca06704b0fe0ceca72",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

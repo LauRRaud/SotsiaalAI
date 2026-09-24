@@ -1,0 +1,109 @@
+{
+  "docId": "sotsiaaltoo-3-2017",
+  "articleId": "lastekaitse-tolgendused-lapsevanemaks-2017-3",
+  "title": "Lastekaitsetöötajate tõlgendused lapsevanemaks olemisest",
+  "authors": [
+    "Helen Hein"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2017",
+  "section": "Uurimus",
+  "pageRange": "72-77",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Magistritööl põhinev uurimus sellest, kuidas lastekaitsetöötajad tõlgendavad vanemaks olemist ja millistena nad vanemaid konstrueerivad. Lähtub sotsiaalkonstruktsionismist ja D. W. Winnicotti 1965. aastal loodud piisavalt hea vanema kontseptsioonist. Taust: kehtiv lastekaitseseadus (2016) nõuab lisaks lapse abivajadusele ka teda kasvatava inimese vanemlike oskuste hindamist.",
+  "tags": [
+    "lastekaitse",
+    "vanemlikud oskused",
+    "piisavalt hea vanem",
+    "sotsiaalkonstruktsionism",
+    "hindamine",
+    "uurimus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part19.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2017-lastekaitse-tolgendused-lapsevanemaks-2017-3",
+  "source_sha256": "9295e1b33ecdeeb2421f3a51fd3ab19b49fc2110a42e7afe1f08f2e1719533dc",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2017-lastekaitse-tolgendused-lapsevanemaks-2017-3",
+    "previous_source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part19.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part19.pdf",
+    "reference_stored_source_sha256": "19f83517d84c7cdbef81518b2d31fb749135c57c9d4a3861de470c189d670aaa",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf",
+      "source_sha256": "3f27c22982b22a396dace8a957798cc21d3240489c7ce4d92802bf1a94bde7a8",
+      "pdf_start_page": 74,
+      "pdf_end_page": 79,
+      "printed_page_range": "72-77",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 79,
+      "source_regions": [
+        {
+          "source_pdf_page": 74,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 75,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 76,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 77,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 78,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 79,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "72-77",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf"
+    },
+    "server_page_range": "72-77"
+  }
+}

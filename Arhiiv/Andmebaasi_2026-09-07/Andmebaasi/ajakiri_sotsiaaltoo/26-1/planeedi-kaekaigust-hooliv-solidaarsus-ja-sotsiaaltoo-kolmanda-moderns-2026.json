@@ -1,0 +1,50 @@
+{
+  "docId": "sotsiaaltoo-1-2026",
+  "articleId": "planeedi-kaekaigust-hooliv-solidaarsus-ja-sotsiaaltoo-kolmanda-moderns-2026",
+  "title": "Planeedi käekäigust hooliv solidaarsus ja sotsiaaltöö kolmanda modernsuse ajastul. Analüütiline vaade nüüdisajale",
+  "authors": [
+    "Timo Harrikari"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2026",
+  "section": "Teoreetilised lähtekohad",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel analüüsib sotsiaalse solidaarsuse muutumist moderniseerumisteooriate vaatenurgast, seostades sotsiaaltööd eri ajastutele iseloomulike solidaarsuse vormidega Durkheimi mehaanilisest ja orgaanilisest solidaarsusest kuni planeedi käekäigust hooliva solidaarsuseni. Autor küsib, millist moraalset ülesannet võiks sotsiaaltöö täita kokkusurutud digitaalsel ajastul, kus resonantsi kriis ja kommunikatiivse suhtluse moonutamine ohustavad ühiskondlikku sidusust.",
+  "tags": [
+    "solidaarsus",
+    "modernsus",
+    "sotsiaaltöö teooria",
+    "Durkheim",
+    "riskiühiskond",
+    "digitaliseerumine",
+    "kliimakriis",
+    "professionaalne eetika",
+    "rahvusvaheline vaade"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-05-01",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/planeedi-kaekaigust-hooliv-solidaarsus-ja-sotsiaaltoo-kolmanda-modernsuse",
+  "source_type": "web",
+  "source_path": "planeedi-kaekaigust-hooliv-solidaarsus-ja-sotsiaaltoo-kolmanda-modernsuse-ajastu.html",
+  "lead": "Artiklis analüüsitakse sotsiaalse solidaarsuse ümberkujunemist klassikaliste moderniseerumist käsitlevate teooriate kaudu ja seostatakse sotsiaaltööd eri ajastutele iseloomulike solidaarsuse vormidega. Eriti huvipakkuv on küsimus, millist moraalset ja institutsioonilist ülesannet võiks sotsiaaltöö hakata täitma praegusel kokkusurutud ja planetaarsel ajastul.",
+  "document_id": "sotsiaaltoo-1-2026-planeedi-kaekaigust-hooliv-solidaarsus-ja-sotsiaaltoo-kolmanda-moderns-2026",
+  "source_format": "html",
+  "source_sha256": "d17701c6a6578d5c3d5683decaf691c16fbc71dec224a547eb33b4e32073f74a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2026-planeedi-kaekaigust-hooliv-solidaarsus-ja-sotsiaaltoo-kolmanda-moderns-2026",
+    "previous_source_path": "planeedi-kaekaigust-hooliv-solidaarsus-ja-sotsiaaltoo-kolmanda-modernsuse-ajastu.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "8102cff1072a2faef26836a76635a628c5ec0c283e7fe85715add7375eebd966",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "a210d5874aa9387fd376fb5749e7ab44b165e088c02843c217df1fcc0ab89eab",
+    "observed_web_title": "Planeedi käekäigust hooliv solidaarsus ja sotsiaaltöö kolmanda modernsuse ajastul. Analüütiline vaade nüüdisajale"
+  },
+  "retrieved_at": "2026-09-07T19:39:34.451265+00:00"
+}

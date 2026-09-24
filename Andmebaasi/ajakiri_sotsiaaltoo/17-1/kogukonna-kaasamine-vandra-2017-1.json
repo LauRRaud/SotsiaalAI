@@ -1,0 +1,72 @@
+{
+  "docId": "sotsiaaltoo-1-2017",
+  "articleId": "kogukonna-kaasamine-vandra-2017-1",
+  "title": "Kogukonna kaasamisest Vändra näitel",
+  "authors": [
+    "Lembi Uulimaa"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2017",
+  "section": "Kogukonnatöö",
+  "pageRange": "34-35",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Vändra alevi sotsiaalmaja juhataja Lembi Uulimaa kirjeldab, kuidas varajane ja süsteemne kogukonna kaasamine — avatud uste päevad, kohalik leht, koolikülastused — vähendas hirmu ja vastuseisu, kui AS Hoolekandeteenused avas 2012. aasta novembris Vändras 50 kohaga ööpäevaringse erihoolduse maja. Veidi üle 5000 elanikuga piirkonnas kandub see usaldus tema sõnul edasi sotsiaalmaja töösse, mis on kohalike ettevõtete ja asutuste partnerlusel kasvamas sotsiaalkeskuseks; jõuluannetustega jõudis abi 25 pereni.",
+  "tags": [
+    "kogukonnatöö",
+    "kaasamine",
+    "erihooldus",
+    "Vändra",
+    "praktikakogemus"
+  ],
+  "source_type": "file",
+  "source_path": "2017_1_Part10.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2017-kogukonna-kaasamine-vandra-2017-1",
+  "source_sha256": "faa677c8e8b909d8b672faa0ebb624b9ab13a17d39811c29bdef86b4609f0028",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2017-kogukonna-kaasamine-vandra-2017-1",
+    "previous_source_path": "2017_1_Part10.txt",
+    "previous_source_original_path": "2017_1.pdf",
+    "reference_stored_source_sha256": "2294bafe5ab827519d5b8bf709611815ce137bcdbe3a310014f2758e7b44bf2b",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf",
+      "source_sha256": "335f81467a555f12c55d0e8bf60122a178c5267567cf79607448a5d987629e50",
+      "pdf_start_page": 36,
+      "pdf_end_page": 37,
+      "printed_page_range": "34-35",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 37,
+      "source_regions": [
+        {
+          "source_pdf_page": 36,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 37,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        }
+      ],
+      "effective_printed_page_range": "34-35",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf"
+    },
+    "server_page_range": "34-35"
+  }
+}

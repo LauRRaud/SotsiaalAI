@@ -1,0 +1,76 @@
+{
+  "source": {
+    "source_id": "sotsiaalministeerium_sotsiaalhoolekande_programm_2024_2027",
+    "title": "Sotsiaalhoolekande programm 2024–2027",
+    "url": "https://www.sm.ee/sites/default/files/documents/2025-01/Sotsiaalhoolekande%20programm%202024-2027%20%281%29.pdf",
+    "normalized_url": "https://www.sm.ee/sites/default/files/documents/2025-01/Sotsiaalhoolekande programm 2024-2027 (1).pdf",
+    "source_format": "pdf",
+    "source_type": "policy_analysis",
+    "resource_type": "policy_context",
+    "publisher": "Sotsiaalministeerium",
+    "organization_id": "sotsiaalministeerium",
+    "collection_hint": "policy_and_strategy",
+    "evidence_role": "policy_context",
+    "topic_tags": [
+      "Sotsiaalministeerium",
+      "hoolekanne",
+      "sotsiaalteenused",
+      "hooldus",
+      "strateegia",
+      "poliitika planeerimine"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Sotsiaalministeerium",
+      "heading_3": "Puue, töövõime, ligipääsetavus",
+      "heading_4": null,
+      "line": 529,
+      "order": 277
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Sotsiaalhoolekande programm 2024–2027"
+    ],
+    "collection_hints": [
+      "policy_analyses"
+    ],
+    "source_types_seen": [
+      "policy_analysis"
+    ],
+    "resource_types_seen": [
+      "policy_context"
+    ],
+    "publishers_seen": [
+      "Sotsiaalministeerium"
+    ],
+    "organizations_seen": [
+      "sotsiaalministeerium"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Sotsiaalministeerium",
+        "heading_3": "Puue, töövõime, ligipääsetavus",
+        "line": 529,
+        "order": 277
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.sm.ee/sites/default/files/documents/2025-01/Sotsiaalhoolekande programm 2024-2027 (1).pdf"
+  },
+  "final_url": "https://www.sm.ee/sites/default/files/documents/2025-01/Sotsiaalhoolekande%20programm%202024-2027%20%281%29.pdf",
+  "redirects": [],
+  "sha256": "0f594b033f006a832993f50cee5be180cf07f40af40ca6778fc80b740a350980",
+  "bytes": 2671159,
+  "downloaded_at": "2026-08-14T08:00:54.869Z"
+}

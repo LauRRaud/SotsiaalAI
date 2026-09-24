@@ -1,0 +1,3231 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-viimsi-vald",
+  "document_id": "kov-viimsi-vald",
+  "municipality": "Viimsi vald",
+  "municipality_id": "viimsi_vald",
+  "county": "Harjumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "viimsi_vald_contact_tonu_troon",
+      "canonical_item_id": "viimsi_vald:contact:tonu_troon",
+      "itemType": "contact",
+      "title": "Tõnu Troon",
+      "status": "active",
+      "summary": "Sotsiaal- ja tervishoiuosakonna juhataja, kelle vastutusvaldkond on osakonna töö korraldamine, sotsiaal- ja tervishoiuvaldkonna areng ning üldküsimused.",
+      "sourceKeys": [
+        "social_health_contacts"
+      ],
+      "name": "Tõnu Troon",
+      "role": "sotsiaal- ja tervishoiuosakonna juhataja",
+      "department": "Sotsiaal- ja tervishoiuosakond",
+      "address": "Nelgi tee 1, Viimsi alevik, 74001 Harjumaa",
+      "item_type": "contact",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_health_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_contact_tonu_troon",
+      "document_id": "viimsi_vald_contact_tonu_troon",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "b057df0e5131bca008cad8de7879f8d0530e431bb3aae48ed7535ccfc1ae8eed",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_contact_lauren_sirp",
+      "canonical_item_id": "viimsi_vald:contact:lauren_sirp",
+      "itemType": "contact",
+      "title": "Lauren Sirp",
+      "status": "active",
+      "summary": "Rahvatervise spetsialist, kelle vastutusvaldkond on rahvatervise tegevuste arendamine ja koordineerimine ning vaimse tervise teenuste info.",
+      "sourceKeys": [
+        "social_health_contacts"
+      ],
+      "name": "Lauren Sirp",
+      "role": "rahvatervise spetsialist",
+      "department": "Sotsiaal- ja tervishoiuosakond",
+      "address": "Nelgi tee 1, Viimsi alevik, 74001 Harjumaa",
+      "item_type": "contact",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_health_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_contact_lauren_sirp",
+      "document_id": "viimsi_vald_contact_lauren_sirp",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "3765bbe10edefc7df8c7739867b86249514bcae8d0f90b74e1bc6d38f98f01a3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_contact_ave_kivinukk",
+      "canonical_item_id": "viimsi_vald:contact:ave_kivinukk",
+      "itemType": "contact",
+      "title": "Ave Kivinukk",
+      "status": "active",
+      "summary": "Sotsiaaltöö peaspetsialist, kes tegeleb sotsiaalteenuste ja -toetuste üldküsimustega, elanike informeerimise ja projektidega.",
+      "sourceKeys": [
+        "social_health_contacts"
+      ],
+      "name": "Ave Kivinukk",
+      "role": "sotsiaaltöö peaspetsialist",
+      "department": "Sotsiaal- ja tervishoiuosakond",
+      "address": "Nelgi tee 1, Viimsi alevik, 74001 Harjumaa",
+      "item_type": "contact",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_health_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_contact_ave_kivinukk",
+      "document_id": "viimsi_vald_contact_ave_kivinukk",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "d5a4be3f8fa66b2450b9554caa443ccfa6a90a2b676646b9a920832bb2392c64",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_contact_sandra_hommuk",
+      "canonical_item_id": "viimsi_vald:contact:sandra_hommuk",
+      "itemType": "contact",
+      "title": "Sandra Hommuk",
+      "status": "active",
+      "summary": "Sotsiaaltöö spetsialist, kelle vastutusvaldkond on eakate hoolekanne ja sissetulekust sõltuvad sotsiaaltoetused.",
+      "sourceKeys": [
+        "social_health_contacts"
+      ],
+      "name": "Sandra Hommuk",
+      "role": "sotsiaaltöö spetsialist",
+      "department": "Sotsiaal- ja tervishoiuosakond",
+      "address": "Nelgi tee 1, Viimsi alevik, 74001 Harjumaa",
+      "item_type": "contact",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_health_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_contact_sandra_hommuk",
+      "document_id": "viimsi_vald_contact_sandra_hommuk",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "b86e2edf41635057d2c1c8207f4a59480b3209780754fef300c317c5624a7dbe",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_contact_signe_teigar",
+      "canonical_item_id": "viimsi_vald:contact:signe_teigar",
+      "itemType": "contact",
+      "title": "Signe Teigar",
+      "status": "active",
+      "summary": "Sotsiaalregistri spetsialist, kes tegeleb riikliku toimetulekutoetuse arvestamise ning sünni-, tähtpäeva- ja matusetoetuse küsimustega.",
+      "sourceKeys": [
+        "social_health_contacts"
+      ],
+      "name": "Signe Teigar",
+      "role": "sotsiaalregistri spetsialist",
+      "department": "Sotsiaal- ja tervishoiuosakond",
+      "address": "Nelgi tee 1, Viimsi alevik, 74001 Harjumaa",
+      "item_type": "contact",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_health_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_contact_signe_teigar",
+      "document_id": "viimsi_vald_contact_signe_teigar",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "3115eac741d7781d0b227c05f3194e51ad5aaf0a2a009cbfd5f8496aff5f67d7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_contact_erivajadusega_laste_spetsialist",
+      "canonical_item_id": "viimsi_vald:contact:erivajadusega_laste_spetsialist",
+      "itemType": "contact",
+      "title": "Sotsiaaltöö spetsialist (ametikoht täitmata)",
+      "status": "active",
+      "summary": "Sotsiaaltöö spetsialisti ametikoht erivajadusega laste hoolekande ja sotsiaaltoetuste ning teenuste küsimustes; ametikoht oli veebilehel märgitud täitmata.",
+      "sourceKeys": [
+        "social_health_contacts"
+      ],
+      "name": "Sotsiaaltöö spetsialist (ametikoht täitmata)",
+      "role": "sotsiaaltöö spetsialist",
+      "department": "Sotsiaal- ja tervishoiuosakond",
+      "address": "Nelgi tee 1, Viimsi alevik, 74001 Harjumaa",
+      "item_type": "contact",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_health_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_contact_erivajadusega_laste_spetsialist",
+      "document_id": "viimsi_vald_contact_erivajadusega_laste_spetsialist",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "f5b1812d70f9834d361eb7d15377884e55ccab7d3320904ce905f9fbcc6d0b3f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_contact_margit_stern",
+      "canonical_item_id": "viimsi_vald:contact:margit_stern",
+      "itemType": "contact",
+      "title": "Margit Stern",
+      "status": "active",
+      "summary": "Sotsiaaltöö spetsialist, kelle vastutusvaldkond on erivajadusega täiskasvanute hoolekanne, sotsiaalteenused ja toetused ning parkimiskaardid.",
+      "sourceKeys": [
+        "social_health_contacts"
+      ],
+      "name": "Margit Stern",
+      "role": "sotsiaaltöö spetsialist",
+      "department": "Sotsiaal- ja tervishoiuosakond",
+      "address": "Nelgi tee 1, Viimsi alevik, 74001 Harjumaa",
+      "item_type": "contact",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_health_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_contact_margit_stern",
+      "document_id": "viimsi_vald_contact_margit_stern",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "6568827703e1aee98b0c76c30b155d42bff8b365881ee5f9adab7a6cdda7f9df",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_contact_haldi_palang",
+      "canonical_item_id": "viimsi_vald:contact:haldi_palang",
+      "itemType": "contact",
+      "title": "Haldi Palang",
+      "status": "active",
+      "summary": "Lastekaitse spetsialist, kelle töövaldkond on laste õiguste ja huvide kaitse ning juhtumipõhine töö peredega.",
+      "sourceKeys": [
+        "social_health_contacts"
+      ],
+      "name": "Haldi Palang",
+      "role": "lastekaitse spetsialist",
+      "department": "Sotsiaal- ja tervishoiuosakond",
+      "address": "Nelgi tee 1, Viimsi alevik, 74001 Harjumaa",
+      "item_type": "contact",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_health_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_contact_haldi_palang",
+      "document_id": "viimsi_vald_contact_haldi_palang",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "07bacd6e5eb41679d642c5a25738754b150b332ac6983f9fcdeb826ff503ec5a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_contact_dei_stein",
+      "canonical_item_id": "viimsi_vald:contact:dei_stein",
+      "itemType": "contact",
+      "title": "Dei Stein",
+      "status": "active",
+      "summary": "Lastekaitse spetsialist, kelle töövaldkond on laste õiguste ja huvide kaitse ning juhtumipõhine töö peredega.",
+      "sourceKeys": [
+        "social_health_contacts"
+      ],
+      "name": "Dei Stein",
+      "role": "lastekaitse spetsialist",
+      "department": "Sotsiaal- ja tervishoiuosakond",
+      "address": "Nelgi tee 1, Viimsi alevik, 74001 Harjumaa",
+      "item_type": "contact",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_health_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_contact_dei_stein",
+      "document_id": "viimsi_vald_contact_dei_stein",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "aa77e85f0190465eb43badc541d302194fe4fe6fe594ed57ba64ee2f64ad0ee3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_contact_kati_kytt",
+      "canonical_item_id": "viimsi_vald:contact:kati_kytt",
+      "itemType": "contact",
+      "title": "Kati Kütt",
+      "status": "active",
+      "summary": "Lastekaitse spetsialist, kelle töövaldkond on laste õiguste ja huvide kaitse ning juhtumipõhine töö peredega.",
+      "sourceKeys": [
+        "social_health_contacts"
+      ],
+      "name": "Kati Kütt",
+      "role": "lastekaitse spetsialist",
+      "department": "Sotsiaal- ja tervishoiuosakond",
+      "address": "Nelgi tee 1, Viimsi alevik, 74001 Harjumaa",
+      "item_type": "contact",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_health_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_contact_kati_kytt",
+      "document_id": "viimsi_vald_contact_kati_kytt",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "939fd8823de82372e59f0c46fe308d7cc0eeeaf6c9a5566c8cc6322780a2e61c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_contact_airi_peenoja",
+      "canonical_item_id": "viimsi_vald:contact:airi_peenoja",
+      "itemType": "contact",
+      "title": "Airi Peenoja",
+      "status": "active",
+      "summary": "Lastekaitse spetsialist, kelle töövaldkond on laste õiguste ja huvide kaitse ning juhtumipõhine töö peredega.",
+      "sourceKeys": [
+        "social_health_contacts"
+      ],
+      "name": "Airi Peenoja",
+      "role": "lastekaitse spetsialist",
+      "department": "Sotsiaal- ja tervishoiuosakond",
+      "address": "Nelgi tee 1, Viimsi alevik, 74001 Harjumaa",
+      "item_type": "contact",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_health_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_contact_airi_peenoja",
+      "document_id": "viimsi_vald_contact_airi_peenoja",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "0b3c6903fcba41da01ad01a33c9a87e38da91300816a8ea7235bea85d7149f5f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_contact_kaisa_kerner",
+      "canonical_item_id": "viimsi_vald:contact:kaisa_kerner",
+      "itemType": "contact",
+      "title": "Kaisa Kerner",
+      "status": "active",
+      "summary": "Noorte heaolu spetsialist, kes nõustab ja toetab noori haridustee jätkamiseks ning tööturule jõudmiseks.",
+      "sourceKeys": [
+        "social_health_contacts"
+      ],
+      "name": "Kaisa Kerner",
+      "role": "noorte heaolu spetsialist",
+      "department": "Sotsiaal- ja tervishoiuosakond",
+      "address": "Nelgi tee 1, Viimsi alevik, 74001 Harjumaa",
+      "item_type": "contact",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_health_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_contact_kaisa_kerner",
+      "document_id": "viimsi_vald_contact_kaisa_kerner",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "063a4a858b37372e1e4e88c6e3fbd942cdd3fccb3f3192247e85f10a5187ea81",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_contact_viimsi_vallavalitsus",
+      "canonical_item_id": "viimsi_vald:contact:viimsi_vallavalitsus",
+      "itemType": "contact",
+      "title": "Viimsi Vallavalitsus",
+      "status": "active",
+      "summary": "Viimsi Vallavalitsuse üldkontakt. Sotsiaal- ja tervishoiuosakonna vastuvõtud toimuvad vallamajas Nelgi tee 1, Viimsi alevikus.",
+      "sourceKeys": [
+        "home"
+      ],
+      "name": "Viimsi Vallavalitsus",
+      "role": "üldkontakt",
+      "department": "Viimsi Vallavalitsus",
+      "address": "Nelgi tee 1, Viimsi alevik, 74001 Harjumaa",
+      "item_type": "contact",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "home"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_contact_viimsi_vallavalitsus",
+      "document_id": "viimsi_vald_contact_viimsi_vallavalitsus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "989c47bb20f662a5559121f35f6689be7caeacb52490d8cfa43d48b2f070026b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_form_sotsiaalteenuste_yhistaotlus",
+      "canonical_item_id": "viimsi_vald:form:sotsiaalteenuste_yhistaotlus",
+      "itemType": "form",
+      "title": "Viimsi valla sotsiaalteenuste ühistautlus",
+      "status": "active",
+      "summary": "DOCX-vorm sotsiaalteenuste taotlemiseks. Vorm on ametlikult lingitud lapsehoiuteenuse ja vältimatu sotsiaalabi lehtedelt ning seda kasutatakse üldise sotsiaalteenuse taotlusena.",
+      "sourceKeys": [
+        "sotsiaalteenuste_yhistaotlus_file"
+      ],
+      "format": "docx",
+      "officialUrl": "https://www.viimsi.ee/sites/default/files/documents/2026-04/Viimsi%20valla%20sotsiaalteenuste%20%C3%BChistaotlus.docx",
+      "submissionChannels": [
+        "digiallkirjastatult kontaktametniku e-postile",
+        "paberkandjal vallamajja"
+      ],
+      "relatedTo": [
+        "viimsi_vald_service_koduteenus",
+        "viimsi_vald_service_uldhooldusteenus",
+        "viimsi_vald_service_taisealise_isiku_hooldus",
+        "viimsi_vald_service_lapsehoiuteenus",
+        "viimsi_vald_service_isiklik_abistaja",
+        "viimsi_vald_service_sotsiaaltransport",
+        "viimsi_vald_service_muud_taiendavad_sotsiaalteenused",
+        "viimsi_vald_service_eluruumi_tagamine",
+        "viimsi_vald_service_varjupaigateenus",
+        "viimsi_vald_service_turvakoduteenus",
+        "viimsi_vald_service_valtimatu_sotsiaalabi",
+        "viimsi_vald_service_volanoustamisteenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenuste_yhistaotlus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_form_sotsiaalteenuste_yhistaotlus",
+      "document_id": "viimsi_vald_form_sotsiaalteenuste_yhistaotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/sites/default/files/documents/2026-04/Viimsi%20valla%20sotsiaalteenuste%20%C3%BChistaotlus.docx",
+      "content_hash": "8b8f9a6cb26280aeadfc9dfb2c6aa33c9ea551d1b84e67041cbb46d09fc8207a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_form_sissetulekust_soltuv_toetus",
+      "canonical_item_id": "viimsi_vald:form:sissetulekust_soltuv_toetus",
+      "itemType": "form",
+      "title": "Sissetulekust sõltuva toetuse taotlus",
+      "status": "active",
+      "summary": "DOCX-vorm sissetulekust sõltuvate sotsiaaltoetuste taotlemiseks. Vorm on seotud ravimitoetuse ja teiste sissetulekust sõltuvate toetustega.",
+      "sourceKeys": [
+        "sissetulekust_soltuv_toetus_file"
+      ],
+      "format": "docx",
+      "officialUrl": "https://viimsi.ee/sites/default/files/documents/2025-09/Sissetulekust%20s%C3%B5ltuva%20toetuse%20taotlus.docx",
+      "submissionChannels": [
+        "digiallkirjastatult kontaktametniku e-postile",
+        "paberkandjal vallamajja"
+      ],
+      "relatedTo": [
+        "viimsi_vald_benefit_toimetuleku_tagamise_toetus",
+        "viimsi_vald_benefit_ravimitoetus",
+        "viimsi_vald_benefit_lasteaia_lastehoiu_kohatasu_toetus",
+        "viimsi_vald_benefit_toidu_eest_tasumise_toetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sissetulekust_soltuv_toetus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_form_sissetulekust_soltuv_toetus",
+      "document_id": "viimsi_vald_form_sissetulekust_soltuv_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viimsi.ee/sites/default/files/documents/2025-09/Sissetulekust%20s%C3%B5ltuva%20toetuse%20taotlus.docx",
+      "content_hash": "d8bebc5e755641961b2498f228e1b24e4f91c05a36de2872d90ab8f0f5412532",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_form_riiklik_toimetulekutoetus",
+      "canonical_item_id": "viimsi_vald:form:riiklik_toimetulekutoetus",
+      "itemType": "form",
+      "title": "Riikliku toimetulekutoetuse taotlus",
+      "status": "active",
+      "summary": "DOCX-vorm riikliku toimetulekutoetuse taotlemiseks. Esmakordsel taotlemisel tuleb lisada rahaliste vahendite ja vara ülevaade ning eluasemekulude dokumendid.",
+      "sourceKeys": [
+        "riiklik_toimetulekutoetus_file"
+      ],
+      "format": "docx",
+      "officialUrl": "https://www.viimsi.ee/sites/default/files/documents/2026-04/Riikliku%20toimetulekutoetuse%20taotlus.docx",
+      "submissionChannels": [
+        "esmataotlus paberkandjal vallamajas",
+        "järgnevalt kokkuleppel digiallkirjastatult e-postiga"
+      ],
+      "relatedTo": [
+        "viimsi_vald_benefit_riiklik_toimetulekutoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "riiklik_toimetulekutoetus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_form_riiklik_toimetulekutoetus",
+      "document_id": "viimsi_vald_form_riiklik_toimetulekutoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/sites/default/files/documents/2026-04/Riikliku%20toimetulekutoetuse%20taotlus.docx",
+      "content_hash": "9374031c0b39cccd163cc94cffb9d36e830ab0c102e4fe5ccd6b0545cc2336af",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_form_rahaliste_vahendite_ulevaade",
+      "canonical_item_id": "viimsi_vald:form:rahaliste_vahendite_ulevaade",
+      "itemType": "form",
+      "title": "Rahaliste vahendite ülevaate vorm",
+      "status": "active",
+      "summary": "Riikliku toimetulekutoetuse taotluse lisavorm rahaliste vahendite esitamiseks.",
+      "sourceKeys": [
+        "rahalised_vahendid_file"
+      ],
+      "format": "docx",
+      "officialUrl": "https://www.viimsi.ee/sites/default/files/documents/2026-04/Rahalised%20vahendid.docx",
+      "submissionChannels": [
+        "digiallkirjastatult e-postiga",
+        "paberil vallamajja"
+      ],
+      "relatedTo": [
+        "viimsi_vald_benefit_riiklik_toimetulekutoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "rahalised_vahendid_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_form_rahaliste_vahendite_ulevaade",
+      "document_id": "viimsi_vald_form_rahaliste_vahendite_ulevaade",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/sites/default/files/documents/2026-04/Rahalised%20vahendid.docx",
+      "content_hash": "3deb98ae8ff5bf29f0ea195f80883349bcbac21ddcd084a9ff9059d845311928",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_form_muu_vara_ulevaade",
+      "canonical_item_id": "viimsi_vald:form:muu_vara_ulevaade",
+      "itemType": "form",
+      "title": "Muu vara ülevaate vorm",
+      "status": "active",
+      "summary": "Riikliku toimetulekutoetuse taotluse lisavorm muu vara esitamiseks.",
+      "sourceKeys": [
+        "muu_vara_file"
+      ],
+      "format": "docx",
+      "officialUrl": "https://www.viimsi.ee/sites/default/files/documents/2026-04/Muu%20vara.docx",
+      "submissionChannels": [
+        "digiallkirjastatult e-postiga",
+        "paberil vallamajja"
+      ],
+      "relatedTo": [
+        "viimsi_vald_benefit_riiklik_toimetulekutoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "muu_vara_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_form_muu_vara_ulevaade",
+      "document_id": "viimsi_vald_form_muu_vara_ulevaade",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/sites/default/files/documents/2026-04/Muu%20vara.docx",
+      "content_hash": "3c7fe033c12ac856640202100b5213c58d779fcf4eea6fe853fd85d91565c8e5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_service_sotsiaalnoustamine",
+      "canonical_item_id": "viimsi_vald:service:sotsiaalnoustamine",
+      "itemType": "service",
+      "title": "Sotsiaalnõustamine",
+      "status": "active",
+      "summary": "Sotsiaalnõustamine on Viimsi valla elanikele mõeldud sotsiaalteenus, kus abivajajaga koos hinnatakse tema olukorda, selgitatakse sotsiaalseid õigusi ja võimalusi ning juhendatakse toetuste, teenuste ja ametkondadega suhtlemisel. Vajadusel võib nõustamine sisaldada esmatasandi võlanõustamist.",
+      "sourceKeys": [
+        "sotsiaalnoustamine_page"
+      ],
+      "targetGroup": "Viimsi vallas elavad inimesed, kelle iseseisev toimetulek on raskendatud.",
+      "conditions": "Vastuvõtule saab tulla sotsiaal- ja tervishoiuosakonda vastuvõtupäevadel; registreerimine ei ole tingimata vajalik.",
+      "application": {
+        "channels": [
+          "kohapeal vastuvõtupäevadel"
+        ],
+        "steps": [
+          "Pöördu sotsiaal- ja tervishoiuosakonna vastuvõtule esmaspäeval kell 14.00–17.30 või neljapäeval kell 9.00–12.00 ja 14.00–17.00."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Tasuta",
+      "officialUrl": "https://www.viimsi.ee/tervishoid-ja-sotsiaalteenused/toimetulekuraskustes-inimene/sotsiaalnoustamine",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viimsi_vald_contact_sandra_hommuk",
+        "viimsi_vald_contact_ave_kivinukk"
+      ],
+      "item_type": "service",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalnoustamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_service_sotsiaalnoustamine",
+      "document_id": "viimsi_vald_service_sotsiaalnoustamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/tervishoid-ja-sotsiaalteenused/toimetulekuraskustes-inimene/sotsiaalnoustamine",
+      "content_hash": "7316f4cf8df9bdbcb8c7b8c882ee04f323aad7c78be920fede943bbb01959abf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_service_koduteenus",
+      "canonical_item_id": "viimsi_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus eakatele",
+      "status": "active",
+      "summary": "Koduteenus toetab eakaid, puudega inimesi ja ajutiselt abi vajavaid inimesi kodus toimetulekul. Abi võib hõlmata igapäevatoiminguid ja majapidamist; teenust osutab Viimsi Hoolekandekeskus ning teenuse vajadust hindab sotsiaaltöö spetsialist.",
+      "sourceKeys": [
+        "koduteenus_page"
+      ],
+      "targetGroup": "Pensioniealised, puudega inimesed ja ajutiselt abi vajavad üksi elavad tööealised, kelle igapäevane toimetulek on raskendatud.",
+      "conditions": "Teenuse määrab sotsiaaltöö spetsialist abivajaduse hindamise põhjal.",
+      "application": {
+        "channels": [
+          "",
+          "paberil vallamajja"
+        ],
+        "steps": [
+          "Täida sotsiaalteenuste taotlus ja esita see vallamajja või kontaktametniku e-postile."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenuse kohta on veebilehel märgitud, et teenus on abivajajale tasuta.",
+      "officialUrl": "https://www.viimsi.ee/toiming/koduteenuse-taotlus-eakatele",
+      "relatedForms": [
+        "viimsi_vald_form_sotsiaalteenuste_yhistaotlus"
+      ],
+      "relatedContacts": [
+        "viimsi_vald_contact_sandra_hommuk"
+      ],
+      "item_type": "service",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "koduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_service_koduteenus",
+      "document_id": "viimsi_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/koduteenuse-taotlus-eakatele",
+      "content_hash": "7b5724031061e4e30aab91df11c2099986b276696fe3e064d165d70422732952",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_service_uldhooldusteenus",
+      "canonical_item_id": "viimsi_vald:service:uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatav üldhooldusteenus on mõeldud täisealisele inimesele, kes vajab ööpäevaringset hooldust ega tule kodus toime. Viimsi vald saab katta hooldusteenuse kulu kuni veebilehel märgitud piirmäärani ning klient tasub majutuse ja toitlustuse kulud, kui tema ja lähedased on selleks võimelised.",
+      "sourceKeys": [
+        "uldhooldusteenus_page"
+      ],
+      "targetGroup": "Eakad või täisealised, kes vajavad ööpäevaringset üldhooldust.",
+      "conditions": "Taotlejal tuleb tõendada hooldusvajadus ja vajadusel majanduslik olukord.",
+      "application": {
+        "channels": [
+          "",
+          "paberil vallamajja"
+        ],
+        "steps": [
+          "Täida sotsiaalteenuste taotlus",
+          "Lisa hooldusvajadust ja vajadusel majanduslikku olukorda tõendavad dokumendid."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Viimsi vald katab teenuse maksumust kuni avaldatud piirmäärani; majutus ja toitlustus jääb kliendi kanda, kui vald ei otsusta teisiti.",
+      "officialUrl": "https://www.viimsi.ee/toiming/valjaspool-kodu-osutatav-uldhooldusteenus-eakatele",
+      "relatedForms": [
+        "viimsi_vald_form_sotsiaalteenuste_yhistaotlus"
+      ],
+      "relatedContacts": [
+        "viimsi_vald_contact_sandra_hommuk"
+      ],
+      "item_type": "service",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "uldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_service_uldhooldusteenus",
+      "document_id": "viimsi_vald_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/valjaspool-kodu-osutatav-uldhooldusteenus-eakatele",
+      "content_hash": "309ab4151e852ca6e453af76fc7ef7ae31774939630db6d71e051eb2c9ae678d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "viimsi_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hoolduse teenus on mõeldud hooldusvajadusega täisealisele inimesele, kes vajab vaimse või kehalise puude tõttu kõrvalabi igapäevatoimingutes. Hoolduse seadmisel hinnatakse hooldusvajadust, määratakse hooldaja ülesanded ning raske või sügava puudega täisealise inimese hooldajale võidakse maksta hooldajatoetust.",
+      "sourceKeys": [
+        "taisealise_hooldus_page"
+      ],
+      "targetGroup": "Täisealised hooldusvajadusega inimesed, kes vajavad puude tõttu kõrvalabi õiguste teostamisel ja kohustuste täitmisel.",
+      "conditions": "Hooldus seatakse hooldatava ja hooldaja nõusolekul; üldjuhul ei määrata hooldajaks ülalpidamiskohustusega isikut ega raske või sügava puudega isikut.",
+      "application": {
+        "channels": [
+          "",
+          "paberil vallamajja"
+        ],
+        "steps": [
+          "Esita sotsiaalteenuse taotlus",
+          "Lisa taotletava abi kirjeldus ja põhjendus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenuse kohta on veebilehel märgitud, et teenus on abivajajale tasuta.",
+      "officialUrl": "https://www.viimsi.ee/toiming/taisealise-isiku-hoolduse-taotlus",
+      "relatedForms": [
+        "viimsi_vald_form_sotsiaalteenuste_yhistaotlus"
+      ],
+      "relatedContacts": [
+        "viimsi_vald_contact_margit_stern"
+      ],
+      "item_type": "service",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "taisealise_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_service_taisealise_isiku_hooldus",
+      "document_id": "viimsi_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/taisealise-isiku-hoolduse-taotlus",
+      "content_hash": "a18073fd98a595500bd4435da3f2c98ac9275fd52aed351ed1ee460e6200391d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_service_taiskasvanud_eestkoste",
+      "canonical_item_id": "viimsi_vald:service:taiskasvanud_eestkoste",
+      "itemType": "service",
+      "title": "Täiskasvanud isikute eestkoste",
+      "status": "active",
+      "summary": "Täiskasvanud isikute eestkoste taotlus puudutab olukorda, kus inimene ei suuda vaimse tervise tõttu oma tegusid juhtida või nende tähendusest aru saada. Eestkoste määrab kohus, kuid Viimsi vallavalitsuse sotsiaaltööspetsialist saab aidata dokumentide ettevalmistamisel.",
+      "sourceKeys": [
+        "taiskasvanud_eestkoste_page"
+      ],
+      "targetGroup": "Täiskasvanud inimesed, kellele võib vaimuhaiguse, nõrgamõistuslikkuse või muu psüühikahäire tõttu olla vajalik eestkostja.",
+      "conditions": "Eestkoste määrab kohus; avaldusele lisatakse riigilõivu tõend, isikut tõendavate dokumentide koopiad, eestkostjaks soovija nõusolek ja võimalusel arsti tervisliku seisundi kirjeldus.",
+      "application": {
+        "channels": [
+          "otse Harju Maakohtusse",
+          "sotsiaaltööspetsialisti abiga"
+        ],
+        "steps": [
+          "Koosta vabas vormis avaldus",
+          "Lisa nõutud dokumendid",
+          "Pöördu kohtusse või vallavalitsuse sotsiaaltööspetsialisti poole."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Riigilõiv 10 € täisealisele isikule eestkostja määramise avalduse esitamisel.",
+      "officialUrl": "https://www.viimsi.ee/toiming/taiskasvanud-isikute-eestkoste-taotlus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viimsi_vald_contact_margit_stern"
+      ],
+      "item_type": "service",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "taiskasvanud_eestkoste_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_service_taiskasvanud_eestkoste",
+      "document_id": "viimsi_vald_service_taiskasvanud_eestkoste",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/taiskasvanud-isikute-eestkoste-taotlus",
+      "content_hash": "5bd274f5177b04f139e7348ea7c9a9f9dfbdbf0dd91694270c0fc61b68f784de",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_service_tugiisik_lapsele",
+      "canonical_item_id": "viimsi_vald:service:tugiisik_lapsele",
+      "itemType": "service",
+      "title": "Tugiisikuteenus lapsele",
+      "status": "active",
+      "summary": "Tugiisikuteenus aitab erivajadusega lapsel, lapsevanemal või lapse hooldajal arendada iseseisvat toimetulekut ja vastutust. Tugiisiku abi seisneb juhendamises, julgustamises ja motiveerimises; tugiisik ei ole hooldaja ega õendusabi osutaja.",
+      "sourceKeys": [
+        "tugiisik_laps_page"
+      ],
+      "targetGroup": "Erivajadusega lapsed ning lapsevanemad või lapse hooldajad, kes vajavad lapse eest hoolitsemisel tuge.",
+      "conditions": "Lastekaitse juhtumites võib tugiisiku määrata lastekaitsespetsialisti ettepanekul; teenus on abivajajale tasuta.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "lastekaitsespetsialisti ettepanek"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU iseteeninduses või pöördu lastekaitsespetsialisti poole."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Tasuta",
+      "officialUrl": "https://www.viimsi.ee/toiming/puudega-laste-toimetuleku-toetamise-taotlus-tugiisikuteenuse-taotlus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viimsi_vald_contact_erivajadusega_laste_spetsialist",
+        "viimsi_vald_contact_haldi_palang",
+        "viimsi_vald_contact_dei_stein",
+        "viimsi_vald_contact_kati_kytt",
+        "viimsi_vald_contact_airi_peenoja"
+      ],
+      "item_type": "service",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "tugiisik_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_service_tugiisik_lapsele",
+      "document_id": "viimsi_vald_service_tugiisik_lapsele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/puudega-laste-toimetuleku-toetamise-taotlus-tugiisikuteenuse-taotlus",
+      "content_hash": "c3ef6213361099fcfb61059fcfab716760aa8f18124f8ab47c42aeb0394aeba8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_service_tugiisik_taiskasvanule",
+      "canonical_item_id": "viimsi_vald:service:tugiisik_taiskasvanule",
+      "itemType": "service",
+      "title": "Tugiisikuteenus täiskasvanule",
+      "status": "active",
+      "summary": "Tugiisikuteenus täiskasvanule on mõeldud inimesele, kes vajab sotsiaalsete, majanduslike, psühholoogiliste või terviseprobleemide tõttu olulisel määral kõrvalabi oma kohustuste täitmisel ja õiguste teostamisel. Teenus on jõustav ja toetab suuremat iseseisvust.",
+      "sourceKeys": [
+        "tugiisik_taiskasvanu_page"
+      ],
+      "targetGroup": "Erivajadusega või toimetulekuraskustes täiskasvanud Viimsi valla elanikud.",
+      "conditions": "Tugiisik ei ole hooldaja ja hooldustoimingud ei kuulu tugiisiku teenuse eesmärki; teenus on tasuta.",
+      "application": {
+        "channels": [
+          "SPOKU"
+        ],
+        "steps": [
+          "Esita tugiisikuteenuse taotlus Viimsi valla iseteeninduskeskkonnas SPOKU."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Tasuta",
+      "officialUrl": "https://www.viimsi.ee/toiming/puudega-taiskasvanute-toimetuleku-toetamise-taotlus-tugiisikuteenuse-taotlus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viimsi_vald_contact_margit_stern",
+        "viimsi_vald_contact_ave_kivinukk"
+      ],
+      "item_type": "service",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "tugiisik_taiskasvanu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_service_tugiisik_taiskasvanule",
+      "document_id": "viimsi_vald_service_tugiisik_taiskasvanule",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/puudega-taiskasvanute-toimetuleku-toetamise-taotlus-tugiisikuteenuse-taotlus",
+      "content_hash": "7a85c12ecbaa7bbeca9f3f43c6bd3021bbf9394c8afc8e13338509ca1ed0b72d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "viimsi_vald:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenus toetab last kasvatava inimese toimetulekut ja töötamist või vähendab erivajadusest tulenevat hoolduskoormust. Teenust osutatakse kuni lapse täisealiseks saamiseni ning teenuse osutaja leiab Viimsi vallavalitsus.",
+      "sourceKeys": [
+        "lapsehoiuteenus_page"
+      ],
+      "targetGroup": "Erivajadusega laps, kellel on tavapärasest suurem hooldusvajadus või puue.",
+      "conditions": "Lapsehoiuteenuse vajadust hinnatakse iga lapse puhul eraldi, arvestades lapse ja perekonna vajadusi; teenus on abivajajale tasuta.",
+      "application": {
+        "channels": [
+          "",
+          "paberil vallamajja"
+        ],
+        "steps": [
+          "Täida Viimsi valla sotsiaalteenuste taotlus",
+          "Esita vorm vallamajja või digiallkirjastatult kontaktametniku e-postile."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Tasuta",
+      "officialUrl": "https://www.viimsi.ee/toiming/lapsehoiuteenuse-taotlus",
+      "relatedForms": [
+        "viimsi_vald_form_sotsiaalteenuste_yhistaotlus"
+      ],
+      "relatedContacts": [
+        "viimsi_vald_contact_erivajadusega_laste_spetsialist"
+      ],
+      "item_type": "service",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lapsehoiuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_service_lapsehoiuteenus",
+      "document_id": "viimsi_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/lapsehoiuteenuse-taotlus",
+      "content_hash": "79e2accc0d8422155026ed63f175b53bc2f9121a8462aea51d7e3e24cc1bb659",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_service_isiklik_abistaja",
+      "canonical_item_id": "viimsi_vald:service:isiklik_abistaja",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus suurendab puude tõttu füüsilist kõrvalabi vajava inimese iseseisvat toimetulekut ja osalemist igapäevaelus ning vähendab lähedaste hoolduskoormust. Teenuse saaja peab suutma abistajat juhendada; abistaja ei tohi olla pereliige.",
+      "sourceKeys": [
+        "isiklik_abistaja_page"
+      ],
+      "targetGroup": "Puudega inimesed, kes vajavad füüsilist kõrvalabi, kuid suudavad abistajat juhendada.",
+      "conditions": "Abistajaks ei tohi olla pereliige; taotleja peab olema võimeline abistajat juhendama.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "",
+          "paberil vallamajja"
+        ],
+        "steps": [
+          "Täida sotsiaalteenuste taotlus",
+          "Lisa vajadusel abistaja andmed ja nõusolek."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Tasuta",
+      "officialUrl": "https://www.viimsi.ee/toiming/isikliku-abistaja-teenus",
+      "relatedForms": [
+        "viimsi_vald_form_sotsiaalteenuste_yhistaotlus"
+      ],
+      "relatedContacts": [
+        "viimsi_vald_contact_margit_stern"
+      ],
+      "item_type": "service",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "isiklik_abistaja_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_service_isiklik_abistaja",
+      "document_id": "viimsi_vald_service_isiklik_abistaja",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/isikliku-abistaja-teenus",
+      "content_hash": "d5a5240f1315d314183c9a8fd67ce5748f565a0101b0ae0274fd775c4d3227c1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_service_sotsiaaltransport",
+      "canonical_item_id": "viimsi_vald:service:sotsiaaltransport",
+      "itemType": "service",
+      "title": "Sotsiaaltranspordi teenus",
+      "status": "active",
+      "summary": "Sotsiaaltranspordi teenus aitab puudega inimestel ja liikumisraskustega eakatel jõuda arsti juurde, tööle või muudele vältimatutele käikudele. Taotlus tuleb esitada ette ning teenuse tingimused sõltuvad sõidu vajadusest ja marsruudist.",
+      "sourceKeys": [
+        "sotsiaaltransport_page"
+      ],
+      "targetGroup": "Puudega inimesed ja liikumisraskustega eakad.",
+      "conditions": "Sõidutaotlused tuleb esitada vähemalt viis tööpäeva enne sõitu; pikemate sõitude puhul võib kehtida omaosalus.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "",
+          "paberil vallamajja"
+        ],
+        "steps": [
+          "Täida sotsiaaltranspordi teenuse taotlus ja esita see vähemalt viis tööpäeva enne sõitu."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Viimsi ja Tallinna piires on teenus tasuta; pikemate sõitude puhul võib kehtida omaosalus.",
+      "officialUrl": "https://www.viimsi.ee/toiming/sotsiaaltranspordi-teenuse-taotlus",
+      "relatedForms": [
+        "viimsi_vald_form_sotsiaalteenuste_yhistaotlus"
+      ],
+      "relatedContacts": [
+        "viimsi_vald_contact_tonu_troon",
+        "viimsi_vald_contact_margit_stern"
+      ],
+      "item_type": "service",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltransport_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_service_sotsiaaltransport",
+      "document_id": "viimsi_vald_service_sotsiaaltransport",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/sotsiaaltranspordi-teenuse-taotlus",
+      "content_hash": "77c09cd9e9c62ad41e67de226b6c2992b736105e78a25bdf9f2dffcc5cfaa9a2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_service_muud_taiendavad_sotsiaalteenused",
+      "canonical_item_id": "viimsi_vald:service:muud_taiendavad_sotsiaalteenused",
+      "itemType": "service",
+      "title": "Muud täiendavad sotsiaalteenused",
+      "status": "active",
+      "summary": "Viimsi vald võimaldab taotleda muid täiendavaid sotsiaalteenuseid, sealhulgas nõustamist, teraapiat, tugigruppe, koolitusi ning kriisi- ja leinatöö teenuseid. Teenuse kättesaadavus ja omaosalus sõltuvad eelarvest, projektidest, teenuse mahust ja taotleja olukorrast.",
+      "sourceKeys": [
+        "muud_taiendavad_teenused_page"
+      ],
+      "targetGroup": "Elanikud, kes vajavad täiendavat sotsiaalset, psühholoogilist või kriisiabi.",
+      "conditions": "Teenuste kättesaadavus sõltub rahastusest; omaosalust hinnatakse individuaalselt.",
+      "application": {
+        "channels": [
+          "",
+          "paberil vallamajja"
+        ],
+        "steps": [
+          "Kirjelda taotletav abi ja esita taotlus vallavalitsusele."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Võib sõltuda teenuse mahust ja taotleja majanduslikust olukorrast.",
+      "officialUrl": "https://www.viimsi.ee/toiming/muud-taiendavad-sotsiaalteenused",
+      "relatedForms": [
+        "viimsi_vald_form_sotsiaalteenuste_yhistaotlus"
+      ],
+      "relatedContacts": [
+        "viimsi_vald_contact_tonu_troon",
+        "viimsi_vald_contact_ave_kivinukk"
+      ],
+      "item_type": "service",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "muud_taiendavad_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_service_muud_taiendavad_sotsiaalteenused",
+      "document_id": "viimsi_vald_service_muud_taiendavad_sotsiaalteenused",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/muud-taiendavad-sotsiaalteenused",
+      "content_hash": "8eb220cfe8deb0e9e8110727708ba15a72241f91495afffe1bdbe82db662523d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_service_eluruumi_tagamine",
+      "canonical_item_id": "viimsi_vald:service:eluruumi_tagamine",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenusega aidatakse leida eluruum või kohandada olemasolev eluase vastavalt abivajadusele. Teenus on mõeldud inimesele, kes ei ole sotsiaalmajandusliku olukorra tõttu võimeline endale või oma perele vajadustele vastavat eluruumi tagama, ning puudega inimesele, kellel on raskusi eluruumis liikumisel või toimetulekul.",
+      "sourceKeys": [
+        "eluruumi_tagamine_page"
+      ],
+      "targetGroup": "Sotsiaalmajanduslike raskustega inimesed ja puudega inimesed, kelle eluruumis toimetulek on raskendatud.",
+      "conditions": "Teenuse maksumus tuleneb kinnisvara omaniku hinnast; Viimsi vallale kuuluva eluruumi kasutamise tasu sisaldab kõrvalkulusid ja üüri.",
+      "application": {
+        "channels": [
+          "",
+          "paberil vallamajja"
+        ],
+        "steps": [
+          "Esita sotsiaalteenuse taotlus ja kirjelda eluruumi vajadust või kohandamise vajadust."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Sõltub eluruumist; vallale kuuluva eluruumi tasu sisaldab eluruumi kõrvalkulusid ja üüri.",
+      "officialUrl": "https://www.viimsi.ee/toiming/eluruumi-tagamise-teenuse-taotlus",
+      "relatedForms": [
+        "viimsi_vald_form_sotsiaalteenuste_yhistaotlus"
+      ],
+      "relatedContacts": [
+        "viimsi_vald_contact_margit_stern",
+        "viimsi_vald_contact_ave_kivinukk"
+      ],
+      "item_type": "service",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eluruumi_tagamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_service_eluruumi_tagamine",
+      "document_id": "viimsi_vald_service_eluruumi_tagamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/eluruumi-tagamise-teenuse-taotlus",
+      "content_hash": "03d1c9e0700aceaced5740be73a8f5529c8ebc1ca6a5ea7d36d9fd1567ef17d2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_service_varjupaigateenus",
+      "canonical_item_id": "viimsi_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus tagab ajutise turvalise peavarju täiskasvanule, kellel puudub elukoht või kes ei saa oma eluruumi kasutada. Teenus võib hõlmata pesemisvõimalust ja esmast toiduabi ning rahastatakse Viimsi valla eelarvest.",
+      "sourceKeys": [
+        "varjupaigateenus_page"
+      ],
+      "targetGroup": "Täiskasvanud inimesed, kellel puudub püsiv elukoht või võimalus oma eluruumi kasutada.",
+      "conditions": "Teenuse kasutamiseks tuleb pöörduda sotsiaaltöö spetsialisti poole.",
+      "application": {
+        "channels": [
+          "",
+          "pöördumine vallamajja"
+        ],
+        "steps": [
+          "Pöördu sotsiaaltöö spetsialisti poole ja kirjelda olukorda."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenuse kohta on veebilehel märgitud, et teenus on tasuta.",
+      "officialUrl": "https://www.viimsi.ee/toiming/varjupaigateenuse-taotlus",
+      "relatedForms": [
+        "viimsi_vald_form_sotsiaalteenuste_yhistaotlus"
+      ],
+      "relatedContacts": [
+        "viimsi_vald_contact_sandra_hommuk"
+      ],
+      "item_type": "service",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "varjupaigateenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_service_varjupaigateenus",
+      "document_id": "viimsi_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/varjupaigateenuse-taotlus",
+      "content_hash": "3e457d047d83ccb58fac664ecb066cd04d5ec7070f7ca086c37fa057274f007e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_service_turvakoduteenus",
+      "canonical_item_id": "viimsi_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenus pakub ajutist turvalist eluaset ja esmast abi täiskasvanule, kes vajab kaitstud keskkonda, või lapsele, kellel puudub piisav hooldus. Lastele on teenus tasuta, täiskasvanutel võib tasu sõltuda teenuse mahust ja majanduslikust olukorrast.",
+      "sourceKeys": [
+        "turvakoduteenus_page"
+      ],
+      "targetGroup": "Turvalist keskkonda vajavad täiskasvanud ning lapsed, kelle hooldus ei ole tagatud.",
+      "conditions": "Täiskasvanu omaosalus sõltub teenuse mahust ja majanduslikust olukorrast; lapsele on teenus tasuta.",
+      "application": {
+        "channels": [
+          "või spetsialistile",
+          "pöördumine vallamajja"
+        ],
+        "steps": [
+          "Võta ühendust sotsiaaltöö või lastekaitse spetsialistiga."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Lastele tasuta; täiskasvanutel võib kehtida omaosalus.",
+      "officialUrl": "https://www.viimsi.ee/toiming/turvakoduteenuse-taotlus",
+      "relatedForms": [
+        "viimsi_vald_form_sotsiaalteenuste_yhistaotlus"
+      ],
+      "relatedContacts": [
+        "viimsi_vald_contact_sandra_hommuk",
+        "viimsi_vald_contact_tonu_troon",
+        "viimsi_vald_contact_margit_stern",
+        "viimsi_vald_contact_haldi_palang"
+      ],
+      "item_type": "service",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "turvakoduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_service_turvakoduteenus",
+      "document_id": "viimsi_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/turvakoduteenuse-taotlus",
+      "content_hash": "2984f852c4bfef83b0ca48c8b7755d1934d3e53a77abacd1181f4f181affbda0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_service_valtimatu_sotsiaalabi",
+      "canonical_item_id": "viimsi_vald:service:valtimatu_sotsiaalabi",
+      "itemType": "service",
+      "title": "Vältimatu sotsiaalabi",
+      "status": "active",
+      "summary": "Vältimatu sotsiaalabiga tagatakse abivajajale toit, riided, ajutine majutus ja muu esmavajalik abi. Abi osutatakse inimesele, kes on elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitus olukorras ning viibib Viimsi valla haldusterritooriumil.",
+      "sourceKeys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "targetGroup": "Viimsi vallas viibivad inimesed, kes vajavad esmavajalikku abi elatusvahendite puudumise tõttu.",
+      "conditions": "Abi saab Viimsi valla elanik, vallas viibiv inimene või välismaalane, kes vajab abi Viimsi haldusterritooriumil; teenus on üldjuhul tasuta.",
+      "application": {
+        "channels": [
+          "",
+          "paberil vallamajja",
+          "sotsiaaltöötaja algatus"
+        ],
+        "steps": [
+          "Esita vabas vormis sotsiaalteenuse taotlus või pöördu sotsiaaltöötaja poole."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Üldjuhul tasuta",
+      "officialUrl": "https://www.viimsi.ee/toiming/valtimatu-sotsiaalabi-teenuse-taotlus",
+      "relatedForms": [
+        "viimsi_vald_form_sotsiaalteenuste_yhistaotlus"
+      ],
+      "relatedContacts": [
+        "viimsi_vald_contact_sandra_hommuk"
+      ],
+      "item_type": "service",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_service_valtimatu_sotsiaalabi",
+      "document_id": "viimsi_vald_service_valtimatu_sotsiaalabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/valtimatu-sotsiaalabi-teenuse-taotlus",
+      "content_hash": "316f918f4f68fa754b62a207cf56d2a5fda5dda683121529a0c4179a8c159b4e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_service_volanoustamisteenus",
+      "canonical_item_id": "viimsi_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab hinnata finantsolukorda, koostada võlgadega tegelemise plaani ning suhelda võlausaldajatega, et ennetada uusi võlgnevusi ja leida võimalusi toimetuleku parandamiseks. Teenuse kulud katab Viimsi vald.",
+      "sourceKeys": [
+        "volanoustamine_page"
+      ],
+      "targetGroup": "Inimesed, kes vajavad abi võlgadega toimetulekul ja finantsnõustamisel.",
+      "conditions": "Taotleja peab esitama oma olukorra kohta piisava info ja tegema nõustajaga koostööd.",
+      "application": {
+        "channels": [
+          "",
+          "paberil vallamajja"
+        ],
+        "steps": [
+          "Esita võlanõustamise taotlus vallamajja või kontaktametniku e-postile."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Tasuta",
+      "officialUrl": "https://www.viimsi.ee/toiming/volanoustamisteenuse-taotlus",
+      "relatedForms": [
+        "viimsi_vald_form_sotsiaalteenuste_yhistaotlus"
+      ],
+      "relatedContacts": [
+        "viimsi_vald_contact_sandra_hommuk",
+        "viimsi_vald_contact_ave_kivinukk"
+      ],
+      "item_type": "service",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "volanoustamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_service_volanoustamisteenus",
+      "document_id": "viimsi_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/volanoustamisteenuse-taotlus",
+      "content_hash": "333f69941b70bde72a8d73113653b55718cd2ebe9726aaa2e1e1cf047a835ccb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_service_asendushooldusteenus",
+      "canonical_item_id": "viimsi_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus on vanemliku hoolitsuseta lapsele mõeldud pika- või lühiajaline teenus, mille eesmärk on luua lapsele turvaline ja arengut toetav peresarnane elukeskkond. Teenust osutatakse hooldusperes, perekodus või asenduskodus ning vajadusel kuni 90 päeva lühiajaliselt.",
+      "sourceKeys": [
+        "vanemliku_hoolitsuseta_laps_page"
+      ],
+      "targetGroup": "Lapsed, kelle vanemad ei suuda tagada turvalist ja hoolitsevat perekeskkonda.",
+      "conditions": "Teenuse määramisel eelistatakse hooldusperet ning vajadust hinnatakse juhtumipõhiselt.",
+      "application": {
+        "channels": [
+          "pöördumine lastekaitse spetsialisti poole"
+        ],
+        "steps": [
+          "Teenuse küsimustes võta ühendust lastekaitse spetsialistiga."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Vastavalt juhtumipõhisele korraldusele",
+      "officialUrl": "https://www.viimsi.ee/tervishoid-ja-sotsiaalteenused/abivajav-laps-ja-pere/vanemliku-hoolitsuseta-jaanud-laps",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viimsi_vald_contact_haldi_palang",
+        "viimsi_vald_contact_dei_stein",
+        "viimsi_vald_contact_kati_kytt",
+        "viimsi_vald_contact_airi_peenoja"
+      ],
+      "item_type": "service",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "vanemliku_hoolitsuseta_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_service_asendushooldusteenus",
+      "document_id": "viimsi_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/tervishoid-ja-sotsiaalteenused/abivajav-laps-ja-pere/vanemliku-hoolitsuseta-jaanud-laps",
+      "content_hash": "be5c7267c96c9f926e313bbc969953b594654c7b44127dd453666869ddd199d1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "viimsi_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus on mõeldud asendushoolduselt või eestkostelt lahkuvale täisealisele abivajajale, kes jätkab hariduse omandamist. Teenus toetab iseseisvat toimetulekut ja õpingute jätkamist kuni 25-aastaseks saamiseni, vajadusel tugiteenuste, toetuste ja eluasemega.",
+      "sourceKeys": [
+        "vanemliku_hoolitsuseta_laps_page"
+      ],
+      "targetGroup": "Asendushoolduselt või eestkostelt lahkuv täisealine noor, kes jätkab hariduse omandamist.",
+      "conditions": "Teenust osutatakse kuni 25-aastaseks saamiseni ja lähtutakse personaalsest vajadusest.",
+      "application": {
+        "channels": [
+          "pöördumine lastekaitse või sotsiaaltöö spetsialisti poole"
+        ],
+        "steps": [
+          "Võta ühendust lastekaitse spetsialistiga ning lepi kokku juhtumipõhine abi."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Vastavalt juhtumipõhisele korraldusele",
+      "officialUrl": "https://www.viimsi.ee/tervishoid-ja-sotsiaalteenused/abivajav-laps-ja-pere/vanemliku-hoolitsuseta-jaanud-laps",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viimsi_vald_contact_haldi_palang",
+        "viimsi_vald_contact_dei_stein",
+        "viimsi_vald_contact_kati_kytt",
+        "viimsi_vald_contact_airi_peenoja"
+      ],
+      "item_type": "service",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "vanemliku_hoolitsuseta_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_service_jarelhooldusteenus",
+      "document_id": "viimsi_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/tervishoid-ja-sotsiaalteenused/abivajav-laps-ja-pere/vanemliku-hoolitsuseta-jaanud-laps",
+      "content_hash": "aacbc07fe1b9199d72f6747aa00de117d3613ca6d9d7384d1573097a107f3095",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_service_vaimse_tervise_teenused",
+      "canonical_item_id": "viimsi_vald:service:vaimse_tervise_teenused",
+      "itemType": "service",
+      "title": "Vaimse tervise teenused",
+      "status": "active",
+      "summary": "Viimsi vallas rahastatakse vaimse tervise teenuseid, et parandada elanike ligipääsu psühholoogilisele nõustamisele ja toetada toimetulekut. Teenuste hulka kuuluvad psühholoogiline nõustamine täisealistele ja noortele, perenõustamine ning individuaalne loovteraapia lastele ja noortele.",
+      "sourceKeys": [
+        "vaimne_tervis_page"
+      ],
+      "targetGroup": "Rahvastikuregistri andmetel Viimsi vallas elavad inimesed, kes vajavad vaimse tervise tuge.",
+      "conditions": "Teenused on Viimsi valla elanikele tasuta; ametnikul on õigus jätta teenusele suunamata inimene, kes ei ole valla elanik.",
+      "application": {
+        "channels": [
+          "broneerimine",
+          "kirjalik pöördumine lastekaitse või sotsiaaltöö spetsialistile"
+        ],
+        "steps": [
+          "Täiskasvanu psühholoogilise nõustamise saab broneerida ilma spetsialisti suunamiseta",
+          "Perenõustamise ja loovteraapia jaoks kirjuta spetsialistile lühike selgitus teenuse vajalikkuse kohta."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Kuni neli tasuta nõustamiskorda",
+      "officialUrl": "https://www.viimsi.ee/vaimne-tervis",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viimsi_vald_contact_lauren_sirp",
+        "viimsi_vald_contact_sandra_hommuk",
+        "viimsi_vald_contact_haldi_palang",
+        "viimsi_vald_contact_dei_stein",
+        "viimsi_vald_contact_kati_kytt",
+        "viimsi_vald_contact_airi_peenoja"
+      ],
+      "item_type": "service",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "vaimne_tervis_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_service_vaimse_tervise_teenused",
+      "document_id": "viimsi_vald_service_vaimse_tervise_teenused",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/vaimne-tervis",
+      "content_hash": "bd7134bd5f0a930f9556a852e3aa97d76c1e4a0ebbc98781e05b8ae8ad043ecd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_benefit_sunnitoetus",
+      "canonical_item_id": "viimsi_vald:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus on Viimsi valla lapse sünni puhul makstav toetus. Valla veebilehel on märgitud, et toetus on 350 eurot lapse kohta ning lisaks kingib vald vastsündinule hõbelusika.",
+      "sourceKeys": [
+        "sunnitoetus_page"
+      ],
+      "targetGroup": "Viimsi valla elanikest lapsevanemad või lapsendajad.",
+      "conditions": "Vanemad ja laps peavad olema Viimsi valla elanikud; taotlus esitatakse kolme kuu jooksul pärast lapse sündi.",
+      "amount": "350 € lapse kohta",
+      "application": {
+        "channels": [
+          "SPOKU"
+        ],
+        "steps": [
+          "Esita sünnitoetuse taotlus Viimsi valla iseteeninduskeskkonnas SPOKU."
+        ],
+        "deadline": "3 kuud pärast lapse sündi"
+      },
+      "decisionTime": null,
+      "officialUrl": "https://www.viimsi.ee/toiming/sunnitoetuse-taotlus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viimsi_vald_contact_signe_teigar"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sunnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_benefit_sunnitoetus",
+      "document_id": "viimsi_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/sunnitoetuse-taotlus",
+      "content_hash": "ef2bb5588c2e721e2e7b977749991bc0760dfe3768e4db4a5c1971368d53e006",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_benefit_suurpere_toetus",
+      "canonical_item_id": "viimsi_vald:benefit:suurpere_toetus",
+      "itemType": "benefit",
+      "title": "Suurpere toetus",
+      "status": "active",
+      "summary": "Suurpere toetus on nelja või enama alaealise lapsega Viimsi perele makstav iga-aastane toetus. Toetuse saamiseks peavad vanemad ja lapsed olema Viimsi rahvastikuregistris ning toetus makstakse välja emadepäevaks.",
+      "sourceKeys": [
+        "suurpere_toetus_page"
+      ],
+      "targetGroup": "Pered, kus kasvab vähemalt neli alla 18-aastast last.",
+      "conditions": "Mõlemad vanemad ja lapsed peavad olema Viimsi valla elanikud eelmise aasta 31. detsembri seisuga.",
+      "amount": "128 € aastas",
+      "application": {
+        "channels": [
+          "SPOKU"
+        ],
+        "steps": [
+          "Esita taotlus Viimsi valla iseteeninduskeskkonnas SPOKU."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://www.viimsi.ee/toiming/suurpere-toetus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viimsi_vald_contact_signe_teigar"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "suurpere_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_benefit_suurpere_toetus",
+      "document_id": "viimsi_vald_benefit_suurpere_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/suurpere-toetus",
+      "content_hash": "ddae5027226902c4c2377c1ce2a46372d58785695f0957ec70b392a946e554b5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_benefit_i_klassi_toetus",
+      "canonical_item_id": "viimsi_vald:benefit:i_klassi_toetus",
+      "itemType": "benefit",
+      "title": "I klassi mineva lapse toetus",
+      "status": "active",
+      "summary": "I klassi mineva lapse toetus aitab peredel katta koolitee alustamisega seotud kulusid. Taotlusi võetakse vastu 1.–30. septembrini lapse esimesel kooliaastal ning toetus makstakse välja hiljemalt 1. novembriks.",
+      "sourceKeys": [
+        "i_klassi_toetus_page"
+      ],
+      "targetGroup": "Viimsi vallas elavad pered, kelle laps alustab esimest klassi.",
+      "conditions": "Vanemad ja laps peavad olema Viimsi valla elanikud eelmise aasta 31. detsembri seisuga.",
+      "amount": null,
+      "application": {
+        "channels": [
+          "ARNO või SPOKU"
+        ],
+        "steps": [
+          "Esita taotlus 1.–30. septembrini lapse esimese kooliaasta jooksul."
+        ],
+        "deadline": "30. september"
+      },
+      "decisionTime": null,
+      "officialUrl": "https://www.viimsi.ee/toiming/i-klassi-mineva-lapse-toetus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viimsi_vald_contact_signe_teigar"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "i_klassi_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_benefit_i_klassi_toetus",
+      "document_id": "viimsi_vald_benefit_i_klassi_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/i-klassi-mineva-lapse-toetus",
+      "content_hash": "a477a6d34adf6e973d485fdeb2c0bd325b050a989c9c8fb6aa1a2ba6048d1a5e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_benefit_matusetoetus",
+      "canonical_item_id": "viimsi_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on ühekordne toetus Viimsi vallas elanud inimese matusekulude katteks. Valla veebilehel on märgitud, et toetuse suurus on 250 eurot ja toetus makstakse välja pärast taotluse menetlemist.",
+      "sourceKeys": [
+        "matusetoetus_page"
+      ],
+      "targetGroup": "Isik, kes korraldab Viimsi valla elaniku matuse.",
+      "conditions": "Lahkunu viimane elukoht peab olema Viimsi vald ja taotleja peab olema matuse korraldaja.",
+      "amount": "250 €",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberil vallamajja"
+        ],
+        "steps": [
+          "Esita matusetoetuse taotlus SPOKUs või vallamajja."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "15 tööpäeva jooksul pärast taotluse esitamist",
+      "officialUrl": "https://www.viimsi.ee/toiming/matusetoetus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viimsi_vald_contact_signe_teigar"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "matusetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_benefit_matusetoetus",
+      "document_id": "viimsi_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/matusetoetus",
+      "content_hash": "788325bd324d90cf8f80f44ab6869860b3a4a945b86b06343363d67cd8782db9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_benefit_tahtpaevatoetus",
+      "canonical_item_id": "viimsi_vald:benefit:tahtpaevatoetus",
+      "itemType": "benefit",
+      "title": "Tähtpäevatoetus eakatele",
+      "status": "active",
+      "summary": "Tähtpäevatoetus on eakatele Viimsi valla elanikele määratav toetus tähtpäeva puhul. Toetuse suurus ja maksmise tingimused sõltuvad veebilehel kirjeldatud vanuse- ja elukohatingimustest.",
+      "sourceKeys": [
+        "tahtpaevatoetus_page"
+      ],
+      "targetGroup": "Viimsi valla eakad elanikud, kes vastavad tähtpäevatoetuse tingimustele.",
+      "conditions": "Elukoht Viimsi vallas; täpne vanus ja kord sõltuvad valla veebilehel avaldatud tingimustest.",
+      "amount": null,
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberil vallamajja"
+        ],
+        "steps": [
+          "Esita tähtpäevatoetuse taotlus valla iseteeninduses või vallamajas."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://www.viimsi.ee/toiming/tahtpaevatoetus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viimsi_vald_contact_signe_teigar"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "tahtpaevatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_benefit_tahtpaevatoetus",
+      "document_id": "viimsi_vald_benefit_tahtpaevatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/tahtpaevatoetus",
+      "content_hash": "788e4faf87cc0ac433c2c37845d8c73f8d9a0fff0c792fb419159370e0db61ab",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_benefit_eakate_yhekordne_toetus",
+      "canonical_item_id": "viimsi_vald:benefit:eakate_yhekordne_toetus",
+      "itemType": "benefit",
+      "title": "Ühekordne toetus eakatele",
+      "status": "active",
+      "summary": "Ühekordset toetust makstakse vanadus- ja rahvapensioni saajatele, kelle elukoht on olnud Viimsi vallas katkematult taotlusele eelneva aasta lõpust. 2025. aasta toetuse suuruseks oli valla veebilehe järgi 140 eurot ning taotlus tuleb esitada ainult üks kord.",
+      "sourceKeys": [
+        "eakate_yhekordne_toetus_page"
+      ],
+      "targetGroup": "Vanadus- ja rahvapensioni saajad, kes on Viimsi valla elanikud.",
+      "conditions": "Rahvastikuregistrijärgne elukoht peab olema katkematult Viimsi vallas alates taotlemisele eelneva aasta 31. detsembrist.",
+      "amount": "2025. aastal 140 €",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberil vallamajja"
+        ],
+        "steps": [
+          "Esita taotlus SPOKUs või paberkandjal vallamajas; järgmistel aastatel kontrollib ametnik vastavust tingimustele."
+        ],
+        "deadline": "2025. aastal maksti välja hiljemalt 12. detsembriks"
+      },
+      "decisionTime": null,
+      "officialUrl": "https://www.viimsi.ee/toiming/uhekordse-toetuse-taotlus-eakatele",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viimsi_vald_contact_sandra_hommuk"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eakate_yhekordne_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_benefit_eakate_yhekordne_toetus",
+      "document_id": "viimsi_vald_benefit_eakate_yhekordne_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/uhekordse-toetuse-taotlus-eakatele",
+      "content_hash": "b4aff8b4641dec945a4d1fe428bb30caf94a2628ff5d9cd43c16e8f94c1e7c12",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_benefit_tsernoboli_toetus",
+      "canonical_item_id": "viimsi_vald:benefit:tsernoboli_toetus",
+      "itemType": "benefit",
+      "title": "Tšernobõli AEJ avarii likvideerimisel osalenu toetus",
+      "status": "active",
+      "summary": "Toetus on Viimsi valla elanikule, kes on osalenud Tšernobõli AEJ avarii likvideerimisel. Taotlus tuleb esitada üks kord ja ametnik kontrollib igal aastal enne toetuse maksmist tingimustele vastavust.",
+      "sourceKeys": [
+        "tsernoboli_toetus_page"
+      ],
+      "targetGroup": "Viimsi valla elanik, kes osales Tšernobõli AEJ avarii likvideerimisel.",
+      "conditions": "Taotlusele lisatakse tõend avarii likvideerimisel osalemise kohta; pangakonto muutumisel tuleb uued andmed edastada ametnikule.",
+      "amount": "128 € aastas",
+      "application": {
+        "channels": [
+          "paberil vabas vormis vallamajja"
+        ],
+        "steps": [
+          "Esita vabas vormis taotlus ja osalemist tõendav dokument sotsiaal- ja tervishoiuosakonda."
+        ],
+        "deadline": "Toetus makstakse hiljemalt veebruaris"
+      },
+      "decisionTime": null,
+      "officialUrl": "https://www.viimsi.ee/toiming/tsernoboli-aej-avarii-likvideerimisel-osalenu-toetuse-taotlus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viimsi_vald_contact_sandra_hommuk"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "tsernoboli_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_benefit_tsernoboli_toetus",
+      "document_id": "viimsi_vald_benefit_tsernoboli_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/tsernoboli-aej-avarii-likvideerimisel-osalenu-toetuse-taotlus",
+      "content_hash": "c06d0081d6ed58d603eeb5278a26e78bc934bbb48fad000de7d3ccfa255dfd57",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_benefit_puudega_isiku_transporditoetus",
+      "canonical_item_id": "viimsi_vald:benefit:puudega_isiku_transporditoetus",
+      "itemType": "benefit",
+      "title": "Puudega isiku transporditoetus",
+      "status": "active",
+      "summary": "Puudega isiku transporditoetus on Viimsi valla toetus puudega inimese transpordikulude leevendamiseks. Toetuse täpsed tingimused on avaldatud valla teenuse lehel ning taotlus esitatakse Viimsi valla ametlikus taotluskeskkonnas või vallamajas.",
+      "sourceKeys": [
+        "puudega_transporditoetus_page"
+      ],
+      "targetGroup": "Puudega Viimsi valla elanikud.",
+      "conditions": "Tingimused sõltuvad puudega isiku transpordivajadusest ja valla avaldatud korrast.",
+      "amount": null,
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberil vallamajja"
+        ],
+        "steps": [
+          "Esita puudega isiku transporditoetuse taotlus valla iseteeninduses või vallamajja."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://www.viimsi.ee/toiming/puudega-isiku-transporditoetuse-taotlus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viimsi_vald_contact_margit_stern"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "puudega_transporditoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_benefit_puudega_isiku_transporditoetus",
+      "document_id": "viimsi_vald_benefit_puudega_isiku_transporditoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/puudega-isiku-transporditoetuse-taotlus",
+      "content_hash": "52bbe5dec9209982cc02e13d90df43b1335224bc1120109985002678d77f6b05",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_benefit_puudega_isiku_tasuta_soidu_oigus",
+      "canonical_item_id": "viimsi_vald:benefit:puudega_isiku_tasuta_soidu_oigus",
+      "itemType": "benefit",
+      "title": "Puudega isiku tasuta sõidu õigus",
+      "status": "active",
+      "summary": "Puudega isiku tasuta sõidu õigus on Viimsi valla veebis avaldatud praktiline toetusmeede, mis võimaldab puudega inimesel taotleda tasuta sõidu õigust. Taotlemine toimub ametliku teenuse lehe kaudu.",
+      "sourceKeys": [
+        "puudega_tasuta_soit_page"
+      ],
+      "targetGroup": "Puudega Viimsi valla elanikud.",
+      "conditions": "Tingimused on seotud puudega isiku staatuse ja tasuta sõidu õiguse taotlemisega.",
+      "amount": "tasuta sõidu õigus",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberil vallamajja"
+        ],
+        "steps": [
+          "Esita tasuta sõidu õiguse taotlus ametliku teenuse lehe kaudu."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://www.viimsi.ee/toiming/puudega-isiku-tasuta-soidu-oigus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viimsi_vald_contact_margit_stern"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "puudega_tasuta_soit_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_benefit_puudega_isiku_tasuta_soidu_oigus",
+      "document_id": "viimsi_vald_benefit_puudega_isiku_tasuta_soidu_oigus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/puudega-isiku-tasuta-soidu-oigus",
+      "content_hash": "20cc6c7b172b227933901209b5172111873f481ad94a14ddffc8334359c1c7c0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_benefit_riiklik_toimetulekutoetus",
+      "canonical_item_id": "viimsi_vald:benefit:riiklik_toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Riiklik toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on riigi rahaline abi puuduses inimestele esmavajaduste rahuldamiseks, mida maksab kohaliku omavalitsus, kus inimene tegelikult elab. Toetuse suurus sõltub leibkonna sissetulekust, toimetulekupiirist ja arvesse võetavatest eluasemekuludest.",
+      "sourceKeys": [
+        "riiklik_toimetulekutoetus_page"
+      ],
+      "targetGroup": "Viimsi valla territooriumil elavad inimesed, pered või leibkonnad, kelle netosissetulek pärast eluasemekulusid jääb alla toimetulekupiiri.",
+      "conditions": "2026. aasta veebilehel avaldatud piirid: esimene või ainus pereliige 220 €, iga järgneva täisealise pereliikme kohta 176 €, alaealise kohta 264 €.",
+      "amount": "Arvutatakse valemiga toimetulekupiir + eluaseme alalised kulud – sissetulekud",
+      "application": {
+        "channels": [
+          "esmakordsel taotlemisel kohapeal",
+          "järgnevalt kokkuleppel e-postiga"
+        ],
+        "steps": [
+          "Esita taotlus ning pangakontode väljavõtted, eluasemekulude dokumendid ja vajadusel varade ülevaade."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Otsus tehakse viie tööpäeva jooksul nõuetekohaste dokumentide esitamisest; väljamakse kolme tööpäeva jooksul pärast otsust.",
+      "officialUrl": "https://www.viimsi.ee/toiming/riikliku-toimetulekutoetuse-taotlus",
+      "relatedForms": [
+        "viimsi_vald_form_riiklik_toimetulekutoetus",
+        "viimsi_vald_form_rahaliste_vahendite_ulevaade",
+        "viimsi_vald_form_muu_vara_ulevaade"
+      ],
+      "relatedContacts": [
+        "viimsi_vald_contact_signe_teigar"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "riiklik_toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_benefit_riiklik_toimetulekutoetus",
+      "document_id": "viimsi_vald_benefit_riiklik_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/riikliku-toimetulekutoetuse-taotlus",
+      "content_hash": "e35c727304c5fa94301e878f7e32fa9a8baad6907296fd0e4666073cc496f3b5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_benefit_toimetuleku_tagamise_toetus",
+      "canonical_item_id": "viimsi_vald:benefit:toimetuleku_tagamise_toetus",
+      "itemType": "benefit",
+      "title": "Toimetuleku tagamise toetus",
+      "status": "active",
+      "summary": "Toimetuleku tagamise toetust saavad taotleda Viimsi valla vähekindlustatud inimesed ja pered, kelle sissetulek jääb alla piirmäära. Toetust võib kasutada eluasemekulude, esmatarbevahendite, laste laagrite, pereteenuste või ettenägematute asjaolude tõttu tekkinud vajaduste katmiseks.",
+      "sourceKeys": [
+        "toimetuleku_tagamise_toetus_page"
+      ],
+      "targetGroup": "Viimsi valla vähekindlustatud isikud ja pered.",
+      "conditions": "Piirmäär: pere esimese liikme kohta 550 € ja iga järgmise liikme kohta 412,50 €. Toetuse maksimaalse suuruse otsustab vallavalitsus.",
+      "amount": "Otsustatakse juhtumipõhiselt",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberil vallamajja"
+        ],
+        "steps": [
+          "Esita taotlus SPOKUs või vallamajja sotsiaal- ja tervishoiuosakonna vastuvõtuajal."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://www.viimsi.ee/toiming/toimetuleku-tagamise-toetuse-taotlus",
+      "relatedForms": [
+        "viimsi_vald_form_sissetulekust_soltuv_toetus"
+      ],
+      "relatedContacts": [
+        "viimsi_vald_contact_sandra_hommuk"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "toimetuleku_tagamise_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_benefit_toimetuleku_tagamise_toetus",
+      "document_id": "viimsi_vald_benefit_toimetuleku_tagamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/toimetuleku-tagamise-toetuse-taotlus",
+      "content_hash": "7bdbb38ef45d6ae7aadebe40656b839a400f3963cd2a3d24da67742f1accf05f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_benefit_ravimitoetus",
+      "canonical_item_id": "viimsi_vald:benefit:ravimitoetus",
+      "itemType": "benefit",
+      "title": "Ravimitoetus",
+      "status": "active",
+      "summary": "Ravimitoetusega hüvitatakse osaliselt taotlusele eelneva kolme kuu jooksul tehtud kulutused retseptiravimitele, abivahenditele ja haavandiravi vahenditele. Toetust makstakse kuni 300 eurot aastas, kuid mitte rohkem kui 50% tehtud kulutustest.",
+      "sourceKeys": [
+        "ravimitoetus_page"
+      ],
+      "targetGroup": "Rahvastikuregistri järgi Viimsi vallas elavad vähekindlustatud inimesed ja pered.",
+      "conditions": "Piirmäär: pere esimese liikme kohta 500 € ja iga järgmise liikme kohta 375 €. Taotlusele lisatakse sissetulekute ja vara andmed ning ostudokumendid.",
+      "amount": "kuni 300 € aastas ja kuni 50% kuludest",
+      "application": {
+        "channels": [
+          "",
+          "paberil vallamajja"
+        ],
+        "steps": [
+          "Esita sissetulekust sõltuva toetuse taotlus koos nõutud tõenditega."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Toetus kantakse 5 tööpäeva jooksul pärast toetuse määramise otsust.",
+      "officialUrl": "https://www.viimsi.ee/toiming/ravimitoetuse-taotlus",
+      "relatedForms": [
+        "viimsi_vald_form_sissetulekust_soltuv_toetus"
+      ],
+      "relatedContacts": [
+        "viimsi_vald_contact_sandra_hommuk"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "ravimitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_benefit_ravimitoetus",
+      "document_id": "viimsi_vald_benefit_ravimitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/ravimitoetuse-taotlus",
+      "content_hash": "afdab9a4643aef51bc2acb37e5797b8493310f4572000b58354e79a5778a7f1c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_benefit_lasteaia_lastehoiu_kohatasu_toetus",
+      "canonical_item_id": "viimsi_vald:benefit:lasteaia_lastehoiu_kohatasu_toetus",
+      "itemType": "benefit",
+      "title": "Lasteaia ja lastehoiu kohatasu toetus",
+      "status": "active",
+      "summary": "Lasteaia ja lastehoiu kohatasu toetus aitab vähekindlustatud perel tasuda lasteaia või lastehoiu kohatasu. Toetust makstakse kuni õppeaasta jooksul ja toetus võib olla kuni 73 eurot kuus.",
+      "sourceKeys": [
+        "lasteaia_lastehoiu_kohatasu_toetus_page"
+      ],
+      "targetGroup": "Viimsi valla vähekindlustatud pered, kelle laps käib lasteaias või lastehoius.",
+      "conditions": "Laps ja tema mõlemad vanemad, üksikvanem või last kasvatavad isikud peavad olema Viimsi valla elanikud; sissetuleku piirmäär on 500 € esimese pereliikme ja 375 € iga järgmise kohta.",
+      "amount": "kuni 73 € kuus",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberil vallamajja"
+        ],
+        "steps": [
+          "Esita taotlus SPOKUs või paberil vallamajja",
+          "Pärast otsust esita kohatasu arved igakuiselt ametniku e-postile."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Väljamakse 5 tööpäeva jooksul pärast taotluses märgitud arve esitamist ja otsust.",
+      "officialUrl": "https://www.viimsi.ee/toiming/lasteaia-ja-lastehoiu-kohatasu-toetuse-taotlus",
+      "relatedForms": [
+        "viimsi_vald_form_sissetulekust_soltuv_toetus"
+      ],
+      "relatedContacts": [
+        "viimsi_vald_contact_sandra_hommuk"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lasteaia_lastehoiu_kohatasu_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_benefit_lasteaia_lastehoiu_kohatasu_toetus",
+      "document_id": "viimsi_vald_benefit_lasteaia_lastehoiu_kohatasu_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/lasteaia-ja-lastehoiu-kohatasu-toetuse-taotlus",
+      "content_hash": "d6aa92d68a421407466380ba3f51cc5b812496d2a2185e2cba9359dd0eecdff8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_benefit_toidu_eest_tasumise_toetus",
+      "canonical_item_id": "viimsi_vald:benefit:toidu_eest_tasumise_toetus",
+      "itemType": "benefit",
+      "title": "Lasteaias, lastehoius ja koolis toidu eest tasumise toetus",
+      "status": "active",
+      "summary": "Toetus hüvitab Viimsi valla vähekindlustatud pere lapse toiduraha lasteaias, lastehoius, põhikooli pikapäevarühmas või gümnaasiumis. Toetus võib olla kuni 64 eurot kuus ja laieneb ka koolitoidule, kui esitada koolitoidu arved.",
+      "sourceKeys": [
+        "toidu_eest_tasumise_toetus_page"
+      ],
+      "targetGroup": "Viimsi valla vähekindlustatud pered, kelle laps käib lasteaias, lastehoius või koolis.",
+      "conditions": "Laps ja tema mõlemad vanemad, üksikvanem või last kasvatavad isikud peavad olema Viimsi valla elanikud; sissetulek peab jääma alla piirmäära 500 €/375 €.",
+      "amount": "kuni 64 € kuus",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberil vallamajja"
+        ],
+        "steps": [
+          "Esita taotlus koos sissetuleku ja vara andmetega",
+          "Pärast otsust esita toidutasu arved igakuiselt ametniku e-postile."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Väljamakse 5 tööpäeva jooksul pärast arve esitamist.",
+      "officialUrl": "https://www.viimsi.ee/toiming/lasteaias-lastehoius-ja-koolis-toidu-eest-tasumise-toetuse-taotlus",
+      "relatedForms": [
+        "viimsi_vald_form_sissetulekust_soltuv_toetus"
+      ],
+      "relatedContacts": [
+        "viimsi_vald_contact_sandra_hommuk"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "toidu_eest_tasumise_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_benefit_toidu_eest_tasumise_toetus",
+      "document_id": "viimsi_vald_benefit_toidu_eest_tasumise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/lasteaias-lastehoius-ja-koolis-toidu-eest-tasumise-toetuse-taotlus",
+      "content_hash": "aed447a37e6a88ddc1a7b4c08c3e4a6a0ed1868f125e40ab007cdcb1914f53da",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_resource_haabneeme_paevakeskus",
+      "canonical_item_id": "viimsi_vald:resource:haabneeme_paevakeskus",
+      "itemType": "resource",
+      "title": "Haabneeme päevakeskus",
+      "status": "active",
+      "summary": "Haabneeme päevakeskus on Viimsi keskuses tegutsev avatud keskus vanemaealistele inimestele. Keskuses saab osaleda huvitegevustes, mängida lauamänge ja osaleda liikumis-, tantsu-, laulu- ning käsitööringides.",
+      "sourceKeys": [
+        "paevakeskused_page"
+      ],
+      "officialUrl": "https://www.viimsi.ee/tervishoid-ja-sotsiaalteenused/eakas/paevakeskused",
+      "name": null,
+      "role": null,
+      "address": "Kesk tee 1, Haabneeme, 74001 Viimsi vald",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "paevakeskused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_resource_haabneeme_paevakeskus",
+      "document_id": "viimsi_vald_resource_haabneeme_paevakeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/tervishoid-ja-sotsiaalteenused/eakas/paevakeskused",
+      "content_hash": "624e3e1a46a17a7c6e5d39fc95cdb54397017309357bba8cacf71a171b0fffb7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_resource_randvere_paevakeskus",
+      "canonical_item_id": "viimsi_vald:resource:randvere_paevakeskus",
+      "itemType": "resource",
+      "title": "Randvere päevakeskus",
+      "status": "active",
+      "summary": "Randvere päevakeskus on vanemaealistele mõeldud avatud keskus, kus toimuvad huvitegevused ja vaba aja veetmine. Keskuses saab osaleda loovus-, keraamika-, kodundus-, aiandus- ja liikumisrühmades ning kasutada digimentori abi.",
+      "sourceKeys": [
+        "paevakeskused_page"
+      ],
+      "officialUrl": "https://www.viimsi.ee/tervishoid-ja-sotsiaalteenused/eakas/paevakeskused",
+      "name": null,
+      "role": null,
+      "address": "Kibuvitsa tee 1, Randvere, 74016 Viimsi vald",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "paevakeskused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_resource_randvere_paevakeskus",
+      "document_id": "viimsi_vald_resource_randvere_paevakeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/tervishoid-ja-sotsiaalteenused/eakas/paevakeskused",
+      "content_hash": "42e5b98b287512f036fb7745fe4953341155c7fb6037170deda3fe7255ad9fb0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_resource_viimsi_hoolekandekeskus",
+      "canonical_item_id": "viimsi_vald:resource:viimsi_hoolekandekeskus",
+      "itemType": "resource",
+      "title": "Viimsi Hoolekandekeskus",
+      "status": "active",
+      "summary": "Viimsi Hoolekandekeskus koondab Haabneeme ja Randvere päevakeskuste huvitegevused ning pakub sotsiaalhoolekandeteenuseid. Keskuse kaudu pakutakse vanemaealistele koduteenust ja päevahoiuteenust ning erivajadustega lastele ja täiskasvanutele tugiisikuteenust.",
+      "sourceKeys": [
+        "paevakeskused_page"
+      ],
+      "officialUrl": "https://www.viimsi.ee/tervishoid-ja-sotsiaalteenused/eakas/paevakeskused",
+      "name": null,
+      "role": null,
+      "address": null,
+      "relatedTo": [
+        "viimsi_vald_service_koduteenus",
+        "viimsi_vald_service_tugiisik_lapsele",
+        "viimsi_vald_service_tugiisik_taiskasvanule"
+      ],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "paevakeskused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_resource_viimsi_hoolekandekeskus",
+      "document_id": "viimsi_vald_resource_viimsi_hoolekandekeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/tervishoid-ja-sotsiaalteenused/eakas/paevakeskused",
+      "content_hash": "a23d86c32ca59f3d9c6e4e81fb5ca03f092ebff9b4163bcb18de0bf032358905",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_resource_parkimiskaart",
+      "canonical_item_id": "viimsi_vald:resource:parkimiskaart",
+      "itemType": "resource",
+      "title": "Parkimiskaart puudega inimesele",
+      "status": "active",
+      "summary": "Parkimiskaart on puudega inimesele mõeldud praktiline kaart, mis annab parkimisel eritingimused. Viimsi valla veebis on parkimiskaardi taotlus avaldatud sotsiaalteenuste alajaotuses ning vastutav spetsialist on Margit Stern.",
+      "sourceKeys": [
+        "parkimiskaart_page"
+      ],
+      "officialUrl": "https://www.viimsi.ee/toiming/parkimiskaardi-taotlus",
+      "name": null,
+      "role": null,
+      "address": null,
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "parkimiskaart_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_resource_parkimiskaart",
+      "document_id": "viimsi_vald_resource_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/toiming/parkimiskaardi-taotlus",
+      "content_hash": "6c8e269a3445c3207f2797b79f8ec4acdfe9621905468bc39470ec2f71f8f16b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_resource_ohvriabi",
+      "canonical_item_id": "viimsi_vald:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "Ohvriabi toetab inimesi, kes on kannatanud kuriteo, vägivalla või kriisijuhtumi tõttu. Viimsi valla veebileht suunab ohvriabi kodulehele ja toob välja kriisitelefoni ning teised tugiliinid.",
+      "sourceKeys": [
+        "ohvriabi_page"
+      ],
+      "officialUrl": "https://www.viimsi.ee/tervishoid-ja-sotsiaalteenused/abivajav-laps-ja-pere/ohvriabi",
+      "name": null,
+      "role": null,
+      "address": null,
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "ohvriabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_resource_ohvriabi",
+      "document_id": "viimsi_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/tervishoid-ja-sotsiaalteenused/abivajav-laps-ja-pere/ohvriabi",
+      "content_hash": "65a8e8d5016e298091633c70ba9cbecf09658fd7810f04d0790f4124d8381563",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_resource_lasteabi_telefon",
+      "canonical_item_id": "viimsi_vald:resource:lasteabi_telefon",
+      "itemType": "resource",
+      "title": "Lasteabi",
+      "status": "active",
+      "summary": "Lasteabi on tasuta ja ööpäevaringne mille kaudu saab esmast sotsiaalset nõustamist ja vajadusel kriisinõustamist laste ja perede küsimustes. Viimsi valla lehel on liin nimetatud abivajava lapse ja pere info all.",
+      "sourceKeys": [
+        "perenoustamine_page"
+      ],
+      "officialUrl": "https://www.viimsi.ee/tervishoid-ja-sotsiaalteenused/abivajav-laps-ja-pere/perenoustamine",
+      "name": null,
+      "role": null,
+      "address": null,
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "perenoustamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_resource_lasteabi_telefon",
+      "document_id": "viimsi_vald_resource_lasteabi_telefon",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/tervishoid-ja-sotsiaalteenused/abivajav-laps-ja-pere/perenoustamine",
+      "content_hash": "94bcb072163dcbea19af7ef76abaf280732826ef66489baa7202c50ba72bc99e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_resource_perelepitusteenus",
+      "canonical_item_id": "viimsi_vald:resource:perelepitusteenus",
+      "itemType": "resource",
+      "title": "Riiklik perelepitusteenus",
+      "status": "active",
+      "summary": "Riiklik perelepitusteenus on tasuta teenus lahku läinud või lahkuminevatele lapsevanematele, kes ei ole jõudnud lapse elukorralduslikes küsimustes kokkuleppele. Viimsi valla leht suunab lisainfo saamiseks Sotsiaalkindlustusameti kodulehele.",
+      "sourceKeys": [
+        "perenoustamine_page"
+      ],
+      "officialUrl": "https://www.viimsi.ee/tervishoid-ja-sotsiaalteenused/abivajav-laps-ja-pere/perenoustamine",
+      "name": null,
+      "role": null,
+      "address": null,
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "perenoustamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_resource_perelepitusteenus",
+      "document_id": "viimsi_vald_resource_perelepitusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/tervishoid-ja-sotsiaalteenused/abivajav-laps-ja-pere/perenoustamine",
+      "content_hash": "4a00b759da7a93f03dcf8086ad1fd7c5931a3f9ee4364d57c7d5f718c5c923a6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viimsi_vald_resource_abivajav_laps_info",
+      "canonical_item_id": "viimsi_vald:resource:abivajav_laps_info",
+      "itemType": "resource",
+      "title": "Abivajavast lapsest teatamine",
+      "status": "active",
+      "summary": "Viimsi valla abivajava lapse leht selgitab, et igal inimesel on kohustus abivajavast lapsest teatada. Abivajavast lapsest saab teavitada kohalikku omavalitsust, lastekaitsetöötajat või Lasteabi telefoni.",
+      "sourceKeys": [
+        "abivajav_laps_page"
+      ],
+      "officialUrl": "https://www.viimsi.ee/tervishoid-ja-sotsiaalteenused/abivajav-laps-ja-pere/abivajav-laps",
+      "name": null,
+      "role": null,
+      "address": null,
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "abivajav_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viimsi_vald_resource_abivajav_laps_info",
+      "document_id": "viimsi_vald_resource_abivajav_laps_info",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viimsi.ee/tervishoid-ja-sotsiaalteenused/abivajav-laps-ja-pere/abivajav-laps",
+      "content_hash": "48e4b354f965e6d85f3a0c0e5939412aff2c69da0e7f0b890a74b58605883ed3",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Viimsi vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

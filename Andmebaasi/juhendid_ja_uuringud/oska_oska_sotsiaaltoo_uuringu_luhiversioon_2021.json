@@ -1,0 +1,148 @@
+{
+  "source_path": "oska_oska_sotsiaaltoo_uuringu_luhiversioon_2021.pdf",
+  "source_format": "pdf",
+  "sha256": "3fb76f40a73693e564c32a9f8f284abcdac7663461fa5f50fae07d04531cdfc1",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/oska_oska_sotsiaaltoo_uuringu_luhiversioon_2021.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "oska_oska_sotsiaaltoo_uuringu_luhiversioon_2021",
+          "title": "OSKA sotsiaaltöö uuringu lühiversioon 2021",
+          "url": "https://uuringud.oska.kutsekoda.ee/assets/files/sotsiaaltoo/3-oska-sotsiaaltoo-uuringuaruanne-lyhiversioon-2021a.pdf",
+          "normalized_url": "https://uuringud.oska.kutsekoda.ee/assets/files/sotsiaaltoo/3-oska-sotsiaaltoo-uuringuaruanne-lyhiversioon-2021a.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "OSKA",
+          "organization_id": "oska",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "OSKA",
+            "sotsiaaltöö",
+            "tööjõuvajadus",
+            "oskused",
+            "valdkonnauuring",
+            "uuring",
+            "raport",
+            "analüüs"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_026",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "OSKA",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 237,
+            "order": 148
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "OSKA sotsiaaltöö uuringu lühiversioon 2021"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "OSKA"
+          ],
+          "organizations_seen": [
+            "oska"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "OSKA",
+              "line": 237,
+              "order": 148
+            },
+            {
+              "heading_2": "OSKA",
+              "line": 711,
+              "order": 355
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://uuringud.oska.kutsekoda.ee/assets/files/sotsiaaltoo/3-oska-sotsiaaltoo-uuringuaruanne-lyhiversioon-2021a.pdf"
+        },
+        "final_url": "https://uuringud.oska.kutsekoda.ee/assets/files/sotsiaaltoo/3-oska-sotsiaaltoo-uuringuaruanne-lyhiversioon-2021a.pdf",
+        "redirects": [],
+        "sha256": "3fb76f40a73693e564c32a9f8f284abcdac7663461fa5f50fae07d04531cdfc1",
+        "bytes": 4636337,
+        "downloaded_at": "2026-08-14T08:00:36.760Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "oska_oska_sotsiaaltoo_uuringu_luhiversioon_2021",
+      "metadata": {
+        "createdAt": "2026-06-12T03:38:10.232379+00:00",
+        "type": "FILE",
+        "fileName": "3-oska-sotsiaaltoo-uuringuaruanne-lyhiversioon-2021a.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:38:10.166787+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/88bd6bc41aa9/3-oska-sotsiaaltoo-uuringuaruanne-lyhiversioon-2021a.pdf",
+        "title": "OSKA sotsiaaltöö uuringu lühiversioon 2021",
+        "description": "Duplikaadid ühendatud: 1 lisakirjet. Source master headings: OSKA",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2021,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–52",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "oska_oska_sotsiaaltoo_uuringu_luhiversioon_2021",
+        "document_id": "oska_oska_sotsiaaltoo_uuringu_luhiversioon_2021",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "9ea1a46129a596477160077491ff00021da2ac467b58d7519e4813083a510f94",
+        "url": "https://uuringud.oska.kutsekoda.ee/assets/files/sotsiaaltoo/3-oska-sotsiaaltoo-uuringuaruanne-lyhiversioon-2021a.pdf",
+        "url_canonical": "https://uuringud.oska.kutsekoda.ee/assets/files/sotsiaaltoo/3-oska-sotsiaaltoo-uuringuaruanne-lyhiversioon-2021a.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "oska_oska_sotsiaaltoo_uuringu_luhiversioon_2021",
+        "updatedAt": "2026-06-12T03:38:10.232403+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

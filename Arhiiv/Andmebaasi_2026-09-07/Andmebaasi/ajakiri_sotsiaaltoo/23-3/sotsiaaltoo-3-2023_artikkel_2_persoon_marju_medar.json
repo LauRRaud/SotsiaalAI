@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2023",
+  "articleId": "koolituse-ja-teenuste-arendaja-marju-medar-sotsiaaltool-pole-piire-2023-3",
+  "title": "Koolituse ja teenuste arendaja Marju Medar: „Sotsiaaltööl pole piire!“",
+  "authors": [
+    "Kadri Kuulpak"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2023",
+  "section": "Persoon",
+  "pageRange": "3-9",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu tutvustab sotsiaaltöö valdkonna elutööpreemia laureaati, Tallinna Ülikooli sotsiaaltöö dotsenti\nMarju Medarit. Intervjuus räägib ta oma teekonnast eripedagoogiast ja logopeedina töötamisest omavalitsuse\nsotsiaalnõuniku ja sotsiaalkeskuse rajamiseni ning hiljem sotsiaaltöö õppe ja arendustööni ülikoolides.\nMedar avab sotsiaaltöö tähendust, rõhutades inimõigustel põhinevat käsitlust, kogukondade arendamist ja\nkoostööd erinevate valdkondade vahel. Juttu on ka rahvusvahelisest kogemusest sotsiaaltöö definitsiooni\nkujundamisel ning sotsiaaltöötaja kutsestandardite arendamisest. Läbivaks mõtteks on, et sotsiaaltöö\nvõimalused on piirideta, kui on tahet õppida, jagada teadmisi ja teha koostööd.",
+  "tags": [
+    "persoon",
+    "Marju Medar",
+    "sotsiaaltöö haridus",
+    "elutööpreemia",
+    "kutsestandard",
+    "rahvusvaheline koostöö",
+    "kogukonnatöö",
+    "sotsiaaltöö definitsioon"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2023_web_Part3.pdf",
+  "document_id": "sotsiaaltoo-3-2023-koolituse-ja-teenuste-arendaja-marju-medar-sotsiaaltool-pole-piire-2023-3",
+  "source_format": "pdf",
+  "source_sha256": "59a023a09161bc2f800f6d6d860b33f7f006e88130a176d2686710a937ff7178",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2023-koolituse-ja-teenuste-arendaja-marju-medar-sotsiaaltool-pole-piire-2023-3",
+    "previous_source_path": "Sotsiaaltoo_3_2023_web_Part3.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "59a023a09161bc2f800f6d6d860b33f7f006e88130a176d2686710a937ff7178",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": "0.1",
+  "created_on": "2026-09-05",
+  "purpose": "Unchanged user-provided development inputs. No public redistribution permission is implied.",
+  "files": [
+    {
+      "original_name": "Tehisintellekt sotsiaaltöös_2_2025.pdf",
+      "relative_path": "inputs/Tehisintellekt sotsiaaltöös_2_2025.pdf",
+      "size_bytes": 325212,
+      "sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b"
+    },
+    {
+      "original_name": "sotsiaaltoo-2-2025-artikkel-12-tehisintellekt-sotsiaaltoos.json",
+      "relative_path": "inputs/sotsiaaltoo-2-2025-artikkel-12-tehisintellekt-sotsiaaltoos.json",
+      "size_bytes": 1882,
+      "sha256": "d090594afae2c24541ab71ed63a86d013c999ab519606597d145395023eccd5a"
+    },
+    {
+      "original_name": "ULEVAADE.md",
+      "relative_path": "inputs/ULEVAADE.md",
+      "size_bytes": 8157,
+      "sha256": "939e597db90b450b8dd970943f8d0b58c7605cee7b68a6730fd316f6f0089795"
+    }
+  ]
+}

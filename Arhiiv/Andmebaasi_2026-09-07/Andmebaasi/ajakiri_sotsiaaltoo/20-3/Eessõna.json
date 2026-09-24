@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-3-2020",
+  "articleId": "eessona-rait-kuuse-2020-3",
+  "title": "Eessõna",
+  "authors": [
+    "Rait Kuuse"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2020",
+  "section": "Eessõna",
+  "pageRange": "2-2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi sotsiaalala asekantsler arutleb koostöö tähenduse üle sotsiaaltöös, tuues esile, kuidas erinevate valdkondade piire ületavad lahendused ja sotsiaaltöötaja eestvedaja roll aitavad inimeste heaolu tõsta.",
+  "tags": [
+    "eessõna",
+    "sotsiaalpoliitika",
+    "koostöö",
+    "sotsiaaltöö praktika",
+    "inimkeskne lähenemine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2020_web_link_Part2.pdf",
+  "document_id": "sotsiaaltoo-3-2020-eessona-rait-kuuse-2020-3",
+  "source_format": "pdf",
+  "source_sha256": "cc43d2871365b96d968ec7979455a2e4559d82fd5174f81411798b5d428d7d74",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2020-eessona-rait-kuuse-2020-3",
+    "previous_source_path": "Sotsiaaltoo_3_2020_web_link_Part2.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "cc43d2871365b96d968ec7979455a2e4559d82fd5174f81411798b5d428d7d74",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

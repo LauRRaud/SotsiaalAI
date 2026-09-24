@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2025",
+  "articleId": "tooampsu-abil-tooturule-2025-2",
+  "title": "Tööampsu abil tööturule",
+  "authors": [
+    "Katre Pall",
+    "Miriam Lehari"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2025",
+  "section": "Uurimus",
+  "pdf_start_page": 1,
+  "pdf_end_page": 11,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimus lühiajalise töötamise mõjust töötuna arvel olevate inimeste tööalisele käekäigule, oskuste hoidmisele ja tööturule tagasiminekule. Tuginedes registriandmetele ja intervjuudele analüüsitakse tööampsude rolli eneseväärikuse, motivatsiooni ja aktiivsuse toetamisel, kuid ka piiranguid majandusliku toimetuleku paranemisel.",
+  "tags": [
+    "tööamps",
+    "töötus",
+    "töötukassa",
+    "tööturuaktiivsus",
+    "hõive",
+    "majanduslik toimetulek",
+    "tööturupoliitika"
+  ],
+  "source_type": "file",
+  "source_path": "Tööampsu abil tööturule_2_2025.pdf",
+  "pageRange": "1–11",
+  "document_id": "sotsiaaltoo-2-2025-tooampsu-abil-tooturule-2025-2",
+  "source_format": "pdf",
+  "source_sha256": "de3b4f85f017fa78430be441fad1bf8aaba1f08ce4be6519fce9f375150f4daa",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2025-tooampsu-abil-tooturule-2025-2",
+    "previous_source_path": "Tööampsu abil tööturule_2_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "de3b4f85f017fa78430be441fad1bf8aaba1f08ce4be6519fce9f375150f4daa",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2023",
+  "articleId": "tegevusjuhendajad-kui-kogukonnas-taastumise-toetajad-2023-2",
+  "title": "Tegevusjuhendajad kui kogukonnas taastumise toetajad",
+  "authors": [
+    "Maarja Võrk",
+    "Dagmar Narusson"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2023",
+  "section": "Kogukondade arendamine",
+  "pageRange": "57-64",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimusartiklis vaadeldakse, kuidas kogukonnas elamise teenusel töötavad tegevusjuhendajad mõistavad ja toetavad\nvaimse tervise raskustega inimeste personaalset taastumist kogukonnas. Intervjuude põhjal kirjeldatakse tegevus-\njuhendajate rolli seotuse, lootuse, identiteedi ja enesetõhususe toetamisel, tuginedes CHIME-raamistikule ja\ntugevusemudelile. Artiklis tuuakse näiteid, kuidas aidatakse inimestel luua vastastikuseid suhteid, osaleda kogukonna\ntegevustes ning kujundada kogukonnaliikmete hoiakuid. Samuti rõhutatakse tööalase toe, kogemuste vahetamise ja\nkoolituste vajadust, et tegevusjuhendajad saaksid oma rolli kogukonnas veel teadlikumalt kanda.",
+  "tags": [
+    "tegevusjuhendajad",
+    "personaalne taastumine",
+    "kogukonnas elamise teenus",
+    "vaimne tervis",
+    "CHIME",
+    "tugevusemudel",
+    "kogukonnatöö"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2023_web_par_Part15.pdf",
+  "document_id": "sotsiaaltoo-2-2023-tegevusjuhendajad-kui-kogukonnas-taastumise-toetajad-2023-2",
+  "source_format": "pdf",
+  "source_sha256": "71de8ca592855b15987a6952098ca41aa8cbd2a78ebb08f6160fcfb7a0784721",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2023-tegevusjuhendajad-kui-kogukonnas-taastumise-toetajad-2023-2",
+    "previous_source_path": "Sotsiaaltoo_2_2023_web_par_Part15.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "71de8ca592855b15987a6952098ca41aa8cbd2a78ebb08f6160fcfb7a0784721",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

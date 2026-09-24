@@ -1,0 +1,76 @@
+{
+  "source": {
+    "source_id": "epikoda_heade_praktikate_kogumik",
+    "title": "Heade praktikate kogumik",
+    "url": "https://epikoda.ee/wp-content/uploads/2025/09/Heade_praktikate_kogumikEPIK2012.pdf",
+    "normalized_url": "https://epikoda.ee/wp-content/uploads/2025/09/Heade_praktikate_kogumikEPIK2012.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "EPIKoda",
+    "organization_id": "epikoda",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Eesti Puuetega Inimeste Koda",
+      "infomaterjal",
+      "EPIKoda",
+      "hea praktika",
+      "kogumik",
+      "puudega inimeste kaasamine"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "Metadata konservatiivselt täpsustatud pealkirja ja registriinfo põhjal; PDF-i sisukord/täistekst vajaks vajadusel eraldi kontrolli.",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "EPIKoda",
+      "heading_4": null,
+      "line": 569,
+      "order": 293
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Heade praktikate kogumik"
+    ],
+    "collection_hints": [
+      "organization_materials"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "EPIKoda"
+    ],
+    "organizations_seen": [
+      "epikoda"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "EPIKoda",
+        "line": 569,
+        "order": 293
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://epikoda.ee/wp-content/uploads/2025/09/Heade_praktikate_kogumikEPIK2012.pdf"
+  },
+  "final_url": "https://epikoda.ee/wp-content/uploads/2025/09/Heade_praktikate_kogumikEPIK2012.pdf",
+  "redirects": [],
+  "sha256": "6038f88a7e3256e3a98e2321127e4404ca4391e6d1e0fe7859340bbfe2f331da",
+  "bytes": 1705667,
+  "downloaded_at": "2026-08-14T08:00:56.354Z"
+}

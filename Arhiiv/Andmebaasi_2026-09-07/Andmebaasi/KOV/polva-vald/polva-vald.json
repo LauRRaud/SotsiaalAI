@@ -1,0 +1,3974 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-polva-vald",
+  "document_id": "kov-polva-vald",
+  "municipality": "Põlva vald",
+  "municipality_id": "polva_vald",
+  "county": "Põlvamaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "polva_vald_contact_polva_vallavalitsus_uld",
+      "canonical_item_id": "polva_vald:contact:polva_vallavalitsus_uld",
+      "itemType": "contact",
+      "title": "Põlva Vallavalitsus üldkontakt",
+      "status": "active",
+      "summary": "Põlva Vallavalitsuse üldkontakt, mida KOV leht nimetab taotluste esitamise ja üldise asjaajamise kontaktina.",
+      "sourceKeys": [
+        "home"
+      ],
+      "name": "Põlva Vallavalitsus üldkontakt",
+      "role": "üldkontakt",
+      "department": "Põlva Vallavalitsus",
+      "address": "Maarja 2, 63307 Põlva linn",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "home"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_contact_polva_vallavalitsus_uld",
+      "document_id": "polva_vald_contact_polva_vallavalitsus_uld",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "1ed2c63ba6ad9531422beaa3fc7c880ff5cdd3c3c95cd488cc25d9777007e1a9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_contact_sotsiaalosakond",
+      "canonical_item_id": "polva_vald:contact:sotsiaalosakond",
+      "itemType": "contact",
+      "title": "Põlva Vallavalitsuse sotsiaalosakond",
+      "status": "active",
+      "summary": "Sotsiaalosakond võtab vastu sotsiaalteenuste ja -toetuste taotlusi. Teenuse- ja toetuselehtedel on avaldatud taotluste esitamise aadressina Maarja 2 või Kesk tn 15 ning e-posti aadress.",
+      "sourceKeys": [
+        "social_services_overview",
+        "special_needs_page"
+      ],
+      "name": "Põlva Vallavalitsuse sotsiaalosakond",
+      "role": "sotsiaalosakond",
+      "department": "Sotsiaalosakond",
+      "address": "Maarja 2, Põlva; osade teenuste puhul Kesk tn 15, Põlva",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview",
+        "special_needs_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_contact_sotsiaalosakond",
+      "document_id": "polva_vald_contact_sotsiaalosakond",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "ecd25c6545d071e2d0b5a2d06e3472858cf260af8608f1b25b95396448147260",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_contact_juri_kore",
+      "canonical_item_id": "polva_vald:contact:juri_kore",
+      "itemType": "contact",
+      "title": "Jüri Kõre",
+      "status": "active",
+      "summary": "Sotsiaalosakonna juhataja; KOV lehel on tema vastutusena nimetatud osakonna töö juhtimine ja eluruumi kohandamise toetus.",
+      "sourceKeys": [
+        "special_needs_page"
+      ],
+      "name": "Jüri Kõre",
+      "role": "sotsiaalosakonna juhataja",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "relatedTo": [
+        "polva_vald_benefit_eluruumi_kohandamise_huvitis"
+      ],
+      "item_type": "contact",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "special_needs_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_contact_juri_kore",
+      "document_id": "polva_vald_contact_juri_kore",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "54f06136256d857b07724759ce54fa74913208c3903b4a1f6c6f15b4d2cd25e5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_contact_kaia_vorno",
+      "canonical_item_id": "polva_vald:contact:kaia_vorno",
+      "itemType": "contact",
+      "title": "Kaia Võrno",
+      "status": "active",
+      "summary": "Sotsiaaltööspetsialist Põlva piirkonnas; KOV leht seob ta toimetuleku- ja sotsiaaltoetustega.",
+      "sourceKeys": [
+        "social_services_overview"
+      ],
+      "name": "Kaia Võrno",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "relatedTo": [
+        "polva_vald_benefit_matusetoetus",
+        "polva_vald_benefit_esimese_klassi_astu_toetus",
+        "polva_vald_benefit_toimetulekutoetus",
+        "polva_vald_benefit_koolitoetus",
+        "polva_vald_benefit_laste_noortelaagri_toetus",
+        "polva_vald_benefit_toidukulutoetus",
+        "polva_vald_benefit_ravi_invaabivahendite_toetus",
+        "polva_vald_benefit_kuttetoetus",
+        "polva_vald_benefit_uhekordne_toetus",
+        "polva_vald_benefit_valtimatu_abi_toetus",
+        "polva_vald_benefit_vanaduspensionari_joulutoetus"
+      ],
+      "item_type": "contact",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_contact_kaia_vorno",
+      "document_id": "polva_vald_contact_kaia_vorno",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "4c42ab60f31a01da2f38a7fef9ae5b2a3440704622c3c410fa06485dcf67ad45",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_contact_katrin_hansing",
+      "canonical_item_id": "polva_vald:contact:katrin_hansing",
+      "itemType": "contact",
+      "title": "Katrin Hansing",
+      "status": "active",
+      "summary": "Sotsiaaltööspetsialist Mooste ja Laheda piirkonnas; KOV leht seob ta sotsiaaltranspordi, toimetulekutoetuste ning sotsiaalteenustega.",
+      "sourceKeys": [
+        "social_services_overview",
+        "special_needs_page"
+      ],
+      "name": "Katrin Hansing",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "relatedTo": [
+        "polva_vald_service_valjaspool_kodu_uldhooldusteenus",
+        "polva_vald_service_taisealise_isiku_hooldus",
+        "polva_vald_service_sotsiaaltransporditeenus",
+        "polva_vald_service_koduteenus",
+        "polva_vald_service_vaimse_tervise_teenus",
+        "polva_vald_benefit_esimese_klassi_astu_toetus",
+        "polva_vald_benefit_toimetulekutoetus",
+        "polva_vald_benefit_koolitoetus",
+        "polva_vald_benefit_laste_noortelaagri_toetus",
+        "polva_vald_benefit_toidukulutoetus",
+        "polva_vald_benefit_ravi_invaabivahendite_toetus",
+        "polva_vald_benefit_kuttetoetus",
+        "polva_vald_benefit_uhekordne_toetus",
+        "polva_vald_benefit_valtimatu_abi_toetus",
+        "polva_vald_benefit_vanaduspensionari_joulutoetus",
+        "polva_vald_benefit_taisealise_isiku_hooldajatoetus"
+      ],
+      "item_type": "contact",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview",
+        "special_needs_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_contact_katrin_hansing",
+      "document_id": "polva_vald_contact_katrin_hansing",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "3bb5b253c06a8f623c5fa7e7bb7b56c10611f61b98169cf057d6c585a6a72eb0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_contact_ave_maria_paju",
+      "canonical_item_id": "polva_vald:contact:ave_maria_paju",
+      "itemType": "contact",
+      "title": "Ave Maria Paju",
+      "status": "active",
+      "summary": "Sotsiaaltööspetsialist Ahja ja Vastse-Kuuste piirkonnas; KOV leht seob ta toimetulekutoetuse, sotsiaaltranspordi, sotsiaaltoetuste ja -teenustega.",
+      "sourceKeys": [
+        "social_services_overview",
+        "special_needs_page"
+      ],
+      "name": "Ave Maria Paju",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "relatedTo": [
+        "polva_vald_service_valjaspool_kodu_uldhooldusteenus",
+        "polva_vald_service_taisealise_isiku_hooldus",
+        "polva_vald_service_sotsiaaltransporditeenus",
+        "polva_vald_service_koduteenus",
+        "polva_vald_service_vaimse_tervise_teenus",
+        "polva_vald_benefit_esimese_klassi_astu_toetus",
+        "polva_vald_benefit_toimetulekutoetus",
+        "polva_vald_benefit_koolitoetus",
+        "polva_vald_benefit_laste_noortelaagri_toetus",
+        "polva_vald_benefit_toidukulutoetus",
+        "polva_vald_benefit_ravi_invaabivahendite_toetus",
+        "polva_vald_benefit_kuttetoetus",
+        "polva_vald_benefit_uhekordne_toetus",
+        "polva_vald_benefit_valtimatu_abi_toetus",
+        "polva_vald_benefit_vanaduspensionari_joulutoetus",
+        "polva_vald_benefit_taisealise_isiku_hooldajatoetus"
+      ],
+      "item_type": "contact",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview",
+        "special_needs_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_contact_ave_maria_paju",
+      "document_id": "polva_vald_contact_ave_maria_paju",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "f2685a663c60b7cf100aea75941b9b8d177eb528bf950ec8fad05b367acfbc87",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_contact_anu_otsing",
+      "canonical_item_id": "polva_vald:contact:anu_otsing",
+      "itemType": "contact",
+      "title": "Anu Otsing",
+      "status": "active",
+      "summary": "Sotsiaaltööspetsialist, kelle vastutusalana on KOV lehel märgitud Põlva piirkonna toimetuleku- ja sotsiaalteenused.",
+      "sourceKeys": [
+        "social_services_overview"
+      ],
+      "name": "Anu Otsing",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "relatedTo": [
+        "polva_vald_service_taisealise_isiku_hooldus",
+        "polva_vald_service_koduteenus",
+        "polva_vald_service_vaimse_tervise_teenus",
+        "polva_vald_benefit_taisealise_isiku_hooldajatoetus"
+      ],
+      "item_type": "contact",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_contact_anu_otsing",
+      "document_id": "polva_vald_contact_anu_otsing",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "6dba3d927bb2a5b8c70f384c088e0274fdd493133899fc57bc45af8fbd432e6e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_contact_kulli_padar_siim",
+      "canonical_item_id": "polva_vald:contact:kulli_padar_siim",
+      "itemType": "contact",
+      "title": "Külli Padar-Siim",
+      "status": "active",
+      "summary": "Sotsiaaltööspetsialist, kelle vastutusalana on KOV lehel märgitud Põlva piirkonna sotsiaalteenused.",
+      "sourceKeys": [
+        "social_services_overview"
+      ],
+      "name": "Külli Padar-Siim",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "relatedTo": [
+        "polva_vald_service_valjaspool_kodu_uldhooldusteenus",
+        "polva_vald_service_taisealise_isiku_hooldus",
+        "polva_vald_service_koduteenus",
+        "polva_vald_service_vaimse_tervise_teenus",
+        "polva_vald_benefit_taisealise_isiku_hooldajatoetus"
+      ],
+      "item_type": "contact",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_contact_kulli_padar_siim",
+      "document_id": "polva_vald_contact_kulli_padar_siim",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "4e87e3594744a7d1dcc990762301a7314842fe113703f04a244f7f26743571c6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_contact_piret_magi",
+      "canonical_item_id": "polva_vald:contact:piret_magi",
+      "itemType": "contact",
+      "title": "Piret Mägi",
+      "status": "active",
+      "summary": "Sotsiaaltöö peaspetsialist; KOV leht seob ta sotsiaaleluruumide, võlanõustamise, täisealise isiku tugiisiku ning isikliku abistaja teenusega.",
+      "sourceKeys": [
+        "social_services_overview",
+        "special_needs_page"
+      ],
+      "name": "Piret Mägi",
+      "role": "sotsiaaltöö peaspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "relatedTo": [
+        "polva_vald_service_volanoustamisteenus",
+        "polva_vald_service_eluruumi_tagamise_teenus",
+        "polva_vald_service_tugiisikuteenus",
+        "polva_vald_service_jarelhooldusteenus",
+        "polva_vald_service_varjupaigateenus",
+        "polva_vald_service_turvakoduteenus",
+        "polva_vald_service_isikliku_abistaja_teenus",
+        "polva_vald_benefit_eluruumi_kohandamise_huvitis"
+      ],
+      "item_type": "contact",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview",
+        "special_needs_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_contact_piret_magi",
+      "document_id": "polva_vald_contact_piret_magi",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "be8832a13dd59212d933bd95269f5f42146fb183f7101e5f37813bedad3e0b4b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_contact_anneli_masen",
+      "canonical_item_id": "polva_vald:contact:anneli_masen",
+      "itemType": "contact",
+      "title": "Anneli Masen",
+      "status": "active",
+      "summary": "Lastekaitsespetsialist, kes on KOV lehel nimetatud sünnitoetuse, vaimse tervise teenuse ja lastekaitse kontaktina.",
+      "sourceKeys": [
+        "child_protection_page",
+        "social_services_overview"
+      ],
+      "name": "Anneli Masen",
+      "role": "lastekaitsespetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "relatedTo": [
+        "polva_vald_service_vaimse_tervise_teenus",
+        "polva_vald_benefit_sunnitoetus"
+      ],
+      "item_type": "contact",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "child_protection_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_contact_anneli_masen",
+      "document_id": "polva_vald_contact_anneli_masen",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "7ce1948ad96f0f9b79e936536d6b5c1122f04d32a9a8477a56f5041226eefed0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_contact_klarica_topper",
+      "canonical_item_id": "polva_vald:contact:klarica_topper",
+      "itemType": "contact",
+      "title": "Klarica Topper",
+      "status": "active",
+      "summary": "Lastekaitsespetsialist, kes on KOV lehel nimetatud sünnitoetuse, vaimse tervise teenuse ja lastekaitse kontaktina.",
+      "sourceKeys": [
+        "child_protection_page",
+        "social_services_overview"
+      ],
+      "name": "Klarica Topper",
+      "role": "lastekaitsespetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "relatedTo": [
+        "polva_vald_service_vaimse_tervise_teenus",
+        "polva_vald_benefit_sunnitoetus"
+      ],
+      "item_type": "contact",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "child_protection_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_contact_klarica_topper",
+      "document_id": "polva_vald_contact_klarica_topper",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "8aded61e5be9f2d5d4676e47432eb0be295e9940a020372a9df1cfb50b904da2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_contact_anneli_janesmagi",
+      "canonical_item_id": "polva_vald:contact:anneli_janesmagi",
+      "itemType": "contact",
+      "title": "Anneli Jänesmägi",
+      "status": "active",
+      "summary": "Lastekaitsespetsialist; KOV leht seob ta puuetega laste hoolduse, teenuste, lapsehoiuteenuse, tugiisikuteenuse, asendushoolduse ja lastekaitse küsimustega.",
+      "sourceKeys": [
+        "child_benefits_page",
+        "child_protection_page",
+        "social_services_overview"
+      ],
+      "name": "Anneli Jänesmägi",
+      "role": "lastekaitsespetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "relatedTo": [
+        "polva_vald_service_tugiisikuteenus",
+        "polva_vald_service_asendushooldusteenus",
+        "polva_vald_service_vaimse_tervise_teenus",
+        "polva_vald_service_raske_sugava_puudega_lapse_tugiisikuteenus",
+        "polva_vald_service_raske_sugava_puudega_lapse_lapsehoiuteenus",
+        "polva_vald_benefit_raske_sugava_puudega_lapse_sotsiaalteenuse_toetus",
+        "polva_vald_benefit_puudega_lapse_hooldajatoetus"
+      ],
+      "item_type": "contact",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "child_benefits_page",
+        "child_protection_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_contact_anneli_janesmagi",
+      "document_id": "polva_vald_contact_anneli_janesmagi",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "3dfae98ac8970eb7cc5477d1b143e985e282552f49a58d96b666f0d71608c82c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_form_sotsiaaltoetuse_taotlus",
+      "canonical_item_id": "polva_vald:form:sotsiaaltoetuse_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaaltoetuse taotlus",
+      "status": "active",
+      "summary": "Üldine sotsiaaltoetuse taotlus sissetulekust sõltuvate või muude sotsiaaltoetuste taotlemiseks Põlva vallalt.",
+      "sourceKeys": [
+        "form_sotsiaaltoetuse_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://polva.ee/content/uploads/2026/01/Sotsiaaltoetuse-taotlus.pdf",
+      "submissionChannels": [
+        "digiallkirjastatult e-postiga",
+        "paberil vallavalitsusele või teenuskeskusele"
+      ],
+      "relatedTo": [
+        "polva_vald_benefit_toimetulekutoetus",
+        "polva_vald_benefit_koolitoetus",
+        "polva_vald_benefit_laste_noortelaagri_toetus",
+        "polva_vald_benefit_toidukulutoetus",
+        "polva_vald_benefit_ravi_invaabivahendite_toetus",
+        "polva_vald_benefit_kuttetoetus",
+        "polva_vald_benefit_uhekordne_toetus",
+        "polva_vald_benefit_valtimatu_abi_toetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "form_sotsiaaltoetuse_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_form_sotsiaaltoetuse_taotlus",
+      "document_id": "polva_vald_form_sotsiaaltoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/content/uploads/2026/01/Sotsiaaltoetuse-taotlus.pdf",
+      "content_hash": "40c449b020f376363f6395c1cafd646b10c6b6aa93ac0306463a1a8dda3d26a1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_form_vanaduspensionari_joulutoetus",
+      "canonical_item_id": "polva_vald:form:vanaduspensionari_joulutoetus",
+      "itemType": "form",
+      "title": "Vanaduspensionäri jõulutoetuse taotlus",
+      "status": "active",
+      "summary": "Vorm vanaduspensionäri jõulutoetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_vanaduspensionari_joulutoetuse_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://polva.ee/content/uploads/2026/01/3a3b7254-c92e-47ed-841b-5324423282ec.pdf",
+      "submissionChannels": [
+        "",
+        "paberil sotsiaalosakonda",
+        "teenuskeskus"
+      ],
+      "relatedTo": [
+        "polva_vald_benefit_vanaduspensionari_joulutoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "form_vanaduspensionari_joulutoetuse_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_form_vanaduspensionari_joulutoetus",
+      "document_id": "polva_vald_form_vanaduspensionari_joulutoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/content/uploads/2026/01/3a3b7254-c92e-47ed-841b-5324423282ec.pdf",
+      "content_hash": "2a66b4e31cbfa0db96f610d7ca38ddd3d27a98a3f0b5e744c7cb10a4d29579f5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_form_sissetulekust_mittesoltuva_toetuse_taotlus",
+      "canonical_item_id": "polva_vald:form:sissetulekust_mittesoltuva_toetuse_taotlus",
+      "itemType": "form",
+      "title": "Sissetulekust mittesõltuva toetuse taotlus",
+      "status": "active",
+      "summary": "Vorm sünnitoetuse, matusetoetuse ja 1. klassi astuja toetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_sissetulekust_mittesoltuva_toetuse_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://polva.ee/content/uploads/2026/01/fa0e2879-00b5-4210-94ed-9128a4947528.pdf",
+      "submissionChannels": [
+        "digiallkirjastatult e-postiga",
+        "paberil vallavalitsusele või teenuskeskusele"
+      ],
+      "relatedTo": [
+        "polva_vald_benefit_sunnitoetus",
+        "polva_vald_benefit_matusetoetus",
+        "polva_vald_benefit_esimese_klassi_astu_toetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "form_sissetulekust_mittesoltuva_toetuse_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_form_sissetulekust_mittesoltuva_toetuse_taotlus",
+      "document_id": "polva_vald_form_sissetulekust_mittesoltuva_toetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/content/uploads/2026/01/fa0e2879-00b5-4210-94ed-9128a4947528.pdf",
+      "content_hash": "6ab8222cf284047e793db76028c1b51338870324a819f4006f251cf8d020b246",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_form_hoolduse_seadmine_hooldajatoetus",
+      "canonical_item_id": "polva_vald:form:hoolduse_seadmine_hooldajatoetus",
+      "itemType": "form",
+      "title": "Taotlus hoolduse seadmiseks ja hooldajatoetuse maksmiseks",
+      "status": "active",
+      "summary": "Vorm täisealise isiku hoolduse seadmiseks ning hooldajatoetuse maksmiseks.",
+      "sourceKeys": [
+        "form_taisealise_hooldus_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://polva.ee/content/uploads/2026/01/Taotlus-hoolduse-seadmiseks-ja-hooldajatoetuse-maksmiseks.pdf",
+      "submissionChannels": [
+        "digiallkirjastatult e-postiga",
+        "paberil vallavalitsusele või teenuskeskusele"
+      ],
+      "relatedTo": [
+        "polva_vald_service_taisealise_isiku_hooldus",
+        "polva_vald_benefit_taisealise_isiku_hooldajatoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "form_taisealise_hooldus_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_form_hoolduse_seadmine_hooldajatoetus",
+      "document_id": "polva_vald_form_hoolduse_seadmine_hooldajatoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/content/uploads/2026/01/Taotlus-hoolduse-seadmiseks-ja-hooldajatoetuse-maksmiseks.pdf",
+      "content_hash": "df925510ce17d15fb4c021878271a52a382b30ea6caf02df41e0cf0e156f0e23",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_form_puudega_lapse_hooldus_hooldajatoetus",
+      "canonical_item_id": "polva_vald:form:puudega_lapse_hooldus_hooldajatoetus",
+      "itemType": "form",
+      "title": "Taotlus puudega lapsele hoolduse seadmiseks ja hooldajale hooldajatoetuse maksmiseks",
+      "status": "active",
+      "summary": "Vorm puudega lapse hoolduse seadmiseks ning hooldajatoetuse maksmiseks.",
+      "sourceKeys": [
+        "form_puudega_lapse_hooldus_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://polva.ee/content/uploads/2026/01/Taotlus-puudega-lapsele-hoolduse-seadmiseks-ja-hooldajale-hooldajatoetuse-maksmiseks.pdf",
+      "submissionChannels": [
+        "digiallkirjastatult e-postiga",
+        "paberil vallavalitsusele või teenuskeskusele"
+      ],
+      "relatedTo": [
+        "polva_vald_benefit_puudega_lapse_hooldajatoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "form_puudega_lapse_hooldus_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_form_puudega_lapse_hooldus_hooldajatoetus",
+      "document_id": "polva_vald_form_puudega_lapse_hooldus_hooldajatoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/content/uploads/2026/01/Taotlus-puudega-lapsele-hoolduse-seadmiseks-ja-hooldajale-hooldajatoetuse-maksmiseks.pdf",
+      "content_hash": "5222342112e69babafa2f59d21a12c550fe2794965e4c11b1deeb887504eda9d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_form_hoolduse_lopetamine",
+      "canonical_item_id": "polva_vald:form:hoolduse_lopetamine",
+      "itemType": "form",
+      "title": "Taotlus hoolduse lõpetamiseks",
+      "status": "active",
+      "summary": "Vorm hoolduse lõpetamise taotlemiseks.",
+      "sourceKeys": [
+        "form_hoolduse_lopetamine_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://polva.ee/content/uploads/2026/01/88346cd4-76f8-4a76-8cfe-302c82e91778.pdf",
+      "submissionChannels": [
+        "digiallkirjastatult e-postiga",
+        "paberil vallavalitsusele või teenuskeskusele"
+      ],
+      "relatedTo": [
+        "polva_vald_service_taisealise_isiku_hooldus"
+      ],
+      "item_type": "form",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "form_hoolduse_lopetamine_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_form_hoolduse_lopetamine",
+      "document_id": "polva_vald_form_hoolduse_lopetamine",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/content/uploads/2026/01/88346cd4-76f8-4a76-8cfe-302c82e91778.pdf",
+      "content_hash": "9976cf1af4a88de1f2c4fe716da71a8c44480c5b46df2de814e80d8b0ee87494",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_form_puudega_lapse_sotsiaalteenuste_toetus",
+      "canonical_item_id": "polva_vald:form:puudega_lapse_sotsiaalteenuste_toetus",
+      "itemType": "form",
+      "title": "Puudega lapsele sotsiaalteenuste osutamise toetuse taotlus",
+      "status": "active",
+      "summary": "Vorm raske või sügava puudega lapse sotsiaalteenuste osutamise toetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_puudega_lapse_sotsiaalteenused_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://polva.ee/content/uploads/2026/01/Puudega-lapsele-sotsiaalteenuste-osutamise-toetuse-taotlus.pdf",
+      "submissionChannels": [
+        "digiallkirjastatult e-postiga",
+        "paberil vallavalitsusele või teenuskeskusele"
+      ],
+      "relatedTo": [
+        "polva_vald_benefit_raske_sugava_puudega_lapse_sotsiaalteenuse_toetus",
+        "polva_vald_service_raske_sugava_puudega_lapse_tugiisikuteenus",
+        "polva_vald_service_raske_sugava_puudega_lapse_lapsehoiuteenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "form_puudega_lapse_sotsiaalteenused_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_form_puudega_lapse_sotsiaalteenuste_toetus",
+      "document_id": "polva_vald_form_puudega_lapse_sotsiaalteenuste_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/content/uploads/2026/01/Puudega-lapsele-sotsiaalteenuste-osutamise-toetuse-taotlus.pdf",
+      "content_hash": "123c8b197f230198db57596ada90ebb1d009bd28c81b5073926449a0fda8c4d3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_form_koduteenuste_maaramine",
+      "canonical_item_id": "polva_vald:form:koduteenuste_maaramine",
+      "itemType": "form",
+      "title": "Taotlus koduteenuste määramiseks",
+      "status": "active",
+      "summary": "Vorm koduteenuse määramiseks Põlva vallas.",
+      "sourceKeys": [
+        "form_koduteenuse_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://polva.ee/content/uploads/2026/01/79c29e5a-86b4-4755-b0b0-85d280b9e4b3.pdf",
+      "submissionChannels": [
+        "digiallkirjastatult e-postiga",
+        "paberil vallavalitsusele või teenuskeskusele"
+      ],
+      "relatedTo": [
+        "polva_vald_service_koduteenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "form_koduteenuse_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_form_koduteenuste_maaramine",
+      "document_id": "polva_vald_form_koduteenuste_maaramine",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/content/uploads/2026/01/79c29e5a-86b4-4755-b0b0-85d280b9e4b3.pdf",
+      "content_hash": "5a1551e670873dbeafd6313ab522becbd412368ba0d0a0a4ed61064f17b90167",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_form_sotsiaalteenuse_taotlus",
+      "canonical_item_id": "polva_vald:form:sotsiaalteenuse_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaalteenuse taotlus",
+      "status": "active",
+      "summary": "Üldine sotsiaalteenuse taotluse vorm, mida KOV leht seostab mitme sotsiaalteenusega.",
+      "sourceKeys": [
+        "form_sotsiaalteenuse_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://polva.ee/content/uploads/2026/01/Sotsiaalteenuse-taotluse-vorm_22042021.pdf",
+      "submissionChannels": [
+        "digiallkirjastatult e-postiga",
+        "paberil vallavalitsusele või teenuskeskusele"
+      ],
+      "relatedTo": [
+        "polva_vald_service_valjaspool_kodu_uldhooldusteenus",
+        "polva_vald_service_volanoustamisteenus",
+        "polva_vald_service_eluruumi_tagamise_teenus",
+        "polva_vald_service_sotsiaaltransporditeenus",
+        "polva_vald_service_tugiisikuteenus",
+        "polva_vald_service_koduteenus",
+        "polva_vald_service_jarelhooldusteenus",
+        "polva_vald_service_asendushooldusteenus",
+        "polva_vald_service_varjupaigateenus",
+        "polva_vald_service_turvakoduteenus",
+        "polva_vald_service_vaimse_tervise_teenus",
+        "polva_vald_service_isikliku_abistaja_teenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "form_sotsiaalteenuse_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_form_sotsiaalteenuse_taotlus",
+      "document_id": "polva_vald_form_sotsiaalteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/content/uploads/2026/01/Sotsiaalteenuse-taotluse-vorm_22042021.pdf",
+      "content_hash": "082d5ebc0e148284d5c222d3af6487bfe88ae6040d5953ebd2b61fa4f8c208f7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_form_eluruumi_kohandamine",
+      "canonical_item_id": "polva_vald:form:eluruumi_kohandamine",
+      "itemType": "form",
+      "title": "Eluruumi kohandamise taotlus",
+      "status": "active",
+      "summary": "Vorm puudega inimese eluruumi kohandamise hüvitise taotlemiseks.",
+      "sourceKeys": [
+        "form_eluruumi_kohandamise_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://polva.ee/content/uploads/2026/01/2021-Eluruumi-kohandamise-taotlus.pdf",
+      "submissionChannels": [
+        "digiallkirjastatult e-postiga",
+        "paberil vallavalitsusele või teenuskeskusele"
+      ],
+      "relatedTo": [
+        "polva_vald_benefit_eluruumi_kohandamise_huvitis"
+      ],
+      "item_type": "form",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "form_eluruumi_kohandamise_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_form_eluruumi_kohandamine",
+      "document_id": "polva_vald_form_eluruumi_kohandamine",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/content/uploads/2026/01/2021-Eluruumi-kohandamise-taotlus.pdf",
+      "content_hash": "353a344321de76085afdec143eadd2d83df6ca9dea47fc648eade7fe70e0374a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_form_energiahinna_toetus",
+      "canonical_item_id": "polva_vald:form:energiahinna_toetus",
+      "itemType": "form",
+      "title": "Energiahinna tõusu leevendamise toetuse taotlus",
+      "status": "active",
+      "summary": "Sotsiaalosakonna blanketina avaldatud energiahinna tõusu leevendamise toetuse taotlus. Konkreetset kehtivat toetuse detailkirjeldust KOV sotsiaalteenuste lehelt ei leitud.",
+      "sourceKeys": [
+        "form_energiahinna_toetus_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://polva.ee/content/uploads/2026/01/b6b06442-bbe2-4cdd-b152-21cfeeb7e946.pdf",
+      "submissionChannels": [
+        "digiallkirjastatult e-postiga",
+        "paberil vallavalitsusele või teenuskeskusele"
+      ],
+      "relatedTo": [],
+      "item_type": "form",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "form_energiahinna_toetus_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_form_energiahinna_toetus",
+      "document_id": "polva_vald_form_energiahinna_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/content/uploads/2026/01/b6b06442-bbe2-4cdd-b152-21cfeeb7e946.pdf",
+      "content_hash": "b7185d9d3a984e797a3bf3cbc4e83f9d8a4ad804fc5c336271cfdc2944258a89",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_service_valjaspool_kodu_uldhooldusteenus",
+      "canonical_item_id": "polva_vald:service:valjaspool_kodu_uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Ööpäevaringne üldhooldusteenus tagab turvalise keskkonna ja toimetuleku täisealisele isikule, kes terviseseisundi, tegevusvõime või elukeskkonna tõttu ei suuda kodus ajutiselt või püsivalt iseseisvalt toime tulla.",
+      "sourceKeys": [
+        "social_services_overview"
+      ],
+      "targetGroup": "Täisealine Põlva valla elanik, kelle toimetulekut ei ole võimalik tagada teiste sotsiaalteenuste või muu abiga.",
+      "conditions": "Rahvastikuregistrijärgne elukoht Põlva vallas; teenuse vajadust hinnatakse pärast taotluse esitamist.",
+      "application": {
+        "channels": [
+          "",
+          "Põlva Vallavalitsuse sotsiaalosakond",
+          "SPOKU"
+        ],
+        "steps": [
+          "Esita kirjalik taotlus",
+          "10 päeva jooksul pärast taotluse esitamist hindab sotsiaalosakonna ametnik teenuse vajadust"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "teenuskoha maksumus": "1550 eurot kuus Põlva Valla Hooldekodus ja Laheda Sotsiaalkeskuses alates 01.04.2025",
+        "hoolduskulu": "775 eurot",
+        "majutus ja toitlustus": "775 eurot",
+        "kulude tasumise piirmäär": "530 eurot"
+      },
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_kulli_padar_siim",
+        "polva_vald_contact_katrin_hansing",
+        "polva_vald_contact_ave_maria_paju"
+      ],
+      "item_type": "service",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_service_valjaspool_kodu_uldhooldusteenus",
+      "document_id": "polva_vald_service_valjaspool_kodu_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "7d77cd15233d8ce4e508dacd945f48661fccad3ce37645339c0a8dc77f9e8e05",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "polva_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hoolduse seadmine",
+      "status": "active",
+      "summary": "Hooldus seatakse täisealisele isikule, kes vaimse või kehalise puude tõttu vajab abi oma õiguste teostamisel ja kohustuste täitmisel. Hoolduse seadmisel määratakse hooldaja ülesanded ja hooldaja määratakse hooldatava ning hooldaja nõusolekul.",
+      "sourceKeys": [
+        "social_services_overview",
+        "special_needs_page"
+      ],
+      "targetGroup": "Põlva vallas elav täisealine isik, kes vajab vaimse või kehalise puude tõttu abi õiguste teostamisel ja kohustuste täitmisel.",
+      "conditions": "Hooldajaks saab täisealine teovõimeline isik, kes on võimeline hooldaja ülesandeid täitma; erandkorras võib hooldajaks olla ka ülalpidamiskohustusega isik.",
+      "application": {
+        "channels": [
+          "",
+          "sotsiaalosakond",
+          "teenuskeskus"
+        ],
+        "steps": [
+          "Hooldatav ja hooldaja esitavad ühise kirjaliku taotluse",
+          "Sotsiaalosakonna ametnik viib läbi hooldusvajaduse hindamise"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Hooldajatoetuse suurus otsustatakse 10 tööpäeva jooksul nõuetekohase taotluse esitamisest.",
+      "pricing": null,
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_hoolduse_seadmine_hooldajatoetus",
+        "polva_vald_form_hoolduse_lopetamine"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_kulli_padar_siim",
+        "polva_vald_contact_anu_otsing",
+        "polva_vald_contact_katrin_hansing",
+        "polva_vald_contact_ave_maria_paju"
+      ],
+      "item_type": "service",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview",
+        "special_needs_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_service_taisealise_isiku_hooldus",
+      "document_id": "polva_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "82fe362f564ea9b00ddd71e7c2a013a318c632d32bba826676eedd1b98ecd80b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_service_volanoustamisteenus",
+      "canonical_item_id": "polva_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus abistab inimest varalise olukorra kindlakstegemisel, võlausaldajatega läbirääkimisel, nõuete rahuldamisel ja uute võlgnevuste ennetamisel.",
+      "sourceKeys": [
+        "social_services_overview",
+        "special_needs_page"
+      ],
+      "targetGroup": "Põlva vallas elavad vähekindlustatud isikud ja pered, paljulapselised pered ning töötud.",
+      "conditions": "Teenust osutatakse isikule, kelle rahvastikuregistrijärgne või tegelik elukoht on Põlva vallas.",
+      "application": {
+        "channels": [
+          "",
+          "sotsiaalosakond",
+          "teenuskeskus"
+        ],
+        "steps": [
+          "Esita võlanõustamisteenuse taotlus"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_piret_magi"
+      ],
+      "item_type": "service",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview",
+        "special_needs_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_service_volanoustamisteenus",
+      "document_id": "polva_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "7bad09e14c0a91c644b43429464db1792b038b6c6a8185339fd4f74927795fd9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_service_eluruumi_tagamise_teenus",
+      "canonical_item_id": "polva_vald:service:eluruumi_tagamise_teenus",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenus kindlustab eluruumi kasutamise võimaluse inimesele, kes ei ole sotsiaalmajandusliku olukorra tõttu võimeline enda või pere vajadustele vastavat eluruumi tagama.",
+      "sourceKeys": [
+        "social_services_overview"
+      ],
+      "targetGroup": "Eluaset vajav Põlva valla elanik, kelle tegelik ja rahvastikuregistrijärgne elukoht on Põlva vald.",
+      "conditions": "Isik ei suuda sotsiaalmajandusliku olukorra tõttu sobivat eluruumi tagada või tal on muu põhjendatud vajadus.",
+      "application": {
+        "channels": [
+          "",
+          "sotsiaalosakond",
+          "teenuskeskus"
+        ],
+        "steps": [
+          "Esita eluruumi tagamise teenuse taotlus"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_piret_magi"
+      ],
+      "item_type": "service",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_service_eluruumi_tagamise_teenus",
+      "document_id": "polva_vald_service_eluruumi_tagamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "0331b66fb38b8ce3c6b6be41d4eeb1b169d14a843ea2c514d2fa15fde4d66dbd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "polva_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus võimaldab puudega isikul kasutada vajadustele vastavat transpordivahendit tööle, õppeasutusse või avalike teenuste kasutamiseks sõitmiseks, kui puue takistab isikliku või ühissõiduki kasutamist.",
+      "sourceKeys": [
+        "social_services_overview",
+        "special_needs_page"
+      ],
+      "targetGroup": "Erivajadusega isik, kelle elukoht on rahvastikuregistri järgi Põlva vald ja kes tegelikult elab Põlva vallas ning kellel on takistatud isikliku või ühissõiduki kasutamine.",
+      "conditions": "Tellimiseks tuleb pöörduda vähemalt kuus tööpäeva enne teenuse vajadust.",
+      "application": {
+        "channels": [
+          "",
+          ""
+        ],
+        "steps": [
+          "Võta vähemalt kuus tööpäeva enne sõitu ühendust sotsiaalosakonna ametnikuga"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "Põlva ja/või Võru maakond": "5 eurot ühe sõiduotsa eest",
+        "Valga ja Tartu maakond": "10 eurot ühe sõiduotsa eest",
+        "mujal Eestis": "30 eurot ühe sõiduotsa eest"
+      },
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_katrin_hansing",
+        "polva_vald_contact_ave_maria_paju"
+      ],
+      "item_type": "service",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview",
+        "special_needs_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_service_sotsiaaltransporditeenus",
+      "document_id": "polva_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "1884c8c9da98a4f0fdfb9ad8506bfb9f9a6ba8c0bfc97325a779fd7b8b420a1d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_service_tugiisikuteenus",
+      "canonical_item_id": "polva_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus toetab iseseisvat toimetulekut olukorras, kus inimene vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu oma õiguste teostamisel ja kohustuste täitmisel olulist kõrvalabi.",
+      "sourceKeys": [
+        "social_services_overview",
+        "special_needs_page"
+      ],
+      "targetGroup": "Laps või täiskasvanu, kelle rahvastikuregistrijärgne või tegelik elukoht on Põlva vallas ja kes vajab olulisel määral kõrvalabi.",
+      "conditions": "Teenuse rahastamine kooskõlastatakse vajadusel rahvastikuregistrijärgse omavalitsusega.",
+      "application": {
+        "channels": [
+          "",
+          "sotsiaalosakond",
+          "teenuskeskus"
+        ],
+        "steps": [
+          "Esita tugiisikuteenuse taotlus",
+          "Lisa olemasolul tugiisiku nõusolek"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "tugiisikuteenuse osutaja tasu": "6 eurot tunnis"
+      },
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_piret_magi",
+        "polva_vald_contact_anneli_janesmagi"
+      ],
+      "item_type": "service",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview",
+        "special_needs_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_service_tugiisikuteenus",
+      "document_id": "polva_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "aa51916f5a214dde16649aa8fb23269877a2c5c27b4e72cdfaa4e28babf4d3dc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_service_koduteenus",
+      "canonical_item_id": "polva_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus tagab täisealise isiku iseseisva ja turvalise toimetuleku kodustes tingimustes ning aitab toimingutes, mida inimene terviseseisundi, tegevusvõime või elukeskkonna tõttu ise teha ei suuda.",
+      "sourceKeys": [
+        "social_services_overview"
+      ],
+      "targetGroup": "Täisealine isik, kelle rahvastikuregistrijärgne või tegelik elukoht on Põlva vallas ja kellel on kõrvalabi- või hooldusvajadus.",
+      "conditions": "Teenust osutatakse vajaduse hindamise alusel.",
+      "application": {
+        "channels": [
+          "",
+          "Põlva Vallavalitsuse sotsiaalosakond",
+          "teenuskeskused",
+          "SPOKU"
+        ],
+        "steps": [
+          "Esita koduteenuse taotlus",
+          "Lisa vajaduse korral nõutavad dokumendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_koduteenuste_maaramine"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_anu_otsing",
+        "polva_vald_contact_kulli_padar_siim",
+        "polva_vald_contact_ave_maria_paju",
+        "polva_vald_contact_katrin_hansing"
+      ],
+      "item_type": "service",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_service_koduteenus",
+      "document_id": "polva_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "87e5d2eaf57b20d14367dd261890ed1c6081108bf6045d5ff0434319d7273163",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "polva_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus toetab asendushoolduselt või eestkostelt lahkuva isiku iseseisvat toimetulekut ja õpingute jätkamist. Teenust osutatakse juhtumipõhiselt.",
+      "sourceKeys": [
+        "child_benefits_page",
+        "social_services_overview"
+      ],
+      "targetGroup": "Asendushooldusteenuselt või eestkostelt lahkunud täisealine isik, kes vajab iseseisva elu alustamisel tuge.",
+      "conditions": "Teenust tagatakse õpingute jätkamise ajal üldjuhul kuni 25-aastaseks saamiseni; erijuhtudel võib tagada teenuse kuni 21-aastasele mitteõppivale isikule.",
+      "application": {
+        "channels": [
+          "",
+          "sotsiaalosakond",
+          "SPOKU"
+        ],
+        "steps": [
+          "Võta konsultatsiooniks ühendust sotsiaalosakonnaga",
+          "Teenuse taotlemisel esitatakse taotlus"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_piret_magi"
+      ],
+      "item_type": "service",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "child_benefits_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_service_jarelhooldusteenus",
+      "document_id": "polva_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "66e50d0fea01ed47d74abe76bdc6b4f9fed4fc12cdb017cc746657b743248d81",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_service_asendushooldusteenus",
+      "canonical_item_id": "polva_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus tagab lapse heaolu ja õigused pika- või lühiajaliselt, võimaldades lapsele peresarnased elutingimused, turvalise arengukeskkonna ja ettevalmistuse iseseisvaks toimetulekuks.",
+      "sourceKeys": [
+        "child_benefits_page",
+        "social_services_overview"
+      ],
+      "targetGroup": "Laps, kelle vanem on surnud, kelle vanemale on määratud eestkostja, kelle hooldusõigus on peatatud, piiratud või ära võetud või kes on vanemast eraldatud.",
+      "conditions": "KOV võib teenust tagada ka abivajavale lapsele kuni 90 päevaks või periooditi, kui hooldusõiguslik vanem või füüsilisest isikust eestkostja annab nõusoleku.",
+      "application": {
+        "channels": [
+          "",
+          "sotsiaalosakond",
+          "SPOKU"
+        ],
+        "steps": [
+          "Esita taotlus sotsiaalosakonnale"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_anneli_janesmagi"
+      ],
+      "item_type": "service",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "child_benefits_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_service_asendushooldusteenus",
+      "document_id": "polva_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "0bdbfc78151eecbc256db80bd110b027090d0a6b27d99796e221e44d1cd1143a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_service_varjupaigateenus",
+      "canonical_item_id": "polva_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus kindlustab ajutise ööbimiskoha täisealisele isikule, kes ei ole võimeline endale ööbimiskohta leidma.",
+      "sourceKeys": [
+        "social_services_overview"
+      ],
+      "targetGroup": "Täisealine isik, kelle rahvastikuregistrijärgne või tegelik elukoht on Põlva vallas ja kes vajab ajutist ööbimiskohta.",
+      "conditions": "Rahastamine kooskõlastatakse vajadusel rahvastikuregistrijärgse elukoha omavalitsusega.",
+      "application": {
+        "channels": [
+          "",
+          "sotsiaalosakond"
+        ],
+        "steps": [
+          "Võta ühendust sotsiaalosakonnaga"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_piret_magi"
+      ],
+      "item_type": "service",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_service_varjupaigateenus",
+      "document_id": "polva_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "64db4dfb9022489e929172b0fcdcec66c0cb92284bdc95d2f67688a69507433b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_service_turvakoduteenus",
+      "canonical_item_id": "polva_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenust osutatakse lapsele, kes vajab abi hooldamises esinevate puuduste tõttu, mis ohustavad tema elu, tervist või arengut, ning täisealisele isikule, kes vajab turvalist keskkonda.",
+      "sourceKeys": [
+        "social_services_overview"
+      ],
+      "targetGroup": "Laps või täisealine isik, kes vajab turvalist keskkonda.",
+      "conditions": "Teenuse vajadust hinnatakse konkreetse olukorra alusel.",
+      "application": {
+        "channels": [
+          "",
+          "sotsiaalosakond"
+        ],
+        "steps": [
+          "Võta ühendust sotsiaalosakonnaga"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_piret_magi"
+      ],
+      "item_type": "service",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_service_turvakoduteenus",
+      "document_id": "polva_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "fb7dddb986d86c9b990353c0e44c270e9a98d3aced0acbabc77b5f46bd58650a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_service_vaimse_tervise_teenus",
+      "canonical_item_id": "polva_vald:service:vaimse_tervise_teenus",
+      "itemType": "service",
+      "title": "Vaimse tervise teenus",
+      "status": "active",
+      "summary": "Vaimse tervise teenus toetab nõustamisega isiku vaimset tervist ja psühhosotsiaalset heaolu. Teenus võib olla psühholoogiline nõustamine, leinanõustamine, perenõustamine või vajadusel muu nõustamine.",
+      "sourceKeys": [
+        "social_services_overview"
+      ],
+      "targetGroup": "Isik, kelle rahvastikuregistrisse kantud elukoht on Põlva vald ja kes elab Põlva vallas.",
+      "conditions": "Teenust määratakse kuni 5 nõustamiskorda jooksva aasta kohta.",
+      "application": {
+        "channels": [
+          "",
+          "sotsiaalosakond"
+        ],
+        "steps": [
+          "Esita taotlus Põlva Vallavalitsuse sotsiaalosakonnale"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Tegevuskavast tulenevas mahus või määratud nõustamiskordade ulatuses tasuta.",
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_anneli_masen",
+        "polva_vald_contact_klarica_topper",
+        "polva_vald_contact_anneli_janesmagi",
+        "polva_vald_contact_anu_otsing",
+        "polva_vald_contact_ave_maria_paju",
+        "polva_vald_contact_katrin_hansing",
+        "polva_vald_contact_kulli_padar_siim"
+      ],
+      "item_type": "service",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_service_vaimse_tervise_teenus",
+      "document_id": "polva_vald_service_vaimse_tervise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "185d2d9d6f1c318a6bcac51491154121153aa5844c980be94e18a4aac7f4acf1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "polva_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus suurendab puude tõttu füüsilist kõrvalabi vajava isiku iseseisvat toimetulekut ja osalemist eri eluvaldkondades ning vähendab seadusjärgsete hooldajate hoolduskoormust.",
+      "sourceKeys": [
+        "social_services_overview"
+      ],
+      "targetGroup": "Isik, kelle rahvastikuregistrijärgne või tegelik elukoht on Põlva vallas ja kes vajab puude tõttu füüsilist kõrvalabi.",
+      "conditions": "Teenuse rahastamine kooskõlastatakse vajadusel rahvastikuregistrijärgse omavalitsusega.",
+      "application": {
+        "channels": [
+          "",
+          "sotsiaalosakond",
+          "teenuskeskus",
+          "SPOKU"
+        ],
+        "steps": [
+          "Esita isikliku abistaja teenuse taotlus",
+          "Lisa olemasolul isikliku abistaja nõusolek"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "isikliku abistaja teenuse osutaja tasu": "6 eurot tunnis"
+      },
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_piret_magi"
+      ],
+      "item_type": "service",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_service_isikliku_abistaja_teenus",
+      "document_id": "polva_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "dd6e4bd7dc5b00a2039875ff1bd3c23131e75cc850e6055e5952cdf616cd51a3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_service_raske_sugava_puudega_lapse_tugiisikuteenus",
+      "canonical_item_id": "polva_vald:service:raske_sugava_puudega_lapse_tugiisikuteenus",
+      "itemType": "service",
+      "title": "Raske ja sügava puudega lapse tugiisikuteenus",
+      "status": "active",
+      "summary": "Teenuse eesmärk on toetada raske või sügava puudega lapse arengut ja igapäevaelus toimetulekut. Tugiisik abistab last arendavates tegevustes, juhendab ja motiveerib ning aitab suhtlemisel perekonnaliikmete või teiste inimestega.",
+      "sourceKeys": [
+        "child_benefits_page",
+        "social_services_overview"
+      ],
+      "targetGroup": "Raske või sügava puudega laps kuni 18-aastaseks saamiseni, kelle teenuse vajadus on tuvastatud ja kajastub juhtumiplaanis.",
+      "conditions": "Teenust saab taotleda lapsevanem, eestkostja või lepingu alusel hoolduspere vanem; lapse hooldamine ei tohi samal ajal olla tagatud teiste sotsiaalteenustega.",
+      "application": {
+        "channels": [
+          "",
+          "sotsiaalosakond",
+          "SPOKU"
+        ],
+        "steps": [
+          "Esita raske ja sügava puudega lapse teenuse taotlus"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/lapsed-ja-pered/toetused/",
+      "relatedForms": [
+        "polva_vald_form_puudega_lapse_sotsiaalteenuste_toetus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_anneli_janesmagi"
+      ],
+      "item_type": "service",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "child_benefits_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_service_raske_sugava_puudega_lapse_tugiisikuteenus",
+      "document_id": "polva_vald_service_raske_sugava_puudega_lapse_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/lapsed-ja-pered/toetused/",
+      "content_hash": "e405d5e06edb27a757431121ad9f37a71a7f5cf97af4de27c8621452621611f1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_service_raske_sugava_puudega_lapse_lapsehoiuteenus",
+      "canonical_item_id": "polva_vald:service:raske_sugava_puudega_lapse_lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Raske ja sügava puudega lapse lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenus toetab lapsevanema, eestkostja või hoolduspere vanema töötamist, õppimist või toimetulekut ning tagab teenuse ajal lapse hooldamise, arendamise ja turvalisuse.",
+      "sourceKeys": [
+        "child_benefits_page",
+        "social_services_overview"
+      ],
+      "targetGroup": "Raske või sügava puudega laps kuni 18-aastaseks saamiseni, kelle teenuse vajadus on tuvastatud ja kajastub juhtumiplaanis.",
+      "conditions": "Teenust saab taotleda lapsevanem, eestkostja või lepingu alusel hoolduspere vanem.",
+      "application": {
+        "channels": [
+          "",
+          "sotsiaalosakond",
+          "SPOKU"
+        ],
+        "steps": [
+          "Esita raske ja sügava puudega lapse teenuse taotlus"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/lapsed-ja-pered/toetused/",
+      "relatedForms": [
+        "polva_vald_form_puudega_lapse_sotsiaalteenuste_toetus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_anneli_janesmagi"
+      ],
+      "item_type": "service",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "child_benefits_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_service_raske_sugava_puudega_lapse_lapsehoiuteenus",
+      "document_id": "polva_vald_service_raske_sugava_puudega_lapse_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/lapsed-ja-pered/toetused/",
+      "content_hash": "dcb25acc07e398b5ac96d46dd6fbd173d3be1afabdd72f254be076bdb2681446",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_benefit_sunnitoetus",
+      "canonical_item_id": "polva_vald:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus on sissetulekust mittesõltuv toetus lapse sünni puhul. Toetust makstakse kahes võrdses osas: esimene osa pärast lapse sünni registreerimist ja teine osa lapse 1,5-aastaseks saamisel.",
+      "sourceKeys": [
+        "child_benefits_page",
+        "social_services_overview"
+      ],
+      "targetGroup": "Lapse vanem, eestkostja või isik, kelle juures laps on lepingu alusel perekonnas hooldamisel; lapse elukoht peab olema Põlva vald.",
+      "conditions": "Toetust makstakse juhul, kui lapse eest ei ole saadud sünnitoetust teisest kohalikust omavalitsusest. Mitmike sünni korral makstakse toetust iga lapse eest.",
+      "amount": "1000 eurot",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "taotlusvorm"
+        ],
+        "steps": [
+          "Esita taotlus Põlva Vallavalitsuse taotluste haldussüsteemis",
+          "Esimese osa taotlus tuleb esitada kolme kuu jooksul pärast sünni registreerimist; teise osa taotlus kolme kuu jooksul pärast lapse 1,5-aastaseks saamist"
+        ],
+        "deadline": "3 kuud pärast vastava õiguse tekkimist"
+      },
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_sissetulekust_mittesoltuva_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_anneli_masen",
+        "polva_vald_contact_klarica_topper"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "child_benefits_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_benefit_sunnitoetus",
+      "document_id": "polva_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "1d2ae9b8b40875fb79be815237245d83e5c7649682260486cb8370cb2808586c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_benefit_matusetoetus",
+      "canonical_item_id": "polva_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on sissetulekust mittesõltuv toetus Põlva valla elaniku matmise kulude katmiseks. Toetus makstakse taotluses näidatud arvelduskontole või sularahas.",
+      "sourceKeys": [
+        "child_benefits_page",
+        "social_services_overview"
+      ],
+      "targetGroup": "Matuse korraldaja Põlva valla elaniku surma korral; erandina Põlva valla elanik, kes matab isiku, kellel puudus rahvastikuregistrijärgne elukoht või kelle eest ei ole saadud matusetoetust teisest KOV-ist.",
+      "conditions": "Taotlus tuleb esitada kolme kuu jooksul pärast surma registreerimist rahvastikuregistris.",
+      "amount": "250 eurot",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "taotlusvorm"
+        ],
+        "steps": [
+          "Esita matusetoetuse taotlus SPOKU kaudu või taotlusvormiga"
+        ],
+        "deadline": "3 kuud pärast surma registreerimist"
+      },
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_sissetulekust_mittesoltuva_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_kaia_vorno"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "child_benefits_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_benefit_matusetoetus",
+      "document_id": "polva_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "d109ffec3c8aad12718fa24b94fcac073ef62b6361269bc384d22f4c2bdcd251",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_benefit_esimese_klassi_astu_toetus",
+      "canonical_item_id": "polva_vald:benefit:esimese_klassi_astu_toetus",
+      "itemType": "benefit",
+      "title": "1. klassi astuja toetus",
+      "status": "active",
+      "summary": "1. klassi astuja toetus on sissetulekust mittesõltuv toetus lapsele, kes asub esmakordselt õppima Põlva valla kooli. Erandina saab toetust ka teise omavalitsuse kooli alustav laps, kui Põlva vallas puudub lapse vajadustele vastav kool või lähim kool asub teises omavalitsuses.",
+      "sourceKeys": [
+        "child_benefits_page",
+        "social_services_overview"
+      ],
+      "targetGroup": "Põlva valla rahvastikuregistrijärgse elukohaga esimesse klassi õppima asuv laps.",
+      "conditions": "Taotlusi võetakse vastu 1. augustist 30. septembrini.",
+      "amount": "300 eurot",
+      "application": {
+        "channels": [
+          "SPOKU"
+        ],
+        "steps": [
+          "Esita taotlus Põlva Vallavalitsuse taotluste haldussüsteemis"
+        ],
+        "deadline": "1. august – 30. september"
+      },
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_sissetulekust_mittesoltuva_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_kaia_vorno",
+        "polva_vald_contact_katrin_hansing",
+        "polva_vald_contact_ave_maria_paju"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "child_benefits_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_benefit_esimese_klassi_astu_toetus",
+      "document_id": "polva_vald_benefit_esimese_klassi_astu_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "5c83b58cf7d27905e18f01d9ed6a702efdcf365042b9c4759d991b5243ea5b6f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_benefit_joulutoetus_lastele",
+      "canonical_item_id": "polva_vald:benefit:joulutoetus_lastele",
+      "itemType": "benefit",
+      "title": "Jõulutoetus lastele",
+      "status": "active",
+      "summary": "Jõulutoetust antakse kommipakina Põlva valla koolieelsetes lasteasutustes käivatele lastele, valla koolide esimeses kooliastmes õppivatele lastele ja kodustele lastele alates esimesest eluaastast.",
+      "sourceKeys": [
+        "social_services_overview"
+      ],
+      "targetGroup": "Põlva valla lasteaialapsed, valla koolide esimese kooliastme õpilased ning kodused lapsed alates esimesest eluaastast.",
+      "conditions": "Lapsevanem taotlust esitama ei pea.",
+      "amount": "kommipakk",
+      "application": {
+        "channels": [
+          "taotlust ei nõuta"
+        ],
+        "steps": [
+          "Lasteasutused jagavad kommipakid; kodused lapsed saavad paki koduste laste jõulupeol või kuni 31. jaanuarini sotsiaalosakonnast"
+        ],
+        "deadline": "Kodused lapsed saavad kommipakile järele tulla kuni 31. jaanuarini."
+      },
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_benefit_joulutoetus_lastele",
+      "document_id": "polva_vald_benefit_joulutoetus_lastele",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "16eda47429e9ac2f12ac9099657d08b4f24fbcde00fd79b7b4845f74b6635246",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_benefit_raske_sugava_puudega_lapse_sotsiaalteenuse_toetus",
+      "canonical_item_id": "polva_vald:benefit:raske_sugava_puudega_lapse_sotsiaalteenuse_toetus",
+      "itemType": "benefit",
+      "title": "Raske ja sügava puudega lapse sotsiaalteenuse toetus",
+      "status": "active",
+      "summary": "Toetus on mõeldud raske või sügava puudega lapse sotsiaalteenuste osutamiseks ja arendamiseks, sealhulgas lapsehoiuteenuseks, tugiisikuteenuseks, isikliku abistaja teenuseks, transporditeenuseks, rehabilitatsiooniks, nõustamiseks ja eluaseme kohandamiseks.",
+      "sourceKeys": [
+        "child_benefits_page"
+      ],
+      "targetGroup": "Puudega lapse hooldusõigust omav isik või last vahetult kasvatav isik kuni selle kalendriaasta lõpuni, mil laps saab 18-aastaseks.",
+      "conditions": "Laps on raske või sügava puudega, hooldusvajadusega ja rahvastikuregistrijärgse elukohaga Põlva vald.",
+      "amount": "raske puudega lapse toetus 450 eurot kalendriaastas; sügava puudega lapse toetus 500 eurot kalendriaastas",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "taotlusvorm"
+        ],
+        "steps": [
+          "Esita taotlus Põlva Vallavalitsuse taotluste haldussüsteemis",
+          "Lisa koopia kuludokumendist, kui teenuse eest on juba tasutud"
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/lapsed-ja-pered/toetused/",
+      "relatedForms": [
+        "polva_vald_form_puudega_lapse_sotsiaalteenuste_toetus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_anneli_janesmagi"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "child_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_benefit_raske_sugava_puudega_lapse_sotsiaalteenuse_toetus",
+      "document_id": "polva_vald_benefit_raske_sugava_puudega_lapse_sotsiaalteenuse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/lapsed-ja-pered/toetused/",
+      "content_hash": "a8ef4830a982ef80565f4d06501df1089bdc2d7f4d017ca3ca7df2802ef2b2ea",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_benefit_puudega_lapse_hooldajatoetus",
+      "canonical_item_id": "polva_vald:benefit:puudega_lapse_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Puudega lapse hooldus ja hooldajatoetus",
+      "status": "active",
+      "summary": "Hooldus seatakse ja hooldajatoetus makstakse hooldusvajadusega lapse hooldajale, et parandada puudega lapsele mõeldud sotsiaalteenuste kättesaadavust ning kompenseerida puudest tulenevaid lisakulusid.",
+      "sourceKeys": [
+        "child_benefits_page",
+        "social_services_overview"
+      ],
+      "targetGroup": "Raske või sügava puudega kuni 18-aastane laps, kelle elukoht on Põlva vald, ja tema hooldaja.",
+      "conditions": "Hooldusvajadus on tuvastatud Sotsiaalkindlustusameti puude raskusastme määramise otsusega.",
+      "amount": null,
+      "application": {
+        "channels": [
+          "",
+          "Põlva Vallavalitsuse sotsiaalosakond"
+        ],
+        "steps": [
+          "Esita puudega lapse hoolduse seadmise ja hooldajatoetuse taotlus",
+          "Lisa olemasolul puude määramise otsus, rehabilitatsiooniplaan või eestkoste/hoolduspere dokument"
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/lapsed-ja-pered/toetused/",
+      "relatedForms": [
+        "polva_vald_form_puudega_lapse_hooldus_hooldajatoetus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_anneli_janesmagi"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "child_benefits_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_benefit_puudega_lapse_hooldajatoetus",
+      "document_id": "polva_vald_benefit_puudega_lapse_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/lapsed-ja-pered/toetused/",
+      "content_hash": "e8873ddfe4da927746785a13bee3736a09517ff08763106ab2572dd384e72c05",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "polva_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on sissetulekust sõltuv toetus, mille eesmärk on leevendada abi vajavate isikute ja perekondade materiaalset puudust ning tagada minimaalsed vahendid esmavajaduste rahuldamiseks.",
+      "sourceKeys": [
+        "social_services_overview"
+      ],
+      "targetGroup": "Üksi elav isik või perekond, kelle kuu netosissetulek pärast eluasemekulude mahaarvamist on alla kehtestatud toimetulekupiiri.",
+      "conditions": "Arvestuse aluseks on eelmise kuu netosissetulek, millest arvatakse maha eluasemekulud ja kehtestatud toimetulekupiir. Alates 01.01.2026 on toimetulekupiir esimesele pereliikmele 220 eurot kuus, igale järgnevale täisealisele 176 eurot ning kuni 18-aastastele lastele 264 eurot.",
+      "amount": "arvutatakse valemiga: toimetulekupiir + eluruumi alalised kulud – sissetulekud",
+      "application": {
+        "channels": [
+          "",
+          "sotsiaalosakond",
+          "teenuskeskus",
+          "SPOKU"
+        ],
+        "steps": [
+          "Esita jooksva kuu eest taotlus koos eluasemekulusid tõendavate dokumentidega hiljemalt kuu viimaseks tööpäevaks"
+        ],
+        "deadline": "iga kuu viimane tööpäev"
+      },
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_kaia_vorno",
+        "polva_vald_contact_katrin_hansing",
+        "polva_vald_contact_ave_maria_paju"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_benefit_toimetulekutoetus",
+      "document_id": "polva_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "3d48cbf32fc7be31a1da8b7f348bf68ccf49f8c5b6e555ea580f84cab3dc4735",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_benefit_koolitoetus",
+      "canonical_item_id": "polva_vald:benefit:koolitoetus",
+      "itemType": "benefit",
+      "title": "Koolitoetus",
+      "status": "active",
+      "summary": "Koolitoetus on sissetulekust sõltuv toetus õpilase õppekulude, sealhulgas huvihariduse, koolitarvete, riiete, jalanõude ja muude vajalike kulude osaliseks või täielikuks hüvitamiseks.",
+      "sourceKeys": [
+        "social_services_overview"
+      ],
+      "targetGroup": "Põlva valla elanik, kelle pere netosissetulek perekonnaliikme kohta on alla kolmekordse toimetulekupiiri.",
+      "conditions": "Taotluse esitamisele eelnenud kalendrikuu netosissetulek pereliikme kohta peab olema alla 660 euro.",
+      "amount": null,
+      "application": {
+        "channels": [
+          "",
+          "sotsiaalosakond"
+        ],
+        "steps": [
+          "Esita taotlus ja kuludokumendid"
+        ],
+        "deadline": "3 kuu jooksul pärast kulutuste tegemist"
+      },
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_kaia_vorno",
+        "polva_vald_contact_katrin_hansing",
+        "polva_vald_contact_ave_maria_paju"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_benefit_koolitoetus",
+      "document_id": "polva_vald_benefit_koolitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "87cb78ebd9b1b3a998870683b7b87fb64f80b518b496d92cd706385af906983d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_benefit_laste_noortelaagri_toetus",
+      "canonical_item_id": "polva_vald:benefit:laste_noortelaagri_toetus",
+      "itemType": "benefit",
+      "title": "Laste- ja noortelaagri toetus",
+      "status": "active",
+      "summary": "Laste- ja noortelaagri toetus hüvitab laagritega seotud kulud osaliselt või täielikult.",
+      "sourceKeys": [
+        "social_services_overview"
+      ],
+      "targetGroup": "Põlva valla laps või noor, kelle pere netosissetulek perekonnaliikme kohta on alla kolmekordse toimetulekupiiri.",
+      "conditions": "Taotluse esitamisele eelnenud kalendrikuu netosissetulek pereliikme kohta peab olema alla 660 euro.",
+      "amount": null,
+      "application": {
+        "channels": [
+          "",
+          "sotsiaalosakond",
+          "SPOKU"
+        ],
+        "steps": [
+          "Esita taotlus ja kuludokumendid"
+        ],
+        "deadline": "3 kuu jooksul pärast kulutuste tegemist"
+      },
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_kaia_vorno",
+        "polva_vald_contact_katrin_hansing",
+        "polva_vald_contact_ave_maria_paju"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_benefit_laste_noortelaagri_toetus",
+      "document_id": "polva_vald_benefit_laste_noortelaagri_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "9b5f15da632bd3ae69218199da08b229d38096701239facc16fefef740853b15",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_benefit_toidukulutoetus",
+      "canonical_item_id": "polva_vald:benefit:toidukulutoetus",
+      "itemType": "benefit",
+      "title": "Toidukulutoetus",
+      "status": "active",
+      "summary": "Toidukulutoetus hüvitab Põlva valla haldusterritooriumil asuva koolieelse lasteasutuse toidukulu päevamaksumuse täielikult või osaliselt.",
+      "sourceKeys": [
+        "social_services_overview"
+      ],
+      "targetGroup": "Põlva valla elanikust lapsevanem, kelle pere kuue kalendrikuu netosissetulek perekonnaliikme kohta on alla kolmekordse toimetulekupiiri.",
+      "conditions": "Kuue kalendrikuu netosissetulek pereliikme kohta peab olema alla 660 euro.",
+      "amount": null,
+      "application": {
+        "channels": [
+          "",
+          "sotsiaalosakond"
+        ],
+        "steps": [
+          "Esita taotlus sotsiaalosakonnale"
+        ],
+        "deadline": "15. september või 15. jaanuar"
+      },
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_kaia_vorno",
+        "polva_vald_contact_katrin_hansing",
+        "polva_vald_contact_ave_maria_paju"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_benefit_toidukulutoetus",
+      "document_id": "polva_vald_benefit_toidukulutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "267b30e14588ae6a1b2e1d2a53d91b1a532be9658fed769d8de9b1b163baec51",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_benefit_ravi_invaabivahendite_toetus",
+      "canonical_item_id": "polva_vald:benefit:ravi_invaabivahendite_toetus",
+      "itemType": "benefit",
+      "title": "Ravi- ja invaabivahendite toetus",
+      "status": "active",
+      "summary": "Toetus hüvitab retseptiravimite ostmist ja invatehniliste abivahendite rentimist või soetamist kuludokumentide alusel. Toetus võib hõlmata ka prilliklaaside kulu kuni 24-aastasele tasemeõppes õppivale noorele ning ravikindlustuseta isiku ravikulu garantiikirja alusel.",
+      "sourceKeys": [
+        "social_services_overview",
+        "special_needs_page"
+      ],
+      "targetGroup": "Põlva valla elanik, kelle netosissetulek perekonnaliikme kohta on alla kolmekordse toimetulekupiiri.",
+      "conditions": "Taotlusele lisatakse pere- või eriarsti tõend või kulu tõendav dokument.",
+      "amount": null,
+      "application": {
+        "channels": [
+          "",
+          "sotsiaalosakond",
+          "teenuskeskus"
+        ],
+        "steps": [
+          "Esita taotlus ja kuludokumendid"
+        ],
+        "deadline": "3 kuu jooksul pärast kulutuste tegemist"
+      },
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/erivajadusega-inimene/",
+      "relatedForms": [
+        "polva_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_kaia_vorno",
+        "polva_vald_contact_katrin_hansing",
+        "polva_vald_contact_ave_maria_paju"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview",
+        "special_needs_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_benefit_ravi_invaabivahendite_toetus",
+      "document_id": "polva_vald_benefit_ravi_invaabivahendite_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/erivajadusega-inimene/",
+      "content_hash": "e8c982bcfdc11fbf07792daf98818ae4aa8e944ad3b960380e61e6e7099f608d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_benefit_kuttetoetus",
+      "canonical_item_id": "polva_vald:benefit:kuttetoetus",
+      "itemType": "benefit",
+      "title": "Küttetoetus",
+      "status": "active",
+      "summary": "Küttetoetus on sissetulekust sõltuv toetus, mida määratakse üks kord kalendriaastas küttekulude osaliseks katmiseks.",
+      "sourceKeys": [
+        "social_services_overview"
+      ],
+      "targetGroup": "Üksik vanadus- või töövõimetuspensionär või erandkorras toimetulekuraskustes isik või perekond.",
+      "conditions": "Elukoht rahvastikuregistri järgi Põlva vald; netosissetulek perekonnaliikme kohta alla kolmekordse toimetulekupiiri (600 eurot).",
+      "amount": "kuni 200 eurot aastas",
+      "application": {
+        "channels": [
+          "",
+          "sotsiaalosakond"
+        ],
+        "steps": [
+          "Esita taotlus ja olemasolul kulu tõendav dokument"
+        ],
+        "deadline": "3 kuu jooksul pärast kulutuste tegemist"
+      },
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_kaia_vorno",
+        "polva_vald_contact_katrin_hansing",
+        "polva_vald_contact_ave_maria_paju"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_benefit_kuttetoetus",
+      "document_id": "polva_vald_benefit_kuttetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "7607a25cb91a4c022c63ae7a5e7487945bedd69225e790ef90a7864fb49a3c73",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_benefit_uhekordne_toetus",
+      "canonical_item_id": "polva_vald:benefit:uhekordne_toetus",
+      "itemType": "benefit",
+      "title": "Ühekordne toetus",
+      "status": "active",
+      "summary": "Ühekordne toetus katab ettenägemata vajalikke kulutusi või aitab raskesse majanduslikku seisu sattunud isikut või peret sotsiaalselt abitust olukorrast välja.",
+      "sourceKeys": [
+        "social_services_overview"
+      ],
+      "targetGroup": "Põlva valla elanik või pere, kelle netosissetulek pereliikme kohta on alla kolmekordse toimetulekupiiri; erandkorras võib toetust määrata ka kõrgema sissetuleku korral.",
+      "conditions": "Elukoht Põlva vallas ja sissetuleku- või erakorralise vajaduse tingimus.",
+      "amount": null,
+      "application": {
+        "channels": [
+          "",
+          "sotsiaalosakond"
+        ],
+        "steps": [
+          "Esita taotlus ja kuludokumendid"
+        ],
+        "deadline": "3 kuu jooksul pärast kulutuste tegemist"
+      },
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_kaia_vorno",
+        "polva_vald_contact_katrin_hansing",
+        "polva_vald_contact_ave_maria_paju"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_benefit_uhekordne_toetus",
+      "document_id": "polva_vald_benefit_uhekordne_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "ce8f590a0e69b99e93bf097c7f7c3f5bf5663ab66ecfc84b7e8f3685ec679be1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_benefit_valtimatu_abi_toetus",
+      "canonical_item_id": "polva_vald:benefit:valtimatu_abi_toetus",
+      "itemType": "benefit",
+      "title": "Vältimatu abi toetus",
+      "status": "active",
+      "summary": "Vältimatu abi toetus määratakse isikule või perekonnale, kes on sattunud sotsiaalselt abitusse olukorda elatusvahendite kaotuse või puudumise tõttu, et tagada vähemalt toit, riietus ja ajutine majutus.",
+      "sourceKeys": [
+        "social_services_overview"
+      ],
+      "targetGroup": "Elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitusse olukorda sattunud isik või perekond.",
+      "conditions": "Abi võib olla teenus, esemeline abi või rahaline toetus.",
+      "amount": null,
+      "application": {
+        "channels": [
+          "",
+          "sotsiaalosakond",
+          "teenuskeskus"
+        ],
+        "steps": [
+          "Esita vältimatu abi toetuse taotlus"
+        ],
+        "deadline": "3 kuu jooksul pärast kulutuste tegemist"
+      },
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_kaia_vorno",
+        "polva_vald_contact_katrin_hansing",
+        "polva_vald_contact_ave_maria_paju"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_benefit_valtimatu_abi_toetus",
+      "document_id": "polva_vald_benefit_valtimatu_abi_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "9790dfebd32075caf74f51ef8d30258378a0e78245c146acdaff07da92f02bf2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_benefit_vanaduspensionari_joulutoetus",
+      "canonical_item_id": "polva_vald:benefit:vanaduspensionari_joulutoetus",
+      "itemType": "benefit",
+      "title": "Vanaduspensionäri jõulutoetus",
+      "status": "active",
+      "summary": "Vanaduspensionäri jõulutoetus on sissetulekust sõltuv rahaline toetus Põlva valla vanaduspensionärile.",
+      "sourceKeys": [
+        "social_services_overview"
+      ],
+      "targetGroup": "Vanaduspensionär, kelle elukoht rahvastikuregistri andmetel on Põlva vald ja kelle tulu on väiksem või võrdne kolmekordse toimetulekutoetuse määraga.",
+      "conditions": "Tulu kuni 600 eurot.",
+      "amount": "50 eurot",
+      "application": {
+        "channels": [
+          "",
+          "sotsiaalosakond",
+          "teenuskeskus"
+        ],
+        "steps": [
+          "Täida ja allkirjasta vanaduspensionäri jõulutoetuse taotlus"
+        ],
+        "deadline": "1. november – 1. detsember"
+      },
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_vanaduspensionari_joulutoetus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_kaia_vorno",
+        "polva_vald_contact_katrin_hansing",
+        "polva_vald_contact_ave_maria_paju"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_benefit_vanaduspensionari_joulutoetus",
+      "document_id": "polva_vald_benefit_vanaduspensionari_joulutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "c5c2b0289e5edc2d5f0bf56932800081f3228543d9ca4ac0d225e5aecae56e5b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "canonical_item_id": "polva_vald:benefit:taisealise_isiku_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Täisealise isiku hooldajatoetus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldajatoetus on igakuine toetus hooldajale, kui hooldus on seatud täisealisele Põlva valla elanikule, kes vajab vaimse või kehalise puude tõttu abi.",
+      "sourceKeys": [
+        "social_services_overview",
+        "special_needs_page"
+      ],
+      "targetGroup": "Täisealise hooldatava hooldajaks määratud isik.",
+      "conditions": "Hoolduse seadmine ja hooldaja määramine toimub hooldusvajaduse hindamise põhjal ning hooldatava ja hooldaja nõusolekul.",
+      "amount": null,
+      "application": {
+        "channels": [
+          "",
+          "sotsiaalosakond",
+          "teenuskeskus"
+        ],
+        "steps": [
+          "Esita hoolduse seadmiseks ja hooldajatoetuse maksmiseks ühine taotlus"
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedForms": [
+        "polva_vald_form_hoolduse_seadmine_hooldajatoetus"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_kulli_padar_siim",
+        "polva_vald_contact_anu_otsing",
+        "polva_vald_contact_katrin_hansing",
+        "polva_vald_contact_ave_maria_paju"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview",
+        "special_needs_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "document_id": "polva_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "cdee9fc69f0bd2f6642d24a8fb88a323476959bb27d8505985ee987c158a0cef",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_benefit_eluruumi_kohandamise_huvitis",
+      "canonical_item_id": "polva_vald:benefit:eluruumi_kohandamise_huvitis",
+      "itemType": "benefit",
+      "title": "Eluruumi kohandamise hüvitis",
+      "status": "active",
+      "summary": "Eluruumi kohandamise hüvitis aitab puudega isikul muuta eluruumi turvalisemaks ja iseseisvat toimetulekut toetavaks, sh parandada liikumist, hügieenitoiminguid või köögitoiminguid.",
+      "sourceKeys": [
+        "social_services_overview",
+        "special_needs_page"
+      ],
+      "targetGroup": "Puudega isik, kelle rahvastikuregistrijärgne ja peamine elukoht on Põlva vald ja kellel on raskusi eluruumis liikumise või endaga toimetulekuga.",
+      "conditions": "Taotlusele lisatakse hinnapakkumised ja vajadusel eluruumi omaniku või kaasomanike nõusolek.",
+      "amount": null,
+      "application": {
+        "channels": [
+          "",
+          "sotsiaalosakond",
+          "teenuskeskus"
+        ],
+        "steps": [
+          "Esita eluruumi kohandamise taotlus koos nõutud lisadega"
+        ],
+        "deadline": "kuni 31. märtsini ja/või kuni 30. septembrini"
+      },
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/erivajadusega-inimene/",
+      "relatedForms": [
+        "polva_vald_form_eluruumi_kohandamine"
+      ],
+      "relatedContacts": [
+        "polva_vald_contact_piret_magi",
+        "polva_vald_contact_juri_kore"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview",
+        "special_needs_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_benefit_eluruumi_kohandamise_huvitis",
+      "document_id": "polva_vald_benefit_eluruumi_kohandamise_huvitis",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/erivajadusega-inimene/",
+      "content_hash": "7c32886824fb64242429363f566b398b9a5fa508c2993f7c87053c55cdba364f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_resource_polva_paevakeskus",
+      "canonical_item_id": "polva_vald:resource:polva_paevakeskus",
+      "itemType": "resource",
+      "title": "Põlva Päevakeskus",
+      "status": "active",
+      "summary": "Põlva Päevakeskus pakub Põlva valla eakatele ja puuetega inimestele ning aktiivsest sotsiaalsest elust kõrvale jäänud inimestele sotsiaalteenuseid, koolitusi ja huvitegevust. Teenuste hulgas on koduteenuse osutamine vallavalitsuse suunatud isikutele, dušši kasutamine, pesu pesemine ja kuivatamine, huviringid, avalik internetipunkt, ruumide rent ning loengud ja üritused.",
+      "sourceKeys": [
+        "day_centre_page"
+      ],
+      "name": "Põlva Päevakeskus",
+      "role": "päevakeskus",
+      "address": "Uus 2, Põlva 63308",
+      "officialUrl": "https://polva.ee/paevakeskus-uus/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "day_centre_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_resource_polva_paevakeskus",
+      "document_id": "polva_vald_resource_polva_paevakeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/paevakeskus-uus/",
+      "content_hash": "498ab6c5956bc70ef0ec85d799a67afce83f583a2a1a540afeffad918b78b074",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_resource_polvamaa_puuetega_inimeste_koda",
+      "canonical_item_id": "polva_vald:resource:polvamaa_puuetega_inimeste_koda",
+      "itemType": "resource",
+      "title": "Põlvamaa Puuetega Inimeste Koda",
+      "status": "active",
+      "summary": "Põlvamaa Puuetega Inimeste Koda koordineerib puuetega inimeste seltside tegevust ning KOV lehel on nimetatud toetatud elamise teenus ja igapäevaelu toetamise teenus psüühiliste erivajadustega inimestele.",
+      "sourceKeys": [
+        "day_centre_page",
+        "special_needs_page"
+      ],
+      "name": "Põlvamaa Puuetega Inimeste Koda",
+      "role": "puuetega inimeste organisatsioon",
+      "address": "Uus 2, Põlva 63308",
+      "officialUrl": "https://polva.ee/paevakeskus-uus/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "day_centre_page",
+        "special_needs_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_resource_polvamaa_puuetega_inimeste_koda",
+      "document_id": "polva_vald_resource_polvamaa_puuetega_inimeste_koda",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/paevakeskus-uus/",
+      "content_hash": "47901de7d6e0503ebacf9604612b27e48da2dc1174ad3aad0441e8ba41345053",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_resource_polva_toidupank",
+      "canonical_item_id": "polva_vald:resource:polva_toidupank",
+      "itemType": "resource",
+      "title": "Põlva Toidupank",
+      "status": "active",
+      "summary": "Põlva Toidupank on KOV lehel esitatud praktiline abikanal abivajajatele; ühendust saab tööpäeviti kell 8.00–16.00.",
+      "sourceKeys": [
+        "day_centre_page"
+      ],
+      "name": "Põlva Toidupank",
+      "role": "toiduabi",
+      "address": "Uus 2, Põlva 63308",
+      "officialUrl": "https://polva.ee/paevakeskus-uus/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "day_centre_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_resource_polva_toidupank",
+      "document_id": "polva_vald_resource_polva_toidupank",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/paevakeskus-uus/",
+      "content_hash": "72e1dd94477830f6d42c05fe624cdfd8473ebc0cfc9d87737cdfce9f3ed869f0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_resource_polva_valla_hooldekodu",
+      "canonical_item_id": "polva_vald:resource:polva_valla_hooldekodu",
+      "itemType": "resource",
+      "title": "Põlva Valla Hooldekodu",
+      "status": "active",
+      "summary": "Põlva Valla Hooldekodu on väljaspool kodu ööpäevaringset üldhooldusteenust osutav hoolekandeasutus. Hooldekodu tegutseb kolmes majas Põlva linnas.",
+      "sourceKeys": [
+        "care_institutions_page"
+      ],
+      "name": "Anne Nook",
+      "role": "juhataja",
+      "address": "Uus tn 2, 63308 Põlva linn",
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/eakad/hoolekandeasutus/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "care_institutions_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_resource_polva_valla_hooldekodu",
+      "document_id": "polva_vald_resource_polva_valla_hooldekodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/eakad/hoolekandeasutus/",
+      "content_hash": "a35ebdb9441419e501248215d02049f297274a3d44cd4eacf2b7d3c130e2906b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_resource_laheda_sotsiaalkeskus",
+      "canonical_item_id": "polva_vald:resource:laheda_sotsiaalkeskus",
+      "itemType": "resource",
+      "title": "Laheda Sotsiaalkeskus",
+      "status": "active",
+      "summary": "Laheda Sotsiaalkeskus on Põlva vallas tegutsev hoolekandeasutus, mille kontaktid on KOV hoolekandeasutuste lehel. Lehel on nimetatud Tilsi ja Vana-Koiola maja telefonid.",
+      "sourceKeys": [
+        "care_institutions_page"
+      ],
+      "name": "Marika Dorbek",
+      "role": "juhataja",
+      "address": "Vana-Koiola küla, 63010 Põlva vald",
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/eakad/hoolekandeasutus/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "care_institutions_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_resource_laheda_sotsiaalkeskus",
+      "document_id": "polva_vald_resource_laheda_sotsiaalkeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/eakad/hoolekandeasutus/",
+      "content_hash": "a68dde80982d0000298abfe75554eb7723727e553c7d2ae4d11cb595b1a5a6a8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_resource_maarja_kula",
+      "canonical_item_id": "polva_vald:resource:maarja_kula",
+      "itemType": "resource",
+      "title": "Maarja Küla",
+      "status": "active",
+      "summary": "Maarja Küla on KOV lehel nimetatud kogukond, kus elavad intellektipuudega täiskasvanud.",
+      "sourceKeys": [
+        "special_needs_page"
+      ],
+      "name": "SA Maarja Küla",
+      "role": "erivajadusega inimeste kogukond",
+      "address": "Haavassaare 1, Kiidjärve küla, Põlva vald, Põlvamaa",
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/erivajadusega-inimene/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "special_needs_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_resource_maarja_kula",
+      "document_id": "polva_vald_resource_maarja_kula",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/erivajadusega-inimene/",
+      "content_hash": "bf4ed2f3825f5772717d4059693ed8342efa823b2463353e2704fefa2a2c327f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_resource_polva_kaasiku_erihoolekanne",
+      "canonical_item_id": "polva_vald:resource:polva_kaasiku_erihoolekanne",
+      "itemType": "resource",
+      "title": "AS Hoolekandeteenused Põlva Kaasiku",
+      "status": "active",
+      "summary": "KOV lehel nimetatud ööpäevaringne erihoolekandeteenus Põlva Kaasiku üksuses.",
+      "sourceKeys": [
+        "special_needs_page"
+      ],
+      "name": "AS Hoolekandeteenused Põlva Kaasiku",
+      "role": "erihoolekandeteenus",
+      "address": "Kaasiku tee 9, Põlva 63303",
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/erivajadusega-inimene/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "special_needs_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_resource_polva_kaasiku_erihoolekanne",
+      "document_id": "polva_vald_resource_polva_kaasiku_erihoolekanne",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/erivajadusega-inimene/",
+      "content_hash": "38aa31123f27cc465dce95db1d893b4b059398a3549489d4499cd6d13d6e0f5f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_resource_polva_roosi_kool",
+      "canonical_item_id": "polva_vald:resource:polva_roosi_kool",
+      "itemType": "resource",
+      "title": "Põlva Roosi Kool",
+      "status": "active",
+      "summary": "Põlva Roosi Kool on KOV lehel nimetatud õppeasutus intellekti- ja/või liitpuudega lastele ja noortele; kooli juures tegutseb ka lasteaiarühm.",
+      "sourceKeys": [
+        "special_needs_page"
+      ],
+      "name": "Põlva Roosi Kool",
+      "role": "erivajadusega laste ja noorte kool",
+      "address": "Lina 13, Põlva 63308",
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/erivajadusega-inimene/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "special_needs_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_resource_polva_roosi_kool",
+      "document_id": "polva_vald_resource_polva_roosi_kool",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/erivajadusega-inimene/",
+      "content_hash": "ac387786b02db42c14499fd69979f590f9b9a4e6ed43a581966f25a521138886",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_resource_hairenuputeenus",
+      "canonical_item_id": "polva_vald:resource:hairenuputeenus",
+      "itemType": "resource",
+      "title": "Häirenuputeenus",
+      "status": "active",
+      "summary": "Häirenuputeenus on KOV lehel kirjeldatud tasuline teenus üksi elavale eakale või puudega inimesele. Häirenupp aitab hädaolukorras abi kutsuda ja annab ööpäevaringse turvatunde; KOV lehe järgi pakuvad häirenuppe Eestis mitu firmat.",
+      "sourceKeys": [
+        "social_services_overview"
+      ],
+      "name": "Häirenuputeenus",
+      "role": "abikanal",
+      "address": null,
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_resource_hairenuputeenus",
+      "document_id": "polva_vald_resource_hairenuputeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "a63b9530d9dd80b9ebc67a3fd33297fb846e648a9fb9c0185e1738a715fc9771",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_resource_perelepitusteenus",
+      "canonical_item_id": "polva_vald:resource:perelepitusteenus",
+      "itemType": "resource",
+      "title": "Perelepitusteenus",
+      "status": "active",
+      "summary": "Riiklik perelepitusteenus aitab lahku minevatel lapsevanematel lapse huvides kokkuleppeid sõlmida. KOV leht viitab teenusele kui praktilisele abivõimalusele ja märgib, et teenus on lapsevanemale tasuta.",
+      "sourceKeys": [
+        "social_services_overview"
+      ],
+      "name": "Riiklik perelepitusteenus",
+      "role": "riiklik abikanal",
+      "address": null,
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_resource_perelepitusteenus",
+      "document_id": "polva_vald_resource_perelepitusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "7f6ae9a0412c20af1a4d14296e0496b250db1937164e14b602a9cdb678cfd538",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_resource_lastemaja_teenus",
+      "canonical_item_id": "polva_vald:resource:lastemaja_teenus",
+      "itemType": "resource",
+      "title": "Lastemaja teenus",
+      "status": "active",
+      "summary": "Lastemaja teenus on lapsesõbralik ja erialadevaheline teenus seksuaalselt väärkoheldud või väärkohtlemise kahtlusega laste abistamiseks. KOV lehel on nimetatud Lõuna lastemaja kontaktid ja ööpäevaringsed seksuaalvägivalla kriisiabikeskused.",
+      "sourceKeys": [
+        "social_services_overview"
+      ],
+      "name": "Lastemaja",
+      "role": "riiklik abikanal",
+      "address": "Tartu ja Tallinn",
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_resource_lastemaja_teenus",
+      "document_id": "polva_vald_resource_lastemaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/sotsiaaltoetused-ja-teenused/",
+      "content_hash": "75385edb635132a44477b413ef21a27bf8cfe53ed1fc7ed8888334236f8999b9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_resource_ohvriabi_kriisitelefon",
+      "canonical_item_id": "polva_vald:resource:ohvriabi_kriisitelefon",
+      "itemType": "resource",
+      "title": "Ohvriabi kriisitelefon",
+      "status": "active",
+      "summary": "Ohvriabi kriisitelefon on KOV lähisuhtevägivalla lehel nimetatud abikanal kuriteo, vägivalla ja kriisijuhtumi ohvrile või pealtnägijale.",
+      "sourceKeys": [
+        "violence_shelter_page"
+      ],
+      "name": "Ohvriabi",
+      "role": "kriisitelefon",
+      "address": null,
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/lapsed-ja-pered/lahisuhtevagivald-ja-varjupaik/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "violence_shelter_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_resource_ohvriabi_kriisitelefon",
+      "document_id": "polva_vald_resource_ohvriabi_kriisitelefon",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/lapsed-ja-pered/lahisuhtevagivald-ja-varjupaik/",
+      "content_hash": "ffb29826509a9cd8a54d4f9f1013ffa4ac62b25f398b49fae6ff866e70d84699",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_resource_naiste_tugikeskus_seksuaalvagivalla_kriisiabi",
+      "canonical_item_id": "polva_vald:resource:naiste_tugikeskus_seksuaalvagivalla_kriisiabi",
+      "itemType": "resource",
+      "title": "Naiste tugikeskus ja seksuaalvägivalla kriisiabi",
+      "status": "active",
+      "summary": "KOV lähisuhtevägivalla lehel suunatakse leidma lähimat naiste tugikeskust või seksuaalvägivalla kriisiabi keskust.",
+      "sourceKeys": [
+        "violence_shelter_page"
+      ],
+      "name": "Naiste tugikeskus / seksuaalvägivalla kriisiabi",
+      "role": "abikanal",
+      "address": null,
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/lapsed-ja-pered/lahisuhtevagivald-ja-varjupaik/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "violence_shelter_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_resource_naiste_tugikeskus_seksuaalvagivalla_kriisiabi",
+      "document_id": "polva_vald_resource_naiste_tugikeskus_seksuaalvagivalla_kriisiabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/lapsed-ja-pered/lahisuhtevagivald-ja-varjupaik/",
+      "content_hash": "215d09ca2f317af5ac9eb174381cb61e6a32fb1cc3ccca630feafa0a692f196c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_resource_haadaabi_haadaohus_laps",
+      "canonical_item_id": "polva_vald:resource:haadaabi_haadaohus_laps",
+      "itemType": "resource",
+      "title": "Hädaohus laps:",
+      "status": "active",
+      "summary": "KOV lastekaitse lehel on kirjas, et hädaohus olevast lapsest tuleb viivitamata teatada hädaabinumbril.",
+      "sourceKeys": [
+        "child_protection_page"
+      ],
+      "name": "Hädaabi",
+      "role": "hädaabikanal",
+      "address": null,
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/lapsed-ja-pered/lastekaitse/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "child_protection_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_resource_haadaabi_haadaohus_laps",
+      "document_id": "polva_vald_resource_haadaabi_haadaohus_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/lapsed-ja-pered/lastekaitse/",
+      "content_hash": "62b733a6aa83ed0661b7c6f5ef217d13b6fdc6dda4d0f01552d403687f59f831",
+      "evidence_allowed": true
+    },
+    {
+      "id": "polva_vald_resource_kadunud_lapse_telefon",
+      "canonical_item_id": "polva_vald:resource:kadunud_lapse_telefon",
+      "itemType": "resource",
+      "title": "Kadunud lapse 116 000",
+      "status": "active",
+      "summary": "KOV lastekaitse lehel on kirjas, et kadunud lapsest on võimalik teada anda või saada teemaga seotud nõu telefonil 116 000; teenus on tasuta ja ööpäevaringne.",
+      "sourceKeys": [
+        "child_protection_page"
+      ],
+      "name": "Kadunud lapse",
+      "role": "tugiliin",
+      "address": null,
+      "officialUrl": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/lapsed-ja-pered/lastekaitse/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "county": "Põlvamaa",
+      "source_keys": [
+        "child_protection_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "polva_vald_resource_kadunud_lapse_telefon",
+      "document_id": "polva_vald_resource_kadunud_lapse_telefon",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://polva.ee/perekond-sotsiaalabi-ja-tervishoid/lapsed-ja-pered/lastekaitse/",
+      "content_hash": "ce8e73b4ee298fdcc5bfc1a62944fedcdbd439d69af68de104fc6fd6ae4e023b",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Põlva vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

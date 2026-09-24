@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2020",
+  "articleId": "sotsiaaltoo-fuusilise-eraldatuse-tingimustes-2020-2",
+  "title": "Sotsiaaltöötaja sotsiaalne töö füüsilise eraldatuse tingimustes",
+  "authors": [
+    "Airi Mitendorf"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2020",
+  "section": "Sotsiaaltöö eriolukorras",
+  "pageRange": "8-9",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb sotsiaaltöö tuuma – inimsuhteid – olukorras, kus füüsiline eraldatus on vältimatu. Avatakse, kuidas kohandada tööviise, säilitada kontakt kliendiga, märgata haavatavaid sihtrühmi ning toetada inimesi isolatsiooni ja ärevuse tingimustes.",
+  "tags": [
+    "sotsiaaltöö",
+    "eriolukord",
+    "füüsiline eraldatus",
+    "Covid-19",
+    "inimsuhted",
+    "kogukond",
+    "haavatavad rühmad",
+    "psühhosotsiaalne tugi"
+  ],
+  "source_type": "file",
+  "source_path": "ST2_2020_web_link_Part4.pdf",
+  "document_id": "sotsiaaltoo-2-2020-sotsiaaltoo-fuusilise-eraldatuse-tingimustes-2020-2",
+  "source_format": "pdf",
+  "source_sha256": "f2a3b84d68bc3c9d180e35cb5c63aebda480100109fbd8e93b90c62a1313bdf0",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2020-sotsiaaltoo-fuusilise-eraldatuse-tingimustes-2020-2",
+    "previous_source_path": "ST2_2020_web_link_Part4.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "f2a3b84d68bc3c9d180e35cb5c63aebda480100109fbd8e93b90c62a1313bdf0",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

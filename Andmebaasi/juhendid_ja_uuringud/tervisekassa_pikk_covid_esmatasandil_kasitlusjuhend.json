@@ -1,0 +1,97 @@
+{
+  "source_path": "tervisekassa_pikk_covid_esmatasandil_kasitlusjuhend.pdf",
+  "source_format": "pdf",
+  "sha256": "573c0cac06ada8b6e882253bc09ba23b55bbfa538e521c2af03dd7f9f22fe790",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/tervisekassa_pikk_covid_esmatasandil_kasitlusjuhend.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "tervisekassa_pikk_covid_esmatasandil_kasitlusjuhend",
+          "title": "Pikk COVID esmatasandil: käsitlusjuhend",
+          "url": "https://tervisekassa.ee/sites/default/files/Pikk_Covid_k%C3%A4sitlusjuhend_web.pdf",
+          "normalized_url": "https://tervisekassa.ee/sites/default/files/Pikk_Covid_käsitlusjuhend_web.pdf",
+          "source_format": "pdf",
+          "source_type": "official_guideline",
+          "resource_type": "method_guidance",
+          "publisher": "Tervisekassa",
+          "organization_id": "tervisekassa",
+          "collection_hint": "guidance_and_methods",
+          "evidence_role": "practice_guidance",
+          "topic_tags": [
+            "Tervisekassa",
+            "tervishoid",
+            "nakkushaigused",
+            "infektsioonikontroll",
+            "COVID-19",
+            "esmatasand",
+            "patsient",
+            "pikk COVID",
+            "post-COVID",
+            "spetsialisti juhend"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "low",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_045",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "Tervisekassa",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 283,
+            "order": 167
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Pikk COVID esmatasandil: käsitlusjuhend"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "official_guideline"
+          ],
+          "resource_types_seen": [
+            "best_practice_guidance"
+          ],
+          "publishers_seen": [
+            "Tervisekassa"
+          ],
+          "organizations_seen": [
+            "tervisekassa"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Tervisekassa",
+              "line": 283,
+              "order": 167
+            },
+            {
+              "heading_2": "Tervisekassa",
+              "line": 757,
+              "order": 374
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://tervisekassa.ee/sites/default/files/Pikk_Covid_käsitlusjuhend_web.pdf",
+          "priority_note": "covid-era guidance; deprioritized 2026-06-11 per owner decision"
+        },
+        "final_url": "https://tervisekassa.ee/sites/default/files/Pikk_Covid_k%C3%A4sitlusjuhend_web.pdf",
+        "redirects": [],
+        "sha256": "573c0cac06ada8b6e882253bc09ba23b55bbfa538e521c2af03dd7f9f22fe790",
+        "bytes": 1063657,
+        "downloaded_at": "2026-08-14T08:00:37.073Z"
+      }
+    }
+  ],
+  "server_metadata": [],
+  "review_status": "metadata_conversion_pending"
+}

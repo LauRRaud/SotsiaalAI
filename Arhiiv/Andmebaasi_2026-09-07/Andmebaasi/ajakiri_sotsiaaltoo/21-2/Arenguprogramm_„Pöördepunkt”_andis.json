@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-2-2021",
+  "articleId": "arenguprogramm-poordepunkt-andis-hoogu-sotsiaalteenuste-arendamisele-ida-virumaal-2021-2",
+  "title": "Arenguprogramm „Pöördepunkt” andis hoogu sotsiaalteenuste arendamisele Ida-Virumaal",
+  "authors": [
+    "Regina Sergejeva",
+    "Kairit Lindmäe",
+    "Lauri Tabur"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2021",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "37-44",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel annab ülevaate ESFi toel ellu viidud arenguprogrammist „Pöördepunkt“, mille eesmärk oli toetada Ida-Virumaa omavalitsusi sotsiaalteenuste arendamisel. Kirjeldatakse programmi ülesehitust, koolitusi, personaalset nõustamist, hoolekandestrateegiate väljatöötamist ja teenusedisaini töötubasid. Omavalitsuste kogemuslugude põhjal avatakse peamised kitsaskohad ja vajadused ning näidatakse, kuidas arenguprogramm andis uusi ideid, oskusi ja motivatsiooni teenuste edasiarendamiseks ning rahastuse taotlemiseks.",
+  "tags": [
+    "Ida-Virumaa",
+    "sotsiaalteenuste arendamine",
+    "arenguprogramm Pöördepunkt",
+    "Euroopa Sotsiaalfond",
+    "kohalik omavalitsus",
+    "hoolekandestrateegia",
+    "teenusedisain"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2021_web_link_Part10.pdf",
+  "document_id": "sotsiaaltoo-2-2021-arenguprogramm-poordepunkt-andis-hoogu-sotsiaalteenuste-arendamisele-ida-virumaal-2021-2",
+  "source_format": "pdf",
+  "source_sha256": "4ed8812aaaa659c59c6340c26f463aa8fdbf0b06bca6018e7960fe559b692fbd",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2021-arenguprogramm-poordepunkt-andis-hoogu-sotsiaalteenuste-arendamisele-ida-virumaal-2021-2",
+    "previous_source_path": "Sotsiaaltoo_2_2021_web_link_Part10.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "4ed8812aaaa659c59c6340c26f463aa8fdbf0b06bca6018e7960fe559b692fbd",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

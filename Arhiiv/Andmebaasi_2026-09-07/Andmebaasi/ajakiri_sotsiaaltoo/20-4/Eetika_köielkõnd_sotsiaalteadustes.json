@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2020",
+  "articleId": "eetika-koielkond-sotsiaalteadustes-2020-4",
+  "title": "Eetika köielkõnd sotsiaalteadustes",
+  "authors": [
+    "Kadi Lubi"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2020",
+  "section": "Metoodika",
+  "pageRange": "84-89",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb teaduseetikat sotsiaalteadustes ning selgitab, kuidas rakendada meditsiini- eetikast tuntud põhiprintsiipe – isikuautonoomia austamine, heategemine, mittekahjustamine ja õiglus – sotsiaaluuringute kontekstis. Autor arutleb eetikakomitee kooskõlastuse vajaduse, haavatavate sihtrühmadega töötamise, teadliku nõusoleku ja isikuandmete kaitse üle ning pakub praktilisi soovitusi uurimuste kavandamiseks nii, et need oleksid eetilised ja kooskõlas kehtiva õigusruumiga.",
+  "tags": [
+    "teaduseetika",
+    "sotsiaalteadused",
+    "eetikakomitee",
+    "inimuuringud",
+    "isikuandmete kaitse",
+    "teadlik nõusolek",
+    "haavatavad rühmad"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2020_web_link_Part16.pdf",
+  "document_id": "sotsiaaltoo-4-2020-eetika-koielkond-sotsiaalteadustes-2020-4",
+  "source_format": "pdf",
+  "source_sha256": "309c53a3d3f82b82dcaba65747f123e879848d7b52c7133a2edc88c888d58b8b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2020-eetika-koielkond-sotsiaalteadustes-2020-4",
+    "previous_source_path": "Sotsiaaltoo_4_2020_web_link_Part16.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "309c53a3d3f82b82dcaba65747f123e879848d7b52c7133a2edc88c888d58b8b",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

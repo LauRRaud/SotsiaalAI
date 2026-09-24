@@ -1,0 +1,101 @@
+{
+  "docId": "sotsiaaltoo-2-2016",
+  "articleId": "sotsiaaltoo-2-2016-artikkel-15-vanemate-mõju-õpilaste-narkootikumide-tarvitamis",
+  "title": "Vanemate mõju õpilaste narkootikumide tarvitamisele Eestis",
+  "authors": [
+    "Kristina Kossinkova",
+    "Sigrid Vorobjov"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2016",
+  "section": "Uurimus",
+  "pageRange": "67-71",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tervise Arengu Instituudi uurijad analüüsivad ESPADi 2011. aasta küsitlust, milles osales 2450 15–16aastast kooliõpilast, neist 1208 poissi ja 1252 tüdrukut. Kanepit oli proovinud 32% õpilastest, 1995. aastal oli see osakaal 7%. Narkootikume tarvitanud õpilastel puudus sagedamini ema või isa, nad olid vanemasuhtega rahulolematud, neil esines rohkem konflikte ja nad puudusid sagedamini põhjuseta koolist; vanemad teadsid harvemini, kus ja kellega laps vaba aega veedab. Väga heaks hindas oma õpiedukust 13% tarvitanutest, 1995. aastal 2%. Autorid soovitavad kaasata ennetusse lapsevanemaid, sealhulgas üksikvanemaid.",
+  "tags": [
+    "uurimus",
+    "ESPAD",
+    "narkootikumid",
+    "uimastiennetus",
+    "vanemlus",
+    "kooliõpilased"
+  ],
+  "source_type": "file",
+  "source_path": "2016_2_artikkel_15_vanemate_moju_opilaste_narkootikumide_tarvitamisele.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-15-vanemate-m-ju-pilaste-narkootikumide-tarvitamis",
+  "source_sha256": "dc4442cbf8b3fc8e14ecad0e312c4fd622b916c6810164ef04ca2bf21e0b2dcf",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-15-vanemate-m-ju-pilaste-narkootikumide-tarvitamis",
+    "previous_source_path": "2016_2_artikkel_15_vanemate_moju_opilaste_narkootikumide_tarvitamisele.txt",
+    "previous_source_original_path": "2-2016.pdf",
+    "reference_stored_source_sha256": "e3dfc416bf1024c199ba203f263757501edeaa9879b42aca3c6afad500f3bbc4",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\2-2016.pdf",
+      "source_sha256": "cf45b61607b21a62a1003f99c97d65180c4fb4f591a874c983c4b63e5c804a36",
+      "pdf_start_page": 69,
+      "pdf_end_page": 73,
+      "printed_page_range": "67-72",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 74,
+      "source_regions": [
+        {
+          "source_pdf_page": 69,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 70,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 71,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 72,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 73,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "67-71",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2-2016.pdf"
+    },
+    "server_page_range": "67-72"
+  }
+}

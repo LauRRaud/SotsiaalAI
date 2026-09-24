@@ -1,0 +1,110 @@
+{
+  "docId": "sotsiaaltoo-3-2018",
+  "articleId": "laane-harju-teenuste-korraldus-2018",
+  "title": "Millist sotsiaalteenuste korraldust soovivad töötajad Lääne-Harju vallas",
+  "authors": [
+    "Katrin Jäärats"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2018",
+  "section": "Uurimus",
+  "pageRange": "57-62",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Magistritööl põhinev uurimus sellest, millist sotsiaalteenuste korraldust soovivad ametnikud ja sotsiaalkomisjoni liikmed Lääne-Harju vallas, mis moodustati 1. jaanuaril 2018 Keila, Padise ja Vasalemma valla ning Paldiski linna liitmisel. Intervjuud 15 vastutajaga tehti 2018. aasta veebruaris, ajal mil vald ei olnud veel vastu võtnud ühiseid teenuseid reguleerivaid õigusakte, mistõttu uurimus tabab ootuste ja kartuste hetke enne otsuste langetamist. Autor rõhutab, et omavalitsused sundliideti ning ettevalmistuste aeg jäi lühikeseks, mis ei jätnud vastutajatele piisavalt aega muutustega kohanemiseks. Teoreetilise raamina kasutatakse detsentraliseerimise ja uue haldusjuhtimise käsitlusi.",
+  "tags": [
+    "haldusreform",
+    "Lääne-Harju vald",
+    "sundliitmine",
+    "sotsiaalteenuste korraldus",
+    "detsentraliseerimine",
+    "uus haldusjuhtimine",
+    "uurimus"
+  ],
+  "source_type": "file",
+  "source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part14.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2018-laane-harju-teenuste-korraldus-2018",
+  "source_sha256": "466e3909585a24a601add7983d25a55c71b008bc5728d9c9ffe70edd36d6c5a3",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2018-laane-harju-teenuste-korraldus-2018",
+    "previous_source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part14.txt",
+    "previous_source_original_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part14.pdf",
+    "reference_stored_source_sha256": "61e0a1d9e4719822dec5b7a2f59bc20934d12ad5be3fb26058196e9b388c0bba",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\18-3\\155619680390_Sotsiaaltoo_nr3_2018_veebi_link.pdf",
+      "source_sha256": "45eac17c335ef472708d0eb485f916c201e5db46ac64163cc7aeeb1f47dd10a9",
+      "pdf_start_page": 59,
+      "pdf_end_page": 64,
+      "printed_page_range": "57-62",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 64,
+      "source_regions": [
+        {
+          "source_pdf_page": 59,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 60,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 61,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 62,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 63,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 64,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "57-62",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\18-3\\155619680390_Sotsiaaltoo_nr3_2018_veebi_link.pdf"
+    },
+    "server_page_range": "57-62"
+  }
+}

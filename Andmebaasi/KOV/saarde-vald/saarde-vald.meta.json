@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-saarde-vald",
+  "document_id": "kov-saarde-vald",
+  "municipality": "Saarde vald",
+  "municipality_id": "saarde_vald",
+  "county": "Pärnumaa",
+  "checkedAt": "2026-05-01",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-saarde-vald",
+  "coverage": {
+    "services": 14,
+    "benefits": 11,
+    "resources": 8,
+    "contacts": 9,
+    "forms": 17,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "saarde_vald",
+    "source_register_file": "saarde-vald.sources.json",
+    "service_benefit_resource_items": 33,
+    "items_with_source_keys": 33,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 11,
+    "items_without_related_forms": 22,
+    "items_with_related_contacts": 32,
+    "items_without_related_contacts": 1,
+    "form_sources": 18,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "5 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Pakett kasutab Saarde valla ametlikul veebilehel avaldatud praktilist sotsiaalvaldkonna infot ning jätab õigusallikad eraldi RT/legal kihti.",
+    "Vormide puhul on kanonilise kirjena kasutatud Saarde valla vormilehel avaldatud vorminimetust ja otselinki; sama sisuga vormi PDF/RTF kordusi ei dubleerita eraldi itemiteks, kui üks vorm oli piisav."
+  ],
+  "unresolvedIssues": [
+    "Mitmed KOV lehel avaldatud e-posti aadressid kuvatakse veebiväljavõttes varjestatud kujul; paketis on säilitatud nähtav kuju, mitte taastatud oletuslikke e-posti aadresse.",
+    "Sotsiaaltransporditeenuse täpne hinnakiri on avaldatud eraldi infovoldikus; paketis on teenuse hinna info koondatud üldtasemel ja hinnakirja detailid vajavad vajaduse korral eraldi ülevaatust.",
+    "Vorm \"Taotlus raske või sügava puudega lapsele sotsiaalteenuste osutamiseks\" on vormilehel sotsiaalvaldkonna vormina avaldatud, kuid KOV lehel ei olnud selle seos ühe konkreetse teenusega piisavalt üheselt välja toodud; seetõttu ei ole seda seotud konkreetse service-itemiga.",
+    "Välised teenusepakkujad ja riiklikud ressursid, näiteks perelepituse, õigusnõustamise, ohvriabi, Rajaleidja ja kriisiabi välised kanalid, on kajastatud ainult Saarde valla lehel avaldatud ulatuses; väliseid veebilehti ei kasutatud põhiallikana.",
+    "Mõne teenuse puhul on praktiline menetluskäik kirjeldatud üldiselt ning otsustamise tähtaegu ei olnud KOV veebilehel eraldi avaldatud.",
+    "Saarde valla praegune sotsiaalteenuste koondleht ja vanemad detaillehed ei ole täielikult sama struktuuriga; asendus- ja järelhooldusteenus oli leitav eraldi ametliku detaillehena ja lisati seetõttu paketis eraldi teenusena."
+  ],
+  "municipality_name": "Saarde vald",
+  "checked_at": "2026-05-01",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "saarde-vald.sources.json",
+  "sourceCount": 57,
+  "counts": {
+    "services": 14,
+    "benefits": 11,
+    "resources": 8,
+    "contacts": 9,
+    "forms": 17,
+    "regulations": 0
+  },
+  "warnings": [
+    "4 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta.",
+    "5 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

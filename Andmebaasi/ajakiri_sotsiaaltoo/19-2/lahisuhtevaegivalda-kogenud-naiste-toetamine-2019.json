@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2019",
+  "articleId": "lahisuhtevaegivalda-kogenud-naiste-toetamine-2019",
+  "title": "Lähisuhtevägivalda kogenud naiste toetamine: vägivaldsest suhtest lahkumise ja sinna tagasipöördumise põhjused",
+  "authors": [
+    "Riin Pudakevits",
+    "Taimi Tulva"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2019",
+  "section": "Uurimus",
+  "pageRange": "66-73",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Magistriuurimus, mis käsitleb lähisuhtevägivalda kogenud naiste otsuseid vägivaldsest suhtest lahkuda või sellesse naasta ning analüüsib, millist rolli mängivad selles sotsiaaltoetused, teenused ja tugivõrgustik.",
+  "tags": [
+    "lähisuhtevägivald",
+    "naistevastane vägivald",
+    "ohvriabi",
+    "tugiteenused",
+    "lahkumise ja naasmise põhjused",
+    "Istanbuli konventsioon",
+    "sotsiaaltöö sekkumised"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part14.pdf",
+  "document_id": "sotsiaaltoo-2-2019-lahisuhtevaegivalda-kogenud-naiste-toetamine-2019",
+  "source_format": "pdf",
+  "source_sha256": "3eb62e0913a7388f63381eadf31984d5fefe3fe16fca88d73df423f9aeb6ab50",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2019-lahisuhtevaegivalda-kogenud-naiste-toetamine-2019",
+    "previous_source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part14.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "3eb62e0913a7388f63381eadf31984d5fefe3fe16fca88d73df423f9aeb6ab50",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

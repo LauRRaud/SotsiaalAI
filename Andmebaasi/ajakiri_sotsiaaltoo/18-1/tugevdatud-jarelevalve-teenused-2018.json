@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2018",
+  "articleId": "hollandi-kohtumaaruse-teenused-2018",
+  "title": "Mida on õppida Hollandi kohtumääruse alusel osutatavatest tugevdatud järelevalvega teenustest?",
+  "authors": [
+    "Urve Tõnisson"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2018",
+  "section": "Intervjuu",
+  "pageRange": "64-67",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Intervjuu Hollandi eksperdi Tom van Soniga, mis käsitleb tugevdatud järelevalvega teenuste põhimõtteid ja rakendamist riskikäitumisega klientide toetamisel.",
+  "tags": [
+    "erihooldus",
+    "kohtumäärus",
+    "psüühikahäire",
+    "käitumisprobleemid",
+    "riskijuhtimine",
+    "rehabilitatsioon",
+    "rahvusvaheline kogemus"
+  ],
+  "source_type": "file",
+  "source_path": "Part17_155619647682_ST1_2018_link.pdf",
+  "document_id": "sotsiaaltoo-1-2018-hollandi-kohtumaaruse-teenused-2018",
+  "source_format": "pdf",
+  "source_sha256": "1891a92f26403e5dcb78adb8a67f246419a8edbd4cd8e514ee9bb37a1b16030f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2018-hollandi-kohtumaaruse-teenused-2018",
+    "previous_source_path": "Part17_155619647682_ST1_2018_link.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "1891a92f26403e5dcb78adb8a67f246419a8edbd4cd8e514ee9bb37a1b16030f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

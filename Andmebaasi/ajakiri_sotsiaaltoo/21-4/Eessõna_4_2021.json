@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-4-2021",
+  "articleId": "eessona-2021-4",
+  "title": "Eessõna",
+  "authors": [
+    "Maarjo Mändmaa"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2021",
+  "section": "Eessõna",
+  "pageRange": "2-2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ajakirja numbri avatekst, mis käsitleb hoolekandesüsteemi väljakutseid, isikukeskse töö tähtsust ning kogukondliku toetuse rolli kriiside ajal, eriti COVID‑19 pandeemia kontekstis.",
+  "tags": [
+    "eessõna",
+    "COVID-19",
+    "sotsiaaltöö",
+    "kogukonnatöö",
+    "isikukeskne lähenemine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2021_web_Part2.pdf",
+  "document_id": "sotsiaaltoo-4-2021-eessona-2021-4",
+  "source_format": "pdf",
+  "source_sha256": "b5f25a2e13104193f6085b9ca809bfe6f6561e538ca3edd7a78aeda608f7ce08",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2021-eessona-2021-4",
+    "previous_source_path": "Sotsiaaltoo_4_2021_web_Part2.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b5f25a2e13104193f6085b9ca809bfe6f6561e538ca3edd7a78aeda608f7ce08",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

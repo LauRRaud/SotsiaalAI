@@ -1,0 +1,50 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "judit-strompli-ponev-teekond-sotsiaaltoo-uurija-ja-opetajana-2026",
+  "title": "Judit Strömpli põnev teekond sotsiaaltöö uurija ja õpetajana",
+  "authors": [
+    "Kadri Kuulpak"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Persoon",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu Tartu ülikooli sotsiaaltöö uuringute kaasprofessorist Judit Strömplist, kes pälvis 2025. aastal tunnustuse „Elutöö tegija sotsiaalvaldkonnas“. Intervjuus räägib ta teekonnast filoloogiast sotsiaaltöö uurimiseni, etnograafilise meetodi tähtsusest ja elulootöö metoodika juurutamisest Eestis ning rõhutab empaatia ja inimkesksuse rolli sotsiaaltöös.",
+  "tags": [
+    "persoonilugu",
+    "Judit Strömpl",
+    "sotsiaaltöö uurimine",
+    "etnograafia",
+    "narratiivianalüüs",
+    "elulootöö",
+    "asendushooldus",
+    "Tartu ülikool",
+    "sotsiaaltöö haridus"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-03-04",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/judit-strompli-ponev-teekond-sotsiaaltoo-uurija-ja-opetajana",
+  "source_type": "web",
+  "source_path": "judit-strompli-ponev-teekond-sotsiaaltoo-uurija-ja-opetajana.html",
+  "lead": "Eesti sotsiaaltöö assotsiatsioon ja sotsiaalministeerium tunnustasid 2025. aastal Tartu ülikooli sotsiaaltöö uuringute kaasprofessorit Judit Strömplit tiitliga „Elutöö tegija sotsiaalvaldkonnas“. Strömpl peab ennast õnneseeneks, et elu viis teda huvitavate inimeste ja uurimisteemadeni.",
+  "document_id": "sotsiaaltoo-2-2026-judit-strompli-ponev-teekond-sotsiaaltoo-uurija-ja-opetajana-2026",
+  "source_format": "html",
+  "source_sha256": "daf7be7058633ec2d253c12db4303f1f73d041d328a8d4838e0b0619f69bee20",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-judit-strompli-ponev-teekond-sotsiaaltoo-uurija-ja-opetajana-2026",
+    "previous_source_path": "judit-strompli-ponev-teekond-sotsiaaltoo-uurija-ja-opetajana.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "3079458df522f2fc692b4a4efe3abe9ffd10216f4e0dddf1ef156f939d365e0b",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "82ebd0b9f16d2d05285b8e30bb518dbb38e92a7850329c475222a644eb3af467",
+    "observed_web_title": "Judit Strömpli põnev teekond sotsiaaltöö uurija ja õpetajana"
+  },
+  "retrieved_at": "2026-09-07T19:39:36.204242+00:00"
+}

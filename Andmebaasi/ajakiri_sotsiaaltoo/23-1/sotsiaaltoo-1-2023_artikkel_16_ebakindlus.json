@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-1-2023",
+  "articleId": "ebakindluse-tolereerimine-sotsiaalvaldkonna-toos-2023-1",
+  "title": "Ebakindluse tolereerimine",
+  "authors": [
+    "Dagmar Narusson"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2023",
+  "section": "Metoodika",
+  "pageRange": "76-80",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel mõtestab ebakindluse ja teadmatuse rolli sotsiaalvaldkonna töös, lähtudes nii kriisidest ühiskonnas\nkui ka individuaalsetest eluolukordadest. Autor selgitab, miks soov kiiresti „probleemi lahendada“ võib\nviia läbimõtlemata otsusteni, ning pakub mõtteviise ja harjutusi, mis aitavad taluda ebakindlust ilma\ntegutsemist halvatamata. Rõhutatakse enesehoiu, supervisiooni ja kolleegitoe tähtsust, et keerulisi teemasid\noleks võimalik ühiselt kanda.",
+  "tags": [
+    "ebakindlus",
+    "vaimne tervis",
+    "enesehoid",
+    "reflektiivne praktika",
+    "supervisioon",
+    "sotsiaaltöötaja toetus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_1_2023_web_Part16.pdf",
+  "document_id": "sotsiaaltoo-1-2023-ebakindluse-tolereerimine-sotsiaalvaldkonna-toos-2023-1",
+  "source_format": "pdf",
+  "source_sha256": "6193d9a0467eb4d58f41c57ad3ab6ca506d611c8df140e1158169584118d70bf",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2023-ebakindluse-tolereerimine-sotsiaalvaldkonna-toos-2023-1",
+    "previous_source_path": "Sotsiaaltoo_1_2023_web_Part16.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "6193d9a0467eb4d58f41c57ad3ab6ca506d611c8df140e1158169584118d70bf",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

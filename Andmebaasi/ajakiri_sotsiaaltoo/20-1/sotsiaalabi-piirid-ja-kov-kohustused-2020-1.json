@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-1-2020",
+  "articleId": "sotsiaalabi-piirid-ja-kov-kohustused-2020-1",
+  "title": "Sotsiaalabi piirid – inimeste õigused ja KOV kohustused",
+  "authors": [
+    "Raina Loom",
+    "Juta Saarevet"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2020",
+  "section": "Praktika",
+  "pageRange": "76-81",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb kohaliku omavalitsuse kohustusi ja elanike õigusi sotsiaalabi saamisel. Selgitatakse rahalise ja mitterahalise abi andmise põhimõtteid, praktikas esinevaid kitsaskohti ning soovitusi õiguspäraseks ja inimese vajadusi arvestavaks abistamiseks.",
+  "tags": [
+    "sotsiaalabi",
+    "KOV kohustused",
+    "õigused",
+    "toimetulek",
+    "sotsiaalteenused",
+    "praktika",
+    "sotsiaalhoolekanne"
+  ],
+  "source_type": "file",
+  "source_path": "ST1_2020_web_link_Part17.pdf",
+  "document_id": "sotsiaaltoo-1-2020-sotsiaalabi-piirid-ja-kov-kohustused-2020-1",
+  "source_format": "pdf",
+  "source_sha256": "e9db87e27b9f08da5a9e98d0ae08c12017af81a04632aef50c631dd71adbecd2",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2020-sotsiaalabi-piirid-ja-kov-kohustused-2020-1",
+    "previous_source_path": "ST1_2020_web_link_Part17.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e9db87e27b9f08da5a9e98d0ae08c12017af81a04632aef50c631dd71adbecd2",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

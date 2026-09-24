@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2024",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "arendame-koos-valmisolekut-kriisiolukordadeks-2024-2",
+  "title": "Arendame koos valmisolekut kriisiolukordadeks",
+  "authors": [
+    "Tea Varrak"
+  ],
+  "section": "Kriisivalmidus sotsiaaltöös",
+  "pageRange": "47-50",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "description": "Ülevaade sotsiaalvaldkonna kriisivalmiduse tugevdamise tegevustest: toimepidevus, vältimatu sotsiaalabi, elanikkonnakaitse ja koostöö KOV-ide ning SKA-ga.",
+  "tags": [
+    "kriisivalmidus",
+    "elanikkonnakaitse",
+    "toimepidevus",
+    "vältimatu sotsiaalabi",
+    "sotsiaalhoolekanne",
+    "KOV",
+    "SKA"
+  ],
+  "source_path": "Sotsiaaltoo_2_2024_web_Part12.pdf",
+  "document_id": "sotsiaaltoo-2-2024-arendame-koos-valmisolekut-kriisiolukordadeks-2024-2",
+  "source_format": "pdf",
+  "source_sha256": "1e56cd849f0ad6e9ad9005e228b4bfd15b414d394eb649aa11e077c238046128",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2024-arendame-koos-valmisolekut-kriisiolukordadeks-2024-2",
+    "previous_source_path": "Sotsiaaltoo_2_2024_web_Part12.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "1e56cd849f0ad6e9ad9005e228b4bfd15b414d394eb649aa11e077c238046128",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-1-2019",
+  "articleId": "sotsiaalteenuste-kvaliteedi-arendamine-tallinna-vaimse-tervise-keskuses-2019",
+  "title": "Sotsiaalteenuste kvaliteedi arendamine Tallinna Vaimse Tervise Keskuses",
+  "authors": [
+    "Merle Tomberg"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2019",
+  "section": "Teenuste kvaliteet",
+  "pageRange": "38-40",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tallinna Vaimse Tervise Keskuse kogemus sotsiaalteenuste kvaliteedisüsteemide, sh EQUASSi rakendamisel ning riiklike kvaliteedijuhiste testimisel.",
+  "tags": [
+    "sotsiaalteenused",
+    "teenuste kvaliteet",
+    "Tallinna Vaimse Tervise Keskus",
+    "EQUASS",
+    "kvaliteedijuhtimine",
+    "vaimse tervise teenused"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part9.pdf",
+  "document_id": "sotsiaaltoo-1-2019-sotsiaalteenuste-kvaliteedi-arendamine-tallinna-vaimse-tervise-keskuses-2019",
+  "source_format": "pdf",
+  "source_sha256": "0ccc4e04974f510d2124cd34daecdd480a1c58c098f80c0a9bb077fab0c21ba3",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2019-sotsiaalteenuste-kvaliteedi-arendamine-tallinna-vaimse-tervise-keskuses-2019",
+    "previous_source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part9.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "0ccc4e04974f510d2124cd34daecdd480a1c58c098f80c0a9bb077fab0c21ba3",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,1983 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="941581d0-0421-4e87-80d5-cb7c827c27f8" xsi:schemaLocation="tyviseadus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/tyviseadus_1_10.02.2010.xsd" xmlns="tyviseadus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Riigikogu</valjaandja>
+		<dokumentLiik>seadus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		
+		<lyhend>SÜS</lyhend><dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2015-12-09</aktikuupaev>
+			<avaldamismarge>
+				<RTosa id="c9854a43-7f56-4d75-8677-01ec7fc411a7">RT I</RTosa>
+				<avaldamineKuupaev id="3b426b0e-29db-4575-8925-6666c1092d5d">2015-12-30</avaldamineKuupaev>
+				<RTartikkel id="a99a2445-78e5-4e8a-a3cf-9d74d4f94c5d">3</RTartikkel>
+				<aktViide id="3b959ef3-6f08-492c-922a-8e535e8f8208">130122015003</aktViide>
+			</avaldamismarge>
+			<joustumine>2016-01-01</joustumine>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT I</RTosa><avaldamineKuupaev>2025-12-30</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>36</RTartikkel><aktViide>130122025036</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2026-01-09</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2025-12-22</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>tyviseadus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>130122025036</globaalID>
+		<metaandmedVersioon>29</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2025-12-29</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Maret Mauer</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1032299</terviktekstiGrupiID>
+		<eesmark>Tüviseaduse raamskeem XML struktuuri koostamiseks</eesmark>
+	</metaandmed>
+	<aktinimi id="8b5861e5-519a-4f87-8ea9-b2c966118e75">
+		<nimi id="91adeb10-a823-4da0-94a6-d4b01018b33a">
+			<pealkiri id="702c46c0-1584-4224-ada6-1a755a7959b2">Sotsiaalseadustiku üldosa seadus</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="dd7f5ac1-eefd-4a01-ac9d-42514a1384f6">
+		<aktikuupaev id="e40508ef-9082-4e7b-b1eb-73e1133d8894">2019-02-20</aktikuupaev>
+		<avaldamismarge id="7ea0953e-e70b-4117-a00f-4d673971962a">
+			<RTosa id="39cfeda3-d3db-416f-9a48-af67f3b346c2">RT I</RTosa>
+			<avaldamineKuupaev id="33882729-bd4a-4107-8e5c-bbf5ad4c088f">2019-03-13</avaldamineKuupaev>
+			<RTartikkel id="d20fdcbf-2fd2-43f9-8d61-69da90030f60">2</RTartikkel>
+			<aktViide id="f244fc84-05f7-45c2-8a5e-e50d9a1a8fbf">113032019002</aktViide>
+		</avaldamismarge>
+		<joustumine id="0956d83f-aa92-42e6-9e0f-2e9fb63937d9">2019-03-15</joustumine>
+	</muutmismarge>
+	<muutmismarge id="5195384c-eb4c-4e2d-a32b-7e0a30e05aca">
+		<aktikuupaev id="5c72660f-0172-4ac1-a1a0-6a4cfa02189f">2022-04-13</aktikuupaev>
+		<avaldamismarge id="575099fe-3a67-47ac-bac6-36e7a29ed0ca">
+			<RTosa id="ee672bfb-741d-4285-ada6-6e35f100bc4d">RT I</RTosa>
+			<avaldamineKuupaev id="9241b4f3-ba8c-48ef-87d3-cc79d4dd76c4">2022-04-28</avaldamineKuupaev>
+			<RTartikkel id="91deb3ce-ab89-40f6-8d51-3980407d8d0b">1</RTartikkel>
+			<aktViide id="b8c7df8f-779e-4adf-b30b-27fc31418d75">128042022001</aktViide>
+		</avaldamismarge>
+		<joustumine id="c51fd484-7a1e-4db8-90ac-89213d6ffa65">2022-05-08</joustumine>
+	</muutmismarge>
+	<muutmismarge id="5a4cd7f2-f456-41ef-82ee-f557eb5c3c15">
+		<aktikuupaev id="0c924743-1486-47d0-bde1-e888a9bdca93">2022-12-14</aktikuupaev>
+		<avaldamismarge id="35ec2066-6d91-482a-bf0f-13a13bb54ff7">
+			<RTosa id="d5fd83ed-92ec-4ad0-93c2-dd74d2335c6b">RT I</RTosa>
+			<avaldamineKuupaev id="ee64614c-e3a6-4a24-9c04-4b1fd2c9bcac">2023-01-06</avaldamineKuupaev>
+			<RTartikkel id="314486a0-bddb-418d-bba8-61a2600e5017">1</RTartikkel>
+			<aktViide id="d2d5b8aa-92bc-45bb-a673-eb9999cf4617">106012023001</aktViide>
+		</avaldamismarge>
+		<joustumine id="3677759c-0a30-4852-beb0-1c8c9a01fde9">2023-01-16</joustumine>
+	</muutmismarge>
+	<muutmismarge id="a2a96b4b-cfce-46e3-b869-751cbe077abe">
+		<aktikuupaev id="f29125ed-c11f-41f9-a1dd-7aed21a8bb0f">2023-06-20</aktikuupaev>
+		<avaldamismarge id="18b951d8-774d-4940-ab69-7437ebadbeae">
+			<RTosa id="95f79c0a-c643-4822-a6b7-312ad9c8d85c">RT I</RTosa>
+			<avaldamineKuupaev id="04aef23c-2b44-4d84-9990-81587b9ffe62">2023-06-30</avaldamineKuupaev>
+			<RTartikkel id="49a58a42-c7ec-4df0-954b-8b8f1abad53c">1</RTartikkel>
+			<aktViide id="431ca8d8-c4be-471c-ae55-f32e30a63d9e">130062023001</aktViide>
+		</avaldamismarge>
+		<joustumine id="19f9967e-c2ff-4558-9749-8931752436da">2023-07-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="79436f5c-78e3-4d74-8860-d14404c2375d">
+		<aktikuupaev id="987b6bd5-d2c2-4750-8f3f-0d353c915a5c">2023-11-22</aktikuupaev>
+		<avaldamismarge id="9a937213-0bc2-44d6-9c5c-2ad63a21f158">
+			<RTosa id="d9d4f845-ede8-4a51-85ee-58d1ee39be88">RT I</RTosa>
+			<avaldamineKuupaev id="0e8082f9-e0f1-4977-9d83-49f9eaf3c897">2023-12-14</avaldamineKuupaev>
+			<RTartikkel id="cbc4bf80-e700-4bfe-9aa0-b8c3d8aaf2c0">1</RTartikkel>
+			<aktViide id="b16a0c38-47d8-4502-9621-9dd8975a1a3b">114122023001</aktViide>
+		</avaldamismarge>
+		<joustumine id="67b09807-9cb1-4855-9ac9-96d7ec61ab37">2024-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="4df04462-5eb2-4a66-8700-f2773733af6a">
+		<aktikuupaev id="316553a4-cabe-43a5-b45f-6e27441c51d5">2025-05-21</aktikuupaev>
+		<avaldamismarge id="f2390c04-5a89-4dda-8b57-fc33f8837e89">
+			<RTosa id="ec2147ba-6fec-4908-93f3-4a51036cfc32">RT I</RTosa>
+			<avaldamineKuupaev id="eb964f7c-7acd-4562-a671-fd28a78f00ec">2025-06-12</avaldamineKuupaev>
+			<RTartikkel id="860d6fe2-cb57-48eb-8333-f3c2ba1b1534">1</RTartikkel>
+			<aktViide id="fb461d37-62cf-4e18-b46e-43af2c339f86">112062025001</aktViide>
+		</avaldamismarge>
+		<joustumine id="bc5f6c6c-e85a-4842-ae13-e77277c8ff23">2025-06-22</joustumine>
+	</muutmismarge>
+	<muutmismarge id="5a12b3b9-10ab-4220-9372-4cb6faef2269">
+		<aktikuupaev id="6d989c84-3912-45e8-8915-923ad35cbe46">2025-12-03</aktikuupaev>
+		<avaldamismarge id="209eb355-abb1-4d53-a738-5740fb8b3f9f">
+			<RTosa id="c6a0383f-d029-49a1-a4df-91b569af1c96">RT I</RTosa>
+			<avaldamineKuupaev id="fbca93d2-93f5-4ed2-b69e-7f04777aa739">2025-12-30</avaldamineKuupaev>
+			<RTartikkel id="e68532d8-59c0-453f-9599-aa9aaa7c58c4">3</RTartikkel>
+			<aktViide id="0843c74a-0376-4683-b0ed-779f8947d3e3">130122025003</aktViide>
+		</avaldamismarge>
+		<joustumine id="133f9fe9-3c67-4ce3-95db-9e5f88bb4442">2026-01-09</joustumine>
+	</muutmismarge>
+	<sisu id="9af49f04-36b8-45bb-90d5-e89ed3adde0b">
+		<peatykk id="ptk1">
+			<peatykkNr id="21ec8c10-2338-4907-8676-45e3a5e00e27">1</peatykkNr>
+			<kuvatavNr id="6b430bc7-8b02-4d23-b5a6-e544596e9bf7"><![CDATA[1. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="4376f52b-c867-49bd-8a06-e63ad4d50da7">Üldsätted</peatykkPealkiri>
+			<jagu id="jg1">
+				<jaguNr id="cc091017-4a67-4748-9b00-b307306d4479">1</jaguNr>
+				<kuvatavNr id="a59165e6-e5f3-4862-aa18-c095c32d7d91"><![CDATA[1. jagu]]></kuvatavNr>
+				<jaguPealkiri id="ec8f1407-8c76-4236-929c-09daee086223">Sotsiaalseadustiku reguleerimisala, eesmärk ja kohaldamisala</jaguPealkiri>
+				<paragrahv id="para1">
+					<paragrahvNr id="bc92abcf-c08f-423d-846d-01cc6dfd5eb5">1</paragrahvNr>
+					<kuvatavNr id="f4d1798f-78a4-4263-92be-08d9a60525ad"><![CDATA[§ 1. ]]></kuvatavNr>
+					<paragrahvPealkiri id="20349817-7e8d-451b-aa53-c796fa7debe1">Sotsiaalseadustiku reguleerimisala</paragrahvPealkiri>
+					<loige id="para1lg1">
+						<loigeNr id="69c04fe9-b502-48cd-9e1e-de4c5b87b345">1</loigeNr>
+						<kuvatavNr id="4ba59fd3-6a55-46f9-95ba-0eaf0b7706da"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="08282e5d-9bc7-4d09-8fee-296090a01703">
+							<tavatekst id="7d100ea1-b857-45bf-920c-2fefebc57544">Sotsiaalseadustik reguleerib sotsiaalkaitse korraldust ja sotsiaalkaitse tagamist avaliku võimu poolt.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para1lg2">
+						<loigeNr id="8097ca07-bcda-4209-ac10-84470d6dc966">2</loigeNr>
+						<kuvatavNr id="03c920a1-ea38-4e05-8467-9c9e913ff5bf"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="2189355e-4b3d-40dd-b630-b6dc58dfefc6">
+							<tavatekst id="45629c4e-2ca4-451d-aeb8-f1bec7fa64fd">Käesolev seadus sätestab sotsiaalkaitse põhimõtted ja korralduse, sotsiaalkaitseks ettenähtud hüvitiste (edaspidi <i>hüvitis</i>) andmise korralduslikud alused, isiku õigused, kohustused ja vastutuse sotsiaalkaitse kohaldamisel, sotsiaalkaitse menetlused, sotsiaalkaitse rahastamise korralduse ning sotsiaalkaitse infosüsteemi pidamise alused.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para1lg3">
+						<loigeNr id="5e3a0c02-d8cc-442f-9b9c-defdb3352006">3</loigeNr>
+						<kuvatavNr id="39f9a2c5-75ae-40fd-844b-c4f650210e87"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="f1935fc9-2adb-49ea-a3f6-6dd745746243">
+							<tavatekst id="31d77915-d8a6-488e-974a-eecbb27b382e">Hüvitised ning nende andmise tingimused ja kord sätestatakse seaduses.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para2">
+					<paragrahvNr id="e1f8c1fe-9f41-4a3c-a538-81aac68e6684">2</paragrahvNr>
+					<kuvatavNr id="293faf46-db94-41fc-89cf-bf797568d9be"><![CDATA[§ 2. ]]></kuvatavNr>
+					<paragrahvPealkiri id="1031f35a-f994-40ab-b2bb-bc50bdb3177c">Sotsiaalseadustiku eesmärk</paragrahvPealkiri>
+					<loige id="para2lg1">
+						<loigeNr id="8f1cde3f-2323-4881-b716-2514cf228549">1</loigeNr>
+						<kuvatavNr id="82cca533-2221-4383-9f0d-d07c289b133a"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="e120f04c-f5ec-4373-9728-b1f0d0974848">
+							<tavatekst id="b59a3ba8-2ecf-4d21-bd5e-25aea5486306">Sotsiaalseadustikuga aidatakse kaasa Eesti Vabariigi põhiseaduse, Euroopa Liidu õiguse ja Eesti Vabariigile siduvate rahvusvaheliste lepingutega kaitstud sotsiaalsete õiguste tagamisele (edaspidi <i>sotsiaalkaitse</i>).</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para2lg2">
+						<loigeNr id="597bc2f9-9f78-41d7-b4d0-a3af35bc8de0">2</loigeNr>
+						<kuvatavNr id="316dd75c-0f1f-441f-a8b2-726d649b4194"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="4f91910d-cb18-4c6e-a8ec-281359d0ee0a">
+							<tavatekst id="85bb5363-385a-4cd5-b473-5873ad3b7c8d">Sotsiaalkaitse eesmärk on toetada ja suurendada inimese iseseisvat toimetulekut ja sotsiaalset kaasatust, luua võrdseid võimalusi, saavutada tööhõive kõrge tase, ennetada töötust ning toetada töö- ja pereelu ühitamist.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para2lg3">
+						<loigeNr id="e8947027-6996-43a1-bfc1-f12daee6f7a4">3</loigeNr>
+						<kuvatavNr id="ac74188b-6db0-4440-a06c-4689460fa070"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="9164f6cc-5a65-491a-a453-7f8d1f5ddc1c">
+							<tavatekst id="61b1a920-0fc9-41c3-8f41-b15869a30577">Sotsiaalseadustiku eesmärk on luua õiguslikud alused, et kaitsta inimest ja perekonda, ennetades, kõrvaldades või vähendades sotsiaalseid riske terviklikult eelkõige töötuse, haiguse, emaduse, töövõimetuse, vanaduse, toitja kaotuse, laste kasvatamise, kuriteoohvriks langemise, sotsiaalse erivajaduse ja toimetulekuraskuste korral.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para3">
+					<paragrahvNr id="c1ee1586-3372-4464-a7f6-f8a746aee2f3">3</paragrahvNr>
+					<kuvatavNr id="eb0d96c1-31ee-485b-876f-311e1f23bcb0"><![CDATA[§ 3. ]]></kuvatavNr>
+					<paragrahvPealkiri id="eb688ff6-d669-4aed-b365-419fb59e6965">Sotsiaalseadustiku kohaldamisala</paragrahvPealkiri>
+					<loige id="para3lg1">
+						<loigeNr id="20c8fed0-6d8b-4412-881e-1f9319a4ace9">1</loigeNr>
+						<kuvatavNr id="0e472b81-f0fc-4f70-86d0-24ad59467703"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="2490bf2d-34ac-4854-9380-aaba2ba947e3">
+							<tavatekst id="67fa3105-02de-4198-a775-35a1e0a88da3">Sotsiaalseadustikus sätestatud õigused ja kohustused on Eestis elaval Eesti kodanikul, pikaajalise elaniku elamisloa või alalise elamisõiguse alusel Eestis elaval välismaalasel ning tähtajalise elamisloa või tähtajalise elamisõiguse alusel Eestis elaval välismaalasel. Seaduses sätestatud juhul on sotsiaalseadustikus sätestatud õigused ja kohustused ka muul isikul.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para3lg2">
+						<loigeNr id="6c690ff7-a2c7-4e29-ab1c-05ea42cc92c4">2</loigeNr>
+						<kuvatavNr id="539d4fe5-5e45-47b3-9f4c-4d4dac22b4d6"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="eb0ea081-c449-4b3b-b5ee-2f37db15e744">
+							<tavatekst id="20c913e0-e1e0-4850-a4b8-0bbe31ad1c58">Igal Eestis viibival isikul on seaduses sätestatud alustel õigus saada vältimatut abi.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para3lg3">
+						<loigeNr id="91cf754d-d057-4088-a6cc-2c09e480e190">3</loigeNr>
+						<kuvatavNr id="7af9e060-5cc9-4a1b-9a87-67a576ca5f28"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="ebeaf1ab-337c-4a4b-b46f-57c9c13a8bc4">
+							<tavatekst id="09c4b81f-481f-4621-a483-ce940ae6bf34">Eestis viibival rahvusvahelise kaitse saajal või varjupaigataotlejal on õigus sotsiaalkaitsele välismaalasele rahvusvahelise kaitse andmise seaduses sätestatud tingimustel.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para3lg4">
+						<loigeNr id="77dda34b-4497-4007-8e8d-d2f7abaa287d">4</loigeNr>
+						<kuvatavNr id="597e50a2-5565-40cd-bc39-6c918e3c776b"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="4105f68b-74eb-464a-9e80-5263d6d46c5d">
+							<tavatekst id="0f2779b6-906d-45de-b3cd-a752be4b167f">Kui Eesti Vabariigi poolt sõlmitud välisleping sisaldab sotsiaalseadustikus sätestatust teistsuguseid sätteid, kohaldatakse välislepingut.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para3lg5">
+						<loigeNr id="83a658ee-9191-4753-b411-03eae5040d2f">5</loigeNr>
+						<kuvatavNr id="710907bf-9954-4711-ab2e-8c65350b9eb5"><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst id="2f49c0c3-00d2-47da-97fc-96e88674e7d9">
+							<tavatekst id="9883f077-cd25-49b3-aadf-221e67f24040">Sotsiaalseadustikku kohaldatakse sotsiaalkaitse korralduse ja hüvitiste andmise korraldamise eest vastutavate asutuste ja isikute tegevusele. Hüvitiste andmise korraldamises vahetult või kaudselt osaleva isiku tegevusele kohaldatakse sotsiaalkaitse põhimõtteid.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para3lg6">
+						<loigeNr id="d54c9562-cefc-4efd-b8ce-6413a32f4185">6</loigeNr>
+						<kuvatavNr id="deb1e8b8-85e5-41f5-b730-a8d8933f3154"><![CDATA[(6)]]></kuvatavNr>
+						<sisuTekst id="49cf46b3-2a71-4579-998e-59383b4ddf32">
+							<tavatekst id="c1672c05-0672-4677-8e8c-3d3f9b49ca24">Sotsiaalseadustikus ettenähtud haldusmenetlusele kohaldatakse haldusmenetluse seadust, arvestades sotsiaalseadustikus sätestatud erisusi.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para3lg7">
+						<loigeNr id="23d14221-e84b-41cb-ac1b-5cd5b61ca4f7">7</loigeNr>
+						<kuvatavNr id="1971468f-eae2-479d-9877-f5d87c67db12"><![CDATA[(7)]]></kuvatavNr>
+						<sisuTekst id="c7a56e70-af79-4972-bcc2-f21a4232fec2">
+							<tavatekst id="a1e14be0-44e6-485a-8c6a-d8a3d695c13a">Sotsiaalkaitsele kohaldatakse käesolevas seaduses sätestatud sotsiaalkaitse põhimõtteid.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para3lg8">
+						<loigeNr id="7b441293-afe3-4939-9b09-feebf42bfb15">8</loigeNr>
+						<kuvatavNr id="5a47aacc-06ea-4ca3-b980-95269df93bec"><![CDATA[(8)]]></kuvatavNr>
+						<sisuTekst id="9265a79c-e89c-483a-a8f4-e8ac7697448a">
+							<tavatekst id="1d30d94c-a5c5-4782-95bd-fdda522c1e18">Sotsiaalkaitsele kohaldatakse käesolevas seaduses isiku õiguste, kohustuste ja vastutuse ning sotsiaalkaitse menetluste kohta sätestatut sotsiaalkaitset reguleerivas seaduses sätestatud juhul.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg2">
+				<jaguNr id="bdd32760-28f3-4368-a7e8-ba345c5adee2">2</jaguNr>
+				<kuvatavNr id="87de6ace-4f9c-4569-9d75-c0cfa4bfc9a5"><![CDATA[2. jagu]]></kuvatavNr>
+				<jaguPealkiri id="f74691a0-4dc6-4cdf-b039-f8f7c0bdc220">Sotsiaalkaitse põhimõtted</jaguPealkiri>
+				<paragrahv id="para4">
+					<paragrahvNr id="90c86d90-206e-45db-840e-45a83fc88f38">4</paragrahvNr>
+					<kuvatavNr id="96e1f417-6de8-4274-a560-75d0dd90b54e"><![CDATA[§ 4. ]]></kuvatavNr>
+					<paragrahvPealkiri id="f4071c03-0a04-4b53-95fb-6d7b14dd840a">Inimväärikus</paragrahvPealkiri>
+					<loige id="para4lg1">
+						<loigeNr id="a353890c-7b74-4166-bb1e-24b815eb5c91"/>
+						<kuvatavNr id="3ccc3d34-3121-4ab3-a486-79afbbed4b7d"/>
+						<sisuTekst id="89c8a75a-50a6-4539-a213-4bb533d9cf7f">
+							<tavatekst id="a0d934a1-e460-4618-8ef9-5e9fcdc9e741">Isikut tuleb sotsiaalkaitse korraldamisel kohelda tema inimväärikust alandamata. Isikuga tuleb arvestada temaga seotud menetluses.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para5">
+					<paragrahvNr id="6983bdc6-63bb-4c28-935b-2645844f60ca">5</paragrahvNr>
+					<kuvatavNr id="5f8b7717-0691-4407-be70-4bedbd822c02"><![CDATA[§ 5. ]]></kuvatavNr>
+					<paragrahvPealkiri id="dd4df3b6-c275-420f-866b-078f8784fc73">Isiku omavastutus</paragrahvPealkiri>
+					<loige id="para5lg1">
+						<loigeNr id="f61e4c64-0915-4da4-bd91-38c7c8eae632">1</loigeNr>
+						<kuvatavNr id="d42c0334-9029-4f20-83a2-ba7b29e34d1a"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="8eaf1090-c615-4053-b516-ccb5242dae86">
+							<tavatekst id="9d858530-c745-47ab-b4f3-10a5385a079e">Isikul on esmane vastutus teda ohustavate sotsiaalsete riskidega toimetulekul.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para5lg2">
+						<loigeNr id="7a61cece-c4ba-482c-ac80-1687b78a7b1e">2</loigeNr>
+						<kuvatavNr id="e7c3acfc-8049-4935-a439-87ea2d7b7edb"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="d60f8029-8e18-4308-8a93-ce40200f88ff">
+							<tavatekst id="190f2750-07a5-40ad-8721-7a74bbb6c8f0">Hüvitise taotlemisel peab isik aitama igakülgselt kaasa eesmärgipärasele ja efektiivsele menetlusele ning asjaolude muutumise korral hüvitise kohandamisele.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para6">
+					<paragrahvNr id="c11c4f1d-193f-4b93-a388-30d4224d068a">6</paragrahvNr>
+					<kuvatavNr id="12d3a9b1-0d91-4bf1-9ad4-007728a640cb"><![CDATA[§ 6. ]]></kuvatavNr>
+					<paragrahvPealkiri id="588ad5a5-4de5-46c7-a3db-0d3407dc0aa0">Solidaarsus</paragrahvPealkiri>
+					<loige id="para6lg1">
+						<loigeNr id="00c0e8f0-08c8-4115-9864-bd026f9fb350">1</loigeNr>
+						<kuvatavNr id="e8ccd1f2-f54f-45fb-bc2d-fa7374a8f9d5"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="386ff9a1-db10-4c5c-a193-8f385a539d5f">
+							<tavatekst id="5b08e05e-ab6f-44f8-a17f-7d39f69f41f0">Sotsiaalsed õigused ja sotsiaalkaitsesüsteem põhinevad solidaarsusel.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para6lg2">
+						<loigeNr id="dec94081-88b0-454a-8d64-1517416a428d">2</loigeNr>
+						<kuvatavNr id="98f3fe10-524d-4ba6-9daa-4951ad19e885"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="557af2b5-88ca-4fec-b02b-74906716d3bd">
+							<tavatekst id="931d9337-2451-404e-9028-357584b7656e">Solidaarsuspõhimõtte rakendamise ja selle erisused sotsiaalkaitse korralduses sätestab seadus.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para7">
+					<paragrahvNr id="dec365a9-bd1e-4584-897a-404e766d70c4">7</paragrahvNr>
+					<kuvatavNr id="570ff159-6230-4dc3-b99d-4902658e9c94"><![CDATA[§ 7. ]]></kuvatavNr>
+					<paragrahvPealkiri id="206de9ba-0df1-417c-9515-9c8bcb879c11">Avaliku võimu selgitamis- ja abistamiskohustus</paragrahvPealkiri>
+					<loige id="para7lg1">
+						<loigeNr id="8c0782af-0b4b-4810-9b04-36e3ee05051c"/>
+						<kuvatavNr id="2879910b-272e-4b04-9ccc-7b2e89091372"/>
+						<sisuTekst id="b01f1f26-5224-4e68-ae40-8f9881db7c4c">
+							<tavatekst id="edd1fe0f-b6c7-4dd4-ab93-45c1852d2367">Isiku vajadusele, arusaamisele ja huvile vastava hüvitise andmise otsustamiseks abistatakse teda avalduse esitamisel või toimingu tegemisel, kui ilma abistamata jääksid tema õigused teadmatusest või muul põhjusel teostamata.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para8">
+					<paragrahvNr id="efc18533-4cc0-4312-89aa-7062f77baeb9">8</paragrahvNr>
+					<kuvatavNr id="46e228dd-3855-4a2e-9c89-acd582cf251e"><![CDATA[§ 8. ]]></kuvatavNr>
+					<paragrahvPealkiri id="8650d44e-27b2-4573-984a-81a440b8ad96">Sotsiaalkaitse konfidentsiaalsus</paragrahvPealkiri>
+					<loige id="para8lg1">
+						<loigeNr id="c1713055-2bc7-4280-a22b-e964f9eb59b7"/>
+						<kuvatavNr id="63674e91-ce60-47ce-a0ce-a17a6146f3cb"/>
+						<sisuTekst id="500ac28f-6159-44a3-a791-6c8825105b5d">
+							<tavatekst id="ac8ea9dc-164e-4f1d-a980-2cb7f893aaec">Isiku sotsiaalse kaitse vajadus ja isikule hüvitise andmine on era- ja perekonnaelu saladus.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para9">
+					<paragrahvNr id="d693f14a-eac1-4339-a6f3-0cd30b65b0fa">9</paragrahvNr>
+					<kuvatavNr id="48738035-4665-4685-b2cb-f73c996cb1b4"><![CDATA[§ 9. ]]></kuvatavNr>
+					<paragrahvPealkiri id="82d59f52-6804-4db7-a406-4a24a0183ecd">Koostöö</paragrahvPealkiri>
+					<loige id="para9lg1">
+						<loigeNr id="79f21271-ec61-49b3-b77d-697306b2aba6">1</loigeNr>
+						<kuvatavNr id="3ad9f4a2-40b6-4e29-bb6b-30a0ae66a731"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="932b9dbb-b6e7-4268-a556-4ab53bca0c81">
+							<tavatekst id="0223a3f3-3d4e-45c5-9b85-7b1ae01b973f">Sotsiaalkaitse paremaks korraldamiseks on hüvitisi andvatel asutustel ja isikutel kohustus teha koostööd.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para9lg2">
+						<loigeNr id="c8f15b90-88ae-4564-93bb-41856f31541a">2</loigeNr>
+						<kuvatavNr id="b2854a37-a55e-407d-a1ae-16226f0bd9b6"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="731a313a-827d-4943-89b8-8b43292f1a9f">
+							<tavatekst id="e32c7c97-1b2e-45df-b3d2-242205c27eef">Sotsiaalkaitse konfidentsiaalsuspõhimõtet ja isikuandmete kaitse põhimõtteid arvestades korraldatakse hüvitist andvate asutuste ja isikute koostöö isikut vähim koormaval viisil. Võimaluse korral tagatakse isiku abistamine tema valitud asutuse või isiku kaudu.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg3">
+				<jaguNr id="4cc28995-8be7-4c3e-b3e3-d88d4012df9f">3</jaguNr>
+				<kuvatavNr id="38e67d95-fa7c-4a11-9ed0-2e45ed138179"><![CDATA[3. jagu]]></kuvatavNr>
+				<jaguPealkiri id="c2ce33f0-f55a-412e-9d57-3f87701334a5">Sotsiaalkaitse korraldus</jaguPealkiri>
+				<paragrahv id="para10">
+					<paragrahvNr id="77ed47be-5a0f-4f36-8156-6c88a8e45105">10</paragrahvNr>
+					<kuvatavNr id="94141eb6-ae10-4742-9e53-6c61d6185de0"><![CDATA[§ 10. ]]></kuvatavNr>
+					<paragrahvPealkiri id="c41972fa-8bf9-4b31-aaea-fe3c7ab929da">Sotsiaalkaitse süsteemsus</paragrahvPealkiri>
+					<loige id="para10lg1">
+						<loigeNr id="e9bc72aa-d7a5-4392-b286-b72afde1919f">1</loigeNr>
+						<kuvatavNr id="163a82cc-98d5-45c2-970a-ef1193ca4dc0"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="365033b7-ab39-4486-8f18-f65e6f76ddbe">
+							<tavatekst id="cead4603-4d84-4d56-8b95-11c56366a76e">Sotsiaalkaitse on korraldatud tervikliku süsteemina, mis põhineb omavastutusel, koostööl, isiku vajadusest ja avalikust huvist lähtuval hüvitiste sihitatud andmisel, õiguskindlusel ja võrdsel kohtlemisel ning avalike vahendite säästlikul ja otstarbekal kasutamisel.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para10lg2">
+						<loigeNr id="310914d4-0b87-4268-a7c0-21fabfa54034">2</loigeNr>
+						<kuvatavNr id="8ff2619f-5020-4631-99bb-741dcf310f8b"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="6fe698bf-32ae-4e67-b8af-c72d957a46b0">
+							<tavatekst id="50c3db6d-bc83-4bf3-80b7-867a9a0af96d">Hüvitised täiendavad ja seaduses sätestatud juhul asendavad üksteist.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para11">
+					<paragrahvNr id="98f411eb-ef15-4cf3-b436-48538660a58b">11</paragrahvNr>
+					<kuvatavNr id="5ab058fd-0773-417f-897b-d31973bb35c2"><![CDATA[§ 11. ]]></kuvatavNr>
+					<paragrahvPealkiri id="24114e98-7aaf-4437-804a-38f52b774b64">Sotsiaalkaitsesüsteem</paragrahvPealkiri>
+					<loige id="para11lg1">
+						<loigeNr id="ac825a02-e6cc-4060-a722-091eb16c3427"/>
+						<kuvatavNr id="9f304116-b7c9-41b0-9ee4-0b482af70170"/>
+						<sisuTekst id="1953e360-05fb-4d32-bdbe-d3016a2e3d37">
+							<tavatekst id="c3781710-f3bc-4857-9332-753e65886cfd">Sotsiaalkaitsesüsteemi osad on:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para11lg1p1">
+							<alampunktNr id="52546f4a-51b0-47d0-8c33-0662cf41d86a">1</alampunktNr>
+							<kuvatavNr id="8d325ea7-9475-48c6-aa72-6c40c54829d3"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="c1e3e481-3e32-4c1a-b84e-215f9b37aa65">
+								<tavatekst id="a41e8969-4b24-43e3-897c-33a860bc7c2e">isiku ja perekonna omavastutus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para11lg1p2">
+							<alampunktNr id="3c087dc2-cb68-40df-9506-8ef4802eb94e">2</alampunktNr>
+							<kuvatavNr id="dbee316d-608b-4fe1-ace2-959dda4ed4d7"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="3a22ac57-2890-4063-a609-f7981c441d66">
+								<tavatekst id="fb3ecf0a-a520-424c-8dfb-0fdac70ca0fb">riigi ja kohaliku omavalitsuse korraldatud ja antavad hüvitised;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para11lg1p3">
+							<alampunktNr id="5f7acb53-1298-4b81-97b2-5b5f69498bf8">3</alampunktNr>
+							<kuvatavNr id="8ee5dd29-6469-4756-945e-966cdd3d9254"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="8bc52a9b-7588-4f37-831b-4c00bff37d72">
+								<tavatekst id="f2ac116a-ce6b-40f9-918b-e59f209c16fd">kindlustuse vormis korraldatud hüvitised;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para11lg1p4">
+							<alampunktNr id="61d2443c-451b-4a92-a7b7-5c704bfcec3f">4</alampunktNr>
+							<kuvatavNr id="e875beab-0099-4e86-a266-0ed948f94b20"><![CDATA[4) ]]></kuvatavNr>
+							<sisuTekst id="3cb96d3c-23dd-47a7-9938-3f91a98c3ac2">
+								<tavatekst id="98c535d1-753a-4cb1-9977-5ecc4f506ea9">muu seaduses sätestatud sotsiaalkaitsesüsteemi osa.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para12">
+					<paragrahvNr id="b6366c17-11d3-4fe0-852f-94cd191070dd">12</paragrahvNr>
+					<kuvatavNr id="ace1d445-406c-43f4-84ee-4ea8a6869f49"><![CDATA[§ 12. ]]></kuvatavNr>
+					<paragrahvPealkiri id="5c7eddb0-349d-46d2-9610-b4de7af1e866">Hüvitiste liigid</paragrahvPealkiri>
+					<loige id="para12lg1">
+						<loigeNr id="8a8e3553-f386-4d14-9506-d134e77d13a2">1</loigeNr>
+						<kuvatavNr id="0d0a7c2e-796a-4b23-81fb-aefd78811f0f"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="5f530af9-064e-40e7-83ad-865254373388">
+							<tavatekst id="b6273116-7945-4338-9805-3588511acdcf">Hüvitis on isikule sotsiaalkaitseks:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para12lg1p1">
+							<alampunktNr id="5a525242-5163-4d08-882c-ff83ad6b4d2d">1</alampunktNr>
+							<kuvatavNr id="2210a003-1605-4513-8bfb-8bd15d7cb631"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="d6b6dbd2-948d-4fc6-bb9b-900c5eee4e42">
+								<tavatekst id="fbe403ef-21c8-4f10-9302-9fb4778a61b9">makstav rahaline hüvitis;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para12lg1p2">
+							<alampunktNr id="88ba8abf-8c55-467b-9c83-edb624f5c794">2</alampunktNr>
+							<kuvatavNr id="b7e7e6af-33b5-4f2c-930a-215ad9be16ae"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="1a160e19-8ab9-46fe-b265-c18a74026701">
+								<tavatekst id="de459b6c-19d4-4608-bc57-85f683c56aed">antav mitterahaline hüvitis.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para12lg2">
+						<loigeNr id="1c09e819-e368-4584-b872-c06f639f25b1">2</loigeNr>
+						<kuvatavNr id="1e87be16-1f05-4801-8f0a-1481e001ff3d"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="8211b99c-afeb-4ea4-a31c-769d428bd48f">
+							<tavatekst id="cf154fdf-486a-4bc0-ae81-98785a4c4b0c">Hüvitis, mis hõlmab nii rahasumma maksmist kui ka mitterahalise hüvitise andmist, loetakse hüvitise peamisest sisust lähtudes vastavalt rahaliseks või mitterahaliseks hüvitiseks.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para13">
+					<paragrahvNr id="82ed4140-20cd-4a73-8381-558ed9a9f74a">13</paragrahvNr>
+					<kuvatavNr id="2fb75aa6-380a-499b-8f44-7868999ea3c7"><![CDATA[§ 13. ]]></kuvatavNr>
+					<paragrahvPealkiri id="cc5da1d2-7604-4ae0-9faf-a8a509f0a264">Rahaline hüvitis</paragrahvPealkiri>
+					<loige id="para13lg1">
+						<loigeNr id="dddab58a-5816-4d49-b597-01396edb92f5">1</loigeNr>
+						<kuvatavNr id="185d4ccc-1e76-42e7-9fad-87a9429ed0d2"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="21625abd-263f-4236-a0b7-b38eeb846fc4">
+							<tavatekst id="438ab48d-c202-4533-a3cd-68aa65158acc">Rahaline hüvitis on isikule rahas makstav toetus, pension, kindlustushüvitis või muu rahasumma.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para13lg2">
+						<loigeNr id="b3b9ad5f-375a-45ea-99c2-f7460e36a0eb">2</loigeNr>
+						<kuvatavNr id="69ff87be-1a9d-457a-8dc8-4fa89d6ac5e2"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="e69df5af-8052-444a-a985-635cb027650e">
+							<tavatekst id="028f2839-8b7c-4dc9-9a0f-93ff791b6197">Rahaline hüvitis võib seisneda:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para13lg2p1">
+							<alampunktNr id="16c857c8-b38f-4845-897d-d4ccf8ce96a8">1</alampunktNr>
+							<kuvatavNr id="87fa9616-0abc-42fa-a775-be1aa9cdb4e8"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="1237bccb-9e32-4890-9d04-8c71442496bb">
+								<tavatekst id="2ee54cdf-6db6-4e78-a0d6-ed6ef580eee8">ühekordse rahasumma maksmises;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para13lg2p2">
+							<alampunktNr id="05ce8c89-91a5-4c4c-9041-6d832103cd37">2</alampunktNr>
+							<kuvatavNr id="ccc2c041-84e4-43a5-a151-4bc5db09346b"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="1939d048-2aff-4f38-b2d0-bc00dcf6778d">
+								<tavatekst id="b58e0340-43a2-43a5-bea2-6820f9811700">rahasumma maksmises osadena või</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para13lg2p3">
+							<alampunktNr id="c01e6ecd-53d8-4dcf-8237-afa97e042d87">3</alampunktNr>
+							<kuvatavNr id="478993b4-afe1-423c-849d-03445970c85c"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="1805f353-49f2-4643-b922-d58c9b4f2994">
+								<tavatekst id="1e1c7a3d-93ac-47b0-b736-b0f9b9a94116">rahasumma perioodilistes maksetes.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para14">
+					<paragrahvNr id="15802e27-37c2-43b2-acf6-f1fddf45a618">14</paragrahvNr>
+					<kuvatavNr id="77f7668c-9eb3-4415-92cb-7ca5d4b6cc4b"><![CDATA[§ 14. ]]></kuvatavNr>
+					<paragrahvPealkiri id="7237bb9f-ad82-4acc-9e3c-176a4ebe972a">Mitterahaline hüvitis</paragrahvPealkiri>
+					<loige id="para14lg1">
+						<loigeNr id="5cdb4f0c-d359-4524-89b1-ee99a8184cf1"/>
+						<kuvatavNr id="a15ecc76-4ff6-46fd-8ad6-39bc1ebee5c7"/>
+						<sisuTekst id="15225a55-a841-43c3-8042-d10e4be6262f">
+							<tavatekst id="d122b309-29c1-4033-8958-f54e6b09f8db">Mitterahaline hüvitis on isikule antav soodustus, mis ei seisne rahasumma maksmises, eelkõige:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para14lg1p1">
+							<alampunktNr id="6c19ef1c-6b75-49c0-b7cb-efd7c10b557b">1</alampunktNr>
+							<kuvatavNr id="bbf3ed63-1915-4f16-927d-5371613ef651"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="ee98fe84-65bb-48c6-a986-8a758b303476">
+								<tavatekst id="d1c28ac6-0fae-497d-86b0-77aa8f1b2c67">isikule osutatav teenus või teenuse osutamise korraldamine, sealhulgas isikult talle kolmanda isiku poolt osutatud teenuse eest tasu maksmise kohustuse täielik või osaline ülevõtmine;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para14lg1p2">
+							<alampunktNr id="74a734d7-c6d9-4fe4-898d-96c6ba4fe182">2</alampunktNr>
+							<kuvatavNr id="245729cf-9d63-4f62-99c2-059d2ba5a552"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="e11f1a60-58f0-4036-bc0d-ce3693cc9233">
+								<tavatekst id="50a4630c-e2a9-42b2-8b48-fd5077085ac6">asja või õiguse isiku käsutusse või kasutusse andmine.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para15">
+					<paragrahvNr id="eb5b0bc1-0c1c-4c25-9840-22c258aedb70">15</paragrahvNr>
+					<kuvatavNr id="0250694e-d8dd-4ab0-af04-ce19a05efcb7"><![CDATA[§ 15. ]]></kuvatavNr>
+					<paragrahvPealkiri id="96e8b38c-e86c-47b9-99d2-f2a31aefe6c2">Hüvitise andja</paragrahvPealkiri>
+					<loige id="para15lg1">
+						<loigeNr id="3ec65921-13a3-4597-b830-a57d3694d1f1"/>
+						<kuvatavNr id="1a22c845-563e-45a1-9397-907404ff9c3f"/>
+						<sisuTekst id="e86f5286-de5e-4935-b59a-1476f85fe2d1">
+							<tavatekst id="8c212d3b-dbf5-481a-a695-893bb5984084">Hüvitist annab või hüvitise andmist korraldab vastavalt oma pädevusele:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para15lg1p1">
+							<alampunktNr id="2c8a1212-87a4-413e-9092-7312e3f4605d">1</alampunktNr>
+							<kuvatavNr id="2ddc70fb-2a1e-4dbd-ba0d-6840fab2a172"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="05dd9bd9-9ae8-40fb-af99-2dbbd32e201c">
+								<tavatekst id="570f4d7a-77bf-4faf-9f8d-64dd17ad0874">riik;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para15lg1p2">
+							<alampunktNr id="9ae9f710-9394-4362-921b-a7a7bee72b22">2</alampunktNr>
+							<kuvatavNr id="606e5557-3e54-4869-91ed-9b883bbe6454"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="898139ac-b01a-41a3-819a-d5b93d80ae61">
+								<tavatekst id="2ad650e7-3803-4ba3-8212-b78ca190e685">kohalik omavalitsus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para15lg1p3">
+							<alampunktNr id="d6a4bf74-2b9c-4f26-a957-41bb6a97b7be">3</alampunktNr>
+							<kuvatavNr id="7ab0a57a-f79c-4169-a504-5c6d820a992b"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="fef4397a-1b35-4fbd-b6b2-0437432cd080">
+								<tavatekst id="c60ae6a3-8b2a-4022-bfcf-bbba9e9ccb40">muu avalik-õiguslik juriidiline isik;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para15lg1p4">
+							<alampunktNr id="90ac5f80-0d3c-48da-a029-d67161570547">4</alampunktNr>
+							<kuvatavNr id="a205c852-da45-414a-b6ce-71b047194e1b"><![CDATA[4) ]]></kuvatavNr>
+							<sisuTekst id="e0c37174-936e-460b-9311-52021cc7291c">
+								<tavatekst id="7ffd018c-ec72-4eae-a5e0-5e9bfa23a684">seaduses sätestatud juhul muu isik.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+			</jagu>
+		</peatykk>
+		<peatykk id="ptk2">
+			<peatykkNr id="2cd680f5-09c5-4768-aaeb-67496869ebbb">2</peatykkNr>
+			<kuvatavNr id="fbe5dd6f-7419-4efd-9d48-bd7b2bd79a2d"><![CDATA[2. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="eb1cfcfe-2b31-40df-8d50-cd4324cafb60">Isiku õigused, kohustused ja vastutus sotsiaalkaitse kohaldamisel</peatykkPealkiri>
+			<jagu id="jg4">
+				<jaguNr id="c64bfb68-fe1d-49c8-b0ab-9753aeee33b1">1</jaguNr>
+				<kuvatavNr id="c4bfe61b-e20f-49d6-8c72-bd74d2bc008e"><![CDATA[1. jagu]]></kuvatavNr>
+				<jaguPealkiri id="e5590c46-eab2-4e40-b4b7-77231c005d9f">Õigus sotsiaalkaitsele</jaguPealkiri>
+				<paragrahv id="para16">
+					<paragrahvNr id="8173e95e-3fa2-4b77-af97-de64f5508b81">16</paragrahvNr>
+					<kuvatavNr id="e96bf876-93f4-45ff-bfcc-541716e12d86"><![CDATA[§ 16. ]]></kuvatavNr>
+					<paragrahvPealkiri id="6ca0ae2d-a1f0-41a6-aa4e-ba67ca1e956b">Õigus hüvitisele</paragrahvPealkiri>
+					<loige id="para16lg1">
+						<loigeNr id="1ea66402-a110-4598-8330-e50e49872c94">1</loigeNr>
+						<kuvatavNr id="fcd98cb7-c67c-4f75-89a6-34e6a3bce6ca"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="d11dd51d-952e-429e-8db0-f0138c03f21a">
+							<tavatekst id="b93f0fb1-5eb1-4c64-8cd9-4ba583b04789">Õigus hüvitisele tekib seaduses sätestatud hüvitise andmise faktiliseks aluseks oleva sündmuse toimumisest, asjaolu saabumisest või muu tingimuse täitmisest arvates.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para16lg2">
+						<loigeNr id="b9af4339-7941-419d-8b5e-f4128c98d1b5">2</loigeNr>
+						<kuvatavNr id="209293d1-8497-493a-85a0-c35f7e9b3b63"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="d3adefb2-302b-4d00-bb29-62e3a33efb2b">
+							<tavatekst id="067febfa-7ec2-4785-9ad1-65a3f95a4d7b">Seaduses sätestatud juhul tekib õigus hüvitisele taotluse esitamisest või seaduses sätestatud ooteaja möödumisest arvates.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para16lg3">
+						<loigeNr id="a768ff71-e01d-4969-b88c-6ede6168ac90">3</loigeNr>
+						<kuvatavNr id="e4c548bc-a35d-4e7c-9e4a-b06523bcdd48"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="4b65928d-ff75-4406-a17a-c4b23b212073">
+							<tavatekst id="970c43a4-1c2b-4d75-9013-9a013ad67a4b">Õigus kaalutlusõiguse alusel antavale hüvitisele tekib hüvitise andmise otsuse tegemisest arvates, kui seadus ei sätesta teisiti.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para16lg4">
+						<loigeNr id="554fbf8b-badf-4530-83a2-c46f0c901fa9">4</loigeNr>
+						<kuvatavNr id="80ef4518-9fd6-4fc3-bfba-4ca91117702f"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="995f373b-4942-4007-8043-8e4992de3f05">
+							<tavatekst id="319b5667-bd4e-461a-91bf-53f127bc15a4">Seadus võib sätestada piirangu hüvitisele õiguse tekkimisele, eelkõige kui isik põhjustab hüvitise andmise aluseks oleva tingimuse saabumise õigusrikkumisega.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para17">
+					<paragrahvNr id="b0b02791-0a91-4304-9de7-6bf73680fd05">17</paragrahvNr>
+					<kuvatavNr id="850f4cf9-ea5b-49b9-af61-cce092e72573"><![CDATA[§ 17. ]]></kuvatavNr>
+					<paragrahvPealkiri id="be7d9dd4-1ecf-4eef-be59-6fffdd800bf2">Hüvitise saamise õiguse käsutamine</paragrahvPealkiri>
+					<loige id="para17lg1">
+						<loigeNr id="6f68f4a5-8612-4a23-9db3-ab50f9d0156a">1</loigeNr>
+						<kuvatavNr id="514b5255-d909-4fdf-bd34-ebbab55b4978"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="3f653cd7-fd96-470d-bcf0-0c0c34b3a274">
+							<tavatekst id="567642ed-fc32-46fd-bc78-920ee3899c49">Isikul on õigus kirjaliku avalduse alusel loobuda õigusest hüvitisele.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para17lg2">
+						<loigeNr id="d79a60c8-19f7-4884-a72a-338a5d2c9418">2</loigeNr>
+						<kuvatavNr id="bcddf6d2-6ff4-42df-9793-cb55fa1f6968"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="ffaf7945-acbd-4e92-819f-c01da953752b">
+							<tavatekst id="a881b545-e7eb-4cb2-9cb0-74688aeb147b">Ühekordsest hüvitisest loobumine on lõplik. Perioodilise hüvitise puhul võib isik igal ajal loobumisest edasiulatuvalt taganeda.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para17lg3">
+						<loigeNr id="819f688e-c615-4925-9d2e-646d5df9481e">3</loigeNr>
+						<kuvatavNr id="344c8dfd-b241-4397-88f7-26a55dbba948"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="975b30b8-f21e-4f86-9aef-40f86344b7af">
+							<tavatekst id="56e11426-2537-41da-b226-1170483ce6e7">Loobumine õigusest hüvitisele on tühine, kui:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para17lg3p1">
+							<alampunktNr id="60deefb7-370f-4291-a3fb-5e9693140e3f">1</alampunktNr>
+							<kuvatavNr id="827e399d-f774-4b27-86a1-674d0acbbbb7"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="580d80c6-c150-4770-bf66-0857eb10ab9f">
+								<tavatekst id="56f017c7-9613-453c-9d6e-d20b7cfd11ae">hüvitise eesmärk on tagada inimväärseks äraelamiseks vajalik miinimum, eelkõige äraelamist võimaldav sissetulek;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para17lg3p2">
+							<alampunktNr id="3bd2dbdd-7e7b-4447-8e75-609504007099">2</alampunktNr>
+							<kuvatavNr id="5413cd4a-ce0e-4215-9bcc-42450d7f65c2"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="93ec9736-93bf-4fed-a978-5a3f4b63c994">
+								<tavatekst id="357c278f-0f93-4460-8c43-198f65c25b73">hüvitise andmine on lahutamatult seotud isikule hüvitise andmisega seotud kohustusega või isiku õigusega muule hüvitisele, millest loobumine ei ole lubatud või millest isik ei ole loobunud;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para17lg3p3">
+							<alampunktNr id="bbfbbff1-321c-40fc-b6da-94313454ead4">3</alampunktNr>
+							<kuvatavNr id="2d55e3b2-b63a-4fd1-8120-b278731a1ac7"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="65eda1ad-a257-465d-9b3a-225da4a5441e">
+								<tavatekst id="808c6685-a162-4eb5-852e-de49c572569c">loobumine takistab hüvitise andja seaduses sätestatud kohustuste täitmist või kahjustab pahauskselt muu isiku seaduses sätestatud õigusi.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para17lg4">
+						<loigeNr id="374214d5-13a6-4d57-ba47-928a6bf2c48c">4</loigeNr>
+						<kuvatavNr id="10a71ab2-633a-4f48-8e94-f01a73dcdfc4"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="3633a2b9-2173-4801-a223-3fe9c2e90c30">
+							<tavatekst id="3c5ddd5c-4775-45e9-b6a8-35c75bcf697b">Hüvitise andja võib hüvitise saamise õigusest loobumise tühisuse igal ajal kindlaks teha. Isik, kellel on selleks põhjendatud huvi, võib hüvitise andjalt taotleda hüvitise saamise õigusest loobumise tühisuse kindlakstegemist.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para17lg5">
+						<loigeNr id="15678fd0-d3e9-43d5-9ba9-6d7f48374737">5</loigeNr>
+						<kuvatavNr id="742ea32b-8edd-4815-8717-2b24a646758e"><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst id="ebf186b3-5d95-45dd-8fb7-12b6bacf82ef">
+							<tavatekst id="63a4be6c-9686-4e96-a33d-25c3864814b3">Õigust rahalisele hüvitisele on lubatud käesolevas paragrahvis sätestatust erineval viisil käsutada üksnes seaduses sätestatud tingimustel.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para17lg6">
+						<loigeNr id="1d8c8497-4d94-4ef6-9589-93f72432208a">6</loigeNr>
+						<kuvatavNr id="4544cff6-d49d-4a65-bdf6-c4c15cc3b7b1"><![CDATA[(6)]]></kuvatavNr>
+						<sisuTekst id="fd70da64-2350-4418-a179-bfe4861be8c4">
+							<tavatekst id="4147352d-640a-4b6b-aa21-b0fad1b3e1f8">Õigust mitterahalisele hüvitisele on keelatud käsutada käesolevas paragrahvis sätestatust erineval viisil.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para18">
+					<paragrahvNr id="6d6f6b6e-51fa-4f58-ad26-ae8479f99c89">18</paragrahvNr>
+					<kuvatavNr id="5aa422e5-9ed0-48cd-9299-2d38cfc88d04"><![CDATA[§ 18. ]]></kuvatavNr>
+					<paragrahvPealkiri id="637533c4-81f1-40c6-a613-a9fa38b06345">Hüvitise saamise õiguse peatumine</paragrahvPealkiri>
+					<loige id="para18lg1">
+						<loigeNr id="34fd6723-9d94-477b-8535-3fe0ad777916">1</loigeNr>
+						<kuvatavNr id="f6b12d93-f924-4bf6-b58d-9eea95cc4e04"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="786a9252-ea87-4ae1-a3ee-835f9458359f">
+							<tavatekst id="9aede51b-5543-4a48-95a4-1d4b12b283c2">Õigus hüvitisele peatub:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para18lg1p1">
+							<alampunktNr id="73b9a9e4-38e0-4f36-9768-eac413cb04f1">1</alampunktNr>
+							<kuvatavNr id="51a5c96f-3d64-45ce-82e0-71f1deaa3c52"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="7e61fd6b-0462-4e54-9106-f3efc5a39cbe">
+								<tavatekst id="09c07b18-6cfb-4c38-91b7-ea429d12d232">kui isik ei võimalda hüvitise andjal täita hüvitise andmiseks vajalikke ülesandeid;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para18lg1p2">
+							<alampunktNr id="43ad508d-db9d-439a-9b49-a7166286a799">2</alampunktNr>
+							<kuvatavNr id="e299e470-b4e2-4ab9-8500-572a40d3b24c"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="7c0fde4b-6f14-475c-8dc5-5a073e389011">
+								<tavatekst id="6029d214-ffc3-4c89-9e83-aebed89dd102">kui isik rikub seaduses sätestatud hüvitise andmisega seotud kohustust või hüvitise andmise kõrvaltingimust, mille korral seadus sätestab õiguse peatumise;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para18lg1p3">
+							<alampunktNr id="91a13f3e-5141-4344-8a97-87aeb6186318">3</alampunktNr>
+							<kuvatavNr id="9d6bf3aa-327e-4ecc-872a-13977acc8190"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="f6bf7834-e5ce-463c-9fa2-61b7a38cf9b1">
+								<tavatekst id="0beecb31-f403-4b07-bd19-b34362e043d2">õiguse tekkimisega muule hüvitisele või isikule muu hüvitise andmise algusega, kui seaduse kohaselt hüvitised asendavad üksteist ja seadus sätestab õiguse peatumise muu hüvitise andmise korral;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para18lg1p4">
+							<alampunktNr id="f9a2097e-e6bd-4742-85b3-f4ad2267acd6">4</alampunktNr>
+							<kuvatavNr id="0b2eec50-e851-4e32-bd6d-a44bcb886a89"><![CDATA[4) ]]></kuvatavNr>
+							<sisuTekst id="78430caa-770e-4334-929e-2fc2fa5d303c">
+								<tavatekst id="107b82e9-331d-4233-8892-affae982b297">muul seaduses sätestatud juhul.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para18lg2">
+						<loigeNr id="8a01d8fb-f661-44c3-b04b-8563b3e03c57">2</loigeNr>
+						<kuvatavNr id="452e2fcc-5147-4d26-9546-c7e36fb5a2ff"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="ae7b54b8-b8e6-4e4d-98dd-e7a1065b31b8">
+							<tavatekst id="eb8c8c11-b783-4e15-96e9-2505bebd10ba">Hüvitise saamise õiguse peatumise aluse äralangemisest tekib isikul uuesti õigus hüvitisele.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para19">
+					<paragrahvNr id="fbe1b592-464e-462a-8943-de9c96a06106">19</paragrahvNr>
+					<kuvatavNr id="469719a9-3aa9-46db-8907-37f9ef96d105"><![CDATA[§ 19. ]]></kuvatavNr>
+					<paragrahvPealkiri id="1d482700-db76-4442-89fc-f9075494f295">Hüvitise saamise õiguse lõppemine</paragrahvPealkiri>
+					<loige id="para19lg1">
+						<loigeNr id="7a148c90-3d75-4011-a623-9ff384956c6f">1</loigeNr>
+						<kuvatavNr id="68ddcf47-7773-4433-8bf5-0ca76b25dca2"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="7a6548f8-5df1-46a6-935c-059064296eec">
+							<tavatekst id="ae55d616-5a5e-48a7-b6f8-56d7b9db39dd">Õigus hüvitisele lõpeb:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para19lg1p1">
+							<alampunktNr id="e303971d-5a36-4138-9e0b-0e8c894efe89">1</alampunktNr>
+							<kuvatavNr id="5eaf4ca7-a872-4bad-a172-8f37a1050a64"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="87fcf998-6edb-4898-b36b-be17631159fe">
+								<tavatekst id="dd7aa7f9-2c1b-4310-a1a5-908572dd1dd6">hüvitise nõuetekohase ja täieliku andmisega;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para19lg1p2">
+							<alampunktNr id="093379cb-f1cc-4f9f-91fe-40cda6ab9fda">2</alampunktNr>
+							<kuvatavNr id="1e009450-6bf1-4d5c-98ce-11fde5e67a06"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="a8f12737-b8ab-468b-b083-a7005ff6d248">
+								<tavatekst id="a5d7cd4a-24ed-41ff-ab42-e6711b2b6d46">kui isik ei vasta seaduses hüvitise saamiseks sätestatud tingimustele;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para19lg1p3">
+							<alampunktNr id="52b34ab5-b194-4a16-9f58-4976501b5dbb">3</alampunktNr>
+							<kuvatavNr id="3a56ae0e-dfbb-4bac-a540-167e8494e608"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="99fdba05-694f-43ec-bfb0-27d407a27263">
+								<tavatekst id="41e26a42-261d-49dd-aee1-fe7d6ebdf7ca">kui isik rikub pahauskselt käesoleva seaduse § 21 lõikes 1 sätestatud põhikohustust või seaduses hüvitise andmisega seotud kohustust või hüvitise andmise kõrvaltingimust, mille korral seadus sätestab õiguse lõppemise;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para19lg1p4">
+							<alampunktNr id="4a4ac005-e8af-40ac-ac1d-e469995518eb">4</alampunktNr>
+							<kuvatavNr id="7713275e-1844-495c-8800-780b6d884c37"><![CDATA[4) ]]></kuvatavNr>
+							<sisuTekst id="a33453b1-4c54-4f65-9c39-7a4ca09ff84d">
+								<tavatekst id="c8eab5d9-9db6-4f7b-9740-017f6bda94f0">õiguse tekkimisega muule hüvitisele või muu hüvitise andmise algusega, kui seaduse kohaselt hüvitised asendavad üksteist ja seadus sätestab õiguse lõppemise;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para19lg1p5">
+							<alampunktNr id="df2609a4-4861-4d55-b207-dc53ecef10fd">5</alampunktNr>
+							<kuvatavNr id="1f793708-0a24-4756-a62a-0c9c928e3496"><![CDATA[5) ]]></kuvatavNr>
+							<sisuTekst id="d0242590-9b46-408e-88e3-405f23279e0a">
+								<tavatekst id="df012998-73d5-4d77-8b84-9b772cdba131">hüvitise andmise otsuse tühistamise või kehtetuks tunnistamisega;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para19lg1p6">
+							<alampunktNr id="d9617102-f8fa-4d05-bd28-0281245c33c3">6</alampunktNr>
+							<kuvatavNr id="4e09a383-1aa7-4e60-9541-e2782bd119d6"><![CDATA[6) ]]></kuvatavNr>
+							<sisuTekst id="3e0868da-42be-4c89-beb3-583cef997130">
+								<tavatekst id="605e1f09-1498-4ba3-b9b8-9b5567738e5f">isiku surma korral;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para19lg1p7">
+							<alampunktNr id="8d959235-26bb-4bdc-91b8-3b8be3c0f266">7</alampunktNr>
+							<kuvatavNr id="4f77038c-56d3-49b7-83ca-df2b52ba856a"><![CDATA[7) ]]></kuvatavNr>
+							<sisuTekst id="3767ff0d-a3dc-48c3-b0a9-ca40f04692fa">
+								<tavatekst id="a741309b-861e-453d-8d1d-712f71359b8a">hüvitisest loobumisega, kui seadus ei sätesta teisiti;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para19lg1p8">
+							<alampunktNr id="9a9f8b38-987d-45f4-a200-18d688b0195b">8</alampunktNr>
+							<kuvatavNr id="e115feef-b499-4356-8986-434a06270fe7"><![CDATA[8) ]]></kuvatavNr>
+							<sisuTekst id="96c76a99-7880-4a70-995a-0b7d5d12f0b2">
+								<tavatekst id="8a2a2e0d-ffef-436e-91db-91ff03a91feb">muul seaduses sätestatud juhul.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para19lg2">
+						<loigeNr id="4c89eac0-c137-4945-a430-1b7cbf4b3774">2</loigeNr>
+						<kuvatavNr id="18d0a5ab-8397-47ad-9134-4afb1550fe23"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="2e632262-e498-4a92-a926-cdc7f5fc57f1">
+							<tavatekst id="71137d7e-55f3-427c-bb4e-bcbc382bebb2">Hüvitise andja poolt käesolevas seaduses sätestatud alusel rahalise hüvitise tasaarvestamine lõpetab isiku õiguse rahalisele hüvitisele tasaarvestatud ulatuses.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para19lg3">
+						<loigeNr id="d4aedeaa-ede2-4744-b47d-fe9514d25090">3</loigeNr>
+						<kuvatavNr id="c3902414-34a2-4251-86d0-5b33c9e32f31"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="a2ad371c-ab0f-48b0-8e81-1e34bfbd96d2">
+							<tavatekst id="3160346e-d17d-4d1c-aa77-2333f024135a">Sellise rahalise hüvitise väljamaksmise nõue, mille maksmist alustati või mille saamist isik taotles enne surma, kuulub isiku pärandi hulka, välja arvatud juhul, kui hüvitis või selle andmisega seotud kõrvaltingimus on isikuga lahutamatult seotud.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para19lg4">
+						<loigeNr id="38376e21-570c-434e-9d6b-749426a296e2">4</loigeNr>
+						<kuvatavNr id="46e281d6-2918-461e-8435-bec038b30134"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="277602e2-a09f-445b-8225-b39305416035">
+							<tavatekst id="8f82aa82-9b5a-4f05-8dd6-a73f771bfad4">Seadus võib käesoleva paragrahvi lõikes 1 sätestatud hüvitise saamise õiguse lõppemise aluseid piirata.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para20">
+					<paragrahvNr id="2b6fbc44-c56e-45ac-adb6-04fd4f0a1170">20</paragrahvNr>
+					<kuvatavNr id="a1094083-e780-4167-9c0f-e6e82a138db9"><![CDATA[§ 20. ]]></kuvatavNr>
+					<paragrahvPealkiri id="9f5b27b7-1f24-4ee3-9318-dbd49e201de1">Viivis</paragrahvPealkiri>
+					<loige id="para20lg1">
+						<loigeNr id="b06c2622-6c95-4196-80cd-4e932e15fafc">1</loigeNr>
+						<kuvatavNr id="1ef92da7-b7fc-4ad4-9080-cbc1f26ed215"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="6b9a56ac-9a57-49e6-9cf8-deb044c1a16e">
+							<tavatekst id="efef0bee-b333-4c29-8cd7-ee733f20c7d8">Rahalise hüvitise mittenõuetekohasel väljamaksmisel on hüvitise andja kohustatud maksma viivist alates rahasumma väljamaksmise tähtaja möödumisele järgnevast kalendrikuust kuni summa nõuetekohase väljamaksmiseni võlaõigusseaduse § 113 lõikes 1 sätestatud määras.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para20lg2">
+						<loigeNr id="70fec925-b9d2-4cac-8b58-7aec15b5ae51">2</loigeNr>
+						<kuvatavNr id="f398504d-c277-4dd7-848b-237ed91f6148"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="cb5c13f7-c104-442b-ad94-228aac75308a">
+							<tavatekst id="c1ff644b-49c7-4c34-a7a8-78551505ecab">Isikul ei ole õigust viivisele, kui viivituse rahalise hüvitise väljamaksmisel põhjustas isiku enda tegevus, tegevusetus või vääramatu jõud.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg5">
+				<jaguNr id="6e8081b4-859f-45ce-b770-25e6f80a76b2">2</jaguNr>
+				<kuvatavNr id="119b9d8b-4052-40ec-a246-3ba0a417315f"><![CDATA[2. jagu]]></kuvatavNr>
+				<jaguPealkiri id="5c35d14c-5ce2-488d-97e4-806c91be707d">Isiku kohustused ja vastutus</jaguPealkiri>
+				<paragrahv id="para21">
+					<paragrahvNr id="29ae3571-c97b-4ec9-b86d-e68d211b8412">21</paragrahvNr>
+					<kuvatavNr id="529a451a-8644-4fe1-928a-7077d025a91e"><![CDATA[§ 21. ]]></kuvatavNr>
+					<paragrahvPealkiri id="8db900c6-82eb-4407-9800-c3875aab7c05">Isiku põhikohustused hüvitise taotlemisel ja saamisel</paragrahvPealkiri>
+					<loige id="para21lg1">
+						<loigeNr id="93bff31e-0eca-4f56-86e7-f39c09877f5f">1</loigeNr>
+						<kuvatavNr id="0d200afb-fdcd-4e68-8845-95f95d71cbfb"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="263c0af0-0f13-4c5d-b210-e2346f1260a3">
+							<tavatekst id="c4483b9d-0c8c-4430-bd15-a7f8080c7e65">Hüvitise taotlemisel ja saamisel on isik kohustatud:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para21lg1p1">
+							<alampunktNr id="570c0aa7-2988-4e84-a847-e8dfdebd3f56">1</alampunktNr>
+							<kuvatavNr id="5bf57ee5-54e2-4023-9504-964a5725674f"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="ee73bccc-eeba-444b-9335-1b9db8e05c4c">
+								<tavatekst id="b07e38cd-56be-484f-a18d-9844cdada189">esitama hüvitise andjale kõik teadaolevad tõesed ja täielikud andmed, dokumendid ja muud tõendid, mis on vajalikud hüvitise saamise õiguse või muu hüvitise andmiseks olulise asjaolu väljaselgitamiseks, sealhulgas seaduses sätestatud juhul andmed kolmandate isikute kohta;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para21lg1p2">
+							<alampunktNr id="697c38f4-5d20-45e8-a67d-dc138edfd97a">2</alampunktNr>
+							<kuvatavNr id="8148e014-9ab3-468d-9413-fe01e81718a4"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="8d07a1e7-b8a8-4fcd-90b1-1557cfad55e0">
+								<tavatekst id="9b7db881-0e7e-4f45-9381-7608d8f008fe">teavitama hüvitise andjat viivitamata hüvitise saamise õigust ja hüvitise andmist mõjutavatest asjaoludest ja asjaolude muutumisest;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para21lg1p3">
+							<alampunktNr id="04039a2c-fa13-449c-9141-5074b11c9152">3</alampunktNr>
+							<kuvatavNr id="fd6dfdcf-ee85-4a02-9ad2-a6cf6e42702a"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="f71c28cd-cf58-4669-9cf0-13340d40ec29">
+								<tavatekst id="d2f0f49e-7cad-498d-8ddb-832840d049f2">osalema aktiivselt talle hüvitise andmises, sealhulgas täitma hüvitise andmisega seotud kõrvaltingimusi, seaduses sätestatud juhul ja tingimustel läbima hüvitise andja nõudel uuringu, arstliku läbivaatuse või ekspertiisi;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para21lg1p4">
+							<alampunktNr id="142a2063-542b-4fd3-aa03-24ebf24ec4fa">4</alampunktNr>
+							<kuvatavNr id="041cbabd-bf7e-49d0-a96b-7f8ebd09f35c"><![CDATA[4) ]]></kuvatavNr>
+							<sisuTekst id="a9988789-c24d-4f0e-909c-5dd4aed1f2a4">
+								<tavatekst id="cb569884-1525-47d4-bc11-d7097878c630">kasutama talle hüvitisena antud vahendeid sihtotstarbeliselt.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para21lg2">
+						<loigeNr id="f9448795-b3f6-4f89-bdb1-d9c18110c8e9">2</loigeNr>
+						<kuvatavNr id="cfca96ac-3116-4759-9f83-269ee674f2e1"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="8ec900bb-a373-485b-8a54-f1a294aa2b95">
+							<tavatekst id="26769f81-336b-44da-a4e0-ddbdcfed143e">Seadus võib käesoleva paragrahvi lõikes 1 sätestatud kohustusi täpsustada ja sätestada isikule täiendavaid kohustusi.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para22">
+					<paragrahvNr id="95d2568f-dd01-4b4e-bffc-78d6b54abb75">22</paragrahvNr>
+					<kuvatavNr id="74e41d91-6ef3-4d06-938e-54ae429c5bd8"><![CDATA[§ 22. ]]></kuvatavNr>
+					<paragrahvPealkiri id="ef067590-cc8c-485d-ae70-93502e218774">Vastutus kohustuse rikkumise korral</paragrahvPealkiri>
+					<loige id="para22lg1">
+						<loigeNr id="7325ddea-b436-4093-bbe9-c3f9d3161763">1</loigeNr>
+						<kuvatavNr id="b2cabd93-8e96-45f1-9365-2dafea741ef4"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="4f6961d6-1e52-463e-9d3e-e40e463c6382">
+							<tavatekst id="84dbcda4-ea45-4b40-9d27-a60be939df6c">Kui isik rikub kohustust, mille rikkumine on hüvitise saamise õiguse peatumise aluseks, otsustab hüvitise andja hüvitise andmise peatada rikkumise aluseks oleva asjaolu toimumisest arvates, kui seadus ei sätesta teisiti.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para22lg2">
+						<loigeNr id="fd9bd7f4-5645-4aee-ac50-ba761592085a">2</loigeNr>
+						<kuvatavNr id="c1e96e7a-6cd1-45f6-8549-1b9271bdc1e5"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="3395ea9e-0c47-4e75-ad86-3412cd1426c6">
+							<tavatekst id="40489ea7-fe8c-42b1-89b5-86e137162bbc">Kui isik rikub kohustust, mille rikkumine on hüvitise saamise õiguse lõppemise aluseks, otsustab hüvitise andja hüvitise andmise lõpetada rikkumise aluseks oleva asjaolu toimumisest arvates, kui seadus ei sätesta teisiti.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para22lg3">
+						<loigeNr id="64fc7181-d20a-40db-83f8-40110da113e1">3</loigeNr>
+						<kuvatavNr id="5dc53790-f908-4cf4-8304-e5a4efc35d1f"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="e24175dc-b740-45b8-b1e9-b02b96b745a2">
+							<tavatekst id="de9a18b6-7696-425c-b362-d7fd76dd27eb">Hüvitise andmisega seotud kohustuse rikkumise korral otsustab hüvitise andja seaduses sätestatud juhul hüvitise andmist muuta või vähendada.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para22lg4">
+						<loigeNr id="fea4dfc7-48a7-47ed-9324-a268c2583248">4</loigeNr>
+						<kuvatavNr id="05c1071b-6e75-46d1-9a33-190ecc71eaa7"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="aedfa470-2266-427f-a6ea-27cdf8e7a420">
+							<tavatekst id="099c3c4a-6881-4ffc-9efa-2beed2ce9684">Hüvitise andmisega seotud kohustuse rikkumise korral nõuab hüvitise andja seaduses sätestatud juhul hüvitise saajalt talle rahalise hüvitisena makstud rahasumma ja mitterahalise hüvitise andmiseks tehtud kulutused täielikult või osaliselt tagasi.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+		</peatykk>
+		<peatykk id="ptk3">
+			<peatykkNr id="b98ccbf5-0f3e-45da-a559-52800ce34fcb">3</peatykkNr>
+			<kuvatavNr id="66062498-c972-4003-b5ce-a26b9aec739d"><![CDATA[3. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="eeb0a8ff-6ee2-4df5-a04f-eef07861aa56">Sotsiaalkaitse menetlused</peatykkPealkiri>
+			<jagu id="jg6">
+				<jaguNr id="6fb675e2-6537-4bb9-a35e-b180b0359aa9">1</jaguNr>
+				<kuvatavNr id="787463ee-be34-4414-8986-fc865f06ac5a"><![CDATA[1. jagu]]></kuvatavNr>
+				<jaguPealkiri id="5982fd8b-ddaa-44c4-958c-f72670fc04c5">Hüvitise andmine</jaguPealkiri>
+				<paragrahv id="para23">
+					<paragrahvNr id="7e2cb91a-5d27-45ac-8182-0de8f49a84b6">23</paragrahvNr>
+					<kuvatavNr id="d4a257dc-c51c-4173-b101-d59f7d261ade"><![CDATA[§ 23. ]]></kuvatavNr>
+					<paragrahvPealkiri id="69da494d-4c76-477c-a235-a004d19a342d">Hüvitise andmise korraldus</paragrahvPealkiri>
+					<loige id="para23lg1">
+						<loigeNr id="735fc81d-eb43-4434-9a6b-ee41670fa5f6">1</loigeNr>
+						<kuvatavNr id="f533c6c8-04b6-45d5-b08c-b8a34434c54a"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="aa1b4ed1-a861-472e-bc77-199d88c47560">
+							<tavatekst id="f70e9dbf-776d-4120-b221-186bfb9eb418">Hüvitist antakse:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para23lg1p1">
+							<alampunktNr id="859db645-5a5a-4c3f-827d-ac0722fbbcb5">1</alampunktNr>
+							<kuvatavNr id="c6d83d7e-c373-47f1-8c4b-0f918f59af34"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="c3a1a908-0397-40d5-b28e-3e7b5ab4c5ca">
+								<tavatekst id="8e591788-612c-4219-b555-44b6311db062">haldusakti alusel;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para23lg1p2">
+							<alampunktNr id="2b884be3-7e4d-4f13-83f6-4191df574674">2</alampunktNr>
+							<kuvatavNr id="2046dc79-90e0-4915-a9bf-09808f248ab1"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="f82e73ac-8bf2-44cf-ab80-5865e5630bff">
+								<tavatekst id="46ab39fa-cc72-4b14-ab93-7e3e5810bcd0">halduslepingu alusel, eelkõige kui hüvitise andmine või andmise tingimused otsustatakse hüvitise andja ja hüvitise saaja koostöös, või</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para23lg1p3">
+							<alampunktNr id="d5bd54c4-0128-4394-b529-2d5b741aa98e">3</alampunktNr>
+							<kuvatavNr id="08bee685-c454-4ac7-867f-90935d7121c7"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="172393fe-28f2-4cd7-a02c-6976ffcfa2fc">
+								<tavatekst id="3bb2557c-e2d9-4b67-b49a-580f4829ae35">seaduse alusel hüvitise andja toiminguga, kui seadus ei sätesta hüvitise andmist haldusakti või halduslepingu alusel.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para23lg2">
+						<loigeNr id="f0e406e9-d571-4c6e-ad17-21055e9b5e2f">2</loigeNr>
+						<kuvatavNr id="59ebb2fa-f3e8-485a-ac5f-9a489f196a8c"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="221003c8-0a47-4af6-8508-b798b857a274">
+							<tavatekst id="a0c97d48-6467-4948-9071-02c13c03f4b3">Hüvitise andja otsustab haldusakti või halduslepinguga, välja arvatud käesoleva paragrahvi lõike 1 punktis 3 sätestatud juhul, hüvitise saamise õigust omavale isikule hüvitise:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para23lg2p1">
+							<alampunktNr id="b1faa7cb-05da-4caa-91b1-842df6f89e38">1</alampunktNr>
+							<kuvatavNr id="d290cdb5-8364-4abf-a447-94b1fc0e7b93"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="13f3285c-6839-4e9a-a6cb-1731b261857e">
+								<tavatekst id="a02c728a-4e21-413a-9c3c-d60b2a889d8b">andmise;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para23lg2p2">
+							<alampunktNr id="ed792c55-8209-4086-85a4-2cebd1da425e">2</alampunktNr>
+							<kuvatavNr id="ce341b29-3eca-48ae-afba-dbf4853fc6a8"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="c251c74c-e3c4-4f69-b0db-da4e2b4b1a10">
+								<tavatekst id="fc7f842a-6742-4f5c-bde3-60341cdfc76e">osalise andmise;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para23lg2p3">
+							<alampunktNr id="86cf481d-2ba4-4457-9a3a-a22c5dbe8a76">3</alampunktNr>
+							<kuvatavNr id="c645252d-f7e5-4657-b676-0b757a94a398"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="69c1ccb9-46d0-4148-8904-9df01c377b7a">
+								<tavatekst id="e9ea94d1-3209-47f7-94bd-94d5c16bba26">andmise kõrvaltingimused, kui hüvitise andmiseks on vaja isikule panna lisakohustusi;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para23lg2p4">
+							<alampunktNr id="8d1a0de7-cb3f-475d-8936-6519cd07a316">4</alampunktNr>
+							<kuvatavNr id="e1988b91-bc6a-4dfa-9d68-6610f9e92b05"><![CDATA[4) ]]></kuvatavNr>
+							<sisuTekst id="3dbacb03-c990-411c-b707-ae5aebf44e41">
+								<tavatekst id="929de44a-c37c-4b31-8039-583183d88607">andmisest keeldumise;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para23lg2p5">
+							<alampunktNr id="4cefb599-31e5-49d1-83b2-1a509055eee1">5</alampunktNr>
+							<kuvatavNr id="e3832ba5-a34a-4440-be06-e006cfc54c77"><![CDATA[5) ]]></kuvatavNr>
+							<sisuTekst id="758fec48-6038-4dac-9cc4-f0897efe0ad6">
+								<tavatekst id="f22363db-da75-4666-8ba9-4c9f1dcad905">andmise muutmise;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para23lg2p6">
+							<alampunktNr id="fa8f5c87-da06-4641-b4f4-de97a8b45ce7">6</alampunktNr>
+							<kuvatavNr id="8a06c64d-d658-418f-80d6-1d3529e6fa8b"><![CDATA[6) ]]></kuvatavNr>
+							<sisuTekst id="15ae7a1d-a332-4503-9543-347d62cf5450">
+								<tavatekst id="5968d2a3-8c94-4d9c-bffd-adefc11f9cb2">andmise peatamise või lõpetamise.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para23lg3">
+						<loigeNr id="a2bbee4c-97ad-48a3-8093-b42e589058bb">3</loigeNr>
+						<kuvatavNr id="76efcc03-7a2b-4cd1-a39f-3eb978ea0333"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="a91f5a9a-20b0-4fa4-925c-7d02238e625a">
+							<tavatekst id="e2983ffd-83b3-4c1e-b560-7495768ef721">Hüvitist antakse hüvitisele õiguse tekkimisest arvates, kui seadus ei sätesta teisiti.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para23lg4">
+						<loigeNr id="580b0ec8-74b2-4e7d-99c2-36c70f4f66e3">4</loigeNr>
+						<kuvatavNr id="6d80134f-38e2-4d73-b3c1-320e3aa6ccbc"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="65f686c8-1552-4dc1-8838-954e177ca390">
+							<tavatekst id="989c1951-eb8f-44e5-a358-9dca84c276bf">Hüvitise andja kontrollib seaduses sätestatud juhul isiku vastavust hüvitise saamise tingimustele ja teavitab isikut hüvitise õiguse tekkimisest. Hüvitise saamise õigust kontrollitakse seaduses sätestatud andmekoosseisu alusel. Hüvitise andja edastab hüvitise õiguse tekkimise kohta teate isiku e-posti aadressil või käesoleva seaduse § 27 lõike 1 punktides 2 ja 3 nimetatud viisil, kui seadus ei sätesta teisiti.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para23lg5">
+						<loigeNr id="ed1feb9d-1737-48d2-8114-7524d83cbf34">5</loigeNr>
+						<kuvatavNr id="db889f55-b94c-4c80-ae2e-a2164afd9ff3"><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst id="4c68278d-7433-4306-aba1-23370aec9937">
+							<tavatekst id="4aa9bb60-319f-4630-a25d-4d5ca4412e6e">Hüvitise saamise õiguse peatumisel katkeb hüvitise andmine peatumise aluse tekkimisele järgnevast päevast kuni aluse äralangemise päevani või seaduses sätestatud muu tingimuse saabumiseni, kui seadus ei sätesta teisiti.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para23lg6">
+						<loigeNr id="5be7c761-f0f8-4805-8d02-22a5d845b874">6</loigeNr>
+						<kuvatavNr id="80bd9340-24de-4619-ae48-c2af15d4a973"><![CDATA[(6)]]></kuvatavNr>
+						<sisuTekst id="f92e9eda-641a-4d29-8642-23a168b03c2e">
+							<tavatekst id="8621291f-ad2d-45bb-8346-78763c0d3fea">Hüvitise saamise õigusest loobumisega õigus hüvitisele lõpeb, kui seadus ei sätesta teisiti.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para23lg7">
+						<loigeNr id="2c72596d-63d5-4023-b669-9f04283d43ff">7</loigeNr>
+						<kuvatavNr id="0fd0c5fc-c88c-47bf-896d-4a670bdca8d3"><![CDATA[(7)]]></kuvatavNr>
+						<sisuTekst id="7f9b1a12-39a9-4028-8526-470d381e0aac">
+							<tavatekst id="e8cb97d7-47f9-4e5d-b0da-6aeca4fec4d7">Hüvitise saamise õiguse lõppemisel lõpeb hüvitise andmine lõppemise aluseks oleva asjaolu ilmnemisele järgnevast päevast, kui seadus ei sätesta teisiti. Perioodiliselt makstav rahaline hüvitis makstakse välja perioodi eest, mille kestel isikul oli õigus hüvitisele.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para24">
+					<paragrahvNr id="78c3511d-dcf6-47d6-81e2-d7c247be21e2">24</paragrahvNr>
+					<kuvatavNr id="757e6a76-da53-4ddb-a6d5-8d2a28bbbff2"><![CDATA[§ 24. ]]></kuvatavNr>
+					<paragrahvPealkiri id="403479be-ff46-4415-b8e2-6566833e89fb">Hüvitise taotlemine</paragrahvPealkiri>
+					<loige id="para24lg1">
+						<loigeNr id="13da5f4e-8172-48ee-8940-3cb275f18f26">1</loigeNr>
+						<kuvatavNr id="32ef7c2f-6d10-4bec-b162-cce1f8cf3f92"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="cbb663e7-d7cf-4e7e-bec4-e000f98f4f3c">
+							<tavatekst id="f28458c0-07e5-4926-b160-b50e30242d3e">Hüvitise saamiseks esitab isik hüvitise andjale taotluse, kui seadus ei sätesta hüvitise andmist taotlust esitamata. Taotluses tuleb märkida käesoleva seaduse § 21 lõike 1 punktis 1 nimetatud andmed ja seaduses sätestatud juhul muud andmed.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para24lg2">
+						<loigeNr id="f90c792a-60df-4f75-942b-f3a1ac906270">2</loigeNr>
+						<kuvatavNr id="37741b80-8c87-4ab0-af3a-f68f8bbe7a6d"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="012ba7a0-eeab-43d3-98a0-74ca70810b34">
+							<tavatekst id="73fc6032-029f-4b4d-85ee-a298b1d50911">Taotluse esitamise korral infosüsteemi kaudu eeltäidab hüvitise andja riigi infosüsteemi kuuluvate andmekogude või teiste andmeallikate andmete alusel isiku eest elektroonilise taotluse, lähtudes seaduses või selle alusel antud õigusaktis sätestatud taotluse andmekoosseisust. Kui isik kasutab eeltäidetud taotlust, on ta kohustatud kontrollima selle andmete õigsust ning nende ebaõigsuse või puudulikkuse korral teavitama sellest andmeandjat.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para24lg3">
+						<loigeNr id="1bfb28bf-c4f5-4477-9dce-991495a92b8e">3</loigeNr>
+						<kuvatavNr id="61300e0e-c092-44e2-8a41-a3e7b8fb7910"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="ee01b933-8afa-4ce8-9243-a3cfe3084a58">
+							<tavatekst id="2301ef09-874d-46d8-b309-ee94bd97254a">Taotluse hüvitise saamiseks võib esitada enne hüvitisele õiguse tekkimist, kui see on sotsiaalkaitse korralduses mõistlik või muul viisil oluline isiku õiguste tagamiseks, eelkõige kui hüvitise saamise õiguse tekkimine või hüvitise andmine sõltub hüvitise andja poolt läbiviidavast muust haldusmenetlusest.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para24lg4">
+						<loigeNr id="9e7f535e-b27c-42ff-b307-138a390e76ce">4</loigeNr>
+						<kuvatavNr id="9de8a0a7-5c86-48ca-b7fb-bf71902f53b6"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="b4ff9b6b-8fe5-4c87-9039-d042e2585d57">
+							<tavatekst id="f62769c0-5a15-4776-a4f0-79e6656021ad">Taotluse hüvitisele õiguse tekkimisel olulise asjaolu kindlakstegemiseks võib esitada enne hüvitisele õiguse tekkimist, kui isikul on põhjendatud huvi asjaolu kindlakstegemise vastu ning asjaolu tuvastamine pärast õiguse tekkimist oleks oluliselt raskendatud.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para25">
+					<paragrahvNr id="4ded3b2d-a579-4f9b-89dd-e88f44b392ae">25</paragrahvNr>
+					<kuvatavNr id="ad64fc87-2db5-4b05-b3ef-b7ac35a9a08f"><![CDATA[§ 25. ]]></kuvatavNr>
+					<paragrahvPealkiri id="1d195dfc-6250-4e49-b631-73e601876ef7">Menetlustähtajad hüvitise andmisel</paragrahvPealkiri>
+					<loige id="para25lg1">
+						<loigeNr id="be83e697-2ca4-4cb0-9c6a-4166dda4e451">1</loigeNr>
+						<kuvatavNr id="9efe5d6f-1950-4e53-98c7-933006a4095f"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="e12847c2-adb4-402e-ae33-6b9097f28223">
+							<tavatekst id="7a3a0cb6-d4f8-422e-aa3d-4d3f337653ae">Hüvitise andja otsustab hüvitise andmise kümne tööpäeva jooksul nõuetekohase taotluse esitamisest või muu hüvitisele õiguse tekkimise aluseks oleva sündmuse toimumisest, asjaolu saabumisest või tingimuse täitmisest arvates, kui seadus ei sätesta teistsugust tähtaega.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para25lg2">
+						<loigeNr id="5d8ae0bd-9dc6-43f5-b87d-f21c97e0889e">2</loigeNr>
+						<kuvatavNr id="d6076a92-d2d8-4baa-80a1-bbfe45011d66"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="ca62839e-57de-4c12-897f-7d7674663848">
+							<tavatekst id="6087fe29-87ce-489d-b187-cd48aa20efa8">Seaduse alusel hüvitise andja toiminguga hüvitise andmise tähtajad ja kord sätestatakse seaduses.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para26">
+					<paragrahvNr id="c6f035a3-ee68-4582-b7a4-48a2ec1ecc56">26</paragrahvNr>
+					<kuvatavNr id="684dd525-4e82-4f5e-b0ef-498fd959f8f9"><![CDATA[§ 26. ]]></kuvatavNr>
+					<paragrahvPealkiri id="903d1e7a-34eb-4741-960c-ae7333dda80d">Hüvitise andmise või hüvitise andmisest keeldumise haldusakt ja haldusleping</paragrahvPealkiri>
+					<loige id="para26lg1">
+						<loigeNr id="62d722cb-86f2-488c-8735-f212ee28e1f2">1</loigeNr>
+						<kuvatavNr id="cb012ac6-efc1-45ad-bd42-53b686f738f1"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="f9418483-edfb-433f-b171-8eb7ab7dcdb4">
+							<tavatekst id="787a84d4-30f9-4e94-bb75-d4c31d638268">Hüvitise andmise aluseks olevas haldusaktis või halduslepingus märgitakse vähemalt:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para26lg1p1">
+							<alampunktNr id="f0b9c444-8c45-4404-8466-02f2da416363">1</alampunktNr>
+							<kuvatavNr id="12eaaa75-d486-4b21-8a2f-ec8ad1c14eb0"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="708b18c3-06b4-42d6-bcc0-811fbfb2ab51">
+								<tavatekst id="29a965ad-43de-4f1a-ace7-1fdb3fa19cf5">isiku taotluse kokkuvõte, kui hüvitise saamiseks on esitatud taotlus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para26lg1p2">
+							<alampunktNr id="d5edcee5-7200-4430-9996-f3bb49ad0f91">2</alampunktNr>
+							<kuvatavNr id="06a8d4df-8fc7-4df4-b24e-ef127ba962f1"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="2ccf022b-e80f-45dc-9277-dc71afa718af">
+								<tavatekst id="3ad16217-f976-45f1-b3c5-1f9f705c78b5">rahalise hüvitise korral selle arvestuse alused ja suurus ning vastavalt hüvitise liigile maksmise algus- ja lõpptähtaeg, samuti hüvitise suuruse muutumine;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para26lg1p3">
+							<alampunktNr id="254656d1-de01-4596-8c89-cb922a560566">3</alampunktNr>
+							<kuvatavNr id="23fbea7b-1d37-4237-9247-ac19a406cf6d"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="6234263e-d93a-48eb-9a2d-1cbc0022b34c">
+								<tavatekst id="487dd116-2a90-444e-a9d2-3a42ffc3a0f8">mitterahalise hüvitise korral hüvitise andmise tähtajad, tingimused ja kord;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para26lg1p4">
+							<alampunktNr id="3ccc5252-82f0-4470-b600-3e7a5e6a59ad">4</alampunktNr>
+							<kuvatavNr id="d72ace78-1b15-42b7-9d15-1dc002813ed5"><![CDATA[4) ]]></kuvatavNr>
+							<sisuTekst id="18d939dc-40c6-4a98-9ced-c7ca6cd0ad9d">
+								<tavatekst id="945ec7d2-0fc1-4b55-a824-df607cbd2bce">muud seaduses sätestatud andmed.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para26lg2">
+						<loigeNr id="38b7842a-6932-49a3-af73-ca21a8c9773e">2</loigeNr>
+						<kuvatavNr id="a9725b52-593a-4e9e-ae2f-8ba1363d864a"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="508f9a8c-aa08-4966-8e28-71fc92d52b9b">
+							<tavatekst id="5037d663-91ce-4bca-bf64-f59fcdc17e7a">Hüvitise andmisest keeldumise haldusaktis märgitakse vähemalt:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para26lg2p1">
+							<alampunktNr id="109e1457-8b49-47ae-9739-b164d8d7139d">1</alampunktNr>
+							<kuvatavNr id="7604e58e-9e94-4aad-89ea-e40f3266c39f"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="68adbe31-86c7-41ad-b9da-2cb5e85ec9f6">
+								<tavatekst id="d110194f-9059-4ab7-a8f9-900facb4490e">isiku taotluse kokkuvõte, kui hüvitise saamiseks on esitatud taotlus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para26lg2p2">
+							<alampunktNr id="0cc9b2a2-f210-42f5-99b2-c7a0c43edb21">2</alampunktNr>
+							<kuvatavNr id="613e108f-9e3f-4fc4-81a2-6ff364874f9a"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="79081cd1-d3b7-41cb-9052-aff6c586e753">
+								<tavatekst id="938c011b-750c-4b6f-9565-d81c3eb9ee7b">hüvitise andmisest keeldumise põhjendus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para26lg2p3">
+							<alampunktNr id="8ff9bf98-4ac1-4715-9e62-b5728dda4942">3</alampunktNr>
+							<kuvatavNr id="1c0d925c-2b28-498b-80f6-aef14a290e2f"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="1deba223-0f54-48cf-a03b-a1125f1bf38c">
+								<tavatekst id="0865f327-b20b-490a-986e-5be1673d286a">muud seaduses sätestatud andmed.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para26lg3">
+						<loigeNr id="52f30d10-90af-45c7-a530-84ef37165d16">3</loigeNr>
+						<kuvatavNr id="3c24c4a6-3165-476e-84aa-d72af1c8bc5c"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="c376e761-317d-4553-87ab-b494dedf82d2">
+							<tavatekst id="1c43a9ed-aa07-43fe-8dd4-2756f6c26ab2">Hüvitise andja võib hüvitise andmise või hüvitise andmisest keeldumise haldusakti anda elektroonilises vormis isiku tuvastamist võimaldava infosüsteemi kaudu, kui ta tagab haldusakti teatavakstegemise käesoleva seaduse §-s 27 sätestatud korras.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para26lg4">
+						<loigeNr id="2c07cc07-2d69-4825-9cd0-4a646747f00c">4</loigeNr>
+						<kuvatavNr id="11049af4-99f3-45dc-9897-c3a7f87e2e3b"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="dca5edb0-4681-4fa3-ad47-7066410a3e18">
+							<tavatekst id="0d635717-1a6d-41b9-8b36-3a407a2422de">Hüvitise andja kinnitab elektroonilises vormis antud haldusakti hüvitise andja digitaalse templiga või otsuse teinud isiku digitaalallkirjaga.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para27">
+					<paragrahvNr id="ea02761c-e2c0-4c78-9ea3-0df31e34dbe3">27</paragrahvNr>
+					<kuvatavNr id="76a13b68-7b16-45df-a5cd-a29904e3112d"><![CDATA[§ 27. ]]></kuvatavNr>
+					<paragrahvPealkiri id="f5383c86-d53a-4be8-ac22-49b3a6f50770">Hüvitise andmise või hüvitise andmisest keeldumise haldusakti ja halduslepingu teatavakstegemine</paragrahvPealkiri>
+					<loige id="para27lg1">
+						<loigeNr id="c42a8584-a612-4148-9d25-9d9d12b9dd59">1</loigeNr>
+						<kuvatavNr id="5fea4f44-3e1a-4ea3-ba84-81443d0b1903"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="cf5fc50b-7bed-4068-942d-04ab950fa345">
+							<tavatekst id="a5e9d53e-32f1-4a16-8470-92b2cf8b1bf6">Hüvitise andmise või hüvitise andmisest keeldumise haldusakt või haldusleping tehakse vastavalt taotluses märgitud valikule isikule teatavaks:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para27lg1p1">
+							<alampunktNr id="3ba67412-2097-40f6-8cdc-f4e9d847185b">1</alampunktNr>
+							<kuvatavNr id="5b164ac7-5e25-401d-9c97-57bb577c00eb"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="e27615aa-a16b-4841-aae8-e418e3b03196">
+								<tavatekst id="bb9ad896-0e7a-48b5-9c13-2f68be1971df">taotluses märgitud e-posti aadressil;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para27lg1p2">
+							<alampunktNr id="54a64c9c-42de-4db1-aebb-23ad0d466eb7">2</alampunktNr>
+							<kuvatavNr id="ebb9ff2b-6363-4d68-987d-4399fb9f16e8"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="b07d7fc2-010c-435f-a304-aa2d9ca9a839">
+								<tavatekst id="ded42be2-7b54-483a-a056-333c1e1afa17">elektrooniliselt isiku tuvastamist võimaldava infosüsteemi kaudu;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para27lg1p3">
+							<alampunktNr id="07247ebd-6df2-497a-ae2e-2bf07c774a52">3</alampunktNr>
+							<kuvatavNr id="c31a654a-5be3-480d-a114-3c1036504555"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="451b7156-2d2e-4a3d-a0ed-c0f00572d3b3">
+								<tavatekst id="b3387cac-8506-4500-ae13-107cba3a5e2b">hüvitise andja juures;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para27lg1p4">
+							<alampunktNr id="edb71c0a-2961-4902-9ef7-81b69b19b7ef">4</alampunktNr>
+							<kuvatavNr id="1704efed-966b-41ab-bcbb-c8a958afaa0f"><![CDATA[4) ]]></kuvatavNr>
+							<sisuTekst id="89a1aaa6-09f2-4c81-b0f7-c71fde32d0c1">
+								<tavatekst id="0d04c0eb-26b2-4343-8b5a-11a69b7863b2">posti teel lihtkirjaga taotluses märgitud aadressil või</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para27lg1p5">
+							<alampunktNr id="94f71d13-cd29-41e2-8399-e2b34a641da6">5</alampunktNr>
+							<kuvatavNr id="84f76b33-af96-41d6-9017-c4f09e1f91fe"><![CDATA[5) ]]></kuvatavNr>
+							<sisuTekst id="48a62346-18ab-4296-842a-7b92f2f51eb6">
+								<tavatekst id="77be60a0-7861-4370-98ea-637de717570f">muul seaduses sätestatud viisil.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para27lg2">
+						<loigeNr id="cc53b015-7e91-44df-ac5f-cb0bfc473ada">2</loigeNr>
+						<kuvatavNr id="1ffdda83-6206-45dd-b2ed-2e6a2667a856"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="b2208dbe-3e13-47d4-9f4f-df329d1ae0e2">
+							<tavatekst id="90d01e41-122b-4aa3-a60a-b7b8967a45e6">Kui haldusakt antakse kaalutlusõiguseta ning sellega ei panda täiendavaid kohustusi ega piirata isiku õigusi, võib hüvitise andja haldusakti teatavaks teha üksnes isiku tuvastamist võimaldavas infosüsteemis. Sellisel juhul on hüvitise andja kohustatud saatma isikule haldusakti andmise kohta teatise taotluses märgitud e-posti aadressil.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para27lg3">
+						<loigeNr id="b223d014-556b-47e6-afec-f374fca5a8db">3</loigeNr>
+						<kuvatavNr id="adf2c1df-9c2c-480b-8b85-3343401fd2dc"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="716190ed-a9d7-4ad3-b149-23a515ad8e5a">
+							<tavatekst id="0366cc25-c97f-4037-95d6-9b013050192a">Haldusakt loetakse isikule kättetoimetatuks, kui haldusakt on teatavaks tehtud isiku tuvastamist võimaldava infosüsteemi kaudu.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para27lg4">
+						<loigeNr id="7417bbf8-82fc-40fb-a7da-99d08b2a823d">4</loigeNr>
+						<kuvatavNr id="f1447ace-089d-4790-8f42-1c89bc655c1a"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="f5b33353-c634-4387-a99a-9031512a8fa1">
+							<tavatekst id="8d58db83-60d7-49ea-92d7-9f06d42ca984">Elektroonilises vormis taotluse puhul teeb hüvitise andja hüvitise andmise või hüvitise andmisest keeldumise haldusakti isikule teatavaks üksnes isiku tuvastamist võimaldava infosüsteemi kaudu, kui isik ei ole elektroonilises taotluses märkinud muud teatavakstegemise viisi.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para27lg5">
+						<loigeNr id="42fdd530-097b-49cb-961b-61a692e84642">5</loigeNr>
+						<kuvatavNr id="5dc3cd0d-9eb6-45a9-b5b7-c6cddd24c92f"><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst id="3519ab7e-0726-40d9-9f30-2818457675a7">
+							<tavatekst id="93c242eb-60e0-48b1-aefe-1d923da65062">Haldusakti lihtkirjaga teatavakstegemisel loetakse see kättetoimetatuks, kui on möödunud viis kalendripäeva selle Eesti piires saatmisest või 30 kalendripäeva välismaale saatmisest.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para27lg6">
+						<loigeNr id="686f9719-bf76-4cc6-aecf-9ad437f2ac81">6</loigeNr>
+						<kuvatavNr id="1fc037b7-8a88-4b14-ad6d-6e7f640c4708"><![CDATA[(6)]]></kuvatavNr>
+						<sisuTekst id="da199c10-6326-4ff7-9552-4ddb66252ab3">
+							<tavatekst id="8b2ec16f-7f0c-44e4-84f2-787b13e9d71b">Koos hüvitise andmise haldusaktiga teeb hüvitise andja isikule teatavaks hüvitise andmisega seotud kohustused.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para27lg7">
+						<loigeNr id="a1a0d2f7-d86c-4ecd-b939-c6860bc9e023">7</loigeNr>
+						<kuvatavNr id="746aae0f-61a3-447d-b6ac-4f3c18c6eee3"><![CDATA[(7)]]></kuvatavNr>
+						<sisuTekst id="07a22147-4fb8-4100-b4de-99a653b3dfd0">
+							<tavatekst id="e39019a1-46a5-43a8-b352-af9ca2aaed20">Seaduses sätestatud juhul hüvitise andmisel taotlust esitamata tehakse hüvitise andmine või hüvitise andmisest keeldumine isikule teatavaks isiku rahvastikuregistris märgitud elukoha aadressil või isiku nõusolekul muul käesoleva paragrahvi lõike 1 punktides 1–4 nimetatud viisil, kui seadus ei sätesta teisiti.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para28">
+					<paragrahvNr id="bdd4f68b-8264-45a1-8649-358c60a94bef">28</paragrahvNr>
+					<kuvatavNr id="2df3569b-5f51-4994-94b9-22eb52901933"><![CDATA[§ 28. ]]></kuvatavNr>
+					<paragrahvPealkiri id="17d9d1f3-78bf-4d36-8b28-f4f76d1a260d">Rahalise hüvitise maksmine</paragrahvPealkiri>
+					<loige id="para28lg1">
+						<loigeNr id="90d23ef1-54ca-4f9c-98ab-5d0a77d8c5d9">1</loigeNr>
+						<kuvatavNr id="3696e38b-d65d-4265-a69a-1c9eb5b9d862"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="959b0bfa-7412-4b39-a960-25458a567b73">
+							<tavatekst id="8803b5ed-c495-4c7d-b737-38a8a9feb2b5">Rahaline hüvitis makstakse välja 30 kalendripäeva jooksul hüvitise andmise otsuse tegemisest arvates, kui seadus ei sätesta teisiti.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para28lg2">
+						<loigeNr id="0be3f99f-5c7a-4480-a26a-5bebc3700d0b">2</loigeNr>
+						<kuvatavNr id="d002e262-b200-4c82-ab00-5f721526ba6f"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="4602ac7f-9659-450a-bf31-3346188b30db">
+							<tavatekst id="0f8b2a32-a61b-4e74-bebc-5c2e03b43fab">Osadena või perioodiliselt makstav rahaline hüvitis makstakse välja seaduses sätestatud tähtaegadel.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para28lg3">
+						<loigeNr id="e91211ca-40fc-47ed-abb6-4bbd79150f0a">3</loigeNr>
+						<kuvatavNr id="2b646429-38d7-436b-a0a5-383aa3d29b98"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="897080ba-b1d4-496d-b459-cb33eaf0fae2">
+							<tavatekst id="f21febeb-8dab-408f-b5b9-e26ec133d9a2">Vastavalt isiku soovile makstakse rahaline hüvitis:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para28lg3p1">
+							<alampunktNr id="2a87e023-32b1-4e81-b883-56229929c351">1</alampunktNr>
+							<kuvatavNr id="05ba40a2-081f-4ba6-8e70-c446585bc6d2"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="973f6b3b-e45a-4174-892a-f40cae63fd58">
+								<tavatekst id="6e94a812-6044-46fa-b96f-f32a6a22aa04">isiku arvelduskontole Eestis hüvitise andja kulul;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para28lg3p2">
+							<alampunktNr id="e3fcbd09-5834-4fa8-8b58-d9a98c73b49c">2</alampunktNr>
+							<kuvatavNr id="5cab6788-1e32-4245-93db-795433fb62fe"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="97835698-067a-4095-8e1e-f0e42b44edd5">
+								<tavatekst id="f8cf088b-0f1f-41ae-8a3a-f6788f1f1971">hüvitise andja juures vormistatud kirjaliku avalduse, digitaalselt allkirjastatud elektroonilise avalduse või notariaalselt tõestatud avalduse alusel kolmanda isiku arvelduskontole Eestis hüvitise andja kulul, kui seadus ei sätesta kohustust maksta hüvitist üksnes isikule isiklikult, või</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para28lg3p3">
+							<alampunktNr id="ce268f15-75e7-4c44-b678-bc4744f99631">3</alampunktNr>
+							<kuvatavNr id="1d7c7b96-7b90-4929-8876-01927cc7e0d9"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="bdc91255-cf15-4985-94a8-8694b1bb947c">
+								<tavatekst id="3a1b6ae5-7746-46cd-9c9c-ecc6aed12f07">isiku arvelduskontole välisriigis, kusjuures hüvitise saaja maksab oma makseteenuse pakkuja nõutavad tasud, kui välislepinguga ei ole sätestatud teisiti.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para28lg3b1">
+						<loigeNr id="9d1b5412-beba-4fd8-b49d-cd09a1066d22" ylaIndeks="1">3</loigeNr>
+						<kuvatavNr id="dbba489f-887e-4b20-ace4-ea7e776b3874"><![CDATA[(3<sup>1</sup>)]]></kuvatavNr>
+						<sisuTekst id="5093ab46-dd57-4a80-96af-00a13ebfaa25">
+							<tavatekst id="ccccaaea-a1cf-43f6-b7e7-5213e935ed73">Hüvitise andjal on õigus maksta isikule kõik rahalised hüvitised ühele arvelduskontole.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="054685dc-1bca-4cdd-92c2-ae322ec00d4f">
+							<avaldamismarge id="0c5611e8-5722-447b-9900-2e0a8834f5f5">
+								<RTosa id="38933882-ce3f-43a5-97aa-cf4f94dd7263">RT I</RTosa>
+								<avaldamineKuupaev id="5f3dd286-e9fb-4644-a900-0ed5c8f2374b">2023-12-14</avaldamineKuupaev>
+								<RTartikkel id="1704486f-fad1-431c-8e89-d53b9e9edf23">1</RTartikkel>
+								<aktViide id="fc56034d-9e19-45fa-a42f-da2c17fb0092">114122023001</aktViide>
+							</avaldamismarge>
+							<joustumine id="1b57a74c-757e-402b-8cce-c2d8ac84f441">2024-01-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para28lg4">
+						<loigeNr id="277027c0-f3eb-4269-8fe9-f13bb94d7664">4</loigeNr>
+						<kuvatavNr id="26c7b1f5-fc41-434d-839b-e41baa2de18f"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="a3b2c5f9-5e05-4371-b06a-1ab68ee6c282">
+							<tavatekst id="ad34f6d1-4417-49e9-b632-1fcf3a060d89">Seadus võib sätestada rahalise hüvitise väljamaksmise käesoleva paragrahvi lõigetes 3 ja 3<sup>1</sup> sätestatust erineval viisil.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="ecc9eaa9-1651-4421-9616-a981f11b240b">
+							<avaldamismarge id="b2b158f3-fdb9-450f-937a-502f8f84854f">
+								<RTosa id="f484e1cb-a757-4199-af59-db8bdf613c82">RT I</RTosa>
+								<avaldamineKuupaev id="4368d1a2-23be-46c1-9da4-e2ffbb4f10b2">2023-12-14</avaldamineKuupaev>
+								<RTartikkel id="71b3981b-0222-4b95-9a4b-abae16e9d00d">1</RTartikkel>
+								<aktViide id="934eaa87-98d1-4094-8c2c-9aee63e39cc5">114122023001</aktViide>
+							</avaldamismarge>
+							<joustumine id="bfd930a0-3521-4827-8a6f-d98f3e6c0cfc">2024-01-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para28lg5">
+						<loigeNr id="4298a787-ef33-403b-b0b2-55822fdcd502">5</loigeNr>
+						<kuvatavNr id="189c8e59-5e84-492d-ba79-182002a04750"><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst id="98a8bd79-425c-4750-bb3f-6b2b52fd974c">
+							<tavatekst id="1f8d7500-c09a-454b-8631-91f5007ed13d">Hüvitise andja peatab rahalise hüvitise maksmise, kui isiku arvelduskontole kantud rahaline hüvitis laekub hüvitise andjale tagasi kahel järjestikusel kuul. Hüvitise andja teeb hüvitise peatamise haldusakti isikule teatavaks käesoleva seaduse §-s 27 sätestatud korras.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para29">
+					<paragrahvNr id="a6e6e8c3-fd06-4800-8b6b-c41996cba130">29</paragrahvNr>
+					<kuvatavNr id="dee86d5f-95d4-479a-87b3-78a5ef78d472"><![CDATA[§ 29. ]]></kuvatavNr>
+					<paragrahvPealkiri id="81553ea4-b588-44c1-9cd4-8067a8823f3c">Mitterahalise hüvitise andmine</paragrahvPealkiri>
+					<loige id="para29lg1">
+						<loigeNr id="3edc88e2-112b-4e35-9877-f1b3055030c2"/>
+						<kuvatavNr id="5427ed96-9827-409f-943f-a6563315fa46"/>
+						<sisuTekst id="ca44e9bc-c27f-409c-9fb5-c8d0c0d4e1c0">
+							<tavatekst id="4b68d7d1-2f7e-4a1f-b759-c1be95aeb847">Mitterahalist hüvitist antakse seaduses sätestatud alustel.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para30">
+					<paragrahvNr id="a0d0ff8d-de7f-4396-8b59-4f52e8ba6936">30</paragrahvNr>
+					<kuvatavNr id="7684c167-298c-4ffb-b34b-c566cf94b870"><![CDATA[§ 30. ]]></kuvatavNr>
+					<paragrahvPealkiri id="eaf043a5-5858-4ec4-be6c-bc2f41a4b01a">Hüvitise andja õigused ja kohustused</paragrahvPealkiri>
+					<loige id="para30lg1">
+						<loigeNr id="80c6075d-2f1a-4252-b055-ede3c7ef0b91">1</loigeNr>
+						<kuvatavNr id="87c3ad94-e92d-4a3f-ae89-7482a0cf10d3"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="4a5582f2-16d7-4e99-b842-c3f30a60f238">
+							<tavatekst id="51f18dde-d0f9-47e8-be21-fb73731b2833">Hüvitise taotlemisel ja andmisel ei või hüvitise andja nõuda isikult andmeid ja tõendeid, mille isik on hüvitise andjale esitanud varem, kui isik kinnitab esitatud andmete õigsust ja hüvitise andja kohustus andmeid säilitada ei ole lõppenud, välja arvatud juhul, kui hüvitise andja juurdepääs andmetele on objektiivselt võimatu või oluliselt raskendatud või kui seadus ei sätesta teisiti.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para30lg2">
+						<loigeNr id="512b9901-2c81-4186-8720-62108b662789">2</loigeNr>
+						<kuvatavNr id="5f8d88d4-a0cc-4763-a10a-48ac0eb6009b"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="4cee8740-9ed9-4658-8ae7-fac32cf173ab">
+							<tavatekst id="67947bec-c6d7-4177-972b-eb1b58683a8a">Hüvitise taotlemisel ja andmisel on hüvitise andjal põhjendatud kahtluse korral hüvitise saamise õiguse olemasolu või hüvitise ulatuse kohta õigus kontrollida hüvitise andmise aluseks olevaid asjaolusid, sealhulgas hüvitise taotlemise käigus esitatud andmete, dokumentide ja muude tõendite õigsust.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg7">
+				<jaguNr id="7f78bf04-e46f-4377-b33a-111e6e1426ea">2</jaguNr>
+				<kuvatavNr id="3f0157bb-cf2e-4da9-9022-a04c144b884f"><![CDATA[2. jagu]]></kuvatavNr>
+				<jaguPealkiri id="703c78eb-1a0f-4027-99a6-9ba964c7e1b1">Alusetult saadu tagastamine</jaguPealkiri>
+				<paragrahv id="para31">
+					<paragrahvNr id="ae38152f-1383-42d7-9b84-7cd627753e6a">31</paragrahvNr>
+					<kuvatavNr id="9d02e479-b4dc-4271-93bb-75e9026e809c"><![CDATA[§ 31. ]]></kuvatavNr>
+					<paragrahvPealkiri id="0a030e30-cd86-4f5e-8ac4-e36a3be933ba">Sotsiaalkaitse kulutuste tagasinõudmine</paragrahvPealkiri>
+					<loige id="para31lg1">
+						<loigeNr id="2f14fbbe-98cf-4b46-ad4e-6557e819ac05">1</loigeNr>
+						<kuvatavNr id="1304d357-47b0-45fc-b196-ba9c0925ecca"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="e8062379-ebaa-451f-b80f-12f252dad75c">
+							<tavatekst id="7ec3bfea-88ce-4836-9d85-8f08c14fee01">Hüvitise andja nõuab isikult talle rahalise hüvitisena alusetult makstud rahasumma ja mitterahalise hüvitise andmiseks alusetult tehtud kulutused (edaspidi käesolevas jaos ka <i>alusetult tehtud kulutused</i>) osaliselt või täielikult tagasi:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para31lg1p1">
+							<alampunktNr id="1c0c2f99-4b3c-4189-9735-345552a302e4">1</alampunktNr>
+							<kuvatavNr id="405de394-0c8b-45fa-a3ef-00b69f2b90b6"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="8d07cd24-5417-4fe2-8390-82c96c6a46b6">
+								<tavatekst id="9e7e16ec-7492-48a3-8aeb-4cf4ec531ab3">kui isikul puudus õigus hüvitisele, kuna õigust ei olnud tekkinud;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para31lg1p2">
+							<alampunktNr id="a9847338-6253-479f-b0ca-8a4a2cb4f423">2</alampunktNr>
+							<kuvatavNr id="09692224-9d2e-467c-9e0d-eb8e0025be4e"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="96e28cee-565c-4787-a772-36903b5743a4">
+								<tavatekst id="25e3ef6f-3e15-40fa-944b-a463d038450e">kui isikul puudus õigus hüvitisele, kuna õigus oli peatunud või lõppenud;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para31lg1p3">
+							<alampunktNr id="1532c722-8430-4269-b0d2-b43f3daf1852">3</alampunktNr>
+							<kuvatavNr id="8892f29a-aec8-4095-900e-3eff25b9571f"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="b032b4bb-5138-4881-9919-34051b8cc1b7">
+								<tavatekst id="7b0d23b2-02d7-467b-a662-6eae9196cfd2">muul seaduses sätestatud juhul.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para31lg2">
+						<loigeNr id="31d87906-b435-4bae-9b5c-2f1c2551089b">2</loigeNr>
+						<kuvatavNr id="396fb329-78bc-4856-8c5c-ccadb49cf98f"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="6fae5596-9708-4293-8599-7e5a5cc1438e">
+							<tavatekst id="42586419-eea2-4e30-870d-93c132a9f5ab">Mitterahalise hüvitisena osutatud teenuse või üleantud asja eest nõutakse tagasi teenuse või asja tegelik maksumus rahas. Kui tegelikku maksumust ei ole võimalik kindlaks teha, arvutatakse tagasinõutav summa võlaõigusseaduses alusetu rikastumise kohta käivate sätete kohaselt. Asja maksumuse rahas hüvitamise asemel võivad hüvitise andja ja saaja kokku leppida üleantud asja tagastamises.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para31lg3">
+						<loigeNr id="431e31dd-1431-472d-bcea-6709b6d6a6b5">3</loigeNr>
+						<kuvatavNr id="2a724276-0532-4b44-9db1-3ed4bd9c6f43"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="06e656b3-f33b-42b6-abcd-ac9923e5dcda">
+							<tavatekst id="96c9e9cb-f2b0-414f-9548-22c3ac7b5e86">Hüvitise andja võib tagasinõudest loobuda:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para31lg3p1">
+							<alampunktNr id="fa1daf92-f462-4bdd-b2f9-64042005ad3a">1</alampunktNr>
+							<kuvatavNr id="1de0c36a-d09d-4aa2-8192-fcc5d7b1e172"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="dcbff20c-35a5-402c-a0b0-ff8b46ef7070">
+								<tavatekst id="7da609af-ebce-4e93-a8c4-7274c577bf69">kui tagasinõudmisega seotud kulud ületavad hüvitise andmiseks tehtud kulutused;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para31lg3p2">
+							<alampunktNr id="9476ba88-f7ae-44bb-9126-a9e2adf161a6">2</alampunktNr>
+							<kuvatavNr id="07ad2773-519c-42a4-b4ff-575615f7c449"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="c2ffe49b-c5d9-4e3b-955b-a2e1bb8c1dc9">
+								<tavatekst id="86bfff75-b428-4f64-871c-f743eccf37ff">muul seaduses sätestatud juhul.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para32">
+					<paragrahvNr id="ba4050d2-9bff-4fa7-bb9b-e55eaaea5cb3">32</paragrahvNr>
+					<kuvatavNr id="22ee3ba0-42c1-4c10-b108-9ed7a0cbd6e7"><![CDATA[§ 32. ]]></kuvatavNr>
+					<paragrahvPealkiri id="cd587a13-42b6-484a-a79f-97f389ca8052">Tagasinõude otsustamise ja tagasimaksmise kord</paragrahvPealkiri>
+					<loige id="para32lg1">
+						<loigeNr id="c3f424be-28fc-41e1-83f6-000fb99e8e06">1</loigeNr>
+						<kuvatavNr id="68eec9fa-870c-44e5-9184-727fe2a8b7ab"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="5cffbf21-0084-4862-a417-2919722ac3f3">
+							<tavatekst id="cf0f53ed-f3c3-4b5a-a0de-faaad3c05ee3">Hüvitise andja otsustab alusetult tehtud kulutuste tagasinõudmise ettekirjutusega isiku vabatahtliku tagasimakse või tagasimakse taotluse alusel või hüvitise andja initsiatiivil algatatud haldusmenetluses.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para32lg2">
+						<loigeNr id="d4f7b4b9-8e1d-4c02-96b2-7e89c55aea2d">2</loigeNr>
+						<kuvatavNr id="0eb61cee-06d2-451b-a8d0-a0e372a30535"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="8c6fa5e8-7f7f-462d-acdb-e861206e958d">
+							<tavatekst id="c2064b14-770f-46a6-962a-1c143c8646b7">Ettekirjutuse täitmiseks antakse mõistlik tähtaeg. Kokkuleppel isikuga või isiku põhjendatud taotluse alusel võib tagasinõutava summa suurust ja isiku võimalusi arvestades otsustada tagasimaksmise osade kaupa. Kui tagasinõue otsustatakse isiku vabatahtliku tagasimakse alusel algatatud haldusmenetluses ja isik on tagasinõude täies ulatuses täitnud, märgitakse ettekirjutuses tagasinõude täitmise ajana vabatahtliku tagasimakse tegemise aeg.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para32lg3">
+						<loigeNr id="3aef1678-8476-4a21-b8ce-b4fcb121f40e">3</loigeNr>
+						<kuvatavNr id="a3131725-c326-484c-a82b-dcc551c28634"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="246d4033-b3d3-4624-a836-afe99abb51d3">
+							<tavatekst id="e3b6f564-92c0-420c-9b53-f9d060d71920">Koos ettekirjutusega tehakse hoiatus sundtäitmise algatamise kohta tagasinõude kohustuse täitmata jätmise korral, välja arvatud juhul, kui ettekirjutus tehti isiku vabatahtliku tagasimakse alusel algatatud haldusmenetluses ja isik on tagasinõude täies ulatuses täitnud.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para32lg4">
+						<loigeNr id="2cddc73e-c814-4311-8b2f-49b7113830ec">4</loigeNr>
+						<kuvatavNr id="98ddc064-a019-4b2d-a4b2-38a25c20c91c"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="da81b098-f8f3-44c2-80ca-b6d65186ce92">
+							<tavatekst id="e3cd9d55-1776-41b9-853c-f9f9656289ff">Ettekirjutuses märgitakse vähemalt:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para32lg4p1">
+							<alampunktNr id="64ed4554-6301-4590-81a5-4eca17191aa9">1</alampunktNr>
+							<kuvatavNr id="28ba1d34-304c-4445-9b01-08a95f432211"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="3cc46319-085d-4e81-b501-7de150d2149e">
+								<tavatekst id="2a040bfe-a732-4fc7-a785-27c630e14f05">ettekirjutuse adressaadi nimi ja aadress;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para32lg4p2">
+							<alampunktNr id="5431ff9b-95d6-4ccc-b477-ae0554773c37">2</alampunktNr>
+							<kuvatavNr id="9e20459b-e2e2-404d-8407-185bf73a4f6c"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="910df44c-c914-4ca2-ac21-cdfdf1a8df36">
+								<tavatekst id="c1a08791-8f51-4022-ad1b-ee23fc177835">tagasinõutava summa arvestuse alused ja suurus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para32lg4p3">
+							<alampunktNr id="4c5758a5-4bec-4c1c-99f7-bd96fde2f7b0">3</alampunktNr>
+							<kuvatavNr id="c0610851-83e9-44ba-a296-74189e7806a7"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="9019f560-5770-40cc-9d4a-50eae30e4f46">
+								<tavatekst id="8cc05591-f4c3-4845-95c4-bb269c1ffeb5">ettekirjutuse täitmise tähtaeg või vabatahtliku tagasimakse tegemise aeg;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para32lg4p4">
+							<alampunktNr id="986951c5-b427-4045-8654-ccf1cbfd0278">4</alampunktNr>
+							<kuvatavNr id="f43d15ee-1794-46fb-8d53-5920ec1ed6ff"><![CDATA[4) ]]></kuvatavNr>
+							<sisuTekst id="5eef69e2-321a-4f0f-9ea4-8b932285497c">
+								<tavatekst id="6d76fde3-b1cd-41be-a470-b95a5249315b">käesoleva paragrahvi lõikes 3 sätestatud hoiatus.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para32lg5">
+						<loigeNr id="f0ea8b3a-b140-47ac-8d5c-677efb1f42d0">5</loigeNr>
+						<kuvatavNr id="370bba33-2c5f-4b33-ae23-4595608a5ed7"><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst id="5989a285-ee88-48d0-bb41-63d046bdb388">
+							<tavatekst id="fb29e4f2-f477-4d47-ab85-f6260cf32b85">Ettekirjutus tehakse teatavaks käesoleva seaduse §-s 27 sätestatud korras. Posti teel taotluses märgitud aadressil ettekirjutuse teatavakstegemise korral tehakse ettekirjutus teatavaks tähtkirjaga või väljastusteatega tähtkirjaga.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para32lg6">
+						<loigeNr id="656d6dad-d721-489f-bb56-e4da185902a3">6</loigeNr>
+						<kuvatavNr id="8726dcc5-7193-44ae-b228-fe01cf7cc2e3"><![CDATA[(6)]]></kuvatavNr>
+						<sisuTekst id="e51f1611-8600-4811-9a11-35b17dd9add3">
+							<tavatekst id="3ae567af-c8f5-4dc0-a633-bd2e89f80639">Kui isik ei tagasta tagasinõutavat summat ettekirjutuses sätestatud tähtaja jooksul, on hüvitise andjal õigus anda ettekirjutus sundtäitmiseks täitemenetluse seadustikus sätestatud korras.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para33">
+					<paragrahvNr id="91c1342e-bdd9-4340-b5e3-cdb06428061c">33</paragrahvNr>
+					<kuvatavNr id="1de0cf4b-7c76-4737-9e8f-28e0d0f62ef4"><![CDATA[§ 33. ]]></kuvatavNr>
+					<paragrahvPealkiri id="6a4bbf72-6ecc-4474-9656-644b35daa701">Viivis</paragrahvPealkiri>
+					<loige id="para33lg1">
+						<loigeNr id="49510007-c02c-413a-b917-e3503b0ecb97"/>
+						<kuvatavNr id="9673fe93-0b61-48c4-adb0-1430d5e5b975"/>
+						<sisuTekst id="37c6ab40-a689-4e08-9781-eb664b98919a">
+							<tavatekst id="369d337e-418a-459f-949f-07b708961d2f">Hüvitise andjal on hüvitise andmiseks alusetult tehtud kulutuste tagastamisega viivitamise korral õigus nõuda tasumata summalt viivist võlaõigusseaduse § 113 alusel.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para34">
+					<paragrahvNr id="9fc8b93b-57f8-4304-ab51-53f25e5d4fa7">34</paragrahvNr>
+					<kuvatavNr id="054cdb75-5bfb-474f-a740-5305516b8464"><![CDATA[§ 34. ]]></kuvatavNr>
+					<paragrahvPealkiri id="0b4eaea1-ba07-4d05-9f5b-95862e008560">Tasaarvestus</paragrahvPealkiri>
+					<loige id="para34lg1">
+						<loigeNr id="ee7a5b35-efac-44ca-9c28-96b9796f17e9">1</loigeNr>
+						<kuvatavNr id="b44ffc23-3549-45b5-9db2-3c6fb561e192"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="69c8109e-29f0-4897-9be4-5a39e6ed0da6">
+							<tavatekst id="785b8306-aad3-48f4-93ed-45207ccf0d72">Hüvitise andjal on õigus hüvitise andmiseks alusetult tehtud kulutuste tagasinõue tasaarvestada sama hüvitise andja poolt isikule antava sama või muu rahalise hüvitise nõudega võlaõigusseaduse § 197 alusel. Käesoleva seaduse § 15 punktides 1 ja 2 nimetatud hüvitise andja võib alusetult tehtud kulutuste tagasinõude tasaarvestada üksnes hüvitise andja nimel tagasinõuet esitava sama asutuse või isiku poolt isikule antava sama või muu rahalise hüvitise nõudega, kui seadus ei sätesta teisiti.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para34lg2">
+						<loigeNr id="98561bcd-bb7c-42c8-8b0c-49f105f0a407">2</loigeNr>
+						<kuvatavNr id="e2c43501-9b2f-4d82-be08-0d01a6d00eea"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="86cc9f79-aa07-4dc4-b05e-086c434ab49b">
+							<tavatekst id="b305daf7-30e6-456e-bf0b-6f536945b1a6">Tagasinõude tasaarvestus ei ole lubatud isiku sissetulekult, millele ei ole täitemenetluse seadustiku § 131 kohaselt lubatud pöörata sissenõuet, kui seadus ei sätesta teisiti.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para35">
+					<paragrahvNr id="87dadfe2-1f1b-4c76-ada4-8c8c544b0ab9">35</paragrahvNr>
+					<kuvatavNr id="3709a287-c5d5-4bb9-a403-4220662e2d08"><![CDATA[§ 35. ]]></kuvatavNr>
+					<paragrahvPealkiri id="70c897f5-f187-4dae-8a35-5d27f4991151">Tagasinõude tähtajad</paragrahvPealkiri>
+					<loige id="para35lg1">
+						<loigeNr id="8370e686-2261-43b2-b91a-e944ab6dbe33">1</loigeNr>
+						<kuvatavNr id="1d0baeb1-b2a6-442d-926d-739a96068987"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="98d3c703-7adf-4acd-a0c1-4b2a3cea1f84">
+							<tavatekst id="9262aeae-1713-40ef-bc0a-59d5732fe24a">Hüvitise andmiseks alusetult tehtud kulutuste tagasinõudmisele ja tasaarvestamisele kohaldatakse tsiviilseadustiku üldosa seaduses aegumistähtaegade kohta sätestatut.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para35lg2">
+						<loigeNr id="c783cccb-0a1e-4c49-a92f-c2a1e49cee7b">2</loigeNr>
+						<kuvatavNr id="ad2227a9-254a-4bff-82a8-1208672c99f3"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="aa8baa30-9536-4d09-8f22-f9d442598bf0">
+							<tavatekst id="2db9a7a0-04e0-4008-99bd-aaa5b0620edb">Tagasinõude ettekirjutuse sundtäitmise aegumistähtaeg on seitse aastat. Aegumistähtaeg algab tagasinõude täitmise tähtpäeva saabumise aastale järgneva aasta 1. jaanuaril.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg8">
+				<jaguNr id="fba0d962-3cd6-4834-bb09-b06bac4103d2">3</jaguNr>
+				<kuvatavNr id="dd15d768-9858-4c42-a841-88a26af05961"><![CDATA[3. jagu]]></kuvatavNr>
+				<jaguPealkiri id="9fa0d463-ea40-4bb7-a421-41e194df1b6c">Vaidemenetluse erisused</jaguPealkiri>
+				<paragrahv id="para36">
+					<paragrahvNr id="ce014085-3803-48ed-abb8-fbdcfb8ee805">36</paragrahvNr>
+					<kuvatavNr id="c463f54d-7e7b-4791-b6ca-c91b4e5cbcc8"><![CDATA[§ 36. ]]></kuvatavNr>
+					<paragrahvPealkiri id="3312ab14-6b34-411b-bc8b-aac34d93493b">Vaidemenetluse erisused</paragrahvPealkiri>
+					<loige id="para36lg1">
+						<loigeNr id="8497a293-13e6-4309-b864-4ad05c1b55f9">1</loigeNr>
+						<kuvatavNr id="6024d535-1309-4e93-953f-ed6ebecec9c8"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="3ba94b8f-6475-44df-b1e8-2e04cf3d6f7f">
+							<tavatekst id="4228f2a7-3fa2-4b56-96dd-bd178bf4cc54">Vaie sotsiaalkaitse korraldamisel tehtud otsuse või toimingu peale esitatakse otsuse teinud või toimingu sooritanud haldusorganile, kui seadus ei sätesta teisiti.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para36lg2">
+						<loigeNr id="d585433b-9010-485f-8305-0be7a7404974">2</loigeNr>
+						<kuvatavNr id="1b943b47-0359-4d70-84e5-ac731c6df4ea"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="d22ac025-e608-4332-8241-3787dde295ed">
+							<tavatekst id="0318898c-b365-4130-a905-c60c240ef149">Vaie lahendatakse haldusmenetluse seaduses sätestatud korras 30 päeva jooksul arvates vaide esitamisest vaiet läbivaatavale haldusorganile, kui seadus ei sätesta pikemat tähtaega. Vaide läbivaatamise tähtaega võib pikendada haldusmenetluse seaduses sätestatud korras.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+		</peatykk>
+		<peatykk id="ptk4">
+			<peatykkNr id="1bc99a2e-f775-4526-894c-e2ea3900f03b">4</peatykkNr>
+			<kuvatavNr id="2cc54013-0d15-4dd3-ab57-af5f07e48720"><![CDATA[4. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="739690f6-d532-4140-860b-dda48dcaf268">Sotsiaalkaitse rahastamine</peatykkPealkiri>
+			<paragrahv id="para37">
+				<paragrahvNr id="1cc677e4-f359-4783-bbe8-0b0e6e1d1de5">37</paragrahvNr>
+				<kuvatavNr id="73ca26a2-6a14-408e-841d-1153f3d31374"><![CDATA[§ 37. ]]></kuvatavNr>
+				<paragrahvPealkiri id="bcc28b6c-c29c-4405-bede-30be27938c39">Sotsiaalkaitse rahastamine</paragrahvPealkiri>
+				<loige id="para37lg1">
+					<loigeNr id="64033ab4-847d-4b29-a2ae-fdb040b31fb8"/>
+					<kuvatavNr id="b4f62d08-40df-4137-a3be-a0a15428f9bb"/>
+					<sisuTekst id="8dde476c-3ac1-444f-8a9b-699542f0e9b9">
+						<tavatekst id="b0771c43-681a-4e03-973e-f438dd635699">Sotsiaalkaitse rahastamise korraldus sätestatakse seaduses.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk5">
+			<peatykkNr id="2a4edbcb-0685-43d0-8964-9cf3751af180">5</peatykkNr>
+			<kuvatavNr id="fae58120-4eb0-4f3f-85b6-ce35ce0b3895"><![CDATA[5. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="a1afeceb-edd8-4281-809a-21816b7eb08b">Sotsiaalkaitse infosüsteem</peatykkPealkiri>
+			<muutmismarge id="9dc3e612-8268-4ab0-a676-ba628d738f6b">
+				<avaldamismarge id="2018f723-4587-412b-aab5-4c4ba5fafe4f">
+					<RTosa id="b1c8dbe4-cfad-49c6-8704-def47dd66a17">RT I</RTosa>
+					<avaldamineKuupaev id="cc1fced8-1f2a-42e4-9703-fa4d18c1ac6c">2015-12-30</avaldamineKuupaev>
+					<RTartikkel id="5cf72f8e-a26e-4679-b9cb-9f632a670e61">3</RTartikkel>
+					<aktViide id="598c8921-db07-4ad1-aa4c-c7ea2758b440">130122015003</aktViide>
+				</avaldamismarge>
+				<joustumine id="b3ceacca-4f98-4e66-bef1-0b595ea3683e">2017-01-01</joustumine>
+			</muutmismarge>
+			<paragrahv id="para38">
+				<paragrahvNr id="5bf2a407-b4ea-4476-b77d-2d0050609d3e">38</paragrahvNr>
+				<kuvatavNr id="a9ecaf8d-83cd-4b87-9625-271bef3b7d02"><![CDATA[§ 38. ]]></kuvatavNr>
+				<paragrahvPealkiri id="6828944c-57b1-438a-b841-9d9ee7900f82">Sotsiaalkaitse infosüsteem</paragrahvPealkiri>
+				<loige id="para38lg1">
+					<loigeNr id="38e6ced7-329b-4a90-b976-c6a517da8ea3">1</loigeNr>
+					<kuvatavNr id="46a5ca30-928b-4d14-8de8-b24fa5b50793"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="20b96e1d-bc4f-45e9-b015-b5ba3decebf8">
+						<tavatekst id="10016a72-4fab-42d2-95b0-ae76763ae36a">Sotsiaalkaitse infosüsteemi (edaspidi <i>infosüsteem</i>) pidamise eesmärk on seadustest tulenevate Sotsiaalkindlustusameti avalike ülesannete täitmine, sealhulgas:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para38lg1p1">
+						<alampunktNr id="b6965b6a-a135-4fc2-aff2-0d9cf15a54f3">1</alampunktNr>
+						<kuvatavNr id="eb0e2e87-c53a-463c-b582-4df9fa2fa740"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="771f80d0-a6e0-45c5-8e07-1314320cfc5a">
+							<tavatekst id="73bf6e0e-4f3f-4772-95ad-11fa45bc4386">riiklike toetuste, pensionide, hüvitiste ning elatisabi pakkumine, määramine ja maksmine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para38lg1p2">
+						<alampunktNr id="29d0de3b-f3cd-448a-abc6-236e2c0ab3fc">2</alampunktNr>
+						<kuvatavNr id="499d8313-9865-4380-9591-e81228b886b9"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="82f1fae2-7d45-41c7-bb33-87ed4d471636">
+							<tavatekst id="b0737a36-8864-41a6-a969-5f078d31fc7e">ohvriabi teenuse osutamise, puude raskusastme tuvastamise, abivahendi-, sotsiaalse rehabilitatsiooni ja erihoolekandeteenuse korraldamine;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="f5bed5f2-c724-4a12-9797-9d4501bfbb42">
+							<avaldamismarge id="e11c6b53-5872-44bd-8844-b854ee1770db">
+								<RTosa id="52f8b1f3-0db7-44c4-b651-201ff76c30f8">RT I</RTosa>
+								<avaldamineKuupaev id="3b709f2d-153b-4b81-a261-8f1dc917c625">2023-01-06</avaldamineKuupaev>
+								<RTartikkel id="01448ac9-e99c-4044-bc03-91f42e61fdff">1</RTartikkel>
+								<aktViide id="b150b514-40e6-45e6-b64f-821fa0a5af2d">106012023001</aktViide>
+							</avaldamismarge>
+							<joustumine id="1c1e6aaa-f4e2-4688-853a-ecb97306c6cc">2023-01-16</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para38lg1p3">
+						<alampunktNr id="a78ae423-58ab-4335-88c0-f81be9492818">3</alampunktNr>
+						<kuvatavNr id="6187ccba-2010-4719-ab5f-f4a2c0a7cc98"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="443bafaa-4706-492b-982e-94dc1fb7b44a">
+							<tavatekst id="e0748d69-01da-4fc1-95ce-9aca12906253">ülesannete analüüsimine ja statistika tegemine, sealhulgas pensioniinfo avaldamine;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="3e89fb4f-73ed-425c-b4b8-9258444bd647">
+							<avaldamismarge id="fa55b09a-61db-4dce-9974-4a68395a473b">
+								<RTosa id="a20d94f4-4037-49bd-918f-1e6834c1b765">RT I</RTosa>
+								<avaldamineKuupaev id="cce412b3-a2be-4d4d-96b8-8275d24b6c89">2025-12-30</avaldamineKuupaev>
+								<RTartikkel id="25bc8cc1-71d9-4aea-ace8-ae0422949fb1">3</RTartikkel>
+								<aktViide id="afd7fa8b-dcc6-4487-bfaa-46b98bb21589">130122025003</aktViide>
+							</avaldamismarge>
+							<joustumine id="8418af84-58f1-44a8-add7-fb7a294f970a">2026-01-09</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para38lg1p4">
+						<alampunktNr id="c804184f-783b-444b-b23b-25d7596a17cb">4</alampunktNr>
+						<kuvatavNr id="a3b140bc-3f87-49f5-8b20-b54035e2378a"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="a03a0413-9b0a-4b70-9b88-ade48c5b327c">
+							<tavatekst id="8ae7d504-b307-4df8-a2fc-cc44d18f08e0">isikutele teabe andmine nendega seotud õiguste, kohustuste ja menetluste kohta.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="63b9d170-00d0-4a0e-87c2-404f9c9421b1">
+							<avaldamismarge id="d81c4e80-6407-483d-addb-bf4bf8483964">
+								<RTosa id="87837b75-2341-4a84-b0c6-f6c2ace00bcc">RT I</RTosa>
+								<avaldamineKuupaev id="c06eb60e-8b3c-42f4-bf4d-4c9ebdd898c3">2025-12-30</avaldamineKuupaev>
+								<RTartikkel id="6cc01a9d-66c5-4485-91d5-500ede4f42b8">3</RTartikkel>
+								<aktViide id="e8f03382-b91d-4caa-9edb-a9b6167b0364">130122025003</aktViide>
+							</avaldamismarge>
+							<joustumine id="3a474b11-8d64-42db-a2b4-af866c2e7bfa">2026-01-09</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para38lg2">
+					<loigeNr id="0990dedd-0adf-4cde-b1f3-3b81ef95d2ca">2</loigeNr>
+					<kuvatavNr id="34110693-565e-4541-8a4d-60d46449d602"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="a65be411-4eb2-4485-837e-0f2a2e4d809f">
+						<tavatekst id="fc21b501-f300-4cf1-9823-5a3502069f7c">Infosüsteemi põhimääruse kehtestab </tavatekst>
+						<viide id="d23d4c23-2b14-47e0-9479-fd2352b7b239">
+							<kuvatavTekst id="1dc62639-e34b-402a-9119-3a005f879078"><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID id="ffd4a0cb-46e2-4de4-bf70-23119c386f4b">
+								<viideURI id="717e6ed8-653d-4fb0-9fac-469a85ac903f"><![CDATA[./dyn=130122025036&id=107032019007]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst id="18f4f6ee-b1e1-46bc-8110-42e34d8ad9e7"> määrusega, milles sätestatakse:</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="96b6c7c8-9df4-491c-9afc-01a4acdd67b5">
+						<avaldamismarge id="4a7b08a5-9d14-4a0a-bf30-7214160f5001">
+							<RTosa id="ae10cac0-0f35-4bd3-b781-e0d1d80ae384">RT I</RTosa>
+							<avaldamineKuupaev id="55e0a833-29c9-4047-8821-ab922f8cdf47">2025-12-30</avaldamineKuupaev>
+							<RTartikkel id="0f8da41b-9f08-4f7f-9c90-49fe76a853a6">3</RTartikkel>
+							<aktViide id="69e17264-118a-4aed-ab71-c9d4cb81a1cf">130122025003</aktViide>
+						</avaldamismarge>
+						<joustumine id="a74895e7-7e48-4565-b6f4-4bf566e7fda5">2026-01-09</joustumine>
+					</muutmismarge>
+					<alampunkt id="para38lg2p1">
+						<alampunktNr id="10c35fe7-60f8-4e70-8a83-815acb6e1778">1</alampunktNr>
+						<kuvatavNr id="9810e9b0-5435-468a-ac63-c5ecabb358a1"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="108e1ea8-1b05-4547-ae9a-ccaca7e2bac3">
+							<tavatekst id="cb19de20-0cf0-41f3-92a9-30040c0946e4">volitatud töötleja;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para38lg2p2">
+						<alampunktNr id="3aaef288-ebc3-4905-b583-bc9cf5a88475">2</alampunktNr>
+						<kuvatavNr id="6ea14c35-aadd-4187-8145-5dccd2a1f776"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="e1d883f6-a98b-4f74-a7d9-a4476373defd">
+							<tavatekst id="664ce0d8-bd94-4404-9526-8185467cc4bd">vastutava ja volitatud töötleja ülesanded;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para38lg2p3">
+						<alampunktNr id="b5abb94c-b032-41ab-8d10-3274eafce43c">3</alampunktNr>
+						<kuvatavNr id="dfac2634-6d49-4fed-a091-72ac84bc3fb3"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="99a974bf-b8b9-4de0-b2e0-e82151734337">
+							<tavatekst id="9e7559c6-7553-401f-8cbc-9d1c6e6fa799">andmeandjad, kogutavate andmete täpsem koosseis ja nende infosüsteemi kandmise kord;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para38lg2p4">
+						<alampunktNr id="cd230c65-f6c0-4ed7-ab7c-0add19c1fe9b">4</alampunktNr>
+						<kuvatavNr id="c9a88ca4-bea2-49b5-a92c-ebbb09ab696e"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="ae49450b-c995-4cfc-a16c-57c17f98d74b">
+							<tavatekst id="14dfa322-f51e-4323-936b-d6969bf265b4">andmetele juurdepääsu ja andmete väljastamise kord;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para38lg2p5">
+						<alampunktNr id="ec947a0e-f052-4cfb-9f52-8910690a3f62">5</alampunktNr>
+						<kuvatavNr id="ec0be70f-a800-48c1-8850-db757885e142"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="3df647d0-38fc-4ed1-a85e-afb73d9618ea">
+							<tavatekst id="fc1264ea-7376-4537-bece-85ba98dd4801">andmete säilitamise liigid ning nende täpsem säilitamise kord;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para38lg2p6">
+						<alampunktNr id="65d90387-36aa-4b8f-8dcf-9bd30d1c1478">6</alampunktNr>
+						<kuvatavNr id="ac301eaf-2cd5-4ef6-89ca-a02055aac7cb"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="87fc46ab-8c13-49fb-9333-b9dc01659592">
+							<tavatekst id="95d1d228-a381-4379-ab8e-d871f8eacfbb">muud korraldusküsimused.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para38lg3">
+					<loigeNr id="1ec65042-fa19-43c5-a1ba-2adc53c9d72a">3</loigeNr>
+					<kuvatavNr id="caecfa81-6280-42a6-b9f1-6b7a16c1cd31"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="2a9f08f1-a700-463c-90b3-68d74497d2db">
+						<tavatekst id="7779674a-fdbb-4005-9074-28916f471b32">Infosüsteemi vastutav töötleja on Sotsiaalkindlustusamet.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="d2828f6d-dbb7-4175-8665-666b41ef37db">
+						<avaldamismarge id="c3420ad3-9b7c-4e76-bb46-f0fd9c36d175">
+							<RTosa id="6b6c8461-fb28-434b-bfe5-cddb8da42dc9">RT I</RTosa>
+							<avaldamineKuupaev id="d93364b3-8052-4113-8cc9-01b0de850ecb">2019-03-13</avaldamineKuupaev>
+							<RTartikkel id="aef1a28c-5c37-4583-91e4-9c728e045959">2</RTartikkel>
+							<aktViide id="4d805769-c5e6-4b82-87f3-984f410ec8eb">113032019002</aktViide>
+						</avaldamismarge>
+						<joustumine id="c96ec401-43a1-4fa2-84c8-9693d28cc9ee">2019-03-15</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para39">
+				<paragrahvNr id="7b0f8473-cf72-4d98-bf0d-5c2d41cb7008">39</paragrahvNr>
+				<kuvatavNr id="c56adca5-7ac3-4192-9eba-48dbfcb385e7"><![CDATA[§ 39. ]]></kuvatavNr>
+				<paragrahvPealkiri id="16e56fe4-4950-471d-ba30-70cc58580319">Infosüsteemi andmed</paragrahvPealkiri>
+				<loige id="para39lg1">
+					<loigeNr id="7fca16c1-bc0f-41cd-9749-d9d75745c70d">1</loigeNr>
+					<kuvatavNr id="976d5283-795f-4121-86f4-b0e614cb76e0"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="8ba608c2-d195-4287-95f7-34149b3bb830">
+						<tavatekst id="2fedc526-172b-45c1-a80d-8d93aee62f34">Infosüsteemis töödeldakse järgmisi andmeid:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para39lg1p1">
+						<alampunktNr id="ba1a8759-8af3-45aa-8e95-74894972cb1a">1</alampunktNr>
+						<kuvatavNr id="2f4e11f6-53b0-4319-b841-e96c7db4af85"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="3d544c43-18a7-48bb-874d-b8d02ce488db">
+							<tavatekst id="3febba2b-32fd-4ea1-b1ab-43ce0da263d4">isiku üldandmed, isiku surm, surnuks või teadmata kadunuks tunnistamise fakt, elamisloa ja -õiguse andmed, andmed eestkoste või hooldusõiguse kohta ning andmed Eesti Vabariiki saabumise ja siit lahkumise kohta;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="8b4775d9-9211-45ae-98b0-8f1ffa7b895d">
+							<avaldamismarge id="a978f8c1-268e-4d3f-86f4-6884770ff5bd">
+								<RTosa id="02126bb3-efea-4ede-999f-2e2f306114e0">RT I</RTosa>
+								<avaldamineKuupaev id="7481f795-fef6-4463-bbc3-d816c2cc5c0f">2025-12-30</avaldamineKuupaev>
+								<RTartikkel id="ed629791-9c28-419a-9116-6cb9b21ca942">3</RTartikkel>
+								<aktViide id="3b49ba4b-138f-49f2-945f-fefbb39ccfa4">130122025003</aktViide>
+							</avaldamismarge>
+							<joustumine id="544a3dce-8789-48cd-8ce3-8b63a7ae7dc4">2026-01-09</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para39lg1p2">
+						<alampunktNr id="36c6f366-fe2a-4213-a86d-2291a99c3961">2</alampunktNr>
+						<kuvatavNr id="a6c91a34-ace3-40e7-8fa5-7a9d3c201b58"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="74fac8b8-8027-4cf1-9061-6ed3e2a66310">
+							<tavatekst id="c1a11584-12cf-4003-a85f-6ca2a8b32ad7">alusandmed isikule riikliku toetuse, pensioni, hüvitise, elatisabi ning teenuse määramise ja maksmise kohta, samuti andmed pensioniks kogutud õigustest ülevaate saamiseks ning pensioni suuruse arvutamiseks ja prognoosimiseks;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="73d0d9ef-047f-4479-bd03-ce478e55bb84">
+							<avaldamismarge id="ca22469c-8037-478a-9f53-c9e1569cd8b8">
+								<RTosa id="17c61dca-bb69-4a5d-a159-0d19c014ec33">RT I</RTosa>
+								<avaldamineKuupaev id="2971de62-5254-4a61-9044-732cb9538f87">2025-12-30</avaldamineKuupaev>
+								<RTartikkel id="f7c6702d-49c0-41bc-a20f-8d989e968437">3</RTartikkel>
+								<aktViide id="4a4beb03-72c1-49b5-95b9-8f0b59cc3c92">130122025003</aktViide>
+							</avaldamismarge>
+							<joustumine id="505f30ab-231a-4dcf-9760-da72a09e9700">2026-01-09</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para39lg1p3">
+						<alampunktNr id="d0c9c835-a05e-4542-89a0-60f8fc0fdeec">3</alampunktNr>
+						<kuvatavNr id="ab035b8c-3a86-44e6-99ab-448eb6aeef9f"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="79cc9331-29c5-4c67-940e-ddc0c11844a8">
+							<tavatekst id="37bf3093-402b-4941-bf01-91c6b73a0cbe">andmed isikule riikliku toetuse, pensioni, hüvitise, elatisabi ning teenuse määramise, maksmise, peatamise, lõpetamise või sellest keeldumise ja kinnipidamise kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para39lg1p4">
+						<alampunktNr id="575c8ebc-4647-4b9d-9e07-31564113ff2f">4</alampunktNr>
+						<kuvatavNr id="97d2934b-093c-43c8-b692-b4b4c27632a4"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="cadbc1f4-2241-4a6a-b1e7-65521aad20d2">
+							<tavatekst id="752b6c67-79f3-4d65-a488-bf9f218cf77f">andmed sotsiaalteenuse osutaja kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para39lg1p5">
+						<alampunktNr id="6edbf465-ff16-4cb2-aad6-5127d00e648d">5</alampunktNr>
+						<kuvatavNr id="d13ef0ef-54c2-4c7f-9467-c2a2443435d1"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="eff1561b-edae-4951-bd11-53ab09fbfc4e">
+							<tavatekst id="f3d1e53c-86fe-47be-952a-aabde0f5ba02">isiku maksualased andmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para39lg1p6">
+						<alampunktNr id="05f1cbac-2a0a-42a2-84ad-42b36ccd74b4">6</alampunktNr>
+						<kuvatavNr id="7d7cbedd-0090-49fb-aa61-9edcd56bedf7"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="eed7846c-07ed-4925-81fa-e8f3cbf8d074">
+							<tavatekst id="1eb34a40-eafa-4ca1-81d5-ca20626aeff1">andmed isiku terviseseisundi ja puude kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para39lg1p7">
+						<alampunktNr id="728c896d-f540-44c2-9887-4f327a519ba1">7</alampunktNr>
+						<kuvatavNr id="3c3f4b39-1054-4aa0-8e9a-4b79cb6190ca"><![CDATA[7) ]]></kuvatavNr>
+						<sisuTekst id="d255b208-2b64-4f20-8e64-d52efe1ebf99">
+							<tavatekst id="98aad062-6f32-4a25-afd9-1cb17ecfc815">andmed isiku töötamise, töölähetuse ja ettevõtlusega tegelemise kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para39lg1p8">
+						<alampunktNr id="56d025f7-36ed-42a3-b189-fd39a83c8689">8</alampunktNr>
+						<kuvatavNr id="6d951417-2456-4a6f-85c7-c5677b38fc95"><![CDATA[8) ]]></kuvatavNr>
+						<sisuTekst id="f6f2fe9e-0662-496c-ba12-80af4048632d">
+							<tavatekst id="7550594f-f14f-4d39-ad40-71d2fbe53783">andmed represseeritu tunnistuse, puudega isiku kaardi ja pensionitunnistuse väljastamise kohta.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="015d28e9-84e7-48b7-b1f5-887bdf39461c">
+							<avaldamismarge id="3928572a-c974-4519-b900-a625619ee914">
+								<RTosa id="233b35f7-6d31-40eb-9a7e-c5e158aabcc1">RT I</RTosa>
+								<avaldamineKuupaev id="5cb85ed6-5cb6-40a3-bb9a-bc7cc1f94660">2015-12-30</avaldamineKuupaev>
+								<RTartikkel id="58f5f479-1441-4d3f-91c7-f5a2f46eade9">3</RTartikkel>
+								<aktViide id="f004490d-d3d9-48c9-838f-6a2663f4c5bb">130122015003</aktViide>
+							</avaldamismarge>
+							<joustumine id="b9d1a734-ee45-49ec-aa29-2ce56649d049">2017-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para39lg2">
+					<loigeNr id="46e61ac1-89e3-48df-a47e-93a570c2f4f2">2</loigeNr>
+					<kuvatavNr id="eb762b7b-261a-485d-8a85-f7509943b62f"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="11e01996-d1b4-4aac-a350-98f2ac2a4776">
+						<tavatekst id="7dec633a-6aa8-44ce-b339-de4381086288">Infosüsteemi andmeid säilitatakse järgmiselt:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para39lg2p1">
+						<alampunktNr id="a91ee53c-fd06-47bb-9d65-87f255552267">1</alampunktNr>
+						<kuvatavNr id="2b4c9f45-7e00-4618-8e51-92727630f82d"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="e7e545ba-5d90-4d68-9377-2b4e23dcc52f">
+							<tavatekst id="3839a797-67b5-4337-abba-827342a29f1e">riiklike pensionide määramise ja maksmise alusandmeid säilitatakse 75 aastat pärast isiku surma;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para39lg2p2">
+						<alampunktNr id="a39cfb75-1e5a-49a2-bef8-b83e1216f92f">2</alampunktNr>
+						<kuvatavNr id="6809ca3b-0cf6-49b2-b0cd-a680eb3ed9d7"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="3fd40ac0-716a-4322-824e-e30127b5382e">
+							<tavatekst id="ddfa358d-5129-4a7b-a7f8-e1d5892a8c6d">riiklike toetuste, hüvitiste, elatisabi ja ohvriabi, abivahendi-, sotsiaalse rehabilitatsiooni ning erihoolekandeteenuse andmeid säilitatakse kümme aastat pärast vastava õiguse lõppemist;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para39lg2p3">
+						<alampunktNr id="a18fc77b-2ce9-49d1-bc28-e92f1abeb14d">3</alampunktNr>
+						<kuvatavNr id="a213522c-6efc-46a4-a4b5-b67f29d7286e"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="64f18289-f86e-47a0-aa14-04c6d3fa14aa">
+							<tavatekst id="a8ac56b9-7669-42f3-b007-10b4b28fcb6b">puude raskusastme tuvastamise ja otsuse andmeid, välja arvatud käesoleva paragrahvi punktis 4 sätestatud andmeid, säilitatakse kümme aastat pärast isiku surma;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para39lg2p4">
+						<alampunktNr id="7c53f3fa-c348-4edb-b3fa-48ed3440e2c6">4</alampunktNr>
+						<kuvatavNr id="7ee9846a-10dc-41e3-80e0-40e471a76030"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="3a9c2c24-396a-4ccb-87e5-1431a49ada18">
+							<tavatekst id="81b3f7b4-85e8-4e5b-baf8-a7c6a23b9081">lapse puude raskusastme tuvastamise otsuse andmeid säilitatakse 60 aastat pärast lapse viimase puude raskusastme tuvastamise otsuse kestuse lõppemist;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para39lg2p5">
+						<alampunktNr id="27b6158b-371c-431c-8393-9427732727ae">5</alampunktNr>
+						<kuvatavNr id="414c8bd9-4282-434a-928f-0d8a1df7e33f"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="d79e477a-d89d-41cc-9fed-e8752171d30d">
+							<tavatekst id="b18a39e2-cd7a-415a-88ff-fe34bafeb942">lapsinvaliidsuse tuvastamise andmeid ja lapseea invaliidsuse tuvastamise andmeid säilitatakse 50 aastat pärast lapsinvaliidsuse või lapseea invaliidsuse viimase ekspertiisiotsuse kestuse lõppemist;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para39lg2p6">
+						<alampunktNr id="ea6d8d0a-ed92-4e12-94e4-f1bf9331fe53">6</alampunktNr>
+						<kuvatavNr id="75c0b4b6-835c-4c15-9fd1-b3fe473dd8c0"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="f0b78362-be00-4ec3-a770-f04968df9e94">
+							<tavatekst id="a74a7154-8ae9-4518-9b3a-12de0bce0e46">logid säilitatakse vastavalt infosüsteemi põhimääruses sätestatule.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="822b7aae-1449-4a60-9df7-c1accf5b28cc">
+							<avaldamismarge id="cf736805-8b03-4e65-bbde-b5e9fae589e4">
+								<RTosa id="d722fec7-96c4-460c-bc31-59ae7ea8e86c">RT I</RTosa>
+								<avaldamineKuupaev id="b33b8bd6-e2c5-4a7d-b46e-49560aac532b">2019-03-13</avaldamineKuupaev>
+								<RTartikkel id="a14605e4-9018-4bad-9aaa-bd0fc6dadebd">2</RTartikkel>
+								<aktViide id="579faa55-4485-4e3f-afb4-0a327d9031a7">113032019002</aktViide>
+							</avaldamismarge>
+							<joustumine id="877ce481-0121-42ae-be1a-831eee35d7da">2019-03-15</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para39lg3">
+					<loigeNr id="ddcde6bc-a287-4a8c-af55-90dabeef379b">3</loigeNr>
+					<kuvatavNr id="906c0982-bb83-4903-89ad-b6202d2f554c"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="266a6db1-72cd-431a-9937-8286602fff79">
+						<tavatekst id="759a432a-5a5e-47d0-9826-b2314b37c34b">Käesoleva paragrahvi lõike 2 punktides 1–5 sätestatud säilitustähtaegade möödumisel andmed anonüümitakse.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="2f10fd24-7a39-4a89-80fd-e263013456da">
+						<avaldamismarge id="23230dd4-af1b-45e5-8ac7-6055e3bab482">
+							<RTosa id="4891e08d-6f2c-4ad1-a4df-6e543ae7c2d7">RT I</RTosa>
+							<avaldamineKuupaev id="17ee52b5-9fa1-4f6b-b314-877dae0b92b2">2019-03-13</avaldamineKuupaev>
+							<RTartikkel id="2b996454-1e67-483f-8079-0d1727a02cab">2</RTartikkel>
+							<aktViide id="b200cb92-bc93-44d1-b800-2afd378c1c5d">113032019002</aktViide>
+						</avaldamismarge>
+						<joustumine id="1c3cee26-5ccb-4c52-a3d8-93b8587f92b6">2019-03-15</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para39b1">
+				<paragrahvNr id="5c71430b-2d5e-409c-9740-5494809a1a0c" ylaIndeks="1">39</paragrahvNr>
+				<kuvatavNr id="de262c66-0564-4617-a98c-48ac89c3d5c2"><![CDATA[§ 39<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri id="5c0231b0-67e1-4826-878b-a0e25cd1da95">Sotsiaalministeeriumi ning Majandus- ja Kommunikatsiooniministeeriumi juurdepääs andmetele</paragrahvPealkiri>
+				<loige id="para39b1lg1">
+					<loigeNr id="aecc8063-69d9-4416-bf6f-d517fca81d7f"/>
+					<kuvatavNr id="fc3b3ce9-5e4b-483a-aeb1-779ab51ef0cc"/>
+					<sisuTekst id="adbf86e4-01fc-4f85-a6c7-d2164ddb2022">
+						<tavatekst id="8e6abfe1-4d77-4693-abae-85a5cb7f53d4">Sotsiaalministeeriumi tervise- ja sotsiaalvaldkonna eest vastutavatel ja analüüsi tegevatel ametnikel ning Majandus- ja Kommunikatsiooniministeeriumi töövaldkonna eest vastutavatel ja analüüsi tegevatel ametnikel on õigus töödelda poliitika kujundamiseks ja statistika koondamiseks infosüsteemi kantud isikuandmeid, ilma et isik oleks otseselt tuvastatav. Töödeldavateks andmeteks on käesoleva seaduse § 39 lõikes 1 nimetatud isikuandmed, välja arvatud isikukood, ees- ja perekonnanimi ning kontaktandmed.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="d5271d21-10be-41aa-b727-83f6ccb301c0">
+						<avaldamismarge id="02030a14-d638-434c-9428-82bdb71af700">
+							<RTosa id="a5863801-1fa0-4f89-8943-bf7ec7a68b7e">RT I</RTosa>
+							<avaldamineKuupaev id="7222e599-5272-4564-8e60-24ec6217a813">2025-06-12</avaldamineKuupaev>
+							<RTartikkel id="4a5e2a35-d154-4ecb-8c2d-20f43c61b976">1</RTartikkel>
+							<aktViide id="83bdfd7f-5463-4928-b11f-899a7f81fbf7">112062025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="49bb77cb-1bc7-447a-9f3a-cd3828e45c68">2025-06-22</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para39b2">
+				<paragrahvNr id="fa09ce58-33c3-41f6-9322-d136ed01df91" ylaIndeks="2">39</paragrahvNr>
+				<kuvatavNr id="8c5ea6ef-96ad-498d-853e-01ae32995448"><![CDATA[§ 39<sup>2</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri id="f673c835-1ff6-4b0a-9089-02e55269f2a5">Infosüsteemi kantud ohvriabile suunamise andmete säilitamine</paragrahvPealkiri>
+				<loige id="para39b2lg1">
+					<loigeNr id="f0e5ab49-97a4-4125-b9ba-519b6e23ad67"/>
+					<kuvatavNr id="abdad628-e61c-4b56-9661-e74ac1adb8de"/>
+					<sisuTekst id="c30f9b4b-b869-4390-85e1-a33096ad6028">
+						<tavatekst id="7c8b0d0e-cfed-4990-8d30-8c42cbfa47ca">Kuni 2023. aasta 1. aprillini kogutud ohvriabile suunamise andmed arhiveeritakse hiljemalt 2024. aasta 1. aprillil ja neid säilitatakse kümme aastat pärast ohvriabi saamise õiguse lõppemist. Pärast nimetatud tähtaja möödumist andmed anonüümitakse.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="03c2bd7d-9cb0-4dab-8e67-1fc8747f1fad">
+						<avaldamismarge id="4fcae57e-c0c6-4801-ba2f-7cd37a5ee956">
+							<RTosa id="5c576b16-4b27-4a4c-a593-306473b41807">RT I</RTosa>
+							<avaldamineKuupaev id="d9b4fc2a-5ba7-4b6d-8ddd-787f7bf9305a">2023-01-06</avaldamineKuupaev>
+							<RTartikkel id="aefe1482-d1b0-4da3-b5e8-5c2bc5e2211b">1</RTartikkel>
+							<aktViide id="c2429b83-faac-4034-a919-3a3efdf2d285">106012023001</aktViide>
+						</avaldamismarge>
+						<joustumine id="60c07d89-7fe9-413b-a55b-09355b65d0f9">2023-01-16</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk6">
+			<peatykkNr id="330f0c13-959f-4be3-b171-e4c9730a7981">6</peatykkNr>
+			<kuvatavNr id="3e166b5d-bbad-4afc-9ef2-79b777c709fb"><![CDATA[6. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="e78d2cbd-25de-4da7-a31a-5915c16a0673">Rakendussätted</peatykkPealkiri>
+			<paragrahv id="para40">
+				<paragrahvNr id="ef4d985d-8826-407c-9ff9-fb87da89015b">40</paragrahvNr>
+				<kuvatavNr id="96e89b94-e02f-413d-95b8-3722da37f0a8"><![CDATA[§ 40. ]]></kuvatavNr>
+				<paragrahvPealkiri id="a200422d-896d-4609-9b95-4f7f7c6025d6">Seaduse jõustumine</paragrahvPealkiri>
+				<loige id="para40lg1">
+					<loigeNr id="367fffa4-df62-4b97-be03-ba234f46da44">1</loigeNr>
+					<kuvatavNr id="2aa126fd-c257-4f4e-bf6d-990a52fb233e"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="0b09e96d-70d8-4e8a-8902-d5319122ee85">
+						<tavatekst id="1e332b55-235e-4abb-9b8b-8c3a5e6b1533">Käesoleva seaduse jõustumise aeg kehtestatakse eraldi seadusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para40lg2">
+					<loigeNr id="345b70f2-eb04-4202-a845-f17fcc5e2b46">2</loigeNr>
+					<kuvatavNr id="9d1b5160-72ed-4d06-a2fb-ece33323e794"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="713d6ac1-c0d8-4684-aadf-e1d96e2259c0">
+						<tavatekst id="4481968e-3508-4ad8-90b8-66777a7244ab">Käesoleva seaduse 5. peatükk jõustub 2017. aasta 1. jaanuaril.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+	</sisu>
+</oigusakt>

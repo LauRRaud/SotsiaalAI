@@ -1,0 +1,49 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "taiskasvanute-erimeelsused-ei-tohi-varjutada-lapse-heaolu-2026",
+  "title": "Täiskasvanute erimeelsused ei tohi varjutada lapse heaolu",
+  "authors": [
+    "Ebeli Berkman"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Lastekaitse",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb lapse ja lahus elava vanema kontakti katkemist, rõhutades, et otsused peavad lähtuma lapse heaolust ja turvalisusest, mitte võõrandamise kontseptsioonist. Autor selgitab, et lapse vastumeelsus vanemaga suhtlemise vastu võib tuleneda mitmest asjaolust ning sunnitud kontakt võib last kahjustada.",
+  "tags": [
+    "lapse heaolu",
+    "hooldusõigus",
+    "suhtlusõigus",
+    "vanemast võõrandamine",
+    "lojaalsuskonflikt",
+    "lastekaitse",
+    "lapse turvalisus",
+    "lapse ärakuulamine"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-04-02",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/taiskasvanute-erimeelsused-ei-tohi-varjutada-lapse-heaolu",
+  "source_type": "web",
+  "source_path": "taiskasvanute-erimeelsused-ei-tohi-varjutada-lapse-heaolu.html",
+  "lead": "Lapsega seotud otsuste keskmes peab alati olema lapse turvalisus ja heaolu. Võõrandamisest rääkimise asemel on olulisem mõelda, kuidas last toetada.",
+  "document_id": "sotsiaaltoo-2-2026-taiskasvanute-erimeelsused-ei-tohi-varjutada-lapse-heaolu-2026",
+  "source_format": "html",
+  "source_sha256": "6b54261893219f9e36ae342d3aac5c388e4365e8d7c8a3ccf11573efdcfa6f8f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-taiskasvanute-erimeelsused-ei-tohi-varjutada-lapse-heaolu-2026",
+    "previous_source_path": "taiskasvanute-erimeelsused-ei-tohi-varjutada-lapse-heaolu.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e757b6d0a259eef7d02169b972c09f2f291dca53259f6c7765b5201a5f2171dd",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "78ef42498ca7c71f3d694c5e2a4a7f340397123649ddb0ae3aecb8678ea2b1dc",
+    "observed_web_title": "Täiskasvanute erimeelsused ei tohi varjutada lapse heaolu"
+  },
+  "retrieved_at": "2026-09-07T19:39:40.809372+00:00"
+}

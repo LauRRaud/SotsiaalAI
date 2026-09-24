@@ -1,0 +1,2604 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-muhu-vald",
+  "document_id": "kov-muhu-vald",
+  "municipality": "Muhu vald",
+  "municipality_id": "muhu_vald",
+  "county": "Saare maakond",
+  "checkedAt": "2026-05-01",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "muhu_vald_service_koduteenus",
+      "canonical_item_id": "muhu_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenuse eesmärk on toetada täisealise inimese iseseisvat ja turvalist toimetulekut kodustes tingimustes. Teenuse puhul abistatakse toimingutes, mida inimene ei suuda kõrvalabita teha, kuid mis on vajalikud harjumuspärases keskkonnas elamiseks.",
+      "sourceKeys": [
+        "koduteenus_page",
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf"
+      ],
+      "targetGroup": [
+        "täisealine inimene, kes vajab kodustes toimingutes kõrvalabi"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Teenuse saamiseks palub Muhu vald pöörduda sotsiaal- ja lastekaitsespetsialisti poole. Taotluse saab esitada paberkandjal või digiallkirjastatuna e-postiga.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": "6 eurot üks kord; hind sisaldab sotsiaaltransporti Muhu valla piires",
+      "amount": null,
+      "officialUrl": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaalteenused/koduteenus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "muhu_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "muhu_vald_contact_anneli_toru"
+      ],
+      "address": null,
+      "sections_present": [
+        "kirjeldus",
+        "kontakt",
+        "taotlemine",
+        "blankett"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "koduteenus_page",
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_service_koduteenus",
+      "document_id": "muhu_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaalteenused/koduteenus/",
+      "content_hash": "fb801c3df99abd16b50f169d7efc9af40699ae882758ffc8631a3a4236eac3c0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_service_tugiisikuteenus",
+      "canonical_item_id": "muhu_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus toetab inimest, kes vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu oma kohustuste täitmisel ja õiguste teostamisel olulisel määral kõrvalabi. Kõrvalabi seisneb juhendamises, motiveerimises ning isiku suurema iseseisvuse ja omavastutuse arendamises.",
+      "sourceKeys": [
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf",
+        "tugiisikuteenus_page"
+      ],
+      "targetGroup": [
+        "inimene, kelle iseseisvat toimetulekut takistavad sotsiaalsed, majanduslikud, psühholoogilised või tervislikud probleemid"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Teenuse saamiseks palub Muhu vald pöörduda sotsiaal- ja lastekaitsespetsialisti poole. Taotluse saab esitada paberkandjal või digiallkirjastatuna e-postiga.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaalteenused/tugiisikuteenus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "muhu_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "muhu_vald_contact_anneli_toru"
+      ],
+      "address": null,
+      "sections_present": [
+        "kirjeldus",
+        "kontakt",
+        "taotlemine",
+        "blankett"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf",
+        "tugiisikuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_service_tugiisikuteenus",
+      "document_id": "muhu_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaalteenused/tugiisikuteenus/",
+      "content_hash": "9d182897b0657e6b69e86c2f987d9b327f925b4eb36c1be036087ffeb25757d3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "muhu_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldus seatakse puudega isiku toimetuleku soodustamiseks tavapärases keskkonnas, kui inimene vajab ööpäevaringselt hooldamist ja järelevalvet. Teenust ei määrata üldjuhul juhul, kui hooldus on võimalik tagada ülalpidamiskohustusega pereliikmete või teiste teenustega.",
+      "sourceKeys": [
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf",
+        "taisealise_isiku_hooldus_page"
+      ],
+      "targetGroup": [
+        "täisealine inimene, kes vajab hooldamist ja järelevalvet igal ööpäeval"
+      ],
+      "conditions": "Hooldus seatakse Muhu vallas elavale inimesele; hooldajat ei määrata üldjuhul siis, kui hooldus on võimalik tagada ülalpidamiskohustusega isikute või teiste teenustega.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Teenuse saamiseks palub Muhu vald pöörduda sotsiaal- ja lastekaitsespetsialisti poole. Taotluse saab esitada paberkandjal või digiallkirjastatuna e-postiga.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaalteenused/taisealise-isiku-hooldus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "muhu_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "muhu_vald_contact_anneli_toru"
+      ],
+      "address": null,
+      "sections_present": [
+        "kirjeldus",
+        "kontakt",
+        "taotlemine",
+        "blankett"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf",
+        "taisealise_isiku_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_service_taisealise_isiku_hooldus",
+      "document_id": "muhu_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaalteenused/taisealise-isiku-hooldus/",
+      "content_hash": "1ec879b3892d50e1b07cb7ef863b14f8d06174be442503ee888f011666f7b734",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "muhu_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus suurendab puude tõttu füüsilist kõrvalabi vajava täisealise inimese iseseisvat toimetulekut ja osalemist kõigis eluvaldkondades. Isiklik abistaja aitab liikumisel, söömisel, toidu valmistamisel, riietumisel, hügieeni- ja majapidamistoimingutes ning muudes tegevustes.",
+      "sourceKeys": [
+        "isikliku_abistaja_teenus_page",
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf"
+      ],
+      "targetGroup": [
+        "puude tõttu füüsilist kõrvalabi vajav täisealine inimene"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Teenuse saamiseks palub Muhu vald pöörduda sotsiaal- ja lastekaitsespetsialisti poole. Taotluse saab esitada paberkandjal või digiallkirjastatuna e-postiga.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaalteenused/isikliku-abistaja-teenus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "muhu_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "muhu_vald_contact_anneli_toru"
+      ],
+      "address": null,
+      "sections_present": [
+        "kirjeldus",
+        "kontakt",
+        "taotlemine",
+        "blankett"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "isikliku_abistaja_teenus_page",
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_service_isikliku_abistaja_teenus",
+      "document_id": "muhu_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaalteenused/isikliku-abistaja-teenus/",
+      "content_hash": "445d0f56a1fc94db822ec40e6bb09f401d4c8fe2ae12dd2d48953d606d768203",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "muhu_vald:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenus toetab lapse hooldusõigust omava isiku või lapse hooldaja toimetulekut ja töötamist. Õigus teenusele on pooleteise- kuni kolmeaastasel lapsel, kelle elukoht on Muhu vallas ja ühtib vähemalt ühe vanema elukohaga ning kellele ei ole tagatud lasteaiakohta teeninduspiirkonna lasteasutuses.",
+      "sourceKeys": [
+        "lapsehoiuteenus_page",
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf"
+      ],
+      "targetGroup": [
+        "1,5- kuni 3-aastane Muhu valla laps, kellele ei ole tagatud lasteaiakohta"
+      ],
+      "conditions": "Lapse elukoht peab olema Muhu valla territooriumil ja ühtima vähemalt ühe vanema elukohaga; teenus on mõeldud lapsele, kellele ei ole tagatud lasteaiakohta teeninduspiirkonna lasteasutuses.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Teenuse saamiseks palub Muhu vald pöörduda sotsiaal- ja lastekaitsespetsialisti poole. Taotluse saab esitada paberkandjal või digiallkirjastatuna e-postiga.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaalteenused/lapsehoiuteenus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "muhu_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "muhu_vald_contact_anneli_toru"
+      ],
+      "address": null,
+      "sections_present": [
+        "kirjeldus",
+        "kontakt",
+        "taotlemine",
+        "blankett"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "lapsehoiuteenus_page",
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_service_lapsehoiuteenus",
+      "document_id": "muhu_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaalteenused/lapsehoiuteenus/",
+      "content_hash": "9525aa10db195ae8a42c6164a8b0fc53c34853088f3c7753be5273c973e35093",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_service_varjupaigateenus",
+      "canonical_item_id": "muhu_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus on ajutine abimeede vältimatut abi vajavale täisealisele inimesele, kes abi saamata võib sattuda elu ja tervist ohustavasse olukorda. Teenust võivad vajada näiteks perevägivallaohvrid, kodutud või inimene, kes on bussist maha jäänud ja kellel puuduvad vahendid ööbimiseks.",
+      "sourceKeys": [
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf",
+        "varjupaigateenus_page"
+      ],
+      "targetGroup": [
+        "täisealine inimene, kes vajab vältimatut ja turvalist ajutist majutust"
+      ],
+      "conditions": "Teenuse raames peab olema tagatud voodikoht, pesemisvõimalused ja turvaline keskkond; Muhu valla lehel on teenuse kohana nimetatud Voolu 7, Kuressaare kell 20.00-8.00.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Teenuse saamiseks palub Muhu vald pöörduda sotsiaal- ja lastekaitsespetsialisti poole. Taotluse saab esitada paberkandjal või digiallkirjastatuna e-postiga.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaalteenused/varjupaigateenus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "muhu_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "muhu_vald_contact_anneli_toru"
+      ],
+      "address": "Voolu 7, Kuressaare; teenust pakutakse kell 20.00-8.00",
+      "sections_present": [
+        "kirjeldus",
+        "kontakt",
+        "taotlemine",
+        "blankett"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf",
+        "varjupaigateenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_service_varjupaigateenus",
+      "document_id": "muhu_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaalteenused/varjupaigateenus/",
+      "content_hash": "66607f29c55e81ac444d5aaf8bcc26067176f54b946e537cc2d7e8798e0904c9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "muhu_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenuse eesmärk on võimaldada puudega inimesel, kelle puue takistab isikliku või ühissõiduki kasutamist, kasutada vajadustele vastavat transpordivahendit. Teenust kasutatakse tööle või õppeasutusse sõitmiseks või avalike teenuste kasutamiseks.",
+      "sourceKeys": [
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf",
+        "sotsiaaltransporditeenus_page"
+      ],
+      "targetGroup": [
+        "puudega inimene, kelle puue takistab isikliku või ühissõiduki kasutamist"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Teenuse saamiseks palub Muhu vald pöörduda sotsiaal- ja lastekaitsespetsialisti poole. Taotluse saab esitada paberkandjal või digiallkirjastatuna e-postiga.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Kliendi omaosalus alates 01.03.2023: Muhu-Kuressaare-Muhu 20 eurot inimese kohta; Kuressaare Haigla raviteenused 10 eurot reis inimese kohta; lisateenused Kuressaares 5 eurot tund; Muhu valla piires 0,30 eurot kilomeeter; Muhu-Pärnu või Pärnu-Muhu 13 eurot; Muhu-Tallinn või Tallinn-Muhu 18 eurot; Muhu-Tartu või Tartu-Muhu 27 eurot.",
+      "amount": null,
+      "officialUrl": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaalteenused/sotsiaaltransporditeenus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "muhu_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "muhu_vald_contact_anneli_toru"
+      ],
+      "address": null,
+      "sections_present": [
+        "kirjeldus",
+        "kontakt",
+        "taotlemine",
+        "blankett",
+        "hind"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf",
+        "sotsiaaltransporditeenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_service_sotsiaaltransporditeenus",
+      "document_id": "muhu_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaalteenused/sotsiaaltransporditeenus/",
+      "content_hash": "c03a8e08d2131cc67d147fae518cd3af31c64e5ee2a5eb7e9c109de49226bc68",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_service_eluruumi_tagamine",
+      "canonical_item_id": "muhu_vald:service:eluruumi_tagamine",
+      "itemType": "service",
+      "title": "Eluruumi tagamine",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenus on mõeldud inimesele või perele, kes ei ole sotsiaalmajandusliku olukorra tõttu võimeline enda vajadustele vastavat eluaset ostma või vabaturult üürima. Vallavalitsus võib võimaluse korral tagada valla eluruumi või kasutada vabaüürituru võimalusi ning toetada esmase üüri sissemaksega.",
+      "sourceKeys": [
+        "eluruumi_tagamine_page",
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf"
+      ],
+      "targetGroup": [
+        "inimene või pere, kes ei suuda sotsiaalmajandusliku olukorra tõttu endale sobivat eluruumi osta või üürida"
+      ],
+      "conditions": "Teenuse eeldusena kirjeldab Muhu vald, et inimene või pere on muudes aspektides iseseisev, näiteks suudab tasuda eluruumi kasutamisega seotud kulud vajadusel toimetulekutoetuse abil.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Teenuse saamiseks palub Muhu vald pöörduda sotsiaal- ja lastekaitsespetsialisti poole. Taotluse saab esitada paberkandjal või digiallkirjastatuna e-postiga.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaalteenused/eluruumi-tagamine/",
+      "relatedTo": [],
+      "relatedForms": [
+        "muhu_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "muhu_vald_contact_anneli_toru"
+      ],
+      "address": null,
+      "sections_present": [
+        "kirjeldus",
+        "kontakt",
+        "taotlemine",
+        "blankett"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "eluruumi_tagamine_page",
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_service_eluruumi_tagamine",
+      "document_id": "muhu_vald_service_eluruumi_tagamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaalteenused/eluruumi-tagamine/",
+      "content_hash": "25943a75396d39630af714b95107abaab725341e3e70f12850661092ebde5c42",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_service_volanoustamisteenus",
+      "canonical_item_id": "muhu_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab inimest varalise olukorra kindlakstegemisel, võlausaldajaga läbirääkimiste pidamisel ja nõuete rahuldamisel. Teenuse eesmärk on vältida uute võlgnevuste tekkimist, parandada toimetulekuvõimet ja lahendada muid võlgnevusega seotud probleeme.",
+      "sourceKeys": [
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf",
+        "volanoustamine_kriisi_page",
+        "volanoustamisteenus_page"
+      ],
+      "targetGroup": [
+        "inimene, kellel on võlgnevused või võlgnevusega seotud toimetulekuraskused"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Teenuse saamiseks palub Muhu vald pöörduda sotsiaal- ja lastekaitsespetsialisti poole. Taotluse saab esitada paberkandjal või digiallkirjastatuna e-postiga.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaalteenused/volanoustamisteenus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "muhu_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "muhu_vald_contact_anneli_toru"
+      ],
+      "address": null,
+      "sections_present": [
+        "kirjeldus",
+        "kontakt",
+        "taotlemine",
+        "blankett"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf",
+        "volanoustamine_kriisi_page",
+        "volanoustamisteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_service_volanoustamisteenus",
+      "document_id": "muhu_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaalteenused/volanoustamisteenus/",
+      "content_hash": "8e4416f26fb31d77ab52af8028c8289032ab39b4d4c8d6d78c55f17a47918be8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "canonical_item_id": "muhu_vald:service:valjaspool_kodu_osutatav_uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Muhu valla sotsiaalteenuse taotlusvormis on väljaspool kodu osutatav üldhooldusteenus eraldi valikuna nimetatud. Eraldi detaillehte teenuse tingimuste, hinna, kontaktide või menetluse kohta Muhu valla veebis ei tuvastatud, seega on kirje täidetud ainult vormil oleva kinnituse põhjal.",
+      "sourceKeys": [
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf",
+        "teenused_ja_vormid_page"
+      ],
+      "targetGroup": [],
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": "KOV avaldatud sotsiaalteenuse taotlusvormis on teenus eraldi valikuna märgitud; detailne taotlemise kord ei olnud eraldi lehel avaldatud.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://muhu.ee/wp-content/uploads/2026/01/Muhu_sots.teenuste_taotlus-6.pdf",
+      "relatedTo": [],
+      "relatedForms": [
+        "muhu_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "blankett"
+      ],
+      "unresolvedIssues": [
+        "Teenus on KOV vormil nimetatud, kuid eraldi praktilist detaillehte ei tuvastatud."
+      ],
+      "item_type": "service",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf",
+        "teenused_ja_vormid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "document_id": "muhu_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/wp-content/uploads/2026/01/Muhu_sots.teenuste_taotlus-6.pdf",
+      "content_hash": "bbf7cfa0424ad82c0c7cd644c761a290b753c5686b938de7e8b43d23a652481c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_service_turvakoduteenus",
+      "canonical_item_id": "muhu_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Muhu valla sotsiaalteenuse taotlusvormis on turvakoduteenus eraldi valikuna nimetatud. Eraldi teenuselehte ega tingimuste, osutamise koha, hinna või menetlusinfo kirjeldust Muhu valla veebis ei tuvastatud.",
+      "sourceKeys": [
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf",
+        "teenused_ja_vormid_page"
+      ],
+      "targetGroup": [],
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": "KOV avaldatud sotsiaalteenuse taotlusvormis on teenus eraldi valikuna märgitud; detailne taotlemise kord ei olnud eraldi lehel avaldatud.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://muhu.ee/wp-content/uploads/2026/01/Muhu_sots.teenuste_taotlus-6.pdf",
+      "relatedTo": [],
+      "relatedForms": [
+        "muhu_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "blankett"
+      ],
+      "unresolvedIssues": [
+        "Teenus on KOV vormil nimetatud, kuid eraldi praktilist detaillehte ei tuvastatud."
+      ],
+      "item_type": "service",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf",
+        "teenused_ja_vormid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_service_turvakoduteenus",
+      "document_id": "muhu_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/wp-content/uploads/2026/01/Muhu_sots.teenuste_taotlus-6.pdf",
+      "content_hash": "49746cacb179e6473f914e124e776b9f85b90ee7253c462a4d46d6a02d2104f3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_benefit_puudega_isiku_toetus",
+      "canonical_item_id": "muhu_vald:benefit:puudega_isiku_toetus",
+      "itemType": "benefit",
+      "title": "Puudega isiku toetus",
+      "status": "active",
+      "summary": "Puudega isiku toetus on täiendav toetus raske või sügava puudega inimesele puudest tingitud lisakulude hüvitamiseks. Toetust makstakse juhul, kui puudest tulenevad lisakulutused on suuremad kui riiklik sotsiaaltoetus ning inimese iseseisvat toimetulekut ja sotsiaalset osalemist ei ole võimalik toetada sotsiaalteenuste või muu abiga.",
+      "sourceKeys": [
+        "puudega_isiku_toetus_page",
+        "sotsiaaltoetuse_taotlus_doc",
+        "sotsiaaltoetuse_taotlus_pdf"
+      ],
+      "targetGroup": [
+        "raske või sügava puudega inimene"
+      ],
+      "conditions": "Toetus on mõeldud puudest tingitud lisakulude hüvitamiseks, välja arvatud ravikindlustuse ja riigieelarve muudest vahenditest finantseeritavad tegevused.",
+      "amount": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Toetuse taotlemiseks palub Muhu vald pöörduda sotsiaal- ja lastekaitsespetsialisti poole. Taotluse saab esitada paberkandjal või digiallkirjastatuna e-postiga.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaaltoetused/puudega-isiku-toetus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "muhu_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "muhu_vald_contact_anneli_toru"
+      ],
+      "sections_present": [
+        "kirjeldus",
+        "kontakt",
+        "taotlemine",
+        "blankett"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "puudega_isiku_toetus_page",
+        "sotsiaaltoetuse_taotlus_doc",
+        "sotsiaaltoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_benefit_puudega_isiku_toetus",
+      "document_id": "muhu_vald_benefit_puudega_isiku_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaaltoetused/puudega-isiku-toetus/",
+      "content_hash": "033e8fcfd16fa96f5308e729a391f77797a3fb92e81934449a92da4ee52d2337",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_benefit_uhekordne_sotsiaaltoetus",
+      "canonical_item_id": "muhu_vald:benefit:uhekordne_sotsiaaltoetus",
+      "itemType": "benefit",
+      "title": "Ühekordne sotsiaaltoetus",
+      "status": "active",
+      "summary": "Ühekordne sotsiaaltoetus on vähekindlustatud inimesele või perekonnale antav toetus konkreetse olukorra leevendamiseks või ajutiste majandusraskuste ületamiseks. Muhu vald arvestab toetuse määramisel taotluse põhjendatust, mõju olukorra leevendamisel, pere majanduslikku olukorda, taotleja enda panust ja muid võimalusi probleemi lahendamiseks.",
+      "sourceKeys": [
+        "sotsiaaltoetuse_taotlus_doc",
+        "sotsiaaltoetuse_taotlus_pdf",
+        "uhekordne_sotsiaaltoetus_page"
+      ],
+      "targetGroup": [
+        "vähekindlustatud inimene või perekond"
+      ],
+      "conditions": "Sissetulek peab olema väiksem kui kahekordne riiklik toimetulekupiir; toetuse maksimaalne suurus kalendriaastas on kahekordne kehtiv toimetulekupiir, kuid põhjendatud erandil võib vallavalitsus maksta suuremat toetust.",
+      "amount": "Maksimaalselt kahekordne kehtiv toimetulekupiir kalendriaastas; erandkorras võib vallavalitsus maksta piirmäärast suuremat toetust.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Toetuse taotlemiseks palub Muhu vald pöörduda sotsiaal- ja lastekaitsespetsialisti poole. Taotluse saab esitada paberkandjal või digiallkirjastatuna e-postiga.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaaltoetused/uhekordne-sotsiaaltoetus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "muhu_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "muhu_vald_contact_anneli_toru"
+      ],
+      "sections_present": [
+        "kirjeldus",
+        "kontakt",
+        "taotlemine",
+        "blankett"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "sotsiaaltoetuse_taotlus_doc",
+        "sotsiaaltoetuse_taotlus_pdf",
+        "uhekordne_sotsiaaltoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_benefit_uhekordne_sotsiaaltoetus",
+      "document_id": "muhu_vald_benefit_uhekordne_sotsiaaltoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaaltoetused/uhekordne-sotsiaaltoetus/",
+      "content_hash": "79a9395ba88f6a300a490945bdf216f2a424558d3f04096ebccfcfdafe142887",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_benefit_matusetoetus",
+      "canonical_item_id": "muhu_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on ühekordne toetus rahvastikuregistrijärgse Muhu valla elaniku surma korral matusekulude osaliseks kompenseerimiseks omastele või isikule, kes kannab matuse korraldamise kulud. Toetust saab taotleda ka Muhu valla elanik, kes korraldab matuse inimesele, kellel puudus rahvastikuregistrijärgne elukoht.",
+      "sourceKeys": [
+        "matusetoetus_page",
+        "matusetoetuse_taotlus_doc",
+        "matusetoetuse_taotlus_pdf",
+        "sotsiaaltoetuse_taotlus_doc",
+        "sotsiaaltoetuse_taotlus_pdf"
+      ],
+      "targetGroup": [
+        "matuse korraldaja või lähedane"
+      ],
+      "conditions": "Taotleja esitab kirjaliku taotluse koos surmatõendiga; toetust makstakse toetuse taotlejale kuni kolm kuud pärast isiku surma.",
+      "amount": "350 eurot",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Toetuse taotlemiseks palub Muhu vald pöörduda sotsiaal- ja lastekaitsespetsialisti poole. Taotluse saab esitada paberkandjal või digiallkirjastatuna e-postiga.",
+        "deadline": "kuni kolm kuud pärast isiku surma"
+      },
+      "decisionTime": null,
+      "officialUrl": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaaltoetused/matusetoetus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "muhu_vald_form_sotsiaaltoetuse_taotlus",
+        "muhu_vald_form_matusetoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "muhu_vald_contact_anneli_toru"
+      ],
+      "sections_present": [
+        "kirjeldus",
+        "kontakt",
+        "taotlemine",
+        "blankett"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "matusetoetus_page",
+        "matusetoetuse_taotlus_doc",
+        "matusetoetuse_taotlus_pdf",
+        "sotsiaaltoetuse_taotlus_doc",
+        "sotsiaaltoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_benefit_matusetoetus",
+      "document_id": "muhu_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaaltoetused/matusetoetus/",
+      "content_hash": "b3422086c7140f155e90fd98f5744d01a8af2f3a5e0db68de400dc14db3e0cc8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_benefit_synnitoetus",
+      "canonical_item_id": "muhu_vald:benefit:synnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus on Muhu vallas lapse sünniga seotud toetus. 100% määrast makstakse juhul, kui lapsevanemad on alaliselt elanud Muhu vallas ja nende elukoht on olnud viimased kaksteist kuud enne lapse sündi rahvastikuregistri järgi Muhu vald; 50% määrast makstakse, kui vähemalt üks lapsevanem vastab sellele tingimusele.",
+      "sourceKeys": [
+        "sotsiaaltoetuse_taotlus_doc",
+        "sotsiaaltoetuse_taotlus_pdf",
+        "synnitoetus_page",
+        "synnitoetuse_taotlus_doc",
+        "synnitoetuse_taotlus_pdf"
+      ],
+      "targetGroup": [
+        "Muhu vallas registreeritud lapsevanem, üksikvanem, lapsendaja või eestkostja"
+      ],
+      "conditions": "Lapse sünd peab olema registreeritud Muhu valda; eritingimused on üksikvanemale, lapsendajale ja eestkostjale. Taotlusele lisatakse sünnikande väljatrükk.",
+      "amount": "500 eurot 100% määrana; 250 eurot 50% määrana",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Toetuse taotlemiseks palub Muhu vald pöörduda sotsiaal- ja lastekaitsespetsialisti poole. Taotluse saab esitada paberkandjal või digiallkirjastatuna e-postiga.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaaltoetused/sunnitoetus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "muhu_vald_form_sotsiaaltoetuse_taotlus",
+        "muhu_vald_form_synnitoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "muhu_vald_contact_anneli_toru"
+      ],
+      "sections_present": [
+        "kirjeldus",
+        "kontakt",
+        "taotlemine",
+        "blankett"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "sotsiaaltoetuse_taotlus_doc",
+        "sotsiaaltoetuse_taotlus_pdf",
+        "synnitoetus_page",
+        "synnitoetuse_taotlus_doc",
+        "synnitoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_benefit_synnitoetus",
+      "document_id": "muhu_vald_benefit_synnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaaltoetused/sunnitoetus/",
+      "content_hash": "6e1d4cd08bbe3029d624f322f8a8420a78601132c57b957e21fa7a00effba72c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_benefit_oppetoetus",
+      "canonical_item_id": "muhu_vald:benefit:oppetoetus",
+      "itemType": "benefit",
+      "title": "Õppetoetus",
+      "status": "active",
+      "summary": "Õppetoetus on õppetöös osalemisega seotud kulude osaliseks kompenseerimiseks makstav perioodiline toetus. Seda makstakse võlgnevusteta edasi jõudvatele gümnaasiumi-, kutse- või kutsekeskharidust omandavatele noortele, kes ei ole vanemad kui 21 aastat.",
+      "sourceKeys": [
+        "oppetoetus_page",
+        "oppetoetuse_taotlus_doc",
+        "oppetoetuse_taotlus_pdf",
+        "sotsiaaltoetuse_taotlus_doc",
+        "sotsiaaltoetuse_taotlus_pdf"
+      ],
+      "targetGroup": [
+        "kuni 21-aastane gümnaasiumi-, kutse- või kutsekeskharidust omandav noor"
+      ],
+      "conditions": "Toetust makstakse nominaalse õppeaja jooksul, kuid mitte kauem kui neli aastat; taotlus esitatakse üks kord aastas septembris ja toetus määratakse õppeperioodiks september-juuni.",
+      "amount": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Toetuse taotlemiseks palub Muhu vald pöörduda sotsiaal- ja lastekaitsespetsialisti poole. Taotluse saab esitada paberkandjal või digiallkirjastatuna e-postiga.",
+        "deadline": "taotlus esitatakse üks kord aastas septembris"
+      },
+      "decisionTime": null,
+      "officialUrl": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaaltoetused/oppetoetus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "muhu_vald_form_sotsiaaltoetuse_taotlus",
+        "muhu_vald_form_oppetoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "muhu_vald_contact_anneli_toru"
+      ],
+      "sections_present": [
+        "kirjeldus",
+        "kontakt",
+        "taotlemine",
+        "blankett"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "oppetoetus_page",
+        "oppetoetuse_taotlus_doc",
+        "oppetoetuse_taotlus_pdf",
+        "sotsiaaltoetuse_taotlus_doc",
+        "sotsiaaltoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_benefit_oppetoetus",
+      "document_id": "muhu_vald_benefit_oppetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaaltoetused/oppetoetus/",
+      "content_hash": "68221e461752d47166cf8852c817849891fa3e92708f5cdd699d46fa1aaa9939",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_benefit_hooldustoetus",
+      "canonical_item_id": "muhu_vald:benefit:hooldustoetus",
+      "itemType": "benefit",
+      "title": "Hooldustoetus",
+      "status": "active",
+      "summary": "Hooldustoetust saab taotleda inimene, kes hooldab suure abivajadusega isikut, sealhulgas last. Hoolduse seadmise ja hooldajatoetuse määramise eelduseks on hooldatava abivajaduse hindamine, millest nähtub hooldusvajadus.",
+      "sourceKeys": [
+        "hooldustoetus_page",
+        "sotsiaaltoetuse_taotlus_doc",
+        "sotsiaaltoetuse_taotlus_pdf"
+      ],
+      "targetGroup": [
+        "inimene, kes hooldab suure abivajadusega isikut"
+      ],
+      "conditions": "Hooldustoetust makstakse igakuiselt alates hoolduse seadmise ja hooldajatoetuse määramise kalendrikuust hiljemalt kuu viimasel kuupäeval hooldaja arvelduskontole.",
+      "amount": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Toetuse taotlemiseks palub Muhu vald pöörduda sotsiaal- ja lastekaitsespetsialisti poole. Taotluse saab esitada paberkandjal või digiallkirjastatuna e-postiga.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaaltoetused/hooldustoetus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "muhu_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "muhu_vald_contact_anneli_toru"
+      ],
+      "sections_present": [
+        "kirjeldus",
+        "kontakt",
+        "taotlemine",
+        "blankett"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "hooldustoetus_page",
+        "sotsiaaltoetuse_taotlus_doc",
+        "sotsiaaltoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_benefit_hooldustoetus",
+      "document_id": "muhu_vald_benefit_hooldustoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaaltoetused/hooldustoetus/",
+      "content_hash": "7416c34ee53a8a2560a0fbcbb5230b6cf06f6d939529cf8376f054d432135e66",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "canonical_item_id": "muhu_vald:benefit:taisealise_isiku_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Täisealise isiku hooldajatoetus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldajatoetus on igakuine toetus täisealisele isikule määratud hooldajale hooldamise korraldamisega seotud kulude osaliseks kompenseerimiseks. Muhu vald otsustab toetuse andmise nõuetekohase taotluse esitamisel 10 tööpäeva jooksul.",
+      "sourceKeys": [
+        "sotsiaaltoetuse_taotlus_doc",
+        "sotsiaaltoetuse_taotlus_pdf",
+        "taisealise_isiku_hooldajatoetus_page"
+      ],
+      "targetGroup": [
+        "täisealise hooldust vajava isiku hooldaja"
+      ],
+      "conditions": null,
+      "amount": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Toetuse taotlemiseks palub Muhu vald pöörduda sotsiaal- ja lastekaitsespetsialisti poole. Taotluse saab esitada paberkandjal või digiallkirjastatuna e-postiga.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaaltoetused/taisealise-isiku-hooldajatoetus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "muhu_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "muhu_vald_contact_anneli_toru"
+      ],
+      "sections_present": [
+        "kirjeldus",
+        "kontakt",
+        "taotlemine",
+        "blankett"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "sotsiaaltoetuse_taotlus_doc",
+        "sotsiaaltoetuse_taotlus_pdf",
+        "taisealise_isiku_hooldajatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "document_id": "muhu_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaaltoetused/taisealise-isiku-hooldajatoetus/",
+      "content_hash": "cdcdcc17cd82809f087659edd78b550d710396cfcd247b44c17f258fd2c8d37c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_benefit_puudega_lapse_hooldajatoetus",
+      "canonical_item_id": "muhu_vald:benefit:puudega_lapse_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Puudega lapse hooldajatoetus",
+      "status": "active",
+      "summary": "Puudega lapse hooldajatoetus on igakuine rahaline toetus inimesele, kes on seaduses või lepingus sätestatud juhul kohustatud hoolitsema puudega lapse eest, kuid ei saa lapse hooldamise tõttu töötada. Muhu vald otsustab toetuse andmise nõuetekohase taotluse esitamisel 10 tööpäeva jooksul.",
+      "sourceKeys": [
+        "puudega_lapse_hooldajatoetus_page",
+        "sotsiaaltoetuse_taotlus_doc",
+        "sotsiaaltoetuse_taotlus_pdf"
+      ],
+      "targetGroup": [
+        "puudega lapse hooldaja, kes ei saa lapse hooldamise tõttu töötada"
+      ],
+      "conditions": null,
+      "amount": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Toetuse taotlemiseks palub Muhu vald pöörduda sotsiaal- ja lastekaitsespetsialisti poole. Taotluse saab esitada paberkandjal või digiallkirjastatuna e-postiga.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaaltoetused/puudega-lapse-hooldajatoetus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "muhu_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "muhu_vald_contact_anneli_toru"
+      ],
+      "sections_present": [
+        "kirjeldus",
+        "kontakt",
+        "taotlemine",
+        "blankett"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "puudega_lapse_hooldajatoetus_page",
+        "sotsiaaltoetuse_taotlus_doc",
+        "sotsiaaltoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_benefit_puudega_lapse_hooldajatoetus",
+      "document_id": "muhu_vald_benefit_puudega_lapse_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-hoolekanne/sotsiaaltoetused/puudega-lapse-hooldajatoetus/",
+      "content_hash": "ffdbdd47666603f163f1de7644b85404f84829e1128c0ea1cb9995e0bbbfc8c2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "muhu_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Muhu valla teenuste ja vormide lehel on avaldatud toimetulekutoetuse taotlusvorm. Eraldi praktilist toimetulekutoetuse detaillehte Muhu valla veebis ei tuvastatud; vorm kogub taotleja, leibkonna koosseisu, sissetulekute, eluasemekulude, vara ja väljamakseviisi andmeid.",
+      "sourceKeys": [
+        "teenused_ja_vormid_page",
+        "toimetulekutoetuse_taotlus_doc",
+        "toimetulekutoetuse_taotlus_pdf"
+      ],
+      "targetGroup": [],
+      "conditions": null,
+      "amount": null,
+      "application": {
+        "channels": [],
+        "steps": "Muhu valla veebis on avaldatud toimetulekutoetuse taotlusvorm; eraldi esitamise juhist selle toetuse kohta ei tuvastatud.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://muhu.ee/wp-content/uploads/2026/01/nr_246_lisa_2-_Muhu_TT_taotlus1-1-1-converted.pdf",
+      "relatedTo": [],
+      "relatedForms": [
+        "muhu_vald_form_toimetulekutoetuse_taotlus"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "blankett"
+      ],
+      "unresolvedIssues": [
+        "KOV vorm on avaldatud, kuid eraldi detaillehte tingimuste, summade ja menetluse kohta ei tuvastatud."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "teenused_ja_vormid_page",
+        "toimetulekutoetuse_taotlus_doc",
+        "toimetulekutoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_benefit_toimetulekutoetus",
+      "document_id": "muhu_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/wp-content/uploads/2026/01/nr_246_lisa_2-_Muhu_TT_taotlus1-1-1-converted.pdf",
+      "content_hash": "a53be27449ffc30350ff7c0be238ecb24388207e47e59e8e993e4df1dd403f7f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_benefit_eluruumi_kohandamise_toetus",
+      "canonical_item_id": "muhu_vald:benefit:eluruumi_kohandamise_toetus",
+      "itemType": "benefit",
+      "title": "Eluruumi kohandamise toetus",
+      "status": "active",
+      "summary": "Muhu valla teenuste ja vormide lehel on avaldatud puudega inimeste eluaseme füüsilise kohandamise soovituslik taotlusvorm. Vorm on mõeldud eluruumi kohandamise taotlemiseks ning kirjeldab, et toetust saab taotleda eluruumile, mis asub Muhu vallas ja on rahvastikuregistris registreeritud toetust vajava isiku elukohana.",
+      "sourceKeys": [
+        "eluruumi_kohandamise_taotlus_doc",
+        "eluruumi_kohandamise_taotlus_pdf",
+        "teenused_ja_vormid_page"
+      ],
+      "targetGroup": [
+        "puudega inimene või tema seaduslik esindaja, eestkostja, lapsevanem või volitatud isik"
+      ],
+      "conditions": "Vormil on märgitud, et toetust saab taotleda eluruumile, mis asub Muhu vallas ja on rahvastikuregistris registreeritud toetust vajava isiku elukohana; taotlusele lisatakse muu hulgas puude raskusastme otsus ning eluruumi omandi- või kasutusõigust tõendav dokument koos nõusolekuga.",
+      "amount": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Täidetud ja (digi)allkirjastatud taotlus palutakse saata Muhu Vallavalitsusele või e-postile; vormil on märgitud ka võimalus tuua taotlus sotsiaalnõuniku kätte.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://muhu.ee/wp-content/uploads/2026/01/Muhu-Vallavalitsuselekohandamine-1.pdf",
+      "relatedTo": [],
+      "relatedForms": [
+        "muhu_vald_form_eluruumi_kohandamise_taotlus"
+      ],
+      "relatedContacts": [
+        "muhu_vald_contact_muhu_vallavalitsus"
+      ],
+      "sections_present": [
+        "blankett",
+        "tingimused",
+        "lisad",
+        "esitamine"
+      ],
+      "unresolvedIssues": [
+        "Eraldi praktilist detaillehte toetuse menetluse, rahastuse või tähtaegade kohta ei tuvastatud; info pärineb vormilt ja vormide lehelt."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "eluruumi_kohandamise_taotlus_doc",
+        "eluruumi_kohandamise_taotlus_pdf",
+        "teenused_ja_vormid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_benefit_eluruumi_kohandamise_toetus",
+      "document_id": "muhu_vald_benefit_eluruumi_kohandamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/wp-content/uploads/2026/01/Muhu-Vallavalitsuselekohandamine-1.pdf",
+      "content_hash": "15a233df21e1d03830d42c6b1e0b63fc219b73ee1afa070cb576d33297aadc4e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_resource_lastekaitse_abivajav_laps",
+      "canonical_item_id": "muhu_vald:resource:lastekaitse_abivajav_laps",
+      "itemType": "resource",
+      "title": "Lastekaitse, abivajav laps ja hädaohus laps",
+      "status": "active",
+      "summary": "Muhu valla lastekaitse leht selgitab, et abivajav laps on laps, kelle heaolu on ohustatud või kelle puhul on tekkinud kahtlus väärkohtlemise, hooletusse jätmise või muu õigusi rikkuva olukorra kohta. Abivajavast lapsest tuleb teatada kohaliku omavalitsuse lastekaitsespetsialistile telefonil või lasteabitelefonil; hädaohus lapsest tuleb viivitamata teatada numbril.",
+      "sourceKeys": [
+        "lastekaitse_page"
+      ],
+      "targetGroup": [
+        "alla 18-aastane abivajav või hädaohus laps",
+        "inimene, kellel on info abivajavast või hädaohus lapsest"
+      ],
+      "contact": {
+        "notes": "Kadunud laste 116000 töötab 24/7 ja on helistajatele tasuta."
+      },
+      "officialUrl": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/pere-lapsed-ja-noored/lastekaitse/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "muhu_vald_contact_anneli_toru"
+      ],
+      "sections_present": [
+        "kirjeldus",
+        "telefonid"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_resource_lastekaitse_abivajav_laps",
+      "document_id": "muhu_vald_resource_lastekaitse_abivajav_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/pere-lapsed-ja-noored/lastekaitse/",
+      "content_hash": "1437f93d4fe960d69a374f3ad339d090cb6bcbe76c64d6cae5f783be100cf024",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_resource_perelepitus",
+      "canonical_item_id": "muhu_vald:resource:perelepitus",
+      "itemType": "resource",
+      "title": "Perelepitus",
+      "status": "active",
+      "summary": "Perelepitus aitab lahku minevatel lapsevanematel jõuda üksmeelele ja sõlmida lapse huvidest lähtuvad kokkulepped. Muhu vald viitab riiklikule perelepitusteenusele, mis on mõeldud lapsevanematele, kes plaanivad kooselu lõpetada või on seda juba teinud; teenuse saamiseks tuleb esitada taotlus Sotsiaalkindlustusametile ja teenus on lapsevanemale tasuta.",
+      "sourceKeys": [
+        "perelepitus_page"
+      ],
+      "targetGroup": [
+        "lapsevanemad, kes plaanivad kooselu lõpetada või on selle juba lõpetanud"
+      ],
+      "contact": {
+        "website_note": "Muhu vald suunab täpsema info ja taotluse vormi Sotsiaalkindlustusameti kodulehele."
+      },
+      "officialUrl": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/pere-lapsed-ja-noored/perelepitus/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "kirjeldus",
+        "sihtrühm",
+        "taotlemise suunamine"
+      ],
+      "unresolvedIssues": [
+        "Välise Sotsiaalkindlustusameti lehe sisu ei kontrollitud; kasutatud on ainult Muhu valla lehel avaldatud suunamist."
+      ],
+      "item_type": "resource",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "perelepitus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_resource_perelepitus",
+      "document_id": "muhu_vald_resource_perelepitus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/pere-lapsed-ja-noored/perelepitus/",
+      "content_hash": "6821ed19969762ca341bcfbd29531232055cd6641afc1818153a42095ba81361",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_resource_ohvriabi_ja_kriisiabi",
+      "canonical_item_id": "muhu_vald:resource:ohvriabi_ja_kriisiabi",
+      "itemType": "resource",
+      "title": "Ohvriabi ja kriisiabi",
+      "status": "active",
+      "summary": "Ohvriabi toetab inimesi, kes on kannatanud kuriteo, vägivalla või kriisijuhtumi tõttu, ning aitab taastada toimetulekut ja turvatunnet. Muhu valla leht annab ohvriabi kriisitelefoni, lasteabi numbri, inimkaubanduse ennetamise ja ohvrite abistamise nõuandeliini ning vägivallast loobumise tugiliini.",
+      "sourceKeys": [
+        "ohvriabi_page"
+      ],
+      "targetGroup": [
+        "kuriteo, vägivalla või kriisijuhtumi tõttu kannatanud inimene"
+      ],
+      "contact": {
+        "website": "https://palunabi.ee"
+      },
+      "officialUrl": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/noustamine-ja-kriisiabi/ohvriabi/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "kirjeldus",
+        "telefonid",
+        ""
+      ],
+      "unresolvedIssues": [
+        "Muhu vald viitab välisele palunabi.ee lehele; välise lehe sisu ei kasutatud allikana."
+      ],
+      "item_type": "resource",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "ohvriabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_resource_ohvriabi_ja_kriisiabi",
+      "document_id": "muhu_vald_resource_ohvriabi_ja_kriisiabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/noustamine-ja-kriisiabi/ohvriabi/",
+      "content_hash": "c674369d3afd28d4817207a67526da18df2f9ee3382bcf3e6a69a0e277585082",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_resource_kriisikontaktid",
+      "canonical_item_id": "muhu_vald:resource:kriisikontaktid",
+      "itemType": "resource",
+      "title": "Kriisikontaktid ja riiklikud abitelefonid",
+      "status": "active",
+      "summary": "Muhu valla kriisikontaktide leht koondab hädaabi ja kriisiolukorra kontaktid. Lehel on esitatud hädaabinumbrina, riigiinfo telefonina, perearsti nõuandetelefon 1220, mürgistusinfo 16662, lasteabitelefon ning usaldustelefonid 126 ja 127.",
+      "sourceKeys": [
+        "home",
+        "kriisikontaktid_page"
+      ],
+      "targetGroup": [
+        "inimene, kes vajab hädaabi, kriisiinfot või nõustavat abitelefoni"
+      ],
+      "contact": {
+        "local_contacts": [
+          "Muhu valla kriisikomisjoni esimees ja kriisistaabi juht Raido Liitmäe:",
+          "Muhu Valla Kommunaalameti juhataja Imre Luht:"
+        ]
+      },
+      "officialUrl": "https://muhu.ee/vald-uudised-ja-kontakt/kriisivalmidus/kriisikontaktid/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "muhu_vald_contact_muhu_vallavalitsus"
+      ],
+      "sections_present": [
+        "telefonid",
+        "kohalikud kriisikontaktid"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "home",
+        "kriisikontaktid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_resource_kriisikontaktid",
+      "document_id": "muhu_vald_resource_kriisikontaktid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/vald-uudised-ja-kontakt/kriisivalmidus/kriisikontaktid/",
+      "content_hash": "281bfdecfb850f519d3ae04d3b8d4b1dd7f721569182482422ec4a919d156ad1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_resource_kerksuskeskused_ja_varjumiskohad",
+      "canonical_item_id": "muhu_vald:resource:kerksuskeskused_ja_varjumiskohad",
+      "itemType": "resource",
+      "title": "Kerksuskeskused ja varjumiskohad",
+      "status": "active",
+      "summary": "Muhu valla leht kirjeldab kerksuskeskust kui kohaliku omavalitsuse või kogukonna toimepidevat kohta, kus inimene saab kriisi ajal infot, nõu ja abi. Esmase info ja abi kohtadena on nimetatud külavanem, vallamaja, Hellamaa külakeskus ja päästekomando.",
+      "sourceKeys": [
+        "kerksuskeskused_page"
+      ],
+      "targetGroup": [
+        "kriisiolukorras infot, nõu või abi vajav inimene"
+      ],
+      "contact": {
+        "locations": [
+          "külavanem",
+          "vallamaja, Keskuse, Liiva küla",
+          "Hellamaa külakeskus, Külakeskuse, Hellamaa küla",
+          "päästekomando, Tiiru, Piiri küla"
+        ]
+      },
+      "officialUrl": "https://muhu.ee/vald-uudised-ja-kontakt/kriisivalmidus/kerksuskeskused-ja-varjumiskohad/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "muhu_vald_contact_muhu_vallavalitsus"
+      ],
+      "sections_present": [
+        "kirjeldus",
+        "asukohad"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "kerksuskeskused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_resource_kerksuskeskused_ja_varjumiskohad",
+      "document_id": "muhu_vald_resource_kerksuskeskused_ja_varjumiskohad",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/vald-uudised-ja-kontakt/kriisivalmidus/kerksuskeskused-ja-varjumiskohad/",
+      "content_hash": "aaad267bc11f156022071061f05df1c53ef2eee323c8a756521f804bb06397c3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_resource_muhu_hooldekeskus",
+      "canonical_item_id": "muhu_vald:resource:muhu_hooldekeskus",
+      "itemType": "resource",
+      "title": "Muhu Hooldekeskuse SA",
+      "status": "active",
+      "summary": "Muhu Hooldekeskuse SA on Muhu valla veebis avaldatud hoolekandeasutus. Lehel on esitatud registrikood 90010195, aadress Kadaka, Liiva küla, Muhu vald 94701, üldtelefon ning juhataja Aino Rummeli kontakt.",
+      "sourceKeys": [
+        "hooldekeskus_page"
+      ],
+      "contact": {
+        "name": "Aino Rummel",
+        "role": "juhataja",
+        "address": "Kadaka, Liiva küla, Muhu vald 94701",
+        "website": "https://muhuhooldekeskus.webnode.com"
+      },
+      "officialUrl": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/hoolekandeasutused/muhu-hooldekeskus/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "muhu_vald_contact_aino_rummel"
+      ],
+      "sections_present": [
+        "kontakt",
+        "aadress"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "hooldekeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_resource_muhu_hooldekeskus",
+      "document_id": "muhu_vald_resource_muhu_hooldekeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/hoolekandeasutused/muhu-hooldekeskus/",
+      "content_hash": "96d6177943cd189d83dc4cb6275666d37c3f8e6f29489688f1db9c5b6e8417b8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_contact_anneli_toru",
+      "canonical_item_id": "muhu_vald:contact:anneli_toru",
+      "itemType": "contact",
+      "title": "Anneli Tõru",
+      "status": "active",
+      "summary": "Anneli Tõru on Muhu Vallavalitsuse sotsiaal- ja lastekaitsespetsialist. Kontaktide lehel on avaldatud tema e-posti aadressid ja, ning märge, et vastuvõtt toimub eelneval kokkuleppel.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Anneli Tõru",
+      "role": "sotsiaal- ja lastekaitsespetsialist",
+      "department": "Muhu Vallavalitsus",
+      "address": "Keskuse, Liiva küla, Muhu vald 94701",
+      "reception": "Vastuvõtt eelneval kokkuleppel",
+      "officialUrl": "https://muhu.ee/vald-uudised-ja-kontakt/kontakt/kontaktid/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_contact_anneli_toru",
+      "document_id": "muhu_vald_contact_anneli_toru",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/vald-uudised-ja-kontakt/kontakt/kontaktid/",
+      "content_hash": "eb18c3aac47562780534887cb25a0c9de344ccef7854174501e5a94af704622f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_contact_heidi_evert",
+      "canonical_item_id": "muhu_vald:contact:heidi_evert",
+      "itemType": "contact",
+      "title": "Heidi Evert",
+      "status": "active",
+      "summary": "Heidi Evert on Muhu Vallavalitsuse sotsiaalhooldaja. Kontaktide lehel on avaldatud ja",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Heidi Evert",
+      "role": "sotsiaalhooldaja",
+      "department": "Muhu Vallavalitsus",
+      "address": "Keskuse, Liiva küla, Muhu vald 94701",
+      "officialUrl": "https://muhu.ee/vald-uudised-ja-kontakt/kontakt/kontaktid/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_contact_heidi_evert",
+      "document_id": "muhu_vald_contact_heidi_evert",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/vald-uudised-ja-kontakt/kontakt/kontaktid/",
+      "content_hash": "fb67a08eea6647fdbec480177f912992e0236526f6384c9ebe1c0991bb073d37",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_contact_muhu_vallavalitsus",
+      "canonical_item_id": "muhu_vald:contact:muhu_vallavalitsus",
+      "itemType": "contact",
+      "title": "Muhu vallavalitsus",
+      "status": "active",
+      "summary": "Muhu Vallavalitsuse üldkontakt on KOV ametlik kontakt sotsiaalvaldkonna üldiseks asjaajamiseks, kui eraldi teenuse kontakt ei ole kasutajale teada. Kontaktide lehel on avaldatud aadress Keskuse, Liiva küla, Muhu vald 94701, ning tööaeg E-K 8.30-17.00, N 8.30-18.00, R 8.30-16.00.",
+      "sourceKeys": [
+        "contacts_page",
+        "home"
+      ],
+      "name": "Muhu Vallavalitsus",
+      "role": "üldkontakt",
+      "department": null,
+      "address": "Keskuse, Liiva küla, Muhu vald 94701",
+      "workingHours": "E-K 8.30-17.00, N 8.30-18.00, R 8.30-16.00; lõuna 12.30-13.00",
+      "officialUrl": "https://muhu.ee/vald-uudised-ja-kontakt/kontakt/kontaktid/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "contacts_page",
+        "home"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_contact_muhu_vallavalitsus",
+      "document_id": "muhu_vald_contact_muhu_vallavalitsus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/vald-uudised-ja-kontakt/kontakt/kontaktid/",
+      "content_hash": "c4330e9b0b2490f015eb3c5fc745f66e42493f22dbb750adfb5977916a0c2002",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_contact_aino_rummel",
+      "canonical_item_id": "muhu_vald:contact:aino_rummel",
+      "itemType": "contact",
+      "title": "Aino Rummel",
+      "status": "active",
+      "summary": "Aino Rummel on Muhu Hooldekeskuse SA juhataja. Muhu valla hoolekandeasutuse lehel on avaldatud kontakt e-postiga ja telefoniga",
+      "sourceKeys": [
+        "hooldekeskus_page"
+      ],
+      "name": "Aino Rummel",
+      "role": "Muhu Hooldekeskuse SA juhataja",
+      "department": "Muhu Hooldekeskuse SA",
+      "address": "Kadaka, Liiva küla, Muhu vald 94701",
+      "officialUrl": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/hoolekandeasutused/muhu-hooldekeskus/",
+      "relatedTo": [
+        "muhu_vald_resource_muhu_hooldekeskus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "hooldekeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_contact_aino_rummel",
+      "document_id": "muhu_vald_contact_aino_rummel",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/pere-sotsiaal-ja-tervishoid/hoolekandeasutused/muhu-hooldekeskus/",
+      "content_hash": "99e66ce77ac5f39833b7b8a11ff5eef500bd697c5283a4f89a62763c7afec464",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_form_sotsiaalteenuse_taotlus",
+      "canonical_item_id": "muhu_vald:form:sotsiaalteenuse_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaalteenuse taotlus",
+      "status": "active",
+      "summary": "Sotsiaalteenuse taotlus on Muhu valla vorm sotsiaalteenuse taotlemiseks. Vormil saab märkida koduteenuse, tugiisikuteenuse, väljaspool kodu osutatava üldhooldusteenuse, sotsiaaltransporditeenuse, täisealise isiku hoolduse, eluruumi tagamise, isikliku abistaja teenuse, varjupaigateenuse, turvakoduteenuse, võlanõustamisteenuse, lapsehoiuteenuse või muu teenuse.",
+      "sourceKeys": [
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf",
+        "teenused_ja_vormid_page"
+      ],
+      "format": [
+        "docx",
+        "pdf"
+      ],
+      "submissionChannels": [
+        "paper",
+        "email"
+      ],
+      "officialUrl": "https://muhu.ee/wp-content/uploads/2026/01/Muhu_sots.teenuste_taotlus-6.pdf",
+      "downloadUrls": {
+        "docx": "https://muhu.ee/wp-content/uploads/2026/01/Muhu_sots.teenuste_taotlus-6.docx",
+        "pdf": "https://muhu.ee/wp-content/uploads/2026/01/Muhu_sots.teenuste_taotlus-6.pdf"
+      },
+      "relatedTo": [
+        "muhu_vald_service_koduteenus",
+        "muhu_vald_service_tugiisikuteenus",
+        "muhu_vald_service_taisealise_isiku_hooldus",
+        "muhu_vald_service_isikliku_abistaja_teenus",
+        "muhu_vald_service_lapsehoiuteenus",
+        "muhu_vald_service_varjupaigateenus",
+        "muhu_vald_service_sotsiaaltransporditeenus",
+        "muhu_vald_service_eluruumi_tagamine",
+        "muhu_vald_service_volanoustamisteenus",
+        "muhu_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+        "muhu_vald_service_turvakoduteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "blankett",
+        "vormi_failid"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "sotsiaalteenuse_taotlus_doc",
+        "sotsiaalteenuse_taotlus_pdf",
+        "teenused_ja_vormid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_form_sotsiaalteenuse_taotlus",
+      "document_id": "muhu_vald_form_sotsiaalteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/wp-content/uploads/2026/01/Muhu_sots.teenuste_taotlus-6.pdf",
+      "content_hash": "18e4e8d19fd93bb0574cf7450816df2243b74c3c681dcb000094477199858a63",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_form_sotsiaaltoetuse_taotlus",
+      "canonical_item_id": "muhu_vald:form:sotsiaaltoetuse_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaaltoetuse taotlus",
+      "status": "active",
+      "summary": "Sotsiaaltoetuse taotlus on Muhu valla üldine sotsiaaltoetuste taotlemise blankett. Vorm kogub taotleja kontaktandmeid, pangaarvet, staatust, puudeastet, pereliikmete andmeid, sissetulekuid, kommunaalkulusid ning toetuse vajaduse põhjendust ja lisatud kuludokumente.",
+      "sourceKeys": [
+        "sotsiaaltoetuse_taotlus_doc",
+        "sotsiaaltoetuse_taotlus_pdf",
+        "teenused_ja_vormid_page"
+      ],
+      "format": [
+        "docx",
+        "pdf"
+      ],
+      "submissionChannels": [
+        "paper",
+        "email"
+      ],
+      "officialUrl": "https://muhu.ee/wp-content/uploads/2026/01/Lisa_1-sotsiaaltoetuse_taotlus2-4.pdf",
+      "downloadUrls": {
+        "docx": "https://muhu.ee/wp-content/uploads/2026/01/Lisa_1-sotsiaaltoetuse_taotlus2-4.docx",
+        "pdf": "https://muhu.ee/wp-content/uploads/2026/01/Lisa_1-sotsiaaltoetuse_taotlus2-4.pdf"
+      },
+      "relatedTo": [
+        "muhu_vald_benefit_puudega_isiku_toetus",
+        "muhu_vald_benefit_uhekordne_sotsiaaltoetus",
+        "muhu_vald_benefit_matusetoetus",
+        "muhu_vald_benefit_synnitoetus",
+        "muhu_vald_benefit_oppetoetus",
+        "muhu_vald_benefit_hooldustoetus",
+        "muhu_vald_benefit_taisealise_isiku_hooldajatoetus",
+        "muhu_vald_benefit_puudega_lapse_hooldajatoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "blankett",
+        "vormi_failid"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "sotsiaaltoetuse_taotlus_doc",
+        "sotsiaaltoetuse_taotlus_pdf",
+        "teenused_ja_vormid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_form_sotsiaaltoetuse_taotlus",
+      "document_id": "muhu_vald_form_sotsiaaltoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/wp-content/uploads/2026/01/Lisa_1-sotsiaaltoetuse_taotlus2-4.pdf",
+      "content_hash": "0f56b5c1475cd9601fa308d9f8e8da6cce274c6881f889d7093152f73adc910f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_form_synnitoetuse_taotlus",
+      "canonical_item_id": "muhu_vald:form:synnitoetuse_taotlus",
+      "itemType": "form",
+      "title": "Sünnitoetuse taotlus",
+      "status": "active",
+      "summary": "Sünnitoetuse taotlus on eraldi blankett lapse sünnitoetuse taotlemiseks. Vormil küsitakse isa, ema ja lapse andmeid, pangakonto andmeid, taotleja kontakti ning lisana sünni registreerimise tõendi koopiat.",
+      "sourceKeys": [
+        "synnitoetuse_taotlus_doc",
+        "synnitoetuse_taotlus_pdf",
+        "teenused_ja_vormid_page"
+      ],
+      "format": [
+        "docx",
+        "pdf"
+      ],
+      "submissionChannels": [
+        "paper",
+        "email"
+      ],
+      "officialUrl": "https://muhu.ee/wp-content/uploads/2026/01/Lisa_2-synnitoetuse_taotlus-2.pdf",
+      "downloadUrls": {
+        "docx": "https://muhu.ee/wp-content/uploads/2026/01/Lisa_2-synnitoetuse_taotlus.docx",
+        "pdf": "https://muhu.ee/wp-content/uploads/2026/01/Lisa_2-synnitoetuse_taotlus-2.pdf"
+      },
+      "relatedTo": [
+        "muhu_vald_benefit_synnitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "blankett",
+        "vormi_failid"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "synnitoetuse_taotlus_doc",
+        "synnitoetuse_taotlus_pdf",
+        "teenused_ja_vormid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_form_synnitoetuse_taotlus",
+      "document_id": "muhu_vald_form_synnitoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/wp-content/uploads/2026/01/Lisa_2-synnitoetuse_taotlus-2.pdf",
+      "content_hash": "78f0a5d38c483dbe4a6225da8b7112e91c14eccf32733c27e0f5e82556d8dd25",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_form_matusetoetuse_taotlus",
+      "canonical_item_id": "muhu_vald:form:matusetoetuse_taotlus",
+      "itemType": "form",
+      "title": "Matusetoetuse taotlus",
+      "status": "active",
+      "summary": "Matusetoetuse taotlus on eraldi blankett matusetoetuse taotlemiseks. Vormil küsitakse surnu nime, väljamakseviisi, taotleja andmeid ja märgitakse lisana surma registreerimise tõendi koopia.",
+      "sourceKeys": [
+        "matusetoetuse_taotlus_doc",
+        "matusetoetuse_taotlus_pdf",
+        "teenused_ja_vormid_page"
+      ],
+      "format": [
+        "docx",
+        "pdf"
+      ],
+      "submissionChannels": [
+        "paper",
+        "email"
+      ],
+      "officialUrl": "https://muhu.ee/wp-content/uploads/2026/01/Lisa_3-matusetoetuse_taotlus-7-2.pdf",
+      "downloadUrls": {
+        "docx": "https://muhu.ee/wp-content/uploads/2026/01/Lisa_3-matusetoetuse_taotlus-7.docx",
+        "pdf": "https://muhu.ee/wp-content/uploads/2026/01/Lisa_3-matusetoetuse_taotlus-7-2.pdf"
+      },
+      "relatedTo": [
+        "muhu_vald_benefit_matusetoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "blankett",
+        "vormi_failid"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "matusetoetuse_taotlus_doc",
+        "matusetoetuse_taotlus_pdf",
+        "teenused_ja_vormid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_form_matusetoetuse_taotlus",
+      "document_id": "muhu_vald_form_matusetoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/wp-content/uploads/2026/01/Lisa_3-matusetoetuse_taotlus-7-2.pdf",
+      "content_hash": "ce3576128fb9fdb84f33a58fcffb1246624d11c625fcaa2f7e0cfab4cd85f53e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_form_oppetoetuse_taotlus",
+      "canonical_item_id": "muhu_vald:form:oppetoetuse_taotlus",
+      "itemType": "form",
+      "title": "Õppetoetuse taotlus",
+      "status": "active",
+      "summary": "Õppetoetuse taotlus on eraldi blankett õppetoetuse taotlemiseks eluasemega seotud kulude katteks. Vormil küsitakse taotleja andmeid, elukohta, kooli ja klassi või kursust, kontakti ning väljamakse kontot.",
+      "sourceKeys": [
+        "oppetoetuse_taotlus_doc",
+        "oppetoetuse_taotlus_pdf",
+        "teenused_ja_vormid_page"
+      ],
+      "format": [
+        "doc",
+        "pdf"
+      ],
+      "submissionChannels": [
+        "paper",
+        "email"
+      ],
+      "officialUrl": "https://muhu.ee/wp-content/uploads/2026/01/Lisa_4-oppetoetuse_taotlus-2-1.pdf",
+      "downloadUrls": {
+        "doc": "https://muhu.ee/wp-content/uploads/2026/01/Lisa_4-oppetoetuse_taotlus-2.doc",
+        "pdf": "https://muhu.ee/wp-content/uploads/2026/01/Lisa_4-oppetoetuse_taotlus-2-1.pdf"
+      },
+      "relatedTo": [
+        "muhu_vald_benefit_oppetoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "blankett",
+        "vormi_failid"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "oppetoetuse_taotlus_doc",
+        "oppetoetuse_taotlus_pdf",
+        "teenused_ja_vormid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_form_oppetoetuse_taotlus",
+      "document_id": "muhu_vald_form_oppetoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/wp-content/uploads/2026/01/Lisa_4-oppetoetuse_taotlus-2-1.pdf",
+      "content_hash": "c70a281d42e76874607acd08363c8e3ac1488ed36ff01927787901ae348110b6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_form_toimetulekutoetuse_taotlus",
+      "canonical_item_id": "muhu_vald:form:toimetulekutoetuse_taotlus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse taotlus",
+      "status": "active",
+      "summary": "Toimetulekutoetuse taotlus on Muhu Vallavalitsuse vorm toimetulekutoetuse taotlemiseks. Vorm kogub andmeid taotleja, leibkonna koosseisu, sissetulekute, eluruumi kasutamise aluse, eluasemekulude, väljamakseviisi ja taotleja vara kohta.",
+      "sourceKeys": [
+        "teenused_ja_vormid_page",
+        "toimetulekutoetuse_taotlus_doc",
+        "toimetulekutoetuse_taotlus_pdf"
+      ],
+      "format": [
+        "docx",
+        "pdf"
+      ],
+      "submissionChannels": [],
+      "officialUrl": "https://muhu.ee/wp-content/uploads/2026/01/nr_246_lisa_2-_Muhu_TT_taotlus1-1-1-converted.pdf",
+      "downloadUrls": {
+        "docx": "https://muhu.ee/wp-content/uploads/2026/01/nr_246_lisa_2-_Muhu_TT_taotlus1-1.docx",
+        "pdf": "https://muhu.ee/wp-content/uploads/2026/01/nr_246_lisa_2-_Muhu_TT_taotlus1-1-1-converted.pdf"
+      },
+      "relatedTo": [
+        "muhu_vald_benefit_toimetulekutoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "blankett",
+        "vormi_failid"
+      ],
+      "unresolvedIssues": [
+        "Vormi esitamise kanalit ei olnud vormide lehel eraldi lahti kirjutatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "teenused_ja_vormid_page",
+        "toimetulekutoetuse_taotlus_doc",
+        "toimetulekutoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_form_toimetulekutoetuse_taotlus",
+      "document_id": "muhu_vald_form_toimetulekutoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/wp-content/uploads/2026/01/nr_246_lisa_2-_Muhu_TT_taotlus1-1-1-converted.pdf",
+      "content_hash": "8b1a7ca4a3d29f46a9eb2034639aaa15de22d82f8de830f0588c937574e3686b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "muhu_vald_form_eluruumi_kohandamise_taotlus",
+      "canonical_item_id": "muhu_vald:form:eluruumi_kohandamise_taotlus",
+      "itemType": "form",
+      "title": "Puudega inimeste eluaseme füüsilise kohandamise taotlus",
+      "status": "active",
+      "summary": "Eluruumi kohandamise taotlus on vorm meetmes osalemiseks ja puudega inimese eluruumi kohandamiseks. Vorm kogub taotleja ja esindaja andmeid, kohandatava eluruumi andmeid, kohandamise eesmärki, taotletavaid kohandusi ning vajalikke lisadokumente.",
+      "sourceKeys": [
+        "eluruumi_kohandamise_taotlus_doc",
+        "eluruumi_kohandamise_taotlus_pdf",
+        "teenused_ja_vormid_page"
+      ],
+      "format": [
+        "docx",
+        "pdf"
+      ],
+      "submissionChannels": [
+        "paper",
+        "email"
+      ],
+      "officialUrl": "https://muhu.ee/wp-content/uploads/2026/01/Muhu-Vallavalitsuselekohandamine-1.pdf",
+      "downloadUrls": {
+        "docx": "https://muhu.ee/wp-content/uploads/2026/01/Muhu-Vallavalitsuselekohandamine.docx",
+        "pdf": "https://muhu.ee/wp-content/uploads/2026/01/Muhu-Vallavalitsuselekohandamine-1.pdf"
+      },
+      "relatedTo": [
+        "muhu_vald_benefit_eluruumi_kohandamise_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "blankett",
+        "vormi_failid"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "county": "Saare maakond",
+      "source_keys": [
+        "eluruumi_kohandamise_taotlus_doc",
+        "eluruumi_kohandamise_taotlus_pdf",
+        "teenused_ja_vormid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "muhu_vald_form_eluruumi_kohandamise_taotlus",
+      "document_id": "muhu_vald_form_eluruumi_kohandamise_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://muhu.ee/wp-content/uploads/2026/01/Muhu-Vallavalitsuselekohandamine-1.pdf",
+      "content_hash": "505fc80f796d26f56d31d56885c81d9162995af8e56c337e0745e3f40dce9a30",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Muhu vald",
+  "checked_at": "2026-05-01",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

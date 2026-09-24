@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-4-2017",
+  "articleId": "voimaluste-kohvik-voimalikuks-2017",
+  "title": "Võimaluste kohvik võimalikuks",
+  "authors": [
+    "Keiti Piirisild"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2017",
+  "section": "Uus lahendus sotsiaaltöös",
+  "pageRange": "4-4",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab Võimaluste kohviku loomist ning eesmärki pakkuda psüühilise erivajadusega inimestele ligipääsetavat ja toetavat töökohta ning suurendada nende osalust kogukonnas.",
+  "tags": [
+    "psüühilise erivajadusega inimesed",
+    "tööhõive",
+    "sotsiaalne ettevõtlus",
+    "kogukonnatöö",
+    "ligipääsetavus"
+  ],
+  "source_type": "file",
+  "source_path": "Võimaluste kohvik võimalikuks.pdf",
+  "document_id": "sotsiaaltoo-4-2017-voimaluste-kohvik-voimalikuks-2017",
+  "source_format": "pdf",
+  "source_sha256": "37615e8214286a35e02d3d761f05a60e0d7e7a3cbf3d206567b7ffe6e09c3983",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2017-voimaluste-kohvik-voimalikuks-2017",
+    "previous_source_path": "Võimaluste kohvik võimalikuks.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "37615e8214286a35e02d3d761f05a60e0d7e7a3cbf3d206567b7ffe6e09c3983",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

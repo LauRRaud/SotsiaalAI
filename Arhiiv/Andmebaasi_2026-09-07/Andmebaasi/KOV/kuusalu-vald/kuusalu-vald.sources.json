@@ -1,0 +1,2308 @@
+{
+  "schemaVersion": "kov-sources-v2.5-sourcepackage",
+  "docId": "kov-kuusalu-vald",
+  "document_id": "kov-kuusalu-vald",
+  "municipality": "Kuusalu vald",
+  "municipality_id": "kuusalu_vald",
+  "county": "Harjumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "sources": [
+    {
+      "source_id": "home",
+      "title": "Kuusalu vallavalitsuse avaleht",
+      "url": "https://www.kuusalu.ee",
+      "url_canonical": "https://www.kuusalu.ee",
+      "normalized_url": "https://www.kuusalu.ee",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "sotsiaalvaldkonna menüüstruktuur"
+      ],
+      "document_id": "home",
+      "source_key": "home",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "d83bb5c6dbac1dc1bc6cf274c02104cce414f384a7a95314c2a154009ed846fa",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "home"
+    },
+    {
+      "source_id": "social_overview",
+      "title": "Sotsiaal ja tervishoid menüüharu",
+      "url": "https://www.kuusalu.ee",
+      "url_canonical": "https://www.kuusalu.ee",
+      "normalized_url": "https://www.kuusalu.ee",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "sotsiaalvaldkonna koondstruktuur"
+      ],
+      "document_id": "social_overview",
+      "source_key": "social_overview",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "c5172034135f046936fa6242fb680b3bb6c22f6d8128ad848934104213cc5eb3",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "social_overview"
+    },
+    {
+      "source_id": "abivajadus_puue_overview",
+      "title": "Abivajadus ja puue",
+      "url": "https://www.kuusalu.ee/sotsiaalteenused1",
+      "url_canonical": "https://www.kuusalu.ee/sotsiaalteenused1",
+      "normalized_url": "https://www.kuusalu.ee/sotsiaalteenused1",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "sotsiaalteenuste ja puuetega inimeste toetuste koondinfo"
+      ],
+      "document_id": "abivajadus_puue_overview",
+      "source_key": "abivajadus_puue_overview",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_resource_puudega_inimese_soiduki_parkimiskaart"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "9d77ac4370103d99037f18582974afbceced022f1f1c6351b11c8a0e667b6878",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "abivajadus_puue_overview"
+    },
+    {
+      "source_id": "sotsiaalteenused_menu",
+      "title": "Abivajadus ja puue teenuste loend",
+      "url": "https://www.kuusalu.ee/sotsiaalteenused",
+      "url_canonical": "https://www.kuusalu.ee/sotsiaalteenused",
+      "normalized_url": "https://www.kuusalu.ee/sotsiaalteenused",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "teenuste ja ressursilehtede navigeerimine"
+      ],
+      "document_id": "sotsiaalteenused_menu",
+      "source_key": "sotsiaalteenused_menu",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "7c4ef52a5d232e9ec7a561bc9a556ca479c3e294a962175eae5f6c243a4ef284",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sotsiaalteenused_menu"
+    },
+    {
+      "source_id": "sotsiaaltoetused_overview",
+      "title": "Sotsiaaltoetused",
+      "url": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "url_canonical": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "normalized_url": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "sotsiaaltoetuste loend"
+      ],
+      "document_id": "sotsiaaltoetused_overview",
+      "source_key": "sotsiaaltoetused_overview",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_benefit_ametikooli_opilase_toetus",
+        "kuusalu_vald_benefit_elluastumistoetus",
+        "kuusalu_vald_benefit_hooldajatoetus_puudega_lapse_vanemale",
+        "kuusalu_vald_benefit_hoolduspere_toetus",
+        "kuusalu_vald_benefit_intervallhoiuteenuse_voi_koduhooldusteenuse_toetus",
+        "kuusalu_vald_benefit_joulutoetus",
+        "kuusalu_vald_benefit_juubelitoetus",
+        "kuusalu_vald_benefit_kriisitoetus",
+        "kuusalu_vald_benefit_lasterikka_pere_toetus",
+        "kuusalu_vald_benefit_puudega_inimese_toetus",
+        "kuusalu_vald_benefit_puudega_lapse_transporditoetus",
+        "kuusalu_vald_benefit_tasuta_ujumine_puuetega_noortele"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "ee4766837b079fdfb4821dfaed9479549fec99fb026091b502d01e61e63183b4",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sotsiaaltoetused_overview"
+    },
+    {
+      "source_id": "small_income_page",
+      "title": "Väike sissetulek",
+      "url": "https://www.kuusalu.ee/sotsiaaltoetusted",
+      "url_canonical": "https://www.kuusalu.ee/sotsiaaltoetusted",
+      "normalized_url": "https://www.kuusalu.ee/sotsiaaltoetusted",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "sissetulekust sõltuvate toetuste koondinfo ja taotluskanalid"
+      ],
+      "document_id": "small_income_page",
+      "source_key": "small_income_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "3036f6317325cbd8bcd6242c79425248cf10b0d096ab37045e8a9c0cfbbec967",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "small_income_page"
+    },
+    {
+      "source_id": "forms_page",
+      "title": "Taotluste vormid",
+      "url": "https://www.kuusalu.ee/taotluste-vormid1",
+      "url_canonical": "https://www.kuusalu.ee/taotluste-vormid1",
+      "normalized_url": "https://www.kuusalu.ee/taotluste-vormid1",
+      "source_type": "application_form",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "vormide, avalduste ja taotluskanalite kontroll"
+      ],
+      "document_id": "forms_page",
+      "source_key": "forms_page",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_form_aabitsatoetus",
+        "kuusalu_vald_form_ametkooli_opilase_toetus",
+        "kuusalu_vald_form_huvihariduse_toetus",
+        "kuusalu_vald_form_osalus_toidutoetus_avaldus",
+        "kuusalu_vald_form_raske_sugava_puudega_lapse_toetus",
+        "kuusalu_vald_form_sotsiaalteenuse_avaldus",
+        "kuusalu_vald_form_sotsiaaltoetuste_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "db56e8189219709b5943d50d29521fe25f3e8e95468f0c4e9d3ee050049baca3",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "forms_page"
+    },
+    {
+      "source_id": "koduteenus_page",
+      "title": "Koduteenus",
+      "url": "https://www.kuusalu.ee/koduteenus",
+      "url_canonical": "https://www.kuusalu.ee/koduteenus",
+      "normalized_url": "https://www.kuusalu.ee/koduteenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Koduteenus detailinfo"
+      ],
+      "document_id": "koduteenus_page",
+      "source_key": "koduteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_service_koduteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "b30a7558fdf21c0fbd02efb9700ecf0dc073c8b152f1aab61081fa810838df28",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "koduteenus_page"
+    },
+    {
+      "source_id": "uldhooldusteenus_page",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "url": "https://www.kuusalu.ee/valjaspool-kodu-osutatav-uldhooldusteenus",
+      "url_canonical": "https://www.kuusalu.ee/valjaspool-kodu-osutatav-uldhooldusteenus",
+      "normalized_url": "https://www.kuusalu.ee/valjaspool-kodu-osutatav-uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Väljaspool kodu osutatav üldhooldusteenus detailinfo"
+      ],
+      "document_id": "uldhooldusteenus_page",
+      "source_key": "uldhooldusteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "d83d552c75ddf0d0ac5afce345989653b2ba6835c68b12f782e5c6401cfb3ad7",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "uldhooldusteenus_page"
+    },
+    {
+      "source_id": "tugiisikuteenus_page",
+      "title": "Tugiisikuteenus",
+      "url": "https://www.kuusalu.ee/tugiisikuteenus",
+      "url_canonical": "https://www.kuusalu.ee/tugiisikuteenus",
+      "normalized_url": "https://www.kuusalu.ee/tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Tugiisikuteenus detailinfo"
+      ],
+      "document_id": "tugiisikuteenus_page",
+      "source_key": "tugiisikuteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_service_tugiisikuteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "72ee2ddd2c08b64fe10a23df00e0a84a1bdc359ef1c9e37e8391d2b2527d12f8",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "tugiisikuteenus_page"
+    },
+    {
+      "source_id": "taisealise_hooldus_page",
+      "title": "Täisealise isiku hooldus",
+      "url": "https://www.kuusalu.ee/hooldajatoetus",
+      "url_canonical": "https://www.kuusalu.ee/hooldajatoetus",
+      "normalized_url": "https://www.kuusalu.ee/hooldajatoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Täisealise isiku hooldus detailinfo"
+      ],
+      "document_id": "taisealise_hooldus_page",
+      "source_key": "taisealise_hooldus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_benefit_hooldajatoetus_taisealise_isiku_hooldamise_eest",
+        "kuusalu_vald_service_taisealise_isiku_hooldus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "94412dfaae5ed53b0d108ccc91c8f57608fdfc8e08436a0c2f0c8c66d827b150",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "taisealise_hooldus_page"
+    },
+    {
+      "source_id": "isikliku_abistaja_page",
+      "title": "Isikliku abistaja teenus",
+      "url": "https://www.kuusalu.ee/isikliku-abistaja-teenus",
+      "url_canonical": "https://www.kuusalu.ee/isikliku-abistaja-teenus",
+      "normalized_url": "https://www.kuusalu.ee/isikliku-abistaja-teenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Isikliku abistaja teenus detailinfo"
+      ],
+      "document_id": "isikliku_abistaja_page",
+      "source_key": "isikliku_abistaja_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_service_isikliku_abistaja_teenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "befcf50af135e97d690f3e3ce9dd267bef8f55da2bfe6fe028a5ca39d93ee979",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "isikliku_abistaja_page"
+    },
+    {
+      "source_id": "varjupaigateenus_page",
+      "title": "Varjupaigateenus",
+      "url": "https://www.kuusalu.ee/varjupaigateenus",
+      "url_canonical": "https://www.kuusalu.ee/varjupaigateenus",
+      "normalized_url": "https://www.kuusalu.ee/varjupaigateenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Varjupaigateenus detailinfo"
+      ],
+      "document_id": "varjupaigateenus_page",
+      "source_key": "varjupaigateenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_service_varjupaigateenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "f82f0a6b2bd6c194c0a95cd1c4baa134c8528d8531d0df7c30cb98f976156a63",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "varjupaigateenus_page"
+    },
+    {
+      "source_id": "turvakoduteenus_page",
+      "title": "Turvakoduteenus",
+      "url": "https://www.kuusalu.ee/turvakoduteenus",
+      "url_canonical": "https://www.kuusalu.ee/turvakoduteenus",
+      "normalized_url": "https://www.kuusalu.ee/turvakoduteenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Turvakoduteenus detailinfo"
+      ],
+      "document_id": "turvakoduteenus_page",
+      "source_key": "turvakoduteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_service_turvakoduteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "4aa2d093bbac213b3f5f15d14978d50de35e76f12a9c017e0464d810c4b34487",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "turvakoduteenus_page"
+    },
+    {
+      "source_id": "sotsiaaltransport_page",
+      "title": "Sotsiaaltransporditeenus",
+      "url": "https://www.kuusalu.ee/sotsiaaltransporditeenus",
+      "url_canonical": "https://www.kuusalu.ee/sotsiaaltransporditeenus",
+      "normalized_url": "https://www.kuusalu.ee/sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Sotsiaaltransporditeenus detailinfo"
+      ],
+      "document_id": "sotsiaaltransport_page",
+      "source_key": "sotsiaaltransport_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_service_sotsiaaltransporditeenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "e02f10967e040cf34fd1e0e3c742706dcf1d634e0f70ffc34de0731b3b532cb0",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sotsiaaltransport_page"
+    },
+    {
+      "source_id": "eluruumi_tagamine_page",
+      "title": "Eluruumi tagamine",
+      "url": "https://www.kuusalu.ee/eluruumi-tagamine",
+      "url_canonical": "https://www.kuusalu.ee/eluruumi-tagamine",
+      "normalized_url": "https://www.kuusalu.ee/eluruumi-tagamine",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Eluruumi tagamine detailinfo"
+      ],
+      "document_id": "eluruumi_tagamine_page",
+      "source_key": "eluruumi_tagamine_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_service_eluruumi_tagamine"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "a15520e0ad29816e7d70ccf6f6bd924297af8d805ad5a35cdc2ddaa69902e4ef",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "eluruumi_tagamine_page"
+    },
+    {
+      "source_id": "volanoustamisteenus_page",
+      "title": "Võlanõustamisteenus",
+      "url": "https://www.kuusalu.ee/volanoustamisteenus1",
+      "url_canonical": "https://www.kuusalu.ee/volanoustamisteenus1",
+      "normalized_url": "https://www.kuusalu.ee/volanoustamisteenus1",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Võlanõustamisteenus detailinfo"
+      ],
+      "document_id": "volanoustamisteenus_page",
+      "source_key": "volanoustamisteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_resource_mtu_volanoustajad",
+        "kuusalu_vald_service_volanoustamisteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "78c2e36024fa06d91286ebd7909f0d0127498df16bb99630476cef587dccaf9d",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "volanoustamisteenus_page"
+    },
+    {
+      "source_id": "lapsehoiuteenus_page",
+      "title": "Lapsehoiuteenus",
+      "url": "https://www.kuusalu.ee/lapsehoiuteenus",
+      "url_canonical": "https://www.kuusalu.ee/lapsehoiuteenus",
+      "normalized_url": "https://www.kuusalu.ee/lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Lapsehoiuteenus detailinfo"
+      ],
+      "document_id": "lapsehoiuteenus_page",
+      "source_key": "lapsehoiuteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_service_lapsehoiuteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "ff31ee6eeb304386d2317354d55fc6f5cc4ece36a63927d1db625308df37e8d9",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "lapsehoiuteenus_page"
+    },
+    {
+      "source_id": "asendushooldusteenus_page",
+      "title": "Asendushooldusteenus",
+      "url": "https://www.kuusalu.ee/asendushooldusteenus",
+      "url_canonical": "https://www.kuusalu.ee/asendushooldusteenus",
+      "normalized_url": "https://www.kuusalu.ee/asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Asendushooldusteenus detailinfo"
+      ],
+      "document_id": "asendushooldusteenus_page",
+      "source_key": "asendushooldusteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_service_asendushooldusteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "84140ebcca0abfedbea19457037f327aeffbc6e2775c71d69fc9d6878b7f767a",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "asendushooldusteenus_page"
+    },
+    {
+      "source_id": "jarelhooldusteenus_page",
+      "title": "Järelhooldusteenus",
+      "url": "https://www.kuusalu.ee/jarelhooldusteenus",
+      "url_canonical": "https://www.kuusalu.ee/jarelhooldusteenus",
+      "normalized_url": "https://www.kuusalu.ee/jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Järelhooldusteenus detailinfo"
+      ],
+      "document_id": "jarelhooldusteenus_page",
+      "source_key": "jarelhooldusteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_service_jarelhooldusteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "f02a4aa60208a219fa22ef67f2616262247507eac812a67e4b65478c3d8f47ac",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "jarelhooldusteenus_page"
+    },
+    {
+      "source_id": "toimetulekutoetus_page",
+      "title": "Toimetulekutoetus",
+      "url": "https://www.kuusalu.ee/et/toimetulekutoetus",
+      "url_canonical": "https://www.kuusalu.ee/et/toimetulekutoetus",
+      "normalized_url": "https://www.kuusalu.ee/et/toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Toimetulekutoetus detailinfo"
+      ],
+      "document_id": "toimetulekutoetus_page",
+      "source_key": "toimetulekutoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_benefit_toimetulekutoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "1088deb65bfc8e4b80f01c9b06d18e0f0a5bae521a4b8ae7dc82f474072117da",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "toimetulekutoetus_page"
+    },
+    {
+      "source_id": "osalustasu_toetus_page",
+      "title": "Osalustasu toetus",
+      "url": "https://www.kuusalu.ee/et/osalustasu-toetus",
+      "url_canonical": "https://www.kuusalu.ee/et/osalustasu-toetus",
+      "normalized_url": "https://www.kuusalu.ee/et/osalustasu-toetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Osalustasu toetus detailinfo"
+      ],
+      "document_id": "osalustasu_toetus_page",
+      "source_key": "osalustasu_toetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_benefit_osalustasu_toetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "9b738dfd47b39218b36eab0895805cc900027cb78d4ca9d4c39f7a4fe0315c96",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "osalustasu_toetus_page"
+    },
+    {
+      "source_id": "toidutoetus_page",
+      "title": "Toidutoetus",
+      "url": "https://www.kuusalu.ee/et/toidutoetus",
+      "url_canonical": "https://www.kuusalu.ee/et/toidutoetus",
+      "normalized_url": "https://www.kuusalu.ee/et/toidutoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Toidutoetus detailinfo"
+      ],
+      "document_id": "toidutoetus_page",
+      "source_key": "toidutoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_benefit_toidutoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "db31a1640b4cd6c5ed010d6a48323b52eb79f00ba36ecb7d25973bbd9e59d910",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "toidutoetus_page"
+    },
+    {
+      "source_id": "huvihariduse_toetus_page",
+      "title": "Huvihariduse, huviringi ja laagri toetus",
+      "url": "https://www.kuusalu.ee/et/huvihariduse-huviringi-ja-laagri-toetus",
+      "url_canonical": "https://www.kuusalu.ee/et/huvihariduse-huviringi-ja-laagri-toetus",
+      "normalized_url": "https://www.kuusalu.ee/et/huvihariduse-huviringi-ja-laagri-toetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Huvihariduse, huviringi ja laagri toetus detailinfo"
+      ],
+      "document_id": "huvihariduse_toetus_page",
+      "source_key": "huvihariduse_toetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_benefit_huvihariduse_huviringi_ja_laagri_toetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "06dc5895c72e5642078716a258b3f30b507bc41ad9e4a06c4375188269938b89",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "huvihariduse_toetus_page"
+    },
+    {
+      "source_id": "tervisetoetus_page",
+      "title": "Tervisetoetus",
+      "url": "https://www.kuusalu.ee/et/tervisetoetus",
+      "url_canonical": "https://www.kuusalu.ee/et/tervisetoetus",
+      "normalized_url": "https://www.kuusalu.ee/et/tervisetoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Tervisetoetus detailinfo"
+      ],
+      "document_id": "tervisetoetus_page",
+      "source_key": "tervisetoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_benefit_tervisetoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "eb0733afcbf985115f1931cde3693b9631e513f3bc0709957780ad57e24fbfb2",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "tervisetoetus_page"
+    },
+    {
+      "source_id": "kuttetoetus_page",
+      "title": "Küttetoetus",
+      "url": "https://www.kuusalu.ee/et/kuttetoetus",
+      "url_canonical": "https://www.kuusalu.ee/et/kuttetoetus",
+      "normalized_url": "https://www.kuusalu.ee/et/kuttetoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Küttetoetus detailinfo"
+      ],
+      "document_id": "kuttetoetus_page",
+      "source_key": "kuttetoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_benefit_kuttetoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "e64c7060566664cd5fed03c3f45beefaa8414cf338ed970106d743d0b576322a",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "kuttetoetus_page"
+    },
+    {
+      "source_id": "uhekordne_toetus_page",
+      "title": "Ühekordne toetus",
+      "url": "https://www.kuusalu.ee/et/uhekordne-toetus",
+      "url_canonical": "https://www.kuusalu.ee/et/uhekordne-toetus",
+      "normalized_url": "https://www.kuusalu.ee/et/uhekordne-toetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Ühekordne toetus detailinfo"
+      ],
+      "document_id": "uhekordne_toetus_page",
+      "source_key": "uhekordne_toetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_benefit_uhekordne_toetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "4a5cdfa2d871e5f6bd9337272bea9c7214f45aee6d2e6acfdb003a6b30f3fba5",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "uhekordne_toetus_page"
+    },
+    {
+      "source_id": "valtimatu_abi_toetus_page",
+      "title": "Vältimatu abi toetus",
+      "url": "https://www.kuusalu.ee/valtimatu-abi-toetus",
+      "url_canonical": "https://www.kuusalu.ee/valtimatu-abi-toetus",
+      "normalized_url": "https://www.kuusalu.ee/valtimatu-abi-toetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Vältimatu abi toetus detailinfo"
+      ],
+      "document_id": "valtimatu_abi_toetus_page",
+      "source_key": "valtimatu_abi_toetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_benefit_valtimatu_abi_toetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "9c060b746eb38de13ff3468d26c8455fe960ee08fb2202a441b67f8ea3ae3d80",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "valtimatu_abi_toetus_page"
+    },
+    {
+      "source_id": "sunnitoetus_page",
+      "title": "Sünnitoetus",
+      "url": "https://www.kuusalu.ee/sunnitoetus",
+      "url_canonical": "https://www.kuusalu.ee/sunnitoetus",
+      "normalized_url": "https://www.kuusalu.ee/sunnitoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Sünnitoetus detailinfo"
+      ],
+      "document_id": "sunnitoetus_page",
+      "source_key": "sunnitoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_benefit_sunnitoetus",
+        "kuusalu_vald_form_sunnitoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "3c31c190b1cee056af17a69e69d5ea16719ab4a0e2c293d00766a06a689162db",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sunnitoetus_page"
+    },
+    {
+      "source_id": "lapsehoiuteenuse_toetus_page",
+      "title": "Lapsehoiuteenuse toetus",
+      "url": "https://www.kuusalu.ee/lapsehoiuteenuse-toetus",
+      "url_canonical": "https://www.kuusalu.ee/lapsehoiuteenuse-toetus",
+      "normalized_url": "https://www.kuusalu.ee/lapsehoiuteenuse-toetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Lapsehoiuteenuse toetus detailinfo"
+      ],
+      "document_id": "lapsehoiuteenuse_toetus_page",
+      "source_key": "lapsehoiuteenuse_toetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_benefit_lapsehoiuteenuse_toetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "1b715f1a97239d1e6f660ae0b046d21c9271a2581cc5faf8e08cc54f651a92d1",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "lapsehoiuteenuse_toetus_page"
+    },
+    {
+      "source_id": "aabitsatoetus_page",
+      "title": "Aabitsatoetus",
+      "url": "https://www.kuusalu.ee/aabitsatoetus",
+      "url_canonical": "https://www.kuusalu.ee/aabitsatoetus",
+      "normalized_url": "https://www.kuusalu.ee/aabitsatoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Aabitsatoetus detailinfo"
+      ],
+      "document_id": "aabitsatoetus_page",
+      "source_key": "aabitsatoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_benefit_aabitsatoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "2f55f2826c879f0015333738dd6201a8028366c43040bf1b3182efe718fdb97d",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "aabitsatoetus_page"
+    },
+    {
+      "source_id": "matusetoetus_page",
+      "title": "Matusetoetus",
+      "url": "https://www.kuusalu.ee/matusetoetus",
+      "url_canonical": "https://www.kuusalu.ee/matusetoetus",
+      "normalized_url": "https://www.kuusalu.ee/matusetoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Matusetoetus detailinfo"
+      ],
+      "document_id": "matusetoetus_page",
+      "source_key": "matusetoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_benefit_matusetoetus",
+        "kuusalu_vald_form_matusetoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "31a1769e7df8fb02ff7fd0f1d53f0c842432b30bd6c3691067e4661cf58833ec",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "matusetoetus_page"
+    },
+    {
+      "source_id": "suure_hooldusvajadusega_lapse_toetus_page",
+      "title": "Suure hooldus- ja abivajadusega lapse lapsehoiuteenuse ja toetavate teenuste toetus",
+      "url": "https://www.kuusalu.ee/suure-hooldus-ja-abivajadusega-lapse-lapsehoiuteenuse-ja-toetavate-teenuste-toetus",
+      "url_canonical": "https://www.kuusalu.ee/suure-hooldus-ja-abivajadusega-lapse-lapsehoiuteenuse-ja-toetavate-teenuste-toetus",
+      "normalized_url": "https://www.kuusalu.ee/suure-hooldus-ja-abivajadusega-lapse-lapsehoiuteenuse-ja-toetavate-teenuste-toetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Suure hooldus- ja abivajadusega lapse lapsehoiuteenuse ja toetavate teenuste toetus detailinfo"
+      ],
+      "document_id": "suure_hooldusvajadusega_lapse_toetus_page",
+      "source_key": "suure_hooldusvajadusega_lapse_toetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_benefit_suure_hooldus_ja_abivajadusega_lapse_toetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "6820ef66f144a918368144d0c059dd28d2d6108b0e670fde0b90f6d401d4c319",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "suure_hooldusvajadusega_lapse_toetus_page"
+    },
+    {
+      "source_id": "hooldajatoetus_page",
+      "title": "Hooldajatoetus täisealise isiku hooldamise eest",
+      "url": "https://www.kuusalu.ee/hooldajatoetus",
+      "url_canonical": "https://www.kuusalu.ee/hooldajatoetus",
+      "normalized_url": "https://www.kuusalu.ee/hooldajatoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Hooldajatoetus täisealise isiku hooldamise eest detailinfo"
+      ],
+      "document_id": "hooldajatoetus_page",
+      "source_key": "hooldajatoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_benefit_hooldajatoetus_taisealise_isiku_hooldamise_eest",
+        "kuusalu_vald_service_taisealise_isiku_hooldus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "badf84ffa544e874c04c7610f33ce5d562c0eb4793deaae9aa293bc3036b7f80",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "hooldajatoetus_page"
+    },
+    {
+      "source_id": "medi_hairenuputeenus_page",
+      "title": "MEDI häirenuputeenus",
+      "url": "https://www.kuusalu.ee/medi-hairenuputeenus",
+      "url_canonical": "https://www.kuusalu.ee/medi-hairenuputeenus",
+      "normalized_url": "https://www.kuusalu.ee/medi-hairenuputeenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "MEDI häirenuputeenus info"
+      ],
+      "document_id": "medi_hairenuputeenus_page",
+      "source_key": "medi_hairenuputeenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_resource_medi_hairenuputeenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "2dc2dc2cc5561b4b550c2d3f57b5968a08019277777c04aec6425fb1475d7284",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "medi_hairenuputeenus_page"
+    },
+    {
+      "source_id": "isikliku_abivahendi_kaart_page",
+      "title": "Isikliku abivahendi kaart",
+      "url": "https://www.kuusalu.ee/isikliku-abivahendi-kaart",
+      "url_canonical": "https://www.kuusalu.ee/isikliku-abivahendi-kaart",
+      "normalized_url": "https://www.kuusalu.ee/isikliku-abivahendi-kaart",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Isikliku abivahendi kaart info"
+      ],
+      "document_id": "isikliku_abivahendi_kaart_page",
+      "source_key": "isikliku_abivahendi_kaart_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_resource_isikliku_abivahendi_kaart"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "a644982198d6ac6dbfa1651f8a7aed7d02e2f4086471a33d4f8861cd7c17b836",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "isikliku_abivahendi_kaart_page"
+    },
+    {
+      "source_id": "ohvriabi_page",
+      "title": "Ohvriabi",
+      "url": "https://www.kuusalu.ee/ohvriabi",
+      "url_canonical": "https://www.kuusalu.ee/ohvriabi",
+      "normalized_url": "https://www.kuusalu.ee/ohvriabi",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Ohvriabi info"
+      ],
+      "document_id": "ohvriabi_page",
+      "source_key": "ohvriabi_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_resource_ohvriabi"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "08e516787ecb84c6f46a89693e93f7dcadeaad111731c2ec8c41e69e5c6d863e",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "ohvriabi_page"
+    },
+    {
+      "source_id": "abi_infotelefonid_page",
+      "title": "Abi- ja infotelefonid",
+      "url": "https://www.kuusalu.ee/abi-ja-infotelefonid",
+      "url_canonical": "https://www.kuusalu.ee/abi-ja-infotelefonid",
+      "normalized_url": "https://www.kuusalu.ee/abi-ja-infotelefonid",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Abi- ja infotelefonid info"
+      ],
+      "document_id": "abi_infotelefonid_page",
+      "source_key": "abi_infotelefonid_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_resource_abi_ja_infotelefonid",
+        "kuusalu_vald_resource_psuhholoogiline_tugi_kuusalu_vallas"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "16c0f7b968d4b343345af31b125639bbc23b9ded1cfff092960998a4888202c0",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "abi_infotelefonid_page"
+    },
+    {
+      "source_id": "politsei_ohvriabi_page",
+      "title": "Politsei ja ohvriabi kontaktid",
+      "url": "https://www.kuusalu.ee/politsei",
+      "url_canonical": "https://www.kuusalu.ee/politsei",
+      "normalized_url": "https://www.kuusalu.ee/politsei",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Politsei ja ohvriabi kontaktid info"
+      ],
+      "document_id": "politsei_ohvriabi_page",
+      "source_key": "politsei_ohvriabi_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "636cad6a878cf1174601ff53ff989fdb436ee1093e93f1d2dd2cb1cb8dbe5115",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "politsei_ohvriabi_page"
+    },
+    {
+      "source_id": "parkimiskaart_page",
+      "title": "Puudega inimese sõiduki parkimiskaart",
+      "url": "https://www.kuusalu.ee/sotsiaalteenused1",
+      "url_canonical": "https://www.kuusalu.ee/sotsiaalteenused1",
+      "normalized_url": "https://www.kuusalu.ee/sotsiaalteenused1",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Puudega inimese sõiduki parkimiskaart info"
+      ],
+      "document_id": "parkimiskaart_page",
+      "source_key": "parkimiskaart_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_resource_puudega_inimese_soiduki_parkimiskaart"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "5ae8802ee01f5724fabc2d6c8227356f4ad0b4cee6b5a1e62015fd7ea2bebeab",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "parkimiskaart_page"
+    },
+    {
+      "source_id": "sotsiaalteenuse_avaldus_form_page",
+      "title": "Sotsiaalteenuse avaldus",
+      "url": "https://www.kuusalu.ee/taotluste-vormid1",
+      "url_canonical": "https://www.kuusalu.ee/taotluste-vormid1",
+      "normalized_url": "https://www.kuusalu.ee/taotluste-vormid1",
+      "source_type": "web_form",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Sotsiaalteenuse avaldus vormi info"
+      ],
+      "document_id": "sotsiaalteenuse_avaldus_form_page",
+      "source_key": "sotsiaalteenuse_avaldus_form_page",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_form_aabitsatoetus",
+        "kuusalu_vald_form_ametkooli_opilase_toetus",
+        "kuusalu_vald_form_huvihariduse_toetus",
+        "kuusalu_vald_form_osalus_toidutoetus_avaldus",
+        "kuusalu_vald_form_raske_sugava_puudega_lapse_toetus",
+        "kuusalu_vald_form_sotsiaalteenuse_avaldus",
+        "kuusalu_vald_form_sotsiaaltoetuste_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "b1bcbb33cdd082b7c5ca3ff308566dce8b66d222d3788d684e6624aaa4411940",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sotsiaalteenuse_avaldus_form_page"
+    },
+    {
+      "source_id": "sotsiaaltoetuste_avaldus_form_page",
+      "title": "Sotsiaaltoetuste avaldus",
+      "url": "https://www.kuusalu.ee/taotluste-vormid1",
+      "url_canonical": "https://www.kuusalu.ee/taotluste-vormid1",
+      "normalized_url": "https://www.kuusalu.ee/taotluste-vormid1",
+      "source_type": "web_form",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Sotsiaaltoetuste avaldus vormi info"
+      ],
+      "document_id": "sotsiaaltoetuste_avaldus_form_page",
+      "source_key": "sotsiaaltoetuste_avaldus_form_page",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_form_aabitsatoetus",
+        "kuusalu_vald_form_ametkooli_opilase_toetus",
+        "kuusalu_vald_form_huvihariduse_toetus",
+        "kuusalu_vald_form_osalus_toidutoetus_avaldus",
+        "kuusalu_vald_form_raske_sugava_puudega_lapse_toetus",
+        "kuusalu_vald_form_sotsiaalteenuse_avaldus",
+        "kuusalu_vald_form_sotsiaaltoetuste_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "67ed164e0137ff4d295d3256c4387a5d443f7ace3b78d728e73e571b27794ea1",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sotsiaaltoetuste_avaldus_form_page"
+    },
+    {
+      "source_id": "osalus_toidutoetus_avaldus_form_page",
+      "title": "Osalus- ja toidutoetuse avaldus",
+      "url": "https://www.kuusalu.ee/taotluste-vormid1",
+      "url_canonical": "https://www.kuusalu.ee/taotluste-vormid1",
+      "normalized_url": "https://www.kuusalu.ee/taotluste-vormid1",
+      "source_type": "web_form",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Osalus- ja toidutoetuse avaldus vormi info"
+      ],
+      "document_id": "osalus_toidutoetus_avaldus_form_page",
+      "source_key": "osalus_toidutoetus_avaldus_form_page",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_form_aabitsatoetus",
+        "kuusalu_vald_form_ametkooli_opilase_toetus",
+        "kuusalu_vald_form_huvihariduse_toetus",
+        "kuusalu_vald_form_osalus_toidutoetus_avaldus",
+        "kuusalu_vald_form_raske_sugava_puudega_lapse_toetus",
+        "kuusalu_vald_form_sotsiaalteenuse_avaldus",
+        "kuusalu_vald_form_sotsiaaltoetuste_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "da8b1d0dcef94f20b7cd762b7532609ccf83a667b157410ce208c517292e3c6c",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "osalus_toidutoetus_avaldus_form_page"
+    },
+    {
+      "source_id": "ametkooli_opilase_toetus_form_page",
+      "title": "Ametikooli õpilase toetuse avaldus",
+      "url": "https://www.kuusalu.ee/taotluste-vormid1",
+      "url_canonical": "https://www.kuusalu.ee/taotluste-vormid1",
+      "normalized_url": "https://www.kuusalu.ee/taotluste-vormid1",
+      "source_type": "web_form",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Ametikooli õpilase toetuse avaldus vormi info"
+      ],
+      "document_id": "ametkooli_opilase_toetus_form_page",
+      "source_key": "ametkooli_opilase_toetus_form_page",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_form_aabitsatoetus",
+        "kuusalu_vald_form_ametkooli_opilase_toetus",
+        "kuusalu_vald_form_huvihariduse_toetus",
+        "kuusalu_vald_form_osalus_toidutoetus_avaldus",
+        "kuusalu_vald_form_raske_sugava_puudega_lapse_toetus",
+        "kuusalu_vald_form_sotsiaalteenuse_avaldus",
+        "kuusalu_vald_form_sotsiaaltoetuste_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "af57be68db9785c79688eeb349b0d5f53aedf40a84b81b3a3d24c9973d35c6db",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "ametkooli_opilase_toetus_form_page"
+    },
+    {
+      "source_id": "raske_sugava_puudega_lapse_toetus_form_page",
+      "title": "Raske ja sügava puudega lapse sotsiaalteenuste toetuse avaldus",
+      "url": "https://www.kuusalu.ee/taotluste-vormid1",
+      "url_canonical": "https://www.kuusalu.ee/taotluste-vormid1",
+      "normalized_url": "https://www.kuusalu.ee/taotluste-vormid1",
+      "source_type": "web_form",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Raske ja sügava puudega lapse sotsiaalteenuste toetuse avaldus vormi info"
+      ],
+      "document_id": "raske_sugava_puudega_lapse_toetus_form_page",
+      "source_key": "raske_sugava_puudega_lapse_toetus_form_page",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_form_aabitsatoetus",
+        "kuusalu_vald_form_ametkooli_opilase_toetus",
+        "kuusalu_vald_form_huvihariduse_toetus",
+        "kuusalu_vald_form_osalus_toidutoetus_avaldus",
+        "kuusalu_vald_form_raske_sugava_puudega_lapse_toetus",
+        "kuusalu_vald_form_sotsiaalteenuse_avaldus",
+        "kuusalu_vald_form_sotsiaaltoetuste_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "49e62c05ab22181b54361ca29b3fab653e3abcbfc3ae659fe5408c1709ba0437",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "raske_sugava_puudega_lapse_toetus_form_page"
+    },
+    {
+      "source_id": "aabitsatoetus_form_page",
+      "title": "Aabitsatoetuse taotlus",
+      "url": "https://www.kuusalu.ee/taotluste-vormid1",
+      "url_canonical": "https://www.kuusalu.ee/taotluste-vormid1",
+      "normalized_url": "https://www.kuusalu.ee/taotluste-vormid1",
+      "source_type": "web_form",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Aabitsatoetuse taotlus vormi info"
+      ],
+      "document_id": "aabitsatoetus_form_page",
+      "source_key": "aabitsatoetus_form_page",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_form_aabitsatoetus",
+        "kuusalu_vald_form_ametkooli_opilase_toetus",
+        "kuusalu_vald_form_huvihariduse_toetus",
+        "kuusalu_vald_form_osalus_toidutoetus_avaldus",
+        "kuusalu_vald_form_raske_sugava_puudega_lapse_toetus",
+        "kuusalu_vald_form_sotsiaalteenuse_avaldus",
+        "kuusalu_vald_form_sotsiaaltoetuste_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "de36b2d342b55be822d946afab1be20b34076536f9ec294a3d1a4df1e409b825",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "aabitsatoetus_form_page"
+    },
+    {
+      "source_id": "huvihariduse_toetus_form_page",
+      "title": "Huvihariduse, huviringi ja laagri toetuse taotlus",
+      "url": "https://www.kuusalu.ee/taotluste-vormid1",
+      "url_canonical": "https://www.kuusalu.ee/taotluste-vormid1",
+      "normalized_url": "https://www.kuusalu.ee/taotluste-vormid1",
+      "source_type": "web_form",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Huvihariduse, huviringi ja laagri toetuse taotlus vormi info"
+      ],
+      "document_id": "huvihariduse_toetus_form_page",
+      "source_key": "huvihariduse_toetus_form_page",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_form_aabitsatoetus",
+        "kuusalu_vald_form_ametkooli_opilase_toetus",
+        "kuusalu_vald_form_huvihariduse_toetus",
+        "kuusalu_vald_form_osalus_toidutoetus_avaldus",
+        "kuusalu_vald_form_raske_sugava_puudega_lapse_toetus",
+        "kuusalu_vald_form_sotsiaalteenuse_avaldus",
+        "kuusalu_vald_form_sotsiaaltoetuste_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "02892ff281e080b3b14316b7b46d4eb0a91ef1eb1fc7a2cf4ef106db69d14f3c",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "huvihariduse_toetus_form_page"
+    },
+    {
+      "source_id": "matusetoetus_form_page",
+      "title": "Matusetoetuse taotlus",
+      "url": "https://www.kuusalu.ee/matusetoetus",
+      "url_canonical": "https://www.kuusalu.ee/matusetoetus",
+      "normalized_url": "https://www.kuusalu.ee/matusetoetus",
+      "source_type": "web_form",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Matusetoetuse taotlus vormi info"
+      ],
+      "document_id": "matusetoetus_form_page",
+      "source_key": "matusetoetus_form_page",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_benefit_matusetoetus",
+        "kuusalu_vald_form_matusetoetus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "547051cda6c3e0e6df944921835a960d0fee3b409cfad8b9a0a0af4f3eb5a78a",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "matusetoetus_form_page"
+    },
+    {
+      "source_id": "sunnitoetus_form_page",
+      "title": "Sünnitoetuse taotlus",
+      "url": "https://www.kuusalu.ee/sunnitoetus",
+      "url_canonical": "https://www.kuusalu.ee/sunnitoetus",
+      "normalized_url": "https://www.kuusalu.ee/sunnitoetus",
+      "source_type": "web_form",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kuusalu vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "Sünnitoetuse taotlus vormi info"
+      ],
+      "document_id": "sunnitoetus_form_page",
+      "source_key": "sunnitoetus_form_page",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kuusalu vald",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kuusalu_vald_benefit_sunnitoetus",
+        "kuusalu_vald_form_sunnitoetus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "574ee2f30ce4e956cb7518bfc861a1af58676e1f9f8a3c645d959ded5ff950d8",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sunnitoetus_form_page"
+    }
+  ],
+  "municipality_name": "Kuusalu vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

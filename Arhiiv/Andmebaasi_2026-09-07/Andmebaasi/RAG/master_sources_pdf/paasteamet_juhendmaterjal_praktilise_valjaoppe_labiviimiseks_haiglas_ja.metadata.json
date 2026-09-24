@@ -1,0 +1,76 @@
+{
+  "source": {
+    "source_id": "paasteamet_juhendmaterjal_praktilise_valjaoppe_labiviimiseks_haiglas_ja",
+    "title": "Juhendmaterjal praktilise väljaõppe läbiviimiseks haiglas ja hooldekodus",
+    "url": "https://www.rescue.ee/files/2019-03/praktilise-v-ljaoppe-juhendmaterjal-praktilise-oppe-labiviimiseks-haiglas-ja-hooldekodus.pdf",
+    "normalized_url": "https://www.rescue.ee/files/2019-03/praktilise-v-ljaoppe-juhendmaterjal-praktilise-oppe-labiviimiseks-haiglas-ja-hooldekodus.pdf",
+    "source_format": "pdf",
+    "source_type": "official_guideline",
+    "resource_type": "method_guidance",
+    "publisher": "Päästeamet",
+    "organization_id": "paasteamet",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Päästeamet",
+      "hoolekanne",
+      "sotsiaalteenused",
+      "hooldus",
+      "hooldekodu",
+      "hoolekandeasutus",
+      "spetsialisti juhend"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "high",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 401,
+      "order": 220
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Juhendmaterjal praktilise väljaõppe läbiviimiseks haiglas ja hooldekodus"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "official_guideline"
+    ],
+    "resource_types_seen": [
+      "best_practice_guidance"
+    ],
+    "publishers_seen": [
+      "Päästeamet"
+    ],
+    "organizations_seen": [
+      "paasteamet"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+        "line": 401,
+        "order": 220
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.rescue.ee/files/2019-03/praktilise-v-ljaoppe-juhendmaterjal-praktilise-oppe-labiviimiseks-haiglas-ja-hooldekodus.pdf"
+  },
+  "final_url": "https://www.rescue.ee/files/2019-03/praktilise-v-ljaoppe-juhendmaterjal-praktilise-oppe-labiviimiseks-haiglas-ja-hooldekodus.pdf",
+  "redirects": [],
+  "sha256": "618d4e9ebd29b801c0584be163a6c1ec3407a279fb1893256674ca1c5c0ee8ea",
+  "bytes": 1794488,
+  "downloaded_at": "2026-08-14T08:00:46.015Z"
+}

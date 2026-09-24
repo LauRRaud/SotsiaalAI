@@ -1,0 +1,117 @@
+{
+  "docId": "sotsiaaltoo-erinumber-2016",
+  "articleId": "sotsiaaltoo-erinumber-2016-artikkel-18-eesti-vanemaealiste-potentsiaali-tuleb-targalt-toetada",
+  "title": "Eesti vanemaealiste potentsiaali tuleb targalt toetada",
+  "authors": [
+    "Tiina Linno"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "erinumber 2016",
+  "section": "Omastehooldus",
+  "pageRange": "62-68",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi nõunik esitab vanemaealiste ja eakate toimetuleku 2015. aasta kordusuuringu tulemused 50-aastaste ja vanemate kohta: tähelepanu vajavad tervis, töö- ja hoolduskoormus, heaolu ja turvatunne ning õigeaegne märkamine. Uuringu rahastas Euroopa Sotsiaalfond, küsitluse tegi TNS Emor.",
+  "tags": [
+    "vanemaealised",
+    "eakad",
+    "kordusuuring",
+    "hoolduskoormus",
+    "aktiivsena vananemine"
+  ],
+  "source_type": "file",
+  "source_path": "2016_eri_artikkel_18_eesti_vanemaealiste_potentsiaali_tuleb_targalt_toeta.pdf",
+  "added": "2026-08-18",
+  "fulltext_note": "Erinumber „Sotsiaaltöö ; erinumber 2016\" (DIGAR nlib-digar:390083), pühendatud heaolu arengukavale 2016–2023. Lisatud korpusesse 18.08.2026.",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-18-eesti-vanemaealiste-potentsiaali-tuleb-targalt-toetada",
+  "source_sha256": "e85d1c4edbfd9b54a64ac5147f8f2986a687b78354b68213cd59289e7558ac3e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-18-eesti-vanemaealiste-potentsiaali-tuleb-targalt-toetada",
+    "previous_source_path": "2016_eri_artikkel_18_eesti_vanemaealiste_potentsiaali_tuleb_targalt_toeta.txt",
+    "previous_source_original_path": "2016_erinumber.pdf",
+    "reference_stored_source_sha256": "08e5e4ea47705b287b3f1d836adf1e81b581bcb364ed2eb3f5eb3d7fc609dc1c",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2016_erinumber.pdf",
+      "source_sha256": "ae3bbf0a621beae80ae1e05a13206ffa00c6811806397ee8ac925f3762d93c70",
+      "pdf_start_page": 64,
+      "pdf_end_page": 70,
+      "printed_page_range": "62-68",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 70,
+      "source_regions": [
+        {
+          "source_pdf_page": 64,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 65,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 66,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 67,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 68,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 69,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 70,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "62-68"
+    },
+    "server_page_range": "62-68"
+  }
+}

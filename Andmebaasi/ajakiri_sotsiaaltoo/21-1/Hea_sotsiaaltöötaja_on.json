@@ -1,0 +1,38 @@
+{
+  "docId": "sotsiaaltoo-1-2021",
+  "articleId": "hea-sotsiaaltootaja-on-haesti-hoitud-2021-1",
+  "title": "Hea sotsiaaltöötaja on hästi hoitud",
+  "authors": [
+    "Marju Selg"
+  ],
+  "authors_fixed": "2026-08-15",
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2021",
+  "section": "Sotsiaaltöö eetika",
+  "pageRange": "78-86",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb sotsiaaltöötaja heaolu ja professionaalset hoidmist.",
+  "tags": [
+    "sotsiaaltöötaja",
+    "eetika",
+    "tööheaolu"
+  ],
+  "source_type": "file",
+  "source_path": "artikkel_13_hea_sotsiaaltootaja.pdf",
+  "document_id": "sotsiaaltoo-1-2021-hea-sotsiaaltootaja-on-haesti-hoitud-2021-1",
+  "source_format": "pdf",
+  "source_sha256": "a5c77cb78133d0acb0bd16fbb0a2025a157b250bcea83e2bafcf1be2fce39845",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2021-hea-sotsiaaltootaja-on-haesti-hoitud-2021-1",
+    "previous_source_path": "artikkel_13_hea_sotsiaaltootaja.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "a5c77cb78133d0acb0bd16fbb0a2025a157b250bcea83e2bafcf1be2fce39845",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

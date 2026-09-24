@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2021",
+  "articleId": "tegevustest-pikaajalise-hoolduse-vallas-2021-3",
+  "title": "Tegevustest pikaajalise hoolduse vallas",
+  "authors": [
+    "Maarja Krais-Leosk"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2021",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "13-15",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi nõuniku ülevaade pikaajalise hoolduse arendamisest Eestis. Artikkel kaardistab järgmise 5–10 aasta olulisemad suunad: avaliku sektori kulutuste suurendamise vajadust, teenuste mahu ja kattuvuse parandamist, hoolduskoormusega perede omaosaluse vähendamist ning inimkesksema klienditeekonna kujundamist. Tutvustatakse käimasolevaid projekte, nagu hoolduskoordinaatorite süsteem, sotsiaal- ja tervishoiusüsteemi integratsioon, isikukeskse erihoolekande teenusmudeli (ISTE) katsetamine ning OSKA analüüsid tööjõu ja oskuste vajaduse kohta. Autor rõhutab vajadust jätkusuutliku rahastamise, kvalifitseeritud tööjõu ja paremini lõimitud teenuste järele.",
+  "tags": [
+    "pikaajaline hooldus",
+    "sotsiaalpoliitika",
+    "hoolduskoormus",
+    "hoolduskoordinaatorid",
+    "sotsiaal- ja tervishoiu integratsioon",
+    "erihoolekanne",
+    "OSKA",
+    "avalik rahastus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2021_web_link_Part5.pdf",
+  "document_id": "sotsiaaltoo-3-2021-tegevustest-pikaajalise-hoolduse-vallas-2021-3",
+  "source_format": "pdf",
+  "source_sha256": "18f7e62aedad96066c8430e0d462059049eb27eaef41eb8561b1cfec01890a89",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2021-tegevustest-pikaajalise-hoolduse-vallas-2021-3",
+    "previous_source_path": "Sotsiaaltoo_3_2021_web_link_Part5.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "18f7e62aedad96066c8430e0d462059049eb27eaef41eb8561b1cfec01890a89",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

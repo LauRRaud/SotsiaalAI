@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-eri-2018",
+  "articleId": "tuleviku-eesti-sotsiaaltoo-ja-sotsiaaltootaja-2018",
+  "title": "Milline võiks olla tulevikus Eesti sotsiaaltöö ja sotsiaaltöötaja?",
+  "authors": [
+    "Koidu Saia",
+    "Indrek Sooniste",
+    "Kiira Gornischeff"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö (juubeli erinumber)",
+  "issueLabel": "Eri/2018",
+  "section": "Sotsiaaltöö tulevik",
+  "pageRange": "31-39",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Analüüs Eesti sotsiaaltöö praegusest olukorrast ja tulevikusuundadest, käsitledes globaalseid trende, inimõiguste fookust, sotsiaalteenuste korraldust, professionaalset identiteeti ning sotsiaaltöötaja rolli muutuvatest ootustest lähtudes.",
+  "tags": [
+    "Eesti sotsiaaltöö",
+    "sotsiaaltöö tulevik",
+    "professionaalne identiteet",
+    "inimõigused",
+    "sotsiaalpoliitika suundumused",
+    "sotsiaalteenuste arendus",
+    "akadeemia ja praktika koostöö"
+  ],
+  "source_type": "file",
+  "source_path": "ST_eri_2018_web_link_Part11.pdf",
+  "document_id": "sotsiaaltoo-eri-2018-tuleviku-eesti-sotsiaaltoo-ja-sotsiaaltootaja-2018",
+  "source_format": "pdf",
+  "source_sha256": "1bed3be54ebb62838f75f92898105d956b64faa3adc482790b5d8ead48d82de8",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2018-tuleviku-eesti-sotsiaaltoo-ja-sotsiaaltootaja-2018",
+    "previous_source_path": "ST_eri_2018_web_link_Part11.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "1bed3be54ebb62838f75f92898105d956b64faa3adc482790b5d8ead48d82de8",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

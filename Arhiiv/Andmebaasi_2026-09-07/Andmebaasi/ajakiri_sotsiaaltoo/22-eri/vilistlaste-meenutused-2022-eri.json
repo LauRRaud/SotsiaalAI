@@ -1,0 +1,127 @@
+{
+  "docId": "sotsiaaltoo-eri-2022",
+  "articleId": "vilistlaste-meenutused-2022-eri",
+  "title": "Empaatia ja uudishimu ning muutustega kaasas käimise soov. Vilistlaste meenutused ja mõtted tulevikust",
+  "authors": [
+    "Eike Käsi",
+    "Marje Paljak",
+    "Reet Velberg",
+    "Helmen Kütt",
+    "Helika Saar",
+    "Andrei Petuhhov",
+    "Katrin Tsuiman",
+    "Kätlin Mikiver",
+    "Heli Kallasmaa",
+    "Jaanika Petti",
+    "Olga Lupanova",
+    "Ülly Enn"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö (erinumber)",
+  "issueLabel": "Eri/2022",
+  "section": "30 aastat õpetamist",
+  "pageRange": "70-76",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kaheteistkümne vilistlase meenutused Tallinna Ülikooli sotsiaaltöö õpingutest ja mõtted eriala tulevikust. Vastajate seas on omavalitsuste sotsiaalnõunikke, abilinnapead, riigikogu liige ja ministeeriumide ametnikke; osa neist on valdkonnas töötanud ligi kolm aastakümmet. Küsiti, mis õpingute ajal võlus ja mõjutas, mis on keerulisel ajal innustanud valdkonnas jätkama ning millisena nähakse sotsiaaltöö tulevikku.",
+  "tags": [
+    "vilistlased",
+    "sotsiaaltööharidus",
+    "karjäär",
+    "sotsiaaltöö tulevik",
+    "meenutused"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo-ERINUMBER_2022_Part14.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-eri-2022-vilistlaste-meenutused-2022-eri",
+  "source_sha256": "3811c1615c761a9691ac403a0b1232fd32c00a313660d80713bf551c18c08ba2",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2022-vilistlaste-meenutused-2022-eri",
+    "previous_source_path": "Sotsiaaltoo-ERINUMBER_2022_Part14.txt",
+    "previous_source_original_path": "Sotsiaaltoo-ERINUMBER_2022_Part14.pdf",
+    "reference_stored_source_sha256": "ce7f67084a9533b04bf2ba95ca01408518315e54a0a022c3604a43e037d382ae",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo-ERINUMBER_2022.pdf",
+      "source_sha256": "807b48240fe049838a94b8cffd3e1b388f778591bddb0ad5cb542d3cd6ff73b1",
+      "pdf_start_page": 72,
+      "pdf_end_page": 78,
+      "printed_page_range": "70-76",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 78,
+      "source_regions": [
+        {
+          "source_pdf_page": 72,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 73,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 74,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 75,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 76,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 77,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 78,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "70-76"
+    },
+    "server_page_range": "70-76"
+  }
+}

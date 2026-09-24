@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2025",
+  "articleId": "dementsusega-inimesed-peaksid-olema-uhiskonnas-kaua-tegusad-2025-3",
+  "title": "Dementsusega inimesed peaksid olema ühiskonnas kaua tegusad",
+  "authors": [
+    "Piret Purdelo-Tomingas",
+    "Hanna-Stiina Heinmets"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2025",
+  "section": "Dementsus",
+  "pageRange": "40",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Lühitekst rõhutab, et dementsusega inimesi ja nende peresid tuleb toetada mitmekesiste meditsiiniliste, sotsiaalsete ja psühholoogiliste teenustega. Autorid kutsuvad üles rääkima dementsusest avatult, märkama varaseid sümptomeid ning looma ka kerge või mõõduka mäluhäirega inimestele tähenduslikke ajaveetmise võimalusi.",
+  "tags": [
+    "dementsus",
+    "varajane märkamine",
+    "lähedaste toetus",
+    "stigma vähendamine",
+    "psühholoogiline tugi",
+    "sotsiaalteenused",
+    "teadlikkuse tõstmine"
+  ],
+  "source_type": "file",
+  "source_path": "7web_sotsiaaltoo_3-2025.pdf",
+  "document_id": "sotsiaaltoo-3-2025-dementsusega-inimesed-peaksid-olema-uhiskonnas-kaua-tegusad-2025-3",
+  "source_format": "pdf",
+  "source_sha256": "8e5cfd6716eaf4c7e3a505fb1309e730cb50f2ae5688b2039573ff7944896f34",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2025-dementsusega-inimesed-peaksid-olema-uhiskonnas-kaua-tegusad-2025-3",
+    "previous_source_path": "7web_sotsiaaltoo_3-2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "8e5cfd6716eaf4c7e3a505fb1309e730cb50f2ae5688b2039573ff7944896f34",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-3-2019",
+  "articleId": "voru-linna-sotsiaaltoo-korralduse-mured-ja-roomud-2019",
+  "title": "Võru linna sotsiaaltöö korralduse mured ja rõõmud",
+  "authors": [
+    "Eve Ilisson"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2019",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "90-93",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Võru linna sotsiaaltöö korralduse kirjeldus: meeskond ja tööjaotus, lastekaitse ning erihoolekandeteenused, koostöö partneritega, projektid ja arengusuunad ning peamised väljakutsed, sh psüühikahäiretega inimeste kasvav arv ja erihoolekandeteenuste nappus.",
+  "tags": [
+    "kohalik omavalitsus",
+    "Võru linn",
+    "sotsiaaltöö korraldus",
+    "lastekaitse",
+    "erihoolekanne",
+    "projektid ja koostöövõrgustik"
+  ],
+  "source_type": "file",
+  "source_path": "ST3_2019_veeb_link_Part19.pdf",
+  "document_id": "sotsiaaltoo-3-2019-voru-linna-sotsiaaltoo-korralduse-mured-ja-roomud-2019",
+  "source_format": "pdf",
+  "source_sha256": "ade532a9c36b98a87cc7be5262a1ded6a6e11ed6afd7343b13159b921017af5a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2019-voru-linna-sotsiaaltoo-korralduse-mured-ja-roomud-2019",
+    "previous_source_path": "ST3_2019_veeb_link_Part19.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ade532a9c36b98a87cc7be5262a1ded6a6e11ed6afd7343b13159b921017af5a",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

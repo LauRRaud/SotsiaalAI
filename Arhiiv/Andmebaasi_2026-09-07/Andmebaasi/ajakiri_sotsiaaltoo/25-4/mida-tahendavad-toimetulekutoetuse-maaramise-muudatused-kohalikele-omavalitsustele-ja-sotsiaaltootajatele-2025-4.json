@@ -1,0 +1,41 @@
+{
+  "docId": "mida-tahendavad-toimetulekutoetuse-maaramise-muudatused-kohalikele-omavalitsustele-ja-sotsiaaltootajatele-2025-4",
+  "articleId": "mida-tahendavad-toimetulekutoetuse-maaramise-muudatused-kohalikele-omavalitsustele-ja-sotsiaaltootajatele-2025-4",
+  "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?",
+  "authors": [
+    "Kati Nõlvak"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2025",
+  "section": "Majanduslik toimetulek",
+  "pageRange": "1–5",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel selgitab toimetulekutoetuse regulatsiooni kavandatud muudatusi ning nende mõju kohalikele omavalitsustele ja sotsiaaltöötajate töökorraldusele. Fookuses on menetluse lihtsustamine, perede toetamine ja eluasemekulude arvestamise selgemad alused.",
+  "tags": [
+    "toimetulekutoetus",
+    "kohalik omavalitsus",
+    "sotsiaaltöö praktika",
+    "halduskoormus",
+    "STAR",
+    "eluasemekulud",
+    "majanduslik toimetulek"
+  ],
+  "source_type": "file",
+  "source_path": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele.pdf",
+  "document_id": "mida-tahendavad-toimetulekutoetuse-maaramise-muudatused-kohalikele-omavalitsustele-ja-sotsiaaltootajatele-2025-4",
+  "source_format": "pdf",
+  "source_sha256": "3b0446aa7edfb936bf31f9fe7b36ddefc1ed37f02d136ceb2469b4fa55795488",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "mida-tahendavad-toimetulekutoetuse-maaramise-muudatused-kohalikele-omavalitsustele-ja-sotsiaaltootajatele-2025-4",
+    "previous_source_path": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "3b0446aa7edfb936bf31f9fe7b36ddefc1ed37f02d136ceb2469b4fa55795488",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "source": {
+    "source_id": "tervisekassa_pereoenduse_tegevusjuhend",
+    "title": "Pereõenduse tegevusjuhend",
+    "url": "https://tervisekassa.ee/sites/default/files/Raviasutused/a5_pereoenduse_tegevusjuhend_netti_2.pdf",
+    "normalized_url": "https://tervisekassa.ee/sites/default/files/Raviasutused/a5_pereoenduse_tegevusjuhend_netti_2.pdf",
+    "source_format": "pdf",
+    "source_type": "official_guideline",
+    "resource_type": "method_guidance",
+    "publisher": "Tervisekassa",
+    "organization_id": "tervisekassa",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Tervisekassa",
+      "tervishoid",
+      "esmatasand",
+      "patsient",
+      "pereõendus",
+      "õendus",
+      "lapsed ja pered",
+      "lapsevanem",
+      "pere",
+      "vanemlus",
+      "spetsialisti juhend"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "high",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_046",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+    "source_context": {
+      "heading_2": "Tervisekassa",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 285,
+      "order": 168
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "Pereõenduse tegevusjuhend"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "official_guideline"
+    ],
+    "resource_types_seen": [
+      "best_practice_guidance"
+    ],
+    "publishers_seen": [
+      "Tervisekassa"
+    ],
+    "organizations_seen": [
+      "tervisekassa"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Tervisekassa",
+        "line": 285,
+        "order": 168
+      },
+      {
+        "heading_2": "Tervisekassa",
+        "line": 759,
+        "order": 375
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://tervisekassa.ee/sites/default/files/Raviasutused/a5_pereoenduse_tegevusjuhend_netti_2.pdf"
+  },
+  "final_url": "https://tervisekassa.ee/sites/default/files/Raviasutused/a5_pereoenduse_tegevusjuhend_netti_2.pdf",
+  "redirects": [],
+  "sha256": "9e07379d70f6b72dd59d73a91caf3a85aacca51954422b1be26b6484ef6e8286",
+  "bytes": 556844,
+  "downloaded_at": "2026-08-14T08:00:37.141Z"
+}

@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-kadrina-vald",
+  "document_id": "kov-kadrina-vald",
+  "municipality": "Kadrina vald",
+  "municipality_id": "kadrina_vald",
+  "county": "Lääne-Virumaa",
+  "checkedAt": "2026-04-29",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-kadrina-vald",
+  "coverage": {
+    "services": 16,
+    "benefits": 9,
+    "resources": 17,
+    "contacts": 9,
+    "forms": 10,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "kadrina_vald",
+    "source_register_file": "kadrina-vald.sources.json",
+    "service_benefit_resource_items": 42,
+    "items_with_source_keys": 42,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 19,
+    "items_without_related_forms": 23,
+    "items_with_related_contacts": 37,
+    "items_without_related_contacts": 5,
+    "form_sources": 8,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Korje alustati Kadrina valla avalehelt ning peamine sotsiaalvaldkonna menüüharu kaardistati avalehe menüüst ja sotsiaalvaldkonna alamharudest.",
+    "Paketis on ainult Kadrina valla ametlikul veebikihil avaldatud praktiline sotsiaalvaldkonna info; RT/legal kihte ei kasutatud struktureeritud allikatena.",
+    "SPOKU e-vormid on kajastatud Kadrina valla lehtedel ja SPOKU avalehel kinnitatud ulatuses; vormide sisemine sisu eeldab sisselogimist."
+  ],
+  "unresolvedIssues": [
+    "SPOKU konkreetsete e-vormide sisu ja vormivälju ei saanud ilma sisselogimiseta kontrollida; paketis on kajastatud Kadrina valla lehtedel kinnitatud taotluskanal ja SPOKU avalehe üldinfo.",
+    "Mitmel kontaktilehel ja detaillehel oli e-posti aadress varjestatud kujul '**'; täpset aadressi ei taastatud oletuse põhjal ning säilitati ainult need aadressid, mis olid Kadrina valla veebis selgelt tekstina avaldatud.",
+    "Mõne vormi RTF/DOC paralleelversiooni avamine või masinlugemine ei olnud usaldusväärne; kanoniseeritud vormiallikana kasutati tegelikult avatud ametlikke PDF-e või SPOKU ametlikku e-vormi lehte.",
+    "Kadrina valla veebis on sama sisuga teenuseid ja vorme kohati mitmes menüüharus või suffiksiga failinimena; paketis on loodud üks kanoniline item ja dubleerivaid kirjeid ei lisatud.",
+    "Abivahendite riiklik toetus oli KOV menüüs välise Sotsiaalkindlustusameti viitena, kuid eraldi Kadrina valla praktilist sisulehte ei tuvastatud; seda ei normaliseeritud KOV teenuse ega toetusena.",
+    "Välised teenusepakkujad ja abikanalid, näiteks Rakvere Sotsiaalkeskus, naiste tugikeskused, Lasteabi ja Ohvriabi, on kajastatud ainult Kadrina valla lehel avaldatud ulatuses; väliseid veebilehti ei kasutatud allikana.",
+    "Mõnel ressursilehel oli praktiline menetluskäik napp või esitati peamiselt suunamisi; need kirjed on liigitatud resource tüüpi ja detailseid taotlusvälju ei täidetud oletuse põhjal.",
+    "Vältimatu sotsiaalabi on Kadrina valla veebis esitatud teenusena ja sotsiaaltoetuse vormis valikuna; paketis on loodud eraldi teenuse item, kuid vormiseost ei lisatud, sest teenuse detailleht ei nimetanud konkreetset vormi.",
+    "Toiduabi on kajastatud ressursina, sest Kadrina valla leht kirjeldab riiklikku või partnerite kaudu korraldatud toiduabi suunamisinfot, mitte eraldi KOV toetuse taotlusmenetlust."
+  ],
+  "RT_CANDIDATES_FOR_SEPARATE_MANIFEST": [
+    {
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "note": "KOV sotsiaalteenuste ja toetuste lehtedel esitatud RT-link; mitte kasutatud veebipaketi allikana."
+    },
+    {
+      "title": "Pere sissetulekust mittesõltuvate toetuste andmise kord",
+      "note": "Toetuste detaillehtedel esitatud RT-link; mitte kasutatud veebipaketi allikana."
+    },
+    {
+      "title": "Sotsiaalhoolekande seadus ja lastekaitseseadus",
+      "note": "Mõnel lehel või KOV juhise failis nimetatud õigusaktid; õigusliku aluse kontroll kuulub eraldi RT/legal kihti."
+    }
+  ],
+  "municipality_name": "Kadrina vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "kadrina-vald.sources.json",
+  "sourceCount": 50,
+  "counts": {
+    "services": 16,
+    "benefits": 9,
+    "resources": 17,
+    "contacts": 9,
+    "forms": 10,
+    "regulations": 0
+  },
+  "warnings": [
+    "1 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta.",
+    "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

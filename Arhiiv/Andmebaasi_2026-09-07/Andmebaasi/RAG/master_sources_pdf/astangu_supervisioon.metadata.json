@@ -1,0 +1,75 @@
+{
+  "source": {
+    "source_id": "astangu_supervisioon",
+    "title": "Supervisioon",
+    "url": "https://www.astangu.ee/sites/default/files/media/To%CC%88o%CC%88vahend_4_moodul_1_Supervisioon.pdf",
+    "normalized_url": "https://www.astangu.ee/sites/default/files/media/Töövahend_4_moodul_1_Supervisioon.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Astangu",
+    "organization_id": "astangu",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Astangu Kutserehabilitatsiooni Keskus",
+      "supervisioon",
+      "spetsialisti toetamine",
+      "infomaterjal",
+      "Astangu"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "Metadata konservatiivselt täpsustatud pealkirja ja registriinfo põhjal; PDF-i sisukord/täistekst vajaks vajadusel eraldi kontrolli.",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "Astangu",
+      "heading_4": null,
+      "line": 583,
+      "order": 299
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Supervisioon"
+    ],
+    "collection_hints": [
+      "organization_materials"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Astangu"
+    ],
+    "organizations_seen": [
+      "astangu"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "Astangu",
+        "line": 583,
+        "order": 299
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.astangu.ee/sites/default/files/media/Töövahend_4_moodul_1_Supervisioon.pdf"
+  },
+  "final_url": "https://www.astangu.ee/sites/default/files/media/To%CC%88o%CC%88vahend_4_moodul_1_Supervisioon.pdf",
+  "redirects": [],
+  "sha256": "138cc8526a9cf76b06fc1512cd1573909c8d20c98e03b01f80ffe78fc9880579",
+  "bytes": 997965,
+  "downloaded_at": "2026-08-14T08:00:56.986Z"
+}

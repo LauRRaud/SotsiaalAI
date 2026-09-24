@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-2-2020",
+  "articleId": "hooldustoode-eeldab-soovi-teiste-eest-hoolitseda-2020-2",
+  "title": "Hooldustöö eeldab soovi teiste eest hoolitseda",
+  "authors": [
+    "Kadri Kuulpak"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2020",
+  "section": "Persoon",
+  "pageRange": "3-7",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu hooldajatest eriolukorras: koroonaviiruse tõttu elu kaotanud hooldaja lugu ning intervjuud hooldekodude töötajatega. Avatakse hooldustöö koormus, motivatsioon, suhtumine surma ja leinasse ning hooldustöö väärtus ühiskonnas.",
+  "tags": [
+    "hooldustöö",
+    "hooldajad",
+    "hooldekodu",
+    "Covid-19",
+    "eriolukord",
+    "eesliinitöötajad",
+    "persoonilugu",
+    "hoolduskoormus",
+    "surm ja lein"
+  ],
+  "source_type": "file",
+  "source_path": "ST2_2020_web_link_Part3.pdf",
+  "document_id": "sotsiaaltoo-2-2020-hooldustoode-eeldab-soovi-teiste-eest-hoolitseda-2020-2",
+  "source_format": "pdf",
+  "source_sha256": "87867966470d55c54450e8d2527afd8dec516b5e8c00f10be0d9d6b5ae3b8760",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2020-hooldustoode-eeldab-soovi-teiste-eest-hoolitseda-2020-2",
+    "previous_source_path": "ST2_2020_web_link_Part3.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "87867966470d55c54450e8d2527afd8dec516b5e8c00f10be0d9d6b5ae3b8760",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "docId": "sotsiaaltoo-3-2017",
+  "articleId": "vaimse-tervise-noorte-toolerakendumine-2017-3",
+  "title": "Vaimse tervise probleemidega noorte, neid toetavate spetsialistide ja tööandjate kogemused noorte töölerakendumisel",
+  "authors": [
+    "Marju Medar",
+    "Zsolt Bugarszki",
+    "Anu Hall",
+    "Anne Tiko",
+    "Indrek Sooniste"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2017",
+  "section": "Uurimus",
+  "pageRange": "62-67",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tallinna Ülikooli korraldatud uuring vaimse tervise probleemidega noorte, neid toetavate spetsialistide ja tööandjate kogemustest noorte töölerakendumisel. Uuring kinnitas, et noored vajavad tööturul toimetulekuks tuge nii spetsialistidelt, tööandjatelt kui ka kogukonnalt. Käsitleb toimetulekustrateegiate õppimist ja keskkonna rolli ning tööhõive osa taastumises.",
+  "tags": [
+    "vaimne tervis",
+    "noored",
+    "tööhõive",
+    "taastumine",
+    "toetatud töötamine",
+    "uuring"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part17.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2017-vaimse-tervise-noorte-toolerakendumine-2017-3",
+  "source_sha256": "da38396353a8983ab35d759f4881e643f43845c41cb3aa3500059ea7acab9b9a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2017-vaimse-tervise-noorte-toolerakendumine-2017-3",
+    "previous_source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part17.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part17.pdf",
+    "reference_stored_source_sha256": "19ada6c66314cb47aeae412f924093c683aa671339c23931c628bd29868f8a5e",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf",
+      "source_sha256": "3f27c22982b22a396dace8a957798cc21d3240489c7ce4d92802bf1a94bde7a8",
+      "pdf_start_page": 64,
+      "pdf_end_page": 69,
+      "printed_page_range": "62-67",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 69,
+      "source_regions": [
+        {
+          "source_pdf_page": 64,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 65,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 66,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 67,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 68,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 69,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "62-67"
+    },
+    "server_page_range": "62-67"
+  }
+}

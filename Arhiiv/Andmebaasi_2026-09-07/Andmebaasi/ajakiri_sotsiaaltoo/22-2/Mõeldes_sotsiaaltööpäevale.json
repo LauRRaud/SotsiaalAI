@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2022",
+  "articleId": "moeldes-sotsiaaltoopaevale-2022-2",
+  "title": "Mõeldes sotsiaaltööpäevale",
+  "authors": [
+    "Merle Linno"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2022",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "41-42",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Arutlev lugu rahvusvahelise sotsiaaltöö päeva 2022 moto „Kujundame uut ökosotsiaalset maailma kedagi maha jätmata“ tähenduse üle maailmas, kus kliimakriisi kõrval mõjutavad inimeste elu sügavalt COVID-19 pandeemia ja Venemaa sõda Ukrainas. Analüüsitakse ökosotsiaalse mõtteviisi sisu, inimese ja looduskeskkonna vastastikust mõju ning rõhutatakse solidaarsust, kedagi maha jätmata põhimõtet ja sotsiaaltöötajate enesehoiu vajadust kriisiolukordades.",
+  "tags": [
+    "rahvusvaheline sotsiaaltöö päev",
+    "ökosotsiaalne mõtteviis",
+    "kliimamuutus",
+    "COVID-19",
+    "Ukraina sõda",
+    "solidaarsus",
+    "sotsiaaltöötajate enesehoid"
+  ],
+  "source_type": "file",
+  "source_path": "2022_2_artikkel_8_moeldes_sotsiaaltoopaevale.pdf",
+  "document_id": "sotsiaaltoo-2-2022-moeldes-sotsiaaltoopaevale-2022-2",
+  "source_format": "pdf",
+  "source_sha256": "22f41a02a593adef1dd766d5ec2eceaea63c9c82dea9001c0951b8e5a2f3a83e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2022-moeldes-sotsiaaltoopaevale-2022-2",
+    "previous_source_path": "2022_2_artikkel_8_moeldes_sotsiaaltoopaevale.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "22f41a02a593adef1dd766d5ec2eceaea63c9c82dea9001c0951b8e5a2f3a83e",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

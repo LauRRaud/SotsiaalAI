@@ -1,0 +1,78 @@
+{
+  "source": {
+    "source_id": "sotsiaalkindlustusamet_naiste_tugikeskuste_2021_aasta_kogemusuuringu_aruanne",
+    "title": "Naiste tugikeskuste 2021. aasta kogemusuuringu aruanne",
+    "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2022-10/ntk_2021_kogemusuuringu_aruanne.pdf",
+    "normalized_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2022-10/ntk_2021_kogemusuuringu_aruanne.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "Sotsiaalkindlustusamet",
+    "organization_id": "sotsiaalkindlustusamet",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "Sotsiaalkindlustusamet",
+      "ohvriabi",
+      "naiste tugikeskus",
+      "teenuse kvaliteet",
+      "uuring",
+      "raport",
+      "analüüs",
+      "SKA"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "SKA",
+      "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+      "heading_4": null,
+      "line": 461,
+      "order": 246
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Naiste tugikeskuste 2021. aasta kogemusuuringu aruanne"
+    ],
+    "collection_hints": [
+      "research_reports"
+    ],
+    "source_types_seen": [
+      "research_report"
+    ],
+    "resource_types_seen": [
+      "research_evidence"
+    ],
+    "publishers_seen": [
+      "Sotsiaalkindlustusamet"
+    ],
+    "organizations_seen": [
+      "sotsiaalkindlustusamet"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "SKA",
+        "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+        "line": 461,
+        "order": 246
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2022-10/ntk_2021_kogemusuuringu_aruanne.pdf"
+  },
+  "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2022-10/ntk_2021_kogemusuuringu_aruanne.pdf",
+  "redirects": [],
+  "sha256": "4fc2677131fd4d9e625dd6a53877d696dfc43478efe2f479a2afe23af22ef58c",
+  "bytes": 1081127,
+  "downloaded_at": "2026-08-14T08:00:49.210Z"
+}

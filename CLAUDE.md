@@ -1,11 +1,6 @@
 # CLAUDE.md
 
-**Reeglid on [`AGENTS.md`](AGENTS.md)-s — loe ta läbi enne tööd.** Seal on seisufail, gitireeglid
-(`git add -A` on keelatud), väravad enne commit'i, tõendamise nõue, dev-server ja SOL-auditi
-töökord. Neid siin ei korrata: kaks koopiat lahknevad, ja just see veaklass on selles projektis
-maksnud kõige rohkem.
-
-Siin failis on ainult see, mis kehtib **Claude Code'i kohta ja mitte teiste agentide kohta**.
+Ühised reeglid on [AGENTS.md](AGENTS.md)-s. Siin on ainult Claude Code'i tööriistade erisused.
 
 ## Dev-serveri käivitamine
 

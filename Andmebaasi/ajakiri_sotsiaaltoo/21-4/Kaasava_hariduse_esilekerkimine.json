@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2021",
+  "articleId": "kaasava-hariduse-esilekerkimine-areng-ja-praegune-olukord-norras-2021-4",
+  "title": "Kaasava hariduse esilekerkimine, areng ja praegune olukord Norras",
+  "authors": [
+    "Jan Tøssebro"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2021",
+  "section": "Metoodika",
+  "pageRange": "73-78",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel annab ülevaate Norra kaasava hariduse kujunemisest, poliitikast ja probleemidest. Käsitletakse erikoolide ajaloolist rolli, integreerimis- ja kaasamispoliitika arengut, eriklasside kasutuse kasvu ning haridussüsteemi praeguseid väljakutseid seoses vajadusega tagada kõigile õpilastele võrdsed võimalused.",
+  "tags": [
+    "kaasav haridus",
+    "Norra",
+    "erivajadustega lapsed",
+    "hariduspoliitika",
+    "integreerimine",
+    "segregatsioon"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2021_web_Part17.pdf",
+  "mapping_fixed": "20260814-161821",
+  "document_id": "sotsiaaltoo-4-2021-kaasava-hariduse-esilekerkimine-areng-ja-praegune-olukord-norras-2021-4",
+  "source_format": "pdf",
+  "source_sha256": "770a7e100df9bffb6467cce4083cc95e40bf7dc19ecadf9c68c69c19c94c0c8c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2021-kaasava-hariduse-esilekerkimine-areng-ja-praegune-olukord-norras-2021-4",
+    "previous_source_path": "Sotsiaaltoo_4_2021_web_Part17.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "770a7e100df9bffb6467cce4083cc95e40bf7dc19ecadf9c68c69c19c94c0c8c",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "docId": "sotsiaaltoo-1-2016",
+  "articleId": "sotsiaaltoo-1-2016-artikkel-11-asutusest-iseseisvasse-ellu-tapa-ja-imastu-näite",
+  "title": "Asutusest iseseisvasse ellu Tapa ja Imastu näitel",
+  "authors": [
+    "Kairiin Olli"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2016",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "32-35",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade AS Hoolekandeteenused Tapa Põllu Kodu ja Imastu Kool-Kodu ühisest deinstitutsionaliseerimise projektist, mille tulemusel elab praeguseks iseseisvalt kümme vaimupuudega ja üks psüühikahäirega inimene ning kaks ootavad kolimist. Kahe kodu tegevusjuhendajad asutasid MTÜ Ambla Kihelkonna tugiteenused, mis pakub toetavaid teenuseid kümnele inimesele. Kliente valmistati ette Heaolu ja Taastumise Kooli taastumiskursustel ning DUO tugigruppides CARe metoodika alusel. Kirjeldatakse Kerdi, Augusti, Jaanuse, Nadežda ja Marko elukorraldust. Psüühikahäire puhul nähakse vajadust tervishoiu toe järele ja EPRÜ kavatseb piloteerida mobiilset FACT meeskonna mudelit.",
+  "tags": [
+    "deinstitutsionaliseerimine",
+    "erihoolekanne",
+    "toetatud elamine",
+    "tegevusjuhendaja",
+    "iseseisev elu",
+    "fact meeskond"
+  ],
+  "source_type": "file",
+  "source_path": "2016_1_artikkel_11_asutusest_iseseisvasse_ellu_tapa_ja_imastu_naitel.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-11-asutusest-iseseisvasse-ellu-tapa-ja-imastu-n-ite",
+  "source_sha256": "81372e3498249edb6e8293e923d9c2c07aa2b8e5828b11658070bd079e29c46f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-11-asutusest-iseseisvasse-ellu-tapa-ja-imastu-n-ite",
+    "previous_source_path": "2016_1_artikkel_11_asutusest_iseseisvasse_ellu_tapa_ja_imastu_naitel.txt",
+    "previous_source_original_path": "1-2016.pdf",
+    "reference_stored_source_sha256": "993f99acdfe0781d98c262c286fa3d450bacb7b81f4cc857328d8498e171c5a8",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf",
+      "source_sha256": "2c193295e54f58982562b509b6283e93aa58b1695464671e1768e24e90888a6c",
+      "pdf_start_page": 34,
+      "pdf_end_page": 37,
+      "printed_page_range": "32-36",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 38,
+      "source_regions": [
+        {
+          "source_pdf_page": 34,
+          "bounds": [
+            0,
+            138.258,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 35,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 36,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 37,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "32-35",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf"
+    },
+    "server_page_range": "32-36"
+  }
+}

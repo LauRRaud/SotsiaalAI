@@ -1,0 +1,3382 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-saue-vald",
+  "document_id": "kov-saue-vald",
+  "municipality": "Saue vald",
+  "municipality_id": "saue_vald",
+  "county": "Harjumaa",
+  "checkedAt": "2026-04-30",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "saue_vald_contact_elmet_puhm",
+      "canonical_item_id": "saue_vald:contact:elmet_puhm",
+      "itemType": "contact",
+      "title": "Elmet Puhm",
+      "status": "active",
+      "summary": "Sotsiaalosakonna juhataja, kelle valdkond on sotsiaalosakonna töö juhtimine ja sotsiaalvaldkonna korraldus.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Elmet Puhm",
+      "role": "sotsiaalosakonna juhataja",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalosakonna-kontaktid",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_contact_elmet_puhm",
+      "document_id": "saue_vald_contact_elmet_puhm",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalosakonna-kontaktid",
+      "content_hash": "b65b8e28b372cdfdaee22d90f02128ab3cc73ea6e36b67c3b2eee40b7588d3e0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_contact_sille_li_pyya",
+      "canonical_item_id": "saue_vald:contact:sille_li_pyya",
+      "itemType": "contact",
+      "title": "Sille Li Püüa",
+      "status": "active",
+      "summary": "Piirkonna sotsiaaltööspetsialist; lehel on märgitud tööpiirkonnaks Laagri alevik, Hüüru, Kiia, Püha, Vatsla, Alliku ja Koidu küla.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Sille Li Püüa",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Laagri, Veskitammi 4",
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalosakonna-kontaktid",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_contact_sille_li_pyya",
+      "document_id": "saue_vald_contact_sille_li_pyya",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalosakonna-kontaktid",
+      "content_hash": "e9d3b75dfbf0efcea2ca3010028f6e87c5254aa7a882e054b2af204d24af2f5f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_contact_merike_lepik",
+      "canonical_item_id": "saue_vald:contact:merike_lepik",
+      "itemType": "contact",
+      "title": "Merike Lepik",
+      "status": "active",
+      "summary": "Sotsiaaltööspetsialist; tööpiirkonnaks on Haiba ja mitmed Kernu piirkonna külad ning valdkonnana täisealiste isikute hooldajate määramine ja hooldajatoetuse maksmine.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Merike Lepik",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Haiba halduskeskus",
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalosakonna-kontaktid",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_contact_merike_lepik",
+      "document_id": "saue_vald_contact_merike_lepik",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalosakonna-kontaktid",
+      "content_hash": "c1991d22e71ea842a28de7a963c0f0e4ef8cd013ef59e528a4d003d2683cefc7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_contact_jaana_saar",
+      "canonical_item_id": "saue_vald:contact:jaana_saar",
+      "itemType": "contact",
+      "title": "Jaana Saar",
+      "status": "active",
+      "summary": "Sotsiaaltööspetsialist Saue linna ja lähiümbruse piirkonnas.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Jaana Saar",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Saue tervisekeskus, Saue vallamaja/Laagri halduskeskus",
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalosakonna-kontaktid",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_contact_jaana_saar",
+      "document_id": "saue_vald_contact_jaana_saar",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalosakonna-kontaktid",
+      "content_hash": "8c9ff39325c30560ed9c8252a0e7e8db3c763cc13c6c3cf15d5bdf9e4c8c2ab4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_contact_loona_liis_kenzap",
+      "canonical_item_id": "saue_vald:contact:loona_liis_kenzap",
+      "itemType": "contact",
+      "title": "Loona-Liis Kenzap",
+      "status": "active",
+      "summary": "Sotsiaaltööspetsialist Riisipere, Turba ja ümbritsevate külade piirkonnas.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Loona-Liis Kenzap",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Riisipere halduskeskus",
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalosakonna-kontaktid",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_contact_loona_liis_kenzap",
+      "document_id": "saue_vald_contact_loona_liis_kenzap",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalosakonna-kontaktid",
+      "content_hash": "8b250bd54d65684cd91d33ac7096157367757c27c72dc4b604cbf9b48e4bc362",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_contact_liis_tooming",
+      "canonical_item_id": "saue_vald:contact:liis_tooming",
+      "itemType": "contact",
+      "title": "Liis Tooming",
+      "status": "active",
+      "summary": "Lastekaitsespetsialist; töövaldkond on sotsiaaltoetused, toidu- ja muu materiaalne abi, vanemaharidusprogrammid, soodustingimustel lastelaagrite vahendus ja erivajadustega laste õppeasutuste õpilaste bussiringid.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Liis Tooming",
+      "role": "lastekaitsespetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalosakonna-kontaktid",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_contact_liis_tooming",
+      "document_id": "saue_vald_contact_liis_tooming",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalosakonna-kontaktid",
+      "content_hash": "6965235bc0b444f501a022ad2d45fe0b3d5771b6484ee3ae969c5358387f9a34",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_contact_helen_veensalu",
+      "canonical_item_id": "saue_vald:contact:helen_veensalu",
+      "itemType": "contact",
+      "title": "Helen Veensalu",
+      "status": "active",
+      "summary": "Erivajadustega laste spetsialist; töövaldkond on erivajadustega laste haridusküsimused, lapsevanemate nõustamine, teenused ja toetused.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Helen Veensalu",
+      "role": "erivajadustega laste spetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalosakonna-kontaktid",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_contact_helen_veensalu",
+      "document_id": "saue_vald_contact_helen_veensalu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalosakonna-kontaktid",
+      "content_hash": "a6c247e8eea4a53384c4e327d1a737bcabe21bd134436df912c476a261d18e1e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_contact_reili_raamat",
+      "canonical_item_id": "saue_vald:contact:reili_raamat",
+      "itemType": "contact",
+      "title": "Reili Raamat",
+      "status": "active",
+      "summary": "Lastekaitsespetsialist Saue linna piirkonnas.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Reili Raamat",
+      "role": "lastekaitsespetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalosakonna-kontaktid",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_contact_reili_raamat",
+      "document_id": "saue_vald_contact_reili_raamat",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalosakonna-kontaktid",
+      "content_hash": "e3ba982d50f95a694aee220054325220e73bd2740375cd35b7b229159f8c1675",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_contact_maire_kessel",
+      "canonical_item_id": "saue_vald:contact:maire_kessel",
+      "itemType": "contact",
+      "title": "Maire Kessel",
+      "status": "active",
+      "summary": "Toetuste ja arvelduste spetsialist, kelle valdkond on tugitoetus, matusetoetus, puudega isiku transporditoetus, viipekeele teenuse toetus, hoolekandeasutuste arveldused ning toidu- ja muu materiaalne abi.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Maire Kessel",
+      "role": "toetuste ja arvelduste spetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalosakonna-kontaktid",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_contact_maire_kessel",
+      "document_id": "saue_vald_contact_maire_kessel",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalosakonna-kontaktid",
+      "content_hash": "42a0623eb6ef15add50351828d577412c7bfed2e44367c847715aab215059407",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_contact_raivo_piiritalo",
+      "canonical_item_id": "saue_vald:contact:raivo_piiritalo",
+      "itemType": "contact",
+      "title": "Raivo Piiritalo",
+      "status": "active",
+      "summary": "Saue Sotsiaalkeskuse juht; kontakt koduteenuse määramise, ühekordsete teenuste ja teenuse osutamisega seotud küsimustes.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Raivo Piiritalo",
+      "role": "Saue Sotsiaalkeskuse juht",
+      "department": "Saue Sotsiaalkeskus",
+      "address": null,
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalosakonna-kontaktid",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_contact_raivo_piiritalo",
+      "document_id": "saue_vald_contact_raivo_piiritalo",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalosakonna-kontaktid",
+      "content_hash": "598cd8205bf577456f11c211ed8ed3600293a0063051883274ec8a7e4fdf9194",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_service_koduteenus",
+      "canonical_item_id": "saue_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus toetab täisealist inimest kodustes tingimustes, kui inimene ei tule kõrvalabita toime igapäevaseks elamiseks vajalike toimingutega. Teenus hõlmab näiteks kütmist, toiduvalmistamist, eluruumi ja riiete korrastamist ning muid toiminguid, mis on vajalikud kodus elamiseks. Taotluse saab esitada e-posti, sotsiaaltööspetsialisti, posti või postkasti kaudu; vajaduse kinnitumisel suunatakse abivajaja Saue Sotsiaalkeskusesse.",
+      "sourceKeys": [
+        "services_page"
+      ],
+      "targetGroup": "Täisealised Saue valla elanikud, kes vajavad kodus kõrvalabi.",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus või võta ühendust piirkonna spetsialistiga.",
+          "Spetsialist hindab abivajadust ja otsustab sobiva abi või teenuse.",
+          "Teenuse määramisel lepitakse kokku teenuse maht, osutaja ja vajadusel tasu."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "relatedContacts": [
+        "saue_vald_contact_sille_li_pyya",
+        "saue_vald_contact_merike_lepik",
+        "saue_vald_contact_jaana_saar",
+        "saue_vald_contact_loona_liis_kenzap",
+        "saue_vald_contact_raivo_piiritalo"
+      ],
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "saue_vald_form_spoku_sotsiaalteenuste_taotlus"
+      ],
+      "item_type": "service",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_service_koduteenus",
+      "document_id": "saue_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "fa76d95f53187a7873e1ccbdc113fc024393adeb41d27339f8423ec4223d9dd1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "canonical_item_id": "saue_vald:service:valjaspool_kodu_osutatav_uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Saue Vallavalitsus korraldab üldhooldusteenust avatud turul saada olevate teenuskohtade kaudu täisealisele inimesele, kes ei tule terviseseisundi, tegevusvõime või elukeskkonna tõttu kodustes tingimustes toime. Abivajaja saab teenuskohta valida, vajadusel aitab sobiva koha leidmisel sotsiaaltöötaja. Saue vald rahastab teenust ainult juhul, kui üldhooldusteenus on põhjendatult vajalik.",
+      "sourceKeys": [
+        "services_page"
+      ],
+      "targetGroup": "Täisealised hooldusvajadusega inimesed.",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus või võta ühendust piirkonna spetsialistiga.",
+          "Spetsialist hindab abivajadust ja otsustab sobiva abi või teenuse.",
+          "Teenuse määramisel lepitakse kokku teenuse maht, osutaja ja vajadusel tasu."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "relatedContacts": [
+        "saue_vald_contact_merike_lepik",
+        "saue_vald_contact_jaana_saar",
+        "saue_vald_contact_loona_liis_kenzap"
+      ],
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "service",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "document_id": "saue_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "fee8ca5dc5d684c6bdcd3bc2852aa9d7025c77e7086e4efc3dca49e1710ba596",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_service_tugiisikuteenus",
+      "canonical_item_id": "saue_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus on mõeldud inimesele, kes vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu olulist kõrvalabi oma kohustuste täitmisel ja õiguste teostamisel. Abi seisneb inimese jõustamises, juhendamises, julgustamises ja motiveerimises. Teenus on täisealisele isikule üldjuhul tasuline, kuid väikese sissetulekuga leibkondadele võib olla tasuta; lastega peredele teenust algatab lastekaitsespetsialist.",
+      "sourceKeys": [
+        "services_page"
+      ],
+      "targetGroup": "Täisealised abivajajad, lapsed ja lastega pered, kes vajavad juhendamist või psühhosotsiaalset tuge.",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus või võta ühendust piirkonna spetsialistiga.",
+          "Spetsialist hindab abivajadust ja otsustab sobiva abi või teenuse.",
+          "Teenuse määramisel lepitakse kokku teenuse maht, osutaja ja vajadusel tasu."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "relatedContacts": [
+        "saue_vald_contact_sille_li_pyya",
+        "saue_vald_contact_merike_lepik",
+        "saue_vald_contact_jaana_saar",
+        "saue_vald_contact_loona_liis_kenzap",
+        "saue_vald_contact_helen_veensalu"
+      ],
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "saue_vald_form_spoku_sotsiaalteenuste_taotlus"
+      ],
+      "item_type": "service",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_service_tugiisikuteenus",
+      "document_id": "saue_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "27c7cef3d7a68372ee42d1240d1360b7b85b53ed54ba2456a458a7cd3788a185",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "saue_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealisele hooldusvajadusega inimesele määratakse hooldaja selleks, et inimene saaks kõrvalabile toetudes võimalikult kaua kodustes tingimustes ja asjaajamisel väljaspool kodu hakkama. Hooldajat ei määrata, kui abivajadust saab katta muude sotsiaal-, haridus- või meditsiiniteenustega. Täisealise isiku hooldajale makstakse vajadusel hooldajatoetust.",
+      "sourceKeys": [
+        "services_page"
+      ],
+      "targetGroup": "Täisealised hooldusvajadusega inimesed ja nende hooldajad.",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus või võta ühendust piirkonna spetsialistiga.",
+          "Spetsialist hindab abivajadust ja otsustab sobiva abi või teenuse.",
+          "Teenuse määramisel lepitakse kokku teenuse maht, osutaja ja vajadusel tasu."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "relatedContacts": [
+        "saue_vald_contact_merike_lepik"
+      ],
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "service",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_service_taisealise_isiku_hooldus",
+      "document_id": "saue_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "866e0d07ad009395348531a0ce58070cba03e8fa2ff0ea3b2262a39d461a16be",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "saue_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isiklik abistaja aitab puudest tingitud füüsilist kõrvalabi vajavat täisealist inimest igapäevaelu tegevustes, näiteks liikumisel, söömisel, riietumisel, hügieenitoimingutes, suhtlemisel, lugemisel, majapidamistöödes ja muudes vajalikes toimingutes. Teenuse kasutaja peab suutma oma asjaajamist korraldada ja abistajale juhiseid anda. Tasu kinnitab vallavalitsus, arvestades abivajadust, teenuse tegelikke kulusid ja inimese majanduslikke võimalusi.",
+      "sourceKeys": [
+        "services_page"
+      ],
+      "targetGroup": "Puudega täisealised inimesed, kes vajavad füüsilist kõrvalabi.",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus või võta ühendust piirkonna spetsialistiga.",
+          "Spetsialist hindab abivajadust ja otsustab sobiva abi või teenuse.",
+          "Teenuse määramisel lepitakse kokku teenuse maht, osutaja ja vajadusel tasu."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "relatedContacts": [
+        "saue_vald_contact_sille_li_pyya",
+        "saue_vald_contact_merike_lepik",
+        "saue_vald_contact_jaana_saar",
+        "saue_vald_contact_loona_liis_kenzap"
+      ],
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "service",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_service_isikliku_abistaja_teenus",
+      "document_id": "saue_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "84f054227ac2decc53e034d529e34faddc87c2c76670ad8b6f0986412fb4c7c1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_service_varjupaigateenus",
+      "canonical_item_id": "saue_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus tagab ajutise ööbimiskoha täisealisele inimesele, kes ei ole võimeline endale ööbimiskohta leidma. Saue vald pakub öömaja Saue Sotsiaalkeskuse ruumides aadressil Tule 7, Saue linn. Öömaja teenus on mõeldud Saue valla elanikele ning vältimatu sotsiaalabi vajaduse korral Saue vallas viibivatele inimestele; üldjuhul saab teenust kasutada kuni üks nädal ja alates neljandast päevast on teenus tasuline.",
+      "sourceKeys": [
+        "services_page"
+      ],
+      "targetGroup": "Täisealised inimesed, kes vajavad ajutist ööbimiskohta.",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus või võta ühendust piirkonna spetsialistiga.",
+          "Spetsialist hindab abivajadust ja otsustab sobiva abi või teenuse.",
+          "Teenuse määramisel lepitakse kokku teenuse maht, osutaja ja vajadusel tasu."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "relatedContacts": [
+        "saue_vald_contact_sille_li_pyya",
+        "saue_vald_contact_merike_lepik",
+        "saue_vald_contact_jaana_saar",
+        "saue_vald_contact_loona_liis_kenzap",
+        "saue_vald_contact_raivo_piiritalo"
+      ],
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "service",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_service_varjupaigateenus",
+      "document_id": "saue_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "1f313fdc2c22176a993b8c23653614860d17ba1d54f12a30f8fa70f32f3c5315",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_service_turvakoduteenus",
+      "canonical_item_id": "saue_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenus tagab ajutise eluaseme, turvalise keskkonna ja esmase abi lapsele, kelle elu, tervis või areng on ohus, või täisealisele isikule, kes vajab turvalist keskkonda. Naistevastase vägivalla ohvrite turvakoduteenust korraldab Sotsiaalkindlustusamet; laste turvakodusse paigutamist korraldavad lastekaitsespetsialistid. Täisealiste puhul võib esmase lahendusena kasutada valla öömaja teenust või vallale kuuluvat eluruumi.",
+      "sourceKeys": [
+        "services_page"
+      ],
+      "targetGroup": "Hädaohus lapsed ning täisealised inimesed, kes vajavad turvalist keskkonda.",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus või võta ühendust piirkonna spetsialistiga.",
+          "Spetsialist hindab abivajadust ja otsustab sobiva abi või teenuse.",
+          "Teenuse määramisel lepitakse kokku teenuse maht, osutaja ja vajadusel tasu."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "relatedContacts": [
+        "saue_vald_contact_sille_li_pyya",
+        "saue_vald_contact_merike_lepik",
+        "saue_vald_contact_jaana_saar",
+        "saue_vald_contact_loona_liis_kenzap",
+        "saue_vald_contact_reili_raamat"
+      ],
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "service",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_service_turvakoduteenus",
+      "document_id": "saue_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "c3580c50fe38bbc3c55a5d3f31078013f215d8597b43fbd6154c900e2c5b959d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "saue_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus on puudega inimeste transportimiseks kohandatud sõidukiga teenus tellitud ajal sihtkohta ja tagasi. Täisealistele osutab teenust Saue Sotsiaalkeskus ning erivajadusega õpilaste veoks ratastoolivalmidusega sõidukiga on vallal leping Forus Takso AS-iga. Teenus on tasuta riikliku toimetulekutoetuse saajatele, koolieelikutele, õpilastele õppeasutusse ja tagasi sõiduks ning puudega isiku saatjale; teenuse saamiseks tuleb esitada taotlus vallavalitsusele.",
+      "sourceKeys": [
+        "services_page"
+      ],
+      "targetGroup": "Puudega inimesed ja erivajadusega õpilased, kes vajavad kohandatud transporditeenust.",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus või võta ühendust piirkonna spetsialistiga.",
+          "Spetsialist hindab abivajadust ja otsustab sobiva abi või teenuse.",
+          "Teenuse määramisel lepitakse kokku teenuse maht, osutaja ja vajadusel tasu."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "relatedContacts": [
+        "saue_vald_contact_maire_kessel",
+        "saue_vald_contact_raivo_piiritalo"
+      ],
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "saue_vald_form_spoku_sotsiaalteenuste_taotlus",
+        "saue_vald_form_sotsiaaltransporditeenuse_taotlus_docx"
+      ],
+      "item_type": "service",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_service_sotsiaaltransporditeenus",
+      "document_id": "saue_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "79d940f08871d290d66856fbb6141f092817c29ae5b847aaeb9e4c5b9b608677",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_service_eluruumi_tagamise_teenus",
+      "canonical_item_id": "saue_vald:service:eluruumi_tagamise_teenus",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenus aitab Saue valla elanikel, kes ei suuda sotsiaalmajandusliku olukorra tõttu endale või perele sobivat eluruumi tagada või kelle eluruum vajab puudest tulenevate takistuste tõttu kohandamist. Abi võib hõlmata nõustamist, üüriturult eluruumi leidmise toetamist, üüritoetust esmaste kulude katmisel, eluruumi kohandamist, ajutise öömaja tagamist või vallale kuuluvate eluruumide üürile andmist vabade kohtade olemasolul.",
+      "sourceKeys": [
+        "services_page"
+      ],
+      "targetGroup": "Saue valla elanikud, kes vajavad eluruumi leidmisel või kohandamisel sotsiaalset abi.",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus või võta ühendust piirkonna spetsialistiga.",
+          "Spetsialist hindab abivajadust ja otsustab sobiva abi või teenuse.",
+          "Teenuse määramisel lepitakse kokku teenuse maht, osutaja ja vajadusel tasu."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "relatedContacts": [
+        "saue_vald_contact_sille_li_pyya",
+        "saue_vald_contact_merike_lepik",
+        "saue_vald_contact_jaana_saar",
+        "saue_vald_contact_loona_liis_kenzap"
+      ],
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "saue_vald_form_spoku_sotsiaalteenuste_taotlus"
+      ],
+      "item_type": "service",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_service_eluruumi_tagamise_teenus",
+      "document_id": "saue_vald_service_eluruumi_tagamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "e6ffc32c3ee483051b19580e2a85bab632a8ec3081eb6fc92087a014752743e1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_service_volanoustamisteenus",
+      "canonical_item_id": "saue_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus on mõeldud inimestele, kellel on tekkinud või tekkimas võlgnevused ning kes ei suuda nendega iseseisvalt toime tulla. Teenus aitab koostada võlanõuete ülevaadet, hinnata maksevõimet, selgitada lepingute ja ametlike kirjade sisu, suhelda võlausaldajatega, koostada avaldusi ning kavandada tegevusi uute võlgade vältimiseks. Saue Vallavalitsuse partner on MTÜ Võlanõustajad ning sotsiaaltööspetsialisti suunamisel on teenus tasuta.",
+      "sourceKeys": [
+        "services_page"
+      ],
+      "targetGroup": "Võlgnevustega või võlgnevuste riskiga inimesed.",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus või võta ühendust piirkonna spetsialistiga.",
+          "Spetsialist hindab abivajadust ja otsustab sobiva abi või teenuse.",
+          "Teenuse määramisel lepitakse kokku teenuse maht, osutaja ja vajadusel tasu."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "relatedContacts": [
+        "saue_vald_contact_sille_li_pyya",
+        "saue_vald_contact_merike_lepik",
+        "saue_vald_contact_jaana_saar",
+        "saue_vald_contact_loona_liis_kenzap"
+      ],
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "service",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_service_volanoustamisteenus",
+      "document_id": "saue_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "2a5f3a3d41862c108af7956c4fd7038095fd8a886b6757866084a919a0c9f6cd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_service_asendushooldusteenus",
+      "canonical_item_id": "saue_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus tagab lapse heaolu ja õigused olukorras, kus laps ei saa kas pika- või lühiajaliselt kasvada oma sünniperes. Teenus loob lapsele peresarnased elutingimused ja turvalise arengukeskkonna ning valmistab last ette täisealisena toimetulekuks. Teenust osutavad hoolduspere, perekodu või asenduskodu; Saue vallas asub Haiba Lastekodu, mis osutab asenduskoduna teenuseid eelistatult Harjumaa omavalitsuste lastele.",
+      "sourceKeys": [
+        "services_page"
+      ],
+      "targetGroup": "Lapsed, kelle vanemad ei saa või ei tohi lapse eest hoolitseda.",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus või võta ühendust piirkonna spetsialistiga.",
+          "Spetsialist hindab abivajadust ja otsustab sobiva abi või teenuse.",
+          "Teenuse määramisel lepitakse kokku teenuse maht, osutaja ja vajadusel tasu."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "relatedContacts": [
+        "saue_vald_contact_reili_raamat",
+        "saue_vald_contact_liis_tooming"
+      ],
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "service",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_service_asendushooldusteenus",
+      "document_id": "saue_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "ed956131d122b1a65c4508abccd1428c995f46c11b0adbd8511998be5ba23750",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "saue_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus toetab asendushoolduselt või eestkostelt lahkuva isiku iseseisvat toimetulekut ja õpingute jätkamist. Vallavalitsus tagab järelhoolduse raames eluaseme ning vajaduspõhised tugiteenused ja toetused. Teenust osutatakse õppimise jätkamise korral kuni isiku 25-aastaseks saamiseni.",
+      "sourceKeys": [
+        "services_page"
+      ],
+      "targetGroup": "Asendushoolduselt või eestkostelt lahkuvad noored.",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus või võta ühendust piirkonna spetsialistiga.",
+          "Spetsialist hindab abivajadust ja otsustab sobiva abi või teenuse.",
+          "Teenuse määramisel lepitakse kokku teenuse maht, osutaja ja vajadusel tasu."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "relatedContacts": [
+        "saue_vald_contact_reili_raamat"
+      ],
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "service",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_service_jarelhooldusteenus",
+      "document_id": "saue_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "5955406577999eafdaf0eb7e9da7ada533c18a2175c873e32018e28e1d375223",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_service_lapsehoiuteenus_raske_sugava_puudega_lapsele",
+      "canonical_item_id": "saue_vald:service:lapsehoiuteenus_raske_sugava_puudega_lapsele",
+      "itemType": "service",
+      "title": "Raske ja sügava puudega lapse lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenus on mõeldud Saue vallas elavatele raske ja sügava puudega lastele kuni 18-aastaseks saamiseni. Teenuse eesmärk on toetada last kasvatava isiku toimetulekut või töötamist ning vähendada lapse erivajadusest tulenevat hoolduskoormust. Vallavalitsus hindab lapse vajadust, otsustab teenusele suunamise 10 tööpäeva jooksul viimase vajaliku dokumendi saamisest ning abistab vajadusel teenuse osutaja leidmisel.",
+      "sourceKeys": [
+        "services_page"
+      ],
+      "targetGroup": "Raske ja sügava puudega lapsed ning nende pered.",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus või võta ühendust piirkonna spetsialistiga.",
+          "Spetsialist hindab abivajadust ja otsustab sobiva abi või teenuse.",
+          "Teenuse määramisel lepitakse kokku teenuse maht, osutaja ja vajadusel tasu."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "relatedContacts": [
+        "saue_vald_contact_helen_veensalu"
+      ],
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "saue_vald_form_puudega_lapse_lapsehoiuteenuse_taotlus"
+      ],
+      "item_type": "service",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_service_lapsehoiuteenus_raske_sugava_puudega_lapsele",
+      "document_id": "saue_vald_service_lapsehoiuteenus_raske_sugava_puudega_lapsele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "0e03b2149ff7f0b7e4e262572b4558d005fbdc685260c89279a5afd772ed02f8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_service_suure_hooldus_abivajadusega_lapse_teenused",
+      "canonical_item_id": "saue_vald:service:suure_hooldus_abivajadusega_lapse_teenused",
+      "itemType": "service",
+      "title": "Suure hooldus- ja abivajadusega lapse teenused ja tugi",
+      "status": "active",
+      "summary": "Riigieelarve toetusfondi kaudu saab Saue vald korraldada suure hooldus- ja abivajadusega lastele ja nende peredele toetavaid sotsiaalteenuseid. Teenused võivad hõlmata transporti, psühholoogi-, logopeedi- ja teraapiateenuseid, isikliku abistaja või tugiisiku teenust, abi- ja tugivahendeid, eluruumi kohandamist ning muid perede toimetulekut toetavaid teenuseid või toetusi.",
+      "sourceKeys": [
+        "services_page"
+      ],
+      "targetGroup": "Saue vallas elavad suure hooldus- ja abivajadusega lapsed kuni 18-aastaseks saamise kalendriaasta lõpuni.",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus või võta ühendust piirkonna spetsialistiga.",
+          "Spetsialist hindab abivajadust ja otsustab sobiva abi või teenuse.",
+          "Teenuse määramisel lepitakse kokku teenuse maht, osutaja ja vajadusel tasu."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "relatedContacts": [
+        "saue_vald_contact_helen_veensalu"
+      ],
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "saue_vald_form_suure_hooldus_abivajadusega_lapse_taotlus"
+      ],
+      "item_type": "service",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_service_suure_hooldus_abivajadusega_lapse_teenused",
+      "document_id": "saue_vald_service_suure_hooldus_abivajadusega_lapse_teenused",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "3c0d3e3d033ef0338035edb26e7a91049e8de586e72912bbbe28a180748c8544",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_service_muud_taiendavad_sotsiaalteenused",
+      "canonical_item_id": "saue_vald:service:muud_taiendavad_sotsiaalteenused",
+      "itemType": "service",
+      "title": "Muud täiendavad sotsiaalteenused",
+      "status": "active",
+      "summary": "Saue vald võib võimaluste ja vajaduste järgi korraldada täiendavaid sotsiaalteenuseid, sh nõustamist ja teraapiat abivajavatele lastele ja peredele, vanemluskoolitusi, eri- või abivajaduse tugigruppe, sõltuvusnõustamist, pesemis- ja pesupesemisvõimalusi ning projektipõhiseid heaolu ja turvalisust toetavaid teenuseid. Teenuseid tagatakse juhul, kui valla eelarves või projektirahastuses on selleks vahendid.",
+      "sourceKeys": [
+        "services_page"
+      ],
+      "targetGroup": "Abivajavad lapsed, pered ja täisealised isikud, kelle toimetulek vajab täiendavat tuge.",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus või võta ühendust piirkonna spetsialistiga.",
+          "Spetsialist hindab abivajadust ja otsustab sobiva abi või teenuse.",
+          "Teenuse määramisel lepitakse kokku teenuse maht, osutaja ja vajadusel tasu."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "relatedContacts": [
+        "saue_vald_contact_elmet_puhm",
+        "saue_vald_contact_sille_li_pyya",
+        "saue_vald_contact_merike_lepik",
+        "saue_vald_contact_jaana_saar",
+        "saue_vald_contact_loona_liis_kenzap"
+      ],
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "service",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_service_muud_taiendavad_sotsiaalteenused",
+      "document_id": "saue_vald_service_muud_taiendavad_sotsiaalteenused",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "ee263d77e9dbf9a745aa3aea66909576d8984d9f1a2798de0868e863df50c6aa",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_service_valtimatu_sotsiaalabi",
+      "canonical_item_id": "saue_vald:service:valtimatu_sotsiaalabi",
+      "itemType": "service",
+      "title": "Vältimatu sotsiaalabi",
+      "status": "active",
+      "summary": "Vältimatut sotsiaalabi osutatakse inimesele, kes on sattunud sotsiaalselt abitusse olukorda elatusvahendite kaotuse või puudumise tõttu. Vältimatu abina tagatakse vähemalt toit, riietus ja ajutine majutus ning abi antakse seni, kuni inimene ei ole enam elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitus olukorras. Vältimatu abi andmist korraldavad piirkonna sotsiaaltööspetsialistid.",
+      "sourceKeys": [
+        "emergency_social_assistance_page"
+      ],
+      "targetGroup": "Inimesed, kes on Saue vallas või valla territooriumil viibides sattunud sotsiaalselt abitusse olukorda.",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus või võta ühendust piirkonna spetsialistiga.",
+          "Spetsialist hindab abivajadust ja otsustab sobiva abi või teenuse.",
+          "Teenuse määramisel lepitakse kokku teenuse maht, osutaja ja vajadusel tasu."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/valtimatu-sotsiaalabi",
+      "relatedContacts": [
+        "saue_vald_contact_sille_li_pyya",
+        "saue_vald_contact_merike_lepik",
+        "saue_vald_contact_jaana_saar",
+        "saue_vald_contact_loona_liis_kenzap"
+      ],
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "saue_vald_form_spoku_sotsiaalteenuste_taotlus"
+      ],
+      "item_type": "service",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "emergency_social_assistance_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_service_valtimatu_sotsiaalabi",
+      "document_id": "saue_vald_service_valtimatu_sotsiaalabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/valtimatu-sotsiaalabi",
+      "content_hash": "2fa465dec7c964c8e1d30ecd15e0a8f00de7a00a04c88abb88c0151e2e0c58c2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_benefit_synnitoetus",
+      "canonical_item_id": "saue_vald:benefit:synnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetust makstakse Saue valla elanikele lapse sünni puhul. Taotluse esitab üks lapsevanem hiljemalt kuue kuu jooksul pärast lapse sündi; laps peab sündimise hetkel olema Saue valla elanik ja lapse vanemad peavad vastama elukoha tingimustele. Toetuse suurus on 320 eurot, kui laps ja mõlemad vanemad on Saue valla elanikud või kui tegemist on üksikvanemaga, ning 160 eurot, kui Saue valla elanik on laps ja üks vanematest.",
+      "sourceKeys": [
+        "benefits_children_page"
+      ],
+      "targetGroup": "Lapse sünd Saue valla perre.",
+      "amount": "320 eurot või 160 eurot",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU/ARNO kaudu, e-posti teel või paberil vastavalt toetuse kirjeldusele.",
+          "Lisa nõutud tõendid või kuludokumendid, kui toetuse kirjelduse järgi on need vajalikud.",
+          "Vallavalitsus või spetsialist kontrollib tingimusi ja otsustab toetuse maksmise."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "relatedContacts": [
+        "saue_vald_contact_liis_tooming"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "benefit",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "benefits_children_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_benefit_synnitoetus",
+      "document_id": "saue_vald_benefit_synnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "content_hash": "1ade4d56c42cb981c35608d1e19b0f27f542fe95462c9b6d4e0c2fd35d6936ef",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_benefit_koduse_lapse_toetus",
+      "canonical_item_id": "saue_vald:benefit:koduse_lapse_toetus",
+      "itemType": "benefit",
+      "title": "Koduse lapse toetus",
+      "status": "active",
+      "summary": "Koduse lapse toetust makstakse lapsevanemale, kui laps ja mõlemad vanemad on toetuse määramise kalendrikuu esimesel kuupäeval Saue valla elanikud, laps ei ole lasteasutuse ega lapsehoiu nimekirjas ning laps ei saa eralasteasutuse ega lapsehoiu toetust. Õigus tekib lapse 18-kuuseks saamisele järgnevast kuust ning lõpeb lapse minekul lasteasutusse või lapsehoidu või enne kooli minekut 30. juunil. Toetuse täismäär on 160 eurot.",
+      "sourceKeys": [
+        "benefits_children_page"
+      ],
+      "targetGroup": "Kodus kasvava väikelapse vanemad.",
+      "amount": "160 eurot kuus",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU/ARNO kaudu, e-posti teel või paberil vastavalt toetuse kirjeldusele.",
+          "Lisa nõutud tõendid või kuludokumendid, kui toetuse kirjelduse järgi on need vajalikud.",
+          "Vallavalitsus või spetsialist kontrollib tingimusi ja otsustab toetuse maksmise."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "relatedContacts": [],
+      "relatedTo": [],
+      "relatedForms": [
+        "saue_vald_form_arno_koduse_lapse_toetus"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "benefits_children_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_benefit_koduse_lapse_toetus",
+      "document_id": "saue_vald_benefit_koduse_lapse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "content_hash": "d38e557b293673e5876a696f57f1886e4cac487dc8c75bc91100eb9e539212b6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_benefit_lasteasutuse_toetus",
+      "canonical_item_id": "saue_vald:benefit:lasteasutuse_toetus",
+      "itemType": "benefit",
+      "title": "Lasteasutuse toetus",
+      "status": "active",
+      "summary": "Lasteasutuse toetust makstakse kooli, lasteaia ja lapsehoiu toidu ning kohatasu vanema poolt tasumisele kuuluva osa katmiseks. Toetust võib määrata toidu ja kohatasu kulude katteks või neist ühe katteks, kui leibkonna sissetulek ühe liikme kohta on alla kolmekordse riikliku toimetulekumäära. Erireegel kehtib raske või sügava puudega lapsele, kes vajab erilasteaeda, erirühma või kohandatud lapsehoidu.",
+      "sourceKeys": [
+        "benefits_children_page"
+      ],
+      "targetGroup": "Lapsed peredes, kelle sissetulek on alla piirmäära, ning erivajadusega lapsed.",
+      "amount": "Omaosaluse tegelik kulu",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU/ARNO kaudu, e-posti teel või paberil vastavalt toetuse kirjeldusele.",
+          "Lisa nõutud tõendid või kuludokumendid, kui toetuse kirjelduse järgi on need vajalikud.",
+          "Vallavalitsus või spetsialist kontrollib tingimusi ja otsustab toetuse maksmise."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "relatedContacts": [
+        "saue_vald_contact_liis_tooming"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "benefit",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "benefits_children_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_benefit_lasteasutuse_toetus",
+      "document_id": "saue_vald_benefit_lasteasutuse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "content_hash": "ce1181f9f7062c9e6ff1fc45c70598c5cd2144a551b0618b41909188228bcc9b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_benefit_esmakordselt_koolimineva_lapse_toetus",
+      "canonical_item_id": "saue_vald:benefit:esmakordselt_koolimineva_lapse_toetus",
+      "itemType": "benefit",
+      "title": "Esmakordselt koolimineva lapse toetus",
+      "status": "active",
+      "summary": "Toetust makstakse Saue valla kooli esimesse klassi õppima asuvale lapsele või erivajadustega laste õppeasutusse esmakordselt õppima asuvale lapsele. Toetus on seotud lapse ja vanema elukohaga Saue vallas ning kooli või õppeasutuse andmetega.",
+      "sourceKeys": [
+        "benefits_children_page"
+      ],
+      "targetGroup": "Esmakordselt kooli minevad Saue valla lapsed.",
+      "amount": "not_published",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU/ARNO kaudu, e-posti teel või paberil vastavalt toetuse kirjeldusele.",
+          "Lisa nõutud tõendid või kuludokumendid, kui toetuse kirjelduse järgi on need vajalikud.",
+          "Vallavalitsus või spetsialist kontrollib tingimusi ja otsustab toetuse maksmise."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "relatedContacts": [
+        "saue_vald_contact_liis_tooming"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "benefit",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "benefits_children_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_benefit_esmakordselt_koolimineva_lapse_toetus",
+      "document_id": "saue_vald_benefit_esmakordselt_koolimineva_lapse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "content_hash": "f96a8b168ac168ffc59b1174611e556fb02e623d5faec11853b83fde9127e961",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_benefit_eestkostetava_toetus",
+      "canonical_item_id": "saue_vald:benefit:eestkostetava_toetus",
+      "itemType": "benefit",
+      "title": "Eestkostetava toetus",
+      "status": "active",
+      "summary": "Eestkostetava toetust makstakse Saue valla eestkostel oleva isiku ülalpidamis- ja muude kulude katmiseks. Toetuse suurus on 250 eurot aastas ning taotluse saab esitada e-posti, sotsiaaltööspetsialisti, posti või postkasti kaudu.",
+      "sourceKeys": [
+        "benefits_adults_page",
+        "benefits_children_page"
+      ],
+      "targetGroup": "Saue valla eestkostel olev isik.",
+      "amount": "250 eurot aastas",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU/ARNO kaudu, e-posti teel või paberil vastavalt toetuse kirjeldusele.",
+          "Lisa nõutud tõendid või kuludokumendid, kui toetuse kirjelduse järgi on need vajalikud.",
+          "Vallavalitsus või spetsialist kontrollib tingimusi ja otsustab toetuse maksmise."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "relatedContacts": [
+        "saue_vald_contact_liis_tooming"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "benefit",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "benefits_adults_page",
+        "benefits_children_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_benefit_eestkostetava_toetus",
+      "document_id": "saue_vald_benefit_eestkostetava_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "content_hash": "4b006ae1e41c919e607e1e7523d7a2b266b898589715ab9da9fce2f95a959782",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_benefit_hooldajatoetus",
+      "canonical_item_id": "saue_vald:benefit:hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus",
+      "status": "active",
+      "summary": "Hooldajatoetuse eesmärk on tagada vaimse või kehalise puudega inimesele igapäevane kõrvalabi, juhendamine ja järelevalve. Toetust makstakse vähemalt 16-aastase raske või sügava puudega isiku hooldajale, 3–16-aastase puudega lapse hooldajale ning ajutiselt vähemalt 12-aastase hooldusvajadusega isiku hooldajale puude vormistamise ajal. Määrad on 30 kuni 100 eurot kuus sõltuvalt hooldatava east ja puude raskusest.",
+      "sourceKeys": [
+        "benefits_adults_page",
+        "benefits_children_page"
+      ],
+      "targetGroup": "Puudega lapse või täisealise isiku hooldaja.",
+      "amount": "30–100 eurot kuus",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU/ARNO kaudu, e-posti teel või paberil vastavalt toetuse kirjeldusele.",
+          "Lisa nõutud tõendid või kuludokumendid, kui toetuse kirjelduse järgi on need vajalikud.",
+          "Vallavalitsus või spetsialist kontrollib tingimusi ja otsustab toetuse maksmise."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "relatedContacts": [
+        "saue_vald_contact_merike_lepik",
+        "saue_vald_contact_liis_tooming"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "benefit",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "benefits_adults_page",
+        "benefits_children_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_benefit_hooldajatoetus",
+      "document_id": "saue_vald_benefit_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "content_hash": "11d1af45ac5da3432a5cb1dedfcd820f1f8aff9b49e1c455b6a7877e0005f55d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_benefit_hoolduspere_toetus",
+      "canonical_item_id": "saue_vald:benefit:hoolduspere_toetus",
+      "itemType": "benefit",
+      "title": "Hoolduspere toetus",
+      "status": "active",
+      "summary": "Hoolduspere toetust makstakse hoolduspere vanemale, kellega ametiasutus on sõlminud lepingu Saue valla elanikust lapsele asendus- või järelhooldusteenuse pakkumiseks. Toetust makstakse üks kord kuus perekonnas hooldamise lepingu alusel ja see makstakse välja hiljemalt kalendrikuu 15. päevaks. Toetuse suurus on 240 eurot kuus.",
+      "sourceKeys": [
+        "benefits_children_page"
+      ],
+      "targetGroup": "Saue valla lapse hoolduspere vanem.",
+      "amount": "240 eurot kuus",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU/ARNO kaudu, e-posti teel või paberil vastavalt toetuse kirjeldusele.",
+          "Lisa nõutud tõendid või kuludokumendid, kui toetuse kirjelduse järgi on need vajalikud.",
+          "Vallavalitsus või spetsialist kontrollib tingimusi ja otsustab toetuse maksmise."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "relatedContacts": [
+        "saue_vald_contact_liis_tooming"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "benefit",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "benefits_children_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_benefit_hoolduspere_toetus",
+      "document_id": "saue_vald_benefit_hoolduspere_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "content_hash": "447645d59302dba6a41eafa83ad58e34525f1b2969e580429bcc2a4f6301de9d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_benefit_koolitranspordi_toetus_puudega_lapsele",
+      "canonical_item_id": "saue_vald:benefit:koolitranspordi_toetus_puudega_lapsele",
+      "itemType": "benefit",
+      "title": "Koolitranspordi toetus puudega lapsele",
+      "status": "active",
+      "summary": "Koolitranspordi toetus puudega lapsele aitab katta transpordikulusid juhul, kui lapse puue ei võimalda kasutada ühistransporti või õpilasveo liine õppeasutusse ja tagasi koju sõitmiseks. Toetuse andmine on seotud puudega lapse õppeasutusse liikumise vajadusega.",
+      "sourceKeys": [
+        "benefits_children_page",
+        "services_page"
+      ],
+      "targetGroup": "Puudega õpilased, kes ei saa kasutada tavapäraseid transpordilahendusi.",
+      "amount": "not_published",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU/ARNO kaudu, e-posti teel või paberil vastavalt toetuse kirjeldusele.",
+          "Lisa nõutud tõendid või kuludokumendid, kui toetuse kirjelduse järgi on need vajalikud.",
+          "Vallavalitsus või spetsialist kontrollib tingimusi ja otsustab toetuse maksmise."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "relatedContacts": [
+        "saue_vald_contact_liis_tooming",
+        "saue_vald_contact_helen_veensalu"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "benefit",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "benefits_children_page",
+        "services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_benefit_koolitranspordi_toetus_puudega_lapsele",
+      "document_id": "saue_vald_benefit_koolitranspordi_toetus_puudega_lapsele",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "content_hash": "430c38953c9afbcf096ba6a6d6c4ee89233b66ebe26f0eb67586c8def353aeb8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_benefit_lapse_uhekordne_vajaduspohine_toetus",
+      "canonical_item_id": "saue_vald:benefit:lapse_uhekordne_vajaduspohine_toetus",
+      "itemType": "benefit",
+      "title": "Lapse ühekordne vajaduspõhine toetus",
+      "status": "active",
+      "summary": "Lapse ühekordset vajaduspõhist sotsiaaltoetust määratakse lapsele, kui leibkonna sissetulek ühe liikme kohta on alla kolmekordse riikliku toimetulekumäära. Toetust kasutatakse näiteks prillide, koolitarvete, riiete, jalatsite, lastelaagri või huvitegevuse kulude hüvitamiseks. Toetuse suurus on kuni 130 eurot aastas ning aluseks on kulutusi tõendavad dokumendid ja avaldus.",
+      "sourceKeys": [
+        "benefits_children_page"
+      ],
+      "targetGroup": "Madalama sissetulekuga perede lapsed.",
+      "amount": "kuni 130 eurot aastas",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU/ARNO kaudu, e-posti teel või paberil vastavalt toetuse kirjeldusele.",
+          "Lisa nõutud tõendid või kuludokumendid, kui toetuse kirjelduse järgi on need vajalikud.",
+          "Vallavalitsus või spetsialist kontrollib tingimusi ja otsustab toetuse maksmise."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "relatedContacts": [
+        "saue_vald_contact_liis_tooming"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "benefit",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "benefits_children_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_benefit_lapse_uhekordne_vajaduspohine_toetus",
+      "document_id": "saue_vald_benefit_lapse_uhekordne_vajaduspohine_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "content_hash": "be7ae91abd9609baa21682837c365ec7ecddf253e66f88e7b880a3593aeea086",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_benefit_puudega_lapse_ravimitoetus",
+      "canonical_item_id": "saue_vald:benefit:puudega_lapse_ravimitoetus",
+      "itemType": "benefit",
+      "title": "Puudega lapse ravimitoetus",
+      "status": "active",
+      "summary": "Puudega lapse ravimitoetust makstakse retseptiravimite ostuks lapsele, kellele on määratud puue. Toetuse saamiseks esitatakse taotlus koos kuludokumentidega, millel ravimit müünud ettevõte on märkinud lapse nime. Toetuse suurus on kuni 180 eurot aastas.",
+      "sourceKeys": [
+        "benefits_children_page"
+      ],
+      "targetGroup": "Puudega lapsed, kellele ostetakse retseptiravimeid.",
+      "amount": "kuni 180 eurot aastas",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU/ARNO kaudu, e-posti teel või paberil vastavalt toetuse kirjeldusele.",
+          "Lisa nõutud tõendid või kuludokumendid, kui toetuse kirjelduse järgi on need vajalikud.",
+          "Vallavalitsus või spetsialist kontrollib tingimusi ja otsustab toetuse maksmise."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "relatedContacts": [
+        "saue_vald_contact_liis_tooming"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "benefit",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "benefits_children_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_benefit_puudega_lapse_ravimitoetus",
+      "document_id": "saue_vald_benefit_puudega_lapse_ravimitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "content_hash": "3edac10c5899a1527a4de4fd440d9cf059085d90d9038c75f457975def72e945",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_benefit_terviseabi_toetus",
+      "canonical_item_id": "saue_vald:benefit:terviseabi_toetus",
+      "itemType": "benefit",
+      "title": "Terviseabi toetus",
+      "status": "active",
+      "summary": "Terviseabi toetus hüvitab retseptiravimite, abivahendite, meditsiiniseadmete, eakatele ja puuetega inimestele suunatud ohutusseadmete, rehabilitatsiooniteenuse, hambaravi, õendusabi ja taastusravi omaosaluse. Toetust saavad taotleda töövõimetoetuse saajad, pensionärid, puudega täisealised ning puudega lapse vanemad või eestkostjad, kui leibkonna sissetulek ühe liikme kohta on alla kolmekordse toimetulekupiiri.",
+      "sourceKeys": [
+        "benefits_adults_page",
+        "benefits_children_page"
+      ],
+      "targetGroup": "Pensionärid, puudega inimesed, töövõimetoetuse saajad ning puudega lapse vanemad/eestkostjad.",
+      "amount": "vastavalt kuludele ja piirmääradele",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU/ARNO kaudu, e-posti teel või paberil vastavalt toetuse kirjeldusele.",
+          "Lisa nõutud tõendid või kuludokumendid, kui toetuse kirjelduse järgi on need vajalikud.",
+          "Vallavalitsus või spetsialist kontrollib tingimusi ja otsustab toetuse maksmise."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "relatedContacts": [
+        "saue_vald_contact_liis_tooming",
+        "saue_vald_contact_maire_kessel"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "benefit",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "benefits_adults_page",
+        "benefits_children_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_benefit_terviseabi_toetus",
+      "document_id": "saue_vald_benefit_terviseabi_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "content_hash": "0255fb866db4ea451c112cfad45ad96547dcfb0aac066138013bf3cff6192cc3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_benefit_tugitoetus",
+      "canonical_item_id": "saue_vald:benefit:tugitoetus",
+      "itemType": "benefit",
+      "title": "Tugitoetus",
+      "status": "active",
+      "summary": "Tugitoetus kompenseerib eakatele, puuetega lastele ja puuetega tööealistele inimestele lisakulusid, mis tulenevad tervislikust seisundist või eaga kaasnevast tegevusvõime langusest. Eakate tugitoetust makstakse vähemalt 65-aastasele inimesele, kellel ei ole kehtivat puuet; puudega inimeste tugitoetust makstakse puudega lapsele kuni 15. eluaasta lõpuni, raske või sügava puudega vähemalt 65-aastasele inimesele ning raske või sügava puudega ja puuduva töövõimega 16–65-aastasele inimesele. Toetuse suurus on 55 eurot aastas ja puudega inimestele 110 eurot aastas.",
+      "sourceKeys": [
+        "benefits_adults_page",
+        "benefits_children_page"
+      ],
+      "targetGroup": "Eakad ja puudega inimesed.",
+      "amount": "55 eurot või 110 eurot aastas",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU/ARNO kaudu, e-posti teel või paberil vastavalt toetuse kirjeldusele.",
+          "Lisa nõutud tõendid või kuludokumendid, kui toetuse kirjelduse järgi on need vajalikud.",
+          "Vallavalitsus või spetsialist kontrollib tingimusi ja otsustab toetuse maksmise."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "relatedContacts": [
+        "saue_vald_contact_maire_kessel"
+      ],
+      "relatedTo": [],
+      "relatedForms": [
+        "saue_vald_form_tugitoetus_pdf"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "benefits_adults_page",
+        "benefits_children_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_benefit_tugitoetus",
+      "document_id": "saue_vald_benefit_tugitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "content_hash": "ab42ce229b6e4937070e712065bd17ace4eae9273cf1d57b821f32ff0c19006a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_benefit_opilaskodu_ja_pikapaevaruhma_kulude_toetus",
+      "canonical_item_id": "saue_vald:benefit:opilaskodu_ja_pikapaevaruhma_kulude_toetus",
+      "itemType": "benefit",
+      "title": "Õpilaskodu ja pikapäevarühma kulude toetus",
+      "status": "active",
+      "summary": "Õpilaskodu ja pikapäevarühma kulude toetust makstakse pere lapse eest, kui leibkonna sissetulek ühe liikme kohta on alla kolmekordse riikliku toimetulekumäära, või Saue valla eestkostel oleva lapse eest õpilaskodu või pikapäevarühma kulude katmiseks. Toetust saab taotleda avalduse alusel või ametiasutuse algatusel.",
+      "sourceKeys": [
+        "benefits_children_page"
+      ],
+      "targetGroup": "Õpilased madalama sissetulekuga peredest või Saue valla eestkostel olevad lapsed.",
+      "amount": "not_published",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU/ARNO kaudu, e-posti teel või paberil vastavalt toetuse kirjeldusele.",
+          "Lisa nõutud tõendid või kuludokumendid, kui toetuse kirjelduse järgi on need vajalikud.",
+          "Vallavalitsus või spetsialist kontrollib tingimusi ja otsustab toetuse maksmise."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "relatedContacts": [
+        "saue_vald_contact_liis_tooming"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "benefit",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "benefits_children_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_benefit_opilaskodu_ja_pikapaevaruhma_kulude_toetus",
+      "document_id": "saue_vald_benefit_opilaskodu_ja_pikapaevaruhma_kulude_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-lastele",
+      "content_hash": "4f8f1f3fe33488d7b0ca411d0cbf70c1fa647497e73c6fb69694666aa10b5ecf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_benefit_hoolekandeasutuse_teenuse_toetus",
+      "canonical_item_id": "saue_vald:benefit:hoolekandeasutuse_teenuse_toetus",
+      "itemType": "benefit",
+      "title": "Hoolekandeasutuse teenuse toetus",
+      "status": "active",
+      "summary": "Hoolekandeasutuse teenuse toetust saab taotleda väljaspool kodu osutatava üldhooldusteenuse kohatasu kulude katmiseks, riikliku erihoolekande järjekorras oleva isiku kohese paigutamise toetamiseks või põhjendatud juhtudel teiste hoolekandeasutuste teenuste kulude katteks. Toetus määratakse siis, kui sotsiaaltöötaja hindamine näitab teenuse vajadust. Hooldustöötajate ja abihooldustöötajate kulude katmise kehtiv piirmäär on 650 eurot kuus.",
+      "sourceKeys": [
+        "benefits_adults_page"
+      ],
+      "targetGroup": "Täisealised inimesed, kes vajavad üldhooldust või hoolekandeasutuse teenust.",
+      "amount": "kuni 650 eurot kuus hoolduskulude katmiseks",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU/ARNO kaudu, e-posti teel või paberil vastavalt toetuse kirjeldusele.",
+          "Lisa nõutud tõendid või kuludokumendid, kui toetuse kirjelduse järgi on need vajalikud.",
+          "Vallavalitsus või spetsialist kontrollib tingimusi ja otsustab toetuse maksmise."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-taiskasvanutele",
+      "relatedContacts": [
+        "saue_vald_contact_maire_kessel",
+        "saue_vald_contact_merike_lepik"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "benefit",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "benefits_adults_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_benefit_hoolekandeasutuse_teenuse_toetus",
+      "document_id": "saue_vald_benefit_hoolekandeasutuse_teenuse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-taiskasvanutele",
+      "content_hash": "48974f459744355a0de7753ce05aac2703630d3ac46462e16e08a70622124095",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_benefit_erakorraline_uhekordne_toetus",
+      "canonical_item_id": "saue_vald:benefit:erakorraline_uhekordne_toetus",
+      "itemType": "benefit",
+      "title": "Erakorraline ühekordne toetus",
+      "status": "active",
+      "summary": "Erakorralist toetust määratakse raskesse majanduslikku olukorda sattunud Saue valla elanikule õnnetusjuhtumi või kriisiolukorra tagajärgede leevendamise ja likvideerimisega seotud kulude hüvitamiseks. Õnnetusjuhtum või kriisiolukord võib olla loodusõnnetus, tulekahju, vargus või muu ettenägematu asjaolu; toetus on ühekordne ja summa määrab Saue Vallavalitsus.",
+      "sourceKeys": [
+        "benefits_adults_page"
+      ],
+      "targetGroup": "Saue valla elanik, kes on sattunud ootamatusse kriisi või õnnetusjuhtumisse.",
+      "amount": "summa määrab vallavalitsus",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU/ARNO kaudu, e-posti teel või paberil vastavalt toetuse kirjeldusele.",
+          "Lisa nõutud tõendid või kuludokumendid, kui toetuse kirjelduse järgi on need vajalikud.",
+          "Vallavalitsus või spetsialist kontrollib tingimusi ja otsustab toetuse maksmise."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-taiskasvanutele",
+      "relatedContacts": [
+        "saue_vald_contact_sille_li_pyya"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "benefit",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "benefits_adults_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_benefit_erakorraline_uhekordne_toetus",
+      "document_id": "saue_vald_benefit_erakorraline_uhekordne_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-taiskasvanutele",
+      "content_hash": "e02a62e9ea19e1160ea3985d30e91e81c98b8090951ab21aefbfd1c8fbc9ebd1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_benefit_puudega_isiku_transporditoetus",
+      "canonical_item_id": "saue_vald:benefit:puudega_isiku_transporditoetus",
+      "itemType": "benefit",
+      "title": "Puudega isiku transporditoetus",
+      "status": "active",
+      "summary": "Puudega isiku transporditoetust makstakse puudega inimesele elukohast ametiasutusse või tervishoiuteenuse osutajani ja tagasi koju sõitmiseks kasutatud transpordi kulude katmiseks. Juhuveo või taksoteenuse puhul makstakse toetust taotluse ja kuludokumentide alusel; eraisiku transpordi kasutamisel hüvitatakse kulud 0,3 eurot kilomeetri kohta. Toetuse suurus on kuni 150 eurot aastas, ratastoolis või lamavas asendis transpordi vajaduse korral rakendub kahekordne piirmäär.",
+      "sourceKeys": [
+        "benefits_adults_page"
+      ],
+      "targetGroup": "Puudega inimesed, kellel on transpordikulu ametiasutusse või tervishoiuteenusele liikumisel.",
+      "amount": "kuni 150 eurot aastas; erivajaduse korral kahekordne piirmäär",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU/ARNO kaudu, e-posti teel või paberil vastavalt toetuse kirjeldusele.",
+          "Lisa nõutud tõendid või kuludokumendid, kui toetuse kirjelduse järgi on need vajalikud.",
+          "Vallavalitsus või spetsialist kontrollib tingimusi ja otsustab toetuse maksmise."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-taiskasvanutele",
+      "relatedContacts": [
+        "saue_vald_contact_maire_kessel"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "benefit",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "benefits_adults_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_benefit_puudega_isiku_transporditoetus",
+      "document_id": "saue_vald_benefit_puudega_isiku_transporditoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-taiskasvanutele",
+      "content_hash": "b6d0d6acf30c1a38381857ce4fd85344e3b0599773153fa6d3a31ef362ce1276",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_benefit_riiklik_toimetulekutoetus",
+      "canonical_item_id": "saue_vald:benefit:riiklik_toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Riiklik toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on riiklik toetus, mille taotleja esitab jooksva kuu eest hiljemalt kuu viimaseks tööpäevaks kohalikule omavalitsusele. Arvestamisel lähtutakse pere eelmise kuu netosissetulekust, eluasemekuludest ja toimetulekupiirist; 2026. aastal on toimetulekupiir esimesele või ainsale pereliikmele 220 eurot, järgnevale täiskasvanule 176 eurot ja alaealisele lapsele 264 eurot. Toetus määratakse viie tööpäeva jooksul ja makstakse välja kolme tööpäeva jooksul pärast otsust.",
+      "sourceKeys": [
+        "benefits_adults_page"
+      ],
+      "targetGroup": "Inimesed ja pered, kelle sissetulek ei kata toimetulekupiiri ja eluasemekulusid.",
+      "amount": "riiklik valem: toimetulekupiir + eluasemekulud – sissetulekud",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU/ARNO kaudu, e-posti teel või paberil vastavalt toetuse kirjeldusele.",
+          "Lisa nõutud tõendid või kuludokumendid, kui toetuse kirjelduse järgi on need vajalikud.",
+          "Vallavalitsus või spetsialist kontrollib tingimusi ja otsustab toetuse maksmise."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-taiskasvanutele",
+      "relatedContacts": [
+        "saue_vald_contact_sille_li_pyya",
+        "saue_vald_contact_merike_lepik",
+        "saue_vald_contact_jaana_saar",
+        "saue_vald_contact_loona_liis_kenzap"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "benefit",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "benefits_adults_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_benefit_riiklik_toimetulekutoetus",
+      "document_id": "saue_vald_benefit_riiklik_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toetused-taiskasvanutele",
+      "content_hash": "49878fe2674bac25eb985443b42ad216b2c76afd3080cbcef2f02383801d7be6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_benefit_matusetoetus",
+      "canonical_item_id": "saue_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetust makstakse matuse korraldajale Saue valla elaniku matusekulude osaliseks katmiseks või muudel valla veebilehel nimetatud tingimustel lähedase kaotuse korral. Toetuse taotlemine toimub valla sotsiaaltoetuste taotlemise kanalite kaudu.",
+      "sourceKeys": [
+        "benefits_other_page"
+      ],
+      "targetGroup": "Matuse korraldaja.",
+      "amount": "not_published",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU/ARNO kaudu, e-posti teel või paberil vastavalt toetuse kirjeldusele.",
+          "Lisa nõutud tõendid või kuludokumendid, kui toetuse kirjelduse järgi on need vajalikud.",
+          "Vallavalitsus või spetsialist kontrollib tingimusi ja otsustab toetuse maksmise."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/muud-toetused",
+      "relatedContacts": [
+        "saue_vald_contact_maire_kessel"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "benefit",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "benefits_other_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_benefit_matusetoetus",
+      "document_id": "saue_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/muud-toetused",
+      "content_hash": "121251bb83c8f4c9969c4acd3b2700eba9928ef96902da90391f037248aa7025",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_benefit_hoolduspere_lapse_toetus",
+      "canonical_item_id": "saue_vald:benefit:hoolduspere_lapse_toetus",
+      "itemType": "benefit",
+      "title": "Hoolduspere lapse ja hoolduspere täiendavad toetused",
+      "status": "active",
+      "summary": "Asendus- ja järelhooldusteenuse kirjelduses on Saue valla hooldusperedes olevatele lastele ja hooldusperedele nimetatud hoolduspere vanema toetus, hoolduspere lapse toetus ja hoolduspere täiendav toetus. Hoolduspere lapse toetus ja hoolduspere täiendav toetus on kumbki 240 eurot kuus ning neid kasutatakse hooldusperedes olevate laste toetamiseks.",
+      "sourceKeys": [
+        "benefits_other_page",
+        "services_page"
+      ],
+      "targetGroup": "Hooldusperes olev laps ja hoolduspere.",
+      "amount": "240 eurot kuus",
+      "application": {
+        "channels": [
+          "web_form",
+          "email",
+          "post",
+          "in_person"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU/ARNO kaudu, e-posti teel või paberil vastavalt toetuse kirjeldusele.",
+          "Lisa nõutud tõendid või kuludokumendid, kui toetuse kirjelduse järgi on need vajalikud.",
+          "Vallavalitsus või spetsialist kontrollib tingimusi ja otsustab toetuse maksmise."
+        ]
+      },
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "relatedContacts": [
+        "saue_vald_contact_liis_tooming",
+        "saue_vald_contact_reili_raamat"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "benefit",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "benefits_other_page",
+        "services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_benefit_hoolduspere_lapse_toetus",
+      "document_id": "saue_vald_benefit_hoolduspere_lapse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "1949621fb98070a0a2cfe95f234012ddda0d16056524e63dd930e85c71637c4c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_resource_saue_sotsiaalkeskus",
+      "canonical_item_id": "saue_vald:resource:saue_sotsiaalkeskus",
+      "itemType": "resource",
+      "title": "Saue Sotsiaalkeskus",
+      "status": "active",
+      "summary": "Saue Sotsiaalkeskus osutab Saue valla elanikele sotsiaalteenuseid, sh koduteenuse, öömaja ja sotsiaaltranspordiga seotud lahendusi. Valla teenuste kirjeldused suunavad koduteenuse kinnitumisel teenusele Saue Sotsiaalkeskusesse ning üksiksõitude ja ühekordsete teenuste puhul võib inimene pöörduda otse keskuse poole.",
+      "sourceKeys": [
+        "services_page"
+      ],
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "relatedContacts": [
+        "saue_vald_contact_raivo_piiritalo"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_resource_saue_sotsiaalkeskus",
+      "document_id": "saue_vald_resource_saue_sotsiaalkeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "9833ce83e565cf5a5a223b0c3b8713ac7a9debb92288de9e3065cec5c232c686",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_resource_haiba_lastekodu",
+      "canonical_item_id": "saue_vald:resource:haiba_lastekodu",
+      "itemType": "resource",
+      "title": "Haiba Lastekodu",
+      "status": "active",
+      "summary": "Haiba Lastekodu asub Saue vallas ja osutab asenduskodu teenuseid eelistatult Harjumaa omavalitsuste lastele. Asenduskoju suunatakse laps juhul, kui talle ei ole leitud sobivat hooldusperet.",
+      "sourceKeys": [
+        "services_page"
+      ],
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "relatedContacts": [
+        "saue_vald_contact_reili_raamat"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_resource_haiba_lastekodu",
+      "document_id": "saue_vald_resource_haiba_lastekodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "9fc1cf6335bdfba8d78e9b1b8eb8a3915c8764b1c5a21d1f01bb51739f3397cb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_resource_ohvriabi",
+      "canonical_item_id": "saue_vald:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "Ohvriabi teenus aitab inimest ja tema lähedasi keerulistes emotsionaalsetes olukordades, näiteks õnnetuse või kuriteo tagajärjel. Saue valla lehel on nimetatud ohvriabi kriisitelefon, lasteabi, inimkaubanduse nõuandeliin, vägivallast loobumise tugiliin ning hädaabinumber.",
+      "sourceKeys": [
+        "victim_support_page"
+      ],
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/lastekaitse/ohvriabi",
+      "relatedContacts": [],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "victim_support_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_resource_ohvriabi",
+      "document_id": "saue_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/lastekaitse/ohvriabi",
+      "content_hash": "f869f77e8bb79811e092a319632c6a362a819ef39fbdf974ef620d0d9b0bf8be",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_resource_lasteabi",
+      "canonical_item_id": "saue_vald:resource:lasteabi",
+      "itemType": "resource",
+      "title": "Lasteabi ja abivajavast lapsest teatamine",
+      "status": "active",
+      "summary": "Saue valla lastekaitse info suunab teatama abivajavast või hädaohus olevast lapsest ning kasutama lasteabitelefoni. Abivajavast lapsest võivad teada anda laps ise, lähedased, haridusasutused, politsei või teised märkajad.",
+      "sourceKeys": [
+        "report_child_page",
+        "victim_support_page"
+      ],
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/lastekaitse/teata-abivajavast-lapsest",
+      "relatedContacts": [
+        "saue_vald_contact_liis_tooming",
+        "saue_vald_contact_reili_raamat"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "report_child_page",
+        "victim_support_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_resource_lasteabi",
+      "document_id": "saue_vald_resource_lasteabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/lastekaitse/teata-abivajavast-lapsest",
+      "content_hash": "7070e3c65642ad35b072045b65dfe646e245e024d2fcea5e3ceb58fb7bdb1da8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_resource_vaimne_tervis",
+      "canonical_item_id": "saue_vald:resource:vaimne_tervis",
+      "itemType": "resource",
+      "title": "Vaimse tervise tugi",
+      "status": "active",
+      "summary": "Saue vald toetab elanike vaimset tervist perekonda ja lapsi toetavate teenuste, psühholoogilise nõustamise, teraapiate, tugiisikuteenuse, raseduskriisi nõustamise ja vanemaharidusprogrammide kaudu. Teenusele jõudmiseks saab pöörduda piirkonna lastekaitsespetsialisti või sotsiaaltööspetsialisti poole või kirjutada aadressil.",
+      "sourceKeys": [
+        "mental_health_page"
+      ],
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/tervis/vaimne-tervis",
+      "relatedContacts": [
+        "saue_vald_contact_helen_veensalu"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "mental_health_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_resource_vaimne_tervis",
+      "document_id": "saue_vald_resource_vaimne_tervis",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/tervis/vaimne-tervis",
+      "content_hash": "22e62b20e5d0f3cee80b853842f7f8e11b0fc88a2c1cbe81a9eb95efa82c9aa3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_resource_toiduabi",
+      "canonical_item_id": "saue_vald:resource:toiduabi",
+      "itemType": "resource",
+      "title": "Toiduabi jagamine",
+      "status": "active",
+      "summary": "Saue valla sotsiaalvaldkonna menüüs on eraldi toiduabi jagamise leht. Toiduabi käsitletakse valla sotsiaalabi ressursina ning lisainfo saamiseks tuleb pöörduda sotsiaalosakonna või piirkonna sotsiaaltööspetsialisti poole.",
+      "sourceKeys": [
+        "food_aid_page"
+      ],
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toiduabi-jagamine",
+      "relatedContacts": [
+        "saue_vald_contact_maire_kessel"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "food_aid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_resource_toiduabi",
+      "document_id": "saue_vald_resource_toiduabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toiduabi-jagamine",
+      "content_hash": "5cc13238f47e83df5f3275375eae9ce33729ef9a7f2b352ad7e9d6a60f8763fc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_resource_naiste_tugikeskused",
+      "canonical_item_id": "saue_vald:resource:naiste_tugikeskused",
+      "itemType": "resource",
+      "title": "Naiste tugikeskused",
+      "status": "active",
+      "summary": "Saue valla turvakoduteenuse ja ohvriabi info suunab naistevastase vägivalla ohvri vajadusel naiste tugikeskuste poole. Tugikeskuste kaudu saab turvalist ööbimist, nõustamist ja tuge, eriti juhul, kui abi vajatakse koos lastega.",
+      "sourceKeys": [
+        "services_page",
+        "victim_support_page"
+      ],
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/lastekaitse/ohvriabi",
+      "relatedContacts": [],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "services_page",
+        "victim_support_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_resource_naiste_tugikeskused",
+      "document_id": "saue_vald_resource_naiste_tugikeskused",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/lastekaitse/ohvriabi",
+      "content_hash": "af92b0e4461c79a3271f6d97f3cb7c448c7bb3b37dde961c5f200c91763adb6b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_resource_riigi_infotelefonid",
+      "canonical_item_id": "saue_vald:resource:riigi_infotelefonid",
+      "itemType": "resource",
+      "title": "Olulised abi- ja kriisitelefonid",
+      "status": "active",
+      "summary": "Saue valla sotsiaalinfo toob välja olulised abinumbrid: hädaabi, ohvriabi kriisitelefon, lasteabi, kriisiinfotelefon, 1220 perearsti nõuandetelefon ning muud erialased abikanalid.",
+      "sourceKeys": [
+        "victim_support_page"
+      ],
+      "officialUrl": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/lastekaitse/ohvriabi",
+      "relatedContacts": [],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "victim_support_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_resource_riigi_infotelefonid",
+      "document_id": "saue_vald_resource_riigi_infotelefonid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/pere-sotsiaal-ja-tervishoid/lastekaitse/ohvriabi",
+      "content_hash": "15d811aa2653978d69342e23f4b0937ec66f1bd2b9d582fb9de42b56172dccec",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_form_spoku_sotsiaalteenuste_taotlus",
+      "canonical_item_id": "saue_vald:form:spoku_sotsiaalteenuste_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaalteenuste ja sotsiaaltoetuste e-taotlused SPOKU-s",
+      "status": "active",
+      "summary": "Sotsiaalteenuste ja sotsiaaltoetuste e-taotlused SPOKU-s on Saue valla ametlik vorm või e-taotlus sotsiaalteenuse või toetuse taotlemiseks. Vorm on seotud nende teenuste või toetustega, mille detaillehel või vormilehel on taotlemisviis nimetatud.",
+      "sourceKeys": [
+        "spoku"
+      ],
+      "format": "web_form",
+      "officialUrl": "https://iseteenindus.sauevald.ee/",
+      "submissionChannels": [
+        "web_form"
+      ],
+      "relatedTo": [
+        "saue_vald_service_koduteenus",
+        "saue_vald_service_tugiisikuteenus",
+        "saue_vald_service_sotsiaaltransporditeenus",
+        "saue_vald_service_eluruumi_tagamise_teenus",
+        "saue_vald_service_valtimatu_sotsiaalabi"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "spoku"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_form_spoku_sotsiaalteenuste_taotlus",
+      "document_id": "saue_vald_form_spoku_sotsiaalteenuste_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://iseteenindus.sauevald.ee/",
+      "content_hash": "dbee9d22c090da27673f5561c1645df0390ae2b589bafd56fde05625355ebda5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_form_arno_koduse_lapse_toetus",
+      "canonical_item_id": "saue_vald:form:arno_koduse_lapse_toetus",
+      "itemType": "form",
+      "title": "Koduse lapse toetuse taotlus ARNO-s",
+      "status": "active",
+      "summary": "Koduse lapse toetuse taotlus ARNO-s on Saue valla ametlik vorm või e-taotlus sotsiaalteenuse või toetuse taotlemiseks. Vorm on seotud nende teenuste või toetustega, mille detaillehel või vormilehel on taotlemisviis nimetatud.",
+      "sourceKeys": [
+        "arno"
+      ],
+      "format": "web_form",
+      "officialUrl": "https://piksel.ee/arno/saue/",
+      "submissionChannels": [
+        "web_form"
+      ],
+      "relatedTo": [
+        "saue_vald_benefit_koduse_lapse_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "arno"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_form_arno_koduse_lapse_toetus",
+      "document_id": "saue_vald_form_arno_koduse_lapse_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://piksel.ee/arno/saue/",
+      "content_hash": "a177b7badc0c90386747531e26a9e873ecde64e6c192ea65b1273e69acdd6fa1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_form_tugitoetus_pdf",
+      "canonical_item_id": "saue_vald:form:tugitoetus_pdf",
+      "itemType": "form",
+      "title": "Tugitoetuse avaldus 65+ elanikule",
+      "status": "active",
+      "summary": "Tugitoetuse avaldus 65+ elanikule on Saue valla ametlik vorm või e-taotlus sotsiaalteenuse või toetuse taotlemiseks. Vorm on seotud nende teenuste või toetustega, mille detaillehel või vormilehel on taotlemisviis nimetatud.",
+      "sourceKeys": [
+        "tugitoetus_form_pdf"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://sauevald.ee/sites/default/files/documents/2024-05/2024.05.20_Tugitoetuse%20avaldus.pdf",
+      "submissionChannels": [
+        "download",
+        "email",
+        "post",
+        "in_person"
+      ],
+      "relatedTo": [
+        "saue_vald_benefit_tugitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "tugitoetus_form_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_form_tugitoetus_pdf",
+      "document_id": "saue_vald_form_tugitoetus_pdf",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/sites/default/files/documents/2024-05/2024.05.20_Tugitoetuse%20avaldus.pdf",
+      "content_hash": "a86573d9e0891972dace98dcca284826d9a8ca62245105536b413eed6b42019b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_form_sotsiaaltransporditeenuse_taotlus_docx",
+      "canonical_item_id": "saue_vald:form:sotsiaaltransporditeenuse_taotlus_docx",
+      "itemType": "form",
+      "title": "Sotsiaaltransporditeenuse taotlus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenuse taotlus on Saue valla ametlik vorm või e-taotlus sotsiaalteenuse või toetuse taotlemiseks. Vorm on seotud nende teenuste või toetustega, mille detaillehel või vormilehel on taotlemisviis nimetatud.",
+      "sourceKeys": [
+        "sotsiaaltransport_form_docx"
+      ],
+      "format": "docx",
+      "officialUrl": "https://sauevald.ee/sites/default/files/documents/2025-07/Sotsiaaltransporditeenuse%20taotlus.docx",
+      "submissionChannels": [
+        "download",
+        "email",
+        "post",
+        "in_person"
+      ],
+      "relatedTo": [
+        "saue_vald_service_sotsiaaltransporditeenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltransport_form_docx"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_form_sotsiaaltransporditeenuse_taotlus_docx",
+      "document_id": "saue_vald_form_sotsiaaltransporditeenuse_taotlus_docx",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://sauevald.ee/sites/default/files/documents/2025-07/Sotsiaaltransporditeenuse%20taotlus.docx",
+      "content_hash": "b342da9185dc1be8f9d0f5cb47a5dab25203315f123638f84d181f8e652aa96c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_form_puudega_lapse_lapsehoiuteenuse_taotlus",
+      "canonical_item_id": "saue_vald:form:puudega_lapse_lapsehoiuteenuse_taotlus",
+      "itemType": "form",
+      "title": "Raske ja sügava puudega lapse lapsehoiuteenuse taotlus",
+      "status": "active",
+      "summary": "Raske ja sügava puudega lapse lapsehoiuteenuse taotlus on Saue valla ametlik vorm või e-taotlus sotsiaalteenuse või toetuse taotlemiseks. Vorm on seotud nende teenuste või toetustega, mille detaillehel või vormilehel on taotlemisviis nimetatud.",
+      "sourceKeys": [
+        "spoku"
+      ],
+      "format": "web_form",
+      "officialUrl": "https://iseteenindus.sauevald.ee/",
+      "submissionChannels": [
+        "web_form"
+      ],
+      "relatedTo": [
+        "saue_vald_service_lapsehoiuteenus_raske_sugava_puudega_lapsele"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "spoku"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_form_puudega_lapse_lapsehoiuteenuse_taotlus",
+      "document_id": "saue_vald_form_puudega_lapse_lapsehoiuteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://iseteenindus.sauevald.ee/",
+      "content_hash": "4516e06006ef8029d18caebf7fe44ebe1f98bab1e80b1aa4b89997b07f39c6ee",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saue_vald_form_suure_hooldus_abivajadusega_lapse_taotlus",
+      "canonical_item_id": "saue_vald:form:suure_hooldus_abivajadusega_lapse_taotlus",
+      "itemType": "form",
+      "title": "Suure hooldus- ja abivajadusega lapse teenuse või toetuse taotlus",
+      "status": "active",
+      "summary": "Suure hooldus- ja abivajadusega lapse teenuse või toetuse taotlus on Saue valla ametlik vorm või e-taotlus sotsiaalteenuse või toetuse taotlemiseks. Vorm on seotud nende teenuste või toetustega, mille detaillehel või vormilehel on taotlemisviis nimetatud.",
+      "sourceKeys": [
+        "spoku"
+      ],
+      "format": "web_form",
+      "officialUrl": "https://iseteenindus.sauevald.ee/",
+      "submissionChannels": [
+        "web_form"
+      ],
+      "relatedTo": [
+        "saue_vald_service_suure_hooldus_abivajadusega_lapse_teenused"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "spoku"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saue_vald_form_suure_hooldus_abivajadusega_lapse_taotlus",
+      "document_id": "saue_vald_form_suure_hooldus_abivajadusega_lapse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://iseteenindus.sauevald.ee/",
+      "content_hash": "b6989d84bd559543cfe614b91d6bbefa08b4ba16f9bbb2cd05070ca20a0683b9",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Saue vald",
+  "checked_at": "2026-04-30",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

@@ -1,0 +1,2508 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-marjamaa-vald",
+  "document_id": "kov-marjamaa-vald",
+  "municipality": "Märjamaa vald",
+  "municipality_id": "marjamaa_vald",
+  "county": "Raplamaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "marjamaa_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "marjamaa_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on ajutine rahaline abimeede inimesele või perele, kelle kuu sissetulek pärast eluasemekulude mahaarvamist jääb alla kehtestatud toimetulekupiiri. 2026. aastal on toimetulekupiir üksi elavale inimesele või pere esimesele liikmele 220 eurot, teisele ja igale järgmisele täisealisele 176 eurot ning alaealisele 264 eurot.",
+      "sourceKeys": [
+        "toimetulekutoetus_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/toimetulekutoetus",
+      "targetGroup": null,
+      "conditions": [],
+      "application": {
+        "channels": [
+          "SPOKU iseteenindus",
+          "pabervorm vallamajja",
+          "digiallkirjastatult e-postiga"
+        ]
+      },
+      "decisionTime": null,
+      "amount": "2026: esimene pereliige 220 €, järgmine täisealine 176 €, alaealine 264 €; ainult alaealistega perele täiendavalt 15 €.",
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "marjamaa_vald_form_toimetulekutoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "marjamaa_vald_contact_ilme_roosi",
+        "marjamaa_vald_contact_egela_eensalu"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_benefit_toimetulekutoetus",
+      "document_id": "marjamaa_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/toimetulekutoetus",
+      "content_hash": "94ced0c5cc7eb1b78eb93f68a20bda01253d5b08e1a38d9c4404b1ad944a2af5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_benefit_erakorraline_toetus",
+      "canonical_item_id": "marjamaa_vald:benefit:erakorraline_toetus",
+      "itemType": "benefit",
+      "title": "Erakorraline toetus",
+      "status": "active",
+      "summary": "Erakorraline toetus on Märjamaa valla rahaline abi inimesele või perele, kes on sattunud raskustesse õnnetuse, näiteks tulekahju või loodusõnnetuse tõttu. Toetuse eesmärk on aidata katta õnnetusest tingitud kulusid ning otsus tehakse pärast nõuetekohase taotluse ja dokumentide esitamist.",
+      "sourceKeys": [
+        "erakorraline_toetus_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/erakorraline-toetus",
+      "targetGroup": null,
+      "conditions": [],
+      "application": {
+        "channels": [
+          "SPOKU",
+          "pabervorm vallamajja",
+          "digiallkirjastatult e-postiga"
+        ]
+      },
+      "decisionTime": "10 tööpäeva pärast nõuetekohase taotluse ja vajalike dokumentide esitamist",
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "marjamaa_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "marjamaa_vald_contact_ilme_roosi",
+        "marjamaa_vald_contact_egela_eensalu",
+        "marjamaa_vald_contact_eneli_rego"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "erakorraline_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_benefit_erakorraline_toetus",
+      "document_id": "marjamaa_vald_benefit_erakorraline_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/erakorraline-toetus",
+      "content_hash": "719a7cbc15b9acfcf0071ab41f0686bffa451988e648efeac133b8a1e2236c2c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_service_volanoustamisteenus",
+      "canonical_item_id": "marjamaa_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus on mõeldud inimesele, kellel on majanduslikud toimetulekuprobleemid, võlgnevused või oht võlgnevuste tekkimiseks ning kes ei ole võimeline iseseisvalt rahalisi kohustusi täitma. Teenus hõlmab nõustamist, juhendamist ja uute võlgade ennetamist.",
+      "sourceKeys": [
+        "volanoustamisteenus_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/volanoustamisteenus",
+      "targetGroup": "Majanduslike toimetulekuprobleemidega või võlgnevustega inimesed.",
+      "conditions": [],
+      "application": {
+        "channels": [
+          "eelnev registreerimine sotsiaaltööspetsialisti vastuvõtule"
+        ]
+      },
+      "decisionTime": "10 tööpäeva pärast nõuetekohase taotluse ja vajalike dokumentide esitamist",
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "marjamaa_vald_contact_ilme_roosi",
+        "marjamaa_vald_contact_egela_eensalu",
+        "marjamaa_vald_contact_eneli_rego"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "volanoustamisteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_service_volanoustamisteenus",
+      "document_id": "marjamaa_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/volanoustamisteenus",
+      "content_hash": "ff7699d38819059f66a8f0915f052c6244145a776d7e9e4270935ee02efd4e03",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_service_tugiisikuteenus",
+      "canonical_item_id": "marjamaa_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenuse eesmärk on aidata inimesel iseseisvalt toime tulla olukordades, kus majanduslikud, tervise- või muud probleemid takistavad õiguste ja kohustuste täitmist. Teenus hõlmab juhendamist, motiveerimist ning iseseisvuse ja vastutusvõime suurendamist.",
+      "sourceKeys": [
+        "tugiisikuteenus_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/tugiisikuteenus",
+      "targetGroup": "Laps psüühika- või käitumishäirega, last kasvatav isik ning inimene, kes vajab abi olme- ja majapidamisküsimustes.",
+      "conditions": [],
+      "application": {
+        "channels": [
+          "vormivaba taotlus kohapeal",
+          "digiallkirjastatult e-postiga"
+        ],
+        "steps": [
+          "taotluses märgitakse taotletav abi, isikuandmed, kontaktid, abi vajadus ja vajadusel täiendavad dokumendid"
+        ]
+      },
+      "decisionTime": "10 tööpäeva pärast nõuetekohase taotluse ja vajalike dokumentide esitamist",
+      "amount": null,
+      "pricing": "Tasuta",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "marjamaa_vald_contact_maiken_kask",
+        "marjamaa_vald_contact_ilme_roosi",
+        "marjamaa_vald_contact_eneli_rego"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "tugiisikuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_service_tugiisikuteenus",
+      "document_id": "marjamaa_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/tugiisikuteenus",
+      "content_hash": "5ccf843b752212418ac63c2793a556e011f5ddd015f619e4a102c10ebcc73840",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_service_toiduabi",
+      "canonical_item_id": "marjamaa_vald:service:toiduabi",
+      "itemType": "service",
+      "title": "Toiduabi",
+      "status": "active",
+      "summary": "Toidupangateenuse eesmärk on toetada toimetulekuraskustes inimesi ja peresid toiduabiga. Toiduabikaarte jagatakse neli korda aastas ning nende abil saab osta toidu- ja esmatarbekaupu Rimi kauplustes üle Eesti.",
+      "sourceKeys": [
+        "toiduabi_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/toiduabi",
+      "targetGroup": "Toimetulekutoetuse saajad, õigustatud toimetulekutoetuse taotlejad, KOV sissetulekust sõltuva toetuse saajad ja varjupaigateenust kasutavad inimesed.",
+      "conditions": [],
+      "application": {
+        "channels": [
+          "SPOKU",
+          "pabervorm vallamajja",
+          "digiallkirjastatult e-postiga"
+        ]
+      },
+      "decisionTime": "10 tööpäeva pärast nõuetekohase taotluse ja vajalike dokumentide esitamist",
+      "amount": "Alates 2025. aasta III kvartalist 36 eurot abisaaja kaardile.",
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "marjamaa_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "marjamaa_vald_contact_egela_eensalu"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "toiduabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_service_toiduabi",
+      "document_id": "marjamaa_vald_service_toiduabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/toiduabi",
+      "content_hash": "dd1ab271f061868e4556bc7b382c0261fc157b2a8e5c42b4e915916e046810ce",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_service_valtimatu_sotsiaalabi",
+      "canonical_item_id": "marjamaa_vald:service:valtimatu_sotsiaalabi",
+      "itemType": "service",
+      "title": "Vältimatu sotsiaalabi teenus",
+      "status": "active",
+      "summary": "Vältimatu sotsiaalabi teenuse eesmärk on teha toiduabi ja/või riideabi kättesaadavaks abivajajale, kes viibib abi vajaduse hetkel Märjamaa valla territooriumil. Teenust osutatakse seni, kuni inimene ei ole enam elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitus olukorras.",
+      "sourceKeys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/valtimatu-sotsiaalabi",
+      "targetGroup": null,
+      "conditions": [],
+      "application": {
+        "channels": [
+          "SPOKU",
+          "pabervorm vallamajja",
+          "digiallkirjastatult e-postiga"
+        ]
+      },
+      "decisionTime": "10 tööpäeva pärast nõuetekohase taotluse ja vajalike dokumentide esitamist",
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "marjamaa_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "marjamaa_vald_contact_ilme_roosi",
+        "marjamaa_vald_contact_eneli_rego"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_service_valtimatu_sotsiaalabi",
+      "document_id": "marjamaa_vald_service_valtimatu_sotsiaalabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/valtimatu-sotsiaalabi",
+      "content_hash": "09268659d90944d963e2cbece5dffd234e43d39b884adabe160aa82016c8ab78",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_service_eluruumi_tagamine",
+      "canonical_item_id": "marjamaa_vald:service:eluruumi_tagamine",
+      "itemType": "service",
+      "title": "Eluruumi tagamine",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenusega abistab vallavalitsus inimesi, kellel on puudest tingituna raskusi eluruumis liikumise, endaga toimetuleku või suhtlemisega, eluruumi kohandamisel või sobivama eluruumi saamisel. Abi andmisel arvestatakse abivajaja ja pere sissetulekuid, majanduslikku olukorda ning taotluse põhjendatust.",
+      "sourceKeys": [
+        "eluruumi_tagamine_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/eluruumi-tagamine",
+      "targetGroup": null,
+      "conditions": [],
+      "application": {
+        "channels": [
+          "SPOKU",
+          "pabervorm vallamajja",
+          "digiallkirjastatult e-postiga"
+        ],
+        "steps": [
+          "täita sotsiaaleluruumi taotlus"
+        ]
+      },
+      "decisionTime": "10 tööpäeva pärast nõuetekohase taotluse ja vajalike dokumentide esitamist",
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "marjamaa_vald_form_sotsiaaleluruumi_taotlus"
+      ],
+      "relatedContacts": [
+        "marjamaa_vald_contact_ilme_roosi",
+        "marjamaa_vald_contact_egela_eensalu",
+        "marjamaa_vald_contact_eneli_rego"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "eluruumi_tagamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_service_eluruumi_tagamine",
+      "document_id": "marjamaa_vald_service_eluruumi_tagamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/eluruumi-tagamine",
+      "content_hash": "cfd501b20f0e405ebf3d045be7f3c7ec4acea1c7c40124e5b5ec5438e8ed410c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_service_varjupaigateenus",
+      "canonical_item_id": "marjamaa_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenuse eesmärk on tagada ajutine ööbimisvõimalus täisealisele sotsiaalhoolekande kliendile, kes ei suuda endale ise ööbimiskohta leida. Teenust võib taotleda inimene ise, kuid ametiasutus peab vajadusel teenuse korraldama ka ilma taotluseta, selgitades välja inimese tahte ja nõusoleku.",
+      "sourceKeys": [
+        "varjupaigateenus_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/varjupaigateenus",
+      "targetGroup": null,
+      "conditions": [],
+      "application": {
+        "channels": [
+          "vormivaba taotlus",
+          "sotsiaaltööspetsialisti vastuvõtule eelnev registreerimine"
+        ]
+      },
+      "decisionTime": null,
+      "amount": null,
+      "pricing": "Teenuse saaja tasub võimalusel osa hinnast, ülejäänu katab Märjamaa vald.",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "marjamaa_vald_contact_ilme_roosi",
+        "marjamaa_vald_contact_egela_eensalu",
+        "marjamaa_vald_contact_eneli_rego"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "varjupaigateenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_service_varjupaigateenus",
+      "document_id": "marjamaa_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/varjupaigateenus",
+      "content_hash": "20de81f17206d9bd2ac462d78bfe690c65133d42f7c8b0f22d21d2aaf8f742eb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_service_turvakoduteenus",
+      "canonical_item_id": "marjamaa_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenuse eesmärk on tagada ajutine eluase, turvaline keskkond ja esmane abi lapsele või täiskasvanule, kelle elu, tervis või areng on ohus. Teenust pakutakse nii kaua, kui on vaja inimese turvalisuse ja edasise elu korraldamise tagamiseks, ning kulud katab Märjamaa vald.",
+      "sourceKeys": [
+        "turvakoduteenus_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/turvakoduteenus",
+      "targetGroup": null,
+      "conditions": [],
+      "application": {
+        "channels": [
+          "vormivaba taotlus",
+          "teenuse korraldamine ka taotluseta inimese nõusolekul"
+        ]
+      },
+      "decisionTime": null,
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "marjamaa_vald_contact_maiken_kask",
+        "marjamaa_vald_contact_ilme_roosi",
+        "marjamaa_vald_contact_egela_eensalu",
+        "marjamaa_vald_contact_eneli_rego"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "turvakoduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_service_turvakoduteenus",
+      "document_id": "marjamaa_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/turvakoduteenus",
+      "content_hash": "6f643e5e3ef2c6e1b68bd0396face97d23905ab95719f227e735093293b7cad6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_service_sotsiaaltransport",
+      "canonical_item_id": "marjamaa_vald:service:sotsiaaltransport",
+      "itemType": "service",
+      "title": "Sotsiaaltranspordi teenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenust osutatakse sotsiaalhoolekande klientidele, kellel on puue või kelle tervislik seisund takistab isikliku või ühistranspordi kasutamist avalike teenuste kasutamiseks, tööle või õppima sõitmiseks. Teenust pakutakse juhuveona Märjamaa valla sõidukiga või teenusepakkuja kaudu.",
+      "sourceKeys": [
+        "sotsiaaltransport_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/sotsiaaltranspordi-teenus",
+      "targetGroup": "Puudega või terviseseisundist tuleneva transporditakistusega sotsiaalhoolekande kliendid.",
+      "conditions": [],
+      "application": {
+        "channels": [
+          "suuliselt",
+          "kirjaga",
+          "e-postiga"
+        ],
+        "deadline": "taotlus vähemalt 10 tööpäeva enne teenuse vajadust"
+      },
+      "decisionTime": null,
+      "amount": null,
+      "pricing": "Teenuse kasutajalt võetakse tasu teenuseosutaja kehtestatud kilomeetrihinna alusel.",
+      "relatedTo": [],
+      "relatedForms": [
+        "marjamaa_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "marjamaa_vald_contact_ilme_roosi",
+        "marjamaa_vald_contact_egela_eensalu"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "sotsiaaltransport_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_service_sotsiaaltransport",
+      "document_id": "marjamaa_vald_service_sotsiaaltransport",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/sotsiaaltranspordi-teenus",
+      "content_hash": "6b5524c95223a6ef05eeec67d8b5bbbe9ae38a7fa00eed71f2861e6c24ed6d0a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_benefit_sotsiaaltranspordikulude_huvitis",
+      "canonical_item_id": "marjamaa_vald:benefit:sotsiaaltranspordikulude_huvitis",
+      "itemType": "benefit",
+      "title": "Sotsiaaltranspordikulude hüvitis",
+      "status": "active",
+      "summary": "Kui sotsiaaltranspordi kasutaja ei ole majanduslikust olukorrast tulenevalt võimeline teenuse eest tasuma, saab taotleda ametiasutuselt hüvitist. Sotsiaaltranspordikulude piirmäär on 100 eurot taotlejale kalendriaastas.",
+      "sourceKeys": [
+        "sotsiaaltransport_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/sotsiaaltranspordi-teenus",
+      "targetGroup": null,
+      "conditions": [],
+      "application": {
+        "channels": [
+          "taotlus kirjalikult või elektrooniliselt"
+        ],
+        "steps": [
+          "taotluses märkida taotletav abi, isikuandmed, asjaolud, makseviis ja kontonumber"
+        ]
+      },
+      "decisionTime": null,
+      "amount": "Kuni 100 eurot taotlejale kalendriaastas.",
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "marjamaa_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "marjamaa_vald_contact_ilme_roosi",
+        "marjamaa_vald_contact_egela_eensalu"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "sotsiaaltransport_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_benefit_sotsiaaltranspordikulude_huvitis",
+      "document_id": "marjamaa_vald_benefit_sotsiaaltranspordikulude_huvitis",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/sotsiaaltranspordi-teenus",
+      "content_hash": "96f9cf0c0faee6fe24fbf0b4efbb8053bbffc15cc5bf22c03bec9d9a6fe7b6c5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "marjamaa_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenuse eesmärk on aidata täisealist inimest, kes vajab puude tõttu füüsilist abi, iseseisvamalt igapäevaelus toime tulla ja osaleda ühiskonnaelus. Vajadusel aitab ametiasutus leida sobiva isikliku abistaja.",
+      "sourceKeys": [
+        "isikliku_abistaja_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/isikliku-abistaja-teenus",
+      "targetGroup": "Täisealised puudega inimesed, kellel on vajadus kasutada füüsilist kõrvalabi igapäevaelus.",
+      "conditions": [],
+      "application": {
+        "channels": [
+          "vormivaba taotlus"
+        ],
+        "steps": [
+          "märkida põhjus, puude raskusaste, vajatavad tegevused ja võimalusel abistaja andmed"
+        ]
+      },
+      "decisionTime": "10 tööpäeva pärast nõuetekohase taotluse ja dokumentide esitamist",
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "marjamaa_vald_contact_ilme_roosi",
+        "marjamaa_vald_contact_egela_eensalu",
+        "marjamaa_vald_contact_eneli_rego"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "isikliku_abistaja_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_service_isikliku_abistaja_teenus",
+      "document_id": "marjamaa_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/isikliku-abistaja-teenus",
+      "content_hash": "2c168537c49b360d5052e02ee22fc76a3b678b008550d4d09b97c07e84c88661",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "marjamaa_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealisele inimesele määratakse hooldaja, kui ta vajab vaimse või kehalise puude tõttu abi oma õiguste kaitsmisel ja kohustuste täitmisel. Hooldaja määramist saab taotleda raske või sügava puudega täisealine isik ning hooldus seatakse üldjuhul puude raskusastme otsuse kehtivuse ajaks või tähtajatu puude korral kuni viieks aastaks.",
+      "sourceKeys": [
+        "taisealise_hooldus_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/taisealise-isiku-hooldus",
+      "targetGroup": null,
+      "conditions": [],
+      "application": {
+        "channels": [
+          "SPOKU",
+          "pabervorm vallamajja",
+          "digiallkirjastatult e-postiga"
+        ],
+        "steps": [
+          "esitada hooldajaks määramise taotlus"
+        ]
+      },
+      "decisionTime": "10 tööpäeva pärast nõuetekohase taotluse ja vajalike dokumentide esitamist",
+      "amount": null,
+      "pricing": "Hooldatavale tasuta, välja arvatud hooldatava ja hooldaja omavaheline kokkulepe tasu maksmiseks.",
+      "relatedTo": [],
+      "relatedForms": [
+        "marjamaa_vald_form_hooldajaks_maaramise_taotlus"
+      ],
+      "relatedContacts": [
+        "marjamaa_vald_contact_ilme_roosi",
+        "marjamaa_vald_contact_egela_eensalu",
+        "marjamaa_vald_contact_eneli_rego"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "taisealise_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_service_taisealise_isiku_hooldus",
+      "document_id": "marjamaa_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/taisealise-isiku-hooldus",
+      "content_hash": "345558bd9fc0f45c2448d7cb0f62372027a5236134c2e361666210af4815e3bf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_benefit_hooldajatoetus",
+      "canonical_item_id": "marjamaa_vald:benefit:hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus",
+      "status": "active",
+      "summary": "Täisealise isiku hoolduse lehel on märgitud, et hooldajal on võimalik taotleda hooldajatoetust. Hooldajatoetuse taotlemiseks saab kasutada SPOKU iseteenindust, pabervormi või e-posti teel esitatavat hooldajatoetuse taotlust.",
+      "sourceKeys": [
+        "taisealise_hooldus_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/taisealise-isiku-hooldus",
+      "targetGroup": null,
+      "conditions": [],
+      "application": {
+        "channels": [
+          "SPOKU",
+          "pabervorm vallamajja",
+          "digiallkirjastatult e-postiga"
+        ],
+        "steps": [
+          "täita hooldajatoetuse taotlus"
+        ]
+      },
+      "decisionTime": null,
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "marjamaa_vald_form_hooldajatoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "marjamaa_vald_contact_ilme_roosi",
+        "marjamaa_vald_contact_egela_eensalu",
+        "marjamaa_vald_contact_eneli_rego"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "taisealise_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_benefit_hooldajatoetus",
+      "document_id": "marjamaa_vald_benefit_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/taisealise-isiku-hooldus",
+      "content_hash": "0345898be19f8a0593e980264e50cebd675336835d12648a1e4addb90183300d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_service_parkimiskaart",
+      "canonical_item_id": "marjamaa_vald:service:parkimiskaart",
+      "itemType": "service",
+      "title": "Parkimiskaardi väljastamine",
+      "status": "active",
+      "summary": "Liikumispuudega või pimedat inimest teenindava sõiduki parkimiskaart võimaldab inimesel sõidukiga liikuda ja parkida. Parkimiskaarti võib taotleda liikumis- või nägemisfunktsiooni häirega isik ning kaart antakse inimesele, mitte sõidukile.",
+      "sourceKeys": [
+        "parkimiskaart_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/parkimiskaart",
+      "targetGroup": null,
+      "conditions": [],
+      "application": {
+        "channels": [
+          "elukohajärgne omavalitsus"
+        ],
+        "steps": [
+          "esitada isikut tõendav dokument, foto 3 x 4 cm ja ajutise kaardi puhul arstitõend"
+        ]
+      },
+      "decisionTime": null,
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "marjamaa_vald_contact_ilme_roosi",
+        "marjamaa_vald_contact_egela_eensalu",
+        "marjamaa_vald_contact_eneli_rego"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "parkimiskaart_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_service_parkimiskaart",
+      "document_id": "marjamaa_vald_service_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/parkimiskaart",
+      "content_hash": "6ca7965136c04a5a88553bd3a8b4395cbdba92657b3eed7d3d08f9964b672621",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_service_paevakeskuse_teenus",
+      "canonical_item_id": "marjamaa_vald:service:paevakeskuse_teenus",
+      "itemType": "service",
+      "title": "Päevakeskuse teenus",
+      "status": "active",
+      "summary": "Päevakeskuse teenuse eesmärk on osutada sotsiaalteenuseid eakate ja puudega inimeste toimetuleku säilitamiseks ja soodustamiseks ning huvitegevuse võimaldamiseks. Teenust osutatakse Märjamaa Sotsiaalkeskuses ning see on inimesele tasuta.",
+      "sourceKeys": [
+        "taiendavad_sotsiaalteenused_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/taiendavad-sotsiaalteenused",
+      "targetGroup": "Eakad ja puudega inimesed.",
+      "conditions": [],
+      "application": {
+        "channels": [
+          "pöördumine sotsiaalkeskusesse"
+        ]
+      },
+      "decisionTime": null,
+      "amount": null,
+      "pricing": "Tasuta",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "marjamaa_vald_contact_tiina_kokemagi"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "taiendavad_sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_service_paevakeskuse_teenus",
+      "document_id": "marjamaa_vald_service_paevakeskuse_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/taiendavad-sotsiaalteenused",
+      "content_hash": "5d17658a046fa5178efd15789145fe6b6cef9cf9dc36448da71dbadf70c669e2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_service_saunateenus",
+      "canonical_item_id": "marjamaa_vald:service:saunateenus",
+      "itemType": "service",
+      "title": "Saunateenus",
+      "status": "active",
+      "summary": "Saunateenuse eesmärk on toetada sihtrühma toimetulekut ja heaolu. Teenust osutatakse Märjamaa Sotsiaalkeskuses eakatele, puudega inimestele ja vähekindlustatud olmeraskustes peredele ning teenus on tasuline.",
+      "sourceKeys": [
+        "taiendavad_sotsiaalteenused_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/taiendavad-sotsiaalteenused",
+      "targetGroup": "Eakad, puudega inimesed ja vähekindlustatud olmeraskustes pered.",
+      "conditions": [],
+      "application": {
+        "channels": [
+          "pöördumine sotsiaalkeskusesse"
+        ]
+      },
+      "decisionTime": null,
+      "amount": null,
+      "pricing": "Tasuline",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "marjamaa_vald_contact_tiina_kokemagi"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "taiendavad_sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_service_saunateenus",
+      "document_id": "marjamaa_vald_service_saunateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/taiendavad-sotsiaalteenused",
+      "content_hash": "58585d057cceaf515c66bbd58974e779fcac59afe6e57f99b2152bd8659a5386",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_service_pesupesemisteenus",
+      "canonical_item_id": "marjamaa_vald:service:pesupesemisteenus",
+      "itemType": "service",
+      "title": "Pesupesemisteenus",
+      "status": "active",
+      "summary": "Pesupesemisteenuse eesmärk on toetada eakate, puudega inimeste ja vähekindlustatud olmeraskustes perede toimetulekut. Teenust osutatakse Märjamaa Sotsiaalkeskuses ja see on tasuline.",
+      "sourceKeys": [
+        "taiendavad_sotsiaalteenused_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/taiendavad-sotsiaalteenused",
+      "targetGroup": "Eakad, puudega inimesed ja vähekindlustatud olmeraskustes pered.",
+      "conditions": [],
+      "application": {
+        "channels": [
+          "pöördumine sotsiaalkeskusesse"
+        ]
+      },
+      "decisionTime": null,
+      "amount": null,
+      "pricing": "Tasuline",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "marjamaa_vald_contact_tiina_kokemagi"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "taiendavad_sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_service_pesupesemisteenus",
+      "document_id": "marjamaa_vald_service_pesupesemisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/taiendavad-sotsiaalteenused",
+      "content_hash": "c3a037d67fbec0b38fc93446be6543170f11e304ca70cc1758c7bee79ac6de01",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_service_hooldusteenus_valjaspool_kodu",
+      "canonical_item_id": "marjamaa_vald:service:hooldusteenus_valjaspool_kodu",
+      "itemType": "service",
+      "title": "Hooldusteenus väljaspool kodu",
+      "status": "active",
+      "summary": "Väljaspool kodu pakutav üldhooldusteenus tagab täisealisele inimesele turvalise keskkonna ja igapäevase abi, kui ta ei tule kodus iseseisvalt toime. Teenuse saamise aluseks on inimese seisundi hindamine; rahvastikuregistrijärgne elukoht peab olema Märjamaa vallas.",
+      "sourceKeys": [
+        "hooldusteenus_valjaspool_kodu_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/pere-sotsiaal-ja-tervishoid/vaarikas-vananemine/hooldusteenus-valjaspool-kodu",
+      "targetGroup": "Täisealised inimesed, kes vajavad ööpäevaringset abi ja kelle elukoht on Märjamaa vald.",
+      "conditions": [],
+      "application": {
+        "channels": [
+          "taotlus hooldekodusse paigutamiseks",
+          "sotsiaaltööspetsialisti vastuvõtule eelnev registreerimine"
+        ]
+      },
+      "decisionTime": null,
+      "amount": null,
+      "pricing": "Hooldereformi kohaselt jaguneb kohamaksumus inimese ja omavalitsuse vahel; Märjamaa valla piirmäär on 590 eurot.",
+      "relatedTo": [],
+      "relatedForms": [
+        "marjamaa_vald_form_hooldekodusse_paigutamise_taotlus"
+      ],
+      "relatedContacts": [
+        "marjamaa_vald_contact_ilme_roosi",
+        "marjamaa_vald_contact_egela_eensalu",
+        "marjamaa_vald_contact_eneli_rego"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "hooldusteenus_valjaspool_kodu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_service_hooldusteenus_valjaspool_kodu",
+      "document_id": "marjamaa_vald_service_hooldusteenus_valjaspool_kodu",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/pere-sotsiaal-ja-tervishoid/vaarikas-vananemine/hooldusteenus-valjaspool-kodu",
+      "content_hash": "2f52bdeedfdc23d405575f3b7d0daafb07b46c9e11a150b09b782eb4aba36400",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_benefit_sunnitoetus",
+      "canonical_item_id": "marjamaa_vald:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetust saab taotleda lapsevanem, eestkostja või lapsendaja, kui taotleja ja lapse elukoht on rahvastikuregistri järgi Märjamaa vald ning vähemalt üks lapsevanematest on elanud vallas vähemalt ühe aasta enne lapse sündi. Toetust makstakse lapse sünni registreerimisel ja lapse üheaastaseks saamisel.",
+      "sourceKeys": [
+        "sunnitoetus_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/sunnitoetuse-taotlemine",
+      "targetGroup": null,
+      "conditions": [],
+      "application": {
+        "channels": [
+          "SPOKU",
+          "pabervorm",
+          "digiallkirjastatult e-postiga"
+        ],
+        "deadline": "3 kuu jooksul sünnitoetuse saamise õiguse tekkimisest"
+      },
+      "decisionTime": "10 tööpäeva dokumentide esitamisest; väljamakse 10 tööpäeva jooksul otsusest",
+      "amount": "500 eurot lapse sünni registreerimisel ja 300 eurot lapse üheaastaseks saamisel.",
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "marjamaa_vald_form_sunnitoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "marjamaa_vald_contact_mirjam_aasma",
+        "marjamaa_vald_contact_marge_viska"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "sunnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_benefit_sunnitoetus",
+      "document_id": "marjamaa_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/sunnitoetuse-taotlemine",
+      "content_hash": "1f0f97304cece79c45ddf7b5f1e9b5c8705bae1fa97d68d21b9b3df90fddea4b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_benefit_ranitsatoetus",
+      "canonical_item_id": "marjamaa_vald:benefit:ranitsatoetus",
+      "itemType": "benefit",
+      "title": "Ranitsatoetus",
+      "status": "active",
+      "summary": "Ranitsatoetus on Märjamaa valla eelarvest makstav ühekordne sotsiaaltoetus esmakordselt üldhariduskooli 1. klassi mineva lapse vanemale, eestkostjale või hooldajale. Toetuse saamiseks peab laps ja vähemalt üks vanem olema 1. augusti seisuga Märjamaa valla elanik.",
+      "sourceKeys": [
+        "ranitsatoetus_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/ranitsatoetuse-taotlemine-0",
+      "targetGroup": null,
+      "conditions": [],
+      "application": {
+        "channels": [
+          "SPOKU",
+          "pabervorm",
+          "digiallkirjastatult e-postiga"
+        ],
+        "deadline": "1. augustist kuni 30. septembrini"
+      },
+      "decisionTime": "10 tööpäeva taotluse laekumisest; väljamakse 30 kalendripäeva jooksul otsusest",
+      "amount": "400 eurot",
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "marjamaa_vald_form_ranitsatoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "marjamaa_vald_contact_mirjam_aasma",
+        "marjamaa_vald_contact_marge_viska"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "ranitsatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_benefit_ranitsatoetus",
+      "document_id": "marjamaa_vald_benefit_ranitsatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/ranitsatoetuse-taotlemine-0",
+      "content_hash": "9fdea51ece6a9f810f64a3b1641863d9ecfb2f5bc90e26d9fe5724282b716d41",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_benefit_matusetoetus",
+      "canonical_item_id": "marjamaa_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on valla eelarvest makstav ühekordne toetus matusekulude osaliseks kompenseerimiseks. Toetust saab lahkunu matuse korraldaja, kui lahkunu elukoht oli rahvastikuregistri andmetel Märjamaa vald.",
+      "sourceKeys": [
+        "matusetoetus_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/matusetoetus-0",
+      "targetGroup": null,
+      "conditions": [],
+      "application": {
+        "channels": [
+          "kirjalik vormikohane avaldus vallavalitsusele"
+        ],
+        "deadline": "2 kuu jooksul alates lahkunu surmapäevast"
+      },
+      "decisionTime": "otsus hiljemalt järgneval tööpäeval pärast vajalike dokumentide saamist; väljamakse 3 tööpäeva jooksul otsusest",
+      "amount": "250 eurot",
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "matusetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_benefit_matusetoetus",
+      "document_id": "marjamaa_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/matusetoetus-0",
+      "content_hash": "5449bcabf3292b7a4138c59341dd54824f0276ca3db7deec8e4eb70b6319e192",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_resource_sotsiaalkeskus",
+      "canonical_item_id": "marjamaa_vald:resource:sotsiaalkeskus",
+      "itemType": "resource",
+      "title": "Märjamaa Sotsiaalkeskus",
+      "status": "active",
+      "summary": "Märjamaa Sotsiaalkeskus on KOV veebis nimetatud teenuse osutamise koht, kus pakutakse päevakeskuse, saunateenuse ja pesupesemisteenuse võimalusi.",
+      "sourceKeys": [
+        "taiendavad_sotsiaalteenused_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/taiendavad-sotsiaalteenused",
+      "targetGroup": null,
+      "conditions": [],
+      "application": null,
+      "decisionTime": null,
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "address": "Veetorni 4a, Märjamaa alev, 78302 Rapla maakond",
+      "item_type": "resource",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "taiendavad_sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_resource_sotsiaalkeskus",
+      "document_id": "marjamaa_vald_resource_sotsiaalkeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/taiendavad-sotsiaalteenused",
+      "content_hash": "ffb0e61632d6ae9797c2143cf503dd49a390e73c2bc336e08b5ff7f11265438f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_resource_kuuda_hooldekodu",
+      "canonical_item_id": "marjamaa_vald:resource:kuuda_hooldekodu",
+      "itemType": "resource",
+      "title": "Kuuda hooldekodu",
+      "status": "active",
+      "summary": "Kuuda hooldekodu on Märjamaa valla kodulehel nimetatud hooldekodu väljaspool kodu osutatava üldhooldusteenuse kontekstis.",
+      "sourceKeys": [
+        "hooldusteenus_valjaspool_kodu_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/pere-sotsiaal-ja-tervishoid/vaarikas-vananemine/hooldusteenus-valjaspool-kodu",
+      "targetGroup": null,
+      "conditions": [],
+      "application": null,
+      "decisionTime": null,
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "address": "Tolli küla, Märjamaa vald, 78256 Rapla maakond",
+      "item_type": "resource",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "hooldusteenus_valjaspool_kodu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_resource_kuuda_hooldekodu",
+      "document_id": "marjamaa_vald_resource_kuuda_hooldekodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/pere-sotsiaal-ja-tervishoid/vaarikas-vananemine/hooldusteenus-valjaspool-kodu",
+      "content_hash": "3ed0b9d039e9cd33c0111caa85818c5f1d1a118522aa566dae759fa8d9337540",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_resource_vigala_hooldekodu",
+      "canonical_item_id": "marjamaa_vald:resource:vigala_hooldekodu",
+      "itemType": "resource",
+      "title": "Vigala Hooldekodu",
+      "status": "active",
+      "summary": "Vigala Hooldekodu on Märjamaa valla kodulehel nimetatud hooldekodu väljaspool kodu osutatava üldhooldusteenuse kontekstis.",
+      "sourceKeys": [
+        "hooldusteenus_valjaspool_kodu_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/pere-sotsiaal-ja-tervishoid/vaarikas-vananemine/hooldusteenus-valjaspool-kodu",
+      "targetGroup": null,
+      "conditions": [],
+      "application": null,
+      "decisionTime": null,
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "address": "Naravere küla, Märjamaa vald, 78022 Rapla maakond",
+      "item_type": "resource",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "hooldusteenus_valjaspool_kodu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_resource_vigala_hooldekodu",
+      "document_id": "marjamaa_vald_resource_vigala_hooldekodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/pere-sotsiaal-ja-tervishoid/vaarikas-vananemine/hooldusteenus-valjaspool-kodu",
+      "content_hash": "b07b4295a15e025a6af2402773af65ce10b733885b387b40052c74e0ea45716f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_resource_eestkoste_info",
+      "canonical_item_id": "marjamaa_vald:resource:eestkoste_info",
+      "itemType": "resource",
+      "title": "Eestkoste info",
+      "status": "active",
+      "summary": "Eestkoste infoleht selgitab piiratud teovõimega isiku õiguste ja huvide kaitsmist, lapse ja täiskasvanu eestkoste eesmärki, eestkostjaks sobivust, eestkoste algatamist ja eestkostja ülesandeid. Leht on praktiline juhis, mitte eraldi toetuse või teenuse taotlus.",
+      "sourceKeys": [
+        "eestkoste_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/pere-sotsiaal-ja-tervishoid/erivajadused-ja-igapaevaelu/eestkoste",
+      "targetGroup": null,
+      "conditions": [],
+      "application": null,
+      "decisionTime": null,
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "eestkoste_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_resource_eestkoste_info",
+      "document_id": "marjamaa_vald_resource_eestkoste_info",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/pere-sotsiaal-ja-tervishoid/erivajadused-ja-igapaevaelu/eestkoste",
+      "content_hash": "c975aff93f6037ff73d047102562c8de0ee867543f942c62446f05c4066dc27d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_resource_ohvriabi",
+      "canonical_item_id": "marjamaa_vald:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "Märjamaa sotsiaalharus on ohvriabi eraldi abikanalina nimetatud. See on praktiline suunamine vägivalla või kuriteo ohvritele ja nende lähedastele.",
+      "sourceKeys": [
+        "ohvriabi_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/pere-sotsiaal-ja-tervishoid/ohvriabi/ohvriabi",
+      "targetGroup": null,
+      "conditions": [],
+      "application": null,
+      "decisionTime": null,
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "ohvriabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_resource_ohvriabi",
+      "document_id": "marjamaa_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/pere-sotsiaal-ja-tervishoid/ohvriabi/ohvriabi",
+      "content_hash": "cf9ccad896a96b6b6d1b34d700fff94a6b8fb40c838b2b6887d7f420f16a87db",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_contact_ilme_roosi",
+      "canonical_item_id": "marjamaa_vald:contact:ilme_roosi",
+      "itemType": "contact",
+      "title": "Ilme Roosi",
+      "status": "active",
+      "summary": "Ilme Roosi on KOV veebis nimetatud sotsiaalvaldkonna kontakt.",
+      "sourceKeys": [
+        "hooldusteenus_valjaspool_kodu_page",
+        "tugiisikuteenus_page",
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "officialUrl": null,
+      "targetGroup": null,
+      "conditions": [],
+      "application": null,
+      "decisionTime": null,
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "name": "Ilme Roosi",
+      "role": "Sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "item_type": "contact",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "hooldusteenus_valjaspool_kodu_page",
+        "tugiisikuteenus_page",
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_contact_ilme_roosi",
+      "document_id": "marjamaa_vald_contact_ilme_roosi",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "3a0c3a739ab215f6163b04d23af8a49b2bc5c0ad92ac2b27cb53072874d327e2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_contact_egela_eensalu",
+      "canonical_item_id": "marjamaa_vald:contact:egela_eensalu",
+      "itemType": "contact",
+      "title": "Egela Eensalu",
+      "status": "active",
+      "summary": "Egela Eensalu on KOV veebis nimetatud sotsiaalvaldkonna kontakt.",
+      "sourceKeys": [
+        "hooldusteenus_valjaspool_kodu_page",
+        "toiduabi_page"
+      ],
+      "officialUrl": null,
+      "targetGroup": null,
+      "conditions": [],
+      "application": null,
+      "decisionTime": null,
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "name": "Egela Eensalu",
+      "role": "Sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "item_type": "contact",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "hooldusteenus_valjaspool_kodu_page",
+        "toiduabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_contact_egela_eensalu",
+      "document_id": "marjamaa_vald_contact_egela_eensalu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "4ebf128de5ce6498f5db2b61f0271ec735446eaa42adf9eedfbc327f10c9a721",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_contact_eneli_rego",
+      "canonical_item_id": "marjamaa_vald:contact:eneli_rego",
+      "itemType": "contact",
+      "title": "Eneli Rego",
+      "status": "active",
+      "summary": "Eneli Rego on KOV veebis nimetatud sotsiaalvaldkonna kontakt.",
+      "sourceKeys": [
+        "hooldusteenus_valjaspool_kodu_page",
+        "tugiisikuteenus_page",
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "officialUrl": null,
+      "targetGroup": null,
+      "conditions": [],
+      "application": null,
+      "decisionTime": null,
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "name": "Eneli Rego",
+      "role": "Sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "item_type": "contact",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "hooldusteenus_valjaspool_kodu_page",
+        "tugiisikuteenus_page",
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_contact_eneli_rego",
+      "document_id": "marjamaa_vald_contact_eneli_rego",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "8624df1667649cab982a61876ca63a6b96feca354479b5ed1f5432e8f05074ae",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_contact_maiken_kask",
+      "canonical_item_id": "marjamaa_vald:contact:maiken_kask",
+      "itemType": "contact",
+      "title": "Maiken Kask",
+      "status": "active",
+      "summary": "Maiken Kask on KOV veebis nimetatud sotsiaalvaldkonna kontakt.",
+      "sourceKeys": [
+        "tugiisikuteenus_page",
+        "turvakoduteenus_page"
+      ],
+      "officialUrl": null,
+      "targetGroup": null,
+      "conditions": [],
+      "application": null,
+      "decisionTime": null,
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "name": "Maiken Kask",
+      "role": "Lastekaitsespetsialist",
+      "department": "Lastekaitse",
+      "address": null,
+      "item_type": "contact",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "tugiisikuteenus_page",
+        "turvakoduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_contact_maiken_kask",
+      "document_id": "marjamaa_vald_contact_maiken_kask",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "55215dbd8ded0f84abad638cd3638b05c49372e0d9b1ae89152582c9aca7feda",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_contact_mirjam_aasma",
+      "canonical_item_id": "marjamaa_vald:contact:mirjam_aasma",
+      "itemType": "contact",
+      "title": "Mirjam Aasma",
+      "status": "active",
+      "summary": "Mirjam Aasma on KOV veebis nimetatud sotsiaalvaldkonna kontakt.",
+      "sourceKeys": [
+        "ranitsatoetus_page",
+        "sunnitoetus_page"
+      ],
+      "officialUrl": null,
+      "targetGroup": null,
+      "conditions": [],
+      "application": null,
+      "decisionTime": null,
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "name": "Mirjam Aasma",
+      "role": "Registrisekretär",
+      "department": "Vallavalitsus",
+      "address": null,
+      "item_type": "contact",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "ranitsatoetus_page",
+        "sunnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_contact_mirjam_aasma",
+      "document_id": "marjamaa_vald_contact_mirjam_aasma",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "f4eb860c1562793cb47c5cc03a734b9cfc4d561958227729adff0a032cc6e150",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_contact_marge_viska",
+      "canonical_item_id": "marjamaa_vald:contact:marge_viska",
+      "itemType": "contact",
+      "title": "Marge Viska",
+      "status": "active",
+      "summary": "Marge Viska on KOV veebis nimetatud sotsiaalvaldkonna kontakt.",
+      "sourceKeys": [
+        "ranitsatoetus_page",
+        "sunnitoetus_page"
+      ],
+      "officialUrl": null,
+      "targetGroup": null,
+      "conditions": [],
+      "application": null,
+      "decisionTime": null,
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "name": "Marge Viska",
+      "role": "Sotsiaalosakonna juhataja",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "item_type": "contact",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "ranitsatoetus_page",
+        "sunnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_contact_marge_viska",
+      "document_id": "marjamaa_vald_contact_marge_viska",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "b9b868fe7e26c9c270b9ad03dcb36b48e064fb93dbca61a376ba7aacbd67a7a1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_contact_tiina_kokemagi",
+      "canonical_item_id": "marjamaa_vald:contact:tiina_kokemagi",
+      "itemType": "contact",
+      "title": "Tiina Kokemägi",
+      "status": "active",
+      "summary": "Tiina Kokemägi on KOV veebis nimetatud sotsiaalvaldkonna kontakt.",
+      "sourceKeys": [
+        "taiendavad_sotsiaalteenused_page"
+      ],
+      "officialUrl": null,
+      "targetGroup": null,
+      "conditions": [],
+      "application": null,
+      "decisionTime": null,
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "name": "Tiina Kokemägi",
+      "role": "Sotsiaalkeskuse kontakt",
+      "department": "Märjamaa Sotsiaalkeskus",
+      "address": "Veetorni 4a, Märjamaa alev",
+      "item_type": "contact",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "taiendavad_sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_contact_tiina_kokemagi",
+      "document_id": "marjamaa_vald_contact_tiina_kokemagi",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "096838e87122f2772fc87dc5dafe63a5e3c59e2bedfedc42327a8fe5e6f86d1c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_form_sotsiaaltoetuse_taotlus",
+      "canonical_item_id": "marjamaa_vald:form:sotsiaaltoetuse_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaaltoetuse taotlus",
+      "status": "active",
+      "summary": "Sotsiaaltoetuse taotlus on KOV veebis nimetatud sotsiaalvaldkonna taotlus või blankett.",
+      "sourceKeys": [
+        "erakorraline_toetus_page",
+        "toiduabi_page",
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/erakorraline-toetus",
+      "targetGroup": null,
+      "conditions": [],
+      "application": null,
+      "decisionTime": null,
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [
+        "marjamaa_vald_benefit_erakorraline_toetus",
+        "marjamaa_vald_service_toiduabi",
+        "marjamaa_vald_service_valtimatu_sotsiaalabi",
+        "marjamaa_vald_benefit_sotsiaaltranspordikulude_huvitis"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "format": "docx",
+      "submissionChannels": [
+        "SPOKU",
+        "pabervorm",
+        "digiallkirjastatult e-postiga"
+      ],
+      "item_type": "form",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "erakorraline_toetus_page",
+        "toiduabi_page",
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_form_sotsiaaltoetuse_taotlus",
+      "document_id": "marjamaa_vald_form_sotsiaaltoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/erakorraline-toetus",
+      "content_hash": "338c0014c896452fac423a62e40f5ab618b880f8d8c13a0cbe7be3af69f1cdf4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_form_toimetulekutoetuse_taotlus",
+      "canonical_item_id": "marjamaa_vald:form:toimetulekutoetuse_taotlus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse taotlus",
+      "status": "active",
+      "summary": "Toimetulekutoetuse taotlus on KOV veebis nimetatud sotsiaalvaldkonna taotlus või blankett.",
+      "sourceKeys": [
+        "toimetulekutoetus_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/toimetulekutoetus",
+      "targetGroup": null,
+      "conditions": [],
+      "application": null,
+      "decisionTime": null,
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [
+        "marjamaa_vald_benefit_toimetulekutoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "format": "doc",
+      "submissionChannels": [
+        "SPOKU",
+        "pabervorm",
+        "digiallkirjastatult e-postiga"
+      ],
+      "item_type": "form",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_form_toimetulekutoetuse_taotlus",
+      "document_id": "marjamaa_vald_form_toimetulekutoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/toimetulekutoetus",
+      "content_hash": "59727d38253a20d190be9ac1874e3a75e570c1232861ca811dcface2d7c26247",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_form_sotsiaaleluruumi_taotlus",
+      "canonical_item_id": "marjamaa_vald:form:sotsiaaleluruumi_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaaleluruumi taotlus",
+      "status": "active",
+      "summary": "Sotsiaaleluruumi taotlus on KOV veebis nimetatud sotsiaalvaldkonna taotlus või blankett.",
+      "sourceKeys": [
+        "eluruumi_tagamine_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/eluruumi-tagamine",
+      "targetGroup": null,
+      "conditions": [],
+      "application": null,
+      "decisionTime": null,
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [
+        "marjamaa_vald_service_eluruumi_tagamine"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "format": "docx",
+      "submissionChannels": [
+        "SPOKU",
+        "pabervorm",
+        "digiallkirjastatult e-postiga"
+      ],
+      "item_type": "form",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "eluruumi_tagamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_form_sotsiaaleluruumi_taotlus",
+      "document_id": "marjamaa_vald_form_sotsiaaleluruumi_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/eluruumi-tagamine",
+      "content_hash": "ec7fe7f8753d2f4599a12233a95a3058a7ef02eebc89d237923819af875e41b3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_form_hooldajaks_maaramise_taotlus",
+      "canonical_item_id": "marjamaa_vald:form:hooldajaks_maaramise_taotlus",
+      "itemType": "form",
+      "title": "Hooldajaks määramise taotlus",
+      "status": "active",
+      "summary": "Hooldajaks määramise taotlus on KOV veebis nimetatud sotsiaalvaldkonna taotlus või blankett.",
+      "sourceKeys": [
+        "taisealise_hooldus_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/taisealise-isiku-hooldus",
+      "targetGroup": null,
+      "conditions": [],
+      "application": null,
+      "decisionTime": null,
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [
+        "marjamaa_vald_service_taisealise_isiku_hooldus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "format": "docx",
+      "submissionChannels": [
+        "SPOKU",
+        "pabervorm",
+        "digiallkirjastatult e-postiga"
+      ],
+      "item_type": "form",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "taisealise_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_form_hooldajaks_maaramise_taotlus",
+      "document_id": "marjamaa_vald_form_hooldajaks_maaramise_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/taisealise-isiku-hooldus",
+      "content_hash": "ffbdaae93173a7bface82e4d00077074cf98571368b13fdf027d984525a7ada6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_form_hooldajatoetuse_taotlus",
+      "canonical_item_id": "marjamaa_vald:form:hooldajatoetuse_taotlus",
+      "itemType": "form",
+      "title": "Hooldajatoetuse taotlus",
+      "status": "active",
+      "summary": "Hooldajatoetuse taotlus on KOV veebis nimetatud sotsiaalvaldkonna taotlus või blankett.",
+      "sourceKeys": [
+        "taisealise_hooldus_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/taisealise-isiku-hooldus",
+      "targetGroup": null,
+      "conditions": [],
+      "application": null,
+      "decisionTime": null,
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [
+        "marjamaa_vald_benefit_hooldajatoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "format": "docx",
+      "submissionChannels": [
+        "SPOKU",
+        "pabervorm",
+        "digiallkirjastatult e-postiga"
+      ],
+      "item_type": "form",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "taisealise_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_form_hooldajatoetuse_taotlus",
+      "document_id": "marjamaa_vald_form_hooldajatoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/taisealise-isiku-hooldus",
+      "content_hash": "e103860ada84e57f027d9f9f9f09a7da9b8dbf07cebd9243c7839da81e1d4992",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_form_sunnitoetuse_taotlus",
+      "canonical_item_id": "marjamaa_vald:form:sunnitoetuse_taotlus",
+      "itemType": "form",
+      "title": "Sünnitoetuse taotlus",
+      "status": "active",
+      "summary": "Sünnitoetuse taotlus on KOV veebis nimetatud sotsiaalvaldkonna taotlus või blankett.",
+      "sourceKeys": [
+        "sunnitoetus_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/sunnitoetuse-taotlemine",
+      "targetGroup": null,
+      "conditions": [],
+      "application": null,
+      "decisionTime": null,
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [
+        "marjamaa_vald_benefit_sunnitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "format": "rtf",
+      "submissionChannels": [
+        "SPOKU",
+        "pabervorm",
+        "digiallkirjastatult e-postiga"
+      ],
+      "item_type": "form",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "sunnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_form_sunnitoetuse_taotlus",
+      "document_id": "marjamaa_vald_form_sunnitoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/sunnitoetuse-taotlemine",
+      "content_hash": "a6a6abc4fe5c91c000f73dcc1d5600bece1ee31c3eb148a1d55fd9398087509d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_form_ranitsatoetuse_taotlus",
+      "canonical_item_id": "marjamaa_vald:form:ranitsatoetuse_taotlus",
+      "itemType": "form",
+      "title": "Ranitsatoetuse taotlus",
+      "status": "active",
+      "summary": "Ranitsatoetuse taotlus on KOV veebis nimetatud sotsiaalvaldkonna taotlus või blankett.",
+      "sourceKeys": [
+        "ranitsatoetus_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/toiming/ranitsatoetuse-taotlemine-0",
+      "targetGroup": null,
+      "conditions": [],
+      "application": null,
+      "decisionTime": null,
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [
+        "marjamaa_vald_benefit_ranitsatoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "format": "docx",
+      "submissionChannels": [
+        "SPOKU",
+        "pabervorm",
+        "digiallkirjastatult e-postiga"
+      ],
+      "item_type": "form",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "ranitsatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_form_ranitsatoetuse_taotlus",
+      "document_id": "marjamaa_vald_form_ranitsatoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/toiming/ranitsatoetuse-taotlemine-0",
+      "content_hash": "27033d968a4f29984824815f5dda2347ff448ebac600b435358f29caab3d2a62",
+      "evidence_allowed": true
+    },
+    {
+      "id": "marjamaa_vald_form_hooldekodusse_paigutamise_taotlus",
+      "canonical_item_id": "marjamaa_vald:form:hooldekodusse_paigutamise_taotlus",
+      "itemType": "form",
+      "title": "Taotlus hooldekodusse paigutamiseks",
+      "status": "active",
+      "summary": "Taotlus hooldekodusse paigutamiseks on KOV veebis nimetatud sotsiaalvaldkonna taotlus või blankett.",
+      "sourceKeys": [
+        "hooldusteenus_valjaspool_kodu_page"
+      ],
+      "officialUrl": "https://marjamaa.ee/pere-sotsiaal-ja-tervishoid/vaarikas-vananemine/hooldusteenus-valjaspool-kodu",
+      "targetGroup": null,
+      "conditions": [],
+      "application": null,
+      "decisionTime": null,
+      "amount": null,
+      "pricing": null,
+      "relatedTo": [
+        "marjamaa_vald_service_hooldusteenus_valjaspool_kodu"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "format": "taotluslink",
+      "submissionChannels": [
+        "sotsiaaltööspetsialist",
+        "pabervorm"
+      ],
+      "item_type": "form",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "hooldusteenus_valjaspool_kodu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "marjamaa_vald_form_hooldekodusse_paigutamise_taotlus",
+      "document_id": "marjamaa_vald_form_hooldekodusse_paigutamise_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://marjamaa.ee/pere-sotsiaal-ja-tervishoid/vaarikas-vananemine/hooldusteenus-valjaspool-kodu",
+      "content_hash": "150de3ea5d4f137e30beaaf5ac4604cf6a1305940b8d0813bcfa59fb7e1c1df5",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Märjamaa vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

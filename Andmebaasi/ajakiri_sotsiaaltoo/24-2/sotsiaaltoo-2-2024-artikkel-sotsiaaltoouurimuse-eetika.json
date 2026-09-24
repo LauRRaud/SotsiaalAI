@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2024",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "sotsiaaltoouurimuse-eetika-2024-2",
+  "title": "Sotsiaaltööuurimuse eetika",
+  "authors": [
+    "Judit Strömpl"
+  ],
+  "section": "Eetika",
+  "pageRange": "83-92",
+  "pdf_start_page": 1,
+  "pdf_end_page": 10,
+  "description": "Artikkel käsitleb sotsiaaltöö uurimise eetilisi põhimõtteid: uuritavate mittekahjustamist, andmete kaitset, teadlikku nõusolekut, haavatavate rühmadega töötamist ja eetikakomiteede rolli. Autor seob üldised sotsiaalteadusliku uurimise standardid sotsiaaltöö väärtustega, rõhutades uurimuse vabastavat ja võimustavat eesmärki ning osalusuuringute ja dialoogiliste meetodite olulisust.",
+  "tags": [
+    "sotsiaaltöö uurimus",
+    "uurimiseetika",
+    "eetikakomitee",
+    "haavatavad rühmad",
+    "konfidentsiaalsus",
+    "teadlik nõusolek",
+    "osalusuurimus",
+    "sotsiaaltöö väärtused"
+  ],
+  "source_path": "Sotsiaaltoo_2_2024_web_Part18.pdf",
+  "document_id": "sotsiaaltoo-2-2024-sotsiaaltoouurimuse-eetika-2024-2",
+  "source_format": "pdf",
+  "source_sha256": "977c43fd69cc0270f74a77f6ca814eb1564f412e537779219e7d0f698af26278",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2024-sotsiaaltoouurimuse-eetika-2024-2",
+    "previous_source_path": "Sotsiaaltoo_2_2024_web_Part18.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "977c43fd69cc0270f74a77f6ca814eb1564f412e537779219e7d0f698af26278",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

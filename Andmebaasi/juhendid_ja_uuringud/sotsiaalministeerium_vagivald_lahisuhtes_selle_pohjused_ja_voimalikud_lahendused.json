@@ -1,0 +1,141 @@
+{
+  "source_path": "sotsiaalministeerium_vagivald_lahisuhtes_selle_pohjused_ja_voimalikud_lahendused.pdf",
+  "source_format": "pdf",
+  "sha256": "fb1656c3ce88830ed3d409335332dbc33310e5a409bcb4c30999c86f71320ed6",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/sotsiaalministeerium_vagivald_lahisuhtes_selle_pohjused_ja_voimalikud_lahendused.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "sotsiaalministeerium_vagivald_lahisuhtes_selle_pohjused_ja_voimalikud_lahendused",
+          "title": "Vägivald lähisuhtes: selle põhjused ja võimalikud lahendused",
+          "url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/allaste_vagivald_lahisuhtes_biin_retsensioon_1_.pdf",
+          "normalized_url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/allaste_vagivald_lahisuhtes_biin_retsensioon_1_.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "Sotsiaalministeerium",
+          "organization_id": "sotsiaalministeerium",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Sotsiaalministeerium",
+            "ohvriabi",
+            "lähisuhtevägivald",
+            "perevägivald",
+            "infomaterjal"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Sotsiaalministeerium",
+            "heading_3": "Vanemad, aga endiselt kasulikud taustauuringud",
+            "heading_4": null,
+            "line": 553,
+            "order": 287
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Vägivald lähisuhtes: selle põhjused ja võimalikud lahendused"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Sotsiaalministeerium"
+          ],
+          "organizations_seen": [
+            "sotsiaalministeerium"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Sotsiaalministeerium",
+              "heading_3": "Vanemad, aga endiselt kasulikud taustauuringud",
+              "line": 553,
+              "order": 287
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/allaste_vagivald_lahisuhtes_biin_retsensioon_1_.pdf"
+        },
+        "final_url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/allaste_vagivald_lahisuhtes_biin_retsensioon_1_.pdf",
+        "redirects": [],
+        "sha256": "fb1656c3ce88830ed3d409335332dbc33310e5a409bcb4c30999c86f71320ed6",
+        "bytes": 507019,
+        "downloaded_at": "2026-08-14T08:00:55.611Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "sotsiaalministeerium_vagivald_lahisuhtes_selle_pohjused_ja_voimalikud_lahendused",
+      "metadata": {
+        "createdAt": "2026-06-12T03:58:51.565057+00:00",
+        "type": "FILE",
+        "fileName": "allaste_vagivald_lahisuhtes_biin_retsensioon_1_.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:58:51.495944+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/2bacf16f3475/allaste_vagivald_lahisuhtes_biin_retsensioon_1_.pdf",
+        "title": "Vägivald lähisuhtes: selle põhjused ja võimalikud lahendused",
+        "description": "Source master headings: Sotsiaalministeerium; Vanemad, aga endiselt kasulikud taustauuringud",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": null,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–103",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "sotsiaalministeerium_vagivald_lahisuhtes_selle_pohjused_ja_voimalikud_lahendused",
+        "document_id": "sotsiaalministeerium_vagivald_lahisuhtes_selle_pohjused_ja_voimalikud_lahendused",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "beab21ee8bf3cb58133b7a701a3ae112580381a955e613dcd8fb7b753df2277d",
+        "url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/allaste_vagivald_lahisuhtes_biin_retsensioon_1_.pdf",
+        "url_canonical": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/allaste_vagivald_lahisuhtes_biin_retsensioon_1_.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "sotsiaalministeerium_vagivald_lahisuhtes_selle_pohjused_ja_voimalikud_lahendused",
+        "updatedAt": "2026-06-12T03:58:51.565080+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

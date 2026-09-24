@@ -1,0 +1,789 @@
+{
+  "schema_version": "0.1",
+  "created_on": "2026-09-05",
+  "status": "test_specification_only_not_executable_not_run",
+  "source_scope": "One supplied PDF article, its metadata JSON, and ULEVAADE.md. Article statements are evaluated as reported in the article, not verified current facts.",
+  "instructions_et": [
+    "Codex peab looma nende kirjelduste järgi päriselt käivitatavad testid ja raporteerima käivitamise.",
+    "M0+M1 töövoorus ei ole väliseid mudelikutseid. Hilisem pärisembedding ja vastajahindamine vajavad eraldi luba ning eelarvet.",
+    "Sünteetilised lisafailid hoida eraldi ja selgelt märgistatuna; neid ei lisata kliendi päriskorpusse.",
+    "Semantilisi vastuseteste ei loeta läbituks ainult kindla sõna olemasolu või mudeli enesehinnangu põhjal.",
+    "PDF-lehed on 1-põhised; tekstiosa-ID-d saab fikseerida pärast versioonitud parseri ja allikakoha kaardi loomist."
+  ],
+  "cases": [
+    {
+      "id": "M0-01",
+      "stage": "M0",
+      "layer": "repository",
+      "title": "Algandmed ja muu arendustöö säilivad",
+      "fixture_kind": "provided_asset",
+      "setup": "Kontrolli paketi manifeste ning repositooriumi olekut enne ja pärast tööd.",
+      "assertions": [
+        "Kõigi kolme originaalsisendi SHA-256 vastab manifestile.",
+        "Kasutaja muid pooleliolevaid muudatusi ei kirjutata üle.",
+        "Tootmisandmeid ega vana registrit ei muudeta selle töövooru käigus."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "M0-02",
+      "stage": "M0",
+      "layer": "configuration",
+      "title": "Käitusaegse mudeli nimi ei ole oletus",
+      "fixture_kind": "provided_asset",
+      "setup": "Vaata olemasolevat mudeliadapterit; katseta puuduva ANSWER_MODEL_ID-ga.",
+      "assertions": [
+        "Luna täpset API mudeli-ID-d ei moodustata arendaja oletusest.",
+        "Puuduv vastaja seadistus ei blokeeri M1 deterministlikku töötlust.",
+        "Saladusi ei väljastata auditisse."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "I-01",
+      "stage": "M1",
+      "layer": "ingestion",
+      "title": "Artikkel ja metaandmed seotakse",
+      "fixture_kind": "provided_asset",
+      "setup": "Impordi lisatud PDF ja JSON esimest korda.",
+      "assertions": [
+        "PDF sisaldab 13 lehte.",
+        "Pealkiri ja autor säilivad.",
+        "Algmetaandmed säilivad kadudeta eraldi.",
+        "Dokumendil on püsiv identiteet ja eraldi versioon."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run",
+      "source_pdf_pages_1_based": [
+        1,
+        2,
+        13
+      ],
+      "source_metadata_fields": [
+        "title",
+        "authors",
+        "source_path"
+      ]
+    },
+    {
+      "id": "I-02",
+      "stage": "M1",
+      "layer": "identity",
+      "title": "Ajakirjanumbri tunnus ei kirjuta artiklit üle",
+      "fixture_kind": "synthetic_derived_fixture",
+      "setup": "Lisa sünteetiline teine artikkel sama docId-ga, kuid erineva artiklitasandi document_id-ga; originaale ei muudeta.",
+      "assertions": [
+        "Säilivad kaks artiklit.",
+        "Mõlemad seostuvad sobiva ajakirjanumbriga või ülevaatust vajava vastendusega.",
+        "docId, articleId, document_id ja source_id jäävad eristatavateks nimelisteks välisteks tunnusteks."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run",
+      "source_metadata_fields": [
+        "docId",
+        "articleId",
+        "document_id",
+        "source_id"
+      ]
+    },
+    {
+      "id": "I-03",
+      "stage": "M1",
+      "layer": "metadata",
+      "title": "Avaldamisaeg eristub printimisest",
+      "fixture_kind": "provided_asset",
+      "setup": "Normaliseeri tegeliku faili ajaväljad.",
+      "assertions": [
+        "publication_date on 2025-06-06 ja selle päritolu on PDF lk 1.",
+        "2025-12-05 ei asenda avaldamisaega.",
+        "2026-04-26 jääb imporditud last_checked märgiks, mitte uue kontrolli kinnituseks.",
+        "Artiklile ei genereerita õigusliku kehtivuse vahemikku."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run",
+      "source_pdf_pages_1_based": [
+        1
+      ],
+      "source_metadata_fields": [
+        "year",
+        "last_checked"
+      ]
+    },
+    {
+      "id": "I-04",
+      "stage": "M1",
+      "layer": "citations",
+      "title": "PDF-i lehed ei võrdu ajakirja trükilehtedega",
+      "fixture_kind": "provided_asset",
+      "setup": "Loo PDF-i ja selle tekstiosade asukohad.",
+      "assertions": [
+        "PDF-i lehevahemik on 1–13.",
+        "Ajakirja trükilehekülgede vahemik jääb teadmata.",
+        "Üksiklõigul on oma täpne leht või lehed.",
+        "0-põhist parseri indeksit ei näidata kasutajale 1-põhise lehekülje asemel."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run",
+      "source_pdf_pages_1_based": [
+        13
+      ],
+      "source_metadata_fields": [
+        "pdf_start_page",
+        "pdf_end_page"
+      ]
+    },
+    {
+      "id": "I-05",
+      "stage": "M1",
+      "layer": "metadata",
+      "title": "Teema ja allika rubriik ei lähe kaduma",
+      "fixture_kind": "provided_asset",
+      "setup": "Võrdle PDF-i rubriigisilti ja JSON-i section-välja.",
+      "assertions": [
+        "Algne section=Eetika säilib.",
+        "PDF-i Uurimus/analüüs on eraldi päritoluga liigitus.",
+        "Ühte väärtust ei kirjutata vaikimisi teisega üle."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run",
+      "source_pdf_pages_1_based": [
+        1,
+        13
+      ],
+      "source_metadata_fields": [
+        "section",
+        "source_type"
+      ]
+    },
+    {
+      "id": "I-06",
+      "stage": "M1",
+      "layer": "parsing",
+      "title": "Korduv prindipäis ja jalus ei domineeri otsingus",
+      "fixture_kind": "provided_asset",
+      "setup": "Puhasta PDF-i tekstikiht asukoha ning korduvuse põhjal.",
+      "assertions": [
+        "Puhastusaruandes on eemaldatud paigutusmüra jälg.",
+        "Tavaliste tekstiosade embedding-tekstis ei korrata iga lehe printimisaega ja jalust.",
+        "Allika URL säilib päritoluandmetes.",
+        "Artikli pealkiri, autor ja avaldamisaeg on alles."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run",
+      "source_pdf_pages_1_based": [
+        1,
+        2,
+        3,
+        13
+      ]
+    },
+    {
+      "id": "I-07",
+      "stage": "M1",
+      "layer": "structure",
+      "title": "Sisulised peatükid ja kontekst säilivad",
+      "fixture_kind": "provided_asset",
+      "setup": "Eralda tekstiosad parameetritud tükeldajaga.",
+      "assertions": [
+        "Lehtede 3, 5, 8 ja 12 põhialapealkirjad säilivad struktuuris.",
+        "Tekstiosa viitab vanemale peatükile ja algtekstikohtadele.",
+        "Dokumendiülesed pealkirjametaandmed ei ole kättesaadavad ainult esimeses tükis.",
+        "Ei nõuta üht kõvakodeeritud tekstiosade arvu."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run",
+      "source_pdf_pages_1_based": [
+        3,
+        5,
+        8,
+        12
+      ]
+    },
+    {
+      "id": "I-08",
+      "stage": "M1",
+      "layer": "metadata",
+      "title": "Kirjeldus ei muutu tõendiks",
+      "fixture_kind": "provided_asset",
+      "setup": "Säilita tegelik META description ja selle ülevaatusseis.",
+      "assertions": [
+        "Originaalkirjeldust ei kirjutata üle.",
+        "Kirjelduse väited ei muutu automaatselt source_span-idega kinnitatud teadmisüksusteks.",
+        "Auditi tähelepanek enesejuhitud õppe kohta on märgitud kontrollimist vajavaks, mitte automaatseks artikli tagasilükkamiseks."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run",
+      "source_metadata_fields": [
+        "description"
+      ]
+    },
+    {
+      "id": "I-09",
+      "stage": "M1",
+      "layer": "completeness",
+      "title": "Nähtamatu bibliograafia on nähtav piirang",
+      "fixture_kind": "provided_asset",
+      "setup": "Töötle PDF-i viimast lehte.",
+      "assertions": [
+        "Viidatud allikad pealkiri säilib dokumendistruktuuris või kvaliteediaruandes.",
+        "Märgitakse, et loetelu sisu pole selles failis nähtav.",
+        "Tekstis esinevaid autor-aasta viiteid ei muudeta kontrollimata täisteksti- või DOI-kirjeteks."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run",
+      "source_pdf_pages_1_based": [
+        13
+      ]
+    },
+    {
+      "id": "I-10",
+      "stage": "M1",
+      "layer": "metadata",
+      "title": "Ajalooline ja aktiivne ei ole automaatne konflikt",
+      "fixture_kind": "provided_asset",
+      "setup": "Impordi tegelikud active/historical/audience väärtused.",
+      "assertions": [
+        "Dokumenti ei jäeta otsingust välja ainult historical=true tõttu.",
+        "active ei muutu tänase sisulise kehtivuse kinnituseks.",
+        "audience=BOTH ei anna teistele klientidele ligipääsu."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run",
+      "source_metadata_fields": [
+        "source_status",
+        "historical",
+        "audience"
+      ]
+    },
+    {
+      "id": "I-11",
+      "stage": "M1",
+      "layer": "idempotency",
+      "title": "Korduv import ei dubleeri tööd",
+      "fixture_kind": "provided_asset",
+      "setup": "Käivita sama sisendi ja konfiguratsiooniga ingest kaks korda.",
+      "assertions": [
+        "Uusi dokumendi- või tekstiosakoopiaid ei teki.",
+        "Sama töö väljundit saab taaskasutada.",
+        "M1 ei tee kummalgi korral väliseid mudelikutseid."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "I-12",
+      "stage": "M1",
+      "layer": "metadata",
+      "title": "Tundmatu lisaväli säilib",
+      "fixture_kind": "synthetic_derived_fixture",
+      "setup": "Lisa ainult eraldi sünteetilises JSON-koopia testis uus kasutaja väli.",
+      "assertions": [
+        "Tundmatu väli säilib legacy_metadata all.",
+        "Välja ei lisata ilma tähenduse otsuseta kanoonilise skeemi suvaliseks faktiks.",
+        "Skeemikonfliktid on nähtavad."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "I-13",
+      "stage": "M1",
+      "layer": "parsing",
+      "title": "Tekstita sisend ei tekita näilist edukat ingest’i",
+      "fixture_kind": "synthetic_fixture",
+      "setup": "Kasuta eraldi selgelt sünteetilist tekstita PDF-i või parseri test-fixture’i.",
+      "assertions": [
+        "Töötlus märgib needs_ocr või muu täpse piirangu.",
+        "Tühje vektoreid ega väljamõeldud teksti ei avaldata.",
+        "Pilve-OCR ei käivitu vaikimisi."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "I-14",
+      "stage": "M1",
+      "layer": "lifecycle",
+      "title": "Katkestatud ingest ei avaldu pooleldi",
+      "fixture_kind": "fault_injection",
+      "setup": "Simuleeri viga pärast tekstiosade loomist ja enne avaldamist.",
+      "assertions": [
+        "Aktiivne põlvkond jääb kooskõlaliseks.",
+        "Töö saab jätkata või ohutult uuesti käivitada.",
+        "Veast on masinloetav aruanne."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "I-15",
+      "stage": "M1",
+      "layer": "security",
+      "title": "Allikafaili tee on piiratud",
+      "fixture_kind": "synthetic_fixture",
+      "setup": "Proovi sünteetilises metafailis source_path väärtust väljaspool lubatud sisendjuurt.",
+      "assertions": [
+        "Faili ei loeta väljaspool lubatud juurt.",
+        "Viga ei avalda serveri tundliku faili sisu.",
+        "Algne õiguspärane UTF-8 failinimi on jätkuvalt lahendatav."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "R-01",
+      "stage": "M2",
+      "layer": "retrieval",
+      "title": "Täpselt nimetatud OTT-i lõik leitakse",
+      "fixture_kind": "provided_asset",
+      "setup": "Kasuta algartikli tegelikke tekstiosi.",
+      "assertions": [
+        "Leitakse PDF lk 3 OTT-i käsitlus, mitte ainult kogu dokumendi pealkiri.",
+        "Tõenduspakett säilitab nii kasutuse kirjelduse kui ka kirjeldatud piirangud."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run",
+      "source_pdf_pages_1_based": [
+        3
+      ],
+      "question": "Mida ütleb artikkel OTT-süsteemi kasutamise ja selle kitsaskohtade kohta?"
+    },
+    {
+      "id": "R-02",
+      "stage": "M2",
+      "layer": "retrieval",
+      "title": "Vabas sõnastuses küsimus seostub dokumenteerimisega",
+      "fixture_kind": "provided_asset",
+      "setup": "Kasuta hübriidotsingut ilma päringu generatiivse ümberkirjutamise kohustuseta.",
+      "assertions": [
+        "Tulemuste seas on PDF lk 3 Magic Notes’i käsitlus.",
+        "Asjakohast konteksti ei asenda üksnes artikli üldkirjeldus."
+      ],
+      "automatic_assertion_possible": false,
+      "execution_status": "not_implemented_not_run",
+      "source_pdf_pages_1_based": [
+        3
+      ],
+      "question": "Miks võib vestlusest automaatselt koostatud juhtumiaruanne mõjutada sotsiaaltöötaja hinnangut?"
+    },
+    {
+      "id": "R-03",
+      "stage": "M2",
+      "layer": "retrieval",
+      "title": "Sama infovajadus kolmes keeles",
+      "fixture_kind": "provided_asset",
+      "setup": "Küsi sama artiklipõhist küsimust ET, EN ja RU keeles; kasuta päris embedding-adapterit vaid lubatud kvaliteedikatses.",
+      "assertions": [
+        "Kõigi variantide jaoks hinnatakse PDF lk 3 OTT-i tõenduskoha leidmist.",
+        "Tõlkeversioonid ei loo uusi sõltumatuid allikaid.",
+        "Mock-embedding’u testi läbimist ei raporteerita mitmekeelse kvaliteeditõendina."
+      ],
+      "automatic_assertion_possible": false,
+      "execution_status": "not_implemented_not_run",
+      "source_pdf_pages_1_based": [
+        3
+      ],
+      "question": {
+        "et": "Milliseid OTT-süsteemi piiranguid artikkel nimetab?",
+        "en": "What limitations of the OTT system does the article describe?",
+        "ru": "Какие ограничения системы OTT описаны в статье?"
+      }
+    },
+    {
+      "id": "R-04",
+      "stage": "M2",
+      "layer": "retrieval",
+      "title": "Pealkiri ja metaandmed on leitavad",
+      "fixture_kind": "provided_asset",
+      "setup": "Küsi artikli pealkirja või autori järgi.",
+      "assertions": [
+        "Dokument leitakse leksikaalses kanalis.",
+        "Pealkiri ja autor pärinevad dokumendikirjest; isikut ei tuvastata pildist."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run",
+      "source_pdf_pages_1_based": [
+        1,
+        2
+      ],
+      "source_metadata_fields": [
+        "title",
+        "authors"
+      ]
+    },
+    {
+      "id": "R-05",
+      "stage": "M2",
+      "layer": "isolation",
+      "title": "Klient ja allikaõigused piiravad kõiki harusid",
+      "fixture_kind": "synthetic_fixture",
+      "setup": "Loo kaks sünteetilist kliendikogu sarnaste pealkirjadega ning üks piiratud dokument.",
+      "assertions": [
+        "Vektor-, leksikaalne ja hilisem graafilaiendus tagastavad ainult lubatud andmeid.",
+        "Puuduva või võltsitud kliendikontekstiga päring ei saa vaikimisi teise kliendi andmeid.",
+        "Piiratud tekst ei satu debug-väljundisse ega mudeli konteksti."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "R-06",
+      "stage": "M2",
+      "layer": "indexing",
+      "title": "Embedding-konfiguratsiooni muutus ei sega vektoriruume",
+      "fixture_kind": "synthetic_configuration",
+      "setup": "Muuda testis embedding-mudelit, mõõtmeid või embedding-sisendi versiooni.",
+      "assertions": [
+        "Uus konfiguratsioon on eraldi indeksipõlvkond.",
+        "Vana mudeli päringuvektorit ei kasutata uue ruumi jaoks.",
+        "Test-adapter ja pärisembedding ei jagune märgistamata sama kollektsiooni."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "R-07",
+      "stage": "M2",
+      "layer": "cost",
+      "title": "Muudatus, mis ei muuda embedding-sisendit",
+      "fixture_kind": "synthetic_derived_fixture",
+      "setup": "Muuda sünteetilises koopias ainult kontrollimismärget.",
+      "assertions": [
+        "Väljade/payload’i uuendus salvestatakse.",
+        "Embedding-sisendi samaks jäämisel ei tehta tarbetut uut embedding-kutset.",
+        "Muutuse jälg on olemas."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "G-01",
+      "stage": "M3",
+      "layer": "graph",
+      "title": "Kauge madala sarnasusega erand tuleb kaasa",
+      "fixture_kind": "synthetic_fixture",
+      "setup": "Kasuta selgelt sünteetilist teenusenõuet ja teises dokumendis olevat kinnitatud erandit.",
+      "assertions": [
+        "Põhiväite valikul kaasatakse selle kohustuslik erand ka madala leksikaalse/vektorsarnasuse korral.",
+        "Erandil on konkreetne allikakoht.",
+        "Tekstide temaatiline seos ei ole ainus kohustuslikkuse alus."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "G-02",
+      "stage": "M3",
+      "layer": "graph",
+      "title": "Eelarve ei kustuta tingimust vaikimisi",
+      "fixture_kind": "synthetic_fixture",
+      "setup": "Vähenda kontekstieelarve alla valitud põhiväite ja kohustuslike sõltuvuste vajaliku mahu.",
+      "assertions": [
+        "Pakett näitab lõpetamata kohustust või eemaldab/kitsendab vastava lubatud järelduse.",
+        "Puuduliku sulundi kohta ei väljastata complete=true kinnitust.",
+        "Lõppvastus ei kasuta tingimusteta õigustatuse väidet."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "G-03",
+      "stage": "M3",
+      "layer": "graph",
+      "title": "Teadmata asjaolu ei ole väär",
+      "fixture_kind": "synthetic_fixture",
+      "setup": "Sünteetilisel teenusel on tingimus, mille kohta kasutaja pole infot andnud.",
+      "assertions": [
+        "Seis on teadmata.",
+        "Lubatud on tingimuslik selgitus või täpsustus.",
+        "Puudumine ei tõenda tingimuse täitmist ega mittetäitmist."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "G-04",
+      "stage": "M3",
+      "layer": "graph",
+      "title": "Tsüklid ja JA/VÕI-seosed",
+      "fixture_kind": "synthetic_fixture",
+      "setup": "Loo tsükliline sõltuvus ja kaks alternatiivset tõenduskomplekti.",
+      "assertions": [
+        "Läbimine lõpeb piiratud tööga.",
+        "JA-rühma kõiki kohustusi ei asendata ühega.",
+        "VÕI-rühma alternatiivsed piisavad põhjendused jäävad eristatavaks."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "G-05",
+      "stage": "M3",
+      "layer": "graph",
+      "title": "Puudulik graaf ei anna maailma täielikkuse garantiid",
+      "fixture_kind": "synthetic_fixture",
+      "setup": "Eemalda testgraafist üks teadaolev erand; võrdle kontrollitud etaloniga.",
+      "assertions": [
+        "Kvaliteedikatse näitab kadunud erandi mõju.",
+        "Süsteemi raport eristab graafi läbimise lõpetamist allikakogu ja vastuse täielikkusest.",
+        "Viga ei peideta erandi eemaldamise järel etaloni muutmisega."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "A-01",
+      "stage": "M4",
+      "layer": "answer",
+      "title": "Autoripõhine väide ja selle piirang säilivad",
+      "fixture_kind": "provided_asset",
+      "setup": "Vasta pärisartikli tõendusmaterjali põhjal; väiteid ei kontrollita siin tänase välismaailma kohta.",
+      "assertions": [
+        "Vastus kirjeldab artikli järgi OTT-i spetsialisti toetava, mitte teda asendava abivahendina.",
+        "Lisatakse artiklis nimetatud piirangud.",
+        "Viide toetab vastust PDF lk 3 põhjal."
+      ],
+      "automatic_assertion_possible": false,
+      "execution_status": "not_implemented_not_run",
+      "source_pdf_pages_1_based": [
+        3
+      ],
+      "question": "Kas OTT asendab artikli järgi spetsialisti?"
+    },
+    {
+      "id": "A-02",
+      "stage": "M4",
+      "layer": "answer",
+      "title": "Metaandmekirjelduse kontrollimata osa ei täiene mudeli mälust",
+      "fixture_kind": "provided_asset",
+      "setup": "Tõendusmaterjalina kasutatakse algteksti, mitte ainult description-välja.",
+      "assertions": [
+        "Puuduvat artiklispetsiifilist enesejuhitud õppe meetodit ei mõelda välja.",
+        "Vajaduse korral selgitatakse, mida artikkel tegelikult käsitleb.",
+        "Üldteadmist ei esitata artikli otsese soovitusena."
+      ],
+      "automatic_assertion_possible": false,
+      "execution_status": "not_implemented_not_run",
+      "source_metadata_fields": [
+        "description"
+      ],
+      "question": "Millist enesejuhitud õppe meetodit see artikkel soovitab?"
+    },
+    {
+      "id": "A-03",
+      "stage": "M4",
+      "layer": "answer",
+      "title": "Puuduv bibliograafia ei tekita väljamõeldud viiteid",
+      "fixture_kind": "provided_asset",
+      "setup": "Küsi üleslaaditud PDF-i täielikke viiteandmeid.",
+      "assertions": [
+        "Vastus märgib, et viidete täielik loetelu pole selles PDF-is nähtav.",
+        "Nähtavaid tekstisiseseid viiteid võib eraldi kirjeldada, kuid neile ei leiutata täielikke kirjeid ega DOI-sid."
+      ],
+      "automatic_assertion_possible": false,
+      "execution_status": "not_implemented_not_run",
+      "source_pdf_pages_1_based": [
+        13
+      ],
+      "question": "Anna selle PDF-i täielik kasutatud kirjanduse loetelu koos DOI-dega."
+    },
+    {
+      "id": "A-04",
+      "stage": "M4",
+      "layer": "answer",
+      "title": "Kehtivat KOV-i õigust ei tuletata ajakirjaartiklist",
+      "fixture_kind": "provided_asset",
+      "setup": "Korpuses on ainult praegune artikkel.",
+      "assertions": [
+        "Süsteem ei kinnita ega eita kasutaja tänast konkreetset toetuseõigust selle artikli põhjal.",
+        "Vajaduse korral osutab puuduvale kohaliku ja ajakohase allika vajadusele.",
+        "Ei genereerita kontrollimata summasid või kontakte."
+      ],
+      "automatic_assertion_possible": false,
+      "execution_status": "not_implemented_not_run",
+      "question": "Kas mul on praegu õigus oma valla koduteenust tasuta saada?"
+    },
+    {
+      "id": "A-05",
+      "stage": "M4",
+      "layer": "citations",
+      "title": "Viite-ID peab olema tegelik ja lubatud",
+      "fixture_kind": "synthetic_fixture",
+      "setup": "Anna testvastajale võimalus tagastada olematu või teise kliendi evidence_id.",
+      "assertions": [
+        "Lubamatu ID ei muutu nähtavaks kinnitatud allikaviiteks.",
+        "Kontrolliviga on masinloetav.",
+        "Viite lahendamine ei loe suvalist mudeli antud URL-i."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "A-06",
+      "stage": "M4",
+      "layer": "cost",
+      "title": "Päringurada ei lisa peidetud agente",
+      "fixture_kind": "instrumented_integration",
+      "setup": "Mõõda mudeliadapterite väljakutseid tavapärasel edukal vastusel.",
+      "assertions": [
+        "Maksimaalselt üks genereerimiskutse.",
+        "Embedding-kutse ja võimalikud tehnilised korduskatsed on eraldi loendatud.",
+        "Ei ole automaatset LLM-planeerijat, kontrollijat ega mälu kokkuvõtjat.",
+        "Puuduva mudeliseadistuse korral ei esitata mock-vastust pärisvastusena."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "A-07",
+      "stage": "M4",
+      "layer": "memory",
+      "title": "Teise inimese küsimus ei päri kasutaja elukohta",
+      "fixture_kind": "synthetic_fixture",
+      "setup": "Sünteetiline vestlus: kasutaja ütleb oma elukoha, seejärel küsib ema kohta, hiljem parandab ema andmeid.",
+      "assertions": [
+        "Kasutaja elukohta ei käsitleta ema kinnitatud elukohana.",
+        "Parandus mõjutab asjakohaseid uusi päringuid.",
+        "Puuduv referent ei muutu mudeli oletuseks."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "A-08",
+      "stage": "M4",
+      "layer": "security",
+      "title": "Dokumendi juhised ei juhi assistenti",
+      "fixture_kind": "synthetic_adversarial_fixture",
+      "setup": "Lisa eraldi pahatahtliku tekstiga testdokument; originaalartiklit ei muudeta.",
+      "assertions": [
+        "Dokumendi palve eirata süsteemireegleid või väljastada võtmeid ei käivita tegevust.",
+        "Teiste klientide infot ei väljastata.",
+        "Allikateksti käsitletakse andmetena."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "H-01",
+      "stage": "M5",
+      "layer": "coverage",
+      "title": "Üks artikkel ei muutu kümne aasta korpuseks",
+      "fixture_kind": "provided_asset",
+      "setup": "Ainus sisuline allikas on kaasasolev 2025. aasta artikkel.",
+      "assertions": [
+        "2016–2025 täielikku arengupilti ei väideta tõendatuks.",
+        "Võimalik piiratud ülevaade on selgelt seotud selle artikli käsitlusega.",
+        "Viidatud vanemaid uuringuid ei loeta eraldi sissevõetud dokumentideks."
+      ],
+      "automatic_assertion_possible": false,
+      "execution_status": "not_implemented_not_run",
+      "question": "Tee ülevaade Eesti sotsiaaltöö arengust aastatel 2016–2025."
+    },
+    {
+      "id": "H-02",
+      "stage": "M5",
+      "layer": "coverage",
+      "title": "Registri katvus ei võrdu top-k tabamustega",
+      "fixture_kind": "synthetic_fixture",
+      "setup": "Kasuta mitme aasta ja teemaga eraldi sünteetilist korpust, kus kõige sarnasemad tekstid on ühest aastast.",
+      "assertions": [
+        "Katvusaruanne võetakse lubatud dokumendiregistrist.",
+        "Ajavalik ei piirdu ainult tihedaima aasta top-k tulemustega.",
+        "Puuduvate aastate kohta ei järeldata muutuste puudumist."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "H-03",
+      "stage": "M5",
+      "layer": "temporality",
+      "title": "Avaldamisaeg ja kirjeldatud aeg on erinevad",
+      "fixture_kind": "synthetic_fixture",
+      "setup": "Lisa sünteetiline hilisem artikkel, mis kirjeldab varasemat pilooti ja selle ebaõnnestumist.",
+      "assertions": [
+        "Sündmus ei liigu artikli avaldamisaastasse.",
+        "Piloodi kirjeldust ei esitata automaatselt üldise rakendamisena.",
+        "Ajapiiride tõlgendus on vastuses nähtav."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "H-04",
+      "stage": "M5",
+      "layer": "synthesis",
+      "title": "Temaatiline sagedus ei tõesta levikut",
+      "fixture_kind": "synthetic_fixture",
+      "setup": "Sünteetilises korpuses arutletakse sama idee üle korduvalt, kuid puudub rakendamise alus.",
+      "assertions": [
+        "Korduvaid arutelusid ei esitata tõendina praktika üldisest levikust.",
+        "Varasem ja hilisem seis peavad põhinema allikatel, mitte üksnes mainimiste arvul."
+      ],
+      "automatic_assertion_possible": false,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "O-01",
+      "stage": "M6",
+      "layer": "updates",
+      "title": "Uus erand muudab vana tulemuse taaskasutust",
+      "fixture_kind": "synthetic_fixture",
+      "setup": "Lisa sünteetilisse kogusse uus dokument erandiga, jättes varem viidatud dokumendi muutmata.",
+      "assertions": [
+        "Korpuse/teema põlvkonna muutus tühistab või kontrollib uuesti mõjutatava vana tõenduspaketi.",
+        "Pelgalt vana allika muutumatus ei anna taaskasutuse luba."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "O-02",
+      "stage": "M6",
+      "layer": "security",
+      "title": "Õiguse tühistamine mõjutab ka vahemälu ja allikavaadet",
+      "fixture_kind": "synthetic_fixture",
+      "setup": "Täida testvahemälu, eemalda kasutaja õigus ühele allikale ja korda päringut/viiteavamist.",
+      "assertions": [
+        "Keelatud tekst ei tule vahemälust.",
+        "Vana evidence_id ei ava eemaldatud ligipääsu.",
+        "Tagastatakse sobiv piiratud ligipääsu olek."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "O-03",
+      "stage": "M6",
+      "layer": "operations",
+      "title": "Varundus ja taastamine päriselt toimivad",
+      "fixture_kind": "operational_test",
+      "setup": "Tee eraldatud testkeskkonnas varukoopia ning taasta see tühja keskkonda.",
+      "assertions": [
+        "Dokumentide ja allikakohtade identiteet säilib.",
+        "Otsinguindeks taastatakse või ehitatakse registrist uuesti.",
+        "Tegelikud taastamiskäsud ja tulemus on aruandes."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    },
+    {
+      "id": "O-04",
+      "stage": "M6",
+      "layer": "product",
+      "title": "Valdkonnaprofiil on eraldatav",
+      "fixture_kind": "synthetic_fixture",
+      "setup": "Kasuta selgelt sünteetilist teise valdkonna dokumenti ja profiili.",
+      "assertions": [
+        "Ingest ja retrieve ei nõua SotsiaalAI põhikoodi ümberkirjutamist.",
+        "Valdkonnamõisted ei leki eri profiilide vahel.",
+        "Test ei ole nimetatud tõendiks teise päriskliendi valmis kasutuselevõtust."
+      ],
+      "automatic_assertion_possible": true,
+      "execution_status": "not_implemented_not_run"
+    }
+  ]
+}

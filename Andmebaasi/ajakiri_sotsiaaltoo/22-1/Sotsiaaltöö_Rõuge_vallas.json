@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-1-2022",
+  "articleId": "sotsiaaltoo-rouge-vallas-on-nagu-pusle-kokkupanek-2022-1",
+  "title": "Sotsiaaltöö Rõuge vallas on nagu pusle kokkupanek",
+  "authors": [
+    "Triinu Õispuu"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2022",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "15-19",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Rõuge valla sotsiaalosakonna juhataja Triinu Õispuu kirjeldab sotsiaaltööd hajaasustusega piiriäärses omavalitsuses, kus teenused tuleb tuua inimesele võimalikult lähedale. Artikkel kirjeldab meeskonna ülesehitust, piirkondlikku töökorraldust, ennetustöö vajadust ning koostööprojekte nagu sotsiaaltransporditeenus ja VESTA programm vaimse tervise häiretega eakate toetamiseks. Rõhutatakse kogukonnatöö, projektimajanduse ja innovatsiooni rolli teenuste arendamisel ning seda, kuidas väikese valla inimesed ja spetsialistid panevad justkui pusletükke kokku, et tagada elanike heaolu.",
+  "tags": [
+    "Rõuge vald",
+    "kohalik omavalitsus",
+    "hajaasustus",
+    "sotsiaalteenused",
+    "ennetustöö",
+    "sotsiaaltransport",
+    "kogukonnatöö",
+    "projektid"
+  ],
+  "source_type": "file",
+  "source_path": "2022_artikkel_4_rouge_valla_pusle.pdf",
+  "document_id": "sotsiaaltoo-1-2022-sotsiaaltoo-rouge-vallas-on-nagu-pusle-kokkupanek-2022-1",
+  "source_format": "pdf",
+  "source_sha256": "6b8cb6cac76ce8408e877bd3d0e0e705cc847d93aed33f0e5e3842fe45f7cf40",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2022-sotsiaaltoo-rouge-vallas-on-nagu-pusle-kokkupanek-2022-1",
+    "previous_source_path": "2022_artikkel_4_rouge_valla_pusle.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "6b8cb6cac76ce8408e877bd3d0e0e705cc847d93aed33f0e5e3842fe45f7cf40",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

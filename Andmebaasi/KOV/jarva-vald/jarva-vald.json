@@ -1,0 +1,1797 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-jarva-vald",
+  "document_id": "kov-jarva-vald",
+  "municipality": "Järva vald",
+  "municipality_id": "jarva_vald",
+  "county": "Järvamaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "jarva_vald_service_koduteenus",
+      "canonical_item_id": "jarva_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus on koduhooldusteenus, millega toetatakse täisealiste inimeste toimetulekut oma kodus. Teenuse raames aidatakse klienti igapäevaeluga seotud toimingutes (näiteks toidu ja ravimite toomine, dokumentide vormistamine, arvete maksmine, majapidamistööde tegemine ja hügieenitoimingud). Enne teenuse määramist hindab sotsiaaltöötaja inimese abivajadust ning sõlmib teenuse osutamiseks lepingu. Teenuse eest võetakse kuutasu, mis on sõltuvalt hooldusvajaduse mahust 20–60 eurot kuus, ning erakorralise külastuse tasu on 5 eurot.",
+      "targetGroup": "Täisealised isikud, kes vajavad abi igapäevaelu toimingutega ja kelle toimetulek kodus on vähenenud.",
+      "conditions": "Teenuse saamiseks peab taotlejal olema abivajadus, mis takistab tal iseseisvalt kodus hakkama saada. Enne teenuse määramist hindab sotsiaaltöötaja abivajadust.",
+      "application": {
+        "channels": [
+          "kirjalik",
+          "",
+          "iseteenindus"
+        ],
+        "steps": "Taotlemiseks tuleb esitada vallavalitsuse sotsiaalosakonnale kirjalik avaldus ning kirjeldada abivajadust. Sotsiaaltöötaja korraldab kodukülastuse ning hindab hooldusvajadust. Pärast hindamist sõlmitakse teenuse osutamise leping.",
+        "deadline": null
+      },
+      "pricing": {
+        "amount": "20–60 €/kuu; erakorralise külastuse tasu 5 €"
+      },
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalteenused",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_service_koduteenus",
+      "document_id": "jarva_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalteenused",
+      "content_hash": "ec1bef321e2b9b4876b4d4da597726dd5007d751a555cef1510e0427884424c2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "jarva_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus aitab isikutel, kes tervisliku seisundi või sotsiaalse olukorra tõttu ei saa kasutada ühistransporti, jõuda arsti, sotsiaalasutuse või muude vajalikeni. Sõit tuleb tellida vähemalt seitse päeva enne sõidu kuupäeva. Teenuse eest makstakse kilomeetripõhist tasu: tavahind on 0,50 €/km, soodushind 0,30 €/km, saatja teenus 5 € ning ooteaeg 0,10 € minutis.",
+      "targetGroup": "Isikud, kellel ei ole võimalust kasutada oma autot või ühistransporti tervislikel, majanduslikel või sotsiaalsetel põhjustel.",
+      "conditions": "Taotleja peab põhjendama sõidu vajadust ning esitama taotluse vähemalt 7 päeva enne sõitu. Teenust osutatakse valla piires ja selle lähiümbruses.",
+      "application": {
+        "channels": [
+          "",
+          "kirjalik"
+        ],
+        "steps": "Teenuse saamiseks tuleb võtta ühendust sotsiaalosakonnaga ja esitada taotlus, milles on märgitud sõidu aeg, sihtkoht ja vajadus. Sotsiaalosakond hindab taotleja abivajadust ja otsustab teenuse võimaldamise.",
+        "deadline": null
+      },
+      "pricing": {
+        "amount": "0,50 €/km (soodushind 0,30 €/km); saatja teenus 5 €; ooteaeg 0,10 €/minut"
+      },
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalteenused",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_service_sotsiaaltransporditeenus",
+      "document_id": "jarva_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalteenused",
+      "content_hash": "b217b9294461a75784f491ba24b66e1db315dee1b7fd22153a36aa5597c3e4da",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_service_vaimse_tervise_teenus",
+      "canonical_item_id": "jarva_vald:service:vaimse_tervise_teenus",
+      "itemType": "service",
+      "title": "Vaimse tervise teenus",
+      "status": "active",
+      "summary": "Vaimse tervise teenus pakub nõustamist ja teraapiat inimestele, kes vajavad psühholoogilist abi või toetust vaimse tervise probleemidega toimetulekul. Teenus on individuaalne ja võib hõlmata psühholoogilist nõustamist, teraapiaseansse ning vajadusel spetsialistide suunamisi. Teenuse maksumus võib olla täielikult või osaliselt kaetud vallavalitsuse poolt; seansi tühistamisel vähem kui 24 tundi enne kokkulepitud aega võib rakenduda väike tasu.",
+      "targetGroup": "Isikud, kellel on vaimse tervise raskusi ja kes vajavad professionaalset nõustamist.",
+      "conditions": "Teenuse saamiseks peab taotleja pöörduma sotsiaalosakonda, kus hinnatakse abivajadust ja otsustatakse teenuse võimaldamine. Vajadusel suunab sotsiaalosakond kliendi vastava spetsialisti juurde.",
+      "application": {
+        "channels": [
+          "",
+          "kirjalik"
+        ],
+        "steps": "Võtke ühendust vallavalitsuse sotsiaalosakonnaga, kirjeldage oma muret ning täitke teenuse taotlus. Sotsiaalosakond otsustab teenuse mahtude ja tingimuste üle.",
+        "deadline": null
+      },
+      "pricing": {
+        "amount": "Tasuta või osalise omaosalusega; hiline tühistamine võib kaasa tuua teenustasu"
+      },
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalteenused",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_service_vaimse_tervise_teenus",
+      "document_id": "jarva_vald_service_vaimse_tervise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalteenused",
+      "content_hash": "d85946da1840f482750140ecc62a609f8838ed82af4fe43e0e17a491a1cb8bf0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_service_tugiisiku_teenus",
+      "canonical_item_id": "jarva_vald:service:tugiisiku_teenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus aitab inimesel õppida iseseisvalt hakkama saama, motiveerib ja toetab tema osalust ühiskonnas. Tugiisik õpetab igapäevaoskusi, aitab korraldada asjaajamisi ja suhtlust, kuid ei tee kliendi eest kodutöid ega hooldusega seotud tegevusi. Teenus on tasuta ning selle saamiseks hinnatakse esmalt inimese abivajadust.",
+      "targetGroup": "Isikud, kes vajavad isikliku tugiisiku abi, et suurendada iseseisvust (nt erivajadusega inimesed või kriisiolukorras).",
+      "conditions": "Enne teenuse määramist viib sotsiaaltöötaja läbi hindamise, et selgitada välja abivajadus ja koostada teenuse plaan.",
+      "application": {
+        "channels": [
+          "kirjalik",
+          ""
+        ],
+        "steps": "Taotluse saab esitada vallavalitsuse sotsiaalosakonnale. Sotsiaaltöötaja hindab abivajadust ja otsustab teenuse osutamise.",
+        "deadline": null
+      },
+      "pricing": {
+        "amount": "Teenuse eest tasu ei võeta"
+      },
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalteenused",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_service_tugiisiku_teenus",
+      "document_id": "jarva_vald_service_tugiisiku_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalteenused",
+      "content_hash": "f9d69f9e1848bb9f1084e21d143b7395c4eccae5609e8c7c48db65ce2fe4fd10",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "jarva_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus on mõeldud erivajadusega inimestele, kes vajavad abi igapäevaste tegevuste juures (nt söömine, hügieen, riietumine, liikumine). Teenuse saaja peab olema võimeline juhendama abistajat, et tagada talle vajalik tugi. Teenuse eest võetakse tasu 2 eurot tunnis.",
+      "targetGroup": "Füüsilise puudega või erivajadusega isikud, kes vajavad igapäevategevuste juures kõrvalabi.",
+      "conditions": "Abivajav isik peab suutma abistajat juhendada ning tema abivajadus hinnatakse sotsiaalosakonnas. Teenuse osutamise ulatus määratakse hindamistulemuste põhjal.",
+      "application": {
+        "channels": [
+          "kirjalik",
+          ""
+        ],
+        "steps": "Täida avaldus vallavalitsuse sotsiaalosakonnas. Pärast hindamist sõlmitakse teenuse osutamiseks leping.",
+        "deadline": null
+      },
+      "pricing": {
+        "amount": "2 €/tund"
+      },
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalteenused",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_service_isikliku_abistaja_teenus",
+      "document_id": "jarva_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalteenused",
+      "content_hash": "6dbd4ae23611c849333d355d1dbaf3c9f575f20d1c9c0d8bdebd387eb46577b8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_service_eluruumi_tagamise_teenus",
+      "canonical_item_id": "jarva_vald:service:eluruumi_tagamise_teenus",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenus võimaldab vallal aidata inimesi ja peresid, kes ei suuda endale eluaset tagada või on kodu kaotanud. Teenus tagab majutuse ja vajadusel tugiteenused. Eelisjärjekorras abistatakse kriisi sattunud isikuid, peresid, kes on kaotanud eluruumi tulekahju või muu õnnetuse tõttu, eakaid ilma lähedaste toeta ja majanduslike raskustega peresid. Teenus on tasuline (tasu võrdub üüri ja kõrvalkuludega) ning selle tingimused määratakse haldusaktiga.",
+      "targetGroup": "Isikud ja pered, kellel puudub eluruum või võimalus eluaset soetada ning kes vajavad ajutist või toetavat majutust.",
+      "conditions": "Taotleja abivajadus hinnatakse sotsiaalosakonnas ning teenuse saamiseks tuleb esitada avaldus. Kinnitatakse prioriteetsed sihtrühmad (kriisi või õnnetuse tõttu koduta jäänud isikud, eakad, vähekindlustatud pered).",
+      "application": {
+        "channels": [
+          "kirjalik"
+        ],
+        "steps": "Esita vallavalitsuse sotsiaalosakonnale kirjalik taotlus, kus on kirjeldatud eluasemeta jäämise põhjus ja majutuse vajadus. Sotsiaalosakond hindab taotleja olukorda ja otsustab teenuse võimaldamise.",
+        "deadline": null
+      },
+      "pricing": {
+        "amount": "Tasuline teenus – tasu suurus vastab üürile ja kõrvalkuludele"
+      },
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalteenused",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_service_eluruumi_tagamise_teenus",
+      "document_id": "jarva_vald_service_eluruumi_tagamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalteenused",
+      "content_hash": "2a5506ac2450166a8f088616468be9a98de2b7b9c5ba11b783044d5a0a2e5581",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "jarva_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus (hooldajateenus)",
+      "status": "active",
+      "summary": "Täisealise isiku hoolduse teenus hõlmab hooldaja määramist ja hooldusülesannete korraldamist inimestele, kes vajavad igapäevaelus püsivat kõrvalabi. Sotsiaaltöötaja hindab abivajadust kodukülastuse käigus ja koostab hindamisdokumendi. Hooldaja võib olla taotleja valitud usaldusväärne inimene, kelle sobivust hindab sotsiaaltöötaja. Vallavalitsus kinnitab hooldajamääramise korraldusega ning hoolduse eest tasu ei võeta, kuid hooldajal on õigus hooldajatoetusele.",
+      "targetGroup": "Täisealised isikud, kellel on kõrvalabi ja järelevalve vajadus ning kes vajavad püsivat hooldust.",
+      "conditions": "Taotleja abivajadus hinnatakse sotsiaaltöötaja poolt; hooldajaks võib määrata sobiva isiku taotleja võrgustikust, tingimusel et ta on valmis hooldaja rolli täitma.",
+      "application": {
+        "channels": [
+          "kirjalik"
+        ],
+        "steps": "Avalduse saab esitada vallavalitsuse sotsiaalosakonnale. Sotsiaaltöötaja hindab hooldusvajadust ja otsustab teenuse võimaldamise. Hooldaja määramise otsustab vallavalitsus haldusaktiga.",
+        "deadline": null
+      },
+      "pricing": {
+        "amount": "Teenuse saajale tasuta, hooldajal on õigus taotleda hooldajatoetust"
+      },
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalteenused",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_service_taisealise_isiku_hooldus",
+      "document_id": "jarva_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalteenused",
+      "content_hash": "1a3fad89cd6b042526ad93ade845f5a4ab93debcdd28a1bbb72d74365d3bcdd8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_service_volanoustamisteenus",
+      "canonical_item_id": "jarva_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus on mõeldud inimestele, kes on sattunud võlgadesse või kellel on oht võlgnevuste tekkeks. Teenuse raames aidatakse kliendil analüüsida tema varalist olukorda, pidada läbirääkimisi võlausaldajatega, koostada maksegraafikuid ja omandada teadmisi võlgnevuste vältimiseks tulevikus. Teenus on taotlejale tasuta ning vallavalitsus teeb koostööd professionaalsete nõustajatega.",
+      "targetGroup": "Isikud, kellel on võlgnevus või selle tekkimise oht ning kes ei suuda iseseisvalt oma rahalisi kohustusi hallata.",
+      "conditions": "Abivajav isik peab pöörduma vallavalitsuse sotsiaalosakonda ning esitama kirjaliku taotluse. Hinnatakse, kas võlanõustamine on sobiv teenus.",
+      "application": {
+        "channels": [
+          "kirjalik"
+        ],
+        "steps": "Esita sotsiaalosakonnale vormikohane taotlus. Teenuse määramise otsustab sotsiaalosakonna juhataja haldusaktiga, milles määratakse teenuse maht ja periood.",
+        "deadline": null
+      },
+      "pricing": {
+        "amount": "Teenuse eest tasu ei võeta"
+      },
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalteenused",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_service_volanoustamisteenus",
+      "document_id": "jarva_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalteenused",
+      "content_hash": "3247c0270765133586e27394ecb2ea3e07627cbc8bb43b379b1002e2c9689382",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_benefit_koolieelse_lasteasutuse_toetus",
+      "canonical_item_id": "jarva_vald:benefit:koolieelse_lasteasutuse_toetus",
+      "itemType": "benefit",
+      "title": "Koolieelse lasteasutuse vanema poolt kaetava osa ja toiduraha toetus",
+      "status": "active",
+      "summary": "Toetus aitab katta osa koolieelse lasteasutuse osalustasust ja lapse toiduraha. Järva vald hüvitab 60 % vanema poolt makstavast lasteaiatasust ja toiduraha kuludest. Toetust saavad pered, kelle pereliikmete netosissetulek, millest on maha arvatud eluasemekulud, on alla kahekordse kehtiva toimetulekupiiri.",
+      "targetGroup": "Pered, kelle laps käib Järva valla koolieelses lasteasutuses ja kelle netosissetulek jääb alla kahekordse toimetulekupiiri.",
+      "conditions": "Taotleja ja laps peavad olema Järva valla elanikud. Toetuse saamiseks tuleb esitada avaldus ja kuludokument hiljemalt kuu 20. kuupäevaks.",
+      "application": {
+        "channels": [
+          "kirjalik",
+          ""
+        ],
+        "steps": "Esita vallavalitsusele avaldus koos lasteaiatasu ja toiduraha maksmist tõendava dokumendiga. Sotsiaalosakond kontrollib sissetuleku vastavust tingimustele ja määrab toetuse.",
+        "deadline": "Taotlus koos kuludokumentidega tuleb esitada hiljemalt iga kuu 20. kuupäevaks"
+      },
+      "amount": {
+        "amount": "60 % lasteaiatasust ja toiduraha kuludest"
+      },
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaaltoetused",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_benefit_koolieelse_lasteasutuse_toetus",
+      "document_id": "jarva_vald_benefit_koolieelse_lasteasutuse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaaltoetused",
+      "content_hash": "6ae42bc24bc1d1c6cc76afada93e267997bc6505acafd0cc6672c2037acfb44e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_benefit_taiendav_sotsiaaltoetus",
+      "canonical_item_id": "jarva_vald:benefit:taiendav_sotsiaaltoetus",
+      "itemType": "benefit",
+      "title": "Täiendav sotsiaaltoetus",
+      "status": "active",
+      "summary": "Täiendav sotsiaaltoetus on mõeldud erivajadustega või majanduslikult raskustes peredele, kelle sissetulek pereliikme kohta on väiksem kui kahekordne toimetulekupiir. Toetusega kaetakse abivahendite soetamise kulud kuni 50 % ulatuses (kuid mitte rohkem kui 307 eurot), retseptiravimite kulud kuni 307 eurot ja toimetulekuks vajalik muu abi kuni 200 eurot.",
+      "targetGroup": "Pered ja üksikisikud, kelle netosissetulek pärast eluasemekulude mahaarvamist on alla kahekordse toimetulekupiiri ning kellel on abivahendi või ravimi ostmise vajadus või teised erakorralised kulud.",
+      "conditions": "Toetuse saamiseks tuleb esitada avaldus ja kuludokumendid. Toetuse andmise otsustab vallavalitsus, võttes arvesse sissetulekut ja kulutuste põhjendust.",
+      "application": {
+        "channels": [
+          "kirjalik",
+          ""
+        ],
+        "steps": "Esita vallavalitsuse sotsiaalosakonnale avaldus, millega lisad kuludokumendid (nt abivahendi ostuarve, retseptiravimite tšekid). Sotsiaalosakond hindab, kas taotleja vastab tingimustele ja otsustab toetuse suuruse.",
+        "deadline": null
+      },
+      "amount": {
+        "amount": "Abivahendi kulu kuni 50 % (max 307 €); retseptiravimite kulu kuni 307 €; muu sotsiaalabi kuni 200 €"
+      },
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaaltoetused",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_benefit_taiendav_sotsiaaltoetus",
+      "document_id": "jarva_vald_benefit_taiendav_sotsiaaltoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaaltoetused",
+      "content_hash": "46ff70d088a9fbc49477a2058dc8e5b5bbd7e4ce281d4ec954c116631dfadb10",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_benefit_synnitoetus",
+      "canonical_item_id": "jarva_vald:benefit:synnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus on Järva valla vanematele makstav ühekordne toetus lapse sünni puhul. Toetus makstakse kahes osas: esimene osa 450 eurot pärast lapse sünni registreerimist ja taotluse esitamist, ning teine osa 200 eurot lapse esimese sünnipäeva saabumisel. Toetust saavad vanemad või lapse seaduslik esindaja, kui nii taotleja kui laps on registreeritud Järva valla elanikuna.",
+      "targetGroup": "Järva valla elanike vastsündinute vanemad või lapse seaduslikud esindajad.",
+      "conditions": "Taotleja ja laps peavad olema kantud Järva valla rahvastikuregistrisse. Avaldus tuleb esitada kolme kuu jooksul pärast lapse sündi. Teise osa väljamaksmiseks ei ole uut avaldust vaja, kuid laps peab endiselt olema rahvastikuregistris Järva vallas.",
+      "application": {
+        "channels": [
+          "",
+          "kirjalik"
+        ],
+        "steps": "Esita vallavalitsusele avaldus koos lapse sünnitunnistuse koopia ja vajalike isikuandmetega kolme kuu jooksul pärast sünni registreerimist. Esimene osa makstakse pärast avalduse kinnitamist; teine osa makstakse automaatselt lapse esimesel sünnipäeval.",
+        "deadline": "Avaldus tuleb esitada kolme kuu jooksul pärast lapse sündi"
+      },
+      "amount": {
+        "amount": "Esimene osa 450 €, teine osa 200 €"
+      },
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaaltoetused",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_benefit_synnitoetus",
+      "document_id": "jarva_vald_benefit_synnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaaltoetused",
+      "content_hash": "17d356f1258096f01682ba4f53f1f2c0be276743904b6b571c0504830531ad0b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_benefit_esimest_korda_kooli_mineva_lapse_toetus",
+      "canonical_item_id": "jarva_vald:benefit:esimest_korda_kooli_mineva_lapse_toetus",
+      "itemType": "benefit",
+      "title": "Esimest korda kooli mineva lapse toetus",
+      "status": "active",
+      "summary": "Esimest korda kooli mineva lapse toetusega toetab vald peresid, kelle laps alustab 1. klassi. Toetuse suurus on 200 eurot. Taotleja ja laps peavad elama Järva vallas ning avalduse saab esitada kolme kuu jooksul pärast kooliaasta algust.",
+      "targetGroup": "Pered, kelle laps alustab 1. klassi ja kelle elukoht on Järva vald.",
+      "conditions": "Toetuse saamiseks peavad lapsevanem ja laps olema rahvastikuregistri andmetel Järva valla elanikud. Avaldus tuleb esitada kolme kuu jooksul pärast lapse koolitee algust.",
+      "application": {
+        "channels": [
+          "kirjalik",
+          ""
+        ],
+        "steps": "Esita vallavalitsusele avaldus koos lapse isikuandmetega, mis tõendab kooli minekut. Sotsiaalosakond kontrollib elukohaandmeid ja määrab toetuse.",
+        "deadline": "Avaldus tuleb esitada kolme kuu jooksul pärast 1. klassi alustamist"
+      },
+      "amount": {
+        "amount": "200 €"
+      },
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaaltoetused",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_benefit_esimest_korda_kooli_mineva_lapse_toetus",
+      "document_id": "jarva_vald_benefit_esimest_korda_kooli_mineva_lapse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaaltoetused",
+      "content_hash": "16966296de41de849736ae9fde950ea752d441e00d7f2316a1b8d694f5ff99f6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_benefit_matusetoetus",
+      "canonical_item_id": "jarva_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on ühekordne toetus, mis aitab katta lahkunu matusekulusid. Toetust suuruses 250 € makstakse isikule, kes korraldab Järva valla elaniku matused. Avaldus tuleb esitada kolme kuu jooksul pärast isiku surma. Taotlemiseks on vaja esitada avaldus ja lisada lahkunu surmatunnistus ning taotleja isikuandmed.",
+      "targetGroup": "Lahkunu matuseid korraldav isik, kui lahkunud isik oli Järva valla elanik.",
+      "conditions": "Toetuse saamiseks peab surnu olema registreeritud Järva valla elanikuna. Avaldus tuleb esitada hiljemalt kolme kuu jooksul pärast surma kuupäeva ning lisada nõutavad dokumendid.",
+      "application": {
+        "channels": [
+          "kirjalik",
+          ""
+        ],
+        "steps": "Esita vallavalitsusele avaldus, millele lisad lahkunu surmatõendi ja taotleja isikuandmed. Sotsiaalosakond kontrollib andmeid ja teeb toetuse määramise otsuse.",
+        "deadline": "Avaldus tuleb esitada kolme kuu jooksul pärast surma"
+      },
+      "amount": {
+        "amount": "250 €"
+      },
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaaltoetused",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_benefit_matusetoetus",
+      "document_id": "jarva_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaaltoetused",
+      "content_hash": "d9030e1b8f05c905844f32ca6bba37e5d36eb8d142c1048f8dea706dbdb3c4aa",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_benefit_erakorraline_toetus",
+      "canonical_item_id": "jarva_vald:benefit:erakorraline_toetus",
+      "itemType": "benefit",
+      "title": "Erakorraline toetus",
+      "status": "active",
+      "summary": "Erakorraline toetus on mõeldud peredele ja üksikisikutele, kes satuvad ootamatute kulude või tõsiste majanduslike raskuste tõttu äkilisse toimetulekuvajadusse (nt kodu kaotus, õnnetus, tõsine haigus või muu kriis). Toetuse summa määratakse juhtumipõhiselt ja sõltub abivajadusest.",
+      "targetGroup": "Isikud ja pered, kes on sattunud erakorralisse majanduslikku raskusse või kellel on ootamatud kulud.",
+      "conditions": "Toetuse määramiseks tuleb esitada vallavalitsusele põhjendatud taotlus, mis kirjeldab erakorralist olukorda ja kulutusi. Otsuse teeb sotsiaalosakond juhtumipõhiselt.",
+      "application": {
+        "channels": [
+          "kirjalik"
+        ],
+        "steps": "Esita vallavalitsuse sotsiaalosakonnale avaldus koos põhjendusega erakorralise olukorra kohta ja kuludokumentidega (kui need on olemas). Sotsiaalosakond hindab taotluse põhjendatust ja otsustab toetuse suuruse.",
+        "deadline": null
+      },
+      "amount": {
+        "amount": "Määratakse individuaalselt vastavalt abivajadusele"
+      },
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaaltoetused",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_benefit_erakorraline_toetus",
+      "document_id": "jarva_vald_benefit_erakorraline_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaaltoetused",
+      "content_hash": "20d3bc92cf2539320ce43ed0d70c6e0700d8c3ccb6a203161e964894e07fe6a0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_benefit_puudega_lapse_hooldajatoetus",
+      "canonical_item_id": "jarva_vald:benefit:puudega_lapse_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Puudega lapse hooldajatoetus",
+      "status": "active",
+      "summary": "Puudega lapse hooldajatoetus makstakse hooldajale, kes hooldab kuni 17‑aastast puudega last. Toetuse eesmärk on hüvitada hooldajale osaliselt hooldamisest tulenevat sissetuleku kadu. Toetuse suurus on 75 € kuus, kui laps vajab osalist kõrvalabi, ja 100 € kuus, kui laps vajab pidevat hooldust.",
+      "targetGroup": "Puudega lapse hooldajad, kes ei saa töötada või õppida täiskoormusel hooldamise tõttu.",
+      "conditions": "Hooldajatoetuse taotlemiseks peab lapsel olema kehtiv puude raskusaste ja rehabilitatsiooniplaan. Taotleja ja laps peavad olema Järva valla elanikud. Hooldajal ei tohi olla täiskohaga töösuhet.",
+      "application": {
+        "channels": [
+          "kirjalik",
+          ""
+        ],
+        "steps": "Esita vallavalitsusele avaldus koos lapse puude raskusastme otsuse, rehabilitatsiooniplaani ja hooldamise vajadust tõendavate dokumentidega. Vallavalitsus kontrollib tingimuste täitmist ja määrab toetuse.",
+        "deadline": null
+      },
+      "amount": {
+        "amount": "75 €/kuus (osaline hooldus); 100 €/kuus (pidev hooldus)"
+      },
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaaltoetused",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_benefit_puudega_lapse_hooldajatoetus",
+      "document_id": "jarva_vald_benefit_puudega_lapse_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaaltoetused",
+      "content_hash": "b49234e66855b4d5247c43bb74bc4973fff2a64039545c2c091809a361db4f85",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "canonical_item_id": "jarva_vald:benefit:taisealise_isiku_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Täisealise isiku hooldajatoetus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldajatoetus makstakse hooldajale, kellel on vallavalitsuse poolt määratud hooldus täisealise puudega isiku üle. Toetuse eesmärk on hüvitada osaliselt hooldaja sissetuleku kadu. Toetuse suurus on 52,50 € kuus osalise hooldusvajaduse korral ja 70 € kuus, kui isik vajab pidevat hooldust.",
+      "targetGroup": "Hooldajad, kelle hooldusõigus on kinnitatud vallavalitsuse otsusega ja kes hooldavad täisealist puudega inimest.",
+      "conditions": "Toetuse saamiseks peab hooldus olema vallavalitsuse poolt määratud. Hooldaja ei tohi olla täiskohaga töö- või õppesuhtega. Avaldus tuleb esitada koos hooldamist ja puuet tõendavate dokumentidega.",
+      "application": {
+        "channels": [
+          "kirjalik",
+          ""
+        ],
+        "steps": "Esita avaldus vallavalitsusele, lisades hooldusvajaduse hindamisakt ja hooldamise määramist tõendavad dokumendid. Vallavalitsus kontrollib tingimusi ja määrab toetuse.",
+        "deadline": null
+      },
+      "amount": {
+        "amount": "52,50 €/kuus (osaline hooldus); 70 €/kuus (pidev hooldus)"
+      },
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaaltoetused",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "document_id": "jarva_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaaltoetused",
+      "content_hash": "bb4c97ded0080b86d71f01472399aa8e27be09e8b43156c7b64663f13362f47b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_benefit_eluruumi_kohandamise_toetus",
+      "canonical_item_id": "jarva_vald:benefit:eluruumi_kohandamise_toetus",
+      "itemType": "benefit",
+      "title": "Puudega isiku eluruumi kohandamise toetus",
+      "status": "active",
+      "summary": "Puudega isiku eluruumi kohandamise toetus on mõeldud kodu ümberkujundamiseks, et parandada puudega inimese iseseisvat toimetulekut. Toetuse raames hüvitatakse kuni 50 % eluruumi kohandamise kuludest, ent mitte rohkem kui 1700 eurot projekti kohta. Kohandamistöödeks võivad olla näiteks kaldtee ehitus, ligipääsetavaks muutmine, hügieeniruumide kohandamine või köögiseadmete ümberpaigutamine.",
+      "targetGroup": "Järva valla elanikud, kellel on püsiv funktsioonihäire ning kelle elukeskkond vajab kohandamist.",
+      "conditions": "Toetuse saamiseks peab taotlejal olema keskmine või raske puude raskusaste ning taotlusele tuleb lisada arstitõend, rehabilitatsiooniplaan ja tööde eelarve. Vallavalitsus hindab taotlusi ja otsustab toetuse suuruse.",
+      "application": {
+        "channels": [
+          "kirjalik",
+          ""
+        ],
+        "steps": "Esita vallavalitsusele avaldus koos puude raskusastme otsuse, rehabilitatsiooniplaani, tööde eelarve ja ehituse kirjeldusega. Sotsiaaltöötajad külastavad taotleja kodu, koostavad kohandamisprojekti ja esitavad taotluse sotsiaaltoetuste komisjonile otsustamiseks.",
+        "deadline": null
+      },
+      "amount": {
+        "amount": "Toetuse määr 50 % kuludest (kuni 1700 €)"
+      },
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaaltoetused",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_benefit_eluruumi_kohandamise_toetus",
+      "document_id": "jarva_vald_benefit_eluruumi_kohandamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaaltoetused",
+      "content_hash": "68ceaceee26cc1fa2ea1d4899562ae1b89426b3347ab15c074cd4f19f213fd22",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "jarva_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on riiklik sotsiaaltoetus, mida vald maksab peredele ja üksikisikutele, kelle kuukaupne sissetulek ei ületa kehtivaid toimetulekupiire. Alates 1. jaanuarist 2026 on toimetulekupiir 220 € esimese täisealise pere­liikme kohta, 176 € teise täisealise pere­liikme kohta ja 264 € lapse kohta. Taotlus tuleb esitada hiljemalt kuu viimase tööpäevani; toetust makstakse järgmise kuu algul.",
+      "targetGroup": "Pered ja üksikisikud, kelle kuu sissetulek pärast eluasemekulude mahaarvamist on alla kehtiva toimetulekupiiri.",
+      "conditions": "Taotleja peab olema Järva valla elanik ja esitama koos taotlusega dokumendid, mis tõendavad kõigi pereliikmete sissetulekuid ja eluasemekulusid. Toetuse suurus arvutatakse riiklikult kehtestatud valemi alusel.",
+      "application": {
+        "channels": [
+          "kirjalik",
+          ""
+        ],
+        "steps": "Esita vallavalitsusele avaldus hiljemalt kuu viimase tööpäevani ning lisa tõendid sissetulekute ja eluasemekulude kohta. Sotsiaalosakond kontrollib andmeid ja teeb otsuse toetuse määramise kohta. Toetus makstakse järgmise kuu alguses.",
+        "deadline": "Avaldus tuleb esitada hiljemalt jooksva kuu viimase tööpäevani"
+      },
+      "amount": {
+        "amount": "Sõltub pere sissetulekust ja riiklikust toimetulekupiirist (nt 220 €/esimene täisealine, 176 €/teine täisealine, 264 €/laps)"
+      },
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaaltoetused",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_benefit_toimetulekutoetus",
+      "document_id": "jarva_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaaltoetused",
+      "content_hash": "6f90814ddfd75d2572d5188acdecd873ee8cc645b7ec05e4fc652029786f5119",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_resource_ahula_sotsiaalkeskus",
+      "canonical_item_id": "jarva_vald:resource:ahula_sotsiaalkeskus",
+      "itemType": "resource",
+      "title": "Ahula Sotsiaalkeskus",
+      "status": "active",
+      "summary": "Ahula Sotsiaalkeskus on Järva Vallavalitsuse hallatav hoolekandeasutus Ahula külas. Keskus pakub eakatele ja hooldust vajavatele inimestele hooldusteenuseid, sealhulgas majutust ja toitlustust. Keskuse juhataja on Aive Kukk ning keskuse kontaktandmed on ja e‑post. Asutus allub valla sotsiaalosakonnale.",
+      "name": "Ahula Sotsiaalkeskus",
+      "role": "hoolekandeasutus",
+      "address": "Ahula küla, Järva vald, 73401 Järvamaa",
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/hoolekandeasutused",
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_resource_ahula_sotsiaalkeskus",
+      "document_id": "jarva_vald_resource_ahula_sotsiaalkeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/hoolekandeasutused",
+      "content_hash": "eb99b7f561cde7bed745e2a54a537d08e879ba738c6e1be538b1c811cdfc6c6e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_resource_ahula_pansionaat",
+      "canonical_item_id": "jarva_vald:resource:ahula_pansionaat",
+      "itemType": "resource",
+      "title": "Ahula Pansionaat",
+      "status": "active",
+      "summary": "Ahula Pansionaat on Järva valla veebis loetletud hooldekodu, mis pakub eakatele ja erihoolekandega inimestele ööpäevaringset hooldusteenust. Tegemist on välise teenusepakkujaga ning lisainfo saamiseks tuleb pöörduda pansionaadi poole.",
+      "name": "Ahula Pansionaat",
+      "role": "hooldekodu",
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/hoolekandeasutused",
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_resource_ahula_pansionaat",
+      "document_id": "jarva_vald_resource_ahula_pansionaat",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/hoolekandeasutused",
+      "content_hash": "e8281776ba3529326591c0c4663fa818dbe9bd438d4d1d4eda34ff00b4fe15c0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_resource_jarva_jaani_hooldekodu",
+      "canonical_item_id": "jarva_vald:resource:jarva_jaani_hooldekodu",
+      "itemType": "resource",
+      "title": "Järva‑Jaani Hooldekodu",
+      "status": "active",
+      "summary": "Järva‑Jaani Hooldekodu on Järva valla kodulehel mainitud hooldekodu, mis pakub hooldusteenuseid eakatele ja erihooldust vajavatele inimestele. See on välise teenusepakkuja hallatav asutus ning lisainfo saamiseks soovitab vald pöörduda hooldekodu enda poole.",
+      "name": "Järva‑Jaani Hooldekodu",
+      "role": "hooldekodu",
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/hoolekandeasutused",
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_resource_jarva_jaani_hooldekodu",
+      "document_id": "jarva_vald_resource_jarva_jaani_hooldekodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/hoolekandeasutused",
+      "content_hash": "80f87f86d291841e0930314b97d0c1b4377dc9774207a47bdb0d3b227442145c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_resource_koeru_hooldekeskus",
+      "canonical_item_id": "jarva_vald:resource:koeru_hooldekeskus",
+      "itemType": "resource",
+      "title": "Koeru Hooldekeskus",
+      "status": "active",
+      "summary": "Koeru Hooldekeskus on Järva valla loetelus nimetatud hooldekodu, mis pakub hoolduse ja majutuse teenuseid eakatele ning puudega inimestele. Tegemist on välise teenusepakkujaga ning vajalikku infot teenuste ja vabade kohtade kohta tuleb küsida Koeru hooldekeskusest.",
+      "name": "Koeru Hooldekeskus",
+      "role": "hooldekeskus",
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/hoolekandeasutused",
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_resource_koeru_hooldekeskus",
+      "document_id": "jarva_vald_resource_koeru_hooldekeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/hoolekandeasutused",
+      "content_hash": "915aa2ce370833f7c3d0f1eb40aa6ff0f99860427b37eefb1df257116d2147f6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_resource_villa_alfred_peetri",
+      "canonical_item_id": "jarva_vald:resource:villa_alfred_peetri",
+      "itemType": "resource",
+      "title": "Villa Alfred Peetri",
+      "status": "active",
+      "summary": "Villa Alfred Peetri on Järva valla veebis nimetatud hooldekodu. Asutus pakub eakatele ja erihooldusega inimestele ööpäevaringset hooldusteenust. Kuna tegemist on välise teenusepakkujaga, tuleb täpse teenuseinfo saamiseks pöörduda Villa Alfred Peetri poole.",
+      "name": "Villa Alfred Peetri",
+      "role": "hooldekodu",
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/hoolekandeasutused",
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_resource_villa_alfred_peetri",
+      "document_id": "jarva_vald_resource_villa_alfred_peetri",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/hoolekandeasutused",
+      "content_hash": "f7b1f618b5fa28e39d6f8209a681f39a24e95bc8bb329e726afb92a6a54a994a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_resource_imavere_paevakeskus",
+      "canonical_item_id": "jarva_vald:resource:imavere_paevakeskus",
+      "itemType": "resource",
+      "title": "Imavere Päevakeskus",
+      "status": "active",
+      "summary": "Imavere Päevakeskus on Järva valla hallatav päevakeskus, mis pakub eakatele ja puuetega inimestele päevahoidu ja erinevaid tegevusi. Keskuse teenuste hulka kuuluvad pesu pesemine, hügieeniteenused, ajalehtede lugemise ja arvuti kasutamise võimalus, nõustamine ja huvitegevused. Päevakeskus pakub ka erihoolekande teenuseid – igapäevaelu toetamise ja toetatud elamise teenust – ning vajadusel isikliku abistaja ja tugiisiku teenust. Asukoht on Viljandi mnt 11, Imavere küla, Järva vald ning kontaktiks on juhataja Sirje Teas ( e‑post ).",
+      "name": "Imavere Päevakeskus",
+      "role": "päevakeskus",
+      "address": "Viljandi mnt 11, Imavere küla, Järva vald, 72401 Järvamaa",
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/paevakeskused",
+      "sourceKeys": [
+        "paevakeskused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "paevakeskused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_resource_imavere_paevakeskus",
+      "document_id": "jarva_vald_resource_imavere_paevakeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/paevakeskused",
+      "content_hash": "7c1a0bcf1011506e3c7987ecb0134eeb3c7fe02a761540d5b744a65231eb2df7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_resource_mtu_jaanilaia",
+      "canonical_item_id": "jarva_vald:resource:mtu_jaanilaia",
+      "itemType": "resource",
+      "title": "MTÜ Jaanilaia",
+      "status": "active",
+      "summary": "MTÜ Jaanilaia on Järva vallavalitsusega koostöölepingus olev mittetulundusühing, mis pakub erihoolekande teenuseid. Keskuses saavad kuni kümme klienti igapäevaelu toetamise teenust, mille eesmärgiks on arendada klientide toimetuleku- ja tööoskusi ning nõustada nende lähedasi. Jaanilaias pakutakse tegevusi eakatele, puuetega inimestele, töötutele, vähekindlustatud peredele ja lastele. Kontakt: juhatuse esimees Ines Kurvits, asukoht Lai 18, Järva‑Jaani alev.",
+      "name": "MTÜ Jaanilaia",
+      "role": "erihoolekandeteenuse pakkuja",
+      "address": "Lai 18, Järva‑Jaani alev, Järva vald, 73301 Järvamaa",
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/paevakeskused",
+      "sourceKeys": [
+        "paevakeskused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "paevakeskused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_resource_mtu_jaanilaia",
+      "document_id": "jarva_vald_resource_mtu_jaanilaia",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/paevakeskused",
+      "content_hash": "04920568ab198b55a4ce266a7959f09c261bccabd5f746d4d5471466cc0c18fa",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_resource_mtu_meie",
+      "canonical_item_id": "jarva_vald:resource:mtu_meie",
+      "itemType": "resource",
+      "title": "MTÜ Meie",
+      "status": "active",
+      "summary": "MTÜ Meie on Ambla asulas tegutsev mittetulundusühing, mis pakub erihoolekande teenuseid Järva valla suunamisel. Teenused hõlmavad igapäevaelu toetamise, toetatud elamise ja töötamise toetamise teenuseid. Organisatsiooni juures on meeskond, kuhu kuuluvad juhatuse esimees Malle Innos (või ), sotsiaaltöötaja Signe Kutsar ja tegevusjuhendaja Terje Rosar. MTÜ Meie korraldab ka kogukonna teabepäevi ja üritusi ning pakub tasulisi teenuseid nagu pesumasina, dušši ja massaažitooli kasutamine.",
+      "name": "MTÜ Meie",
+      "role": "erihoolekandeteenuse pakkuja",
+      "address": "Pikk 15, Ambla, Järva vald, Järvamaa",
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/paevakeskused",
+      "sourceKeys": [
+        "paevakeskused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "paevakeskused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_resource_mtu_meie",
+      "document_id": "jarva_vald_resource_mtu_meie",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/paevakeskused",
+      "content_hash": "94dbe94b97338e4091adf066773b1c78a6fd9fc38dddb881509c8175cd7eeb0c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_resource_medi_hairenuputeenus",
+      "canonical_item_id": "jarva_vald:resource:medi_hairenuputeenus",
+      "itemType": "resource",
+      "title": "MEDI häirenuputeenus",
+      "status": "active",
+      "summary": "MEDI häirenuputeenus on abiteenus, mis võimaldab kodus viibival inimesel õnnetuse või terviserikke korral ühe nupuvajutusega kutsuda abi. Teenuse kasutaja kannab häirenuppu, mis on ühendatud käed-vabad hoolekandetelefoniga. Nupule vajutades luuakse ühendus MEDI abikeskuse operaatoriga, kes teavitab lähedasi või vajadusel kutsub kohale kiirabi, päästeameti või politsei. Seadmeid saab osta või rentida ning kõnesid teenindatakse ööpäevaringselt eesti, vene ja inglise keeles. Lisainfo: MEDI nõuandeliin",
+      "name": "MEDI häirenuputeenus",
+      "role": "kriisiabi ja tugiteenus",
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/medi-hairenuputeenus",
+      "sourceKeys": [
+        "medi_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "medi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_resource_medi_hairenuputeenus",
+      "document_id": "jarva_vald_resource_medi_hairenuputeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/medi-hairenuputeenus",
+      "content_hash": "a626f32fa8795924b238b1e28a4b731ef914f97dda90211e877ca3187de65219",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_contact_sotsiaalosakond",
+      "canonical_item_id": "jarva_vald:contact:sotsiaalosakond",
+      "itemType": "contact",
+      "title": "Järva valla sotsiaalosakond",
+      "status": "active",
+      "name": "Järva valla sotsiaalosakond",
+      "role": "üldkontakt",
+      "department": "Sotsiaalosakond",
+      "address": "Pikk 56, Järva-Jaani alev, 73301 Järva maakond",
+      "officialUrl": "https://jarvavald.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "sourceKeys": [
+        "general_contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "general_contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_contact_sotsiaalosakond",
+      "document_id": "jarva_vald_contact_sotsiaalosakond",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "content_hash": "38833d40683c2b4c422ec37a2d266b447bdb509203ec21805e4f2ab38613bcfa",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_form_eluruumi_tagamise_teenuse_blankett",
+      "canonical_item_id": "jarva_vald:form:eluruumi_tagamise_teenuse_blankett",
+      "itemType": "form",
+      "title": "Eluruumi tagamise teenuse blankett",
+      "status": "active",
+      "format": "application_form",
+      "submissionChannels": [
+        "kirjalik",
+        ""
+      ],
+      "relatedTo": [
+        "jarva_vald_service_eluruumi_tagamise_teenus"
+      ],
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalhoolekande-e-taotlused-ja-blanketid",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "item_type": "form",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_form_eluruumi_tagamise_teenuse_blankett",
+      "document_id": "jarva_vald_form_eluruumi_tagamise_teenuse_blankett",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalhoolekande-e-taotlused-ja-blanketid",
+      "content_hash": "e0f220a6cb0aca8999f87be6bbcd14ca787046254ccb9de175ea8b502502bccf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_form_uldhooldusteenuse_blankett",
+      "canonical_item_id": "jarva_vald:form:uldhooldusteenuse_blankett",
+      "itemType": "form",
+      "title": "Väljaspool kodu osutatava üldhooldusteenuse blankett",
+      "status": "active",
+      "format": "application_form",
+      "submissionChannels": [
+        "kirjalik",
+        ""
+      ],
+      "relatedTo": [],
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalhoolekande-e-taotlused-ja-blanketid",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "item_type": "form",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_form_uldhooldusteenuse_blankett",
+      "document_id": "jarva_vald_form_uldhooldusteenuse_blankett",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalhoolekande-e-taotlused-ja-blanketid",
+      "content_hash": "bb6693a48117cba2967f1aa5b58fc771478f55d363f8686d1fd05d6a0d078e90",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_form_taisealise_isiku_hooldusteenuse_blankett",
+      "canonical_item_id": "jarva_vald:form:taisealise_isiku_hooldusteenuse_blankett",
+      "itemType": "form",
+      "title": "Täisealise isiku hooldusteenuse blankett",
+      "status": "active",
+      "format": "application_form",
+      "submissionChannels": [
+        "kirjalik",
+        ""
+      ],
+      "relatedTo": [
+        "jarva_vald_service_taisealise_isiku_hooldus"
+      ],
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalhoolekande-e-taotlused-ja-blanketid",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "item_type": "form",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_form_taisealise_isiku_hooldusteenuse_blankett",
+      "document_id": "jarva_vald_form_taisealise_isiku_hooldusteenuse_blankett",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalhoolekande-e-taotlused-ja-blanketid",
+      "content_hash": "ec8a83cfa1956f7174661999cc2f27b6f7f068e649e9d63b4028f3d64bad49e1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_form_taisealise_isiku_hooldajatoetuse_blankett",
+      "canonical_item_id": "jarva_vald:form:taisealise_isiku_hooldajatoetuse_blankett",
+      "itemType": "form",
+      "title": "Täisealise isiku hooldajatoetuse blankett",
+      "status": "active",
+      "format": "application_form",
+      "submissionChannels": [
+        "kirjalik",
+        ""
+      ],
+      "relatedTo": [
+        "jarva_vald_benefit_taisealise_isiku_hooldajatoetus"
+      ],
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalhoolekande-e-taotlused-ja-blanketid",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "item_type": "form",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_form_taisealise_isiku_hooldajatoetuse_blankett",
+      "document_id": "jarva_vald_form_taisealise_isiku_hooldajatoetuse_blankett",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalhoolekande-e-taotlused-ja-blanketid",
+      "content_hash": "ba7083a33c543598d9e26ee471e73c4c8333ee81d8b8b335d209197a89805bb6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_form_lapsele_sotsiaalteenuse_blankett",
+      "canonical_item_id": "jarva_vald:form:lapsele_sotsiaalteenuse_blankett",
+      "itemType": "form",
+      "title": "Lapsele sotsiaalteenuse saamise blankett",
+      "status": "active",
+      "format": "application_form",
+      "submissionChannels": [
+        "kirjalik",
+        ""
+      ],
+      "relatedTo": [],
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalhoolekande-e-taotlused-ja-blanketid",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "item_type": "form",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_form_lapsele_sotsiaalteenuse_blankett",
+      "document_id": "jarva_vald_form_lapsele_sotsiaalteenuse_blankett",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalhoolekande-e-taotlused-ja-blanketid",
+      "content_hash": "b48824b8ba75bcf3a69ae4a9c444833af04fbfc80838e530d92aa2e00e0e033d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_form_puudega_lapse_teenuse_blankett",
+      "canonical_item_id": "jarva_vald:form:puudega_lapse_teenuse_blankett",
+      "itemType": "form",
+      "title": "Puudega lapsele teenuse osutamise blankett",
+      "status": "active",
+      "format": "application_form",
+      "submissionChannels": [
+        "kirjalik",
+        ""
+      ],
+      "relatedTo": [],
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalhoolekande-e-taotlused-ja-blanketid",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "item_type": "form",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_form_puudega_lapse_teenuse_blankett",
+      "document_id": "jarva_vald_form_puudega_lapse_teenuse_blankett",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalhoolekande-e-taotlused-ja-blanketid",
+      "content_hash": "14eddd2066e6346b80717f8c3293434e56fa78969cccb26af19ce37b65f5437f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_form_puudega_lapse_hooldajatoetuse_blankett",
+      "canonical_item_id": "jarva_vald:form:puudega_lapse_hooldajatoetuse_blankett",
+      "itemType": "form",
+      "title": "Puudega lapse hooldajatoetuse blankett",
+      "status": "active",
+      "format": "application_form",
+      "submissionChannels": [
+        "kirjalik",
+        ""
+      ],
+      "relatedTo": [
+        "jarva_vald_benefit_puudega_lapse_hooldajatoetus"
+      ],
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalhoolekande-e-taotlused-ja-blanketid",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "item_type": "form",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_form_puudega_lapse_hooldajatoetuse_blankett",
+      "document_id": "jarva_vald_form_puudega_lapse_hooldajatoetuse_blankett",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalhoolekande-e-taotlused-ja-blanketid",
+      "content_hash": "06c22f95efad2b73931e588ac1b516a08a5d24f5f7d373fc6392b71d2c2fd861",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jarva_vald_form_sotsiaaltoetuse_avaldus",
+      "canonical_item_id": "jarva_vald:form:sotsiaaltoetuse_avaldus",
+      "itemType": "form",
+      "title": "Sotsiaaltoetuse avaldus",
+      "status": "active",
+      "format": "application_form",
+      "submissionChannels": [
+        "kirjalik",
+        ""
+      ],
+      "relatedTo": [],
+      "officialUrl": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalhoolekande-e-taotlused-ja-blanketid",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "item_type": "form",
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jarva_vald_form_sotsiaaltoetuse_avaldus",
+      "document_id": "jarva_vald_form_sotsiaaltoetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://jarvavald.ee/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-hoolekanne/sotsiaalhoolekande-e-taotlused-ja-blanketid",
+      "content_hash": "d2704cac0afa9ba4008ec806f6027e6e1a9c59806cfd78c3e0ada3a406b35517",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Järva vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

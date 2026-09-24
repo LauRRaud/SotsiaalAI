@@ -1,0 +1,82 @@
+{
+  "docId": "sotsiaaltoo-1-2016",
+  "articleId": "sotsiaaltoo-1-2016-artikkel-09-erihoolekande-taristu-arendamine",
+  "title": "Erihoolekande taristu arendamine",
+  "authors": [
+    "Marek Atonen"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2016",
+  "section": "Deinstitutsionaliseerimine",
+  "pageRange": "23-25",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi peaspetsialist teatab, et aastatel 2007–2013 reorganiseeriti Euroopa Regionaalarengu Fondi toel kuus suurt erihooldekodu ja nende asemele loodi 55 peremaja vähemalt 550 inimesele. Perioodil 2014–2020 on meetme „Erihoolekandeasutuste reorganiseerimine” ERFi raha üle kahe korra suurem – 47,6 miljonit eurot varasema 22,9 miljoni asemel – ja kavas on luua 1400 teenuskohta keskmise maksumusega 40 000 eurot. Toetatakse üle 30 kohaga asutuste ümberkujundamist kuni 30kohalisteks teenuseüksusteks, mis jagunevad kuni 10liikmelisteks peresarnasteks gruppideks. Toetuse saaja seob end 20 aastaks teenuskohti sihipäraselt kasutama.",
+  "tags": [
+    "erihoolekanne",
+    "deinstitutsionaliseerimine",
+    "euroopa regionaalarengu fond",
+    "teenuskohad",
+    "peremajad",
+    "investeeringute kava"
+  ],
+  "source_type": "file",
+  "source_path": "2016_1_artikkel_09_erihoolekande_taristu_arendamine.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-09-erihoolekande-taristu-arendamine",
+  "source_sha256": "c41afd3d6765edf1c26d81bafb91ba212bd4455423b3a980edf4113e935187a4",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-09-erihoolekande-taristu-arendamine",
+    "previous_source_path": "2016_1_artikkel_09_erihoolekande_taristu_arendamine.txt",
+    "previous_source_original_path": "1-2016.pdf",
+    "reference_stored_source_sha256": "75f48226954ff3d4e5ca08f20b07b84b880e643a800075e6206ecb17eea0a89f",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf",
+      "source_sha256": "2c193295e54f58982562b509b6283e93aa58b1695464671e1768e24e90888a6c",
+      "pdf_start_page": 25,
+      "pdf_end_page": 27,
+      "printed_page_range": "23-26",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 28,
+      "source_regions": [
+        {
+          "source_pdf_page": 25,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 26,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 27,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "23-25",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf"
+    },
+    "server_page_range": "23-26"
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "docId": "sotsiaaltoo-eri-2022",
+  "articleId": "karmen-toros-intervjuu-2022-eri",
+  "title": "Karmen Toros: „Sotsiaaltöö eriala püsib tugevana ja areneb”",
+  "authors": [
+    "Regina Lind",
+    "Kairiin Nuudi"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö (erinumber)",
+  "issueLabel": "Eri/2022",
+  "section": "30 aastat õpetamist",
+  "pageRange": "38-43",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Intervjuu ühiskonnateaduste instituudi sotsiaalkaitsesuuna juhi Karmen Torosega, kes astus Tallinna Ülikooli 1998. aastal ja on veendunud, et eriala käib kaasas ühiskonna muutuvate nõudmistega. Kirjeldab õppimisvõimaluste paindlikkust ning huvi laste ja perede heaolu vastu, mis tekkis lastekaitset käsitlevaid raamatuid lugedes.",
+  "tags": [
+    "sotsiaaltööharidus",
+    "Tallinna Ülikool",
+    "lastekaitse",
+    "õppekava areng",
+    "intervjuu"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo-ERINUMBER_2022_Part6.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-eri-2022-karmen-toros-intervjuu-2022-eri",
+  "source_sha256": "db271d3007eabb7e42df96bd9233ea1eeeb30a1ddccf6c77459f6a0f12f6d377",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2022-karmen-toros-intervjuu-2022-eri",
+    "previous_source_path": "Sotsiaaltoo-ERINUMBER_2022_Part6.txt",
+    "previous_source_original_path": "Sotsiaaltoo-ERINUMBER_2022_Part6.pdf",
+    "reference_stored_source_sha256": "6b260010989c8041fdf038e8e13fa82f4070bd451703bc6ea59c47ba8bec0a0c",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo-ERINUMBER_2022.pdf",
+      "source_sha256": "807b48240fe049838a94b8cffd3e1b388f778591bddb0ad5cb542d3cd6ff73b1",
+      "pdf_start_page": 40,
+      "pdf_end_page": 45,
+      "printed_page_range": "38-43",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 45,
+      "source_regions": [
+        {
+          "source_pdf_page": 40,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 41,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 42,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 43,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 44,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 45,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "38-43"
+    },
+    "server_page_range": "38-43"
+  }
+}

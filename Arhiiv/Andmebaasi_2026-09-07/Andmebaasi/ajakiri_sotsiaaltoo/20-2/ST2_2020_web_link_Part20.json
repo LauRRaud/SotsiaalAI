@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2020",
+  "articleId": "sotsiaalne-transport-eestis-uhiskondliku-ja-eraelu-sidujana-2020-2",
+  "title": "Sotsiaalne transport Eestis ühiskondliku ja eraelu sidujana",
+  "authors": [
+    "Jüri Kõre"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2020",
+  "section": "Uurimus",
+  "pageRange": "68-78",
+  "pdf_start_page": 1,
+  "pdf_end_page": 11,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel analüüsib sotsiaaltransporditeenuse korraldust Eesti kohalikes omavalitsustes ning võrdleb kasutatavaid mudeleid, kulusid ja sihtrühmi. Uurimus toob välja teenuse tugevused, kitsaskohad ja võimalikud arengusuunad, et parandada ligipääsu avalikele teenustele ja igapäevaelule.",
+  "tags": [
+    "sotsiaaltransport",
+    "kohalik omavalitsus",
+    "ligipaasetavus",
+    "puuetega inimesed",
+    "teenusekorraldus",
+    "uurimus"
+  ],
+  "source_type": "file",
+  "source_path": "ST2_2020_web_link_Part20.pdf",
+  "document_id": "sotsiaaltoo-2-2020-sotsiaalne-transport-eestis-uhiskondliku-ja-eraelu-sidujana-2020-2",
+  "source_format": "pdf",
+  "source_sha256": "0b23fcc82ac272f3593b028b40c2ea26db35c29981bb20fd0dd8188911cafbe8",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2020-sotsiaalne-transport-eestis-uhiskondliku-ja-eraelu-sidujana-2020-2",
+    "previous_source_path": "ST2_2020_web_link_Part20.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "0b23fcc82ac272f3593b028b40c2ea26db35c29981bb20fd0dd8188911cafbe8",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

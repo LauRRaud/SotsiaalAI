@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-1-2019",
+  "articleId": "sotsiaalkaitse-uue-aasta-valjakutsed-ja-tulevik-valimiste-valguses-2019",
+  "title": "Sotsiaalkaitse uue aasta väljakutsed ja tulevik valimiste valguses",
+  "authors": [
+    "Rait Kuuse"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2019",
+  "section": "Sotsiaalpoliitika",
+  "pageRange": "8-13",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Analüüs sotsiaalkaitsepoliitika võtmeteemadest uuel aastal ja valimislubaduste võimalikust mõjust: pensionid, toimetulekutoetus, puuetega inimeste õigused, perepoliitika ja vaesuse vähendamine.",
+  "tags": [
+    "sotsiaalkaitse",
+    "sotsiaalpoliitika",
+    "valimislubadused",
+    "pensionid",
+    "toimetulekutoetus",
+    "puuetega inimesed",
+    "vaesuse vähendamine",
+    "sotsiaalteenuste rahastamine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part4.pdf",
+  "document_id": "sotsiaaltoo-1-2019-sotsiaalkaitse-uue-aasta-valjakutsed-ja-tulevik-valimiste-valguses-2019",
+  "source_format": "pdf",
+  "source_sha256": "d13dec33fa2c109ae4a725fab58a0e24ad5b3954357ed0ae2d59446b692c4c6c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2019-sotsiaalkaitse-uue-aasta-valjakutsed-ja-tulevik-valimiste-valguses-2019",
+    "previous_source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part4.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d13dec33fa2c109ae4a725fab58a0e24ad5b3954357ed0ae2d59446b692c4c6c",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

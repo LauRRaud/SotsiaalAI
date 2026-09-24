@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2020",
+  "articleId": "taastavast-oigusest-praktikuilt-praktikutele-2020-4",
+  "title": "Taastavast õigusest praktikuilt praktikutele",
+  "authors": [
+    "Krista Klaus"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2020",
+  "section": "Hea praktika",
+  "pageRange": "61-64",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Praktiline ülevaade sellest, kuidas politsei ja teised spetsialistid saavad oma töös kasutada taastava õiguse põhimõtteid. Artikkel kirjeldab juhtumikorraldust alaealiste õigusrikkujate, perede ja kogukondlike konfliktide puhul, tuues näiteid konfliktivahendusest, kahju heastamisest ja ühisest vastutuse võtmisest. Rõhutatakse suhtumise muutmise, oskusteabe ja väljaõppe vajadust, et taastav õigus oleks tõhusaks alternatiiviks karistuskesksele lähenemisele.",
+  "tags": [
+    "taastav õigus",
+    "konfliktivahendus",
+    "alaealised õigusrikkujad",
+    "politsei töö",
+    "hea praktika",
+    "kogukonnatöö",
+    "kahju heastamine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2020_web_link_Part12.pdf",
+  "document_id": "sotsiaaltoo-4-2020-taastavast-oigusest-praktikuilt-praktikutele-2020-4",
+  "source_format": "pdf",
+  "source_sha256": "2ed3883d109dc5d802746a56a06a5abdb02aed22fcc9d74ceea2951bb54a4b43",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2020-taastavast-oigusest-praktikuilt-praktikutele-2020-4",
+    "previous_source_path": "Sotsiaaltoo_4_2020_web_link_Part12.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "2ed3883d109dc5d802746a56a06a5abdb02aed22fcc9d74ceea2951bb54a4b43",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2023",
+  "articleId": "volanoustamise-kaks-kliendilugu-2023-3",
+  "title": "Võlanõustamise kaks kliendilugu",
+  "authors": [
+    "Anna-Liisa Arukask",
+    "Evelyn Eichhorst"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2023",
+  "section": "Sotsiaalteenus",
+  "pageRange": "51-53",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artiklis tuuakse välja kaks konkreetset võlanõustamise juhtumit, mis illustreerivad, kuidas pikaajaliselt\nkuhjunud võlgnevused mõjutavad inimese ja tema lähedaste toimetulekut ning millist rolli mängib professionaalne\nvõlanõustamine lahenduste leidmisel. Esimeses loos otsitakse lahendust keerukale maksegraafikule ning\narvestatakse inimese tegeliku sissetulekuga, et vältida eluaseme kaotust ja uute võlgade tekkimist. Teises loos\nkeskendutakse pikalt vindunud nõuetele, mille taustaks on vanad lepingud ja kindlustusjuhtum, ning otsitakse\nvõimalusi nõuete vähendamiseks ja ajatamiseks. Mõlemad lood näitavad, kui oluline on varane sekkumine,\nvõlanõustaja usalduslik suhe kliendiga, õigusalane pädevus ning inimkeskne ja hinnanguvaba suhtumine.",
+  "tags": [
+    "võlanõustamine",
+    "kliendilood",
+    "rahaline toimetulek",
+    "maksegraafik",
+    "nõuete vähendamine",
+    "MTÜ Pesapuu",
+    "sotsiaalteenus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2023_web_Part12.pdf",
+  "document_id": "sotsiaaltoo-3-2023-volanoustamise-kaks-kliendilugu-2023-3",
+  "source_format": "pdf",
+  "source_sha256": "932cedd02263f980fb33898e687f8b39cc5871d5809a58a0db6b42cff89b00f4",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2023-volanoustamise-kaks-kliendilugu-2023-3",
+    "previous_source_path": "Sotsiaaltoo_3_2023_web_Part12.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "932cedd02263f980fb33898e687f8b39cc5871d5809a58a0db6b42cff89b00f4",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

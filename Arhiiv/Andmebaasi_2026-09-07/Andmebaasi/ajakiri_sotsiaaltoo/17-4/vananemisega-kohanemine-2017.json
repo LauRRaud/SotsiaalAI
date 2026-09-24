@@ -1,0 +1,36 @@
+{
+  "docId": "sotsiaaltoo-4-2017",
+  "articleId": "vananemisega-kohanemine-2017",
+  "title": "Mis mõjutab vanemisega kohanemist?",
+  "authors": [
+    "Felika Tuul"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2017",
+  "section": "Gerontoloogia",
+  "pageRange": "61-64",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade teguritest, mis mõjutavad vanemisega kohanemist.",
+  "tags": [
+    "vananemine",
+    "gerontoloogia"
+  ],
+  "source_type": "file",
+  "source_path": "Mis mõjutab vanemisega kohanemist_.pdf",
+  "document_id": "sotsiaaltoo-4-2017-vananemisega-kohanemine-2017",
+  "source_format": "pdf",
+  "source_sha256": "7ff0e08069dceb0a4affab548ef7f445665659024c745b221257d497da4579cb",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2017-vananemisega-kohanemine-2017",
+    "previous_source_path": "Mis mõjutab vanemisega kohanemist_.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "7ff0e08069dceb0a4affab548ef7f445665659024c745b221257d497da4579cb",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

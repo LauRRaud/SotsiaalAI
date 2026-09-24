@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2021",
+  "articleId": "areng-tootajate-toetamise-ja-taristu-abil-2021-3",
+  "title": "Areng töötajate toetamise ja taristu abil",
+  "authors": [
+    "Eveli Lilleoja"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2021",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "23-26",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Põhja-Sakala valla sotsiaalosakonna juhataja kirjeldab, kuidas on omavalitsuses arendatud sotsiaalvaldkonna taristut ja töötajate toetamise süsteemi. Artikkel käsitleb uute ja renoveeritud hoonete (nt päevakeskus, hooldekodu, teenusmaja) rolli kogukonnateenuste pakkumisel ning töötajate juhendamist, supervisiooni, täiendkoolitust ja meeskonnakultuuri. Autor analüüsib, kuidas kaasaegne töökeskkond, paindlikud lahendused ja juhtide toetus aitavad vähendada personali voolavust, toetada tööheaolu ja tagada elanikele paremat teenusekvaliteeti. Rõhutatakse, et sotsiaalvaldkonna areng algab inimestest ja nende igapäevasest töökogemusest.",
+  "tags": [
+    "Põhja-Sakala vald",
+    "sotsiaalvaldkonna taristu",
+    "tööheaolu",
+    "supervisioon",
+    "täienduskoolitus",
+    "meeskonnatöö",
+    "hooldekodu",
+    "päevakeskus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2021_web_link_Part8.pdf",
+  "document_id": "sotsiaaltoo-3-2021-areng-tootajate-toetamise-ja-taristu-abil-2021-3",
+  "source_format": "pdf",
+  "source_sha256": "e89c6e13fab1ec9b3f31603b3d2bd4bab8d8a9e5ceb26f8200b4ef1e60481f0e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2021-areng-tootajate-toetamise-ja-taristu-abil-2021-3",
+    "previous_source_path": "Sotsiaaltoo_3_2021_web_link_Part8.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e89c6e13fab1ec9b3f31603b3d2bd4bab8d8a9e5ceb26f8200b4ef1e60481f0e",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

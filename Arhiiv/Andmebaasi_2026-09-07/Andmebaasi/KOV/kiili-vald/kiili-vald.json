@@ -1,0 +1,3734 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-kiili-vald",
+  "document_id": "kov-kiili-vald",
+  "municipality": "Kiili vald",
+  "municipality_id": "kiili_vald",
+  "county": "Harjumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "kiili_vald_contact_ann_vahtramae",
+      "canonical_item_id": "kiili_vald:contact:ann_vahtramae",
+      "itemType": "contact",
+      "title": "Ann Vahtramäe",
+      "status": "active",
+      "summary": "Ann Vahtramäe on Kiili Vallavalitsuse haridus- ja sotsiaalosakonna juhataja. Kontakt on avaldatud Kiili valla sotsiaalhoolekande ja tervishoiu ametnike lehel.",
+      "name": "Ann Vahtramäe",
+      "role": "haridus- ja sotsiaalosakonna juhataja",
+      "department": "Haridus- ja sotsiaalosakond",
+      "address": "Nabala tee 2a, Kiili 75401",
+      "officialUrl": "https://www.kiilivald.ee/sotsiaal-ja-tervishoid/ametnikud",
+      "relatedTo": [],
+      "sourceKeys": [
+        "social_officials"
+      ],
+      "item_type": "contact",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_officials"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_contact_ann_vahtramae",
+      "document_id": "kiili_vald_contact_ann_vahtramae",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/sotsiaal-ja-tervishoid/ametnikud",
+      "content_hash": "6dff4532de22043a656cb0b7956d20b5394f181f2545bc87c256dde7b560cfe6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_contact_karmen_heinmaa",
+      "canonical_item_id": "kiili_vald:contact:karmen_heinmaa",
+      "itemType": "contact",
+      "title": "Karmen Heinmaa",
+      "status": "active",
+      "summary": "Karmen Heinmaa on Kiili Vallavalitsuse laste heaolu spetsialist. Kontakt on avaldatud Kiili valla sotsiaalhoolekande ja tervishoiu ametnike lehel.",
+      "name": "Karmen Heinmaa",
+      "role": "laste heaolu spetsialist",
+      "department": "Haridus- ja sotsiaalosakond",
+      "address": "Nabala tee 2a, Kiili 75401",
+      "officialUrl": "https://www.kiilivald.ee/sotsiaal-ja-tervishoid/ametnikud",
+      "relatedTo": [],
+      "sourceKeys": [
+        "social_officials"
+      ],
+      "item_type": "contact",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_officials"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_contact_karmen_heinmaa",
+      "document_id": "kiili_vald_contact_karmen_heinmaa",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/sotsiaal-ja-tervishoid/ametnikud",
+      "content_hash": "c820bed1dc95ada3fa2b8a623575bff93ec8ceacf4fbe930c31f7aa1d7110724",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_contact_kati_orgmets",
+      "canonical_item_id": "kiili_vald:contact:kati_orgmets",
+      "itemType": "contact",
+      "title": "Kati Orgmets",
+      "status": "active",
+      "summary": "Kati Orgmets on Kiili Vallavalitsuse haridusnõunik. Kontakt on avaldatud Kiili valla sotsiaalhoolekande ja tervishoiu ametnike lehel.",
+      "name": "Kati Orgmets",
+      "role": "haridusnõunik",
+      "department": "Haridus- ja sotsiaalosakond",
+      "address": "Nabala tee 2a, Kiili 75401",
+      "officialUrl": "https://www.kiilivald.ee/sotsiaal-ja-tervishoid/ametnikud",
+      "relatedTo": [],
+      "sourceKeys": [
+        "social_officials"
+      ],
+      "item_type": "contact",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_officials"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_contact_kati_orgmets",
+      "document_id": "kiili_vald_contact_kati_orgmets",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/sotsiaal-ja-tervishoid/ametnikud",
+      "content_hash": "2c1d584e5fda82d3e4860b55002cda9052808fbfb9a06b26795541600c17f938",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_contact_anneli_sternfeld",
+      "canonical_item_id": "kiili_vald:contact:anneli_sternfeld",
+      "itemType": "contact",
+      "title": "Anneli Sternfeld",
+      "status": "active",
+      "summary": "Anneli Sternfeld on Kiili Vallavalitsuse sotsiaalnõunik. Kontakt on avaldatud Kiili valla sotsiaalhoolekande ja tervishoiu ametnike lehel.",
+      "name": "Anneli Sternfeld",
+      "role": "sotsiaalnõunik",
+      "department": "Haridus- ja sotsiaalosakond",
+      "address": "Nabala tee 2a, Kiili 75401",
+      "officialUrl": "https://www.kiilivald.ee/sotsiaal-ja-tervishoid/ametnikud",
+      "relatedTo": [],
+      "sourceKeys": [
+        "social_officials"
+      ],
+      "item_type": "contact",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_officials"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_contact_anneli_sternfeld",
+      "document_id": "kiili_vald_contact_anneli_sternfeld",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/sotsiaal-ja-tervishoid/ametnikud",
+      "content_hash": "56f5843b2ca2ca1d39a742b877ecf1cbf9afebe027ba9be57144e68b374fc7bb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_contact_merili_adamson",
+      "canonical_item_id": "kiili_vald:contact:merili_adamson",
+      "itemType": "contact",
+      "title": "Merili Adamson",
+      "status": "active",
+      "summary": "Merili Adamson on Kiili Vallavalitsuse sotsiaalnõunik. Kontakt on avaldatud Kiili valla sotsiaalhoolekande ja tervishoiu ametnike lehel.",
+      "name": "Merili Adamson",
+      "role": "sotsiaalnõunik",
+      "department": "Haridus- ja sotsiaalosakond",
+      "address": "Nabala tee 2a, Kiili 75401",
+      "officialUrl": "https://www.kiilivald.ee/sotsiaal-ja-tervishoid/ametnikud",
+      "relatedTo": [],
+      "sourceKeys": [
+        "social_officials"
+      ],
+      "item_type": "contact",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_officials"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_contact_merili_adamson",
+      "document_id": "kiili_vald_contact_merili_adamson",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/sotsiaal-ja-tervishoid/ametnikud",
+      "content_hash": "8d48ebe969598e244eee425c26a718ed234a05233c8341efae93d518ba7af792",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_contact_liisa_luts",
+      "canonical_item_id": "kiili_vald:contact:liisa_luts",
+      "itemType": "contact",
+      "title": "Liisa Luts",
+      "status": "active",
+      "summary": "Liisa Luts on Kiili Vallavalitsuse noorte heaolu spetsialist. Kontakt on avaldatud Kiili valla sotsiaalhoolekande ja tervishoiu ametnike lehel.",
+      "name": "Liisa Luts",
+      "role": "noorte heaolu spetsialist",
+      "department": "Haridus- ja sotsiaalosakond",
+      "address": "Nabala tee 2a, Kiili 75401",
+      "officialUrl": "https://www.kiilivald.ee/sotsiaal-ja-tervishoid/ametnikud",
+      "relatedTo": [],
+      "sourceKeys": [
+        "social_officials"
+      ],
+      "item_type": "contact",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_officials"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_contact_liisa_luts",
+      "document_id": "kiili_vald_contact_liisa_luts",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/sotsiaal-ja-tervishoid/ametnikud",
+      "content_hash": "5252edccd89959237d9a3579c933f27a2c1bea530a6af8e5c4a8e78acf1d48a2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_contact_marje_perv",
+      "canonical_item_id": "kiili_vald:contact:marje_perv",
+      "itemType": "contact",
+      "title": "Marje Perv",
+      "status": "active",
+      "summary": "Marje Perv on Kiili Vallavalitsuse sotsiaalhoolekande töötaja. Kontakt on avaldatud Kiili valla sotsiaalhoolekande ja tervishoiu ametnike lehel.",
+      "name": "Marje Perv",
+      "role": "sotsiaalhoolekande töötaja",
+      "department": "Haridus- ja sotsiaalosakond",
+      "address": "Nabala tee 2a, Kiili 75401",
+      "officialUrl": "https://www.kiilivald.ee/sotsiaal-ja-tervishoid/ametnikud",
+      "relatedTo": [],
+      "sourceKeys": [
+        "social_officials"
+      ],
+      "item_type": "contact",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_officials"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_contact_marje_perv",
+      "document_id": "kiili_vald_contact_marje_perv",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/sotsiaal-ja-tervishoid/ametnikud",
+      "content_hash": "2eb53d3f48eb79886549eef9bd542c2519d57d1f467a65ca9fac974297539dd7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_contact_aime_parn",
+      "canonical_item_id": "kiili_vald:contact:aime_parn",
+      "itemType": "contact",
+      "title": "Aime Pärn",
+      "status": "active",
+      "summary": "Aime Pärn on Kiili Vallavalitsuse päevakeskuse juhendaja. Kontakt on avaldatud Kiili valla sotsiaalhoolekande ja tervishoiu ametnike lehel.",
+      "name": "Aime Pärn",
+      "role": "päevakeskuse juhendaja",
+      "department": "Haridus- ja sotsiaalosakond",
+      "address": "Nabala tee 2a, Kiili 75401",
+      "officialUrl": "https://www.kiilivald.ee/sotsiaal-ja-tervishoid/ametnikud",
+      "relatedTo": [],
+      "sourceKeys": [
+        "social_officials"
+      ],
+      "item_type": "contact",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_officials"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_contact_aime_parn",
+      "document_id": "kiili_vald_contact_aime_parn",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/sotsiaal-ja-tervishoid/ametnikud",
+      "content_hash": "b0cf5fd51448fe3ad3e9d26f7d715952d665b475bb0efc1799427fd07b913ce5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_contact_kiili_vallavalitsus",
+      "canonical_item_id": "kiili_vald:contact:kiili_vallavalitsus",
+      "itemType": "contact",
+      "title": "Kiili Vallavalitsus",
+      "status": "active",
+      "summary": "Kiili Vallavalitsus on Kiili Vallavalitsuse üldkontakt. Kontakt on avaldatud Kiili valla sotsiaalhoolekande ja tervishoiu ametnike lehel.",
+      "name": "Kiili Vallavalitsus",
+      "role": "üldkontakt",
+      "department": null,
+      "address": "Nabala tee 2a, Kiili 75401",
+      "officialUrl": "https://www.kiilivald.ee",
+      "relatedTo": [],
+      "sourceKeys": [
+        "home"
+      ],
+      "item_type": "contact",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "home"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_contact_kiili_vallavalitsus",
+      "document_id": "kiili_vald_contact_kiili_vallavalitsus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee",
+      "content_hash": "6ac1119428c4f3df8e8619dae585ac82191e61c0ab273205b87de410a43feb78",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_service_koduteenus",
+      "canonical_item_id": "kiili_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenuse eesmärk on tagada täisealise inimese iseseisev ja turvaline toimetulek kodus. Teenuse sisuks on abi toimingutes, mida inimene terviseseisundi, tegevusvõime või elukeskkonna tõttu ei suuda kõrvalabita teha, näiteks kütmine, toiduvalmistamine, eluruumi ja riiete korrastamine, toiduainete ja majapidamistarvete ostmine ning asjaajamine. Teenuse eest tasutakse vallavalitsuse hinnakirja alusel, kuid teenust võib osutada tasuta, kui teenuse vajaja ja ülalpidajad ei suuda teenuse eest tasuda.",
+      "targetGroup": [
+        "täisealised isikud, kes vajavad koduses keskkonnas kõrvalabi"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "digitaalselt allkirjastatud avaldus e-postiga",
+          "pabertaotlus"
+        ],
+        "steps": [
+          "esita digitaalselt allkirjastatud avaldus aadressile",
+          "ametnik võib küsida täiendavaid abivajadust tõendavaid dokumente"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": {
+        "amount": "vastavalt vallavalitsuse hinnakirjale; tasuta, kui isik ja ülalpidajad ei ole võimelised tasuma",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.kiilivald.ee/sotsiaalteenused/koduteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "kiili_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kiili_vald_contact_ann_vahtramae",
+        "kiili_vald_contact_kiili_vallavalitsus"
+      ],
+      "sourceKeys": [
+        "koduteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "koduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_service_koduteenus",
+      "document_id": "kiili_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/sotsiaalteenused/koduteenus",
+      "content_hash": "84ab677d54811367eb49c417cb8c214c18df8df2267561fa3fe53196e6a2106d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "canonical_item_id": "kiili_vald:service:valjaspool_kodu_osutatav_uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatav üldhooldusteenus tagab täisealisele inimesele turvalise keskkonna ja toimetuleku, kui ta ei suuda terviseseisundi, tegevusvõime või elukeskkonna tõttu kodus iseseisvalt toime tulla. Valla eelarvest tasutakse hoolduskulud kuni 700 eurot kalendrikuus ühe teenusesaaja kohta; teenuse saaja tasub majutus- ja toitlustuskulud ning muud teenuse osutamisega seotud kulud. Kui teenuse saaja sissetulek on keskmisest vanaduspensionist madalam, hüvitab omavalitsus puudujääva osa kuni sissetuleku ja keskmise vanaduspensioni vaheni.",
+      "targetGroup": [
+        "täisealised isikud, kes ei tule kodus ajutiselt või püsivalt toime"
+      ],
+      "conditions": "Teenuse vajaduse selgitab välja vallavalitsus; tasu suuruse hindamisel arvestatakse teenuse saaja ja ülalpidajate majanduslikku olukorda.",
+      "application": {
+        "channels": [
+          "digitaalselt allkirjastatud avaldus e-postiga",
+          "pabertaotlus vallavalitsuses"
+        ],
+        "steps": [
+          "esita avaldus aadressile või paberkandjal vallavalitsusse",
+          "lisa vajadusel täiendavad dokumendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": {
+        "amount": "hoolduskulu piirmäär 700 eurot kuus; majutus ja toitlustus teenuse saaja kanda",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.kiilivald.ee/valjaspool-kodu-osutatav-uldhooldusteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "kiili_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kiili_vald_contact_merili_adamson",
+        "kiili_vald_contact_kiili_vallavalitsus"
+      ],
+      "sourceKeys": [
+        "valjaspool_kodu_osutatav_uldhooldusteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "valjaspool_kodu_osutatav_uldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "document_id": "kiili_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/valjaspool-kodu-osutatav-uldhooldusteenus",
+      "content_hash": "db41efb92a53b0cdccd04d0a3ee9cd2afe99d0e0697454defa89d6cb89912f05",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_service_tugiisikuteenus",
+      "canonical_item_id": "kiili_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus toetab iseseisvat toimetulekut, kui inimene vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu olulist kõrvalabi oma kohustuste täitmisel ja õiguste teostamisel. Lapse puhul toetab tugiisik koostöös last kasvatava isikuga lapse arengut, sealhulgas vajaduse korral puudega lapse hooldustoiminguid, juhendamist ja motiveerimist igapäevaelus. Teenust osutatakse kodus või kokkulepitud asukohas ning seda rahastatakse valla eelarvest.",
+      "targetGroup": [
+        "täiskasvanud, lapsed ja pered, kes vajavad juhendamist või kõrvalabi"
+      ],
+      "conditions": "Tugiisikuks ei määrata teenuse saaja esimese ja teise astme ülenejat või alanejat sugulast ega samas eluruumis elavat isikut.",
+      "application": {
+        "channels": [
+          "digitaalselt allkirjastatud avaldus e-postiga",
+          "pabertaotlus"
+        ],
+        "steps": [
+          "esita avaldus aadressile",
+          "lisa vajadusel abivajadust tõendavad dokumendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": {
+        "amount": "taotlejale tasuta",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.kiilivald.ee/tugiisikuteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "kiili_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kiili_vald_contact_ann_vahtramae",
+        "kiili_vald_contact_karmen_heinmaa"
+      ],
+      "sourceKeys": [
+        "tugiisikuteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "tugiisikuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_service_tugiisikuteenus",
+      "document_id": "kiili_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/tugiisikuteenus",
+      "content_hash": "18d64108071ce30d2fe62fafd81b903ac8dafc4e60bbd6464b39e309543170ab",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "kiili_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Hooldus seatakse täisealisele inimesele, kes vajab vaimse või kehalise puude tõttu abi oma õiguste teostamisel ja kohustuste täitmisel ning kelle toimetulekut ei saa tagada teiste teenustega. Hooldus hõlmab igapäevast füüsilist kõrvalabi, juhendamist, söömisel, hügieenitoimingutes, riietumisel, liikumisel või suhtlemisel abistamist ning vajadusel järelevalvet. Hooldusvajaduse selgitamiseks külastab sotsiaaltöötaja abivajajat ja täidab hooldusvajaduse hindamise instrumendi.",
+      "targetGroup": [
+        "täisealised puudega inimesed, kes vajavad hooldust"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "digitaalselt allkirjastatud avaldus e-postiga"
+        ],
+        "steps": [
+          "esita taotlus aadressile",
+          "sotsiaaltöötaja hindab hooldusvajadust"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": null,
+      "officialUrl": "https://www.kiilivald.ee/taisealise-isiku-hooldus",
+      "relatedTo": [],
+      "relatedForms": [
+        "kiili_vald_form_taisealise_puudega_isiku_hooldaja_ja_hooldajatoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kiili_vald_contact_anneli_sternfeld"
+      ],
+      "sourceKeys": [
+        "taisealise_isiku_hooldus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "taisealise_isiku_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_service_taisealise_isiku_hooldus",
+      "document_id": "kiili_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/taisealise-isiku-hooldus",
+      "content_hash": "bbe18bde0fd983a16ab0e21a6ba8520952458ca89f595e753ae045b8bf4b86cb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "kiili_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus suurendab puude tõttu füüsilist kõrvalabi vajava täisealise inimese iseseisvat toimetulekut ja osalemist kõigis eluvaldkondades. Abistaja aitab tegevustes, mille tegemiseks vajab inimene puude tõttu füüsilist kõrvalabi, näiteks liikumisel, söömisel, toidu valmistamisel, riietumisel, hügieenitoimingutes ja majapidamistöödes. Teenust kasutav inimene peab suutma korraldada oma asjaajamist ja koordineerida isikliku abistaja tööd.",
+      "targetGroup": [
+        "puude tõttu füüsilist kõrvalabi vajavad täisealised isikud"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "digitaalselt allkirjastatud avaldus e-postiga",
+          "pabertaotlus"
+        ],
+        "steps": [
+          "esita avaldus aadressile",
+          "ametnik võib küsida täiendavaid dokumente"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": null,
+      "officialUrl": "https://www.kiilivald.ee/isikliku-abistaja-teenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "kiili_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kiili_vald_contact_ann_vahtramae"
+      ],
+      "sourceKeys": [
+        "isikliku_abistaja_teenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "isikliku_abistaja_teenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_service_isikliku_abistaja_teenus",
+      "document_id": "kiili_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/isikliku-abistaja-teenus",
+      "content_hash": "6abd1fc86c394f8320d40f9cfc1052ebe3ae28488478be1d6af6368c5c6db2f7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_service_varjupaigateenus",
+      "canonical_item_id": "kiili_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus tagab ajutise ööbimiskoha täisealisele inimesele, kes ei ole võimeline endale ööbimiskohta leidma. Ajutises ööbimiskohas peab olema tagatud voodikoht, pesemisvõimalus ja turvaline keskkond.",
+      "targetGroup": [
+        "täisealised isikud, kellel puudub ööbimiskoht"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "digitaalselt allkirjastatud avaldus e-postiga",
+          "pabertaotlus"
+        ],
+        "steps": [
+          "esita avaldus aadressile"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://www.kiilivald.ee/varjupaigateenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "kiili_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kiili_vald_contact_anneli_sternfeld"
+      ],
+      "sourceKeys": [
+        "varjupaigateenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "varjupaigateenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_service_varjupaigateenus",
+      "document_id": "kiili_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/varjupaigateenus",
+      "content_hash": "1134b9ff51668300f3d0fdc96c966324e44fcb10e3f4ecfd25a388702176cc05",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_service_turvakoduteenus",
+      "canonical_item_id": "kiili_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenus tagab ajutise eluaseme, turvalise keskkonna ja esmase abi lastele ning täiskasvanutele. Esmase abi raames tagatakse vajadusel kriisiabi, mis taastab psüühilise tasakaalu ja tegevusvõime, ning inimest teavitatakse muudest abi saamise võimalustest. Teenust osutatakse lastele, kelle hooldamises esinevad elu, tervist või arengut ohustavad puudused, ning täiskasvanutele, kes on sattunud vaimse või füüsilise vägivalla ohvriks.",
+      "targetGroup": [
+        "abivajavad lapsed",
+        "vaimse või füüsilise vägivalla ohvriks sattunud täisealised isikud"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "digitaalselt allkirjastatud avaldus e-postiga",
+          "pabertaotlus"
+        ],
+        "steps": [
+          "esita avaldus aadressile"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://www.kiilivald.ee/turvakoduteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "kiili_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kiili_vald_contact_anneli_sternfeld"
+      ],
+      "sourceKeys": [
+        "turvakoduteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "turvakoduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_service_turvakoduteenus",
+      "document_id": "kiili_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/turvakoduteenus",
+      "content_hash": "971b48bfcfefef9e9c99584cfeacc31af3f3118efd2a2c3dc84b9d5f82030052",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "kiili_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus võimaldab puuetega inimestel, kelle puue takistab isikliku või ühissõiduki kasutamist, sõita tööle, õppeasutusse või avalikke teenuseid kasutama. Teenuse eest võetava tasu suurus sõltub teenuse mahust, teenuse maksumusest ning teenust saava inimese ja tema pere majanduslikust olukorrast; vallavalitsusel on õigus vabastada inimene teenuse tasust täielikult või osaliselt.",
+      "targetGroup": [
+        "puuetega inimesed, kelle puue takistab tavalise transpordi kasutamist"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "digitaalselt allkirjastatud avaldus e-postiga",
+          "pabertaotlus"
+        ],
+        "steps": [
+          "esita avaldus aadressile",
+          "lisa vajadusel abivajadust tõendavad dokumendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": {
+        "amount": "sõltub teenuse mahust, maksumusest ja pere majanduslikust olukorrast; võimalik vabastus",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.kiilivald.ee/sotsiaaltransporditeenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "kiili_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kiili_vald_contact_ann_vahtramae",
+        "kiili_vald_contact_karmen_heinmaa"
+      ],
+      "sourceKeys": [
+        "sotsiaaltransporditeenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltransporditeenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_service_sotsiaaltransporditeenus",
+      "document_id": "kiili_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/sotsiaaltransporditeenus",
+      "content_hash": "e80170ba3d8ca18203b68a2aea5a432dec4ea89260e7d1e87a51365f29dd5547",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_service_eluruumi_tagamine",
+      "canonical_item_id": "kiili_vald:service:eluruumi_tagamine",
+      "itemType": "service",
+      "title": "Eluruumi tagamine",
+      "status": "active",
+      "summary": "Eluruumi tagamine on kohaliku omavalitsuse teenus, mille eesmärk on kindlustada eluruumi kasutamise võimalus inimesele, kes ei suuda sotsiaalmajandusliku olukorra tõttu endale või perele vajadustele vastavat eluruumi tagada. Teenus võib sisaldada puudega inimesele kuuluva või tema valduses oleva eluruumi kohandamist või sobivama eluruumi leidmisel abistamist.",
+      "targetGroup": [
+        "inimesed ja pered, kes ei suuda sobivat eluruumi tagada",
+        "puudega inimesed, kelle eluruumi on vaja kohandada"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "digitaalselt allkirjastatud avaldus e-postiga",
+          "pabertaotlus"
+        ],
+        "steps": [
+          "esita avaldus aadressile"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://www.kiilivald.ee/eluruumi-tagamine",
+      "relatedTo": [],
+      "relatedForms": [
+        "kiili_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kiili_vald_contact_anneli_sternfeld"
+      ],
+      "sourceKeys": [
+        "eluruumi_tagamine_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eluruumi_tagamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_service_eluruumi_tagamine",
+      "document_id": "kiili_vald_service_eluruumi_tagamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/eluruumi-tagamine",
+      "content_hash": "15fbb9b0c79ff953dd0a8e5d2549e227db75823d463dabd6b41a6e6a79769397",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_service_volanoustamisteenus",
+      "canonical_item_id": "kiili_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab inimest tema varalise olukorra kindlakstegemisel, võlausaldajaga läbirääkimiste pidamisel ja nõuete rahuldamisel, et vältida uute võlgnevuste teket ning lahendada võlgnevusega seotud probleeme. Teenus on inimesele tasuta.",
+      "targetGroup": [
+        "võlgnevusega või majanduslikes raskustes isikud"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "digitaalselt allkirjastatud avaldus e-postiga",
+          "pabertaotlus"
+        ],
+        "steps": [
+          "esita avaldus aadressile",
+          "lisa vajadusel abivajadust tõendavad dokumendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": {
+        "amount": "tasuta",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.kiilivald.ee/volanoustamisteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "kiili_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kiili_vald_contact_anneli_sternfeld"
+      ],
+      "sourceKeys": [
+        "volanoustamisteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "volanoustamisteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_service_volanoustamisteenus",
+      "document_id": "kiili_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/volanoustamisteenus",
+      "content_hash": "dde1ffe4a310c6be42c5860472c5d7690f36c5514c70fa7d89d8dcafa60fa401",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_service_lapsehoiuteenus_erivajadusega_lapsele",
+      "canonical_item_id": "kiili_vald:service:lapsehoiuteenus_erivajadusega_lapsele",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus erivajadusega lapsele",
+      "status": "active",
+      "summary": "Lapsehoiuteenuse eesmärk on toetada last kasvatava isiku toimetulekut või töötamist või vähendada lapse erivajadusest tulenevat hoolduskoormust. Teenust osutatakse lapse kodus, hoidja kodus või hoiukodus ning seda saab kasutada nii ööpäevase kui päevase teenusena.",
+      "targetGroup": [
+        "erivajadusega lapsed ja nende pered"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "digitaalselt allkirjastatud avaldus e-postiga",
+          "pabertaotlus"
+        ],
+        "steps": [
+          "esita avaldus aadressile",
+          "lisa vajadusel abivajadust tõendavad dokumendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": null,
+      "officialUrl": "https://www.kiilivald.ee/lapsehoiuteenus-puudega-lapsele",
+      "relatedTo": [],
+      "relatedForms": [
+        "kiili_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kiili_vald_contact_karmen_heinmaa"
+      ],
+      "sourceKeys": [
+        "lapsehoiuteenus_erivajadusega_lapsele_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lapsehoiuteenus_erivajadusega_lapsele_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_service_lapsehoiuteenus_erivajadusega_lapsele",
+      "document_id": "kiili_vald_service_lapsehoiuteenus_erivajadusega_lapsele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/lapsehoiuteenus-puudega-lapsele",
+      "content_hash": "e570a23f3ef64d9fd3c2f5b266a6e6a727559fdd38fb992d5ff8dfff6787d717",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_service_vajaduspohised_sotsiaalteenused",
+      "canonical_item_id": "kiili_vald:service:vajaduspohised_sotsiaalteenused",
+      "itemType": "service",
+      "title": "Vajaduspõhised sotsiaalteenused",
+      "status": "active",
+      "summary": "Vajaduspõhiste sotsiaalteenuste hulka kuuluvad psühholoogi teenus, pereteraapia, perelepitus, logopeedi teenus, kriisiabi (sh laste leinalaagris osalemine), tugirühmad ja tugiprogrammid, rehabilitatsiooniteenus, sõltuvusravi, viipekeele tõlketeenus, toiduabi, sauna ja duši kasutamine, pesumasina ja kuivati kasutamine, omasteta surnud isiku matmise korraldamine ning muud toetavad teenused. Teenusele suunatakse sotsiaalosakonna töötaja ettepaneku või isiku taotluse alusel.",
+      "targetGroup": [
+        "abivajavad isikud ja pered, kellel on vajaduspõhine kõrvalabi või tugi"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "digitaalselt allkirjastatud avaldus e-postiga",
+          "sotsiaalosakonna töötaja ettepanek"
+        ],
+        "steps": [
+          "esita avaldus aadressile või aruta vajadust sotsiaalosakonna töötajaga",
+          "lisa vajadusel abivajadust tõendavad dokumendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": null,
+      "officialUrl": "https://www.kiilivald.ee/vajaduspohised-sotsiaalteenused",
+      "relatedTo": [],
+      "relatedForms": [
+        "kiili_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kiili_vald_contact_ann_vahtramae",
+        "kiili_vald_contact_karmen_heinmaa"
+      ],
+      "sourceKeys": [
+        "vajaduspohised_sotsiaalteenused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "vajaduspohised_sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_service_vajaduspohised_sotsiaalteenused",
+      "document_id": "kiili_vald_service_vajaduspohised_sotsiaalteenused",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/vajaduspohised-sotsiaalteenused",
+      "content_hash": "42f26fa1c854fa08d75d4f7ebbcedeea98e46c566256e09e56936b5c8334f99a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_service_valtimatu_sotsiaalabi",
+      "canonical_item_id": "kiili_vald:service:valtimatu_sotsiaalabi",
+      "itemType": "service",
+      "title": "Vältimatu sotsiaalabi",
+      "status": "active",
+      "summary": "Vältimatu sotsiaalabi eesmärk on tagada inimesele, sh Eestis ajutiselt viibivale välismaalasele, kes on sattunud elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitusse olukorda, vähemalt toit, riietus ja ajutine majutus. Abi osutatakse kõigile valla territooriumil viibivatele abivajajatele ning see on tasuta.",
+      "targetGroup": [
+        "sotsiaalselt abitus olukorras olevad inimesed",
+        "Kiili vallas viibivad abivajajad"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "pöördumine sotsiaalosakonna ametnike poole",
+          "avalduse esitamine e-postiga"
+        ],
+        "steps": [
+          "pöördu Kiili valla sotsiaalosakonna poole või esita avaldus aadressile"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "tasuta",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.kiilivald.ee/valtimatu-sotsiaalabi",
+      "relatedTo": [],
+      "relatedForms": [
+        "kiili_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kiili_vald_contact_anneli_sternfeld"
+      ],
+      "sourceKeys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_service_valtimatu_sotsiaalabi",
+      "document_id": "kiili_vald_service_valtimatu_sotsiaalabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/valtimatu-sotsiaalabi",
+      "content_hash": "a9689269edf89ae560fe2ea9143438de86405ab23902f2981a0b86787ea1f4a6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_service_puudega_inimese_soiduki_parkimiskaart",
+      "canonical_item_id": "kiili_vald:service:puudega_inimese_soiduki_parkimiskaart",
+      "itemType": "service",
+      "title": "Puudega inimese sõiduki parkimiskaardi väljastamine",
+      "status": "active",
+      "summary": "Parkimiskaart väljastatakse inimesele, kellel on keskmisele, raskele või sügavale puude raskusastmele vastav liikumis- või nägemisfunktsiooni kõrvalekalle, või ajutine liikumis- või nägemisfunktsiooni kõrvalekalle. Kaart antakse puuet tõendaval dokumendil märgitud puude kehtivuse ajaks, kuid mitte kauemaks kui viieks aastaks; ajutise puude korral kuni kuueks kuuks. Taotlusele lisatakse foto ja ajutise puude korral pere- või eriarsti tõend.",
+      "targetGroup": [
+        "liikumis- või nägemispuudega inimesed"
+      ],
+      "conditions": "Ajutise liikumis- või nägemisfunktsiooni kõrvalekalde korral tuleb esitada pere- või eriarsti tõend.",
+      "application": {
+        "channels": [
+          "taotlus e-postiga",
+          "pabertaotlus"
+        ],
+        "steps": [
+          "esita taotlus Kiili Vallavalitsusele aadressile",
+          "lisa 3×4 cm foto ja ajutise puude korral arstitõend"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://www.kiilivald.ee/puudega-inimese-soiduki-parkimiskaardi-valjastamine",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kiili_vald_contact_anneli_sternfeld"
+      ],
+      "sourceKeys": [
+        "puudega_inimese_soiduki_parkimiskaart_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "puudega_inimese_soiduki_parkimiskaart_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_service_puudega_inimese_soiduki_parkimiskaart",
+      "document_id": "kiili_vald_service_puudega_inimese_soiduki_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/puudega-inimese-soiduki-parkimiskaardi-valjastamine",
+      "content_hash": "9480c378a55d302bbfad90ed13db1b0f52ff0a727b07a3268baf7142c0d7ce4a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_service_kogukonnapsuhholoogi_teenus",
+      "canonical_item_id": "kiili_vald:service:kogukonnapsuhholoogi_teenus",
+      "itemType": "service",
+      "title": "Kogukonnapsühholoogi teenus",
+      "status": "active",
+      "summary": "Kogukonnapsühholoogi teenus on mõeldud Kiili valla noortele, täiskasvanutele ja peredele vaimse tervise toetamiseks. Teenus annab psühholoogilist tuge ja jõustamist inimestele, kes vajavad paremat arusaamist oma mõtetest, tunnetest ja käitumismustritest seoses igapäevaelu probleemide ja stressitekitavate olukordadega. Iga klient või pereliige saab viis seanssi tasuta; järgnevad seansid on MTÜ Perede ja Laste Nõuandekeskuse hinnakirja järgi 65 eurot.",
+      "targetGroup": [
+        "Kiili valla noored",
+        "täiskasvanud",
+        "pered"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "broneerimissüsteem",
+          ""
+        ],
+        "steps": [
+          "broneeri aeg broneerimissüsteemis",
+          "kui veebibroneering ei ole võimalik, helista psühholoogile numbril"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "esimesed 5 seanssi tasuta; järgmine seanss 65 eurot",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.kiilivald.ee/kogukonnapsuhholoogi-teenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kiili_vald_contact_ann_vahtramae"
+      ],
+      "sourceKeys": [
+        "kogukonnapsuhholoogi_teenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "kogukonnapsuhholoogi_teenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_service_kogukonnapsuhholoogi_teenus",
+      "document_id": "kiili_vald_service_kogukonnapsuhholoogi_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/kogukonnapsuhholoogi-teenus",
+      "content_hash": "f4b6d369ac96e120439081ab99574effebeedae9c7e6cfdd57d6a2cb2977f21f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_service_pereteraapia_teenus",
+      "canonical_item_id": "kiili_vald:service:pereteraapia_teenus",
+      "itemType": "service",
+      "title": "Pereteraapia teenus",
+      "status": "active",
+      "summary": "Pereteraapia keskendub suhetele ja on mõeldud Kiili valla perede vaimse tervise toetamiseks. Terapeudi juurde tasub pöörduda, kui on vaja suhet enda või teistega muuta, parandada või toetada. Kiili valla elanikele on pereteraapia seansid tasuta; teenust osutab pereterapeut Reelika Kravets, Thera OÜ.",
+      "targetGroup": [
+        "Kiili valla pered ja paarid"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "broneering veebis"
+        ],
+        "steps": [
+          "broneeri vastuvõtuaeg Thera OÜ broneerimislehel"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "Kiili valla elanikele tasuta; aja tühistamata jätmisel 90 min seansi arve 79 eurot",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.kiilivald.ee/pereteraapia-teenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kiili_vald_contact_ann_vahtramae",
+        "kiili_vald_contact_karmen_heinmaa"
+      ],
+      "sourceKeys": [
+        "pereteraapia_teenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "pereteraapia_teenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_service_pereteraapia_teenus",
+      "document_id": "kiili_vald_service_pereteraapia_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/pereteraapia-teenus",
+      "content_hash": "65f05ed7889cf605ae698ce944cd2047aa04e252f4d1e0ee736c1a4ef8e06ac6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_service_kunstiteraapia_lastele",
+      "canonical_item_id": "kiili_vald:service:kunstiteraapia_lastele",
+      "itemType": "service",
+      "title": "Kunstiteraapia lastele",
+      "status": "active",
+      "summary": "Kunstiteraapia on mõeldud Kiili valla lastele alates 3. eluaastast. Kunstiterapeut kasutab mängulist ja loomingulist lähenemist ning visuaalkunsti materjale, et laps saaks väljendada oma mõtteid, tundeid, soove, fantaasiaid ja vajadusi. Teenus aitab pakkuda emotsionaalset tuge, toetada arengut, kohanemist lasteaias või koolis ning arendada koostööd, keskendumist ja eneseväljendust.",
+      "targetGroup": [
+        "Kiili valla lapsed alates 3. eluaastast"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "broneering veebis"
+        ],
+        "steps": [
+          "registreeri laps broneerimissüsteemis",
+          "tühista kokkulepitud aeg vähemalt 24 tundi varem"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://www.kiilivald.ee/kunstiteraapia-lastele",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kiili_vald_contact_karmen_heinmaa",
+        "kiili_vald_contact_ann_vahtramae"
+      ],
+      "sourceKeys": [
+        "kunstiteraapia_lastele_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "kunstiteraapia_lastele_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_service_kunstiteraapia_lastele",
+      "document_id": "kiili_vald_service_kunstiteraapia_lastele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/kunstiteraapia-lastele",
+      "content_hash": "382bb3eb90594d3d6beba48497a819c44c314c95459a03aa774a46eb34a911d6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_service_asendushooldusteenus",
+      "canonical_item_id": "kiili_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus on kohaliku omavalitsuse teenus, mille eesmärk on lapse heaolu ja õiguste tagamine ning peresarnaste elutingimuste võimaldamine, kui laps ei saa kasvada oma sünniperes. Teenuse osutajaks on hoolduspere, perekodu või asenduskodu. Teenust saab osutada pikaajaliselt ööpäevaringsena või lühiajaliselt lapse hooldusõigusliku vanema või eestkostja nõusolekul.",
+      "targetGroup": [
+        "vanemliku hoolitsuseta või asendushooldust vajavad lapsed"
+      ],
+      "conditions": "Teenust korraldatakse lapse heaolust ja õigustest lähtudes; lühiajalise teenuse puhul on vajalik lapse hooldusõigusliku vanema või eestkostja nõusolek.",
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://www.kiilivald.ee/asendushooldusteenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kiili_vald_contact_karmen_heinmaa"
+      ],
+      "sourceKeys": [
+        "asendushooldusteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "asendushooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_service_asendushooldusteenus",
+      "document_id": "kiili_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/asendushooldusteenus",
+      "content_hash": "452bec183ccbcba5359abb87f0fbab71eef0d8037e52737851e0155d33cf1824",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "kiili_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenuse eesmärk on toetada asendushoolduselt või eestkostelt lahkuva noore iseseisvat toimetulekut ja õpingute jätkamist. Teenust osutatakse juhtumiplaani alusel, mille järgi vallavalitsus tagab noorele eluaseme ning vajaduspõhised tugiteenused ja toetused.",
+      "targetGroup": [
+        "asendushoolduselt või eestkostelt lahkuvad noored"
+      ],
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://www.kiilivald.ee/jarelhooldusteenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kiili_vald_contact_karmen_heinmaa"
+      ],
+      "sourceKeys": [
+        "jarelhooldusteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "jarelhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_service_jarelhooldusteenus",
+      "document_id": "kiili_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/jarelhooldusteenus",
+      "content_hash": "9c68cc81bbd39cf7d04d35930e3daf0e4176ba740e68cd89c1455ec3bafb358f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_benefit_sunnitoetus",
+      "canonical_item_id": "kiili_vald:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetust saab pere, kus lapse ja vähemalt ühe vanema elukoht on lapse sünni registreerimise ja toetuse taotlemise ajal rahvastikuregistri järgi Kiili vald. Alates 1. veebruarist 2026 on toetuse määr 400 eurot. Täies määras makstakse toetus, kui mõlema vanema elukoht on Kiili vald; pooles määras, kui ainult ühe vanema elukoht on Kiili vald; üksikvanemale täies määras. Mitmikute sünni korral saab taotleda täiendavat toetust 100 eurot kuus kuni 6 kuud.",
+      "targetGroup": [
+        "Kiili valla lapsevanemad"
+      ],
+      "conditions": "Lapse ja vähemalt ühe vanema elukoht peab olema Kiili vald.",
+      "application": {
+        "channels": [
+          "SPOKU e-taotlus",
+          "pabertaotlus"
+        ],
+        "steps": [
+          "esita taotlus kolme kuu jooksul lapse sünnist",
+          "sünnitõendit ei ole eraldi vaja esitada, andmed võetakse rahvastikuregistrist"
+        ],
+        "deadline": "3 kuud alates lapse sünnist"
+      },
+      "decisionTime": "10 tööpäeva",
+      "amount": {
+        "amount": "400 eurot; mitmike lisatoetus 100 eurot kuus kuni 6 kuud",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.kiilivald.ee/sunnitoetuse-taotlus",
+      "relatedTo": [],
+      "relatedForms": [
+        "kiili_vald_form_sunnitoetus_taotlus"
+      ],
+      "relatedContacts": [
+        "kiili_vald_contact_anneli_sternfeld"
+      ],
+      "sourceKeys": [
+        "sunnitoetus_page",
+        "sunnitoetus_taotlus_form"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sunnitoetus_page",
+        "sunnitoetus_taotlus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_benefit_sunnitoetus",
+      "document_id": "kiili_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/sunnitoetuse-taotlus",
+      "content_hash": "27e46739552e6dc9ce3f7cb5f44e3e28d79f52f34118081eae6266843868c242",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_benefit_matusetoetus",
+      "canonical_item_id": "kiili_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetust makstakse Kiili valla elaniku surma korral tema matust korraldavale inimesele. Toetust saab taotleda kolme kuu jooksul alates surmakuupäevast ning korrektse taotluse korral makstakse toetus välja hiljemalt 10 tööpäeva jooksul.",
+      "targetGroup": [
+        "matuse korraldajad"
+      ],
+      "conditions": "Toetust makstakse Kiili valla elaniku surma korral.",
+      "application": {
+        "channels": [
+          "pabertaotlus",
+          "e-taotlus"
+        ],
+        "steps": [
+          "esita matusetoetuse taotlus vallavalitsusele"
+        ],
+        "deadline": "3 kuud alates surmakuupäevast"
+      },
+      "decisionTime": "10 tööpäeva",
+      "amount": {
+        "amount": "300 eurot",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.kiilivald.ee/matusetoetuse-taotlus",
+      "relatedTo": [],
+      "relatedForms": [
+        "kiili_vald_form_matusetoetus_taotlus"
+      ],
+      "relatedContacts": [
+        "kiili_vald_contact_anneli_sternfeld"
+      ],
+      "sourceKeys": [
+        "matusetoetus_page",
+        "matusetoetus_taotlus_form"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "matusetoetus_page",
+        "matusetoetus_taotlus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_benefit_matusetoetus",
+      "document_id": "kiili_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/matusetoetuse-taotlus",
+      "content_hash": "937e8da89a71ac04239777e94e30d8f3cde5cb0cb29faef9e340a908a2d14ed0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_benefit_eakate_sunnipaevatoetus",
+      "canonical_item_id": "kiili_vald:benefit:eakate_sunnipaevatoetus",
+      "itemType": "benefit",
+      "title": "Eakate inimeste sünnipäevatoetus",
+      "status": "active",
+      "summary": "Sünnipäevatoetus on rahaline toetus Kiili valla elanikule tema 75., 80., 85., 90. ja vanemaks saamise sünnipäeval. 90-aastaseks saamise järel makstakse toetust igal aastal kahekordses suuruses. Toetusele lisanduvad õnnitluskaart ja lilled ning toetust määratakse rahvastikuregistri andmete alusel ilma taotluseta.",
+      "targetGroup": [
+        "Kiili valla eakad elanikud"
+      ],
+      "conditions": "Rahvastikuregistri järgi Kiili valla elanik; sünnipäev 75, 80, 85, 90 või vanem.",
+      "application": null,
+      "decisionTime": null,
+      "amount": {
+        "amount": "50 eurot; 90+ puhul kahekordne",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.kiilivald.ee/eakate-inimeste-sunnipaevatoetus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kiili_vald_contact_anneli_sternfeld"
+      ],
+      "sourceKeys": [
+        "eakate_sunnipaevatoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eakate_sunnipaevatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_benefit_eakate_sunnipaevatoetus",
+      "document_id": "kiili_vald_benefit_eakate_sunnipaevatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/eakate-inimeste-sunnipaevatoetus",
+      "content_hash": "f4bb23bdd57d93a22431f435ac29bab724b6e8160c827321e53a7baae2708073",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_benefit_elluastumistoetus",
+      "canonical_item_id": "kiili_vald:benefit:elluastumistoetus",
+      "itemType": "benefit",
+      "title": "Elluastumistoetus",
+      "status": "active",
+      "summary": "Elluastumistoetust makstakse põhikooli kiitusega lõpetajale, gümnaasiumi medaliga lõpetajale ja kutsekeskhariduse kiitusega lõpetajale. Põhikooli või kutsekeskhariduse kiitusega lõpetajale makstakse 250 eurot, gümnaasiumi kuldmedaliga lõpetajale 500 eurot ja hõbemedaliga lõpetajale 250 eurot. Taotlus esitatakse kolme kuu jooksul pärast kooli lõpetamist ja sellele lisatakse lõputunnistuse koopia.",
+      "targetGroup": [
+        "kiitusega või medaliga lõpetavad Kiili valla noored"
+      ],
+      "conditions": "Kooli lõpetamine kiitusega või medaliga.",
+      "application": {
+        "channels": [
+          "SPOKU e-taotlus",
+          "pabertaotlus"
+        ],
+        "steps": [
+          "esita taotlus kolme kuu jooksul kooli lõpetamisest",
+          "lisa lõputunnistuse koopia"
+        ],
+        "deadline": "3 kuud pärast kooli lõpetamist"
+      },
+      "decisionTime": null,
+      "amount": {
+        "amount": "250 eurot või 500 eurot sõltuvalt lõpetamisest",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.kiilivald.ee/elluastumistoetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "kiili_vald_form_elluastumistoetus_taotlus"
+      ],
+      "relatedContacts": [
+        "kiili_vald_contact_anneli_sternfeld"
+      ],
+      "sourceKeys": [
+        "elluastumistoetus_page",
+        "elluastumistoetus_taotlus_form"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "elluastumistoetus_page",
+        "elluastumistoetus_taotlus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_benefit_elluastumistoetus",
+      "document_id": "kiili_vald_benefit_elluastumistoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/elluastumistoetus",
+      "content_hash": "3763dd489002b8ffe6525cc84d5703a9f91f905222ec43520ff7a0ea3df46a33",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_benefit_haridusliku_erivajadusega_lapse_soidutoetus",
+      "canonical_item_id": "kiili_vald:benefit:haridusliku_erivajadusega_lapse_soidutoetus",
+      "itemType": "benefit",
+      "title": "Haridusliku erivajadusega lapse sõidutoetus",
+      "status": "active",
+      "summary": "Haridusliku erivajadusega lapse sõidutoetus hüvitab sõidukulusid lapsele, kes käib nõustamiskomisjoni soovitusel sobitus- või erirühmas või koolis väljaspool Kiili valda. Hüvitis makstakse juhul, kui lasteasutus või kool ei jää Harjumaa bussiliinide 116, 116A, 116B ja 164 teeninduspiirkonda või laps ei saa erivajaduse tõttu ühistransporti kasutada ning korraldatud transport puudub. Toetuse määr on 70 eurot kuus ja see määratakse üheks õppeaastaks.",
+      "targetGroup": [
+        "haridusliku erivajadusega lapsed ja nende vanemad/eestkostjad"
+      ],
+      "conditions": "Lapse ja taotleja elukoht peab olema rahvastikuregistri järgi Kiili vald; vajalik tõend lapse lasteasutuses käimise või õppimise kohta.",
+      "application": {
+        "channels": [
+          "pabertaotlus",
+          "üldine avaldus"
+        ],
+        "steps": [
+          "esita taotlus koos tõendiga haridusliku erivajadusega lapse õppeasutuses käimise kohta"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "amount": {
+        "amount": "70 eurot kuus",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.kiilivald.ee/hariduslike-erivajadustega-lapse-soidutoetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "kiili_vald_form_uldine_avaldus"
+      ],
+      "relatedContacts": [
+        "kiili_vald_contact_anneli_sternfeld"
+      ],
+      "sourceKeys": [
+        "haridusliku_erivajadusega_lapse_soidutoetus_page",
+        "uldine_avaldus_form"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "haridusliku_erivajadusega_lapse_soidutoetus_page",
+        "uldine_avaldus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_benefit_haridusliku_erivajadusega_lapse_soidutoetus",
+      "document_id": "kiili_vald_benefit_haridusliku_erivajadusega_lapse_soidutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/hariduslike-erivajadustega-lapse-soidutoetus",
+      "content_hash": "36a5df1e27ac75e6f53c296ee918bbf84da912e1f5c8b78a98b0052f8c4950ea",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_benefit_hooldajatoetus",
+      "canonical_item_id": "kiili_vald:benefit:hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus",
+      "status": "active",
+      "summary": "Hooldajatoetus on hooldajale makstav igakuine sotsiaaltoetus. Toetust makstakse täisealise puudega isiku hooldajale ja puudega lapse hooldajale, et tagada hooldatavale igapäevane kõrvalabi, juhendamine ja järelevalve ning osaliselt hüvitada hooldajale hooldamise tõttu saamata jäänud sissetulek ja sotsiaalkindlustus. Toetuse määra kehtestab vallavalitsus.",
+      "targetGroup": [
+        "täisealise puudega isiku hooldajad",
+        "puudega lapse hooldajad"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "digitaalselt allkirjastatud avaldus e-postiga",
+          "pabertaotlus"
+        ],
+        "steps": [
+          "esita avaldus aadressile",
+          "lisa vajadusel täiendavad abivajadust tõendavad dokumendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "amount": null,
+      "officialUrl": "https://www.kiilivald.ee/hooldajatoetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "kiili_vald_form_taisealise_puudega_isiku_hooldaja_ja_hooldajatoetuse_taotlus",
+        "kiili_vald_form_puudega_lapse_hooldajatoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kiili_vald_contact_anneli_sternfeld"
+      ],
+      "sourceKeys": [
+        "hooldajatoetus_page",
+        "puudega_lapse_hooldajatoetuse_taotlus_form",
+        "taisealise_puudega_isiku_hooldaja_ja_hooldajatoetuse_taotlus_form"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "hooldajatoetus_page",
+        "puudega_lapse_hooldajatoetuse_taotlus_form",
+        "taisealise_puudega_isiku_hooldaja_ja_hooldajatoetuse_taotlus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_benefit_hooldajatoetus",
+      "document_id": "kiili_vald_benefit_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/hooldajatoetus",
+      "content_hash": "8f82cc5f7cf55c8d1189c14a89ce5103f62aef75352b5946571509f3df1ec4f0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_benefit_joulutoetus",
+      "canonical_item_id": "kiili_vald:benefit:joulutoetus",
+      "itemType": "benefit",
+      "title": "Jõulutoetus",
+      "status": "active",
+      "summary": "Jõulutoetus on ühekordne rahaline toetus Kiili valla rahvastikuregistris olevatele puudega laste peredele, 4- ja enamalapselistele peredele, vanemliku hoolitsuseta laste eestkoste- ja hooldusperedele ning õigusvastaselt represseeritud isikutele. Toetust saab taotleda 1. novembrist kuni 20. detsembrini. Korrektselt esitatud taotluse korral makstakse toetus välja 10 tööpäeva jooksul.",
+      "targetGroup": [
+        "puudega laste pered",
+        "4 või enama lapsega pered",
+        "eestkoste- ja hoolduspered",
+        "õigusvastaselt represseeritud isikud"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "SPOKU e-taotlus",
+          "pabertaotlus"
+        ],
+        "steps": [
+          "esita taotlus SPOKU-s või paberkandjal"
+        ],
+        "deadline": "1. november kuni 20. detsember"
+      },
+      "decisionTime": "10 tööpäeva",
+      "amount": {
+        "amount": "30–200 eurot sõltuvalt sihtrühmast",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.kiilivald.ee/joulutoetuse-taotlus",
+      "relatedTo": [],
+      "relatedForms": [
+        "kiili_vald_form_joulutoetus_taotlus"
+      ],
+      "relatedContacts": [
+        "kiili_vald_contact_anneli_sternfeld"
+      ],
+      "sourceKeys": [
+        "joulutoetus_page",
+        "joulutoetus_taotlus_form"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "joulutoetus_page",
+        "joulutoetus_taotlus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_benefit_joulutoetus",
+      "document_id": "kiili_vald_benefit_joulutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/joulutoetuse-taotlus",
+      "content_hash": "5c5d9187d1c7f2512260c7bfb2f16fa63ade7fc12e80909fce6109ff646c93b6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_benefit_uhekordne_sotsiaaltoetus",
+      "canonical_item_id": "kiili_vald:benefit:uhekordne_sotsiaaltoetus",
+      "itemType": "benefit",
+      "title": "Ühekordne sotsiaaltoetus",
+      "status": "active",
+      "summary": "Ühekordset sotsiaaltoetust makstakse majanduslikult raskes olukorras peredele või üksikisikutele, kelle viimase kuu netosissetulek pärast eluasemekulude mahaarvamist on väiksem kui riiklikult kehtestatud toimetulekupiiri kahekordne määr pereliikme kohta või muudel erandjuhtudel. Toetuse eesmärk on parandada toimetulekuvõimet ja kompenseerida hädavajalikke kulusid, mida ei hüvitata muude Kiili valla või riiklike sotsiaaltoetustega.",
+      "targetGroup": [
+        "majanduslikult raskes olukorras pered ja üksikisikud"
+      ],
+      "conditions": "Taotleja netosissetulek pärast eluasemekulude mahaarvamist on alla toimetulekupiiri kahekordse määra pereliikme kohta või esineb muu erandjuhtum.",
+      "application": {
+        "channels": [
+          "digitaalselt allkirjastatud avaldus e-postiga",
+          "pabertaotlus"
+        ],
+        "steps": [
+          "esita avaldus aadressile",
+          "lisa varalist seisu ja viimase kolme kuu sissetulekut kirjeldavad dokumendid, eluasemekulude tõendid ja vajadusel nõusolek toetuse kandmiseks kolmanda isiku kontole"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "amount": null,
+      "officialUrl": "https://www.kiilivald.ee/uhekordne-sotsiaaltoetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "kiili_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kiili_vald_contact_anneli_sternfeld"
+      ],
+      "sourceKeys": [
+        "sotsiaaltoetuse_taotlus_form",
+        "uhekordne_sotsiaaltoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetuse_taotlus_form",
+        "uhekordne_sotsiaaltoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_benefit_uhekordne_sotsiaaltoetus",
+      "document_id": "kiili_vald_benefit_uhekordne_sotsiaaltoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/uhekordne-sotsiaaltoetus",
+      "content_hash": "a47ccb365abdd15d04a9331fddfde253d2a36e23e05e6d478aca2c82521298e9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "kiili_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on riigi rahaline abi puuduses inimestele, mida maksab kohalik omavalitsus. Toetuse sihtrühm on üksi elav inimene või pere, kelle kuu sissetulek pärast arvestatud eluasemekulude mahaarvamist on alla kehtestatud toimetulekupiiri. 2026. aastal on toimetulekupiir üksi elavale inimesele või pere esimesele liikmele 220 eurot kuus, alaealisele 264 eurot kuus ja teisele ning igale järgmisele täisealisele liikmele 176 eurot kuus. Toetuse valem on: toimetulekupiir + eluasemekulud – sissetulekud.",
+      "targetGroup": [
+        "üksi elavad inimesed ja pered, kelle sissetulek jääb alla toimetulekupiiri"
+      ],
+      "conditions": "Taotlusele lisatakse sissetulekuid ja eluasemekulusid tõendavad dokumendid; esmakordsel taotlemisel või vara muutumisel tuleb esitada vara loetelu.",
+      "application": {
+        "channels": [
+          "pabertaotlus",
+          ""
+        ],
+        "steps": [
+          "esita avaldus ja vajalikud lisadokumendid oma tegeliku elukoha järgsele omavalitsusele",
+          "lisa eluasemekulude dokumendid ja vajadusel laenulepinguga seotud dokumendid"
+        ],
+        "deadline": "kuu viimane tööpäev"
+      },
+      "decisionTime": "5 tööpäeva",
+      "amount": {
+        "amount": "sõltub toimetulekupiirist, eluasemekuludest ja sissetulekust; alaealistest koosnevale perele lisaks 15 eurot",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.kiilivald.ee/toimetulekutoetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "kiili_vald_form_toimetulekutoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kiili_vald_contact_anneli_sternfeld"
+      ],
+      "sourceKeys": [
+        "toimetulekutoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_benefit_toimetulekutoetus",
+      "document_id": "kiili_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/toimetulekutoetus",
+      "content_hash": "1eee0fe43136ce0bb489abd90501bab85ba324357d51129e5335f484ad229d88",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_benefit_esimesse_klassi_mineva_lapse_toetus",
+      "canonical_item_id": "kiili_vald:benefit:esimesse_klassi_mineva_lapse_toetus",
+      "itemType": "benefit",
+      "title": "Esimesse klassi mineva lapse toetus",
+      "status": "active",
+      "summary": "Esimesse klassi mineva lapse toetust makstakse lapsevanemale, eestkostjale või hooldajale, kui laps on kantud 1. klassi õpilaste nimekirja. Toetust saab taotleda kolme kuu jooksul alates õppeaasta algusest, taotlusi võib esitada alates 1. septembrist. Toetuse määr on 150 eurot ning korrektse taotluse korral makstakse see välja 10 tööpäeva jooksul.",
+      "targetGroup": [
+        "1. klassi minevate laste vanemad, eestkostjad või hooldajad"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "SPOKU e-taotlus",
+          "pabertaotlus"
+        ],
+        "steps": [
+          "esita taotlus alates 1. septembrist",
+          "kasuta SPOKU veebikeskkonda või pabertaotlust"
+        ],
+        "deadline": "3 kuud alates õppeaasta algusest"
+      },
+      "decisionTime": "10 tööpäeva",
+      "amount": {
+        "amount": "150 eurot",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.kiilivald.ee/ranitsatoetuse-taotlus-tt",
+      "relatedTo": [],
+      "relatedForms": [
+        "kiili_vald_form_esimesse_klassi_toetus_taotlus"
+      ],
+      "relatedContacts": [
+        "kiili_vald_contact_anneli_sternfeld"
+      ],
+      "sourceKeys": [
+        "esimesse_klassi_mineva_lapse_toetus_page",
+        "esimesse_klassi_toetus_taotlus_form"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "esimesse_klassi_mineva_lapse_toetus_page",
+        "esimesse_klassi_toetus_taotlus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_benefit_esimesse_klassi_mineva_lapse_toetus",
+      "document_id": "kiili_vald_benefit_esimesse_klassi_mineva_lapse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/ranitsatoetuse-taotlus-tt",
+      "content_hash": "c082149c9a9e913a1246091dde5d91cf64f67995fc15ac5b4c40d9d4f4eb15a4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_benefit_lapse_huvihariduse_ja_huvitegevuse_toetus",
+      "canonical_item_id": "kiili_vald:benefit:lapse_huvihariduse_ja_huvitegevuse_toetus",
+      "itemType": "benefit",
+      "title": "Lapse huvihariduse ja huvitegevuse toetus",
+      "status": "active",
+      "summary": "Toetus on ette nähtud väljaspool Kiili valda tegutsevate sporditreeningute või huviringide osaliseks kompenseerimiseks. Toetust saab kuni 20-aastane üldhariduskoolis või põhikooli baasil kutseõppeasutuses õppiv õpilane, kelle elukoht on rahvastikuregistri järgi Kiili vald. Taotlusele lisatakse leping või tõend spordiklubi või huviringi kohta; toetust ei maksta munitsipaalhuvikoolide osavõtutasu kompenseerimiseks. Toetust saab taotleda üks kord aastas.",
+      "targetGroup": [
+        "Kiili valla kuni 20-aastased õpilased, kes osalevad väljaspool valda huvihariduses või huvitegevuses"
+      ],
+      "conditions": "Õpilane peab elama Kiili vallas ja õppima üldhariduskoolis või põhikooli baasil kutseõppeasutuses; vaja on lepingut või tõendit spordiklubi/huviringi kohta.",
+      "application": {
+        "channels": [
+          "SPOKU e-taotlus"
+        ],
+        "steps": [
+          "esita taotlus SPOKU-s",
+          "lisa leping või tõend huviringi või spordiklubi kohta"
+        ],
+        "deadline": "üks kord aastas"
+      },
+      "decisionTime": "10 tööpäeva",
+      "amount": {
+        "amount": "150 eurot",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.kiilivald.ee/lapse-huvihariduse-ja-huvitegevuse-toetuse-taotlus",
+      "relatedTo": [],
+      "relatedForms": [
+        "kiili_vald_form_lapse_huvihariduse_toetus_taotlus"
+      ],
+      "relatedContacts": [
+        "kiili_vald_contact_kati_orgmets"
+      ],
+      "sourceKeys": [
+        "lapse_huvihariduse_ja_huvitegevuse_toetus_page",
+        "lapse_huvihariduse_toetus_taotlus_form"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lapse_huvihariduse_ja_huvitegevuse_toetus_page",
+        "lapse_huvihariduse_toetus_taotlus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_benefit_lapse_huvihariduse_ja_huvitegevuse_toetus",
+      "document_id": "kiili_vald_benefit_lapse_huvihariduse_ja_huvitegevuse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/lapse-huvihariduse-ja-huvitegevuse-toetuse-taotlus",
+      "content_hash": "f0c6756eb78ef4914c2055525a771a7b4d755c8f68ddb73f23d2783fc4c9cb8d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_form_sotsiaalteenuse_taotlus",
+      "canonical_item_id": "kiili_vald:form:sotsiaalteenuse_taotlus",
+      "itemType": "form",
+      "title": "Taotlus sotsiaalteenuse taotlemiseks",
+      "status": "active",
+      "summary": "Üldine sotsiaalteenuse taotlus, mida kasutatakse koduteenuse, tugiisikuteenuse, sotsiaaltranspordi, isikliku abistaja teenuse, võlanõustamise, eluruumi tagamise, varjupaiga- või turvakoduteenuse ja teiste sotsiaalteenuste taotlemiseks.",
+      "format": "web_form",
+      "submissionChannels": [
+        "digitaalselt allkirjastatud e-postiga",
+        "paberkandjal"
+      ],
+      "officialUrl": "https://www.kiilivald.ee/sotsiaalteenuse-taotlemine",
+      "relatedTo": [
+        "kiili_vald_service_koduteenus",
+        "kiili_vald_service_tugiisikuteenus",
+        "kiili_vald_service_sotsiaaltransporditeenus",
+        "kiili_vald_service_volanoustamisteenus",
+        "kiili_vald_service_eluruumi_tagamine"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenuse_taotlus_form"
+      ],
+      "sections_present": [
+        "taotleja andmed",
+        "abivajaduse kirjeldus",
+        "lisadokumendid"
+      ],
+      "item_type": "form",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenuse_taotlus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_form_sotsiaalteenuse_taotlus",
+      "document_id": "kiili_vald_form_sotsiaalteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/sotsiaalteenuse-taotlemine",
+      "content_hash": "ef0e346227d1211494dc7a2f1f44a73d20b2b11cc6439d1761d2a410cf4d9cb1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_form_sunnitoetus_taotlus",
+      "canonical_item_id": "kiili_vald:form:sunnitoetus_taotlus",
+      "itemType": "form",
+      "title": "Sünnitoetuse taotlus",
+      "status": "active",
+      "summary": "Sünnitoetuse taotlusvorm või e-taotlus lapse sünni korral toetuse saamiseks.",
+      "format": "web_form",
+      "submissionChannels": [
+        "SPOKU e-taotlus",
+        "paberkandjal"
+      ],
+      "officialUrl": "https://www.kiilivald.ee/sunnitoetuse-taotlus",
+      "relatedTo": [
+        "kiili_vald_benefit_sunnitoetus"
+      ],
+      "sourceKeys": [
+        "sunnitoetus_page",
+        "sunnitoetus_taotlus_form"
+      ],
+      "sections_present": [],
+      "item_type": "form",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sunnitoetus_page",
+        "sunnitoetus_taotlus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_form_sunnitoetus_taotlus",
+      "document_id": "kiili_vald_form_sunnitoetus_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/sunnitoetuse-taotlus",
+      "content_hash": "51cbe474ad5601e25516281a6d91423cef112c22b500ea2d2e999f81b0be0763",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_form_matusetoetus_taotlus",
+      "canonical_item_id": "kiili_vald:form:matusetoetus_taotlus",
+      "itemType": "form",
+      "title": "Matusetoetuse taotlus",
+      "status": "active",
+      "summary": "Matusetoetuse taotlusvorm matuse korraldajale toetuse saamiseks.",
+      "format": "web_form",
+      "submissionChannels": [
+        "SPOKU e-taotlus",
+        "paberkandjal"
+      ],
+      "officialUrl": "https://www.kiilivald.ee/matusetoetuse-taotlus",
+      "relatedTo": [
+        "kiili_vald_benefit_matusetoetus"
+      ],
+      "sourceKeys": [
+        "matusetoetus_page",
+        "matusetoetus_taotlus_form"
+      ],
+      "sections_present": [],
+      "item_type": "form",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "matusetoetus_page",
+        "matusetoetus_taotlus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_form_matusetoetus_taotlus",
+      "document_id": "kiili_vald_form_matusetoetus_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/matusetoetuse-taotlus",
+      "content_hash": "bb5d953318db6185846d11556f23af9896731bfb16626205abca1e934fe31f7e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_form_elluastumistoetus_taotlus",
+      "canonical_item_id": "kiili_vald:form:elluastumistoetus_taotlus",
+      "itemType": "form",
+      "title": "Elluastumistoetuse taotlus / üldine avaldus",
+      "status": "active",
+      "summary": "Elluastumistoetuse taotlemisel kasutatakse Kiili valla üldist avaldust ja lisatakse lõputunnistuse koopia.",
+      "format": "web_form",
+      "submissionChannels": [
+        "SPOKU e-taotlus",
+        "paberkandjal"
+      ],
+      "officialUrl": "https://www.kiilivald.ee/elluastumistoetus",
+      "relatedTo": [
+        "kiili_vald_benefit_elluastumistoetus"
+      ],
+      "sourceKeys": [
+        "elluastumistoetus_page",
+        "elluastumistoetus_taotlus_form"
+      ],
+      "sections_present": [],
+      "item_type": "form",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "elluastumistoetus_page",
+        "elluastumistoetus_taotlus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_form_elluastumistoetus_taotlus",
+      "document_id": "kiili_vald_form_elluastumistoetus_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/elluastumistoetus",
+      "content_hash": "21edb4401c7c81b69f8510ae6e1420a26e3b1d0d04d1433872c010eea5eb32bd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_form_uldine_avaldus",
+      "canonical_item_id": "kiili_vald:form:uldine_avaldus",
+      "itemType": "form",
+      "title": "Üldine avaldus",
+      "status": "active",
+      "summary": "Üldine avaldus, mida Kiili valla leht nimetab haridusliku erivajadusega lapse sõidutoetuse taotlemiseks.",
+      "format": "web_form",
+      "submissionChannels": [
+        "paberkandjal",
+        ""
+      ],
+      "officialUrl": "https://www.kiilivald.ee/hariduslike-erivajadustega-lapse-soidutoetus",
+      "relatedTo": [
+        "kiili_vald_benefit_haridusliku_erivajadusega_lapse_soidutoetus"
+      ],
+      "sourceKeys": [
+        "haridusliku_erivajadusega_lapse_soidutoetus_page",
+        "uldine_avaldus_form"
+      ],
+      "sections_present": [],
+      "item_type": "form",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "haridusliku_erivajadusega_lapse_soidutoetus_page",
+        "uldine_avaldus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_form_uldine_avaldus",
+      "document_id": "kiili_vald_form_uldine_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/hariduslike-erivajadustega-lapse-soidutoetus",
+      "content_hash": "66954256591b5e10124fdf85b7ede72f2ea5b822d030878a3c63f03e079c8e02",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_form_taisealise_puudega_isiku_hooldaja_ja_hooldajatoetuse_taotlus",
+      "canonical_item_id": "kiili_vald:form:taisealise_puudega_isiku_hooldaja_ja_hooldajatoetuse_taotlus",
+      "itemType": "form",
+      "title": "Taotlus täisealise puudega isiku hooldaja ja hooldajatoetuse määramiseks",
+      "status": "active",
+      "summary": "Taotlusvorm täisealise puudega isiku hooldaja määramiseks ja hooldajatoetuse taotlemiseks.",
+      "format": "web_form",
+      "submissionChannels": [
+        "digitaalselt allkirjastatud e-postiga",
+        "paberkandjal"
+      ],
+      "officialUrl": "https://www.kiilivald.ee/hooldajatoetus",
+      "relatedTo": [
+        "kiili_vald_service_taisealise_isiku_hooldus",
+        "kiili_vald_benefit_hooldajatoetus"
+      ],
+      "sourceKeys": [
+        "hooldajatoetus_page",
+        "puudega_lapse_hooldajatoetuse_taotlus_form",
+        "taisealise_puudega_isiku_hooldaja_ja_hooldajatoetuse_taotlus_form"
+      ],
+      "sections_present": [],
+      "item_type": "form",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "hooldajatoetus_page",
+        "puudega_lapse_hooldajatoetuse_taotlus_form",
+        "taisealise_puudega_isiku_hooldaja_ja_hooldajatoetuse_taotlus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_form_taisealise_puudega_isiku_hooldaja_ja_hooldajatoetuse_taotlus",
+      "document_id": "kiili_vald_form_taisealise_puudega_isiku_hooldaja_ja_hooldajatoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/hooldajatoetus",
+      "content_hash": "927cf6f3596bc9756b34d9b6f8c0a2dd00fdfe6889a73bfe25a0e40665fa7b62",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_form_puudega_lapse_hooldajatoetuse_taotlus",
+      "canonical_item_id": "kiili_vald:form:puudega_lapse_hooldajatoetuse_taotlus",
+      "itemType": "form",
+      "title": "Taotlus puudega lapse hooldajale hooldajatoetuse määramiseks",
+      "status": "active",
+      "summary": "Taotlusvorm puudega lapse hooldajatoetuse määramiseks.",
+      "format": "web_form",
+      "submissionChannels": [
+        "digitaalselt allkirjastatud e-postiga",
+        "paberkandjal"
+      ],
+      "officialUrl": "https://www.kiilivald.ee/hooldajatoetus",
+      "relatedTo": [
+        "kiili_vald_benefit_hooldajatoetus"
+      ],
+      "sourceKeys": [
+        "hooldajatoetus_page",
+        "puudega_lapse_hooldajatoetuse_taotlus_form",
+        "taisealise_puudega_isiku_hooldaja_ja_hooldajatoetuse_taotlus_form"
+      ],
+      "sections_present": [],
+      "item_type": "form",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "hooldajatoetus_page",
+        "puudega_lapse_hooldajatoetuse_taotlus_form",
+        "taisealise_puudega_isiku_hooldaja_ja_hooldajatoetuse_taotlus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_form_puudega_lapse_hooldajatoetuse_taotlus",
+      "document_id": "kiili_vald_form_puudega_lapse_hooldajatoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/hooldajatoetus",
+      "content_hash": "74f9addd34da1a180da950602ba965aebc103e790afeea645d6d456d86b17644",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_form_joulutoetus_taotlus",
+      "canonical_item_id": "kiili_vald:form:joulutoetus_taotlus",
+      "itemType": "form",
+      "title": "Jõulutoetuse avaldus",
+      "status": "active",
+      "summary": "Jõulutoetuse avaldus, mida saab esitada 1. novembrist kuni 20. detsembrini.",
+      "format": "web_form",
+      "submissionChannels": [
+        "SPOKU e-taotlus",
+        "paberkandjal"
+      ],
+      "officialUrl": "https://www.kiilivald.ee/joulutoetuse-taotlus",
+      "relatedTo": [
+        "kiili_vald_benefit_joulutoetus"
+      ],
+      "sourceKeys": [
+        "joulutoetus_page",
+        "joulutoetus_taotlus_form"
+      ],
+      "sections_present": [],
+      "item_type": "form",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "joulutoetus_page",
+        "joulutoetus_taotlus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_form_joulutoetus_taotlus",
+      "document_id": "kiili_vald_form_joulutoetus_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/joulutoetuse-taotlus",
+      "content_hash": "790e74d2e40da6384833bbbeea04a1366f7e259841561c3b981a4088fd861d0f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_form_sotsiaaltoetuse_taotlus",
+      "canonical_item_id": "kiili_vald:form:sotsiaaltoetuse_taotlus",
+      "itemType": "form",
+      "title": "Taotlus sotsiaaltoetuse taotlemiseks",
+      "status": "active",
+      "summary": "Ühekordse sotsiaaltoetuse taotlusvorm koos sissetulekut ja eluasemekulusid tõendavate dokumentidega.",
+      "format": "web_form",
+      "submissionChannels": [
+        "digitaalselt allkirjastatud e-postiga",
+        "paberkandjal"
+      ],
+      "officialUrl": "https://www.kiilivald.ee/uhekordne-sotsiaaltoetus",
+      "relatedTo": [
+        "kiili_vald_benefit_uhekordne_sotsiaaltoetus"
+      ],
+      "sourceKeys": [
+        "sotsiaaltoetuse_taotlus_form",
+        "uhekordne_sotsiaaltoetus_page"
+      ],
+      "sections_present": [],
+      "item_type": "form",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetuse_taotlus_form",
+        "uhekordne_sotsiaaltoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_form_sotsiaaltoetuse_taotlus",
+      "document_id": "kiili_vald_form_sotsiaaltoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/uhekordne-sotsiaaltoetus",
+      "content_hash": "560531b15b5bc9e41f26609b71e84c294917dbf03b486bca8b28b10e5d57801e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_form_toimetulekutoetuse_taotlus",
+      "canonical_item_id": "kiili_vald:form:toimetulekutoetuse_taotlus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse taotlus",
+      "status": "active",
+      "summary": "Toimetulekutoetuse paberkandjal täidetav PDF-blankett, millele lisatakse sissetulekuid, eluasemekulusid ja vara puudutavad dokumendid.",
+      "format": "pdf",
+      "submissionChannels": [
+        "paberkandjal",
+        "e-postiga digitaalselt allkirjastatult"
+      ],
+      "officialUrl": "https://www.kiilivald.ee/documents/1704870//Toimetulekutoetuse+blankett.pdf/6166ec45-186c-40d2-9f53-85da2cf7e3fe",
+      "relatedTo": [
+        "kiili_vald_benefit_toimetulekutoetus"
+      ],
+      "sourceKeys": [
+        "toimetulekutoetus_pdf"
+      ],
+      "sections_present": [
+        "taotleja andmed",
+        "leibkonna andmed",
+        "sissetulekud",
+        "eluasemekulud",
+        "vara"
+      ],
+      "item_type": "form",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "toimetulekutoetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_form_toimetulekutoetuse_taotlus",
+      "document_id": "kiili_vald_form_toimetulekutoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/documents/1704870//Toimetulekutoetuse+blankett.pdf/6166ec45-186c-40d2-9f53-85da2cf7e3fe",
+      "content_hash": "5d840aaae7efc1306cf729d0f3c6b265a54169b30fd4e67fdace23d78dc20851",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_form_esimesse_klassi_toetus_taotlus",
+      "canonical_item_id": "kiili_vald:form:esimesse_klassi_toetus_taotlus",
+      "itemType": "form",
+      "title": "Esimesse klassi mineva lapse toetuse avaldus",
+      "status": "active",
+      "summary": "Taotlusvorm 1. klassi mineva lapse 150 euro suuruse toetuse saamiseks.",
+      "format": "web_form",
+      "submissionChannels": [
+        "SPOKU e-taotlus",
+        "paberkandjal"
+      ],
+      "officialUrl": "https://www.kiilivald.ee/ranitsatoetuse-taotlus-tt",
+      "relatedTo": [
+        "kiili_vald_benefit_esimesse_klassi_mineva_lapse_toetus"
+      ],
+      "sourceKeys": [
+        "esimesse_klassi_mineva_lapse_toetus_page",
+        "esimesse_klassi_toetus_taotlus_form"
+      ],
+      "sections_present": [],
+      "item_type": "form",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "esimesse_klassi_mineva_lapse_toetus_page",
+        "esimesse_klassi_toetus_taotlus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_form_esimesse_klassi_toetus_taotlus",
+      "document_id": "kiili_vald_form_esimesse_klassi_toetus_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/ranitsatoetuse-taotlus-tt",
+      "content_hash": "779e530ad235d8f4675c5491fefd9bf06a6ec050c1bad12365e788d08c6ff0c0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_form_lapse_huvihariduse_toetus_taotlus",
+      "canonical_item_id": "kiili_vald:form:lapse_huvihariduse_toetus_taotlus",
+      "itemType": "form",
+      "title": "Lapse huvihariduse ja huvitegevuse toetuse taotlus",
+      "status": "active",
+      "summary": "Taotlusvorm lapse väljaspool Kiili valda toimuva huvihariduse või huvitegevuse osaliseks kompenseerimiseks.",
+      "format": "web_form",
+      "submissionChannels": [
+        "SPOKU e-taotlus"
+      ],
+      "officialUrl": "https://www.kiilivald.ee/lapse-huvihariduse-ja-huvitegevuse-toetuse-taotlus",
+      "relatedTo": [
+        "kiili_vald_benefit_lapse_huvihariduse_ja_huvitegevuse_toetus"
+      ],
+      "sourceKeys": [
+        "lapse_huvihariduse_ja_huvitegevuse_toetus_page",
+        "lapse_huvihariduse_toetus_taotlus_form"
+      ],
+      "sections_present": [],
+      "item_type": "form",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lapse_huvihariduse_ja_huvitegevuse_toetus_page",
+        "lapse_huvihariduse_toetus_taotlus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_form_lapse_huvihariduse_toetus_taotlus",
+      "document_id": "kiili_vald_form_lapse_huvihariduse_toetus_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/lapse-huvihariduse-ja-huvitegevuse-toetuse-taotlus",
+      "content_hash": "86ae0e5bd4e0bcdeeb051264874be75323dba151605239931be5981bf013466c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_form_tagasiside_teenuse_kohta",
+      "canonical_item_id": "kiili_vald:form:tagasiside_teenuse_kohta",
+      "itemType": "form",
+      "title": "Tagasiside või ettepanek teenuse kohta",
+      "status": "active",
+      "summary": "Veebivorm või leht sotsiaalteenuse kohta tagasiside või ettepaneku esitamiseks.",
+      "format": "web_form",
+      "submissionChannels": [
+        "veebivorm"
+      ],
+      "officialUrl": "https://www.kiilivald.ee/tagasiside-voi-ettepanek-teenuse-kohta",
+      "relatedTo": [],
+      "sourceKeys": [
+        "tagasiside_teenuse_kohta_form"
+      ],
+      "sections_present": [],
+      "item_type": "form",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "tagasiside_teenuse_kohta_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_form_tagasiside_teenuse_kohta",
+      "document_id": "kiili_vald_form_tagasiside_teenuse_kohta",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/tagasiside-voi-ettepanek-teenuse-kohta",
+      "content_hash": "9d62eaffee86f715bda5de3b98af258581ef50c003edc7f1db6f634a534d51c5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_resource_eakate_ja_puuetega_inimeste_paevakeskus",
+      "canonical_item_id": "kiili_vald:resource:eakate_ja_puuetega_inimeste_paevakeskus",
+      "itemType": "resource",
+      "title": "Eakate ja puuetega inimeste päevakeskus",
+      "status": "active",
+      "summary": "Päevakeskus eakatele ja puuetega inimestele asub Kiili Vallavalitsuse majas aadressil Nabala tee 2a, Kiili alev. Keskus on avatud E–N kell 9.00–16.00 ning muudel päevadel kokkuleppel Aime Pärnaga. Päevakeskuses saab teha käsitööd, suhelda, vaadata televiisorit, kokata, osaleda mälutreeningus, loengutel ja töötubades ning kasutada sauna ja dušši.",
+      "address": "Nabala tee 2a, Kiili 75401",
+      "officialUrl": "https://www.kiilivald.ee/eakate-ja-puuetega-inimeste-paevakeskus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kiili_vald_contact_aime_parn"
+      ],
+      "sourceKeys": [
+        "eakate_ja_puuetega_inimeste_paevakeskus_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eakate_ja_puuetega_inimeste_paevakeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_resource_eakate_ja_puuetega_inimeste_paevakeskus",
+      "document_id": "kiili_vald_resource_eakate_ja_puuetega_inimeste_paevakeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/eakate-ja-puuetega-inimeste-paevakeskus",
+      "content_hash": "db5e76c4af4c9bc7c6e5ea5f65ba839859dbf123d7448da442103e9896b2f8db",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_resource_ohvriabi",
+      "canonical_item_id": "kiili_vald:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "Ohvriabi eesmärk on toetada ohvrite toimetulekut ja turvatunnet ning ennetada vägivalla kordumist. KOV leht suunab palunabi.ee ja riiklike ohvriabikeskuste poole ning avaldab kriisitelefoni, välismaalt, lasteabi, inimkaubanduse nõuandeliini ja vägivallast loobumise tugiliini",
+      "address": null,
+      "officialUrl": "https://www.kiilivald.ee/ohvriabi",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "ohvriabi_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "ohvriabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_resource_ohvriabi",
+      "document_id": "kiili_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/ohvriabi",
+      "content_hash": "5b625e82e910af1210006801404017e27c6a158e4348cb2f970cf8f23affe180",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_resource_naiste_tugikeskus",
+      "canonical_item_id": "kiili_vald:resource:naiste_tugikeskus",
+      "itemType": "resource",
+      "title": "Naiste tugikeskuse teenus",
+      "status": "active",
+      "summary": "Naiste tugikeskustes pakutakse abi ja toetust naistevastase vägivalla ohvriks langenud naistele ning nendega kaasas olevatele lastele. Teenus hõlmab esmast kriisinõustamist, juhtumipõhist nõustamist, vajadusel psühholoogilist ja juriidilist nõustamist ning turvalist ajutist majutust. Kiili valla leht nimetab Harjumaal MTÜ Tallinna Naiste Kriisikodu ja Tallinna Naiste Tugikeskust.",
+      "address": null,
+      "officialUrl": "https://www.kiilivald.ee/naiste-tugikeskuse-teenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "naiste_tugikeskus_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "naiste_tugikeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_resource_naiste_tugikeskus",
+      "document_id": "kiili_vald_resource_naiste_tugikeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/naiste-tugikeskuse-teenus",
+      "content_hash": "bae962e1f39fc43704c4780e188d2e3e514d7b1ae7922269d6c6dc2c5f33ee0c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_resource_perelepitus",
+      "canonical_item_id": "kiili_vald:resource:perelepitus",
+      "itemType": "resource",
+      "title": "Perelepitus",
+      "status": "active",
+      "summary": "Perelepitus aitab lahku minevatel lapsevanematel jõuda kokkuleppele lapse huvidest lähtudes. KOV leht selgitab, et teenus on mõeldud lapsevanematele, kes plaanivad kooselu lõpetada või on selle juba lõpetanud, ning et riiklik perelepitusteenus on lapsevanemale tasuta.",
+      "address": null,
+      "officialUrl": "https://www.kiilivald.ee/perelepitus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "perelepitus_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "perelepitus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_resource_perelepitus",
+      "document_id": "kiili_vald_resource_perelepitus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/perelepitus",
+      "content_hash": "bcc166bd7e51d2a64e36ef2956ae6021d83a2652e9a32daf936d360b0fab17a6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_resource_kasulik_teave",
+      "canonical_item_id": "kiili_vald:resource:kasulik_teave",
+      "itemType": "resource",
+      "title": "Kasulik teave sotsiaalhoolekande ja tervishoiu kohta",
+      "status": "active",
+      "summary": "Kiili valla kasuliku teabe leht koondab sotsiaal- ja tervishoiu abikanalid: Sotsiaalkindlustusamet, Eesti.ee teave lähedase surma korral, MEDI häirenuputeenus, Eesti Puuetega Inimeste Koda, Ohvriabi kriisitelefon, tugitelefon 1492, Tallinna Naiste Tugikeskus, vägivallast loobumise tugiliin, dementsuse infoliin ja omastehoolduse infopunkt.",
+      "address": null,
+      "officialUrl": "https://www.kiilivald.ee/sotsiaal-ja-tervishoid/kasulik-teave",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "kasulik_teave_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "kasulik_teave_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_resource_kasulik_teave",
+      "document_id": "kiili_vald_resource_kasulik_teave",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/sotsiaal-ja-tervishoid/kasulik-teave",
+      "content_hash": "dc6f6952b5faa44bdc6a1038f3964b4d94a2f3bf0bb39f1c286bf625c055d9ee",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_resource_lastekaitse_kiili_vallas",
+      "canonical_item_id": "kiili_vald:resource:lastekaitse_kiili_vallas",
+      "itemType": "resource",
+      "title": "Lastekaitse Kiili vallas",
+      "status": "active",
+      "summary": "Lastekaitse infoleht koondab Kiili valla lapse ja pere abivajaduse teemalise info ning juhatab laste heaolu spetsialisti poole. Lastekaitse puudutab lapse heaolu, vanemate hooldusõiguse küsimusi, vanematevahelisi vaidlusi ja puuetega laste perede nõustamist.",
+      "address": null,
+      "officialUrl": "https://www.kiilivald.ee/lastekaitse-kiili-vallas",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kiili_vald_contact_karmen_heinmaa"
+      ],
+      "sourceKeys": [
+        "lastekaitse_kiili_vallas_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lastekaitse_kiili_vallas_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_resource_lastekaitse_kiili_vallas",
+      "document_id": "kiili_vald_resource_lastekaitse_kiili_vallas",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/lastekaitse-kiili-vallas",
+      "content_hash": "b63b64f55a39e8f1347183a94db45c3c33dda6a6292cd2d561b6b9214d76756d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_resource_teata_abivajavast_lapsest",
+      "canonical_item_id": "kiili_vald:resource:teata_abivajavast_lapsest",
+      "itemType": "resource",
+      "title": "Teata abivajavast lapsest",
+      "status": "active",
+      "summary": "Leht selgitab, kuidas teavitada abivajavast või hädaohus olevast lapsest ning kuhu pöörduda. Esmaseks kohalikuks kontaktiks on laste heaolu spetsialist; ööpäevane lasteabi on.",
+      "address": null,
+      "officialUrl": "https://www.kiilivald.ee/teata-abivajavast-lapsest",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kiili_vald_contact_karmen_heinmaa"
+      ],
+      "sourceKeys": [
+        "teata_abivajavast_lapsest_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "teata_abivajavast_lapsest_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_resource_teata_abivajavast_lapsest",
+      "document_id": "kiili_vald_resource_teata_abivajavast_lapsest",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/teata-abivajavast-lapsest",
+      "content_hash": "042d18ddbed3d3491b2c52deeb2d744303a49bb2f71f9b03b9c8bdd187704964",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_resource_erihoolekandeteenused",
+      "canonical_item_id": "kiili_vald:resource:erihoolekandeteenused",
+      "itemType": "resource",
+      "title": "Erihoolekandeteenused",
+      "status": "active",
+      "summary": "KOV leht suunab riigi korraldatavate erihoolekandeteenuste infole, mis on mõeldud psüühilise erivajadusega inimestele igapäevaelu toetamiseks.",
+      "address": null,
+      "officialUrl": "https://www.kiilivald.ee/erihoolekandeteenused",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "erihoolekanne_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "erihoolekanne_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_resource_erihoolekandeteenused",
+      "document_id": "kiili_vald_resource_erihoolekandeteenused",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/erihoolekandeteenused",
+      "content_hash": "0e928376df5f4c546e05dca724e1c98932d53ac842aa96503aa79fdf0a8ed78c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_resource_sotsiaalse_rehabilitatsiooni_teenus",
+      "canonical_item_id": "kiili_vald:resource:sotsiaalse_rehabilitatsiooni_teenus",
+      "itemType": "resource",
+      "title": "Sotsiaalse rehabilitatsiooni teenus",
+      "status": "active",
+      "summary": "KOV leht suunab riigi korraldatava sotsiaalse rehabilitatsiooni teenuse infole, mis toetab toimetulekut, osalemist ja igapäevaelu oskusi.",
+      "address": null,
+      "officialUrl": "https://www.kiilivald.ee/sotsiaalse-rehabilitatsiooni-teenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "rehabilitatsioon_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "rehabilitatsioon_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_resource_sotsiaalse_rehabilitatsiooni_teenus",
+      "document_id": "kiili_vald_resource_sotsiaalse_rehabilitatsiooni_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/sotsiaalse-rehabilitatsiooni-teenus",
+      "content_hash": "c5416e6edbc7d741a626ed17cdcd5c6d3305ca0883dc98e02ffeec1d8c7b2d55",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_resource_abivahendid",
+      "canonical_item_id": "kiili_vald:resource:abivahendid",
+      "itemType": "resource",
+      "title": "Abivahendid",
+      "status": "active",
+      "summary": "KOV leht suunab riiklikule abivahendite infole, kus käsitletakse erivajadusega inimese igapäevaelu toetavaid abivahendeid.",
+      "address": null,
+      "officialUrl": "https://www.kiilivald.ee/abivahendid",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "abivahendid_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "abivahendid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_resource_abivahendid",
+      "document_id": "kiili_vald_resource_abivahendid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/abivahendid",
+      "content_hash": "ad17093a0793be79ea2e8a0efd47b6671ff8a75d2f55971fe30aa8db9757df68",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_resource_tasuta_oigusabi",
+      "canonical_item_id": "kiili_vald:resource:tasuta_oigusabi",
+      "itemType": "resource",
+      "title": "Tasuta õigusabi",
+      "status": "active",
+      "summary": "KOV leht suunab tasuta õigusabi võimaluste infole, mis aitab inimestel saada õigusalast nõustamist.",
+      "address": null,
+      "officialUrl": "https://www.kiilivald.ee/tasuta-oigusabi",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "tasuta_oigusabi_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "tasuta_oigusabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_resource_tasuta_oigusabi",
+      "document_id": "kiili_vald_resource_tasuta_oigusabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/tasuta-oigusabi",
+      "content_hash": "17fa49719c7a693cec009fffeb54dc3689d3a8b604d9ba9eed1429d577fa7584",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_resource_oigusnoustamine_puudega_inimestele",
+      "canonical_item_id": "kiili_vald:resource:oigusnoustamine_puudega_inimestele",
+      "itemType": "resource",
+      "title": "Õigusnõustamine puudega inimestele",
+      "status": "active",
+      "summary": "KOV leht suunab puudega inimestele mõeldud õigusnõustamise infole.",
+      "address": null,
+      "officialUrl": "https://www.kiilivald.ee/oigusnoustamine-puudega-inimestele",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "oigusnoustamine_puudega_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "oigusnoustamine_puudega_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_resource_oigusnoustamine_puudega_inimestele",
+      "document_id": "kiili_vald_resource_oigusnoustamine_puudega_inimestele",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/oigusnoustamine-puudega-inimestele",
+      "content_hash": "53467bc47b36cb68d0017ecf3fe42223e852c9d8b0de9ca52698f9d6f14558ae",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_resource_psuhhosotsiaalne_kriisiabi",
+      "canonical_item_id": "kiili_vald:resource:psuhhosotsiaalne_kriisiabi",
+      "itemType": "resource",
+      "title": "Psühhosotsiaalne kriisiabi",
+      "status": "active",
+      "summary": "KOV leht suunab psühhosotsiaalse kriisiabi infole inimestele, kes vajavad kriisiolukorras vaimse tervise ja toimetuleku tuge.",
+      "address": null,
+      "officialUrl": "https://www.kiilivald.ee/psuhhosotsiaalne-kriisiabi",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "psuhhosotsiaalne_kriisiabi_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "psuhhosotsiaalne_kriisiabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_resource_psuhhosotsiaalne_kriisiabi",
+      "document_id": "kiili_vald_resource_psuhhosotsiaalne_kriisiabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/psuhhosotsiaalne-kriisiabi",
+      "content_hash": "4ce0c20ff370ff482c9aedfcc3388591fa32875930046ec3fa252f32f804c0b5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kiili_vald_resource_abi_seksuaalvagivalla_korral",
+      "canonical_item_id": "kiili_vald:resource:abi_seksuaalvagivalla_korral",
+      "itemType": "resource",
+      "title": "Abi seksuaalvägivalla korral",
+      "status": "active",
+      "summary": "KOV leht suunab seksuaalvägivalla korral abi saamise infole, sh riiklikele kriisi- ja ohvriabikanalitele.",
+      "address": null,
+      "officialUrl": "https://www.kiilivald.ee/abi-seksuaalvagivalla-korral",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "seksuaalvagivalla_abi_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "seksuaalvagivalla_abi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kiili_vald_resource_abi_seksuaalvagivalla_korral",
+      "document_id": "kiili_vald_resource_abi_seksuaalvagivalla_korral",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kiilivald.ee/abi-seksuaalvagivalla-korral",
+      "content_hash": "6cd80e9bc0d65b3866365bdf2e0fef5e690271b387af6af215fc0aea84ea3cad",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Kiili vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

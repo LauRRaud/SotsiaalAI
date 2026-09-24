@@ -1,0 +1,67 @@
+{
+  "docId": "sotsiaaltoo-4-2016",
+  "articleId": "sotsiaaltoo-4-2016-artikkel-01-eessõna",
+  "title": "Eessõna",
+  "authors": [
+    "Judit Strömpl"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2016",
+  "section": "Eessõna",
+  "pageRange": "2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Numbri külalistoimetaja, Tartu Ülikooli sotsiaaltöö õppetooli juhataja, märgib 25 aasta möödumist Eesti liitumisest ÜRO lapse õiguste konventsiooniga: LÕK kirjutati alla 26. septembril 1991, kuu aega pärast iseseisvuse väljakuulutamist, ja lastekaitse seadus võeti vastu juba 8. juunil 1992. Eessõna põhiosa on lapsepõlvekäsituse ümbermõtestamine: taasiseseisvunud Eesti pedagoogika lähtus traditsioonilisest arengupsühholoogiast, mis nägi lapses sotsialiseerimise ja õpetamise objekti ning lapsepõlves ettevalmistavat etappi, samal ajal kui lapsepsühholoogia ja sotsioloogia uurimused näitavad last kompetentse sotsiaalse toimijana, kes on oma elu puudutavates küsimustes täiskasvanuga võrdne ekspert. Autor toob välja Eesti-spetsiifilise iseärasuse: LÕKi eestikeelsest tõlkest on lapse õigus väljendada oma arvamust alles, aga sellele järgnev õigus olla ära kuulatud on kaduma läinud, ja sama piirdumine kordub uues lastekaitseseaduses. Väljajätmine varjab autori hinnangul suhet ja dialoogi, mis nõuab mõlemale osapoolele arusaadavat ühist keelt. Numbri artiklid käsitlevad tööd laste õigustega riigi, KOVi ja MTÜ tasandil — lastekaitses, asendushoolduses ja õigusrikkumisi toime pannud laste abistamisel.",
+  "tags": [
+    "eessõna",
+    "lapse õigused",
+    "lapse õiguste konventsioon",
+    "õigus olla ära kuulatud",
+    "lapsepõlve sotsioloogia",
+    "lastekaitseseadus",
+    "lapse osalus",
+    "külalistoimetaja"
+  ],
+  "source_type": "file",
+  "source_path": "2016_4_artikkel_01_eessona.pdf",
+  "added": "2026-08-17",
+  "fulltext_note": "Tekst eraldatud uuesti PDF-ist 17.08.2026 (esialgne lõikamine kaotas pealkirja ja juhtlõigu).",
+  "description_source": "ümber kirjutatud 2026-08-17 pärast A4 tekstiparandust",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-01-eess-na",
+  "source_sha256": "2bf013ddc810fefc52e6991b0525816842c2fad43d03c2fa5197b9d322dd0677",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-01-eess-na",
+    "previous_source_path": "2016_4_artikkel_01_eessona.txt",
+    "previous_source_original_path": "4-2016.pdf",
+    "reference_stored_source_sha256": "4ad1f63a3fe6a64c7af43540eabdcb9f4559956665e809b7a1f550d1592d5c9f",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf",
+      "source_sha256": "0f07da03ffde36588435e96f8dda0f52a8140fbf9cc4201bb95e85b594e03fc9",
+      "pdf_start_page": 4,
+      "pdf_end_page": 4,
+      "printed_page_range": "2-3",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 5,
+      "source_regions": [
+        {
+          "source_pdf_page": 4,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "2"
+    },
+    "server_page_range": "2-3"
+  }
+}

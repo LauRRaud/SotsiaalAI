@@ -1,0 +1,82 @@
+{
+  "source": {
+    "source_id": "tai_tai_arengukava_2025_2028",
+    "title": "TAI arengukava 2025–2028",
+    "url": "https://www.tai.ee/sites/default/files/2025-02/tai_arengukava_2025_13.2.pdf",
+    "normalized_url": "https://www.tai.ee/sites/default/files/2025-02/tai_arengukava_2025_13.2.pdf",
+    "source_format": "pdf",
+    "source_type": "policy_analysis",
+    "resource_type": "policy_context",
+    "publisher": "TAI",
+    "organization_id": "tai",
+    "collection_hint": "policy_and_strategy",
+    "evidence_role": "policy_context",
+    "topic_tags": [
+      "Tervise Arengu Instituut",
+      "strateegia",
+      "poliitika planeerimine",
+      "TAI",
+      "organisatsiooni areng",
+      "asutuse eesmärgid",
+      "tervisepoliitika",
+      "rahvatervis"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_015",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+    "source_context": {
+      "heading_2": "TAI",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 211,
+      "order": 137
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "TAI arengukava 2025–2028"
+    ],
+    "collection_hints": [
+      "policy_analyses"
+    ],
+    "source_types_seen": [
+      "policy_analysis"
+    ],
+    "resource_types_seen": [
+      "policy_context"
+    ],
+    "publishers_seen": [
+      "TAI"
+    ],
+    "organizations_seen": [
+      "tai"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "TAI",
+        "line": 211,
+        "order": 137
+      },
+      {
+        "heading_2": "TAI",
+        "line": 685,
+        "order": 344
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.tai.ee/sites/default/files/2025-02/tai_arengukava_2025_13.2.pdf"
+  },
+  "final_url": "https://www.tai.ee/sites/default/files/2025-02/tai_arengukava_2025_13.2.pdf",
+  "redirects": [],
+  "sha256": "60a83a8a211e775e3579110956e64e231f733de705cfc6fce1c418e0fb3d5735",
+  "bytes": 514593,
+  "downloaded_at": "2026-08-14T08:00:35.733Z"
+}

@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-tori-vald",
+  "document_id": "kov-tori-vald",
+  "municipality": "Tori vald",
+  "municipality_id": "tori_vald",
+  "county": "Pärnumaa",
+  "checkedAt": "2026-04-29",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-tori-vald",
+  "coverage": {
+    "services": 10,
+    "benefits": 13,
+    "resources": 4,
+    "contacts": 17,
+    "forms": 2,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "tori_vald",
+    "source_register_file": "tori-vald.sources.json",
+    "service_benefit_resource_items": 27,
+    "items_with_source_keys": 27,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 9,
+    "items_without_related_forms": 18,
+    "items_with_related_contacts": 26,
+    "items_without_related_contacts": 1,
+    "form_sources": 1,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "3 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Järelkontrollis eemaldati JSON- ja Markdown-failidest varasemad sisemised viitemarkerid, normaliseeriti ametlikud /toiming/ URL-id ning täiendati kontaktide, lastekaitse, ohvriabi, erihoolekande pilootprojekti ja sotsiaalkeskuse andmeid.",
+    "Vormide täpsed SharePoint-lingid pärinevad KOV lehelt avatud ametlikest vormilinkidest; allikas nõudis Microsofti sisselogimise ümbersuunamist, seega vormide sisu ei loetud."
+  ],
+  "unresolvedIssues": [
+    "Osa teenuste ja toetuste detaillehti avaldab napilt praktilist menetlusinfot; tingimused, summad ja tähtajad on seetõttu täidetud ainult seal, kus KOV veeb neid selgelt näitab või kinnitab.",
+    "Vormide leht kui eraldi blankettide koondleht ei olnud tuvastatav; vormid koondati teenuse- ja toetuselehtedel viidatud ametlike vormilinkide põhjal.",
+    "SharePointi faililinke ei olnud võimalik sisuliselt alla laadida, sest need suunasid Microsofti autentimisele; paketti jäid ainult ametlikul KOV lehel nähtud lingid ja failitüübid.",
+    "Mõne e-posti aadressi kuvas veebileht varjestatud kujul; sama kuju säilitati ning aadressi ei taastatud oletuse põhjal.",
+    "Varjupaigateenuse, turvakoduteenuse, eluruumi tagamise teenuse ja võlanõustamisteenuse detailne praktiline menetluskäik vajab käsitsi ülevaatust, kui KOV lehel avaldatakse edaspidi rohkem sisu.",
+    "Õigusaktide ja korralehtede info jäeti teadlikult sellest KOV veebipaketist välja, sest RT/legal kiht on eraldi."
+  ],
+  "municipality_name": "Tori vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "tori-vald.sources.json",
+  "sourceCount": 34,
+  "counts": {
+    "services": 10,
+    "benefits": 13,
+    "resources": 4,
+    "contacts": 17,
+    "forms": 2,
+    "regulations": 0
+  },
+  "warnings": [
+    "3 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

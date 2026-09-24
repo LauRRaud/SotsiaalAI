@@ -1,0 +1,3427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Tallinna Linnavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2021-10-07</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT IV</RTosa>
+				<avaldamineKuupaev>2021-10-15</avaldamineKuupaev>
+				<RTartikkel>20</RTartikkel>
+				<aktViide>415102021020</aktViide>
+			</avaldamismarge>
+			<joustumine>2022-01-01</joustumine>
+			<aktiNr>25</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-09-10</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>31</RTartikkel><aktViide>410092025031</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2026-01-01</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2021-10-13</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>410092025031</globaalID>
+		<metaandmedVersioon>25</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2025-09-09</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1052761</terviktekstiGrupiID>
+	</metaandmed>
+	<aktinimi>
+		<nimi>
+			<pealkiri>Sotsiaalteenuste osutamise tingimused ja kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge>
+		<aktikuupaev>2022-12-15</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+			<RTartikkel>5</RTartikkel>
+			<aktViide>422122022005</aktViide>
+		</avaldamismarge>
+		<joustumine>2023-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2023-06-15</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2023-06-21</avaldamineKuupaev>
+			<RTartikkel>12</RTartikkel>
+			<aktViide>421062023012</aktViide>
+		</avaldamismarge>
+		<joustumine>2023-07-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2024-04-04</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2024-04-12</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>412042024002</aktViide>
+		</avaldamismarge>
+		<joustumine>2024-04-15</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2024-05-30</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>412062024002</aktViide>
+		</avaldamismarge>
+		<joustumine>2024-06-15</joustumine>
+		<tavatekst>, osaliselt 01.01.2025 ja 01.01.2026</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2025-04-03</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>412042025001</aktViide>
+		</avaldamismarge>
+		<joustumine>2025-05-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2025-09-04</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2025-09-10</avaldamineKuupaev>
+			<RTartikkel>13</RTartikkel>
+			<aktViide>410092025013</aktViide>
+		</avaldamismarge>
+		<joustumine>2025-09-13</joustumine>
+		<tavatekst>, osaliselt 01.01.2026</tavatekst>
+	</muutmismarge>
+	<sisu>
+		<preambul>
+			<tavatekst>Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lg 1 p 5 ja sotsiaalhoolekande seaduse § 14 alusel ning kooskõlas Tallinna Linnavolikogu 7. oktoobri 2021 määrusega nr 24 „Sotsiaalhoolekandelise abi andmise kord“.</tavatekst>
+		</preambul>
+		<peatykk id="pt1">
+			<peatykkNr>1</peatykkNr>
+			<kuvatavNr><![CDATA[1. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Üldsätted</peatykkPealkiri>
+			<paragrahv id="para1">
+				<paragrahvNr>1</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 1.]]></kuvatavNr>
+				<paragrahvPealkiri>Määruse reguleerimisala</paragrahvPealkiri>
+				<loige id="para1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Määrusega sätestatakse rahvastikuregistri andmetel Tallinna linnas elavatele inimestele korraldatavate sotsiaalteenuste (edaspidi ka <i>teenus</i>) osutamise tingimused ja kord.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tallinna Linnavalitsus võib osutada sotsiaalteenust linna ametiasutuse hallatava asutuse kaudu või volitada sotsiaalteenuse osutamise halduslepinguga eraõiguslikule juriidilisele isikule, kelle Tallinna Sotsiaal- ja Tervishoiuamet (edaspidi <i>amet</i>) on valinud riigihanke põhimõtteid järgides, või füüsilisele isikule või teise kohaliku omavalitsuse üksuse ametiasutusele.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para1lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Teenusele suunamisel lähtutakse hinnatud abivajaduse kiireloomulisusest. Põhjendatud vajaduse korral osutatakse abi esimesel võimalusel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para1lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Teenuste korraldamisel määruses reguleerimata juhtudel lähtutakse haldusmenetluse seadusest, sotsiaalseadustiku üldosa seadusest, sotsiaalhoolekande seadusest ja asjakohastest linna õigusaktidest.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para2">
+				<paragrahvNr>2</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 2.]]></kuvatavNr>
+				<paragrahvPealkiri>Terminid</paragrahvPealkiri>
+				<loige id="para2lg1">
+					<sisuTekst>
+						<tavatekst>Määruses kasutatakse termineid järgmises tähenduses:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para2lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>puue – inimese anatoomilise, füsioloogilise või psüühilise struktuuri või funktsiooni kaotus või kõrvalekalle, mis koostoimes suhtumuslike ja keskkondlike takistustega tõkestab ühiskonnaelus osalemist teistega võrdsetel alustel ning mille raskusastme ja liigi on tuvastanud Sotsiaalkindlustusamet;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>erivajadus – vaimne või füüsiline eripära või kõrvalekalle, mis tingib abivajaduse iseseisva toimetuleku tagamisel ja mida Sotsiaalkindlustusamet ei ole puudena tuvastanud;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>hooldusvajadusega inimene – inimene, kes vajab puude või erivajaduse tõttu ajutist või pidevat kõrvalabi, juhendamist ja/või järelevalvet igapäevaelu toimingutes;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kohandatud eluruum – eluruum, mis on kohandatud inimese puudest tingitud vajadustele vastavaks nii, et inimene tuleks võimalikult iseseisvalt koduses keskkonnas toime;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1p4b1">
+						<alampunktNr ylaIndeks="1">4</alampunktNr>
+						<kuvatavNr><![CDATA[4<sup>1</sup>)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>abi korraldaja – inimese rahvastikuregistrisse kantud elukoha järgne linnaosa valitsus või õigusaktis sätestatud juhtudel amet;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-03</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para2lg1p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>teenuse osutaja – asutus või isik, kes peab vastama sotsiaalhoolekande seaduses kehtestatud nõuetele, sealhulgas rahvatervise seaduse, ehitusseadustiku ja teistes käesolevas määruses nimetamata õigusaktides sätestatud nõuetele, mis reguleerivad asjaomase teenuse osutamist.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para3">
+				<paragrahvNr>3</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 3.]]></kuvatavNr>
+				<paragrahvPealkiri>Teenuse osutamise põhimõtted ja lepingu sõlmimine</paragrahvPealkiri>
+				<loige id="para3lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Teenust osutatakse abi vajavale inimesele, kelle elukohana on rahvastikuregistrisse kantud Tallinna linn.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Teenuse osutamisel nõustab ja vajaduse korral abistab abi vajavat inimest abi korraldaja.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para3lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Abi korraldaja teeb abi vajavale inimesele teenuse olemusest tulenevalt ettepaneku sõlmida teenuse osutajaga leping 30 kalendripäeva jooksul asjaomase ettepaneku tegemisest arvates.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para3lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui käesolevas määruses ei ole sätestatud teisiti, lepitakse lepingus kokku eelkõige järgmine:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para3lg4p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>teenuse sisu ehk teenuse saaja vajadusest tulenevad toimingud;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para3lg4p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>teenuse maht ja teenuse osutamise periood;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para3lg4p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>teenuse omaosalustasu suurus ja omaosalustasu maksmise kord, kui omaosalustasu arvestamise alused on kehtestatud; </tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para3lg4p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>teenuse kasutamise tingimused ja kord.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para3lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Teenuse osutaja teavitab abi korraldajat kavatsusest lõpetada teenuse saajaga leping.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para3lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Teenuse osutaja lõpetab lepingu, kui teenuse vajadus langeb ära ja/või teenuse kasutaja suunatakse sobivamale teenusele.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Teenuse osutaja korraldab vajadusel teenuse osutamise koha aadressi kandmise rahvastikuregistrisse inimese viibimiskohana ja taotleb viibimiskoha kehtivuse lõpetamist teenuse kasutamise õiguse lõppemisel.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para4">
+				<paragrahvNr>4</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 4.]]></kuvatavNr>
+				<paragrahvPealkiri>Teenuste liigid</paragrahvPealkiri>
+				<loige id="para4lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tallinna linna korraldatavad sotsiaalteenused on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para4lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>puudega lapse hoiuteenus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>asendushooldusteenus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>järelhooldusteenus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>tugiisikuteenus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>turvakoduteenus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p6">
+						<alampunktNr>6</alampunktNr>
+						<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>nõustamisteenused;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p6b1">
+						<alampunktNr ylaIndeks="1">6</alampunktNr>
+						<kuvatavNr><![CDATA[6<sup>1</sup>)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>toimetulekunõustamise teenus;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-09-10</avaldamineKuupaev>
+								<RTartikkel>13</RTartikkel>
+								<aktViide>410092025013</aktViide>
+							</avaldamismarge>
+							<joustumine>2026-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para4lg1p6b2">
+						<alampunktNr ylaIndeks="2">6</alampunktNr>
+						<kuvatavNr><![CDATA[6<sup>2</sup>)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>toimetulekuõpe;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-09-10</avaldamineKuupaev>
+								<RTartikkel>13</RTartikkel>
+								<aktViide>410092025013</aktViide>
+							</avaldamismarge>
+							<joustumine>2026-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para4lg1p7">
+						<alampunktNr>7</alampunktNr>
+						<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>päevakeskuseteenus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p8">
+						<alampunktNr>8</alampunktNr>
+						<kuvatavNr><![CDATA[8)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>sotsiaaltransporditeenus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p9">
+						<alampunktNr>9</alampunktNr>
+						<kuvatavNr><![CDATA[9)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>isikliku abistaja teenus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p10">
+						<alampunktNr>10</alampunktNr>
+						<kuvatavNr><![CDATA[10)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>viipekeele tõlketeenus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p11">
+						<alampunktNr>11</alampunktNr>
+						<kuvatavNr><![CDATA[11)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>täisealise inimese hooldusteenus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p12">
+						<alampunktNr>12</alampunktNr>
+						<kuvatavNr><![CDATA[12)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>varjupaigateenus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p13">
+						<alampunktNr>13</alampunktNr>
+						<kuvatavNr><![CDATA[13)]]></kuvatavNr>
+						<muutmismarge>
+							<tavatekst>kehtetu - </tavatekst>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para4lg1p13b1">
+						<alampunktNr ylaIndeks="1">13</alampunktNr>
+						<kuvatavNr><![CDATA[13<sup>1</sup>)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>sotsiaal- ja majutusteenus;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-03</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para4lg1p14">
+						<alampunktNr>14</alampunktNr>
+						<kuvatavNr><![CDATA[14)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>eluruumi tagamise teenus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p15">
+						<alampunktNr>15</alampunktNr>
+						<kuvatavNr><![CDATA[15)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>koduteenus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p16">
+						<alampunktNr>16</alampunktNr>
+						<kuvatavNr><![CDATA[16)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>sotsiaalvalveteenus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p17">
+						<alampunktNr>17</alampunktNr>
+						<kuvatavNr><![CDATA[17)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>omastehooldaja asendamise teenus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p18">
+						<alampunktNr>18</alampunktNr>
+						<kuvatavNr><![CDATA[18)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>mäluhäiretega inimeste päevahoiuteenus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p19">
+						<alampunktNr>19</alampunktNr>
+						<kuvatavNr><![CDATA[19)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>väljaspool kodu osutatav ööpäevane üldhooldusteenus.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para4lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Põhjendatud vajaduse korral korraldatakse abi vajavale inimesele eespool kirjeldamata muud teenust, mis toetab inimese ja tema perekonna arengut ja toimetulekut. Teenuse täpsem sisu ja selle osutamise tingimused tulenevad hinnatud abivajadusest ja lepitakse kokku juhtumipõhiselt.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="pt2">
+			<peatykkNr>2</peatykkNr>
+			<kuvatavNr><![CDATA[2. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Teenuste kirjeldused</peatykkPealkiri>
+			<paragrahv id="para5">
+				<paragrahvNr>5</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 5.]]></kuvatavNr>
+				<paragrahvPealkiri>Puudega lapse hoiuteenus</paragrahvPealkiri>
+				<loige id="para5lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puudega lapse hoiuteenuse eesmärk on toetada puudega last (erandjuhtudel vähemalt<b> </b>suure hooldus- ja järelevalvevajadusega last) kasvatava inimese toimetulekut ja vähendada lapse erivajadusest tulenevat hoolduskoormust. Puudega lapse hoiuteenuse puhul on abi korraldaja amet.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para5lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Teenuse osutaja tagab lapse hooldamise, arendamise ja turvalisuse.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para5lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Hoolduspere vanem, kes on Tallinna linnaga sõlminud lapse perekonnas hooldamise lepingu ja kellele Tallinna linn maksab lapse perekonnas hooldamise eest toetust, ei pea teenuse saamiseks olema Tallinna linna elanik.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para5lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para5lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para6">
+				<paragrahvNr>6</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 6.]]></kuvatavNr>
+				<paragrahvPealkiri>Asendushooldusteenus</paragrahvPealkiri>
+				<loige id="para6lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Asendushooldusteenuse eesmärk on tagada pika- või lühiajaliselt lapse heaolu ja õigused, võimaldada lapsele tema põhivajaduste rahuldamiseks peresarnased elutingimused, luua lapsele turvaline ja arenguks soodne elukeskkond ning valmistada laps ette võimetekohaseks toimetulekuks täisealisena. Asendushooldusteenuse puhul on abi korraldaja amet.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para6lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lapsele osutatakse vajadustele vastavat asendushooldusteenust:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para6lg2p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>hooldusperes, kus vahetult teenust osutav inimene on hoolduspere vanem;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para6lg2p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>perekodus, kus vahetult teenust osutav inimene on perevanem;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para6lg2p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>asenduskodus, kus vahetult teenust osutav inimene on kasvataja.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para6lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Asendushooldusteenuse osutamisel eelistatakse lapse paigutamist hooldusperre. Pere- või asenduskodusse paigutatakse laps erandina tema olulisi huve arvestades.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para6lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lapsele,
+kes vastab sotsiaalhoolekande seaduses sätestatud tingimustele, tagatakse
+asendushooldusteenus eelkõige juhul, kui eestkostjaks või eestkostja ülesannete
+täitjaks on määratud Tallinna Linnavalitsus.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para6lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para6lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para6lg8">
+					<loigeNr>8</loigeNr>
+					<kuvatavNr><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Asendushooldusteenuse määramise haldusakt kehtib maksimaalselt seni, kuni langeb ära sotsiaalhoolekande seaduse kohase asendushooldusteenuse tagamise kohustus.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-09-04</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-09-10</avaldamineKuupaev>
+							<RTartikkel>13</RTartikkel>
+							<aktViide>410092025013</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-09-13</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para7">
+				<paragrahvNr>7</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 7.]]></kuvatavNr>
+				<paragrahvPealkiri>Järelhooldusteenus</paragrahvPealkiri>
+				<loige id="para7lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Järelhooldusteenuse eesmärk on toetada asendushoolduselt või eestkostelt lahkuva inimese õpingute jätkamist ja iseseisvat
+toimetulekut. Järelhooldusteenust korraldab linnaosa valitsus inimesele kuni
+25-aastaseks saamiseni ning üldjuhul õpingute ajal. Kui inimene ei õpi,
+osutatakse järelhooldusteenust juhul ja ajal, kui ta astub oma võimetest
+lähtudes piisavaid samme selleks, et parandada enda toimetulekut edasises tööelus.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para7lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para7lg2b1">
+					<loigeNr ylaIndeks="1">2</loigeNr>
+					<kuvatavNr><![CDATA[(2<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Järelhooldusteenust
+osutatakse lähtuvalt inimese vajadusest kas:</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para7lg2b1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>teenuse osutaja poolt kompaktselt koos eluruumi kasutamise võimaldamisega või</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-03</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para7lg2b1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>inimesele vajalike sotsiaalteenuste osutamise ja toetuste tagamisega.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-03</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para7lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Linnaosa valitsus maksab inimesele isiklike kulude toetust ning abistab teda eluaseme tagamisel ja muude vajaduste täitmisel juhtumiplaani alusel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Inimesele, kes on 30. aprilli 2025 seisuga suunatud järelhooldusteenusele,
+korraldab kuni 31. detsembrini 2025 järelhooldusteenust kas linnaosa valitsus või amet.
+Alates 1. jaanuarist 2026 on järelhooldusteenuse puhul abi korraldaja linnaosa valitsus.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para8">
+				<paragrahvNr>8</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 8.]]></kuvatavNr>
+				<paragrahvPealkiri>Tugiisikuteenus</paragrahvPealkiri>
+				<loige id="para8lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tugiisikuteenuse eesmärk on toetada inimese iseseisvat toimetulekut olukorras, kus ta vajab sotsiaalsete, majanduslike, psühholoogiliste või terviseprobleemide tõttu oma kohustuste täitmisel ja õiguste teostamisel olulisel määral kõrvalabi. Abi vajavale lapsele osutatava tugisikuteenuse puhul on abi korraldaja amet.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para8lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Olenevalt teenuse saajast on teenuse osutamise täiendav eesmärk:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para8lg2p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>täisealise puhul tagada tema iseseisev toimetulek juhendamise ja motiveerimise kaudu;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para8lg2p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>last kasvatava inimese puhul aidata tagada lapse hooldamine ning turvaline ja toetav keskkond;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para8lg2p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lapse puhul toetada koostöös last kasvatava inimesega lapse arengut, sealhulgas vajaduse korral teha puudega lapse puhul hooldustoiminguid. Tugiisik abistab last arendavates tegevustes, juhendab ja motiveerib igapäevaelus toime tulema, abistab suhtlemisel perekonnaliikmetega või väljaspool kodu.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para8lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para8lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Abi korraldaja edastab teenuse osutajale haldusaktist, millega otsustati teenuse
+osutamine, teenust puudutava resolutiivosa, millega otsustati teenuse osutamine, ja teenuse alustamiseks vajaliku teabe. Teenuse osutaja pöördub teenuse saaja poole, et teenuse osutamine kokku leppida.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para8lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Teenuse saaja valib teenust vahetult osutava isiku. Kui teenuse saaja vajab abi teenust vahetult osutava isiku leidmisel, abistab teenuse saajat teenuse osutaja.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para8lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Teenuse osutamise lepingus võib kokku leppida, et haldusaktis märgitud kalendrikuuks ette nähtud teenuse mahu võib kalendriaasta sees kvartali kaupa summeerida. Nende kuude jooksul võib teenustunde kasutada enda vajadust mööda.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para8lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para9">
+				<paragrahvNr>9</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 9.]]></kuvatavNr>
+				<paragrahvPealkiri>Turvakoduteenus</paragrahvPealkiri>
+				<loige id="para9lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Turvakoduteenuse eesmärk on tagada ajutine eluase, turvaline keskkond ja esmane abi:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para9lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lapsele, kes vajab abi hooldamises esinevate puuduste tõttu, mis ohustavad tema elu, tervist või arengut;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>täisealisele, kes on sattunud vaimse või füüsilise vägivalla ohvriks või kes ei saa muul viisil endale turvalist keskkonda tagada.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para9lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Esmase abi raames tagatakse inimesele vajaduse korral psühholoogiline nõustamine, mis toetab tema psüühilise tasakaalu ja tegevusvõime taastamist igapäevaelus.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ajutise eluasemega tagatakse toitlustamine, voodikoht, pesemis- ja pesupesemisvõimalus ning vajaduse korral korraldatakse hooldus- ja tervishoiuteenused.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lapsele tagatakse east ja vajadusest lähtudes arengut ja õppimist soodustavad olud ning vaba aja tegevused.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lapsele turvakoduteenuse osutamise käigus tuleb tagada lapse ja teda kasvatavate inimeste vaheliste suhete säilimine ja paranemine, välja arvatud juhul ja määral, milles see kahjustab lapse heaolu. Lapsele turvakoduteenuse osutamisel lähtutakse järgmistest põhimõtetest:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para9lg5p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>võimaluse korral ja juhul, kui see ei kahjusta lapse heaolu, pakutakse last kasvatavale inimesele võimalust viibida teenusel koos lapsega;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg5p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kui last kasvatav inimene ei viibi teenusel koos lapsega, tagatakse neile võimalikult sage kohtumise või sidevahendite kaudu suhtlemise võimalus. Kohtumiste käigus rakendatakse järelevalvet määral, mis on vajalik lapse heaolu tagamiseks;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg5p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kui lapsele ei ole võimalik teenust osutada selliselt, et laps viibib teenusel koos last kasvatava inimesega, tuleb lapse turvakodusse paigutamisele eelistada perepõhist hooldust. Juba turvakodus viibivale lapsele tuleb tagada turvaline võimalus oma pere juurde tagasi pöörduda. Kui see pole võimalik, siis tuleb laps suunata esimesel võimalusel perepõhisele asendushooldusele.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para9lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ameti lapse heaolu spetsialist hindab viie tööpäeva jooksul lapse turvakodusse saabumisest arvates lapse heaolu ja planeerib edasised tegevused nii lapse turvakodus viibimise ajaks kui ka sellele järgnevaks ajaks, et tagada lapse edasine heaolu. Abi vajavale lapsele osutatava turvakoduteenuse puhul on abi korraldaja amet.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para9lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Turvakoduteenuse saamiseks tuleb pöörduda turvakoduteenuse osutaja või abi korraldaja poole. Samuti võib inimese turvakodusse viia kolmas isik, sealhulgas politsei või laste ja peredega töötav spetsialist.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para9lg8">
+					<loigeNr>8</loigeNr>
+					<kuvatavNr><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lapse või täisealise inimese turvakoduteenuse osutaja juurde toonud inimene on kohustatud andma teenuseosutajale talle teadaolevat teenuse osutamiseks vajalikku teavet.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9lg9">
+					<loigeNr>9</loigeNr>
+					<kuvatavNr><![CDATA[(9)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Turvakoduteenust osutatakse haldustoiminguna.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para10">
+				<paragrahvNr>10</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 10.]]></kuvatavNr>
+				<paragrahvPealkiri>Nõustamisteenused</paragrahvPealkiri>
+				<loige id="para10lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Nõustamisteenuste eesmärk on toetada inimese või pere iseseisvat toimetulekut. Abi vajavale lapsele osutatava nõustamisteenuse puhul on abi korraldaja amet.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para10lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Abi korraldaja pakub sotsiaalnõustamist, mille käigus tagatakse inimesele ja tema perele vajaliku teabe andmine sotsiaalsetest õigustest ja seaduslike huvide kaitsmise võimalustest ning abistamine konkreetsete sotsiaalsete probleemide lahendamisel edaspidise toimetuleku soodustamiseks.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para10lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Olenevalt teenuse saaja vajadusest osutatakse teenuse osutajate kaudu eelkõige järgmisi nõustamisteenuseid:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para10lg3p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>majandamisnõustamine – võlgade teket ennetav tegevus inimese puhul, kellel on ebapiisavad majandamisoskused ja oht jääda võlgadesse, millega ta ei ole võimeline iseseisvalt toime tulema;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg3p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>võlanõustamine – võlgadesse sattunud inimese nõustamine ja juhendamine võlakohustuste kindlakstegemisel ja nendele lahenduste leidmisel;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg3p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>psühholoogiline nõustamine – traumaatilise sündmuse või õnnetusjuhtumi läbi elanud või igapäevaelu kriisi sattunud inimese toimetuleku toetamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg3p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>õigusnõustamine – toimetulekuraskustes inimeste nõustamine õigusküsimustes;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg3p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>viipekeelne sotsiaalnõustamine – praktiline tugi ja abi asjaajamisel kuulmispuudega inimesele;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg3p6">
+						<alampunktNr>6</alampunktNr>
+						<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kogemusnõustamine – kogemusnõustaja väljaõppe läbinud inimese kogemuslik, emotsionaalne, sotsiaalne ja praktiline tugi teisele sarnase kogemusega inimesele;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg3p7">
+						<alampunktNr>7</alampunktNr>
+						<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>laste ja perede nõustamine, koolitus ja teraapia – lastega perede heaolu ja toimetuleku toetamine.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para10lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 3 loetletud teenuste saamiseks tuleb pöörduda abi korraldaja või teenuse osutaja poole.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para10b1">
+				<paragrahvNr ylaIndeks="1">10</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 10<sup>1</sup>.]]></kuvatavNr>
+				<paragrahvPealkiri>Toimetulekunõustamise teenus</paragrahvPealkiri>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2025-09-10</avaldamineKuupaev>
+						<RTartikkel>13</RTartikkel>
+						<aktViide>410092025013</aktViide>
+					</avaldamismarge>
+					<joustumine>2026-01-01</joustumine>
+				</muutmismarge>
+				<loige id="para10b1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Toimetulekunõustamise teenuse eesmärk on toetada ebapiisavate sotsiaalsete oskustega
+inimese iseseisvat toimetulekut, ennetades toimetulekuraskuste tekkimist või
+süvenemist, ning soodustada inimese sotsiaalteenustelt
+iseseisvamasse ellu liikumist. </tavatekst>
+					</sisuTekst>
+					
+				</loige>
+				<loige id="para10b1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Toimetulekunõustamise teenust osutatakse inimesele, kes vajab regulaarset nõustamist ja juhendamist eluga
+toimetulekuks ühes või mitmes järgmistest eluvaldkondadest: eluaseme tagamine ja säilitamine,
+sotsiaalsete suhete toetamine, vaimse ja füüsilise tervise hoidmise
+soodustamine, tööalase või muu hõivatuse edendamine, vaba aja veetmise ja
+huvitegevuste leidmisele kaasaaitamine ning juhendamine igapäevaelu
+toimingutes.</tavatekst>
+					</sisuTekst>
+					
+				</loige>
+				<loige id="para10b1lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Teenuse osutaja pöördub teenuse saaja poole, et
+teenuse osutamine kokku leppida.</tavatekst>
+					</sisuTekst>
+				
+				</loige>
+				<loige id="para10b1lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Teenuse osutaja koostab 30 päeva
+jooksul haldusakti tegemisest koostöös inimese ja linnaosa valitsuse
+sotsiaalhoolekande osakonnaga seatud eesmärkide saavutamiseks individuaalse tegevusplaani, lähtudes inimese hinnatud vajadusest. Kui inimene ei võta mõjuva põhjuseta osa tegevusplaani koostamisest,
+loetakse ta teenusest loobunuks.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-09-04</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-09-10</avaldamineKuupaev>
+							<RTartikkel>13</RTartikkel>
+							<aktViide>410092025013</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para10b2">
+				<paragrahvNr ylaIndeks="2">10</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 10<sup>2</sup>.]]></kuvatavNr>
+				<paragrahvPealkiri>Toimetulekuõpe</paragrahvPealkiri>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2025-09-10</avaldamineKuupaev>
+						<RTartikkel>13</RTartikkel>
+						<aktViide>410092025013</aktViide>
+					</avaldamismarge>
+					<joustumine>2026-01-01</joustumine>
+				</muutmismarge>
+				<loige id="para10b2lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Toimetulekuõppe eesmärk on toetada loengusarja ja individuaalnõustamise kaudu toimetulekuraskustes tallinlasi, kes vajavad igapäevase parema toimetuleku saavutamiseks lisateadmisi ja -tuge.</tavatekst>
+					</sisuTekst>
+					
+				</loige>
+				<loige id="para10b2lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Toimetulekuõpe on mõeldud ennekõike pikaajalisele sotsiaaltoetuse saajale, kes vajab paremaid rahaga majandamise ja toiduvalmistamise teadmisi ja oskusi.</tavatekst>
+					</sisuTekst>
+					
+				</loige>
+				<loige id="para10b2lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Toimetulekuõpe koosneb sissejuhatavast rahatarkuse
+loengust ja arutelust, individuaalsest majandamisnõustamisest ja taskukohast
+toiduvalmistamist tutvustavast teoreetilisest ja praktilisest loengusarjast,
+millele on võimalik lisada muid toimetulekut toetavaid komponente.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-09-10</avaldamineKuupaev>
+							<RTartikkel>13</RTartikkel>
+							<aktViide>410092025013</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para11">
+				<paragrahvNr>11</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 11.]]></kuvatavNr>
+				<paragrahvPealkiri>Päevakeskuseteenus</paragrahvPealkiri>
+				<loige id="para11lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Päevakeskuseteenuse eesmärk on tagada inimesele sotsiaalse suhtluse võimalus ning igapäevane eale ja oskustele vastav mõtestatud tegevus. Abi vajavale lapsele osutatava päevakeskuseteenuse puhul on abi korraldaja amet.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para11lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Olenevalt teenuse saajast osutatakse päevakeskuseteenust järgmiselt:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para11lg2p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lapsele, kellel on õpi- ja/või käitumisraskused või probleeme koolikohustuse täitmisega, tagatakse sobivad tingimused õppimiseks ja tugi õppetöös, toit ja vajaduse korral psühholoogiline abi;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11lg2p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>täisealisele, kes vajab tuge igapäevaelu sisustamisel ja toimetulekul, tagatakse sotsiaalnõustamine ja vajalikud toetavad tegevused ja tugiteenused.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para11lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Teenuse saamiseks:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para11lg3p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>pöördub täisealine inimene teenuse osutaja poole;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11lg3p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lapse puhul määrab teenuse ameti lapse heaolu spetsialist haldusaktiga. Lapsele osutatakse teenust juhtumiplaani alusel, mis on kokku lepitud koostöös päevakeskuse, lapse ja perega.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-03</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para12">
+				<paragrahvNr>12</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 12.]]></kuvatavNr>
+				<paragrahvPealkiri>Sotsiaaltransporditeenus</paragrahvPealkiri>
+				<loige id="para12lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaaltransporditeenuse eesmärk on tagada erivajadusega inimesele võimalus käia ennekõike tööl ja koolis, kasutada avalikke teenuseid või teha muid igapäevaelu toiminguid. Abi vajavale lapsele osutatava sotsiaaltransporditeenuse puhul on abi korraldaja amet.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para12lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaaltransporditeenust on õigus kasutada erivajadusega inimesel, kes funktsioonihäirest tingituna kasutab liikumisabivahendeid või vajab liikumisel ja transpordivahendi kasutamisel kõrvalabi ning kes ei saa kasutada ühistransporditeenust või isiklikku sõiduautot.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para12lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaaltransporditeenust osutatakse kohandatud sõidukiga vajadust mööda eelkõige:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para12lg3p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>liiniveoteenusena regulaarselt tööle, õppe-, tervishoiu- või hoolekandeasutusse sõitmiseks;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para12lg3p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>juhuveoteenusena üksiksõitudeks hoolekande- või tervishoiuasutusse või avalike teenuste kasutamiseks. Juhuveoteenuse tellimus tuleb ametile esitada vähemalt viis tööpäeva enne soovitud sõitu, märkides ära juhuveoteenuse kasutamise kuupäeva, kellaaja, lähte- ja sihtkoha, sõidu eesmärgi ning saatja kaasamise vajaduse;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para12lg3p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>taksoveoteenusena isiklikeks sõitudeks linna haldusterritooriumil ja linna piirist kuni 30 km kaugusele ja sealt tagasi. Juhendamist vajav inimene kasutab taksoveoteenust koos saatjaga.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para12lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Taksoveoteenust on õigus kasutada inimesel:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para12lg4p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kes on vähemalt kolmeaastane ja</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para12lg4p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kellel on Sotsiaalkindlustusamet tuvastanud puude ja</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para12lg4p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kelle puue takistab ühissõiduki või isikliku sõiduauto kasutamist ja </tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para12lg4p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kes nägemisfunktsiooni täieliku puudumise või liikumisfunktsiooni kõrvalekalde tõttu ei saa kasutada liini- ja juhuveoteenust iseseisvalt või kõrvalabiga.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para12lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaaltransporditeenuse osutamise haldusakt kaotab kehtivuse, kui inimene ei ole mõjuval põhjusel asunud liiniveoteenust kasutama 30 päeva jooksul alates teenuse kasutamise alguse kuupäevast, juhu- või taksoveoteenust kuue kuu jooksul alates teenuse kasutamise õiguse andmisest.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para13">
+				<paragrahvNr>13</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 13.]]></kuvatavNr>
+				<paragrahvPealkiri>Isikliku abistaja teenus</paragrahvPealkiri>
+				<loige id="para13lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Isikliku abistaja teenuse eesmärk on abistada teenuse saajat tegevustes, mille sooritamisel ta vajab puude tõttu füüsilist kõrvalabi.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para13lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Isiklik abistaja aitab inimest tema igapäevaelu tegevustes, nagu liikumisel, söömisel, toidu valmistamisel, riietumisel, hügieenitoimingutes, majapidamistöödes ja muudes toimingutes, milles inimene vajab juhendamist või kõrvalabi.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para13lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Linnaosa valitsuse sotsiaalhoolekande osakond edastab teenuse osutajale teenuse alustamiseks vajaliku teabe. Teenuse osutaja pöördub teenuse saaja poole, et teenuse osutamine kokku leppida.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para13lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Teenuse saaja valib teenust vahetult osutava isiku. Kui teenuse saaja vajab abi teenust vahetult osutava isiku leidmisel, abistab teenuse saajat teenuse osutaja.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para13lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Teenuse osutamise lepingus võib kokku leppida, et haldusaktis märgitud kalendrikuuks ette nähtud teenuse mahu võib kalendriaasta sees kvartali kaupa summeerida. Nende kuude jooksul võib teenustunde kasutada enda vajadust mööda.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para14">
+				<paragrahvNr>14</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 14.]]></kuvatavNr>
+				<paragrahvPealkiri>Viipekeele tõlketeenus</paragrahvPealkiri>
+				<muutmismarge>
+					<aktikuupaev>2022-12-15</aktikuupaev>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+						<RTartikkel>5</RTartikkel>
+						<aktViide>422122022005</aktViide>
+					</avaldamismarge>
+					<joustumine>2023-01-01</joustumine>
+				</muutmismarge>
+				<loige id="para14lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Viipekeele tõlketeenuse eesmärk on tagada kuulmispuudega inimesele, kes kasutab suhtlemiseks viipekeelt, tõlge asjaajamisega seotud suhtlemisel tema kodus või vajalikes ameti- ja teenindusasutustes.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para14lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Teenust osutatakse eesti või vene viipekeeles.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para14lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Viipekeele tõlketeenuse saamiseks tuleb pöörduda viipekeele tõlketeenuse koordinaatori või linnaosa valitsuse poole.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para14lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Viipekeele tõlketeenust osutatakse haldustoiminguna.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para15">
+				<paragrahvNr>15</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 15.]]></kuvatavNr>
+				<paragrahvPealkiri>Täisealise inimese hooldusteenus</paragrahvPealkiri>
+				<muutmismarge>
+					<aktikuupaev>2022-12-15</aktikuupaev>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+						<RTartikkel>5</RTartikkel>
+						<aktViide>422122022005</aktViide>
+					</avaldamismarge>
+					<joustumine>2023-01-01</joustumine>
+				</muutmismarge>
+				<loige id="para15lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Täisealise inimese hoolduse eesmärk on võimaldada inimesel kõrvalabile toetudes võimalikult kaua hakkama saada kodustes tingimustes ja ka asjaajamisel väljaspool kodu, säilitades ja parandades tema elukvaliteeti.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para15lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Täisealisele inimesele määratakse hooldaja eesmärgiga vältida või edasi lükata tema suunamist väljaspool kodu osutatavale üldhooldusteenusele või ööpäevaringsele erihoolekandeteenusele.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para15lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Täiskasvanud inimesele osutab teenust linnaosa valitsuse määratud hooldaja, kes võib olla inimese pereliige või  lähedane. Hooldus seatakse ja hooldaja määratakse hooldatava nõusolekul.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para15lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Hooldajaks määratakse teovõimeline inimene, kes on kantud rahvastikuregistrisse Tallinna linna elanikuna ja on võimeline hooldust vajavat inimest tema vajadustele vastavalt hooldama.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para15lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Hooldaja võib üldjuhul olla ühe hooldusvajadusega inimese hooldaja. Kahe või enama hooldusvajadusega inimese hooldaja võib olla siis, kui hooldusvajadusega inimesed on tema pereliikmed või elavad samas eluruumis.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para15lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Hooldajaks ei määrata inimest:</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para15lg6p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kellel on Sotsiaalkindlustusamet tuvastanud sügava puude;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-03</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para15lg6p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kes on kutsealune kaitseväeteenistuse seaduse mõistes, v.a kui ta on ainus isik, kes on kohustatud ülal pidama raske või sügava puudega inimest, kellel puuduvad teised ülalpidamiskohustusega isikud.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2022-12-15</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para15lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Hooldajat ei määrata, kui inimese hooldusvajadust on võimalik katta või see kaetakse teiste sotsiaal- ja/või haridus- ja/või meditsiiniteenustega.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para16">
+				<paragrahvNr>16</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 16.]]></kuvatavNr>
+				<paragrahvPealkiri>Varjupaigateenus</paragrahvPealkiri>
+				<loige id="para16lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Varjupaigateenuse eesmärk on tagada ajutine ööbimiskoht täisealisele inimesele, kes ei ole võimeline seda endale ise tagama.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para16lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Olenevalt inimese vajadusest osutatakse varjupaigateenust järgmiselt:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para16lg2p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>piiritletud kellaaegadel (vähemalt 12 tundi) osutatava varjupaigateenuse korral tagatakse teenuse saajale voodikoht, pesemisvõimalus, turvaline keskkond koos pädeva personaliga, sotsiaalnõustamine ja muu vältimatu sotsiaalabi osutamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para16lg2p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>ööpäevaringset varjupaigateenust osutatakse ennekõike terviseprobleemidega inimestele. Teenuse saajale tagatakse voodikoht, pesemisvõimalus, turvaline keskkond ning toitlustamine või toidu valmistamise võimalus, vajaduse korral hooldus ja juurdepääs tervishoiuteenusele;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para16lg2p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>vältimatu abina tagatakse erakorraline ööpäevaringne majutusteenus sotsiaalmajutusüksuses inimesele, kelle eluase on ootamatult kasutuskõlbmatuks muutunud või hävinud või kes muul mõjuval põhjusel on jäänud eluruumita. Teenuse saajale tagatakse voodikoht, pesemise ja toidu valmistamise võimalus kuni vältimatu abi vajaduse äralangemiseni.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para16lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Varjupaigateenuse saamiseks pöördub teenuse osutaja või linnaosa valitsuse poole kas inimene iseseisvalt või kolmanda isiku, sealhulgas politsei abil.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para17">
+				<paragrahvNr>17</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 17.]]></kuvatavNr>
+				<paragrahvPealkiri>Resotsialiseerimisteenus</paragrahvPealkiri>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>412042025001</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-05-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para17b1">
+				<paragrahvNr ylaIndeks="1">17</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 17<sup>1</sup>.]]></kuvatavNr>
+				<paragrahvPealkiri>Sotsiaal- ja majutusteenus</paragrahvPealkiri>
+				<muutmismarge>
+					<aktikuupaev>2025-04-03</aktikuupaev>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>412042025001</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-05-01</joustumine>
+				</muutmismarge>
+				<loige id="para17b1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaal- ja majutusteenuse eesmärk on tagada toimetulekuraskustes inimesele majutuskoht koos vajaliku kõrvalabi ja juhendamisega, et säilitada või parandada inimese igapäevast toimetulekut ning võimalusel suunata inimene iseseisvasse ellu.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para17b1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaal- ja majutusteenus hõlmab inimese hinnatud vajadustest olenevalt järgmisi eluvaldkondi: voodikoha või toa kasutuse tagamine, sotsiaalsete suhete toetamine, vaimse ja füüsilise tervise hoidmise soodustamine, tööalase või muu hõivatuse edendamine, vaba aja veetmisele ja huvitegevuste leidmisele kaasa aitamine ning toetamine igapäevaelu toimingutes.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para17b1lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaal- ja majutusteenust osutatakse inimesele, kes sotsiaal-majandusliku olukorra tõttu ei ole võimeline endale ja oma perele ise eluruumi tagama ja seda säilitama ning kes vajab igapäevaseks toimetulekuks regulaarset kõrvalabi ja juhendamist vähemalt ühes eluvaldkonnas.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para17b1lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaal- ja majutusteenust osutatakse sotsiaalmajutusüksustes.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para17b1lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaal- ja majutusteenuse eest tasub inimene hinnakirja alusel.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para17b1lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Inimesele, kes vajab füüsilisest tervisest tulenevalt püsivat kõrvalabi, õendusteenust ja hooldust, osutatakse teenust eraldi sotsiaalmajutusüksuses. Sel juhul tuleb inimesel teenuse eest tasuda kogu sotsiaalhoolekandelise abi andmise korra kohaselt arvesse minev sissetulek, mis ületab Statistikaameti avaldatud elatusmiinimumi mittetoidukulutuste maksumust, millest on maha arvestatud ka eluasemekulu komponent.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para17b1lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Inimene, keda abi korraldaja teavitab vajadustele vastava teenuskoha olemasolust, sõlmib teenuse osutajaga lepingu kümne tööpäeva jooksul teavituse saamisest. Kui inimene ei sõlmi lepingut tähtaja jooksul, loetakse ta teenusest loobunuks.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para17b1lg8">
+					<loigeNr>8</loigeNr>
+					<kuvatavNr><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Teenuse osutaja koostab 30 päeva jooksul koostöös inimese ja abi korraldajaga teenuse saaja individuaalse tegevusplaani. Hiljemalt 30 päeva enne teenuse osutamise tähtaja lõppemist korraldab teenuse osutaja tegevusplaanis seatud eesmärkide täitmise analüüsimiseks kohtumise inimese ja abi korraldajaga. </tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para17b1lg9">
+					<loigeNr>9</loigeNr>
+					<kuvatavNr><![CDATA[(9)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lastega peredele osutatakse teenust ameti lapse heaolu spetsialisti koostatud juhtumiplaani alusel.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para18">
+				<paragrahvNr>18</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 18.]]></kuvatavNr>
+				<paragrahvPealkiri>Eluruumi tagamise teenus</paragrahvPealkiri>
+				<loige id="para18lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Eluruumi tagamise teenuse eesmärk on tagada eluruumi kasutamise võimalus inimesele, kes ei ole võimeline tagama enda või oma perekonna põhjendatud vajadusele vastava eluruumi kasutamise võimalust:</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para18lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>füüsilise või psüühilise puude tõttu;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2022-12-15</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para18lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>sotsiaal-majandusliku olukorra tõttu.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2022-12-15</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para18lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						
+						<muutmismarge>
+							<tavatekst>kehtetu - </tavatekst>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para18lg1p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<muutmismarge>
+							<tavatekst>kehtetu - </tavatekst>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para18lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Eluruum tagatakse lähtuvalt linnaosa valitsuse sotsiaalhoolekande osakonna poolt inimese teenusvajaduse kohta antud haldusotsusest järgmiste meetmetega:</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2024-04-04</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2024-04-12</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>412042024002</aktViide>
+						</avaldamismarge>
+						<joustumine>2024-04-15</joustumine>
+					</muutmismarge>
+					<alampunkt id="para18lg2p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>eelistatavalt abistab linn inimest eluruumi leidmisel vabaturult ja
+tagab vajaduse korral selleks täiendava nõustamise ja toetuse;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2022-12-15</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para18lg2p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>linn annab kasutusse endale või kolmandale isikule kuuluva eluruumi (vajaduse korral kohandatud eluruumi) koos muu põhjendatud abiga.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2024-04-04</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2024-04-12</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>412042024002</aktViide>
+							</avaldamismarge>
+							<joustumine>2024-04-15</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para18lg2b1">
+					<loigeNr ylaIndeks="1">2</loigeNr>
+					<kuvatavNr><![CDATA[(2<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Inimesel tekib õigus eluruumi tagamise teenust kasutada ainult juhul, kui ta on täitnud käesolevast paragrahvist tulenevad kohustused.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2024-04-04</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2024-04-12</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>412042024002</aktViide>
+						</avaldamismarge>
+						<joustumine>2024-04-15</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Eluruumi tagamise teenuse vajadust hinnatakse sotsiaalhoolekandelise abi
+andmise korras sätestatud alustest lähtudes. Teenust osutatakse juhul, kui
+inimese või pere sissetulek jääb pärast talle ettenähtud eluasemekulude
+tasumist alla sissetulekupiiri. Seejuures arvestatakse järgmist:</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para18lg3p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>eluruumi sotsiaalselt põhjendatud normiks arvestatakse igale
+pereliikmele 18 m<sup>2</sup>, millele lisandub 15 m<sup>2</sup> kogu
+pere kohta;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2022-12-15</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para18lg3p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>eluasemekuluna võetakse arvesse Tallinna Linnavolikogu 16. detsembri
+2021 määruses nr 32 „Toimetulekutoetuse määramisel aluseks võetavate
+eluasemekulude piirmäärad“ (edaspidi <i>määrus nr 32</i>)
+sätestatud maksimaalne üüri piirmäär;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2022-12-15</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para18lg3p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>arvestuslik eluruumi üldpind on maksimaalselt 105 m<sup>2</sup>.
+Eluruumi tagamise teenuse puhul ei rakendata määruse nr 32 § 1 lõike 1 punktis
+1 üle 33 m<sup>2</sup> üldpinnaga eluruumide kohta sätestatud erisusi.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2022-12-15</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para18lg3b1">
+					<loigeNr ylaIndeks="1">3</loigeNr>
+					<kuvatavNr><![CDATA[(3<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Eluruumi tagamise teenust üürimise nõustamise ja toetamise meetmega võib osutada ka juhul, kui lõike 3 kohaselt arvestatud inimesele või perele kätte jääv summa ületab inimesele või perele ettenähtud sissetulekupiiri kuni ühe sissetulekupiiri suurusele vastava summa võrra.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõike 2 punktis 1 nimetatud juhul osutab linn
+inimesele üürimise nõustamise ja toetamise teenust, mille eesmärk on toetada
+püsiva sissetulekuga sotsiaal-majanduslikes raskustes inimest eluruumi
+leidmisel vabaturult.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Üürimise nõustamine ja
+toetamine lõpeb ühekordse toetuse maksmisega juhul, kui inimene:</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para18lg5p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>on läbinud tervikliku hindamise, majandamisnõustamise ja üürimise nõustamise ning on hindamise tulemusel võimeline vabaturul toime tulema ja</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2022-12-15</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para18lg5p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>on leidnud sobiva elamispinna ja sõlminud üürilepingu.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2022-12-15</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para18lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Toetust makstakse üürimisega seotud kulude  osaliseks katmiseks üürile
+andjale, põhjendatud juhtudel toetuse taotlejale.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Toetust makstakse haldusotsuse alusel kord kolme kalendriaasta jooksul.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg8">
+					<loigeNr>8</loigeNr>
+					<kuvatavNr><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Enne käesoleva paragrahvi lõike 2 punkti 2 alusel eluruumi kasutusse
+andmise otsustamist tehakse abi vajavale inimesele eluruumi kasutusse võtmise
+ettepanek. Ettepanekus teavitatakse inimest eluruumi asukohast ja suurusest,
+antakse muu eluruumi iseloomustav oluline teave ning tutvustatakse eluruumi
+fotode abil.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg9">
+					<loigeNr>9</loigeNr>
+					<kuvatavNr><![CDATA[(9)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Abi vajav inimene peab eluruumi kasutusse andmise ettepaneku tegijat kirjalikult teavitama eluruumi vastuvõtmisest või sellest loobumisest kümne tööpäeva jooksul ettepaneku tegemisest. Eluruumist loobumist peab kirjalikult põhjendama. Kui inimene ei esita tähtajaks mõjuvaid põhjendusi eluruumist loobumiseks, võib amet jätta eluruumi tema kasutusse andmata.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2024-04-04</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2024-04-12</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>412042024002</aktViide>
+						</avaldamismarge>
+						<joustumine>2024-04-15</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg10">
+					<loigeNr>10</loigeNr>
+					<kuvatavNr><![CDATA[(10)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui inimene loobub<b> </b>eluruumist põhjendatult, jääb ta eluruumi
+vajajana ootele ja talle tehakse uus ettepanek eluruumi kasutamise lepingu
+sõlmimiseks, pakkudes teist, inimese vajadustele vastavat eluruumi.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg11">
+					<loigeNr>11</loigeNr>
+					<kuvatavNr><![CDATA[(11)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Eluruumist loobumine<b> </b>on põhjendatud eelkõige juhul, kui
+eluruum ei sobi inimesele tema füüsilise või psüühilise erivajaduse tõttu, mida
+on võimalik dokumentaalselt tõendada.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg12">
+					<loigeNr>12</loigeNr>
+					<kuvatavNr><![CDATA[(12)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Eluruumi kasutusse andmise otsustamisel  arvestatakse inimese
+põhjendatud vajadustega ja linna omandis olevate eluruumide võimalustega.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg13">
+					<loigeNr>13</loigeNr>
+					<kuvatavNr><![CDATA[(13)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Inimese põhjendatud vajadustele vastava eluruumi puudumisel võetakse
+inimene eluruumi vajajana ootele ja temaga sõlmitakse eluruumi kasutamise
+leping esimesel võimalusel.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg14">
+					<loigeNr>14</loigeNr>
+					<kuvatavNr><![CDATA[(14)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui abi vajav inimene on kinnitanud eluruumi sobivust, antakse linnale
+kuuluv eluruum tema kasutusse ameti juhataja või tema volitatud isiku
+haldusakti alusel tähtajaliselt kuni kolmeks aastaks. Eluruumi sihtotstarbelist
+kasutamist kontrollib linnaosa valitsus.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg15">
+					<loigeNr>15</loigeNr>
+					<kuvatavNr><![CDATA[(15)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Abi vajav inimene on kohustatud sõlmima eluruumi kasutamise lepingu
+(edaspidi <i>leping</i>) 30<i> </i>päeva jooksul arvates eluruumi
+kasutusse andmise otsusest teadasaamisest.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2024-04-04</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2024-04-12</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>412042024002</aktViide>
+						</avaldamismarge>
+						<joustumine>2024-04-15</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg16">
+					<loigeNr>16</loigeNr>
+					<kuvatavNr><![CDATA[(16)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lepingu sõlmimisel teavitatakse eluruumi kasutajat võlaõigusseaduse §
+272 lõike 4 punktis 4 sätestatust lähtudes sellest, et kasutusse antud
+eluruumile ei kohaldata võlaõigusseaduses eluruumide üürimise kohta sätestatut.
+Eluruumi kasutaja peab tasuma üüri ja eluruumiga seotud kõrvalkulud.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg17">
+					<loigeNr>17</loigeNr>
+					<kuvatavNr><![CDATA[(17)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Eluruumis võivad elada
+inimesed, kelle abivajadus on hinnatud. Kui pere koosseis muutub, on inimesel
+kohustus teavitada sotsiaalhoolekande osakonda, kes vajadusel hindab uuesti
+pere abivajadust. Eluruumi ei tohi anda allkasutusse.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg18">
+					<loigeNr>18</loigeNr>
+					<kuvatavNr><![CDATA[(18)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Inimese jätkuv teenusevajadus või selle puudumine peab olema sotsiaalhoolekande osakonnal välja selgitatud vähemalt kolm kuud enne lepingu tähtaja saabumist.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg19">
+					<loigeNr>19</loigeNr>
+					<kuvatavNr><![CDATA[(19)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lepingu sõlmimise uueks
+perioodiks otsustab ameti juhataja või tema volitatud isik haldusaktiga,
+tuginedes linnaosa valitsuse sotsiaalhoolekande osakonna haldusotsusele,
+millega on tuvastatud inimese jätkuv teenusevajadus.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg20">
+					<loigeNr>20</loigeNr>
+					<kuvatavNr><![CDATA[(20)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui hindamise tulemusena selgub, et inimesel on jätkuv teenusevajadus,
+kuid pere koosseis või inimese abivajadus on olulisel määral muutunud, võib
+amet otsustada anda inimese kasutusse teise, tema vajadusele sobivama eluruumi.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg21">
+					<loigeNr>21</loigeNr>
+					<kuvatavNr><![CDATA[(21)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Leping lõpetatakse ennetähtaegselt, kui inimese teenusevajadus on ära langenud või inimene või tema
+pereliige on oluliselt rikkunud lepingu tingimusi.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg22">
+					<loigeNr>22</loigeNr>
+					<kuvatavNr><![CDATA[(22)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Leping lõpeb abi
+taotlenud eluruumi kasutaja (edaspidi <i>eluruumi kasutaja</i>) surma
+korral.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg23">
+					<loigeNr>23</loigeNr>
+					<kuvatavNr><![CDATA[(23)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Eluruumi kasutajaga koos elanud täisealisel pereliikmel, kellel on
+jätkuv teenusevajadus, on õigus ühe kuu jooksul alates eluruumi kasutaja
+surmast esitada sotsiaalhoolekande osakonnale sotsiaalhoolekandelise abi
+taotlus.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg24">
+					<loigeNr>24</loigeNr>
+					<kuvatavNr><![CDATA[(24)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalhoolekande
+osakond hindab eluruumi kasutajaga koos elanud pereliikme jätkuvat
+teenusevajadust. Kui ta vajab eluruumi, sõlmitakse temaga käesoleva paragrahvi
+lõikes 10–18 sätestatud alustel leping sama eluruumi või põhjendatud juhul muu eluruumi
+kasutamiseks.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para19">
+				<paragrahvNr>19</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 19.]]></kuvatavNr>
+				<paragrahvPealkiri>Koduteenus</paragrahvPealkiri>
+				<loige id="para19lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Koduteenuse eesmärk on tagada täisealise inimese iseseisev ja turvaline toimetulek kodustes tingimustes, säilitades ja parandades tema elukvaliteeti.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para19lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Koduteenuse osutaja abistab või juhendab inimest,
+kes terviseseisundi, tegevusvõime või elukeskkonna tõttu vajab kodustes tingimustes toimetulekuks kõrvalabi. Koduteenuse raames
+osutatakse koduabi ja isikuabi vastavalt teenuse saaja tegelikele vajadustele, edendades teenuse saaja aktiivsust ja motivatsiooni iseseisvalt kodus elada.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2024-05-30</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>412062024002</aktViide>
+						</avaldamismarge>
+						<joustumine>2024-06-15</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para19lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Koduteenus hõlmab teenuse saaja abistamist ja juhendamist tema abivajadusest lähtudes järgmiselt:</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2024-05-30</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>412062024002</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para19lg3p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>koduabi osutamist igapäevaeluks vajalikes tegevustes ja koduabitoimingutes, et toetada iseseisvat ja turvalist toimetulekut kodus (näiteks sisseostude tegemine ja kojutoomine, teenuste kasutamine ja asjaajamine, küttematerjali tellimine, ladustamine ja kütmine, eluruumi turvalisuse jälgimine ja ohutu elukeskkonna tagamine, eluruumi korrastamine, inimese hooviala hooldamine ja heakorraeeskirja täitmine);</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2024-05-30</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>412062024002</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para19lg3p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>isikuabi osutamist, et parandada inimese iseseisvat toimetulekut ja tegevusvõimet kodus (näiteks isikliku hügieeni toimingud, tualeti ja inkontinentsivahendite kasutamine, toitumine, riietumine, enese korrastamine, voodipesu vahetamine ja pesupesemine, ravimite manustamise ja terviseseisundi jälgimine, lähtudes tervishoiutöötaja juhistest, tegevusvõime jälgimine teenuse osutamise ajal, lähivõrgustikuga kontakti hoidmise ja kogukonnaelus osalemise soodustamine, vaimse ja hingelise toe pakkumine ning abitehnoloogiate kasutamine).</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2024-05-30</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>412062024002</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para19lg3p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<muutmismarge>
+							<tavatekst>kehtetu - </tavatekst>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>412062024002</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para19lg3b1">
+					<loigeNr ylaIndeks="1">3</loigeNr>
+					<kuvatavNr><![CDATA[(3<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Koduteenuse osutaja arvestab teenuse osutamisel teenuse saaja tahet ja võimekust ning selgitab talle eelnevalt toimingute sisu.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2024-05-30</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>412062024002</aktViide>
+						</avaldamismarge>
+						<joustumine>2024-06-15</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para19lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Inimesele teenuse osutamise otsustab sotsiaaltöötaja abivajaduse hindamise alusel. Sotsiaaltöötaja konsulteerib teenuse taotleja raviarsti ja vajadusel teenuse osutajaga ning arvestab nende hinnangut koduteenuse sobivuse kohta.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2024-05-30</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>412062024002</aktViide>
+						</avaldamismarge>
+						<joustumine>2024-06-15</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para19lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Koduteenust ei osutata sõltuvusprobleemidega või voodikesksetele inimestele, kes vajavad igapäevast täielikku kõrvalabi ja hooldust.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para19lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Koduteenus ei sisalda koduõendust.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para19lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Koduteenuse omaosalustasu suuruse arvestamisel lähtutakse teenuse saaja tegelikust netosissetulekust ja Tallinna Linnavalitsuse kehtestatud sissetulekupiirist. Koduteenuse eest tasub inimene omaosalustasu järgmiselt:</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2024-05-30</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>412062024002</aktViide>
+						</avaldamismarge>
+						<joustumine>2024-06-15</joustumine>
+					</muutmismarge>
+					<alampunkt id="para19lg7p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kui tema netosissetulek jääb alla sissetulekupiiri, ei
+rakendata omaosalustasu;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2024-05-30</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>412062024002</aktViide>
+							</avaldamismarge>
+							<joustumine>2024-06-15</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para19lg7p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kui tema
+netosissetulek ületab sissetulekupiiri 1–150 euro võrra,
+on omaosalustasu 2 eurot tunnis;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2024-05-30</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>412062024002</aktViide>
+							</avaldamismarge>
+							<joustumine>2024-06-15</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para19lg7p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kui tema
+netosissetulek ületab sissetulekupiiri 151–300 euro võrra, on omaosalustasu 4 eurot
+tunnis;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2024-05-30</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>412062024002</aktViide>
+							</avaldamismarge>
+							<joustumine>2024-06-15</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para19lg7p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kui tema
+netosissetulek ületab sissetulekupiiri 301–450
+euro võrra, on omaosalustasu 6 eurot tunnis; </tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2024-05-30</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>412062024002</aktViide>
+							</avaldamismarge>
+							<joustumine>2024-06-15</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para19lg7p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kui tema netosissetulek ületab sissetulekupiiri 451
+euro võrra või enam, on omaosalustasu 10 eurot tunnis.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2024-05-30</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>412062024002</aktViide>
+							</avaldamismarge>
+							<joustumine>2024-06-15</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para19lg8">
+					<loigeNr>8</loigeNr>
+					<kuvatavNr><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tallinna linn võib võtta käesoleva määruse § 19 lõike 7 punktides 2 kuni 5 kirjeldatud juhtudel koduteenuse täishinnast omaosalustasu maksmise kohustuse osaliselt või täielikult üle kuni kuueks kuuks juhul, kui eluasemekulud mõjutavad omaosalustasu maksmist. Tegelikud eluasemekulud võetakse arvesse määruses „Toimetulekutoetuse määramisel aluseks võetavate eluasemekulude piirmäärad“ sätestatud ulatuses.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2024-05-30</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>412062024002</aktViide>
+						</avaldamismarge>
+						<joustumine>2024-06-15</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para19lg9">
+					<loigeNr>9</loigeNr>
+					<kuvatavNr><![CDATA[(9)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Teenust osutatakse haldusaktis nimetatud mahus
+(määratud toimingud ja nende sagedus). Kui inimene soovib koduteenust kasutada
+haldusaktis nimetatust suuremas mahus, tasub ta selle eest ise Tallinna linna
+kehtestatud koduteenuse täishinna. Tallinna linn ei hüvita vabaturult tellitud
+koduteenust.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2024-05-30</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>412062024002</aktViide>
+						</avaldamismarge>
+						<joustumine>2024-06-15</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para19lg10">
+					<loigeNr>10</loigeNr>
+					<kuvatavNr><![CDATA[(10)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Koduteenuse omaosalustasu
+arvutatakse ümber iga aasta 1. juuniks.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2024-05-30</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>412062024002</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para19lg11">
+					<loigeNr>11</loigeNr>
+					<kuvatavNr><![CDATA[(11)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Enne 1. jaanuari 2026 antud koduteenuse haldusakte muudetakse, lähtudes käesoleva paragrahvi lõikest 10.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2024-05-30</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>412062024002</aktViide>
+						</avaldamismarge>
+						<joustumine>2024-06-15</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para20">
+				<paragrahvNr>20</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 20.]]></kuvatavNr>
+				<paragrahvPealkiri>Sotsiaalvalveteenus</paragrahvPealkiri>
+				<loige id="para20lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalvalveteenuse eesmärk on suurendada kodus elava täisealise erivajadusega inimese ja tema pereliikmete turvatunnet ning tagada abi jõudmine abi vajava inimeseni.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para20lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalvalveteenuse saaja eluruumi paigaldatakse teenuse tagamiseks vajalikud seadmed, et tagada talle abi ootamatult tekkinud olukorras, sealhulgas kukkumisel või siseruumidesse lõksu jäämisel, kus inimene ise ei ole suuteline abi kutsuma ega abistajale eluruumi ust avama.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para21">
+				<paragrahvNr>21</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 21.]]></kuvatavNr>
+				<paragrahvPealkiri>Omastehooldaja asendamise teenus</paragrahvPealkiri>
+				<loige id="para21lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Omastehooldaja asendamise teenuse eesmärk on toetada suure hooldusvajadusega täisealise inimese omastehooldaja toimetulekut, võimaldades talle lühiajalist puhkust ja vaba aja kasutamise võimalust.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para21lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Omastehooldaja asendamise teenusega tagatakse suure hooldusvajadusega inimese hooldus ja järelevalve tema kodus. Omastehooldajat asendatakse ennekõike hooldustoimingutes, mille all on mõeldud näiteks riietumist, söömist, hooldusabivahendite kasutamist ja hügieenitoiminguid.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para22">
+				<paragrahvNr>22</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 22.]]></kuvatavNr>
+				<paragrahvPealkiri>Mäluhäiretega inimeste päevahoiuteenus</paragrahvPealkiri>
+				<loige id="para22lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Mäluhäiretega inimeste päevahoiuteenuse eesmärk on tagada mäluhäiretega inimesele turvaline ning toimetulekut toetav keskkond ja järelevalve ning vähendada pereliikmete hoolduskoormust.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para22lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Teenuse saajat juhendatakse ja abistatakse igapäevaelu toimingute sooritamisel ning talle pakutakse võimetekohast aktiveerivat tegevust.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para22lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Teenust osutatakse tervishoiutöötaja saatekirja või arvamuse alusel inimesele, kellel on mäluhäired ja kognitiivsete võimete langus ning kes terviseseisundist ja tegevusvõimest tulenevatel põhjustel ei suuda kodustes tingimustes iseseisvalt toime tulla.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para23">
+				<paragrahvNr>23</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 23.]]></kuvatavNr>
+				<paragrahvPealkiri>Väljaspool kodu osutatav ööpäevane üldhooldusteenus</paragrahvPealkiri>
+				<loige id="para23lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Väljaspool kodu osutatava ööpäevase üldhooldusteenuse (edaspidi <i>üldhooldusteenus</i>) eesmärk on tagada turvaline keskkond ja toimetulek täisealisele inimesele, kes terviseseisundist, tegevusvõimest ja elukeskkonnast tulenevatel põhjustel ei suuda kodustes tingimustes ajutiselt või püsivalt iseseisvalt toime tulla ning kelle toimetulekut ei ole võimalik tagada teiste sotsiaalteenuste või muu abi osutamisega.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2023-06-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2023-06-21</avaldamineKuupaev>
+							<RTartikkel>12</RTartikkel>
+							<aktViide>421062023012</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para23lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tallinna linn korraldab üldhooldusteenust teenuse eest tasumise kohustuse vajaduspõhise ülevõtmisena ning üldhooldusteenuse osutamisega Tallinna linna hallatavas asutuses.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2023-06-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2023-06-21</avaldamineKuupaev>
+							<RTartikkel>12</RTartikkel>
+							<aktViide>421062023012</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para23lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Üldhooldusteenust rahastatakse Tallinna linna eelarvest ja teenuse saaja omaosalustasust.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2023-06-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2023-06-21</avaldamineKuupaev>
+							<RTartikkel>12</RTartikkel>
+							<aktViide>421062023012</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para23lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tallinna linna eelarvest tasutakse üldhooldusteenuse hoolduskuludena teenust vahetult osutavate hooldustöötajate ja abihooldustöötajate tööjõukulud, tööriietuse ja isikukaitsevahendite, tervisekontrolli ja vaktsineerimise ning koolituse ja supervisiooni kulud.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2023-06-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2023-06-21</avaldamineKuupaev>
+							<RTartikkel>12</RTartikkel>
+							<aktViide>421062023012</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-07-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para23lg4p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<muutmismarge>
+							<tavatekst>kehtetu - </tavatekst>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2023-06-21</avaldamineKuupaev>
+								<RTartikkel>12</RTartikkel>
+								<aktViide>421062023012</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-07-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para23lg4p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<muutmismarge>
+							<tavatekst>kehtetu - </tavatekst>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2023-06-21</avaldamineKuupaev>
+								<RTartikkel>12</RTartikkel>
+								<aktViide>421062023012</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-07-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para23lg4p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<muutmismarge>
+							<tavatekst>kehtetu - </tavatekst>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2023-06-21</avaldamineKuupaev>
+								<RTartikkel>12</RTartikkel>
+								<aktViide>421062023012</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-07-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para23lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tallinna Linnavalitsus kehtestab üldhooldusteenuse<b> </b>hoolduskulude tasumise piirmäära.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2023-06-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2023-06-21</avaldamineKuupaev>
+							<RTartikkel>12</RTartikkel>
+							<aktViide>421062023012</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para23lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Teenuse saaja omaosalustasust tasutakse üldhooldusteenuse majutus- ja toitlustuskulud ning muud teenuse osutamisega seotud kulud.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2023-06-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2023-06-21</avaldamineKuupaev>
+							<RTartikkel>12</RTartikkel>
+							<aktViide>421062023012</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para23lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui teenuse saaja sissetulek on väiksem kui Statistikaameti avaldatud eelarveaastale eelnenud aasta teise kvartali keskmine vanaduspension, katab Tallinna linn teenuse saaja omaosalustasuna tasutavate kulude ja tema sissetuleku vahe, kuid mitte rohkem kui eelmise aasta teise kvartali keskmise vanaduspensioni suuruse ja teenuse saaja sissetuleku vahe. Sissetulekuna võetakse arvesse teenuse saaja riiklik pension, kogumispension kogumispensionide seaduse tähenduses, töövõimetoetus töövõimetoetuse seaduse tähenduses ja sotsiaalmaksuga maksustatav tulu sotsiaalmaksuseaduse tähenduses.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2023-06-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2023-06-21</avaldamineKuupaev>
+							<RTartikkel>12</RTartikkel>
+							<aktViide>421062023012</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para23lg8">
+					<loigeNr>8</loigeNr>
+					<kuvatavNr><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kuni 2023. aasta 31. detsembrini kohaldatakse käesoleva paragrahvi lõikes 7 sätestatud üldhooldusteenuse kulude katmisel Statistikaameti avaldatud 2022. aasta teise kvartali keskmise vanaduspensioni 1,06-kordset suurust.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2023-06-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2023-06-21</avaldamineKuupaev>
+							<RTartikkel>12</RTartikkel>
+							<aktViide>421062023012</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para23lg9">
+					<loigeNr>9</loigeNr>
+					<kuvatavNr><![CDATA[(9)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tallinna Linnavalitsus võib kehtestada piirmäära, mille ulatuses ei rakendata perekonnaseadusest ülalpidamiskohustuslasele tulenevat teenuse saaja omaosalustasu maksmise kohustust.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2023-06-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2023-06-21</avaldamineKuupaev>
+							<RTartikkel>12</RTartikkel>
+							<aktViide>421062023012</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para23lg10">
+					<loigeNr>10</loigeNr>
+					<kuvatavNr><![CDATA[(10)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Inimesele, kelle rahvastikuregistrisse kantud elukoht ei ole Tallinna linn, osutatakse Tallinna linna hallatavas asutuses üldhooldusteenust vaba ja sobiva koha olemasolul kokkuleppel inimese elukohajärgse kohaliku omavalitsusega.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2023-06-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2023-06-21</avaldamineKuupaev>
+							<RTartikkel>12</RTartikkel>
+							<aktViide>421062023012</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para23b1">
+				<paragrahvNr ylaIndeks="1">23</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 23<sup>1</sup>.]]></kuvatavNr>
+				<paragrahvPealkiri>Rakendussätted</paragrahvPealkiri>
+				<muutmismarge>
+					<aktikuupaev>2025-04-03</aktikuupaev>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>412042025001</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-05-01</joustumine>
+				</muutmismarge>
+				<loige id="para23b1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kuni 1. maini 2025 kehtinud määruse redaktsiooni alusel abi vajava lapse suhtes või abi vajava lapsega seotud juhtumites tehtud sotsiaalhoolekandelise abi määramise otsused ja abi osutamiseks sõlmitud lepingud kehtivad kuni asjaomases otsuses märgitud teenuse osutamise tähtaja lõppemiseni või asjaomase lepingu lõppemise tähtpäevani või uue otsuse tegemiseni.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para23b1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kuni 1. maini 2025 kehtinud määruse § 17 alusel sõlmitud resotsialiseerimisteenuse osutamise lepingud kehtivad kuni sotsiaalhoolekandelise abi määramise otsuses märgitud resotsialiseerimisteenuse osutamise tähtaja lõppemiseni või uue otsuse tegemiseni.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para24">
+				<paragrahvNr>24</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 24.]]></kuvatavNr>
+				<paragrahvPealkiri>Määruse jõustumine</paragrahvPealkiri>
+				<loige id="para24lg1">
+					<sisuTekst>
+						<tavatekst>Käesolev määrus jõustub 1. jaanuaril 2022. </tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+	</sisu>
+</oigusakt>

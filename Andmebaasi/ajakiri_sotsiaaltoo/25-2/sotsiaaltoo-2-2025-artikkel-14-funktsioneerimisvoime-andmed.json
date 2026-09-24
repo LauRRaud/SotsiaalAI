@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "funktsioneerimisvoimega-seotud-terviseandmeid-tasub-koguda-uhtsetel-alustel-2025-2",
+  "title": "Funktsioneerimisvõimega seotud terviseandmeid tasub koguda ühtsetel alustel",
+  "authors": [
+    "Kairit Viidalepp"
+  ],
+  "section": "Metoodika",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "description": "Artikkel selgitab, miks ja kuidas koguda funktsioneerimisvõimega seotud terviseandmeid ühtsel metoodilisel alusel. Lähtudes WHO rahvusvahelisest funktsioneerimisvõime, vaeguste ja tervise klassifikatsioonist (RFK/ICF), kirjeldab autor, kuidas ühtne raamistik aitab paremini mõista inimese igapäevase toimetuleku piiranguid ja ressursse, planeerida teenuseid ning võrrelda andmeid eri valdkondade ja riikide vahel. Tuuakse näiteid funktsioneerimisandmete kasutamisest puude raskusastme hindamisel, teenusevajaduse analüüsis ja poliitikakujundamises. Rõhutatakse, et läbimõeldud andmekogumine vähendab bürokraatiat ja aitab vältida korduvat küsimist kliendi jaoks.",
+  "tags": [
+    "funktsioneerimisvõime",
+    "terviseandmed",
+    "RFK",
+    "ICF",
+    "andmekogumine",
+    "metoodika",
+    "puude hindamine"
+  ],
+  "source_path": "Funktsioneerimisvõimega seotud terviseandmeid tasub koguda ühtsetel alustel_2_2025.pdf",
+  "pageRange": "1–6",
+  "document_id": "sotsiaaltoo-2-2025-funktsioneerimisvoimega-seotud-terviseandmeid-tasub-koguda-uhtsetel-alustel-2025-2",
+  "source_format": "pdf",
+  "source_sha256": "e00b10085a6a28212f9218b15c334f6093fde8245b0a84094bfb1d85b26ae36f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2025-funktsioneerimisvoimega-seotud-terviseandmeid-tasub-koguda-uhtsetel-alustel-2025-2",
+    "previous_source_path": "Funktsioneerimisvõimega seotud terviseandmeid tasub koguda ühtsetel alustel_2_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e00b10085a6a28212f9218b15c334f6093fde8245b0a84094bfb1d85b26ae36f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

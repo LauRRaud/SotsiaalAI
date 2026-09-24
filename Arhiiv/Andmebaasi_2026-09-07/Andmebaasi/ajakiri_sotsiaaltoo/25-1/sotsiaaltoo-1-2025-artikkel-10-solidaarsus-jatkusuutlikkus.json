@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "solidaarsusele-tuginev-sotsiaalne-jatkusuutlikkus-2025-1",
+  "title": "Solidaarsusele tuginev sotsiaalne jätkusuutlikkus: lõimitud käsitlus kutselises sotsiaaltöös ja sotsiaalpoliitikas",
+  "authors": [
+    "Asgeir Falch-Eriksen"
+  ],
+  "section": "Sotsiaaltöö kui elukutse",
+  "pdf_start_page": 1,
+  "pdf_end_page": 10,
+  "description": "Teoreetiline artikkel, mis käsitleb solidaarsust ja sotsiaalset jätkusuutlikkust sotsiaaltöö ning sotsiaalpoliitika vaatepunktist. Autor seob ÜRO säästva arengu eesmärgid, inimõigustel põhineva sotsiaaltöö ja kodanikupõhise vabariikluse mõtteviisi. Selgitatakse, miks solidaarsus ja usaldus on igasuguse sotsiaalse korra alus, kuidas solidaarsus eri tasanditel kujuneb ning millist rolli mängivad kosmopoliitne inimõiguste käsitlus ja aktiivne kodanikuosalus. Artikkel toob välja, kuidas kutselised sotsiaaltöötajad ja sotsiaalpoliitika saavad kujundada kaasavaid, demokraatlikke ja vastupidavaid kogukondi, mis on võimelised tegelema nii ebavõrdsuse, kliimamuutuste, rände kui ka muude üleilmsete kriisidega.",
+  "tags": [
+    "sotsiaalne jätkusuutlikkus",
+    "solidaarsus",
+    "inimõigused",
+    "kodanikuosaluse väärtustamine",
+    "sotsiaalpoliitika",
+    "sotsiaaltöö kui elukutse",
+    "säästva arengu eesmärgid"
+  ],
+  "source_path": "Solidaarsusele tuginev sotsiaalne jätkusuutlikkus_1_2025.pdf",
+  "pageRange": "1–10",
+  "document_id": "sotsiaaltoo-1-2025-solidaarsusele-tuginev-sotsiaalne-jatkusuutlikkus-2025-1",
+  "source_format": "pdf",
+  "source_sha256": "65fb4e0710aa904a1f72961cb67ea7ec29c6904550fecdc1d056c282c2adcb29",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2025-solidaarsusele-tuginev-sotsiaalne-jatkusuutlikkus-2025-1",
+    "previous_source_path": "Solidaarsusele tuginev sotsiaalne jätkusuutlikkus_1_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "65fb4e0710aa904a1f72961cb67ea7ec29c6904550fecdc1d056c282c2adcb29",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

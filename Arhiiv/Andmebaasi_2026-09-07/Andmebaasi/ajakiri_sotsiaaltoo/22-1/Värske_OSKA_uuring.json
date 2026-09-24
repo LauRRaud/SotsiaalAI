@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-1-2022",
+  "articleId": "varske-oska-uuring-sotsiaaltoo-valdkonnas-on-endiselt-vaja-toojoudu-juurde-2022-1",
+  "title": "Värske OSKA uuringu kohaselt on sotsiaaltöövaldkonnas endiselt vaja tööjõudu juurde",
+  "authors": [
+    "Katrin Pihl",
+    "Siim Krusell"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2022",
+  "section": "Analüüs",
+  "pageRange": "9-14",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Analüüs käsitleb teise sotsiaaltöö valdkonna OSKA uuringu tulemusi, keskendudes tööjõuvajaduse ja oskuste muutustele lähikümnendil. Autorid selgitavad demograafiliste trendide, madala palga ja töötingimuste mõju tööjõupuudusele ning toovad esile vajaduse hooldustöötajate, tegevusjuhendajate, tugiisikute, sotsiaaltöötajate, lastekaitse- ja peretöötajate järele. Käsitletakse koolituspakkumise ja tööjõuvajaduse suhet, täiskasvanute õppijate rolli, supervisiooni ja kovisiooni vajalikkust ning vajadust mitmekesiste ja laiapõhjaliste oskustega töötajate järele, kes suudavad vastata üha kompleksematele kliendijuhtumitele.",
+  "tags": [
+    "OSKA",
+    "tööjõuvajadus",
+    "sotsiaalvaldkond",
+    "hooldustöötajad",
+    "koolituspakkumine",
+    "supervisioon",
+    "kriitilised oskused",
+    "tööjõuprognoos"
+  ],
+  "source_type": "file",
+  "source_path": "2022_artikkel_3_oska_uuring.pdf",
+  "document_id": "sotsiaaltoo-1-2022-varske-oska-uuring-sotsiaaltoo-valdkonnas-on-endiselt-vaja-toojoudu-juurde-2022-1",
+  "source_format": "pdf",
+  "source_sha256": "f74836dd25e2a04f61fa3a07636391ea9cf9c8ef583897835bd5b008ea9d149c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2022-varske-oska-uuring-sotsiaaltoo-valdkonnas-on-endiselt-vaja-toojoudu-juurde-2022-1",
+    "previous_source_path": "2022_artikkel_3_oska_uuring.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "f74836dd25e2a04f61fa3a07636391ea9cf9c8ef583897835bd5b008ea9d149c",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

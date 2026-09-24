@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2022",
+  "articleId": "aitamisele-puhendatud-elu-2022-2",
+  "title": "Aitamisele pühendatud elu",
+  "authors": [
+    "Kadri Kuulpak"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2022",
+  "section": "Persoon",
+  "pageRange": "3-8",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu Eesti Sotsiaaltöö Assotsiatsiooni elutööpreemia pälvinud kogenud sotsiaalvaldkonna tegijatest Aime Vaggost, Küllike Kaldojast ja Tiia Spitsõnist. Artikkel toob esile nende teekonna valdkonda, olulised õppetunnid ja väärtused, mis on aastakümnete jooksul sotsiaaltööd tehes kujunenud. Räägitakse empaatia, piiride seadmise, koostöö ja kogukonnaressursside kasutamise tähtsusest ning arutletakse, kuidas toetada inimeste võimalust elada võimalikult kaua kodus.",
+  "tags": [
+    "elutööpreemia",
+    "sotsiaaltöötajate lood",
+    "empaatia",
+    "piiride seadmine",
+    "kogukonnapõhine lähenemine",
+    "vananev elanikkond"
+  ],
+  "source_type": "file",
+  "source_path": "2022_2_artikkel_2_persoon.pdf",
+  "document_id": "sotsiaaltoo-2-2022-aitamisele-puhendatud-elu-2022-2",
+  "source_format": "pdf",
+  "source_sha256": "0e0187393d881ed2b4a33062ac0575155f306eeb5d5d3402424f74eeb50f876d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2022-aitamisele-puhendatud-elu-2022-2",
+    "previous_source_path": "2022_2_artikkel_2_persoon.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "0e0187393d881ed2b4a33062ac0575155f306eeb5d5d3402424f74eeb50f876d",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

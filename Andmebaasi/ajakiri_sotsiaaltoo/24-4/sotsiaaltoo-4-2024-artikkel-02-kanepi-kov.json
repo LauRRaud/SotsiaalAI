@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-4-2024",
+  "issueLabel": "4/2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "kanepi-kov-2024-4",
+  "title": "Kanepi vallas on sotsiaaltöötaja eelkõige kogukonna liige",
+  "authors": [
+    "Kairiin Nuudi"
+  ],
+  "section": "KOV",
+  "pageRange": "10–16",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "source_path": "sotsiaaltoo_4_2024_web_Part4.pdf",
+  "description": "Kanepi vald kirjeldab kogukonnapõhist sotsiaaltööd: lähedast koostööd elanikega, ennetavaid tegevusi, partnerlusi ning valdkonnasisest paindlikkust ja reageerimisvõimet.",
+  "tags": [
+    "KOV",
+    "kogukonnapõhine sotsiaaltöö",
+    "Kanepi vald",
+    "ennetamine",
+    "partnerlus"
+  ],
+  "authors_vana": [
+    "Kanepi valla sotsiaalteenistus"
+  ],
+  "authors_parandatud": "2026-08-17, A5 pöördsuuna kontroll, kinnitatud lähte-PDF-i autorirea vastu",
+  "document_id": "sotsiaaltoo-4-2024-kanepi-kov-2024-4",
+  "source_format": "pdf",
+  "source_sha256": "1a74e2642d75da4d13e7639cc880e14d46c8dd6e6b337173f71e0601fbce9705",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2024-kanepi-kov-2024-4",
+    "previous_source_path": "sotsiaaltoo_4_2024_web_Part4.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "1a74e2642d75da4d13e7639cc880e14d46c8dd6e6b337173f71e0601fbce9705",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

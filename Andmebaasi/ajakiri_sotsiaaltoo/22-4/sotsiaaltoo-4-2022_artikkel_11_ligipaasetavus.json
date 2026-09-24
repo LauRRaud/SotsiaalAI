@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2022",
+  "articleId": "ligipaasetavus-kelle-jaoks-2022-4",
+  "title": "Ligipääsetavus – kelle jaoks?",
+  "authors": [
+    "Mari Puuram"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2022",
+  "section": "Sotsiaalpoliitika",
+  "pageRange": "51-55",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel selgitab ligipääsetavuse kui põhimõtte sisu ja rõhutab, et sellest võidavad lisaks puuetega inimestele\nka eakad, lapsed, võõrkeelsed ja kõik teised, kellel on keskkonnas toimetlemine mingil põhjusel keeruline.\nAutor käsitleb universaalse disaini ja ligipääsetavate lahenduste majanduslikku ning sotsiaalset kasu, tuues\nnäiteid nii füüsilisest kui digikeskkonnast. Samuti antakse ülevaade riiklikest algatustest, sh ligipääsetavuse\nrakkerühmast, ja rõhutatakse, et tõhusad lahendused sünnivad erinevate osapoolte koostöös juba planeerimise algfaasis.",
+  "tags": [
+    "ligipääsetavus",
+    "universaalne disain",
+    "puuetega inimesed",
+    "avalik ruum",
+    "veebiligipääs",
+    "sotsiaalpoliitika",
+    "Eesti Puuetega Inimeste Koda"
+  ],
+  "source_type": "file",
+  "source_path": "2022_4_artikkel_11_ligipaasetavus.pdf",
+  "document_id": "sotsiaaltoo-4-2022-ligipaasetavus-kelle-jaoks-2022-4",
+  "source_format": "pdf",
+  "source_sha256": "85370b143a3741d02a24ac97e213aa741d27abb5c748fa825868e52e432491b4",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2022-ligipaasetavus-kelle-jaoks-2022-4",
+    "previous_source_path": "2022_4_artikkel_11_ligipaasetavus.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "85370b143a3741d02a24ac97e213aa741d27abb5c748fa825868e52e432491b4",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

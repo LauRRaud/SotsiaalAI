@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-2-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "kohalikud-omavalitsused-kannavad-hoolt-elanike-vaimse-tervise-eest-2025-2",
+  "title": "Kohalikud omavalitsused kannavad hoolt elanike vaimse tervise eest",
+  "authors": [
+    "Kaire Põlgaste",
+    "Kaja Rootare",
+    "Fredy Lumi",
+    "Karoliina Roomets"
+  ],
+  "section": "Kohalik omavalitsus",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "description": "Artikkel koondab mitme kohaliku omavalitsuse kogemused elanike vaimse tervise toetamisel. Kirjeldatakse, kuidas omavalitsused on välja arendanud kogukondlikke vaimse tervise teenuseid, nõustamist ja tugigruppe, teinud koostööd perearstide, koolide, kolmanda sektori ja kogukondlike algatustega ning kasutanud riiklikke toetusmeetmeid. Fookuses on ennetus, varajane märkamine, kriisiabi ja vaimse tervise teemade normaliseerimine. Tuuakse esile nii õnnestumisi kui ka väljakutseid, sh spetsialistide nappus ja ebastabiilne rahastus.",
+  "tags": [
+    "vaimne tervis",
+    "kohalik omavalitsus",
+    "kogukonnateenused",
+    "ennetamine",
+    "kriisiabi",
+    "koostöö",
+    "psühholoogiline nõustamine"
+  ],
+  "source_path": "Kohalikud omavalitsused kannavad hoolt elanike vaimse tervise eest_2_2025.pdf",
+  "pageRange": "1–7",
+  "document_id": "sotsiaaltoo-2-2025-kohalikud-omavalitsused-kannavad-hoolt-elanike-vaimse-tervise-eest-2025-2",
+  "source_format": "pdf",
+  "source_sha256": "92175154761d32e68cb039fdb2603a2a665b7f6a474c34078307acfe4f1bca99",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2025-kohalikud-omavalitsused-kannavad-hoolt-elanike-vaimse-tervise-eest-2025-2",
+    "previous_source_path": "Kohalikud omavalitsused kannavad hoolt elanike vaimse tervise eest_2_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "92175154761d32e68cb039fdb2603a2a665b7f6a474c34078307acfe4f1bca99",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

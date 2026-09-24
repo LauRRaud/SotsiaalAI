@@ -1,0 +1,142 @@
+{
+  "source_path": "harno_erinevate_oppijate_toetamine_opetaja_ja_tugispetsialisti_koo.pdf",
+  "source_format": "pdf",
+  "sha256": "c0e3f47ffd43f60d3f906ed923abd921643e7e6b5746c898430069132cdf678f",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/harno_erinevate_oppijate_toetamine_opetaja_ja_tugispetsialisti_koo.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "harno_erinevate_oppijate_toetamine_opetaja_ja_tugispetsialisti_koo",
+          "title": "Erinevate õppijate toetamine õpetaja ja tugispetsialisti koostöös",
+          "url": "https://harno.ee/sites/default/files/documents/2022-01/ErinevateOppijateToetamine_2021.pdf",
+          "normalized_url": "https://harno.ee/sites/default/files/documents/2022-01/ErinevateOppijateToetamine_2021.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "HARNO",
+          "organization_id": "harno",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Haridus- ja Noorteamet",
+            "lapsed ja pered",
+            "haridus",
+            "kool",
+            "õpilase toetamine",
+            "tugimeetmed",
+            "infomaterjal"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "HARNO / HEV / kooli tugimeetmed",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 375,
+            "order": 208
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Erinevate õppijate toetamine õpetaja ja tugispetsialisti koostöös"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "HARNO"
+          ],
+          "organizations_seen": [
+            "harno"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "HARNO / HEV / kooli tugimeetmed",
+              "line": 375,
+              "order": 208
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://harno.ee/sites/default/files/documents/2022-01/ErinevateOppijateToetamine_2021.pdf"
+        },
+        "final_url": "https://harno.ee/sites/default/files/documents/2022-01/ErinevateOppijateToetamine_2021.pdf",
+        "redirects": [],
+        "sha256": "c0e3f47ffd43f60d3f906ed923abd921643e7e6b5746c898430069132cdf678f",
+        "bytes": 1805686,
+        "downloaded_at": "2026-08-14T08:00:44.881Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "harno_erinevate_oppijate_toetamine_opetaja_ja_tugispetsialisti_koo",
+      "metadata": {
+        "createdAt": "2026-06-12T03:44:41.583010+00:00",
+        "type": "FILE",
+        "fileName": "ErinevateOppijateToetamine_2021.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:44:41.514955+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/ee804bba8dbf/ErinevateOppijateToetamine_2021.pdf",
+        "title": "Erinevate õppijate toetamine õpetaja ja tugispetsialisti koostöös",
+        "description": "Source master headings: HARNO / HEV / kooli tugimeetmed",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2022,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–47",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "harno_erinevate_oppijate_toetamine_opetaja_ja_tugispetsialisti_koo",
+        "document_id": "harno_erinevate_oppijate_toetamine_opetaja_ja_tugispetsialisti_koo",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "d35240553549dc284408f6a93716e6db82a32aca41c2496f4c7b113c523ff47d",
+        "url": "https://harno.ee/sites/default/files/documents/2022-01/ErinevateOppijateToetamine_2021.pdf",
+        "url_canonical": "https://harno.ee/sites/default/files/documents/2022-01/ErinevateOppijateToetamine_2021.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "harno_erinevate_oppijate_toetamine_opetaja_ja_tugispetsialisti_koo",
+        "updatedAt": "2026-06-12T03:44:41.583033+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

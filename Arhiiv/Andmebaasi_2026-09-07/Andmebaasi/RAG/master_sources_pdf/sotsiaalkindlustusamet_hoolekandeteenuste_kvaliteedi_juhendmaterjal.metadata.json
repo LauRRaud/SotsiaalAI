@@ -1,0 +1,76 @@
+{
+  "source": {
+    "source_id": "sotsiaalkindlustusamet_hoolekandeteenuste_kvaliteedi_juhendmaterjal",
+    "title": "Hoolekandeteenuste kvaliteedi juhendmaterjal",
+    "url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/hoolekandeteenuste_kvaliteedi_juhendmaterjal.pdf",
+    "normalized_url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/hoolekandeteenuste_kvaliteedi_juhendmaterjal.pdf",
+    "source_format": "pdf",
+    "source_type": "official_guideline",
+    "resource_type": "method_guidance",
+    "publisher": "Sotsiaalkindlustusamet",
+    "organization_id": "sotsiaalkindlustusamet",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Sotsiaalkindlustusamet",
+      "hoolekanne",
+      "sotsiaalteenused",
+      "hooldus",
+      "spetsialisti juhend",
+      "SKA"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "high",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "SKA",
+      "heading_3": "Puue, rehabilitatsioon, hoolekanne",
+      "heading_4": null,
+      "line": 503,
+      "order": 266
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Hoolekandeteenuste kvaliteedi juhendmaterjal"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "official_guideline"
+    ],
+    "resource_types_seen": [
+      "best_practice_guidance"
+    ],
+    "publishers_seen": [
+      "Sotsiaalkindlustusamet"
+    ],
+    "organizations_seen": [
+      "sotsiaalkindlustusamet"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "SKA",
+        "heading_3": "Puue, rehabilitatsioon, hoolekanne",
+        "line": 503,
+        "order": 266
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/hoolekandeteenuste_kvaliteedi_juhendmaterjal.pdf"
+  },
+  "final_url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/hoolekandeteenuste_kvaliteedi_juhendmaterjal.pdf",
+  "redirects": [],
+  "sha256": "91600ba7bb33f5b3727b0c3effd6caeac6ccdda9a13689d1547dcd807cc57e39",
+  "bytes": 410117,
+  "downloaded_at": "2026-08-14T08:00:53.027Z"
+}

@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2022",
+  "articleId": "erihoolekanne-ja-sotsiaalne-rehabilitatsioon-2022-1",
+  "title": "Erihoolekanne ja sotsiaalne rehabilitatsioon",
+  "authors": [
+    "Lagle Kalberg"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2022",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "32-37",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalkindlustusameti talituse juhi artikkel tutvustab erihoolekande ja sotsiaalse rehabilitatsiooni korraldust. Selgitatakse, kellele on teenused mõeldud, kuidas toimub taotlemine ja õigustatuse hindamine, millised on erihoolekandeteenuste sihtrühmad ning kuidas otsustatakse sobiva teenuseosutaja kasuks. Kirjeldatakse teenuste eesmärki toetada psüühilise erivajadusega inimeste iseseisvat toimetulekut ning käsitletakse ka koroonakriisist tingitud kitsaskohti ja astutud samme teenuste kvaliteedi ja kättesaadavuse tagamiseks.",
+  "tags": [
+    "erihoolekanne",
+    "sotsiaalne rehabilitatsioon",
+    "psüühiline erivajadus",
+    "Sotsiaalkindlustusamet",
+    "teenusekorraldus",
+    "abivajaduse hindamine",
+    "COVID-19 mõju"
+  ],
+  "source_type": "file",
+  "source_path": "2022_artikkel_8_erihoolekanne_rehabilitatsioon.pdf",
+  "document_id": "sotsiaaltoo-1-2022-erihoolekanne-ja-sotsiaalne-rehabilitatsioon-2022-1",
+  "source_format": "pdf",
+  "source_sha256": "4474ffd2ceeb79f895078ba43a2f354523c1009268b21e507302b745be3f5cbe",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2022-erihoolekanne-ja-sotsiaalne-rehabilitatsioon-2022-1",
+    "previous_source_path": "2022_artikkel_8_erihoolekanne_rehabilitatsioon.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "4474ffd2ceeb79f895078ba43a2f354523c1009268b21e507302b745be3f5cbe",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

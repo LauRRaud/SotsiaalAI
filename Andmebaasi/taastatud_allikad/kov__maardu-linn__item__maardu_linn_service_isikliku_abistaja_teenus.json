@@ -1,0 +1,83 @@
+{
+  "provenance": {
+    "kind": "recovered_from_legacy_index",
+    "source_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "source_text_store": "/var/lib/sotsiaalai-rag/lexical-index.sqlite3",
+    "recovered_at": "2026-09-07T20:11:41.708487+00:00"
+  },
+  "review_status": "compare_with_primary_source_before_ingest",
+  "document_id": "kov::maardu-linn::item::maardu_linn_service_isikliku_abistaja_teenus",
+  "metadata": {
+    "createdAt": "2026-05-20T06:14:06.371176+00:00",
+    "type": "TEXT",
+    "lastIngested": "2026-05-20T06:14:06.335000+00:00",
+    "title": "Isikliku abistaja teenus",
+    "description": "Isikliku abistaja teenus suurendab füüsilist kõrvalabi vajava puudega täisealise isiku iseseisvat toimetulekut ja osalemist kõigis eluvaldkondades. Teenus hõlmab abi igapäevaelu tegevustes, näiteks liikumisel, söömisel, riietumisel, hügieenitoimingutes ja majapidamistöödes.",
+    "audience": "BOTH",
+    "audiences": [
+      "CLIENT",
+      "SOCIAL_WORKER"
+    ],
+    "authors": [],
+    "tags": [
+      "service"
+    ],
+    "language": "et",
+    "collection_id": "kov_services",
+    "country": "EE",
+    "county": "Raplamaa",
+    "jurisdiction_level": "MUNICIPALITY",
+    "municipality_name": "Märjamaa vald",
+    "municipality_id": "maardu_linn",
+    "district_name": null,
+    "district_id": null,
+    "source_format": null,
+    "checked_at": "2026-04-29",
+    "item_type": "service",
+    "content_status": "active",
+    "resource_type": "service",
+    "source_keys": [
+      "isiklik_abistaja_page"
+    ],
+    "source_urls": [
+      "https://maardu.ee/isikliku-abistaja-teenus"
+    ],
+    "source_register_file": "maardu-linn.sources.json",
+    "source_count": 27,
+    "administering_body": null,
+    "issuer": null,
+    "act_title": null,
+    "act_reference": null,
+    "canonical_source_id": null,
+    "act_type": null,
+    "effective_start": null,
+    "effective_end": null,
+    "is_current_version": null,
+    "text_type": null,
+    "source_type": "kov_service_info",
+    "path": null,
+    "url": "https://maardu.ee/isikliku-abistaja-teenus",
+    "source_sha256": null,
+    "source_updated_at": null,
+    "original_doc_id": null,
+    "fileName": null,
+    "mimeType": "text/markdown",
+    "geo_detection_method": null,
+    "geo_detection_confidence": null,
+    "docId": "kov::maardu-linn::item::maardu_linn_service_isikliku_abistaja_teenus",
+    "updatedAt": "2026-06-10T20:54:35.762060+00:00",
+    "content_hash": "098dc98e84fd9b622d145ac3b3edb89632185066869571ea1d87e0bfbfc0ee3d"
+  },
+  "chunks": [
+    {
+      "chunk_id": "kov::maardu-linn::item::maardu_linn_service_isikliku_abistaja_teenus:0:60c04c54",
+      "document_version": null,
+      "text": "[TITLE] Isikliku abistaja teenus\n[DESC] Isikliku abistaja teenus suurendab füüsilist kõrvalabi vajava puudega täisealise isiku iseseisvat toimetulekut ja osalemist kõigis eluvaldkondades. Teenus hõlmab abi igapäevaelu tegevustes, näiteks liikumisel, söömisel, riietumisel, hügieenitoimingutes ja majapidamistöödes.\n[SECTION] Teenused\n[ITEM_TYPE] service\n[STATUS] active\n[RESOURCE_TYPE] service\n[COUNTY] Raplamaa\n[MUNICIPALITY] Märjamaa vald\n# Isikliku abistaja teenus Liik: service Staatus: active Ametlik link: https://maardu.ee/isikliku-abistaja-teenus Sihtrühm: Eelkõige sügava liikumis- või nägemispuudega täisealised Maardu elanikud. Auditoorium: CLIENT, SOCIAL_WORKER Kokkuvõte: Isikliku abistaja teenus suurendab füüsilist kõrvalabi vajava puudega täisealise isiku iseseisvat toimetulekut ja osalemist kõigis eluvaldkondades. Teenus hõlmab abi igapäevaelu tegevustes, näiteks liikumisel, söömisel, riietumisel, hügieenitoimingutes ja majapidamistöödes. Ressursi tüüp: service Tingimused: Otsuse aeg: 10 tööpäeva taotluse laekumisest Taotlemine: Kanalid: - avaldus - e-vorm Sammud: - lisatakse vajadusel abistajaks sobiva isiku andmed ja puude raskusastme otsus Vormid: Puudub. Seotud vormid: - maardu_linn_form_sotsiaalteenuse_taotlus Haldaja / teenuseosutaja: Puudub. Kontaktid: Puudub. Seotud kontaktid: - maardu_linn_contact_natalja_tuulik Tasulisus või summa: Puudub. Õiguslik alus: Puudub."
+    },
+    {
+      "chunk_id": "kov::maardu-linn::item::maardu_linn_service_isikliku_abistaja_teenus:1:f3bb2109",
+      "document_version": null,
+      "text": "[TITLE] Isikliku abistaja teenus\n[DESC] Isikliku abistaja teenus suurendab füüsilist kõrvalabi vajava puudega täisealise isiku iseseisvat toimetulekut ja osalemist kõigis eluvaldkondades. Teenus hõlmab abi igapäevaelu tegevustes, näiteks liikumisel, söömisel, riietumisel, hügieenitoimingutes ja majapidamistöödes.\n[SECTION] Teenused\n[ITEM_TYPE] service\n[STATUS] active\n[RESOURCE_TYPE] service\n[COUNTY] Raplamaa\n[MUNICIPALITY] Märjamaa vald\niku abistaja teenus | https://maardu.ee/isikliku-abistaja-teenus"
+    }
+  ]
+}

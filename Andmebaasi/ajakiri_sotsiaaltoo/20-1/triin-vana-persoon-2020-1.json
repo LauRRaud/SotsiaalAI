@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-1-2020",
+  "articleId": "triin-vana-persoon-2020-1",
+  "title": "Taastumise ekspert Triin Vana: kui näeme ainult probleeme, siis jäävad parimad lahendused leidmata",
+  "authors": [
+    "Kadri Kuulpak"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2020",
+  "section": "Persoon",
+  "pageRange": "3-8",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu taastumise eksperdi ja superviisori Triin Vanaga, kes räägib taastumiskesksest mõtteviisist, motivatsiooni leidmisest, kliendiga sammu koos käimisest ning sellest, kuidas vaatenurk probleemidelt võimalustele muudab nii kliendi kui spetsialisti kogemust.",
+  "tags": [
+    "taastumine",
+    "supervisioon",
+    "motivatsioon",
+    "vaimne tervis",
+    "persoonilugu"
+  ],
+  "source_type": "file",
+  "source_path": "ST1_2020_web_link_Part3.pdf",
+  "document_id": "sotsiaaltoo-1-2020-triin-vana-persoon-2020-1",
+  "source_format": "pdf",
+  "source_sha256": "48ca9f87b611c7dfb9cf4d7a4eb8ad96c8647e3d18ec9ac4ca4e2f105591916c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2020-triin-vana-persoon-2020-1",
+    "previous_source_path": "ST1_2020_web_link_Part3.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "48ca9f87b611c7dfb9cf4d7a4eb8ad96c8647e3d18ec9ac4ca4e2f105591916c",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "docId": "sotsiaaltoo-eri-2018",
+  "articleId": "ajakirja-juubel-eessona-2018",
+  "title": "Sotsiaaltöö juubelinumbri eessõna",
+  "authors": [
+    "Toimetus"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö (juubeliväljaanne)",
+  "issueLabel": "Eri/2018",
+  "section": "Eessõna",
+  "pageRange": "2-2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Juubelinumbri eessõna, mis võtab kokku ajakirja 20 aasta teekonna ja sotsiaaltöö valdkonna arengu.",
+  "tags": [
+    "eessõna",
+    "juubel",
+    "Sotsiaaltöö ajakiri",
+    "ajakirja ajalugu"
+  ],
+  "source_type": "file",
+  "source_path": "ST_eri_2018_web_link_Part2.pdf",
+  "document_id": "sotsiaaltoo-eri-2018-ajakirja-juubel-eessona-2018",
+  "source_format": "pdf",
+  "source_sha256": "2dc3804ea2db714f8bd65c9fa61e17b5283a3198a3ea7f5c275b0683f9747649",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2018-ajakirja-juubel-eessona-2018",
+    "previous_source_path": "ST_eri_2018_web_link_Part2.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "2dc3804ea2db714f8bd65c9fa61e17b5283a3198a3ea7f5c275b0683f9747649",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

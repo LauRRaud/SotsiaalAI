@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-voru-linn",
+  "document_id": "kov-voru-linn",
+  "municipality": "Võru linn",
+  "municipality_id": "voru_linn",
+  "county": "Võrumaa",
+  "checkedAt": "2026-04-30",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-voru-linn",
+  "coverage": {
+    "services": 10,
+    "benefits": 2,
+    "resources": 2,
+    "contacts": 8,
+    "forms": 1,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "voru_linn",
+    "source_register_file": "voru-linn.sources.json",
+    "service_benefit_resource_items": 14,
+    "items_with_source_keys": 14,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 7,
+    "items_without_related_forms": 7,
+    "items_with_related_contacts": 12,
+    "items_without_related_contacts": 2,
+    "form_sources": 1,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "1 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [],
+  "unresolvedIssues": [
+    "KOV veebilt leidus mitmeid teisi teenuseid ja toetusi (nt tugiisikuteenus, isikliku abistaja teenus, trepironija teenus, pesu pesemise teenus, duši kasutamise teenus, järelhooldusteenus) ning toetusi (elluastumistoetus, küttetoetus, prillitoetus, puuetega isiku sotsiaalteenuse toetus, ravimitoetus, tegevustoetus, tähtpäeva toetus, täisealise isiku hoolduse toetus, üldhooldusteenuse kohamaksumuse hüvitis ja toetus, psühholoogilise nõustamise toetus ja jätkutoetus), mille täielik sisu jäi ressursside piirangute tõttu välja. Need tuleks eraldi lisada, kui aega on.",
+    "Psühholoogilise nõustamise teenuse jätkutoetuse leht oli koostamisel ja selles puudus detailne info.",
+    "Mitme teenuse puhul ei saanud tuvastada täpset otsustamise või tasu infot; hinnanguline info jäeti välja.",
+    "Vormilehtedel võib olla täiendavaid taotlusvorme (nt psühholoogilise nõustamise vorm), kuid need ei olnud eraldi kättesaadavad; kasutatud on üldine sotsiaaltoetuste taotluse vorm.",
+    "Kontaktide seos konkreetsete teenuste või toetustega on ebaselge, sest KOV leht annab üldised kontaktid; seoseid kasutati ainult siis, kui need olid selged."
+  ],
+  "municipality_name": "Võru linn",
+  "checked_at": "2026-04-30",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "voru-linn.sources.json",
+  "sourceCount": 17,
+  "counts": {
+    "services": 10,
+    "benefits": 2,
+    "resources": 2,
+    "contacts": 8,
+    "forms": 1,
+    "regulations": 0
+  },
+  "warnings": [
+    "1 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

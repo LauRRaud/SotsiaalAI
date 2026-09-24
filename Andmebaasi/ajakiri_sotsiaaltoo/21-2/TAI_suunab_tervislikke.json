@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2021",
+  "articleId": "tai-suunab-tervislikke-valikuid-teaduspohiselt-2021-2",
+  "title": "TAI suunab tervislikke valikuid teaduspõhiselt",
+  "authors": [
+    "Annika Veimer"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2021",
+  "section": "Tervis",
+  "pageRange": "24-27",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tervise Arengu Instituudi direktori ülevaade sellest, millist rolli mängib TAI rahvastiku tervise edendamisel ja tervisepoliitika kujundamisel. Artikkel selgitab, kuidas TAI kogub ja analüüsib usaldusväärseid terviseandmeid, arendab sekkumisi alkoholi-, tubaka-, narkomaania- ja toitumisvaldkonnas ning toetab nii riiki kui kohalikke partnereid teaduspõhiste otsuste tegemisel. Rõhutatakse, et mõjuvad tervisekampaaniad ja programmid peavad põhinema tõenduspõhisel teadmisel, olema pikaajalised ja arvestama inimeste tegelikku elukonteksti.",
+  "tags": [
+    "Tervise Arengu Instituut",
+    "rahvatervis",
+    "tervisedendus",
+    "tõenduspõhine poliitika",
+    "alkoholi- ja tubakapoliitika",
+    "toitumine",
+    "ennetustöö"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2021_web_link_Part7.pdf",
+  "document_id": "sotsiaaltoo-2-2021-tai-suunab-tervislikke-valikuid-teaduspohiselt-2021-2",
+  "source_format": "pdf",
+  "source_sha256": "9282e715df05f6d6fb3344561c1475a5eeec7583fbcbf9bb294c3e724addfed8",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2021-tai-suunab-tervislikke-valikuid-teaduspohiselt-2021-2",
+    "previous_source_path": "Sotsiaaltoo_2_2021_web_link_Part7.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "9282e715df05f6d6fb3344561c1475a5eeec7583fbcbf9bb294c3e724addfed8",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

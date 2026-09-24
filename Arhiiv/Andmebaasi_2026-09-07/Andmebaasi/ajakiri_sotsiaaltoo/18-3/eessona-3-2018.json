@@ -1,0 +1,63 @@
+{
+  "docId": "sotsiaaltoo-3-2018",
+  "articleId": "eessona-3-2018",
+  "title": "Eessõna",
+  "authors": [
+    "Jan Trei"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2018",
+  "section": "Eessõna",
+  "pageRange": "2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Eesti Linnade ja Valdade Liidu asedirektori eessõna 3/2018 haldusreformi-teemalisele numbrile. Nendib, et 2017. aasta ühinemiste järel vähenes omavalitsuste arv 213-lt 79-le ning et reformi lubadus võimekamatest omavalitsustest puudutab otseselt ka sotsiaalteenuste korraldust ja sotsiaaltöö kvaliteeti. Kutsub üles omavalitsusteülesele koostööle, teenuste sisseostmisele üle piiride, ühisasutuste loomisele ning avaliku ja erasektori koostööle. Rõhutab, et sotsiaalvaldkonna innovatsioon on Eestis alles arendusjärgus ja katseprojektidest peaksid välja kasvama terviklikud üleriigilised lahendused.",
+  "tags": [
+    "haldusreform",
+    "kohalik omavalitsus",
+    "sotsiaalteenuste korraldus",
+    "omavalitsuste koostöö",
+    "sotsiaalne innovatsioon",
+    "eessõna"
+  ],
+  "source_type": "file",
+  "source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part2.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2018-eessona-3-2018",
+  "source_sha256": "03610caa5c97202524de582577dc66e32dd72e2f33082ff5bfd44019a09a9247",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2018-eessona-3-2018",
+    "previous_source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part2.txt",
+    "previous_source_original_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part2.pdf",
+    "reference_stored_source_sha256": "0ff4758ac0ce9a9c0970981ccbc78cae3ac4692774cc52f01a23d8a9dcd94733",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\18-3\\155619680390_Sotsiaaltoo_nr3_2018_veebi_link.pdf",
+      "source_sha256": "45eac17c335ef472708d0eb485f916c201e5db46ac64163cc7aeeb1f47dd10a9",
+      "pdf_start_page": 4,
+      "pdf_end_page": 4,
+      "printed_page_range": "2-2",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 4,
+      "source_regions": [
+        {
+          "source_pdf_page": 4,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "2"
+    },
+    "server_page_range": "2-2"
+  }
+}

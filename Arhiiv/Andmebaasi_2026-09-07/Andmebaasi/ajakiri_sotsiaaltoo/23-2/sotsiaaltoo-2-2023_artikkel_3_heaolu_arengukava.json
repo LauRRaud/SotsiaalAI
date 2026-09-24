@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2023",
+  "articleId": "heaolu-arengukava-eesmark-on-tagada-et-koik-eesti-inimesed-on-hoitud-2023-2",
+  "title": "Heaolu arengukava eesmärk on tagada, et kõik Eesti inimesed on hoitud",
+  "authors": [
+    "Heleri Reinsalu"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2023",
+  "section": "Sotsiaalpoliitika",
+  "pageRange": "9-12",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab „Heaolu arengukava 2023–2030“, mille peaeesmärk on tagada, et inimesed Eestis oleksid hoitud,\nebavõrdsus ja vaesus väheneks ning kõikide pikk ja kvaliteetne tööelu oleks toetatud. Autor selgitab viit\nalaeesmärki, mis keskenduvad lastele ja peredele, tööelule, vanemaealistele, sotsiaalhoolekandele ning soolisele\nvõrdsusele ja võrdsele kohtlemisele. Samuti kirjeldatakse arengukava koostamise protsessi, partnerite kaasamist\nning seoseid Eesti 2035 strateegia ja ÜRO säästva arengu eesmärkidega.",
+  "tags": [
+    "Heaolu arengukava 2023–2030",
+    "sotsiaalpoliitika",
+    "lapsed ja pered",
+    "vanemaealised",
+    "tööhõive",
+    "sotsiaalhoolekanne",
+    "sooline võrdõiguslikkus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2023_web_par_Part4.pdf",
+  "document_id": "sotsiaaltoo-2-2023-heaolu-arengukava-eesmark-on-tagada-et-koik-eesti-inimesed-on-hoitud-2023-2",
+  "source_format": "pdf",
+  "source_sha256": "a2384cd8db2288a875f9184870b9de3d2b440456144abaa3a8c38b361c9045bd",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2023-heaolu-arengukava-eesmark-on-tagada-et-koik-eesti-inimesed-on-hoitud-2023-2",
+    "previous_source_path": "Sotsiaaltoo_2_2023_web_par_Part4.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "a2384cd8db2288a875f9184870b9de3d2b440456144abaa3a8c38b361c9045bd",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

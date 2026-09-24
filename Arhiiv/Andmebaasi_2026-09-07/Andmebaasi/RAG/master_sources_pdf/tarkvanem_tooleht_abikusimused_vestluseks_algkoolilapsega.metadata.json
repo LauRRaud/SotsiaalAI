@@ -1,0 +1,16 @@
+{
+  "source": {
+    "source_id": "tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega",
+    "title": "TÖÖLEHT: Abiküsimused vestluseks algkoolilapsega",
+    "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_abikysimused_vestluseks_algkoolilapsega.pdf",
+    "source_url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_abikysimused_vestluseks_algkoolilapsega.pdf",
+    "source_format": "pdf",
+    "ingest_status": "ingest_candidate",
+    "recommended_pipeline": "knowledge_doc_pipeline"
+  },
+  "final_url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_abikysimused_vestluseks_algkoolilapsega.pdf",
+  "local_origin": "consolidated_existing_file",
+  "recorded_at": "2026-08-14T09:25:00.000Z",
+  "bytes": 104285,
+  "sha256": "e45924e05c1c71324f8def556ba3fe5db00e93a6baceb4fd05698e3dca0319a2"
+}

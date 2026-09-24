@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2021",
+  "articleId": "kanep-mis-on-mis-",
+  "title": "Kanep – mis on mis?",
+  "authors": [
+    "Katri Abel-Ollo",
+    "Aljona Kurbatova",
+    "Marin Vaher"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2021",
+  "section": "Tervis",
+  "pageRange": "81-85",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade kanepi mõjust, tarvitamistrendidest ja riskidest.",
+  "tags": [
+    "kanep",
+    "–",
+    "mis",
+    "on",
+    "mis?"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2021_web_link_Part19.pdf",
+  "mapping_fixed": "20260814-161821",
+  "document_id": "sotsiaaltoo-3-2021-kanep-mis-on-mis",
+  "source_format": "pdf",
+  "source_sha256": "737a0f2e7680fb38ebb592ae3d23a7d09b7cc44a85a440d5c41d8bf9810e86b3",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2021-kanep-mis-on-mis",
+    "previous_source_path": "Sotsiaaltoo_3_2021_web_link_Part19.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "737a0f2e7680fb38ebb592ae3d23a7d09b7cc44a85a440d5c41d8bf9810e86b3",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

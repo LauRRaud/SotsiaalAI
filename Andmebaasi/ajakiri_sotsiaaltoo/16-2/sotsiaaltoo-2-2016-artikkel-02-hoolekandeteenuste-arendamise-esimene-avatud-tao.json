@@ -1,0 +1,84 @@
+{
+  "docId": "sotsiaaltoo-2-2016",
+  "articleId": "sotsiaaltoo-2-2016-artikkel-02-hoolekandeteenuste-arendamise-esimene-avatud-tao",
+  "title": "Hoolekandeteenuste arendamise esimene avatud taotlusvoor",
+  "authors": [
+    "Ingrid Mangulson",
+    "Terry Ney",
+    "Õnne Liv Valberg"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2016",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "3-5",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi ametnikud tutvustavad Euroopa Sotsiaalfondi meetme 2.2 „Tööturul osalemist toetavad hoolekandeteenused” esimese avatud taotlusvooru tingimusi. Toetust saavad taotleda kohalikud omavalitsused ja maakondlikud omavalitsuste liidud ning arendada koduteenust, tugiisikuteenust, isikliku abistaja teenust, päevahoidu ja intervallhooldust. Esimese vooru eelarve on 5 318 555 eurot, kogu perioodi Euroopa Liidu panus 28 318 555 eurot; toetus on 50 000–225 000 eurot projekti kohta, maakondliku katvuse korral kuni 375 000 eurot. Teenuseid osutatakse vähemalt 6225 inimesele ja vähemalt 30% neist peab kuus kuud hiljem olema tööturul.",
+  "tags": [
+    "sotsiaaltöö korraldus",
+    "hoolekandeteenused",
+    "Euroopa Sotsiaalfond",
+    "taotlusvoor",
+    "kohalikud omavalitsused",
+    "hoolduskoormus"
+  ],
+  "source_type": "file",
+  "source_path": "2016_2_artikkel_02_hoolekandeteenuste_arendamise_esimene_avatud_taotlus.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-02-hoolekandeteenuste-arendamise-esimene-avatud-tao",
+  "source_sha256": "fe7e1f8d7bc278a92dbd4f514aaf1c2e0f6eb5c419ac6a19e58c5cc392878459",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-02-hoolekandeteenuste-arendamise-esimene-avatud-tao",
+    "previous_source_path": "2016_2_artikkel_02_hoolekandeteenuste_arendamise_esimene_avatud_taotlus.txt",
+    "previous_source_original_path": "2-2016.pdf",
+    "reference_stored_source_sha256": "5592455ec6cdd87bfe977c9646db41fd23cc58c860769079b5db982614307c7a",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\2-2016.pdf",
+      "source_sha256": "cf45b61607b21a62a1003f99c97d65180c4fb4f591a874c983c4b63e5c804a36",
+      "pdf_start_page": 5,
+      "pdf_end_page": 7,
+      "printed_page_range": "3-5",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 7,
+      "source_regions": [
+        {
+          "source_pdf_page": 5,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 6,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 7,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            249.712
+          ]
+        }
+      ],
+      "effective_printed_page_range": "3-5",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2-2016.pdf"
+    },
+    "server_page_range": "3-5"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "provenance": {
+    "kind": "recovered_from_legacy_index",
+    "source_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "source_text_store": "/var/lib/sotsiaalai-rag/lexical-index.sqlite3",
+    "recovered_at": "2026-09-07T20:11:41.708487+00:00"
+  },
+  "review_status": "compare_with_primary_source_before_ingest",
+  "document_id": "kov::maardu-linn::item::maardu_linn_contact_tatjana_chaus",
+  "metadata": {
+    "createdAt": "2026-05-20T06:14:15.253421+00:00",
+    "type": "TEXT",
+    "lastIngested": "2026-05-20T06:14:15.217018+00:00",
+    "title": "Tatjana Chaus",
+    "description": "Tegevusvaldkonnad on toimetulekutoetus, Maardu linna eelarvest makstavad toetused, sotsiaalnõustamine, võlanõustamise teenustele suunamine ning erivajadustega laste sotsiaaltoetused ja teenused.",
+    "audience": "BOTH",
+    "audiences": [
+      "CLIENT",
+      "SOCIAL_WORKER"
+    ],
+    "authors": [],
+    "tags": [
+      "contact"
+    ],
+    "language": "et",
+    "collection_id": "kov_services",
+    "country": "EE",
+    "county": "Raplamaa",
+    "jurisdiction_level": "MUNICIPALITY",
+    "municipality_name": "Märjamaa vald",
+    "municipality_id": "maardu_linn",
+    "district_name": null,
+    "district_id": null,
+    "source_format": null,
+    "checked_at": "2026-04-29",
+    "item_type": "contact",
+    "content_status": "active",
+    "resource_type": "contact",
+    "source_keys": [
+      "social_contacts"
+    ],
+    "source_urls": [
+      "https://maardu.ee/ametnikud1"
+    ],
+    "source_register_file": "maardu-linn.sources.json",
+    "source_count": 27,
+    "administering_body": null,
+    "issuer": null,
+    "act_title": null,
+    "act_reference": null,
+    "canonical_source_id": null,
+    "act_type": null,
+    "effective_start": null,
+    "effective_end": null,
+    "is_current_version": null,
+    "text_type": null,
+    "source_type": "official_contact",
+    "path": null,
+    "url": "https://maardu.ee/ametnikud1",
+    "source_sha256": null,
+    "source_updated_at": null,
+    "original_doc_id": null,
+    "fileName": null,
+    "mimeType": "text/markdown",
+    "geo_detection_method": null,
+    "geo_detection_confidence": null,
+    "docId": "kov::maardu-linn::item::maardu_linn_contact_tatjana_chaus",
+    "updatedAt": "2026-06-10T20:54:30.650066+00:00",
+    "content_hash": "160f58d2a80d3ce93f0be3c25765f2db66dadc6c9b61e8202b2302cd4b41bf9d"
+  },
+  "chunks": [
+    {
+      "chunk_id": "kov::maardu-linn::item::maardu_linn_contact_tatjana_chaus:0:5a039f9f",
+      "document_version": null,
+      "text": "[TITLE] Tatjana Chaus\n[DESC] Tegevusvaldkonnad on toimetulekutoetus, Maardu linna eelarvest makstavad toetused, sotsiaalnõustamine, võlanõustamise teenustele suunamine ning erivajadustega laste sotsiaaltoetused ja teenused.\n[SECTION] Kontaktid\n[ITEM_TYPE] contact\n[STATUS] active\n[RESOURCE_TYPE] contact\n[COUNTY] Raplamaa\n[MUNICIPALITY] Märjamaa vald\n# Tatjana Chaus Liik: contact Staatus: active Nimi: Tatjana Chaus Roll: Sotsiaaltöö peaspetsialist Osakond: Sotsiaaltoetused Sihtrühm: Puudub. Auditoorium: CLIENT, SOCIAL_WORKER Kokkuvõte: Tegevusvaldkonnad on toimetulekutoetus, Maardu linna eelarvest makstavad toetused, sotsiaalnõustamine, võlanõustamise teenustele suunamine ning erivajadustega laste sotsiaaltoetused ja teenused. Ressursi tüüp: contact Tingimused: Taotlemine: Puudub. Vormid: Puudub. Haldaja / teenuseosutaja: Puudub. Kontaktid: Puudub. Tasulisus või summa: Puudub. Õiguslik alus: Puudub."
+    }
+  ]
+}

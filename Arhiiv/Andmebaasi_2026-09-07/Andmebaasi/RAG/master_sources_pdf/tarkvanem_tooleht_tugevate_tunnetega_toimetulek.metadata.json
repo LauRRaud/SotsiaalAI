@@ -1,0 +1,75 @@
+{
+  "source": {
+    "source_id": "tarkvanem_tooleht_tugevate_tunnetega_toimetulek",
+    "title": "TÖÖLEHT: Tugevate tunnetega toimetulek",
+    "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_tugevate_tunnetega_toimetulek.pdf",
+    "normalized_url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_tugevate_tunnetega_toimetulek.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "method_guidance",
+    "publisher": "Tarkvanem",
+    "organization_id": "tarkvanem",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Tarkvanem",
+      "tööleht",
+      "lapse kasvatamine",
+      "suhtlemisoskused",
+      "praktiline töövahend"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "Tarkvanem",
+      "heading_4": null,
+      "line": 647,
+      "order": 328
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "TÖÖLEHT: Tugevate tunnetega toimetulek"
+    ],
+    "collection_hints": [
+      "organization_guidelines"
+    ],
+    "source_types_seen": [
+      "official_guideline"
+    ],
+    "resource_types_seen": [
+      "method_guidance"
+    ],
+    "publishers_seen": [
+      "Tarkvanem"
+    ],
+    "organizations_seen": [
+      "tarkvanem"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "Tarkvanem",
+        "line": 647,
+        "order": 328
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_tugevate_tunnetega_toimetulek.pdf"
+  },
+  "final_url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_tugevate_tunnetega_toimetulek.pdf",
+  "redirects": [],
+  "sha256": "15b4fd3c9a68ffba48f4206243bf24f1802f8c0a4652bd45b6f3f3d5b83df3a4",
+  "bytes": 117246,
+  "downloaded_at": "2026-08-14T08:00:59.122Z"
+}

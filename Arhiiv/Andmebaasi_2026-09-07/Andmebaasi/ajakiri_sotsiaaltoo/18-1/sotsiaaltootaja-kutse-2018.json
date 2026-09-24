@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2018",
+  "articleId": "sotsiaaltootaja-kutse-taotlemisest-2018",
+  "title": "Sotsiaaltöötaja kutse taotlemisest",
+  "authors": [
+    "Sole-Riin Sepp"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2018",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "73-75",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel selgitab sotsiaaltöötaja kutse taotlemise protsessi, eneseanalüüsi koostamist ja professionaalse pädevuse tõendamist.",
+  "tags": [
+    "kutsetaotlus",
+    "kutsestandard",
+    "professionaalne areng",
+    "kompetentsid",
+    "eneseanalüüs",
+    "sotsiaaltöö elukutse"
+  ],
+  "source_type": "file",
+  "source_path": "Part19_155619647682_ST1_2018_link.pdf",
+  "mapping_fixed": "20260814-161821",
+  "document_id": "sotsiaaltoo-1-2018-sotsiaaltootaja-kutse-taotlemisest-2018",
+  "source_format": "pdf",
+  "source_sha256": "e11fde6fb3a9a40a1028e2d693d3212a70010ea4253f585c026d3feb65ce14b4",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2018-sotsiaaltootaja-kutse-taotlemisest-2018",
+    "previous_source_path": "Part19_155619647682_ST1_2018_link.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e11fde6fb3a9a40a1028e2d693d3212a70010ea4253f585c026d3feb65ce14b4",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "docId": "sotsiaaltoo-2-2017",
+  "articleId": "hasti-toimiv-lastekaitse-2017-2",
+  "title": "Hästi toimiv lastekaitse kohalikul tasandil on saavutatav koostöös",
+  "authors": [
+    "Age Viira",
+    "Marika Laanemäe"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2017",
+  "section": "Uurimus",
+  "pageRange": "42-47",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi tellitud uuringu tulemused kohalike omavalitsuste lastekaitsevõimekusest ja töömeetoditest. Lastekaitsetöötajad vastasid ankeetküsitlusele, täitsid tööajapäevikut ja osalesid fookusgrupiintervjuudes; intervjueeriti ka KOV-i juhte. Tulemused näitasid märkimisväärseid erinevusi korralduses, tavades ja töömeetodites; läbiva probleemina nimetati ülekoormatust ja ajapuudust. Äärealade väikestes omavalitsustes teevad ametnikud 79% juhtudel lastekaitsetööd osalise ajaga.",
+  "tags": [
+    "lastekaitse",
+    "kohalik omavalitsus",
+    "töökoormus",
+    "uuring",
+    "töömeetodid"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2-2017_veebi_link_Part16.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2017-hasti-toimiv-lastekaitse-2017-2",
+  "source_sha256": "70131b451306b51072418b7510f29aa352e5f3ba6d4711b30ef871939d294cd8",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2017-hasti-toimiv-lastekaitse-2017-2",
+    "previous_source_path": "Sotsiaaltoo_2-2017_veebi_link_Part16.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2-2017_veebi_link_Part16.pdf",
+    "reference_stored_source_sha256": "a9007102f3cf30def7d908cd81fa3ae86f593c5bdfeaed6ca44b694eb5c8ceb7",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf",
+      "source_sha256": "609af110244e684ccbb68aea9504f2490fce2852b1e7caa7bedacb621d661a8a",
+      "pdf_start_page": 44,
+      "pdf_end_page": 49,
+      "printed_page_range": "42-47",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 49,
+      "source_regions": [
+        {
+          "source_pdf_page": 44,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 45,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 46,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 47,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 48,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 49,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "42-47"
+    },
+    "server_page_range": "42-47"
+  }
+}

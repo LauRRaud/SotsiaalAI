@@ -1,0 +1,82 @@
+{
+  "docId": "sotsiaaltoo-2-2016",
+  "articleId": "sotsiaaltoo-2-2016-artikkel-11-sotsiaaltöö-tudengi-arvamus-ideaalsest-sotsiaalt",
+  "title": "Sotsiaaltöö tudengi arvamus ideaalsest sotsiaaltööst",
+  "authors": [
+    "Kelli Ilisson"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2016",
+  "section": "Selts",
+  "pageRange": "46-48",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaaltöö tudeng kirjeldab koos kolme kaasmõtlejaga, milline peaks üliõpilaste arvates olema ideaalne sotsiaaltöö. Takistustena nimetatakse bürokraatiat ja dokumenditööd, mis jätab klienditööks liiga vähe aega, madalat palka, läbipõlemisohtu ning ko- ja supervisiooni vähest kättesaadavust. Praktikal on tudengid märganud kliendile subjektiivse hinnangu andmist ja vaikimiskohustuse rikkumist. Autorid kutsuvad üles erialadevahelisele koostööle nelja sotsiaaltööd õpetava kõrgkooli vahel ning tutvustavad 25. märtsil 2016 Viljandis asutatud Eesti Sotsiaaltöö Üliõpilaste Seltsi, millel on esindused Tallinnas, Tartus ja Pärnus.",
+  "tags": [
+    "selts",
+    "üliõpilased",
+    "sotsiaaltööharidus",
+    "ESÜS",
+    "läbipõlemine",
+    "eriala maine"
+  ],
+  "source_type": "file",
+  "source_path": "2016_2_artikkel_11_sotsiaaltoo_tudengi_arvamus_ideaalsest_sotsiaaltoost.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-11-sotsiaalt-tudengi-arvamus-ideaalsest-sotsiaalt",
+  "source_sha256": "c92e8fcaf36325604df3a5727f36531215c5fa0f1c1731b440a23a1336ea77a0",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-11-sotsiaalt-tudengi-arvamus-ideaalsest-sotsiaalt",
+    "previous_source_path": "2016_2_artikkel_11_sotsiaaltoo_tudengi_arvamus_ideaalsest_sotsiaaltoost.txt",
+    "previous_source_original_path": "2-2016.pdf",
+    "reference_stored_source_sha256": "d8309023e551d478c7b61866a07e3eb6caf3495e26a1810e731b47b574153559",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\2-2016.pdf",
+      "source_sha256": "cf45b61607b21a62a1003f99c97d65180c4fb4f591a874c983c4b63e5c804a36",
+      "pdf_start_page": 48,
+      "pdf_end_page": 50,
+      "printed_page_range": "46-49",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 51,
+      "source_regions": [
+        {
+          "source_pdf_page": 48,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 49,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 50,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "46-48",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2-2016.pdf"
+    },
+    "server_page_range": "46-49"
+  }
+}

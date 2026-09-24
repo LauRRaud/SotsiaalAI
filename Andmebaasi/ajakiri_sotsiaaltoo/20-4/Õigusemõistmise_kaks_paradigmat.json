@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2020",
+  "articleId": "oigusemoistmise-kaks-paradigmat-ja-sotsiaaltoo-vaartused-2020-4",
+  "title": "Õigusemõistmise kaks paradigmat ja sotsiaaltöö väärtused",
+  "authors": [
+    "Judit Strömpl"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2020",
+  "section": "Taastav õigus",
+  "pageRange": "9-13",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel võrdleb karistuspõhist kriminaalõigust ja taastava õiguse paradigmat, tuues esile nende erinevad eesmärgid, fookuse ja mõjud. Autor seob taastava õiguse põhimõtted sotsiaaltöö väärtustega, rõhutades solidaarsust, inimsuhete parandamist, kogukondade tervendamist ja õigusrikkumiste käsitlemist suhete ja kahju, mitte üksnes seaduserikkumise kaudu.",
+  "tags": [
+    "taastav õigus",
+    "kriminaalõigus",
+    "karistusõigus",
+    "sotsiaaltöö väärtused",
+    "kriminaalpoliitika",
+    "kogukond",
+    "solidaarsus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2020_web_link_Part4.pdf",
+  "document_id": "sotsiaaltoo-4-2020-oigusemoistmise-kaks-paradigmat-ja-sotsiaaltoo-vaartused-2020-4",
+  "source_format": "pdf",
+  "source_sha256": "755f303b201b2e3538d7b8481ec4ddbbb46e7e5a1f9b5694d557134496ef0de0",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2020-oigusemoistmise-kaks-paradigmat-ja-sotsiaaltoo-vaartused-2020-4",
+    "previous_source_path": "Sotsiaaltoo_4_2020_web_link_Part4.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "755f303b201b2e3538d7b8481ec4ddbbb46e7e5a1f9b5694d557134496ef0de0",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

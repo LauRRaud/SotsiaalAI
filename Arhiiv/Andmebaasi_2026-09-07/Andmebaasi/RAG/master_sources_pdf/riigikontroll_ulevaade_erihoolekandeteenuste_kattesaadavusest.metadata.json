@@ -1,0 +1,85 @@
+{
+  "source": {
+    "source_id": "riigikontroll_ulevaade_erihoolekandeteenuste_kattesaadavusest",
+    "title": "Ülevaade erihoolekandeteenuste kättesaadavusest",
+    "url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19828_RKTR_6603_2-1.4_2349_002-1.pdf",
+    "normalized_url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19828_RKTR_6603_2-1.4_2349_002-1.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "Riigikontroll",
+    "organization_id": "riigikontroll",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "Riigikontroll",
+      "hoolekanne",
+      "sotsiaalteenused",
+      "hooldus",
+      "erihoolekanne",
+      "audit",
+      "avaliku sektori kontroll",
+      "riigi teenused",
+      "uuring",
+      "raport",
+      "analüüs"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_060",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet. Metadata konservatiivselt täpsustatud pealkirja ja registriinfo põhjal; PDF-i sisukord/täistekst vajaks vajadusel eraldi kontrolli.",
+    "source_context": {
+      "heading_2": "Riigikontroll",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 317,
+      "order": 182
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "Ülevaade erihoolekandeteenuste kättesaadavusest"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Riigikontroll"
+    ],
+    "organizations_seen": [
+      "riigikontroll"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Riigikontroll",
+        "line": 317,
+        "order": 182
+      },
+      {
+        "heading_2": "Riigikontroll",
+        "line": 791,
+        "order": 389
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19828_RKTR_6603_2-1.4_2349_002-1.pdf"
+  },
+  "final_url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19828_RKTR_6603_2-1.4_2349_002-1.pdf",
+  "redirects": [],
+  "sha256": "79b9d9b181f27d664ef42c821eaa425f0cc17c9ca9cd39bcd4c697848a0862c3",
+  "bytes": 815226,
+  "downloaded_at": "2026-08-14T08:00:39.413Z"
+}

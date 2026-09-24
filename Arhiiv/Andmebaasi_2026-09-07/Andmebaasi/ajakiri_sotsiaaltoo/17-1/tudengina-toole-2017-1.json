@@ -1,0 +1,74 @@
+{
+  "docId": "sotsiaaltoo-1-2017",
+  "articleId": "tudengina-toole-2017-1",
+  "title": "Kooli kõrvalt tööl või töö kõrvalt koolis",
+  "authors": [
+    "Brigitta Õunmaa",
+    "Kaisa Karu",
+    "Karen-Pauliin Konks",
+    "Kelli Ilisson"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2017",
+  "section": "Eesti Sotsiaaltöö Üliõpilaste Selts",
+  "pageRange": "83-84",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Neli Tartu Ülikooli sotsiaaltöö bakalaureuseastme tudengit kirjeldavad oma kogemuse põhjal õpingute kõrvalt töötamist: esimestel kursustel tehakse tavaliselt osaajaga mitteerialast tööd ning alates kolmandast kursusest, pärast praktikaid, juba erialast tööd. Nad väidavad, et töötamine seob teooria praktikaga, õpetab aja planeerimist ja pinge talumist ning tõstab hilisemat palka, kuid toob kaasa ülekoormuse ja läbipõlemise riski ning kolleegide eelarvamused tudengite suhtes. Autorid toetuvad ka üliõpilaste töötamise uuringule (Mägi jt 2011).",
+  "tags": [
+    "tudengiartikkel",
+    "sotsiaaltööharidus",
+    "töötamine õpingute kõrvalt",
+    "läbipõlemine",
+    "praktika"
+  ],
+  "source_type": "file",
+  "source_path": "2017_1_Part20.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2017-tudengina-toole-2017-1",
+  "source_sha256": "db3ac6b2c9d9982a3062e6e2068a1e7f73c62a4b56d2f0ca74dc3708ba785ae7",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2017-tudengina-toole-2017-1",
+    "previous_source_path": "2017_1_Part20.txt",
+    "previous_source_original_path": "2017_1.pdf",
+    "reference_stored_source_sha256": "d8c1912271a2acf5841f8007926ebafd0c7a0eabbe3321b5675171fde3da3d7a",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf",
+      "source_sha256": "335f81467a555f12c55d0e8bf60122a178c5267567cf79607448a5d987629e50",
+      "pdf_start_page": 85,
+      "pdf_end_page": 86,
+      "printed_page_range": "83-84",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 86,
+      "source_regions": [
+        {
+          "source_pdf_page": 85,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 86,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        }
+      ],
+      "effective_printed_page_range": "83-84"
+    },
+    "server_page_range": "83-84"
+  }
+}

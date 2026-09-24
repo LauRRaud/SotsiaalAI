@@ -1,0 +1,45 @@
+{
+  "docId": "sotsiaaltoo-3-2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2024",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "dementsusega-inimeste-toetamisel-tuleb-olla-avatud-uute-lahenduste-leidmisele-2024-3",
+  "title": "Dementsusega inimeste toetamisel tuleb olla avatud uute lahenduste leidmisele",
+  "authors": [
+    "Annaliisa Täht"
+  ],
+  "section": "Kogemus",
+  "pageRange": "59-63",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "description": "Kogemusartikkel Haapsalu sotsiaalmaja praktikast dementsusega inimeste ja nende lähedaste toetamisel. Autor kirjeldab kodu- ja päevahoiuteenuse korraldust, rutiini, keskkonna ja tegevuste rolli dementsusega inimeste toimetuleku toetamisel, TAI dementsuse arenguprogrammi mõju töötajate pädevusele ning mentorluse kogemust. Rõhk on loovatel ja paindlikel lahendustel, töötajate pideval õppimisel ja professionaalsusel, et säilitada inimese väärikus, oskused ja heaolu.",
+  "tags": [
+    "dementsus",
+    "koduteenus",
+    "päevahoid",
+    "Haapsalu sotsiaalmaja",
+    "arenguprogramm",
+    "mentorlus",
+    "hoolekandeteenus",
+    "rutiin",
+    "inimkeskne lähenemine",
+    "töötajate koolitus"
+  ],
+  "source_path": "sotsiaaltoo_3_2024_web_Part12.pdf",
+  "mapping_fixed": "20260814-161821",
+  "document_id": "sotsiaaltoo-3-2024-dementsusega-inimeste-toetamisel-tuleb-olla-avatud-uute-lahenduste-leidmisele-2024-3",
+  "source_format": "pdf",
+  "source_sha256": "313716204a8f9ba5cca50b1029df87f7e631a60f4f416a0ebf529399c209b1da",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2024-dementsusega-inimeste-toetamisel-tuleb-olla-avatud-uute-lahenduste-leidmisele-2024-3",
+    "previous_source_path": "sotsiaaltoo_3_2024_web_Part12.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "313716204a8f9ba5cca50b1029df87f7e631a60f4f416a0ebf529399c209b1da",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

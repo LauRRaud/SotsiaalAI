@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-1-2020",
+  "articleId": "kuressaare-hoolekanne-uuendusmeelne-meeskond-2020-1",
+  "title": "Kuressaare Hoolekanne ja selle uuendusmeelne meeskond",
+  "authors": [
+    "Ene Vahter"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2020",
+  "section": "Organisatsioonid",
+  "pageRange": "87-90",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab Kuressaare Hoolekande teenuseid, meeskonna töökorraldust ja uuenduslikku lähenemist sotsiaalvaldkonnas. Välja tuuakse koostööpraktikad, kogukonnakesksus ja teenuste arendamise põhimõtted.",
+  "tags": [
+    "Kuressaare Hoolekanne",
+    "sotsiaalteenused",
+    "organisatsioonid",
+    "kogukonnatöö",
+    "teenuste arendamine"
+  ],
+  "source_type": "file",
+  "source_path": "ST1_2020_web_link_Part19.pdf",
+  "document_id": "sotsiaaltoo-1-2020-kuressaare-hoolekanne-uuendusmeelne-meeskond-2020-1",
+  "source_format": "pdf",
+  "source_sha256": "145803aba6a960e476eabe1133f11635953ab227e138167a2bb0d7c557e1269f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2020-kuressaare-hoolekanne-uuendusmeelne-meeskond-2020-1",
+    "previous_source_path": "ST1_2020_web_link_Part19.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "145803aba6a960e476eabe1133f11635953ab227e138167a2bb0d7c557e1269f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

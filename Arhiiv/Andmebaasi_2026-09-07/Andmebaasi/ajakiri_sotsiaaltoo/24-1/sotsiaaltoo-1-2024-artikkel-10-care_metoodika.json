@@ -1,0 +1,37 @@
+{
+  "docId": "sotsiaaltoo-1-2024",
+  "articleId": "inimese-tervikkasitus-taastumise-pohimotted-ja-care-metoodika-2024-1",
+  "title": "Inimese tervikkäsitlus: taastumise põhimõtted ja CARe metoodika",
+  "authors": [
+    "Katrin Tsuiman"
+  ],
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2024",
+  "section": "Metoodika",
+  "pageRange": "55-63",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab CARe mudelit ja taastumispõhimõtteid, rõhutades tugevustel põhinevat lähenemist ja inimese terviklikku toetust sotsiaaltöös.",
+  "tags": [
+    "CARe",
+    "taastumispõhine lähenemine",
+    "metoodika"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_1_2024_web_Part11.pdf",
+  "document_id": "sotsiaaltoo-1-2024-inimese-tervikkasitus-taastumise-pohimotted-ja-care-metoodika-2024-1",
+  "source_format": "pdf",
+  "source_sha256": "484c69e6de5a9ca83a310e0bac4bcf650b755371b04469069bc47b25d5117104",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2024-inimese-tervikkasitus-taastumise-pohimotted-ja-care-metoodika-2024-1",
+    "previous_source_path": "Sotsiaaltoo_1_2024_web_Part11.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "484c69e6de5a9ca83a310e0bac4bcf650b755371b04469069bc47b25d5117104",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

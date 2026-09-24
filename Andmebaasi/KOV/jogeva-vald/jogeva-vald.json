@@ -1,0 +1,3119 @@
+{
+  "municipality": "Jõgeva vald",
+  "county": "Jõgevamaa",
+  "checkedAt": "2026-04-11",
+  "items": [
+    {
+      "id": "jogeva_vald_service_asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus tagab lapsele peresarnased elutingimused ja turvalise kasvukeskkonna, kui lapse vanemad ei saa oma kohustusi täita. Teenuse eesmärk on hoolitseda lapse heaolu eest ja valmistada teda ette täiskasvanueluks.",
+      "targetGroup": "Lapsed, kelle vanemad ei suuda pakkuda vajalikku hoolitsust",
+      "amount": null,
+      "conditions": "Teenuse korraldamine toimub valla sotsiaalosakonna kaudu koostöös lastekaitsetöötajaga.",
+      "application": "Pöörduda valla lastekaitsetöötaja poole. Asendushooldust korraldab lastekaitse peaspetsialist.",
+      "officialUrl": "https://xn--jgeva-dua.ee/asendushooldusteenus",
+      "sourceKeys": [
+        "asendushooldusteenus_page"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "jogeva_vald_contact_liivi_noormagi"
+      ],
+      "item_type": "service",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "asendushooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_service_asendushooldusteenus",
+      "document_id": "jogeva_vald_service_asendushooldusteenus",
+      "canonical_item_id": "jogeva_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/asendushooldusteenus",
+      "content_hash": "f4143de8489e4f049a047394f500759516e4441fb9971ca4e97368982634e8a5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_service_eluruumi_tagamise_teenus",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenus aitab inimestel, kes ei suuda oma sotsiaalmajandusliku olukorra tõttu elamispinda hankida, saada ajutise eluruumi. Vald pakub valla eluruume või toetab üüripinna leidmist ning aitab muuta eluruum sobivaks erivajadustega inimestele.",
+      "targetGroup": "Isikud ja pered, kes ei suuda ise sobivat eluruumi hankida",
+      "amount": null,
+      "conditions": "Teenuse kasutaja sõlmib üürilepingu ja tasub elamispinna üüri. Vald võib katta tagatisraha või teha kohandusi eluruumis. Otsus tehakse 10 tööpäeva jooksul pärast taotluse esitamist.",
+      "application": "Taotlus esitatakse sotsiaalabi taotluse blanketi alusel vallavalitsusse või digiallkirjastatult e‑posti teel. Teenuse vajadusest võib teatada ka telefonil.",
+      "officialUrl": "https://xn--jgeva-dua.ee/eluruumi-tagamise-teenus",
+      "sourceKeys": [
+        "eluruumi_tagamise_page"
+      ],
+      "relatedForms": [
+        "jogeva_vald_form_sotsiaalabi_taotlus"
+      ],
+      "relatedContacts": [
+        "jogeva_vald_contact_eve_viks"
+      ],
+      "decisionTime": "Hiljemalt kümne tööpäeva jooksul pärast taotluse või viimase vajaliku dokumendi saamist.",
+      "item_type": "service",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "eluruumi_tagamise_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_service_eluruumi_tagamise_teenus",
+      "document_id": "jogeva_vald_service_eluruumi_tagamise_teenus",
+      "canonical_item_id": "jogeva_vald_service_eluruumi_tagamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/eluruumi-tagamise-teenus",
+      "content_hash": "8b12706358c7427a2b9340350f7752d708966969562d8cb46a38f75438fcb808",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_service_isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus on mõeldud puudega täisealistele, kes vajavad füüsilist abi igapäevaelutoimingutes (liikumine, riietumine, söögitegemine jne). Isiklik abistaja ei tohi olla lähedane, kellel on ülalpidamiskohustus või kes elab samas leibkonnas.",
+      "targetGroup": "Puudega täisealised, kes vajavad igapäevaeluks füüsilist abi",
+      "amount": null,
+      "conditions": "Abistaja ülesanded ja tasu lepitakse kokku lepinguga. Teenus on tasuline, kuid vald võib kanda kulud inimese toimetulekuvõime alusel.",
+      "application": "Vajadusest võib teatada telefonil. Taotluse saab esitada sotsiaalabi taotluse vormil vallamajas või digiallkirjastatult e‑posti teel.",
+      "officialUrl": "https://xn--jgeva-dua.ee/isikliku-abistaja-teenus",
+      "sourceKeys": [
+        "isikliku_abistaja_page"
+      ],
+      "relatedForms": [
+        "jogeva_vald_form_sotsiaalabi_taotlus"
+      ],
+      "relatedContacts": [
+        "jogeva_vald_contact_eve_viks"
+      ],
+      "item_type": "service",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "isikliku_abistaja_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_service_isikliku_abistaja_teenus",
+      "document_id": "jogeva_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "jogeva_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/isikliku-abistaja-teenus",
+      "content_hash": "e088e763f59b7802224b025e00c4a33c3de620ddf6fc4cfc44fb2e5118ea95e8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_service_jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus toetab noori, kes on kasvanud asendushooldusel, et nad saaksid iseseisvuda, jätkata haridusteed ja astuda tööturule. Teenus pakub ajutist elamist ja individuaalset tuge.",
+      "targetGroup": "Noored, kes on kasvanud asendushooldusel ja saavad täisealiseks",
+      "amount": null,
+      "conditions": "Teenuse pikkus ja sisu sõltub noore vajadusest. Valla sotsiaalosakond aitab korraldada sobiva elamispinna ja toetab üleminekut iseseisvale elule.",
+      "application": "Pöörduda lastekaitse peaspetsialisti või sotsiaalosakonna poole. Teenuse vajadust hindab lastekaitsetöötaja.",
+      "officialUrl": "https://xn--jgeva-dua.ee/jarelhooldusteenus",
+      "sourceKeys": [
+        "jarelhooldusteenus_page"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "jogeva_vald_contact_liivi_noormagi"
+      ],
+      "item_type": "service",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "jarelhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_service_jarelhooldusteenus",
+      "document_id": "jogeva_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "jogeva_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/jarelhooldusteenus",
+      "content_hash": "2d1aeb005aff10a51de0228ae51484dbb0dc21b120e918cbf3f98335b5051be7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_service_koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus aitab täisealistel iseseisvalt kodus toime tulla. Teenus jaguneb koduabi ja isikuabi alamteenusteks. Koduabi hõlmab toidu, majapidamistarvete ja ravimite toomist, kodu korrastamist, kütuse ja küttepuude varumist ning abistamist asjaajamiste korraldamisel. Isikuabi hõlmab pesemist, riietumist, söömist ja muid igapäevaelutoiminguid.",
+      "targetGroup": "Täisealised, kes vajavad abi iseseisvalt kodus elamiseks",
+      "amount": null,
+      "conditions": "Teenuse eest makstakse tasu. Kui inimesel puuduvad vahendid, võib vald teenuse tasu täielikult või osaliselt katta.",
+      "application": "Teenuse vajadusest saab teatada telefonil. Taotluse võib esitada sotsiaalabi taotluse blanketil vallamajas või saata digiallkirjastatult e‑posti teel.",
+      "officialUrl": "https://xn--jgeva-dua.ee/koduteenus",
+      "sourceKeys": [
+        "koduteenus_page"
+      ],
+      "relatedForms": [
+        "jogeva_vald_form_sotsiaalabi_taotlus"
+      ],
+      "relatedContacts": [
+        "jogeva_vald_contact_eve_viks"
+      ],
+      "item_type": "service",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "koduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_service_koduteenus",
+      "document_id": "jogeva_vald_service_koduteenus",
+      "canonical_item_id": "jogeva_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/koduteenus",
+      "content_hash": "c6b285c3099ecfa93c54406b03395f4219a39ea4cd75eb5478796d90cb531da3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_service_kogukonnas_elamise_teenus",
+      "itemType": "service",
+      "title": "Kogukonnas elamise teenus",
+      "status": "active",
+      "summary": "Kogukonnas elamise teenus pakub psüühikahäirega täisealistele elukohta ja juhendamist, et nad saaksid iseseisvalt elada kogukonnas. Teenus sisaldab ööpäevaringset tuge elukoha haldamisel ja sotsiaalse toimetuleku arendamisel.",
+      "targetGroup": "Täisealised, kellel on psüühikahäire ja kes vajavad elukoha ning igapäevaelu korraldamisel tuge",
+      "amount": null,
+      "conditions": "Teenuse kasutamiseks on vajalik Sotsiaalkindlustusameti suunamiskiri. Teenuse saaja tasub majutuse ja toidu eest, ülejäänud kulud katab vald või riik.",
+      "application": "Suunamise annab Sotsiaalkindlustusamet koostöös valla sotsiaalosakonnaga. Teenust osutab Jõgeva valla hoolekandekeskus aadressidel Pargi 9 ja Kesk 4, Torma.",
+      "officialUrl": "https://xn--jgeva-dua.ee/muud-toetavad-sotsiaalteenused",
+      "sourceKeys": [
+        "muud_toetavad_sotsiaalteenused_page"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "jogeva_vald_contact_kati_tarum"
+      ],
+      "item_type": "service",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "muud_toetavad_sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_service_kogukonnas_elamise_teenus",
+      "document_id": "jogeva_vald_service_kogukonnas_elamise_teenus",
+      "canonical_item_id": "jogeva_vald_service_kogukonnas_elamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/muud-toetavad-sotsiaalteenused",
+      "content_hash": "89d1b83ed15480733b1b59aecf8938ec21343d6964196cfc9d60af5207a8f38c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_service_lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenus toetab erivajadusega lapse vanemaid, pakkudes lapse hooldamiseks tugiisikuid, lapsehoiuteenust, transporti hariduse või rehabilitatsioonini ning muid lapse arengu ja pere toimetuleku toetamiseks vajalikke teenuseid. Teenuse eesmärk on vähendada perede täiendavaid kulusid ja hoolduskoormust.",
+      "targetGroup": "Pered, kus kasvab raske või sügava puudega laps kuni lapse 18‑aastaseks saamiseni",
+      "amount": null,
+      "conditions": "Õigust teenusele tõendab lapse puudega lapse otsus või hooldus- või eestkosteleping. Otsus teenuse osutamiseks tehakse 10 tööpäeva jooksul pärast taotluse esitamist.",
+      "application": "Taotlus esitatakse sotsiaalabi taotluse blanketi alusel koos isikut tõendava dokumendi koopia, lapse puudeotsuse ning hooldus‑ või eestkostelepingu koopiaga. Taotlus esitatakse vallamajja või digiallkirjastatult e‑posti teel.",
+      "officialUrl": "https://xn--jgeva-dua.ee/lapsehoiuteenus",
+      "sourceKeys": [
+        "lapsehoiuteenus_page"
+      ],
+      "relatedForms": [
+        "jogeva_vald_form_sotsiaalabi_taotlus"
+      ],
+      "relatedContacts": [
+        "jogeva_vald_contact_maarika_pold",
+        "jogeva_vald_contact_eve_viks"
+      ],
+      "decisionTime": "Hiljemalt kümne tööpäeva jooksul pärast taotluse või viimase vajaliku dokumendi saamist.",
+      "item_type": "service",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "lapsehoiuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_service_lapsehoiuteenus",
+      "document_id": "jogeva_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "jogeva_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/lapsehoiuteenus",
+      "content_hash": "99b40d43acffcc9db92f4353c3177617249127461a03d97f4f757c49ec472f01",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_service_lastekaitse",
+      "itemType": "service",
+      "title": "Lastekaitse",
+      "status": "active",
+      "summary": "Lastekaitse eesmärk on tagada lapse heaolu ja õigused ning korraldada vajalik abi kohalikul tasandil. Jõgeva vald suunab lapsi puudutavate toetuste ja teenuste küsimustes pöörduma lastekaitsetöötaja poole.",
+      "targetGroup": "Lapsed, noored ja pered, kelle puhul on vaja tagada lapse heaolu, õigused või korraldada lapsega seotud toetusi ja teenuseid.",
+      "application": "Lapsi puudutavate toetuste ja teenuste küsimustes tuleb pöörduda lastekaitsetöötaja poole.",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/laste-ja-perede-hoolekanne/lastekaitse",
+      "sourceKeys": [
+        "lastekaitse_page"
+      ],
+      "relatedContacts": [
+        "jogeva_vald_contact_liivi_noormagi",
+        "jogeva_vald_contact_kaja_ivask",
+        "jogeva_vald_contact_irina_anniko",
+        "jogeva_vald_contact_ene_madissalu"
+      ],
+      "item_type": "service",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_service_lastekaitse",
+      "document_id": "jogeva_vald_service_lastekaitse",
+      "canonical_item_id": "jogeva_vald_service_lastekaitse",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/laste-ja-perede-hoolekanne/lastekaitse",
+      "content_hash": "bd774a30a04fa0e1ffca759172a1ad438c4344592da6821360e9e1781b17baa0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_service_muu_vajaduspohine_teenus",
+      "itemType": "service",
+      "title": "Muu vajaduspõhine teenus",
+      "status": "active",
+      "summary": "Muu vajaduspõhine teenus koondab individuaalseid toetavaid teenuseid, mis vastavad inimese või pere konkreetsele abivajadusele. Nendeks võivad olla erialane nõustamine, pere- ja kriisinõustamine, tugigrupid, sõltuvusravi, toiduabi, viipekeele tõlge ning muud erakorralised teenused.",
+      "targetGroup": "Isikud ja pered, kellel on individuaalne abivajadus, mida pole kaetud teiste sotsiaalteenustega",
+      "amount": null,
+      "conditions": "Teenused osutatakse vajaduspõhiselt ning kiireloomulise abi korral võib vald kulu ajutiselt ise katta ja hiljem tagasi nõuda. Täpne sisu lepitakse kokku sotsiaaltöötaja ja taotleja koostöös.",
+      "application": "Taotluse saab esitada sotsiaalabi taotluse blanketil vallamajas või digiallkirjastatult e‑posti teel. Vajadusest võib teatada telefonidel (Maarika Põld), (Mari‑Liis Nuut) või / (Doris Kõlu).",
+      "officialUrl": "https://xn--jgeva-dua.ee/muu-vajaduspohine-teenus",
+      "sourceKeys": [
+        "muu_vajaduspohine_teenus_page"
+      ],
+      "relatedForms": [
+        "jogeva_vald_form_sotsiaalabi_taotlus"
+      ],
+      "relatedContacts": [
+        "jogeva_vald_contact_maarika_pold",
+        "jogeva_vald_contact_mari_liis_nuut",
+        "jogeva_vald_contact_doris_kolu",
+        "jogeva_vald_contact_eve_viks"
+      ],
+      "item_type": "service",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "muu_vajaduspohine_teenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_service_muu_vajaduspohine_teenus",
+      "document_id": "jogeva_vald_service_muu_vajaduspohine_teenus",
+      "canonical_item_id": "jogeva_vald_service_muu_vajaduspohine_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/muu-vajaduspohine-teenus",
+      "content_hash": "9d13bc0bdbdc613f9460e888fbdfb7bc07ab4a2a0cbd4eb19bedb5dad91f6944",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_service_sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus võimaldab puudega inimestel ja teiste abi vajavate vallaelanikel jõuda tööle, teenustele või taastusravile. Teenuse maksumus on 0,80 € kilomeetri kohta või 7,50 € ühe sõidu eest Jõgeva linnas. Kui teenuse saajal puudub maksevõime, tasub vald sõidu eest.",
+      "targetGroup": "Puudega või liikumisraskustega inimesed, kes vajavad transporti tööle, teenustele või taastusravile",
+      "amount": "0,80 € kilomeeter või 7,50 € ühe sõidu eest Jõgeva linnas",
+      "conditions": "Teenuse maksumuse võib katta vald, kui taotleja ei suuda ise tasuda. Taotleja peab teenuse vajaduse kirjalikult põhjendama ning lisama tõendid. Transporti pakub Jõgeva valla hoolekandekeskus.",
+      "application": "Taotlus esitatakse vähemalt viis tööpäeva enne sõitu sotsiaalabi taotluse blanketil vallavalitsusse või digiallkirjastatult e‑posti teel. Vajadusel saab teenust taotleda telefoni teel.",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaaltransporditeenus",
+      "sourceKeys": [
+        "sotsiaaltransporditeenus_page"
+      ],
+      "relatedForms": [
+        "jogeva_vald_form_sotsiaalabi_taotlus"
+      ],
+      "relatedContacts": [
+        "jogeva_vald_contact_eve_viks"
+      ],
+      "deadline": "Taotlus esitatakse üldjuhul vähemalt viis tööpäeva enne soovitud sõiduaega.",
+      "item_type": "service",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "sotsiaaltransporditeenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_service_sotsiaaltransporditeenus",
+      "document_id": "jogeva_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "jogeva_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaaltransporditeenus",
+      "content_hash": "326b312ef0110ef38558c90c61f7713b0ff952b56e52b224329814cf7c7d99a8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_service_toetatud_elamise_teenus",
+      "itemType": "service",
+      "title": "Toetatud elamise teenus",
+      "status": "active",
+      "summary": "Toetatud elamise teenus on mõeldud psüühikahäirega täisealistele, kes saavad iseseisvalt hakkama, kuid vajavad pikemaajalist nõustamist ja tuge. Teenus pakub juhendamist igapäevaelu korraldamisel ja sotsiaalse toimetuleku parandamisel.",
+      "targetGroup": "Täisealised psüühikahäirega inimesed, kes saavad üldiselt ise hakkama, kuid vajavad juhendamist",
+      "amount": null,
+      "conditions": "Teenuse kasutamiseks on vajalik Sotsiaalkindlustusameti suunamiskiri. Teenuse saaja tasub eluruumi kasutamise eest, ülejäänud kulud katab vald või riik.",
+      "application": "Suunamise annab Sotsiaalkindlustusamet koostöös valla sotsiaalosakonnaga. Teenust osutab Jõgeva valla hoolekandekeskus aadressidel Jaama 2b, Jõgeva linn ja Lasteaia 4, Torma.",
+      "officialUrl": "https://xn--jgeva-dua.ee/muud-toetavad-sotsiaalteenused",
+      "sourceKeys": [
+        "muud_toetavad_sotsiaalteenused_page"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "jogeva_vald_contact_kati_tarum"
+      ],
+      "item_type": "service",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "muud_toetavad_sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_service_toetatud_elamise_teenus",
+      "document_id": "jogeva_vald_service_toetatud_elamise_teenus",
+      "canonical_item_id": "jogeva_vald_service_toetatud_elamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/muud-toetavad-sotsiaalteenused",
+      "content_hash": "c751cce04c417344f5dd0d62171845f9a9f77ab71629f7fbbe160d87f89662ac",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_service_toitumisnoustamine",
+      "itemType": "service",
+      "title": "Toitumisnõustamine",
+      "status": "active",
+      "summary": "Toitumisnõustaja Käty Kuulman nõustab Piiri 1 hoones Jõgeva valla koduhooldusteenuse kliente, erivajadustega laste vanemaid ning vajadusel teisi elanikke. Konsultatsioonid aitavad saavutada tervislikke toitumisharjumusi.",
+      "targetGroup": "Koduhooldusteenuse kliendid, erivajadustega laste vanemad ning teised elanikud, kes soovivad toitumisnõu",
+      "amount": null,
+      "conditions": "Tegemist on nõustamisteenusega. Vajadusel registreeritakse e‑posti aadressil.",
+      "application": "Kohtumisaeg lepitakse kokku e‑posti teel. Teenust pakutakse Piiri 1 hoones.",
+      "officialUrl": "https://xn--jgeva-dua.ee/toitumisnoustamine",
+      "sourceKeys": [
+        "toitumisnoustamine_page"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "jogeva_vald_contact_katy_kuulman"
+      ],
+      "item_type": "service",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "toitumisnoustamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_service_toitumisnoustamine",
+      "document_id": "jogeva_vald_service_toitumisnoustamine",
+      "canonical_item_id": "jogeva_vald_service_toitumisnoustamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/toitumisnoustamine",
+      "content_hash": "4462d1f7bf30dcbeae04cabb04945bf760b745af4f4931303a468148ef65a4fe",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_service_tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus on ennetav teenus, mille eesmärk on toetada lapse kasvatamisega seotud peresid ning aidata vältida probleeme, mis võivad viia kallimate teenuste kasutamiseni või tööhõivest välja langemiseni. Teenus tagab lapsele turvalise kasvukeskkonna ja aitab perel toime tulla.",
+      "targetGroup": "Perekonnad, kus lapse arengut ohustab puudulik hoolitsus või millel on raskusi igapäevase toimetulekuga",
+      "amount": null,
+      "conditions": "Teenuse eesmärk ja tegevused lepitakse kokku kolmpoolse lepinguga (vald, pere ja teenuseosutaja). Tugiisik tegutseb kodus või muus kokkulepitud kohas.",
+      "application": "Taotluse saab esitada sotsiaalabi taotluse blanketil vallamajas või digiallkirjastatult e‑posti teel.",
+      "officialUrl": "https://xn--jgeva-dua.ee/tugiisikuteenus",
+      "sourceKeys": [
+        "tugiisikuteenus_page"
+      ],
+      "relatedForms": [
+        "jogeva_vald_form_sotsiaalabi_taotlus"
+      ],
+      "relatedContacts": [
+        "jogeva_vald_contact_eve_viks"
+      ],
+      "item_type": "service",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "tugiisikuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_service_tugiisikuteenus",
+      "document_id": "jogeva_vald_service_tugiisikuteenus",
+      "canonical_item_id": "jogeva_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/tugiisikuteenus",
+      "content_hash": "7556d8e3b8f07b85d00136ee5bdb03a3900559a30b1aec1741ed8836177234eb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_service_turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenus pakub ajutist turvalist peavarju lastele, keda ei saa jätta vanemliku hoolitsuse alla, ning täisealistele, kes vajavad turvalist keskkonda. Teenus on ööpäevaringne. Lastele on teenus tasuta, täiskasvanutele võib rakenduda teenustasu.",
+      "targetGroup": "Lapsed, kellel puudub turvaline kodu, ja täiskasvanud, kes vajavad ajutist turvalist peavarju",
+      "amount": null,
+      "conditions": "Laste puhul tehakse otsus lastekaitsetöötajaga; täiskasvanutele pakutakse teenust vastavalt vajadusele ja võib rakenduda teenuse tasu.",
+      "application": "Laste puhul pöörduda lastekaitse spetsialisti poole või helistada. Täiskasvanud saavad teenust taotleda pöördudes vallavalitsusse või helistades. Taotlus esitatakse sotsiaalabi taotluse vormil.",
+      "officialUrl": "https://xn--jgeva-dua.ee/turvakoduteenus",
+      "sourceKeys": [
+        "turvakoduteenus_page"
+      ],
+      "relatedForms": [
+        "jogeva_vald_form_sotsiaalabi_taotlus"
+      ],
+      "relatedContacts": [
+        "jogeva_vald_contact_eve_viks"
+      ],
+      "item_type": "service",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "turvakoduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_service_turvakoduteenus",
+      "document_id": "jogeva_vald_service_turvakoduteenus",
+      "canonical_item_id": "jogeva_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/turvakoduteenus",
+      "content_hash": "0fe91002d8726437c1bafe006cbf72e1950416253b6f12ddad3976f275ea5f0e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_service_taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Teenus tagab täisealisele inimesele, kellel on vaimne või füüsiline puue, abi oma õiguste ja kohustuste täitmisel. Vallavalitsus määrab inimesele hooldaja, kes aitab korraldada asjaajamisi ja kaitsta kliendi huve.",
+      "targetGroup": "Täisealised, kellel on vaimne või füüsiline puue ja kes ei suuda iseseisvalt oma asju ajada",
+      "amount": null,
+      "conditions": "Hooldajaks ei määrata isikut, kellel on ülalpidamiskohustus või kes on ise raske puudega. Hoolduse vajadus ja kestus määratakse kuni viieks aastaks.",
+      "application": "Taotlus esitatakse sotsiaalosakonda või piirkonna sotsiaalhooldustöötajale. Vajadusest võib teatada telefonil.",
+      "officialUrl": "https://xn--jgeva-dua.ee/taisealise-isiku-hooldus",
+      "sourceKeys": [
+        "taisealise_hooldus_page"
+      ],
+      "relatedForms": [
+        "jogeva_vald_form_sotsiaalabi_taotlus"
+      ],
+      "relatedContacts": [
+        "jogeva_vald_contact_eve_viks"
+      ],
+      "item_type": "service",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "taisealise_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_service_taisealise_isiku_hooldus",
+      "document_id": "jogeva_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "jogeva_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/taisealise-isiku-hooldus",
+      "content_hash": "8adfe3fccdd394b1bd370e6d89fd93fb6c870179dbaf93b55c4c7e9e8e8d193c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_service_varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus pakub täiskasvanutele ajutist turvalist peavarju ja magamiskohta, et ennetada kodutust. Teenus on kiireloomuline ning vajadusel järgnevad muud hooldus‑ või tugiteenused.",
+      "targetGroup": "Täisealised, kes on jäänud ilma koduta või vajavad ajutist turvalist peavarju",
+      "amount": null,
+      "conditions": "Kohale võib pöörduda otse teenuse pakkuja juurde Jõgeva valla hoolekandekeskuses Jaama 2b. Pärast esmast hinnangut korraldatakse vajaduse korral edasine abi.",
+      "application": "Teenust on võimalik kasutada pöördudes otse varjupaika või läbi sotsiaalosakonna. Vajadusest võib teatada sotsiaalosakonnale.",
+      "officialUrl": "https://xn--jgeva-dua.ee/varjupaigateenus",
+      "sourceKeys": [
+        "varjupaigateenus_page"
+      ],
+      "relatedForms": [
+        "jogeva_vald_form_sotsiaalabi_taotlus"
+      ],
+      "relatedContacts": [
+        "jogeva_vald_contact_eve_viks"
+      ],
+      "item_type": "service",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "varjupaigateenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_service_varjupaigateenus",
+      "document_id": "jogeva_vald_service_varjupaigateenus",
+      "canonical_item_id": "jogeva_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/varjupaigateenus",
+      "content_hash": "2d8e8f4df8b4d47ad270868407b365faeaf34c2781654d37c8be75afcf4355c1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_service_valtimatu_sotsiaalabi",
+      "itemType": "service",
+      "title": "Vältimatu sotsiaalabi",
+      "status": "active",
+      "summary": "Vältimatu sotsiaalabi tagab esmast abi – toit, riietus ja ajutine majutus – inimestele, kes on jäänud ilma elatusvahenditest ja sattunud sotsiaalselt abitusse olukorda. Abi osutatakse kuni olukorra paranemiseni.",
+      "targetGroup": "Inimesed, kes on kaotanud elatusvahendid ja vajavad esmast abi",
+      "amount": null,
+      "conditions": "Abi antakse kiireloomuliselt ning jätkub senikaua, kuni abivajaja on taastanud toimetuleku. Teenust menetleb sotsiaaltöö spetsialist.",
+      "application": "Abi saamiseks tuleb pöörduda vallavalitsuse sotsiaalosakonna või piirkonna sotsiaalhooldustöötaja poole. Teenust menetleb sotsiaaltöö spetsialist Maarika Põld.",
+      "officialUrl": "https://xn--jgeva-dua.ee/valtimatu-sotsiaalabi",
+      "sourceKeys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "jogeva_vald_contact_maarika_pold",
+        "jogeva_vald_contact_luule_palmiste"
+      ],
+      "item_type": "service",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_service_valtimatu_sotsiaalabi",
+      "document_id": "jogeva_vald_service_valtimatu_sotsiaalabi",
+      "canonical_item_id": "jogeva_vald_service_valtimatu_sotsiaalabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/valtimatu-sotsiaalabi",
+      "content_hash": "58eaa53f1c3b64344927690c47fafd17fabead04ea08851369ccdee8ca892c7b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_service_volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamine aitab inimestel hinnata oma rahalist olukorda, suhelda võlausaldajatega, sõlmida maksegraafikuid, täita kohustusi ja vältida uute võlgade tekkimist. Teenus on taotlejale tasuta.",
+      "targetGroup": "Inimesed, kellel on võlad ja kellel on raskusi võlgadega toimetulekuga",
+      "amount": null,
+      "conditions": "Teenust saavad kõik abivajajad, kelle võlgnevused on muutunud probleemiks. Teenus on tasuta.",
+      "application": "Taotluse saab esitada sotsiaalabi taotluse blanketil vallamajja või digiallkirjastatult e‑posti teel.",
+      "officialUrl": "https://xn--jgeva-dua.ee/volanoustamisteenus",
+      "sourceKeys": [
+        "volanoustamisteenus_page"
+      ],
+      "relatedForms": [
+        "jogeva_vald_form_sotsiaalabi_taotlus"
+      ],
+      "relatedContacts": [
+        "jogeva_vald_contact_eve_viks"
+      ],
+      "item_type": "service",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "volanoustamisteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_service_volanoustamisteenus",
+      "document_id": "jogeva_vald_service_volanoustamisteenus",
+      "canonical_item_id": "jogeva_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/volanoustamisteenus",
+      "content_hash": "aa29e7321545c549729ec49c2716252a39c21beacc803285f1f5094f12a3886c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_service_uldhooldusteenus_valjaspool_isiku_kodu",
+      "itemType": "service",
+      "title": "Üldhooldusteenus väljaspool isiku kodu",
+      "status": "active",
+      "summary": "Üldhooldusteenus tagab ööpäevaringse hoolduse ja majutuse inimestele, kes ei saa kodus toime tulla. Vallavolikogu on kehtestanud hoolduskulude piirmääraks 750 € kuus (alates 1. augustist 2024). Hoolduskulud jagunevad hooldus- ning majutus- ja toitlustuskuludeks. Kui inimene ei suuda tasuda, toetab vald kuni piirmäärani ning tagab, et pärast teenuse eest tasumist jääb isikule vähemalt 10 % igakuisest sissetulekust.",
+      "targetGroup": "Täisealised, kes vajavad 24/7 hooldust ja ei saa kodus toime tulla",
+      "amount": "Hoolduskulude piirmäär 750 € kuus ühe inimese kohta; vallatoetus katab hoolduskulud kuni piirmäärani",
+      "conditions": "Teenuse eest tasub inimene või ülalpidamiskohustuslane piirmäära ületava osa. Teenust saab taotleda sotsiaalosakonnas. Naabrid, arst või muu isik võivad vajadusest teatada. Otsus tehakse 10 tööpäeva jooksul.",
+      "application": "Taotlus esitatakse sotsiaalabi taotluse blanketi alusel vallavalitsusse või digiallkirjastatult e‑posti teel. Vajadusest võib teatada ka telefonil.",
+      "officialUrl": "https://xn--jgeva-dua.ee/uldhooldusteenus-valjaspool-isiku-kodu",
+      "sourceKeys": [
+        "uldhooldusteenus_page"
+      ],
+      "relatedForms": [
+        "jogeva_vald_form_sotsiaalabi_taotlus"
+      ],
+      "relatedContacts": [
+        "jogeva_vald_contact_eve_viks"
+      ],
+      "relatedTo": [],
+      "item_type": "service",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "uldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_service_uldhooldusteenus_valjaspool_isiku_kodu",
+      "document_id": "jogeva_vald_service_uldhooldusteenus_valjaspool_isiku_kodu",
+      "canonical_item_id": "jogeva_vald_service_uldhooldusteenus_valjaspool_isiku_kodu",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/uldhooldusteenus-valjaspool-isiku-kodu",
+      "content_hash": "e05c44f8bd09145c91d842509eade43629e1fbd9d633918f2d6705e97290fe57",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_benefit_eestkostetoetus",
+      "itemType": "benefit",
+      "title": "Eestkostetoetus",
+      "status": "active",
+      "summary": "Eestkostetoetust makstakse kohtumäärusega eestkostjaks määratud isikule lapse või täisealise eestkostetava hooldamise eest. Toetus on igakuine ja makstakse kuni eestkoste lõppemiseni.",
+      "targetGroup": "Kohtu poolt määratud eestkostjad",
+      "amount": "25 € kuus",
+      "conditions": "Taotlejal peab olema kohtu määrus, millega ta on määratud eestkostjaks. Toetus makstakse iga kuu viimase päevani ning peatub eestkoste lõppemisel.",
+      "application": "Taotluse saab esitada vallavalitsuse iseteeninduses või täita eestkoste taotluse blanketi ning esitada see paberkandjal vallamajja või digitaalselt allkirjastatult e‑posti teel. Taotlusele tuleb lisada kohtu määrus eestkostja määramise kohta.",
+      "officialUrl": "https://xn--jgeva-dua.ee/eestkostetoetus",
+      "sourceKeys": [
+        "eestkostetoetus_page"
+      ],
+      "relatedForms": [
+        "jogeva_vald_form_eestkostetoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "jogeva_vald_contact_luule_palmiste"
+      ],
+      "decisionTime": "Hiljemalt kümne tööpäeva jooksul pärast taotluse või viimase vajaliku dokumendi saamist.",
+      "item_type": "benefit",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "eestkostetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_benefit_eestkostetoetus",
+      "document_id": "jogeva_vald_benefit_eestkostetoetus",
+      "canonical_item_id": "jogeva_vald_benefit_eestkostetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/eestkostetoetus",
+      "content_hash": "ccdb6d8f3d841efd92adaa91b5114f5422ab2204212a56a7e127e921c1739189",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_benefit_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus",
+      "status": "active",
+      "summary": "Hooldajatoetust makstakse isikule, kellele on määratud hooldaja täisealise kõrge või ülisuure abivajadusega inimese hooldamiseks või raske või sügava puudega lapse hooldamiseks. Toetus on kuupõhine ja seda makstakse kuni hooldaja määramiseni.",
+      "targetGroup": "Hooldajad, kes hooldavad suurt abivajadust omavaid täisealisi või raske või sügava puudega lapsi",
+      "amount": "200 € kuus raske või sügava puudega lapse eest; 100 € kuus keskmise puudega lapse eest; 50 € kuus ülisuure abivajadusega täisealise eest; 30 € kuus kõrge abivajadusega täisealise eest",
+      "conditions": "Hooldaja peab olema määratud hooldaja ning hooldatav peab omama vastavat puuet või kõrget abivajadust. Toetus makstakse hooldusaja lõppemiseni ja ka lõppemisele järgneva täiskuu eest.",
+      "application": "Taotluse saab esitada vallavalitsuse iseteeninduses või täita hooldajatoetuse taotluse blanketil ja esitada paberkandjal vallamajas või digiallkirjastatult e‑posti teel.",
+      "officialUrl": "https://xn--jgeva-dua.ee/hooldajatoetus",
+      "sourceKeys": [
+        "hooldajatoetus_page"
+      ],
+      "relatedForms": [
+        "jogeva_vald_form_hooldajatoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "jogeva_vald_contact_luule_palmiste"
+      ],
+      "decisionTime": "Hiljemalt kümne tööpäeva jooksul pärast taotluse või viimase vajaliku dokumendi saamist.",
+      "item_type": "benefit",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "hooldajatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_benefit_hooldajatoetus",
+      "document_id": "jogeva_vald_benefit_hooldajatoetus",
+      "canonical_item_id": "jogeva_vald_benefit_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/hooldajatoetus",
+      "content_hash": "a0e0e9f4ecd942870278b54237ac664e438b2c4d2cc073f0de9dd3d1b2c05d76",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_benefit_matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on ühekordne toetus, mida makstakse Jõgeva valla elanikuna rahvastikuregistrisse kantud inimese surma korral matuse korraldamise kulude katmiseks isikule, kes need kulud kannab.",
+      "targetGroup": "Isik, kes kannab Jõgeva valla elaniku matuse korraldamisega seotud kulud.",
+      "amount": "450 eurot ühekordselt",
+      "conditions": "Taotlus tuleb esitada kolme kuu jooksul surma registreerimisest.",
+      "application": "Taotluse saab esitada Jõgeva Vallavalitsuse iseteeninduses, paberkandjal vallamajas või digiallkirjastatult e-postiga. Taotluse võib esitada ka vormivabalt, märkides surnu nime, isikukoodi, taotleja kontaktandmed ja pangaarve numbri.",
+      "decisionTime": "Toetus makstakse välja kümne tööpäeva jooksul taotluse esitamisest.",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/lahedase-kaotus/matusetoetus",
+      "sourceKeys": [
+        "matusetoetus_page"
+      ],
+      "relatedForms": [
+        "jogeva_vald_form_matusetoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "jogeva_vald_contact_luule_palmiste"
+      ],
+      "deadline": "Taotlus tuleb esitada kolme kuu jooksul surma registreerimisest.",
+      "item_type": "benefit",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "matusetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_benefit_matusetoetus",
+      "document_id": "jogeva_vald_benefit_matusetoetus",
+      "canonical_item_id": "jogeva_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/lahedase-kaotus/matusetoetus",
+      "content_hash": "f3fc0ce04441ce009fc762801cc2f48dbcfba48db140ec924262ed77c2f875c0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_benefit_tervisetoetus",
+      "itemType": "benefit",
+      "title": "Tervisetoetus",
+      "status": "active",
+      "summary": "Tervisetoetus hüvitab ravikulud, mida ei kata Eesti Haigekassa või Sotsiaalkindlustusamet. Abi makstakse inimesele või perele, kelle sissetulek jääb alla 2,5‑kordse toimetulekupiiri.",
+      "targetGroup": "Inimesed ja pered, kelle sissetulek on alla 2,5‑kordse toimetulekupiiri",
+      "amount": null,
+      "conditions": "Toetust antakse ravikuludele nagu retseptiravimid, kuni 7‑aastaste laste prillid, abivahendid, transpordikulud raviasutusse, taastusravi ning muud põhjendatud ravikulud. Taotleja peab esitama kuludokumendid ja tõendama oma sissetulekut.",
+      "application": "Taotluse saab esitada sotsiaaltoetuse taotluse blanketil. Blankett tuleb täita, digiallkirjastada ja saata e‑posti teel või esitada vallamajja paberkandjal koos vajalike lisadokumentidega.",
+      "officialUrl": "https://xn--jgeva-dua.ee/tervisetoetus",
+      "sourceKeys": [
+        "tervisetoetus_page"
+      ],
+      "relatedForms": [
+        "jogeva_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "jogeva_vald_contact_luule_palmiste"
+      ],
+      "decisionTime": "Hiljemalt kümne tööpäeva jooksul pärast taotluse või viimase vajaliku dokumendi saamist.",
+      "item_type": "benefit",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "tervisetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_benefit_tervisetoetus",
+      "document_id": "jogeva_vald_benefit_tervisetoetus",
+      "canonical_item_id": "jogeva_vald_benefit_tervisetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/tervisetoetus",
+      "content_hash": "bab16b4dc27be8eae0349488c103bfad51b96512c36b82f8a195a7c1bc809925",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_benefit_toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on mõeldud majanduslikes raskustes olevatele inimestele või peredele, kelle kuu netosissetulek pärast hädavajalike kulude mahaarvamist jääb alla riikliku toimetulekupiiri. Toetus aitab katta elatus‑ ja eluasemekulusid.",
+      "targetGroup": "Väikese sissetulekuga inimesed ja pered, kelle kuu netosissetulek on alla toimetulekupiiri",
+      "amount": "Toimetulekupiir alates 1. jaanuarist 2026: 220 € kuus esimesele täisealisele pereliikmele, 176 € iga järgmise täisealise kohta ja 264 € iga alaealise kohta. Toetuse suurus sõltub leibkonna sissetulekust ja eluasemekuludest.",
+      "conditions": "Taotleja peab esitama dokumendid varade, sissetulekute ja eluasemekulude kohta. Toetust makstakse, kui pere või isiku kuu netosissetulek pärast eluasemekulude mahaarvamist on madalam kui toimetulekupiir.",
+      "application": "Taotluse saab esitada vallavalitsuse iseteeninduses või täita toimetulekutoetuse taotluse vorm (DOCX) ning esitada see paberkandjal vallamajja või digiallkirjastatult e‑posti teel. Taotlusele tuleb lisada sissetulekut ja eluasemekulusid tõendavad dokumendid.",
+      "officialUrl": "https://xn--jgeva-dua.ee/toimetulekutoetus",
+      "sourceKeys": [
+        "toimetulekutoetus_page"
+      ],
+      "relatedForms": [
+        "jogeva_vald_form_toimetulekutoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "jogeva_vald_contact_luule_palmiste"
+      ],
+      "decisionTime": "Viie tööpäeva jooksul pärast kõikide dokumentide esitamist.",
+      "item_type": "benefit",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_benefit_toimetulekutoetus",
+      "document_id": "jogeva_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "jogeva_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/toimetulekutoetus",
+      "content_hash": "6ff5a3ed8386c6b805a137d22c67a97af7a839c91edb6339300450b027b54181",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_benefit_vajaduspohine_toetus",
+      "itemType": "benefit",
+      "title": "Vajaduspõhine toetus",
+      "status": "active",
+      "summary": "Vajaduspõhine toetus aitab katta vältimatuid kulutusi, kui taotleja pere sissetulek on alla 2,5‑kordse toimetulekupiiri. Toetus katab näiteks eluruumi püsikulud, küttekulud kuni 300 eurot aastas, dokumentide riigilõivud, lasteaias või hoiukodus käimise kulud, kutsekooli õpilaste ühiselamukulu ning muud vältimatud erakorralised kulud.",
+      "targetGroup": "Inimesed ja pered, kelle sissetulek on alla 2,5‑kordse toimetulekupiiri",
+      "amount": null,
+      "conditions": "Toetust antakse põhjendatud ja dokumenteeritud kulude hüvitamiseks. Taotleja peab esitama tõendid sissetuleku ja kulude kohta.",
+      "application": "Taotluse saab esitada sotsiaaltoetuse taotluse blanketil. Blankett tuleb täita, digiallkirjastada ja saata e‑posti teel või esitada vallamajja paberkandjal. Lisa tuleb esitada kuludokumendid.",
+      "officialUrl": "https://xn--jgeva-dua.ee/vajaduspohine-toetus",
+      "sourceKeys": [
+        "vajaduspohine_toetus_page"
+      ],
+      "relatedForms": [
+        "jogeva_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "jogeva_vald_contact_luule_palmiste"
+      ],
+      "decisionTime": "Hiljemalt kümne tööpäeva jooksul pärast taotluse või viimase vajaliku dokumendi saamist.",
+      "item_type": "benefit",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "vajaduspohine_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_benefit_vajaduspohine_toetus",
+      "document_id": "jogeva_vald_benefit_vajaduspohine_toetus",
+      "canonical_item_id": "jogeva_vald_benefit_vajaduspohine_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/vajaduspohine-toetus",
+      "content_hash": "004e0630cdf69bede5de3f97ff746bc1dd26c15620ce1cd567a65f42cd195619",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_resource_hairenuputeenus",
+      "itemType": "resource",
+      "title": "Häirenuputeenus",
+      "status": "active",
+      "summary": "Häirenuputeenus pakub eakatele ja puudega inimestele kaasaskantavat häirenuppu, millega saab hädaolukorras kiiresti abi kutsuda. Seade võimaldab kahepoolset sidepidamist, tuvastab kukkumise, on veekindel ning tagab ööpäevaringse reageerimise.",
+      "officialUrl": "https://xn--jgeva-dua.ee/muud-toetavad-sotsiaalteenused",
+      "sourceKeys": [
+        "muud_toetavad_sotsiaalteenused_page"
+      ],
+      "relatedTo": [],
+      "relatedContacts": [],
+      "targetGroup": "Eakad ja puudega inimesed, kes vajavad turvalisuse suurendamiseks häirenupu teenust",
+      "item_type": "resource",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "muud_toetavad_sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_resource_hairenuputeenus",
+      "document_id": "jogeva_vald_resource_hairenuputeenus",
+      "canonical_item_id": "jogeva_vald_resource_hairenuputeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/muud-toetavad-sotsiaalteenused",
+      "content_hash": "b90825eae37b6a110997f6ab071318a517d25c37b3ac88a093b081c3d110712a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_resource_elukaar_sotsiaalkeskus",
+      "itemType": "resource",
+      "title": "Jõgeva Sotsiaalkeskus Elukaar OÜ",
+      "status": "active",
+      "summary": "Jõgeva Sotsiaalkeskus Elukaar OÜ pakub Jõgeva valla üldhooldusteenust, pakkudes hooldekodukohti ja ööpäevaringset hooldust.",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/tervis/hoolekandeasutused",
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "relatedTo": [
+        "jogeva_vald_service_uldhooldusteenus_valjaspool_isiku_kodu"
+      ],
+      "relatedContacts": [],
+      "targetGroup": "Üldhooldusteenuse kliendid",
+      "address": "Roosi 6a, 48305 Jõgeva linn",
+      "item_type": "resource",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_resource_elukaar_sotsiaalkeskus",
+      "document_id": "jogeva_vald_resource_elukaar_sotsiaalkeskus",
+      "canonical_item_id": "jogeva_vald_resource_elukaar_sotsiaalkeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/tervis/hoolekandeasutused",
+      "content_hash": "9141e4e07c14a6af42965b1331da2ab3439b9cbfcb085b66873ce08f4df728e4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_resource_jogeva_valla_hoolekandekeskus",
+      "itemType": "resource",
+      "title": "Jõgeva Valla Hoolekandekeskus",
+      "status": "active",
+      "summary": "Jõgeva Valla Hoolekandekeskus on Jõgeva vallas tegutsev hoolekandeasutus, mille kaudu osutatakse muu hulgas sotsiaaltranspordiga seotud abi ning muude toetavate sotsiaalteenuste raames kogukonnas elamise ja toetatud elamise teenust.",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/tervis/hoolekandeasutused",
+      "sourceKeys": [
+        "hoolekandeasutused_page",
+        "muud_toetavad_sotsiaalteenused_page"
+      ],
+      "relatedTo": [
+        "jogeva_vald_service_sotsiaaltransporditeenus",
+        "jogeva_vald_service_kogukonnas_elamise_teenus",
+        "jogeva_vald_service_toetatud_elamise_teenus"
+      ],
+      "item_type": "resource",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "hoolekandeasutused_page",
+        "muud_toetavad_sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_resource_jogeva_valla_hoolekandekeskus",
+      "document_id": "jogeva_vald_resource_jogeva_valla_hoolekandekeskus",
+      "canonical_item_id": "jogeva_vald_resource_jogeva_valla_hoolekandekeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/tervis/hoolekandeasutused",
+      "content_hash": "a5a50678f610cb8bde0d9beb474faf2aaa5efb98fd508bdb67f00aa8dc172f65",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_resource_kaarepere_pansionaat",
+      "itemType": "resource",
+      "title": "Kaarepere Pansionaat",
+      "status": "active",
+      "summary": "Kaarepere Pansionaat on Jõgeva valla üldhooldusteenust pakkuv hooldekodu, mis pakub ööpäevaringset hooldusteenust. Asub Kaarepere külas.",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/tervis/hoolekandeasutused",
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "relatedTo": [
+        "jogeva_vald_service_uldhooldusteenus_valjaspool_isiku_kodu"
+      ],
+      "relatedContacts": [],
+      "targetGroup": "Üldhooldusteenuse kliendid",
+      "address": "Kaarepere küla, 49201 Jõgeva vald",
+      "item_type": "resource",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_resource_kaarepere_pansionaat",
+      "document_id": "jogeva_vald_resource_kaarepere_pansionaat",
+      "canonical_item_id": "jogeva_vald_resource_kaarepere_pansionaat",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/tervis/hoolekandeasutused",
+      "content_hash": "2a75f2ba1a9ce72a597a65eec0f2b77abce6c14c92c85a77d9c8b6864fc2934b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_resource_kaugtolke_teenus",
+      "itemType": "resource",
+      "title": "Kaugtõlke teenus",
+      "status": "active",
+      "summary": "Kaugtõlke teenus võimaldab kuulmispuudega inimestel kasutada tõlke rakendust, kus viipekeel või eesti keel tõlgitakse kõneks ja vastupidi. Teenus on tasuta ning saadaval esmaspäevast laupäevani. Rohkem infot leiab sotsiaalkindlustusameti kodulehelt.",
+      "officialUrl": "https://xn--jgeva-dua.ee/muud-toetavad-sotsiaalteenused",
+      "sourceKeys": [
+        "muud_toetavad_sotsiaalteenused_page"
+      ],
+      "relatedTo": [],
+      "relatedContacts": [],
+      "targetGroup": "Kuulmispuudega inimesed",
+      "item_type": "resource",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "muud_toetavad_sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_resource_kaugtolke_teenus",
+      "document_id": "jogeva_vald_resource_kaugtolke_teenus",
+      "canonical_item_id": "jogeva_vald_resource_kaugtolke_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/muud-toetavad-sotsiaalteenused",
+      "content_hash": "b13ed70e470724b5a014a7f32743a02e60d708008f1a7e6d1e5d7ef2fca5a3a2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_resource_kirjutustolke_teenus",
+      "itemType": "resource",
+      "title": "Kirjutustõlke teenus",
+      "status": "active",
+      "summary": "Kirjutustõlke teenus muudab räägitud teksti kirjalikuks, et võimaldada kuulmispuudega inimestel jälgida suulist suhtlust. Teenust saab tellida e‑posti aadressil.",
+      "officialUrl": "https://xn--jgeva-dua.ee/muud-toetavad-sotsiaalteenused",
+      "sourceKeys": [
+        "muud_toetavad_sotsiaalteenused_page"
+      ],
+      "relatedTo": [],
+      "relatedContacts": [],
+      "targetGroup": "Kuulmispuudega inimesed",
+      "item_type": "resource",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "muud_toetavad_sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_resource_kirjutustolke_teenus",
+      "document_id": "jogeva_vald_resource_kirjutustolke_teenus",
+      "canonical_item_id": "jogeva_vald_resource_kirjutustolke_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/muud-toetavad-sotsiaalteenused",
+      "content_hash": "c9124fabf778ea9774ba7ff042df6e3e9e0e34507b05d8adc378ecb6c1f92822",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_resource_koduandur",
+      "itemType": "resource",
+      "title": "Koduandur",
+      "status": "active",
+      "summary": "Koduandur on kaugjälgimisseade, mis jälgib liikumist, temperatuuri ja õhuniiskust ning saadab häirete korral teavituse lähedasele. Seade võimaldab hoida silma peal üksinda elaval inimesel ilma internetiühenduseta.",
+      "officialUrl": "https://xn--jgeva-dua.ee/muud-toetavad-sotsiaalteenused",
+      "sourceKeys": [
+        "muud_toetavad_sotsiaalteenused_page"
+      ],
+      "relatedTo": [],
+      "relatedContacts": [],
+      "targetGroup": "Üksi elavad inimesed, keda soovitakse distantsilt jälgida",
+      "item_type": "resource",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "muud_toetavad_sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_resource_koduandur",
+      "document_id": "jogeva_vald_resource_koduandur",
+      "canonical_item_id": "jogeva_vald_resource_koduandur",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/muud-toetavad-sotsiaalteenused",
+      "content_hash": "f063f9bc04693c747b0cb342ec1cb942638ece3e49637ea405ff227fe711bbc0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_resource_ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "Ohvriabi leht koondab riiklikud abikanalid inimesele, kes on langenud kuriteo, vägivalla või kriisi ohvriks, samuti tema lähedastele. Lehelt leiab palunabi.ee, ohvriabi kriisitelefoni ning viited Jõgevamaa Naiste Tugikeskusele ja lähisuhtevägivalla abile.",
+      "officialUrl": "https://xn--jgeva-dua.ee/ohvriabi",
+      "sourceKeys": [
+        "ohvriabi_page"
+      ],
+      "relatedTo": [],
+      "relatedContacts": [],
+      "targetGroup": "Vägivalla või kuriteo ohvrid ja tunnistajad",
+      "item_type": "resource",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "ohvriabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_resource_ohvriabi",
+      "document_id": "jogeva_vald_resource_ohvriabi",
+      "canonical_item_id": "jogeva_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/ohvriabi",
+      "content_hash": "65de248c77667488a52d017c65736c625180d9a085799abe6f7e948777f98020",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_resource_parkimiskaart",
+      "itemType": "resource",
+      "title": "Parkimiskaart",
+      "status": "active",
+      "summary": "Parkimiskaart väljastatakse liikumis- või nägemispuudega inimesele ning ajutise liikumispuude korral arsti tõendi alusel. Kaart on tasuta ja kehtib üldjuhul puude kestuse ajal, kuid mitte kauem kui viis aastat; ajutine kaart antakse välja kuni kuueks kuuks ja seda võib pikendada kuni üheks aastaks.",
+      "officialUrl": "https://xn--jgeva-dua.ee/parkimiskaart",
+      "sourceKeys": [
+        "parkimiskaart_page"
+      ],
+      "relatedTo": [],
+      "relatedContacts": [
+        "jogeva_vald_contact_mari_liis_nuut"
+      ],
+      "targetGroup": "Liikumis- või nägemispuudega inimesed ning ajutise liikumispuudega inimesed.",
+      "application": "Parkimiskaardi saamiseks tuleb pöörduda sotsiaalosakonda Piiri 1, Jõgeva või võtta ühendust sotsiaaltöö spetsialisti Mari-Liis Nuudiga. Vajalikud dokumendid on kehtiv isikut tõendav dokument, 3×4 cm foto ja ajutise kaardi korral pere- või eriarsti teatis.",
+      "amount": "Parkimiskaart on inimesele tasuta.",
+      "item_type": "resource",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "parkimiskaart_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_resource_parkimiskaart",
+      "document_id": "jogeva_vald_resource_parkimiskaart",
+      "canonical_item_id": "jogeva_vald_resource_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/parkimiskaart",
+      "content_hash": "1560cfb7c4c2cc296a0ba29b4a74effa8200af4ff65d6bcc09603b8a7d803907",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_resource_pliidivalvur",
+      "itemType": "resource",
+      "title": "Pliidivalvur",
+      "status": "active",
+      "summary": "Pliidivalvur on ohutusseade, mis jälgib pliidi temperatuuri ja lülitab elektri välja, kui temperatuur ületab lubatut, vältides tulekahjusid. Seade on mõeldud eakate või erivajadustega inimeste kodudele.",
+      "officialUrl": "https://xn--jgeva-dua.ee/muud-toetavad-sotsiaalteenused",
+      "sourceKeys": [
+        "muud_toetavad_sotsiaalteenused_page"
+      ],
+      "relatedTo": [],
+      "relatedContacts": [],
+      "targetGroup": "Eakad ja erivajadustega inimesed, kelle kodus on elektripliit",
+      "item_type": "resource",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "muud_toetavad_sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_resource_pliidivalvur",
+      "document_id": "jogeva_vald_resource_pliidivalvur",
+      "canonical_item_id": "jogeva_vald_resource_pliidivalvur",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/muud-toetavad-sotsiaalteenused",
+      "content_hash": "ea16cabcad0b20423e493f8865d7f5fc52b3a0dcdb03d56d6fb307ff3a64611e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_resource_sa_jogeva_haigla",
+      "itemType": "resource",
+      "title": "SA Jõgeva Haigla",
+      "status": "active",
+      "summary": "SA Jõgeva Haigla osutab Jõgeva valla üldhooldusteenust, pakkudes hooldekodukohti ja ööpäevaringset hooldust.",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/tervis/hoolekandeasutused",
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "relatedTo": [
+        "jogeva_vald_service_uldhooldusteenus_valjaspool_isiku_kodu"
+      ],
+      "relatedContacts": [],
+      "targetGroup": "Üldhooldusteenuse kliendid",
+      "address": "Piiri 2, 48307 Jõgeva linn",
+      "item_type": "resource",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_resource_sa_jogeva_haigla",
+      "document_id": "jogeva_vald_resource_sa_jogeva_haigla",
+      "canonical_item_id": "jogeva_vald_resource_sa_jogeva_haigla",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/tervis/hoolekandeasutused",
+      "content_hash": "ce7f7c3df42136b9021a04a8dc4bab2c869dee4ddb6b044f2df19dd59bd00820",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_resource_siimusti_lastekeskus_metsatareke",
+      "itemType": "resource",
+      "title": "Siimusti Lastekeskus Metsatareke",
+      "status": "active",
+      "summary": "Siimusti Lastekeskus Metsatareke on Jõgeva vallas paiknev hoolekandeasutus, mille kontaktandmed on avaldatud Jõgeva valla hoolekandeasutuste koondlehel.",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/tervis/hoolekandeasutused",
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_resource_siimusti_lastekeskus_metsatareke",
+      "document_id": "jogeva_vald_resource_siimusti_lastekeskus_metsatareke",
+      "canonical_item_id": "jogeva_vald_resource_siimusti_lastekeskus_metsatareke",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/tervis/hoolekandeasutused",
+      "content_hash": "f549c57f6eb97d26d9457ea0c173e0d0c83f3537f9aadabfc2717d61be638e99",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_contact_aime_meltsas",
+      "itemType": "contact",
+      "title": "Aime Meltsas",
+      "summary": "Sotsiaalosakonna juhataja",
+      "name": "Aime Meltsas",
+      "role": "Sotsiaalosakonna juhataja",
+      "department": "Sotsiaalosakond",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "relatedTo": [],
+      "status": "active",
+      "item_type": "contact",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_contact_aime_meltsas",
+      "document_id": "jogeva_vald_contact_aime_meltsas",
+      "canonical_item_id": "jogeva_vald_contact_aime_meltsas",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "6da57d7d1bae76b7f314448bb1142b83042f57c2a46554d158de9b46b346376a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_contact_astrid_maasing",
+      "itemType": "contact",
+      "title": "Astrid Maasing",
+      "summary": "Peretöötaja",
+      "name": "Astrid Maasing",
+      "role": "Peretöötaja",
+      "department": "Sotsiaalosakond",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "relatedTo": [],
+      "status": "active",
+      "item_type": "contact",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_contact_astrid_maasing",
+      "document_id": "jogeva_vald_contact_astrid_maasing",
+      "canonical_item_id": "jogeva_vald_contact_astrid_maasing",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "8736a5af9d85c0f99efaec5cdd52afd74f273cd74c4e376b21262c8a2c39d0ff",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_contact_doris_kolu",
+      "itemType": "contact",
+      "title": "Doris Kõlu",
+      "summary": "Sotsiaaltöö spetsialist (teenuste valdkond)",
+      "name": "Doris Kõlu",
+      "role": "Sotsiaaltöö spetsialist (teenuste valdkond)",
+      "department": "Sotsiaalosakond",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "relatedTo": [
+        "jogeva_vald_service_muu_vajaduspohine_teenus"
+      ],
+      "status": "active",
+      "item_type": "contact",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_contact_doris_kolu",
+      "document_id": "jogeva_vald_contact_doris_kolu",
+      "canonical_item_id": "jogeva_vald_contact_doris_kolu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "85edfa36285f3a8a44623be5da776d94b3b5b08928a1e62e7f497cf24d072a8a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_contact_ene_madissalu",
+      "itemType": "contact",
+      "title": "Ene Madissalu",
+      "summary": "Lastekaitse vanemspetsialist",
+      "name": "Ene Madissalu",
+      "role": "Lastekaitse vanemspetsialist",
+      "department": "Sotsiaalosakond",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "relatedTo": [],
+      "status": "active",
+      "item_type": "contact",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_contact_ene_madissalu",
+      "document_id": "jogeva_vald_contact_ene_madissalu",
+      "canonical_item_id": "jogeva_vald_contact_ene_madissalu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "49f9d1263a145ece83fa8ff2bc94bc33d59395146581b3c3ef0f672f8d912171",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_contact_ester_sepp",
+      "itemType": "contact",
+      "title": "Ester Sepp",
+      "summary": "Sotsiaaltöö spetsialist (toetuste valdkond)",
+      "name": "Ester Sepp",
+      "role": "Sotsiaaltöö spetsialist (toetuste valdkond)",
+      "department": "Sotsiaalosakond",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "relatedTo": [],
+      "status": "active",
+      "item_type": "contact",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_contact_ester_sepp",
+      "document_id": "jogeva_vald_contact_ester_sepp",
+      "canonical_item_id": "jogeva_vald_contact_ester_sepp",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "498737eb1d16a82a945b88e3c3c8b2858c4d2ce6e99a93523c83835fc85e2de2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_contact_eve_viks",
+      "itemType": "contact",
+      "title": "Eve Viks",
+      "summary": "Sotsiaaltöö peaspetsialist (teenuste valdkond)",
+      "name": "Eve Viks",
+      "role": "Sotsiaaltöö peaspetsialist (teenuste valdkond)",
+      "department": "Sotsiaalosakond",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "relatedTo": [
+        "jogeva_vald_service_koduteenus",
+        "jogeva_vald_service_tugiisikuteenus",
+        "jogeva_vald_service_isikliku_abistaja_teenus",
+        "jogeva_vald_service_volanoustamisteenus",
+        "jogeva_vald_service_turvakoduteenus",
+        "jogeva_vald_service_taisealise_isiku_hooldus",
+        "jogeva_vald_service_varjupaigateenus",
+        "jogeva_vald_service_sotsiaaltransporditeenus",
+        "jogeva_vald_service_eluruumi_tagamise_teenus",
+        "jogeva_vald_service_muu_vajaduspohine_teenus",
+        "jogeva_vald_service_lapsehoiuteenus",
+        "jogeva_vald_service_uldhooldusteenus_valjaspool_isiku_kodu"
+      ],
+      "status": "active",
+      "item_type": "contact",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_contact_eve_viks",
+      "document_id": "jogeva_vald_contact_eve_viks",
+      "canonical_item_id": "jogeva_vald_contact_eve_viks",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "38f2ff1efc42bafae4d0bfc82c10e4156ba4e115ed7b8a8d14f611eaa9f2ec0d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_contact_ilona_blinnikova",
+      "itemType": "contact",
+      "title": "Ilona Blinnikova",
+      "summary": "Sotsiaaltöö spetsialist (peretöö)",
+      "name": "Ilona Blinnikova",
+      "role": "Sotsiaaltöö spetsialist (peretöö)",
+      "department": "Sotsiaalosakond",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "relatedTo": [],
+      "status": "active",
+      "item_type": "contact",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_contact_ilona_blinnikova",
+      "document_id": "jogeva_vald_contact_ilona_blinnikova",
+      "canonical_item_id": "jogeva_vald_contact_ilona_blinnikova",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "9b5dc6c2d596af6acd8c82dab1e6d9376446f84017897b51a5f6c46cdbe33b86",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_contact_irina_anniko",
+      "itemType": "contact",
+      "title": "Irina Anniko",
+      "summary": "Lastekaitse vanemspetsialist",
+      "name": "Irina Anniko",
+      "role": "Lastekaitse vanemspetsialist",
+      "department": "Sotsiaalosakond",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "relatedTo": [],
+      "status": "active",
+      "item_type": "contact",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_contact_irina_anniko",
+      "document_id": "jogeva_vald_contact_irina_anniko",
+      "canonical_item_id": "jogeva_vald_contact_irina_anniko",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "0da79a8c961b6390a6f66013b78578c2dd6f8d5613ab07c176ffa76bd9859a9d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_contact_jaanika_eller",
+      "itemType": "contact",
+      "title": "Jaanika Eller",
+      "summary": "Sotsiaaltöö spetsialist (teenuste valdkond, eestkoste)",
+      "name": "Jaanika Eller",
+      "role": "Sotsiaaltöö spetsialist (teenuste valdkond, eestkoste)",
+      "department": "Sotsiaalosakond",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "relatedTo": [],
+      "status": "active",
+      "item_type": "contact",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_contact_jaanika_eller",
+      "document_id": "jogeva_vald_contact_jaanika_eller",
+      "canonical_item_id": "jogeva_vald_contact_jaanika_eller",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "88f29c44fc3978bf2b6ef49f59c565f4595c7f9bbad1c2f5aa7e38240c453d2f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_contact_kaja_ivask",
+      "itemType": "contact",
+      "title": "Kaja Ivask",
+      "summary": "Lastekaitse vanemspetsialist",
+      "name": "Kaja Ivask",
+      "role": "Lastekaitse vanemspetsialist",
+      "department": "Sotsiaalosakond",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "relatedTo": [],
+      "status": "active",
+      "item_type": "contact",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_contact_kaja_ivask",
+      "document_id": "jogeva_vald_contact_kaja_ivask",
+      "canonical_item_id": "jogeva_vald_contact_kaja_ivask",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "549b21ecefb080f90a96154a9c8a643a29b0150d4edeb745f4e9bb2a47a8172b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_contact_kati_tarum",
+      "itemType": "contact",
+      "title": "Kati Tarum",
+      "summary": "Sotsiaaltöötaja Jõgeva valla hoolekandekeskuses (kogukonnas elamise ja toetatud elamise teenused)",
+      "name": "Kati Tarum",
+      "role": "Sotsiaaltöötaja",
+      "department": "Jõgeva Valla Hoolekandekeskus",
+      "officialUrl": "https://xn--jgeva-dua.ee/muud-toetavad-sotsiaalteenused",
+      "sourceKeys": [
+        "muud_toetavad_sotsiaalteenused_page"
+      ],
+      "relatedTo": [
+        "jogeva_vald_service_kogukonnas_elamise_teenus",
+        "jogeva_vald_service_toetatud_elamise_teenus"
+      ],
+      "status": "active",
+      "item_type": "contact",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "muud_toetavad_sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_contact_kati_tarum",
+      "document_id": "jogeva_vald_contact_kati_tarum",
+      "canonical_item_id": "jogeva_vald_contact_kati_tarum",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/muud-toetavad-sotsiaalteenused",
+      "content_hash": "4eb1b4b44ec4a6b16e35473433a5b2cb81ad92a83fe4ee6ac09cabc8d4a5a670",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_contact_kristi_klein",
+      "itemType": "contact",
+      "title": "Kristi Klein",
+      "summary": "Sotsiaaltöö spetsialist (toetuste valdkond)",
+      "name": "Kristi Klein",
+      "role": "Sotsiaaltöö spetsialist (toetuste valdkond)",
+      "department": "Sotsiaalosakond",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "relatedTo": [],
+      "status": "active",
+      "item_type": "contact",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_contact_kristi_klein",
+      "document_id": "jogeva_vald_contact_kristi_klein",
+      "canonical_item_id": "jogeva_vald_contact_kristi_klein",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "c0a7cb8861cb66096f53024a8d805d5d950e449f9c0dc2700e3d5c0145d5ba72",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_contact_katy_kuulman",
+      "itemType": "contact",
+      "title": "Käty Kuulman",
+      "summary": "Toitumisnõustaja",
+      "name": "Käty Kuulman",
+      "role": "Toitumisnõustaja",
+      "department": null,
+      "officialUrl": "https://xn--jgeva-dua.ee/toitumisnoustamine",
+      "sourceKeys": [
+        "toitumisnoustamine_page"
+      ],
+      "relatedTo": [
+        "jogeva_vald_service_toitumisnoustamine"
+      ],
+      "status": "active",
+      "item_type": "contact",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "toitumisnoustamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_contact_katy_kuulman",
+      "document_id": "jogeva_vald_contact_katy_kuulman",
+      "canonical_item_id": "jogeva_vald_contact_katy_kuulman",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/toitumisnoustamine",
+      "content_hash": "33e5243822a4c33582afd520805c559fd42188667378ae85c821bb15a290793c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_contact_liivi_noormagi",
+      "itemType": "contact",
+      "title": "Liivi Noormägi",
+      "summary": "Sotsiaaltöö peaspetsialist (lastekaitse valdkond)",
+      "name": "Liivi Noormägi",
+      "role": "Sotsiaaltöö peaspetsialist (lastekaitse valdkond)",
+      "department": "Sotsiaalosakond",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "relatedTo": [
+        "jogeva_vald_service_asendushooldusteenus",
+        "jogeva_vald_service_jarelhooldusteenus"
+      ],
+      "status": "active",
+      "item_type": "contact",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_contact_liivi_noormagi",
+      "document_id": "jogeva_vald_contact_liivi_noormagi",
+      "canonical_item_id": "jogeva_vald_contact_liivi_noormagi",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "bee0f8bb554e1bfeaa8218e426ce6add81fa82700e8c2004cbccbfc80b3f1f80",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_contact_luule_palmiste",
+      "itemType": "contact",
+      "title": "Luule Palmiste",
+      "summary": "Sotsiaaltöö peaspetsialist (toetuste valdkond)",
+      "name": "Luule Palmiste",
+      "role": "Sotsiaaltöö peaspetsialist (toetuste valdkond)",
+      "department": "Sotsiaalosakond",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "relatedTo": [
+        "jogeva_vald_benefit_hooldajatoetus",
+        "jogeva_vald_benefit_eestkostetoetus",
+        "jogeva_vald_benefit_toimetulekutoetus",
+        "jogeva_vald_benefit_tervisetoetus",
+        "jogeva_vald_benefit_vajaduspohine_toetus",
+        "jogeva_vald_service_valtimatu_sotsiaalabi"
+      ],
+      "status": "active",
+      "item_type": "contact",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_contact_luule_palmiste",
+      "document_id": "jogeva_vald_contact_luule_palmiste",
+      "canonical_item_id": "jogeva_vald_contact_luule_palmiste",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "2cae5560b12a4d3506b13f2335ab1fd7b3fbf96a2dd439cabb0d3e5cf3e185f6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_contact_maarika_pold",
+      "itemType": "contact",
+      "title": "Maarika Põld",
+      "summary": "Sotsiaaltöö spetsialist (teenuste valdkond)",
+      "name": "Maarika Põld",
+      "role": "Sotsiaaltöö spetsialist (teenuste valdkond)",
+      "department": "Sotsiaalosakond",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "relatedTo": [
+        "jogeva_vald_service_lapsehoiuteenus",
+        "jogeva_vald_service_muu_vajaduspohine_teenus",
+        "jogeva_vald_service_valtimatu_sotsiaalabi"
+      ],
+      "status": "active",
+      "item_type": "contact",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_contact_maarika_pold",
+      "document_id": "jogeva_vald_contact_maarika_pold",
+      "canonical_item_id": "jogeva_vald_contact_maarika_pold",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "54992303b809308631321b7a4d592a2f70ce72e5c21c0867364ce736c072d4f1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_contact_marika_kalm",
+      "itemType": "contact",
+      "title": "Marika Kalm",
+      "summary": "Sotsiaaltöö vanemspetsialist (teenuste valdkond, eestkoste)",
+      "name": "Marika Kalm",
+      "role": "Sotsiaaltöö vanemspetsialist (teenuste valdkond, eestkoste)",
+      "department": "Sotsiaalosakond",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "relatedTo": [],
+      "status": "active",
+      "item_type": "contact",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_contact_marika_kalm",
+      "document_id": "jogeva_vald_contact_marika_kalm",
+      "canonical_item_id": "jogeva_vald_contact_marika_kalm",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "7a0a4efa7dca7fb451174b0be4bc0c05c834d414d9b03e42528d309c989c346f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_contact_mari_liis_nuut",
+      "itemType": "contact",
+      "title": "Mari‑Liis Nuut",
+      "summary": "Sotsiaaltöö spetsialist (teenuste valdkond)",
+      "name": "Mari‑Liis Nuut",
+      "role": "Sotsiaaltöö spetsialist (teenuste valdkond)",
+      "department": "Sotsiaalosakond",
+      "officialUrl": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "relatedTo": [
+        "jogeva_vald_resource_parkimiskaart",
+        "jogeva_vald_service_muu_vajaduspohine_teenus"
+      ],
+      "status": "active",
+      "item_type": "contact",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_contact_mari_liis_nuut",
+      "document_id": "jogeva_vald_contact_mari_liis_nuut",
+      "canonical_item_id": "jogeva_vald_contact_mari_liis_nuut",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "cfb9b018ede88bd1488f6023d4c2868c6aa6b4d619595a537b520e13d3a5c128",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_form_eestkostetoetuse_taotlus",
+      "itemType": "form",
+      "title": "Eestkostetoetuse taotlus",
+      "status": "active",
+      "summary": "PDF-vorm eestkostetoetuse taotlemiseks.",
+      "format": "pdf",
+      "officialUrl": "https://xn--jgeva-dua.ee/sites/default/files/documents/2024-01/eestkoste%20taotlus.pdf",
+      "submissionChannels": [
+        "iseteenindus",
+        "email",
+        "in_person"
+      ],
+      "sourceKeys": [
+        "eestkostetoetus_page",
+        "eestkostetoetuse_taotlus_pdf"
+      ],
+      "relatedTo": [
+        "jogeva_vald_benefit_eestkostetoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "eestkostetoetus_page",
+        "eestkostetoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_form_eestkostetoetuse_taotlus",
+      "document_id": "jogeva_vald_form_eestkostetoetuse_taotlus",
+      "canonical_item_id": "jogeva_vald_form_eestkostetoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sites/default/files/documents/2024-01/eestkoste%20taotlus.pdf",
+      "content_hash": "2c2546b07776750d2df3005d1bb654c0b470677be4cf58f091e5547ebf3fbe55",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_form_hooldajatoetuse_taotlus",
+      "itemType": "form",
+      "title": "Hooldajatoetuse taotlus",
+      "status": "active",
+      "summary": "PDF-vorm hooldajatoetuse taotlemiseks.",
+      "format": "pdf",
+      "officialUrl": "https://xn--jgeva-dua.ee/sites/default/files/documents/2024-01/hooldajatoetuse%20taotlus.pdf",
+      "submissionChannels": [
+        "iseteenindus",
+        "email",
+        "in_person"
+      ],
+      "sourceKeys": [
+        "hooldajatoetus_page",
+        "hooldajatoetuse_taotlus_pdf"
+      ],
+      "relatedTo": [
+        "jogeva_vald_benefit_hooldajatoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "hooldajatoetus_page",
+        "hooldajatoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_form_hooldajatoetuse_taotlus",
+      "document_id": "jogeva_vald_form_hooldajatoetuse_taotlus",
+      "canonical_item_id": "jogeva_vald_form_hooldajatoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sites/default/files/documents/2024-01/hooldajatoetuse%20taotlus.pdf",
+      "content_hash": "67bfa3e22f1c2da6baa4211b0bb3afe8eadf7024fd1976b0c4f96c950b1abc68",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_form_toimetulekutoetuse_lisa_1",
+      "itemType": "form",
+      "title": "Lisa 1. Rahalised vahendid",
+      "status": "active",
+      "summary": "DOCX-lisa toimetulekutoetuse taotlusele rahaliste vahendite esitamiseks.",
+      "format": "docx",
+      "officialUrl": "https://xn--jgeva-dua.ee/sites/default/files/documents/2026-04/Lisa%201.%20Rahalised%20vahendid.docx",
+      "submissionChannels": [
+        "email",
+        "in_person"
+      ],
+      "sourceKeys": [
+        "toimetulekutoetus_page",
+        "toimetulekutoetuse_lisa_1_docx"
+      ],
+      "relatedTo": [
+        "jogeva_vald_benefit_toimetulekutoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "toimetulekutoetus_page",
+        "toimetulekutoetuse_lisa_1_docx"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_form_toimetulekutoetuse_lisa_1",
+      "document_id": "jogeva_vald_form_toimetulekutoetuse_lisa_1",
+      "canonical_item_id": "jogeva_vald_form_toimetulekutoetuse_lisa_1",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sites/default/files/documents/2026-04/Lisa%201.%20Rahalised%20vahendid.docx",
+      "content_hash": "5a576b139fb56060470d3348b7decd6b6ac4cc814c2fd0a5d965f5a7f231aaef",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_form_toimetulekutoetuse_lisa_2",
+      "itemType": "form",
+      "title": "Lisa 2. Varaline seis",
+      "status": "active",
+      "summary": "DOCX-lisa toimetulekutoetuse taotlusele vara ja varalise seisu esitamiseks.",
+      "format": "docx",
+      "officialUrl": "https://xn--jgeva-dua.ee/sites/default/files/documents/2026-04/Lisa%202.%20Varaline%20seis.docx",
+      "submissionChannels": [
+        "email",
+        "in_person"
+      ],
+      "sourceKeys": [
+        "toimetulekutoetus_page",
+        "toimetulekutoetuse_lisa_2_docx"
+      ],
+      "relatedTo": [
+        "jogeva_vald_benefit_toimetulekutoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "toimetulekutoetus_page",
+        "toimetulekutoetuse_lisa_2_docx"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_form_toimetulekutoetuse_lisa_2",
+      "document_id": "jogeva_vald_form_toimetulekutoetuse_lisa_2",
+      "canonical_item_id": "jogeva_vald_form_toimetulekutoetuse_lisa_2",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sites/default/files/documents/2026-04/Lisa%202.%20Varaline%20seis.docx",
+      "content_hash": "d887abf483cb1ff5d028003e63911304aa4f2c23c27371cd7319c342800651b8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_form_matusetoetuse_taotlus",
+      "itemType": "form",
+      "title": "Matusetoetuse taotlus",
+      "status": "active",
+      "summary": "PDF-vorm matusetoetuse taotlemiseks.",
+      "format": "pdf",
+      "officialUrl": "https://xn--jgeva-dua.ee/sites/default/files/documents/2024-01/matusetoet%20taotlus.pdf",
+      "submissionChannels": [
+        "iseteenindus",
+        "email",
+        "in_person"
+      ],
+      "sourceKeys": [
+        "matusetoetus_page",
+        "matusetoetuse_taotlus_pdf"
+      ],
+      "relatedTo": [
+        "jogeva_vald_benefit_matusetoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "matusetoetus_page",
+        "matusetoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_form_matusetoetuse_taotlus",
+      "document_id": "jogeva_vald_form_matusetoetuse_taotlus",
+      "canonical_item_id": "jogeva_vald_form_matusetoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sites/default/files/documents/2024-01/matusetoet%20taotlus.pdf",
+      "content_hash": "1907456f726046a2d805c5306d2acd49942a496a5d3425ace1a978dbf6a6ac87",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_form_sotsiaalabi_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaalabi taotlus",
+      "status": "active",
+      "summary": "PDF-vorm sotsiaalteenuste ja muu sotsiaalabi taotlemiseks.",
+      "format": "pdf",
+      "officialUrl": "https://xn--jgeva-dua.ee/sites/default/files/documents/2024-01/Sotsiaalabi_%20taotlus.pdf",
+      "submissionChannels": [
+        "email",
+        "in_person"
+      ],
+      "sourceKeys": [
+        "eluruumi_tagamise_page",
+        "isikliku_abistaja_page",
+        "koduteenus_page",
+        "lapsehoiuteenus_page",
+        "muu_vajaduspohine_teenus_page",
+        "sotsiaalabi_taotlus_pdf",
+        "sotsiaaltransporditeenus_page",
+        "tugiisikuteenus_page",
+        "turvakoduteenus_page",
+        "uldhooldusteenus_page",
+        "volanoustamisteenus_page"
+      ],
+      "relatedTo": [
+        "jogeva_vald_service_koduteenus",
+        "jogeva_vald_service_tugiisikuteenus",
+        "jogeva_vald_service_isikliku_abistaja_teenus",
+        "jogeva_vald_service_volanoustamisteenus",
+        "jogeva_vald_service_turvakoduteenus",
+        "jogeva_vald_service_sotsiaaltransporditeenus",
+        "jogeva_vald_service_eluruumi_tagamise_teenus",
+        "jogeva_vald_service_lapsehoiuteenus",
+        "jogeva_vald_service_uldhooldusteenus_valjaspool_isiku_kodu",
+        "jogeva_vald_service_muu_vajaduspohine_teenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "eluruumi_tagamise_page",
+        "isikliku_abistaja_page",
+        "koduteenus_page",
+        "lapsehoiuteenus_page",
+        "muu_vajaduspohine_teenus_page",
+        "sotsiaalabi_taotlus_pdf",
+        "sotsiaaltransporditeenus_page",
+        "tugiisikuteenus_page",
+        "turvakoduteenus_page",
+        "uldhooldusteenus_page",
+        "volanoustamisteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_form_sotsiaalabi_taotlus",
+      "document_id": "jogeva_vald_form_sotsiaalabi_taotlus",
+      "canonical_item_id": "jogeva_vald_form_sotsiaalabi_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sites/default/files/documents/2024-01/Sotsiaalabi_%20taotlus.pdf",
+      "content_hash": "94c4e3e57f2a69e41dee487743847ae554b491ad1665988d690b909f34be58b5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_form_sotsiaaltoetuse_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaaltoetuse taotlus",
+      "status": "active",
+      "summary": "PDF-vorm tervisetoetuse ja vajaduspõhise toetuse taotlemiseks.",
+      "format": "pdf",
+      "officialUrl": "https://xn--jgeva-dua.ee/sites/default/files/documents/2024-01/sotsiaaltoetuse%20taotlus.pdf",
+      "submissionChannels": [
+        "email",
+        "in_person"
+      ],
+      "sourceKeys": [
+        "sotsiaaltoetuse_taotlus_pdf",
+        "tervisetoetus_page",
+        "vajaduspohine_toetus_page"
+      ],
+      "relatedTo": [
+        "jogeva_vald_benefit_tervisetoetus",
+        "jogeva_vald_benefit_vajaduspohine_toetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "sotsiaaltoetuse_taotlus_pdf",
+        "tervisetoetus_page",
+        "vajaduspohine_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_form_sotsiaaltoetuse_taotlus",
+      "document_id": "jogeva_vald_form_sotsiaaltoetuse_taotlus",
+      "canonical_item_id": "jogeva_vald_form_sotsiaaltoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sites/default/files/documents/2024-01/sotsiaaltoetuse%20taotlus.pdf",
+      "content_hash": "e39342e85e797511c1846bb66415fc2e607d226ac600020b89b9a5bca9a590b8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "jogeva_vald_form_toimetulekutoetuse_taotlus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse taotlus",
+      "status": "active",
+      "summary": "DOCX-vorm toimetulekutoetuse taotlemiseks.",
+      "format": "docx",
+      "officialUrl": "https://xn--jgeva-dua.ee/sites/default/files/documents/2026-04/Toimetulekutoetuse%20taotlus.docx",
+      "submissionChannels": [
+        "email",
+        "in_person"
+      ],
+      "sourceKeys": [
+        "toimetulekutoetus_page",
+        "toimetulekutoetuse_taotlus_docx"
+      ],
+      "relatedTo": [
+        "jogeva_vald_benefit_toimetulekutoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "toimetulekutoetus_page",
+        "toimetulekutoetuse_taotlus_docx"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "jogeva_vald_form_toimetulekutoetuse_taotlus",
+      "document_id": "jogeva_vald_form_toimetulekutoetuse_taotlus",
+      "canonical_item_id": "jogeva_vald_form_toimetulekutoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://xn--jgeva-dua.ee/sites/default/files/documents/2026-04/Toimetulekutoetuse%20taotlus.docx",
+      "content_hash": "553d058648f69ab13b5fac210dd1a6ad6278845850bc0de95ee9381524191406",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_id": "jogeva_vald",
+  "municipality_name": "Jõgeva vald",
+  "checked_at": "2026-04-11",
+  "schemaVersion": "v2.5-sourcepackage",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

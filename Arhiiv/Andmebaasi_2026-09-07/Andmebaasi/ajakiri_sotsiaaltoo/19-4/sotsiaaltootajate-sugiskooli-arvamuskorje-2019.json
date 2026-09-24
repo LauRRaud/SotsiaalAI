@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-4-2019",
+  "articleId": "sotsiaaltootajate-sugiskooli-arvamuskorje-2019",
+  "title": "Sotsiaaltöötajate sügiskooli arvamuskorje tulemustest",
+  "authors": [
+    "Valter Parve"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2019",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "92-96",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "ESTA sügiskooli osalejate seas tehtud küsitluse tulemuste analüüs: kuidas tajutakse sotsiaaltöö mainet, töökoormuse ja bürokraatia rolli, täiendkoolituse vajadust, juhtimise ja haldusreformi mõju ning sotsiaaltöötajate kutsekindlust ja töörahulolu.",
+  "tags": [
+    "sotsiaaltöö maine",
+    "täiendkoolitus",
+    "bürokraatia",
+    "haldusreform",
+    "ESTA sügiskool"
+  ],
+  "source_type": "file",
+  "source_path": "ST4_2019_web_link_Part19.pdf",
+  "document_id": "sotsiaaltoo-4-2019-sotsiaaltootajate-sugiskooli-arvamuskorje-2019",
+  "source_format": "pdf",
+  "source_sha256": "239ed487a63e6bb21c3d9a6ef92a774a629f9df42d20f3e4509a822da45b34a3",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2019-sotsiaaltootajate-sugiskooli-arvamuskorje-2019",
+    "previous_source_path": "ST4_2019_web_link_Part19.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "239ed487a63e6bb21c3d9a6ef92a774a629f9df42d20f3e4509a822da45b34a3",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

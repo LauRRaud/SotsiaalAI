@@ -1,0 +1,16 @@
+{
+  "source": {
+    "source_id": "sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est",
+    "title": "Seksuaalvägivalla kriisiabikeskusi tutvustav voldik (EST)",
+    "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi%20infovoldik%20SAK%20EST%2Bbleed3mm.pdf",
+    "source_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi%20infovoldik%20SAK%20EST%2Bbleed3mm.pdf",
+    "source_format": "pdf",
+    "ingest_status": "ingest_candidate",
+    "recommended_pipeline": "knowledge_doc_pipeline"
+  },
+  "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi%20infovoldik%20SAK%20EST%2Bbleed3mm.pdf",
+  "local_origin": "consolidated_existing_file",
+  "recorded_at": "2026-08-14T09:25:00.000Z",
+  "bytes": 1091480,
+  "sha256": "72bcb2ccd145ef6db931f20ecef8fab002e3c9c5e8481a6464ea6626648a9a49"
+}

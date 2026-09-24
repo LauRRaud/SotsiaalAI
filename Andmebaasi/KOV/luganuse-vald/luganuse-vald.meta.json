@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-luganuse-vald",
+  "document_id": "kov-luganuse-vald",
+  "municipality": "Lüganuse vald",
+  "municipality_id": "luganuse_vald",
+  "county": "Ida-Virumaa",
+  "checkedAt": "2026-04-29",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-luganuse-vald",
+  "coverage": {
+    "services": 18,
+    "benefits": 16,
+    "resources": 14,
+    "contacts": 9,
+    "forms": 12,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "luganuse_vald",
+    "source_register_file": "luganuse-vald.sources.json",
+    "service_benefit_resource_items": 48,
+    "items_with_source_keys": 48,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 26,
+    "items_without_related_forms": 22,
+    "items_with_related_contacts": 36,
+    "items_without_related_contacts": 12,
+    "form_sources": 10,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Failid on üle kontrollitud Lüganuse valla ametliku veebi sotsiaalvaldkonna menüüharu, teenuste, toetuste, kontaktide, vormide ja ressursside põhjal.",
+    "Varasemates failides olnud sisemised viitemarkerid, lõpuviited ja JSON-kommentaarid on eemaldatud; JSON-failid on masinloetavad."
+  ],
+  "unresolvedIssues": [
+    "Mitme DOC/DOCX vormi täpne sisu ei olnud tööriistaga loetav, kuigi ametlik faililink oli Lüganuse valla veebilehelt tuvastatav. Need vormid on kajastatud allikate ja vormiitemitena, kuid vormi sisuvälju tuleb vajadusel käsitsi avades üle kontrollida.",
+    "Teenuste hinnad, sotsiaalteenuste hindade kehtestamise dokument ning üldhooldusteenuse hoolduskulude piirmäära dokument paiknevad KOV dokumendihalduses või õigusliku akti laadsetes allikates; neid ei lisatud veebipaketi põhiandmetesse ja need vajavad eraldi legal/RT-kihi kontrolli.",
+    "Eluruumi kohandamise toetuse kohta ei leitud Lüganuse valla praktilisel sotsiaalteenuste või -toetuste veebikihil eraldi taotlemisinfot; veebis oli tuvastatav vaid õigusakti tasandi viide.",
+    "Varjupaigateenuse, vältimatu sotsiaalabi, asendushoolduse ja järelhoolduse praktiline menetluskäik on KOV lehel kirjeldatud lühidalt; otsustamise aega ja detailseid samme ei olnud avaldatud.",
+    "Vormide üldlehel leidus pere- ja haridusvaldkonnaga seotud vorme, mille otsest seost konkreetse sotsiaalteenuse või -toetusega sotsiaalvaldkonna detaillehed ei kinnitanud; need on vormidena lisatud ilma seotud teenuse/toetuse seoseta."
+  ],
+  "RT_CANDIDATES_FOR_SEPARATE_MANIFEST": [
+    {
+      "title": "Sotsiaalteenuste hindade kehtestamine",
+      "url": "https://atp.amphora.ee/lyganusevv/",
+      "reason": "Lüganuse sotsiaalteenuste lehel viidatud hinnadokument; kuulub eraldi õigus-/dokumendihalduskihi kontrolli."
+    },
+    {
+      "title": "Üldhooldusteenuse hoolduskulude piirmäära kehtestamine",
+      "url": "https://atp.amphora.ee/lyganusevv/",
+      "reason": "Lüganuse sotsiaalteenuste ja hoolekandeasutuste lehel viidatud piirmäära dokument; kuulub eraldi õigus-/dokumendihalduskihi kontrolli."
+    }
+  ],
+  "municipality_name": "Lüganuse vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "luganuse-vald.sources.json",
+  "sourceCount": 24,
+  "counts": {
+    "services": 18,
+    "benefits": 16,
+    "resources": 14,
+    "contacts": 9,
+    "forms": 12,
+    "regulations": 0
+  },
+  "warnings": [
+    "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

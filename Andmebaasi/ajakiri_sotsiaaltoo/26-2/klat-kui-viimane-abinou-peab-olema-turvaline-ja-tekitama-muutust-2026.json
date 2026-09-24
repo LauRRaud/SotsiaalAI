@@ -1,0 +1,49 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "klat-kui-viimane-abinou-peab-olema-turvaline-ja-tekitama-muutust-2026",
+  "title": "KLAT kui viimane abinõu peab olema turvaline ja tekitama muutust",
+  "authors": [
+    "Kelli Ilisson"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Sotsiaalteenus",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb kinnise lasteasutuse teenuse (KLAT) korralduse muudatusi ja teenuse rolli laste heaolu toetamisel. KLAT on sekkumine lastele, kes vajavad suuremat turvalisust ja struktureeritud tuge. Teenuse jätkusuutlikkus sõltub tugevast ennetustegevusest, selgetest eesmärkidest ja koostöisest juhtumikorraldusest.",
+  "tags": [
+    "KLAT",
+    "kinnine lasteasutus",
+    "sotsiaalteenus",
+    "lastekaitse",
+    "juhtumikorraldus",
+    "ennetustöö",
+    "võrgustikutöö",
+    "lapse heaolu"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-04-15",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/klat-kui-viimane-abinou-peab-olema-turvaline-ja-tekitama-muutust",
+  "source_type": "web",
+  "source_path": "klat-kui-viimane-abinou-peab-olema-turvaline-ja-tekitama-muutust.html",
+  "lead": "Viimastel aastatel on kinnise lasteasutuse teenuse korralduses tehtud palju muudatusi: teenuse hinda on tõstetud, vahetunud on teenuseosutajad, teenus on täismahus liikunud sotsiaalministeeriumi valitsemisalasse, rakendatud on standardil põhinevat kvaliteedijuhtimist ja täpsustatud sihtrühmi. Soovime, et teenus oleks jätkusuutlik, ühetaoline ja vajaduspõhiselt kättesaadav ning samal ajal toetaks lapse arengut.",
+  "document_id": "sotsiaaltoo-2-2026-klat-kui-viimane-abinou-peab-olema-turvaline-ja-tekitama-muutust-2026",
+  "source_format": "html",
+  "source_sha256": "f2418b6950a733a26572292a85a30a96a4c1453c4e8f35e0083dd0b6135a9b23",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-klat-kui-viimane-abinou-peab-olema-turvaline-ja-tekitama-muutust-2026",
+    "previous_source_path": "klat-kui-viimane-abinou-peab-olema-turvaline-ja-tekitama-muutust.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ac9573858c82c60ec415f5de6ed4ecd221ebc59988dc3d1f68351241378d282c",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "cf7d0f5db594d1de036e0f4b0103194c8557ae2cb3de5aef83899d26e32c16de",
+    "observed_web_title": "KLAT kui viimane abinõu peab olema turvaline ja tekitama muutust"
+  },
+  "retrieved_at": "2026-09-07T19:39:37.218933+00:00"
+}

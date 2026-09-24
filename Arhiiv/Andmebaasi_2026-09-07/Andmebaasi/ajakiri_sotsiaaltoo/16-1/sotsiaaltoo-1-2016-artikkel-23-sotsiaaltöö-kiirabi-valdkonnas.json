@@ -1,0 +1,72 @@
+{
+  "docId": "sotsiaaltoo-1-2016",
+  "articleId": "sotsiaaltoo-1-2016-artikkel-23-sotsiaaltöö-kiirabi-valdkonnas",
+  "title": "Sotsiaaltöö kiirabi valdkonnas",
+  "authors": [
+    "Eduard Gusarov"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2016",
+  "section": "Koostöö",
+  "pageRange": "75-76",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tallinna Kiirabi brigaadijuht väidab, et osa kiirabi väljakutseid ei kuulu erakorralise meditsiini pädevusse, vaid on seotud tööpuuduse, vaesuse, sõltuvuse, kodutuse ja eakate üksindusega. Tervise Arengu Instituudi andmetel oli Tallinnas 2014. aastal keskmiselt 212,4 väljakutset 1000 elaniku kohta, kuid sotsiaalprobleemidega seotud väljakutsete kohta eraldi andmed puuduvad. Autor tugineb Camprelli ja Rasmusseni 2012. aasta artiklile, milles Kanada sotsiaaltöötaja veetis kiirabibrigaadis 300 tundi. Ta teeb ettepaneku, et häirekeskus saaks kõne suunata sotsiaaltöötajale ja erakorraline sotsiaalabi oleks kättesaadav ööpäev läbi.",
+  "tags": [
+    "kiirabi",
+    "erakorraline sotsiaalabi",
+    "psühhosotsiaalne tugi",
+    "koostöö",
+    "tervishoid",
+    "läbipõlemine"
+  ],
+  "source_type": "file",
+  "source_path": "2016_1_artikkel_23_sotsiaaltoo_kiirabi_valdkonnas.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-23-sotsiaalt-kiirabi-valdkonnas",
+  "source_sha256": "aecbab4e71625f5a3870d9d9237eabc0c9d3d395fa8f4bb0b9186c860605cc7c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-23-sotsiaalt-kiirabi-valdkonnas",
+    "previous_source_path": "2016_1_artikkel_23_sotsiaaltoo_kiirabi_valdkonnas.txt",
+    "previous_source_original_path": "1-2016.pdf",
+    "reference_stored_source_sha256": "bbfc5b15d5877bbde95d408fa0cfcee618187bc377b2ada2501e09612ec06d78",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf",
+      "source_sha256": "2c193295e54f58982562b509b6283e93aa58b1695464671e1768e24e90888a6c",
+      "pdf_start_page": 77,
+      "pdf_end_page": 78,
+      "printed_page_range": "75-77",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 79,
+      "source_regions": [
+        {
+          "source_pdf_page": 77,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 78,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "75-76"
+    },
+    "server_page_range": "75-77"
+  }
+}

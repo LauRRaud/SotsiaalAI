@@ -1,0 +1,144 @@
+{
+  "source_path": "astangu_tooandjate_noustamine_ja_toetamine.pdf",
+  "source_format": "pdf",
+  "sha256": "6d7f1377093a963d9b4205c47d7a66bbd86a395c577fd9e347555551fb913c87",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/astangu_tooandjate_noustamine_ja_toetamine.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "astangu_tooandjate_noustamine_ja_toetamine",
+          "title": "Tööandjate nõustamine ja toetamine",
+          "url": "https://www.astangu.ee/sites/default/files/media/To%CC%88o%CC%88vahend_6_Moodul_2_To%CC%88o%CC%88andjate_no%CC%83ustamine_ja_toetamine.pdf",
+          "normalized_url": "https://www.astangu.ee/sites/default/files/media/Töövahend_6_Moodul_2_Tööandjate_nõustamine_ja_toetamine.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "Astangu",
+          "organization_id": "astangu",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Astangu Kutserehabilitatsiooni Keskus",
+            "töövõime",
+            "vähenenud töövõime",
+            "töötamine",
+            "tööturuteenused",
+            "tööandja",
+            "infomaterjal",
+            "Astangu"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Partnerid",
+            "heading_3": "Astangu",
+            "heading_4": null,
+            "line": 579,
+            "order": 297
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Tööandjate nõustamine ja toetamine"
+          ],
+          "collection_hints": [
+            "organization_materials"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Astangu"
+          ],
+          "organizations_seen": [
+            "astangu"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Partnerid",
+              "heading_3": "Astangu",
+              "line": 579,
+              "order": 297
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.astangu.ee/sites/default/files/media/Töövahend_6_Moodul_2_Tööandjate_nõustamine_ja_toetamine.pdf"
+        },
+        "final_url": "https://www.astangu.ee/sites/default/files/media/To%CC%88o%CC%88vahend_6_Moodul_2_To%CC%88o%CC%88andjate_no%CC%83ustamine_ja_toetamine.pdf",
+        "redirects": [],
+        "sha256": "6d7f1377093a963d9b4205c47d7a66bbd86a395c577fd9e347555551fb913c87",
+        "bytes": 792994,
+        "downloaded_at": "2026-08-14T08:00:56.815Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "astangu_tooandjate_noustamine_ja_toetamine",
+      "metadata": {
+        "createdAt": "2026-06-12T03:59:15.998804+00:00",
+        "type": "FILE",
+        "fileName": "Töövahend_6_Moodul_2_Tööandjate_nõustamine_ja_toetamine.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:59:15.928479+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/2ac51e8d87ab/Töövahend_6_Moodul_2_Tööandjate_nõustamine_ja_toetamine.pdf",
+        "title": "Tööandjate nõustamine ja toetamine",
+        "description": "Source master headings: Partnerid; Astangu",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": null,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–7",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "organization_materials",
+        "source_id": "astangu_tooandjate_noustamine_ja_toetamine",
+        "document_id": "astangu_tooandjate_noustamine_ja_toetamine",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "459576b012621cf6ba1970178f9d36b5235a7e810e6fa32a99765251eb401a77",
+        "url": "https://www.astangu.ee/sites/default/files/media/To%CC%88o%CC%88vahend_6_Moodul_2_To%CC%88o%CC%88andjate_no%CC%83ustamine_ja_toetamine.pdf",
+        "url_canonical": "https://www.astangu.ee/sites/default/files/media/Töövahend_6_Moodul_2_Tööandjate_nõustamine_ja_toetamine.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "astangu_tooandjate_noustamine_ja_toetamine",
+        "updatedAt": "2026-06-12T03:59:15.998827+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

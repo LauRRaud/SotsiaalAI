@@ -1,0 +1,90 @@
+{
+  "docId": "sotsiaaltoo-1-2017",
+  "articleId": "kov-uhinemine-teenused-2017-1",
+  "title": "Kohalike omavalitsuste ühinemise vajadused ja võimalused sotsiaalteenuse osutamisel",
+  "authors": [
+    "Kersten Kattai"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2017",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "3-6",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kersten Kattai väidab, et väikeste omavalitsuste sotsiaaltöö on struktuurselt ülekoormatud: üks ametnik katab kõiki sihtrühmi, ühes maakonnas on kasutusel vähemalt 31 eri toetusmeedet (18 sissetulekust sõltuvat, 7 sõltumatut, 6 mitterahalist) ja avaldusepõhine abi jätab abivajajad märkamata. Ühinemine annab tema hinnangul spetsialiseerumise, teenuskeskused ja ühtlustatud toetused, ehitades olemasolevale struktuurile teise korruse. Artikli infokast esitab haldusreformi tähtajad: valitsuse ühinemisettepanek 15.02.2017, valimised 15.10.2017, maavalitsuste kaotamine 01.01.2018; 213 omavalitsusest jääb eeldatavasti ligi 75.",
+  "tags": [
+    "sotsiaaltöö korraldus",
+    "haldusreform",
+    "kohalik omavalitsus",
+    "sotsiaaltoetused",
+    "teenuskeskused",
+    "spetsialiseerumine"
+  ],
+  "source_type": "file",
+  "source_path": "2017_1_Part2.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2017-kov-uhinemine-teenused-2017-1",
+  "source_sha256": "2fd2eea2de0c525d969089898669dd72d209d2c0956ea6c7238a9b37a5e39df8",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2017-kov-uhinemine-teenused-2017-1",
+    "previous_source_path": "2017_1_Part2.txt",
+    "previous_source_original_path": "2017_1.pdf",
+    "reference_stored_source_sha256": "1d0c78290e90f3c226c99303b8db8c244cfd6d504e8ec412fb071b672f47314c",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf",
+      "source_sha256": "335f81467a555f12c55d0e8bf60122a178c5267567cf79607448a5d987629e50",
+      "pdf_start_page": 5,
+      "pdf_end_page": 8,
+      "printed_page_range": "3-6",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 8,
+      "source_regions": [
+        {
+          "source_pdf_page": 5,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 6,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 7,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 8,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        }
+      ],
+      "effective_printed_page_range": "3-6"
+    },
+    "server_page_range": "3-6"
+  }
+}

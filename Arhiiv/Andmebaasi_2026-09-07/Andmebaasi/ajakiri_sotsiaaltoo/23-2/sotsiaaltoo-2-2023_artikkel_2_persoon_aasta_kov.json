@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2023",
+  "articleId": "tunnustamine-innustab-aasta-parima-omavalitsuse-sotsiaaltootajaid-2023-2",
+  "title": "Tunnustamine innustab aasta parima omavalitsuse sotsiaaltöötajaid",
+  "authors": [
+    "Kadri Kuulpak"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2023",
+  "section": "Persoon",
+  "pageRange": "3-8",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu keskendub Keila linna sotsiaaltöö praktikale, mida Eesti Sotsiaaltöö Assotsiatsioon tunnustas\ntiitliga „Aasta kohalik omavalitsus“. Intervjuus avavad Keila sotsiaalkeskuse juhataja, sotsiaalnõunik ja\nlastekaitsetöötaja, kuidas kliendikeskne lähenemine, hea koostöö ja väiksest linnast tulenev paindlikkus\naitavad abivajajani kiiresti jõuda. Juttu on erihoolekande ja töökeskuse rollist, vabatahtlike seltsiliste\nvõimalustest, koostööst tervishoiu ja haridusega ning hooldusreformi praktilistest mõjudest.",
+  "tags": [
+    "persoon",
+    "Keila linn",
+    "kohalik omavalitsus",
+    "sotsiaaltöö korraldus",
+    "ISTE",
+    "koduhooldus",
+    "Ukraina sõjapõgenikud",
+    "tunnustamine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2023_web_par_Part3.pdf",
+  "document_id": "sotsiaaltoo-2-2023-tunnustamine-innustab-aasta-parima-omavalitsuse-sotsiaaltootajaid-2023-2",
+  "source_format": "pdf",
+  "source_sha256": "66ee4aa8ad7dc6b1123252f6b7b382e137794f77bf055992c61abf3d7b8fbbd6",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2023-tunnustamine-innustab-aasta-parima-omavalitsuse-sotsiaaltootajaid-2023-2",
+    "previous_source_path": "Sotsiaaltoo_2_2023_web_par_Part3.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "66ee4aa8ad7dc6b1123252f6b7b382e137794f77bf055992c61abf3d7b8fbbd6",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

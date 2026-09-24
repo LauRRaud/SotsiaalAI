@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2020",
+  "articleId": "kuidas-on-rakendunud-muudatused-asendus-ja-jarelhooldusteenuse-valdkonnas-2020-2",
+  "title": "Kuidas on rakendunud muudatused asendus- ja järelhooldusteenuse valdkonnas?",
+  "authors": [
+    "Helen Jõks"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2020",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "25-29",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel annab ülevaate 2018. aastal jõustunud asendus- ja järelhooldusteenuse muudatuste rakendumisest, nende eesmärkidest ning esile kerkinud kitsaskohtadest. Käsitletakse nii rahastamissüsteemi, perepõhise hoolduse arendamist kui ka edasisi seadusemuudatusi.",
+  "tags": [
+    "asendushooldus",
+    "järelhooldus",
+    "rahastamine",
+    "hoolduspered",
+    "sotsiaalhoolekanne",
+    "seadusemuudatused"
+  ],
+  "source_type": "file",
+  "source_path": "ST2_2020_web_link_Part10.pdf",
+  "document_id": "sotsiaaltoo-2-2020-kuidas-on-rakendunud-muudatused-asendus-ja-jarelhooldusteenuse-valdkonnas-2020-2",
+  "source_format": "pdf",
+  "source_sha256": "0c74c290e21f48c22555c7da6f76dc09429696a60a96b411747fa98372e53bc0",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2020-kuidas-on-rakendunud-muudatused-asendus-ja-jarelhooldusteenuse-valdkonnas-2020-2",
+    "previous_source_path": "ST2_2020_web_link_Part10.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "0c74c290e21f48c22555c7da6f76dc09429696a60a96b411747fa98372e53bc0",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-4-2019",
+  "articleId": "professionaalne-sotsiaaltoo-noores-keerulises-uhiskonnas-2019",
+  "title": "Professionaalne sotsiaaltöö noores, järjest keerulisemas uusliberaalses ühiskonnas",
+  "authors": [
+    "Airi Mitendorf"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2019",
+  "section": "Uurimus",
+  "pageRange": "77-83",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Doktoritööl põhinev analüüs sotsiaaltöö eriala olemusest ja sotsiaaltöötajate positsioonidest neoliberalistlikus ja üha keerukamas ühiskonnas, käsitledes professionaalset identiteeti, vastutust, individuaalse ja struktuurse tasandi pingeid ning refleksiivse praktika olulisust.",
+  "tags": [
+    "professionaalne identiteet",
+    "neoliberalism",
+    "keerukad süsteemid",
+    "sotsiaaltöö uurimus",
+    "refleksiivne praktika"
+  ],
+  "source_type": "file",
+  "source_path": "ST4_2019_web_link_Part17.pdf",
+  "document_id": "sotsiaaltoo-4-2019-professionaalne-sotsiaaltoo-noores-keerulises-uhiskonnas-2019",
+  "source_format": "pdf",
+  "source_sha256": "9cab75e205d6b6b652d1d5b4918dcd4a8683fc4c086e6009b57f93c4244a49f1",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2019-professionaalne-sotsiaaltoo-noores-keerulises-uhiskonnas-2019",
+    "previous_source_path": "ST4_2019_web_link_Part17.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "9cab75e205d6b6b652d1d5b4918dcd4a8683fc4c086e6009b57f93c4244a49f1",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

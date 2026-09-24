@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-1-2018",
+  "articleId": "tootamise-toetamine-toimetulekutoetuse-kaudu-2018",
+  "title": "Töötamise toetamine toimetulekutoetuse kaudu",
+  "authors": [
+    "Hede Sinisaar"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2018",
+  "section": "Uurimus",
+  "pageRange": "20-29",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimus toimetulekutoetuse saajate ja töise tulu seoste kohta, analüüsides 2016. aasta andmeid ning selgitades 2018. aasta alguses jõustunud muudatusi, millega soovitakse suurendada tööle mineku motivatsiooni ja vähendada absoluutset vaesust.",
+  "tags": [
+    "toimetulekutoetus",
+    "töömotivatsioon",
+    "absoluutne vaesus",
+    "sotsiaalpoliitika analüüs",
+    "tööealised toimetulekutoetuse saajad",
+    "töise tulu arvestamine",
+    "tööhõive",
+    "perede sotsiaalne kaitse",
+    "aktiivsusnõuded"
+  ],
+  "source_type": "file",
+  "source_path": "Part9_155619647682_ST1_2018_link.pdf",
+  "document_id": "sotsiaaltoo-1-2018-tootamise-toetamine-toimetulekutoetuse-kaudu-2018",
+  "source_format": "pdf",
+  "source_sha256": "c8911820cd8adc8560254f0d23827edc0bbc3e5eefa205aa9f1d977f6049e406",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2018-tootamise-toetamine-toimetulekutoetuse-kaudu-2018",
+    "previous_source_path": "Part9_155619647682_ST1_2018_link.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "c8911820cd8adc8560254f0d23827edc0bbc3e5eefa205aa9f1d977f6049e406",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

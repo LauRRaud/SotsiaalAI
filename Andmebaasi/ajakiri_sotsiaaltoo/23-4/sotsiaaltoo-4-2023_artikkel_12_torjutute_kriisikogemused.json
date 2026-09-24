@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-4-2023",
+  "articleId": "uhiskonnas-torjutute-kriisikogemused-oppetunnid-koroonapandeemiast-2023-4",
+  "title": "Ühiskonnas tõrjutute kriisikogemused: õppetunnid koroonapandeemiast",
+  "authors": [
+    "Kati Orru",
+    "Kristi Nero",
+    "Ingeliis Siimsen"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2023",
+  "section": "Uurimus",
+  "pageRange": "59-65",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artiklis tutvustatakse rahvusvahelist uuringut, mis käsitleb supiköökide, päevakeskuste, varjupaikade\nja sotsiaalmajutusüksuste klientide toimetulekut COVID-19 pandeemia ajal. Autorid näitavad, et kriis\nmõjutas kõige enam kodus elavaid, kuid majanduslikult raskustes inimesi, samas kui tänaval või\nvarjupaigas elanutel oli materiaalset kaotada vähem. Analüüsitakse haavatavuse ja säilenõtkuse\nkombinatsioone, infokäitumist ja usaldust ametliku info vastu ning tuuakse esile sotsiaaltöötajate ja\nabiasutuste roll kriisiinfo vahendajate ja marginaliseeritute eestkõnelejatena.",
+  "tags": [
+    "COVID-19",
+    "haavatavus",
+    "tõrjutus",
+    "kodutus",
+    "abiasutused",
+    "kriisiohje",
+    "infokäitumine",
+    "rahvusvaheline uuring"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2023_web_Part13.pdf",
+  "document_id": "sotsiaaltoo-4-2023-uhiskonnas-torjutute-kriisikogemused-oppetunnid-koroonapandeemiast-2023-4",
+  "source_format": "pdf",
+  "source_sha256": "9af168253e2ab965462ca85822701c805c2f4be2715637c3a6cc4c9d2fe8c8df",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2023-uhiskonnas-torjutute-kriisikogemused-oppetunnid-koroonapandeemiast-2023-4",
+    "previous_source_path": "Sotsiaaltoo_4_2023_web_Part13.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "9af168253e2ab965462ca85822701c805c2f4be2715637c3a6cc4c9d2fe8c8df",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

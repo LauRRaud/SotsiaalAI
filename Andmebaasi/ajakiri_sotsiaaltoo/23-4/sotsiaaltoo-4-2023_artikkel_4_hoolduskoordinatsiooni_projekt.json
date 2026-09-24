@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2023",
+  "articleId": "hoolduskoordinatsiooni-projektis-jatkatakse-maakondlike-vorgustikega-2023-4",
+  "title": "Hoolduskoordinatsiooni projektis jätkatakse maakondlike võrgustikega",
+  "authors": [
+    "Anu Õun"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2023",
+  "section": "Korraldus",
+  "pageRange": "14-18",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel annab ülevaate hoolduskoordinatsiooni projektist ja maakondliku koordinatsioonimudeli kujunemisest,\nmille eesmärk on pakkuda kompleksse abivajadusega inimestele õigeaegset ja kooskõlastatud tuge. Kirjeldatakse\nhoolduskoordinaatori rolli, piirkondlike võrgustike ülesehitust ning kogemusi erinevatest voorudest, sh Raplamaal,\nSaaremaal ja Rakveres. Fookuses on koostöö perearstide, sotsiaalteenuste, tervishoiu ja teiste partneritega,\nandmevahetuse kitsaskohad ning vajadus selge rollijaotuse ja jätkusuutliku mudeli järele.",
+  "tags": [
+    "hoolduskoordinatsioon",
+    "pikaajaline hooldus",
+    "maakondlik võrgustik",
+    "hoolduskoordinaator",
+    "perearstikeskused",
+    "kompleksne abivajadus",
+    "sotsiaal- ja tervisevaldkonna koostöö"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2023_web_Part5.pdf",
+  "document_id": "sotsiaaltoo-4-2023-hoolduskoordinatsiooni-projektis-jatkatakse-maakondlike-vorgustikega-2023-4",
+  "source_format": "pdf",
+  "source_sha256": "6888bfe22bb4bfd9139756ed2892e161695eacdce97a22570e0f838a8f299a6b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2023-hoolduskoordinatsiooni-projektis-jatkatakse-maakondlike-vorgustikega-2023-4",
+    "previous_source_path": "Sotsiaaltoo_4_2023_web_Part5.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "6888bfe22bb4bfd9139756ed2892e161695eacdce97a22570e0f838a8f299a6b",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

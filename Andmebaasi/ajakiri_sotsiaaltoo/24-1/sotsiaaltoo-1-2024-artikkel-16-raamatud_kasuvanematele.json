@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-1-2024",
+  "articleId": "raamatud-toeks-kasuvanematele-ja-lastega-tootavatele-spetsialistidele-2024-1",
+  "title": "Raamatud toeks kasuvanematele ja lastega töötavatele spetsialistidele",
+  "authors": [
+    "Elen Kinnep"
+  ],
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2024",
+  "section": "Erialane kirjandus",
+  "pageRange": "91-94",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab MTÜ Igale Lapsele Pere kirjastatud raamatuid, mis on mõeldud kasuvanematele ning lastega töötavatele spetsialistidele. Kirjeldatakse olulisemaid teoseid kiindumushäire, trauma, kaotuse ja turvaliste suhete teemal ning rõhutatakse kirjanduse rolli kasuperede ja asendushoolduse toetamisel. Samuti käsitletakse raamatute kasutamist peredes, haridusasutustes ning nõustamis- ja teraapiatöös.",
+  "tags": [
+    "kasuvanemad",
+    "asendushooldus",
+    "erialane kirjandus",
+    "trauma",
+    "kiindumushäire",
+    "lasteraamatud",
+    "MTÜ Igale Lapsele Pere",
+    "spetsialistide tugi"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_1_2024_web_Part16.pdf",
+  "document_id": "sotsiaaltoo-1-2024-raamatud-toeks-kasuvanematele-ja-lastega-tootavatele-spetsialistidele-2024-1",
+  "source_format": "pdf",
+  "source_sha256": "be4651bdce5ea3ce7b46f1679735b05609a1325c68badb68bcee5fdf6cb65371",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2024-raamatud-toeks-kasuvanematele-ja-lastega-tootavatele-spetsialistidele-2024-1",
+    "previous_source_path": "Sotsiaaltoo_1_2024_web_Part16.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "be4651bdce5ea3ce7b46f1679735b05609a1325c68badb68bcee5fdf6cb65371",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

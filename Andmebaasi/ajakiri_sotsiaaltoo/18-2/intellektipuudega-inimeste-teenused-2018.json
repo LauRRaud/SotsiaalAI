@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2018",
+  "articleId": "erihoolekande-ja-rehabilitatsiooniteenused-intellektipuudega-inimeste-eluilmas-2018",
+  "title": "Erihoolekande- ja rehabilitatsiooniteenused intellektipuudega inimeste eluilmas",
+  "authors": [
+    "Simone Epro"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2018",
+  "section": "Uurimus",
+  "pageRange": "77-79",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Eluilmakeskne uurimus, mis käsitleb intellektipuudega inimeste argipäeva, nende kogemust erihoolekande- ja rehabilitatsiooniteenustega ning seda, kuidas teenused haakuvad tegelike vajaduste ja suhtesüsteemidega.",
+  "tags": [
+    "intellektipuue",
+    "erihoolekandeteenused",
+    "sotsiaalne rehabilitatsioon",
+    "eluilmakeskne lähenemine",
+    "teenusevajaduse hindamine",
+    "kasutajate kogemus",
+    "intervjuu-uuring",
+    "sotsiaalteenuste arendus"
+  ],
+  "source_type": "file",
+  "source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part19.pdf",
+  "document_id": "sotsiaaltoo-2-2018-erihoolekande-ja-rehabilitatsiooniteenused-intellektipuudega-inimeste-eluilmas-2018",
+  "source_format": "pdf",
+  "source_sha256": "b21c1b6ec8b13bcba57daa04cd6f54c1d292c71b3e2e27026e29a1040cba728d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2018-erihoolekande-ja-rehabilitatsiooniteenused-intellektipuudega-inimeste-eluilmas-2018",
+    "previous_source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part19.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b21c1b6ec8b13bcba57daa04cd6f54c1d292c71b3e2e27026e29a1040cba728d",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

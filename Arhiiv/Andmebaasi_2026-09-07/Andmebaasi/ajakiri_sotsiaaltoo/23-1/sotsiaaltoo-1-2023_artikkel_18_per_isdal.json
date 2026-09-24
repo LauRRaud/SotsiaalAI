@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-1-2023",
+  "articleId": "per-isdal-too-inimestega-muudab-meid-2023-1",
+  "title": "Per Isdal: töö inimestega muudab meid inimestena",
+  "authors": [
+    "Kairiin Nuudi"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2023",
+  "section": "Tööalane tugi",
+  "pageRange": "85-92",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Intervjuus räägib Norra psühholoog ja vägivallatöö ekspert Per Isdal sellest, kuidas aitamistöö mõjutab spetsialisti sisemaailma, hoiakuid ja tervist. Arutletakse läbipõlemisriskide, vastutuse ja empaatia rolli üle ning Isdal pakub praktilisi soovitusi, kuidas hoida end tasakaalus nõudlikus töökeskkonnas.",
+  "tags": [
+    "Per Isdal",
+    "tööalane tugi",
+    "läbipõlemine",
+    "vaimne tervis",
+    "empaatia"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_1_2023_web_Part18.pdf",
+  "document_id": "sotsiaaltoo-1-2023-per-isdal-too-inimestega-muudab-meid-2023-1",
+  "source_format": "pdf",
+  "source_sha256": "f4d39de692bc670f6c52d456d197b4d7de3470e930d680691c927defc24e4af4",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2023-per-isdal-too-inimestega-muudab-meid-2023-1",
+    "previous_source_path": "Sotsiaaltoo_1_2023_web_Part18.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "f4d39de692bc670f6c52d456d197b4d7de3470e930d680691c927defc24e4af4",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

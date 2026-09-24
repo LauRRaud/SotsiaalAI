@@ -1,0 +1,49 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "uksildus-ja-noored-tanapaeva-kogukondades-2026",
+  "title": "Üksildus ja noored tänapäeva kogukondades",
+  "authors": [
+    "Ele Laks"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Uurimus",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb üksildust kui kasvavat probleemi, mis puudutab eriti noori, kelle sotsiaalsed oskused kujunevad eakaaslastega suhtlemises. Autor rõhutab kogukonna arendamise ja toetavate suhete tähtsust psühholoogilise heaolu jaoks ning osutab kiusamisele ja vägivallale kui üksilduse olulistele põhjustele koolis.",
+  "tags": [
+    "üksildus",
+    "noored",
+    "noorsootöö",
+    "kogukond",
+    "vaimne tervis",
+    "kuuluvustunne",
+    "kiusamine",
+    "sotsiaalsed suhted"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-04-08",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/uksildus-ja-noored-tanapaeva-kogukondades",
+  "source_type": "web",
+  "source_path": "uksildus-ja-noored-tanapaeva-kogukondades.html",
+  "lead": "Üksildus on üha suurem probleem, mis mõjutab igas vanuses inimesi. Kuidas kogukonnad saavad olla noortele toeks ja mida üksildus tänases maailmas üldse tähendab?",
+  "document_id": "sotsiaaltoo-2-2026-uksildus-ja-noored-tanapaeva-kogukondades-2026",
+  "source_format": "html",
+  "source_sha256": "1b579668897883e63bda2e3b68cd74e38569a52d9227f255bc3b79b6a0cf784f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-uksildus-ja-noored-tanapaeva-kogukondades-2026",
+    "previous_source_path": "uksildus-ja-noored-tanapaeva-kogukondades.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "2c2b85ea5989a402a3b1df7c53a77d8fe0220374e23c1a85bf46f6add4438ebe",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "c31c7cdc5e7bff3aa4c24e34973f7631f827db8a011746acd1b921082fec2aa9",
+    "observed_web_title": "Üksildus ja noored tänapäeva kogukondades"
+  },
+  "retrieved_at": "2026-09-07T19:39:41.542899+00:00"
+}

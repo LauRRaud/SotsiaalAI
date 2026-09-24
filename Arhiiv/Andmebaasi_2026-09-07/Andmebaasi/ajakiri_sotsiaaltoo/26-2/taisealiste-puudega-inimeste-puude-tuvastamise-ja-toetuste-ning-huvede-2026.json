@@ -1,0 +1,49 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "taisealiste-puudega-inimeste-puude-tuvastamise-ja-toetuste-ning-huvede-2026",
+  "title": "Täisealiste puudega inimeste puude tuvastamise ja toetuste ning hüvede võimaliku nüüdisajastamise uuring",
+  "authors": [
+    "Katre Pall"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Analüüs",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Analüüs puudega täisealiste hindamise ja toetuste süsteemi ümberkorraldamise võimalustest. Uuringus töötati välja lahendusteed, sh ettepanek koondada hindamine ühte kohta ja maksta toetusi astmeliselt raske ja täieliku tegevuspiiranguga inimestele. Analüüs osutab, et praegune dubleeriv süsteem vajab lihtsustamist ja inimeste paremat juhatamist teenusteni.",
+  "tags": [
+    "puue",
+    "puude tuvastamine",
+    "töövõime hindamine",
+    "toetused",
+    "sotsiaalpoliitika",
+    "teenuste kättesaadavus",
+    "hoolekanne",
+    "analüüs"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-04-14",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/taisealiste-puudega-inimeste-puude-tuvastamise-ja-toetuste-ning-huvede",
+  "source_type": "web",
+  "source_path": "taisealiste-puudega-inimeste-puude-tuvastamise-ja-toetuste-ning-huvede-voimaliku.html",
+  "lead": "Mõttekoda Praxis koos Eesti puuetega inimeste kojaga analüüsis puuetega inimeste hindamise ja toetuste ümberkorraldamise võimalusi, kulu ning mõju. Uuring kestis 2025. aasta juunist kuni 2026. aasta jaanuarini.",
+  "document_id": "sotsiaaltoo-2-2026-taisealiste-puudega-inimeste-puude-tuvastamise-ja-toetuste-ning-huvede-2026",
+  "source_format": "html",
+  "source_sha256": "53e8e3d5ada338a112a24e7091bb456a22af270297ee7afaa130e429a8c0e79a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-taisealiste-puudega-inimeste-puude-tuvastamise-ja-toetuste-ning-huvede-2026",
+    "previous_source_path": "taisealiste-puudega-inimeste-puude-tuvastamise-ja-toetuste-ning-huvede-voimaliku.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "35cb2632f253f13f2ed9ad361eea33245f4bdca35034c02b88bb95865100c2f5",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "f0c49ab15682d4c8163391b9ce006861ad5eb185da0d72ba15a25776c7d8637a",
+    "observed_web_title": "Täisealiste puudega inimeste puude tuvastamise ja toetuste ning hüvede võimaliku nüüdisajastamise uuring"
+  },
+  "retrieved_at": "2026-09-07T19:39:40.644916+00:00"
+}

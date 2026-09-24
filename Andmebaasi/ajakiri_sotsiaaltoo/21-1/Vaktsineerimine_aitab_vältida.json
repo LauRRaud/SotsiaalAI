@@ -1,0 +1,37 @@
+{
+  "docId": "sotsiaaltoo-1-2021",
+  "articleId": "vaktsineerimine-aitab-valtida-nakatumist-2021-1",
+  "title": "Vaktsineerimine aitab vältida nakatumist",
+  "authors": [
+    "Kristi Rüütel"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2021",
+  "section": "Tervis",
+  "pageRange": "87-91",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tervisevaldkonna ülevaade vaktsineerimise rollist nakkushaiguste ennetamisel.",
+  "tags": [
+    "vaktsineerimine",
+    "tervis",
+    "ennetustöö"
+  ],
+  "source_type": "file",
+  "source_path": "artikkel_14_vaktsineerimine.pdf",
+  "document_id": "sotsiaaltoo-1-2021-vaktsineerimine-aitab-valtida-nakatumist-2021-1",
+  "source_format": "pdf",
+  "source_sha256": "d73b35a45592edf94bd09b905f98c309f6765d23ec09fe36df0cefaa76620072",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2021-vaktsineerimine-aitab-valtida-nakatumist-2021-1",
+    "previous_source_path": "artikkel_14_vaktsineerimine.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d73b35a45592edf94bd09b905f98c309f6765d23ec09fe36df0cefaa76620072",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-2-2020",
+  "articleId": "kogemusi-lastekaitsetootajate-supervisioonist-2020-2",
+  "title": "Kogemusi lastekaitsetöötajate supervisioonist",
+  "authors": [
+    "Tiina Merkuljeva"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2020",
+  "section": "Tööalane tugi",
+  "pageRange": "64-67",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel annab ülevaate lastekaitsetöötajate supervisiooni kujunemisest ja praktikast Eestis. Fookuses on grupi-, individuaal- ja võrgustikusupervisiooni roll spetsialistide toetamisel, enesehoius ja keeruliste juhtumite mõtestamisel.",
+  "tags": [
+    "lastekaitse",
+    "supervisioon",
+    "toeoalane tugi",
+    "professionaalne areng",
+    "võrgustikutöö"
+  ],
+  "source_type": "file",
+  "source_path": "ST2_2020_web_link_Part19.pdf",
+  "document_id": "sotsiaaltoo-2-2020-kogemusi-lastekaitsetootajate-supervisioonist-2020-2",
+  "source_format": "pdf",
+  "source_sha256": "344573ed284c9a4f2cb576685ab86ecbf421a66b3405f62e5b4e8a45a3dd4b9f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2020-kogemusi-lastekaitsetootajate-supervisioonist-2020-2",
+    "previous_source_path": "ST2_2020_web_link_Part19.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "344573ed284c9a4f2cb576685ab86ecbf421a66b3405f62e5b4e8a45a3dd4b9f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

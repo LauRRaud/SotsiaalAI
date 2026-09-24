@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2023",
+  "articleId": "tulge-oppima-kogukonnatoo-vananevas-uhiskonnas-2023-2",
+  "title": "Tulge õppima kogukonnatööd vananevas ühiskonnas",
+  "authors": [
+    "Tiina Tambaum"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2023",
+  "section": "Erialane haridus",
+  "pageRange": "71-75",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab Tallinna Ülikooli Haapsalu kolledži uut magistriõppekava „Kogukonnatöö vananevas\nühiskonnas“. Autor selgitab, miks on vaja kogukonnatöötajatel mõista normaalset vananemist, üksilduse\nja sotsiaalse tervise teemasid ning kuidas ressursipõhine kogukonnatöö saab toetada vanemaealiste\nkaasatust. Käsitletakse vanemaealistega seotud stereotüüpe, põlvkondadevahelist koostööd ja ohtu, et\nprobleemipõhine lähenemine kinnistab passiivsust. Õppekava fookuses on oskused, mis aitavad luua\ntähenduslikke suhteid, ennetada üksindust ja kujundada keskkonda, mis kohaneb inimese vajadustega.",
+  "tags": [
+    "kogukonnatöö",
+    "vananev ühiskond",
+    "vanemaealised",
+    "üksildus",
+    "ressursipõhine lähenemine",
+    "Tallinna Ülikool Haapsalu kolledž"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2023_web_par_Part17.pdf",
+  "document_id": "sotsiaaltoo-2-2023-tulge-oppima-kogukonnatoo-vananevas-uhiskonnas-2023-2",
+  "source_format": "pdf",
+  "source_sha256": "c093c606384b3c736f2d434e49104be0e611508268f831103224ca97ddcd6aa6",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2023-tulge-oppima-kogukonnatoo-vananevas-uhiskonnas-2023-2",
+    "previous_source_path": "Sotsiaaltoo_2_2023_web_par_Part17.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "c093c606384b3c736f2d434e49104be0e611508268f831103224ca97ddcd6aa6",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

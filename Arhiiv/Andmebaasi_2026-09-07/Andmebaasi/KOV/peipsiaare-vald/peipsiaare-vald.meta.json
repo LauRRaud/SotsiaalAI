@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-peipsiaare-vald",
+  "document_id": "kov-peipsiaare-vald",
+  "municipality": "Peipsiääre vald",
+  "municipality_id": "peipsiaare_vald",
+  "county": "Tartumaa",
+  "checkedAt": "2026-04-29",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-peipsiaare-vald",
+  "coverage": {
+    "services": 15,
+    "benefits": 15,
+    "resources": 4,
+    "contacts": 14,
+    "forms": 16,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "peipsiaare_vald",
+    "source_register_file": "peipsiaare-vald.sources.json",
+    "service_benefit_resource_items": 34,
+    "items_with_source_keys": 34,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 15,
+    "items_without_related_forms": 19,
+    "items_with_related_contacts": 31,
+    "items_without_related_contacts": 3,
+    "form_sources": 12,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "4 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Pakett on koostatud Peipsiääre valla ametliku veebilehe sotsiaalvaldkonna harudest ja detaillehtedest. Õigusaktide ja RT viidete sisu ei kogutud sellesse KOV veebipaketti.",
+    "Eraldi üldist sotsiaalvaldkonna blankettide koondlehte ei tuvastatud; vormid koguti teenuse või toetuse detaillehtedelt."
+  ],
+  "unresolvedIssues": [
+    "Mitmel kontaktilehel ja taotlemise plokis on e-posti aadress varjestatud kujul; aadresse ei taastatud oletuse põhjal.",
+    "SPOKU ja muud iseteeninduse otselingid on valdavalt väliskeskkondades. Need on märgitud taotluskanalina ainult KOV lehel avaldatud info põhjal, kuid väliskeskkonna sisu ei kasutatud allikana.",
+    "Peipsiääre valla lehel on haridusvaldkonna toetusi, mis võivad olla peredele praktiliselt olulised; siia paketti lisati ainult sotsiaalvaldkonna ja kohustusliku kontrollnimekirjaga seotud koolimineku toetus, muu haridusvaldkonna detailne korje jäi välja.",
+    "Hoolekandeasutuste ja tervishoiuasutuste kohta on KOV veebis valdavalt välislingid; välislehti ei kasutatud allikana ning asutuste detailandmed vajavad eraldi kontrolli KOV ametliku info põhjal.",
+    "Mõne teenuse või toetuse menetluskäik on KOV lehel esitatud üldiselt; täpseid hindamis- ja otsustuskriteeriume ei lisatud, kui neid polnud detaillehel praktilise infona avaldatud."
+  ],
+  "municipality_name": "Peipsiääre vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "peipsiaare-vald.sources.json",
+  "sourceCount": 55,
+  "counts": {
+    "services": 15,
+    "benefits": 15,
+    "resources": 4,
+    "contacts": 14,
+    "forms": 16,
+    "regulations": 0
+  },
+  "warnings": [
+    "4 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

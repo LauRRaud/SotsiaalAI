@@ -1,0 +1,66 @@
+{
+  "verifiedAt": "2026-08-31T15:24:02Z",
+  "verificationMethod": "Independent read-only reviewer; localhost authenticated GET /documents/{id} and /chunks, no search/chat.",
+  "release": {
+    "head": "5074b5e03f9fa7708b6ad3db9f8bb9ca243c8d08",
+    "runtime_code": "dba8e06d8cb82f23d9d9aaf100469c88eaea915d",
+    "build_id": "kDAqeRc59ock3wOuMJUDt"
+  },
+  "items": [
+    {
+      "id": "U75-F04",
+      "chunkCount": 15,
+      "lifecycle": "ACTIVE",
+      "status": "COMPLETED",
+      "allChunksActiveVersion": true,
+      "manifestExcerptPresent": true,
+      "hashMatches": true,
+      "metadataMatches": true
+    },
+    {
+      "id": "U75-F05",
+      "chunkCount": 9,
+      "lifecycle": "ACTIVE",
+      "status": "COMPLETED",
+      "allChunksActiveVersion": true,
+      "manifestExcerptPresent": true,
+      "hashMatches": true,
+      "metadataMatches": true
+    },
+    {
+      "id": "U75-F06",
+      "chunkCount": 8,
+      "lifecycle": "ACTIVE",
+      "status": "COMPLETED",
+      "allChunksActiveVersion": true,
+      "manifestExcerptPresent": true,
+      "hashMatches": true,
+      "metadataMatches": true
+    },
+    {
+      "id": "U75-F07",
+      "chunkCount": 9,
+      "lifecycle": "ACTIVE",
+      "status": "COMPLETED",
+      "allChunksActiveVersion": true,
+      "manifestExcerptPresent": true,
+      "hashMatches": true,
+      "metadataMatches": true
+    },
+    {
+      "id": "U75-F08",
+      "chunkCount": 35,
+      "lifecycle": "ACTIVE",
+      "status": "COMPLETED",
+      "allChunksActiveVersion": true,
+      "manifestExcerptPresent": true,
+      "hashMatches": true,
+      "metadataMatches": true
+    }
+  ],
+  "limits": [
+    "Source availability does not prove answer quality.",
+    "F04 C3 and F06 C3 are sourced but additional to the exact question: omission remains strict PARTIAL, not alone a proven general bug.",
+    "Document-local page numbers do not prove print pagination."
+  ]
+}

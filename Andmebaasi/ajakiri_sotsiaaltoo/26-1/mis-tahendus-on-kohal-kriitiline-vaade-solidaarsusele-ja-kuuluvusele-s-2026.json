@@ -1,0 +1,51 @@
+{
+  "docId": "sotsiaaltoo-1-2026",
+  "articleId": "mis-tahendus-on-kohal-kriitiline-vaade-solidaarsusele-ja-kuuluvusele-s-2026",
+  "title": "Mis tähendus on kohal? Kriitiline vaade solidaarsusele ja kuuluvusele Sillamäe näitel",
+  "authors": [
+    "Annela Samuel",
+    "Mariann Märtsin"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2026",
+  "section": "Uurimus",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimus käsitleb solidaarsuse ja kuuluvuse tähendust sotsiaaltöös Sillamäe näitel, keskendudes kohale kui sotsiaalse muutuse kontekstile. Tulemused osutavad, et üleminekuperioodidel vajab kogukond kollektiivset ja kohatundlikku tuge, ning toovad esile institutsionaalsete ja keeleliste barjääride mõju osalusvõimalustele.",
+  "tags": [
+    "solidaarsus",
+    "kuuluvus",
+    "kogukond",
+    "Sillamäe",
+    "Ida-Virumaa",
+    "kohatundlik sotsiaaltöö",
+    "sotsiaalne tõrjutus",
+    "osalus",
+    "uurimus"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-02-03",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/mis-tahendus-kohal-kriitiline-vaade-solidaarsusele-ja-kuuluvusele-sillamae",
+  "source_type": "web",
+  "source_path": "mis-tahendus-on-kohal-kriitiline-vaade-solidaarsusele-ja-kuuluvusele-sillamae-na.html",
+  "lead": "Sotsiaalsete muutuste ja ühiskondlike üleminekute ajal on solidaarsus habras ning seda on vaja teadlikult ja järjepidevalt toetada. Selleta süvenevad tõrjutus ja sotsiaalne killustumine. Sotsiaaltöötaja, kes tunneb kohalikke inimesi, nende vajadusi ja ka võimalusi, saab mõjutada koha ning kohalike inimeste teadmiste, oskuste ja väärtuste nähtavaks tegemist ja kasutuselevõttu.",
+  "document_id": "sotsiaaltoo-1-2026-mis-tahendus-on-kohal-kriitiline-vaade-solidaarsusele-ja-kuuluvusele-s-2026",
+  "source_format": "html",
+  "source_sha256": "dc7a427e48bb6649f492adf7b72cc45d4db716199e1600a1b45d342942c88a8e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2026-mis-tahendus-on-kohal-kriitiline-vaade-solidaarsusele-ja-kuuluvusele-s-2026",
+    "previous_source_path": "mis-tahendus-on-kohal-kriitiline-vaade-solidaarsusele-ja-kuuluvusele-sillamae-na.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "167c7bbba4013e6841ba5ca0665876a6848a8178a4b9fa73aae27b60c3337444",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "8f37df51cb63996552625a419e866735480d8f6d99516f461637b15a45bcf100",
+    "observed_web_title": "Mis tähendus on kohal? Kriitiline vaade solidaarsusele ja kuuluvusele Sillamäe näitel"
+  },
+  "retrieved_at": "2026-09-07T19:39:33.784627+00:00"
+}

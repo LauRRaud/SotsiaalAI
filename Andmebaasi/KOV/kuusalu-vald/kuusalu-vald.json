@@ -1,0 +1,3666 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-kuusalu-vald",
+  "document_id": "kov-kuusalu-vald",
+  "municipality": "Kuusalu vald",
+  "municipality_id": "kuusalu_vald",
+  "county": "Harjumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "kuusalu_vald_contact_ene_rebane",
+      "canonical_item_id": "kuusalu_vald:contact:ene_rebane",
+      "itemType": "contact",
+      "title": "Ene Rebane",
+      "status": "active",
+      "summary": "Ene Rebane on Kuusalu vallavalitsuse sotsiaaltöö assistent / sotsiaaltoetuste spetsialist sotsiaalvaldkonnas. Kontakt on avaldatud KOV ametlikul veebilehel ning seda kasutatakse seotud teenuste või toetuste lisainfo kontaktina.",
+      "name": "Ene Rebane",
+      "role": "Sotsiaaltöö assistent / sotsiaaltoetuste spetsialist",
+      "department": "Sotsiaalteenistus",
+      "address": "Mõisa tee 17, Kiiu alevik, 74604 Kuusalu vald",
+      "officeHours": "E 8.30-12.00; K 13.00-18.00",
+      "sourceKeys": [
+        "aabitsatoetus_page",
+        "matusetoetus_page",
+        "osalustasu_toetus_page",
+        "small_income_page",
+        "sunnitoetus_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "aabitsatoetus_page",
+        "matusetoetus_page",
+        "osalustasu_toetus_page",
+        "small_income_page",
+        "sunnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_contact_ene_rebane",
+      "document_id": "kuusalu_vald_contact_ene_rebane",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "19f5ade852cd11491399049b823bde257ae60bb412bee725e938186853d90a9d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_contact_lea_kivipold",
+      "canonical_item_id": "kuusalu_vald:contact:lea_kivipold",
+      "itemType": "contact",
+      "title": "Lea Kivipõld",
+      "status": "active",
+      "summary": "Lea Kivipõld on Kuusalu vallavalitsuse hoolekandespetsialist sotsiaalvaldkonnas. Kontakt on avaldatud KOV ametlikul veebilehel ning seda kasutatakse seotud teenuste või toetuste lisainfo kontaktina.",
+      "name": "Lea Kivipõld",
+      "role": "Hoolekandespetsialist",
+      "department": "Sotsiaalteenistus",
+      "address": "Mõisa tee 17, Kiiu alevik, 74604 Kuusalu vald",
+      "officeHours": "E 8.30-12.00; K 13.00-18.00",
+      "sourceKeys": [
+        "eluruumi_tagamine_page",
+        "isikliku_abistaja_page",
+        "koduteenus_page",
+        "taisealise_hooldus_page",
+        "tugiisikuteenus_page",
+        "turvakoduteenus_page",
+        "uldhooldusteenus_page",
+        "varjupaigateenus_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eluruumi_tagamine_page",
+        "isikliku_abistaja_page",
+        "koduteenus_page",
+        "taisealise_hooldus_page",
+        "tugiisikuteenus_page",
+        "turvakoduteenus_page",
+        "uldhooldusteenus_page",
+        "varjupaigateenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_contact_lea_kivipold",
+      "document_id": "kuusalu_vald_contact_lea_kivipold",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "5bc49d739a25a2e8e8fdf627c87d6958bd8b57cdfcf177319853ada3d6801949",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_contact_kristiina_raivi_vilepaju",
+      "canonical_item_id": "kuusalu_vald:contact:kristiina_raivi_vilepaju",
+      "itemType": "contact",
+      "title": "Kristiina-Raivi Vilepaju",
+      "status": "active",
+      "summary": "Kristiina-Raivi Vilepaju on Kuusalu vallavalitsuse sotsiaaltöö spetsialist sotsiaalvaldkonnas. Kontakt on avaldatud KOV ametlikul veebilehel ning seda kasutatakse seotud teenuste või toetuste lisainfo kontaktina.",
+      "name": "Kristiina-Raivi Vilepaju",
+      "role": "Sotsiaaltöö spetsialist",
+      "department": "Sotsiaalteenistus",
+      "address": "Mõisa tee 17, Kiiu alevik, 74604 Kuusalu vald",
+      "officeHours": "E 8.30-12.00; K 13.00-18.00",
+      "sourceKeys": [
+        "lapsehoiuteenus_page",
+        "suure_hooldusvajadusega_lapse_toetus_page",
+        "tugiisikuteenus_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lapsehoiuteenus_page",
+        "suure_hooldusvajadusega_lapse_toetus_page",
+        "tugiisikuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_contact_kristiina_raivi_vilepaju",
+      "document_id": "kuusalu_vald_contact_kristiina_raivi_vilepaju",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "47d6209115934695b2834bac76532107350cc02432eca68338bf4fae29f64403",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_contact_helle_soots",
+      "canonical_item_id": "kuusalu_vald:contact:helle_soots",
+      "itemType": "contact",
+      "title": "Helle Soots",
+      "status": "active",
+      "summary": "Helle Soots on Kuusalu vallavalitsuse sotsiaaltöö spetsialist sotsiaalvaldkonnas. Kontakt on avaldatud KOV ametlikul veebilehel ning seda kasutatakse seotud teenuste või toetuste lisainfo kontaktina.",
+      "name": "Helle Soots",
+      "role": "Sotsiaaltöö spetsialist",
+      "department": "Sotsiaalteenistus",
+      "address": "Mõisa tee 17, Kiiu alevik, 74604 Kuusalu vald",
+      "officeHours": "E 8.30-12.00; K 13.00-18.00",
+      "sourceKeys": [
+        "asendushooldusteenus_page",
+        "jarelhooldusteenus_page",
+        "turvakoduteenus_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "asendushooldusteenus_page",
+        "jarelhooldusteenus_page",
+        "turvakoduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_contact_helle_soots",
+      "document_id": "kuusalu_vald_contact_helle_soots",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "5ea9a74b2f645b25928ce2af4f4807c6f4e9c75018fb4ea2d0f71aed37b438a0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_contact_alvi_karp",
+      "canonical_item_id": "kuusalu_vald:contact:alvi_karp",
+      "itemType": "contact",
+      "title": "Alvi Karp",
+      "status": "active",
+      "summary": "Alvi Karp on Kuusalu vallavalitsuse juhtiv hoolekandespetsialist sotsiaalvaldkonnas. Kontakt on avaldatud KOV ametlikul veebilehel ning seda kasutatakse seotud teenuste või toetuste lisainfo kontaktina.",
+      "name": "Alvi Karp",
+      "role": "Juhtiv hoolekandespetsialist",
+      "department": "Sotsiaalteenistus",
+      "address": "Mõisa tee 17, Kiiu alevik, 74604 Kuusalu vald",
+      "officeHours": "E 8.30-12.00; K 13.00-18.00",
+      "sourceKeys": [
+        "sotsiaaltransport_page",
+        "volanoustamisteenus_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltransport_page",
+        "volanoustamisteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_contact_alvi_karp",
+      "document_id": "kuusalu_vald_contact_alvi_karp",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "e22c86228d103b258a793a9262e91888aabccf9ac8665a37741d9ee5dbc593c7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_contact_aigi_reinomagi",
+      "canonical_item_id": "kuusalu_vald:contact:aigi_reinomagi",
+      "itemType": "contact",
+      "title": "Aigi Reinomägi",
+      "status": "active",
+      "summary": "Aigi Reinomägi on Kuusalu vallavalitsuse hoolekandespetsialist sotsiaalvaldkonnas. Kontakt on avaldatud KOV ametlikul veebilehel ning seda kasutatakse seotud teenuste või toetuste lisainfo kontaktina.",
+      "name": "Aigi Reinomägi",
+      "role": "Hoolekandespetsialist",
+      "department": "Sotsiaalteenistus",
+      "address": "Mõisa tee 17, Kiiu alevik, 74604 Kuusalu vald",
+      "officeHours": null,
+      "sourceKeys": [
+        "medi_hairenuputeenus_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "medi_hairenuputeenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_contact_aigi_reinomagi",
+      "document_id": "kuusalu_vald_contact_aigi_reinomagi",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "6ac73915b94e5c459f6dc42f5a2bd35d55c62975449eff232267320d40019d3c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_contact_kuusalu_vallavalitsus",
+      "canonical_item_id": "kuusalu_vald:contact:kuusalu_vallavalitsus",
+      "itemType": "contact",
+      "title": "Kuusalu vallavalitsus",
+      "status": "active",
+      "summary": "Kuusalu vallavalitsus on Kuusalu vallavalitsuse üldkontakt sotsiaalvaldkonnas. Kontakt on avaldatud KOV ametlikul veebilehel ning seda kasutatakse seotud teenuste või toetuste lisainfo kontaktina.",
+      "name": "Kuusalu vallavalitsus",
+      "role": "Üldkontakt",
+      "department": "Kuusalu vallavalitsus",
+      "address": "Mõisa tee 17, Kiiu alevik, 74604 Kuusalu vald, Harju maakond",
+      "officeHours": null,
+      "sourceKeys": [
+        "home",
+        "small_income_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "home",
+        "small_income_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_contact_kuusalu_vallavalitsus",
+      "document_id": "kuusalu_vald_contact_kuusalu_vallavalitsus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "e11d2f7cf7f66c29fe309ef48ca258ef6518ab4e914b51f6b3cf370da471849e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_service_koduteenus",
+      "canonical_item_id": "kuusalu_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus toetab Kuusalu valla elanikke igapäevatoimingutes, et nad saaksid jätkata turvalist elu kodus. Teenusega aidatakse muu hulgas ostude tegemisel, kodu korrastamisel, kütmisel, toidu korraldamisel, hügieenitoimingutes, ravimite jälgimisel ja abitehnoloogiate kasutamisel. Kuusalu Vallavalitsuse ja MTÜ Kuusalu Hoolela projektis on teenusel osalemine tasuta.",
+      "officialUrl": "https://www.kuusalu.ee/koduteenus",
+      "targetGroup": "Kuusalu valla elanikud, kes vajavad igapäevatoimingutes teiste inimeste abi.",
+      "conditions": "Abivajadus võib esineda igas eas inimesel, sh liikumis-, nägemis- või mäluprobleemide tõttu. Pärast taotluse esitamist hinnatakse isiku abivajadust ja toimetulekut kodustes tingimustes.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberavaldus",
+          "",
+          ""
+        ],
+        "steps": [
+          "Esita taotlus Kuusalu Vallavalitsuse sotsiaalteenistusele.",
+          "Taotluse võib saata aadressile või teatada vajadusest telefonil.",
+          "Teenuse saamiseks saab esitada avalduse SPOKUS või paberil."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva nõuetekohase taotluse esitamisest",
+      "pricing": {
+        "description": "Projekti raames osalemine tasuta; projekti rahastab Euroopa Sotsiaalfond ja toetab Kuusalu Vallavalitsus."
+      },
+      "relatedForms": [
+        "kuusalu_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_lea_kivipold"
+      ],
+      "sourceKeys": [
+        "koduteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "koduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_service_koduteenus",
+      "document_id": "kuusalu_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/koduteenus",
+      "content_hash": "f452b60e54258e539b6f168b4dc1cff84a8bc67c6927a3b95750ff44e243729a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "canonical_item_id": "kuusalu_vald:service:valjaspool_kodu_osutatav_uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatav üldhooldusteenus tagab turvalise keskkonna ja toimetuleku täisealisele inimesele, kes ei suuda terviseseisundi, tegevusvõime või elukeskkonna tõttu kodus ajutiselt või püsivalt iseseisvalt toime tulla. Vallavalitsus on kehtestanud hoolduskulude piirmäärad suure ja ulatusliku hooldusvajaduse korral. Kohatasu puudujääva osa taotlemiseks tuleb esitada kirjalik taotlus ja vajadusel täiendavad dokumendid.",
+      "officialUrl": "https://www.kuusalu.ee/valjaspool-kodu-osutatav-uldhooldusteenus",
+      "targetGroup": "Täisealised isikud, kes ei suuda kodustes tingimustes iseseisvalt toime tulla.",
+      "conditions": "Taotleja peab kirjeldama olukorda, sissetulekut, varalist seisu ning ülalpidamiskohustuslaste andmeid. Sotsiaalvaldkonna ametnik hindab abivajadust ning majanduslikku ja tervislikku olukorda.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberavaldus",
+          "",
+          ""
+        ],
+        "steps": [
+          "Esita kirjalik taotlus Kuusalu Vallavalitsusele.",
+          "Vajadusest võib teatada aadressil või telefonil.",
+          "Vallavalitsus võib nõuda täiendavaid dokumente."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva nõuetekohase taotluse esitamisest",
+      "pricing": {
+        "description": "Hoolduskulude piirmäär suure hooldusvajaduse korral kuni 650 eurot kuus ja ulatusliku hooldusvajaduse korral kuni 750 eurot kuus."
+      },
+      "relatedForms": [
+        "kuusalu_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_lea_kivipold"
+      ],
+      "sourceKeys": [
+        "uldhooldusteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "uldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "document_id": "kuusalu_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/valjaspool-kodu-osutatav-uldhooldusteenus",
+      "content_hash": "bfd7c78441dc54ebfc2bd932a0cc91e1caa30e222663ce140054bcdd859a571f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_service_tugiisikuteenus",
+      "canonical_item_id": "kuusalu_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenuse eesmärk on toetada iseseisvat toimetulekut olukorras, kus isik vajab sotsiaalsete, majanduslike, psühholoogiliste või terviseprobleemide tõttu kõrvalabi. Tugiisik juhendab, motiveerib ja aitab arendada suuremat iseseisvust ning omavastutust. Teenust kirjeldatakse nii täiskasvanule, last kasvatavale isikule kui ka lapsele, sealhulgas puudega lapse arengu toetamiseks.",
+      "officialUrl": "https://www.kuusalu.ee/tugiisikuteenus",
+      "targetGroup": "Täisealised isikud, last kasvatavad isikud ja lapsed, kellel on vaja tugiisiku abi.",
+      "conditions": "Teenuse vajadus tuvastatakse abivajaduse ja toimetuleku hindamisega.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberavaldus",
+          "",
+          ""
+        ],
+        "steps": [
+          "Esita taotlus Kuusalu Vallavalitsuse sotsiaalteenistusele.",
+          "Taotluse võib saata aadressile või teatada teenuse vajadusest telefonil.",
+          "Pärast taotluse esitamist hinnatakse abivajadust ja toimetulekut."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva nõuetekohase taotluse esitamisest",
+      "pricing": null,
+      "relatedForms": [
+        "kuusalu_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_lea_kivipold",
+        "kuusalu_vald_contact_kristiina_raivi_vilepaju"
+      ],
+      "sourceKeys": [
+        "tugiisikuteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "tugiisikuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_service_tugiisikuteenus",
+      "document_id": "kuusalu_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/tugiisikuteenus",
+      "content_hash": "5cda64d31708bbc1a9c7f6040b3ee5bdc12296d1acd23e3507ae5d92bd1d2b0d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "kuusalu_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hoolduse eesmärk on korraldada hooldus täisealisele inimesele, kes vajab vaimse või kehalise puude tõttu abi oma õiguste teostamiseks ja kohustuste täitmiseks. Hooldajatoetust makstakse raske või sügava puudega täisealise isiku hooldajale, kui hooldaja ja hooldatava tegelik ning rahvastikuregistrijärgne elukoht on Kuusalu vallas. Toetuse saamiseks tehakse abivajaduse hindamine.",
+      "officialUrl": "https://www.kuusalu.ee/hooldajatoetus",
+      "targetGroup": "Raske või sügava puudega täisealised isikud ja nende hooldajad.",
+      "conditions": "Hooldajatoetust ei maksta juhul, kui hooldaja käib tööl või on tööga võrdsustatud tegevusega hõivatud, kui hoolduskoormus ei takista töötamist või kui abivajadus on kaetav muude abimeetmetega.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberavaldus"
+        ],
+        "steps": [
+          "Esita sotsiaalteenuse avaldus SPOKUS või paberil.",
+          "Vallavalitsus hindab abivajadust."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "description": "Hooldajatoetus makstakse hooldajale eraldi toetusena."
+      },
+      "relatedForms": [
+        "kuusalu_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_lea_kivipold"
+      ],
+      "sourceKeys": [
+        "hooldajatoetus_page",
+        "taisealise_hooldus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "hooldajatoetus_page",
+        "taisealise_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_service_taisealise_isiku_hooldus",
+      "document_id": "kuusalu_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/hooldajatoetus",
+      "content_hash": "d581b1df0755638f1c28a5001b0aed4f20dcae1f1c6a76c9061a363aedeb03ca",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "kuusalu_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus suurendab puude tõttu füüsilist kõrvalabi vajava täisealise inimese iseseisvat toimetulekut ja osalemist kõigis eluvaldkondades. Isiklik abistaja aitab liikumisel, söömisel, toidu valmistamisel, riietumisel, hügieenitoimingutes, majapidamistöödes ja muudes toimingutes. Teenuse eesmärk on vähendada ka seadusjärgsete hooldajate hoolduskoormust.",
+      "officialUrl": "https://www.kuusalu.ee/isikliku-abistaja-teenus",
+      "targetGroup": "Puude tõttu füüsilist kõrvalabi vajavad täisealised inimesed.",
+      "conditions": "Teenuse vajadus hinnatakse pärast taotluse esitamist.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberavaldus",
+          "",
+          ""
+        ],
+        "steps": [
+          "Esita taotlus Kuusalu Vallavalitsuse sotsiaalteenistusele.",
+          "Taotluse võib saata aadressile või teatada vajadusest telefonil.",
+          "Pärast taotluse esitamist hinnatakse abivajadust."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva nõuetekohase taotluse esitamisest",
+      "pricing": null,
+      "relatedForms": [
+        "kuusalu_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_lea_kivipold"
+      ],
+      "sourceKeys": [
+        "isikliku_abistaja_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "isikliku_abistaja_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_service_isikliku_abistaja_teenus",
+      "document_id": "kuusalu_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/isikliku-abistaja-teenus",
+      "content_hash": "2399cee9f43246efbcc99872fda16d9eeccfff20df0679cbaec0a7e45f08e28f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_service_varjupaigateenus",
+      "canonical_item_id": "kuusalu_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus tagab ajutise ööbimiskoha täisealisele isikule, kes ei ole võimeline endale ööbimiskohta leidma. Ajutises ööbimiskohas peab olema tagatud voodikoht, pesemisvõimalus ja turvaline keskkond. Teenuse vajadusest võivad teatada ka naabrid, arst või muud isikud.",
+      "officialUrl": "https://www.kuusalu.ee/varjupaigateenus",
+      "targetGroup": "Täisealised isikud, kellel puudub ajutine ööbimiskoht.",
+      "conditions": "Teenuse vajadus hinnatakse pärast pöördumist või taotluse esitamist.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberavaldus",
+          "",
+          ""
+        ],
+        "steps": [
+          "Esita taotlus Kuusalu Vallavalitsuse sotsiaalteenistusele.",
+          "Taotluse võib saata aadressile või teatada vajadusest telefonil.",
+          "Pärast taotluse esitamist hinnatakse abivajadust."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "relatedForms": [
+        "kuusalu_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_lea_kivipold"
+      ],
+      "sourceKeys": [
+        "varjupaigateenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "varjupaigateenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_service_varjupaigateenus",
+      "document_id": "kuusalu_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/varjupaigateenus",
+      "content_hash": "ef9e9e3c67ca465b2f167142e51c4d5ab621b4d237f700e30f6efe90419d35d6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_service_turvakoduteenus",
+      "canonical_item_id": "kuusalu_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenuse eesmärk on anda ajutine eluase, turvaline keskkond ja esmane abi lapsele või täisealisele isikule, kes vajab kaitset ja turvalist keskkonda. Vajadusel tagatakse kriisiabi, mis aitab taastada psüühilise tasakaalu ja tegevusvõime ning tutvustab muid abi saamise võimalusi. Teenuse määramisel hinnatakse abivajadust.",
+      "officialUrl": "https://www.kuusalu.ee/turvakoduteenus",
+      "targetGroup": "Lapsed ja täisealised isikud, kelle elu, tervis või turvalisus on ohus.",
+      "conditions": "Teenust osutatakse, kui laps vajab abi hooldamises esinevate puuduste tõttu või täisealine isik vajab turvalist keskkonda.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberavaldus",
+          "kontakt spetsialistiga"
+        ],
+        "steps": [
+          "Abivajaja saab ise võtta ühendust hoolekandespetsialisti või sotsiaaltöö spetsialistiga.",
+          "Teenuse saamiseks saab esitada avalduse SPOKUS või paberil.",
+          "Pärast taotluse esitamist hinnatakse abivajadust."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Esimesel võimalusel, kuid mitte rohkem kui 10 tööpäeva jooksul",
+      "pricing": null,
+      "relatedForms": [
+        "kuusalu_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_lea_kivipold",
+        "kuusalu_vald_contact_helle_soots"
+      ],
+      "sourceKeys": [
+        "turvakoduteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "turvakoduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_service_turvakoduteenus",
+      "document_id": "kuusalu_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/turvakoduteenus",
+      "content_hash": "c990a203fbcbad07a95414d9fe17762aa11a0151b31fee1c62ef422eb2b49d19",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "kuusalu_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus võimaldab puudega isikul, kelle puue takistab isikliku või ühissõiduki kasutamist, kasutada vajadustele vastavat transpordivahendit tööle, õppeasutusse või avalike teenuste kasutamiseks sõitmisel. Teenust osutab OÜ Koplimetsa ning klient tasub omaosaluse juhile.",
+      "officialUrl": "https://www.kuusalu.ee/sotsiaaltransporditeenus",
+      "targetGroup": "Puudega inimesed, kellel puue takistab ühissõiduki või isikliku sõiduki kasutamist.",
+      "conditions": "Teenuse saamiseks tuleb esitada vallavalitsusele taotlus.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberavaldus",
+          "post",
+          "vallavalitsus"
+        ],
+        "steps": [
+          "Esita avaldus SPOKUS või paberil.",
+          "Avalduse saab saata postiga või tuua Kuusalu Vallavalitsusse aadressil Mõisa tee 17, Kiiu alevik.",
+          "Pärast otsust saab teenust kasutada."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "description": "Juhuvedu edasi-tagasi 25 eurot, ühe suuna juhuvedu 15 eurot, liinivedu edasi-tagasi 15 eurot. Omaosaluse arve tasub klient autojuhile."
+      },
+      "relatedForms": [
+        "kuusalu_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_alvi_karp"
+      ],
+      "sourceKeys": [
+        "sotsiaaltransport_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltransport_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_service_sotsiaaltransporditeenus",
+      "document_id": "kuusalu_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/sotsiaaltransporditeenus",
+      "content_hash": "c35f0673286c51c4370afceb0c0440611f95d1962e12353eb5906066dfcd9026",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_service_eluruumi_tagamine",
+      "canonical_item_id": "kuusalu_vald:service:eluruumi_tagamine",
+      "itemType": "service",
+      "title": "Eluruumi tagamine",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenuse eesmärk on kindlustada eluruumi kasutamise võimalus inimesele, kes ei suuda sotsiaalmajandusliku olukorra tõttu tagada endale ja oma perele sobivat eluruumi. Pärast taotluse esitamist hinnatakse isiku abivajadust ja toimetulekut. Positiivse otsuse järel sõlmitakse leping.",
+      "officialUrl": "https://www.kuusalu.ee/eluruumi-tagamine",
+      "targetGroup": "Inimesed ja pered, kes ei ole võimelised endale eluruumi tagama.",
+      "conditions": "Teenuse saamiseks hinnatakse abivajadust ja toimetulekut.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberavaldus",
+          "",
+          "",
+          "post"
+        ],
+        "steps": [
+          "Esita taotlus Kuusalu Vallavalitsuse sotsiaalteenistusele.",
+          "Taotluse võib saata e-postiga või teatada vajadusest telefonil.",
+          "Avalduse saab saata postiga või tuua vallavalitsusse."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva nõuetekohase taotluse esitamisest",
+      "pricing": null,
+      "relatedForms": [
+        "kuusalu_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_lea_kivipold"
+      ],
+      "sourceKeys": [
+        "eluruumi_tagamine_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eluruumi_tagamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_service_eluruumi_tagamine",
+      "document_id": "kuusalu_vald_service_eluruumi_tagamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/eluruumi-tagamine",
+      "content_hash": "7d5e4dff48fbbc8180eb16abea766ba91ed4a667cf384d8a3cfba20974dc087f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_service_volanoustamisteenus",
+      "canonical_item_id": "kuusalu_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenuse eesmärk on aidata inimesel selgitada oma rahalist olukorda ja leida lahendusi võlgadega toimetulekuks. Võlanõustaja poole soovitatakse pöörduda juba makseraskuste tekkimisel või sissetuleku vähenemisel. Teenuse osutaja on Kuusalu Vallavalitsuse lepingupartner MTÜ Võlanõustajad.",
+      "officialUrl": "https://www.kuusalu.ee/volanoustamisteenus1",
+      "targetGroup": "Inimesed, kellel on võlad või makseraskused.",
+      "conditions": "Teenuse saamiseks tuleb pöörduda vallavalitsuse sotsiaalteenistuse kaudu.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberavaldus",
+          "",
+          ""
+        ],
+        "steps": [
+          "Esita taotlus Kuusalu Vallavalitsuse sotsiaalteenistusele.",
+          "Taotluse võib saata aadressile või teatada vajadusest telefonil."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva kõikide dokumentide kättesaamisest",
+      "pricing": null,
+      "relatedForms": [
+        "kuusalu_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_alvi_karp"
+      ],
+      "sourceKeys": [
+        "volanoustamisteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "volanoustamisteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_service_volanoustamisteenus",
+      "document_id": "kuusalu_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/volanoustamisteenus1",
+      "content_hash": "f1234ac59cc497e60d5255e515175a103b6bd925383f6a3284d250c2c69df139",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "kuusalu_vald:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenuse eesmärk on toetada last kasvatava isiku toimetulekut või töötamist ning vähendada lapse erivajadusest tulenevat hoolduskoormust. Alates 01.09.2021 maksab Kuusalu Vallavalitsus lapsehoiuteenuse toetust lastele, kellele ei ole võimalik kohapeal lasteaiakohta tagada. Pärast taotluse esitamist hinnatakse abivajadust ja toimetulekut.",
+      "officialUrl": "https://www.kuusalu.ee/lapsehoiuteenus",
+      "targetGroup": "Pered, kelle laps vajab lapsehoidu või kelle lapsele ei ole võimalik lasteaiakohta tagada.",
+      "conditions": "Teenuse või toetuse vajadus hinnatakse pärast taotluse esitamist.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberavaldus",
+          "",
+          "",
+          "post"
+        ],
+        "steps": [
+          "Esita taotlus Kuusalu Vallavalitsuse sotsiaalteenistusele.",
+          "Taotluse võib saata aadressile või teatada vajadusest telefonil.",
+          "Avalduse saab saata postiga või tuua vallavalitsusse."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva nõuetekohase taotluse esitamisest",
+      "pricing": null,
+      "relatedForms": [
+        "kuusalu_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_kristiina_raivi_vilepaju"
+      ],
+      "sourceKeys": [
+        "lapsehoiuteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lapsehoiuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_service_lapsehoiuteenus",
+      "document_id": "kuusalu_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/lapsehoiuteenus",
+      "content_hash": "316dd583be6a12d8dbbe110e3362b1c04877c4f2c6f664c8325f12ea682b1213",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_service_asendushooldusteenus",
+      "canonical_item_id": "kuusalu_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenuse eesmärk on tagada lapse heaolu ja õigused, pakkudes peresarnaseid elutingimusi ja turvalist arengukeskkonda. Teenus võib olla pika- või lühiajaline ning aitab valmistada last ette võimetekohaseks toimetulekuks täisealisena. Teenuse osutajaks võib olla hoolduspere, perekodu või asenduskodu.",
+      "officialUrl": "https://www.kuusalu.ee/asendushooldusteenus",
+      "targetGroup": "Lapsed, kellele tuleb tagada asendushooldus.",
+      "conditions": "Teenuse vajadus otsustatakse lapse heaolu ja õiguste kaitse vajadusest lähtudes.",
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "relatedForms": [],
+      "relatedContacts": [
+        "kuusalu_vald_contact_helle_soots"
+      ],
+      "sourceKeys": [
+        "asendushooldusteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "asendushooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_service_asendushooldusteenus",
+      "document_id": "kuusalu_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/asendushooldusteenus",
+      "content_hash": "aa3c158f95ffc8f8efadea6f625edb73595e971153e563e09f232a95fc2e7148",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "kuusalu_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenuse eesmärk on toetada asendushoolduselt ja eestkostelt lahkuva inimese iseseisvat toimetulekut ning õpingute jätkamist. Teenuse kohta annab lisainfot sotsiaaltöö spetsialist. Detailne taotlemise käik ei olnud lehel põhjalikult kirjeldatud.",
+      "officialUrl": "https://www.kuusalu.ee/jarelhooldusteenus",
+      "targetGroup": "Asendushoolduselt või eestkostelt lahkuvad noored.",
+      "conditions": "Teenuse saamise vajadus selgitatakse individuaalselt.",
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "relatedForms": [],
+      "relatedContacts": [
+        "kuusalu_vald_contact_helle_soots"
+      ],
+      "sourceKeys": [
+        "jarelhooldusteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "jarelhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_service_jarelhooldusteenus",
+      "document_id": "kuusalu_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/jarelhooldusteenus",
+      "content_hash": "1909145722ee282e45a78f6e4d550edb57acb7540a825cf529635fcf5b426a1e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "kuusalu_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on riigi rahaline abi puuduses inimestele, mida maksab kohalik omavalitsus riigieelarvest. Toetust on õigus saada üksi elaval inimesel või perel, kelle kuu netosissetulek pärast eluasemekulude tasumist jääb alla riikliku toimetulekupiiri. Taotlemine toimub SPOKU keskkonnas ning vallamajas taotluse täitmiseks tuleb aeg kokku leppida.",
+      "officialUrl": "https://www.kuusalu.ee/et/toimetulekutoetus",
+      "targetGroup": "Puuduses inimesed ja pered.",
+      "conditions": "Õigus toetusele tekib juhul, kui kuu netosissetulek pärast eluasemekulude tasumist jääb alla riikliku toimetulekupiiri. Alates 1. juunist 2026 on toimetulekupiir esimesele liikmele 220 eurot kuus, igale alaealisele 288 eurot ja teisele ning igale järgmisele täisealisele liikmele 176 eurot.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "vallamaja"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU keskkonnas.",
+          "Vallamajas taotluse täitmiseks lepi aeg kokku sotsiaaltöö assistendiga."
+        ],
+        "deadline": "hiljemalt kuu viimaseks tööpäevaks"
+      },
+      "amount": null,
+      "relatedForms": [
+        "kuusalu_vald_form_sotsiaaltoetuste_avaldus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_ene_rebane"
+      ],
+      "sourceKeys": [
+        "small_income_page",
+        "toimetulekutoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "small_income_page",
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_toimetulekutoetus",
+      "document_id": "kuusalu_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/et/toimetulekutoetus",
+      "content_hash": "4884bd7bcafe22700b7fa0e9836bac804a5c13dd6a49c80fd579133ae04ec449",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_osalustasu_toetus",
+      "canonical_item_id": "kuusalu_vald:benefit:osalustasu_toetus",
+      "itemType": "benefit",
+      "title": "Osalustasu toetus",
+      "status": "active",
+      "summary": "Osalustasu toetus määratakse riskigruppi kuuluvale perele, kelle laps käib koolieelses munitsipaallasteasutuses. Taotluste esitamise tähtajad on 15. september ja 15. jaanuar. Muul ajal võib esitada taotlusi ootamatute majanduslike raskuste tõttu ning toetus määratakse avalduse esitamisele järgnevast kuust.",
+      "officialUrl": "https://www.kuusalu.ee/et/osalustasu-toetus",
+      "targetGroup": "Riskigruppi kuuluvad pered, kelle laps käib koolieelses munitsipaallasteasutuses.",
+      "conditions": "Toetus määratakse sotsiaalkomisjoni ettepaneku alusel ja makstakse teenuseosutajale.",
+      "application": {
+        "channels": [
+          "SPOKU"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU keskkonnas.",
+          "Kasuta osalus- ja toidutoetuse avalduse vormi."
+        ],
+        "deadline": "15. september ja 15. jaanuar"
+      },
+      "amount": null,
+      "relatedForms": [
+        "kuusalu_vald_form_osalus_toidutoetus_avaldus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_ene_rebane"
+      ],
+      "sourceKeys": [
+        "osalustasu_toetus_page",
+        "small_income_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "osalustasu_toetus_page",
+        "small_income_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_osalustasu_toetus",
+      "document_id": "kuusalu_vald_benefit_osalustasu_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/et/osalustasu-toetus",
+      "content_hash": "a774dc5a585d2f8f801432739b31a5068e1cffdf42c42704c3f9085f9d9bc8d8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_toidutoetus",
+      "canonical_item_id": "kuusalu_vald:benefit:toidutoetus",
+      "itemType": "benefit",
+      "title": "Toidutoetus",
+      "status": "active",
+      "summary": "Toidutoetus määratakse riskigruppi kuuluvale perele, kelle laps käib koolieelses lasteasutuses, toiduarvete hüvitamiseks. Taotluste esitamise tähtajad on 15. september ja 15. jaanuar. Muul ajal võib taotleda toetust ootamatult tekkinud majanduslike raskuste korral ning toetus määratakse avalduse esitamisele järgnevast kuust.",
+      "officialUrl": "https://www.kuusalu.ee/et/toidutoetus",
+      "targetGroup": "Riskigruppi kuuluvad pered, kelle laps käib koolieelses lasteasutuses.",
+      "conditions": "Toetus määratakse sotsiaalkomisjoni ettepaneku alusel ja makstakse teenuseosutajale.",
+      "application": {
+        "channels": [
+          "SPOKU"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU keskkonnas.",
+          "Kasuta osalus- ja toidutoetuse avalduse vormi."
+        ],
+        "deadline": "15. september ja 15. jaanuar"
+      },
+      "amount": null,
+      "relatedForms": [
+        "kuusalu_vald_form_osalus_toidutoetus_avaldus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_ene_rebane"
+      ],
+      "sourceKeys": [
+        "small_income_page",
+        "toidutoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "small_income_page",
+        "toidutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_toidutoetus",
+      "document_id": "kuusalu_vald_benefit_toidutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/et/toidutoetus",
+      "content_hash": "1b463149c420c6e4579143f6dcde8de865613a9caabeb8778dc4cfe60d7208f8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_huvihariduse_huviringi_ja_laagri_toetus",
+      "canonical_item_id": "kuusalu_vald:benefit:huvihariduse_huviringi_ja_laagri_toetus",
+      "itemType": "benefit",
+      "title": "Huvihariduse, huviringi ja laagri toetus",
+      "status": "active",
+      "summary": "Huvihariduse, huviringi ja laagri toetus aitab riskigruppi kuuluvatel peredel tasuda lapse huvihariduse, huviringi või laagri kulusid. KOV veebil on toetus seotud vormilehel huvihariduse, huviringi ja laagri toetuse taotlusega. Toetuse üksikasjad on seotud lapse osalemisega ja pere majandusliku olukorraga.",
+      "officialUrl": "https://www.kuusalu.ee/et/huvihariduse-huviringi-ja-laagri-toetus",
+      "targetGroup": "Riskigruppi kuuluvate perede lapsed ja noored.",
+      "conditions": "Toetust taotletakse lapse huviringi, huvihariduse või laagri kulude katmiseks. Täpne abikõlblikkus sõltub pere sissetulekust ja esitatud kuludokumentidest.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberavaldus",
+          ""
+        ],
+        "steps": [
+          "Esita taotlus toetuse saamiseks SPOKU keskkonnas, digiallkirjastatult e-posti teel või sotsiaalteenistuses.",
+          "Vorm on avaldatud taotluste vormide lehel."
+        ],
+        "deadline": null
+      },
+      "amount": null,
+      "relatedForms": [
+        "kuusalu_vald_form_huvihariduse_toetus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_ene_rebane"
+      ],
+      "sourceKeys": [
+        "forms_page",
+        "huvihariduse_toetus_page",
+        "small_income_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "huvihariduse_toetus_page",
+        "small_income_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_huvihariduse_huviringi_ja_laagri_toetus",
+      "document_id": "kuusalu_vald_benefit_huvihariduse_huviringi_ja_laagri_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/et/huvihariduse-huviringi-ja-laagri-toetus",
+      "content_hash": "a8de3e8cce5449ebbdee8586269d6cfa9a8263be91814b38bcf9820878d7495c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_tervisetoetus",
+      "canonical_item_id": "kuusalu_vald:benefit:tervisetoetus",
+      "itemType": "benefit",
+      "title": "Tervisetoetus",
+      "status": "active",
+      "summary": "Tervisetoetus aitab katta retseptiravimite, tervishoiuteenuste ning hooldus- ja abivahendite kulusid. Kuusalu valla veeb kirjeldab seda väikese sissetulekuga isikute abimeetmena ning retseptiravimite puhul arvestatakse raske ja sügava puudega inimese sissetulekut. Iga avaldus vaadatakse läbi ja võetakse arvesse eriolukordi.",
+      "officialUrl": "https://www.kuusalu.ee/et/tervisetoetus",
+      "targetGroup": "Väikese sissetulekuga isikud ja pered; retseptiravimite puhul raske ja sügava puudega inimesed.",
+      "conditions": "Väike sissetulek jääb alla 440 euro pereliikme kohta kuus; retseptiravimite ostukulude puhul alla 660 euro kuus.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberavaldus",
+          ""
+        ],
+        "steps": [
+          "Esita sotsiaaltoetuste avaldus koos kuludokumentidega.",
+          "Taotlust saab esitada SPOKU keskkonnas, e-posti teel või vastuvõtuajal kohapeal."
+        ],
+        "deadline": null
+      },
+      "amount": null,
+      "relatedForms": [
+        "kuusalu_vald_form_sotsiaaltoetuste_avaldus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_ene_rebane"
+      ],
+      "sourceKeys": [
+        "small_income_page",
+        "tervisetoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "small_income_page",
+        "tervisetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_tervisetoetus",
+      "document_id": "kuusalu_vald_benefit_tervisetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/et/tervisetoetus",
+      "content_hash": "0127aedc3789ec778bc8216f120740b641806e84e53ba7579553db394093a132",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_kuttetoetus",
+      "canonical_item_id": "kuusalu_vald:benefit:kuttetoetus",
+      "itemType": "benefit",
+      "title": "Küttetoetus",
+      "status": "active",
+      "summary": "Küttetoetus määratakse ja makstakse riskigruppi kuuluvale isikule või perele üks kord aastas küttekulude tasumiseks. Toetuse suurus on 400 eurot aastas ühe pere kohta. Taotlusega tuleb esitada kuludokument, näiteks kolme eelneva kuu elektriarved või küttepuude ostuarve.",
+      "officialUrl": "https://www.kuusalu.ee/et/kuttetoetus",
+      "targetGroup": "Riskigruppi kuuluvad isikud ja pered.",
+      "conditions": "Taotlusega tuleb esitada küttekulu tõendav kuludokument.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberavaldus",
+          ""
+        ],
+        "steps": [
+          "Esita sotsiaaltoetuste avaldus koos kuludokumentidega.",
+          "Taotluse saab täita SPOKU keskkonnas või paberil."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "amount": 400,
+        "currency": "EUR",
+        "description": "400 eurot aastas ühele perele"
+      },
+      "relatedForms": [
+        "kuusalu_vald_form_sotsiaaltoetuste_avaldus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_ene_rebane"
+      ],
+      "sourceKeys": [
+        "kuttetoetus_page",
+        "small_income_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "kuttetoetus_page",
+        "small_income_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_kuttetoetus",
+      "document_id": "kuusalu_vald_benefit_kuttetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/et/kuttetoetus",
+      "content_hash": "e71c80f64e38fa09ea2f8ddeff7634fcfbd82150ce16ecfb7c703475ba15f8c8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_uhekordne_toetus",
+      "canonical_item_id": "kuusalu_vald:benefit:uhekordne_toetus",
+      "itemType": "benefit",
+      "title": "Ühekordne toetus",
+      "status": "active",
+      "summary": "Ühekordne toetus määratakse ja makstakse riskigruppi kuuluvale isikule või perele erakorraliste väljaminekute hüvitamiseks. Toetust makstakse hädavajalike kulude katmiseks, mis aitavad kaasa isiku või pere toimetulekule. Põhjendatud juhul võib sotsiaalkomisjoni ettepanekul piirmäära ületada.",
+      "officialUrl": "https://www.kuusalu.ee/et/uhekordne-toetus",
+      "targetGroup": "Riskigruppi kuuluvad isikud ja pered.",
+      "conditions": "Taotluse ja kuludokumentide põhjal hinnatakse erakorralise väljamineku põhjendatust.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberavaldus",
+          ""
+        ],
+        "steps": [
+          "Esita sotsiaaltoetuste avaldus koos kuludokumentidega.",
+          "Taotluse saab täita SPOKU keskkonnas või paberil."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "amount": 200,
+        "currency": "EUR",
+        "description": "kuni 200 eurot aastas ühele perele; põhjendatud juhul võib piirmäära ületada"
+      },
+      "relatedForms": [
+        "kuusalu_vald_form_sotsiaaltoetuste_avaldus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_ene_rebane"
+      ],
+      "sourceKeys": [
+        "small_income_page",
+        "uhekordne_toetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "small_income_page",
+        "uhekordne_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_uhekordne_toetus",
+      "document_id": "kuusalu_vald_benefit_uhekordne_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/et/uhekordne-toetus",
+      "content_hash": "3c7fcf1d438c587b4bf45f27cadec4b1d2ec721d4f6cdc8684a7ada2b8bee3d9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_valtimatu_abi_toetus",
+      "canonical_item_id": "kuusalu_vald:benefit:valtimatu_abi_toetus",
+      "itemType": "benefit",
+      "title": "Vältimatu abi toetus",
+      "status": "active",
+      "summary": "Vältimatu abi toetus on rahaline abi inimesele, kes on sattunud sotsiaalselt abitusse olukorda elatusvahendite kaotuse või puudumise tõttu. Kuusalu valla veebis on toetuse suuruseks märgitud kuni 35 eurot taotleja kohta. Toetuse saamiseks tuleb esitada taotlus ja võtta ühendust sotsiaaltöö assistendiga.",
+      "officialUrl": "https://www.kuusalu.ee/valtimatu-abi-toetus",
+      "targetGroup": "Elatusvahendita või sotsiaalselt abitusse olukorda sattunud isikud.",
+      "conditions": "Toetus on mõeldud vältimatu esmase abi vajaduseks.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberavaldus",
+          ""
+        ],
+        "steps": [
+          "Esita sotsiaaltoetuste avaldus SPOKU keskkonnas või paberil.",
+          "Vajadusel pöördu sotsiaaltöö assistendi poole."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "amount": 35,
+        "currency": "EUR",
+        "description": "kuni 35 eurot ühele taotlejale"
+      },
+      "relatedForms": [
+        "kuusalu_vald_form_sotsiaaltoetuste_avaldus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_ene_rebane"
+      ],
+      "sourceKeys": [
+        "small_income_page",
+        "valtimatu_abi_toetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "small_income_page",
+        "valtimatu_abi_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_valtimatu_abi_toetus",
+      "document_id": "kuusalu_vald_benefit_valtimatu_abi_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/valtimatu-abi-toetus",
+      "content_hash": "88dcc9ba6eb719d21fbee3fc62d98018b3267b76450a4f29e37427231019612e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_hooldajatoetus_taisealise_isiku_hooldamise_eest",
+      "canonical_item_id": "kuusalu_vald:benefit:hooldajatoetus_taisealise_isiku_hooldamise_eest",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus täisealise isiku hooldamise eest",
+      "status": "active",
+      "summary": "Hooldajatoetus on seotud täisealise isiku hoolduse korraldamisega ja makstakse raske või sügava puudega täisealise isiku hooldajale. Hooldaja ja hooldatava tegelik ning rahvastikuregistrijärgne elukoht peab olema Kuusalu vallas. Sügava puudega isiku hooldamise eest makstakse toetust 75 eurot kuus ja raske puudega isiku hooldamise eest 50 eurot kuus.",
+      "officialUrl": "https://www.kuusalu.ee/hooldajatoetus",
+      "targetGroup": "Raske või sügava puudega täisealise isiku hooldaja.",
+      "conditions": "Toetust ei maksta mitmel juhul, sh kui hooldaja töötab, hoolduskoormus ei takista töötamist, hooldaja on ülalpidamiskohustuslane ilma erandita, hooldaja on ise raske või sügava puudega või abivajadus on kaetav muude meetmetega.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberavaldus"
+        ],
+        "steps": [
+          "Esita sotsiaalteenuse avaldus SPOKUS või paberil.",
+          "Vallavalitsus teeb abivajaduse hindamise."
+        ],
+        "deadline": "Hooldajatoetuse saaja peab ühe nädala jooksul teatama asjaoludest, mis eeldavad toetuse peatamist, lõpetamist või muutmist."
+      },
+      "amount": {
+        "amount": null,
+        "currency": "EUR",
+        "description": "75 eurot kuus sügava puudega isiku hooldamise eest; 50 eurot kuus raske puudega isiku hooldamise eest"
+      },
+      "relatedForms": [
+        "kuusalu_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_lea_kivipold"
+      ],
+      "sourceKeys": [
+        "abivajadus_puue_overview",
+        "hooldajatoetus_page",
+        "taisealise_hooldus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "abivajadus_puue_overview",
+        "hooldajatoetus_page",
+        "taisealise_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_hooldajatoetus_taisealise_isiku_hooldamise_eest",
+      "document_id": "kuusalu_vald_benefit_hooldajatoetus_taisealise_isiku_hooldamise_eest",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/hooldajatoetus",
+      "content_hash": "36eb0585eb559ac51d6c66713b1f2e6aaf8773acdba3fae6f5402a819fac83fb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_sunnitoetus",
+      "canonical_item_id": "kuusalu_vald:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetust makstakse lapse sünni puhul lapsevanemale juhul, kui mõlemad vanemad, välja arvatud üksikvanem, on enne lapse sünni registreerimist rahvastikuregistri järgi Kuusalu valla elanikud ning vähemalt üks vanem on elanud Kuusalu vallas vähemalt kuus kuud enne lapse sündi. Toetus makstakse kahes osas ja mitmikute puhul iga lapse eest. Taotluse saab esitada SPOKU keskkonnas või paberil.",
+      "officialUrl": "https://www.kuusalu.ee/sunnitoetus",
+      "targetGroup": "Lapsevanemad, kelle laps sünnib Kuusalu valla elaniku perre.",
+      "conditions": "Taotlus tuleb esitada kolme kuu jooksul lapse sünni registreerimisest ja ühe aasta vanuseks saamisest. Teise osa maksmiseks peavad laps ja vähemalt üks vanem olema aasta jooksul jätkuvalt Kuusalu valla elanikud.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberavaldus"
+        ],
+        "steps": [
+          "Esita esimese osa taotlus SPOKU keskkonnas.",
+          "Esita teise osa taotlus lapse 1-aastaseks saamise järel.",
+          "Paberblanketi saab veebilehelt või vallamajast."
+        ],
+        "deadline": "3 kuud lapse sünni registreerimisest ja 1-aastasest sünnipäevast"
+      },
+      "amount": {
+        "amount": 400,
+        "currency": "EUR",
+        "description": "400 eurot, makstakse kahes osas: 200 eurot pärast sündi ja 200 eurot lapse 1-aastaseks saamisel"
+      },
+      "relatedForms": [
+        "kuusalu_vald_form_sunnitoetus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_ene_rebane"
+      ],
+      "sourceKeys": [
+        "sunnitoetus_form_page",
+        "sunnitoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sunnitoetus_form_page",
+        "sunnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_sunnitoetus",
+      "document_id": "kuusalu_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/sunnitoetus",
+      "content_hash": "e69a3b4d014ae6316810b3f5d9f836888ca5268968d91cb8acb3df218102cf3a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_lapsehoiuteenuse_toetus",
+      "canonical_item_id": "kuusalu_vald:benefit:lapsehoiuteenuse_toetus",
+      "itemType": "benefit",
+      "title": "Lapsehoiuteenuse toetus",
+      "status": "active",
+      "summary": "Lapsehoiuteenuse toetus on mõeldud lapsehoiuteenuse kohatasu hüvitamiseks juhul, kui vallavalitsusel ei ole võimalik pakkuda 1,5- kuni 3-aastasele lapsele kohta valla haldusterritooriumi lasteaias. Toetust makstakse tegevusloaga teenuseosutajale arve alusel. Lapsevanem tasub kohatasust 20% Vabariigi Valitsuse kehtestatud töötasu alammäärast ja vallavalitsus katab puuduva osa.",
+      "officialUrl": "https://www.kuusalu.ee/lapsehoiuteenuse-toetus",
+      "targetGroup": "1,5- kuni 3-aastase lapse vanemad, kelle lapsele ei ole võimalik pakkuda lasteaiakohta Kuusalu vallas.",
+      "conditions": "Toetus makstakse alates lapsehoiuteenuse kasutamise päevast, kuid mitte rohkem kui kaks kuud tagasiulatuvalt taotluse esitamisest.",
+      "application": {
+        "channels": [
+          "kirjalik taotlus",
+          "SPOKU/paber"
+        ],
+        "steps": [
+          "Esita vallavalitsusele vormikohane taotlus.",
+          "Taotluses märgi taotleja ja lapse andmed, toetuse taotlemise põhjus, kontaktandmed ning muud asjaolud."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "amount": null,
+        "currency": "EUR",
+        "description": "Lapsevanem tasub 20% töötasu alammäärast; vald katab puuduva kohatasu osa."
+      },
+      "relatedForms": [
+        "kuusalu_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "lapsehoiuteenus_page",
+        "lapsehoiuteenuse_toetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lapsehoiuteenus_page",
+        "lapsehoiuteenuse_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_lapsehoiuteenuse_toetus",
+      "document_id": "kuusalu_vald_benefit_lapsehoiuteenuse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/lapsehoiuteenuse-toetus",
+      "content_hash": "5749aaf046cb8a14197cf93f5bdc78011013413adfb6f3a987421d3600e98c74",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_aabitsatoetus",
+      "canonical_item_id": "kuusalu_vald:benefit:aabitsatoetus",
+      "itemType": "benefit",
+      "title": "Aabitsatoetus",
+      "status": "active",
+      "summary": "Aabitsatoetust makstakse Kuusalu vallas elava lapse esmakordsel 1. klassi õppima asumisel. Toetust saab taotleda juhul, kui taotleja elukoht on 1. septembri seisuga Kuusalu vallas. Taotluse saab esitada internetis Kuusalu SPOKU keskkonnas.",
+      "officialUrl": "https://www.kuusalu.ee/aabitsatoetus",
+      "targetGroup": "Kuusalu valla laps, kes alustab esmakordselt 1. klassis.",
+      "conditions": "Taotleja elukoht peab 1. septembri seisuga olema Kuusalu vallas.",
+      "application": {
+        "channels": [
+          "SPOKU"
+        ],
+        "steps": [
+          "Esita taotlus Kuusalu SPOKU keskkonnas."
+        ],
+        "deadline": "10. september kuni 31. oktoober"
+      },
+      "amount": {
+        "amount": 200,
+        "currency": "EUR",
+        "description": "200 eurot lapse kohta"
+      },
+      "relatedForms": [
+        "kuusalu_vald_form_aabitsatoetus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_ene_rebane"
+      ],
+      "sourceKeys": [
+        "aabitsatoetus_page",
+        "forms_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "aabitsatoetus_page",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_aabitsatoetus",
+      "document_id": "kuusalu_vald_benefit_aabitsatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/aabitsatoetus",
+      "content_hash": "2074cd0be061d9535f90b0263f68a14521f2a7c0650e3eb56e925a17e837667b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_matusetoetus",
+      "canonical_item_id": "kuusalu_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetust makstakse Kuusalu valla elaniku surma korral tema matuse korraldajale. Erandkorras makstakse toetust ka oma elanikust matuse korraldajale juhul, kui lahkunul puudus rahvastikuregistrikanne või mujalt ei ole võimalik matusetoetust saada. Toetuse suurus on 400 eurot.",
+      "officialUrl": "https://www.kuusalu.ee/matusetoetus",
+      "targetGroup": "Kuusalu valla elaniku matuse korraldaja.",
+      "conditions": "Toetust saab taotleda kolme kuu jooksul surma registreerimisest.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberavaldus"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU keskkonnas või kasuta matusetoetuse vormi."
+        ],
+        "deadline": "3 kuud surma registreerimisest"
+      },
+      "amount": {
+        "amount": 400,
+        "currency": "EUR",
+        "description": "400 eurot"
+      },
+      "relatedForms": [
+        "kuusalu_vald_form_matusetoetus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_ene_rebane"
+      ],
+      "sourceKeys": [
+        "abivajadus_puue_overview",
+        "matusetoetus_form_page",
+        "matusetoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "abivajadus_puue_overview",
+        "matusetoetus_form_page",
+        "matusetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_matusetoetus",
+      "document_id": "kuusalu_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/matusetoetus",
+      "content_hash": "028dc8576a6794f5717f95e38321b46d3318aa4adb41ede2bd8e489e2721f69a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_suure_hooldus_ja_abivajadusega_lapse_toetus",
+      "canonical_item_id": "kuusalu_vald:benefit:suure_hooldus_ja_abivajadusega_lapse_toetus",
+      "itemType": "benefit",
+      "title": "Suure hooldus- ja abivajadusega lapse lapsehoiuteenuse ja toetavate teenuste toetus",
+      "status": "active",
+      "summary": "Toetavate teenuste eesmärk on soodustada puudega lapse ja tema pere toimetulekut ning vähendada pere hoolduskoormust või puudest tulenevaid lisavajadusi. Teenustele on õigus raske ja sügava puudega lapsel kuni selle kalendriaasta lõpuni, kui ta saab 18-aastaseks. Toetavate teenuste hulka kuuluvad sotsiaaltransport, rehabilitatsiooniplaani tegevuskavas soovitatud teenuste ja abivahendite eest tasumine, tugiisikuteenus, pere nõustamine, eluaseme kohandamine ja muud toetavad teenused.",
+      "officialUrl": "https://www.kuusalu.ee/suure-hooldus-ja-abivajadusega-lapse-lapsehoiuteenuse-ja-toetavate-teenuste-toetus",
+      "targetGroup": "Raske või sügava puudega lapsed ja nende pered.",
+      "conditions": "Õigus teenustele on raske ja sügava puudega lapsel kuni selle kalendriaasta lõpuni, kui laps saab 18-aastaseks.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberavaldus",
+          "",
+          ""
+        ],
+        "steps": [
+          "Esita taotlus Kuusalu Vallavalitsuse sotsiaalteenistusele.",
+          "Teenuse vajadusest võib teatada telefonil.",
+          "Esmakordsel pöördumisel hinnatakse lapse abivajadust 30 päeva jooksul taotluse laekumisest."
+        ],
+        "deadline": null
+      },
+      "amount": null,
+      "relatedForms": [
+        "kuusalu_vald_form_raske_sugava_puudega_lapse_toetus"
+      ],
+      "relatedContacts": [
+        "kuusalu_vald_contact_kristiina_raivi_vilepaju"
+      ],
+      "sourceKeys": [
+        "forms_page",
+        "suure_hooldusvajadusega_lapse_toetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "suure_hooldusvajadusega_lapse_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_suure_hooldus_ja_abivajadusega_lapse_toetus",
+      "document_id": "kuusalu_vald_benefit_suure_hooldus_ja_abivajadusega_lapse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/suure-hooldus-ja-abivajadusega-lapse-lapsehoiuteenuse-ja-toetavate-teenuste-toetus",
+      "content_hash": "0c5b7767a0cc1c6882d0bd646f8ed37c76df569d5bb9d5d6c0d7e27e3b3c3a4a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_ametikooli_opilase_toetus",
+      "canonical_item_id": "kuusalu_vald:benefit:ametikooli_opilase_toetus",
+      "itemType": "benefit",
+      "title": "Ametikooli õpilase toetus",
+      "status": "active",
+      "summary": "Ametikooli õpilase toetus on Kuusalu valla ametlikul veebilehel eraldi nimetatud sotsiaaltoetus. Detailtingimused, täpne taotlemise kord ja summa ei olnud kasutatud KOV veebilehel piisavalt lahti kirjutatud, mistõttu kirje vajab järelkontrolli.",
+      "officialUrl": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "targetGroup": null,
+      "conditions": null,
+      "application": null,
+      "amount": null,
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "unresolvedIssues": [
+        "KOV veebis oli toetus eraldi nimetatud, kuid detailtingimusi ja taotlusvormi seost ei õnnestunud kindlalt kinnitada."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_ametikooli_opilase_toetus",
+      "document_id": "kuusalu_vald_benefit_ametikooli_opilase_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "content_hash": "8b14e64c0e1e945204faaa478af269548fd5298f6022d34aaca633e420a96b51",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_puudega_lapse_transporditoetus",
+      "canonical_item_id": "kuusalu_vald:benefit:puudega_lapse_transporditoetus",
+      "itemType": "benefit",
+      "title": "Puudega lapse transporditoetus",
+      "status": "active",
+      "summary": "Puudega lapse transporditoetus on Kuusalu valla ametlikul veebilehel eraldi nimetatud sotsiaaltoetus. Detailtingimused, täpne taotlemise kord ja summa ei olnud kasutatud KOV veebilehel piisavalt lahti kirjutatud, mistõttu kirje vajab järelkontrolli.",
+      "officialUrl": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "targetGroup": null,
+      "conditions": null,
+      "application": null,
+      "amount": null,
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "unresolvedIssues": [
+        "KOV veebis oli toetus eraldi nimetatud, kuid detailtingimusi ja taotlusvormi seost ei õnnestunud kindlalt kinnitada."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_puudega_lapse_transporditoetus",
+      "document_id": "kuusalu_vald_benefit_puudega_lapse_transporditoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "content_hash": "889b686e528a5d7bd3d24fbfbf01d3bd6772108c4246329be41cb8d716bff843",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_hoolduspere_toetus",
+      "canonical_item_id": "kuusalu_vald:benefit:hoolduspere_toetus",
+      "itemType": "benefit",
+      "title": "Hoolduspere toetus",
+      "status": "active",
+      "summary": "Hoolduspere toetus on Kuusalu valla ametlikul veebilehel eraldi nimetatud sotsiaaltoetus. Detailtingimused, täpne taotlemise kord ja summa ei olnud kasutatud KOV veebilehel piisavalt lahti kirjutatud, mistõttu kirje vajab järelkontrolli.",
+      "officialUrl": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "targetGroup": null,
+      "conditions": null,
+      "application": null,
+      "amount": null,
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "unresolvedIssues": [
+        "KOV veebis oli toetus eraldi nimetatud, kuid detailtingimusi ja taotlusvormi seost ei õnnestunud kindlalt kinnitada."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_hoolduspere_toetus",
+      "document_id": "kuusalu_vald_benefit_hoolduspere_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "content_hash": "0a9dd213a14d3e17e0e5a7c83802e39d7e5a1545eec411d0d8587858334c248b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_lasterikka_pere_toetus",
+      "canonical_item_id": "kuusalu_vald:benefit:lasterikka_pere_toetus",
+      "itemType": "benefit",
+      "title": "Lasterikka pere toetus",
+      "status": "active",
+      "summary": "Lasterikka pere toetus on Kuusalu valla ametlikul veebilehel eraldi nimetatud sotsiaaltoetus. Detailtingimused, täpne taotlemise kord ja summa ei olnud kasutatud KOV veebilehel piisavalt lahti kirjutatud, mistõttu kirje vajab järelkontrolli.",
+      "officialUrl": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "targetGroup": null,
+      "conditions": null,
+      "application": null,
+      "amount": null,
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "unresolvedIssues": [
+        "KOV veebis oli toetus eraldi nimetatud, kuid detailtingimusi ja taotlusvormi seost ei õnnestunud kindlalt kinnitada."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_lasterikka_pere_toetus",
+      "document_id": "kuusalu_vald_benefit_lasterikka_pere_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "content_hash": "c5663ce04364cdc2d9bd75bac8f9510f379243f0a2a382bcb3fbdffa2f5035c8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_elluastumistoetus",
+      "canonical_item_id": "kuusalu_vald:benefit:elluastumistoetus",
+      "itemType": "benefit",
+      "title": "Elluastumistoetus",
+      "status": "active",
+      "summary": "Elluastumistoetus on Kuusalu valla ametlikul veebilehel eraldi nimetatud sotsiaaltoetus. Detailtingimused, täpne taotlemise kord ja summa ei olnud kasutatud KOV veebilehel piisavalt lahti kirjutatud, mistõttu kirje vajab järelkontrolli.",
+      "officialUrl": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "targetGroup": null,
+      "conditions": null,
+      "application": null,
+      "amount": null,
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "unresolvedIssues": [
+        "KOV veebis oli toetus eraldi nimetatud, kuid detailtingimusi ja taotlusvormi seost ei õnnestunud kindlalt kinnitada."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_elluastumistoetus",
+      "document_id": "kuusalu_vald_benefit_elluastumistoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "content_hash": "a5130b09a6c567fe7e0df4fdd01d4f64906899b77ff8e32376632e0c05500608",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_puudega_inimese_toetus",
+      "canonical_item_id": "kuusalu_vald:benefit:puudega_inimese_toetus",
+      "itemType": "benefit",
+      "title": "Puudega inimese toetus",
+      "status": "active",
+      "summary": "Puudega inimese toetus on Kuusalu valla ametlikul veebilehel eraldi nimetatud sotsiaaltoetus. Detailtingimused, täpne taotlemise kord ja summa ei olnud kasutatud KOV veebilehel piisavalt lahti kirjutatud, mistõttu kirje vajab järelkontrolli.",
+      "officialUrl": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "targetGroup": null,
+      "conditions": null,
+      "application": null,
+      "amount": null,
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "unresolvedIssues": [
+        "KOV veebis oli toetus eraldi nimetatud, kuid detailtingimusi ja taotlusvormi seost ei õnnestunud kindlalt kinnitada."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_puudega_inimese_toetus",
+      "document_id": "kuusalu_vald_benefit_puudega_inimese_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "content_hash": "b581569c333f66bfe4e50072bdf11ff41b2354199536e8014fc2e8250a787f18",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_kriisitoetus",
+      "canonical_item_id": "kuusalu_vald:benefit:kriisitoetus",
+      "itemType": "benefit",
+      "title": "Kriisitoetus",
+      "status": "active",
+      "summary": "Kriisitoetus on Kuusalu valla ametlikul veebilehel eraldi nimetatud sotsiaaltoetus. Detailtingimused, täpne taotlemise kord ja summa ei olnud kasutatud KOV veebilehel piisavalt lahti kirjutatud, mistõttu kirje vajab järelkontrolli.",
+      "officialUrl": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "targetGroup": null,
+      "conditions": null,
+      "application": null,
+      "amount": null,
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "unresolvedIssues": [
+        "KOV veebis oli toetus eraldi nimetatud, kuid detailtingimusi ja taotlusvormi seost ei õnnestunud kindlalt kinnitada."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_kriisitoetus",
+      "document_id": "kuusalu_vald_benefit_kriisitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "content_hash": "8b7598101e67c0e2e85ad3f69a95f1c77a100fd52567594600d766f6a8677d19",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_joulutoetus",
+      "canonical_item_id": "kuusalu_vald:benefit:joulutoetus",
+      "itemType": "benefit",
+      "title": "Jõulutoetus",
+      "status": "active",
+      "summary": "Jõulutoetus on Kuusalu valla ametlikul veebilehel eraldi nimetatud sotsiaaltoetus. Detailtingimused, täpne taotlemise kord ja summa ei olnud kasutatud KOV veebilehel piisavalt lahti kirjutatud, mistõttu kirje vajab järelkontrolli.",
+      "officialUrl": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "targetGroup": null,
+      "conditions": null,
+      "application": null,
+      "amount": null,
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "unresolvedIssues": [
+        "KOV veebis oli toetus eraldi nimetatud, kuid detailtingimusi ja taotlusvormi seost ei õnnestunud kindlalt kinnitada."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_joulutoetus",
+      "document_id": "kuusalu_vald_benefit_joulutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "content_hash": "5c27dd47555f45955e189e96cf0fa6effbecefeb8ed05127d9e64cbaa164241a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_juubelitoetus",
+      "canonical_item_id": "kuusalu_vald:benefit:juubelitoetus",
+      "itemType": "benefit",
+      "title": "Juubelitoetus",
+      "status": "active",
+      "summary": "Juubelitoetus on Kuusalu valla ametlikul veebilehel eraldi nimetatud sotsiaaltoetus. Detailtingimused, täpne taotlemise kord ja summa ei olnud kasutatud KOV veebilehel piisavalt lahti kirjutatud, mistõttu kirje vajab järelkontrolli.",
+      "officialUrl": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "targetGroup": null,
+      "conditions": null,
+      "application": null,
+      "amount": null,
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "unresolvedIssues": [
+        "KOV veebis oli toetus eraldi nimetatud, kuid detailtingimusi ja taotlusvormi seost ei õnnestunud kindlalt kinnitada."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_juubelitoetus",
+      "document_id": "kuusalu_vald_benefit_juubelitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "content_hash": "f19d83c44b3e1b0546be1c0434b502d629a491d24abb0a70291ca58830caf8dc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_intervallhoiuteenuse_voi_koduhooldusteenuse_toetus",
+      "canonical_item_id": "kuusalu_vald:benefit:intervallhoiuteenuse_voi_koduhooldusteenuse_toetus",
+      "itemType": "benefit",
+      "title": "Intervallhoiuteenuse või koduhooldusteenuse toetus",
+      "status": "active",
+      "summary": "Intervallhoiuteenuse või koduhooldusteenuse toetus on Kuusalu valla ametlikul veebilehel eraldi nimetatud sotsiaaltoetus. Detailtingimused, täpne taotlemise kord ja summa ei olnud kasutatud KOV veebilehel piisavalt lahti kirjutatud, mistõttu kirje vajab järelkontrolli.",
+      "officialUrl": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "targetGroup": null,
+      "conditions": null,
+      "application": null,
+      "amount": null,
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "unresolvedIssues": [
+        "KOV veebis oli toetus eraldi nimetatud, kuid detailtingimusi ja taotlusvormi seost ei õnnestunud kindlalt kinnitada."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_intervallhoiuteenuse_voi_koduhooldusteenuse_toetus",
+      "document_id": "kuusalu_vald_benefit_intervallhoiuteenuse_voi_koduhooldusteenuse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "content_hash": "d5a58d1af90a2df1da9678754d4fa8c2df3559996adf3772ec8c88018f8a3ca2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_hooldajatoetus_puudega_lapse_vanemale",
+      "canonical_item_id": "kuusalu_vald:benefit:hooldajatoetus_puudega_lapse_vanemale",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus puudega lapse vanemale",
+      "status": "active",
+      "summary": "Hooldajatoetus puudega lapse vanemale on Kuusalu valla ametlikul veebilehel eraldi nimetatud sotsiaaltoetus. Detailtingimused, täpne taotlemise kord ja summa ei olnud kasutatud KOV veebilehel piisavalt lahti kirjutatud, mistõttu kirje vajab järelkontrolli.",
+      "officialUrl": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "targetGroup": null,
+      "conditions": null,
+      "application": null,
+      "amount": null,
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "unresolvedIssues": [
+        "KOV veebis oli toetus eraldi nimetatud, kuid detailtingimusi ja taotlusvormi seost ei õnnestunud kindlalt kinnitada."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_hooldajatoetus_puudega_lapse_vanemale",
+      "document_id": "kuusalu_vald_benefit_hooldajatoetus_puudega_lapse_vanemale",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "content_hash": "d718fd7748a6ac422ea1c118f3b54564ffa4ef0faece29933017489f113f0d79",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_benefit_tasuta_ujumine_puuetega_noortele",
+      "canonical_item_id": "kuusalu_vald:benefit:tasuta_ujumine_puuetega_noortele",
+      "itemType": "benefit",
+      "title": "Tasuta ujumine puuetega noortele",
+      "status": "active",
+      "summary": "Tasuta ujumine puuetega noortele on Kuusalu valla ametlikul veebilehel eraldi nimetatud sotsiaaltoetus. Detailtingimused, täpne taotlemise kord ja summa ei olnud kasutatud KOV veebilehel piisavalt lahti kirjutatud, mistõttu kirje vajab järelkontrolli.",
+      "officialUrl": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "targetGroup": null,
+      "conditions": null,
+      "application": null,
+      "amount": null,
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "unresolvedIssues": [
+        "KOV veebis oli toetus eraldi nimetatud, kuid detailtingimusi ja taotlusvormi seost ei õnnestunud kindlalt kinnitada."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_benefit_tasuta_ujumine_puuetega_noortele",
+      "document_id": "kuusalu_vald_benefit_tasuta_ujumine_puuetega_noortele",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/sotsiaaltoetused",
+      "content_hash": "e881267d8968bc4755be2fe9248d53bc75a20da62017a962d8ce5a698dd0c1c0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_resource_medi_hairenuputeenus",
+      "canonical_item_id": "kuusalu_vald:resource:medi_hairenuputeenus",
+      "itemType": "resource",
+      "title": "MEDI häirenuputeenus",
+      "status": "active",
+      "summary": "MEDI häirenuputeenus võimaldab õnnetuse või terviserikke korral nupuvajutusega abi kutsuda. KOV lehel on toodud MEDI nõuandeliin, ja Kuusalu valla kontakt, kellelt saab selgitusi küsida. Teenus on välise teenusepakkuja inforessurss, mitte Kuusalu valla enda teenus.",
+      "officialUrl": "https://www.kuusalu.ee/medi-hairenuputeenus",
+      "targetGroup": "Inimesed, kes vajavad kodus häirenuppu ja kiire abi kutsumise võimalust.",
+      "conditions": "KOV leht suunab teenuse kohta lisainfo saamiseks MEDI poole.",
+      "application": {
+        "channels": [
+          "",
+          ""
+        ],
+        "steps": [
+          "Helista MEDI nõuandeliinile või kirjuta.",
+          "Kuusalu vallas saab selgitusi hoolekandespetsialistilt."
+        ],
+        "deadline": null
+      },
+      "relatedContacts": [
+        "kuusalu_vald_contact_aigi_reinomagi"
+      ],
+      "sourceKeys": [
+        "medi_hairenuputeenus_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "medi_hairenuputeenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_resource_medi_hairenuputeenus",
+      "document_id": "kuusalu_vald_resource_medi_hairenuputeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/medi-hairenuputeenus",
+      "content_hash": "ca632a710ad8ec1c94b3abe53bf0cb942dbb79793a305f7148be5ad7f9def748",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_resource_mtu_volanoustajad",
+      "canonical_item_id": "kuusalu_vald:resource:mtu_volanoustajad",
+      "itemType": "resource",
+      "title": "MTÜ Võlanõustajad",
+      "status": "active",
+      "summary": "MTÜ Võlanõustajad on Kuusalu Vallavalitsuse lepingupartner võlanõustamisteenuse osutamisel. KOV lehel on märgitud, et võlanõustamise teenust osutab lepingupartner ja taotlemine toimub vallavalitsuse kaudu.",
+      "officialUrl": "https://www.kuusalu.ee/volanoustamisteenus1",
+      "targetGroup": "Võlanõustamist vajavad Kuusalu valla elanikud.",
+      "conditions": "Teenusele suunamine toimub vallavalitsuse kaudu.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "",
+          "vallavalitsus"
+        ],
+        "steps": [
+          "Esita teenuse taotlus Kuusalu Vallavalitsuse sotsiaalteenistusele."
+        ],
+        "deadline": null
+      },
+      "relatedContacts": [
+        "kuusalu_vald_contact_alvi_karp"
+      ],
+      "sourceKeys": [
+        "volanoustamisteenus_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "volanoustamisteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_resource_mtu_volanoustajad",
+      "document_id": "kuusalu_vald_resource_mtu_volanoustajad",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/volanoustamisteenus1",
+      "content_hash": "7fe0c0408b0b38314da02bbd1025acc62aa16f09303e622e16cfe8b5ea108013",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_resource_isikliku_abivahendi_kaart",
+      "canonical_item_id": "kuusalu_vald:resource:isikliku_abivahendi_kaart",
+      "itemType": "resource",
+      "title": "Isikliku abivahendi kaart",
+      "status": "active",
+      "summary": "Kuusalu valla veebis selgitatakse, et alates 1. detsembrist 2020 ei pea kliendid enam abivahendi kaarti taotlema ega kaasas kandma, sest info abivahenditehingute kohta liigub elektrooniliselt. Oma ostu- ja üüritehingute infot saab vaadata Sotsiaalkindlustusameti iseteenindusest.",
+      "officialUrl": "https://www.kuusalu.ee/isikliku-abivahendi-kaart",
+      "targetGroup": "Abivahendeid ostvad või üürivad inimesed.",
+      "conditions": "KOV leht suunab lisainfo saamiseks Sotsiaalkindlustusameti kanalitesse.",
+      "application": null,
+      "relatedContacts": [],
+      "sourceKeys": [
+        "isikliku_abivahendi_kaart_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "isikliku_abivahendi_kaart_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_resource_isikliku_abivahendi_kaart",
+      "document_id": "kuusalu_vald_resource_isikliku_abivahendi_kaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/isikliku-abivahendi-kaart",
+      "content_hash": "ee0163798eae4023c247b5cbe7a9d3c4e4a04a9954b533fd7e0b1031b59acfa1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_resource_puudega_inimese_soiduki_parkimiskaart",
+      "canonical_item_id": "kuusalu_vald:resource:puudega_inimese_soiduki_parkimiskaart",
+      "itemType": "resource",
+      "title": "Puudega inimese sõiduki parkimiskaart",
+      "status": "active",
+      "summary": "Puudega inimese sõiduki parkimiskaart antakse taotluse alusel välja isikule, kellel esineb keskmisele, raskele või sügavale puude raskusastmele vastav liikumis- või nägemisfunktsiooni kõrvalekalle või ajutine liikumis- või nägemisfunktsiooni kõrvalekalle.",
+      "officialUrl": "https://www.kuusalu.ee/sotsiaalteenused1",
+      "targetGroup": "Liikumis- või nägemispuudega inimesed või ajutise liikumis-/nägemisfunktsiooni kõrvalekaldega inimesed.",
+      "conditions": "Kaart antakse välja taotluse alusel.",
+      "application": {
+        "channels": [
+          "SPOKU",
+          "paberavaldus",
+          ""
+        ],
+        "steps": [
+          "Esita taotlus Kuusalu Vallavalitsuse sotsiaalteenistusele.",
+          "Pärast taotluse esitamist hinnatakse abivajadust ja toimetulekut."
+        ],
+        "deadline": null
+      },
+      "relatedContacts": [
+        "kuusalu_vald_contact_lea_kivipold"
+      ],
+      "sourceKeys": [
+        "abivajadus_puue_overview",
+        "parkimiskaart_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "abivajadus_puue_overview",
+        "parkimiskaart_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_resource_puudega_inimese_soiduki_parkimiskaart",
+      "document_id": "kuusalu_vald_resource_puudega_inimese_soiduki_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/sotsiaalteenused1",
+      "content_hash": "571ea5c069db22f24f69839f3493aa1891202adca717cdb171af49e7c222c062",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_resource_ohvriabi",
+      "canonical_item_id": "kuusalu_vald:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "Ohvriabi eesmärk on toetada kuriteo, vägivalla või kriisijuhtumi ohvriks langenud inimeste toimetulekut ja turvatunnet ning ennetada vägivalla kordumist. KOV lehel on avaldatud ohvriabi kriisitelefon, lasteabi ja teised riiklikud abiliinid.",
+      "officialUrl": "https://www.kuusalu.ee/ohvriabi",
+      "targetGroup": "Kuriteo, vägivalla või kriisijuhtumi ohvrid ja nende lähedased.",
+      "conditions": "Abi on KOV lehel kirjeldatud välise abikanalina.",
+      "application": {
+        "channels": [
+          "",
+          "",
+          "veeb"
+        ],
+        "steps": [
+          "Helista ohvriabi kriisitelefonile või lasteabi telefonile.",
+          "Vajadusel pöördu Harjumaa ohvriabikeskuse poole."
+        ],
+        "deadline": null
+      },
+      "relatedContacts": [],
+      "sourceKeys": [
+        "abi_infotelefonid_page",
+        "ohvriabi_page",
+        "politsei_ohvriabi_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "abi_infotelefonid_page",
+        "ohvriabi_page",
+        "politsei_ohvriabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_resource_ohvriabi",
+      "document_id": "kuusalu_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/ohvriabi",
+      "content_hash": "c31ade34bbfbc8c7a6eccb2422bc91b0bbb5918d186a760d7a7512889358b891",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_resource_abi_ja_infotelefonid",
+      "canonical_item_id": "kuusalu_vald:resource:abi_ja_infotelefonid",
+      "itemType": "resource",
+      "title": "Abi- ja infotelefonid",
+      "status": "active",
+      "summary": "Kuusalu valla kriisivalmiduse lehel on avaldatud olulisemad abi- ja infotelefonid: hädaabinumber, riigiinfo perearsti nõuandeliin 1220, mürgistusinfo 16 662, lasteabi, naiste tugiliin 1492 ja ohvriabi kriisitelefon.",
+      "officialUrl": "https://www.kuusalu.ee/abi-ja-infotelefonid",
+      "targetGroup": "Kriisi, vägivalla, tervisemure või muu kiire abi vajadusega inimesed.",
+      "conditions": "KOV leht koondab riiklikud ja valdkondlikud abitelefonid.",
+      "application": null,
+      "relatedContacts": [],
+      "sourceKeys": [
+        "abi_infotelefonid_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "abi_infotelefonid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_resource_abi_ja_infotelefonid",
+      "document_id": "kuusalu_vald_resource_abi_ja_infotelefonid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/abi-ja-infotelefonid",
+      "content_hash": "048f85945d8c2e2d33b8c77da5baa3540f9af2abcf384d66775da9aec184660e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_resource_psuhholoogiline_tugi_kuusalu_vallas",
+      "canonical_item_id": "kuusalu_vald:resource:psuhholoogiline_tugi_kuusalu_vallas",
+      "itemType": "resource",
+      "title": "Psühholoogiline tugi Kuusalu vallas",
+      "status": "active",
+      "summary": "Kuusalu valla abi- ja infotelefonide lehel on avaldatud psühholoogilise toe kontakt numbril. Lehel on märgitud, et psühholoogilist tuge koordineerib Kuusalu Hariduse Tugikeskuse psühholoog Annika Agu-Aasrand.",
+      "officialUrl": "https://www.kuusalu.ee/abi-ja-infotelefonid",
+      "targetGroup": "Psühholoogilist tuge vajavad Kuusalu valla elanikud.",
+      "conditions": "KOV leht avaldab kontakti inforessursina.",
+      "application": {
+        "channels": [
+          ""
+        ],
+        "steps": [
+          "Helista psühholoogilise toe numbrile."
+        ],
+        "deadline": null
+      },
+      "relatedContacts": [],
+      "sourceKeys": [
+        "abi_infotelefonid_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "abi_infotelefonid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_resource_psuhholoogiline_tugi_kuusalu_vallas",
+      "document_id": "kuusalu_vald_resource_psuhholoogiline_tugi_kuusalu_vallas",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/abi-ja-infotelefonid",
+      "content_hash": "2391d2990ae7e6015f10fb0687bb5d713c1f510a79ef1dd4793aee57be9763b6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_form_sotsiaalteenuse_avaldus",
+      "canonical_item_id": "kuusalu_vald:form:sotsiaalteenuse_avaldus",
+      "itemType": "form",
+      "title": "Sotsiaalteenuse avaldus",
+      "status": "active",
+      "summary": "Sotsiaalteenuse avaldust kasutatakse mitme Kuusalu valla sotsiaalteenuse taotlemiseks. Teenuste detaillehtedel on viidatud avalduse esitamisele SPOKUS või paberil.",
+      "officialUrl": "https://www.kuusalu.ee/taotluste-vormid1",
+      "format": "web_form_or_paper_form",
+      "submissionChannels": [
+        "SPOKU",
+        "paberavaldus",
+        "",
+        "post",
+        "kohapeal"
+      ],
+      "relatedTo": [
+        "kuusalu_vald_service_koduteenus",
+        "kuusalu_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+        "kuusalu_vald_service_tugiisikuteenus",
+        "kuusalu_vald_service_taisealise_isiku_hooldus",
+        "kuusalu_vald_service_isikliku_abistaja_teenus",
+        "kuusalu_vald_service_varjupaigateenus",
+        "kuusalu_vald_service_turvakoduteenus",
+        "kuusalu_vald_service_sotsiaaltransporditeenus",
+        "kuusalu_vald_service_eluruumi_tagamine",
+        "kuusalu_vald_service_volanoustamisteenus",
+        "kuusalu_vald_service_lapsehoiuteenus"
+      ],
+      "sourceKeys": [
+        "aabitsatoetus_form_page",
+        "abivajadus_puue_overview",
+        "ametkooli_opilase_toetus_form_page",
+        "forms_page",
+        "huvihariduse_toetus_form_page",
+        "osalus_toidutoetus_avaldus_form_page",
+        "raske_sugava_puudega_lapse_toetus_form_page",
+        "sotsiaalteenuse_avaldus_form_page",
+        "sotsiaaltoetuste_avaldus_form_page"
+      ],
+      "item_type": "form",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "aabitsatoetus_form_page",
+        "abivajadus_puue_overview",
+        "ametkooli_opilase_toetus_form_page",
+        "forms_page",
+        "huvihariduse_toetus_form_page",
+        "osalus_toidutoetus_avaldus_form_page",
+        "raske_sugava_puudega_lapse_toetus_form_page",
+        "sotsiaalteenuse_avaldus_form_page",
+        "sotsiaaltoetuste_avaldus_form_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_form_sotsiaalteenuse_avaldus",
+      "document_id": "kuusalu_vald_form_sotsiaalteenuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/taotluste-vormid1",
+      "content_hash": "5dbd8e36077fba598212d54e4eeac84831879eacb14deb07d99d91b8e36475e1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_form_sotsiaaltoetuste_avaldus",
+      "canonical_item_id": "kuusalu_vald:form:sotsiaaltoetuste_avaldus",
+      "itemType": "form",
+      "title": "Sotsiaaltoetuste avaldus",
+      "status": "active",
+      "summary": "Sotsiaaltoetuste avaldus on Kuusalu valla vorm väikese sissetulekuga elanike toetuste taotlemiseks.",
+      "officialUrl": "https://www.kuusalu.ee/taotluste-vormid1",
+      "format": "web_form_or_paper_form",
+      "submissionChannels": [
+        "SPOKU",
+        "digiallkirjastatud",
+        "kohapeal"
+      ],
+      "relatedTo": [
+        "kuusalu_vald_benefit_toimetulekutoetus",
+        "kuusalu_vald_benefit_tervisetoetus",
+        "kuusalu_vald_benefit_kuttetoetus",
+        "kuusalu_vald_benefit_uhekordne_toetus",
+        "kuusalu_vald_benefit_valtimatu_abi_toetus"
+      ],
+      "sourceKeys": [
+        "aabitsatoetus_form_page",
+        "ametkooli_opilase_toetus_form_page",
+        "forms_page",
+        "huvihariduse_toetus_form_page",
+        "osalus_toidutoetus_avaldus_form_page",
+        "raske_sugava_puudega_lapse_toetus_form_page",
+        "small_income_page",
+        "sotsiaalteenuse_avaldus_form_page",
+        "sotsiaaltoetuste_avaldus_form_page"
+      ],
+      "item_type": "form",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "aabitsatoetus_form_page",
+        "ametkooli_opilase_toetus_form_page",
+        "forms_page",
+        "huvihariduse_toetus_form_page",
+        "osalus_toidutoetus_avaldus_form_page",
+        "raske_sugava_puudega_lapse_toetus_form_page",
+        "small_income_page",
+        "sotsiaalteenuse_avaldus_form_page",
+        "sotsiaaltoetuste_avaldus_form_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_form_sotsiaaltoetuste_avaldus",
+      "document_id": "kuusalu_vald_form_sotsiaaltoetuste_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/taotluste-vormid1",
+      "content_hash": "43d57269b2c6db122ebb8beea849c3187544bd91b5f8df8a5d657b8f00930f8b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_form_osalus_toidutoetus_avaldus",
+      "canonical_item_id": "kuusalu_vald:form:osalus_toidutoetus_avaldus",
+      "itemType": "form",
+      "title": "Osalus- ja toidutoetuse avaldus",
+      "status": "active",
+      "summary": "Osalus- ja toidutoetuse avaldus on seotud osalustasu toetuse ja toidutoetusega.",
+      "officialUrl": "https://www.kuusalu.ee/taotluste-vormid1",
+      "format": "web_form_or_paper_form",
+      "submissionChannels": [
+        "SPOKU",
+        "paberavaldus"
+      ],
+      "relatedTo": [
+        "kuusalu_vald_benefit_osalustasu_toetus",
+        "kuusalu_vald_benefit_toidutoetus"
+      ],
+      "sourceKeys": [
+        "aabitsatoetus_form_page",
+        "ametkooli_opilase_toetus_form_page",
+        "forms_page",
+        "huvihariduse_toetus_form_page",
+        "osalus_toidutoetus_avaldus_form_page",
+        "osalustasu_toetus_page",
+        "raske_sugava_puudega_lapse_toetus_form_page",
+        "sotsiaalteenuse_avaldus_form_page",
+        "sotsiaaltoetuste_avaldus_form_page",
+        "toidutoetus_page"
+      ],
+      "item_type": "form",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "aabitsatoetus_form_page",
+        "ametkooli_opilase_toetus_form_page",
+        "forms_page",
+        "huvihariduse_toetus_form_page",
+        "osalus_toidutoetus_avaldus_form_page",
+        "osalustasu_toetus_page",
+        "raske_sugava_puudega_lapse_toetus_form_page",
+        "sotsiaalteenuse_avaldus_form_page",
+        "sotsiaaltoetuste_avaldus_form_page",
+        "toidutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_form_osalus_toidutoetus_avaldus",
+      "document_id": "kuusalu_vald_form_osalus_toidutoetus_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/taotluste-vormid1",
+      "content_hash": "03dfe3c86544ef6a19b1a70059032c18ef45a53ab5fde18963fc59c9bc4e3818",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_form_ametkooli_opilase_toetus",
+      "canonical_item_id": "kuusalu_vald:form:ametkooli_opilase_toetus",
+      "itemType": "form",
+      "title": "Ametikooli õpilase toetuse avaldus",
+      "status": "active",
+      "summary": "Taotluste vormide lehel on eraldi nimetatud ametikooli õpilase toetuse avaldus.",
+      "officialUrl": "https://www.kuusalu.ee/taotluste-vormid1",
+      "format": "web_form_or_paper_form",
+      "submissionChannels": [
+        "SPOKU",
+        "paberavaldus"
+      ],
+      "relatedTo": [
+        "kuusalu_vald_benefit_ametikooli_opilase_toetus"
+      ],
+      "sourceKeys": [
+        "aabitsatoetus_form_page",
+        "ametkooli_opilase_toetus_form_page",
+        "forms_page",
+        "huvihariduse_toetus_form_page",
+        "osalus_toidutoetus_avaldus_form_page",
+        "raske_sugava_puudega_lapse_toetus_form_page",
+        "sotsiaalteenuse_avaldus_form_page",
+        "sotsiaaltoetuste_avaldus_form_page"
+      ],
+      "item_type": "form",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "aabitsatoetus_form_page",
+        "ametkooli_opilase_toetus_form_page",
+        "forms_page",
+        "huvihariduse_toetus_form_page",
+        "osalus_toidutoetus_avaldus_form_page",
+        "raske_sugava_puudega_lapse_toetus_form_page",
+        "sotsiaalteenuse_avaldus_form_page",
+        "sotsiaaltoetuste_avaldus_form_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_form_ametkooli_opilase_toetus",
+      "document_id": "kuusalu_vald_form_ametkooli_opilase_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/taotluste-vormid1",
+      "content_hash": "01392ec9691818c702bd2211275fe560f8048fde57cb9ffb04141a0a4a62af17",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_form_raske_sugava_puudega_lapse_toetus",
+      "canonical_item_id": "kuusalu_vald:form:raske_sugava_puudega_lapse_toetus",
+      "itemType": "form",
+      "title": "Raske ja sügava puudega lapse sotsiaalteenuste toetuse avaldus",
+      "status": "active",
+      "summary": "Vorm on seotud suure hooldus- ja abivajadusega lapse lapsehoiuteenuse ja toetavate teenuste toetusega.",
+      "officialUrl": "https://www.kuusalu.ee/taotluste-vormid1",
+      "format": "web_form_or_paper_form",
+      "submissionChannels": [
+        "SPOKU",
+        "paberavaldus",
+        ""
+      ],
+      "relatedTo": [
+        "kuusalu_vald_benefit_suure_hooldus_ja_abivajadusega_lapse_toetus"
+      ],
+      "sourceKeys": [
+        "aabitsatoetus_form_page",
+        "ametkooli_opilase_toetus_form_page",
+        "forms_page",
+        "huvihariduse_toetus_form_page",
+        "osalus_toidutoetus_avaldus_form_page",
+        "raske_sugava_puudega_lapse_toetus_form_page",
+        "sotsiaalteenuse_avaldus_form_page",
+        "sotsiaaltoetuste_avaldus_form_page",
+        "suure_hooldusvajadusega_lapse_toetus_page"
+      ],
+      "item_type": "form",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "aabitsatoetus_form_page",
+        "ametkooli_opilase_toetus_form_page",
+        "forms_page",
+        "huvihariduse_toetus_form_page",
+        "osalus_toidutoetus_avaldus_form_page",
+        "raske_sugava_puudega_lapse_toetus_form_page",
+        "sotsiaalteenuse_avaldus_form_page",
+        "sotsiaaltoetuste_avaldus_form_page",
+        "suure_hooldusvajadusega_lapse_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_form_raske_sugava_puudega_lapse_toetus",
+      "document_id": "kuusalu_vald_form_raske_sugava_puudega_lapse_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/taotluste-vormid1",
+      "content_hash": "4aafddc63b9dac227511a07ce0ca3f1465b1ae540b526cfd77e63ed800fe811b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_form_aabitsatoetus",
+      "canonical_item_id": "kuusalu_vald:form:aabitsatoetus",
+      "itemType": "form",
+      "title": "Aabitsatoetuse taotlus",
+      "status": "active",
+      "summary": "Aabitsatoetuse taotluse saab esitada Kuusalu SPOKU keskkonnas.",
+      "officialUrl": "https://www.kuusalu.ee/taotluste-vormid1",
+      "format": "web_form",
+      "submissionChannels": [
+        "SPOKU"
+      ],
+      "relatedTo": [
+        "kuusalu_vald_benefit_aabitsatoetus"
+      ],
+      "sourceKeys": [
+        "aabitsatoetus_form_page",
+        "aabitsatoetus_page",
+        "ametkooli_opilase_toetus_form_page",
+        "forms_page",
+        "huvihariduse_toetus_form_page",
+        "osalus_toidutoetus_avaldus_form_page",
+        "raske_sugava_puudega_lapse_toetus_form_page",
+        "sotsiaalteenuse_avaldus_form_page",
+        "sotsiaaltoetuste_avaldus_form_page"
+      ],
+      "item_type": "form",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "aabitsatoetus_form_page",
+        "aabitsatoetus_page",
+        "ametkooli_opilase_toetus_form_page",
+        "forms_page",
+        "huvihariduse_toetus_form_page",
+        "osalus_toidutoetus_avaldus_form_page",
+        "raske_sugava_puudega_lapse_toetus_form_page",
+        "sotsiaalteenuse_avaldus_form_page",
+        "sotsiaaltoetuste_avaldus_form_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_form_aabitsatoetus",
+      "document_id": "kuusalu_vald_form_aabitsatoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/taotluste-vormid1",
+      "content_hash": "5f0b02a5583c69e70caf1bc7af24fb70aff0543dea5372e1f27f4cd69b26dd74",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_form_huvihariduse_toetus",
+      "canonical_item_id": "kuusalu_vald:form:huvihariduse_toetus",
+      "itemType": "form",
+      "title": "Huvihariduse, huviringi ja laagri toetuse taotlus",
+      "status": "active",
+      "summary": "Vorm on seotud huvihariduse, huviringi ja laagri toetusega.",
+      "officialUrl": "https://www.kuusalu.ee/taotluste-vormid1",
+      "format": "web_form_or_paper_form",
+      "submissionChannels": [
+        "SPOKU",
+        "paberavaldus",
+        ""
+      ],
+      "relatedTo": [
+        "kuusalu_vald_benefit_huvihariduse_huviringi_ja_laagri_toetus"
+      ],
+      "sourceKeys": [
+        "aabitsatoetus_form_page",
+        "ametkooli_opilase_toetus_form_page",
+        "forms_page",
+        "huvihariduse_toetus_form_page",
+        "huvihariduse_toetus_page",
+        "osalus_toidutoetus_avaldus_form_page",
+        "raske_sugava_puudega_lapse_toetus_form_page",
+        "sotsiaalteenuse_avaldus_form_page",
+        "sotsiaaltoetuste_avaldus_form_page"
+      ],
+      "item_type": "form",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "aabitsatoetus_form_page",
+        "ametkooli_opilase_toetus_form_page",
+        "forms_page",
+        "huvihariduse_toetus_form_page",
+        "huvihariduse_toetus_page",
+        "osalus_toidutoetus_avaldus_form_page",
+        "raske_sugava_puudega_lapse_toetus_form_page",
+        "sotsiaalteenuse_avaldus_form_page",
+        "sotsiaaltoetuste_avaldus_form_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_form_huvihariduse_toetus",
+      "document_id": "kuusalu_vald_form_huvihariduse_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/taotluste-vormid1",
+      "content_hash": "775fd0a77a9c424b3b874f1afabcea741eb03e91bab58444f36ee7cb6236d54a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_form_matusetoetus",
+      "canonical_item_id": "kuusalu_vald:form:matusetoetus",
+      "itemType": "form",
+      "title": "Matusetoetuse taotlus",
+      "status": "active",
+      "summary": "Matusetoetuse taotluse vorm on Kuusalu valla matusetoetuse lehel nimetatud.",
+      "officialUrl": "https://www.kuusalu.ee/matusetoetus",
+      "format": "web_form_or_paper_form",
+      "submissionChannels": [
+        "SPOKU",
+        "paberavaldus"
+      ],
+      "relatedTo": [
+        "kuusalu_vald_benefit_matusetoetus"
+      ],
+      "sourceKeys": [
+        "matusetoetus_form_page",
+        "matusetoetus_page"
+      ],
+      "item_type": "form",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "matusetoetus_form_page",
+        "matusetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_form_matusetoetus",
+      "document_id": "kuusalu_vald_form_matusetoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/matusetoetus",
+      "content_hash": "7bcaddbe13e9ddc10c729b1ea0d7f073b0371bc25875d5b253752c080cfb97a5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kuusalu_vald_form_sunnitoetus",
+      "canonical_item_id": "kuusalu_vald:form:sunnitoetus",
+      "itemType": "form",
+      "title": "Sünnitoetuse taotlus",
+      "status": "active",
+      "summary": "Sünnitoetuse taotluse saab esitada Kuusalu SPOKU keskkonnas või paberil.",
+      "officialUrl": "https://www.kuusalu.ee/sunnitoetus",
+      "format": "web_form_or_paper_form",
+      "submissionChannels": [
+        "SPOKU",
+        "paberavaldus"
+      ],
+      "relatedTo": [
+        "kuusalu_vald_benefit_sunnitoetus"
+      ],
+      "sourceKeys": [
+        "sunnitoetus_form_page",
+        "sunnitoetus_page"
+      ],
+      "item_type": "form",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sunnitoetus_form_page",
+        "sunnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kuusalu_vald_form_sunnitoetus",
+      "document_id": "kuusalu_vald_form_sunnitoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.kuusalu.ee/sunnitoetus",
+      "content_hash": "5e2e278443aeddf8a9974393359187a34cfe685f8f4e898b606f6f234ff73cd6",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Kuusalu vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

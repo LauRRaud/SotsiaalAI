@@ -1,0 +1,82 @@
+{
+  "source": {
+    "source_id": "tai_narkootikumide_tarvitamise_olukord_eestis_2023",
+    "title": "Narkootikumide tarvitamise olukord Eestis 2023",
+    "url": "https://www.tai.ee/sites/default/files/2024-06/narkootikumide_tarvitamise_olukord_eestis.pdf",
+    "normalized_url": "https://www.tai.ee/sites/default/files/2024-06/narkootikumide_tarvitamise_olukord_eestis.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "TAI",
+    "organization_id": "tai",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Tervise Arengu Instituut",
+      "sõltuvus",
+      "uimastid",
+      "narkootikumid",
+      "ennetustöö",
+      "riskikäitumine",
+      "infomaterjal",
+      "TAI"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_014",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+    "source_context": {
+      "heading_2": "TAI",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 209,
+      "order": 136
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "Narkootikumide tarvitamise olukord Eestis 2023"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "TAI"
+    ],
+    "organizations_seen": [
+      "tai"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "TAI",
+        "line": 209,
+        "order": 136
+      },
+      {
+        "heading_2": "TAI",
+        "line": 683,
+        "order": 343
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.tai.ee/sites/default/files/2024-06/narkootikumide_tarvitamise_olukord_eestis.pdf"
+  },
+  "final_url": "https://www.tai.ee/sites/default/files/2024-06/narkootikumide_tarvitamise_olukord_eestis.pdf",
+  "redirects": [],
+  "sha256": "95017db3ac6f30e5811cc2e9f12a618f67950ff6c7021ffca9f315f13d246945",
+  "bytes": 461519,
+  "downloaded_at": "2026-08-14T08:00:35.601Z"
+}

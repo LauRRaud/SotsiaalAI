@@ -1,0 +1,37 @@
+{
+  "docId": "sotsiaaltoo-4-2018",
+  "articleId": "nula-inkubaator-2018",
+  "title": "NULA ühiskondlike algatuste inkubaator",
+  "authors": [
+    "Autor tuvastamata"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2018",
+  "section": "Uudised",
+  "pageRange": "89-90",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uudislugu NULA inkubaatori tegevustest ja noorte algatustest.",
+  "tags": [
+    "NULA",
+    "kogukondlik innovatsioon",
+    "ühiskondlik mõju"
+  ],
+  "source_type": "file",
+  "source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part22.pdf",
+  "document_id": "sotsiaaltoo-4-2018-nula-inkubaator-2018",
+  "source_format": "pdf",
+  "source_sha256": "5ef619a7f6c60716fc3e539ed75bc0c33c1a424c16ba1b1a76170bee2a826c8d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2018-nula-inkubaator-2018",
+    "previous_source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part22.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "5ef619a7f6c60716fc3e539ed75bc0c33c1a424c16ba1b1a76170bee2a826c8d",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

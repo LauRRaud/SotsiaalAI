@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-3-2020",
+  "articleId": "teekond-inimesekeskse-teenusepakkumise-suunas-2020-3",
+  "title": "Teekond inimesekeskse teenusepakkumise suunas",
+  "authors": [
+    "Gerli Aavik-Märtmaa"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2020",
+  "section": "Sotsiaalpoliitika",
+  "pageRange": "22-27",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "SOCIAL_WORKER",
+  "language": "et",
+  "description": "Artikkel kirjeldab Eesti liikumist koordineerituma ja integreerituma tervishoiu- ja hoolekandesüsteemi poole, keskendudes inimesekesksetele teekondadele, integreeritud teenusepakkumise loogikamudelile ning andmete ja koostöö rollile keeruka toetusvajadusega inimeste abistamisel.",
+  "tags": [
+    "inimesekeskne teenus",
+    "integreeritud teenused",
+    "koordineerimine",
+    "sotsiaalpoliitika",
+    "tervishoid ja hoolekanne",
+    "andmepõhine juhtimine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2020_web_link_Part6.pdf",
+  "document_id": "sotsiaaltoo-3-2020-teekond-inimesekeskse-teenusepakkumise-suunas-2020-3",
+  "source_format": "pdf",
+  "source_sha256": "39f880700bb60ff7fae0f52bef084cfb466f8e3d8fca6f098157a387b1fd2992",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2020-teekond-inimesekeskse-teenusepakkumise-suunas-2020-3",
+    "previous_source_path": "Sotsiaaltoo_3_2020_web_link_Part6.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "39f880700bb60ff7fae0f52bef084cfb466f8e3d8fca6f098157a387b1fd2992",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

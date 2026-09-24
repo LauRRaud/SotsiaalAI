@@ -1,0 +1,81 @@
+{
+  "docId": "sotsiaaltoo-1-2016",
+  "articleId": "sotsiaaltoo-1-2016-artikkel-08-deinstitutsionaliseerimine-kui-kogukonnapõhine-t",
+  "title": "Deinstitutsionaliseerimine kui kogukonnapõhine teenuste osutamine abivajadusega inimestele",
+  "authors": [
+    "Katrin Tsuiman"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2016",
+  "section": "Deinstitutsionaliseerimine",
+  "pageRange": "20-22",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi nõunik väidab, et deinstitutsionaliseerimist mõistetakse põhjendamatult kitsalt, üksnes erihoolekandeasutuste sulgemisena, kuigi Euroopa ekspertrühma 2012. aasta juhiste järgi tähendab see kogukonnapõhiste teenuste arendamist kõigile abivajajatele, sh lastele, eakatele ja vaimse tervise probleemidega inimestele. Artikkel esitab institutsiooni ja kogukonnapõhiste teenuste määratlused ning viitab ÜRO puuetega inimeste õiguste konventsiooni artiklile 19 ja 2014. aastal vastu võetud erihoolekande arengukavale 2014–2020. 2016. aasta riigieelarves tõsteti toetavate teenuste hinda 13% ja raha jätkub kuni 372 uue kogukonnapõhise teenuskoha rahastamiseks.",
+  "tags": [
+    "deinstitutsionaliseerimine",
+    "kogukonnapõhised teenused",
+    "erihoolekanne",
+    "puuetega inimeste õiguste konventsioon",
+    "erihoolekande arengukava",
+    "toetatud elamine"
+  ],
+  "source_type": "file",
+  "source_path": "2016_1_artikkel_08_deinstitutsionaliseerimine_kui_kogukonnapohine_teenu.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-08-deinstitutsionaliseerimine-kui-kogukonnap-hine-t",
+  "source_sha256": "967a1ece4b67857e4a5a42ed43f5937dd71feeb15e5a00c2675aea29a62def32",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-08-deinstitutsionaliseerimine-kui-kogukonnap-hine-t",
+    "previous_source_path": "2016_1_artikkel_08_deinstitutsionaliseerimine_kui_kogukonnapohine_teenu.txt",
+    "previous_source_original_path": "1-2016.pdf",
+    "reference_stored_source_sha256": "635f375f5dce677eda25cae8a28fc7fe0e1c285d35c38a403aece58d64d9b561",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf",
+      "source_sha256": "2c193295e54f58982562b509b6283e93aa58b1695464671e1768e24e90888a6c",
+      "pdf_start_page": 22,
+      "pdf_end_page": 24,
+      "printed_page_range": "20-22",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 24,
+      "source_regions": [
+        {
+          "source_pdf_page": 22,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 23,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 24,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "20-22"
+    },
+    "server_page_range": "20-22"
+  }
+}

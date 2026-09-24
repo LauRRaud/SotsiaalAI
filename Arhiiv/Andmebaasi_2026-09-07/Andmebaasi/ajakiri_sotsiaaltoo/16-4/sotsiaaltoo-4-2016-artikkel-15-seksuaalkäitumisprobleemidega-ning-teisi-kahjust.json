@@ -1,0 +1,90 @@
+{
+  "docId": "sotsiaaltoo-4-2016",
+  "articleId": "sotsiaaltoo-4-2016-artikkel-15-seksuaalkäitumisprobleemidega-ning-teisi-kahjust",
+  "title": "Seksuaalkäitumisprobleemidega ning teisi kahjustava seksuaalkäitumisega lapsed ja noored kui abivajajad",
+  "authors": [
+    "Brit Tammiste"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2016",
+  "section": "Abi võimalused / praktika",
+  "pageRange": "83-86",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Justiitsministeeriumi nõunik Brit Tammiste tutvustab Taani JanusCentreti välja töötatud laste ja noorte seksuaalkäitumise murebaromeetrit, mis on eesti ja vene keeles kättesaadav kriminaalpoliitika veebilehel ning eristab valgusfoori põhimõttel eakohast, tähelepanu ja kohest sekkumist vajavat käitumist vanuserühmades 2–5, 6–10 ja 11–14 aastat. Teiste riikide kogemuse põhjal on kolmandik seksuaalkäitumisprobleemidega lastest olnud perevägivalla ohvrid ja 76%-l on ADHD märke. 2016. aastal koolitas JanusCentret Eestis ligikaudu 300 spetsialisti.",
+  "tags": [
+    "seksuaalkäitumine",
+    "murebaromeeter",
+    "abivajav laps",
+    "väärkohtlemine",
+    "ennetus",
+    "laste vaimne tervis"
+  ],
+  "source_type": "file",
+  "source_path": "2016_4_artikkel_15_seksuaalkaitumisprobleemidega_ning_teisi_kahjustava.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-15-seksuaalk-itumisprobleemidega-ning-teisi-kahjust",
+  "source_sha256": "7160d6f50f7a3a1133cae5b0b6bcbe247bc8a7718ed4299e04bd7e2e048666aa",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-15-seksuaalk-itumisprobleemidega-ning-teisi-kahjust",
+    "previous_source_path": "2016_4_artikkel_15_seksuaalkaitumisprobleemidega_ning_teisi_kahjustava.txt",
+    "previous_source_original_path": "4-2016.pdf",
+    "reference_stored_source_sha256": "8fdf8882ba7407c618eee4882bf52b72dfef12efe53baa7736c2e80ced7844c3",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf",
+      "source_sha256": "0f07da03ffde36588435e96f8dda0f52a8140fbf9cc4201bb95e85b594e03fc9",
+      "pdf_start_page": 85,
+      "pdf_end_page": 88,
+      "printed_page_range": "83-87",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 89,
+      "source_regions": [
+        {
+          "source_pdf_page": 85,
+          "bounds": [
+            0,
+            179.223,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 86,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 87,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 88,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "83-86"
+    },
+    "server_page_range": "83-87"
+  }
+}

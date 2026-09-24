@@ -1,0 +1,81 @@
+{
+  "docId": "sotsiaaltoo-2-2016",
+  "articleId": "sotsiaaltoo-2-2016-artikkel-04-sotsiaalteenused-ja-toetused-sotsiaalhoolekande",
+  "title": "Sotsiaalteenused ja -toetused sotsiaalhoolekande seaduse valguses",
+  "authors": [
+    "Tõnis Vaik"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2016",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "10-12",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi hoolekande osakonna nõunik selgitab 1. jaanuaril 2016 jõustunud sotsiaalhoolekande seaduse rakendamist. Jaanuarist märtsini 2016 korraldatud teabepäevadel osales kokku 956 inimest, keskmiselt 60 ühel päeval. 1. aprillist 2016 pidid omavalitsused olema kehtestanud seaduse §-i 14 järgse sotsiaalhoolekandelise abi korra, mida võib olla üks või mitu; näiteks Türi vallas on kõik teenused ja toetused koondatud ühte korda. Autor teatab, et 2016. aastal teenuste sisu täpsustavaid määrusi ei koostata, ning kinnitab, et seadus ei keela omavalitsuse sotsiaaltöötajal osutada sotsiaaltransporditeenust.",
+  "tags": [
+    "sotsiaaltöö korraldus",
+    "sotsiaalhoolekande seadus",
+    "sotsiaalteenused",
+    "sotsiaaltoetused",
+    "kohalikud omavalitsused",
+    "sotsiaaltransport"
+  ],
+  "source_type": "file",
+  "source_path": "2016_2_artikkel_04_sotsiaalteenused_ja_toetused_sotsiaalhoolekande_sead.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-04-sotsiaalteenused-ja-toetused-sotsiaalhoolekande",
+  "source_sha256": "d73b3fec6d02f4523bd490f6fa11270a5706009042a6b61791eb43c504af2dad",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-04-sotsiaalteenused-ja-toetused-sotsiaalhoolekande",
+    "previous_source_path": "2016_2_artikkel_04_sotsiaalteenused_ja_toetused_sotsiaalhoolekande_sead.txt",
+    "previous_source_original_path": "2-2016.pdf",
+    "reference_stored_source_sha256": "1ef669227f39559172a2234f19a5c5fc96bfdd8fcea08cccb9d321a3fa40192d",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2-2016.pdf",
+      "source_sha256": "cf45b61607b21a62a1003f99c97d65180c4fb4f591a874c983c4b63e5c804a36",
+      "pdf_start_page": 12,
+      "pdf_end_page": 14,
+      "printed_page_range": "10-12",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 14,
+      "source_regions": [
+        {
+          "source_pdf_page": 12,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 13,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 14,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "10-12"
+    },
+    "server_page_range": "10-12"
+  }
+}

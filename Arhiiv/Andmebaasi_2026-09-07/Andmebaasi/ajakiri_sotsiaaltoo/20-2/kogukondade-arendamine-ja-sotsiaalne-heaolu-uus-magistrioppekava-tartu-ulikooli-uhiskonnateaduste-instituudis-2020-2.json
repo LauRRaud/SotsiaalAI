@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2020",
+  "articleId": "kogukondade-arendamine-ja-sotsiaalne-heaolu-uus-magistrioppekava-tartu-ulikooli-uhiskonnateaduste-instituudis-2020-2",
+  "title": "Kogukondade arendamine ja sotsiaalne heaolu – uus magistriõppekava Tartu Ülikooli ühiskonnateaduste instituudis",
+  "authors": [
+    "Merle Linno"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2020",
+  "section": "Sotsiaaltöö haridus",
+  "pageRange": "60-63",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab Tartu Ülikooli uut magistriõppekava, mis ühendab kogukondade arendamise ja sotsiaalse heaolu vaate. Rõhutatakse vajadust ajakohastada spetsialistide ettevalmistust ning arendada oskusi keerukate ühiskondlike probleemide lahendamiseks.",
+  "tags": [
+    "magistriõpe",
+    "Tartu Ülikool",
+    "kogukondade arendamine",
+    "sotsiaalne heaolu",
+    "sotsiaaltöö haridus",
+    "õppekava"
+  ],
+  "source_type": "file",
+  "source_path": "ST2_2020_web_link_Part18.pdf",
+  "document_id": "sotsiaaltoo-2-2020-kogukondade-arendamine-ja-sotsiaalne-heaolu-uus-magistrioppekava-tartu-ulikooli-uhiskonnateaduste-instituudis-2020-2",
+  "source_format": "pdf",
+  "source_sha256": "4f1133c424ce54959bcbaaaec3f609ee9dbce9607c46ae7f0f3fe3fb31a59287",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2020-kogukondade-arendamine-ja-sotsiaalne-heaolu-uus-magistrioppekava-tartu-ulikooli-uhiskonnateaduste-instituudis-2020-2",
+    "previous_source_path": "ST2_2020_web_link_Part18.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "4f1133c424ce54959bcbaaaec3f609ee9dbce9607c46ae7f0f3fe3fb31a59287",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

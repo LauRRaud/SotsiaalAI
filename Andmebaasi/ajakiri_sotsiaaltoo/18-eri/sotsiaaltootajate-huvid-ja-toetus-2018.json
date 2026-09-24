@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-eri-2018",
+  "articleId": "sotsiaaltootajate-huvid-ja-toetus-2018",
+  "title": "Kuidas paremini kaitsta sotsiaaltöötajate huve ja neid toetada?",
+  "authors": [
+    "Toimetus"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö (juubeli erinumber)",
+  "issueLabel": "Eri/2018",
+  "section": "Sotsiaaltöötaja huvid ja kaitse",
+  "pageRange": "65-67",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ajakirja juubeliüritusel kogutud mõtted ja ettepanekud selle kohta, kuidas paremini kaitsta sotsiaaltöötajate huve, ennetada läbipõlemist ning tagada parem töökorraldus ja juhtimine.",
+  "tags": [
+    "sotsiaaltöötajate õigused",
+    "läbipõlemise ennetamine",
+    "töötingimused",
+    "juhtimine",
+    "erialane tugi",
+    "huvikaitse"
+  ],
+  "source_type": "file",
+  "source_path": "ST_eri_2018_web_link_Part18.pdf",
+  "document_id": "sotsiaaltoo-eri-2018-sotsiaaltootajate-huvid-ja-toetus-2018",
+  "source_format": "pdf",
+  "source_sha256": "b361ecfc00f2bfc46bf947620dc8c00deb9633ba7530f70848f0b68be135baa3",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2018-sotsiaaltootajate-huvid-ja-toetus-2018",
+    "previous_source_path": "ST_eri_2018_web_link_Part18.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b361ecfc00f2bfc46bf947620dc8c00deb9633ba7530f70848f0b68be135baa3",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

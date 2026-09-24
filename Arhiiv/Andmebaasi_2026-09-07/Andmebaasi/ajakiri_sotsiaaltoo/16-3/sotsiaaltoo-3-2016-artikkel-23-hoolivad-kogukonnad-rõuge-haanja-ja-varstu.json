@@ -1,0 +1,66 @@
+{
+  "docId": "sotsiaaltoo-3-2016",
+  "articleId": "sotsiaaltoo-3-2016-artikkel-23-hoolivad-kogukonnad-rõuge-haanja-ja-varstu",
+  "title": "Hoolivad kogukonnad – Rõuge, Haanja ja Varstu",
+  "authors": [
+    "Kerli Kõiv"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2016",
+  "section": "Projekt",
+  "pageRange": "81",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Projektijuht ja noorsootöö spetsialist kirjeldab Rõuge, Haanja ja Varstu valla koostööprojekti „Hooliv kogukond\", mis viidi 2014.–2015. aastal ellu EMP programmi „Riskilapsed ja -noored\" toetusel ja keskendus noorte ning kogukondade koostööle kogukonna turvalisuse mõjutamiseks. Projekti käigus kuulati ära 158 noore arvamused ja koostati iga piirkonna tegevusstrateegia; noorte initsiatiivil viidi ellu 15 nende endi algatatud projekti. Noored nimetasid turvariskiks purjus täiskasvanuid kaupluste juures, tühje hooneid, ohtlikke kaeve ja auklikke teid, ning korrastasid ise mänguväljaku, spordiväljakuid, puhkekohti ja rannaala. Kolme valla noorsootöö spetsialistid koondusid ühiseks võrgustikuks. Autor seob tulemuse otse eesseisva haldusreformiga: ühishuvid on välja selgitatud ja ühises info- ja väärtusruumis toimetades on lihtsam „võtta vastu ka haldusreformi ülesanded\".",
+  "tags": [
+    "kogukonnatöö",
+    "noorsootöö",
+    "kogukonna turvalisus",
+    "riskilapsed ja -noored",
+    "EMP toetused",
+    "Võrumaa",
+    "noorte osalus",
+    "valdadevaheline koostöö",
+    "haldusreform"
+  ],
+  "source_type": "file",
+  "source_path": "2016_3_artikkel_23_hoolivad_kogukonnad_rouge_haanja_ja_varstu.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2016-sotsiaaltoo-3-2016-artikkel-23-hoolivad-kogukonnad-r-uge-haanja-ja-varstu",
+  "source_sha256": "33f8feed81404c248a6385a5baf21f552027482faad3d0a488f6983a032eff54",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2016-sotsiaaltoo-3-2016-artikkel-23-hoolivad-kogukonnad-r-uge-haanja-ja-varstu",
+    "previous_source_path": "2016_3_artikkel_23_hoolivad_kogukonnad_rouge_haanja_ja_varstu.txt",
+    "previous_source_original_path": "3-2016.pdf",
+    "reference_stored_source_sha256": "e0cd7d26bce2d67e248b0f98679a24379b80aa9eabc02760655fdca200b3d71d",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\3-2016.pdf",
+      "source_sha256": "7a9be30ca3f1a959b3d48a3f12065bc9c37d0f618f6cbb71e681f6e83199aacc",
+      "pdf_start_page": 83,
+      "pdf_end_page": 83,
+      "printed_page_range": "81",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 83,
+      "source_regions": [
+        {
+          "source_pdf_page": 83,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "81"
+    },
+    "server_page_range": "81"
+  }
+}

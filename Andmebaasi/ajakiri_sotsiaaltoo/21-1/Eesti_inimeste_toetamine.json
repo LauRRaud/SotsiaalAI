@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-1-2021",
+  "articleId": "eesti-inimeste-toetamine-majandusliku-olukorra-muutumisel-2021-1",
+  "title": "Eesti inimeste toetamine majandusliku olukorra muutumisel",
+  "authors": [
+    "Hede Sinisaar",
+    "Ulli Luide"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2021",
+  "section": "Analüüs",
+  "pageRange": "10-20",
+  "pdf_start_page": 1,
+  "pdf_end_page": 11,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Analüüs COVID-19 pandeemia mõjust Eesti inimeste majanduslikule toimetulekule. Artikkel käsitleb registreeritud töötuse kasvu, toimetulekutoetuse dünaamikat, vaesuse ja võlgnevuste näitajaid ning täitemenetluse võlgnike profiili. Kirjeldatakse riigi ja kohalike omavalitsuste rakendatud meetmeid – töötushüvitised, toimetulekutoetus, võlanõustamine ja toimetulekuõpe – ning tuuakse esile vajadus pakkuda lisaks rahalisele abile ka terviklikke tugiteenuseid, mis aitavad inimestel võlgade, eluasemekulude ja töökaotuse tagajärgedega toime tulla.",
+  "tags": [
+    "COVID-19",
+    "registreeritud töötus",
+    "toimetulekutoetus",
+    "vaesus",
+    "võlgnevused",
+    "täitemenetlus",
+    "võlanõustamisteenus",
+    "sotsiaalpoliitika analüüs"
+  ],
+  "source_type": "file",
+  "source_path": "artikkel_3_eesti_inimeste_toetamine.pdf",
+  "document_id": "sotsiaaltoo-1-2021-eesti-inimeste-toetamine-majandusliku-olukorra-muutumisel-2021-1",
+  "source_format": "pdf",
+  "source_sha256": "6457b1ba069ee1291d008f2104fb4d5bcf2eabd2c8dc8306db31a1872966eb75",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2021-eesti-inimeste-toetamine-majandusliku-olukorra-muutumisel-2021-1",
+    "previous_source_path": "artikkel_3_eesti_inimeste_toetamine.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "6457b1ba069ee1291d008f2104fb4d5bcf2eabd2c8dc8306db31a1872966eb75",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "vaimse-tervise-teenused-kodu-lahedal-2025-2",
+  "title": "Vaimse tervise teenused kodu lähedal – omavalitsuse täiendav tugi oma inimestele",
+  "authors": [
+    "Kaidy Aljama"
+  ],
+  "section": "Korraldus",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "description": "Artikkel selgitab sotsiaalhoolekande seaduse muudatust, millega kohalikele omavalitsustele anti püsirahastus kodulähedaste vaimse tervise teenuste osutamiseks. Autor kirjeldab kogukonnapõhiste psühhosotsiaalsete ja psühholoogiliste teenuste rolli vaimse tervise püramiidis, COVID-19 pandeemia ajal alustatud arendusi ja taotlusvoorude kogemust. Antakse suuniseid, kuidas KOV-id saavad kavandada sihtrühmad, teenused ja teenuseosutajate nõuded ning korraldada aruandlust. Fookuses on ennetus, varajane sekkumine ja paindlik kogukonnateenus, mis täiendab tervishoiusüsteemi ja parandab vaimse tervise toe kättesaadavust.",
+  "tags": [
+    "vaimse tervise teenused",
+    "kogukonnateenused",
+    "kohalik omavalitsus",
+    "sotsiaalhoolekande seadus",
+    "psühhosotsiaalne abi",
+    "ennetamine",
+    "COVID-19"
+  ],
+  "source_path": "Vaimse tervise teenused kodu lähedal – omavalitsuse täiendav tugi oma inimestele_2_2025.pdf",
+  "pageRange": "1–7",
+  "document_id": "sotsiaaltoo-2-2025-vaimse-tervise-teenused-kodu-lahedal-2025-2",
+  "source_format": "pdf",
+  "source_sha256": "9eecb315e0e051f3f3d7856667380d8a48bb7fa0fcdf8045cbaa051352f27257",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2025-vaimse-tervise-teenused-kodu-lahedal-2025-2",
+    "previous_source_path": "Vaimse tervise teenused kodu lähedal – omavalitsuse täiendav tugi oma inimestele_2_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "9eecb315e0e051f3f3d7856667380d8a48bb7fa0fcdf8045cbaa051352f27257",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

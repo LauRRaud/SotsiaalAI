@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2021",
+  "articleId": "teenuseosutajad-puuavad-teha-koik-et-toetada-kliente-muutunud-olukorras-2021-4",
+  "title": "Teenuseosutajad püüavad teha kõik, et toetada kliente muutunud olukorras",
+  "authors": [
+    "Tatjana Stolfat"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2021",
+  "section": "Kogemus",
+  "pageRange": "50-51",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Narva Sotsiaaltöökeskuse töötaja kogemuslugu sellest, kuidas COVID-19 pandeemia muutis teenuseosutamist, vähendas vahetut suhtlust ja tõi töötajatele lisakoormust. Rõhutatakse meeskonnatoetuse, supervisiooni ja vaimse heaolu tähtsust, samuti vajadust hoida kliendid turvaliselt ning tagada teenuste jätkusuutlikkus piirangute ajal.",
+  "tags": [
+    "COVID-19",
+    "Narva Sotsiaaltöökeskus",
+    "kogemuslugu",
+    "sotsiaalteenused",
+    "vaimne tervis",
+    "supervisioon",
+    "kriisitöö"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2021_web_Part13.pdf",
+  "document_id": "sotsiaaltoo-4-2021-teenuseosutajad-puuavad-teha-koik-et-toetada-kliente-muutunud-olukorras-2021-4",
+  "source_format": "pdf",
+  "source_sha256": "ba40e39e8c67d27a9437f582be35e8c0630d556e1f8987034062ac8c26adc888",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2021-teenuseosutajad-puuavad-teha-koik-et-toetada-kliente-muutunud-olukorras-2021-4",
+    "previous_source_path": "Sotsiaaltoo_4_2021_web_Part13.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ba40e39e8c67d27a9437f582be35e8c0630d556e1f8987034062ac8c26adc888",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

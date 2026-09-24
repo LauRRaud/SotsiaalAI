@@ -1,0 +1,142 @@
+{
+  "source_path": "harno_juhendmaterjal_opilase_toetamiseks_koolis.pdf",
+  "source_format": "pdf",
+  "sha256": "fe0e545a83af19897cd91d674eed8120e181ac576099994414f70ab349b662af",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/harno_juhendmaterjal_opilase_toetamiseks_koolis.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "harno_juhendmaterjal_opilase_toetamiseks_koolis",
+          "title": "Juhendmaterjal õpilase toetamiseks koolis",
+          "url": "https://harno.ee/sites/default/files/documents/2023-03/Juhendmaterjal_6pilase_toetamiseks_22_1.pdf",
+          "normalized_url": "https://harno.ee/sites/default/files/documents/2023-03/Juhendmaterjal_6pilase_toetamiseks_22_1.pdf",
+          "source_format": "pdf",
+          "source_type": "official_guideline",
+          "resource_type": "method_guidance",
+          "publisher": "HARNO",
+          "organization_id": "harno",
+          "collection_hint": "guidance_and_methods",
+          "evidence_role": "practice_guidance",
+          "topic_tags": [
+            "Haridus- ja Noorteamet",
+            "lapsed ja pered",
+            "haridus",
+            "kool",
+            "õpilase toetamine",
+            "tugimeetmed",
+            "spetsialisti juhend"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "high",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "HARNO / HEV / kooli tugimeetmed",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 367,
+            "order": 204
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Juhendmaterjal õpilase toetamiseks koolis"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "official_guideline"
+          ],
+          "resource_types_seen": [
+            "best_practice_guidance"
+          ],
+          "publishers_seen": [
+            "HARNO"
+          ],
+          "organizations_seen": [
+            "harno"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "HARNO / HEV / kooli tugimeetmed",
+              "line": 367,
+              "order": 204
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://harno.ee/sites/default/files/documents/2023-03/Juhendmaterjal_6pilase_toetamiseks_22_1.pdf"
+        },
+        "final_url": "https://harno.ee/sites/default/files/documents/2023-03/Juhendmaterjal_6pilase_toetamiseks_22_1.pdf",
+        "redirects": [],
+        "sha256": "fe0e545a83af19897cd91d674eed8120e181ac576099994414f70ab349b662af",
+        "bytes": 415633,
+        "downloaded_at": "2026-08-14T08:00:44.359Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "harno_juhendmaterjal_opilase_toetamiseks_koolis",
+      "metadata": {
+        "createdAt": "2026-06-11T18:40:32.930241+00:00",
+        "type": "FILE",
+        "fileName": "Juhendmaterjal_6pilase_toetamiseks_22_1.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-11T18:40:32.868812+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/355a6c76df14/Juhendmaterjal_6pilase_toetamiseks_22_1.pdf",
+        "title": "Juhendmaterjal õpilase toetamiseks koolis",
+        "description": "Source master headings: HARNO / HEV / kooli tugimeetmed",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2023,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–27",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "harno_juhendmaterjal_opilase_toetamiseks_koolis",
+        "document_id": "harno_juhendmaterjal_opilase_toetamiseks_koolis",
+        "source_type": "official_guideline",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-11",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "19b0d4595b6cbd03dd8a012f1f46c79cbfd72381e3a031a502f6b195f6ba056f",
+        "url": "https://harno.ee/sites/default/files/documents/2023-03/Juhendmaterjal_6pilase_toetamiseks_22_1.pdf",
+        "url_canonical": "https://harno.ee/sites/default/files/documents/2023-03/Juhendmaterjal_6pilase_toetamiseks_22_1.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "harno_juhendmaterjal_opilase_toetamiseks_koolis",
+        "updatedAt": "2026-06-11T18:40:32.930264+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

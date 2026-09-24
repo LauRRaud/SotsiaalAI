@@ -1,0 +1,49 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "sotsiaalvaldkonna-spetsialistide-voimestamine-sillutab-teed-kvaliteets-2026",
+  "title": "Sotsiaalvaldkonna spetsialistide võimestamine sillutab teed kvaliteetsemate teenusteni",
+  "authors": [
+    "Liisa Otsak"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Erialane haridus",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade Šveitsi-Eesti koostööprogrammist, mis toetab sotsiaalvaldkonna spetsialistide väljaõppe nüüdisajastamist ja pädevuste arendamist. Programmi käigus on välja töötatud valdkonnaülene kompetentsiraamistik ning alustatud ametite kompetentsiprofiilide koostamist, samal ajal arendatakse täienduskoolituste süsteemi.",
+  "tags": [
+    "erialane haridus",
+    "kompetentsiraamistik",
+    "täienduskoolitus",
+    "professionaalne areng",
+    "Šveitsi-Eesti koostööprogramm",
+    "teenuste kvaliteet",
+    "kutsesüsteem",
+    "sotsiaalvaldkond"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-04-10",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/sotsiaalvaldkonna-spetsialistide-voimestamine-sillutab-teed-kvaliteetsemate",
+  "source_type": "web",
+  "source_path": "sotsiaalvaldkonna-spetsialistide-voimestamine-sillutab-teed-kvaliteetsemate-teen.html",
+  "lead": "Aastatel 2024–2028 korraldab sotsiaalministeerium koos partneritega Šveitsi-Eesti koostööprogrammi raames tegevusi, et kaasajastada sotsiaalvaldkonna spetsialistide tasemeõpet ja kutseoskusi ning arendada koolitus- ja tugisüsteemi. Praeguseks on jõutud programmiga poole peale, seetõttu on paslik heita pilk juba tehtule ja sellele, mis ootab lähitulevikus ees.",
+  "document_id": "sotsiaaltoo-2-2026-sotsiaalvaldkonna-spetsialistide-voimestamine-sillutab-teed-kvaliteets-2026",
+  "source_format": "html",
+  "source_sha256": "79a34dc7ccc6df20cba41c4f173f050f25fadfaed5102896ce7aa5b9ff4fc833",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-sotsiaalvaldkonna-spetsialistide-voimestamine-sillutab-teed-kvaliteets-2026",
+    "previous_source_path": "sotsiaalvaldkonna-spetsialistide-voimestamine-sillutab-teed-kvaliteetsemate-teen.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "0f44934fa37a9e6dc681c7afc52b98c2c548e80f1159cc3b1351eb0f38aaa9e8",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "9bbb4ff026fc34ae092fffd9abb6ea1f974a8e4ab116a6579d2350b28f5a9c5d",
+    "observed_web_title": "Sotsiaalvaldkonna spetsialistide võimestamine sillutab teed kvaliteetsemate teenusteni"
+  },
+  "retrieved_at": "2026-09-07T19:39:40.655916+00:00"
+}

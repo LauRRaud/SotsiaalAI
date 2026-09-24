@@ -1,0 +1,37 @@
+{
+  "docId": "motisklusi-sotsiaaltoost-2016",
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "MÕTISKLUSI",
+  "pdf_start_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "viidatud-allikad-2016",
+  "title": "Viidatud allikad",
+  "authors": [],
+  "pageRange": "42-45",
+  "pdf_end_page": 4,
+  "section": "Lisad",
+  "description": "Meta kirje kogumiku lõpuosa jaoks, mis sisaldab viidatud allikaid, lisalugemise soovitusi ning lühikest kokkuvõtet kogumiku sisust ja autoritest. Tegemist ei ole iseseisva sisuartikliga, vaid kogumiku bibliograafilise ja lõpetava lisamaterjaliga.",
+  "tags": [
+    "viidatud allikad",
+    "lisalugemine",
+    "bibliograafia",
+    "sotsiaaltöö kirjandus",
+    "kogumiku lisad"
+  ],
+  "source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part16.pdf",
+  "document_id": "motisklusi-sotsiaaltoost-2016-viidatud-allikad-2016",
+  "source_format": "pdf",
+  "source_sha256": "b5ecd6e23b6b074f51b98ba20d1d04e28f62229a935a93a7db20c57ac2158853",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "motisklusi-sotsiaaltoost-2016-viidatud-allikad-2016",
+    "previous_source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part16.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b5ecd6e23b6b074f51b98ba20d1d04e28f62229a935a93a7db20c57ac2158853",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

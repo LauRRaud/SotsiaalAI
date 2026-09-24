@@ -1,0 +1,1672 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-voru-vald",
+  "document_id": "kov-voru-vald",
+  "municipality": "Võru vald",
+  "municipality_id": "voru_vald",
+  "county": "Võrumaa",
+  "checkedAt": "2026-04-30",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "voru_vald_contact_angela_jarvpold",
+      "canonical_item_id": "voru_vald:contact:angela_jarvpold",
+      "itemType": "contact",
+      "title": "Angela Järvpõld",
+      "status": "active",
+      "summary": "Angela Järvpõld korraldab Võru valla sotsiaalhoolekandealast tööd, koordineerib ja juhib sotsiaalosakonna tööd ning nõustab elanikke. Kontaktilehel on tema töövaldkonnana nimetatud ka puudega inimeste eluruumide kohandamise korraldamine ja vaimse tervise teenuse määramine.",
+      "name": "Angela Järvpõld",
+      "role": "Sotsiaalosakonna juhataja",
+      "department": "Sotsiaalosakond",
+      "address": "Võrumõisa tee 4a, Võru",
+      "sourceKeys": [
+        "kontakt"
+      ],
+      "item_type": "contact",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "kontakt"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_contact_angela_jarvpold",
+      "document_id": "voru_vald_contact_angela_jarvpold",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "f7679be90a1d70ed136661dc540c7922ca2218db600d4cace9111dc22a5b20d7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_contact_riina_mandel",
+      "canonical_item_id": "voru_vald:contact:riina_mandel",
+      "itemType": "contact",
+      "title": "Riina Mandel",
+      "status": "active",
+      "summary": "Riina Mandel korraldab lastekaitsetööd, lapse õiguste ja heaolu tagamist, lastega perede sotsiaalnõustamist ning toetavatele sotsiaalteenustele suunamist. Kontaktilehe ja lastega perede toetuste lehe järgi on ta seotud ka puudega lapse hooldajatoetuse ning puudega lapse toetavate teenustega.",
+      "name": "Riina Mandel",
+      "role": "Lastekaitsespetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Võrumõisa tee 4a, Võru",
+      "sourceKeys": [
+        "kontakt",
+        "toetused_lastega_peredele"
+      ],
+      "item_type": "contact",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "kontakt",
+        "toetused_lastega_peredele"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_contact_riina_mandel",
+      "document_id": "voru_vald_contact_riina_mandel",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "cda35382578c32b8250fe69718e6f117a06f9799e1f86b011a9c5ac89e65d257",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_contact_kristina_tobreluts",
+      "canonical_item_id": "voru_vald:contact:kristina_tobreluts",
+      "itemType": "contact",
+      "title": "Kristina Tobreluts",
+      "status": "active",
+      "summary": "Kristina Tobreluts korraldab lastekaitsetööd, lapse õiguste ja heaolu tagamist, lastega perede sotsiaalnõustamist ning toetavatele sotsiaalteenustele suunamist. Kontaktilehel on tema töövaldkonnana nimetatud ka valla eestkostel olevate lastega seotud ülesanded ja järelhooldusteenuse korraldamine.",
+      "name": "Kristina Tobreluts",
+      "role": "Lastekaitsespetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Võrumõisa tee 4a, Võru",
+      "sourceKeys": [
+        "kontakt",
+        "toetused_lastega_peredele"
+      ],
+      "item_type": "contact",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "kontakt",
+        "toetused_lastega_peredele"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_contact_kristina_tobreluts",
+      "document_id": "voru_vald_contact_kristina_tobreluts",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "9889a4b4c0b846682a91afc4715c28a2c015a0a54c854022fca5295b025ba4de",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_contact_kadri_truija",
+      "canonical_item_id": "voru_vald:contact:kadri_truija",
+      "itemType": "contact",
+      "title": "Kadri Truija",
+      "status": "active",
+      "summary": "Kadri Truija nõustab elanikke eestkoste, sotsiaalteenuste ja sotsiaaltoetuste küsimustes. Kontaktilehel on tema töövaldkonnana nimetatud täisealiste isikute eestkoste, kinnipidamisasutusest vabanevate ning erihoolekannet vajavate isikute nõustamine ja sotsiaaleluruumi tagamise teenuse taotluste menetlemine.",
+      "name": "Kadri Truija",
+      "role": "Sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Võrumõisa tee 4a, Võru",
+      "sourceKeys": [
+        "kontakt",
+        "sotsiaalteenused"
+      ],
+      "item_type": "contact",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "kontakt",
+        "sotsiaalteenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_contact_kadri_truija",
+      "document_id": "voru_vald_contact_kadri_truija",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "7b8c8f378d653820271ef4605a77ba34fd6079e23dd58423a58d4e98405e185f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_contact_maria_saarme",
+      "canonical_item_id": "voru_vald:contact:maria_saarme",
+      "itemType": "contact",
+      "title": "Maria Saarme",
+      "status": "active",
+      "summary": "Maria Saarme tegeleb sotsiaalnõustamise, toimetulekutoetuse ja valla eelarvest makstavate toetuste menetlemisega. KOV lehtedel on tema töövaldkonnana nimetatud matusetoetus, sünnitoetus, 1. klassi mineva lapse toetus ja kooli lõpetamise toetus.",
+      "name": "Maria Saarme",
+      "role": "Sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Võrumõisa tee 4a, Võru",
+      "sourceKeys": [
+        "kontakt",
+        "muud_toetused",
+        "toetused_lastega_peredele"
+      ],
+      "item_type": "contact",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "kontakt",
+        "muud_toetused",
+        "toetused_lastega_peredele"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_contact_maria_saarme",
+      "document_id": "voru_vald_contact_maria_saarme",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "abfba98e0c3b289124190578348c6ea049066685c9f77a2aea95bb20720f5dc4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_contact_ene_andrejev",
+      "canonical_item_id": "voru_vald:contact:ene_andrejev",
+      "itemType": "contact",
+      "title": "Ene Andrejev",
+      "status": "active",
+      "summary": "Ene Andrejev tegeleb sotsiaaltransporditeenuse määramise, sotsiaalnõustamise, toimetulekutoetuse määramise ja sotsiaaltoetuse taotluste menetlemisega. Kontaktilehel on tema töövaldkonnana nimetatud ka lasteaia- ja koolitoidu toetused, puudega laste hooldajatoetused ning täiskasvanute tugiisikuteenuse vajaduse hindamine.",
+      "name": "Ene Andrejev",
+      "role": "Sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Võrumõisa tee 4a, Võru",
+      "sourceKeys": [
+        "kontakt",
+        "muud_toetused",
+        "sotsiaalteenused",
+        "toetused_lastega_peredele"
+      ],
+      "item_type": "contact",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "kontakt",
+        "muud_toetused",
+        "sotsiaalteenused",
+        "toetused_lastega_peredele"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_contact_ene_andrejev",
+      "document_id": "voru_vald_contact_ene_andrejev",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "d75373d923ba53d3948c342904ac1e2fdb6628b1e0047cd62eb29d56f81dacb2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_contact_helli_kalda",
+      "canonical_item_id": "voru_vald:contact:helli_kalda",
+      "itemType": "contact",
+      "title": "Helli Kalda",
+      "status": "active",
+      "summary": "Helli Kalda tegeleb sotsiaalnõustamise, toimetulekutoetuse määramise, sotsiaaltoetuse taotluste, isikliku abistaja teenuse ja lapse tugiisikuteenuse dokumentide menetlemisega. Kontaktilehel on tema töövaldkonnana nimetatud ka puudega isikute parkimiskaartide väljastamine, eakatele juubelitoetuste määramine ja Eesti Toidupanga toiduabi määramine.",
+      "name": "Helli Kalda",
+      "role": "Sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Võrumõisa tee 4a, Võru",
+      "sourceKeys": [
+        "kontakt",
+        "toetused_taiskasvanutele_eakatele"
+      ],
+      "item_type": "contact",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "kontakt",
+        "toetused_taiskasvanutele_eakatele"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_contact_helli_kalda",
+      "document_id": "voru_vald_contact_helli_kalda",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "2d406e34509bc1488f6f9812b12bcb9e35131398c093b356531932fcc9286e66",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_contact_ly_pihkanen",
+      "canonical_item_id": "voru_vald:contact:ly_pihkanen",
+      "itemType": "contact",
+      "title": "Ly Pihkanen",
+      "status": "active",
+      "summary": "Ly Pihkanen tegeleb sotsiaalnõustamise, üldhooldusteenuse vajaduse hindamise ning täisealiste kodus elamist toetavate teenuste menetlemisega. Kontaktilehel on tema töövaldkonnana nimetatud ka puudega isikute hooldusvajaduse hindamine ja menetlemine.",
+      "name": "Ly Pihkanen",
+      "role": "Sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Võrumõisa tee 4a, Võru",
+      "sourceKeys": [
+        "kontakt",
+        "sotsiaalteenused",
+        "toetused_taiskasvanutele_eakatele"
+      ],
+      "item_type": "contact",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "kontakt",
+        "sotsiaalteenused",
+        "toetused_taiskasvanutele_eakatele"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_contact_ly_pihkanen",
+      "document_id": "voru_vald_contact_ly_pihkanen",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "0222521d889c88d1b0978dfcbacb6d729eb648532bd26d27661d51d1e8070be3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_contact_aino_kaurson",
+      "canonical_item_id": "voru_vald:contact:aino_kaurson",
+      "itemType": "contact",
+      "title": "Aino Kaurson",
+      "status": "active",
+      "summary": "Aino Kaurson tegeleb sotsiaaleluruumides elavate isikute olmeprobleemide lahendamise, erandkorras abivajavate elanike abistamise ja koduteenust puudutavate dokumentide menetlemisega.",
+      "name": "Aino Kaurson",
+      "role": "Täiskasvanute heaolu töötaja",
+      "department": "Sotsiaalosakond",
+      "address": "Võrumõisa tee 4a, Võru",
+      "sourceKeys": [
+        "kontakt",
+        "sotsiaalteenused"
+      ],
+      "item_type": "contact",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "kontakt",
+        "sotsiaalteenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_contact_aino_kaurson",
+      "document_id": "voru_vald_contact_aino_kaurson",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "fddffb33cfc13db4161c115ed9fda0b4e01758f37fd3cf06331561a51f934c9d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_contact_riina_nassar",
+      "canonical_item_id": "voru_vald:contact:riina_nassar",
+      "itemType": "contact",
+      "title": "Riina Nassar",
+      "status": "active",
+      "summary": "Riina Nassar on Võru valla täiskasvanute tugiisik. Kontaktilehel on tema kontakt avaldatud sotsiaalosakonna töötajate seas.",
+      "name": "Riina Nassar",
+      "role": "Täiskasvanute tugiisik",
+      "department": "Sotsiaalosakond",
+      "address": "Võrumõisa tee 4a, Võru",
+      "sourceKeys": [
+        "kontakt"
+      ],
+      "item_type": "contact",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "kontakt"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_contact_riina_nassar",
+      "document_id": "voru_vald_contact_riina_nassar",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "839fdbe68d7d444c2e9c5b6046a8afd4b27b0fc6db3493144dafe53489ea3604",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_contact_marianne_hermann",
+      "canonical_item_id": "voru_vald:contact:marianne_hermann",
+      "itemType": "contact",
+      "title": "Marianne Hermann",
+      "status": "active",
+      "summary": "Marianne Hermann on Võru valla täiskasvanute tugiisik. Kontaktilehel on tema kontakt avaldatud sotsiaalosakonna töötajate seas.",
+      "name": "Marianne Hermann",
+      "role": "Täiskasvanute tugiisik",
+      "department": "Sotsiaalosakond",
+      "address": "Võrumõisa tee 4a, Võru",
+      "sourceKeys": [
+        "kontakt"
+      ],
+      "item_type": "contact",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "kontakt"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_contact_marianne_hermann",
+      "document_id": "voru_vald_contact_marianne_hermann",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "bf906f609411d74d0ed2d87520356b117692e0967c884fc4ada4562b0a91fa82",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_service_koduteenus",
+      "canonical_item_id": "voru_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Võru valla koduteenuse eesmärk on täisealise inimese iseseisva ja turvalise toimetuleku tagamine kodustes tingimustes. Teenust osutatakse Võru vallas alaliselt elavatele inimestele, kellel on terviseseisundist, tegevusvõimest või elukeskkonnast tulenev kõrvalabi- või hooldusvajadus.",
+      "sourceKeys": [
+        "sotsiaalteenused"
+      ],
+      "targetGroup": "Võru vallas alaliselt elavad täisealised inimesed, kellel on kodus kõrvalabi- või hooldusvajadus.",
+      "conditions": "Vajadus peab tulenema terviseseisundist, tegevusvõimest või elukeskkonnast.",
+      "application": {
+        "channels": [
+          "paper"
+        ],
+        "steps": "Koduteenuseid taotlev isik või tema seaduslik esindaja esitab vallavalitsusele põhjendatud kirjaliku taotluse abivajaduse kohta. Taotluse vormi saab Võru Vallavalitsusest.",
+        "deadline": null
+      },
+      "officialUrl": "https://www.voruvald.ee/sotsiaalteenused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "voru_vald_contact_aino_kaurson"
+      ],
+      "item_type": "service",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "sotsiaalteenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_service_koduteenus",
+      "document_id": "voru_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voruvald.ee/sotsiaalteenused",
+      "content_hash": "f992e60344a371ab60bdb54c8aeb5683721ce42610f34f80b0afa36b6843200b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_service_sotsiaaleluruumi_tagamise_teenus",
+      "canonical_item_id": "voru_vald:service:sotsiaaleluruumi_tagamise_teenus",
+      "itemType": "service",
+      "title": "Sotsiaaleluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Sotsiaaleluruumi tagamise teenus aitab inimest, kes vajab eluruumi ning peab esitama vallavalitsusele kirjaliku põhjendatud taotluse. Taotluses tuleb kirjeldada eluruumi vajaduse põhjendus, perekonna sissetulekud ja senise eluruumiga seotud asjaolud.",
+      "sourceKeys": [
+        "sotsiaalteenused"
+      ],
+      "targetGroup": "Inimesed ja pered, kellel on vajadus sotsiaaleluruumi järele.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Sotsiaaleluruumi taotlev isik esitab vallavalitsusele kirjaliku põhjendatud taotluse. Taotluse saab esitada digitaalselt allkirjastatult aadressile või käsitsi allkirjastatult Võru Vallavalitsusse aadressil Võrumõisa tee 4a, Võru.",
+        "deadline": null
+      },
+      "officialUrl": "https://www.voruvald.ee/sotsiaalteenused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "voru_vald_contact_kadri_truija"
+      ],
+      "item_type": "service",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "sotsiaalteenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_service_sotsiaaleluruumi_tagamise_teenus",
+      "document_id": "voru_vald_service_sotsiaaleluruumi_tagamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voruvald.ee/sotsiaalteenused",
+      "content_hash": "c235658795dba4cb77860f3e0526160191242c5a27e3b5bcc53d171272a26cc4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "voru_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenust saab taotleda inimene, kes vajab liikumisel abi ning kellel ei ole võimalik kasutada ühissõidukit, isiklikku sõidukit või muul viisil transporti korraldada. Taotlus tuleb esitada vähemalt kuus tööpäeva enne teenuse vajadust ning teenuse lehel on avaldatud sõidutasud piirkondade kaupa.",
+      "sourceKeys": [
+        "sotsiaalteenused"
+      ],
+      "targetGroup": "Liikumisraskustega või erivajadusega inimesed, kes ei saa kasutada tavapärast transporti.",
+      "application": {
+        "channels": [
+          "paper"
+        ],
+        "steps": "Taotlus tuleb esitada vallavalitsusele vähemalt 6 tööpäeva enne teenuse osutamise vajadust. Taotluses esitatakse taotleja andmed, terviseseisundi ja puude andmed ning teenuse vajaduse põhjendus.",
+        "deadline": "Vähemalt 6 tööpäeva enne teenuse vajadust."
+      },
+      "pricing": {
+        "amount": "sõit Põlva ja/või Võru maakonnas 5 eurot; Tartu ja/või Valga maakonnas 10 eurot; mujale Eestis 60 eurot; saatjaga transporditeenus 0,20 eurot/km, kuid mitte vähem kui 1 euro",
+        "currency": "EUR",
+        "description": "Saatja sõidab kliendiga kaasa tasuta; kliendil tuleb sõidu eest tasuda sõidukisse sisenemisel."
+      },
+      "officialUrl": "https://www.voruvald.ee/sotsiaalteenused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "voru_vald_contact_ene_andrejev"
+      ],
+      "item_type": "service",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "sotsiaalteenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_service_sotsiaaltransporditeenus",
+      "document_id": "voru_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voruvald.ee/sotsiaalteenused",
+      "content_hash": "5db3e056839200cc85c7889f1a8343f7bb87974521657d225fe943ca7e18da48",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_service_uldhooldusteenus",
+      "canonical_item_id": "voru_vald:service:uldhooldusteenus",
+      "itemType": "service",
+      "title": "Üldhooldusteenus",
+      "status": "active",
+      "summary": "Üldhooldusteenust ja selle osalist rahastamist on õigus saada inimesel, kelle rahvastikuregistrijärgne elukoht on Võru vallas, kelle abivajadus on hinnatud ja kelle toimetulekut ei ole võimalik tagada teiste sotsiaalteenuste või muu abi osutamisega. Vallavalitsuse sotsiaalteenuste spetsialist hindab abivajadust ja hooldusvajadust.",
+      "sourceKeys": [
+        "sotsiaalteenused"
+      ],
+      "targetGroup": "Täisealised Võru valla elanikud, kelle toimetulekut ei ole võimalik tagada teiste teenuste või muu abiga.",
+      "conditions": "Isiku rahvastikuregistrijärgne elukoht peab olema Võru vallas ning abivajadus peab olema hinnatud.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Taotluse üldhooldusteenuse saamiseks võib esitada isik ise või muu isik, kes märkab abivajadust. Taotlus saadetakse digitaalselt allkirjastatult või tuuakse vallavalitsusse.",
+        "deadline": null
+      },
+      "pricing": {
+        "amount": "alates 01.01.2026 toetuse piirmäär 600 eurot",
+        "currency": "EUR",
+        "description": "Toetus määratakse hooldekodu kohamaksumusest hoolduskulude osa tasumiseks vallavalitsuse kehtestatud piirmäära ulatuses."
+      },
+      "officialUrl": "https://www.voruvald.ee/sotsiaalteenused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "voru_vald_contact_ly_pihkanen"
+      ],
+      "item_type": "service",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "sotsiaalteenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_service_uldhooldusteenus",
+      "document_id": "voru_vald_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voruvald.ee/sotsiaalteenused",
+      "content_hash": "f1ace53aaa9a79808404cab1839ac91942756370861e1bc2be266d98555070c1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "voru_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Hooldus seatakse täisealisele inimesele, kes vajab vaimse või kehalise puude tõttu abi oma õiguste teostamiseks ja kohustuste täitmiseks ning kelle toimetulekut ei ole võimalik tagada muude teenuste, toetuste või muu abi abil. Hoolduse seadmist saab taotleda raske või sügava puudega vähemalt 18-aastane Võru valla elanik.",
+      "sourceKeys": [
+        "toetused_taiskasvanutele_eakatele"
+      ],
+      "targetGroup": "Raske või sügava puudega vähemalt 18-aastased Võru valla elanikud, kelle tegelik elukoht on Võru vallas.",
+      "conditions": "Hooldust ei seata, kui funktsioonihäiret saab kompenseerida abivahendi või tugiteenustega või kui abi on vaja ainult majapidamistöödes ja samas majapidamises elab abi osutada suuteline isik.",
+      "application": {
+        "channels": [
+          "paper"
+        ],
+        "steps": "Sotsiaaltööspetsialist selgitab dokumentide ja hooldust vajava isiku elukoha külastuse alusel hooldusvajaduse ning teeb ettepaneku hoolduse seadmise või mitteseadmise kohta.",
+        "deadline": null
+      },
+      "officialUrl": "https://www.voruvald.ee/toetused-taiskasvanutele-ja-eakatele",
+      "relatedForms": [],
+      "relatedContacts": [
+        "voru_vald_contact_ly_pihkanen"
+      ],
+      "item_type": "service",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "toetused_taiskasvanutele_eakatele"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_service_taisealise_isiku_hooldus",
+      "document_id": "voru_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voruvald.ee/toetused-taiskasvanutele-ja-eakatele",
+      "content_hash": "510ad4719a4a8f0eea6d5b1d08fa49cec0734537d71ddc4583b19e05e4c5646d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_service_puudega_lapse_toetavad_teenused",
+      "canonical_item_id": "voru_vald:service:puudega_lapse_toetavad_teenused",
+      "itemType": "service",
+      "title": "Raske ja sügava puudega laste toetavad teenused",
+      "status": "active",
+      "summary": "Raske või sügava puudega lapse ja tema pere toetavale teenusele on õigus rahvastikuregistri järgi Võru vallas elaval raske või sügava puudega lapsel kuni selle kalendriaasta lõpuni, mil laps saab 18-aastaseks. Toetust võib taotleda lapsehoiuteenusele, tugiisikuteenusele, transporditeenusele, nõustamisteenusele, psühholoogi-, logopeedi- ja teraapiateenustele, varjupaiga- või turvakoduteenusele ning muudele arengut ja pere toimetulekut toetavatele teenustele.",
+      "sourceKeys": [
+        "toetused_lastega_peredele"
+      ],
+      "targetGroup": "Raske või sügava puudega Võru valla laps kuni selle kalendriaasta lõpuni, mil laps saab 18-aastaseks.",
+      "application": {
+        "channels": [
+          "paper"
+        ],
+        "steps": "Puudega lapse toetava teenuse rahastamiseks esitab taotleja vallavalitsusele taotluse. Vajadusel lisatakse isikut tõendavad dokumendid, rehabilitatsiooniplaan või muu hindamisdokument, puude raskusastme otsus, kohtumäärus, perekonnas hooldamise leping või erialaspetsialisti ettepanek.",
+        "deadline": null
+      },
+      "officialUrl": "https://www.voruvald.ee/toetused-lastega-peredele",
+      "relatedForms": [],
+      "relatedContacts": [
+        "voru_vald_contact_riina_mandel",
+        "voru_vald_contact_kristina_tobreluts"
+      ],
+      "item_type": "service",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "toetused_lastega_peredele"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_service_puudega_lapse_toetavad_teenused",
+      "document_id": "voru_vald_service_puudega_lapse_toetavad_teenused",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voruvald.ee/toetused-lastega-peredele",
+      "content_hash": "537017f6d74bfad40d0c7f19dcb8f351e7653bcb420deb954030bede4245ec4e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_benefit_matusetoetus",
+      "canonical_item_id": "voru_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetust on õigus saada matuse korraldajal, kui lahkunu elukoht oli rahvastikuregistri andmetel Võru vald. Toetuse suurus on 350 eurot ning KOV lehe järgi makstakse toetus kolme tööpäeva jooksul taotluse esitamisest.",
+      "sourceKeys": [
+        "muud_toetused"
+      ],
+      "targetGroup": "Matuse korraldaja, kui lahkunu elukoht oli rahvastikuregistri järgi Võru vald.",
+      "amount": {
+        "amount": "350 eurot",
+        "currency": "EUR"
+      },
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Taotlus saadetakse digitaalselt allkirjastatult aadressile või tuuakse käsitsi allkirjastatult Võru Vallavalitsusse aadressil Võrumõisa tee 4a, Võru. Vajalikud dokumendid on taotlus ja taotleja isikut tõendav dokument.",
+        "deadline": null
+      },
+      "decisionTime": "Makstakse 3 tööpäeva jooksul taotluse esitamisest.",
+      "officialUrl": "https://www.voruvald.ee/muud-sotsiaaltoetused",
+      "relatedForms": [
+        "voru_vald_form_matusetoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "voru_vald_contact_maria_saarme"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "muud_toetused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_benefit_matusetoetus",
+      "document_id": "voru_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voruvald.ee/muud-sotsiaaltoetused",
+      "content_hash": "17c73ef163e2640c1845cadac6a1cfc3d6ce33174d11316ce95d5ba9a6b102bb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_benefit_muud_sotsiaaltoetused",
+      "canonical_item_id": "voru_vald:benefit:muud_sotsiaaltoetused",
+      "itemType": "benefit",
+      "title": "Muud sotsiaaltoetused",
+      "status": "active",
+      "summary": "Muud sotsiaaltoetused on vajaduspõhised toetused, mille suurus kujuneb kaalutlusotsuse alusel. Toetust vajav inimene esitab põhjendatud kirjaliku taotluse ning kulude kompenseerimisel lisab kulusid tõendavad dokumendid.",
+      "sourceKeys": [
+        "muud_toetused"
+      ],
+      "conditions": "Toetuse määramisel arvestatakse taotleja tegelikku abivajadust ning toetuse saaja ja tema perekonnaliikmete sissetulekuid.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Taotlus saadetakse digitaalselt allkirjastatult aadressile või tuuakse käsitsi allkirjastatult Võru Vallavalitsusse aadressil Võrumõisa tee 4a, Võru.",
+        "deadline": null
+      },
+      "decisionTime": "Toetus kantakse 30 kalendripäeva jooksul pärast määramist taotleja pangakontole või makstakse välja sularahas.",
+      "officialUrl": "https://www.voruvald.ee/muud-sotsiaaltoetused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "voru_vald_contact_maria_saarme"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "muud_toetused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_benefit_muud_sotsiaaltoetused",
+      "document_id": "voru_vald_benefit_muud_sotsiaaltoetused",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voruvald.ee/muud-sotsiaaltoetused",
+      "content_hash": "71dd8a3a8428fb94b952c018bd1c23430f14bb19b9da012d15b981dbae35a9d6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_benefit_tervisega_seotud_kulude_toetus",
+      "canonical_item_id": "voru_vald:benefit:tervisega_seotud_kulude_toetus",
+      "itemType": "benefit",
+      "title": "Tervisega seotud kulude toetus",
+      "status": "active",
+      "summary": "Tervisega seotud kulude toetust saab taotleda invatehnilise abivahendi omaosaluse, retseptiravimite, haigla voodipäevatasu, tervisega seotud transpordikulude ja prilliklaaside või läätsede maksumuse kompenseerimiseks. Prilliklaaside või läätsede maksumus kompenseeritakse ühel korral aastas lastele 100% ja täiskasvanutele 50% ulatuses.",
+      "sourceKeys": [
+        "muud_toetused"
+      ],
+      "targetGroup": "Võru vallas elav vähekindlustatud isik või pere ning üksik vanaduspensionär, kelle sissetulek jääb KOV lehel kirjeldatud piirmäärast alla.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Toetust vajav isik esitab põhjendatud kirjaliku taotluse ja kuludokumendi. Taotlus saadetakse digitaalselt allkirjastatult aadressile või tuuakse vallavalitsusse.",
+        "deadline": null
+      },
+      "decisionTime": "Toetus kantakse 30 kalendripäeva jooksul pärast määramist pangakontole või makstakse välja sularahas.",
+      "officialUrl": "https://www.voruvald.ee/muud-sotsiaaltoetused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "voru_vald_contact_maria_saarme"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "muud_toetused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_benefit_tervisega_seotud_kulude_toetus",
+      "document_id": "voru_vald_benefit_tervisega_seotud_kulude_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voruvald.ee/muud-sotsiaaltoetused",
+      "content_hash": "ddbb4fcb217718481c00d7d4adb47546b7f378b4f14fd4ad3f2eb6a6d3a7b0da",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "voru_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetust saab taotleda jooksva kuu eest alates kuu 10. kuupäevast hiljemalt kuu viimaseks tööpäevaks Võru Vallavalitsuselt. KOV lehel on selgitatud toimetulekupiire ja seda, et toetuse summa makstakse kolme tööpäeva jooksul toetuse määramise otsuse tegemise päevast arvates.",
+      "sourceKeys": [
+        "muud_toetused"
+      ],
+      "targetGroup": "Madala sissetulekuga inimesed ja pered.",
+      "application": {
+        "channels": [
+          "in_person"
+        ],
+        "steps": "Taotleja või tema perekonnaliige pöördub jooksva kuu eest isiklikult alates kuu 10. kuupäevast hiljemalt kuu viimaseks tööpäevaks Võru Vallavalitsuse poole. Vajalikud dokumendid on taotlus ja isikut tõendav dokument.",
+        "deadline": "Alates kuu 10. kuupäevast hiljemalt kuu viimaseks tööpäevaks."
+      },
+      "decisionTime": "Toetuse summa makstakse 3 tööpäeva jooksul toetuse määramise otsuse tegemisest.",
+      "officialUrl": "https://www.voruvald.ee/muud-sotsiaaltoetused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "voru_vald_contact_maria_saarme",
+        "voru_vald_contact_ene_andrejev",
+        "voru_vald_contact_helli_kalda"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "muud_toetused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_benefit_toimetulekutoetus",
+      "document_id": "voru_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voruvald.ee/muud-sotsiaaltoetused",
+      "content_hash": "01523839a0f2127da75b02cdacadd722cdbdb8364889ad4e3da90719e779a114",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_benefit_eakate_juubelitoetus",
+      "canonical_item_id": "voru_vald:benefit:eakate_juubelitoetus",
+      "itemType": "benefit",
+      "title": "Eakate juubelitoetus",
+      "status": "active",
+      "summary": "Eakate juubelitoetust on õigus saada eakal, kelle elukoht rahvastikuregistri andmetel on 1. jaanuari seisuga Võru vald. Toetust makstakse alates 80. aasta juubelist iga viie aasta järel vastava taotluse esitamisel.",
+      "sourceKeys": [
+        "toetused_taiskasvanutele_eakatele"
+      ],
+      "targetGroup": "Võru valla eakad alates 80. aasta juubelist iga viie aasta järel.",
+      "conditions": "Elukoht peab rahvastikuregistri andmetel 1. jaanuari seisuga olema Võru vald.",
+      "amount": {
+        "amount": "50 eurot",
+        "currency": "EUR"
+      },
+      "decisionTime": "Toetus makstakse 10 tööpäeva jooksul taotluse esitamisest.",
+      "officialUrl": "https://www.voruvald.ee/toetused-taiskasvanutele-ja-eakatele",
+      "relatedForms": [],
+      "relatedContacts": [
+        "voru_vald_contact_helli_kalda"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "toetused_taiskasvanutele_eakatele"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_benefit_eakate_juubelitoetus",
+      "document_id": "voru_vald_benefit_eakate_juubelitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voruvald.ee/toetused-taiskasvanutele-ja-eakatele",
+      "content_hash": "43b10a44f42cfd3573135f9bfd6a0dea81956f7a99d655f69d4b28cebe84cec8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_benefit_puudega_lapse_hooldajatoetus",
+      "canonical_item_id": "voru_vald:benefit:puudega_lapse_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Puudega lapse hooldajatoetus",
+      "status": "active",
+      "summary": "Puudega lapse hooldajatoetust makstakse rahvastikuregistri järgi Võru vallas elava 3–18-aastase raske või sügava puudega lapse hooldamise eest. Keskmise puudega lapse hooldamise eest makstakse toetust ainult juhul, kui hooldaja ei saa töötada puudega lapse hooldamise tõttu.",
+      "sourceKeys": [
+        "toetused_lastega_peredele"
+      ],
+      "targetGroup": "Puudega lapse hooldaja: vanem, võõrasvanem, eestkostja või perehoolduslepingu alusel lapse hooldaja.",
+      "conditions": "Toetus määratakse tähtajaliselt kuni eelarveaasta lõpuni, lapse puude kehtivuse lõpuni, lapse täisealiseks saamiseni või eestkoste/perehoolduslepingu lõpptähtajani.",
+      "amount": {
+        "amount": "keskmise puudega lapse hooldamise eest 50 eurot kuus; raske puudega lapse eest 75 eurot kuus; sügava puudega lapse eest 100 eurot kuus",
+        "currency": "EUR"
+      },
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Taotleja esitab vallavalitsusele taotluse. Vajalikud dokumendid on taotlus, isikut tõendav dokument, SKA otsus lapse puude raskusastme kohta ning vajadusel rehabilitatsiooniplaan, nõusolek või kohtumäärus.",
+        "deadline": null
+      },
+      "decisionTime": "Otsustatakse 30 kalendripäeva jooksul; otsusest teatatakse viie tööpäeva jooksul.",
+      "officialUrl": "https://www.voruvald.ee/toetused-lastega-peredele",
+      "relatedForms": [],
+      "relatedContacts": [
+        "voru_vald_contact_riina_mandel",
+        "voru_vald_contact_kristina_tobreluts",
+        "voru_vald_contact_ene_andrejev"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "toetused_lastega_peredele"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_benefit_puudega_lapse_hooldajatoetus",
+      "document_id": "voru_vald_benefit_puudega_lapse_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voruvald.ee/toetused-lastega-peredele",
+      "content_hash": "3bd21daff8ac2340e291ea670c9431e09568b96dc99d893b769eb48314700177",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_benefit_lasteaia_ja_koolitoidu_toetus",
+      "canonical_item_id": "voru_vald:benefit:lasteaia_ja_koolitoidu_toetus",
+      "itemType": "benefit",
+      "title": "Lasteaia- ja koolitoidu toetus",
+      "status": "active",
+      "summary": "Lasteaia- ja koolitoidu toetus määratakse Võru vallas elavale vähekindlustatud perele või vanemliku hoolitsuseta lastele toidukulude kompenseerimiseks. Toetuse suurus määratakse pere majanduslikust olukorrast lähtuvalt.",
+      "sourceKeys": [
+        "toetused_lastega_peredele"
+      ],
+      "targetGroup": "Võru vallas elavad vähekindlustatud pered ja vanemliku hoolitsuseta lapsed.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Taotlus saadetakse digitaalselt allkirjastatult aadressile või tuuakse käsitsi allkirjastatult Võru Vallavalitsusse. Vajalikud dokumendid on taotlus ja taotleja isikut tõendav dokument.",
+        "deadline": null
+      },
+      "officialUrl": "https://www.voruvald.ee/toetused-lastega-peredele",
+      "relatedForms": [],
+      "relatedContacts": [
+        "voru_vald_contact_ene_andrejev"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "toetused_lastega_peredele"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_benefit_lasteaia_ja_koolitoidu_toetus",
+      "document_id": "voru_vald_benefit_lasteaia_ja_koolitoidu_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voruvald.ee/toetused-lastega-peredele",
+      "content_hash": "039b74299506f8d7bc0e89a90909c7c09b310503ad100b43ac7d04ead43479c3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_benefit_kooli_mineva_lapse_toetus",
+      "canonical_item_id": "voru_vald:benefit:kooli_mineva_lapse_toetus",
+      "itemType": "benefit",
+      "title": "Kooli mineva lapse toetus",
+      "status": "active",
+      "summary": "Kooli mineva lapse toetust on õigus saada esmakordselt I klassi astuva õpilase lapsevanemal, eestkostjal või hoolduspere vanemal, kui lapse elukoht on rahvastikuregistri andmetel Võru vald. Taotlusi võetakse vastu alates 1. augustist.",
+      "sourceKeys": [
+        "toetused_lastega_peredele"
+      ],
+      "targetGroup": "Esmakordselt I klassi astuva Võru valla lapse lapsevanem, eestkostja või hoolduspere vanem.",
+      "amount": {
+        "amount": "100 eurot",
+        "currency": "EUR"
+      },
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Taotlus saadetakse digitaalselt allkirjastatult aadressile või tuuakse Võru Vallavalitsusse. Taotluses märgitakse lapse ja taotleja andmed ning kooli nimetus.",
+        "deadline": "Alates 1. augustist."
+      },
+      "decisionTime": "Toetus makstakse välja septembrikuu jooksul.",
+      "officialUrl": "https://www.voruvald.ee/toetused-lastega-peredele",
+      "relatedForms": [
+        "voru_vald_form_kooli_mineva_lapse_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "voru_vald_contact_maria_saarme"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "toetused_lastega_peredele"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_benefit_kooli_mineva_lapse_toetus",
+      "document_id": "voru_vald_benefit_kooli_mineva_lapse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voruvald.ee/toetused-lastega-peredele",
+      "content_hash": "fbf6bf25df9aca48706f3d0bd60388d8c4fb77963736e9897d16ecbe1867224c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_benefit_sunnitoetus",
+      "canonical_item_id": "voru_vald:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetust saab taotleda üks lapsevanem, kelle elukoht 1. jaanuari seisuga on rahvastikuregistri järgi Võru vald ja kelle laps on samuti rahvastikuregistri järgi Võru valla elanik. Alates 1. maist 2026 sündinud laste puhul makstakse toetus välja kolmes osas.",
+      "sourceKeys": [
+        "toetused_lastega_peredele"
+      ],
+      "targetGroup": "Võru valla lapsevanem, kui laps on samuti Võru valla elanik.",
+      "conditions": "Lapsevanema elukoht peab 1. jaanuari seisuga olema Võru vald ja laps peab olema rahvastikuregistri järgi Võru valla elanik.",
+      "amount": {
+        "amount": "1. maist 2026 sündinud lapse puhul 500 eurot sünni registreerimise järel, 250 eurot lapse üheaastaseks saamisel ja 250 eurot lapse kaheaastaseks saamisel",
+        "currency": "EUR"
+      },
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Taotlus saadetakse digitaalselt allkirjastatult aadressile või tuuakse Võru Vallavalitsusse. Taotluses märgitakse lapse ja taotleja andmed ning arvelduskonto andmed.",
+        "deadline": "2 kuu jooksul alates lapse sünni registreerimisest."
+      },
+      "decisionTime": "Sünnitoetus makstakse 10 tööpäeva jooksul taotluse laekumisest või lapse ühe aastaseks saamise päevast.",
+      "officialUrl": "https://www.voruvald.ee/toetused-lastega-peredele",
+      "relatedForms": [
+        "voru_vald_form_synnitoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "voru_vald_contact_maria_saarme"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "toetused_lastega_peredele"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_benefit_sunnitoetus",
+      "document_id": "voru_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voruvald.ee/toetused-lastega-peredele",
+      "content_hash": "d7dd3e03e7e1bcfa20e56603a3ec1714ff1a4d8cf7b38d5f1bb6591cd200b0ae",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_resource_lastekaitse_voru_vallas",
+      "canonical_item_id": "voru_vald:resource:lastekaitse_voru_vallas",
+      "itemType": "resource",
+      "title": "Lastekaitse Võru vallas",
+      "status": "active",
+      "summary": "Võru valla lastekaitse leht selgitab, kuidas toimub lapse ja pere olukorra hindamine pärast ühenduse võtmist või teate esitamist. Vajaduse korral alustatakse lapse ja pere olukorra hindamist, kohtutakse vanemate ja lapsega ning pakutakse teenuseid, toetusi või alustatakse juhtumitööd.",
+      "sourceKeys": [
+        "lastekaitse"
+      ],
+      "officialUrl": "https://www.voruvald.ee/lastekaitse-voru-vallas",
+      "relatedTo": [],
+      "relatedContacts": [
+        "voru_vald_contact_riina_mandel",
+        "voru_vald_contact_kristina_tobreluts"
+      ],
+      "item_type": "resource",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "lastekaitse"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_resource_lastekaitse_voru_vallas",
+      "document_id": "voru_vald_resource_lastekaitse_voru_vallas",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voruvald.ee/lastekaitse-voru-vallas",
+      "content_hash": "1667b4e76128a4cf2f37ac0dd8c13493d60f9b99a6a95cf43aeebcf695d95c8a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_resource_ohvriabi",
+      "canonical_item_id": "voru_vald:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "Võru valla avalehe sotsiaalvaldkonna abi plokis on nimetatud ohvriabi. See on KOV veebis avaldatud suunamine välisele abikanalile; välise veebilehe sisu ei kasutatud allikana.",
+      "sourceKeys": [
+        "home"
+      ],
+      "officialUrl": "https://www.voruvald.ee/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "home"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_resource_ohvriabi",
+      "document_id": "voru_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voruvald.ee/",
+      "content_hash": "d34a03f3fa76602cf8d842f602e3876c4d080be9dba539f3f36f3d8e880ce371",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_resource_hoolekandeasutused",
+      "canonical_item_id": "voru_vald:resource:hoolekandeasutused",
+      "itemType": "resource",
+      "title": "Hoolekandeasutused",
+      "status": "active",
+      "summary": "Võru valla avalehel on tervise- ja hoolekandeasutuste plokis nimetatud hoolekandeasutused. See on sotsiaalvaldkonna navigeerimisressurss; konkreetseid asutusi ei normaliseeritud eraldi, sest detailset praktilist sisu ei kontrollitud.",
+      "sourceKeys": [
+        "home"
+      ],
+      "officialUrl": "https://www.voruvald.ee/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "home"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_resource_hoolekandeasutused",
+      "document_id": "voru_vald_resource_hoolekandeasutused",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voruvald.ee/",
+      "content_hash": "f59b09df27e12b94446edc64653a63f423e639c00a473bbed97672953c0546a6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_form_matusetoetuse_taotlus",
+      "canonical_item_id": "voru_vald:form:matusetoetuse_taotlus",
+      "itemType": "form",
+      "title": "Matusetoetuse taotluse vorm",
+      "status": "active",
+      "summary": "Matusetoetuse taotluse PDF-vorm kogub taotleja andmed, lahkunud isiku andmed ning toetuse maksmiseks vajaliku konto info. Vormil on märgitud, et toetust on õigus saada rahvastikuregistri andmetel Võru vallas elanud isiku surma korral.",
+      "sourceKeys": [
+        "matusetoetuse_taotlus_pdf"
+      ],
+      "format": "pdf",
+      "submissionChannels": [
+        "paper",
+        "email"
+      ],
+      "officialUrl": "https://atp.amphora.ee/voruvv2017/index.aspx?af=188284&itm=244995",
+      "sections_present": [
+        "taotleja_andmed",
+        "lahkunud_isiku_andmed",
+        "toetuse_maksmine"
+      ],
+      "relatedTo": [
+        "voru_vald_benefit_matusetoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "matusetoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_form_matusetoetuse_taotlus",
+      "document_id": "voru_vald_form_matusetoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://atp.amphora.ee/voruvv2017/index.aspx?af=188284&itm=244995",
+      "content_hash": "95ba61db42b02602a0f279ff3833d86f977520eaad67fd345247a0ec3a7cf58a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_form_kooli_mineva_lapse_toetuse_taotlus",
+      "canonical_item_id": "voru_vald:form:kooli_mineva_lapse_toetuse_taotlus",
+      "itemType": "form",
+      "title": "Kooli mineva lapse toetuse taotluse vorm",
+      "status": "active",
+      "summary": "Kooli mineva lapse toetuse PDF-vorm kogub taotleja andmed, I klassi astuva lapse andmed, kooli nimetuse ja toetuse maksmiseks vajaliku arvelduskonto info.",
+      "sourceKeys": [
+        "kooli_mineva_lapse_toetuse_taotlus_pdf"
+      ],
+      "format": "pdf",
+      "submissionChannels": [
+        "paper",
+        "email"
+      ],
+      "officialUrl": "https://atp.amphora.ee/voruvv2017/index.aspx?af=188285&itm=244995",
+      "sections_present": [
+        "taotleja_andmed",
+        "lapse_andmed",
+        "kooli_nimetus",
+        "toetuse_maksmine"
+      ],
+      "relatedTo": [
+        "voru_vald_benefit_kooli_mineva_lapse_toetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "kooli_mineva_lapse_toetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_form_kooli_mineva_lapse_toetuse_taotlus",
+      "document_id": "voru_vald_form_kooli_mineva_lapse_toetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://atp.amphora.ee/voruvv2017/index.aspx?af=188285&itm=244995",
+      "content_hash": "339bc36667655fd98d34717ea928e36ef6b8753f5dfa9a37a1fe6a513fabeb88",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_vald_form_synnitoetuse_taotlus",
+      "canonical_item_id": "voru_vald:form:synnitoetuse_taotlus",
+      "itemType": "form",
+      "title": "Sünnitoetuse taotluse vorm",
+      "status": "active",
+      "summary": "Sünnitoetuse PDF-vorm kogub taotleja andmed, lapse andmed ja toetuse maksmiseks vajaliku arvelduskonto info. Vormil on märgitud, et toetust on õigus taotleda lapsevanemal, kelle elukoht on 1. jaanuari seisuga Võru vald ning kelle laps on Võru valla elanik.",
+      "sourceKeys": [
+        "synnitoetuse_taotlus_pdf"
+      ],
+      "format": "pdf",
+      "submissionChannels": [
+        "paper",
+        "email"
+      ],
+      "officialUrl": "https://atp.amphora.ee/voruvv2017/index.aspx?af=251454&itm=",
+      "sections_present": [
+        "taotleja_andmed",
+        "lapse_andmed",
+        "toetuse_maksmine"
+      ],
+      "relatedTo": [
+        "voru_vald_benefit_sunnitoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "county": "Võrumaa",
+      "source_keys": [
+        "synnitoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_vald_form_synnitoetuse_taotlus",
+      "document_id": "voru_vald_form_synnitoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://atp.amphora.ee/voruvv2017/index.aspx?af=251454&itm=",
+      "content_hash": "40e5580008e7cb952d0073c3fa1402e56bf2b524fc3f107d2166881a2e469549",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Võru vald",
+  "checked_at": "2026-04-30",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

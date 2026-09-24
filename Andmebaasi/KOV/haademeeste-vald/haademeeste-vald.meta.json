@@ -1,0 +1,67 @@
+{
+  "id": "haademeeste-vald",
+  "municipality": "Häädemeeste vald",
+  "county": "Pärnumaa",
+  "checkedAt": "2026-04-11",
+  "status": "ingest_ready",
+  "coverage": {
+    "services": 13,
+    "benefits": 9,
+    "resources": 15,
+    "contacts": 16,
+    "forms": 10,
+    "regulations": 0
+  },
+  "notes": [],
+  "unresolvedIssues": [
+    "Sotsiaalteenuste koondlehe üldhooldusteenuse plokis on endiselt varasem 545-eurone hoolduskulude piirmäär, kuid 16.03.2026 avaldatud vallauudis ja Häädemeeste Eakate Kodu leht kinnitavad, et alates 01.04.2026 on kehtiv piirmäär 600 eurot kuus.",
+    "Eakate sünnipäevatoetus on sotsiaaltoetuste lehel loetletud, kuid koduleht ei avalda selle toetuse suurust, vanusepiiri ega maksmise täpsemat korda.",
+    "Hooldajatoetus on sotsiaaltoetuste lehel loetletud ja vallal on olemas ühine hooldus- ja hooldajatoetuse taotlusvorm, kuid koduleht ei kirjelda selgelt hooldajatoetuse 2026. aasta suurust ega detailseid tingimusi.",
+    "Jõulutoetuse kohta on sotsiaaltoetuste lehel kirjas ainult nimetus „kommipakk lastele“; koduleht ei täpsusta vanuserühma, väärtust ega jagamise korda.",
+    "Erakorralise toetuse kohta on sotsiaaltoetuste lehel märgitud ainult „vastavalt juhtumile“; eraldi tingimusi ja summasid koduleht ei ava.",
+    "I klassi toetuse eraldi toimingu lehe otsingutulemus kuvab blanketi vorminguna ODT, samal ajal kui sotsiaaltoetuste koondlehe seotud dokumentide loetelus ja allalaaditavas failis on vorm DOCX.",
+    "Häädemeeste Eakate Kodu juhataja nimi ei ole kodulehel avaldatud, kuigi telefoninumber on olemas."
+  ],
+  "schemaVersion": "v2.5-sourcepackage",
+  "municipality_id": "haademeeste_vald",
+  "municipality_name": "Häädemeeste vald",
+  "checked_at": "2026-04-11",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "collection_id": "kov_services",
+  "jurisdiction_level": "MUNICIPALITY",
+  "sourceRegisterFile": "haademeeste-vald.sources.json",
+  "sourceCount": 41,
+  "counts": {
+    "services": 13,
+    "benefits": 9,
+    "resources": 15,
+    "contacts": 16,
+    "forms": 10,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "haademeeste_vald",
+    "source_register_file": "haademeeste-vald.sources.json",
+    "service_benefit_resource_items": 37,
+    "items_with_source_keys": 37,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 12,
+    "items_without_related_forms": 25,
+    "items_with_related_contacts": 36,
+    "items_without_related_contacts": 1,
+    "form_sources": 9,
+    "contact_sources": 1,
+    "regulation_sources": 0,
+    "warnings": [
+      "5 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "warnings": [
+    "5 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

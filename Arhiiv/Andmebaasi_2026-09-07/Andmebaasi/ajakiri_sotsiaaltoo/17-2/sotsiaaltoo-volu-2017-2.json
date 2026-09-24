@@ -1,0 +1,70 @@
+{
+  "docId": "sotsiaaltoo-2-2017",
+  "articleId": "sotsiaaltoo-volu-2017-2",
+  "title": "Sotsiaaltöö võlu on võimaluste rohkuses",
+  "authors": [
+    "Kaia Veltmann"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2017",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "10-11",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Vilistlaslugu, mis rõhutab, et oma koha leidmine tööelus on protsess ja ümberhindamishetki ei tasu karta. Autor vaidleb vastu arusaamale, nagu peaksid hea sotsiaaltöötaja omadused — pingetaluvus, sallivus, koostöövõime, empaatia — olema olemas juba enne õpinguid, ning väidab, et õppimine arendab neid.",
+  "tags": [
+    "erialavalik",
+    "sotsiaaltööharidus",
+    "kutseomadused",
+    "karjäär"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2-2017_veebi_link_Part5.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2017-sotsiaaltoo-volu-2017-2",
+  "source_sha256": "6f2a5140e2e93fceff19c2d10472a5a162b43aeae5278599ffb5ec38ee9d2b60",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2017-sotsiaaltoo-volu-2017-2",
+    "previous_source_path": "Sotsiaaltoo_2-2017_veebi_link_Part5.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2-2017_veebi_link_Part5.pdf",
+    "reference_stored_source_sha256": "325cb30ad40b995a6b689a48819ca6e23283454fb15ea7b5ac1064c2d6c4037e",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf",
+      "source_sha256": "609af110244e684ccbb68aea9504f2490fce2852b1e7caa7bedacb621d661a8a",
+      "pdf_start_page": 12,
+      "pdf_end_page": 13,
+      "printed_page_range": "10-11",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 13,
+      "source_regions": [
+        {
+          "source_pdf_page": 12,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 13,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "10-11"
+    },
+    "server_page_range": "10-11"
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "source_path": "tarkvanem_tooleht_lapse_tunnustamine.pdf",
+  "source_format": "pdf",
+  "sha256": "0cabdfea2d46093e962149cf2909c07a2f2f9833baa9eb3293558006dfbcd201",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/tarkvanem_tooleht_lapse_tunnustamine.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "tarkvanem_tooleht_lapse_tunnustamine",
+          "title": "TÖÖLEHT: Lapse tunnustamine",
+          "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_lapse_tunnustamine.pdf",
+          "normalized_url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_lapse_tunnustamine.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "method_guidance",
+          "publisher": "Tarkvanem",
+          "organization_id": "tarkvanem",
+          "collection_hint": "guidance_and_methods",
+          "evidence_role": "practice_guidance",
+          "topic_tags": [
+            "Tarkvanem",
+            "lapsed ja pered",
+            "laps",
+            "vaimne tervis",
+            "psüühiline heaolu",
+            "nõustamine",
+            "tööleht",
+            "lapse kasvatamine",
+            "suhtlemisoskused",
+            "praktiline töövahend"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Partnerid",
+            "heading_3": "Tarkvanem",
+            "heading_4": null,
+            "line": 643,
+            "order": 326
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "TÖÖLEHT: Lapse tunnustamine"
+          ],
+          "collection_hints": [
+            "organization_guidelines"
+          ],
+          "source_types_seen": [
+            "official_guideline"
+          ],
+          "resource_types_seen": [
+            "method_guidance"
+          ],
+          "publishers_seen": [
+            "Tarkvanem"
+          ],
+          "organizations_seen": [
+            "tarkvanem"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Partnerid",
+              "heading_3": "Tarkvanem",
+              "line": 643,
+              "order": 326
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_lapse_tunnustamine.pdf"
+        },
+        "final_url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_lapse_tunnustamine.pdf",
+        "redirects": [],
+        "sha256": "0cabdfea2d46093e962149cf2909c07a2f2f9833baa9eb3293558006dfbcd201",
+        "bytes": 112985,
+        "downloaded_at": "2026-08-14T08:00:59.110Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "tarkvanem_tooleht_lapse_tunnustamine",
+      "metadata": {
+        "createdAt": "2026-06-12T03:59:59.808516+00:00",
+        "type": "FILE",
+        "fileName": "Tark_Vanem_tooleht_lapse_tunnustamine.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:59:59.736966+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/a3a2fbdf0eff/Tark_Vanem_tooleht_lapse_tunnustamine.pdf",
+        "title": "TÖÖLEHT: Lapse tunnustamine",
+        "description": "Source master headings: Partnerid; Tarkvanem",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2018,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "organization_guidelines",
+        "source_id": "tarkvanem_tooleht_lapse_tunnustamine",
+        "document_id": "tarkvanem_tooleht_lapse_tunnustamine",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "647e9b3ee3080acbe6d739bac0dea31d941f87bc830b35af3c83f97f9db8e310",
+        "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_lapse_tunnustamine.pdf",
+        "url_canonical": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_lapse_tunnustamine.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "tarkvanem_tooleht_lapse_tunnustamine",
+        "updatedAt": "2026-06-12T03:59:59.808542+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

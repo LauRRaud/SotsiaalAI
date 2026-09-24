@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2024",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "hooldekodud-annavad-endast-parima-et-dementsusega-inimestega-kohaneda-vestlusring-2024-3",
+  "title": "Hooldekodud annavad endast parima, et dementsusega inimestega kohaneda. Vestlusring",
+  "authors": [
+    "Kairiin Nuudi"
+  ],
+  "section": "Kogemus",
+  "pageRange": "51-58",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "description": "Vestlusringis jagavad kolme hooldekodu esindajad kogemusi dementsusega elanike toetamisest, personali koolitamisest ja töökorralduse kohandamisest. Arutletakse dementsusega klientide koos teiste elanikega elamise plusse ja miinuseid, tegevusjuhendajate ja lisatöötajate rolli, keskkonna kohandamist, TAI dementsuse-alaste koolituste mõju ning robotloomade ja teiste praktiliste lahenduste kasutamist igapäevatöös.",
+  "tags": [
+    "hooldekodu",
+    "dementsus",
+    "kogemuslood",
+    "töötajate koolitus",
+    "Tervise Arengu Instituut",
+    "tegevusjuhendaja",
+    "töökorraldus",
+    "robotloomad"
+  ],
+  "source_path": "sotsiaaltoo_3_2024_web_Part11.pdf",
+  "document_id": "sotsiaaltoo-3-2024-hooldekodud-annavad-endast-parima-et-dementsusega-inimestega-kohaneda-vestlusring-2024-3",
+  "source_format": "pdf",
+  "source_sha256": "b6665ca5b76c38dd3d465dbc20e37f8b67890865bfd4e550208e1c6da5ef558f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2024-hooldekodud-annavad-endast-parima-et-dementsusega-inimestega-kohaneda-vestlusring-2024-3",
+    "previous_source_path": "sotsiaaltoo_3_2024_web_Part11.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b6665ca5b76c38dd3d465dbc20e37f8b67890865bfd4e550208e1c6da5ef558f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

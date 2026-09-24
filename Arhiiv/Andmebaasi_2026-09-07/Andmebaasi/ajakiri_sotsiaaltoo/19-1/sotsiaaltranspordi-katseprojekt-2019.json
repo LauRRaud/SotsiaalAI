@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2019",
+  "articleId": "sotsiaaltranspordi-katseprojekt-2019",
+  "title": "Sotsiaaltranspordi katseprojekt",
+  "authors": [
+    "Triin Raag"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2019",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "21-23",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab sotsiaaltranspordi katseprojekti, mille eesmärk on parandada abivajajate liikumisvõimalusi ning siduda sotsiaaltransport paremini ühistranspordisüsteemiga koostöös KOVide ja ühistranspordikeskustega.",
+  "tags": [
+    "sotsiaaltransport",
+    "liikumisvõimalused",
+    "ühistransport",
+    "katseprojekt",
+    "kohalik omavalitsus",
+    "ühistranspordikeskused",
+    "sotsiaalteenuste kättesaadavus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part6.pdf",
+  "document_id": "sotsiaaltoo-1-2019-sotsiaaltranspordi-katseprojekt-2019",
+  "source_format": "pdf",
+  "source_sha256": "9e0aeeaf844048a4fbfd45a9614d276f912d7920ee884723eb98981cb19ca76a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2019-sotsiaaltranspordi-katseprojekt-2019",
+    "previous_source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part6.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "9e0aeeaf844048a4fbfd45a9614d276f912d7920ee884723eb98981cb19ca76a",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

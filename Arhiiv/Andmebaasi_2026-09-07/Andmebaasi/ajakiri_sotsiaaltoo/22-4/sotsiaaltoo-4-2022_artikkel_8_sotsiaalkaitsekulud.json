@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-4-2022",
+  "articleId": "sotsiaalkaitsekulude-arvestuspohimotete-uhtlustamine-kov-ides-2022-4",
+  "title": "Sotsiaalkaitsekulude arvestuspõhimõtete ühtlustamisest kohalikes omavalitsustes",
+  "authors": [
+    "Tauno Õunapuu"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2022",
+  "section": "Analüüs",
+  "pageRange": "34-39",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artiklis tutvustatakse sotsiaalministeeriumi tellitud uuringut, mis analüüsib, kuidas kajastavad\nEesti kohalikud omavalitsused sotsiaalkaitsekulusid finantsarvestuses ja aruandluses ning millised\nmetoodilised erinevused raskendavad andmete võrdlemist. Autor selgitab, et sotsiaalkaitse on\nomavalitsuste eelarves kiiresti kasvav valdkond, kus omaosaluse ja riikliku rahastuse proportsioon\nmõjutab otseselt teenuste kättesaadavust ja kvaliteeti. Uuringust ilmneb, et kulude kirjendamisel\nei järgita alati ühtseid põhimõtteid: osa omavalitsusi kajastab sotsiaalvaldkonna juhtimise kulusid\nvalitsemissektori üldkulude all, eluasemeteenuste ja investeeringute arvestus on ebaühtlane ning\nteenuste omahind ei sisalda sageli taristu- ja halduskulusid. See tähendab, et riigiraha portaali\nandmed alahindavad tegelikke sotsiaalkaitsekulusid 25–30 miljoni euro võrra aastas. Artikkel toob\nvälja soovitused üldeeskirja kontoplaani ja juhendite täiendamiseks, et eristada paremini kululiike,\nsihtgruppe ja rahastamisallikaid, ning rõhutab vajadust ühtlustada arvestuspõhimõtteid, et toetada\nõiglasemat rahajaotust ja tõenduspõhist otsustamist sotsiaalpoliitikas.",
+  "tags": [
+    "sotsiaalkaitse kulud",
+    "kohalik omavalitsus",
+    "finantsarvestus",
+    "kontoplaan",
+    "riigiraha portaal",
+    "omapanus",
+    "teenuse omahind",
+    "sotsiaalpoliitika analüüs"
+  ],
+  "source_type": "file",
+  "source_path": "2022_4_artikkel_8_sotsiaalkaitsekulud.pdf",
+  "document_id": "sotsiaaltoo-4-2022-sotsiaalkaitsekulude-arvestuspohimotete-uhtlustamine-kov-ides-2022-4",
+  "source_format": "pdf",
+  "source_sha256": "b0d847e9a37258d33d1d911f0ca3d127c58974ac471ebfe12aec73503ac34cba",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2022-sotsiaalkaitsekulude-arvestuspohimotete-uhtlustamine-kov-ides-2022-4",
+    "previous_source_path": "2022_4_artikkel_8_sotsiaalkaitsekulud.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b0d847e9a37258d33d1d911f0ca3d127c58974ac471ebfe12aec73503ac34cba",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

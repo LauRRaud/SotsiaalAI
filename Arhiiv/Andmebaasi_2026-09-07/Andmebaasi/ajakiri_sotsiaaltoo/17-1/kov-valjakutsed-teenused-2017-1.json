@@ -1,0 +1,90 @@
+{
+  "docId": "sotsiaaltoo-1-2017",
+  "articleId": "kov-valjakutsed-teenused-2017-1",
+  "title": "Kohaliku omavalitsuse väljakutsed sotsiaalteenuste osutamisel",
+  "authors": [
+    "Kristi Ploom"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2017",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "12-15",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Õiguskantsleri nõunik Kristi Ploom selgitab, et 2016. aastal jõustunud sotsiaalhoolekande seadus kohustab iga omavalitsust tagama 11 sotsiaalteenust — koduteenusest ja üldhooldusest võlanõustamise ning eluruumi tagamiseni —, hindama abivajadust individuaalselt ja katma teenuse kulu, kui inimene ega tema ülalpidajad maksta ei suuda. Teenust ei tohi jätta osutamata ka siis, kui omavalitsusel endal pakkujat pole, vaid tuleb leida koostööpartner. Ploom märgib, et õiguskantsler saatis omavalitsustele 2016. aasta oktoobris märgukirja, ja rõhutab riigi rahastamiskohustust.",
+  "tags": [
+    "sotsiaalhoolekande seadus",
+    "õiguskantsler",
+    "kohalik omavalitsus",
+    "sotsiaalteenused",
+    "abivajaduse hindamine",
+    "sotsiaaltöö korraldus"
+  ],
+  "source_type": "file",
+  "source_path": "2017_1_Part5.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2017-kov-valjakutsed-teenused-2017-1",
+  "source_sha256": "0a02c204c364efca17566fc4218e2da1659b3c8550d7d04b2babd2653a703e58",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2017-kov-valjakutsed-teenused-2017-1",
+    "previous_source_path": "2017_1_Part5.txt",
+    "previous_source_original_path": "2017_1.pdf",
+    "reference_stored_source_sha256": "015cb3b58e73399dee283b9755779a91a93f420912ff475c02c15e7f071aebd4",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf",
+      "source_sha256": "335f81467a555f12c55d0e8bf60122a178c5267567cf79607448a5d987629e50",
+      "pdf_start_page": 14,
+      "pdf_end_page": 17,
+      "printed_page_range": "12-15",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 17,
+      "source_regions": [
+        {
+          "source_pdf_page": 14,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 15,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 16,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 17,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        }
+      ],
+      "effective_printed_page_range": "12-15"
+    },
+    "server_page_range": "12-15"
+  }
+}

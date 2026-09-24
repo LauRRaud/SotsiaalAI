@@ -1,0 +1,99 @@
+{
+  "docId": "sotsiaaltoo-2-2017",
+  "articleId": "juhtumipohine-perelepitus-2017-2",
+  "title": "Juhtumipõhine lähenemine perelepitusele",
+  "authors": [
+    "Tarvo Tendal"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2017",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "56-60",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kutselise lepitaja ja superviisori ülevaade perelepitusest juhtumikirjelduste kaudu. Rõhutab, et perelepituse eesmärk ei ole kooselu jätkamine, vaid lahkumineva paari konflikti teadlik lahendamine, sageli lastega seotud kokkulepete ja suhtluskorra osas. Tõdeb, et perelepituse võimalust teadvustatakse Eestis veel vähe. Riiklik perelepitusteenus jõustus alles 1.09.2022.",
+  "tags": [
+    "perelepitus",
+    "lepitus",
+    "suhtluskord",
+    "lastekaitse",
+    "konfliktilahendus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2-2017_veebi_link_Part18.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2017-juhtumipohine-perelepitus-2017-2",
+  "source_sha256": "75857668246ec7fca72024c6891fcc0d1222f66f0a8ca838a786cff111ab1454",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2017-juhtumipohine-perelepitus-2017-2",
+    "previous_source_path": "Sotsiaaltoo_2-2017_veebi_link_Part18.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2-2017_veebi_link_Part18.pdf",
+    "reference_stored_source_sha256": "fdbb8a4b8b6aa1293e09f91a6044c18119e5111e442e02d6d4a78a6507dbc988",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf",
+      "source_sha256": "609af110244e684ccbb68aea9504f2490fce2852b1e7caa7bedacb621d661a8a",
+      "pdf_start_page": 58,
+      "pdf_end_page": 62,
+      "printed_page_range": "56-60",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 62,
+      "source_regions": [
+        {
+          "source_pdf_page": 58,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 59,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 60,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 61,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 62,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "56-60",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf"
+    },
+    "server_page_range": "56-60"
+  }
+}

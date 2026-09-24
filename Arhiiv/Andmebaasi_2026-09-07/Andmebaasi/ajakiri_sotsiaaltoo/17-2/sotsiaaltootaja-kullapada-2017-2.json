@@ -1,0 +1,71 @@
+{
+  "docId": "sotsiaaltoo-2-2017",
+  "articleId": "sotsiaaltootaja-kullapada-2017-2",
+  "title": "Kuhu on maetud sotsiaaltöötaja kullapada?",
+  "authors": [
+    "Keit Lipp"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2017",
+  "section": "Eesti Sotsiaaltöö Üliõpilaste Selts",
+  "pageRange": "87-88",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tartu Ülikooli Pärnu kolledži tudengi arvamuslugu sotsiaalvaldkonna palkadest. Autor õppis kolmekümnendates eluaastates ümber filoloogiast sotsiaalvaldkonda ja tõdeb, et sotsiaalvaldkonna palgad on kõrgharitud inimese jaoks ootuspärasest madalamad. Vaidleb vastu arusaamale, et sotsiaaltöö on ainult missioonitunne, ja soovitab igaühel koostada oma majandusliku heaolu plaan.",
+  "tags": [
+    "palk",
+    "sotsiaaltöö maine",
+    "missioonitunne",
+    "üliõpilase vaade",
+    "ümberõpe"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2-2017_veebi_link_Part25.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2017-sotsiaaltootaja-kullapada-2017-2",
+  "source_sha256": "0bff1112160d4368022037e4654baf26904308790dc7c7fe1ee1318d90bc0349",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2017-sotsiaaltootaja-kullapada-2017-2",
+    "previous_source_path": "Sotsiaaltoo_2-2017_veebi_link_Part25.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2-2017_veebi_link_Part25.pdf",
+    "reference_stored_source_sha256": "3c75e122b49e20170615d7701c7d333eb271ec77535b3d1eef65c036eec5483e",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf",
+      "source_sha256": "609af110244e684ccbb68aea9504f2490fce2852b1e7caa7bedacb621d661a8a",
+      "pdf_start_page": 89,
+      "pdf_end_page": 90,
+      "printed_page_range": "87-88",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 90,
+      "source_regions": [
+        {
+          "source_pdf_page": 89,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 90,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "87-88"
+    },
+    "server_page_range": "87-88"
+  }
+}

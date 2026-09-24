@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2021",
+  "articleId": "omavalitsused-peavad-rohkem-markama-eakate-sotsiaalseid-probleeme-2021-4",
+  "title": "Omavalitsused peavad rohkem märkama eakate sotsiaalseid probleeme",
+  "authors": [
+    "Tambet Drell"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2021",
+  "section": "Analüüs",
+  "pageRange": "18-22",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Riigikontrolli auditijuht Tambet Drell analüüsib, kuidas omavalitsused märkavad ja ennetavad eakate sotsiaalseid probleeme. Artikkel toob välja, et varane märkamine on võtmetähtsusega, kuid omavalitsuste ülesanded ennetustöös on õiguslikult ebamäärased. Käsitletakse demograafilisi trende, riskirühmi, juhtumikorralduse rolli ning süsteemseid puudujääke, mis jätavad paljud abivajajad 'radari alt välja'. Tuues esile nii kitsaskohad kui ka võimalused, rõhutatakse vajadust selgema õigusraamistiku, parema info liikumise ja tõhusamate sekkumismudelite järele.",
+  "tags": [
+    "eakad",
+    "varajane märkamine",
+    "omavalitsus",
+    "sotsiaalne toimetulek",
+    "Riigikontroll",
+    "ennetustöö",
+    "sotsiaalpoliitika"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2021_web_Part6.pdf",
+  "document_id": "sotsiaaltoo-4-2021-omavalitsused-peavad-rohkem-markama-eakate-sotsiaalseid-probleeme-2021-4",
+  "source_format": "pdf",
+  "source_sha256": "5627771f47d32ded804ebaa95673e162025a72a6c40f59ce2ac75e30dabd7c3b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2021-omavalitsused-peavad-rohkem-markama-eakate-sotsiaalseid-probleeme-2021-4",
+    "previous_source_path": "Sotsiaaltoo_4_2021_web_Part6.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "5627771f47d32ded804ebaa95673e162025a72a6c40f59ce2ac75e30dabd7c3b",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-4-2018",
+  "articleId": "sotsiaaltoo-haldusreformijargses-tori-vallas-2018",
+  "title": "Sotsiaaltöö haldusreformijärgses Tori vallas",
+  "authors": [
+    "Priit Ruut"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2018",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "29-31",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade sotsiaaltöö korraldusest pärast haldusreformi Tori vallas, kus ühinesid Are, Sauga ja Tori vald ning Sindi linn. Käsitletakse teenistujate struktuuri kujundamist, sotsiaaltoetuste ühtlustamist, vajaduspõhise toetamise põhimõtteid, teenuskeskuste ja avahoolduse rolli ning lastekaitse ja hoolduskoordinaatori tööd.",
+  "tags": [
+    "haldusreform",
+    "Tori vald",
+    "kohalik omavalitsus",
+    "sotsiaaltöö korraldus",
+    "sotsiaaltoetused",
+    "vajaduspõhine abi",
+    "teenuskeskused",
+    "lastekaitse",
+    "hoolduskoordinaator"
+  ],
+  "source_type": "file",
+  "source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part8.pdf",
+  "document_id": "sotsiaaltoo-4-2018-sotsiaaltoo-haldusreformijargses-tori-vallas-2018",
+  "source_format": "pdf",
+  "source_sha256": "15af50ad65891de3f922bea27b0c9ae1bc61695892376e0e10825f432dabb4af",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2018-sotsiaaltoo-haldusreformijargses-tori-vallas-2018",
+    "previous_source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part8.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "15af50ad65891de3f922bea27b0c9ae1bc61695892376e0e10825f432dabb4af",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

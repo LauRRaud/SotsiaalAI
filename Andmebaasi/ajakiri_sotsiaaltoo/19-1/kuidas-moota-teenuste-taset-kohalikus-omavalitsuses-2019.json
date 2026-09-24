@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-1-2019",
+  "articleId": "kuidas-moota-teenuste-taset-kohalikus-omavalitsuses-2019",
+  "title": "Kuidas mõõta teenuste osutamise taset kohalikus omavalitsuses? Metoodika katsetamisest täiskasvanute sotsiaalhoolekandelise abi näitel",
+  "authors": [
+    "Veiko Sepp",
+    "Rivo Noorkõiv"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2019",
+  "section": "Teenuste kvaliteet",
+  "pageRange": "24-32",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab Tartu Ülikooli ja OÜ Geomedia välja töötatud metoodikat kohalike omavalitsuste teenuste osutamise võimekuse taseme ja selle muutumise hindamiseks täiskasvanute sotsiaalhoolekandelise abi näitel.",
+  "tags": [
+    "kohalik omavalitsus",
+    "teenuste kvaliteet",
+    "teenuste hindamine",
+    "täiskasvanute sotsiaalhoolekanne",
+    "haldusreform",
+    "seiresüsteem",
+    "KOV võimekus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part7.pdf",
+  "document_id": "sotsiaaltoo-1-2019-kuidas-moota-teenuste-taset-kohalikus-omavalitsuses-2019",
+  "source_format": "pdf",
+  "source_sha256": "80691f1569a2ad7f78518efa5b605974aad38c899e2c4c3cbb9daa46b418b7fe",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2019-kuidas-moota-teenuste-taset-kohalikus-omavalitsuses-2019",
+    "previous_source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part7.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "80691f1569a2ad7f78518efa5b605974aad38c899e2c4c3cbb9daa46b418b7fe",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

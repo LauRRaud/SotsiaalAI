@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-4-2020",
+  "articleId": "taastav-oigus-ja-covid-19-2020-4",
+  "title": "Taastav õigus ja COVID-19",
+  "authors": [
+    "Ian D. Marder",
+    "Meredith Rossner"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2020",
+  "section": "Taastav õigus",
+  "pageRange": "47-53",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel kirjeldab, kuidas taastava õiguse teenuseid ja koolitusi kohandati COVID-19 pandeemia ajal ning viidi kiiresti üle veebi, telefoni ja teiste kaugsidevormide peale. Autorid toovad näiteid eri riikide kogemustest konfliktide vahendamisel, ohvrite ja õigusrikkujate toetamisest ning kogukondade abistamisest tervisekriisi ja piirangute tingimustes. Analüüsitakse veebipõhise töö tugevusi ja piiranguid ning arutletakse, kuidas tehnoloogia saab toetada taastava õiguse põhimõtteid ka tulevikus.",
+  "tags": [
+    "taastav õigus",
+    "COVID-19",
+    "pandeemia",
+    "veebivahendus",
+    "kriisijuhtimine",
+    "ohvriabi",
+    "kogukonnatöö",
+    "rahvusvaheline kogemus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2020_web_link_Part10.pdf",
+  "document_id": "sotsiaaltoo-4-2020-taastav-oigus-ja-covid-19-2020-4",
+  "source_format": "pdf",
+  "source_sha256": "c3ddb4eba156213139973c1c765772786de8e2043fdbea84b43d60debf4742f5",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2020-taastav-oigus-ja-covid-19-2020-4",
+    "previous_source_path": "Sotsiaaltoo_4_2020_web_link_Part10.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "c3ddb4eba156213139973c1c765772786de8e2043fdbea84b43d60debf4742f5",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

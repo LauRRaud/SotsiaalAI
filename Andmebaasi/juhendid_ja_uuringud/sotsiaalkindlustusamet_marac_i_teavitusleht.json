@@ -1,0 +1,143 @@
+{
+  "source_path": "sotsiaalkindlustusamet_marac_i_teavitusleht.pdf",
+  "source_format": "pdf",
+  "sha256": "51e17b4972efac56c55d16ec54856191819b17ea09b4a4dd332012e63313acee",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/sotsiaalkindlustusamet_marac_i_teavitusleht.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "sotsiaalkindlustusamet_marac_i_teavitusleht",
+          "title": "MARAC-i teavitusleht",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-03/MARAC%20teavitusleht_30.03.2023.pdf",
+          "normalized_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-03/MARAC teavitusleht_30.03.2023.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "Sotsiaalkindlustusamet",
+          "organization_id": "sotsiaalkindlustusamet",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Sotsiaalkindlustusamet",
+            "ohvriabi",
+            "MARAC",
+            "riskihindamine",
+            "võrgustikutöö",
+            "infomaterjal",
+            "SKA"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "SKA",
+            "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+            "heading_4": null,
+            "line": 473,
+            "order": 252
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "MARAC-i teavitusleht"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Sotsiaalkindlustusamet"
+          ],
+          "organizations_seen": [
+            "sotsiaalkindlustusamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "SKA",
+              "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+              "line": 473,
+              "order": 252
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-03/MARAC teavitusleht_30.03.2023.pdf"
+        },
+        "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-03/MARAC%20teavitusleht_30.03.2023.pdf",
+        "redirects": [],
+        "sha256": "51e17b4972efac56c55d16ec54856191819b17ea09b4a4dd332012e63313acee",
+        "bytes": 133118,
+        "downloaded_at": "2026-08-14T08:00:50.482Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "sotsiaalkindlustusamet_marac_i_teavitusleht",
+      "metadata": {
+        "createdAt": "2026-06-12T03:47:25.583544+00:00",
+        "type": "FILE",
+        "fileName": "MARAC teavitusleht_30.03.2023.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:47:25.515723+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/9de6cabbd992/MARAC teavitusleht_30.03.2023.pdf",
+        "title": "MARAC-i teavitusleht",
+        "description": "Source master headings: SKA; Ohvriabi, MARAC, naiste tugikeskused",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2023,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "sotsiaalkindlustusamet_marac_i_teavitusleht",
+        "document_id": "sotsiaalkindlustusamet_marac_i_teavitusleht",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "ba384d731f85c735393304d76dc7e53f731d2cde3b58cce68d3c1c296ee70d92",
+        "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-03/MARAC%20teavitusleht_30.03.2023.pdf",
+        "url_canonical": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-03/MARAC teavitusleht_30.03.2023.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "sotsiaalkindlustusamet_marac_i_teavitusleht",
+        "updatedAt": "2026-06-12T03:47:25.583567+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

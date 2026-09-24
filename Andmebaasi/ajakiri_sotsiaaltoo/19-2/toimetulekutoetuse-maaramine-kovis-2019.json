@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2019",
+  "articleId": "toimetulekutoetuse-maaramine-ja-maksmine-kohalikus-omavalitsuses-2019",
+  "title": "Toimetulekutoetuste määramisest ja maksmisest kohalikes omavalitsustes",
+  "authors": [
+    "Epp Klooster"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2019",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "21-24",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalkindlustusameti järelevalve kokkuvõte toimetulekutoetuse määramise ja maksmise praktikast kohalikes omavalitsustes, tuues välja levinumad probleemid, head näited ja seadusemuudatuste mõju.",
+  "tags": [
+    "toimetulekutoetus",
+    "kohalik omavalitsus",
+    "järelevalve",
+    "sotsiaalabi",
+    "SHS muudatused",
+    "isikukeskne lähenemine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part6.pdf",
+  "document_id": "sotsiaaltoo-2-2019-toimetulekutoetuse-maaramine-ja-maksmine-kohalikus-omavalitsuses-2019",
+  "source_format": "pdf",
+  "source_sha256": "b856bfc01ccc1bfc2d217990ff632ce2cbccad12e49beca267ebdc388ff9df97",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2019-toimetulekutoetuse-maaramine-ja-maksmine-kohalikus-omavalitsuses-2019",
+    "previous_source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part6.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b856bfc01ccc1bfc2d217990ff632ce2cbccad12e49beca267ebdc388ff9df97",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-1-2020",
+  "articleId": "eessona-2020-1",
+  "title": "Hea lugeja!",
+  "authors": [
+    "Dagmar Narusson"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2020",
+  "section": "Eessõna",
+  "pageRange": "2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Peatoimetaja pöördumine, mis seob ajakirjanumbri fookuse – vaimse tervise, personaalse taastumise, lootuse, kogukonnatunnetuse ja avatud dialoogi – ning kutsub lugejat mõtlema kogukonda kuulumise ja vastastikuse toe tähtsusele.",
+  "tags": [
+    "eessõna",
+    "vaimne tervis",
+    "kogukond",
+    "taastumine",
+    "avatud dialoog"
+  ],
+  "source_type": "file",
+  "source_path": "ST1_2020_web_link_Part2.pdf",
+  "document_id": "sotsiaaltoo-1-2020-eessona-2020-1",
+  "source_format": "pdf",
+  "source_sha256": "36164bb58fb934ba493d3d2adf890feb7213f75cf74c4ab5d2475ff97910089a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2020-eessona-2020-1",
+    "previous_source_path": "ST1_2020_web_link_Part2.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "36164bb58fb934ba493d3d2adf890feb7213f75cf74c4ab5d2475ff97910089a",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

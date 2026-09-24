@@ -1,0 +1,3134 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-kihnu-vald",
+  "document_id": "kov-kihnu-vald",
+  "municipality": "Kihnu vald",
+  "municipality_id": "kihnu_vald",
+  "county": "Pärnumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "kihnu_vald_contact_kihnu_vallavalitsus",
+      "canonical_item_id": "kihnu_vald:contact:kihnu_vallavalitsus",
+      "itemType": "contact",
+      "title": "Kihnu Vallavalitsus",
+      "status": "active",
+      "summary": "Kihnu Vallavalitsuse üldkontakt ja aadress sotsiaalvaldkonna pöördumiste üldiseks suunamiseks.",
+      "name": "Kihnu Vallavalitsus",
+      "role": "üldkontakt",
+      "department": "Kihnu Vallavalitsus",
+      "address": "Kooli/1, Linaküla, Kihnu vald, 88003, Pärnumaa",
+      "office_hours": "E–R 09.00–16.00; vastuvõtt eelneval kokkuleppel",
+      "officialUrl": "https://kihnu.ee/juhtimine/vallavalitsus/kontaktid/",
+      "relatedTo": [],
+      "sourceKeys": [
+        "contact_page",
+        "home"
+      ],
+      "item_type": "contact",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "contact_page",
+        "home"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_contact_kihnu_vallavalitsus",
+      "document_id": "kihnu_vald_contact_kihnu_vallavalitsus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/juhtimine/vallavalitsus/kontaktid/",
+      "content_hash": "c088c4345a072d1c90d008474a6d50eb268a18853c3d61ee29145fd4f2727f9b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_contact_aive_sepp",
+      "canonical_item_id": "kihnu_vald:contact:aive_sepp",
+      "itemType": "contact",
+      "title": "Aive Sepp",
+      "status": "active",
+      "summary": "Aive Sepp on Kihnu valla sotsiaalametnik ja lastekaitsetöötaja. Tema poole suunatakse sotsiaalteenuste, sotsiaaltoetuste, üldhoolduse, lastekaitse ja kriisiabi pöördumised.",
+      "name": "Aive Sepp",
+      "role": "sotsiaalametnik, lastekaitsetöötaja, töökeskkonnaspetsialist",
+      "department": "Kihnu Vallavalitsus",
+      "address": null,
+      "office_hours": "Vastuvõtt kokkuleppel; lapsele abi lehel E–R 8:00–16:00",
+      "officialUrl": "https://kihnu.ee/juhtimine/vallavalitsus/kontaktid/",
+      "relatedTo": [],
+      "sourceKeys": [
+        "child_help_page",
+        "contact_page",
+        "social_services_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "child_help_page",
+        "contact_page",
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_contact_aive_sepp",
+      "document_id": "kihnu_vald_contact_aive_sepp",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/juhtimine/vallavalitsus/kontaktid/",
+      "content_hash": "def8383de4509d1fe436201c3578b79359f1f3d3a5503bac27dacfbb5334d73b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_contact_ene_ly_juganson",
+      "canonical_item_id": "kihnu_vald:contact:ene_ly_juganson",
+      "itemType": "contact",
+      "title": "Ene-Ly Juganson",
+      "status": "active",
+      "summary": "Kihnu valla kontaktilehel avaldatud juhtumikorraldaja kontakt; e-posti domeen ei ole KOV domeen, mistõttu rolli ulatus vajab vajadusel üle täpsustamist.",
+      "name": "Ene-Ly Juganson",
+      "role": "juhtumikorraldaja",
+      "department": "Kihnu Vallavalitsus",
+      "address": null,
+      "office_hours": "Kokkuleppel",
+      "officialUrl": "https://kihnu.ee/juhtimine/vallavalitsus/kontaktid/",
+      "relatedTo": [],
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_contact_ene_ly_juganson",
+      "document_id": "kihnu_vald_contact_ene_ly_juganson",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/juhtimine/vallavalitsus/kontaktid/",
+      "content_hash": "c72c44f06e553ccccb212f781cea5882776cde80cd47a3e2b496aa1e37d04707",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_contact_malve_laus",
+      "canonical_item_id": "kihnu_vald:contact:malve_laus",
+      "itemType": "contact",
+      "title": "Malve Laus",
+      "status": "active",
+      "summary": "Kihnu valla kontaktilehel avaldatud koduhooldaja kontaktandmetega seotud kirje; ja ei ole lehel avaldatud.",
+      "name": "Malve Laus",
+      "role": "koduhooldaja",
+      "department": "Kihnu Vallavalitsus",
+      "address": null,
+      "office_hours": "Kokkuleppel",
+      "officialUrl": "https://kihnu.ee/juhtimine/vallavalitsus/kontaktid/",
+      "relatedTo": [],
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_contact_malve_laus",
+      "document_id": "kihnu_vald_contact_malve_laus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/juhtimine/vallavalitsus/kontaktid/",
+      "content_hash": "3d6010437574065107c941f19ccc7bbd39adf9a1f41adb33940c616793590dfb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_contact_lea_lang",
+      "canonical_item_id": "kihnu_vald:contact:lea_lang",
+      "itemType": "contact",
+      "title": "Lea Lang",
+      "status": "active",
+      "summary": "Kihnu valla kontaktilehel avaldatud koduhooldaja kontaktandmetega seotud kirje; ja ei ole lehel avaldatud.",
+      "name": "Lea Lang",
+      "role": "koduhooldaja",
+      "department": "Kihnu Vallavalitsus",
+      "address": null,
+      "office_hours": "Kokkuleppel",
+      "officialUrl": "https://kihnu.ee/juhtimine/vallavalitsus/kontaktid/",
+      "relatedTo": [],
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_contact_lea_lang",
+      "document_id": "kihnu_vald_contact_lea_lang",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/juhtimine/vallavalitsus/kontaktid/",
+      "content_hash": "4c930077d0828e9eb3685aa2254653c7385535a3d5033028389eeaa421c2e957",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_contact_jaanika_vahkel",
+      "canonical_item_id": "kihnu_vald:contact:jaanika_vahkel",
+      "itemType": "contact",
+      "title": "Jaanika Vahkel",
+      "status": "active",
+      "summary": "Kihnu valla kontaktilehel avaldatud abihooldaja kontaktandmetega seotud kirje; ja ei ole lehel avaldatud.",
+      "name": "Jaanika Vahkel",
+      "role": "abihooldaja",
+      "department": "Kihnu Vallavalitsus",
+      "address": null,
+      "office_hours": "Kokkuleppel",
+      "officialUrl": "https://kihnu.ee/juhtimine/vallavalitsus/kontaktid/",
+      "relatedTo": [],
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_contact_jaanika_vahkel",
+      "document_id": "kihnu_vald_contact_jaanika_vahkel",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/juhtimine/vallavalitsus/kontaktid/",
+      "content_hash": "a858d3a92e074dfcc3aa7e5dfb875e06598db6214cabf454800c47fdf265d983",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_contact_kaie_lehtpuu",
+      "canonical_item_id": "kihnu_vald:contact:kaie_lehtpuu",
+      "itemType": "contact",
+      "title": "Kaie Lehtpuu",
+      "status": "active",
+      "summary": "Kihnu valla kontaktilehel avaldatud abihooldaja kontaktandmetega seotud kirje; ja ei ole lehel avaldatud.",
+      "name": "Kaie Lehtpuu",
+      "role": "abihooldaja",
+      "department": "Kihnu Vallavalitsus",
+      "address": null,
+      "office_hours": "Kokkuleppel",
+      "officialUrl": "https://kihnu.ee/juhtimine/vallavalitsus/kontaktid/",
+      "relatedTo": [],
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_contact_kaie_lehtpuu",
+      "document_id": "kihnu_vald_contact_kaie_lehtpuu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/juhtimine/vallavalitsus/kontaktid/",
+      "content_hash": "380a26de64ea71c7ae98868339c2f0c4da4806c77a5b4ad5769274bb2262eb18",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_service_koduteenus",
+      "canonical_item_id": "kihnu_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus on Kihnu Vallavalitsuse sotsiaalteenus täisealise inimese iseseisva ja turvalise koduse toimetuleku tagamiseks. Teenuse saamiseks tuleb esitada põhjendatud avaldus sotsiaalametnikule ning teenuse osutamiseks sõlmitakse leping kliendi ja vallavalitsuse vahel. Teenust osutab vallavalitsuse palgal olev koduhooldaja.",
+      "targetGroup": [
+        "täisealine inimene, kes vajab kodus kõrvalabi"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          "sotsiaalametnikule"
+        ],
+        "steps": [
+          "esita põhjendatud avaldus sotsiaalametnikule",
+          "teenuse osutamiseks sõlmitakse leping kliendi ja vallavalitsuse vahel"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kihnu_vald_form_koduteenuste_taotlus"
+      ],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_service_koduteenus",
+      "document_id": "kihnu_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "content_hash": "24bf2d553e3ba1fec882f2d3938fe11b07572790b526f88afb93a859650e7571",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "kihnu_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenuse eesmärk on võimaldada puudega inimesel, kelle puue takistab isikliku või ühissõiduki kasutamist, kasutada sobivat transpordivahendit tööle, õppeasutusse või avalike teenuste juurde sõitmiseks. Teenuse taotlemisel tuleb nimetada külastatavad asutused ning avaldus esitatakse vähemalt üks tööpäev ette.",
+      "targetGroup": [
+        "puudega inimesed, kelle puue takistab isikliku või ühissõiduki kasutamist"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          "suuline avaldus"
+        ],
+        "steps": [
+          "esita teenuse vajaduse avaldus sotsiaalametnikule vähemalt üks tööpäev enne sõitu",
+          "mandrile sõitude puhul teata võimalusel varakult, et broneerida koht laeval"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_service_sotsiaaltransporditeenus",
+      "document_id": "kihnu_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "content_hash": "70fb6e6bb16e4b793e7d48fdc2d8d96005776a7b19af58dde3f354dec87c2b78",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_service_eluruumi_tagamine",
+      "canonical_item_id": "kihnu_vald:service:eluruumi_tagamine",
+      "itemType": "service",
+      "title": "Eluruumi tagamine",
+      "status": "active",
+      "summary": "Sotsiaalkorter on Kihnu valla munitsipaalomandis olev korter või muu eluruumidele esitatavatele nõuetele vastav ruum, mis antakse üürile sotsiaalteenusena eluaset hädasti vajavale inimesele ja tema perele. Sotsiaalkorteri üürimiseks esitab taotleja vallavalitsusele kirjaliku avalduse ning üürile andmise või mitteandmise otsustab vallavalitsus.",
+      "targetGroup": [
+        "isik või pere, kes vajab hädasti eluaset ega suuda seda ise tagada"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "esita vallavalitsusele kirjalik avaldus sotsiaalkorteri üürimiseks"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kihnu_vald_form_sotsiaalkorteri_taotlus"
+      ],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_service_eluruumi_tagamine",
+      "document_id": "kihnu_vald_service_eluruumi_tagamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "content_hash": "786405a9e84f3010bb77fb15e975874e9341a60b6702ff081aae7886b3ce6056",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "kihnu_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealisele inimesele seatakse hooldus, kui ta vajab vaimse või kehalise puude tõttu abi oma õiguste teostamiseks ja kohustuste täitmiseks. Hooldus tähendab vähenenud toimetulekuvõimega inimese abistamist koduste ja isikliku eluga seotud igapäevatoimingutes. Hooldus seatakse ja hooldaja määratakse hooldatava nõusolekul ning teenuse osutamiseks sõlmitakse kolmepoolne leping hooldatava, hooldaja ja vallavalitsuse vahel.",
+      "targetGroup": [
+        "vaimse või kehalise puudega täisealised inimesed"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "pöördumine sotsiaalametniku poole"
+        ],
+        "steps": [
+          "võta ühendust sotsiaalametnikuga hoolduse seadmise vajaduse hindamiseks",
+          "hooldatava nõusolekul määratakse hooldaja ja sõlmitakse kolmepoolne leping"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_service_taisealise_isiku_hooldus",
+      "document_id": "kihnu_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "content_hash": "ffb9184a99dfdb959874120df1995775b51a08cbb9dd817eae69d1bd03819488",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_service_tugiisikuteenus",
+      "canonical_item_id": "kihnu_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus toetab iseseisvat toimetulekut olukordades, kus inimene vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu oma kohustuste täitmisel ja õiguste teostamisel olulisel määral kõrvalabi. Kõrvalabi seisneb juhendamises, motiveerimises ning isiku iseseisvuse ja omavastutuse võime arendamises. Lapse puhul toetatakse koostöös last kasvatava isikuga lapse arengut ja igapäevaelus hakkamasaamist.",
+      "targetGroup": [
+        "isikud, kes vajavad juhendamist ja kõrvalabi",
+        "lapsed, kelle areng vajab tugiisiku tuge"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "avaldus sotsiaalametnikule"
+        ],
+        "steps": [
+          "esita vastavasisuline avaldus sotsiaalametnikule"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "kliendile tasuta",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_service_tugiisikuteenus",
+      "document_id": "kihnu_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "content_hash": "7da168504709f3925d9412aff3291a8ae99c51eb6a218c7433a0e652a5ed4224",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "canonical_item_id": "kihnu_vald:service:valjaspool_kodu_osutatav_uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Väljaspool inimese kodu osutatav üldhooldusteenus tagab turvalise keskkonna ja toimetuleku täisealisele inimesele, kes ei suuda terviseseisundi, tegevusvõime või elukeskkonna tõttu kodus ajutiselt või püsivalt iseseisvalt toime tulla. Hooldereformi järgi katab avalik rahastus hoolduskulude osa, inimese omaosaluseks jäävad majutus, toitlustus ja muud isiklikud kulud. Kihnu veebis on ööpäevaringse üldhooldusteenuse piirmäärana nimetatud kuni 700 eurot.",
+      "targetGroup": [
+        "täisealine inimene, kes ei suuda kodus ajutiselt või püsivalt iseseisvalt toime tulla"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "pöördumine sotsiaalametniku poole"
+        ],
+        "steps": [
+          "võta teenuse vajaduse korral ühendust sotsiaalametnikuga"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "hoolduskulude piirmäär kuni 700 eurot",
+        "currency": "EUR",
+        "notes": "omaosalusena jäävad majutus, toitlustus ja isiklikud kulud"
+      },
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "hooldekodu_page",
+        "social_services_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "hooldekodu_page",
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "document_id": "kihnu_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "content_hash": "deab8e3ba34db3b94e8aee6d9113b04aac66dd3b8031d997e33a3bbef4b7d283",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "kihnu_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenuse eesmärk on puudega täisealise inimese füüsiline abistamine igapäevastes tegevustes, toetades iseseisvat toimetulekut. Abistaja aitab liikumisel, söömisel, riietumisel, suhtlemisel, hügieeniprotseduurides, kirjutamisel, lugemisel, majapidamistöödes ja muudes tegevustes, milles inimene puude tõttu abi vajab.",
+      "targetGroup": [
+        "puudega täisealised inimesed"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "avaldus sotsiaalametnikule"
+        ],
+        "steps": [
+          "esita avaldus sotsiaalametnikule"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_service_isikliku_abistaja_teenus",
+      "document_id": "kihnu_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "content_hash": "276f56cc67a986881863b475bb2497d9c56b391914cd3cae50900dfacf4398b8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_service_varjupaigateenus",
+      "canonical_item_id": "kihnu_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus kindlustab ajutise ööbimiskoha täisealisele inimesele, kes ei ole võimeline endale ööbimiskohta leidma. Ajutises ööbimiskohas tagatakse voodikoht, pesemisvõimalus ja turvaline keskkond. Teenus on inimesele tasuta.",
+      "targetGroup": [
+        "täisealised inimesed, kellel puudub ööbimiskoht"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "pöördumine sotsiaalametniku poole"
+        ],
+        "steps": [
+          "võta varjupaigateenuse vajaduse korral ühendust sotsiaalametnikuga"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "tasuta",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_service_varjupaigateenus",
+      "document_id": "kihnu_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "content_hash": "a8494b486b639a6802376441b46bfdb16ef2a6de467e245ac61c7c974da06e22",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_service_turvakoduteenus",
+      "canonical_item_id": "kihnu_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenusega tagatakse ajutine eluase, turvaline keskkond ja esmane abi lapsele, kes vajab abi hooldamises esinevate elu, tervist või arengut ohustavate puuduste tõttu, ning inimesele, kes on langenud lähisuhtes füüsilise, vaimse või seksuaalse vägivalla ohvriks ja vajab turvalist keskkonda. Teenus on tasuta.",
+      "targetGroup": [
+        "abivajavad lapsed",
+        "lähisuhtevägivalla ohvrid"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "pöördumine sotsiaalametniku poole"
+        ],
+        "steps": [
+          "võta teenuse vajaduse korral ühendust sotsiaalametnikuga"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "tasuta",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_service_turvakoduteenus",
+      "document_id": "kihnu_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "content_hash": "3ee63529569c35ef7534fc26cf3308377a09b02bec37762749ff2d29216bb99b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_service_volanoustamisteenus",
+      "canonical_item_id": "kihnu_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab inimest tema varalise olukorra kindlakstegemisel, võlausaldajaga läbirääkimiste pidamisel ja nõuete rahuldamisel. Teenus aitab vältida uusi võlgnevusi, parandada toimetulekuvõimet ja lahendada muid võlgnevusega seotud probleeme. Teenus hõlmab nõustamist, juhendamist ja uute võlgade ennetamist ning on inimesele tasuta.",
+      "targetGroup": [
+        "võlgnevusega või võlgnevuse riskis inimesed"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "pöördumine sotsiaalametniku poole"
+        ],
+        "steps": [
+          "pöördu võlanõustamisteenuse vajaduse korral sotsiaalametniku poole"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "tasuta",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_service_volanoustamisteenus",
+      "document_id": "kihnu_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "content_hash": "86c6f4a7b9a51ad600a6b1095449d4309a4e5890bd361346c41098cf0baa85fe",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "kihnu_vald:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenuse eesmärk on toetada last kasvatava inimese toimetulekut või töötamist ning vähendada lapse erivajadusest tulenevat hoolduskoormust. Teenust on õigus saada raske või sügava puudega last kasvataval inimesel kuni selle kalendriaasta lõpuni, mil laps saab 18-aastaseks, kui hooldusteenuse vajadus on rehabilitatsiooniplaanis, hooldamine ei ole samal ajal tagatud teiste sotsiaalteenustega ja laps ei viibi samal ajal haridusasutuses.",
+      "targetGroup": [
+        "raske või sügava puudega last kasvatavad isikud"
+      ],
+      "conditions": "Lapse hooldusteenuste vajadus peab olema kirjas lapse rehabilitatsiooniplaanis; hooldamine ei tohi olla samal ajal tagatud teiste sotsiaalteenustega ning laps ei tohi samal ajal viibida haridusasutuses.",
+      "application": {
+        "channels": [
+          "taotlus sotsiaalametnikule"
+        ],
+        "steps": [
+          "esita taotlus sotsiaalametnikule"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_service_lapsehoiuteenus",
+      "document_id": "kihnu_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "content_hash": "6e285b0888ee6b2cc93ce50cce04f786686dcd9c72e8c82d11e8476d9d26adf3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_service_asendushooldusteenus",
+      "canonical_item_id": "kihnu_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenuse eesmärk on pika- või lühiajaliselt lapse heaolu ja õiguste tagamine, põhivajaduste rahuldamiseks peresarnaste elutingimuste võimaldamine, turvalise ja arenguks soodsa elukeskkonna loomine ning lapse ettevalmistamine võimetekohaseks toimetulekuks täisealisena. Teenuse osutajaks on hoolduspere, perekodu või asenduskodu.",
+      "targetGroup": [
+        "lapsed, kes vajavad asendushooldust"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "pöördumine sotsiaalametniku poole"
+        ],
+        "steps": [
+          "võta teenuse vajaduse korral ühendust sotsiaalametnikuga"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_service_asendushooldusteenus",
+      "document_id": "kihnu_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "content_hash": "4c4b5e3893d27a31e5335f6a6ef1df986181a7aecc7922114f659e19b71da900",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "kihnu_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus toetab asendushoolduselt ja eestkostelt lahkuva inimese iseseisvat toimetulekut ja õpingute jätkamist. Teenust osutatakse juhtumiplaani alusel, mille järgi vallavalitsus tagab eluaseme ning vajaduspõhised tugiteenused ja toetused.",
+      "targetGroup": [
+        "asendushoolduselt või eestkostelt lahkuvad noored"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "pöördumine sotsiaalametniku poole"
+        ],
+        "steps": [
+          "pöördu teenuse vajaduse korral sotsiaalametniku poole"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_service_jarelhooldusteenus",
+      "document_id": "kihnu_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "content_hash": "62e830be705f43895450f69ed732a9bfd16a2feccaa8c5b061ad00a818a559f4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_service_hairekella_teenus",
+      "canonical_item_id": "kihnu_vald:service:hairekella_teenus",
+      "itemType": "service",
+      "title": "Häirekella teenus",
+      "status": "active",
+      "summary": "Häirekella teenus suurendab vähenenud toimetulekuvõimega inimese ja tema lähedaste turvatunnet ning võimaldab ootamatus olukorras ööpäevaringselt abi kutsuda. Teenus koosneb abivajaja koju paigaldatavast tugijaamast ja käele paigaldatavast kellast ning häirekella kutsungile reageerivad sotsiaalvaldkonna töötajad.",
+      "targetGroup": [
+        "vähenenud toimetulekuvõimega inimesed",
+        "eakad",
+        "puudega inimesed"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "pöördumine sotsiaalametniku poole"
+        ],
+        "steps": [
+          "võta teenuse vajaduse korral ühendust sotsiaalametnikuga"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "24,50 eurot kuus kuni 30.06.2026; 27 eurot kuus alates 01.07.2026; osalise töövõimega inimestele, toimetulekutoetuse ja rahvapensioni saajatele tasuta",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_service_hairekella_teenus",
+      "document_id": "kihnu_vald_service_hairekella_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "content_hash": "e06f12cc8d7f5b94d399c6209fd1778345ddb9625c8be3df5c32fb2ee79b0cb7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_service_vaimse_tervise_teenus",
+      "canonical_item_id": "kihnu_vald:service:vaimse_tervise_teenus",
+      "itemType": "service",
+      "title": "Vaimse tervise teenus",
+      "status": "active",
+      "summary": "Vaimse tervise teenuse eesmärk on toetada inimeste heaolu ning hoida ära vaimse tervise probleemide ja nende tagajärgede väljakujunemine, süvenemine ja kordumine. Teenuse alla kuuluvad psühholoogiline nõustamine, vaimse tervise kriisinõustamine, leinanõustamine, hingehoidlik nõustamine, pereteraapia, kogemusnõustamine ja vajadusel muu nõustamine. Teenus on kliendile tasuta.",
+      "targetGroup": [
+        "abivajajad, kes vajavad vaimse tervise tuge"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "pöördumine sotsiaalametniku poole"
+        ],
+        "steps": [
+          "võta teenuse vajaduse korral ühendust sotsiaalametnikuga"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "tasuta",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_service_vaimse_tervise_teenus",
+      "document_id": "kihnu_vald_service_vaimse_tervise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "content_hash": "bf6e46339ebed85a7312020ed333a29351d99d8f1a99efdc8c11d27e8ee71281",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_service_dusi_kasutamine_tervisekeskuses",
+      "canonical_item_id": "kihnu_vald:service:dusi_kasutamine_tervisekeskuses",
+      "itemType": "service",
+      "title": "Duši kasutamine tervisekeskuses",
+      "status": "active",
+      "summary": "Kihnu veebis on avaldatud tervisekeskuses duši kasutamise võimalus hinnaga 4 eurot kord.",
+      "targetGroup": [],
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": {
+        "amount": "4 eurot kord",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_service_dusi_kasutamine_tervisekeskuses",
+      "document_id": "kihnu_vald_service_dusi_kasutamine_tervisekeskuses",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "content_hash": "40cfcc81dcae84e64c48cbf1e44ba37d44651a542ea81419688719072aa1b613",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_service_pesupesemine_tervisekeskuses",
+      "canonical_item_id": "kihnu_vald:service:pesupesemine_tervisekeskuses",
+      "itemType": "service",
+      "title": "Pesupesemine tervisekeskuses",
+      "status": "active",
+      "summary": "Kihnu veebis on avaldatud tervisekeskuses pesupesemise teenus hinnaga 6 eurot ühe masinatäie eest koos kuivatusega.",
+      "targetGroup": [],
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": {
+        "amount": "6 eurot kord / masinatäis koos kuivatusega",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_service_pesupesemine_tervisekeskuses",
+      "document_id": "kihnu_vald_service_pesupesemine_tervisekeskuses",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "content_hash": "4ee030fb396cd0e9500902d8c4808a7d1b89904a425855e6b28aaf688f1019e7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_service_ravimite_kojuvedu",
+      "canonical_item_id": "kihnu_vald:service:ravimite_kojuvedu",
+      "itemType": "service",
+      "title": "Ravimite kojuvedu",
+      "status": "active",
+      "summary": "Ravimite kojuveo hind kehtib mandril asuvast apteegist ravimite toomisel sotsiaaltranspordi sõidu raames. Hind on 2,50 eurot kord.",
+      "targetGroup": [],
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": {
+        "amount": "2,50 eurot kord",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_service_ravimite_kojuvedu",
+      "document_id": "kihnu_vald_service_ravimite_kojuvedu",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "content_hash": "325059ff404c0a36bf5f2e3bc543814b76282e2f9e061501288c77bbfcc7979d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_service_puudega_inimese_parkimiskaart",
+      "canonical_item_id": "kihnu_vald:service:puudega_inimese_parkimiskaart",
+      "itemType": "service",
+      "title": "Puudega inimese parkimiskaardi taotlemine",
+      "status": "active",
+      "summary": "Parkimiskaart antakse välja taotluse alusel inimesele, kellel on keskmisele, raskele või sügavale puude raskusastmele vastav liikumisfunktsioonihäire või nägemisfunktsiooni kõrvalekalle või ajutine liikumis- või nägemisfunktsiooni kõrvalekalle. Taotlusele lisatakse vabas vormis avaldus, 3×4 cm foto ning vajadusel pere- või eriarsti tõend. Parkimiskaart antakse välja puuet tõendavale dokumendile märgitud perioodiks, kuid mitte kauemaks kui viieks aastaks; ajutise kõrvalekalde korral kuni kuueks kuuks.",
+      "targetGroup": [
+        "liikumis- või nägemispuudega inimesed"
+      ],
+      "conditions": "Parkimiskaart on isikupõhine ja kasutada võib seda ainult õigustatud isiku sõitudeks ja parkimiseks.",
+      "application": {
+        "channels": [
+          "vabas vormis avaldus sotsiaalametnikule"
+        ],
+        "steps": [
+          "esita vabas vormis avaldus sotsiaalametnikule",
+          "lisa 3×4 cm foto ja vajadusel arstitõend"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/puuetega-inimestele-abi/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "disability_aid_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "disability_aid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_service_puudega_inimese_parkimiskaart",
+      "document_id": "kihnu_vald_service_puudega_inimese_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/puuetega-inimestele-abi/",
+      "content_hash": "956493a9dcdcc008cfb170acffc6e4d3ff954dc59e0231f17826d39b41ffbf78",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "kihnu_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on riigi rahaline abi puuduses inimestele, mida maksab kohalik omavalitsus. Toetuse arvestamise aluseks on üksi elava inimese või pere eelmise kuu netosissetulek, jooksva kuu eluasemekulud ja toimetulekupiir. 2026. aastal on toimetulekupiir üksi elavale inimesele või pere esimesele liikmele 220 eurot kuus, igale alaealisele liikmele 264 eurot ja pere teisele ning igale järgmisele täisealisele liikmele 176 eurot.",
+      "targetGroup": [
+        "puuduses inimene",
+        "madala sissetulekuga pere"
+      ],
+      "conditions": "Taotlusele lisatakse sissetulekuid ja vajadusel eluasemekulusid tõendavad dokumendid; esmakordsel taotlemisel või vara muutumisel esitatakse varaandmed.",
+      "application": {
+        "channels": [
+          "taotlus e-postiga sotsiaalametnikule"
+        ],
+        "steps": [
+          "esita toimetulekutoetuse taotlus",
+          "lisa sissetulekut, eluasemekulusid ja vajadusel vara puudutavad dokumendid"
+        ],
+        "deadline": "jooksva kuu viimane tööpäev"
+      },
+      "decisionTime": null,
+      "amount": {
+        "amount": "sõltub sissetulekust, eluasemekuludest ja toimetulekupiirist",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kihnu_vald_form_toimetulekutoetuse_avaldus",
+        "kihnu_vald_form_varade_leht"
+      ],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_benefit_toimetulekutoetus",
+      "document_id": "kihnu_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "content_hash": "12964dd7c2c03f330122f8fc7d73071ec3a476e91a09aef5e477dd70857e2028",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_benefit_taiendav_sotsiaaltoetus_alalaealiste_perele",
+      "canonical_item_id": "kihnu_vald:benefit:taiendav_sotsiaaltoetus_alalaealiste_perele",
+      "itemType": "benefit",
+      "title": "Täiendav sotsiaaltoetus alaealistest koosnevale perele",
+      "status": "active",
+      "summary": "Toimetulekutoetuse saajal, kelle kõik pereliikmed on alaealised, on õigus saada koos toimetulekutoetusega täiendavat sotsiaaltoetust 15 eurot. Toetust maksab kohalik omavalitsus riigieelarvelistest vahenditest.",
+      "targetGroup": [
+        "toimetulekutoetuse saaja, kelle kõik pereliikmed on alaealised"
+      ],
+      "conditions": "Kõik pereliikmed peavad olema alaealised ja pere peab saama toimetulekutoetust.",
+      "application": null,
+      "decisionTime": null,
+      "amount": {
+        "amount": "15 eurot",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "relatedTo": [
+        "kihnu_vald_benefit_toimetulekutoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_benefit_taiendav_sotsiaaltoetus_alalaealiste_perele",
+      "document_id": "kihnu_vald_benefit_taiendav_sotsiaaltoetus_alalaealiste_perele",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "content_hash": "af01658732b7ba6c7fc207f5c622709b71cde4017f685a585249044c65adb3c8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_benefit_sunnitoetus",
+      "canonical_item_id": "kihnu_vald:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetust makstakse lapse sünni puhul ühele lapse vanemale tingimusel, et laps registreeritakse sündimisel Kihnu valla elanikuks ning lapse vanema või lapsendaja elukoht lapse sünni aasta 1. jaanuari seisuga on rahvastikuregistris Kihnu vald. Toetus on 1000 eurot lapse kohta ja makstakse välja neljas osas: 300 eurot pärast sünni registreerimist, 200 eurot lapse sünnile järgneval aastal, 200 eurot sellele järgneval aastal ning 300 eurot sünnile järgneval kolmandal aastal.",
+      "targetGroup": [
+        "Kihnu vallas lapse saanud või lapsendanud vanemad"
+      ],
+      "conditions": "Laps peab sündimisel olema registreeritud Kihnu valla elanikuks ja vanema või lapsendaja elukoht lapse sünniaasta 1. jaanuari seisuga peab olema Kihnu vald.",
+      "application": {
+        "channels": [
+          "avalduse esitamine sotsiaalametnikule"
+        ],
+        "steps": [
+          "esimese osa saamiseks avaldust ei esitata, välja arvatud kui sünd on registreeritud mujal",
+          "teise, kolmanda ja neljanda osa saamiseks esita avaldus, kuhu märgitakse ka arvelduskonto"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "amount": "1000 eurot (300 + 200 + 200 + 300)",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kihnu_vald_form_sunnitoetuse_esimese_osa_avaldus",
+        "kihnu_vald_form_sunnitoetuse_teise_kolmanda_neljanda_osa_avaldus"
+      ],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_benefit_sunnitoetus",
+      "document_id": "kihnu_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "content_hash": "d20d40d74d3fd6ff0cc2e1a1efdb3a1e5bb43e77d9b4e8f2c726e0fb0b775fc4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_benefit_matusetoetus",
+      "canonical_item_id": "kihnu_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetust makstakse rahvastikuregistrisse Kihnu valla elanikuna kantud inimese surma korral tema leibkonna liikmetele või nende puudumisel matust korraldavale füüsilisele isikule. Toetuse saaja elukoht ei pea olema Kihnu vald. Toetus makstakse matuse korraldajale pärast surma registreerimist.",
+      "targetGroup": [
+        "Kihnu valla elaniku matuse korraldaja"
+      ],
+      "conditions": "Matusetoetuse aluseks on surmatõend ja matusetoetuse avaldus.",
+      "application": {
+        "channels": [
+          "avalduse esitamine sotsiaalametnikule"
+        ],
+        "steps": [
+          "esita matusetoetuse avaldus",
+          "lisa surmatõend"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "amount": "300 eurot",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kihnu_vald_form_matusetoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_benefit_matusetoetus",
+      "document_id": "kihnu_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "content_hash": "b8c266bdd5717aee851cbd227097c08ca3f5b62fc3878a8143dfb3822b0abb57",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_benefit_koolitoetus_oppetoetus",
+      "canonical_item_id": "kihnu_vald:benefit:koolitoetus_oppetoetus",
+      "itemType": "benefit",
+      "title": "Koolitoetus – õppetoetus",
+      "status": "active",
+      "summary": "Õppetoetust makstakse Kihnu Kooli õpilastele ning väljaspool Kihnut üldkesk- ja kutsekeskharidust omandavatele õpilastele, kelle elukoht on rahvastikuregistri järgi Kihnu vald ja kes on lõpetanud Kihnu Kooli. Kihnu Kooli õpilaste õppetoetus on 150 eurot õppeaastas ning väljaspool Kihnut õppivate õpilaste õppetoetus 400 eurot õppeaastas.",
+      "targetGroup": [
+        "Kihnu Kooli õpilased",
+        "väljaspool Kihnut üldkesk- või kutsekeskharidust omandavad Kihnu valla õpilased"
+      ],
+      "conditions": "Täiskasvanute gümnaasiumi õpilased on toetuse saajate hulgast välja arvatud; alla 18-aastase õpilase toetus makstakse vanemale või eestkostjale.",
+      "application": null,
+      "decisionTime": null,
+      "amount": {
+        "amount": "150 eurot või 400 eurot õppeaastas",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_benefit_koolitoetus_oppetoetus",
+      "document_id": "kihnu_vald_benefit_koolitoetus_oppetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "content_hash": "a8ff36b9eb6b47e8403043690656dbabeb4d78ca74688dc112b2345ceea98be7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_benefit_kooli_lopetamise_toetus",
+      "canonical_item_id": "kihnu_vald:benefit:kooli_lopetamise_toetus",
+      "itemType": "benefit",
+      "title": "Kooli lõpetamise toetus",
+      "status": "active",
+      "summary": "Kooli lõpetamise toetuse suurus on 150 eurot ja see makstakse välja kahe kuu jooksul pärast kooli lõpetamist. Toetuse saamise aluseks on Kihnu Kooli esitatud kooli lõpetavate õpilaste nimekiri või väljaspool Kihnut omandatud üldkesk- või kutseharidust tõendav dokument.",
+      "targetGroup": [
+        "Kihnu valla kooli lõpetavad õpilased"
+      ],
+      "conditions": "Aluseks on Kihnu Kooli lõpetajate nimekiri või väljaspool Kihnut omandatud haridust tõendav dokument.",
+      "application": null,
+      "decisionTime": null,
+      "amount": {
+        "amount": "150 eurot",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_benefit_kooli_lopetamise_toetus",
+      "document_id": "kihnu_vald_benefit_kooli_lopetamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "content_hash": "0fc5261a2298bfb33c096bb782e903e0d2ca1971a3b79befe87856621ce35280",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_benefit_lastetoetus",
+      "canonical_item_id": "kihnu_vald:benefit:lastetoetus",
+      "itemType": "benefit",
+      "title": "Lastetoetus",
+      "status": "active",
+      "summary": "Lastetoetus on asjaline toetus, mille saamise õigus on Kihnu Kooli lasteaialastel ja põhikooli õpilastel.",
+      "targetGroup": [
+        "Kihnu Kooli lasteaialapsed ja põhikooli õpilased"
+      ],
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "amount": null,
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "unresolvedIssues": [
+        "KOV veebileht ei täpsusta lastetoetuse asjalist sisu, taotlemise korda ega väärtust."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_benefit_lastetoetus",
+      "document_id": "kihnu_vald_benefit_lastetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "content_hash": "a3e1bbb0134f187f986041e9206f283314c8169ca14e4aad3a9dd23d574086f4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_benefit_toitjakaotustoetus",
+      "canonical_item_id": "kihnu_vald:benefit:toitjakaotustoetus",
+      "itemType": "benefit",
+      "title": "Toitjakaotustoetus",
+      "status": "active",
+      "summary": "Toitjakaotustoetust makstakse üksikvanemale, kelle elukoht on rahvastikuregistris Kihnu vald ning kelle lapse või laste elukoht on samuti Kihnu vald. Toetust makstakse lapse täisealiseks saamiseni üks kord aastas.",
+      "targetGroup": [
+        "üksikvanem, eestkostja või lapse hooldamisele võtja, kes kasvatab last, kelle üks või mõlemad vanemad on surnud"
+      ],
+      "conditions": "Üksikvanema ja lapse elukoht peab olema rahvastikuregistri järgi Kihnu vald.",
+      "application": {
+        "channels": [
+          "avalduse esitamine sotsiaalametnikule"
+        ],
+        "steps": [
+          "esita toitjakaotustoetuse avaldus"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "amount": "300 eurot lapse kohta aastas",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kihnu_vald_form_toitjakaotustoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_benefit_toitjakaotustoetus",
+      "document_id": "kihnu_vald_benefit_toitjakaotustoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "content_hash": "d286799d1cfdc7294ad0785ef2bee18b039b71b55f035829da1094646fc88e95",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_benefit_tahtpaeva_toetus",
+      "canonical_item_id": "kihnu_vald:benefit:tahtpaeva_toetus",
+      "itemType": "benefit",
+      "title": "Tähtpäeva toetus",
+      "status": "active",
+      "summary": "Tähtpäevatoetus on rahaline toetus Kihnu valla viiele kõige eakamale mehele ja viiele kõige eakamale naisele. Toetus makstakse üks kord aastas eakate päeval ning toetuse saamiseks avaldust ei esitata.",
+      "targetGroup": [
+        "Kihnu valla viis kõige eakamat meest ja viis kõige eakamat naist"
+      ],
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "amount": {
+        "amount": "50 eurot",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_benefit_tahtpaeva_toetus",
+      "document_id": "kihnu_vald_benefit_tahtpaeva_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "content_hash": "9adcc07332db9620ed89e43f7e9ac9b53be913a14062d7bfa7e59edd3961788a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_benefit_uhekordne_toetus",
+      "canonical_item_id": "kihnu_vald:benefit:uhekordne_toetus",
+      "itemType": "benefit",
+      "title": "Ühekordne toetus",
+      "status": "active",
+      "summary": "Vallavalitsus võib maksta ühekordseid toetusi raskustes olevate leibkondade hädavajalike kulutuste osaliseks või täielikuks hüvitamiseks. Kulu võib olla seotud tule- või loodusõnnetuse kahjuga, tehnilise abivahendi soetamisega, toimetulekuraskusega, erivajadustega inimeste arengu ja rehabilitatsiooniga, kindlustamata isiku ravikuluga, kütte ostuga või muu vallavalitsuse otsustatud põhjusega. Toetuse eesmärk on tagada taotleja või leibkonna võimalikult iseseisev toimetulek ja ära hoida abituse süvenemist.",
+      "targetGroup": [
+        "raskustes olevad leibkonnad ja üksikisikud"
+      ],
+      "conditions": "Toetuse määramisel võetakse arvesse leibkonna kõigi liikmete sissetulekuid.",
+      "application": null,
+      "decisionTime": null,
+      "amount": null,
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "unresolvedIssues": [
+        "KOV veebileht ei nimeta ühekordse toetuse juures konkreetset taotlusvormi ega tähtaega."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_benefit_uhekordne_toetus",
+      "document_id": "kihnu_vald_benefit_uhekordne_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "content_hash": "a5949f97e62d3d15c30cf9608d4b279c0cba9c4e6a4773271a0de8e013a2c208",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_benefit_valtimatu_abi_toetus",
+      "canonical_item_id": "kihnu_vald:benefit:valtimatu_abi_toetus",
+      "itemType": "benefit",
+      "title": "Vältimatu abi toetus",
+      "status": "active",
+      "summary": "Vältimatu abi toetust makstakse sotsiaalhoolekande seaduse mõistes vältimatut sotsiaalabi vajavale inimesele. Toetus on elatusvahendita inimesele osutatav abi, mis koos vajalike sotsiaalhoolekandeliste abinõudega, nagu toit, riietus ja ajutine peavari, aitab inimesel abitusest olukorrast väljuda.",
+      "targetGroup": [
+        "elatusvahenditeta ja vältimatut sotsiaalabi vajavad inimesed"
+      ],
+      "conditions": "Abi osutatakse seni, kuni inimene ei ole enam elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitus olukorras.",
+      "application": null,
+      "decisionTime": null,
+      "amount": null,
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_benefit_valtimatu_abi_toetus",
+      "document_id": "kihnu_vald_benefit_valtimatu_abi_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "content_hash": "6145ba9b9a54b425421262a3e6f54d66b19809ccc9b07703cdb3f985b19503c0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_benefit_hooldajatoetus",
+      "canonical_item_id": "kihnu_vald:benefit:hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus",
+      "status": "active",
+      "summary": "Hooldajatoetus on täisealise isiku hooldajale makstav igakuine rahaline toetus. Kohalik omavalitsus seab inimese taotluse alusel hoolduse täisealisele inimesele, kes vajab vaimse või kehalise puude tõttu abi oma õiguste teostamiseks ja kohustuste täitmiseks. Hooldajatoetuse suurus on 80 eurot kuus ning mitme hooldatava hooldamisel on õigus saada toetust iga hooldatava hooldamise eest.",
+      "targetGroup": [
+        "täisealise isiku hooldajad"
+      ],
+      "conditions": "Hooldus seatakse ja hooldaja määratakse hooldatava nõusolekul.",
+      "application": {
+        "channels": [
+          "pöördumine sotsiaalametniku poole"
+        ],
+        "steps": [
+          "pöördu täisealise isiku hoolduse ja hooldajatoetuse küsimuses sotsiaalametniku poole"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "amount": "80 eurot kuus iga hooldatava eest",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "relatedTo": [
+        "kihnu_vald_service_taisealise_isiku_hooldus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "unresolvedIssues": [
+        "KOV veebileht ei nimeta hooldajatoetuse juures eraldi taotlusblanketti."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_benefit_hooldajatoetus",
+      "document_id": "kihnu_vald_benefit_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaaltoetused/",
+      "content_hash": "f8e87527cdad60dbc0674691a2f147eaffd5a97ce14598a057efe70e98923162",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_resource_kihnu_hooldekodu",
+      "canonical_item_id": "kihnu_vald:resource:kihnu_hooldekodu",
+      "itemType": "resource",
+      "title": "Kihnu hooldekodu",
+      "status": "active",
+      "summary": "Kihnu hooldekodus osutatava ööpäevaringse üldhooldusteenuse eesmärk on tagada turvaline keskkond ja toimetulek täisealisele inimesele, kes ei tule terviseseisundi, tegevusvõime või elukeskkonna tõttu kodus toime ning kellele vajalikku abi ei ole võimalik tagada muude sotsiaalteenustega. Hooldekodu on 9-kohaline. Kohatasu on alates 01.04.2026 1450 eurot kuus ja intervallhoolduse päevahind alates 01.04.2026 25 eurot.",
+      "address": "Tervisekeskus, Linaküla, Kihnu vald, 88003, Pärnumaa",
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/kihnu-hooldekodu/",
+      "relatedTo": [
+        "kihnu_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "hooldekodu_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "hooldekodu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_resource_kihnu_hooldekodu",
+      "document_id": "kihnu_vald_resource_kihnu_hooldekodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/kihnu-hooldekodu/",
+      "content_hash": "bd5a296e6ba9a099501eb99f32bdca1f7a3775ff5ee8e2dd14c6d1dc934690a1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_resource_lastekaitse_lapsele_abi",
+      "canonical_item_id": "kihnu_vald:resource:lastekaitse_lapsele_abi",
+      "itemType": "resource",
+      "title": "Lastekaitse: lapsele abi",
+      "status": "active",
+      "summary": "Kihnu valla lapsele abi leht nimetab kohaliku lastekaitsetöötajana Aive Sepa ning pakub pöördumisvõimalust lapse või noore mure korral. Leht suunab vaimse tervise teenuse, kooli lõpetamise toetuse ning anonüümse mureteavituse juurde.",
+      "address": null,
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/laste-ja-perede-heaolu/lastekaitse/lapsele-abi/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "child_help_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "child_help_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_resource_lastekaitse_lapsele_abi",
+      "document_id": "kihnu_vald_resource_lastekaitse_lapsele_abi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/laste-ja-perede-heaolu/lastekaitse/lapsele-abi/",
+      "content_hash": "3b80dd902543c4b87e26d1e8ac64a67d10763b16a66a387d6442017656e27de7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_resource_lapsevanemale_abi",
+      "canonical_item_id": "kihnu_vald:resource:lapsevanemale_abi",
+      "itemType": "resource",
+      "title": "Lapsevanemale abi",
+      "status": "active",
+      "summary": "Lapsevanemale abi leht koondab Kihnu valla suunised lapsevanemale, kes vajab nõu lapsekasvatuse, lapse heaolu või enda vaimse tervise küsimustes. Leht suunab kohaliku lastekaitsetöötaja, Lasteabi ja Ohvriabi poole.",
+      "address": null,
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/laste-ja-perede-heaolu/lastekaitse/lapsevanemale-abi/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kihnu_vald_contact_aive_sepp"
+      ],
+      "sourceKeys": [
+        "parent_help_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "parent_help_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_resource_lapsevanemale_abi",
+      "document_id": "kihnu_vald_resource_lapsevanemale_abi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/laste-ja-perede-heaolu/lastekaitse/lapsevanemale-abi/",
+      "content_hash": "b72a4f66063a087b3f02ebf6c80cba9f4e0af63fa1ff5b29acb637de06121ad5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_resource_lasteabi_telefon_",
+      "canonical_item_id": "kihnu_vald:resource:lasteabi_telefon_",
+      "itemType": "resource",
+      "title": "Lasteabi",
+      "status": "active",
+      "summary": "Lasteabitelefon on ööpäevaringne tasuta teenus abivajavast lapsest teatamiseks või lastega seotud teemadel nõu küsimiseks. Pöörduja võib jääda anonüümseks, kui see ei ohusta lapse elu ja tervist; nõustamine toimub eesti, vene ja inglise keeles.",
+      "address": null,
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/laste-ja-perede-heaolu/lastekaitse/lapsele-abi/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "child_help_page",
+        "parent_help_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "child_help_page",
+        "parent_help_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_resource_lasteabi_telefon_",
+      "document_id": "kihnu_vald_resource_lasteabi_telefon_",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/laste-ja-perede-heaolu/lastekaitse/lapsele-abi/",
+      "content_hash": "e82c0443bfe5302c3f8113e737863489f7f67029180423fdb4be0323899720f9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_resource_ohvriabi",
+      "canonical_item_id": "kihnu_vald:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "Kihnu valla lastekaitse lehed suunavad ohvriabi poole, kui inimene ise või tema lähedane on kannatanud kuriteo, vägivalla või kriisijuhtumi tõttu, näinud väärkohtlemist või juhtunud õnnetust. KOV leht viitab ohvriabi lisainfole sotsiaalkindlustusameti ja palunabi.ee kaudu.",
+      "address": null,
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/laste-ja-perede-heaolu/lastekaitse/lapsele-abi/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "child_help_page",
+        "parent_help_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "child_help_page",
+        "parent_help_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_resource_ohvriabi",
+      "document_id": "kihnu_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/laste-ja-perede-heaolu/lastekaitse/lapsele-abi/",
+      "content_hash": "3091a39e71118f4973dcd2befb50e6876eeadd64585a5480dd7c0bd3ec1a9f08",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_resource_puude_taotlemine_ja_toovoime_hindamine",
+      "canonical_item_id": "kihnu_vald:resource:puude_taotlemine_ja_toovoime_hindamine",
+      "itemType": "resource",
+      "title": "Puude taotlemine ja töövõime hindamine",
+      "status": "active",
+      "summary": "Kihnu valla leht selgitab puude raskusastme taotlemist vanaduspensioniealisele, tööealisele ning lapsele ning suunab täpse taotlemise Sotsiaalkindlustusameti infolehtedele. Leht kirjeldab, et puude tuvastamine on suunatud inimestele, kelle igapäevane tegutsemine ja ühiskonnaelus osalemine on piiratud või takistatud.",
+      "address": null,
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/puude-taotlemine-ja-toovoime-hindamine/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "disability_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "disability_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_resource_puude_taotlemine_ja_toovoime_hindamine",
+      "document_id": "kihnu_vald_resource_puude_taotlemine_ja_toovoime_hindamine",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/puude-taotlemine-ja-toovoime-hindamine/",
+      "content_hash": "fb67371fae46fc46ac535cf1d01ffdd29ff78fa3cc24feeca71d7d2baf137abb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_resource_erivajadustega_inimeste_ligipaas_kihnus",
+      "canonical_item_id": "kihnu_vald:resource:erivajadustega_inimeste_ligipaas_kihnus",
+      "itemType": "resource",
+      "title": "Erivajadustega inimeste ligipääs Kihnus",
+      "status": "active",
+      "summary": "Kihnu valla puuetega inimeste abi leht kirjeldab ligipääsuvõimalusi: rahvamajja pääseb tagauksest, perearstikeskuses ja apteegis on kaldtee, tervisekeskuse sotsiaalmajutuses on kaldtee, muuseumis on kaldtee ning laeval on lift. Leht märgib, et poodidesse ratastooliga inimesed kahjuks ei pääse.",
+      "address": null,
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/puuetega-inimestele-abi/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "disability_aid_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "disability_aid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_resource_erivajadustega_inimeste_ligipaas_kihnus",
+      "document_id": "kihnu_vald_resource_erivajadustega_inimeste_ligipaas_kihnus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/puuetega-inimestele-abi/",
+      "content_hash": "9eb598beae4482fa469f97edf8b76c6e35578f55bc03151c1b0cc4f15f36211a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_resource_medi_hairekella_lisainfo",
+      "canonical_item_id": "kihnu_vald:resource:medi_hairekella_lisainfo",
+      "itemType": "resource",
+      "title": "Medi häirekella lisainfo",
+      "status": "active",
+      "summary": "Häirekella teenuse plokis viitab Kihnu vald lisainfo saamiseks Medi veebilehele. KOV lehel avaldatud info alusel on tegemist häirekella teenusega seotud lisainfo ressursiga, kuid välist veebilehte ei kasutatud andmekorje allikana.",
+      "address": null,
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "relatedTo": [
+        "kihnu_vald_service_hairekella_teenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "unresolvedIssues": [
+        "Välise teenusepakkuja täpsem sisu jäi allikapiirangu tõttu kontrollimata."
+      ],
+      "item_type": "resource",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_resource_medi_hairekella_lisainfo",
+      "document_id": "kihnu_vald_resource_medi_hairekella_lisainfo",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "content_hash": "1662eb6eabec433a04905f5418e568e36bcd5c69bc46e8fcf563a1adfb5dc31e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_resource_riigi_infotelefonid",
+      "canonical_item_id": "kihnu_vald:resource:riigi_infotelefonid",
+      "itemType": "resource",
+      "title": "Riigi infotelefonid",
+      "status": "active",
+      "summary": "Kihnu valla sotsiaalvaldkonna lehtede jaluses on avaldatud riigi infotelefonid: kriisiinfo, 1220 perearsti nõuandetelefon, konsulaarabi ning hädaabi.",
+      "address": null,
+      "officialUrl": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "child_help_page",
+        "social_benefits_page",
+        "social_services_page"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "child_help_page",
+        "social_benefits_page",
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_resource_riigi_infotelefonid",
+      "document_id": "kihnu_vald_resource_riigi_infotelefonid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/pere-sotsiaal-tervishoid/sotsiaalabi/sotsiaalteenused/",
+      "content_hash": "8631dd60c82bfcc119aa8673a5eef828ae850323e7607f0f4863d88974984436",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_form_koduteenuste_taotlus",
+      "canonical_item_id": "kihnu_vald:form:koduteenuste_taotlus",
+      "itemType": "form",
+      "title": "Koduteenuste taotlus",
+      "status": "active",
+      "summary": "Koduteenuste taotluse PDF vorm sisaldab isikuandmeid, leibkonna, laste, kontaktisiku, lähedaste abi, eluaseme, tervisliku seisundi ja soovitud teenuste andmeid.",
+      "format": "pdf",
+      "submissionChannels": [
+        "sotsiaalametnikule",
+        "paberkandjal vallavalitsusele"
+      ],
+      "officialUrl": "https://kihnu.ee/wp-content/uploads/2026/04/Koduteenuste-taotlus.pdf",
+      "relatedTo": [
+        "kihnu_vald_service_koduteenus"
+      ],
+      "sourceKeys": [
+        "koduteenuste_taotlus_pdf"
+      ],
+      "sections_present": [
+        "isikuandmed",
+        "elab koos",
+        "lapsed",
+        "kontaktisik või lähedane",
+        "lähedaste abi",
+        "eluase",
+        "tervislik seisund",
+        "soovitud teenused"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "koduteenuste_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_form_koduteenuste_taotlus",
+      "document_id": "kihnu_vald_form_koduteenuste_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/wp-content/uploads/2026/04/Koduteenuste-taotlus.pdf",
+      "content_hash": "f42f913b48f7a148d56822a35175e237e6c0a48b5c21f93ee7208d353ffc26be",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_form_sotsiaalkorteri_taotlus",
+      "canonical_item_id": "kihnu_vald:form:sotsiaalkorteri_taotlus",
+      "itemType": "form",
+      "title": "Avaldus sotsiaalkorteri taotlemiseks",
+      "status": "active",
+      "summary": "Sotsiaalkorteri taotlemise avaldus eluruumi tagamise teenuse jaoks.",
+      "format": "doc",
+      "submissionChannels": [
+        "sotsiaalametnikule",
+        "paberkandjal vallavalitsusele"
+      ],
+      "officialUrl": "https://kihnu.ee/wp-content/uploads/2026/04/Avaldus-sotsiaalkorteri-taotlemiseks.doc",
+      "relatedTo": [
+        "kihnu_vald_service_eluruumi_tagamine"
+      ],
+      "sourceKeys": [
+        "sotsiaalkorteri_taotlus_doc"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "Faili sisu ei õnnestunud veebitööriistas parsida, kuid ametlik faililink on KOV lehelt tuvastatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "sotsiaalkorteri_taotlus_doc"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_form_sotsiaalkorteri_taotlus",
+      "document_id": "kihnu_vald_form_sotsiaalkorteri_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/wp-content/uploads/2026/04/Avaldus-sotsiaalkorteri-taotlemiseks.doc",
+      "content_hash": "7b77ef211c02c652662798fdafd6d1490ab07d59f8f0d0f5e1d994400de9a9ee",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_form_toimetulekutoetuse_avaldus",
+      "canonical_item_id": "kihnu_vald:form:toimetulekutoetuse_avaldus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse avaldus",
+      "status": "active",
+      "summary": "Toimetulekutoetuse avalduse vorm toetuse taotlemiseks.",
+      "format": "doc",
+      "submissionChannels": [
+        "sotsiaalametnikule",
+        "paberkandjal vallavalitsusele"
+      ],
+      "officialUrl": "https://kihnu.ee/wp-content/uploads/2026/04/Toimetulekutoetuse-avaldus.doc",
+      "relatedTo": [
+        "kihnu_vald_benefit_toimetulekutoetus"
+      ],
+      "sourceKeys": [
+        "toimetulekutoetuse_avaldus_doc"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "Faili sisu ei õnnestunud veebitööriistas parsida, kuid ametlik faililink on KOV lehelt tuvastatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "toimetulekutoetuse_avaldus_doc"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_form_toimetulekutoetuse_avaldus",
+      "document_id": "kihnu_vald_form_toimetulekutoetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/wp-content/uploads/2026/04/Toimetulekutoetuse-avaldus.doc",
+      "content_hash": "7bec00f7a6cac63cbbf8ef0f573f43ba911efc97c02236b971876505b836c270",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_form_varade_leht",
+      "canonical_item_id": "kihnu_vald:form:varade_leht",
+      "itemType": "form",
+      "title": "Varade leht",
+      "status": "active",
+      "summary": "Varade leht on toimetulekutoetuse taotlemisel esitatav täiendav andmeleht taotleja ja perekonnaliikmete kasutuses või omandis oleva vara kohta.",
+      "format": "rtf",
+      "submissionChannels": [
+        "sotsiaalametnikule",
+        "paberkandjal vallavalitsusele"
+      ],
+      "officialUrl": "https://kihnu.ee/wp-content/uploads/2026/04/Varade_leht.rtf",
+      "relatedTo": [
+        "kihnu_vald_benefit_toimetulekutoetus"
+      ],
+      "sourceKeys": [
+        "varade_leht_rtf"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "Faili sisu ei õnnestunud veebitööriistas parsida, kuid ametlik faililink on KOV lehelt tuvastatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "varade_leht_rtf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_form_varade_leht",
+      "document_id": "kihnu_vald_form_varade_leht",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/wp-content/uploads/2026/04/Varade_leht.rtf",
+      "content_hash": "79ab30f68a9a827f59dbfcbe208330205fbf69fec41faddc703dddaa64b21d90",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_form_sunnitoetuse_esimese_osa_avaldus",
+      "canonical_item_id": "kihnu_vald:form:sunnitoetuse_esimese_osa_avaldus",
+      "itemType": "form",
+      "title": "Avaldus sünnitoetuse esimese osa saamiseks juhul, kui lapse sünd ei ole registreeritud Kihnu vallas",
+      "status": "active",
+      "summary": "Sünnitoetuse esimese osa avaldus olukorras, kus lapse sünd ei ole registreeritud Kihnu vallas.",
+      "format": "doc",
+      "submissionChannels": [
+        "sotsiaalametnikule",
+        "paberkandjal vallavalitsusele"
+      ],
+      "officialUrl": "https://kihnu.ee/wp-content/uploads/2026/04/Avaldus-sunnitoetuse-esimese-osa-saamiseks-juhul-kui-lapse-sund-ei-ole-registreeritud-Kihnu-vallas.doc",
+      "relatedTo": [
+        "kihnu_vald_benefit_sunnitoetus"
+      ],
+      "sourceKeys": [
+        "sunnitoetuse_esimese_osa_avaldus_doc"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "Faili sisu ei õnnestunud veebitööriistas parsida, kuid ametlik faililink on KOV lehelt tuvastatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "sunnitoetuse_esimese_osa_avaldus_doc"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_form_sunnitoetuse_esimese_osa_avaldus",
+      "document_id": "kihnu_vald_form_sunnitoetuse_esimese_osa_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/wp-content/uploads/2026/04/Avaldus-sunnitoetuse-esimese-osa-saamiseks-juhul-kui-lapse-sund-ei-ole-registreeritud-Kihnu-vallas.doc",
+      "content_hash": "394104ccd20386705d2a4c3f6d6e01c8e1c482034f70bf0f3e1b9d37b0c74d65",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_form_sunnitoetuse_teise_kolmanda_neljanda_osa_avaldus",
+      "canonical_item_id": "kihnu_vald:form:sunnitoetuse_teise_kolmanda_neljanda_osa_avaldus",
+      "itemType": "form",
+      "title": "Avaldus sünnitoetuse teise, kolmanda ja neljanda osa saamiseks",
+      "status": "active",
+      "summary": "Sünnitoetuse teise, kolmanda ja neljanda osa taotlemise avaldus.",
+      "format": "doc",
+      "submissionChannels": [
+        "sotsiaalametnikule",
+        "paberkandjal vallavalitsusele"
+      ],
+      "officialUrl": "https://kihnu.ee/wp-content/uploads/2026/04/Avaldus-sunnitoetuse-teise-kolmanda-ja-neljanda-osa-saamiseks.doc",
+      "relatedTo": [
+        "kihnu_vald_benefit_sunnitoetus"
+      ],
+      "sourceKeys": [
+        "sunnitoetuse_teise_kolmanda_neljanda_osa_avaldus_doc"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "Faili sisu ei õnnestunud veebitööriistas parsida, kuid ametlik faililink on KOV lehelt tuvastatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "sunnitoetuse_teise_kolmanda_neljanda_osa_avaldus_doc"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_form_sunnitoetuse_teise_kolmanda_neljanda_osa_avaldus",
+      "document_id": "kihnu_vald_form_sunnitoetuse_teise_kolmanda_neljanda_osa_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/wp-content/uploads/2026/04/Avaldus-sunnitoetuse-teise-kolmanda-ja-neljanda-osa-saamiseks.doc",
+      "content_hash": "88ab00580e77b0b82145d5dfa45d41a08382d92ba17049e3218deb322ae3fb47",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_form_matusetoetuse_avaldus",
+      "canonical_item_id": "kihnu_vald:form:matusetoetuse_avaldus",
+      "itemType": "form",
+      "title": "Matusetoetuse avaldus",
+      "status": "active",
+      "summary": "Matusetoetuse avaldus matuse korraldajale toetuse taotlemiseks.",
+      "format": "docx",
+      "submissionChannels": [
+        "sotsiaalametnikule",
+        "paberkandjal vallavalitsusele"
+      ],
+      "officialUrl": "https://kihnu.ee/wp-content/uploads/2026/04/Matusetoetuse-avaldus.docx",
+      "relatedTo": [
+        "kihnu_vald_benefit_matusetoetus"
+      ],
+      "sourceKeys": [
+        "matusetoetuse_avaldus_docx"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "Faili sisu ei õnnestunud veebitööriistas parsida, kuid ametlik faililink on KOV lehelt tuvastatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "matusetoetuse_avaldus_docx"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_form_matusetoetuse_avaldus",
+      "document_id": "kihnu_vald_form_matusetoetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/wp-content/uploads/2026/04/Matusetoetuse-avaldus.docx",
+      "content_hash": "f52ab9196bcd648d9f331311a8e609034548036b45a7bb4951a0e7ee84494f33",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kihnu_vald_form_toitjakaotustoetuse_avaldus",
+      "canonical_item_id": "kihnu_vald:form:toitjakaotustoetuse_avaldus",
+      "itemType": "form",
+      "title": "Toitjakaotustoetuse avaldus",
+      "status": "active",
+      "summary": "Toitjakaotustoetuse avaldus toetuse taotlemiseks lapse eest, kelle üks või mõlemad vanemad on surnud.",
+      "format": "doc",
+      "submissionChannels": [
+        "sotsiaalametnikule",
+        "paberkandjal vallavalitsusele"
+      ],
+      "officialUrl": "https://kihnu.ee/wp-content/uploads/2026/04/Toitjakaotusetoetuse-avaldus.doc",
+      "relatedTo": [
+        "kihnu_vald_benefit_toitjakaotustoetus"
+      ],
+      "sourceKeys": [
+        "toitjakaotustoetuse_avaldus_doc"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "Faili sisu ei õnnestunud veebitööriistas parsida, kuid ametlik faililink on KOV lehelt tuvastatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "toitjakaotustoetuse_avaldus_doc"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kihnu_vald_form_toitjakaotustoetuse_avaldus",
+      "document_id": "kihnu_vald_form_toitjakaotustoetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kihnu.ee/wp-content/uploads/2026/04/Toitjakaotusetoetuse-avaldus.doc",
+      "content_hash": "0b4ba8fb7ff35b8dacd7ae6ed42bffa36e2839cd55fdab7b20c8e146cd8419d5",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Kihnu vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

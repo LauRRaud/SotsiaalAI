@@ -1,0 +1,140 @@
+{
+  "source_path": "peaasi_ee_vaimse_tervise_hoidmine_4_7_klass.pdf",
+  "source_format": "pdf",
+  "sha256": "122a7892f562293a3c4b39d79357044f96197663ffe22ec40a2fad03c4d1a771",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/peaasi_ee_vaimse_tervise_hoidmine_4_7_klass.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "peaasi_ee_vaimse_tervise_hoidmine_4_7_klass",
+          "title": "Vaimse tervise hoidmine (4.–7. klass)",
+          "url": "https://peaasi.ee/wp-content/uploads/2018/11/Tunnikava-4-7kl-vaimne-tervis.pdf",
+          "normalized_url": "https://peaasi.ee/wp-content/uploads/2018/11/Tunnikava-4-7kl-vaimne-tervis.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "Peaasi.ee",
+          "organization_id": "peaasi_ee",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Peaasi.ee",
+            "infomaterjal",
+            "vaimne tervis",
+            "psüühiline heaolu",
+            "nõustamine"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Laste ja noorte vaimne tervis / kool / pere ristumiskoht",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 417,
+            "order": 227
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Vaimse tervise hoidmine (4.–7. klass)"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Peaasi.ee"
+          ],
+          "organizations_seen": [
+            "peaasi_ee"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Laste ja noorte vaimne tervis / kool / pere ristumiskoht",
+              "line": 417,
+              "order": 227
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://peaasi.ee/wp-content/uploads/2018/11/Tunnikava-4-7kl-vaimne-tervis.pdf"
+        },
+        "final_url": "https://peaasi.ee/wp-content/uploads/2018/11/Tunnikava-4-7kl-vaimne-tervis.pdf",
+        "redirects": [],
+        "sha256": "122a7892f562293a3c4b39d79357044f96197663ffe22ec40a2fad03c4d1a771",
+        "bytes": 269798,
+        "downloaded_at": "2026-08-14T08:00:47.021Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "peaasi_ee_vaimse_tervise_hoidmine_4_7_klass",
+      "metadata": {
+        "createdAt": "2026-06-12T03:46:26.379166+00:00",
+        "type": "FILE",
+        "fileName": "Tunnikava-4-7kl-vaimne-tervis.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:46:26.318330+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/fa3e44b4c4f1/Tunnikava-4-7kl-vaimne-tervis.pdf",
+        "title": "Vaimse tervise hoidmine (4.–7. klass)",
+        "description": "Source master headings: Laste ja noorte vaimne tervis / kool / pere ristumiskoht",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2018,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–4",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "peaasi_ee_vaimse_tervise_hoidmine_4_7_klass",
+        "document_id": "peaasi_ee_vaimse_tervise_hoidmine_4_7_klass",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "407a79437f6c17ee3d87a50e89209ee7ec6d8fb597328ad929bebb968d542048",
+        "url": "https://peaasi.ee/wp-content/uploads/2018/11/Tunnikava-4-7kl-vaimne-tervis.pdf",
+        "url_canonical": "https://peaasi.ee/wp-content/uploads/2018/11/Tunnikava-4-7kl-vaimne-tervis.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "peaasi_ee_vaimse_tervise_hoidmine_4_7_klass",
+        "updatedAt": "2026-06-12T03:46:26.379189+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

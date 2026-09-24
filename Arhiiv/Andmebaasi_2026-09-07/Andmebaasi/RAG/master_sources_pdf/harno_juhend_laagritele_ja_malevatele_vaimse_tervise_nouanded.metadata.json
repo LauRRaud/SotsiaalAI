@@ -1,0 +1,81 @@
+{
+  "source": {
+    "source_id": "harno_juhend_laagritele_ja_malevatele_vaimse_tervise_nouanded",
+    "title": "Juhend laagritele ja malevatele: vaimse tervise nõuanded",
+    "url": "https://harno.ee/sites/default/files/documents/2021-06/juhend%20laagritele%20jamalevatele-vaimse_tervise_nouanded_laagrid-malevad_14.06.2021.pdf",
+    "normalized_url": "https://harno.ee/sites/default/files/documents/2021-06/juhend laagritele jamalevatele-vaimse_tervise_nouanded_laagrid-malevad_14.06.2021.pdf",
+    "source_format": "pdf",
+    "source_type": "official_guideline",
+    "resource_type": "method_guidance",
+    "publisher": "HARNO",
+    "organization_id": "harno",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Haridus- ja Noorteamet",
+      "spetsialisti juhend",
+      "haridus",
+      "kool",
+      "õpilase toetamine",
+      "tugimeetmed",
+      "laager",
+      "malev",
+      "noorte vaimne tervis",
+      "vaimne tervis",
+      "psüühiline heaolu",
+      "nõustamine"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "high",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "HARNO / HEV / kooli tugimeetmed",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 381,
+      "order": 211
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Juhend laagritele ja malevatele: vaimse tervise nõuanded"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "official_guideline"
+    ],
+    "resource_types_seen": [
+      "best_practice_guidance"
+    ],
+    "publishers_seen": [
+      "HARNO"
+    ],
+    "organizations_seen": [
+      "harno"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "HARNO / HEV / kooli tugimeetmed",
+        "line": 381,
+        "order": 211
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://harno.ee/sites/default/files/documents/2021-06/juhend laagritele jamalevatele-vaimse_tervise_nouanded_laagrid-malevad_14.06.2021.pdf"
+  },
+  "final_url": "https://harno.ee/sites/default/files/documents/2021-06/juhend%20laagritele%20jamalevatele-vaimse_tervise_nouanded_laagrid-malevad_14.06.2021.pdf",
+  "redirects": [],
+  "sha256": "2bf0c28bbba80d2df3801caede24bcf4b1775ca5966ee31a2a511c95f5f1bc4a",
+  "bytes": 128780,
+  "downloaded_at": "2026-08-14T08:00:44.972Z"
+}

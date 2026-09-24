@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2021",
+  "articleId": "tiina-kiviryyt-muutustega-2021-2",
+  "title": "Elu lastele ja noortele pühendanud Tiina Kivirüüt: missioonitunne peab olema!",
+  "authors": [
+    "Maia Klaassen"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2021",
+  "section": "Persoon",
+  "pageRange": "3-8",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu pikaajalisest lastekaitse- ja sotsiaalvaldkonna praktikust Tiina Kivirüütist, kes on oma tööelu pühendanud laste ja noorte heaolu edendamisele. Intervjuus räägib ta oma tööteest erinevates rollides, kogemustest kriisiolukordades, koostööst koolide ja peredega ning missioonitundest, mis aitab rasketel hetkedel edasi minna. Artikkel avab ka Tiina isiklikke väärtusi, hoiakuid ja mõtteid selle kohta, kuidas luua lastele turvaline kasvukeskkond.",
+  "tags": [
+    "persoonilugu",
+    "lastekaitse",
+    "noorsootöö",
+    "sotsiaaltöö praktika",
+    "missioonitunne",
+    "koostöö peredega",
+    "kriisijuhtimine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2021_web_link_Part3.pdf",
+  "document_id": "sotsiaaltoo-2-2021-tiina-kiviryyt-muutustega-2021-2",
+  "source_format": "pdf",
+  "source_sha256": "ae1526e7d22f0923934256b592bcdf8caa54a07b1fbb5578851a1323294a4ce8",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2021-tiina-kiviryyt-muutustega-2021-2",
+    "previous_source_path": "Sotsiaaltoo_2_2021_web_link_Part3.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ae1526e7d22f0923934256b592bcdf8caa54a07b1fbb5578851a1323294a4ce8",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

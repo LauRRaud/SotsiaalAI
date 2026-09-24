@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="5914e059-3eba-43b6-a881-c6f144d17496" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Lääneranna Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2018-02-15</aktikuupaev>
+			<avaldamismarge>
+				<RTosa id="c6d11581-58f1-46a7-ac75-539ca08912ab">RT IV</RTosa>
+				<avaldamineKuupaev id="455b91d4-ce9f-4ccf-99f8-7fdcd2460def">2018-03-03</avaldamineKuupaev>
+				<RTartikkel id="26b48236-a56c-43fa-a652-6767ac61112b">66</RTartikkel>
+				<aktViide id="0be5ad8e-060b-403c-aa04-8be30572dcf1">403032018066</aktViide>
+			</avaldamismarge>
+			<joustumine>2018-03-06</joustumine>
+			<aktiNr>12</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2022-02-16</avaldamineKuupaev><RTaasta>2022</RTaasta><RTartikkel>3</RTartikkel><aktViide>416022022003</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2022-04-01</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2022-02-14</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>416022022003</globaalID>
+		<metaandmedVersioon>23</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2022-02-15</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1042282</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2018-02-28</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>?Teadmata? ?Teadmata?</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="b51aad50-d4e3-4324-a962-251003b7067c">
+		<nimi id="53e421ef-a21e-448b-a19b-f0caac6d7f81">
+			<pealkiri id="33cd8312-820e-4c55-a31d-0557c198bbe9">Lääneranna valla sotsiaalhoolekandelise abi andmise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="423bdc28-42a2-4f60-bff4-12935e4f0a92">
+		<tavatekst id="b1ed95ec-d21c-46fe-916e-ac287fec6a84">Kehtetu</tavatekst>
+		<avaldamismarge id="ff861aa3-22de-46b3-b94b-140fa871cf93">
+			<RTosa id="72f5b81a-f7c5-4e68-afb8-8126996d0371">RT IV</RTosa>
+			<avaldamineKuupaev id="700af4e6-59f8-4344-ba4b-e1a49ecc65a8">2022-02-16</avaldamineKuupaev>
+			<RTartikkel id="d3b788de-d9d8-4b94-9af2-9ff7013363e6">1</RTartikkel>
+			<aktViide id="c45dd3d3-302b-4cd2-bff5-d6844e52b1b2">416022022001</aktViide>
+		</avaldamismarge>
+		<joustumine id="59f88133-2973-4150-8790-5c0da756d1a0">2022-04-01</joustumine>
+	</muutmismarge>
+	<sisu id="3bd3c4cf-bc2b-4745-a7d2-26445fb0f2fe"/>
+</oigusakt>

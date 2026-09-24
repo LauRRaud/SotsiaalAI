@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-3-2022",
+  "articleId": "mis-viis-otsuseni-ametist-lahkuda-lastekaitsetootajate-kogemuslood-2022-3",
+  "title": "Mis viis otsuseni ametist lahkuda? Lastekaitsetöötajate kogemuslood",
+  "authors": [
+    "Kristiina Meinberg-Kadai"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2022",
+  "section": "UURIMUS",
+  "pageRange": "83-92",
+  "pdf_start_page": 1,
+  "pdf_end_page": 10,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Narratiivne uurimus avab ametist lahkunud lastekaitsetöötajate kogemuslood, et mõista, mis viis otsuseni töölt lahkuda.\nAvatud intervjuude põhjal kirjeldatakse ootusi tööle asumisel, kogemusi igapäevatöös ja lahkumisotsuse kujunemist.\nEsile tõusevad juhi ebapiisav tugi, liigne vastutus ja rollikonfliktid, ebaselge töökorraldus, ületunnid ning töö- ja eraelu\npiiri hägustumine, samuti ruumilised ja organisatsioonikultuuriga seotud probleemid. Samas tuuakse näiteid toetavast\njuhtimisest ja meeskonnast, mille korral on võimalik tööheaolu hoida. Artikkel rõhutab juhtimise kvaliteedi, supervisiooni\nja meeskonnatoe otsustavat rolli lastekaitsetöötajate hoidmisel ja kaadrivoolavuse vähendamisel.",
+  "tags": [
+    "lastekaitsetöötaja",
+    "tööheaolu",
+    "läbipõlemine",
+    "töökeskkond",
+    "sotsiaaltöö juhtimine",
+    "juhi tugi",
+    "meeskonnatöö",
+    "supervisioon",
+    "personali voolavus",
+    "narratiivuurimus"
+  ],
+  "source_type": "file",
+  "source_path": "2022_3_artikkel_18_ametist_lahkumine.pdf",
+  "document_id": "sotsiaaltoo-3-2022-mis-viis-otsuseni-ametist-lahkuda-lastekaitsetootajate-kogemuslood-2022-3",
+  "source_format": "pdf",
+  "source_sha256": "89d2e8f863a20c166f1adcc7885fc5bdd55ba4697ddd805b710a2fc469a836b5",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2022-mis-viis-otsuseni-ametist-lahkuda-lastekaitsetootajate-kogemuslood-2022-3",
+    "previous_source_path": "2022_3_artikkel_18_ametist_lahkumine.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "89d2e8f863a20c166f1adcc7885fc5bdd55ba4697ddd805b710a2fc469a836b5",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

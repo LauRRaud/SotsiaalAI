@@ -1,0 +1,75 @@
+{
+  "source": {
+    "source_id": "sotsiaalministeerium_puude_toetus_ja_lisa_toetus_2025_aastal",
+    "title": "Puude-toetus ja lisa-toetus 2025. aastal",
+    "url": "https://www.sm.ee/sites/default/files/documents/2024-12/puudetoetus%20ja%20lisatoetus%202025_KM.pdf",
+    "normalized_url": "https://www.sm.ee/sites/default/files/documents/2024-12/puudetoetus ja lisatoetus 2025_KM.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Sotsiaalministeerium",
+    "organization_id": "sotsiaalministeerium",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Sotsiaalministeerium",
+      "puue",
+      "puudega inimene",
+      "erivajadus",
+      "infomaterjal"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Sotsiaalministeerium",
+      "heading_3": "Puue, töövõime, ligipääsetavus",
+      "heading_4": null,
+      "line": 517,
+      "order": 271
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Puude-toetus ja lisa-toetus 2025. aastal"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Sotsiaalministeerium"
+    ],
+    "organizations_seen": [
+      "sotsiaalministeerium"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Sotsiaalministeerium",
+        "heading_3": "Puue, töövõime, ligipääsetavus",
+        "line": 517,
+        "order": 271
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.sm.ee/sites/default/files/documents/2024-12/puudetoetus ja lisatoetus 2025_KM.pdf"
+  },
+  "final_url": "https://www.sm.ee/sites/default/files/documents/2024-12/puudetoetus%20ja%20lisatoetus%202025_KM.pdf",
+  "redirects": [],
+  "sha256": "2b8263a5d8773ecb0c26ce4349e663454ea33cdc35b33d9dc5b1b5d1c1efda16",
+  "bytes": 272329,
+  "downloaded_at": "2026-08-14T08:00:53.666Z"
+}

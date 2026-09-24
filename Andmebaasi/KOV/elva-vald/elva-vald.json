@@ -1,0 +1,2692 @@
+{
+  "municipality": "Elva vald",
+  "county": "Tartumaa",
+  "checkedAt": "2026-04-11",
+  "items": [
+    {
+      "id": "elva_vald_service_lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenus on lapsehoiuteenuse vorm, mis pakub vanematele asendust, kui väikelaps ei käi lasteaias või kui raske või sügava puudega laps vajab erihoolt. Teenus aitab toetada lapse arengut ja vanemate toimetulekut, pakkudes ajutist hooldust kodust väljaspool ning hinnates lapse ja pere vajadusi.",
+      "targetGroup": "Lapsed vanuses 1,5–3 aastat, kes ei käi lasteaias, ning kuni 18‑aastased raske või sügava puudega lapsed.",
+      "conditions": "Teenust saavad pered, kus nii lapsevanem kui laps on Elva valla rahvastikuregistris. Teenuse vajaduse hindab lastekaitse spetsialist ning hinnangu põhjal koostatakse teenusplaan. Puudega lapse puhul osutatakse teenust kuni selle aasta lõpuni, mil laps saab 18‑aastaseks.",
+      "application": "Teenuse taotlemiseks tuleb esitada sotsiaalteenuse taotluse vorm (Lisa 3) lastekaitse spetsialistile kas e‑kirja teel või paberkandjal. Avaldusele lisatakse vajalikud dokumendid ning spetsialist hindab vajadust ja otsustab teenuse osutamise.",
+      "officialUrl": "https://www.elva.ee/toiming/lapsehoiuteenus",
+      "sourceKeys": [
+        "contact_page",
+        "lapsehoiuteenus_page",
+        "sotsiaalteenuse_taotlus_pdf"
+      ],
+      "relatedForms": [
+        "elva_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_stella_saamel",
+        "elva_vald_contact_merike_kirotar",
+        "elva_vald_contact_diana_soop"
+      ],
+      "item_type": "service",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contact_page",
+        "lapsehoiuteenus_page",
+        "sotsiaalteenuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_service_lapsehoiuteenus",
+      "document_id": "elva_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "elva_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/toiming/lapsehoiuteenus",
+      "content_hash": "a8d3af967dce592b98f22b6d8db4fb2a8f4c5bcc26af73655eae6f07e615c357",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_service_lapse_tugiisikuteenus",
+      "itemType": "service",
+      "title": "Lapse tugiisikuteenus",
+      "status": "active",
+      "summary": "Lapse tugiisikuteenus toetab lapsi ja peresid, kes vajavad abi sotsiaalsete, majanduslike, psühholoogiliste või tervislike põhjuste tõttu. Tugiisik aitab lapsel suhelda, käitumist suunata ja igapäevaeluga toime tulla, aidates kujundada iseseisvust ja vastutustunnet.",
+      "targetGroup": "Lapsed, kelle areng või sotsiaalne olukord nõuab individuaalset kõrvalabi.",
+      "conditions": "Teenuse vajaduse hindab lastekaitse spetsialist ja koos perega sõlmitakse tegevuskava. Tugiisik aitab last ja peret igapäevaste toimetuste, hoolduse, suhtlemise ja motivatsiooniga.",
+      "application": "Taotluse esitamiseks tuleb täita sotsiaalteenuse taotluse vorm (Lisa 3) ning esitada see lastekaitse spetsialistile e‑posti teel või paberkandjal. Spetsialist otsustab teenuse osutamise.",
+      "officialUrl": "https://www.elva.ee/toiming/lapse-tugiisikuteenus",
+      "sourceKeys": [
+        "lapse_tugiisikuteenus_page",
+        "sotsiaalteenuse_taotlus_pdf"
+      ],
+      "relatedForms": [
+        "elva_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_stella_saamel",
+        "elva_vald_contact_merike_kirotar",
+        "elva_vald_contact_diana_soop"
+      ],
+      "item_type": "service",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "lapse_tugiisikuteenus_page",
+        "sotsiaalteenuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_service_lapse_tugiisikuteenus",
+      "document_id": "elva_vald_service_lapse_tugiisikuteenus",
+      "canonical_item_id": "elva_vald_service_lapse_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/toiming/lapse-tugiisikuteenus",
+      "content_hash": "087718042208bafd568b9dd428fd697322cb4b38bb8448449d58c3b9c822f43b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_service_turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenus on ööpäevaringne ajutine majutus- ja kriisiabi teenus vägivalla, hooletuse või kriisi ohvritele. Turvakodu pakub turvalist keskkonda, esmast abi ja nõustamist, et taastada isiku vaimne tasakaal ning koostada edasine tegevusplaan.",
+      "targetGroup": "Lapsed ja täiskasvanud, kes on vägivalla, väärkohtlemise, hooletuse või kriisi tõttu abi vajavad.",
+      "conditions": "Teenuse vajaduse hindab sotsiaaltöötaja; teenus on ajutine ja kestab, kuni oht on möödunud. Omavalitsus on kohustatud teenuse korraldama ka ilma formaalse avalduseta, vajadusel sõlmitakse viibimisleping.",
+      "application": "Vajaduse korral pöördu lastekaitse spetsialisti või sotsiaaltööspetsialisti poole. Teenus võib alata ka ilma kirjaliku avalduseta, hiljem esitatakse sotsiaalteenuse taotluse vorm (Lisa 3) teenuse formaliseerimiseks.",
+      "officialUrl": "https://www.elva.ee/toiming/turvakoduteenus",
+      "sourceKeys": [
+        "sotsiaalteenuse_taotlus_pdf",
+        "turvakoduteenus_page"
+      ],
+      "relatedForms": [
+        "elva_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_stella_saamel",
+        "elva_vald_contact_merike_kirotar",
+        "elva_vald_contact_diana_soop",
+        "elva_vald_contact_helina_kalev",
+        "elva_vald_contact_kaie_lomp",
+        "elva_vald_contact_sirje_tali",
+        "elva_vald_contact_iia_poldsepp"
+      ],
+      "item_type": "service",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "sotsiaalteenuse_taotlus_pdf",
+        "turvakoduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_service_turvakoduteenus",
+      "document_id": "elva_vald_service_turvakoduteenus",
+      "canonical_item_id": "elva_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/toiming/turvakoduteenus",
+      "content_hash": "296631f7f9f4522bc24571e99b93c42cfc8ef327a5124b9886da65a6408373e8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_service_taiendavad_vajaduspohised_sotsiaalteenused",
+      "itemType": "service",
+      "title": "Täiendavad vajaduspõhised sotsiaalteenused",
+      "status": "active",
+      "summary": "Täiendavad vajaduspõhised sotsiaalteenused hõlmavad psühholoogilist nõustamist, perenõustamist, perelepitusteenust, kriisiabi, laste leinalaagrites osalemise toetamist, tugirühmades ja -programmides osalemist ning muid toetavaid teenuseid.",
+      "targetGroup": "Lapsed ja pered, kes vajavad psühholoogilist, pere- või kriisitoetust või muid täiendavaid toetavaid teenuseid.",
+      "conditions": "Teenuse sisu ja maht määratakse vajaduse alusel. Teenus võib olla lühiajaline või pikem ning sisaldada eri spetsialistide või tugiprogrammide abi.",
+      "application": "Teenuse taotlemiseks tuleb esitada sotsiaalteenuse taotlus (Lisa 3) sotsiaaltöö- või laste heaolu spetsialistile e-posti teel või paberkandjal.",
+      "officialUrl": "https://www.elva.ee/toiming/taiendavad-vajaduspohised-sotsiaalteenused",
+      "sourceKeys": [
+        "sotsiaalteenuse_taotlus_pdf",
+        "taiendavad_vajaduspohised_sotsiaalteenused_page"
+      ],
+      "relatedForms": [
+        "elva_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_stella_saamel",
+        "elva_vald_contact_merike_kirotar",
+        "elva_vald_contact_diana_soop"
+      ],
+      "item_type": "service",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "sotsiaalteenuse_taotlus_pdf",
+        "taiendavad_vajaduspohised_sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_service_taiendavad_vajaduspohised_sotsiaalteenused",
+      "document_id": "elva_vald_service_taiendavad_vajaduspohised_sotsiaalteenused",
+      "canonical_item_id": "elva_vald_service_taiendavad_vajaduspohised_sotsiaalteenused",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/toiming/taiendavad-vajaduspohised-sotsiaalteenused",
+      "content_hash": "3d49ddffacdf2076462e720b5946e4c79e2d29c8199a06998b76359d51ad2401",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_service_koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus aitab eakatel ja erivajadustega inimestel säilitada iseseisev elu kodus. Koduteenuse raames osutatakse abi igapäevatoimingutes: toidu ja ravimite toomine, arsti juurde mineku korraldamine, koristamine, kütmine, pesupesemine, hügieenitoimingud ning muu eluks vajalik.",
+      "targetGroup": "Eakad ja puudega täiskasvanud, kes ei tule igapäevaeluga iseseisvalt toime.",
+      "conditions": "Teenust osutatakse juhul, kui inimene ei suuda oma igapäevaseid toimetusi iseseisvalt teha ja lähedaste abi ei piisa. Teenuse vajaduse ja maht määrab sotsiaaltööspetsialist.",
+      "application": "Täida Koduteenuse taotlus (Lisa 1) ning saada see oma piirkonna sotsiaaltööspetsialistile e‑posti teel või anna paberkandjal üle. Spetsialist hindab vajadust ja sõlmib teenuslepingu.",
+      "officialUrl": "https://www.elva.ee/toiming/koduteenus",
+      "sourceKeys": [
+        "contact_page",
+        "koduteenus_page",
+        "koduteenuse_taotlus_pdf"
+      ],
+      "relatedForms": [
+        "elva_vald_form_koduteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_helina_kalev",
+        "elva_vald_contact_kaie_lomp",
+        "elva_vald_contact_sirje_tali",
+        "elva_vald_contact_iia_poldsepp"
+      ],
+      "item_type": "service",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contact_page",
+        "koduteenus_page",
+        "koduteenuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_service_koduteenus",
+      "document_id": "elva_vald_service_koduteenus",
+      "canonical_item_id": "elva_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/toiming/koduteenus",
+      "content_hash": "52415a670c84083cdc76f541243e019e10bd3c08a7af60f8cf3a22d4c50133b0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_service_uldhooldusteenus",
+      "itemType": "service",
+      "title": "Üldhooldusteenus",
+      "status": "active",
+      "summary": "Üldhooldusteenus pakub pikaajalist hooldust väljaspool kodu nendele täisealistele, kes tervise või keskkonna tõttu ei suuda iseseisvalt elada. Alates 1. juulist 2023 katab Elva vald hooldekodu hoolduskomponendi kuni 600 euro ulatuses kuus, kliendid maksavad majutuse ja lisateenuste eest.",
+      "targetGroup": "Täisealised, kes ei saa kodus hakkama ja vajavad ööpäevaringset hooldust.",
+      "conditions": "Teenusele suunatakse juhul, kui koduteenus ja muud toetavad meetmed ei ole piisavad. Vallavalitsus tasub hoolduskomponendi, aga isik maksab majutuse ja võimalike lisateenuste eest. Teenuse vajaduse hindab sotsiaaltööspetsialist.",
+      "application": "Täida üldhooldusteenuse taotluse vorm (Lisa 2) ja võta ühendust sotsiaaltööspetsialistiga. Avaldus vaadatakse läbi ning koostatakse hooldusplaan.",
+      "officialUrl": "https://www.elva.ee/toiming/uldhooldusteenus",
+      "sourceKeys": [
+        "uldhooldusteenus_page",
+        "uldhooldusteenuse_taotlus_pdf"
+      ],
+      "relatedForms": [
+        "elva_vald_form_uldhooldusteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_rutt_hanni",
+        "elva_vald_contact_hene_kreete_hoop",
+        "elva_vald_contact_helina_kalev",
+        "elva_vald_contact_kaie_lomp",
+        "elva_vald_contact_sirje_tali",
+        "elva_vald_contact_iia_poldsepp"
+      ],
+      "item_type": "service",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "uldhooldusteenus_page",
+        "uldhooldusteenuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_service_uldhooldusteenus",
+      "document_id": "elva_vald_service_uldhooldusteenus",
+      "canonical_item_id": "elva_vald_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/toiming/uldhooldusteenus",
+      "content_hash": "b381b83f306ee2191e7133f4a70a98cb153dd299b0efbc81b9ac7f3e5e92eccd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_service_sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus võimaldab liikumispuudega inimestel jõuda tööle, haridusasutusse, arsti vastuvõtule või rehabilitatsiooniteenustele. Teenust korraldab Elva vald koostöös teenusepakkujaga OÜ Tartaline ning sõite saab tellida Tartumaa Ühistranspordikeskuse kaudu.",
+      "targetGroup": "Liikumispuudega elanikud, kes ei saa kasutada isiklikku ega ühistransporti.",
+      "conditions": "Teenust kasutatakse avalike teenuste saamiseks (nt töö, kool, rehabilitatsioon). Sõit tuleb tellida vähemalt üks tööpäev ette helistades numbrile või saates e‑kirja. Sõitja maksab omaosaluse vastavalt piirkondlikule hinnakirjale.",
+      "application": "Teenuse saamiseks tuleb esitada sotsiaalteenuse taotlus (Lisa 3) ning pärast õiguse saamist tellitakse sõidud otse transpordikeskuse kaudu.",
+      "officialUrl": "https://www.elva.ee/toiming/sotsiaaltransporditeenus",
+      "sourceKeys": [
+        "sotsiaalteenuse_taotlus_pdf",
+        "sotsiaaltransporditeenus_page"
+      ],
+      "relatedForms": [
+        "elva_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_helina_kalev",
+        "elva_vald_contact_kaie_lomp",
+        "elva_vald_contact_sirje_tali",
+        "elva_vald_contact_iia_poldsepp"
+      ],
+      "item_type": "service",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "sotsiaalteenuse_taotlus_pdf",
+        "sotsiaaltransporditeenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_service_sotsiaaltransporditeenus",
+      "document_id": "elva_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "elva_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/toiming/sotsiaaltransporditeenus",
+      "content_hash": "3ac16825f24bbf44923af97302642d9336518c551344fa2888c071d242ed7b18",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_service_taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Teenus aitab täisealisi vaimse või füüsilise puudega isikuid, pakkudes neile abistavat hooldajat, kes aitab igapäevaeluga, turvalisuse ja õiguste kasutamisega. Hooldaja tagab juhendamise, toetuse ja järelevalve, et inimene saaks oma kohustusi täita.",
+      "targetGroup": "Täisealised isikud, kellel on raske või sügav puue ja kes vajavad igapäevast abi.",
+      "conditions": "Hooldaja määratakse, kui isikul pole ülalpidamiskohustusega sugulasi või kui sugulased ei suuda hooldust tagada. Üks hooldaja võib aidata kuni kolme inimest. Toetusmäärad on 35 € raske ja 45 € sügava puudega inimese hooldamise eest (laste hooldajatoetuse suurus on eraldi lehel).",
+      "application": "Täida täisealise isiku hoolduse taotlus ja esita see sotsiaaltööspetsialistile koos vajalike dokumentidega.",
+      "officialUrl": "https://www.elva.ee/toiming/taisealise-isiku-hooldus",
+      "sourceKeys": [
+        "taisealise_isiku_hooldus_page",
+        "taisealise_isiku_hoolduse_taotlus_pdf"
+      ],
+      "relatedForms": [
+        "elva_vald_form_taisealise_isiku_hoolduse_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_helina_kalev",
+        "elva_vald_contact_kaie_lomp",
+        "elva_vald_contact_sirje_tali",
+        "elva_vald_contact_iia_poldsepp"
+      ],
+      "item_type": "service",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "taisealise_isiku_hooldus_page",
+        "taisealise_isiku_hoolduse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_service_taisealise_isiku_hooldus",
+      "document_id": "elva_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "elva_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/toiming/taisealise-isiku-hooldus",
+      "content_hash": "92f90ad0db39c86be25e4eee634e373e60d2ca3505adc641735138786e88aaeb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_service_tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus (täiskasvanule)",
+      "status": "active",
+      "summary": "Täiskasvanu tugiisikuteenus aitab iseseisvat toimetulekut, pakkudes juhendamist, motiveerimist ja abi igapäevaelu toimingutes. Tugiisik toetab abivajajat majandamise, suhtlemise, ametiasutustega suhtlemise ja ajaplaneerimise juures.",
+      "targetGroup": "Täiskasvanud, kelle sotsiaalne, psühholoogiline või majanduslik olukord vajab kõrvalabi.",
+      "conditions": "Teenuse vajaduse määrab sotsiaaltööspetsialist ning sõlmitakse individuaalne tegevuskava. Teenus on ajutine ja suunatud iseseisvuse suurendamisele.",
+      "application": "Tugiisikuteenust taotletakse sotsiaalteenuse taotluse vormi (Lisa 3) kaudu. Pärast taotluse esitamist lepivad sotsiaaltöötaja ja klient kokku teenuse kestuse ja eesmärgid.",
+      "officialUrl": "https://www.elva.ee/toiming/tugiisikuteenus",
+      "sourceKeys": [
+        "sotsiaalteenuse_taotlus_pdf",
+        "tugiisikuteenus_page"
+      ],
+      "relatedForms": [
+        "elva_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_helina_kalev",
+        "elva_vald_contact_kaie_lomp",
+        "elva_vald_contact_sirje_tali",
+        "elva_vald_contact_iia_poldsepp"
+      ],
+      "item_type": "service",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "sotsiaalteenuse_taotlus_pdf",
+        "tugiisikuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_service_tugiisikuteenus",
+      "document_id": "elva_vald_service_tugiisikuteenus",
+      "canonical_item_id": "elva_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/toiming/tugiisikuteenus",
+      "content_hash": "61f5677b902c242ee59ca5c6f6e36de750c1e65c2ea8083f5f6de9e59036b3cc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_service_isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isiklik abistaja aitab puudega inimesel igapäevatoimingutega, nagu liikumine, söömine, hügieen ja kodused toimetused. Teenus toetab inimese iseseisvust ja vähendab lähedaste hoolduskoormust, sest abistaja tegutseb kasutaja juhiste järgi.",
+      "targetGroup": "Puudega inimesed, kes suudavad juhendada abistajat ning vajavad füüsilist abi igapäevastes toimingutes.",
+      "conditions": "Taotleja peab suutma planeerida abistaja tööd ja anda korraldusi. Teenuse vajadus ja maht lepitakse kokku sotsiaaltööspetsialisti ja kliendi vahel.",
+      "application": "Esita sotsiaalteenuse taotlus (Lisa 3) ning lepi kokku kohtumine sotsiaaltööspetsialistiga, et koostada teenusleping isikliku abistaja teenuseks.",
+      "officialUrl": "https://www.elva.ee/toiming/isikliku-abistaja-teenus",
+      "sourceKeys": [
+        "isikliku_abistaja_page",
+        "sotsiaalteenuse_taotlus_pdf"
+      ],
+      "relatedForms": [
+        "elva_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_alo_rebane",
+        "elva_vald_contact_helina_kalev",
+        "elva_vald_contact_kaie_lomp",
+        "elva_vald_contact_sirje_tali",
+        "elva_vald_contact_iia_poldsepp"
+      ],
+      "item_type": "service",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "isikliku_abistaja_page",
+        "sotsiaalteenuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_service_isikliku_abistaja_teenus",
+      "document_id": "elva_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "elva_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/toiming/isikliku-abistaja-teenus",
+      "content_hash": "62f027becf4280023eed0affce57329631636685ef489527c656cd9a91714b6c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_service_sotsiaalnoustamine_eakatele",
+      "itemType": "service",
+      "title": "Sotsiaalnõustamine eakatele ja erivajadustega inimestele",
+      "status": "active",
+      "summary": "Sotsiaalnõustamine aitab vältida ja lahendada sotsiaalprobleeme, nõustades eakaid ja erivajadustega inimesi. Sotsiaaltööspetsialist annab teavet õiguste ja toetuste kohta, hindab elukeskkonda, soovitab teenuseid ning motiveerib klienti tõstma iseseisvust.",
+      "targetGroup": "Eakad ja erivajadustega Elva valla elanikud.",
+      "conditions": "Nõustamine toimub individuaalselt vastavalt inimese vajadustele ja võib olla osa muu teenuse paketist.",
+      "application": "Teenuse saamiseks tuleb võtta ühendust piirkonna sotsiaaltööspetsialistiga.",
+      "officialUrl": "https://www.elva.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/noustamine",
+      "sourceKeys": [
+        "sotsiaalnoustamine_eakatele_page"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "elva_vald_contact_helina_kalev",
+        "elva_vald_contact_kaie_lomp",
+        "elva_vald_contact_sirje_tali",
+        "elva_vald_contact_iia_poldsepp"
+      ],
+      "item_type": "service",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "sotsiaalnoustamine_eakatele_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_service_sotsiaalnoustamine_eakatele",
+      "document_id": "elva_vald_service_sotsiaalnoustamine_eakatele",
+      "canonical_item_id": "elva_vald_service_sotsiaalnoustamine_eakatele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/noustamine",
+      "content_hash": "28bc6c2faff312c3fef5d574f93c4b1477f8ca1f69eb77e2a7478c116cc62108",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_service_sotsiaalnoustamine_toimetulekuraskustega",
+      "itemType": "service",
+      "title": "Sotsiaalnõustamine toimetulekuraskustega inimestele",
+      "status": "active",
+      "summary": "Teenuse eesmärk on aidata sotsiaal- ja majanduslike raskustega inimesi, pakkudes nõu, finantsplaneerimist ja suunamisi vajalikele teenustele. Nõustaja aitab parandada toimetulekuoskusi ning koordineerib koostööd teiste asutustega.",
+      "targetGroup": "Inimesed ja pered, kellel on majanduslikke või muid raskusi igapäevaelus.",
+      "conditions": "Nõustamise sisu sõltub inimese olukorrast ja võib hõlmata toimetulekuoskuste, sissetulekute, kulude, võlgnevuste ja teiste toetavate teenuste ülevaatamist.",
+      "application": "Teenuse saamiseks tuleb võtta ühendust piirkonna sotsiaaltööspetsialistiga.",
+      "officialUrl": "https://www.elva.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/noustamine",
+      "sourceKeys": [
+        "sotsiaalnoustamine_toimetulekuraskustega_page"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "elva_vald_contact_helina_kalev",
+        "elva_vald_contact_kaie_lomp",
+        "elva_vald_contact_sirje_tali",
+        "elva_vald_contact_iia_poldsepp"
+      ],
+      "item_type": "service",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "sotsiaalnoustamine_toimetulekuraskustega_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_service_sotsiaalnoustamine_toimetulekuraskustega",
+      "document_id": "elva_vald_service_sotsiaalnoustamine_toimetulekuraskustega",
+      "canonical_item_id": "elva_vald_service_sotsiaalnoustamine_toimetulekuraskustega",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/noustamine",
+      "content_hash": "b7e99e8d93396b1c04346dbb71f0a6325ffb9a4d4b49026eccacf59fde5d9da1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_service_volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamine aitab võlgadesse sattunud inimestel hinnata oma rahalist seisu, koostada eelarvet ja pidada läbirääkimisi võlausaldajatega. Teenuse eesmärk on ennetada võlgade süvenemist ja säilitada eluruum.",
+      "targetGroup": "Elva valla elanikud, kes ei suuda täita oma võlakohustusi või kelle sissetulek ei kata vältimatuid kulusid.",
+      "conditions": "Nõustamine on konfidentsiaalne ja suunatud majandusliku olukorra parandamisele. Vajadusel kaasatakse professionaalsed võlanõustajad.",
+      "application": "Teenuse saamiseks tuleb esitada sotsiaalteenuse taotlus (Lisa 3) või võtta ühendust piirkonna sotsiaaltööspetsialisti või eestkoste spetsialistiga.",
+      "officialUrl": "https://www.elva.ee/toiming/volanoustamisteenus",
+      "sourceKeys": [
+        "sotsiaalteenuse_taotlus_pdf",
+        "volanoustamisteenus_page"
+      ],
+      "relatedForms": [
+        "elva_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_alo_rebane",
+        "elva_vald_contact_hene_kreete_hoop",
+        "elva_vald_contact_kaie_lomp",
+        "elva_vald_contact_sirje_tali",
+        "elva_vald_contact_iia_poldsepp"
+      ],
+      "item_type": "service",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "sotsiaalteenuse_taotlus_pdf",
+        "volanoustamisteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_service_volanoustamisteenus",
+      "document_id": "elva_vald_service_volanoustamisteenus",
+      "canonical_item_id": "elva_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/toiming/volanoustamisteenus",
+      "content_hash": "0c87a7fbe16c473bacf9938fe1acdba779d5d1988aa45ca3b68414c2250aee57",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_service_toiduabi",
+      "itemType": "service",
+      "title": "Toiduabi",
+      "status": "active",
+      "summary": "Toiduabi teenus jagab abivajajatele toidupakke, et leevendada toimetulekuraskusi. Abisaajad valitakse sotsiaaltöötajate poolt vastavalt pere sissetulekule ja vajadusele.",
+      "targetGroup": "Madala sissetulekuga isikud ja pered, kellel puudub raha esmatarbe toidule.",
+      "conditions": "Õigus toiduabile selgitatakse välja sotsiaalteenistuses. Pakkide kogus ja sagedus sõltub vajaduse hindamisest.",
+      "application": "Toiduabi saamiseks tuleb pöörduda piirkonna sotsiaaltööspetsialisti poole või esitada sotsiaalteenuse taotlus (Lisa 3).",
+      "officialUrl": "https://www.elva.ee/toiming/toiduabi",
+      "sourceKeys": [
+        "sotsiaalteenuse_taotlus_pdf",
+        "toiduabi_page"
+      ],
+      "relatedForms": [
+        "elva_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_hene_kreete_hoop",
+        "elva_vald_contact_kaie_lomp",
+        "elva_vald_contact_sirje_tali",
+        "elva_vald_contact_iia_poldsepp"
+      ],
+      "item_type": "service",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "sotsiaalteenuse_taotlus_pdf",
+        "toiduabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_service_toiduabi",
+      "document_id": "elva_vald_service_toiduabi",
+      "canonical_item_id": "elva_vald_service_toiduabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/toiming/toiduabi",
+      "content_hash": "8dc3b8ee1b7f4e051d0e43467686fd2adf979b2cfbef064701395d94409c4faa",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_service_varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus tagab ajutise majutuse ja esmased elutingimused koduta inimestele. Teenus hõlmab ööbimisvõimalust, pesemisvõimalust ja vajadusel toiduabi, kuni leitakse püsiv lahendus.",
+      "targetGroup": "Koduta inimesed ja pered Elva vallas.",
+      "conditions": "Majutus on ajutine ja eeldab teenuse kasutaja koostööd sotsiaaltöötajaga. Elanik peab järgima varjupaiga reegleid.",
+      "application": "Varjupaigateenuse saamiseks tuleb pöörduda piirkonna sotsiaaltööspetsialisti poole või esitada sotsiaalteenuse taotlus (Lisa 3).",
+      "officialUrl": "https://www.elva.ee/toiming/varjupaigateenus",
+      "sourceKeys": [
+        "sotsiaalteenuse_taotlus_pdf",
+        "varjupaigateenus_page"
+      ],
+      "relatedForms": [
+        "elva_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_hene_kreete_hoop",
+        "elva_vald_contact_kaie_lomp",
+        "elva_vald_contact_sirje_tali",
+        "elva_vald_contact_iia_poldsepp"
+      ],
+      "item_type": "service",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "sotsiaalteenuse_taotlus_pdf",
+        "varjupaigateenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_service_varjupaigateenus",
+      "document_id": "elva_vald_service_varjupaigateenus",
+      "canonical_item_id": "elva_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/toiming/varjupaigateenus",
+      "content_hash": "b6f2fe2c715455f8196444f2081122c1927c53fec591d6d939738f23537c3d26",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_service_eluruumi_tagamise_teenus",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenus aitab inimestel ja peredel, kes ei suuda endale eluaset hankida. Teenus võib hõlmata üüripinna pakkumist ning eeldab osalemist sotsiaalprogrammides ja teenustasu maksmist.",
+      "targetGroup": "Isikud ja pered, kel puudub eluruum ning kes ei ole suutnud seda ise leida.",
+      "conditions": "Taotleja peab tõendama, et tal puudub eluaset, talle ei kuulu kinnisvara ja sissetulek on väike. Vajalik on nõusolek osaleda sotsiaalprogrammides ja tasuda teenuse eest. Prioriteet on haavatavatel gruppidel.",
+      "application": "Täida eluruumi tagamise teenuse taotlus (Lisa 4) ja esita see koos vajalike dokumentidega piirkonna sotsiaaltööspetsialistile.",
+      "officialUrl": "https://www.elva.ee/toiming/eluruumi-tagamise-teenus",
+      "sourceKeys": [
+        "eluruumi_tagamise_teenus_page",
+        "eluruumi_taotlus_pdf"
+      ],
+      "relatedForms": [
+        "elva_vald_form_eluruumi_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_alo_rebane",
+        "elva_vald_contact_hene_kreete_hoop",
+        "elva_vald_contact_kaie_lomp",
+        "elva_vald_contact_sirje_tali",
+        "elva_vald_contact_iia_poldsepp"
+      ],
+      "item_type": "service",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "eluruumi_tagamise_teenus_page",
+        "eluruumi_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_service_eluruumi_tagamise_teenus",
+      "document_id": "elva_vald_service_eluruumi_tagamise_teenus",
+      "canonical_item_id": "elva_vald_service_eluruumi_tagamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/toiming/eluruumi-tagamise-teenus",
+      "content_hash": "adcf8b8bd1eb644afe35303483d7ec88844cce0e327d048ea50e6bf01ba2b8b8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_service_valtimatu_sotsiaalabi",
+      "itemType": "service",
+      "title": "Vältimatu sotsiaalabi",
+      "status": "active",
+      "summary": "Vältimatu sotsiaalabi tagab hädavajaliku toidu, riided ja ajutise majutuse inimestele, kes on sattunud sotsiaalsesse hädaolukorda. Abi antakse kiirelt ja seejärel koostatakse edasiseks toimetulekuks plaan.",
+      "targetGroup": "Isikud, kes on sattunud äkitselt olukorda, kus puudub toit, riietus või peavari.",
+      "conditions": "Abi antakse ühekordselt ja kiireloomuliselt; pärast abi saamist pöördub inimene sotsiaaltöötaja poole edasise abi planeerimiseks.",
+      "application": "Vältimatu sotsiaalabi saamiseks tuleb võtta ühendust piirkonna sotsiaaltööspetsialistiga; kiire abi võib alata ka ilma kirjaliku taotluseta.",
+      "officialUrl": "https://www.elva.ee/toiming/valtimatu-sotsiaalabi",
+      "sourceKeys": [
+        "sotsiaalteenuse_taotlus_pdf",
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "relatedForms": [
+        "elva_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_hene_kreete_hoop",
+        "elva_vald_contact_kaie_lomp",
+        "elva_vald_contact_sirje_tali",
+        "elva_vald_contact_iia_poldsepp"
+      ],
+      "item_type": "service",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "sotsiaalteenuse_taotlus_pdf",
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_service_valtimatu_sotsiaalabi",
+      "document_id": "elva_vald_service_valtimatu_sotsiaalabi",
+      "canonical_item_id": "elva_vald_service_valtimatu_sotsiaalabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/toiming/valtimatu-sotsiaalabi",
+      "content_hash": "92c00bd8dc9de955811f178f26663c5356a839a3f332dede76b04a4d5eae5b85",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_service_sotsiaalnoustamine_lapsele_ja_perele",
+      "itemType": "service",
+      "title": "Sotsiaalnõustamine lapsele ja perele",
+      "status": "active",
+      "summary": "Teenuse eesmärk on toetada laste heaolu ja pere toimetulekut. Laste heaolu spetsialist hindab lapse ja pere olukorda, viib läbi võrgustikukoosolekuid, nõustab vanemaid ning suunab teenustele. Ohu korral on spetsialist kohustatud teavitama hädaabinumbril või lasteabi telefonil.",
+      "targetGroup": "Lapsed ja pered, kelle heaolu on ohustatud või kes vajavad nõustamist ja tuge.",
+      "conditions": "Teenust osutatakse lapse huve silmas pidades ning koostöös lapse, vanemate ja vajadusel teiste võrgustikupartneritega.",
+      "application": "Teenuse saamiseks tuleb võtta ühendust laste heaolu spetsialistiga.",
+      "officialUrl": "https://www.elva.ee/laps-ja-pere/noustamine",
+      "sourceKeys": [
+        "sotsiaalnoustamine_lapsele_ja_perele_page"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "elva_vald_contact_stella_saamel",
+        "elva_vald_contact_merike_kirotar",
+        "elva_vald_contact_diana_soop"
+      ],
+      "item_type": "service",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "sotsiaalnoustamine_lapsele_ja_perele_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_service_sotsiaalnoustamine_lapsele_ja_perele",
+      "document_id": "elva_vald_service_sotsiaalnoustamine_lapsele_ja_perele",
+      "canonical_item_id": "elva_vald_service_sotsiaalnoustamine_lapsele_ja_perele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/laps-ja-pere/noustamine",
+      "content_hash": "96bb8912e55a9566714a9a7d5a206a2095183f0b72d07bdb8a464409d3b74b15",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_service_asendushooldus_ja_jarelhooldus",
+      "itemType": "service",
+      "title": "Asendushooldus ja järelhooldusteenus",
+      "status": "active",
+      "summary": "Asendus- ja järelhooldusteenus hõlmab lapse asendushoolduse korraldamist, kui laps ei saa kasvada oma sünniperes, ning järelhooldusteenust, mis aitab asendushoolduselt iseseisvasse ellu suunduval noorel jätkata õpinguid ja tulla iseseisvalt toime.",
+      "targetGroup": "Lapsed, kelle vanemad ei saa neile hoolt pakkuda, ja noored, kes lahkuvad asendushooldusest.",
+      "conditions": "Asendushoolduse vormidena nimetab KOV lapsendamist, eestkostet ja asendushooldusteenust hooldusperes, perekodus või asenduskodus. Järelhooldus toetab noore iseseisvat toimetulekut pärast asendushooldust.",
+      "application": "Teenuse kohta tuleb pöörduda laste heaolu spetsialisti või laste ja perede heaolu nõuniku poole.",
+      "officialUrl": "https://www.elva.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/asendus-ja-jarelhooldusteenus",
+      "sourceKeys": [
+        "asendushooldus_ja_jarelhooldus_page"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "elva_vald_contact_stella_saamel",
+        "elva_vald_contact_merike_kirotar",
+        "elva_vald_contact_diana_soop",
+        "elva_vald_contact_anneli_lepik"
+      ],
+      "item_type": "service",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "asendushooldus_ja_jarelhooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_service_asendushooldus_ja_jarelhooldus",
+      "document_id": "elva_vald_service_asendushooldus_ja_jarelhooldus",
+      "canonical_item_id": "elva_vald_service_asendushooldus_ja_jarelhooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/asendus-ja-jarelhooldusteenus",
+      "content_hash": "160481e8a0c98ece5e2cd7cf31216e9a4c6977146d5bee8f7dc6de2620751a53",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_benefit_sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus on ühekordne toetus lapse sünniga seotud kulude osaliseks katmiseks. Toetus makstakse kahel osal: 300 € lapse sünni järel ja 250 € siis, kui laps saab ühe aasta vanuseks ning pere elab jätkuvalt Elva vallas.",
+      "targetGroup": "Lapsevanemad, kelle laps ja vähemalt üks vanem on Elva vallas registreeritud.",
+      "conditions": "Taotluse võib esitada kolme kuu jooksul pärast lapse sündi. Toetust ei maksta surnult sündinud lapse korral. Teine väljamakse tehakse lapse esimese sünnipäeva järel, kui vanem ja laps on endiselt valla elanikud.",
+      "application": "Taotluse saab esitada SPOKU e‑teenuse kaudu või täites Sünnitoetuse taotluse vormi ja saates selle e‑postile või tuues paberil vallavalitsusse. Avaldusele lisatakse lapse sünnitõendi koopia ja pangakonto number.",
+      "amount": "300 € pärast lapse sündi ja 250 € lapse üheaastaseks saamisel.",
+      "officialUrl": "https://www.elva.ee/toiming/sunnitoetus",
+      "sourceKeys": [
+        "sunnitoetus_page",
+        "sunnitoetuse_taotlus_pdf"
+      ],
+      "relatedForms": [
+        "elva_vald_form_sunnitoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_helina_kalev"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "sunnitoetus_page",
+        "sunnitoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_benefit_sunnitoetus",
+      "document_id": "elva_vald_benefit_sunnitoetus",
+      "canonical_item_id": "elva_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/toiming/sunnitoetus",
+      "content_hash": "9ade35b82e78f9e2962a242f4d2c73bc7fbc4ffdcfb5d85076f837a41c9ea2a7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_benefit_ranitsatoetus",
+      "itemType": "benefit",
+      "title": "Ranitsatoetus",
+      "status": "active",
+      "summary": "Ranitsatoetus aitab katta kooli alustava lapsega seotud kulusid, nagu koolitarbed, riided ja jalanõud. Toetus on mõeldud esimese klassi lastele, et toetada koolitee alustamist.",
+      "targetGroup": "Lapsed, kes alustavad 1. klassi ja kellel ning vähemalt ühel vanemal on Elva vallas registreeritud elukoht.",
+      "conditions": "Taotlusi võetakse vastu 1. augustist 31. oktoobrini. Toetust ei maksta, kui perel on võlgnevusi lasteaiatasu või toitlustuse eest või kui vanem ei täida lapse ülalpidamiskohustust.",
+      "application": "Taotluse saab esitada SPOKU e-keskkonnas või täites ranitsatoetuse avalduse ja esitades selle Helina Kalevile.",
+      "officialUrl": "https://www.elva.ee/toiming/ranitsatoetus",
+      "sourceKeys": [
+        "ranitsatoetus_page",
+        "ranitsatoetuse_taotlus_pdf"
+      ],
+      "relatedForms": [
+        "elva_vald_form_ranitsatoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_helina_kalev"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "ranitsatoetus_page",
+        "ranitsatoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_benefit_ranitsatoetus",
+      "document_id": "elva_vald_benefit_ranitsatoetus",
+      "canonical_item_id": "elva_vald_benefit_ranitsatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/toiming/ranitsatoetus",
+      "content_hash": "47c791d749b3ab1d0d4cd37f77c8164438dddeb725c9c6374616f2b2e73bd5fc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_benefit_lapse_toiduraha_katmise_toetus",
+      "itemType": "benefit",
+      "title": "Lapse toiduraha katmise toetus",
+      "status": "active",
+      "summary": "Toetus aitab madala sissetulekuga peredel katta laste toidukulud lasteaias, koolis või kutsekoolis. Omavalitsus tasub laste toiduraha osa, mis ületab riigi toetust, ning lasteaialaste puhul kuni 50 % või vajaduspõhiselt 100 % toidukulust.",
+      "targetGroup": "Pered, kelle sissetulek pärast eluasemekulude mahaarvamist on alla kahekordse toimetulekupiiri ning kelle lapsed käivad lasteaias, koolis või kutsekoolis.",
+      "conditions": "Taotlus tuleb esitada 20. septembriks perioodi 1. september – 31. jaanuar kohta ja 20. jaanuariks perioodi 1. veebruar – 31. august kohta. Toetus makstakse teenusepakkujale (lasteaed, kool) või väljastatakse garantiikiri.",
+      "application": "Taotlus tuleb esitada SPOKU e-keskkonnas või täites lapse toiduraha katmise toetuse taotluse ja esitades selle koos sissetuleku ning eluasemekulude tõenditega piirkonna sotsiaaltööspetsialistile.",
+      "officialUrl": "https://www.elva.ee/toiming/lapse-toiduraha-katmise-toetus",
+      "sourceKeys": [
+        "lapse_toiduraha_katmise_toetus_page",
+        "lapse_toiduraha_katmise_toetuse_taotlus_pdf"
+      ],
+      "relatedForms": [
+        "elva_vald_form_lapse_toiduraha_katmise_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_helina_kalev",
+        "elva_vald_contact_iia_poldsepp",
+        "elva_vald_contact_kaie_lomp",
+        "elva_vald_contact_sirje_tali"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "lapse_toiduraha_katmise_toetus_page",
+        "lapse_toiduraha_katmise_toetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_benefit_lapse_toiduraha_katmise_toetus",
+      "document_id": "elva_vald_benefit_lapse_toiduraha_katmise_toetus",
+      "canonical_item_id": "elva_vald_benefit_lapse_toiduraha_katmise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/toiming/lapse-toiduraha-katmise-toetus",
+      "content_hash": "3ec574787e281f139b64d1318ddbff9b3a79bbcc523268e0b6c02b6657c2f22d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_benefit_hooldajatoetus_puudega_lapse_hooldajale",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus puudega lapse hooldajale",
+      "status": "active",
+      "summary": "Hooldajatoetusega kompenseeritakse puudega lapse hooldaja sissetuleku kaotust ja sotsiaalmaksu. Toetus tagab, et lapse hooldaja saab pakkuda igapäevast abi ja järelevalvet puudega lapsele ning katab osaliselt hooldajast tulenevad kulud.",
+      "targetGroup": "Keskmise, raske või sügava puudega last hooldav inimene (kuni lapse 16. eluaastani või raske puudega lapse puhul kuni 18. eluaastani).",
+      "conditions": "Toetust saab üks hooldaja pere kohta. Hooldaja ei tohi töötada ja peab tagama lapse hoolduse ja järelevalve. Põhitoetuse suurus sõltub puudest ja omavalitsuse määrusest.",
+      "application": "Täida puudega lapse hooldajatoetuse taotlus ja esita see laste heaolu spetsialistile koos vajalike dokumentidega.",
+      "officialUrl": "https://www.elva.ee/toiming/hooldajatoetus-puudega-lapse-hooldajale",
+      "sourceKeys": [
+        "hooldajatoetus_lapse_page",
+        "puudega_lapse_hooldajatoetuse_taotlus_pdf"
+      ],
+      "relatedForms": [
+        "elva_vald_form_puudega_lapse_hooldajatoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_stella_saamel",
+        "elva_vald_contact_merike_kirotar",
+        "elva_vald_contact_diana_soop"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "hooldajatoetus_lapse_page",
+        "puudega_lapse_hooldajatoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_benefit_hooldajatoetus_puudega_lapse_hooldajale",
+      "document_id": "elva_vald_benefit_hooldajatoetus_puudega_lapse_hooldajale",
+      "canonical_item_id": "elva_vald_benefit_hooldajatoetus_puudega_lapse_hooldajale",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/toiming/hooldajatoetus-puudega-lapse-hooldajale",
+      "content_hash": "5e1bae765fad8f8e70eafd916f2e3127ee20273a481e9876db5648b55f01b7e4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_benefit_erakorraline_toetus",
+      "itemType": "benefit",
+      "title": "Erakorraline toetus",
+      "status": "active",
+      "summary": "Erakorraline toetus aitab leevendada ootamatuid kriise nagu õnnetus, tulekahju, vargus, haigus või suuremad üürikulud. Toetuse suurus sõltub leibkonna toimetulekust ja eesmärk on tagada, et sissetulek ei langeks alla toimetulekupiiri.",
+      "targetGroup": "Leibkonnad, kes on sattunud elu, tervise või toimetulekut ohustavasse olukorda.",
+      "conditions": "Taotlusele tuleb lisada juhtumit tõendavad dokumendid (päästeameti või politsei dokument, arved jms). Abistamise tase määratakse pere toimetuleku ja eluaseolude põhjal.",
+      "application": "Esita sotsiaaltoetuse taotluse vorm (Lisa 9) e‑teenuse kaudu, e‑kirjaga või toimetades paberkandjal sotsiaaltööspetsialistile. Kaasa tuleb lisada tõendusmaterjalid.",
+      "officialUrl": "https://www.elva.ee/toiming/erakorraline-toetus",
+      "sourceKeys": [
+        "erakorraline_toetus_page",
+        "sotsiaaltoetuse_taotlus_pdf"
+      ],
+      "relatedForms": [
+        "elva_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_helina_kalev",
+        "elva_vald_contact_kaie_lomp",
+        "elva_vald_contact_sirje_tali",
+        "elva_vald_contact_iia_poldsepp",
+        "elva_vald_contact_stella_saamel",
+        "elva_vald_contact_merike_kirotar",
+        "elva_vald_contact_diana_soop"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "erakorraline_toetus_page",
+        "sotsiaaltoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_benefit_erakorraline_toetus",
+      "document_id": "elva_vald_benefit_erakorraline_toetus",
+      "canonical_item_id": "elva_vald_benefit_erakorraline_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/toiming/erakorraline-toetus",
+      "content_hash": "a8918b86eccc8dc2bc2789f7c8545c342f87a5463583a7696aec43e5f5ecb07c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_benefit_tervisetoetus",
+      "itemType": "benefit",
+      "title": "Tervisetoetus",
+      "status": "active",
+      "summary": "Tervisetoetus hüvitab tervisest tulenevaid kulusid, mida riiklik ravikindlustus ei kata. Toetusega kompenseeritakse kuni 50 % isiku omaosalust ravimite, prillide, abivahendite, hooldekodu transpordi ja teiste tervisekulude eest ning vajadusel rohkem, et tagada sissetulek toimetulekupiiril.",
+      "targetGroup": "Elva valla elanikud, kelle tervisekulud ei ole riigi või sotsiaalkindlustuse poolt täielikult kaetud.",
+      "conditions": "Taotleja peab esitama arved ja maksekviitungid. Toetusega kaetakse retseptiravimid, laste prillid, abivahendid, spetsialisti või hooldekodu külastamisega seotud sõidukulud ning muud tervisega seotud kulud.",
+      "application": "Esita sotsiaaltoetuse taotlus (Lisa 9) ning lisa kuludokumendid. Sotsiaaltööspetsialist hindab toetuse vajadust ja suurust.",
+      "officialUrl": "https://www.elva.ee/toiming/tervisetoetus",
+      "sourceKeys": [
+        "sotsiaaltoetuse_taotlus_pdf",
+        "tervisetoetus_page"
+      ],
+      "relatedForms": [
+        "elva_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_helina_kalev",
+        "elva_vald_contact_kaie_lomp",
+        "elva_vald_contact_sirje_tali",
+        "elva_vald_contact_iia_poldsepp"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "sotsiaaltoetuse_taotlus_pdf",
+        "tervisetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_benefit_tervisetoetus",
+      "document_id": "elva_vald_benefit_tervisetoetus",
+      "canonical_item_id": "elva_vald_benefit_tervisetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/toiming/tervisetoetus",
+      "content_hash": "66386369cf2c4746f16ee6d95201251a59c5a55b6b64682e7f1a7c0e0c6e46f9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_benefit_toetus_lastega_peredele",
+      "itemType": "benefit",
+      "title": "Toetus lastega peredele",
+      "status": "active",
+      "summary": "Toetus lastega peredele aitab katta laste kasvatamisega seotud kulusid ja parandada laste heaolu. Toetus võib olla ühekordne või perioodiline ning seda võib kasutada koolitarvete, riiete, jalatsite ja huvitegevuse kulude katmiseks. Aastas võib lapse kohta makstava toetuse suurus olla kuni kahekordne riiklik toimetulekupiir ning vajadusel veel suurem.",
+      "targetGroup": "Pered lastega, kes on tõsistes majanduslikes raskustes.",
+      "conditions": "Abi antakse leibkonna sissetuleku ja kulude hindamise alusel; toetuse suurus sõltub pere vajadusest ning eesmärgist. Toetust ei maksta, kui pere ei täida kohustusi või on võlgu kohaliku omavalitsuse ees.",
+      "application": "Taotluse saab esitada e-keskkonnas või sotsiaaltoetuse taotluse vormil ja esitada selle laste heaolu spetsialistile koos vajalike tõenditega.",
+      "officialUrl": "https://www.elva.ee/toiming/toetus-lastega-peredele",
+      "sourceKeys": [
+        "sotsiaaltoetuse_taotlus_pdf",
+        "toetus_lastega_peredele_page"
+      ],
+      "relatedForms": [
+        "elva_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_stella_saamel",
+        "elva_vald_contact_merike_kirotar",
+        "elva_vald_contact_diana_soop"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "sotsiaaltoetuse_taotlus_pdf",
+        "toetus_lastega_peredele_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_benefit_toetus_lastega_peredele",
+      "document_id": "elva_vald_benefit_toetus_lastega_peredele",
+      "canonical_item_id": "elva_vald_benefit_toetus_lastega_peredele",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/toiming/toetus-lastega-peredele",
+      "content_hash": "40c5e5caa33c5c0b5313ec51df44184ff183911bce03ca6e9afe2e649861df97",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_benefit_matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on ühekordne 250 euro suurune toetus matusekulude katmiseks Elva valla elaniku surma korral. Toetus makstakse isikule, kes korraldab lahkunu matust.",
+      "targetGroup": "Isik, kes korraldab Elva vallas elanud inimese matust.",
+      "conditions": "Avaldus tuleb esitada ühe kuu jooksul pärast surma registreerimist. Toetust makstakse vaid matuse korraldajale ning see on ühekordne.",
+      "application": "Taotluse saab esitada e-teenuse kaudu või täites matusetoetuse taotluse ja esitades selle vallavalitsusele. Taotlus tuleb esitada ühe kuu jooksul pärast surma registreerimist.",
+      "amount": "250 €",
+      "officialUrl": "https://www.elva.ee/pere-sotsiaal-ja-tervishoid/rahvastikutoimingud/lahedase-surm",
+      "sourceKeys": [
+        "matusetoetus_page",
+        "matusetoetuse_taotlus_pdf"
+      ],
+      "relatedForms": [
+        "elva_vald_form_matusetoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_helina_kalev"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "matusetoetus_page",
+        "matusetoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_benefit_matusetoetus",
+      "document_id": "elva_vald_benefit_matusetoetus",
+      "canonical_item_id": "elva_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/pere-sotsiaal-ja-tervishoid/rahvastikutoimingud/lahedase-surm",
+      "content_hash": "99c910987d94c91321e03843ed28672fa1c3e02b2012bc7d6b82ae39c09861a3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_benefit_toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on riiklik sotsiaaltoetus, mida makstakse kohaliku omavalitsuse kaudu inimestele, kelle sissetulek ei ületa kehtestatud toimetulekupiiri. Toetuse arvutamisel võetakse arvesse eelmise kuu netosissetulek ja jooksva kuu eluasemekulud.",
+      "targetGroup": "Pered ja üksikisikud, kelle sissetulek on väiksem kui toimetulekupiir.",
+      "conditions": "2023. aastal on toimetulekupiirad: 200 € kuus pere esimesele liikmele, 240 € iga alaealise kohta ning 160 € iga järgmise täisealise kohta. Ainult alaealistest koosnevad pered saavad iga lapse kohta lisaks 15 €. Taotleja peab esitama tõendid sissetuleku, eluasemekulude ja eluasemelaenu kohta.",
+      "application": "Täida toimetulekutoetuse taotlus ja esita see koos sissetuleku- ja eluasemekulude tõenditega piirkonna sotsiaaltööspetsialistile.",
+      "officialUrl": "https://www.elva.ee/toiming/toimetulekutoetus",
+      "sourceKeys": [
+        "toimetulekutoetus_page",
+        "toimetulekutoetuse_taotlus_pdf"
+      ],
+      "relatedForms": [
+        "elva_vald_form_toimetulekutoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_helina_kalev",
+        "elva_vald_contact_kaie_lomp",
+        "elva_vald_contact_sirje_tali",
+        "elva_vald_contact_iia_poldsepp"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "toimetulekutoetus_page",
+        "toimetulekutoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_benefit_toimetulekutoetus",
+      "document_id": "elva_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "elva_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/toiming/toimetulekutoetus",
+      "content_hash": "dd8313b7f9c7fa29919569bed66b09732f35fbff83f64cf82a630184f9631217",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_resource_hellenurme_kodu",
+      "itemType": "resource",
+      "title": "Hellenurme Kodu (Lõuna‑Eesti Hooldekeskus AS)",
+      "status": "active",
+      "summary": "Hellenurme Kodu, mida haldab Lõuna‑Eesti Hooldekeskus AS, on hooldekodu, mis pakub eakatele ja hooldust vajavatele inimestele ööpäevaringset hooldust ja toetust. Asutus asub aadressil Mõisa aia 1, Hellenurme, Elva vald.",
+      "application": "Koha ja hinnakirja kohta tuleb võtta ühendust hooldekoduga.",
+      "officialUrl": "https://www.elva.ee/hoolekandeasutused",
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "relatedContacts": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_resource_hellenurme_kodu",
+      "document_id": "elva_vald_resource_hellenurme_kodu",
+      "canonical_item_id": "elva_vald_resource_hellenurme_kodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/hoolekandeasutused",
+      "content_hash": "98982b52355e1b8b238e62040a802299ec376e000b9a0663cf71bbfeb2b84df2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_resource_sa_elva_haigla",
+      "itemType": "resource",
+      "title": "SA Elva Haigla",
+      "status": "active",
+      "summary": "SA Elva Haigla on haigla, mis pakub tervishoiu- ja hooldusteenuseid. Asutus asub aadressil Supelranna 21, Elva ja pakub nii statsionaarset kui ambulatoorset abi.",
+      "application": "Teenuste, kohtade ja vastuvõtuinfo saamiseks tuleb võtta ühendust haiglaga.",
+      "officialUrl": "https://www.elva.ee/hoolekandeasutused",
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "relatedContacts": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_resource_sa_elva_haigla",
+      "document_id": "elva_vald_resource_sa_elva_haigla",
+      "canonical_item_id": "elva_vald_resource_sa_elva_haigla",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/hoolekandeasutused",
+      "content_hash": "6470a7d0b83369ae2a03efa995c5b4e5d31a728fe02b82fe911075048eef65e9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_resource_parkimiskaart",
+      "itemType": "resource",
+      "title": "Puudega inimese sõiduki parkimiskaart",
+      "status": "active",
+      "summary": "Puudega inimese sõiduki parkimiskaart võimaldab kasutada puudega inimesele ettenähtud parkimiskohti. KOV lehe järgi saab kaarti taotleda keskmise, raske või sügava liikumis- või nägemispuudega inimese teenindamiseks; ajutise liikumis- või nägemisfunktsiooni kõrvalekalde korral võib kaardi anda kuni kuueks kuuks.",
+      "targetGroup": "Inimesed, kes transpordivad puudega isikut või kes ise vajavad parkimiskaarti seoses puudega.",
+      "conditions": "Taotleja esitab isikut tõendava dokumendi ja 3 x 4 cm foto. Ajutise liikumis- või nägemisfunktsiooni kõrvalekalde korral tuleb lisada pere- või eriarsti tõend.",
+      "application": "Parkimiskaarti väljastab piirkonna sotsiaaltööspetsialist pärast vajalike dokumentide esitamist.",
+      "officialUrl": "https://www.elva.ee/puudega-inimese-soiduki-parkimiskaart",
+      "sourceKeys": [
+        "parkimiskaart_page"
+      ],
+      "relatedContacts": [
+        "elva_vald_contact_kaie_lomp",
+        "elva_vald_contact_sirje_tali",
+        "elva_vald_contact_helina_kalev",
+        "elva_vald_contact_iia_poldsepp"
+      ],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "parkimiskaart_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_resource_parkimiskaart",
+      "document_id": "elva_vald_resource_parkimiskaart",
+      "canonical_item_id": "elva_vald_resource_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/puudega-inimese-soiduki-parkimiskaart",
+      "content_hash": "c6d71c84117796900f84259d2220231d42d133f216700c76d4ed2befe36c5211",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_form_sotsiaalteenuse_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaalteenuse taotlus",
+      "status": "active",
+      "summary": "Sotsiaalteenuse taotluse vorm (Lisa 3) on üldine avaldus nende Elva valla sotsiaalteenuste taotlemiseks, mille juures KOV leht viitab sellele blanketile otseselt.",
+      "format": "pdf",
+      "submissionChannels": "Vorm esitatakse digitaalselt või paberkandjal sotsiaaltöö- või laste heaolu spetsialistile.",
+      "officialUrl": "https://www.elva.ee/sites/default/files/documents/2024-01/Lisa%203.%20Sotsiaalteenuse%20taotlus.pdf",
+      "sourceKeys": [
+        "sotsiaalteenuse_taotlus_pdf"
+      ],
+      "relatedTo": [
+        "elva_vald_service_lapsehoiuteenus",
+        "elva_vald_service_lapse_tugiisikuteenus",
+        "elva_vald_service_turvakoduteenus",
+        "elva_vald_service_taiendavad_vajaduspohised_sotsiaalteenused",
+        "elva_vald_service_sotsiaaltransporditeenus",
+        "elva_vald_service_tugiisikuteenus",
+        "elva_vald_service_isikliku_abistaja_teenus",
+        "elva_vald_service_volanoustamisteenus",
+        "elva_vald_service_toiduabi",
+        "elva_vald_service_varjupaigateenus",
+        "elva_vald_service_valtimatu_sotsiaalabi"
+      ],
+      "item_type": "form",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "sotsiaalteenuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_form_sotsiaalteenuse_taotlus",
+      "document_id": "elva_vald_form_sotsiaalteenuse_taotlus",
+      "canonical_item_id": "elva_vald_form_sotsiaalteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/sites/default/files/documents/2024-01/Lisa%203.%20Sotsiaalteenuse%20taotlus.pdf",
+      "content_hash": "ff787e86a5cb5266366bff2f769e07c94d5e373ec1408cf8ad63e5bd168e2853",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_form_eluruumi_taotlus",
+      "itemType": "form",
+      "title": "Eluruumi tagamise teenuse taotlus",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenuse taotlus (Lisa 4) on vorm, mille kaudu saab taotleda sotsiaalkorterisse või muule eluruumiteenusele pääsemist. Vormi täitja esitab enda ja leibkonna andmed, varasem elukoha info, sissetuleku ja selgitab eluruumi vajadust. Vormi lõpus nõustutakse teenustasude maksmise ja sotsiaalprogrammides osalemisega.",
+      "format": "pdf",
+      "submissionChannels": "Taotlus täidetakse ja esitatakse e‑posti teel või paberkandjal sotsiaaltööspetsialistile koos vajalike dokumentidega.",
+      "officialUrl": "https://www.elva.ee/sites/default/files/documents/2024-01/Lisa%204.%20Eluruumi%20tagamise%20teenuse%20taotlus_1.pdf",
+      "sourceKeys": [
+        "eluruumi_taotlus_pdf"
+      ],
+      "relatedTo": [
+        "elva_vald_service_eluruumi_tagamise_teenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "eluruumi_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_form_eluruumi_taotlus",
+      "document_id": "elva_vald_form_eluruumi_taotlus",
+      "canonical_item_id": "elva_vald_form_eluruumi_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/sites/default/files/documents/2024-01/Lisa%204.%20Eluruumi%20tagamise%20teenuse%20taotlus_1.pdf",
+      "content_hash": "01adba2debf2a4ceec719a6478902c0fe3711c4f5b259718bff62b398fe5c8ab",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_form_sotsiaaltoetuse_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaaltoetuse taotlus",
+      "status": "active",
+      "summary": "Sotsiaaltoetuse taotlus (Lisa 9) on üldvorm nende Elva valla toetuste taotlemiseks, mille juures KOV leht viitab sellele blanketile otseselt.",
+      "format": "pdf",
+      "submissionChannels": "Vorm võib esitada e-teenuse kaudu, digiallkirjastatult e-posti teel või paberkandjal vastavale spetsialistile.",
+      "officialUrl": "https://www.elva.ee/sites/default/files/documents/2025-10/Lisa%209.%20Sotsiaaltoetuse%20taotlus.pdf",
+      "sourceKeys": [
+        "sotsiaaltoetuse_taotlus_pdf"
+      ],
+      "relatedTo": [
+        "elva_vald_benefit_erakorraline_toetus",
+        "elva_vald_benefit_tervisetoetus",
+        "elva_vald_benefit_toetus_lastega_peredele"
+      ],
+      "item_type": "form",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "sotsiaaltoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_form_sotsiaaltoetuse_taotlus",
+      "document_id": "elva_vald_form_sotsiaaltoetuse_taotlus",
+      "canonical_item_id": "elva_vald_form_sotsiaaltoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/sites/default/files/documents/2025-10/Lisa%209.%20Sotsiaaltoetuse%20taotlus.pdf",
+      "content_hash": "c7022f12e5ce93a95cf2800f2c06a44bdf0ee93d1ac77a6614d50de7de560195",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_form_sunnitoetuse_taotlus",
+      "itemType": "form",
+      "title": "Sünnitoetuse taotlus",
+      "status": "active",
+      "summary": "Sünnitoetuse taotlus on spetsiaalne vorm sündimistoetuse saamiseks. Vormil esitatakse lapse ja vanema andmed, pangaandmed ja kinnitatakse, et pere elab Elva vallas lapse esimesel sünnipäeval. Vormi abil makstakse toetuse esimene ja teine osa.",
+      "format": "pdf",
+      "submissionChannels": "Vormi saab esitada e-teenuse kaudu või digiallkirjastatult e-posti teel aadressile.",
+      "officialUrl": "https://www.elva.ee/sites/default/files/documents/2024-01/S%C3%BCnnitoetuse%20taotlus_1.pdf",
+      "sourceKeys": [
+        "sunnitoetuse_taotlus_pdf"
+      ],
+      "relatedTo": [
+        "elva_vald_benefit_sunnitoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "sunnitoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_form_sunnitoetuse_taotlus",
+      "document_id": "elva_vald_form_sunnitoetuse_taotlus",
+      "canonical_item_id": "elva_vald_form_sunnitoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/sites/default/files/documents/2024-01/S%C3%BCnnitoetuse%20taotlus_1.pdf",
+      "content_hash": "4eec746da834a48a2e5266154e8dbb8bbb6176bc8884b837c940a1b8c72ef475",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_form_koduteenuse_taotlus",
+      "itemType": "form",
+      "title": "Koduteenuse taotlus",
+      "status": "active",
+      "summary": "Koduteenuse taotluse vorm (Lisa 1) kogub teenuse taotleja isiku- ja kontaktandmeid, kirjeldab vajatavat abi (toidupoes käimine, kodu koristamine, hügieenitoimingud) ning selgitab teenuse vajadust. Vormi lõpus annab taotleja nõusoleku andmete töötlemiseks.",
+      "format": "pdf",
+      "submissionChannels": "Täidetud vorm esitatakse oma piirkonna sotsiaaltööspetsialistile e‑posti teel või paberil.",
+      "officialUrl": "https://www.elva.ee/sites/default/files/documents/2024-01/Lisa%201.%20Koduteenuse%20taotlus.pdf",
+      "sourceKeys": [
+        "koduteenuse_taotlus_pdf"
+      ],
+      "relatedTo": [
+        "elva_vald_service_koduteenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "koduteenuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_form_koduteenuse_taotlus",
+      "document_id": "elva_vald_form_koduteenuse_taotlus",
+      "canonical_item_id": "elva_vald_form_koduteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/sites/default/files/documents/2024-01/Lisa%201.%20Koduteenuse%20taotlus.pdf",
+      "content_hash": "18da527fe2405686dcf76bb72002be8528a51e8fa0cdbe7e8d67fd97ebac15ff",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_form_uldhooldusteenuse_taotlus",
+      "itemType": "form",
+      "title": "Väljaspool kodu osutatava üldhooldusteenuse taotlus",
+      "status": "active",
+      "summary": "Üldhooldusteenuse taotluse vorm (Lisa 2) on mõeldud väljaspool kodu osutatava hooldusteenuse taotlemiseks. Vormi täitja esitab isiku ja kontaktandmed, kirjeldab terviseseisundit ja põhjendab, miks kodus toimetulek ei ole võimalik, ning kinnitab, et nõustub majutuskulude maksmisega.",
+      "format": "pdf",
+      "submissionChannels": "Vorm esitatakse sotsiaaltööspetsialistile, kes hindab taotleja abivajadust ja teeb otsuse.",
+      "officialUrl": "https://www.elva.ee/sites/default/files/documents/2024-01/Lisa%202.%20V%C3%A4ljaspool%20kodu%20osutatava%20%C3%BCldhooldusteenuse%20taotlus.pdf",
+      "sourceKeys": [
+        "uldhooldusteenuse_taotlus_pdf"
+      ],
+      "relatedTo": [
+        "elva_vald_service_uldhooldusteenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "uldhooldusteenuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_form_uldhooldusteenuse_taotlus",
+      "document_id": "elva_vald_form_uldhooldusteenuse_taotlus",
+      "canonical_item_id": "elva_vald_form_uldhooldusteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/sites/default/files/documents/2024-01/Lisa%202.%20V%C3%A4ljaspool%20kodu%20osutatava%20%C3%BCldhooldusteenuse%20taotlus.pdf",
+      "content_hash": "05fce6103860f748397381e1fedcd8c13de2dcd1f5b27c279ee0b3974b072f6c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_form_puudega_lapse_hooldajatoetuse_taotlus",
+      "itemType": "form",
+      "title": "Puudega lapse hooldajatoetuse taotlus",
+      "status": "active",
+      "summary": "Puudega lapse hooldajatoetuse taotlus kogub hooldaja ja lapse andmeid, kirjeldab lapse puude raskusastet ja kinnitab, et hooldaja ei tööta ega saa sissetulekut. Vorm on aluseks hooldajatoetuse määramiseks.",
+      "format": "pdf",
+      "submissionChannels": "Vorm esitatakse laste heaolu spetsialistile paberkandjal või e-posti teel.",
+      "officialUrl": "https://www.elva.ee/sites/default/files/documents/2024-01/Puudega%20lapse%20hooldajatoetuse%20taotlus.pdf",
+      "sourceKeys": [
+        "puudega_lapse_hooldajatoetuse_taotlus_pdf"
+      ],
+      "relatedTo": [
+        "elva_vald_benefit_hooldajatoetus_puudega_lapse_hooldajale"
+      ],
+      "item_type": "form",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "puudega_lapse_hooldajatoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_form_puudega_lapse_hooldajatoetuse_taotlus",
+      "document_id": "elva_vald_form_puudega_lapse_hooldajatoetuse_taotlus",
+      "canonical_item_id": "elva_vald_form_puudega_lapse_hooldajatoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/sites/default/files/documents/2024-01/Puudega%20lapse%20hooldajatoetuse%20taotlus.pdf",
+      "content_hash": "b05c1649bd42d63bf3d73ad13fc294aea6506606bbfd60a1e6898baf65a26148",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_form_ranitsatoetuse_taotlus",
+      "itemType": "form",
+      "title": "Ranitsatoetuse avaldus",
+      "status": "active",
+      "summary": "Ranitsatoetuse avaldus on Elva valla eraldi blankett ranitsatoetuse taotlemiseks.",
+      "format": "pdf",
+      "submissionChannels": "Vormi saab esitada paberil või kasutada SPOKU e-keskkonda.",
+      "officialUrl": "https://www.elva.ee/sites/default/files/documents/2024-01/Ranitsatoetuse%20avaldus.pdf",
+      "sourceKeys": [
+        "ranitsatoetuse_taotlus_pdf"
+      ],
+      "relatedTo": [
+        "elva_vald_benefit_ranitsatoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "ranitsatoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_form_ranitsatoetuse_taotlus",
+      "document_id": "elva_vald_form_ranitsatoetuse_taotlus",
+      "canonical_item_id": "elva_vald_form_ranitsatoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/sites/default/files/documents/2024-01/Ranitsatoetuse%20avaldus.pdf",
+      "content_hash": "f1c793453c0781c0cdb8834d4b071eebb2e77e0ebd6c897a94d9b3e435763de3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_form_lapse_toiduraha_katmise_toetuse_taotlus",
+      "itemType": "form",
+      "title": "Lapse toiduraha katmise toetuse taotlus",
+      "status": "active",
+      "summary": "Lapse toiduraha katmise toetuse taotlus on Elva valla eraldi blankett selle toetuse taotlemiseks.",
+      "format": "pdf",
+      "submissionChannels": "Vormi saab esitada koos nõutud lisadokumentidega piirkonna sotsiaaltööspetsialistile või kasutada SPOKU e-keskkonda.",
+      "officialUrl": "https://www.elva.ee/sites/default/files/documents/2025-10/Lisa%208.%20Lapse%20toiduraha%20katmise%20toetuse%20taotlus.pdf",
+      "sourceKeys": [
+        "lapse_toiduraha_katmise_toetuse_taotlus_pdf"
+      ],
+      "relatedTo": [
+        "elva_vald_benefit_lapse_toiduraha_katmise_toetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "lapse_toiduraha_katmise_toetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_form_lapse_toiduraha_katmise_toetuse_taotlus",
+      "document_id": "elva_vald_form_lapse_toiduraha_katmise_toetuse_taotlus",
+      "canonical_item_id": "elva_vald_form_lapse_toiduraha_katmise_toetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/sites/default/files/documents/2025-10/Lisa%208.%20Lapse%20toiduraha%20katmise%20toetuse%20taotlus.pdf",
+      "content_hash": "38e1f73ce54136db8001eae8a6874245f23deca5054aedd95e0b2c1c0cd90faf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_form_matusetoetuse_taotlus",
+      "itemType": "form",
+      "title": "Matusetoetuse taotlus",
+      "status": "active",
+      "summary": "Matusetoetuse taotlus on Elva valla eraldi blankett matusetoetuse taotlemiseks.",
+      "format": "pdf",
+      "submissionChannels": "Vormi saab esitada e-teenuse kaudu või vallavalitsusele e-posti teel ja paberkandjal.",
+      "officialUrl": "https://www.elva.ee/sites/default/files/documents/2024-02/Lisa%207.%20Matusetoetuse%20taotlus.pdf",
+      "sourceKeys": [
+        "matusetoetuse_taotlus_pdf"
+      ],
+      "relatedTo": [
+        "elva_vald_benefit_matusetoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "matusetoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_form_matusetoetuse_taotlus",
+      "document_id": "elva_vald_form_matusetoetuse_taotlus",
+      "canonical_item_id": "elva_vald_form_matusetoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/sites/default/files/documents/2024-02/Lisa%207.%20Matusetoetuse%20taotlus.pdf",
+      "content_hash": "951ff925d803ec972518887d9b6be147323f29437a0a31c06d9b96bc6258ea8f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_form_taisealise_isiku_hoolduse_taotlus",
+      "itemType": "form",
+      "title": "Täisealise isiku hoolduse taotlus",
+      "status": "active",
+      "summary": "Täisealise isiku hoolduse taotlus on Elva valla eraldi blankett hooldaja määramise ja hooldajatoetuse maksmise taotlemiseks täisealisele isikule.",
+      "format": "pdf",
+      "submissionChannels": "Vorm esitatakse sotsiaaltööspetsialistile koos vajalike lisadokumentidega.",
+      "officialUrl": "https://www.elva.ee/sites/default/files/documents/2024-01/Lisa%2010.%20T%C3%A4iealise%20isiku%20hoolduse%20taotlus.pdf",
+      "sourceKeys": [
+        "taisealise_isiku_hoolduse_taotlus_pdf"
+      ],
+      "relatedTo": [
+        "elva_vald_service_taisealise_isiku_hooldus"
+      ],
+      "item_type": "form",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "taisealise_isiku_hoolduse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_form_taisealise_isiku_hoolduse_taotlus",
+      "document_id": "elva_vald_form_taisealise_isiku_hoolduse_taotlus",
+      "canonical_item_id": "elva_vald_form_taisealise_isiku_hoolduse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/sites/default/files/documents/2024-01/Lisa%2010.%20T%C3%A4iealise%20isiku%20hoolduse%20taotlus.pdf",
+      "content_hash": "414cc587a2ecb525f45dc132e340c405bcc2eb725a8f2f8a4b3575cf118a1984",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_form_toimetulekutoetuse_taotlus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse taotlus",
+      "status": "active",
+      "summary": "Toimetulekutoetuse taotlus on Elva valla eraldi blankett toimetulekutoetuse taotlemiseks.",
+      "format": "pdf",
+      "submissionChannels": "Vorm esitatakse koos sissetuleku- ja eluasemekulude tõenditega piirkonna sotsiaaltööspetsialistile.",
+      "officialUrl": "https://www.elva.ee/sites/default/files/documents/2024-01/Lisa%2012.%20Toimetulekutoetuse%20taotlus.pdf",
+      "sourceKeys": [
+        "toimetulekutoetuse_taotlus_pdf"
+      ],
+      "relatedTo": [
+        "elva_vald_benefit_toimetulekutoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "toimetulekutoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_form_toimetulekutoetuse_taotlus",
+      "document_id": "elva_vald_form_toimetulekutoetuse_taotlus",
+      "canonical_item_id": "elva_vald_form_toimetulekutoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.elva.ee/sites/default/files/documents/2024-01/Lisa%2012.%20Toimetulekutoetuse%20taotlus.pdf",
+      "content_hash": "5c7ad9d52de1a4e1aa1d8e54a54adf0b3d9fa6e5753d3b50b513ba528491dd22",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_contact_stella_saamel",
+      "itemType": "contact",
+      "name": "Stella Saamel",
+      "role": "Laste heaolu spetsialist (Puhja, Konguta, Rannu)",
+      "department": "Sotsiaal- ja terviseosakond",
+      "status": "active",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_contact_stella_saamel",
+      "document_id": "elva_vald_contact_stella_saamel",
+      "canonical_item_id": "elva_vald_contact_stella_saamel",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "189b7ded5068264720142418e407400da98be91b9c9b557d8f5c769b233a7cce",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_contact_merike_kirotar",
+      "itemType": "contact",
+      "name": "Merike Kirotar",
+      "role": "Laste heaolu spetsialist (Rõngu piirkond)",
+      "department": "Sotsiaal- ja terviseosakond",
+      "status": "active",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_contact_merike_kirotar",
+      "document_id": "elva_vald_contact_merike_kirotar",
+      "canonical_item_id": "elva_vald_contact_merike_kirotar",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "c6c53e2c6e00120901521b941a1276ea6d56ba57fece5a77e12502c7d9df559b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_contact_diana_soop",
+      "itemType": "contact",
+      "name": "Diana Soop",
+      "role": "Laste heaolu spetsialist (Elva piirkond)",
+      "department": "Sotsiaal- ja terviseosakond",
+      "status": "active",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_contact_diana_soop",
+      "document_id": "elva_vald_contact_diana_soop",
+      "canonical_item_id": "elva_vald_contact_diana_soop",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "9297f43c7bc07463478fe9bfb9e476b6dfe23af18ebbcb7f1ff40b3e3029d4cc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_contact_helina_kalev",
+      "itemType": "contact",
+      "name": "Helina Kalev",
+      "role": "Sotsiaaltööspetsialist",
+      "department": "Sotsiaal- ja terviseosakond",
+      "status": "active",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_contact_helina_kalev",
+      "document_id": "elva_vald_contact_helina_kalev",
+      "canonical_item_id": "elva_vald_contact_helina_kalev",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "bd28222298ee8b411126a38763250807e6fe58a107ecaf83b09685f9db06caae",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_contact_iia_poldsepp",
+      "itemType": "contact",
+      "name": "Iia Põldsepp",
+      "role": "Sotsiaaltööspetsialist",
+      "department": "Sotsiaal- ja terviseosakond",
+      "status": "active",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_contact_iia_poldsepp",
+      "document_id": "elva_vald_contact_iia_poldsepp",
+      "canonical_item_id": "elva_vald_contact_iia_poldsepp",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "2d06c4ba2552a80884bafa5e1b3c447bea7ad2253786e551fd924b401c59545c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_contact_kaie_lomp",
+      "itemType": "contact",
+      "name": "Kaie Lomp",
+      "role": "Sotsiaaltööspetsialist",
+      "department": "Sotsiaal- ja terviseosakond",
+      "status": "active",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_contact_kaie_lomp",
+      "document_id": "elva_vald_contact_kaie_lomp",
+      "canonical_item_id": "elva_vald_contact_kaie_lomp",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "0239ebeb520deb3367f1c672138f7cffd8aaebf6284c665e4efb6736ede958d6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_contact_sirje_tali",
+      "itemType": "contact",
+      "name": "Sirje Tali",
+      "role": "Sotsiaaltööspetsialist",
+      "department": "Sotsiaal- ja terviseosakond",
+      "status": "active",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_contact_sirje_tali",
+      "document_id": "elva_vald_contact_sirje_tali",
+      "canonical_item_id": "elva_vald_contact_sirje_tali",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "0b52b4619f31768cbb03a9d7d81f4365f0673d63463d8337b0498c9564193282",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_contact_hene_kreete_hoop",
+      "itemType": "contact",
+      "name": "Hene‑Kreete Hoop",
+      "role": "Sotsiaalnõunik",
+      "department": "Sotsiaal- ja terviseosakond",
+      "status": "active",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_contact_hene_kreete_hoop",
+      "document_id": "elva_vald_contact_hene_kreete_hoop",
+      "canonical_item_id": "elva_vald_contact_hene_kreete_hoop",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "5c8bdc9a2450f191097854d6f61326f0cf42d90aa84cefdaa73057eea34789fc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_contact_rutt_hanni",
+      "itemType": "contact",
+      "name": "Rutt Hanni",
+      "role": "Sotsiaal- ja terviseosakonna juhataja",
+      "department": "Sotsiaal- ja terviseosakond",
+      "status": "active",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_contact_rutt_hanni",
+      "document_id": "elva_vald_contact_rutt_hanni",
+      "canonical_item_id": "elva_vald_contact_rutt_hanni",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "70b33f1085d8383e5838c08483754156f28b010ada3e51c734535ee3885caffd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_contact_alo_rebane",
+      "itemType": "contact",
+      "name": "Alo Rebane",
+      "role": "Eestkoste spetsialist",
+      "department": "Sotsiaal- ja terviseosakond",
+      "status": "active",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_contact_alo_rebane",
+      "document_id": "elva_vald_contact_alo_rebane",
+      "canonical_item_id": "elva_vald_contact_alo_rebane",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "5559d6d3c9c1b139ac12198ec54f304905666f4704f71306c953a41fb0730cd4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "elva_vald_contact_anneli_lepik",
+      "itemType": "contact",
+      "name": "Anneli Lepik",
+      "role": "Laste ja perede heaolu nõunik",
+      "department": "Sotsiaal- ja terviseosakond",
+      "status": "active",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "elva_vald_contact_anneli_lepik",
+      "document_id": "elva_vald_contact_anneli_lepik",
+      "canonical_item_id": "elva_vald_contact_anneli_lepik",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "66630858aa11a6ed4dd7d3f93ee0c3e7decb7f40c9e2d7237353a584fc085b5c",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_id": "elva_vald",
+  "municipality_name": "Elva vald",
+  "checked_at": "2026-04-11",
+  "schemaVersion": "v2.5-sourcepackage",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

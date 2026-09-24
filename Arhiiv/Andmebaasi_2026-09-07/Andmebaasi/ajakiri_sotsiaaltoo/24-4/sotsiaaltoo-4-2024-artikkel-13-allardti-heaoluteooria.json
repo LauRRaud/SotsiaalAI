@@ -1,0 +1,46 @@
+{
+  "docId": "sotsiaaltoo-4-2024",
+  "issueLabel": "4/2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "allardti-heaoluteooria-2024-4",
+  "title": "Erik Allardti heaoluteooria kasutamine Tallinna ülikooli sotsiaalkaitse suuna magistritöödes",
+  "authors": [
+    "Lauri Leppik",
+    "Käthlin Mikiver",
+    "Agnes Aas",
+    "Sandra Laurimaa",
+    "Keiu Virro",
+    "Agnes Kulmar"
+  ],
+  "section": "Teoreetilised lähtekohad",
+  "pageRange": "80–87",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "source_path": "sotsiaaltoo_4_2024_web_Part15.pdf",
+  "description": "Artikkel analüüsib Erik Allardti heaoluteooria kasutamist Tallinna ülikooli sotsiaalkaitse suuna magistritöödes aastatel 2014–2024. Autorid vaatlevad, kuidas magistrandid esitavad Allardti teooriat, kasutavad seda uurimisinstrumendi koostamisel ning seostavad empiiriliste tulemuste tõlgendamisel. Lühidalt tutvustatakse Allardti kolme heaolumõõdet – omamine, armastamine, olemise/tegutsemise – ning võrreldakse neid teiste heaoluteoreetikutega (Diener, Ryff, Keyes, Seligman). Analüüsist selgub, et Allardti teooriale viidatakse sageli, kuid selle rakendamine on ebajärjekindel: domineerib refereeriv käsitlus, teooriat kasutatakse vahel pealiskaudselt ning teooria ja empiiria seos jääb nõrgaks. Samas tuuakse välja häid näiteid teooria loovast kombineerimisest teiste käsitlustega ja kriitilistest aruteludest heaolu kompleksuse üle. Artikkel pakub soovitusi, kuidas tugevdada teooriakasutust üliõpilasuurimustes ja toetada sotsiaaltöö kui akadeemilise distsipliini professionaalset arengut.",
+  "tags": [
+    "Erik Allardt",
+    "heaoluteooria",
+    "magistriuurimus",
+    "teooriakasutus",
+    "sotsiaalkaitse",
+    "kõrgharidus",
+    "heaolu"
+  ],
+  "document_id": "sotsiaaltoo-4-2024-allardti-heaoluteooria-2024-4",
+  "source_format": "pdf",
+  "source_sha256": "eca386150ddd212356bb0fcb18ff0d1cd1ae625bd9f81bd27056861074e99487",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2024-allardti-heaoluteooria-2024-4",
+    "previous_source_path": "sotsiaaltoo_4_2024_web_Part15.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "eca386150ddd212356bb0fcb18ff0d1cd1ae625bd9f81bd27056861074e99487",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

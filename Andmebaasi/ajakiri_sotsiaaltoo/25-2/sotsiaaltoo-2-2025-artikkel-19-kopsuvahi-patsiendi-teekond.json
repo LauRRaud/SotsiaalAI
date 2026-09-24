@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2025",
+  "articleId": "kopsuvahi-patsiendi-teekonnast-andmeanaluusi-pohjal-2025-2",
+  "title": "Kopsuvähi patsiendi teekonnast andmeanalüüsi põhjal",
+  "authors": [
+    "Gerli Põdra",
+    "Mari Teesalu"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2025",
+  "section": "Uurimus",
+  "pdf_start_page": 1,
+  "pdf_end_page": 12,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel põhineb projekti „Kopsuvähi patsiendi teekond Eestis“ andmeanalüüsil ning kirjeldab patsiendi liikumist tervishoiu- ja sotsiaalsüsteemis. Analüüsitakse terviseteekonna etappe, teenuste kasutamist, sissetulekut ja psühhosotsiaalset tuge ning rõhutatakse reaalelu andmete potentsiaali patsientide teekonna parandamisel.",
+  "tags": [
+    "kopsuvähk",
+    "vähiteekond",
+    "andmeanalüüs",
+    "sotsiaalmajanduslik seisund",
+    "psühhosotsiaalne tugi",
+    "tervishoiuteenused",
+    "sotsiaaltoetused"
+  ],
+  "source_type": "file",
+  "source_path": "Kopsuvähi patsiendi teekonnast andmeanalüüsi põhjal_2_2025.pdf",
+  "pageRange": "1–12",
+  "document_id": "sotsiaaltoo-2-2025-kopsuvahi-patsiendi-teekonnast-andmeanaluusi-pohjal-2025-2",
+  "source_format": "pdf",
+  "source_sha256": "9b6480b56816c22e183e4e4b82dc782ebf28a062416087fbe34c9443758552b3",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2025-kopsuvahi-patsiendi-teekonnast-andmeanaluusi-pohjal-2025-2",
+    "previous_source_path": "Kopsuvähi patsiendi teekonnast andmeanalüüsi põhjal_2_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "9b6480b56816c22e183e4e4b82dc782ebf28a062416087fbe34c9443758552b3",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "sotsiaalvaldkonna-terminologiatootest-ja-termintest-2025-2",
+  "title": "Sotsiaalvaldkonna terminoloogiatööst ja terminitest",
+  "authors": [
+    "Ruth Erm"
+  ],
+  "section": "Erialakeel",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "description": "Artikkel annab ülevaate sotsiaalvaldkonna terminoloogiatööst Eestis. Kirjeldatakse, kuidas uued mõisted ja laenud tekivad, kuidas neid kohandatakse eesti keelde ning millist rolli mängivad terminikomisjonid, ekspertgrupid ja praktikute tagasiside. Autor toob näiteid vaidlusi tekitanud terminitest, arutleb inglise keelest tõlkimise lõksude üle ning käsitleb seda, miks ühtne terminikasutus on oluline seadusloomes, juhendites, õppes ja igapäevases praktikas. Rõhutatakse selge, arusaadava ja inimesi mitte stigmatiseeriva keele olulisust.",
+  "tags": [
+    "terminoloogia",
+    "sotsiaalvaldkond",
+    "erialakeel",
+    "terminikomisjon",
+    "keelekorraldus",
+    "tõlkimine",
+    "selge keel"
+  ],
+  "source_path": "Sotsiaalvaldkonna terminoloogiatööst ja terminitest_2_2025.pdf",
+  "pageRange": "1–9",
+  "document_id": "sotsiaaltoo-2-2025-sotsiaalvaldkonna-terminologiatootest-ja-termintest-2025-2",
+  "source_format": "pdf",
+  "source_sha256": "f7a8f85f30a94bcbf03f595dd7e21760cf6dc3fe532e57969fdb3ca17ccd05df",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2025-sotsiaalvaldkonna-terminologiatootest-ja-termintest-2025-2",
+    "previous_source_path": "Sotsiaalvaldkonna terminoloogiatööst ja terminitest_2_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "f7a8f85f30a94bcbf03f595dd7e21760cf6dc3fe532e57969fdb3ca17ccd05df",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

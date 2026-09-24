@@ -1,0 +1,4237 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-viljandi-linn",
+  "document_id": "kov-viljandi-linn",
+  "municipality": "Viljandi linn",
+  "municipality_id": "viljandi_linn",
+  "county": "Viljandimaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "viljandi_linn_service_abivajav_laps",
+      "canonical_item_id": "viljandi_linn:service:abivajav_laps",
+      "itemType": "service",
+      "title": "Abivajav laps – teavitamine ja abi",
+      "status": "active",
+      "summary": "Viljandi linn selgitab abivajava ja hädaohus oleva lapse märkamist ning teavitamist. Abivajav laps on laps, kelle turvatunne, areng või heaolu ei ole tagatud. Hädaohus olevast lapsest tuleb teavitada politseid hädaabinumbril; muu abivajaduse korral saab pöörduda linna laste heaolu spetsialistide poole.",
+      "sourceKeys": [
+        "children_family_page",
+        "contacts_page",
+        "form_abivajav_laps_docx",
+        "form_haridusasutuse_teatis_abivajav_laps_doc"
+      ],
+      "targetGroup": "Inimesed ja asutused, kes märkavad abivajavat või hädaohus olevat last",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "",
+          "",
+          "teatis"
+        ],
+        "steps": [
+          "Hädaohus olevast lapsest teata politseile numbril.",
+          "Muu abivajaduse korral esita teatis või pöördu laste heaolu spetsialisti poole."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-lapsele-ja-perele/",
+      "relatedForms": [
+        "viljandi_linn_form_abivajav_laps_teade",
+        "viljandi_linn_form_haridusasutuse_teatis_abivajav_laps"
+      ],
+      "relatedContacts": [
+        "viljandi_linn_contact_karina_saar",
+        "viljandi_linn_contact_piret_jogiste",
+        "viljandi_linn_contact_triin_tarn",
+        "viljandi_linn_contact_kaja_suur",
+        "viljandi_linn_contact_eva_kikas"
+      ],
+      "pricing": null,
+      "item_type": "service",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "children_family_page",
+        "contacts_page",
+        "form_abivajav_laps_docx",
+        "form_haridusasutuse_teatis_abivajav_laps_doc"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_service_abivajav_laps",
+      "document_id": "viljandi_linn_service_abivajav_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-lapsele-ja-perele/",
+      "content_hash": "c558c52a6baa7827c27ae077d79b6577b9d2dbc02890da6a17061807ea0af799",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_service_asendushooldusteenus_lastele",
+      "canonical_item_id": "viljandi_linn:service:asendushooldusteenus_lastele",
+      "itemType": "service",
+      "title": "Asendushooldusteenus lastele",
+      "status": "active",
+      "summary": "Asendushooldusteenuse eesmärk on lapse heaolu ja õiguste tagamine olukorras, kus lapse vanem ei saa lapse eest hoolitseda. Teenuse osutaja võib olla hoolduspere, perekodu või asenduskodu. Teenus tagatakse Viljandi linnas elavale lapsele üldjuhul kuni 18-aastaseks saamiseni ning õppimise korral teatud tingimustel kauem.",
+      "sourceKeys": [
+        "children_family_page",
+        "contacts_page"
+      ],
+      "targetGroup": "Viljandi linnas elavad lapsed, kelle hooldus või eestkoste vajab asendushooldust",
+      "conditions": "Teenust saab kasutada, kui vanem on surnud, vanemale on määratud eestkostja, vanema hooldusõigus on peatatud või ära võetud või laps on vanemast eraldatud.",
+      "application": {
+        "channels": [
+          "vabas vormis avaldus"
+        ],
+        "steps": [
+          "Esita sotsiaalametile vabas vormis avaldus koos lapse andmete ja vajadust põhjendavate dokumentidega.",
+          "Sotsiaalamet hindab vajadust ja teeb teenusele suunamise otsuse."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-lapsele-ja-perele/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viljandi_linn_contact_triin_tarn"
+      ],
+      "pricing": "Teenuse maksumus sõltub teenuseosutaja hinnakirjast.",
+      "item_type": "service",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "children_family_page",
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_service_asendushooldusteenus_lastele",
+      "document_id": "viljandi_linn_service_asendushooldusteenus_lastele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-lapsele-ja-perele/",
+      "content_hash": "73110fd89560a392963e1bea193a02a02980a0f3dbc538b05a1587e0791e1bb2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_service_laste_turvakoduteenus",
+      "canonical_item_id": "viljandi_linn:service:laste_turvakoduteenus",
+      "itemType": "service",
+      "title": "Laste turvakoduteenus",
+      "status": "active",
+      "summary": "Laste turvakoduteenus tagab lapsele ajutise eluaseme, turvalise keskkonna ja esmase abi, kui lapse hooldamises esinevad puudused ohustavad tema elu, tervist või arengut. Teenus on alaealisele tasuta. Viljandi linnas hätta sattunud lapse turvakodusse paigutamiseks tuleb eelnevalt helistada laste turvakodu telefonile.",
+      "sourceKeys": [
+        "children_family_page",
+        "contacts_page"
+      ],
+      "targetGroup": "Lapsed, kes vajavad ajutist turvalist majutust ja esmast abi",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "",
+          "kohapealne pöördumine sotsiaalametisse"
+        ],
+        "steps": [
+          "Pöördu sotsiaalametisse või helista hädaolukorras laste turvakodu telefonile.",
+          "Esita vajadusel isikut tõendav dokument."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-lapsele-ja-perele/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viljandi_linn_contact_piret_jogiste",
+        "viljandi_linn_contact_triin_tarn",
+        "viljandi_linn_contact_kaja_suur",
+        "viljandi_linn_contact_eva_kikas"
+      ],
+      "pricing": "Alaealisele tasuta",
+      "item_type": "service",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "children_family_page",
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_service_laste_turvakoduteenus",
+      "document_id": "viljandi_linn_service_laste_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-lapsele-ja-perele/",
+      "content_hash": "4c5fec4b2563c9b8e7bfecb1652af93dd2d1b9ee1c40cb14eb50ff9b92b12cdb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_service_suure_hooldusvajadusega_lapse_teenused",
+      "canonical_item_id": "viljandi_linn:service:suure_hooldusvajadusega_lapse_teenused",
+      "itemType": "service",
+      "title": "Teenused suure hooldus- ja abivajadusega lapsele",
+      "status": "active",
+      "summary": "Teenuste sihtrühm on Viljandi linnas elavad suure hooldus- ja abivajadusega lapsed ning nende vanemad, hooldajad või eestkostjad. Teenuste hulka võivad kuuluda lapsehoiuteenus, isikliku abistaja teenus, tugiisikuteenus, sotsiaaltransporditeenus, laagriteenus, täiendav rehabilitatsiooniteenus, nõustamine ja muu toimetulekut soodustav teenus. Teenuse saajale on teenus üldjuhul tasuta.",
+      "sourceKeys": [
+        "children_family_page",
+        "contacts_page",
+        "form_raske_sugava_puudega_lapse_teenused_pdf"
+      ],
+      "targetGroup": "Suure hooldus- ja abivajadusega lapsed ning nende vanemad, hooldajad või eestkostjad",
+      "conditions": "Lapse teenuse vajadus hinnatakse, raske ja sügava puudega lapse puhul esitatakse puudeotsus ja rehabilitatsiooniplaan.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Esita avaldus sotsiaalametile aadressil Johan Laidoneri plats 5a.",
+          "Lisa lapse dokument, puudeotsus, rehabilitatsiooniplaan ja vajadusel eestkoste või hooldamise dokument.",
+          "Sotsiaalameti spetsialist hindab teenuse vajadust ja teeb otsuse 10 tööpäeva jooksul alates vajalike dokumentide laekumisest."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-lapsele-ja-perele/",
+      "relatedForms": [
+        "viljandi_linn_form_raske_sugava_puudega_lapse_teenused"
+      ],
+      "relatedContacts": [
+        "viljandi_linn_contact_piret_jogiste"
+      ],
+      "pricing": "Teenuse saajale üldjuhul tasuta",
+      "item_type": "service",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "children_family_page",
+        "contacts_page",
+        "form_raske_sugava_puudega_lapse_teenused_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_service_suure_hooldusvajadusega_lapse_teenused",
+      "document_id": "viljandi_linn_service_suure_hooldusvajadusega_lapse_teenused",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-lapsele-ja-perele/",
+      "content_hash": "5af112e5b6b5ac69140b0292f03166f1798dbcfb0ff342a3ca5af1bfcfd0d553",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_service_tugiisikuteenus_lastele",
+      "canonical_item_id": "viljandi_linn:service:tugiisikuteenus_lastele",
+      "itemType": "service",
+      "title": "Tugiisikuteenuse osutamine lastele ja lastega peredele",
+      "status": "active",
+      "summary": "Tugiisikuteenus on mõeldud lastele ja lastega peredele, kellel on vaja toimetulekut toetavat abi. Teenuse eesmärk on toetada lapse ja pere igapäevast hakkamasaamist. Põhjendatud vajaduse korral määratakse lapsele või perele tugiisik; avalduse mitterahuldamisest teavitatakse 30 päeva jooksul.",
+      "sourceKeys": [
+        "children_family_page",
+        "contacts_page"
+      ],
+      "targetGroup": "Lapsed ja lastega pered",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "vabas vormis avaldus"
+        ],
+        "steps": [
+          "Esita vabas vormis avaldus koos isikut tõendava dokumendi ja vajadusel puudeotsuse, rehabilitatsiooniplaani, eestkoste või hooldamise dokumendiga.",
+          "Sotsiaalamet hindab vajadust ja teeb otsuse."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Kuni 30 päeva avalduse mitterahuldamisest teavitamiseks",
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-lapsele-ja-perele/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viljandi_linn_contact_eva_kikas",
+        "viljandi_linn_contact_piret_jogiste"
+      ],
+      "pricing": null,
+      "item_type": "service",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "children_family_page",
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_service_tugiisikuteenus_lastele",
+      "document_id": "viljandi_linn_service_tugiisikuteenus_lastele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-lapsele-ja-perele/",
+      "content_hash": "94abd6d9ca863c41164169524f8d7a6aa717e1e9cc0ab66e771fab910819d4b1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "viljandi_linn:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Teenuse eesmärk on Viljandi linnas elava puudega täiskasvanud isiku võimalikult iseseisva toimetuleku suurendamine ning lähedaste hoolduskoormuse vähendamine. Teenuse saaja valib üldjuhul ise sobiva vahetu osutaja; teenuse vahetu osutaja ei tohi reeglina olla perekonnaliige, samas eluruumis elav isik või määratud hooldaja. Teenus on üldjuhul tasuta, kuid osutaja saatmisel tekkivad kulud tasub üldjuhul teenuse saaja.",
+      "sourceKeys": [
+        "adult_hardship_page",
+        "contacts_page",
+        "form_isikliku_abistaja_pdf"
+      ],
+      "targetGroup": "Viljandi linnas elavad puudega täiskasvanud, kes vajavad füüsilist kõrvalabi igapäevaelus",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Esita avaldus koos lisadokumentidega Viljandi Linnavalitsuse sotsiaalametile aadressil Johan Laidoneri plats 5a.",
+          "Lisa isikut tõendav dokument, puudeotsus ning olemasolu korral rehabilitatsiooniplaan ja eestkostemäärus.",
+          "Avaldus esitatakse sotsiaalkomisjonile; otsus tehakse 10 tööpäeva jooksul pärast vajalike dokumentide laekumist."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "relatedForms": [
+        "viljandi_linn_form_isikliku_abistaja_teenus"
+      ],
+      "relatedContacts": [
+        "viljandi_linn_contact_eret_mehik"
+      ],
+      "pricing": "Üldjuhul tasuta; saatmisega seotud lisakulud tasub üldjuhul teenuse saaja.",
+      "item_type": "service",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page",
+        "contacts_page",
+        "form_isikliku_abistaja_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_service_isikliku_abistaja_teenus",
+      "document_id": "viljandi_linn_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "content_hash": "6957c03220d77c94edfb61a5c4701d684e457d7c8fd520d5c38bb780107d6f73",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_service_jarelhooldusteenus",
+      "canonical_item_id": "viljandi_linn:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus toetab asendushoolduselt või eestkostelt lahkuva täisealise isiku iseseisvat toimetulekut ja õpingute jätkamist. Teenus võib hõlmata eluaseme ning vajaduspõhiste tugiteenuste ja toetuste tagamist. Teenuse kestus sõltub õppimisest, juhtumiplaanist ja kuni 25. eluaastani seatud piiridest.",
+      "sourceKeys": [
+        "adult_hardship_page",
+        "contacts_page"
+      ],
+      "targetGroup": "Asendushoolduselt või eestkostelt lahkuvad noored täisealised",
+      "conditions": "Teenuse saaja jätkab õpinguid ja vastab asendushoolduselt või eestkostelt lahkumise tingimustele.",
+      "application": {
+        "channels": [
+          "vabas vormis avaldus"
+        ],
+        "steps": [
+          "Esita vabas vormis avaldus Viljandi Linnavalitsuse sotsiaalametile.",
+          "Lisa isikut tõendav dokument ning vajadusel puudeotsus, rehabilitatsiooniplaan ja sissetuleku dokumendid.",
+          "Sotsiaalameti spetsialist hindab vajadust ja teeb teenusele suunamise otsuse."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viljandi_linn_contact_silja_simon"
+      ],
+      "pricing": "Vastavalt teenuseosutaja hinnakirjale ja juhtumiplaanile.",
+      "item_type": "service",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page",
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_service_jarelhooldusteenus",
+      "document_id": "viljandi_linn_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "content_hash": "ed8e1a78ed89e094159d2bfbe6fb03833de906c8f769401360ba8fccaeb9cf36",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_service_koduteenused",
+      "canonical_item_id": "viljandi_linn:service:koduteenused",
+      "itemType": "service",
+      "title": "Koduteenused",
+      "status": "active",
+      "summary": "Koduteenust saab taotleda Viljandi linnas elav täisealine isik, kes vajab kõrvalist abi kodus igapäevase eluga toimetulekul. Koduteenuste põhiteenused on vajalikud kodus toimetulekuks, tugiteenused toetavad toimetulekut kodus ja väljaspool kodu. Koduteenuseid osutab Viljandi Päevakeskus; teenus on kliendile tasuline.",
+      "sourceKeys": [
+        "adult_hardship_page",
+        "contacts_page",
+        "form_koduteenuse_taotlus_pdf"
+      ],
+      "targetGroup": "Täisealised Viljandi linna elanikud, kes vajavad abi kodus toimetulekuks",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          ""
+        ],
+        "steps": [
+          "Võta pesemisteenuse või koduteenuse vajaduse hindamiseks ühendust sotsiaalameti spetsialistiga telefonil või pöördu sotsiaalametisse.",
+          "Esita avaldus ja isikut tõendav dokument.",
+          "Sotsiaalamet hindab vajadust ja suunab teenusele."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "relatedForms": [
+        "viljandi_linn_form_koduteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "viljandi_linn_contact_elis_ehrlich"
+      ],
+      "pricing": "Tasuline vastavalt Viljandi Päevakeskuse teenuste hinnakirjale; vajadusel saab taotleda täiendavat sotsiaaltoetust.",
+      "item_type": "service",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page",
+        "contacts_page",
+        "form_koduteenuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_service_koduteenused",
+      "document_id": "viljandi_linn_service_koduteenused",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "content_hash": "f41ade64732360d1cbbef68ab473fa9cfaa44c3016ce52d0ec72229519202f75",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_service_parkimiskaart",
+      "canonical_item_id": "viljandi_linn:service:parkimiskaart",
+      "itemType": "service",
+      "title": "Puudega inimest teenindava sõiduki parkimiskaart",
+      "status": "active",
+      "summary": "Parkimiskaart väljastatakse Viljandi linna kodanikule, kellel on tuvastatud puude raskusaste või ajutine liikumis- või nägemisfunktsiooni kõrvalekalle. Kaart väljastatakse tasuta. Taotlemiseks tuleb tulla sotsiaalametisse ning esitada isikut tõendav dokument, dokumendifoto ja vajadusel pere- või eriarsti teatis.",
+      "sourceKeys": [
+        "adult_hardship_page",
+        "contacts_page"
+      ],
+      "targetGroup": "Liikumis- või nägemispuudega inimesed ning ajutise liikumis- või nägemisfunktsiooni kõrvalekaldega inimesed",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "kohapeal sotsiaalametis"
+        ],
+        "steps": [
+          "Tule Viljandi Linnavalitsuse sotsiaalametisse aadressil Johan Laidoneri plats 5a.",
+          "Esita isikut tõendav dokument, dokumendifoto ja vajadusel pere- või eriarsti teatis.",
+          "Otsus tehakse 10 tööpäeva jooksul vajalike dokumentide laekumisest."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viljandi_linn_contact_eret_mehik"
+      ],
+      "pricing": "Tasuta",
+      "item_type": "service",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page",
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_service_parkimiskaart",
+      "document_id": "viljandi_linn_service_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "content_hash": "6382bbe7c4a049589a17b0b09d2a275424fbab246b88cd1d2c88d08c718bfb1b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "viljandi_linn:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Teenuse eesmärk on tagada sobiv transpordivahend isikule, kelle tervislik olukord takistab isikliku või ühissõiduki kasutamist tööle, õppeasutusse või avalike teenuste kasutamiseks sõitmisel. Teenust osutab üldjuhul Viljandi Päevakeskus tööpäevadel kell 8.00–16.30 ja sõidusoov tuleb registreerida vähemalt 2 tööpäeva enne sõitu. Kui inimese majanduslik olukord ei võimalda teenust kasutada, saab taotleda kompensatsiooni sotsiaalametilt vähemalt 10 tööpäeva enne teenuse kasutamist.",
+      "sourceKeys": [
+        "adult_hardship_page",
+        "contacts_page"
+      ],
+      "targetGroup": "Inimesed, kelle tervislik olukord takistab isikliku või ühistranspordi kasutamist",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "otse Viljandi Päevakeskusele",
+          "sotsiaalameti avaldus kompensatsiooniks"
+        ],
+        "steps": [
+          "Kui tasud ise, pöördu otse Viljandi Päevakeskuse poole ja registreeri sõidusoov vähemalt 2 tööpäeva varem.",
+          "Kui vajad teenuse rahastamist, esita sotsiaalametile avaldus koos isikut tõendava dokumendi ja leibkonna kolme kuu netosissetuleku dokumentidega.",
+          "Sotsiaalkomisjon otsustab, kas ja millises ulatuses tasub teenuse eest linnavalitsus."
+        ],
+        "deadline": "Kompensatsiooni avaldus vähemalt 10 tööpäeva enne teenuse kasutamist"
+      },
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "relatedForms": [
+        "viljandi_linn_form_uhekordne_toetus"
+      ],
+      "relatedContacts": [
+        "viljandi_linn_contact_eret_mehik"
+      ],
+      "pricing": "Teenuse kasutaja tasub kulud hinnakirja alusel; kompensatsioon võimalik abivajaduse alusel.",
+      "item_type": "service",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page",
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_service_sotsiaaltransporditeenus",
+      "document_id": "viljandi_linn_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "content_hash": "75f5c80176313bded7b001ec4463495d917b391eba244e89e09794b547ca187a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_service_hoolduse_seadmine",
+      "canonical_item_id": "viljandi_linn:service:hoolduse_seadmine",
+      "itemType": "service",
+      "title": "Hoolduse seadmine täisealisele isikule",
+      "status": "active",
+      "summary": "Hooldajaks võib määrata täisealise teovõimelise isiku, kellel on reaalselt võimalik hooldust teostada ja kellele ei ole määratud rasket või sügavat puuet. Hooldus seatakse täisealisele inimesele, kes terviseseisundist tingituna vajab kõrvalabi ja juhendamist. Taotlemine toimub sotsiaalameti kaudu ning otsus tehakse 10 tööpäeva jooksul pärast vajalike dokumentide laekumist.",
+      "sourceKeys": [
+        "adult_hardship_page",
+        "contacts_page",
+        "form_hoolduse_lopetamine_pdf",
+        "form_hoolduse_seadmine_hooldajatoetus_pdf"
+      ],
+      "targetGroup": "Täisealised Viljandi linna elanikud, kellel on püsiv hooldusvajadus, ja võimalikud hooldajad",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "SPOKU e-teenus",
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Esita avaldus hoolduse seadmiseks ja hooldajatoetuse saamiseks läbi SPOKU või sotsiaalametile.",
+          "Lisa isikut tõendav dokument, puudeotsus, rehabilitatsiooniplaan ja vajadusel eestkostemäärus.",
+          "Hoolduse lõpetamiseks esita eraldi hoolduse lõpetamise avaldus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "relatedForms": [
+        "viljandi_linn_form_hoolduse_seadmine_hooldajatoetus",
+        "viljandi_linn_form_hoolduse_lopetamine"
+      ],
+      "relatedContacts": [
+        "viljandi_linn_contact_eret_mehik"
+      ],
+      "pricing": null,
+      "item_type": "service",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page",
+        "contacts_page",
+        "form_hoolduse_lopetamine_pdf",
+        "form_hoolduse_seadmine_hooldajatoetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_service_hoolduse_seadmine",
+      "document_id": "viljandi_linn_service_hoolduse_seadmine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "content_hash": "59da3c5a74a80624b7b51b654a2acb8cfd1c58cb6c1a38d42097db9ce5b562bc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_service_taiskasvanud_eestkoste",
+      "canonical_item_id": "viljandi_linn:service:taiskasvanud_eestkoste",
+      "itemType": "service",
+      "title": "Täiskasvanud isikute eestkoste",
+      "status": "active",
+      "summary": "Viljandi linn edastab kohtule avaldusi Eesti Rahvastikuregistri järgi Viljandi linnas elavatele täisealistele isikutele eestkoste seadmiseks ja eestkostja määramiseks. Eestkoste seatakse siis, kui inimene ei suuda psüühikahäire tõttu kestvalt oma tegudest aru saada või neid juhtida ja tema huve ei saa kaitsta vähem piiravate abinõudega. Riigilõiv on 10 eurot.",
+      "sourceKeys": [
+        "adult_hardship_page",
+        "contacts_page"
+      ],
+      "targetGroup": "Täisealised Viljandi linna elanikud, kes võivad vajada eestkostet, ning nende lähedased",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "kirjalik pöördumine",
+          "kohapeal sotsiaalametis"
+        ],
+        "steps": [
+          "Pöördu sotsiaalametisse või eestkoste teenistusse.",
+          "Esita vajalikud isikut ja abivajadust tõendavad dokumendid.",
+          "Linn aitab ette valmistada ja edastada avalduse kohtule."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viljandi_linn_contact_kaidi_rammo",
+        "viljandi_linn_contact_annika_liivamaa",
+        "viljandi_linn_contact_katrin_varblane"
+      ],
+      "pricing": "Riigilõiv 10 eurot",
+      "item_type": "service",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page",
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_service_taiskasvanud_eestkoste",
+      "document_id": "viljandi_linn_service_taiskasvanud_eestkoste",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "content_hash": "12909eeb544f11be5497a4c23a8898d62f00784f069b198b7a7ec613dfc28776",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_service_taiskasvanud_tugiisikuteenus",
+      "canonical_item_id": "viljandi_linn:service:taiskasvanud_tugiisikuteenus",
+      "itemType": "service",
+      "title": "Täiskasvanud isikute tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus aitab täisealisel inimesel oma igapäevase eluga paremini toime tulla ja vajadusel korraldada asjaajamist. Teenust osutatakse inimese vajaduse hindamise tulemusel ning teenuse sisu, sagedust ja kestust muudetakse vajadusel korduva hindamise põhjal. Teenus on teenuse saajale üldjuhul tasuta.",
+      "sourceKeys": [
+        "adult_hardship_page",
+        "contacts_page",
+        "form_taiskasvanu_tugiisik_pdf"
+      ],
+      "targetGroup": "Täisealised Viljandi linna elanikud, kes vajavad igapäevaelus tugiisiku abi",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Esita avaldus koos lisadokumentidega sotsiaalametile.",
+          "Lisa isikut tõendav dokument ja vajadusel eestkostemäärus.",
+          "Avaldus esitatakse sotsiaalkomisjonile; otsus tehakse 10 tööpäeva jooksul."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "relatedForms": [
+        "viljandi_linn_form_taiskasvanu_tugiisik"
+      ],
+      "relatedContacts": [
+        "viljandi_linn_contact_eret_mehik"
+      ],
+      "pricing": "Üldjuhul tasuta",
+      "item_type": "service",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page",
+        "contacts_page",
+        "form_taiskasvanu_tugiisik_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_service_taiskasvanud_tugiisikuteenus",
+      "document_id": "viljandi_linn_service_taiskasvanud_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "content_hash": "3fb12739f65172553259be046762f690fd42c8c02e39c96715d58a6c003ee797",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_service_taiskasvanud_turvakoduteenus",
+      "canonical_item_id": "viljandi_linn:service:taiskasvanud_turvakoduteenus",
+      "itemType": "service",
+      "title": "Täiskasvanud isikute turvakoduteenus",
+      "status": "active",
+      "summary": "Täiskasvanud isikute turvakoduteenuse eesmärk on ajutise eluaseme, turvalise keskkonna ja esmase abi tagamine. Teenuse vajadusel tuleb pöörduda Viljandi Linnavalitsuse sotsiaalametisse. Teenust vajav täisealine isik tasub teenuse eest kehtiva hinnakirja alusel, kuid veebilehe järgi on teenus hetkel tasuta.",
+      "sourceKeys": [
+        "adult_hardship_page",
+        "contacts_page"
+      ],
+      "targetGroup": "Täiskasvanud isikud, kes vajavad ajutist turvalist majutust ja esmast abi",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "kohapeal sotsiaalametis"
+        ],
+        "steps": [
+          "Pöördu sotsiaalametisse aadressil Johan Laidoneri plats 5a.",
+          "Esita isikut tõendav dokument.",
+          "Sotsiaalamet korraldab abivajavale täiskasvanule turvakoduteenuse."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viljandi_linn_contact_silja_simon"
+      ],
+      "pricing": "Hetkel tasuta",
+      "item_type": "service",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page",
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_service_taiskasvanud_turvakoduteenus",
+      "document_id": "viljandi_linn_service_taiskasvanud_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "content_hash": "1860a015038c51f9b1d026cbe91575e71d5f19e8ba54d0c6a17477e422cc912a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_service_varjupaigateenus",
+      "canonical_item_id": "viljandi_linn:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus on öömajateenus, mis annab inimesele voodikoha, pesemisvõimaluse varjupaiga lahtioleku ajal ning infot abi saamise võimaluste kohta. Teenust osutatakse sotsiaalselt abitus olukorras olevale inimesele, kellel puudub ajutiselt peavari või eluaseme kasutamise võimalus. Vältimatu abi korras saab varjupaika minna töövälisel ajal otse; pikemaks viibimiseks tuleb järgmisel tööpäeval pöörduda sotsiaalametisse.",
+      "sourceKeys": [
+        "adult_hardship_page",
+        "contacts_page",
+        "form_varjupaigateenus_pdf"
+      ],
+      "targetGroup": "Täiskasvanud, kes on sotsiaalselt abitus olukorras ja vajavad ajutist öömaja",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "otse varjupaika töövälisel ajal",
+          "sotsiaalameti avaldus"
+        ],
+        "steps": [
+          "Vältimatu abi korras mine varjupaiga lahtiolekuaegadel (16.00–08.00) otse varjupaika.",
+          "Kui vajad teenust enam kui üks öö, pöördu järgmisel tööpäeval sotsiaalametisse loa saamiseks.",
+          "Enam kui üheks ööks esita vormikohane avaldus ja kolme eelneva kuu kontoväljavõtted."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "relatedForms": [
+        "viljandi_linn_form_varjupaigateenus"
+      ],
+      "relatedContacts": [
+        "viljandi_linn_contact_elis_ehrlich"
+      ],
+      "pricing": "Vältimatu abi korras tasuta üks öö; pikema vajaduse korral tuleb pöörduda sotsiaalametisse.",
+      "item_type": "service",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page",
+        "contacts_page",
+        "form_varjupaigateenus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_service_varjupaigateenus",
+      "document_id": "viljandi_linn_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "content_hash": "62d4bb1b391b5a9bb2e1bf51b1f887c769facf492e7cab8d0046cd938c084d8b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_service_viipetolgi_teenus",
+      "canonical_item_id": "viljandi_linn:service:viipetolgi_teenus",
+      "itemType": "service",
+      "title": "Viipetõlgi teenus",
+      "status": "active",
+      "summary": "Viljandi linnas elavatel kurtidel ja vaegkuuljatel on võimalik tellida viipekeeletõlgi teenust tervishoiuasutustes, ametiasutustes, õigusalastes või perekondlikes asjaajamistes, kriisiolukordades ja muudel linnavalitsusega kooskõlastatud põhjustel. Kui klient ei leia tõlketeenuse osutajat ise, aitab teenust korraldada täisealiste heaolu spetsialist. Tellimus tuleb üldjuhul esitada vähemalt 24 tundi enne teenuse osutamise aega, välja arvatud kriisiolukordades.",
+      "sourceKeys": [
+        "adult_hardship_page",
+        "contacts_page"
+      ],
+      "targetGroup": "Viljandi linnas elavad kurdid ja vaegkuuljad inimesed",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "taasesitatavas vormis pöördumine sotsiaalametile"
+        ],
+        "steps": [
+          "Esita nimi, isikukood ning aeg ja koht, kus tõlki vajatakse.",
+          "Esita tellimus vähemalt 24 tundi enne teenuse osutamise aega, välja arvatud kriisiolukorras.",
+          "Teenust saab tellida klient, kliendi esindaja või kriisiolukorras politsei- või päästeametnik."
+        ],
+        "deadline": "Vähemalt 24 tundi enne teenuse aega, välja arvatud kriisiolukorras"
+      },
+      "decisionTime": null,
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viljandi_linn_contact_silja_simon"
+      ],
+      "pricing": "Rahastamist saab vajadusel taotleda täiendava sotsiaaltoetuse kaudu.",
+      "item_type": "service",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page",
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_service_viipetolgi_teenus",
+      "document_id": "viljandi_linn_service_viipetolgi_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "content_hash": "0af565c962fdea69f1093f9d9c71a9bdb06bf211e478fc46931bcebbcfca1aee",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_service_volanoustamisteenus",
+      "canonical_item_id": "viljandi_linn:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab Viljandi linna registreeritud inimesel selgitada oma varalist olukorda, pidada läbirääkimisi võlausaldajatega, rahuldada nõudeid, ennetada uusi võlgnevusi ja lahendada muid võlgadega seotud probleeme. Linnavalitsus ei ole vahetu teenuseosutaja, kuid aitab teenust korraldada ja tasub vajaduse hindamise alusel teenuse eest osaliselt või täielikult. Läbi linnavalitsuse on teenus üldjuhul teenuse saajale tasuta, kuid sotsiaalkomisjon võib määrata omaosaluse.",
+      "sourceKeys": [
+        "adult_hardship_page",
+        "contacts_page",
+        "form_volanoustamine_doc"
+      ],
+      "targetGroup": "Viljandi linna registreeritud toimetulekuraskustes inimesed, kellel on võlaprobleemid",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "SPOKU e-teenus",
+          "kirjalik avaldus",
+          "kohapealne pöördumine"
+        ],
+        "steps": [
+          "Kui rahastad teenust ise, pöördu otse teenuseosutaja poole.",
+          "Kui vajad teenuse korraldamisel või rahastamisel abi, pöördu sotsiaalametisse.",
+          "Esita avaldus, kolme eelneva kuu kontoväljavõtted ja võlanõustaja juurde kaasa võetavate dokumentide loetelu."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "relatedForms": [
+        "viljandi_linn_form_volanoustamine"
+      ],
+      "relatedContacts": [
+        "viljandi_linn_contact_silja_simon"
+      ],
+      "pricing": "Läbi linnavalitsuse üldjuhul tasuta; sotsiaalkomisjon võib määrata omaosaluse.",
+      "item_type": "service",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page",
+        "contacts_page",
+        "form_volanoustamine_doc"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_service_volanoustamisteenus",
+      "document_id": "viljandi_linn_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "content_hash": "db5c0fc58f10b28c8353d868d9220f7997186dab3765fce07ddd5978b57b6176",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_service_valjaspool_kodu_uldhooldusteenus",
+      "canonical_item_id": "viljandi_linn:service:valjaspool_kodu_uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Teenust on õigustatud saama täisealine Viljandi linna elanik, kes vajab east, terviseseisundist, tegevusvõimest või elukeskkonnast tulenevalt ööpäevaringset kõrvalabi ja kelle kodus toimetulekut ei saa tagada teiste teenuste või muu abiga. Alates 01.07.2023 osaleb Viljandi Linnavalitsus hoolduskulude katmisel kuni 580 euro ulatuses ja võib anda väiksema sissetuleku hüvitist või lisarahastust. Teenusele suunamise otsustab sotsiaalameti spetsialist, mittesuunamise sotsiaalkomisjon.",
+      "sourceKeys": [
+        "adult_hardship_page",
+        "contacts_page"
+      ],
+      "targetGroup": "Täisealised Viljandi linna elanikud, kes vajavad ööpäevaringset üldhooldust",
+      "conditions": "Kodune toimetulek ei ole võimalik ning vajadust ei saa katta teiste sotsiaalteenuste või muu abiga.",
+      "application": {
+        "channels": [
+          "sotsiaalameti hindamine",
+          "kirjalik avaldus täiendava hüvitise jaoks"
+        ],
+        "steps": [
+          "Pöördu sotsiaalametisse abivajaduse hindamiseks.",
+          "Vali koos lähedastega sobiv teenuseosutaja ja sõlmi teenuseosutajaga leping.",
+          "Täiendava kulu hüvitamiseks esita avaldus ja teenust vajava isiku ning ülalpidajate kuue kuu kontoväljavõtted ja muud varalist seisu tõendavad dokumendid."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Hoolduskulu hüvitise ja väiksema sissetuleku hüvitise otsus 10 tööpäeva jooksul pärast dokumentide laekumist.",
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viljandi_linn_contact_jaanika_ritval"
+      ],
+      "pricing": "Linn hüvitab hoolduskulu komponendi kuni 580 euro ulatuses ning võib anda lisarahastust vajaduse ja maksevõimekuse hindamise põhjal.",
+      "item_type": "service",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page",
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_service_valjaspool_kodu_uldhooldusteenus",
+      "document_id": "viljandi_linn_service_valjaspool_kodu_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "content_hash": "4483d9ba8a65c6a2704aa0b688337ab6f6685e69195f1bcd3670fde6e097d3e2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_service_sotsiaaleluruum",
+      "canonical_item_id": "viljandi_linn:service:sotsiaaleluruum",
+      "itemType": "service",
+      "title": "Sotsiaaleluruumi taotlemine",
+      "status": "active",
+      "summary": "Sotsiaaleluruumi teenus on mõeldud inimesele või leibkonnale, kellel on raskusi eluruumi tagamisega ning kes vastab linna seatud tingimustele. Üürilepingu alusel eluruumi kasutamisel tasub üürnik üüri ja kõrvalkulud, välja arvatud remondifondi tasu. Sotsiaaleluruumi üürile andmise või üürilepingu pikendamise otsus tehakse 10 tööpäeva jooksul pärast vajalike dokumentide laekumist.",
+      "sourceKeys": [
+        "adult_hardship_page",
+        "contacts_page",
+        "form_sotsiaaleluruum_pdf"
+      ],
+      "targetGroup": "Viljandi linna elanikud ja leibkonnad, kes vajavad sotsiaaleluruumi",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Esita avaldus koos lisadokumentidega Viljandi Linnavalitsuse sotsiaalametile.",
+          "Lisa kõigi leibkonnaliikmete kolme eelneva kalendrikuu pangakontode väljavõtted ja eluasemekulude arved.",
+          "Vajadusel esita sotsiaaleluruumi üürilepingu pikendamise avaldus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "relatedForms": [
+        "viljandi_linn_form_sotsiaaleluruum"
+      ],
+      "relatedContacts": [
+        "viljandi_linn_contact_elis_ehrlich"
+      ],
+      "pricing": "Üürnik tasub üüri ja eluruumi kõrvalkulud, välja arvatud remondifondi tasu.",
+      "item_type": "service",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page",
+        "contacts_page",
+        "form_sotsiaaleluruum_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_service_sotsiaaleluruum",
+      "document_id": "viljandi_linn_service_sotsiaaleluruum",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "content_hash": "007e1c76fe663f1c120fd92c6866294878f91f9504de4a257838e6d1fe49fd3d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_benefit_koolimineku_toetus",
+      "canonical_item_id": "viljandi_linn:benefit:koolimineku_toetus",
+      "itemType": "benefit",
+      "title": "Koolimineku toetus toimetulekutoetust saanud perekonna lapsele",
+      "status": "active",
+      "summary": "Koolimineku toetus makstakse kuni üks kord kalendriaastas lapsele, kui taotleja on jooksval aastal 1. augustist 31. oktoobrini vähemalt ühel kuul saanud toimetulekutoetust. Toetus on mõeldud kuni 19-aastastele üld-, kesk- või kutseõppeasutuses õppivatele lastele, välja arvatud esimesse klassi minevad lapsed ja akadeemilisel puhkusel olevad õpilased. Toetuse suurus on 50 eurot.",
+      "sourceKeys": [
+        "children_family_page",
+        "contacts_page",
+        "form_koolimineku_toetus_pdf"
+      ],
+      "targetGroup": "Toimetulekutoetust saanud perede kuni 19-aastased õppivad lapsed",
+      "conditions": "Taotleja on saanud toimetulekutoetust ajavahemikul 1. august kuni 31. oktoober vähemalt ühel kuul; laps õpib üld-, kesk- või kutseõppeasutuses.",
+      "application": {
+        "channels": [
+          "kohapeal Linnu 2",
+          "",
+          "SPOKU e-teenus"
+        ],
+        "steps": [
+          "Esita taotlus oktoobrikuu jooksul.",
+          "Lisa vajadusel kooli tõend õppimise kohta ja isikut tõendav dokument."
+        ],
+        "deadline": "Oktoobrikuu jooksul"
+      },
+      "decisionTime": "10 tööpäeva; rahaline hüvitis makstakse 30 kalendripäeva jooksul otsuse tegemisest",
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-lapsele-ja-perele/",
+      "relatedForms": [
+        "viljandi_linn_form_koolimineku_toetus"
+      ],
+      "relatedContacts": [
+        "viljandi_linn_contact_gaide_mikkor"
+      ],
+      "amount": "50 eurot",
+      "item_type": "benefit",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "children_family_page",
+        "contacts_page",
+        "form_koolimineku_toetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_benefit_koolimineku_toetus",
+      "document_id": "viljandi_linn_benefit_koolimineku_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-lapsele-ja-perele/",
+      "content_hash": "f7b2f409a3ef2ecfde4e76084d6794bfea11ee6ae6890c6b4d579079f439af83",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_benefit_puudega_lapse_hooldajatoetus",
+      "canonical_item_id": "viljandi_linn:benefit:puudega_lapse_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Puudega lapse hooldajatoetus",
+      "status": "active",
+      "summary": "Puudega lapse hooldajatoetust makstakse Viljandi linna elava puudega lapse ühele vanemale, eestkostjale või perekonnas hooldamise lepingu alusel hooldajale, kes ei saa töötada või õppida lapse hooldamise tõttu. Toetuse suurus on 210 eurot kuus. Toetus määratakse otsuse tegemisele järgneva kuu esimesest kuupäevast ja makstakse välja hiljemalt arvestatava kuu 15. kuupäevaks.",
+      "sourceKeys": [
+        "children_family_page",
+        "contacts_page",
+        "form_puudega_lapse_hooldajatoetus_pdf"
+      ],
+      "targetGroup": "Puudega lapse vanem, eestkostja või perekonnas hooldamise lepingu alusel hooldaja",
+      "conditions": "Laps on Viljandi linna elanik ja hooldajal ei ole võimalik puudega lapse hooldamise tõttu töötada või õppida.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Esita avaldus Viljandi Linnavalitsuse sotsiaalametile aadressil Johan Laidoneri plats 5a.",
+          "Lisa isikut tõendav dokument, lapse puudeotsus, rehabilitatsiooniplaan, vajadusel eestkostemäärus või perekonnas hooldamise leping."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Kuni 30 päeva",
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-lapsele-ja-perele/",
+      "relatedForms": [
+        "viljandi_linn_form_puudega_lapse_hooldajatoetus"
+      ],
+      "relatedContacts": [
+        "viljandi_linn_contact_piret_jogiste"
+      ],
+      "amount": "210 eurot kuus",
+      "item_type": "benefit",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "children_family_page",
+        "contacts_page",
+        "form_puudega_lapse_hooldajatoetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_benefit_puudega_lapse_hooldajatoetus",
+      "document_id": "viljandi_linn_benefit_puudega_lapse_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-lapsele-ja-perele/",
+      "content_hash": "6ee5c57c8c57677b50d723c68e8560cc5287a6e543b3ba5ad304fc4d6f8cb5bd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_benefit_lasteaia_toitlustamise_toetus",
+      "canonical_item_id": "viljandi_linn:benefit:lasteaia_toitlustamise_toetus",
+      "itemType": "benefit",
+      "title": "Lasteaialaste toitlustamise toetus",
+      "status": "active",
+      "summary": "Lasteaialaste toitlustamise toetust saab taotleda Viljandi linna rahvastikuregistrijärgse elukohaga pere, kelle kolme eelneva kuu keskmine netosissetulek pärast eluasemekulude mahaarvamist jääb alla kahekordse toimetulekupiiri. Toetuse suurus kujuneb toitlustusfirma arvete põhjal ja toetus kantakse arve alusel toitlustusfirmale. Avaldused esitatakse igal aastal 20. aprilliks, 20. augustiks ja 20. detsembriks.",
+      "sourceKeys": [
+        "children_family_page",
+        "contacts_page",
+        "form_lasteaia_toidutoetus_pdf"
+      ],
+      "targetGroup": "Madala sissetulekuga Viljandi linna lasteaiapered",
+      "conditions": "Pere elukoht on Viljandi linn ja netosissetulek pärast eluasemekulusid on alla kahekordse toimetulekupiiri.",
+      "application": {
+        "channels": [
+          "kohapeal Linnu 2",
+          "",
+          "SPOKU e-teenus"
+        ],
+        "steps": [
+          "Esita avaldus kindlaks kuupäevaks.",
+          "Lisa isikut tõendav dokument, kõigi leibkonnaliikmete kolme eelneva kuu pangakonto väljavõtted ja eluasemekulude arved."
+        ],
+        "deadline": "20. aprill, 20. august ja 20. detsember"
+      },
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-lapsele-ja-perele/",
+      "relatedForms": [
+        "viljandi_linn_form_lasteaia_toitlustamise_toetus"
+      ],
+      "relatedContacts": [
+        "viljandi_linn_contact_gaide_mikkor"
+      ],
+      "amount": "Arvete põhjal",
+      "item_type": "benefit",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "children_family_page",
+        "contacts_page",
+        "form_lasteaia_toidutoetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_benefit_lasteaia_toitlustamise_toetus",
+      "document_id": "viljandi_linn_benefit_lasteaia_toitlustamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-lapsele-ja-perele/",
+      "content_hash": "359482d30fb15b334a9b715324d165d91d1634093bfd919505205ee6e05171cb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_benefit_uliopilase_sotsiaalne_toetus",
+      "canonical_item_id": "viljandi_linn:benefit:uliopilase_sotsiaalne_toetus",
+      "itemType": "benefit",
+      "title": "Üliõpilase sotsiaalne toetus",
+      "status": "active",
+      "summary": "Vähekindlustatud perede üliõpilaste sotsiaalset toetust makstakse Viljandi linna elanikule, kes õpib Eesti Haridus- ja Teadusministeeriumi litsentsi omavas kõrgkoolis. Tingimuseks on, et leibkonna kolme eelneva kuu keskmine netosissetulek pärast eluasemekulude mahaarvamist jääb alla kahekordse toimetulekupiiri. Taotlusi võetakse vastu septembris ja veebruaris ning toetus kantakse taotleja arveldusarvele.",
+      "sourceKeys": [
+        "children_family_page",
+        "contacts_page",
+        "form_uliopilase_toetus_pdf"
+      ],
+      "targetGroup": "Viljandi linna elanikust madala sissetulekuga üliõpilane",
+      "conditions": "Õppimine kõrgkoolis ja leibkonna sissetulek alla kahekordse toimetulekupiiri.",
+      "application": {
+        "channels": [
+          "kohapeal Linnu 2",
+          "",
+          "SPOKU e-teenus"
+        ],
+        "steps": [
+          "Esita avaldus septembri või veebruari jooksul.",
+          "Lisa isikut tõendav dokument, pangakontode väljavõtted, eluasemekulude arved, tõend kõrgkoolis õppimise kohta ja hinneteleht."
+        ],
+        "deadline": "Septembri ja veebruari jooksul"
+      },
+      "decisionTime": "Sotsiaalkomisjoni otsusest teavitatakse hiljemalt 10 tööpäeva jooksul",
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-lapsele-ja-perele/",
+      "relatedForms": [
+        "viljandi_linn_form_uliopilase_sotsiaalne_toetus"
+      ],
+      "relatedContacts": [
+        "viljandi_linn_contact_silja_simon"
+      ],
+      "amount": null,
+      "item_type": "benefit",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "children_family_page",
+        "contacts_page",
+        "form_uliopilase_toetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_benefit_uliopilase_sotsiaalne_toetus",
+      "document_id": "viljandi_linn_benefit_uliopilase_sotsiaalne_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-lapsele-ja-perele/",
+      "content_hash": "1f9954ab1e6972b68a5f3042c9e26a5cd8e1c88d97dad74aa19214c61c914943",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_benefit_sunnitoetus",
+      "canonical_item_id": "viljandi_linn:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetust makstakse taotluse alusel juhul, kui vähemalt üks vanematest on lapse sünni hetkest Viljandi linna elanike registris ja lapse registrijärgne elukoht on taotluse esitamise hetkel Viljandi linn. Taotlus tuleb esitada kolme kuu jooksul pärast lapse sündi. Toetuse määr on 700 eurot ning taotluse menetluse maksimaalne aeg on 30 päeva.",
+      "sourceKeys": [
+        "children_family_page",
+        "contacts_page",
+        "form_sunnitoetus_docx"
+      ],
+      "targetGroup": "Viljandi linnas registreeritud lapsevanemad",
+      "conditions": "Vähemalt üks vanem on lapse sünni hetkest Viljandi linna elanik ja laps on taotluse esitamise ajal Viljandi linna elanik.",
+      "application": {
+        "channels": [
+          "kohapeal Linnu 2",
+          "",
+          "SPOKU e-teenus"
+        ],
+        "steps": [
+          "Esita sünnitoetuse taotlus kolme kuu jooksul pärast lapse sündi.",
+          "Täida taotlusvorm ja esita nõutavad andmed."
+        ],
+        "deadline": "3 kuud pärast lapse sündi"
+      },
+      "decisionTime": "30 päeva",
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-lapsele-ja-perele/",
+      "relatedForms": [
+        "viljandi_linn_form_sunnitoetus"
+      ],
+      "relatedContacts": [
+        "viljandi_linn_contact_gaide_mikkor"
+      ],
+      "amount": "700 eurot",
+      "item_type": "benefit",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "children_family_page",
+        "contacts_page",
+        "form_sunnitoetus_docx"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_benefit_sunnitoetus",
+      "document_id": "viljandi_linn_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-lapsele-ja-perele/",
+      "content_hash": "ef11f8243881780b54e091ea69412af7a12320e218ce2a1b6cbe89777224af32",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_benefit_koolilopetamise_toetus",
+      "canonical_item_id": "viljandi_linn:benefit:koolilopetamise_toetus",
+      "itemType": "benefit",
+      "title": "Koolilõpetamise toetus toimetulekutoetust saanud perekonna lapsele",
+      "status": "active",
+      "summary": "Koolilõpetamise toetuse plokis on Viljandi linna veebilehel kirjeldatud koolimineku toetusega sama 50 euro suurust toetust toimetulekutoetust saanud pere lapsele. Taotlus esitatakse oktoobrikuu jooksul ning vajadusel lisatakse kooli tõend õppimise kohta. Hüvitise andmine otsustatakse kümne tööpäeva jooksul ja rahaline hüvitis makstakse välja 30 kalendripäeva jooksul otsuse tegemisest.",
+      "sourceKeys": [
+        "children_family_page",
+        "contacts_page",
+        "form_koolilopetamise_toetus_pdf"
+      ],
+      "targetGroup": "Toimetulekutoetust saanud pere laps",
+      "conditions": "Taotleja on saanud toimetulekutoetust ning laps vastab veebilehel nimetatud õppimise tingimustele.",
+      "application": {
+        "channels": [
+          "kohapeal Linnu 2",
+          "",
+          "SPOKU e-teenus"
+        ],
+        "steps": [
+          "Esita taotlus oktoobrikuu jooksul.",
+          "Lisa vajadusel kooli tõend õppimise kohta ja isikut tõendav dokument."
+        ],
+        "deadline": "Oktoobrikuu jooksul"
+      },
+      "decisionTime": "10 tööpäeva; väljamakse 30 kalendripäeva jooksul",
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-lapsele-ja-perele/",
+      "relatedForms": [
+        "viljandi_linn_form_koolilopetamise_toetus"
+      ],
+      "relatedContacts": [
+        "viljandi_linn_contact_gaide_mikkor"
+      ],
+      "amount": "50 eurot",
+      "item_type": "benefit",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "children_family_page",
+        "contacts_page",
+        "form_koolilopetamise_toetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_benefit_koolilopetamise_toetus",
+      "document_id": "viljandi_linn_benefit_koolilopetamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-lapsele-ja-perele/",
+      "content_hash": "96cfd1316c2a4f12955325884b5bd5d72b8c9fef7a3e18c1d1abba2543e4d185",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_benefit_eluruumi_kohandamise_toetus",
+      "canonical_item_id": "viljandi_linn:benefit:eluruumi_kohandamise_toetus",
+      "itemType": "benefit",
+      "title": "Eluruumide kohandamise toetus",
+      "status": "active",
+      "summary": "Eluruumi kohandamise eesmärk on tagada puudega inimese võimalikult iseseisev ja turvaline toimetulek oma eluruumis ning sinna sisenemisel ja sealt väljumisel. Kulude hüvitamisel lähtutakse puudega isiku kohandamise vajadusest ning taotleja ja tema ülalpidamiskohustusega isikute sissetulekutest. Hüvitise suurus on üldjuhul kuni 85% kohandamise maksumusest, kuid maksimaalselt 3000 eurot ühe taotluse kohta viie aasta jooksul.",
+      "sourceKeys": [
+        "adult_hardship_page",
+        "contacts_page",
+        "form_eluruumi_kohandamine_pdf"
+      ],
+      "targetGroup": "Viljandi linnas elavad puudega inimesed, kelle eluruum vajab kohandamist",
+      "conditions": "Puudega isiku eluruumis liikumine, toimetulek või suhtlemine on puudest tingitult raskendatud.",
+      "application": {
+        "channels": [
+          "SPOKU e-teenus",
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Esita avaldus ja lisadokumendid sotsiaalametile.",
+          "Lisa vähemalt kaks hinnapakkumist, omaniku või kaasomaniku nõusolek, vajadusel korteriühistu nõusolek ning majanduslikku seisu tõendavad dokumendid.",
+          "Pärast tööde teostamist esita kulu tõendavad dokumendid; sotsiaalamet ja majandusamet vaatavad kohandatud eluruumi üle."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Kontrollakt 10 tööpäeva jooksul pärast kulu tõendavate dokumentide saamist",
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "relatedForms": [
+        "viljandi_linn_form_eluruumi_kohandamine"
+      ],
+      "relatedContacts": [
+        "viljandi_linn_contact_eret_mehik"
+      ],
+      "amount": "Üldjuhul kuni 85% kuludest, maksimaalselt 3000 eurot",
+      "item_type": "benefit",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page",
+        "contacts_page",
+        "form_eluruumi_kohandamine_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_benefit_eluruumi_kohandamise_toetus",
+      "document_id": "viljandi_linn_benefit_eluruumi_kohandamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "content_hash": "dcc3e1898e7d67e541898e21c78ada030d4fec4d9e826c792eb89ca58dcc44b3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_benefit_hooldajatoetus_taiskasvanud",
+      "canonical_item_id": "viljandi_linn:benefit:hooldajatoetus_taiskasvanud",
+      "itemType": "benefit",
+      "title": "Täisealise hooldajatoetus",
+      "status": "active",
+      "summary": "Hooldajatoetust makstakse Viljandi linnas elava 18-aastase või vanema inimese hooldamise eest teovõimelisele hooldajale või eestkostjale. Toetuse suurus on 40 eurot kuus, kui hooldatav vajab kõrvalabi, juhendamist või järelevalvet igal ööpäeval, ning 60 eurot kuus, kui hooldatav vajab ööpäevaringset abi. Hooldajatoetuse määramise või sellest keeldumise otsus tehakse 30 päeva jooksul taotluse või täiendavate andmete esitamisest.",
+      "sourceKeys": [
+        "adult_hardship_page",
+        "contacts_page",
+        "form_hoolduse_lopetamine_pdf",
+        "form_hoolduse_seadmine_hooldajatoetus_pdf"
+      ],
+      "targetGroup": "Täisealiste hooldajad ja eestkostjad",
+      "conditions": "Hooldatav on Viljandi linna elanik ning vajab terviseseisundist tingituna kõrvalabi ja juhendamist.",
+      "application": {
+        "channels": [
+          "SPOKU e-teenus",
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Esita avaldus hoolduse seadmiseks ja hooldajatoetuse saamiseks.",
+          "Lisa isikut tõendav dokument, puudeotsus, rehabilitatsiooniplaan ja vajadusel eestkostemäärus."
+        ],
+        "deadline": "Avaldusi võetakse vastu kuni kalendrikuu viimase tööpäeva vastuvõtu aja lõpuni"
+      },
+      "decisionTime": "30 päeva; väljamakse hiljemalt kalendrikuu viimaseks tööpäevaks",
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "relatedForms": [
+        "viljandi_linn_form_hoolduse_seadmine_hooldajatoetus",
+        "viljandi_linn_form_hoolduse_lopetamine"
+      ],
+      "relatedContacts": [
+        "viljandi_linn_contact_eret_mehik"
+      ],
+      "amount": "40 või 60 eurot kuus",
+      "item_type": "benefit",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page",
+        "contacts_page",
+        "form_hoolduse_lopetamine_pdf",
+        "form_hoolduse_seadmine_hooldajatoetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_benefit_hooldajatoetus_taiskasvanud",
+      "document_id": "viljandi_linn_benefit_hooldajatoetus_taiskasvanud",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "content_hash": "1eaf0fd2df4beb65aece9535d299ae004d597cf3a79d7b5ca37256a5ed61201a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_benefit_toiduabi",
+      "canonical_item_id": "viljandi_linn:benefit:toiduabi",
+      "itemType": "benefit",
+      "title": "Toiduabi",
+      "status": "active",
+      "summary": "Sotsiaalameti spetsialist võib otsustada toidupaki andmise leibkondadele, kelle elukoht on Viljandi linn ning kes saavad toimetulekutoetust või kellel on sissetuleku ja eluasemekulude järgi õigus toimetulekutoetusele. Erandkorras võib toiduabi anda ka muule toimetulekuraskustes leibkonnale, et säilitada ajutine minimaalne toimetulek. Toiduabi antakse toimetulekutoetuse menetluse tulemusel ning vajadusel saab taotleja esitada erakorralise olukorra kirjelduse.",
+      "sourceKeys": [
+        "adult_hardship_page",
+        "contacts_page"
+      ],
+      "targetGroup": "Toimetulekutoetust saavad või toimetulekutoetusele õigust omavad Viljandi linna leibkonnad",
+      "conditions": "Leibkond saab toimetulekutoetust või vastab toimetulekutoetuse tingimustele; erandkorras muu põhjendatud ajutine abivajadus.",
+      "application": {
+        "channels": [
+          "toimetulekutoetuse menetlus",
+          "kirjalik selgitus erandjuhtumi korral"
+        ],
+        "steps": [
+          "Toiduabi antakse üldjuhul toimetulekutoetuse menetluse tulemusel.",
+          "Kui leibkond toimetulekutoetust ei saa, esita rasket olukorda põhjustanud olukorra kirjeldus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viljandi_linn_contact_gaide_mikkor"
+      ],
+      "amount": "Sõltub saadud toidu kogustest",
+      "item_type": "benefit",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page",
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_benefit_toiduabi",
+      "document_id": "viljandi_linn_benefit_toiduabi",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "content_hash": "ffa8cd2d2c07eaf5df2dedb719ba07a61db8f7d31122241641fffe3ca0eb56b5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_benefit_toimetulekutoetus",
+      "canonical_item_id": "viljandi_linn:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetuse eesmärk on tagada minimaalsed vahendid esmavajaduste rahuldamiseks. Toetust on õigus saada Viljandi linnas elaval isikul või leibkonnal, kelle eelmise kuu netosissetulek pärast eluasemekulude tasumist jääb alla kehtestatud toimetulekupiiri. Toetus määratakse viie tööpäeva jooksul pärast kõikide dokumentide esitamist ja makstakse kolme tööpäeva jooksul otsusest.",
+      "sourceKeys": [
+        "adult_hardship_page",
+        "contacts_page",
+        "form_toimetulekutoetus_pdf",
+        "form_toimetulekutoetuse_lisa_pdf"
+      ],
+      "targetGroup": "Madala sissetulekuga Viljandi linna elanikud ja leibkonnad",
+      "conditions": "Eelmise kuu netosissetulek pärast eluasemekulude tasumist jääb alla toimetulekupiiri.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Esita avaldus kuni kalendrikuu viimase tööpäeva vastuvõtu aja lõpuni sotsiaalametis.",
+          "Lisa isikut tõendav dokument, eelmise kuu pangakontode väljavõtted, eluruumi kasutamisõigust tõendav dokument, eluasemekulude arved ning vajadusel pere ja vara andmed.",
+          "Esmakordsel taotlemisel või andmete muutumisel esita toimetulekutoetuse lisa."
+        ],
+        "deadline": "Kuni kalendrikuu viimase tööpäeva vastuvõtuaja lõpuni"
+      },
+      "decisionTime": "5 tööpäeva; väljamakse 3 tööpäeva jooksul otsusest",
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "relatedForms": [
+        "viljandi_linn_form_toimetulekutoetus",
+        "viljandi_linn_form_toimetulekutoetuse_lisa"
+      ],
+      "relatedContacts": [
+        "viljandi_linn_contact_gaide_mikkor",
+        "viljandi_linn_contact_silja_simon"
+      ],
+      "amount": null,
+      "item_type": "benefit",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page",
+        "contacts_page",
+        "form_toimetulekutoetus_pdf",
+        "form_toimetulekutoetuse_lisa_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_benefit_toimetulekutoetus",
+      "document_id": "viljandi_linn_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "content_hash": "b1e60333de97b85c668b2b567ddefcbbea74ce92c2478ef52ebc97158fc0c3e4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_benefit_taiendav_sotsiaaltoetus",
+      "canonical_item_id": "viljandi_linn:benefit:taiendav_sotsiaaltoetus",
+      "itemType": "benefit",
+      "title": "Täiendav sotsiaaltoetus",
+      "status": "active",
+      "summary": "Täiendavat sotsiaaltoetust makstakse peredele, kelle rahvastikuregistrijärgne elukoht on Viljandi linn ja kelle kolme eelneva kuu keskmine netosissetulek pärast eluasemekulude mahaarvamist on väiksem kui kahekordne toimetulekupiir. Toetus aitab katta rasket olukorda põhjustanud kulusid ning muid hädavajalikke kulutusi. Ühekordse toetuse määr on kuni 150 eurot, kuid sotsiaalkomisjon võib põhjendatud vajaduse korral määrata suurema toetuse.",
+      "sourceKeys": [
+        "adult_hardship_page",
+        "contacts_page",
+        "form_uhekordne_toetus_pdf"
+      ],
+      "targetGroup": "Viljandi linna madala sissetulekuga pered ja üksikisikud",
+      "conditions": "Elukoht Viljandi linnas ja sissetulek pärast eluasemekulusid alla kahekordse toimetulekupiiri.",
+      "application": {
+        "channels": [
+          "kohapeal sotsiaalametis",
+          "SPOKU e-teenus"
+        ],
+        "steps": [
+          "Esita avaldus sotsiaalametile või läbi SPOKU.",
+          "Lisa isikut tõendav dokument, kulutust tõendavad dokumendid, kolme eelneva kuu netosissetuleku dokumendid ja eluasemekulude arved."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva; väljamakse 30 kalendripäeva jooksul otsusest",
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "relatedForms": [
+        "viljandi_linn_form_uhekordne_toetus"
+      ],
+      "relatedContacts": [
+        "viljandi_linn_contact_gaide_mikkor"
+      ],
+      "amount": "Kuni 150 eurot, põhjendatud juhul rohkem",
+      "item_type": "benefit",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page",
+        "contacts_page",
+        "form_uhekordne_toetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_benefit_taiendav_sotsiaaltoetus",
+      "document_id": "viljandi_linn_benefit_taiendav_sotsiaaltoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "content_hash": "8bdc5472771ee2ce20987fbf1c2c651a96aa017647706861299a1728d7a06916",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_benefit_sunnipaevatoetus",
+      "canonical_item_id": "viljandi_linn:benefit:sunnipaevatoetus",
+      "itemType": "benefit",
+      "title": "Sünnipäevatoetus 100-aastastele ja vanematele",
+      "status": "active",
+      "summary": "Sünnipäevatoetust makstakse 100-aastastele ja vanematele eakatele, kelle Eesti Rahvastikuregistri järgne elukoht on Viljandi linn. Toetuse suurus on 300 eurot. Kontaktisik on täisealiste heaolu teenistuse spetsialist Jaanika Ritval.",
+      "sourceKeys": [
+        "adult_hardship_page",
+        "contacts_page"
+      ],
+      "targetGroup": "100-aastased ja vanemad Viljandi linna elanikud",
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": [],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viljandi_linn_contact_jaanika_ritval"
+      ],
+      "amount": "300 eurot",
+      "item_type": "benefit",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page",
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_benefit_sunnipaevatoetus",
+      "document_id": "viljandi_linn_benefit_sunnipaevatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/abi-toimetulekuraskusega-inimesele/",
+      "content_hash": "c941e3e2ff306c975fe43328479fac7c9b0771a532718d002e1c71d0c180a7f3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_benefit_matusetoetus",
+      "canonical_item_id": "viljandi_linn:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetust makstakse matusekuludeks juhul, kui lahkunu viimane elukoht oli Eesti Rahvastikuregistri järgi Viljandi linn. Toetuse suurus on 250 eurot. Avaldusi võetakse vastu Linnu 2 aadressil, e-posti teel või läbi SPOKU ning hüvitise andmise otsus tehakse kümne tööpäeva jooksul nõuetekohase taotluse esitamisest.",
+      "sourceKeys": [
+        "contacts_page",
+        "death_page",
+        "form_matusetoetus_pdf"
+      ],
+      "targetGroup": "Matusekorraldaja, kui lahkunu viimane elukoht oli Viljandi linn",
+      "conditions": "Lahkunu viimane rahvastikuregistrijärgne elukoht oli Viljandi linn.",
+      "application": {
+        "channels": [
+          "kohapeal Linnu 2",
+          "",
+          "SPOKU e-teenus"
+        ],
+        "steps": [
+          "Esita matusetoetuse avaldus koos vajalike lisadokumentidega.",
+          "Toetus kantakse avaldusel märgitud arveldusarvele."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva; väljamakse 10 tööpäeva jooksul pärast toetuse määramise otsust",
+      "officialUrl": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/lahedase-surm/",
+      "relatedForms": [
+        "viljandi_linn_form_matusetoetus"
+      ],
+      "relatedContacts": [
+        "viljandi_linn_contact_silja_simon"
+      ],
+      "amount": "250 eurot",
+      "item_type": "benefit",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page",
+        "death_page",
+        "form_matusetoetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_benefit_matusetoetus",
+      "document_id": "viljandi_linn_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/lahedase-surm/",
+      "content_hash": "6f8b2b62c6fc9e2c516627c0a159aa9688cf7c5fbf75cba6a00c0494510eac2c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_resource_viljandi_paevakeskus",
+      "canonical_item_id": "viljandi_linn:resource:viljandi_paevakeskus",
+      "itemType": "resource",
+      "title": "Viljandi Päevakeskus",
+      "status": "active",
+      "summary": "Viljandi Päevakeskus osutab linna veebilehe järgi koduteenuseid ja sotsiaaltransporditeenust ning vahendab sooja toidu kojuviimist. Koduteenuste ja sotsiaaltranspordi puhul suunab või aitab teenust korraldada sotsiaalamet, kuid teenuse osutajaks on päevakeskus. Sooja toidu kojuviimise teenuse tellimiseks on lehel nimetatud kontakt ja.",
+      "sourceKeys": [
+        "adult_hardship_page",
+        "viljandi_linn_resource_viljandi_paevakeskus_page"
+      ],
+      "officialUrl": "https://www.paevakeskus.ee",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "address": null,
+      "item_type": "resource",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page",
+        "viljandi_linn_resource_viljandi_paevakeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_resource_viljandi_paevakeskus",
+      "document_id": "viljandi_linn_resource_viljandi_paevakeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.paevakeskus.ee",
+      "content_hash": "58d2f774f7686a278f9b595cad7a1c2455c81a345b9f555d0f43ff41b4933a9e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_resource_viljandi_taiskasvanute_varjupaik",
+      "canonical_item_id": "viljandi_linn:resource:viljandi_taiskasvanute_varjupaik",
+      "itemType": "resource",
+      "title": "Viljandi Täiskasvanute Varjupaik",
+      "status": "active",
+      "summary": "Töövälisel ajal saab vältimatu abivajaduse korral Viljandi registris olev inimene või Viljandi linna territooriumil hätta sattunud inimene pöörduda otse Viljandi Täiskasvanute Varjupaiga poole. Veebilehel on nimetatud ning varjupaiga lahtiolekuaeg 16.00–08.00.",
+      "sourceKeys": [
+        "adult_hardship_page"
+      ],
+      "officialUrl": null,
+      "relatedTo": [
+        "viljandi_linn_service_varjupaigateenus"
+      ],
+      "relatedContacts": [],
+      "address": null,
+      "item_type": "resource",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_resource_viljandi_taiskasvanute_varjupaik",
+      "document_id": "viljandi_linn_resource_viljandi_taiskasvanute_varjupaik",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "ea1d6044962817156bb87c7336dc86530a4574cde256ee2ee9b9be68211ab478",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_resource_alkoholitarvitamise_haire_kabinet",
+      "canonical_item_id": "viljandi_linn:resource:alkoholitarvitamise_haire_kabinet",
+      "itemType": "resource",
+      "title": "Alkoholitarvitamise häire kabinet",
+      "status": "active",
+      "summary": "Viljandi linna varjupaigateenuse plokis on seotud teenusena nimetatud Viljandi Haigla alkoholitarvitamise häire kabinet. Kabinet pakub abi alkoholiprobleemidega inimesele ja tema lähedastele; ravile minekuks ei ole vaja saatekirja ja teenus on tasuta, välja arvatud ravimid.",
+      "sourceKeys": [
+        "adult_hardship_page",
+        "viljandi_linn_resource_alkoholitarvitamise_haire_kabinet_page"
+      ],
+      "officialUrl": "https://www.viljandihaigla.ee",
+      "relatedTo": [
+        "viljandi_linn_service_varjupaigateenus"
+      ],
+      "relatedContacts": [],
+      "address": null,
+      "item_type": "resource",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page",
+        "viljandi_linn_resource_alkoholitarvitamise_haire_kabinet_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_resource_alkoholitarvitamise_haire_kabinet",
+      "document_id": "viljandi_linn_resource_alkoholitarvitamise_haire_kabinet",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.viljandihaigla.ee",
+      "content_hash": "21f50c4f678b0c5c2943bceb8cf5e724d28677e0d881298be8bff6718315522b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_resource_kaugtolketeenus_ska",
+      "canonical_item_id": "viljandi_linn:resource:kaugtolketeenus_ska",
+      "itemType": "resource",
+      "title": "Sotsiaalkindlustusameti kaugtõlketeenus",
+      "status": "active",
+      "summary": "Viljandi linna viipetõlgi teenuse plokis on lisaviitena nimetatud, et kaugtõlketeenust osutab ka Sotsiaalkindlustusamet. Tegemist on riikliku lisavõimalusega, mitte Viljandi linna enda teenusega.",
+      "sourceKeys": [
+        "adult_hardship_page"
+      ],
+      "officialUrl": null,
+      "relatedTo": [
+        "viljandi_linn_service_viipetolgi_teenus"
+      ],
+      "relatedContacts": [],
+      "address": null,
+      "item_type": "resource",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_resource_kaugtolketeenus_ska",
+      "document_id": "viljandi_linn_resource_kaugtolketeenus_ska",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "79ff7deb8ceb91890633ecd8cf42bfb03f56f2410c87006e608ff967b7dc4488",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_resource_toidupank",
+      "canonical_item_id": "viljandi_linn:resource:toidupank",
+      "itemType": "resource",
+      "title": "Toidupank",
+      "status": "active",
+      "summary": "Viljandi linna toiduabi plokis viidatakse Toidupangale kui toiduabi jagamise infoallikale. Toiduabi saamise korral saadetakse saajale info jagamise kohta ning ilma toiduabi saajate nimekirja lisamata Toidupank abi ei väljasta.",
+      "sourceKeys": [
+        "adult_hardship_page"
+      ],
+      "officialUrl": null,
+      "relatedTo": [
+        "viljandi_linn_benefit_toiduabi"
+      ],
+      "relatedContacts": [],
+      "address": null,
+      "item_type": "resource",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "adult_hardship_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_resource_toidupank",
+      "document_id": "viljandi_linn_resource_toidupank",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "baf6a38524c1a6ef9953321c6f02a8385063b51079f5c6e3925b7e281c2e1a99",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_resource_laste_ja_perede_komisjon",
+      "canonical_item_id": "viljandi_linn:resource:laste_ja_perede_komisjon",
+      "itemType": "resource",
+      "title": "Laste ja perede komisjon",
+      "status": "active",
+      "summary": "Viljandi Linnavalitsuse juures tegutseb laste ja perede komisjon, mis on laste õiguste ja heaolu tagavate põhimõtete, laste ja perede teenuste ja toetuste ning valdkonna arendamise nõuandev komisjon.",
+      "sourceKeys": [
+        "children_family_page"
+      ],
+      "officialUrl": null,
+      "relatedTo": [
+        "viljandi_linn_service_abivajav_laps"
+      ],
+      "relatedContacts": [],
+      "address": null,
+      "item_type": "resource",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "children_family_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_resource_laste_ja_perede_komisjon",
+      "document_id": "viljandi_linn_resource_laste_ja_perede_komisjon",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "3c9609f41b9b6a7d6f84a4d7f13ab71d4f936e82e0fca71a99ed5efd73e01884",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_resource_kalmistute_haldur",
+      "canonical_item_id": "viljandi_linn:resource:kalmistute_haldur",
+      "itemType": "resource",
+      "title": "Viljandi linna kalmistute haldur",
+      "status": "active",
+      "summary": "Viljandi linna lähedase surma lehel on kirjas, et linna kalmistuid haldab ja hooldab Viljandi Linnahooldus ning hauaplatsi väljastab, matmise registreerib ja hauaplatsi kasutuslepingu sõlmib kalmistute haldur.",
+      "sourceKeys": [
+        "death_page"
+      ],
+      "officialUrl": null,
+      "relatedTo": [
+        "viljandi_linn_benefit_matusetoetus"
+      ],
+      "relatedContacts": [],
+      "address": null,
+      "item_type": "resource",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "death_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_resource_kalmistute_haldur",
+      "document_id": "viljandi_linn_resource_kalmistute_haldur",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "1359992c38c2ae7b2343362a6fcfb1a79f91c58764f7abd1fc04e802de5c68cc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_contact_sotsiaalamet",
+      "canonical_item_id": "viljandi_linn:contact:sotsiaalamet",
+      "itemType": "contact",
+      "title": "Viljandi Linnavalitsuse sotsiaalamet",
+      "status": "active",
+      "summary": "Sotsiaalamet asub aadressil Johan Laidoneri plats 5a. Üldtelefon on; on ametlikul veebilehel varjestatud. Kodanikke teenindatakse kokkulepitud ja vastuvõtuaegadel ning kolmapäev on sisetööpäev.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Viljandi Linnavalitsuse sotsiaalamet",
+      "role": "Sotsiaalameti üldkontakt",
+      "department": "Sotsiaalamet",
+      "address": "Johan Laidoneri plats 5a, Viljandi",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_contact_sotsiaalamet",
+      "document_id": "viljandi_linn_contact_sotsiaalamet",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "92f34bad5d538eaf143f431ba091337cbc97a8214ff019fda61765dfaad20c4d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_contact_karin_kiis",
+      "canonical_item_id": "viljandi_linn:contact:karin_kiis",
+      "itemType": "contact",
+      "title": "Karin Kiis",
+      "status": "active",
+      "summary": "Sotsiaalameti juhataja korraldab ameti tööd ja koordineerib sotsiaalvaldkonna allasutuste tegevust.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Karin Kiis",
+      "role": "Sotsiaalameti juhataja",
+      "department": "Sotsiaalamet",
+      "address": "Johan Laidoneri plats 5a, Viljandi",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_contact_karin_kiis",
+      "document_id": "viljandi_linn_contact_karin_kiis",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "8d5ca6faba3b258c8252eb5b0db51b7be88516f1f41ac23c982c1f132aff682b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_contact_kaidi_rammo",
+      "canonical_item_id": "viljandi_linn:contact:kaidi_rammo",
+      "itemType": "contact",
+      "title": "Kaidi Rammo",
+      "status": "active",
+      "summary": "Eestkoste teenistuse juht korraldab eestkostega seotud ülesannete täitmist ja nõustab kodanikke eestkoste, sotsiaalteenuste ja toetuste küsimustes.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Kaidi Rammo",
+      "role": "Eestkoste teenistuse juht",
+      "department": "Eestkoste teenistus",
+      "address": "Johan Laidoneri plats 5a, Viljandi",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_contact_kaidi_rammo",
+      "document_id": "viljandi_linn_contact_kaidi_rammo",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "95ba3169fae69f07a61d076a20915edbe94643a146ff1a8d4bce064b994d0d96",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_contact_annika_liivamaa",
+      "canonical_item_id": "viljandi_linn:contact:annika_liivamaa",
+      "itemType": "contact",
+      "title": "Annika Liivamaa",
+      "status": "active",
+      "summary": "Eestkoste teenistuse spetsialist täidab eestkostega seotud ülesandeid ja korraldab muud abi.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Annika Liivamaa",
+      "role": "Eestkoste teenistuse spetsialist",
+      "department": "Eestkoste teenistus",
+      "address": "Johan Laidoneri plats 5a, Viljandi",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_contact_annika_liivamaa",
+      "document_id": "viljandi_linn_contact_annika_liivamaa",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "e0515bce11fbd32379017551faa44d24c88d169a8835998c5354447d3162d380",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_contact_katrin_varblane",
+      "canonical_item_id": "viljandi_linn:contact:katrin_varblane",
+      "itemType": "contact",
+      "title": "Katrin Varblane",
+      "status": "active",
+      "summary": "Eestkoste teenistuse spetsialist vastutab ISTE projektiga seotud tegevuste ja eestkostega seotud ülesannete eest.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Katrin Varblane",
+      "role": "Eestkoste teenistuse spetsialist",
+      "department": "Eestkoste teenistus",
+      "address": "Johan Laidoneri plats 5a, Viljandi",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_contact_katrin_varblane",
+      "document_id": "viljandi_linn_contact_katrin_varblane",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "c12c6b8aea29a4e44b03c6badb295c59626567e8948802cc60f0270cf71f6afb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_contact_karina_saar",
+      "canonical_item_id": "viljandi_linn:contact:karina_saar",
+      "itemType": "contact",
+      "title": "Karina Saar",
+      "status": "active",
+      "summary": "Laste heaolu teenistuse juht korraldab laste heaolu teenistuse tööd ja nõustab kodanikke lapse heaolu küsimustes.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Karina Saar",
+      "role": "Laste heaolu teenistuse juht",
+      "department": "Laste heaolu teenistus",
+      "address": "Johan Laidoneri plats 5a, Viljandi",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_contact_karina_saar",
+      "document_id": "viljandi_linn_contact_karina_saar",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "a5c8b51f7ed0ca94756f954e3aa41cb2fb1df89c428f0ac76abe6e237b26b8d6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_contact_piret_jogiste",
+      "canonical_item_id": "viljandi_linn:contact:piret_jogiste",
+      "itemType": "contact",
+      "title": "Piret Jõgiste",
+      "status": "active",
+      "summary": "Laste heaolu teenistuse spetsialist korraldab puudega lastele teenuseid ja nõustab lapse heaolu küsimustes.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Piret Jõgiste",
+      "role": "Laste heaolu teenistuse spetsialist",
+      "department": "Laste heaolu teenistus",
+      "address": "Johan Laidoneri plats 5a, Viljandi",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_contact_piret_jogiste",
+      "document_id": "viljandi_linn_contact_piret_jogiste",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "5d834db55656fe363e77a3587690b1cb063856568da5d3a83cd470ab29e90d98",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_contact_triin_tarn",
+      "canonical_item_id": "viljandi_linn:contact:triin_tarn",
+      "itemType": "contact",
+      "title": "Triin Tarn",
+      "status": "active",
+      "summary": "Laste heaolu teenistuse spetsialist tegeleb asendushooldusteenusel viibivate laste eestkostega seotud ülesannetega.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Triin Tarn",
+      "role": "Laste heaolu teenistuse spetsialist",
+      "department": "Laste heaolu teenistus",
+      "address": "Johan Laidoneri plats 5a, Viljandi",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_contact_triin_tarn",
+      "document_id": "viljandi_linn_contact_triin_tarn",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "efac3683e40d1f60adcaf87044efae59c56f708e3335129b8c8e97c0ac63cdb2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_contact_kaja_suur",
+      "canonical_item_id": "viljandi_linn:contact:kaja_suur",
+      "itemType": "contact",
+      "title": "Kaja Suur",
+      "status": "active",
+      "summary": "Laste heaolu teenistuse spetsialist nõustab lapse heaolu, sotsiaalteenuste ja toetuste saamise võimaluste ning tingimuste küsimustes.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Kaja Suur",
+      "role": "Laste heaolu teenistuse spetsialist",
+      "department": "Laste heaolu teenistus",
+      "address": "Johan Laidoneri plats 5a, Viljandi",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_contact_kaja_suur",
+      "document_id": "viljandi_linn_contact_kaja_suur",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "760f51f682c157e3345ede2aec4df1dfa293dab6c6f68c0bd821d737300a9ddd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_contact_eva_kikas",
+      "canonical_item_id": "viljandi_linn:contact:eva_kikas",
+      "itemType": "contact",
+      "title": "Eva Kikas",
+      "status": "active",
+      "summary": "Laste heaolu teenistuse spetsialist korraldab lastele ja lastega peredele sotsiaalteenuste, toetuste ja muu abi andmist ning nõustab lapse heaolu küsimustes.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Eva Kikas",
+      "role": "Laste heaolu teenistuse spetsialist",
+      "department": "Laste heaolu teenistus",
+      "address": "Johan Laidoneri plats 5a, Viljandi",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_contact_eva_kikas",
+      "document_id": "viljandi_linn_contact_eva_kikas",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "226d518d754aa50bc2bbbe44fede15e6feae0f0d2ad1b9a1fe80316a0b681c67",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_contact_silja_simon",
+      "canonical_item_id": "viljandi_linn:contact:silja_simon",
+      "itemType": "contact",
+      "title": "Silja Simon",
+      "status": "active",
+      "summary": "Täisealiste heaolu teenistuse juht korraldab täisealiste heaolu teenistuse tööd ning menetleb mh toimetulekutoetuse, üliõpilase toetuse, turvakoduteenuse, järelhooldusteenuse, võlanõustamisteenuse ja matusetoetuse taotlusi.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Silja Simon",
+      "role": "Täisealiste heaolu teenistuse juht",
+      "department": "Täisealiste heaolu teenistus",
+      "address": "Johan Laidoneri plats 5a, Viljandi",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_contact_silja_simon",
+      "document_id": "viljandi_linn_contact_silja_simon",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "0d1ed4599c513bb40ea4ad98870089845e7a4bbf0cfceaa8068ad2139ff42433",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_contact_gaide_mikkor",
+      "canonical_item_id": "viljandi_linn:contact:gaide_mikkor",
+      "itemType": "contact",
+      "title": "Gaide Mikkor",
+      "status": "active",
+      "summary": "Täisealiste heaolu teenistuse spetsialist menetleb toimetulekutoetuse, koolimineku ja koolilõpetamise toetuse, lasteaialaste toitlustamise toetuse, toiduabi, ühekordse sotsiaaltoetuse ja sünnitoetuse taotlusi.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Gaide Mikkor",
+      "role": "Täisealiste heaolu teenistuse spetsialist",
+      "department": "Täisealiste heaolu teenistus",
+      "address": "Johan Laidoneri plats 5a, Viljandi",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_contact_gaide_mikkor",
+      "document_id": "viljandi_linn_contact_gaide_mikkor",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "d804f12d397d506253f5df5c2e82efc04e72a6ba7bc223beb925fad6e0ef391e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_contact_eret_mehik",
+      "canonical_item_id": "viljandi_linn:contact:eret_mehik",
+      "itemType": "contact",
+      "title": "Eret Mehik",
+      "status": "active",
+      "summary": "Täisealiste heaolu teenistuse spetsialist menetleb täisealiste hooldajatoetuse, eluruumide kohandamise, isikliku abistaja, sotsiaaltranspordi ja tugiisikuteenuse dokumente ning väljastab parkimiskaarte.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Eret Mehik",
+      "role": "Täisealiste heaolu teenistuse spetsialist",
+      "department": "Täisealiste heaolu teenistus",
+      "address": "Johan Laidoneri plats 5a, Viljandi",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_contact_eret_mehik",
+      "document_id": "viljandi_linn_contact_eret_mehik",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "af93eb2c3fa931b699d46918de157afb3893c3e86daea152914e096892ff737e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_contact_jaanika_ritval",
+      "canonical_item_id": "viljandi_linn:contact:jaanika_ritval",
+      "itemType": "contact",
+      "title": "Jaanika Ritval",
+      "status": "active",
+      "summary": "Täisealiste heaolu teenistuse spetsialist menetleb üldhooldusteenusega seotud dokumente ning nõustab sotsiaaltoetuste ja -teenuste küsimustes.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Jaanika Ritval",
+      "role": "Täisealiste heaolu teenistuse spetsialist",
+      "department": "Täisealiste heaolu teenistus",
+      "address": "Johan Laidoneri plats 5a, Viljandi",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_contact_jaanika_ritval",
+      "document_id": "viljandi_linn_contact_jaanika_ritval",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "d7657ccd4edb2216cffa28adb11d7b522fc007691bda97a33b89d172be05906b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_contact_elis_ehrlich",
+      "canonical_item_id": "viljandi_linn:contact:elis_ehrlich",
+      "itemType": "contact",
+      "title": "Elis Ehrlich",
+      "status": "active",
+      "summary": "Täisealiste heaolu teenistuse spetsialist menetleb koduhooldusteenuse, varjupaigateenuse ja eluaseme tagamise teenuse dokumente ning osutab täisealistele isikutele muud abi.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Elis Ehrlich",
+      "role": "Täisealiste heaolu teenistuse spetsialist",
+      "department": "Täisealiste heaolu teenistus",
+      "address": "Johan Laidoneri plats 5a, Viljandi",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_contact_elis_ehrlich",
+      "document_id": "viljandi_linn_contact_elis_ehrlich",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "6f64d470b19b98a660bcc200847306d082ec8998d72f112b35a2b40b5e0d3e14",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_form_abivajav_laps_teade",
+      "canonical_item_id": "viljandi_linn:form:abivajav_laps_teade",
+      "itemType": "form",
+      "title": "Kodanike teatis abivajavast lapsest",
+      "status": "active",
+      "summary": "Vorm abivajavast lapsest teavitamiseks. Vorm on seotud abivajava lapse märkamise ja lastekaitsele info edastamisega.",
+      "sourceKeys": [
+        "children_family_page",
+        "form_abivajav_laps_docx"
+      ],
+      "format": "docx",
+      "officialUrl": "https://viljandi.ee/wp-content/uploads/2025/06/Lisa-1.-Teade-abivajavast-lapsest.docx",
+      "submissionChannels": [
+        "",
+        "paberkandja"
+      ],
+      "relatedTo": [
+        "viljandi_linn_service_abivajav_laps"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "children_family_page",
+        "form_abivajav_laps_docx"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_form_abivajav_laps_teade",
+      "document_id": "viljandi_linn_form_abivajav_laps_teade",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/wp-content/uploads/2025/06/Lisa-1.-Teade-abivajavast-lapsest.docx",
+      "content_hash": "3aad4dde442740f6105064668bc3f8d5d6c08a28f2d9c99b6bdc4d7f4de9bb50",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_form_haridusasutuse_teatis_abivajav_laps",
+      "canonical_item_id": "viljandi_linn:form:haridusasutuse_teatis_abivajav_laps",
+      "itemType": "form",
+      "title": "Haridusasutuse teatis abivajavast lapsest",
+      "status": "active",
+      "summary": "Haridusasutuse vorm abivajavast lapsest Viljandi linna sotsiaalametile teavitamiseks.",
+      "sourceKeys": [
+        "children_family_page",
+        "form_haridusasutuse_teatis_abivajav_laps_doc"
+      ],
+      "format": "doc",
+      "officialUrl": "https://viljandi.ee/wp-content/uploads/2025/06/Lisa-2.-Haridusasutuse-teatis-abivajavast-lapsest.doc",
+      "submissionChannels": [
+        "",
+        "paberkandja"
+      ],
+      "relatedTo": [
+        "viljandi_linn_service_abivajav_laps"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "children_family_page",
+        "form_haridusasutuse_teatis_abivajav_laps_doc"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_form_haridusasutuse_teatis_abivajav_laps",
+      "document_id": "viljandi_linn_form_haridusasutuse_teatis_abivajav_laps",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/wp-content/uploads/2025/06/Lisa-2.-Haridusasutuse-teatis-abivajavast-lapsest.doc",
+      "content_hash": "6011b2ca99be92f541bccace93cddb79e3b0ed2dd3ef5a0e8b64ed6ca924c623",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_form_raske_sugava_puudega_lapse_teenused",
+      "canonical_item_id": "viljandi_linn:form:raske_sugava_puudega_lapse_teenused",
+      "itemType": "form",
+      "title": "Raske ja sügava puudega lapsele teenuste taotlemise avaldus",
+      "status": "active",
+      "summary": "Avaldus lapsehoiuteenuse, isikliku abistaja teenuse, tugiisikuteenuse, sotsiaaltransporditeenuse, laagriteenuse, täiendava rehabilitatsiooniteenuse või muu toimetulekut toetava teenuse taotlemiseks.",
+      "sourceKeys": [
+        "form_raske_sugava_puudega_lapse_teenused_pdf"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://viljandi.ee/wp-content/uploads/2025/06/Raske-ja-sugava-puudega-lapsele-teenuste-taotlemise-avaldus.pdf",
+      "submissionChannels": [
+        "paberkandja"
+      ],
+      "relatedTo": [
+        "viljandi_linn_service_suure_hooldusvajadusega_lapse_teenused"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_raske_sugava_puudega_lapse_teenused_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_form_raske_sugava_puudega_lapse_teenused",
+      "document_id": "viljandi_linn_form_raske_sugava_puudega_lapse_teenused",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/wp-content/uploads/2025/06/Raske-ja-sugava-puudega-lapsele-teenuste-taotlemise-avaldus.pdf",
+      "content_hash": "2fc18906c2fe8dbc501198fc0e6efe35dacefe837ed7bfd276592255bb61d1fe",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_form_koolimineku_toetus",
+      "canonical_item_id": "viljandi_linn:form:koolimineku_toetus",
+      "itemType": "form",
+      "title": "Koolimineku toetuse taotlus",
+      "status": "active",
+      "summary": "Avaldus koolimineku toetuse taotlemiseks toimetulekutoetust saanud pere lapsele.",
+      "sourceKeys": [
+        "form_koolimineku_toetus_pdf"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://viljandi.ee/wp-content/uploads/2025/06/KOOLIMINEKU-TOETUSE-TAOTLUS.pdf",
+      "submissionChannels": [
+        "kohapeal",
+        "",
+        "SPOKU"
+      ],
+      "relatedTo": [
+        "viljandi_linn_benefit_koolimineku_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_koolimineku_toetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_form_koolimineku_toetus",
+      "document_id": "viljandi_linn_form_koolimineku_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/wp-content/uploads/2025/06/KOOLIMINEKU-TOETUSE-TAOTLUS.pdf",
+      "content_hash": "3bf4a1057c07a0386d3da896d3db66b39e449d871829353a5075cd696fa844b6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_form_puudega_lapse_hooldajatoetus",
+      "canonical_item_id": "viljandi_linn:form:puudega_lapse_hooldajatoetus",
+      "itemType": "form",
+      "title": "Puudega lapse hooldajatoetuse taotlus",
+      "status": "active",
+      "summary": "Avaldus puudega lapse hooldajatoetuse saamiseks. Vormil on taotleja ja lapse andmed ning lisade loetelu.",
+      "sourceKeys": [
+        "form_puudega_lapse_hooldajatoetus_pdf"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://viljandi.ee/wp-content/uploads/2025/06/Puudega-lapse-hooldajatoetuse-taotlus.pdf",
+      "submissionChannels": [
+        "paberkandja"
+      ],
+      "relatedTo": [
+        "viljandi_linn_benefit_puudega_lapse_hooldajatoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_puudega_lapse_hooldajatoetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_form_puudega_lapse_hooldajatoetus",
+      "document_id": "viljandi_linn_form_puudega_lapse_hooldajatoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/wp-content/uploads/2025/06/Puudega-lapse-hooldajatoetuse-taotlus.pdf",
+      "content_hash": "08e2eb863223e10124e46cce84896fc1273eaabf3898c375deb4a51bf7b57c43",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_form_lasteaia_toitlustamise_toetus",
+      "canonical_item_id": "viljandi_linn:form:lasteaia_toitlustamise_toetus",
+      "itemType": "form",
+      "title": "Lasteaialaste toitlustamise toetuse taotlus",
+      "status": "active",
+      "summary": "Avaldus lasteaialaste toitlustamise toetuse saamiseks. Taotlusele lisatakse sissetuleku- ja eluasemekulude dokumendid.",
+      "sourceKeys": [
+        "form_lasteaia_toidutoetus_pdf"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://viljandi.ee/wp-content/uploads/2025/06/Lasteaia-toidutoetus_20.pdf",
+      "submissionChannels": [
+        "kohapeal",
+        "",
+        "SPOKU"
+      ],
+      "relatedTo": [
+        "viljandi_linn_benefit_lasteaia_toitlustamise_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_lasteaia_toidutoetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_form_lasteaia_toitlustamise_toetus",
+      "document_id": "viljandi_linn_form_lasteaia_toitlustamise_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/wp-content/uploads/2025/06/Lasteaia-toidutoetus_20.pdf",
+      "content_hash": "0e8ad10b916571671955d4be01d2b5da3d05d5823e03e8a8e60135f231cf9435",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_form_uliopilase_sotsiaalne_toetus",
+      "canonical_item_id": "viljandi_linn:form:uliopilase_sotsiaalne_toetus",
+      "itemType": "form",
+      "title": "Üliõpilaste sotsiaalse toetuse taotlus",
+      "status": "active",
+      "summary": "Avaldus vähekindlustatud perede üliõpilaste sotsiaalse toetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_uliopilase_toetus_pdf"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://viljandi.ee/wp-content/uploads/2025/06/ULIOPILASTE-SOTSIAALSE-TOETUSE-TAOTLUS.pdf",
+      "submissionChannels": [
+        "kohapeal",
+        "",
+        "SPOKU"
+      ],
+      "relatedTo": [
+        "viljandi_linn_benefit_uliopilase_sotsiaalne_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_uliopilase_toetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_form_uliopilase_sotsiaalne_toetus",
+      "document_id": "viljandi_linn_form_uliopilase_sotsiaalne_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/wp-content/uploads/2025/06/ULIOPILASTE-SOTSIAALSE-TOETUSE-TAOTLUS.pdf",
+      "content_hash": "9e5970d88b20898ea5ec3a3f8ab159546508523030fa8668db47d4181c3bd642",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_form_sunnitoetus",
+      "canonical_item_id": "viljandi_linn:form:sunnitoetus",
+      "itemType": "form",
+      "title": "Sünnitoetuse taotlemise vorm",
+      "status": "active",
+      "summary": "Taotlus lapse sünnitoetuse saamiseks. Vorm on seotud Viljandi linna sünnitoetuse maksmisega.",
+      "sourceKeys": [
+        "form_sunnitoetus_docx"
+      ],
+      "format": "docx",
+      "officialUrl": "https://viljandi.ee/wp-content/uploads/2025/06/Sunnitoetuse-taotlemise-vorm.docx",
+      "submissionChannels": [
+        "kohapeal",
+        "",
+        "SPOKU"
+      ],
+      "relatedTo": [
+        "viljandi_linn_benefit_sunnitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_sunnitoetus_docx"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_form_sunnitoetus",
+      "document_id": "viljandi_linn_form_sunnitoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/wp-content/uploads/2025/06/Sunnitoetuse-taotlemise-vorm.docx",
+      "content_hash": "a625f3f40261824a74b6dcd8732a03b8fb9de51df51fb3b087f226e9b5d043a8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_form_koolilopetamise_toetus",
+      "canonical_item_id": "viljandi_linn:form:koolilopetamise_toetus",
+      "itemType": "form",
+      "title": "Koolilõpetamise toetuse taotlus",
+      "status": "active",
+      "summary": "Avaldus koolilõpetamise toetuse taotlemiseks toimetulekutoetust saanud pere lapsele.",
+      "sourceKeys": [
+        "form_koolilopetamise_toetus_pdf"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://viljandi.ee/wp-content/uploads/2025/06/Koolilopetamise-toetuse-taotlus.pdf",
+      "submissionChannels": [
+        "kohapeal",
+        "",
+        "SPOKU"
+      ],
+      "relatedTo": [
+        "viljandi_linn_benefit_koolilopetamise_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_koolilopetamise_toetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_form_koolilopetamise_toetus",
+      "document_id": "viljandi_linn_form_koolilopetamise_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/wp-content/uploads/2025/06/Koolilopetamise-toetuse-taotlus.pdf",
+      "content_hash": "b12cb929b1526b5cfdf306d6db686e5158997b54c2a2250e04ac1956f45feb35",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_form_isikliku_abistaja_teenus",
+      "canonical_item_id": "viljandi_linn:form:isikliku_abistaja_teenus",
+      "itemType": "form",
+      "title": "Isikliku abistaja teenuse taotlus",
+      "status": "active",
+      "summary": "Avaldus isikliku abistaja teenuse taotlemiseks täisealisele puudega inimesele.",
+      "sourceKeys": [
+        "form_isikliku_abistaja_pdf"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://viljandi.ee/wp-content/uploads/2025/06/ISIKLIKU-ABISTAJA-TEENUSE-TAOTLUS-1.pdf",
+      "submissionChannels": [
+        "paberkandja"
+      ],
+      "relatedTo": [
+        "viljandi_linn_service_isikliku_abistaja_teenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_isikliku_abistaja_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_form_isikliku_abistaja_teenus",
+      "document_id": "viljandi_linn_form_isikliku_abistaja_teenus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/wp-content/uploads/2025/06/ISIKLIKU-ABISTAJA-TEENUSE-TAOTLUS-1.pdf",
+      "content_hash": "c995aa9f022457269d6c55f2c7bd4ec82b3fb756902f7d67c880c81f74cd9cf1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_form_koduteenuse_taotlus",
+      "canonical_item_id": "viljandi_linn:form:koduteenuse_taotlus",
+      "itemType": "form",
+      "title": "Koduteenuste taotlus",
+      "status": "active",
+      "summary": "Avaldus koduteenuste saamiseks. Vormil küsitakse muu hulgas teenuse vajamise põhjuseid, sissetulekut ja perearsti andmeid.",
+      "sourceKeys": [
+        "form_koduteenuse_taotlus_pdf"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://viljandi.ee/wp-content/uploads/2025/06/Koduteenused_20.pdf",
+      "submissionChannels": [
+        "paberkandja"
+      ],
+      "relatedTo": [
+        "viljandi_linn_service_koduteenused"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_koduteenuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_form_koduteenuse_taotlus",
+      "document_id": "viljandi_linn_form_koduteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/wp-content/uploads/2025/06/Koduteenused_20.pdf",
+      "content_hash": "2a8390028a4bff3340b8ac5341f4d3c4d378f01c83d6ae327f97a4fd52f53ab6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_form_hoolduse_seadmine_hooldajatoetus",
+      "canonical_item_id": "viljandi_linn:form:hoolduse_seadmine_hooldajatoetus",
+      "itemType": "form",
+      "title": "Hoolduse seadmine ning hooldajatoetuse määramine",
+      "status": "active",
+      "summary": "Avaldus hoolduse seadmiseks ning hooldajatoetuse määramiseks. Vorm sisaldab hooldatava ja hooldaja andmeid ning hooldaja nõusolekut.",
+      "sourceKeys": [
+        "form_hoolduse_seadmine_hooldajatoetus_pdf"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://viljandi.ee/wp-content/uploads/2025/06/Hoolduse-seadmine-ning-hooldajatoetuse-maaramine.pdf",
+      "submissionChannels": [
+        "paberkandja",
+        "SPOKU"
+      ],
+      "relatedTo": [
+        "viljandi_linn_service_hoolduse_seadmine",
+        "viljandi_linn_benefit_hooldajatoetus_taiskasvanud"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_hoolduse_seadmine_hooldajatoetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_form_hoolduse_seadmine_hooldajatoetus",
+      "document_id": "viljandi_linn_form_hoolduse_seadmine_hooldajatoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/wp-content/uploads/2025/06/Hoolduse-seadmine-ning-hooldajatoetuse-maaramine.pdf",
+      "content_hash": "bfe382e825e86361795cb38bf6d59718c88e2b699ccc686833047f041e692799",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_form_hoolduse_lopetamine",
+      "canonical_item_id": "viljandi_linn:form:hoolduse_lopetamine",
+      "itemType": "form",
+      "title": "Hoolduse lõpetamise taotlus",
+      "status": "active",
+      "summary": "Avaldus varem seatud hoolduse lõpetamiseks.",
+      "sourceKeys": [
+        "form_hoolduse_lopetamine_pdf"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://viljandi.ee/wp-content/uploads/2025/06/Hoolduse-lopetamise-taotlus.pdf",
+      "submissionChannels": [
+        "paberkandja"
+      ],
+      "relatedTo": [
+        "viljandi_linn_service_hoolduse_seadmine",
+        "viljandi_linn_benefit_hooldajatoetus_taiskasvanud"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_hoolduse_lopetamine_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_form_hoolduse_lopetamine",
+      "document_id": "viljandi_linn_form_hoolduse_lopetamine",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/wp-content/uploads/2025/06/Hoolduse-lopetamise-taotlus.pdf",
+      "content_hash": "89f48875187386b1379d8e905b7d5f8c59642d8da6176a006d219c3738ec7c97",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_form_taiskasvanu_tugiisik",
+      "canonical_item_id": "viljandi_linn:form:taiskasvanu_tugiisik",
+      "itemType": "form",
+      "title": "Täiskasvanud isikule tugiisikuteenuse taotlus",
+      "status": "active",
+      "summary": "Avaldus täiskasvanud isikule tugiisikuteenuse saamiseks. Vormis kirjeldatakse teenuse vajadust ja taotlemise põhjust.",
+      "sourceKeys": [
+        "form_taiskasvanu_tugiisik_pdf"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://viljandi.ee/wp-content/uploads/2025/06/TAISKASVANUD-ISIKULE-TUGIISIKUTEENUSE-TAOTLUS.pdf",
+      "submissionChannels": [
+        "paberkandja"
+      ],
+      "relatedTo": [
+        "viljandi_linn_service_taiskasvanud_tugiisikuteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_taiskasvanu_tugiisik_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_form_taiskasvanu_tugiisik",
+      "document_id": "viljandi_linn_form_taiskasvanu_tugiisik",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/wp-content/uploads/2025/06/TAISKASVANUD-ISIKULE-TUGIISIKUTEENUSE-TAOTLUS.pdf",
+      "content_hash": "9aa0619e22430e8f1e149fb6e971580d1acc57b25e894b64fb207cf12b0401bb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_form_varjupaigateenus",
+      "canonical_item_id": "viljandi_linn:form:varjupaigateenus",
+      "itemType": "form",
+      "title": "Varjupaigateenuse taotlus",
+      "status": "active",
+      "summary": "Avaldus varjupaigateenuse saamiseks enam kui üheks ööks. Vormis kogutakse taotleja, leibkonna ja teenuse vajaduse andmeid.",
+      "sourceKeys": [
+        "form_varjupaigateenus_pdf"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://viljandi.ee/wp-content/uploads/2025/06/VARJUPAIGATEENUSE-TAOTLUS.pdf",
+      "submissionChannels": [
+        "paberkandja"
+      ],
+      "relatedTo": [
+        "viljandi_linn_service_varjupaigateenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_varjupaigateenus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_form_varjupaigateenus",
+      "document_id": "viljandi_linn_form_varjupaigateenus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/wp-content/uploads/2025/06/VARJUPAIGATEENUSE-TAOTLUS.pdf",
+      "content_hash": "bc036001605a2142f2add1be14249ea0601d4feda1fa491b17cb44425cca04f8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_form_volanoustamine",
+      "canonical_item_id": "viljandi_linn:form:volanoustamine",
+      "itemType": "form",
+      "title": "Võlanõustamisteenuse taotlemise vorm",
+      "status": "active",
+      "summary": "Avaldus võlanõustamisteenuse korraldamise või rahastamise taotlemiseks.",
+      "sourceKeys": [
+        "form_volanoustamine_doc"
+      ],
+      "format": "doc",
+      "officialUrl": "https://viljandi.ee/wp-content/uploads/2025/06/volanoustamisteenuse-taotlemise-vormi-kinnitamine.doc",
+      "submissionChannels": [
+        "SPOKU",
+        "paberkandja"
+      ],
+      "relatedTo": [
+        "viljandi_linn_service_volanoustamisteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_volanoustamine_doc"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_form_volanoustamine",
+      "document_id": "viljandi_linn_form_volanoustamine",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/wp-content/uploads/2025/06/volanoustamisteenuse-taotlemise-vormi-kinnitamine.doc",
+      "content_hash": "28ba44da29fbf91c3da0d862afa6f8ebca00fc9ebd79689e2d8afc43d7d0f35f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_form_sotsiaaleluruum",
+      "canonical_item_id": "viljandi_linn:form:sotsiaaleluruum",
+      "itemType": "form",
+      "title": "Sotsiaaleluruumi taotlus",
+      "status": "active",
+      "summary": "Avaldus sotsiaaleluruumi taotlemiseks. Taotlusega koos esitatakse leibkonna sissetuleku- ja eluasemekulude andmed.",
+      "sourceKeys": [
+        "form_sotsiaaleluruum_pdf"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://viljandi.ee/wp-content/uploads/2025/06/SOTSIAALELURUUMI-TAOTLUS.pdf",
+      "submissionChannels": [
+        "paberkandja"
+      ],
+      "relatedTo": [
+        "viljandi_linn_service_sotsiaaleluruum"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_sotsiaaleluruum_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_form_sotsiaaleluruum",
+      "document_id": "viljandi_linn_form_sotsiaaleluruum",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/wp-content/uploads/2025/06/SOTSIAALELURUUMI-TAOTLUS.pdf",
+      "content_hash": "ae5c5a99e01afe9f0a2bd62ede4c498c096af78420046614ec41e30017a543d5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_form_eluruumi_kohandamine",
+      "canonical_item_id": "viljandi_linn:form:eluruumi_kohandamine",
+      "itemType": "form",
+      "title": "Puudega isiku eluruumi kohandamise kulude hüvitamise taotlus",
+      "status": "active",
+      "summary": "Avaldus puudega isiku eluruumi kohandamise kulude hüvitamiseks. Taotlusega koos esitatakse hinnapakkumised ja vajalikud nõusolekud.",
+      "sourceKeys": [
+        "form_eluruumi_kohandamine_pdf"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://viljandi.ee/wp-content/uploads/2025/06/Puudega-isiku-eluruumi-kohandamise-kulude-huvitamise-taotlus.rtf.pdf",
+      "submissionChannels": [
+        "SPOKU",
+        "paberkandja"
+      ],
+      "relatedTo": [
+        "viljandi_linn_benefit_eluruumi_kohandamise_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_eluruumi_kohandamine_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_form_eluruumi_kohandamine",
+      "document_id": "viljandi_linn_form_eluruumi_kohandamine",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/wp-content/uploads/2025/06/Puudega-isiku-eluruumi-kohandamise-kulude-huvitamise-taotlus.rtf.pdf",
+      "content_hash": "4fb4680b1afe78ffde7cd08d33fbd0eae044f715604502e2829da09590d9d0d1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_form_toimetulekutoetus",
+      "canonical_item_id": "viljandi_linn:form:toimetulekutoetus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse taotlus",
+      "status": "active",
+      "summary": "Avaldus toimetulekutoetuse saamiseks. Taotlemisel esitatakse eelmise kuu sissetuleku- ja eluasemekulude dokumendid.",
+      "sourceKeys": [
+        "form_toimetulekutoetus_pdf"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://viljandi.ee/wp-content/uploads/2025/06/Toimetulekutoetuse-taotlus_23.pdf",
+      "submissionChannels": [
+        "paberkandja"
+      ],
+      "relatedTo": [
+        "viljandi_linn_benefit_toimetulekutoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_toimetulekutoetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_form_toimetulekutoetus",
+      "document_id": "viljandi_linn_form_toimetulekutoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/wp-content/uploads/2025/06/Toimetulekutoetuse-taotlus_23.pdf",
+      "content_hash": "488157317323183a5bd6d0052f412c4580dd5a0bc8ee0b354b4f5137a9aae2cd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_form_toimetulekutoetuse_lisa",
+      "canonical_item_id": "viljandi_linn:form:toimetulekutoetuse_lisa",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse lisa",
+      "status": "active",
+      "summary": "Lisa toimetulekutoetuse esmakordsel taotlemisel või andmete muutumisel pere isikuandmete ja vara kohta.",
+      "sourceKeys": [
+        "form_toimetulekutoetuse_lisa_pdf"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://viljandi.ee/wp-content/uploads/2025/06/Toimetulekutoetuse-lisa.pdf",
+      "submissionChannels": [
+        "paberkandja"
+      ],
+      "relatedTo": [
+        "viljandi_linn_benefit_toimetulekutoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_toimetulekutoetuse_lisa_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_form_toimetulekutoetuse_lisa",
+      "document_id": "viljandi_linn_form_toimetulekutoetuse_lisa",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/wp-content/uploads/2025/06/Toimetulekutoetuse-lisa.pdf",
+      "content_hash": "bb292af9fad7fa525f0df8e58ee2ce31a2a83319a2df80378a38ddea3387ac28",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_form_uhekordne_toetus",
+      "canonical_item_id": "viljandi_linn:form:uhekordne_toetus",
+      "itemType": "form",
+      "title": "Ühekordse toetuse taotlus",
+      "status": "active",
+      "summary": "Avaldus täiendava sotsiaaltoetuse või muu ühekordse toetuse taotlemiseks. Taotlusele lisatakse sissetuleku- ja kuludokumendid.",
+      "sourceKeys": [
+        "form_uhekordne_toetus_pdf"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://viljandi.ee/wp-content/uploads/2025/06/UHEKORDSE-TOETUSE-TAOTLUS.pdf",
+      "submissionChannels": [
+        "SPOKU",
+        "paberkandja"
+      ],
+      "relatedTo": [
+        "viljandi_linn_benefit_taiendav_sotsiaaltoetus",
+        "viljandi_linn_service_sotsiaaltransporditeenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_uhekordne_toetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_form_uhekordne_toetus",
+      "document_id": "viljandi_linn_form_uhekordne_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/wp-content/uploads/2025/06/UHEKORDSE-TOETUSE-TAOTLUS.pdf",
+      "content_hash": "a12a33edd47dc87ab0e9b65a64fb7653288eba4b98480fe00ba2429f171edc10",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_linn_form_matusetoetus",
+      "canonical_item_id": "viljandi_linn:form:matusetoetus",
+      "itemType": "form",
+      "title": "Matusetoetuse taotlus",
+      "status": "active",
+      "summary": "Avaldus Viljandi linna matusetoetuse saamiseks.",
+      "sourceKeys": [
+        "form_matusetoetus_pdf"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://viljandi.ee/wp-content/uploads/2025/06/Matusetoetus_20.pdf",
+      "submissionChannels": [
+        "kohapeal",
+        "",
+        "SPOKU"
+      ],
+      "relatedTo": [
+        "viljandi_linn_benefit_matusetoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_matusetoetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_linn_form_matusetoetus",
+      "document_id": "viljandi_linn_form_matusetoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandi.ee/wp-content/uploads/2025/06/Matusetoetus_20.pdf",
+      "content_hash": "2b0eb6512edf0d9dfff5806a8d29d93507e6fcaf9ce24e7a2c2f4f18e8db9ae2",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Viljandi linn",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

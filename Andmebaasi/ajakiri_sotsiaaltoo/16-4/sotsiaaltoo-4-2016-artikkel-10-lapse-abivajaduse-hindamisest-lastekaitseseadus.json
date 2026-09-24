@@ -1,0 +1,109 @@
+{
+  "docId": "sotsiaaltoo-4-2016",
+  "articleId": "sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+  "title": "Lapse abivajaduse hindamisest lastekaitseseadus kontekstis Jõgevamaa näitel",
+  "authors": [
+    "Sirje Pint"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2016",
+  "section": "Uurimus",
+  "pageRange": "56-61",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sirje Pint tutvustab Tallinna Ülikoolis kaitstud magistritööd, milles tehti 2016. aasta märtsis kümme poolstruktureeritud intervjuud Jõgevamaa kohalike omavalitsuste lastekaitsetöötajatega, kelle tööstaaž ulatus viiest kuust 14 aastani. Lastekaitseseaduse § 28 nõutud kaheksast heaoluaspektist hinnati enim majanduslikku, hariduslikku, kognitiivset ja tervislikku seisundit, sageli kaudselt kooli või perearsti kaudu; psühholoogilise ja emotsionaalse heaolu hindamist peeti raskeimaks ega tuntud end selles pädevana. Autor teeb sotsiaalministeeriumile ettepaneku töötada kiiresti välja hindamisjuhend ja -vahend.",
+  "tags": [
+    "uurimus",
+    "lapse abivajaduse hindamine",
+    "lastekaitseseadus",
+    "jõgevamaa",
+    "magistritöö",
+    "hindamisjuhend"
+  ],
+  "source_type": "file",
+  "source_path": "2016_4_artikkel_10_lapse_abivajaduse_hindamisest_lastekaitseseadus_kont.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+  "source_sha256": "9673cde916b3ee3d704e530ddb8be038d827f60ef7af222429634285f622484a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+    "previous_source_path": "2016_4_artikkel_10_lapse_abivajaduse_hindamisest_lastekaitseseadus_kont.txt",
+    "previous_source_original_path": "4-2016.pdf",
+    "reference_stored_source_sha256": "0d7469edce2bcac2b4837eea78b3bb3dcf33f6098826ea20a9d94607d36c95f4",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf",
+      "source_sha256": "0f07da03ffde36588435e96f8dda0f52a8140fbf9cc4201bb95e85b594e03fc9",
+      "pdf_start_page": 58,
+      "pdf_end_page": 63,
+      "printed_page_range": "56-62",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 64,
+      "source_regions": [
+        {
+          "source_pdf_page": 58,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 59,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 60,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 61,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 62,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 63,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "56-61",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf"
+    },
+    "server_page_range": "56-62"
+  }
+}

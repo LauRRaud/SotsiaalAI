@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2020",
+  "articleId": "dementsusega-edukalt-elamise-eelduseks-on-kaasav-uhiskond-2020-2",
+  "title": "Dementsusega edukalt elamise eelduseks on kaasav ühiskond",
+  "authors": [
+    "Katre Pall",
+    "Miret Tuur"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2020",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "93-96",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel rõhutab, et dementsusdiagnoos ei tohiks inimest ühiskonnast kõrvale tõrjuda, vaid abi peaks toetama tema iseseisvust ja kaasatust. Autorid käsitlevad varajase sekkumise, ennetuse, kogukonnatoe ja dementsussõbraliku keskkonna tähtsust.",
+  "tags": [
+    "dementsus",
+    "kaasav ühiskond",
+    "ennetamine",
+    "kogukonnatugi",
+    "varajane sekkumine"
+  ],
+  "source_type": "file",
+  "source_path": "ST2_2020_web_link_Part23.pdf",
+  "document_id": "sotsiaaltoo-2-2020-dementsusega-edukalt-elamise-eelduseks-on-kaasav-uhiskond-2020-2",
+  "source_format": "pdf",
+  "source_sha256": "ea484c723ec91e73a4cbd6097bbbf76d11386c03f86cb8a0fe98ea81d84cdc20",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2020-dementsusega-edukalt-elamise-eelduseks-on-kaasav-uhiskond-2020-2",
+    "previous_source_path": "ST2_2020_web_link_Part23.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ea484c723ec91e73a4cbd6097bbbf76d11386c03f86cb8a0fe98ea81d84cdc20",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

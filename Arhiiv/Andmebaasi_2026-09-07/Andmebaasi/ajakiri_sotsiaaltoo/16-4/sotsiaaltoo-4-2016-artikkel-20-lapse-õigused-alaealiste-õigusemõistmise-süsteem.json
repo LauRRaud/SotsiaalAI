@@ -1,0 +1,81 @@
+{
+  "docId": "sotsiaaltoo-4-2016",
+  "articleId": "sotsiaaltoo-4-2016-artikkel-20-lapse-õigused-alaealiste-õigusemõistmise-süsteem",
+  "title": "Lapse õigused alaealiste õigusemõistmise süsteemides Eestis ja Euroopa Liidus",
+  "authors": [
+    "Judit Strömpl"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2016",
+  "section": "Projekt/koolitus",
+  "pageRange": "102-104",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Judit Strömpl annab ülevaate kahest Euroopa Nõukogu rahastatud rahvusvahelisest tegevusuuringust aastatel 2014–2016. Esimene, „Trellide taga olevate laste õigused”, kaardistas vabadusest ilma jäetud laste olukorra neljateistkümnes Euroopa Liidu liikmesriigis ning uuris kinniste asutuste kontrollmehhanisme ja laste kaebamisvõimalusi; piinamise tõkestamise Euroopa komitee on Eestis teinud neli kontrollkäiku ja ühe ad hoc lisakäigu. Teine uuring keskendus lapse osalusõigusele: uuringud tehti Itaalias, Belgias ja Hispaanias ning koolitusseminarid kuues riigis, väljundiks käsiraamat „Artikkel 12”.",
+  "tags": [
+    "projekt",
+    "lapse õigused",
+    "alaealiste õigusemõistmine",
+    "kinnised asutused",
+    "tegevusuuring",
+    "osalusõigus"
+  ],
+  "source_type": "file",
+  "source_path": "2016_4_artikkel_20_lapse_oigused_alaealiste_oigusemoistmise_susteemides.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-20-lapse-igused-alaealiste-igusem-istmise-s-steem",
+  "source_sha256": "d27481c7495d8cfb34f818975a7f1a3cb10394bf9ab7d1eafc55da7558939e8a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-20-lapse-igused-alaealiste-igusem-istmise-s-steem",
+    "previous_source_path": "2016_4_artikkel_20_lapse_oigused_alaealiste_oigusemoistmise_susteemides.txt",
+    "previous_source_original_path": "4-2016.pdf",
+    "reference_stored_source_sha256": "b60cd5bb1ccad6a5a2f1eb50f110bdbae37077bc6c396144e4a265ce249b8d18",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf",
+      "source_sha256": "0f07da03ffde36588435e96f8dda0f52a8140fbf9cc4201bb95e85b594e03fc9",
+      "pdf_start_page": 104,
+      "pdf_end_page": 106,
+      "printed_page_range": "102-105",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 107,
+      "source_regions": [
+        {
+          "source_pdf_page": 104,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 105,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 106,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "102-104"
+    },
+    "server_page_range": "102-105"
+  }
+}

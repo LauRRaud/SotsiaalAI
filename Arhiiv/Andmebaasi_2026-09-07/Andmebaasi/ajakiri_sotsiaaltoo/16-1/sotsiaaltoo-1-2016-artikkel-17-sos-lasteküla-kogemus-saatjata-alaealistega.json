@@ -1,0 +1,90 @@
+{
+  "docId": "sotsiaaltoo-1-2016",
+  "articleId": "sotsiaaltoo-1-2016-artikkel-17-sos-lasteküla-kogemus-saatjata-alaealistega",
+  "title": "SOS Lasteküla kogemus saatjata alaealistega",
+  "authors": [
+    "Ave Schmidt"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2016",
+  "section": "Vestlusring",
+  "pageRange": "52-55",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Vestlusring SOS Lasteküla sotsiaaltöötaja Liina Vesiloigu, Keila SOS noortekodu kasvataja Mart Aru ja SOS ema Mari Soielaga saatjata alaealiste toetamisest. SOS Lastekülal on Sotsiaalkindlustusametiga leping korraga viie lapse asendushoolduseks ja kahe aastaga on tegeldud seitsme alaealisega, nende seas Nigeeriast pärit noormehe ja Süüriast tulnud 10aastase tüdrukuga. Osalejad kirjeldavad ettevalmistusaja puudumist, keelebarjääri ja infopuudust: sageli teatakse vaid lapse nime, umbkaudset vanust ja päritoluriiki. 2015. aasta sügisel avati Keilas vastuvõtukeskus ja korraldati Avatud Eesti Fondi toel õppekäik Austriasse.",
+  "tags": [
+    "vestlusring",
+    "saatjata alaealised",
+    "sos lasteküla",
+    "asendushooldus",
+    "pagulased",
+    "võrgustikutöö"
+  ],
+  "source_type": "file",
+  "source_path": "2016_1_artikkel_17_sos_lastekula_kogemus_saatjata_alaealistega.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-17-sos-lastek-la-kogemus-saatjata-alaealistega",
+  "source_sha256": "bfaed653d265d1b426a22b041d93ab12c032d6186ec01b9916a79ad5ea64be51",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-17-sos-lastek-la-kogemus-saatjata-alaealistega",
+    "previous_source_path": "2016_1_artikkel_17_sos_lastekula_kogemus_saatjata_alaealistega.txt",
+    "previous_source_original_path": "1-2016.pdf",
+    "reference_stored_source_sha256": "497e970233339b5dece31e95f2cc4036c20451077570370a2e853f5b011575e9",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf",
+      "source_sha256": "2c193295e54f58982562b509b6283e93aa58b1695464671e1768e24e90888a6c",
+      "pdf_start_page": 54,
+      "pdf_end_page": 57,
+      "printed_page_range": "52-56",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 58,
+      "source_regions": [
+        {
+          "source_pdf_page": 54,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 55,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 56,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 57,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "52-55"
+    },
+    "server_page_range": "52-56"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2023",
+  "articleId": "praktikakogukond-mis-ja-milleks-2023-2",
+  "title": "Praktikakogukond – mis ja milleks?",
+  "authors": [
+    "Kadi Kass",
+    "Hannes Rohtsalu"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2023",
+  "section": "Kogukondade arendamine",
+  "pageRange": "46-51",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel selgitab Etienne Wengeri praktikakogukonna mõistet ja toob näiteid, kuidas sellised kogukonnad toetavad\nõppimist ja teadmiste liikumist sotsiaalvaldkonnas ja teaduses. Avatakse praktikakogukondade tunnuseid – vabatahtlikkus,\nseotus kindla tegevusalaga, sotsiaalse kapitali loomine – ning kirjeldatakse, kuidas neid teadlikult „kultiveerida“:\nluua kohtumispaiku, toetada osalemist ja hoida kogukonna elujõulisust. Eraldi puudutatakse sotsiaaltöö ja\nteaduskogukondade praktikaid, rõhutades, et jagatud kogemused ja võrgustik aitavad keerulisi probleeme paremini lahendada.",
+  "tags": [
+    "praktikakogukond",
+    "kogukonnad",
+    "õppimine",
+    "sotsiaalvaldkond",
+    "teaduskogukond",
+    "Etienne Wenger"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2023_web_par_Part13.pdf",
+  "document_id": "sotsiaaltoo-2-2023-praktikakogukond-mis-ja-milleks-2023-2",
+  "source_format": "pdf",
+  "source_sha256": "a0242b37c53271ad1ae157597a621d7f4365c2ea9efd8e9f0f99350a5e2f1b1e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2023-praktikakogukond-mis-ja-milleks-2023-2",
+    "previous_source_path": "Sotsiaaltoo_2_2023_web_par_Part13.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "a0242b37c53271ad1ae157597a621d7f4365c2ea9efd8e9f0f99350a5e2f1b1e",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-2-2023",
+  "articleId": "millist-tuge-vajavad-harvikhaigusega-last-kasvatavad-pered-2023-2",
+  "title": "Millist tuge vajavad harvikhaigusega last kasvatavad pered?",
+  "authors": [
+    "Maarja Krais-Leosk"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2023",
+  "section": "Uurimus",
+  "pageRange": "85-93",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimus põhineb magistritööl, mille eesmärk oli selgitada välja raske või sügava intellektipuudega\nharvikhaigusega last kasvatavate perede olukord Eestis ning teha ettepanekuid perede paremaks toetamiseks.\nAutor kirjeldab küsitluse tulemusi perede hoolduskoormuse, vaimse ja füüsilise tervise, suhete, vaba aja\nkasutamise ning teenuste kättesaadavuse ja kvaliteedi kohta. Analüüsi raamistikuna kasutatakse jõustamise\nteooriat, tuues esile vajaduse toetada samaaegselt nii peret kui ka kogukonda ja süsteemi. Artikkel sõnastab\nettepanekud poliitikakujundajatele, omavalitsustele ja teenuseosutajatele, sh tugiisiku- ja intervallhoiuteenuse\narendamine, paindlikum rehabilitatsioon, keskne infoportaal, tugigrupid ja omastehooldaja rolli väärtustamine.",
+  "tags": [
+    "harvikhaigus",
+    "intellektipuue",
+    "omastehooldus",
+    "jõustamine",
+    "sotsiaalteenused",
+    "tugiisikuteenus",
+    "intervallhoiuteenus",
+    "puudega lapsed",
+    "perede toetus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2023_web_par_Part19.pdf",
+  "document_id": "sotsiaaltoo-2-2023-millist-tuge-vajavad-harvikhaigusega-last-kasvatavad-pered-2023-2",
+  "source_format": "pdf",
+  "source_sha256": "d2cf4758e283d430a159a0ae5d4c825fa9a8819f4f63b28199a2d1b32e18f306",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2023-millist-tuge-vajavad-harvikhaigusega-last-kasvatavad-pered-2023-2",
+    "previous_source_path": "Sotsiaaltoo_2_2023_web_par_Part19.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d2cf4758e283d430a159a0ae5d4c825fa9a8819f4f63b28199a2d1b32e18f306",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

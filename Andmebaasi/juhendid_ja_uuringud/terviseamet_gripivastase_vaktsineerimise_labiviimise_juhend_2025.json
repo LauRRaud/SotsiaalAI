@@ -1,0 +1,147 @@
+{
+  "source_path": "terviseamet_gripivastase_vaktsineerimise_labiviimise_juhend_2025.pdf",
+  "source_format": "pdf",
+  "sha256": "7329b53519cc8c1da4c06202acad7e5a59c39a4026a9bad57108eff127127cdc",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/terviseamet_gripivastase_vaktsineerimise_labiviimise_juhend_2025.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "terviseamet_gripivastase_vaktsineerimise_labiviimise_juhend_2025",
+          "title": "Gripivastase vaktsineerimise läbiviimise juhend 2025",
+          "url": "https://www.terviseamet.ee/sites/default/files/documents/2026-03/Lisa%202.5.1.%20Juhis_gripivastase_vaktsineerimise_labiviimiseks_2025.pdf",
+          "normalized_url": "https://www.terviseamet.ee/sites/default/files/documents/2026-03/Lisa 2.5.1. Juhis_gripivastase_vaktsineerimise_labiviimiseks_2025.pdf",
+          "source_format": "pdf",
+          "source_type": "official_guideline",
+          "resource_type": "method_guidance",
+          "publisher": "Terviseamet",
+          "organization_id": "terviseamet",
+          "collection_hint": "guidance_and_methods",
+          "evidence_role": "practice_guidance",
+          "topic_tags": [
+            "Terviseamet",
+            "tervishoid",
+            "nakkushaigused",
+            "infektsioonikontroll",
+            "vaktsineerimine",
+            "gripp",
+            "spetsialisti juhend"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "high",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_057",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "Terviseamet",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 309,
+            "order": 179
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Gripivastase vaktsineerimise läbiviimise juhend 2025"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "official_guideline"
+          ],
+          "resource_types_seen": [
+            "best_practice_guidance"
+          ],
+          "publishers_seen": [
+            "Terviseamet"
+          ],
+          "organizations_seen": [
+            "terviseamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Terviseamet",
+              "line": 309,
+              "order": 179
+            },
+            {
+              "heading_2": "Terviseamet",
+              "line": 783,
+              "order": 386
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.terviseamet.ee/sites/default/files/documents/2026-03/Lisa 2.5.1. Juhis_gripivastase_vaktsineerimise_labiviimiseks_2025.pdf"
+        },
+        "final_url": "https://www.terviseamet.ee/sites/default/files/documents/2026-03/Lisa%202.5.1.%20Juhis_gripivastase_vaktsineerimise_labiviimiseks_2025.pdf",
+        "redirects": [],
+        "sha256": "7329b53519cc8c1da4c06202acad7e5a59c39a4026a9bad57108eff127127cdc",
+        "bytes": 214047,
+        "downloaded_at": "2026-08-14T08:00:37.935Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "terviseamet_gripivastase_vaktsineerimise_labiviimise_juhend_2025",
+      "metadata": {
+        "createdAt": "2026-06-11T18:40:27.453518+00:00",
+        "type": "FILE",
+        "fileName": "Lisa 2.5.1. Juhis_gripivastase_vaktsineerimise_labiviimiseks_2025.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-11T18:40:27.393304+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/1222cae8e06d/Lisa 2.5.1. Juhis_gripivastase_vaktsineerimise_labiviimiseks_2025.pdf",
+        "title": "Gripivastase vaktsineerimise läbiviimise juhend 2025",
+        "description": "Duplikaadid ühendatud: 1 lisakirjet. Source master headings: Terviseamet",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2025,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–4",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "terviseamet_gripivastase_vaktsineerimise_labiviimise_juhend_2025",
+        "document_id": "terviseamet_gripivastase_vaktsineerimise_labiviimise_juhend_2025",
+        "source_type": "official_guideline",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-11",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "96a5a5ffd082ff047d7cc653868518f56dcab6b8b0c9888a6faa72b973ed9e60",
+        "url": "https://www.terviseamet.ee/sites/default/files/documents/2026-03/Lisa%202.5.1.%20Juhis_gripivastase_vaktsineerimise_labiviimiseks_2025.pdf",
+        "url_canonical": "https://www.terviseamet.ee/sites/default/files/documents/2026-03/Lisa 2.5.1. Juhis_gripivastase_vaktsineerimise_labiviimiseks_2025.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "terviseamet_gripivastase_vaktsineerimise_labiviimise_juhend_2025",
+        "updatedAt": "2026-06-11T18:40:27.453541+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

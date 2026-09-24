@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-vinni-vald",
+  "document_id": "kov-vinni-vald",
+  "municipality": "Vinni vald",
+  "municipality_id": "vinni_vald",
+  "county": "Lääne Virumaa",
+  "checkedAt": "2026-04-30",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-vinni-vald",
+  "coverage": {
+    "services": 13,
+    "benefits": 17,
+    "resources": 18,
+    "contacts": 14,
+    "forms": 13,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "vinni_vald",
+    "source_register_file": "vinni-vald.sources.json",
+    "service_benefit_resource_items": 48,
+    "items_with_source_keys": 48,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 20,
+    "items_without_related_forms": 28,
+    "items_with_related_contacts": 10,
+    "items_without_related_contacts": 38,
+    "form_sources": 12,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "3 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Pakett on parandatud Vinni valla ametliku kodulehe avalehe, sotsiaalteenuste, sotsiaaltoetuste, üldhooldusteenuse, sotsiaalasutuste, kontaktide, vormide, kaartide ja abi alamlehtede põhjal.",
+    "RT/legal allikaid ei ole KOV veebipaketi sources.json allikaregistrisse lisatud."
+  ],
+  "unresolvedIssues": [
+    "Mitmel Vinni valla lehel on e-posti aadressid varjestatud kujul '**'; aadresse ei taastatud oletuse põhjal.",
+    "Iseteeninduse e-avalduste otselink on KOV lehel üldise iseteeninduse lingina, vormipõhiseid püsiviiteid ei olnud võimalik avalikult eraldada.",
+    "Otsustamise tähtaegu ei ole enamikul teenuse- ja toetusekirjetel KOV veebilehel selgelt avaldatud.",
+    "Mõne teenuse taotlemise praktiline menetluskäik on lehel üldine ning täpsemad sammud tuleb vajadusel küsida sotsiaalteenistuselt.",
+    "Väliste partnerite ja riiklike teenuste (nt perelepitusteenus, SKA, Rimi, Lasteabi) sisu ei kontrollitud väljaspool KOV lehel avaldatud kirjeldust.",
+    "Vormi seoseid teenuste ja toetustega kasutati ainult juhul, kui KOV vormide leht või teenuse/toetuse leht seost selgelt kinnitas.",
+    "Eluaseme füüsilise kohandamise taotlus on vormide lehel olemas, kuid samal KOV veebikihil ei leitud eraldi detailset toetuse/teenuse kirjeldust.",
+    "Parkimiskaardi ja puudega inimeste tasuta sõiduõiguse info on KOV kodulehel kirjeldatud ressursina; parkimiskaardi eraldi blanketi otselinki ei tuvastatud vormide lehelt.",
+    "Vajaduspõhist sotsiaaltoetust eraldi KOV toetusena ei leitud; KOV leht viitab vajaduspõhisele toetusele toidukaardi aluse selgituses.",
+    "Puudega lapse hooldajatoetus ja täisealise isiku hooldajatoetus on KOV veebis koondatud hooldajatoetuse alla ning eraldi toetusekirjeid ei dubleeritud."
+  ],
+  "municipality_name": "Vinni vald",
+  "checked_at": "2026-04-30",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "vinni-vald.sources.json",
+  "sourceCount": 32,
+  "counts": {
+    "services": 13,
+    "benefits": 17,
+    "resources": 18,
+    "contacts": 14,
+    "forms": 13,
+    "regulations": 0
+  },
+  "warnings": [
+    "3 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

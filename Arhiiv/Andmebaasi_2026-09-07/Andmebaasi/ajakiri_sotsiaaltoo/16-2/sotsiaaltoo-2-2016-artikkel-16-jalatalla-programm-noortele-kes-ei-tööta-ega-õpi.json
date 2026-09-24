@@ -1,0 +1,82 @@
+{
+  "docId": "sotsiaaltoo-2-2016",
+  "articleId": "sotsiaaltoo-2-2016-artikkel-16-jalatalla-programm-noortele-kes-ei-tööta-ega-õpi",
+  "title": "Jalatalla programm noortele, kes ei tööta ega õpi",
+  "authors": [
+    "Annegrete Johanson",
+    "Liis Tamman"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2016",
+  "section": "Projekt",
+  "pageRange": "72-74",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tallinna Spordi- ja Noorsooameti spetsialistid tutvustavad Jalatalla programmi 15–25aastastele noortele, kes ei tööta ega õpi. Eurofoundi 2012. aasta uurimuse järgi ei tööta ega õpi ligi kuuendik 15–29aastastest Eestis elavatest noortest ehk üle 40 000. Programm koosneb kolmest faasist: grupitööd ja individuaalne mentor, seejärel noortevahetus või Euroopa vabatahtlik teenistus välismaal ning naasmisjärgne tugi. 2015. aasta prooviaastal osalesid Tallinna Laste Turvakeskuse noored ja üheksast osalejast töötab või õpib kaheksa; 2016. aastal minnakse Itaaliasse, Iirimaale ja Sloveeniasse.",
+  "tags": [
+    "projekt",
+    "NEET-noored",
+    "noorsootöö",
+    "mentorlus",
+    "Euroopa vabatahtlik teenistus",
+    "Tallinn"
+  ],
+  "source_type": "file",
+  "source_path": "2016_2_artikkel_16_jalatalla_programm_noortele_kes_ei_toota_ega_opi.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-16-jalatalla-programm-noortele-kes-ei-t-ta-ega-pi",
+  "source_sha256": "9c99fec6e74c54ac8b53e71e9f12dcdaa1ccca4cf3f919fca4796aa059f853da",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-16-jalatalla-programm-noortele-kes-ei-t-ta-ega-pi",
+    "previous_source_path": "2016_2_artikkel_16_jalatalla_programm_noortele_kes_ei_toota_ega_opi.txt",
+    "previous_source_original_path": "2-2016.pdf",
+    "reference_stored_source_sha256": "c7ca8294cf1048a158dc458b83c25e3b776d77d63ca19cd24d60da3a7a1c0e4b",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2-2016.pdf",
+      "source_sha256": "cf45b61607b21a62a1003f99c97d65180c4fb4f591a874c983c4b63e5c804a36",
+      "pdf_start_page": 74,
+      "pdf_end_page": 76,
+      "printed_page_range": "72-75",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 77,
+      "source_regions": [
+        {
+          "source_pdf_page": 74,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 75,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 76,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "72-74"
+    },
+    "server_page_range": "72-75"
+  }
+}

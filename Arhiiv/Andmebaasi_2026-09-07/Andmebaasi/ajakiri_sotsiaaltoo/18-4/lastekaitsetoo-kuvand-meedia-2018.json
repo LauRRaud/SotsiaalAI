@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-4-2018",
+  "articleId": "eesti-elanike-arvamus-lastekaitsetoost-ja-meedia-rollist-2018",
+  "title": "Eesti elanike arvamus lastekaitsetööst ja meedia roll selle kuvandi kujunemisel",
+  "authors": [
+    "Brit Vaga"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2018",
+  "section": "Uurimus",
+  "pageRange": "58-61",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimus meedia mõju kohta lastekaitsetöö kuvandile ning spetsialistide ja elanike hoiakutele.",
+  "tags": [
+    "lastekaitse",
+    "meedia",
+    "avalik arvamus",
+    "kuvand",
+    "uurimus"
+  ],
+  "source_type": "file",
+  "source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part15.pdf",
+  "document_id": "sotsiaaltoo-4-2018-eesti-elanike-arvamus-lastekaitsetoost-ja-meedia-rollist-2018",
+  "source_format": "pdf",
+  "source_sha256": "e0553287a90fe528394a925ae93aa203a9c778a7465535d9f9a31478d14b7cce",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2018-eesti-elanike-arvamus-lastekaitsetoost-ja-meedia-rollist-2018",
+    "previous_source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part15.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e0553287a90fe528394a925ae93aa203a9c778a7465535d9f9a31478d14b7cce",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

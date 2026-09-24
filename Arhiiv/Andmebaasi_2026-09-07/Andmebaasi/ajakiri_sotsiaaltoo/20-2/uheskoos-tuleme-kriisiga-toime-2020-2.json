@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-2-2020",
+  "articleId": "uheskoos-tuleme-kriisiga-toime-2020-2",
+  "title": "Üheskoos tuleme kriisiga toime",
+  "authors": [
+    "Anneli Tõru",
+    "Jaana Laanemann"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2020",
+  "section": "Kogemus",
+  "pageRange": "13-14",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Saaremaa kriisiepitsentris tegutsenud tervishoiu- ja sotsiaalvaldkonna töötajate kogemuslugu. Rõhutatakse kiiret otsustamist, koostööd, kogukonna tuge ja ühist toimetulemist olukorras, kus info muutus tundidega.",
+  "tags": [
+    "kogemuslugu",
+    "Saaremaa",
+    "Covid-19",
+    "kriis",
+    "sotsiaalvaldkond",
+    "tervishoid",
+    "meeskonnatöö",
+    "koostöö",
+    "kogukonnatugi"
+  ],
+  "source_type": "file",
+  "source_path": "ST2_2020_web_link_Part6.pdf",
+  "document_id": "sotsiaaltoo-2-2020-uheskoos-tuleme-kriisiga-toime-2020-2",
+  "source_format": "pdf",
+  "source_sha256": "de6a5f6fb73217da7e5e28a1acec22d88208292a8a5d1a5088124383c9095cf5",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2020-uheskoos-tuleme-kriisiga-toime-2020-2",
+    "previous_source_path": "ST2_2020_web_link_Part6.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "de6a5f6fb73217da7e5e28a1acec22d88208292a8a5d1a5088124383c9095cf5",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

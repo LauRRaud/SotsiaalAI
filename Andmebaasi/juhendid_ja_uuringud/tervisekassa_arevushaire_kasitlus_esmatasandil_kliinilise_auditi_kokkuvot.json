@@ -1,0 +1,151 @@
+{
+  "source_path": "tervisekassa_arevushaire_kasitlus_esmatasandil_kliinilise_auditi_kokkuvot.pdf",
+  "source_format": "pdf",
+  "sha256": "1caab240c604adbd96720af2eba4f47f516ab6e9a85edfa826c647f8db70d48d",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/tervisekassa_arevushaire_kasitlus_esmatasandil_kliinilise_auditi_kokkuvot.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "tervisekassa_arevushaire_kasitlus_esmatasandil_kliinilise_auditi_kokkuvot",
+          "title": "Ärevushäire käsitlus esmatasandil – kliinilise auditi kokkuvõte",
+          "url": "https://tervisekassa.ee/sites/default/files/kvaliteet/Haigekassa/2018_arevushaire_kasitlus_esmatasandil_kokkuvote.pdf",
+          "normalized_url": "https://tervisekassa.ee/sites/default/files/kvaliteet/Haigekassa/2018_arevushaire_kasitlus_esmatasandil_kokkuvote.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "Tervisekassa",
+          "organization_id": "tervisekassa",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Tervisekassa",
+            "tervishoid",
+            "esmatasand",
+            "patsient",
+            "ärevushäire",
+            "vaimne tervis",
+            "psüühiline heaolu",
+            "nõustamine",
+            "uuring",
+            "raport",
+            "analüüs"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_048",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "Tervisekassa",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 289,
+            "order": 170
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Ärevushäire käsitlus esmatasandil – kliinilise auditi kokkuvõte"
+          ],
+          "collection_hints": [
+            "research_reports"
+          ],
+          "source_types_seen": [
+            "research_report"
+          ],
+          "resource_types_seen": [
+            "research_evidence"
+          ],
+          "publishers_seen": [
+            "Tervisekassa"
+          ],
+          "organizations_seen": [
+            "tervisekassa"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Tervisekassa",
+              "line": 289,
+              "order": 170
+            },
+            {
+              "heading_2": "Tervisekassa",
+              "line": 763,
+              "order": 377
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://tervisekassa.ee/sites/default/files/kvaliteet/Haigekassa/2018_arevushaire_kasitlus_esmatasandil_kokkuvote.pdf"
+        },
+        "final_url": "https://tervisekassa.ee/sites/default/files/kvaliteet/Haigekassa/2018_arevushaire_kasitlus_esmatasandil_kokkuvote.pdf",
+        "redirects": [],
+        "sha256": "1caab240c604adbd96720af2eba4f47f516ab6e9a85edfa826c647f8db70d48d",
+        "bytes": 344151,
+        "downloaded_at": "2026-08-14T08:00:37.141Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "tervisekassa_arevushaire_kasitlus_esmatasandil_kliinilise_auditi_kokkuvot",
+      "metadata": {
+        "createdAt": "2026-06-12T03:43:21.251158+00:00",
+        "type": "FILE",
+        "fileName": "2018_arevushaire_kasitlus_esmatasandil_kokkuvote.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:43:21.185301+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/ce4e58cc2e0f/2018_arevushaire_kasitlus_esmatasandil_kokkuvote.pdf",
+        "title": "Ärevushäire käsitlus esmatasandil – kliinilise auditi kokkuvõte",
+        "description": "Duplikaadid ühendatud: 1 lisakirjet. Source master headings: Tervisekassa",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": null,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–12",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "research_reports",
+        "source_id": "tervisekassa_arevushaire_kasitlus_esmatasandil_kliinilise_auditi_kokkuvot",
+        "document_id": "tervisekassa_arevushaire_kasitlus_esmatasandil_kliinilise_auditi_kokkuvot",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "ea7068c400d6338235670362123bd8616b5f58e6619aae024a2c8f585d82b61b",
+        "url": "https://tervisekassa.ee/sites/default/files/kvaliteet/Haigekassa/2018_arevushaire_kasitlus_esmatasandil_kokkuvote.pdf",
+        "url_canonical": "https://tervisekassa.ee/sites/default/files/kvaliteet/Haigekassa/2018_arevushaire_kasitlus_esmatasandil_kokkuvote.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "tervisekassa_arevushaire_kasitlus_esmatasandil_kliinilise_auditi_kokkuvot",
+        "updatedAt": "2026-06-12T03:43:21.251181+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-3-2019",
+  "articleId": "integreeritud-teenused-kellele-ja-milleks-2019",
+  "title": "Integreeritud teenused – kellele ja milleks?",
+  "authors": [
+    "Alice Juurik",
+    "Gabriela Rooso",
+    "Nele Labi",
+    "Piret Liba"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2019",
+  "section": "Tugi ja teenused",
+  "pageRange": "81-84",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade erivajadustega laste ja nende perede toetamiseks loodud integreeritud teenuste kontseptsioonist: kuidas koordineerida haridus-, sotsiaal- ja tervishoiusüsteemi tuge nii, et vastutus, rollid ja rahastus oleksid selgemad ning laps jõuaks talle vajalikule teenusele õigel ajal.",
+  "tags": [
+    "integreeritud teenused",
+    "erivajadusega lapsed",
+    "võrgustikutöö",
+    "haridus- ja sotsiaalvaldkonna koostöö",
+    "teenuste rahastamine",
+    "case management"
+  ],
+  "source_type": "file",
+  "source_path": "ST3_2019_veeb_link_Part17.pdf",
+  "document_id": "sotsiaaltoo-3-2019-integreeritud-teenused-kellele-ja-milleks-2019",
+  "source_format": "pdf",
+  "source_sha256": "7f556c758bee98423959196975f0ae6795dc6b4f54d603096e4aa1386e7497a8",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2019-integreeritud-teenused-kellele-ja-milleks-2019",
+    "previous_source_path": "ST3_2019_veeb_link_Part17.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "7f556c758bee98423959196975f0ae6795dc6b4f54d603096e4aa1386e7497a8",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

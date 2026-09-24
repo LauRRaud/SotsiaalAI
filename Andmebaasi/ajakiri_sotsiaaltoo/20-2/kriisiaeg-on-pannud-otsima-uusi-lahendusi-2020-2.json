@@ -1,0 +1,37 @@
+{
+  "docId": "sotsiaaltoo-2-2020",
+  "articleId": "kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2",
+  "title": "Kriisiaeg on pannud otsima uusi lahendusi",
+  "authors": [],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2020",
+  "section": "Uus lahendus sotsiaaltöös",
+  "pageRange": "tagakaas",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Lühikokkuvõte toob esile, kuidas COVID-19 eriolukord kiirendas sotsiaalvaldkonnas uute tööviiside, koostöövormide ja teenuslahenduste kasutuselevõttu. Fookuses on kohalike omavalitsuste, teenuseosutajate ja riigiasutuste praktilised kohanemised kriisiajal.",
+  "tags": [
+    "COVID-19",
+    "eriolukord",
+    "sotsiaalvaldkond",
+    "koostöö",
+    "teenuseinnovatsioon"
+  ],
+  "source_type": "file",
+  "source_path": "ST2_2020_web_link_Part26.pdf",
+  "document_id": "sotsiaaltoo-2-2020-kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2",
+  "source_format": "pdf",
+  "source_sha256": "7f355848fc7c051b7dc1389c0e658a0997f05746a0954574fe14f48dcf9c8459",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2020-kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2",
+    "previous_source_path": "ST2_2020_web_link_Part26.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "7f355848fc7c051b7dc1389c0e658a0997f05746a0954574fe14f48dcf9c8459",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

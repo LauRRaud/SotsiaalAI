@@ -1,0 +1,45 @@
+{
+  "docId": "sotsiaaltoo-2-2021",
+  "articleId": "sotsiaalpedagoogika-tulevik-on-helge-2021-2",
+  "title": "Sotsiaalpedagoogika tulevik on helge",
+  "authors": [
+    "Agnes Värik",
+    "Einar Ilves",
+    "Merilin Uder",
+    "Mailis Ostra"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2021",
+  "section": "Erialane haridus",
+  "pageRange": "88-92",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tallinna Ülikooli ja praktikute ühine artikkel annab ülevaate sotsiaalpedagoogika eriala hetkeolukorrast ja tulevikuväljavaadetest. Kirjeldatakse õppekavasid, praktika korraldust, koolide ja kogukonna ootusi sotsiaalpedagoogidele ning tööjõuvajadust haridus- ja sotsiaalvaldkonnas. Autorid analüüsivad, millised pädevused on sotsiaalpedagoogile kõige olulisemad (suhtlemisoskus, võrgustikutöö, kriisiga toimetulek, ennetustöö, multikultuurne kompetents) ning kuidas toetada tudengite professionaalset identiteeti. Artikkel toob näiteid inspireerivatest praktikakogemustest ja rõhutab, et sotsiaalpedagoogika roll laste ja noorte heaolu tagamisel muutub järjest kesksemaks.",
+  "tags": [
+    "sotsiaalpedagoogika",
+    "erialane haridus",
+    "Tallinna Ülikool",
+    "ennetustöö",
+    "koolikeskkond",
+    "võrgustikutöö",
+    "professionaalne identiteet",
+    "tööjõuvajadus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2021_web_link_Part19.pdf",
+  "document_id": "sotsiaaltoo-2-2021-sotsiaalpedagoogika-tulevik-on-helge-2021-2",
+  "source_format": "pdf",
+  "source_sha256": "74f259bf463ef68b061e4b8286ef29d6fe69f04c2524d0100d0ac26ef7adca83",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2021-sotsiaalpedagoogika-tulevik-on-helge-2021-2",
+    "previous_source_path": "Sotsiaaltoo_2_2021_web_link_Part19.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "74f259bf463ef68b061e4b8286ef29d6fe69f04c2524d0100d0ac26ef7adca83",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

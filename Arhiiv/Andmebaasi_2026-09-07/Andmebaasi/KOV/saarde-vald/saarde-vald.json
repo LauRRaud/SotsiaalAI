@@ -1,0 +1,3390 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-saarde-vald",
+  "document_id": "kov-saarde-vald",
+  "municipality": "Saarde vald",
+  "municipality_id": "saarde_vald",
+  "county": "Pärnumaa",
+  "checkedAt": "2026-05-01",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "saarde_vald_service_asendus_ja_jarelhooldusteenus",
+      "canonical_item_id": "saarde_vald:service:asendus_ja_jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Asendus- ja järelhooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus aitab tagada lapse heaolu, õigused, põhivajadused, peresarnased elutingimused ning turvalise arengukeskkonna. Järelhooldusteenus toetab asendushoolduselt või eestkostelt lahkuva täisealise isiku iseseisvat toimetulekut ja õpingute jätkamist. Teenust rahastatakse valla eelarvest ning teenusel oleva lapse või täisealise isiku sissetulekutest, kui see on kohaldatav.",
+      "targetGroup": "Lapsed, kellele vallavalitsus tagab asendushoolduse, ning asendushoolduselt või eestkostelt lahkuvad täisealised isikud, kelle iseseisvat toimetulekut ja õppimist on vaja toetada.",
+      "conditions": "Kuni 90 päevaks või periooditi teenuse osutamiseks esitab lapsevanem või lapse füüsilisest isikust eestkostja vallavalitsusele taotluse. Vaja on taotleja ja lapse kehtivat isikut tõendavat dokumenti.",
+      "application": {
+        "channels": [
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Esita taotlus Saarde Vallavalitsusele aadressil Nõmme 22, Kilingi-Nõmme, posti teel või digitaalselt allkirjastatuna e-postiga.",
+          "Vallavalitsus hindab suunamise või teenuse tagamise vajadust ja korraldab teenuse vastavalt otsusele."
+        ],
+        "deadline": null,
+        "documents": [
+          "taotleja kehtiv isikut tõendav dokument",
+          "lapse kehtiv isikut tõendav dokument"
+        ]
+      },
+      "pricing": {
+        "amount": null,
+        "notes": "Asendushooldus- ja järelhooldusteenust rahastatakse Saarde valla eelarvest ning teenusel oleva lapse või täisealise isiku sissetulekutest; teenuse saaja isiklike kulude katteks on vallaeelarves arvestuslikult 240 eurot kuus ja vähemalt 2880 eurot aastas."
+      },
+      "officialUrl": "https://saarde.ee/asendus-ja-jarelhooldusteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu"
+      ],
+      "sourceKeys": [
+        "service_asendus_ja_jarelhooldusteenus"
+      ],
+      "item_type": "service",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_asendus_ja_jarelhooldusteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_service_asendus_ja_jarelhooldusteenus",
+      "document_id": "saarde_vald_service_asendus_ja_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/asendus-ja-jarelhooldusteenus",
+      "content_hash": "7cb60a3f1789d1b3f9af90e1a71e4a594fefe6b7dedebdfa4996754d04a0513b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_service_eluruumi_tagamise_teenus",
+      "canonical_item_id": "saarde_vald:service:eluruumi_tagamise_teenus",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenus aitab täisealisel Saarde valla elanikul, kes ei suuda tervislikel või sotsiaalmajanduslikel põhjustel endale või oma perele sobivat eluruumi tagada. Vald võib anda kasutusse valla eluruumi ja abistada puudega inimest sobiva eluruumi leidmisel või kohandamisel. Teenuse eest tasub kasutaja üüri vastavalt valla kehtestatud hinnavahemikule.",
+      "targetGroup": "Täisealised Saarde valla elanikud, kellel ei ole võimalik ise sobivat eluruumi hankida või kasutada.",
+      "conditions": "Taotleja peab esitama põhjendatud avalduse, kus kirjeldatakse eluruumi vajadust, senist elukohta, pere koosseisu ja sissetulekut; lisada tuleb isikut tõendav dokument.",
+      "application": {
+        "channels": [
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Esita vabas vormis allkirjastatud avaldus Saarde Vallavalitsusele.",
+          "Vallavalitsus hindab abivajadust ja teeb otsuse eluruumi kasutusse andmise kohta."
+        ],
+        "deadline": null,
+        "documents": [
+          "kehtiv isikut tõendav dokument",
+          "vajadust ja eluruumiolukorda selgitavad dokumendid"
+        ]
+      },
+      "pricing": {
+        "amount": "0,70-5,00 eurot/m2 kuus",
+        "notes": "Üür jääb valla lehel avaldatud vahemikku 0,70-5,00 eurot m2 kohta kuus; üüri tasub teenuse saaja."
+      },
+      "officialUrl": "https://saarde.ee/eluruumi-tagamise-teenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu"
+      ],
+      "sourceKeys": [
+        "service_eluruumi_tagamise_teenus",
+        "social_services_overview"
+      ],
+      "item_type": "service",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_eluruumi_tagamise_teenus",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_service_eluruumi_tagamise_teenus",
+      "document_id": "saarde_vald_service_eluruumi_tagamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/eluruumi-tagamise-teenus",
+      "content_hash": "a2f4187912ce242e596fc5fe4c0c175e753bf3181cb74a2f00748906aad2094a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "saarde_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus toetab puudega täisealise inimese iseseisvat toimetulekut, osalemist ühiskonnaelus ja igapäevast asjaajamist. Teenus vähendab lähedaste hoolduskoormust ning teenuse osutaja tööülesanded ja maht lepitakse kokku vastavalt inimese abivajadusele. Teenuse eest tasumine võib toimuda inimese, tema lähedaste ja valla koostöös.",
+      "targetGroup": "Saarde vallas registreeritud puudega täisealised inimesed, kellel on vaja igapäevaelus isikliku abistaja tuge.",
+      "conditions": "Teenuse saamiseks tuleb esitada taotlus ja kehtiv isikut tõendav dokument; vald hindab teenuse vajadust.",
+      "application": {
+        "channels": [
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Täida isikliku abistaja teenuse taotlus ja esita see vallavalitsusele.",
+          "Vallavalitsus hindab abivajadust ning lepib teenuse osutamise tingimused kokku."
+        ],
+        "deadline": null,
+        "documents": [
+          "kehtiv isikut tõendav dokument"
+        ]
+      },
+      "pricing": {
+        "amount": null,
+        "notes": "Teenuse eest tasumine sõltub kokkuleppest; valla lehel on kirjeldatud rahastamist teenuse saaja või tema lähedaste ja valla osalusena."
+      },
+      "officialUrl": "https://saarde.ee/isikliku-abistaja-teenus",
+      "relatedForms": [
+        "saarde_vald_form_isikliku_abistaja_teenus"
+      ],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu"
+      ],
+      "sourceKeys": [
+        "service_isikliku_abistaja_teenus",
+        "social_services_overview"
+      ],
+      "item_type": "service",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_isikliku_abistaja_teenus",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_service_isikliku_abistaja_teenus",
+      "document_id": "saarde_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/isikliku-abistaja-teenus",
+      "content_hash": "b8d4f3b86e0c573186615b8a786d1d7e715b8bf619669d1f5db4cbd96eb442a7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_service_koduteenus",
+      "canonical_item_id": "saarde_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus aitab täisealisel inimesel iseseisvalt ja turvaliselt kodus toime tulla. Teenus võib hõlmata abi küttepuude, vee, arvete tasumise, ravimite, arstiabi korraldamise, sotsiaalabi avalduste ja muude igapäevase toimetuleku toimingutega. Teenus on tasuline ning konkreetne hind lähtub valla kehtestatud hinnakirjast.",
+      "targetGroup": "Täisealised Saarde valla elanikud, kelle toimetulek kodus on raskendatud.",
+      "conditions": "Teenuse saamiseks esitab inimene või tema seaduslik ülalpidaja taotluse, milles põhjendab abi vajadust. Abivajadusest võivad vallale teada anda ka lähedased, naabrid, perearst, hooldustöötaja või muu märkaja.",
+      "application": {
+        "channels": [
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Täida koduteenuse taotluse vorm ja esita see Saarde Vallavalitsusele.",
+          "Vallavalitsus hindab koduteenuse vajadust ja korraldab teenuse osutamise."
+        ],
+        "deadline": null,
+        "documents": [
+          "kehtiv isikut tõendav dokument"
+        ]
+      },
+      "pricing": {
+        "amount": null,
+        "notes": "Koduteenus on tasuline; valla leht viitab valla kehtestatud hinnakirjale."
+      },
+      "officialUrl": "https://saarde.ee/koduteenus",
+      "relatedForms": [
+        "saarde_vald_form_koduteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu"
+      ],
+      "sourceKeys": [
+        "service_koduteenus",
+        "social_services_overview"
+      ],
+      "item_type": "service",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_koduteenus",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_service_koduteenus",
+      "document_id": "saarde_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/koduteenus",
+      "content_hash": "fc505695b549e6071960d07aaf8c8e580a5e5bc67c5618f2a6f4f8db32a67a50",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "saarde_vald:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenus toetab lapsevanema või hooldaja toimetulekut, töötamist või puhkamist olukorras, kus erivajadusega lapse hooldamine vajab lisatuge. Teenuse täpne aeg, koht, maht ja tegevused lepitakse kokku lapsevanema, valla ja teenusepakkujaga ning vormistatakse haldusaktis või lepingus. Teenust võib rahastada täielikult või osaliselt riigi ja valla eelarvest.",
+      "targetGroup": "Erivajadusega lapsed ning nende vanemad või hooldajad, kelle hoolduskoormust on vaja vähendada.",
+      "conditions": "Taotluses tuleb selgitada lapse hoiuvajadust ja soovitud teenuse perioodi; vald hindab vajadust juhtumipõhiselt.",
+      "application": {
+        "channels": [
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Esita Saarde Vallavalitsusele avaldus, milles põhjendad lapsehoiuteenuse vajadust ja soovitud kestust.",
+          "Vallavalitsus hindab taotlust ning lepib kokku teenusepakkuja ja teenuse tingimused."
+        ],
+        "deadline": null,
+        "documents": [
+          "kehtiv isikut tõendav dokument",
+          "lapse hooldusvajadust selgitavad andmed"
+        ]
+      },
+      "pricing": {
+        "amount": null,
+        "notes": "Teenust võib rahastada osaliselt või täielikult riigi ja/või valla eelarvest; omaosalus sõltub konkreetsest otsusest."
+      },
+      "officialUrl": "https://saarde.ee/lapsehoiuteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu"
+      ],
+      "sourceKeys": [
+        "service_lapsehoiuteenus",
+        "social_services_overview"
+      ],
+      "item_type": "service",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_lapsehoiuteenus",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_service_lapsehoiuteenus",
+      "document_id": "saarde_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/lapsehoiuteenus",
+      "content_hash": "40dd0b0d63b464a83054af150090ab61a4486d56a8b2540a2e26dc5175b30731",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_service_matuseteenus",
+      "canonical_item_id": "saarde_vald:service:matuseteenus",
+      "itemType": "service",
+      "title": "Matuseteenus",
+      "status": "active",
+      "summary": "Matuseteenus tagab väärika matuse inimesele, kellel ei ole lähedasi, kelle lähedastel puuduvad matuse korraldamiseks rahalised vahendid või kelle isik on valla territooriumil teadmata. Vald ostab teenuse matusefirmalt ning korraldab vajaliku minimaalse matusekorralduse. Teenus hõlmab näiteks surnu transporti, kirstu, haua kaevamist ja sulgemist, hauaplaati ning lillekimpu.",
+      "targetGroup": "Surnud isikud, kelle matuse korraldamiseks puudub lähedaste või vahendite tugi, ning Saarde vallas surnud tuvastamata isikud.",
+      "conditions": "Teenust osutatakse juhtudel, kui surnul puuduvad lähedased või lähedased ei suuda matust korraldada, või kui surnu isikut ei õnnestu tuvastada.",
+      "application": {
+        "channels": [
+          "phone",
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Võta ühendust vallavalitsuse sotsiaalosakonnaga ja edasta info surnu ning matuse korraldamise vajaduse kohta.",
+          "Vallavalitsus hindab olukorda ning korraldab matuse teenusepakkuja kaudu."
+        ],
+        "deadline": null,
+        "documents": []
+      },
+      "pricing": {
+        "amount": "tasuta teenuse saajale",
+        "notes": "Matuseteenuse kulud kaetakse valla eelarvest, kui teenuse tingimused on täidetud."
+      },
+      "officialUrl": "https://saarde.ee/matuseteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu"
+      ],
+      "sourceKeys": [
+        "service_matuseteenus",
+        "social_services_overview"
+      ],
+      "item_type": "service",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_matuseteenus",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_service_matuseteenus",
+      "document_id": "saarde_vald_service_matuseteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/matuseteenus",
+      "content_hash": "061bccaa78e5231dcbdedaa6188ad0925e691d0367f7cc3132bdaaeb90bca9f8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_service_psuhholoogiline_noustamine",
+      "canonical_item_id": "saarde_vald:service:psuhholoogiline_noustamine",
+      "itemType": "service",
+      "title": "Psühholoogiline nõustamine",
+      "status": "active",
+      "summary": "Saarde Vallavalitsus pakub Saarde valla elanikele tasuta eestikeelset psühholoogilist nõustamist. Nõustamine aitab lapse kasvatamise, peresuhete, kriisi, kaotuse, vägivalla, traumaatilise kogemuse või muu psühholoogilise raskuse korral. Nõustamisele saab tulla üksi, lapsega või perega ning vastuvõtuajad lepitakse kokku psühholoogiga.",
+      "targetGroup": "Saarde vallas registreeritud elanikud, kes vajavad psühholoogilist tuge.",
+      "conditions": "Nõustamisele tuleb aeg eelnevalt kokku leppida; valla lehel on toodud 2026. aasta kevadised vastuvõtuajad Kilingi-Nõmmes ja Surjus.",
+      "application": {
+        "channels": [
+          "phone"
+        ],
+        "steps": [
+          "Registreeru nõustamisele telefonil",
+          "Lepi psühholoog Evelyn Eichhorstiga kokku sobiv aeg ja koht."
+        ],
+        "deadline": null,
+        "documents": []
+      },
+      "pricing": {
+        "amount": "0 eurot",
+        "notes": "Valla lehel on teenus kirjeldatud tasuta nõustamisena."
+      },
+      "officialUrl": "https://saarde.ee/psuhholoogiline-noustamine",
+      "relatedForms": [],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu",
+        "saarde_vald_contact_evelyn_eichhorst"
+      ],
+      "sourceKeys": [
+        "service_psuhholoogiline_noustamine",
+        "social_services_overview"
+      ],
+      "item_type": "service",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_psuhholoogiline_noustamine",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_service_psuhholoogiline_noustamine",
+      "document_id": "saarde_vald_service_psuhholoogiline_noustamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/psuhholoogiline-noustamine",
+      "content_hash": "f2f7dbd093146392165b39b1c023e542b830dd643eb47cf9a361fd739636942a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "saarde_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus on valla korraldatud transport inimesele, kelle puue või liikumisraskus takistab isikliku või ühistranspordi kasutamist. Teenus aitab jõuda tööle, õppeasutusse või avalike teenuste juurde, kui tavapärane transport ei ole võimalik. Teenust rahastavad osaliselt vald ja osaliselt teenuse saaja.",
+      "targetGroup": "Puudega või liikumisraskusega Saarde valla elanikud, kes ei saa kasutada isiklikku ega ühistransporti.",
+      "conditions": "Teenuse saamiseks tuleb võtta ühendust Saarde Vallavalitsuse sotsiaaltöötajatega; abivajadust ja sõiduvajadust hinnatakse juhtumipõhiselt.",
+      "application": {
+        "channels": [
+          "phone",
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Võta ühendust Saarde Vallavalitsuse sotsiaaltöötajaga ja kirjelda sõiduvajadust.",
+          "Sotsiaaltöötaja hindab õigust teenusele, kooskõlastab sõidu ja annab infot omaosaluse kohta."
+        ],
+        "deadline": null,
+        "documents": []
+      },
+      "pricing": {
+        "amount": null,
+        "notes": "Teenuse eest tasub osaliselt teenuse saaja; hinnakiri on avaldatud sotsiaaltranspordi infovoldikus."
+      },
+      "officialUrl": "https://saarde.ee/sotsiaaltransporditeenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu",
+        "saarde_vald_contact_merike_maidle",
+        "saarde_vald_contact_kaja_kapsta"
+      ],
+      "sourceKeys": [
+        "file_sotsiaaltranspordi_infovoldik_et",
+        "service_sotsiaaltransporditeenus",
+        "social_services_overview"
+      ],
+      "unresolvedIssues": [
+        "Täpsed sõiduhinnad on avaldatud eraldi infovoldikus; käesolevas paketis on teenuse kulu kirjeldatud üldiselt."
+      ],
+      "item_type": "service",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "file_sotsiaaltranspordi_infovoldik_et",
+        "service_sotsiaaltransporditeenus",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_service_sotsiaaltransporditeenus",
+      "document_id": "saarde_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/sotsiaaltransporditeenus",
+      "content_hash": "06d1bdfde7a714731a869e805c5e138b68ee0d3a9273a84a7aa222f3c27ca252",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_service_tugiisikuteenus",
+      "canonical_item_id": "saarde_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus on valla korraldatud teenus inimesele, kes vajab sotsiaalsete, majanduslike, psühholoogiliste või terviseprobleemide tõttu olulist kõrvalabi. Tugiisik juhendab, motiveerib ning aitab arendada iseseisvust ja vastutusvõimet. Lapse puhul toetab tugiisik lapse arengut ning vajaduse korral aitab puudega lapse hooldustoimingutel, arendavatel tegevustel ja igapäevasel suhtlemisel.",
+      "targetGroup": "Lapsed ja täisealised abivajajad, kes vajavad igapäevaelus tugiisiku abi või juhendamist.",
+      "conditions": "Teenuse saamiseks tuleb pöörduda sotsiaaltöötaja vastuvõtule; sotsiaaltöötaja hindab abivajadust ja selgitab teenuse tingimusi.",
+      "application": {
+        "channels": [
+          "in_person"
+        ],
+        "steps": [
+          "Pöördu Saarde Vallavalitsuse sotsiaaltöötaja vastuvõtule.",
+          "Sotsiaaltöötaja hindab teenuse vajadust ja selgitab teenuse osutamise tingimusi.",
+          "Teenuse osutamine vormistatakse vajaduse korral haldusakti või lepinguga."
+        ],
+        "deadline": null,
+        "documents": [
+          "kehtiv isikut tõendav dokument"
+        ]
+      },
+      "pricing": {
+        "amount": null,
+        "notes": "Teenust rahastatakse valla eelarvest; kliendi omaosalust ei ole valla lehel eraldi avaldatud."
+      },
+      "officialUrl": "https://saarde.ee/tugiisikuteenus-0",
+      "relatedForms": [],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu"
+      ],
+      "sourceKeys": [
+        "service_tugiisikuteenus",
+        "social_services_overview"
+      ],
+      "item_type": "service",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_tugiisikuteenus",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_service_tugiisikuteenus",
+      "document_id": "saarde_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/tugiisikuteenus-0",
+      "content_hash": "8ccdcf3b99fb634bf8174aa55563ceb478af342a6f449ac0e03cdc03261a1de9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_service_turvakoduteenus",
+      "canonical_item_id": "saarde_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenus pakub ajutist elukohta, turvalist keskkonda ja esmast abi inimesele, kes ei saa kodus viibida või kelle turvalisus on ohus. Vajaduse korral kaasneb kriisiabi ning inimesele antakse infot edasiste abivõimaluste kohta. Saarde vallal ei ole oma turvakodu, seetõttu korraldatakse teenus koostöös teiste omavalitsuste turvakodudega.",
+      "targetGroup": "Saarde vallas registreeritud inimesed, kes ei saa turvaliselt kodus viibida või kellel puudub sobiv elukoht.",
+      "conditions": "Teenuse vajadust hindab sotsiaaltöötaja; teenusele suunamine toimub abivajaduse põhjal.",
+      "application": {
+        "channels": [
+          "phone",
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Võta ühendust vallavalitsuse sotsiaaltöötajaga ja selgita kriisiolukord.",
+          "Sotsiaaltöötaja hindab olukorda ning korraldab vajaduse korral turvakoduteenuse."
+        ],
+        "deadline": null,
+        "documents": [
+          "kehtiv isikut tõendav dokument, kui see on võimalik esitada"
+        ]
+      },
+      "pricing": {
+        "amount": null,
+        "notes": "Teenust rahastatakse valla eelarvest; omaosalust ei ole valla lehel eraldi avaldatud."
+      },
+      "officialUrl": "https://saarde.ee/turvakoduteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu"
+      ],
+      "sourceKeys": [
+        "service_turvakoduteenus",
+        "social_services_overview"
+      ],
+      "item_type": "service",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_turvakoduteenus",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_service_turvakoduteenus",
+      "document_id": "saarde_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/turvakoduteenus",
+      "content_hash": "5f4b966434d5f42705fb7e50122e12782c7c97b88f0dedf75dc7775a0558e416",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "saarde_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldus tähendab hoolduse seadmist ja hooldaja määramist täisealisele inimesele, kes vajab vaimse või füüsilise puude tõttu abi oma õiguste ja kohustuste täitmisel. Hooldus seatakse ning hooldaja määratakse hooldatava nõusolekul. Sotsiaaltöötaja hindab hooldusvajadust ja teeb vallavalitsusele ettepaneku hooldaja määramiseks või määramata jätmiseks.",
+      "targetGroup": "Täisealised inimesed, kelle vaimne või füüsiline puue põhjustab hooldusvajaduse.",
+      "conditions": "Hooldaja või hooldatav esitab avalduse; lisada tuleb hooldatava ja hooldaja isikut tõendavate dokumentide koopiad ning hooldatava kirjalik nõusolek.",
+      "application": {
+        "channels": [
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Esita vabas vormis avaldus Saarde Vallavalitsusele.",
+          "Sotsiaaltöötaja hindab hooldusvajadust, vajadusel külastab kodu ja konsulteerib spetsialistidega.",
+          "Vallavalitsus teeb otsuse hooldaja määramise kohta."
+        ],
+        "deadline": null,
+        "documents": [
+          "hooldaja ja hooldatava isikut tõendavate dokumentide koopiad",
+          "hooldatava kirjalik nõusolek",
+          "hooldusvajadust tõendavad dokumendid"
+        ]
+      },
+      "pricing": {
+        "amount": null,
+        "notes": "Teenust rahastatakse valla eelarvest; hooldajatoetus on eraldi toetus."
+      },
+      "officialUrl": "https://saarde.ee/taisealise-isiku-hooldus",
+      "relatedForms": [
+        "saarde_vald_form_hooldaja_maaramine_hooldajatoetus"
+      ],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu"
+      ],
+      "sourceKeys": [
+        "service_taisealise_isiku_hooldus",
+        "social_services_overview"
+      ],
+      "item_type": "service",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_taisealise_isiku_hooldus",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_service_taisealise_isiku_hooldus",
+      "document_id": "saarde_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/taisealise-isiku-hooldus",
+      "content_hash": "374ebcb2ceeb885f45fab932a50f8054658bd0559f47376a6adfd1ef0c4730fe",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_service_varjupaigateenus",
+      "canonical_item_id": "saarde_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus tagab täisealisele inimesele ajutise ööbimiskoha, pesemisvõimaluse ja turvalise keskkonna, kui inimene ei suuda endale ööbimiskohta leida. Saarde vallal ei ole oma varjupaika, mistõttu korraldatakse teenus vajaduse korral teiste omavalitsuste varjupaikade kaudu. Teenuse vajadust hindab valla sotsiaaltöötaja.",
+      "targetGroup": "Täisealised inimesed, kellel puudub ajutiselt ööbimiskoht või turvaline elukoht.",
+      "conditions": "Teenuse saamiseks tuleb pöörduda sotsiaaltöötaja vastuvõtule ja võimalusel esitada isikut tõendav dokument.",
+      "application": {
+        "channels": [
+          "in_person",
+          "phone",
+          "email"
+        ],
+        "steps": [
+          "Pöördu Saarde Vallavalitsuse sotsiaaltöötaja poole.",
+          "Sotsiaaltöötaja hindab abivajadust ja korraldab majutuse sobivas varjupaigas."
+        ],
+        "deadline": null,
+        "documents": [
+          "kehtiv isikut tõendav dokument, kui see on võimalik esitada"
+        ]
+      },
+      "pricing": {
+        "amount": null,
+        "notes": "Teenust rahastatakse valla eelarvest; omaosalust ei ole valla lehel eraldi avaldatud."
+      },
+      "officialUrl": "https://saarde.ee/varjupaigateenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu"
+      ],
+      "sourceKeys": [
+        "service_varjupaigateenus",
+        "social_services_overview"
+      ],
+      "item_type": "service",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_varjupaigateenus",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_service_varjupaigateenus",
+      "document_id": "saarde_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/varjupaigateenus",
+      "content_hash": "8942870d0fb26d1fed0d74239908436ebe703e6b9f592bec63d7ac6655911707",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_service_volanoustamisteenus",
+      "canonical_item_id": "saarde_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab võla- või makseraskustes inimesel selgitada välja oma varalise olukorra, pidada läbirääkimisi võlausaldajatega, vältida uute võlgade tekkimist ja lahendada olemasolevaid võlgnevusi. Teenust korraldab Saarde vald ning see on suunatud inimese toimetulekut takistavate rahaprobleemide lahendamisele. Teenust rahastatakse valla eelarvest.",
+      "targetGroup": "Saarde vallas registreeritud elanikud, kellel on võlad või võlgnevuse oht ja sellest tulenevad toimetulekuprobleemid.",
+      "conditions": "Teenuse saamiseks tuleb pöörduda sotsiaaltöötaja poole, esitada avaldus ning esitada tõesed andmed ja dokumendid võlgade, sissetulekute ja kulude kohta.",
+      "application": {
+        "channels": [
+          "in_person",
+          "phone",
+          "email"
+        ],
+        "steps": [
+          "Võta ühendust valla sotsiaaltöötajaga ja esita taotlus võlanõustamiseks.",
+          "Lisa või esita nõustamisel vajalikud dokumendid ja tõendid oma majandusliku olukorra kohta.",
+          "Vald korraldab nõustamise vastavalt hinnatud vajadusele."
+        ],
+        "deadline": null,
+        "documents": [
+          "kehtiv isikut tõendav dokument",
+          "võlgnevusi, sissetulekuid ja kulusid tõendavad dokumendid"
+        ]
+      },
+      "pricing": {
+        "amount": null,
+        "notes": "Teenust rahastatakse Saarde valla eelarvest; klienditasu ei ole valla lehel eraldi avaldatud."
+      },
+      "officialUrl": "https://saarde.ee/volanoustamisteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu"
+      ],
+      "sourceKeys": [
+        "service_volanoustamisteenus",
+        "social_services_overview"
+      ],
+      "item_type": "service",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_volanoustamisteenus",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_service_volanoustamisteenus",
+      "document_id": "saarde_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/volanoustamisteenus",
+      "content_hash": "3e3473b74047e22494a5f1f5cf084b790ad4b03dc38d9aa6c968c6c9dd10e5f5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "canonical_item_id": "saarde_vald:service:valjaspool_kodu_osutatav_uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatav üldhooldusteenus tagab turvalise keskkonna ja toimetulekuks vajaliku hoolduse täisealisele inimesele, kes ei tule kodus iseseisvalt toime terviseseisundi, tegevusvõime või elukeskkonna tõttu. Sotsiaaltöötaja hindab, kas vajalik on hooldekodu teenus või piisavad kodus toimetulekut toetavad teenused. Saarde vald katab üldhooldusteenuse hoolduskulu osa valla kehtestatud piirmäära ulatuses ning inimene tasub oma osa.",
+      "targetGroup": "Täisealised inimesed, kes vajavad kõrvalabi ja hooldust ning kelle toimetulekut ei ole võimalik muul viisil tagada.",
+      "conditions": "Teenuse saamiseks tuleb pöörduda sotsiaaltöötaja poole; hinnatakse inimese hooldusvajadust ja sobivat teenuse korraldust.",
+      "application": {
+        "channels": [
+          "in_person",
+          "phone",
+          "email"
+        ],
+        "steps": [
+          "Võta ühendust Saarde Vallavalitsuse sotsiaaltöötajaga.",
+          "Sotsiaaltöötaja hindab hooldusvajadust ja otsustab, kas vajalik on hooldekodu teenus või muu toetus kodus hakkamasaamiseks.",
+          "Vajaduse korral korraldatakse hooldekodu koht ja rahastamise kokkulepe."
+        ],
+        "deadline": null,
+        "documents": []
+      },
+      "pricing": {
+        "amount": "hoolduskulu piirmäär 500 eurot kuus",
+        "notes": "Valla lehel on hoolduskulu katmise piirmäärana nimetatud 500 eurot kuus; ülejäänud kulude ja omaosaluse kohta tehakse juhtumipõhine otsus."
+      },
+      "officialUrl": "https://saarde.ee/valjaspool-kodu-osutatav-uldhooldusteenus",
+      "relatedForms": [
+        "saarde_vald_form_hoolekandeteenuse_rahastamine",
+        "saarde_vald_form_hooldekodu_tasu_surju",
+        "saarde_vald_form_hooldekodu_tasu_kilingi_villa",
+        "saarde_vald_form_hooldekodu_tasu_kilingi_nomme_thk",
+        "saarde_vald_form_ulpidamiskohustuslase_kinnitus"
+      ],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu",
+        "saarde_vald_contact_merike_maidle",
+        "saarde_vald_contact_kaja_kapsta"
+      ],
+      "sourceKeys": [
+        "service_valjaspool_kodu_osutatav_uldhooldusteenus",
+        "social_services_overview"
+      ],
+      "item_type": "service",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_valjaspool_kodu_osutatav_uldhooldusteenus",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "document_id": "saarde_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/valjaspool-kodu-osutatav-uldhooldusteenus",
+      "content_hash": "5e220501455cd558b9fa2f26fd5053d438633b464ef4848a01952471b387e11f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_benefit_hooldajatoetus",
+      "canonical_item_id": "saarde_vald:benefit:hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus",
+      "status": "active",
+      "summary": "Hooldajatoetus on sissetulekust mittesõltuv igakuine toetus hooldajale, kes tagab puudega lapse või täisealise puudega inimese igapäevase kõrvalabi, juhendamise või järelevalve. Toetuse suurus sõltub hooldatava vanusest ja puude raskusastmest. Taotluse alus on inimese avaldus ning puude raskusastme otsus.",
+      "targetGroup": "Saarde vallas registreeritud hooldajad, kes hooldavad puudega last või täisealist puudega isikut.",
+      "conditions": "Hooldatav peab elama Saarde vallas ning hooldajaks määramine ja puude raskusaste peavad olema tõendatud.",
+      "application": {
+        "channels": [
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Esita vallavalitsusele hooldaja määramise ja hooldajatoetuse taotlus.",
+          "Lisa hooldaja ja hooldatava andmed ning puude raskusastet tõendav otsus."
+        ],
+        "deadline": null,
+        "documents": [
+          "hooldaja ja hooldatava isikut tõendava dokumendi koopia",
+          "puude raskusastme otsus",
+          "vajaduse korral rehabilitatsiooniplaan või muu tõend"
+        ]
+      },
+      "amount": "20-50 eurot kuus sõltuvalt puude raskusastmest ja hooldatava vanusest",
+      "officialUrl": "https://saarde.ee/hooldajatoetus",
+      "relatedForms": [
+        "saarde_vald_form_hooldaja_maaramine_hooldajatoetus"
+      ],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu"
+      ],
+      "sourceKeys": [
+        "benefit_hooldajatoetus",
+        "social_benefits_overview"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_hooldajatoetus",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_benefit_hooldajatoetus",
+      "document_id": "saarde_vald_benefit_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/hooldajatoetus",
+      "content_hash": "bb3ec1007bb64dd05e8146da7a853312e5d20ad7047040350617c29a2af778eb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_benefit_juubelitoetus",
+      "canonical_item_id": "saarde_vald:benefit:juubelitoetus",
+      "itemType": "benefit",
+      "title": "Juubelitoetus",
+      "status": "active",
+      "summary": "Juubelitoetus on sissetulekust mittesõltuv toetus Saarde valla eakatele elanikele tähtpäevade puhul. Toetus makstakse 80., 85., 90. ja 95. sünnipäeval 50 eurot ning 100. ja igal järgmisel sünnipäeval 100 eurot. Toetust makstakse registriandmete alusel ning taotlust ei ole vaja esitada.",
+      "targetGroup": "Saarde valla elanikud, kes saavad 80-, 85-, 90-, 95-, 100- või vanemaks.",
+      "conditions": "Toetust ei maksta, kui vald osaleb isiku hoolekandeasutuse kulude katmisel.",
+      "application": {
+        "channels": [],
+        "steps": [
+          "Taotlust ei ole vaja esitada; vald maksab toetuse registriandmete alusel."
+        ],
+        "deadline": null,
+        "documents": []
+      },
+      "amount": "50 eurot või 100 eurot sõltuvalt vanusest",
+      "officialUrl": "https://saarde.ee/juubelitoetus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu",
+        "saarde_vald_contact_merike_maidle",
+        "saarde_vald_contact_mari_treial",
+        "saarde_vald_contact_kaja_kapsta"
+      ],
+      "sourceKeys": [
+        "benefit_juubelitoetus",
+        "social_benefits_overview"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_juubelitoetus",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_benefit_juubelitoetus",
+      "document_id": "saarde_vald_benefit_juubelitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/juubelitoetus",
+      "content_hash": "7160131e605b09210ad38d8c8b884985c768cf36c5f149d19483dfdb46edb1f5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_benefit_joulupakk",
+      "canonical_item_id": "saarde_vald:benefit:joulupakk",
+      "itemType": "benefit",
+      "title": "Jõulupakk",
+      "status": "active",
+      "summary": "Jõulupakk on valla poolt lastele antav jõulukink. Selle saavad Saarde valla lasteaias käivad lapsed, Saarde valla koolide 1.-9. klasside õpilased ning kodused lapsed, kes registreeritakse valla jõuluüritusele. Paki maksumus otsustatakse eelarvevõimaluste järgi ning toetust ei maksta rahas.",
+      "targetGroup": "Saarde valla lasteaias käivad lapsed, 1.-9. klasside õpilased ja registreeritud kodused lapsed.",
+      "conditions": "Lasteaia- ja koolilapsed saavad paki nimekirjade alusel; kodused lapsed tuleb registreerida jõuluüritusele valla info järgi.",
+      "application": {
+        "channels": [
+          "registration"
+        ],
+        "steps": [
+          "Lasteaia- ja koolilastele korraldab paki saamise vald koostöös asutustega.",
+          "Koduse lapse saamiseks tuleb laps registreerida valla teavituses nimetatud korras."
+        ],
+        "deadline": null,
+        "documents": []
+      },
+      "amount": "mitterahaline jõulupakk; väärtus sõltub eelarvest",
+      "officialUrl": "https://saarde.ee/joulupakk",
+      "relatedForms": [],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu",
+        "saarde_vald_contact_ardo_agasild"
+      ],
+      "sourceKeys": [
+        "benefit_joulupakk",
+        "social_benefits_overview"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_joulupakk",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_benefit_joulupakk",
+      "document_id": "saarde_vald_benefit_joulupakk",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/joulupakk",
+      "content_hash": "a8be675488d96e7746d9bcd6714b0343a4f60c59225e66e3aeb4ebf718b6b86b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_benefit_koolitee_alustamise_toetus",
+      "canonical_item_id": "saarde_vald:benefit:koolitee_alustamise_toetus",
+      "itemType": "benefit",
+      "title": "Koolitee alustamise toetus",
+      "status": "active",
+      "summary": "Koolitee alustamise toetus on sissetulekust mittesõltuv toetus lapsele, kes alustab õppimist Saarde valla kooli 1. klassis. Toetus on 200 eurot, millest 170 eurot makstakse rahas ja 30 eurot antakse koolitarvetena. Üldjuhul maksab vald toetuse EHIS-e andmete ja vanematelt küsitud kontonumbri alusel septembris.",
+      "targetGroup": "Lapsed, kes alustavad 1. klassi Saarde valla koolis, ning erandjuhul lapsed, kes õpivad erivajaduse või valla suunamise tõttu mujal.",
+      "conditions": "Toetust ei maksta, kui lapsele on sama toetuse maksnud teine omavalitsus.",
+      "application": {
+        "channels": [
+          "registry_based",
+          "email",
+          "phone"
+        ],
+        "steps": [
+          "Vald kasutab EHIS-e 1. klassi nimekirju ja võtab vanematega kontonumbri saamiseks ühendust.",
+          "Erijuhtudel tuleb esitada vajalikud andmed või tõendid lapse õppimise kohta."
+        ],
+        "deadline": null,
+        "documents": []
+      },
+      "amount": "200 eurot (170 eurot rahas ja 30 eurot koolitarvetena)",
+      "officialUrl": "https://saarde.ee/haridus-noored/taotlused-ja-toetused/koolitee-alustamise-toetus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu",
+        "saarde_vald_contact_ardo_agasild"
+      ],
+      "sourceKeys": [
+        "benefit_koolitee_alustamise_toetus",
+        "social_benefits_overview"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_koolitee_alustamise_toetus",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_benefit_koolitee_alustamise_toetus",
+      "document_id": "saarde_vald_benefit_koolitee_alustamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/haridus-noored/taotlused-ja-toetused/koolitee-alustamise-toetus",
+      "content_hash": "62aeee52768e63a735468a78140abbba3ff8e9e143bef781d4bafc52aa297ea8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_benefit_lasteaiatoetus",
+      "canonical_item_id": "saarde_vald:benefit:lasteaiatoetus",
+      "itemType": "benefit",
+      "title": "Lasteaiatoetus",
+      "status": "active",
+      "summary": "Lasteaiatoetus on sissetulekust sõltuv toetus lasteaialapse toidukulu osaliseks hüvitamiseks. Toetuse suurus otsustatakse vajaduse järgi ning see võib katta 25-90% söögipäeva maksumusest. Toetust saab taotleda Saarde vallas registreeritud pere, kelle sissetulek pärast eluasemekulusid jääb alla 1,5-kordse toimetulekupiiri.",
+      "targetGroup": "Saarde vallas registreeritud madala sissetulekuga pered, kelle laps käib lasteaias.",
+      "conditions": "Pere sissetulek pärast eluasemekulusid ei tohi ületada 1,5-kordset riiklikku toimetulekupiiri; taotlusele lisatakse sissetulekuid ja kulusid tõendavad dokumendid.",
+      "application": {
+        "channels": [
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Täida sissetulekust sõltuva toetuse taotlus ja esita see vallavalitsusele.",
+          "Lisa isikut tõendav dokument ning kulusid ja sissetulekuid tõendavad dokumendid.",
+          "Vald hindab pere majanduslikku olukorda ja otsustab toetuse suuruse."
+        ],
+        "deadline": null,
+        "documents": [
+          "kehtiv isikut tõendav dokument",
+          "sissetulekuid tõendavad dokumendid",
+          "kuludokumendid"
+        ]
+      },
+      "amount": "25-90% söögipäeva maksumusest",
+      "officialUrl": "https://saarde.ee/haridus-noored/taotlused-ja-toetused/lasteaiatoetus",
+      "relatedForms": [
+        "saarde_vald_form_sissetulekust_soltuv_toetus",
+        "saarde_vald_form_sissetulekust_soltuv_toetus_ru"
+      ],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu",
+        "saarde_vald_contact_katlin_irene_rubin"
+      ],
+      "sourceKeys": [
+        "benefit_lasteaiatoetus",
+        "social_benefits_overview"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_lasteaiatoetus",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_benefit_lasteaiatoetus",
+      "document_id": "saarde_vald_benefit_lasteaiatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/haridus-noored/taotlused-ja-toetused/lasteaiatoetus",
+      "content_hash": "6d102bb0b72c9666d6d0d1e79ccfc51eabe33e3b868252e156dd381bc3d6e112",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_benefit_lisatoetus",
+      "canonical_item_id": "saarde_vald:benefit:lisatoetus",
+      "itemType": "benefit",
+      "title": "Lisatoetus",
+      "status": "active",
+      "summary": "Lisatoetus on sissetulekust sõltuv sotsiaaltoetus erakorraliste või vältimatute kulude ja toimetulekuraskuste katmiseks. Toetust makstakse valla eelarve piires juhtumipõhiselt, kui taotleja sissetulek pärast eluasemekulusid jääb alla 1,5-kordse toimetulekupiiri. Toetus on mõeldud olukordadeks, kus tavapärane sissetulek ei kata hädavajalikke kulutusi.",
+      "targetGroup": "Saarde vallas registreeritud madala sissetulekuga isikud ja pered, kellel on vältimatud kulud või toimetulekuraskused.",
+      "conditions": "Sissetulek pärast eluasemekulusid peab jääma alla 1,5-kordse toimetulekupiiri; toetuse vajadust tuleb põhjendada ja dokumentidega tõendada.",
+      "application": {
+        "channels": [
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Täida sissetulekust sõltuva toetuse taotlus.",
+          "Lisa isikut tõendav dokument ning kulusid või muid asjaolusid tõendavad dokumendid.",
+          "Vald hindab vajadust ja otsustab toetuse suuruse."
+        ],
+        "deadline": null,
+        "documents": [
+          "kehtiv isikut tõendav dokument",
+          "kuludokumendid",
+          "sissetulekuid tõendavad dokumendid"
+        ]
+      },
+      "amount": "summa määratakse juhtumipõhiselt",
+      "officialUrl": "https://saarde.ee/lisatoetus",
+      "relatedForms": [
+        "saarde_vald_form_sissetulekust_soltuv_toetus",
+        "saarde_vald_form_sissetulekust_soltuv_toetus_ru"
+      ],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu",
+        "saarde_vald_contact_merike_maidle",
+        "saarde_vald_contact_kaja_kapsta"
+      ],
+      "sourceKeys": [
+        "benefit_lisatoetus",
+        "social_benefits_overview"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_lisatoetus",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_benefit_lisatoetus",
+      "document_id": "saarde_vald_benefit_lisatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/lisatoetus",
+      "content_hash": "1fdb1ac48aeee193ced8cba41510cd94201db67996d5c7394d837c7c3b7111c1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_benefit_matusetoetus",
+      "canonical_item_id": "saarde_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus aitab osaliselt katta Saarde valla elaniku matuse korraldamise kulu. Taotlus tuleb esitada kahe kuu jooksul surma registreerimisest ning toetust ei maksta, kui sama isiku matusekulud on juba hüvitatud või kui vald ise kannab matusekulud. Toetust saab taotleda matuse korraldaja.",
+      "targetGroup": "Isik, kes korraldab Saarde valla elaniku matust või valla tingimustel toetuse saamisele vastava isiku matust.",
+      "conditions": "Taotlus tuleb esitada kahe kuu jooksul surma registreerimisest; lisada tuleb isikut tõendav dokument ja surmatõend või surma tõendav dokument.",
+      "application": {
+        "channels": [
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Täida matusetoetuse avaldus ja esita see vallavalitsusele.",
+          "Lisa vajalikud tõendid ja matuse korraldaja andmed.",
+          "Vallavalitsus kontrollib tingimusi ja otsustab toetuse."
+        ],
+        "deadline": null,
+        "documents": [
+          "kehtiv isikut tõendav dokument",
+          "surmatõend või surma tõendav dokument"
+        ]
+      },
+      "amount": "summa ei ole teenuse lehel eraldi avaldatud",
+      "officialUrl": "https://saarde.ee/matusetoetus",
+      "relatedForms": [
+        "saarde_vald_form_matusetoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu",
+        "saarde_vald_contact_merike_maidle",
+        "saarde_vald_contact_kaja_kapsta"
+      ],
+      "sourceKeys": [
+        "benefit_matusetoetus",
+        "social_benefits_overview"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_matusetoetus",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_benefit_matusetoetus",
+      "document_id": "saarde_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/matusetoetus",
+      "content_hash": "bb26a5e1e653cbbe573b5f741c7b911086c7e35599174b6aecf503940f540bf1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_benefit_eluruumi_kohandamise_toetus",
+      "canonical_item_id": "saarde_vald:benefit:eluruumi_kohandamise_toetus",
+      "itemType": "benefit",
+      "title": "Puudega isiku eluruumi kohandamise toetus",
+      "status": "active",
+      "summary": "Puudega isiku eluruumi kohandamise toetus aitab katta puudega inimese eluruumi kohandamise kulu. Toetus on sissetulekust sõltuv ning mõeldud Saarde vallas registreeritud madala sissetulekuga inimesele või perele. Toetust saab taotleda kord kolme kalendriaasta jooksul ning maksimaalne hüvitis on kuni 50% kohanduse maksumusest, kuid mitte rohkem kui 1000 eurot ühe kohanduse kohta.",
+      "targetGroup": "Puudega inimene või tema pere, kelle eluruumi on vaja kohandada puudest tuleneva vajaduse tõttu.",
+      "conditions": "Pere sissetulek pärast eluasemekulusid peab jääma alla 1,5-kordse toimetulekupiiri; taotlus peab sisaldama kohanduse vajadust ja kulusid tõendavaid dokumente.",
+      "application": {
+        "channels": [
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Täida sissetulekust sõltuva toetuse taotlus ja esita see vallavalitsusele.",
+          "Lisa isikut tõendav dokument, kulude kalkulatsioon ning kohandamise vajadust tõendavad dokumendid.",
+          "Vald hindab taotlust ja otsustab toetuse suuruse."
+        ],
+        "deadline": null,
+        "documents": [
+          "kehtiv isikut tõendav dokument",
+          "kulude kalkulatsioon või hinnapakkumine",
+          "puuet või kohandamise vajadust tõendavad dokumendid"
+        ]
+      },
+      "amount": "kuni 50% maksumusest, maksimaalselt 1000 eurot ühe kohanduse kohta",
+      "officialUrl": "https://saarde.ee/puudega-isiku-eluruumi-kohandamise-toetus",
+      "relatedForms": [
+        "saarde_vald_form_sissetulekust_soltuv_toetus",
+        "saarde_vald_form_sissetulekust_soltuv_toetus_ru"
+      ],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu",
+        "saarde_vald_contact_merike_maidle",
+        "saarde_vald_contact_kaja_kapsta"
+      ],
+      "sourceKeys": [
+        "benefit_eluruumi_kohandamise_toetus",
+        "social_benefits_overview"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_eluruumi_kohandamise_toetus",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_benefit_eluruumi_kohandamise_toetus",
+      "document_id": "saarde_vald_benefit_eluruumi_kohandamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/puudega-isiku-eluruumi-kohandamise-toetus",
+      "content_hash": "b1eac114eaf7dea1a202096c98e43452787f68fb11b2e7f316981d7a587a780b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_benefit_synnitoetus",
+      "canonical_item_id": "saarde_vald:benefit:synnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus on sissetulekust mittesõltuv toetus lapse sünni puhul. Toetus makstakse kolmes osas: 300 eurot pärast lapse sündi, 100 eurot lapse 1. sünnipäeva järel ja 100 eurot lapse 2. sünnipäeva järel. Iga osa väljamaksmiseks on valla vormilehel eraldi avaldus.",
+      "targetGroup": "Saarde vallas registreeritud lapse vanemad või lapse seaduslik esindaja, kui täidetud on valla lehel nimetatud elukoha tingimused.",
+      "conditions": "Toetuse iga osa saamiseks tuleb esitada vastav avaldus; lapse ja vanema elukoha tingimused peavad olema täidetud.",
+      "application": {
+        "channels": [
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Esita sünnitoetuse I osa avaldus pärast lapse sündi.",
+          "Lapse 1. ja 2. sünnipäeva järel esita eraldi II ja III osa avaldus.",
+          "Vald kontrollib tingimusi ja maksab toetuse."
+        ],
+        "deadline": null,
+        "documents": [
+          "kehtiv isikut tõendav dokument",
+          "lapse andmed"
+        ]
+      },
+      "amount": "kokku 500 eurot (300 + 100 + 100 eurot)",
+      "officialUrl": "https://saarde.ee/pere-sotsiaal-tervishoid/taotlused-ja-toetused/sunnitoetus",
+      "relatedForms": [
+        "saarde_vald_form_synnitoetus_i_osa",
+        "saarde_vald_form_synnitoetus_ii_osa",
+        "saarde_vald_form_synnitoetus_iii_osa"
+      ],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu",
+        "saarde_vald_contact_mari_treial"
+      ],
+      "sourceKeys": [
+        "benefit_synnitoetus",
+        "social_benefits_overview"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_synnitoetus",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_benefit_synnitoetus",
+      "document_id": "saarde_vald_benefit_synnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/pere-sotsiaal-tervishoid/taotlused-ja-toetused/sunnitoetus",
+      "content_hash": "f51837eb615ebb35ed1a74c7c1eb5c92097041e2ee210209174a96942ea36042",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "saarde_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on riiklik rahaline abi, mida taotletakse kohaliku omavalitsuse kaudu. See aitab inimest või perekonda, kelle netosissetulek pärast arvestatud eluasemekulude mahaarvamist jääb alla kehtiva toimetulekupiiri. Saarde valla leht kirjeldab 2026. aasta toimetulekupiire ning taotlus tuleb esitada igal kuul hiljemalt jooksva kuu viimaseks tööpäevaks.",
+      "targetGroup": "Majanduslikult raskustes Saarde valla elanikud ja pered, kelle sissetulek jääb pärast eluasemekulusid alla toimetulekupiiri.",
+      "conditions": "Taotlusele lisatakse perekonnaliikmete isikut tõendavad dokumendid, eluruumi kasutamise õigust tõendav dokument, eelmise kuu eluasemekulude arved, pangakonto väljavõte ja vajaduse korral muud tõendid.",
+      "application": {
+        "channels": [
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Täida toimetulekutoetuse taotlus.",
+          "Lisa sissetulekuid, eluasemekulusid, perekonna koosseisu ja vara puudutavad tõendid.",
+          "Esita taotlus jooksva kuu viimaseks tööpäevaks."
+        ],
+        "deadline": "Jooksva kuu viimane tööpäev",
+        "documents": [
+          "perekonnaliikmete isikut tõendavad dokumendid",
+          "eluruumi kasutamise õigust tõendav dokument",
+          "eelmise kuu eluasemekulude arved",
+          "pangakonto väljavõte",
+          "vajaduse korral elatise või muude kohustuste dokumendid"
+        ]
+      },
+      "amount": "toetus arvutatakse sissetuleku, eluasemekulude ja kehtiva toimetulekupiiri alusel",
+      "officialUrl": "https://saarde.ee/toimetulekutoetus-0",
+      "relatedForms": [
+        "saarde_vald_form_toimetulekutoetuse_taotlus_et",
+        "saarde_vald_form_toimetulekutoetuse_taotlus_ru"
+      ],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu",
+        "saarde_vald_contact_merike_maidle",
+        "saarde_vald_contact_kaja_kapsta"
+      ],
+      "sourceKeys": [
+        "benefit_toimetulekutoetus",
+        "social_benefits_overview"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_toimetulekutoetus",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_benefit_toimetulekutoetus",
+      "document_id": "saarde_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/toimetulekutoetus-0",
+      "content_hash": "a5d014f2a1c3a8e6e1b9e14cd3cea9b4b404c03600b56cb951a569aec5959be1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_benefit_uldhariduskooli_lopetamise_toetus",
+      "canonical_item_id": "saarde_vald:benefit:uldhariduskooli_lopetamise_toetus",
+      "itemType": "benefit",
+      "title": "Üldhariduskooli lõpetamise toetus",
+      "status": "active",
+      "summary": "Üldhariduskooli lõpetamise toetus on sissetulekust mittesõltuv 50-eurone tunnustus Saarde valla õpilasele, kes lõpetab põhikooli kiituskirjaga või gümnaasiumi kuld- või hõbemedaliga. Toetus makstakse koolide esitatud nimekirjade alusel või antakse üle lõpetamisel. Taotlust üldjuhul esitama ei pea.",
+      "targetGroup": "Saarde vallas registreeritud põhikooli või gümnaasiumi lõpetajad, kes lõpetavad kiituskirja või medaliga.",
+      "conditions": "Õpilane peab olema Saarde valla elanik ja vastama valla lehel nimetatud tunnustuse tingimustele.",
+      "application": {
+        "channels": [
+          "registry_based"
+        ],
+        "steps": [
+          "Toetus makstakse koolide nimekirjade alusel või antakse üle lõpetamisega seotud korralduses."
+        ],
+        "deadline": null,
+        "documents": []
+      },
+      "amount": "50 eurot",
+      "officialUrl": "https://saarde.ee/uldhariduskooli-lopetamise-toetus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu",
+        "saarde_vald_contact_ardo_agasild"
+      ],
+      "sourceKeys": [
+        "benefit_uldhariduskooli_lopetamise_toetus",
+        "social_benefits_overview"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_uldhariduskooli_lopetamise_toetus",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_benefit_uldhariduskooli_lopetamise_toetus",
+      "document_id": "saarde_vald_benefit_uldhariduskooli_lopetamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/uldhariduskooli-lopetamise-toetus",
+      "content_hash": "9dde6ee9f5e7134f432c9012d505027e1ae8b5789a1aa8e955e7928c1e757cd7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_resource_perelepitusteenus",
+      "canonical_item_id": "saarde_vald:resource:perelepitusteenus",
+      "itemType": "resource",
+      "title": "Perelepitusteenus",
+      "status": "active",
+      "summary": "Perelepitusteenus on Saarde valla lehel kirjeldatud riiklik tasuta teenus, mis aitab lahku minevatel või lahus elavatel vanematel kokku leppida lapse elukorralduses. Teemad võivad olla lapse elukoht, suhtluskord, ülalpidamine, hooldusõiguse küsimused, huviharidus, reisimine ja päevakava. Teenuse saamiseks suunatakse vanem Sotsiaalkindlustusameti poole.",
+      "officialUrl": "https://saarde.ee/perelepitusteenus",
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu",
+        "saarde_vald_contact_katlin_irene_rubin"
+      ],
+      "sourceKeys": [
+        "resource_perelepitusteenus"
+      ],
+      "item_type": "resource",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "resource_perelepitusteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_resource_perelepitusteenus",
+      "document_id": "saarde_vald_resource_perelepitusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/perelepitusteenus",
+      "content_hash": "53ddb6d782386634279b890c48a41b493aa8e9da60f166cf9cf589740b839280",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_resource_ohvriabi",
+      "canonical_item_id": "saarde_vald:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi ja tugitelefonid",
+      "status": "active",
+      "summary": "Ohvriabi leht koondab abi kuriteo, vägivalla või kriisijuhtumi tõttu kannatanule. Saarde valla lehel on välja toodud ohvriabi kriisitelefon, välismaalt helistamise number, emotsionaalse toe ja hingehoiu 116 123, lasteabi, inimkaubanduse nõuandeliin ning vägivallast loobumise tugiliin",
+      "officialUrl": "https://saarde.ee/pere-sotsiaal-tervishoid/kust-leida-abi/ohvriabi",
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu",
+        "saarde_vald_contact_merike_maidle",
+        "saarde_vald_contact_kaja_kapsta",
+        "saarde_vald_contact_katlin_irene_rubin"
+      ],
+      "sourceKeys": [
+        "resource_ohvriabi"
+      ],
+      "item_type": "resource",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "resource_ohvriabi"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_resource_ohvriabi",
+      "document_id": "saarde_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/pere-sotsiaal-tervishoid/kust-leida-abi/ohvriabi",
+      "content_hash": "8dff699d0ae992fd3b2ff763a9173978a1b8081d2fe8df4e10284479008890ac",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_resource_tasuta_oigusnoustamine",
+      "canonical_item_id": "saarde_vald:resource:tasuta_oigusnoustamine",
+      "itemType": "resource",
+      "title": "Tasuta õigusnõustamine",
+      "status": "active",
+      "summary": "Tasuta õigusnõustamise leht kirjeldab riigi toetatud esmast õigusabi. Valla leht nimetab OÜ HUGO õigusalast nõustamist Eesti elavatele füüsilistele isikutele sissetulekupiiri alusel, 5-eurost omaosalust kahe tunni nõu eest, soodushinnaga lisatunde ning eraldi tasuta nõustamise võimalusi erivajadustega inimestele ja eakatele. Väliste teenusepakkujate infot ei ole selles paketis eraldi kontrollitud.",
+      "officialUrl": "https://saarde.ee/pere-sotsiaal-tervishoid/kust-leida-abi/tasuta-oigusnoustamine",
+      "relatedContacts": [],
+      "sourceKeys": [
+        "resource_tasuta_oigusnoustamine"
+      ],
+      "item_type": "resource",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "resource_tasuta_oigusnoustamine"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_resource_tasuta_oigusnoustamine",
+      "document_id": "saarde_vald_resource_tasuta_oigusnoustamine",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/pere-sotsiaal-tervishoid/kust-leida-abi/tasuta-oigusnoustamine",
+      "content_hash": "49b77ea428ea579b7a44b45e4ac08fa4673b0122a1a0e37b22a25e2262030211",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_resource_hoolekandeasutused",
+      "canonical_item_id": "saarde_vald:resource:hoolekandeasutused",
+      "itemType": "resource",
+      "title": "Hoolekandeasutused",
+      "status": "active",
+      "summary": "Saarde valla hoolekandeasutuste leht nimetab väljaspool kodu üldhooldusteenust pakkuvate asutustena SA Kilingi-Nõmme Tervise- ja Hoolduskeskuse ning Surju Hooldekodu \"Videvik\". Lehel on avaldatud asutuste aadressid, telefonid, e-posti viited ja kodulehed ning selgitatud, et üldhooldusteenus on mõeldud inimestele, kes kõrvalabi- ja hooldusvajaduse tõttu ei suuda kodus iseseisvalt toime tulla.",
+      "officialUrl": "https://saarde.ee/pere-sotsiaal-tervishoid/tervise-ja-hoolekandeasutused/hoolekandeasutused",
+      "relatedContacts": [
+        "saarde_vald_contact_marko_truu"
+      ],
+      "sourceKeys": [
+        "resource_hoolekandeasutused"
+      ],
+      "item_type": "resource",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "resource_hoolekandeasutused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_resource_hoolekandeasutused",
+      "document_id": "saarde_vald_resource_hoolekandeasutused",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/pere-sotsiaal-tervishoid/tervise-ja-hoolekandeasutused/hoolekandeasutused",
+      "content_hash": "97f4e224b1ab439e897bff8797e9e2f503a31913beaeba5ce51ab4b1097808d1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_resource_abivajav_laps",
+      "canonical_item_id": "saarde_vald:resource:abivajav_laps",
+      "itemType": "resource",
+      "title": "Abivajav laps",
+      "status": "active",
+      "summary": "Abivajava lapse leht selgitab, et igaühel on kohustus viivitamatult teatada lapsest, kelle heaolu on ohustatud või kelle puhul on väärkohtlemise, hooletusse jätmise või muu lapse õiguste rikkumise kahtlus. Teatada saab kohalikule omavalitsusele või lasteabitelefonil; hädaohus lapse korral tuleb helistada numbril. Leht annab juhiseid ka erivajadusega lapse, haridusmure, tervisemure, puude raskusastme ja Rajaleidja poole pöördumise kohta.",
+      "officialUrl": "https://saarde.ee/pere-sotsiaal-tervishoid/laps-ja-pere/abivajav-laps",
+      "relatedContacts": [
+        "saarde_vald_contact_katlin_irene_rubin"
+      ],
+      "sourceKeys": [
+        "resource_abivajav_laps"
+      ],
+      "item_type": "resource",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "resource_abivajav_laps"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_resource_abivajav_laps",
+      "document_id": "saarde_vald_resource_abivajav_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/pere-sotsiaal-tervishoid/laps-ja-pere/abivajav-laps",
+      "content_hash": "ae0f62fa477781414a1f1d10052cef36809a1b214afbc29a168427419e9f9c43",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_resource_vanemlus_ja_tugi_lapsele",
+      "canonical_item_id": "saarde_vald:resource:vanemlus_ja_tugi_lapsele",
+      "itemType": "resource",
+      "title": "Vanemlus ja tugi lapsele",
+      "status": "active",
+      "summary": "Vanemluse ja lapse toe leht koondab infot laste ja perede nõustamise ning vanemliku toe kohta. Leht kirjeldab vanemate õigusi ja kohustusi, vanemlusprogrammi \"Imelised aastad\", noore riskikäitumisega seotud mudelit \"Ringist välja\" ning perelepitust lapsevanematele. Praktilise lisainfo kontaktina on lehel laste heaolu spetsialist.",
+      "officialUrl": "https://saarde.ee/pere-sotsiaal-tervishoid/laps-ja-pere/vanemlus-ja-tugi-lapsele",
+      "relatedContacts": [
+        "saarde_vald_contact_katlin_irene_rubin"
+      ],
+      "sourceKeys": [
+        "resource_vanemlus_ja_tugi_lapsele"
+      ],
+      "item_type": "resource",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "resource_vanemlus_ja_tugi_lapsele"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_resource_vanemlus_ja_tugi_lapsele",
+      "document_id": "saarde_vald_resource_vanemlus_ja_tugi_lapsele",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/pere-sotsiaal-tervishoid/laps-ja-pere/vanemlus-ja-tugi-lapsele",
+      "content_hash": "c60ede92df9aa1079cec604363abb4245ae4024af9ac3d2ee30342abd3900231",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_resource_kriisikontaktid",
+      "canonical_item_id": "saarde_vald:resource:kriisikontaktid",
+      "itemType": "resource",
+      "title": "Kriisikontaktid",
+      "status": "active",
+      "summary": "Kriisikontaktide leht koondab kohaliku omavalitsuse ja riiklikud kriisikontaktid. Kohalike kontaktidena on toodud vallavalitsuse üldnumber, kriisikomisjoni esimees, elanikkonnakaitse- ja kogukonnatöö spetsialist, vee- ja kanalisatsiooniettevõte, päästekomando ning piirkonnapolitseinikud. Riiklikest abikanalitest on nimetatud; 1343, 16662, 1510, 1220; 1492; ja.",
+      "officialUrl": "https://saarde.ee/elanikkonnakaitse/kriisiinfo/kriisikontaktid",
+      "relatedContacts": [
+        "saarde_vald_contact_saarde_vallavalitsus"
+      ],
+      "sourceKeys": [
+        "resource_kriisikontaktid"
+      ],
+      "item_type": "resource",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "resource_kriisikontaktid"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_resource_kriisikontaktid",
+      "document_id": "saarde_vald_resource_kriisikontaktid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/elanikkonnakaitse/kriisiinfo/kriisikontaktid",
+      "content_hash": "5a59276c8a497937a33a28f758116d15bc7a14cfee8feff1e58aa77d7d719f2a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_resource_kriisiabi_ja_juhised",
+      "canonical_item_id": "saarde_vald:resource:kriisiabi_ja_juhised",
+      "itemType": "resource",
+      "title": "Kriisiabi ja juhised",
+      "status": "active",
+      "summary": "Kriisiabi ja juhiste leht suunab kriisiolukorras abi ja juhiste juurde, sh kriis.ee, häirekeskuse info, päästekomandode kaart ning mobiilirakendused \"Ole valmis\" ja \"Eesti äpp\". Lehel on ka seotud juhendmaterjalide ja kriisidokumentide lingid. Kuna mitmed viited on välised, on need paketis kajastatud ainult Saarde valla lehel avaldatud ulatuses.",
+      "officialUrl": "https://saarde.ee/elanikkonnakaitse/kriisideks-valmisolek/kriisiabi-ja-juhised",
+      "relatedContacts": [
+        "saarde_vald_contact_saarde_vallavalitsus"
+      ],
+      "sourceKeys": [
+        "resource_kriisiabi_ja_juhised"
+      ],
+      "item_type": "resource",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "resource_kriisiabi_ja_juhised"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_resource_kriisiabi_ja_juhised",
+      "document_id": "saarde_vald_resource_kriisiabi_ja_juhised",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/elanikkonnakaitse/kriisideks-valmisolek/kriisiabi-ja-juhised",
+      "content_hash": "49bb6e21f26fb617983b451fc50cc48e84b56dfe4197d45c2a1aef4fac744e94",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_contact_saarde_vallavalitsus",
+      "canonical_item_id": "saarde_vald:contact:saarde_vallavalitsus",
+      "itemType": "contact",
+      "title": "Saarde Vallavalitsus",
+      "status": "active",
+      "summary": "Saarde Vallavalitsuse üldkontakt ja vastuvõtuinfo. Vallavalitsuse üldised avamisajad on E, T, N 8.00-16.30, K 8.00-18.00 ja R 8.00-15.00; sotsiaalosakonna vastuvõtt toimub E ja K, reedeti vastuvõttu ei ole.",
+      "name": "Saarde Vallavalitsus",
+      "role": "üldkontakt",
+      "department": "Vallavalitsus",
+      "address": "Nõmme tn 22, 86304 Kilingi-Nõmme",
+      "officialUrl": "https://saarde.ee/kontakt",
+      "sourceKeys": [
+        "contacts_page",
+        "home"
+      ],
+      "item_type": "contact",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "contacts_page",
+        "home"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_contact_saarde_vallavalitsus",
+      "document_id": "saarde_vald_contact_saarde_vallavalitsus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/kontakt",
+      "content_hash": "39272d7fed194d16352887aead04d65946d39b24bd7bb52db7f8293f55e01c08",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_contact_marko_truu",
+      "canonical_item_id": "saarde_vald:contact:marko_truu",
+      "itemType": "contact",
+      "title": "Marko Truu",
+      "status": "active",
+      "summary": "Saarde valla sotsiaalnõunik ja peamine sotsiaalvaldkonna kontakt mitmete sotsiaalteenuste, toetuste ja abikanalite juures.",
+      "name": "Marko Truu",
+      "role": "Sotsiaalnõunik",
+      "department": "Sotsiaalosakond",
+      "address": "Nõmme 22, Kilingi-Nõmme (kabinet 12)",
+      "officialUrl": "https://saarde.ee/kontakt",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_contact_marko_truu",
+      "document_id": "saarde_vald_contact_marko_truu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/kontakt",
+      "content_hash": "13de42305f388b9ab8349b4eac52619e295971bb8b39b46132f174041093ae35",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_contact_merike_maidle",
+      "canonical_item_id": "saarde_vald:contact:merike_maidle",
+      "itemType": "contact",
+      "title": "Merike Maidle",
+      "status": "active",
+      "summary": "Saarde valla sotsiaalspetsialist, kes on valla lehel seotud sotsiaalabi, transpordi, üldhoolduse ja muude sotsiaalvaldkonna pöördumistega.",
+      "name": "Merike Maidle",
+      "role": "Sotsiaalspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Nõmme 22, Kilingi-Nõmme (kabinet 13)",
+      "officialUrl": "https://saarde.ee/kontakt",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_contact_merike_maidle",
+      "document_id": "saarde_vald_contact_merike_maidle",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/kontakt",
+      "content_hash": "ade520a59d2f1f6cdf139e2de42dd268d2bd0e2e0a2b26b2fededd34c501a5c0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_contact_kaja_kapsta",
+      "canonical_item_id": "saarde_vald:contact:kaja_kapsta",
+      "itemType": "contact",
+      "title": "Kaja Kapsta",
+      "status": "active",
+      "summary": "Saarde valla sotsiaalspetsialist, kelle kontakt on avaldatud sotsiaalosakonna ja mitme sotsiaalabi lehe juures.",
+      "name": "Kaja Kapsta",
+      "role": "Sotsiaalspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Nõmme 22, Kilingi-Nõmme (kabinet 8)",
+      "officialUrl": "https://saarde.ee/kontakt",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_contact_kaja_kapsta",
+      "document_id": "saarde_vald_contact_kaja_kapsta",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/kontakt",
+      "content_hash": "318b5f379ef308c1c5ec75109a99a8169cf4a853a05a63c3648c0b3fc37888bf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_contact_katlin_irene_rubin",
+      "canonical_item_id": "saarde_vald:contact:katlin_irene_rubin",
+      "itemType": "contact",
+      "title": "Kätlin-Irene Rubin",
+      "status": "active",
+      "summary": "Saarde valla laste heaolu spetsialist ja kontakt abivajava lapse, vanemluse ja lastele suunatud sotsiaalse toe küsimustes.",
+      "name": "Kätlin-Irene Rubin",
+      "role": "Laste heaolu spetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Nõmme 22, Kilingi-Nõmme (kabinet 7)",
+      "officialUrl": "https://saarde.ee/kontakt",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_contact_katlin_irene_rubin",
+      "document_id": "saarde_vald_contact_katlin_irene_rubin",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/kontakt",
+      "content_hash": "e3803a8afe4e604209e91e940278684253ca661ab8b92e14a3b3f2770c2034ab",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_contact_evelyn_eichhorst",
+      "canonical_item_id": "saarde_vald:contact:evelyn_eichhorst",
+      "itemType": "contact",
+      "title": "Evelyn Eichhorst",
+      "status": "active",
+      "summary": "Saarde valla lehel nimetatud psühholoogilise nõustamise läbiviija, kellega tuleb nõustamise aeg kokku leppida telefonitsi.",
+      "name": "Evelyn Eichhorst",
+      "role": "Psühholoog",
+      "department": "Psühholoogiline nõustamine",
+      "address": null,
+      "officialUrl": "https://saarde.ee/kontakt",
+      "sourceKeys": [
+        "contacts_page",
+        "service_psuhholoogiline_noustamine"
+      ],
+      "item_type": "contact",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "contacts_page",
+        "service_psuhholoogiline_noustamine"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_contact_evelyn_eichhorst",
+      "document_id": "saarde_vald_contact_evelyn_eichhorst",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/kontakt",
+      "content_hash": "36fec56ca59288d9f6eca9651f727401689e041e1d044171e7bc9869061e9087",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_contact_kairi_tilsen",
+      "canonical_item_id": "saarde_vald:contact:kairi_tilsen",
+      "itemType": "contact",
+      "title": "Kairi Tilsen",
+      "status": "active",
+      "summary": "Saarde valla kontaktilehel avaldatud noortegarantii tugisüsteemi juhtumikorraldaja kontakt; valla leht suunab lisainfo saamiseks Sotsiaalkindlustusameti NGTS lehele.",
+      "name": "Kairi Tilsen",
+      "role": "Noortegarantii tugisüsteemi juhtumikorraldaja",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://saarde.ee/kontakt",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_contact_kairi_tilsen",
+      "document_id": "saarde_vald_contact_kairi_tilsen",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/kontakt",
+      "content_hash": "3e73a664361b4e12c9701904a2595491eaee54f130851439aeb81ddff64d9c3d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_contact_ardo_agasild",
+      "canonical_item_id": "saarde_vald:contact:ardo_agasild",
+      "itemType": "contact",
+      "title": "Ardo Agasild",
+      "status": "active",
+      "summary": "Humanitaarnõunik, kelle kontakt on valla lehel seotud laste ja kooliga seotud toetuste juures.",
+      "name": "Ardo Agasild",
+      "role": "Humanitaarnõunik",
+      "department": "Haridus- ja kultuuriosakond",
+      "address": "Nõmme 22, Kilingi-Nõmme (kabinet 25)",
+      "officialUrl": "https://saarde.ee/kontakt",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_contact_ardo_agasild",
+      "document_id": "saarde_vald_contact_ardo_agasild",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/kontakt",
+      "content_hash": "6848922e6ea6da4bbf6de54cccb96d34575f11514e67244601182f3941e94a14",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_contact_mari_treial",
+      "canonical_item_id": "saarde_vald:contact:mari_treial",
+      "itemType": "contact",
+      "title": "Mari Treial",
+      "status": "active",
+      "summary": "Referent-dokumendihaldur, kelle kontakt on valla lehel seotud sünnitoetuse ja juubelitoetuse praktilise asjaajamisega.",
+      "name": "Mari Treial",
+      "role": "Referent-dokumendihaldur",
+      "department": "Kantselei",
+      "address": "Nõmme 22, Kilingi-Nõmme (kabinet 4)",
+      "officialUrl": "https://saarde.ee/kontakt",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_contact_mari_treial",
+      "document_id": "saarde_vald_contact_mari_treial",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/kontakt",
+      "content_hash": "9cefa7a89e7df030990ce3d3d1ac8bbce64a0a35f6cfa9b5a2a889d85c7b9691",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_form_toimetulekutoetuse_taotlus_et",
+      "canonical_item_id": "saarde_vald:form:toimetulekutoetuse_taotlus_et",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse taotlemise avaldus",
+      "status": "active",
+      "summary": "Toimetulekutoetuse taotlusvorm eesti keeles, mille kaudu saab esitada kuu kohta toimetulekutoetuse andmed, sissetulekud, eluasemekulud ja vara andmed.",
+      "format": "rtf",
+      "submissionChannels": [
+        "in_person",
+        "mail",
+        "email"
+      ],
+      "officialUrl": "https://saarde.ee/documents/119303/27779480/Toimetulekutoetuse_avaldus%2B%2B160721.rtf/2b42a128-2db4-4281-9d1a-e3243356fd5a",
+      "relatedTo": [
+        "saarde_vald_benefit_toimetulekutoetus"
+      ],
+      "sourceKeys": [
+        "form_toimetulekutoetuse_taotlus_et",
+        "forms_overview"
+      ],
+      "item_type": "form",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "form_toimetulekutoetuse_taotlus_et",
+        "forms_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_form_toimetulekutoetuse_taotlus_et",
+      "document_id": "saarde_vald_form_toimetulekutoetuse_taotlus_et",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/documents/119303/27779480/Toimetulekutoetuse_avaldus%2B%2B160721.rtf/2b42a128-2db4-4281-9d1a-e3243356fd5a",
+      "content_hash": "ca11dda8f5a2335c9514eee792f2fc0e87ea6c8af5a0dd8d0214cf7f9f36c972",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_form_toimetulekutoetuse_taotlus_ru",
+      "canonical_item_id": "saarde_vald:form:toimetulekutoetuse_taotlus_ru",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse taotlemise avaldus (vene keeles)",
+      "status": "active",
+      "summary": "Toimetulekutoetuse taotlusvorm vene keeles; vorm on mõeldud sama toetuse taotlemiseks teises keeles.",
+      "format": "rtf",
+      "submissionChannels": [
+        "in_person",
+        "mail",
+        "email"
+      ],
+      "officialUrl": "https://saarde.ee/documents/119303/27779480/Toimetulekutoetuse_avaldus%2B%2B160721%2B_VENE.rtf/d35dbd82-0559-43eb-b3eb-4873623b3b49",
+      "relatedTo": [
+        "saarde_vald_benefit_toimetulekutoetus"
+      ],
+      "sourceKeys": [
+        "form_toimetulekutoetuse_taotlus_ru",
+        "forms_overview"
+      ],
+      "item_type": "form",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "form_toimetulekutoetuse_taotlus_ru",
+        "forms_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_form_toimetulekutoetuse_taotlus_ru",
+      "document_id": "saarde_vald_form_toimetulekutoetuse_taotlus_ru",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/documents/119303/27779480/Toimetulekutoetuse_avaldus%2B%2B160721%2B_VENE.rtf/d35dbd82-0559-43eb-b3eb-4873623b3b49",
+      "content_hash": "dafc5b9d260c872614cf540c1ced30b1a24873d1b8f2149dd25279255ac541ce",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_form_hooldaja_maaramine_hooldajatoetus",
+      "canonical_item_id": "saarde_vald:form:hooldaja_maaramine_hooldajatoetus",
+      "itemType": "form",
+      "title": "Taotlus hooldaja määramiseks ja hooldajatoetuse maksmiseks",
+      "status": "active",
+      "summary": "Vorm hooldaja määramiseks ja hooldajatoetuse maksmiseks vallaeelarvest; vormil kogutakse hooldatava ja hooldaja andmed, puude raskusaste, hooldusvajadus ning lisadokumendid.",
+      "format": "doc",
+      "submissionChannels": [
+        "in_person",
+        "mail",
+        "email"
+      ],
+      "officialUrl": "https://saarde.ee/documents/119314//LisaTaotlus%2Bhooldaja%2Bm%C3%A4%C3%A4ramiseks%2Bja%2Bhooldajatoetuse%2Bmaksmiseks%2Bvallaeelarvest.doc/39b6c557-d057-4927-b756-edc729970b86",
+      "relatedTo": [
+        "saarde_vald_service_taisealise_isiku_hooldus",
+        "saarde_vald_benefit_hooldajatoetus"
+      ],
+      "sourceKeys": [
+        "form_hooldaja_maaramine_hooldajatoetus",
+        "forms_overview"
+      ],
+      "item_type": "form",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "form_hooldaja_maaramine_hooldajatoetus",
+        "forms_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_form_hooldaja_maaramine_hooldajatoetus",
+      "document_id": "saarde_vald_form_hooldaja_maaramine_hooldajatoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/documents/119314//LisaTaotlus%2Bhooldaja%2Bm%C3%A4%C3%A4ramiseks%2Bja%2Bhooldajatoetuse%2Bmaksmiseks%2Bvallaeelarvest.doc/39b6c557-d057-4927-b756-edc729970b86",
+      "content_hash": "0d70af62b1bb7c00e0c00a1c2f8ccf0334fd00489276895f71e8ed39f071873d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_form_synnitoetus_i_osa",
+      "canonical_item_id": "saarde_vald:form:synnitoetus_i_osa",
+      "itemType": "form",
+      "title": "Avaldus sünnitoetuse I osa väljamaksmiseks",
+      "status": "active",
+      "summary": "Sünnitoetuse esimese osa avaldus lapse sünni järel makstava toetuse osa taotlemiseks.",
+      "format": "rtf",
+      "submissionChannels": [
+        "in_person",
+        "mail",
+        "email"
+      ],
+      "officialUrl": "https://saarde.ee/documents/119303//synnitoetus_I_osa_avaldus.rtf/6532f753-4e40-40d4-becf-8df86a4842a4",
+      "relatedTo": [
+        "saarde_vald_benefit_synnitoetus"
+      ],
+      "sourceKeys": [
+        "form_synnitoetus_i_osa",
+        "forms_overview"
+      ],
+      "item_type": "form",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "form_synnitoetus_i_osa",
+        "forms_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_form_synnitoetus_i_osa",
+      "document_id": "saarde_vald_form_synnitoetus_i_osa",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/documents/119303//synnitoetus_I_osa_avaldus.rtf/6532f753-4e40-40d4-becf-8df86a4842a4",
+      "content_hash": "619f00f8ea853335e2de431bb077a08a07248ee13b211ef01ebfca193908207e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_form_synnitoetus_ii_osa",
+      "canonical_item_id": "saarde_vald:form:synnitoetus_ii_osa",
+      "itemType": "form",
+      "title": "Avaldus sünnitoetuse II osa väljamaksmiseks",
+      "status": "active",
+      "summary": "Sünnitoetuse teise osa avaldus lapse 1. sünnipäeva järel makstava toetuse osa taotlemiseks.",
+      "format": "rtf",
+      "submissionChannels": [
+        "in_person",
+        "mail",
+        "email"
+      ],
+      "officialUrl": "https://saarde.ee/documents/119303//synnitoetus_II_osa_avaldus.rtf/e1eadf80-a441-4172-bc21-e1d75a3917f6",
+      "relatedTo": [
+        "saarde_vald_benefit_synnitoetus"
+      ],
+      "sourceKeys": [
+        "form_synnitoetus_ii_osa",
+        "forms_overview"
+      ],
+      "item_type": "form",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "form_synnitoetus_ii_osa",
+        "forms_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_form_synnitoetus_ii_osa",
+      "document_id": "saarde_vald_form_synnitoetus_ii_osa",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/documents/119303//synnitoetus_II_osa_avaldus.rtf/e1eadf80-a441-4172-bc21-e1d75a3917f6",
+      "content_hash": "62f6142d2e7117a77ab2f40858bcbac108df5e0c59aaa6279515ebee4725400d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_form_synnitoetus_iii_osa",
+      "canonical_item_id": "saarde_vald:form:synnitoetus_iii_osa",
+      "itemType": "form",
+      "title": "Avaldus sünnitoetuse III osa väljamaksmiseks",
+      "status": "active",
+      "summary": "Sünnitoetuse kolmanda osa avaldus lapse 2. sünnipäeva järel makstava toetuse osa taotlemiseks.",
+      "format": "rtf",
+      "submissionChannels": [
+        "in_person",
+        "mail",
+        "email"
+      ],
+      "officialUrl": "https://saarde.ee/documents/119303//synnitoetus_III_osa_avaldus.rtf/09b0ad0b-22ae-436c-b543-e33f796b8a4f",
+      "relatedTo": [
+        "saarde_vald_benefit_synnitoetus"
+      ],
+      "sourceKeys": [
+        "form_synnitoetus_iii_osa",
+        "forms_overview"
+      ],
+      "item_type": "form",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "form_synnitoetus_iii_osa",
+        "forms_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_form_synnitoetus_iii_osa",
+      "document_id": "saarde_vald_form_synnitoetus_iii_osa",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/documents/119303//synnitoetus_III_osa_avaldus.rtf/09b0ad0b-22ae-436c-b543-e33f796b8a4f",
+      "content_hash": "23654c035f93eea505f631fed761fd0945f0aa6eb474f5f0094dda7c099eaf53",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_form_matusetoetuse_taotlus",
+      "canonical_item_id": "saarde_vald:form:matusetoetuse_taotlus",
+      "itemType": "form",
+      "title": "Avaldus matusetoetuse taotlemiseks",
+      "status": "active",
+      "summary": "Matusetoetuse taotlusvorm matusekulude osaliseks hüvitamiseks valla tingimustel.",
+      "format": "rtf",
+      "submissionChannels": [
+        "in_person",
+        "mail",
+        "email"
+      ],
+      "officialUrl": "https://saarde.ee/documents/119303//Avaldus_matusetoetuse_saamiseks.rtf/19104301-5258-463c-b5bc-95d1ca5ed2eb",
+      "relatedTo": [
+        "saarde_vald_benefit_matusetoetus"
+      ],
+      "sourceKeys": [
+        "form_matusetoetuse_taotlus",
+        "forms_overview"
+      ],
+      "item_type": "form",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "form_matusetoetuse_taotlus",
+        "forms_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_form_matusetoetuse_taotlus",
+      "document_id": "saarde_vald_form_matusetoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/documents/119303//Avaldus_matusetoetuse_saamiseks.rtf/19104301-5258-463c-b5bc-95d1ca5ed2eb",
+      "content_hash": "476dfe8f6f9aa11688cdd1ade3a9a32ad45f9a52541a1202c153b3ffef09e5a5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_form_koduteenuse_taotlus",
+      "canonical_item_id": "saarde_vald:form:koduteenuse_taotlus",
+      "itemType": "form",
+      "title": "Koduteenuse taotlus",
+      "status": "active",
+      "summary": "Koduteenuse taotlusvorm täisealisele inimesele koduteenuse saamise vajaduse esitamiseks.",
+      "format": "rtf",
+      "submissionChannels": [
+        "in_person",
+        "mail",
+        "email"
+      ],
+      "officialUrl": "https://saarde.ee/documents/119303//Koduteenuse_taotlus.rtf/d68cc1c9-e391-48ff-be33-7356cac838f8",
+      "relatedTo": [
+        "saarde_vald_service_koduteenus"
+      ],
+      "sourceKeys": [
+        "form_koduteenuse_taotlus",
+        "forms_overview"
+      ],
+      "item_type": "form",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "form_koduteenuse_taotlus",
+        "forms_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_form_koduteenuse_taotlus",
+      "document_id": "saarde_vald_form_koduteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/documents/119303//Koduteenuse_taotlus.rtf/d68cc1c9-e391-48ff-be33-7356cac838f8",
+      "content_hash": "e9c6b3adb2f73e698a46a5e03c609a1d72024ae366d2fcc5044dc40a02183b8b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_form_sissetulekust_soltuv_toetus",
+      "canonical_item_id": "saarde_vald:form:sissetulekust_soltuv_toetus",
+      "itemType": "form",
+      "title": "Sissetulekust sõltuva toetuse taotlus",
+      "status": "active",
+      "summary": "Sissetulekust sõltuva sotsiaaltoetuse üldvorm, mida valla vormileht seob sotsiaalhoolekande ja tervishoiu toetustega.",
+      "format": "rtf",
+      "submissionChannels": [
+        "in_person",
+        "mail",
+        "email"
+      ],
+      "officialUrl": "https://saarde.ee/documents/119303//Sissetulekust%2Bs%C3%B5ltuv_vorm.rtf/f29b5ba9-f490-4a1b-a597-629b11cd5175",
+      "relatedTo": [
+        "saarde_vald_benefit_lasteaiatoetus",
+        "saarde_vald_benefit_lisatoetus",
+        "saarde_vald_benefit_eluruumi_kohandamise_toetus"
+      ],
+      "sourceKeys": [
+        "form_sissetulekust_soltuv_toetus",
+        "forms_overview"
+      ],
+      "item_type": "form",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "form_sissetulekust_soltuv_toetus",
+        "forms_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_form_sissetulekust_soltuv_toetus",
+      "document_id": "saarde_vald_form_sissetulekust_soltuv_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/documents/119303//Sissetulekust%2Bs%C3%B5ltuv_vorm.rtf/f29b5ba9-f490-4a1b-a597-629b11cd5175",
+      "content_hash": "b9a82f7b91d1975db1eda33d4f2e27407e69647d9fdbef0f7404cfd294799bf7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_form_sissetulekust_soltuv_toetus_ru",
+      "canonical_item_id": "saarde_vald:form:sissetulekust_soltuv_toetus_ru",
+      "itemType": "form",
+      "title": "Sissetulekust sõltuva toetuse taotlus (vene keeles)",
+      "status": "active",
+      "summary": "Sissetulekust sõltuva toetuse vorm vene keeles, avaldatud Saarde valla vormilehel.",
+      "format": "pdf",
+      "submissionChannels": [
+        "in_person",
+        "mail",
+        "email"
+      ],
+      "officialUrl": "https://saarde.ee/documents/119303//Lisa_3_Sissetulekust%2Bs%C3%B5ltuv_vene_keelne.pdf/ecbac3b8-f817-4db7-90b8-fe5ffa362c10",
+      "relatedTo": [
+        "saarde_vald_benefit_lasteaiatoetus",
+        "saarde_vald_benefit_lisatoetus",
+        "saarde_vald_benefit_eluruumi_kohandamise_toetus"
+      ],
+      "sourceKeys": [
+        "form_sissetulekust_soltuv_toetus_ru",
+        "forms_overview"
+      ],
+      "item_type": "form",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "form_sissetulekust_soltuv_toetus_ru",
+        "forms_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_form_sissetulekust_soltuv_toetus_ru",
+      "document_id": "saarde_vald_form_sissetulekust_soltuv_toetus_ru",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/documents/119303//Lisa_3_Sissetulekust%2Bs%C3%B5ltuv_vene_keelne.pdf/ecbac3b8-f817-4db7-90b8-fe5ffa362c10",
+      "content_hash": "e724290043ff813a99f1a0d038142a07f9400838b99f1b3ed19c5b37ff548bc7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_form_puudega_lapse_sotsiaalteenused",
+      "canonical_item_id": "saarde_vald:form:puudega_lapse_sotsiaalteenused",
+      "itemType": "form",
+      "title": "Taotlus raske või sügava puudega lapsele sotsiaalteenuste osutamiseks",
+      "status": "active",
+      "summary": "Taotlusvorm raske või sügava puudega lapsele sotsiaalteenuste osutamise taotlemiseks. Vormilehel ei ole vormi üheselt seotud ühe konkreetse teenusega.",
+      "format": "rtf",
+      "submissionChannels": [
+        "in_person",
+        "mail",
+        "email"
+      ],
+      "officialUrl": "https://saarde.ee/documents/119303/27779480/M_2_Lisa.rtf/1edb6e88-d3fd-4944-8f45-36d398dab595",
+      "relatedTo": [],
+      "sourceKeys": [
+        "form_puudega_lapse_sotsiaalteenused",
+        "forms_overview"
+      ],
+      "item_type": "form",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "form_puudega_lapse_sotsiaalteenused",
+        "forms_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_form_puudega_lapse_sotsiaalteenused",
+      "document_id": "saarde_vald_form_puudega_lapse_sotsiaalteenused",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/documents/119303/27779480/M_2_Lisa.rtf/1edb6e88-d3fd-4944-8f45-36d398dab595",
+      "content_hash": "1a9ec74b11e5db38f05f0bfeb93c38c503434f4b4d587a90e5605a5a1cd615ee",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_form_isikliku_abistaja_teenus",
+      "canonical_item_id": "saarde_vald:form:isikliku_abistaja_teenus",
+      "itemType": "form",
+      "title": "Isikliku abistaja teenuse taotlus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenuse taotlusvorm puudega täisealisele inimesele teenuse saamiseks.",
+      "format": "rtf",
+      "submissionChannels": [
+        "in_person",
+        "mail",
+        "email"
+      ],
+      "officialUrl": "https://saarde.ee/documents/119303/27779480/Isikliku%2Babistaja%2Bteenuse%2Btaotlus%2BLisa%2B1.rtf/62cb2e58-b989-46a6-99ea-9c3a5d6b529a",
+      "relatedTo": [
+        "saarde_vald_service_isikliku_abistaja_teenus"
+      ],
+      "sourceKeys": [
+        "form_isikliku_abistaja_teenus",
+        "forms_overview"
+      ],
+      "item_type": "form",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "form_isikliku_abistaja_teenus",
+        "forms_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_form_isikliku_abistaja_teenus",
+      "document_id": "saarde_vald_form_isikliku_abistaja_teenus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/documents/119303/27779480/Isikliku%2Babistaja%2Bteenuse%2Btaotlus%2BLisa%2B1.rtf/62cb2e58-b989-46a6-99ea-9c3a5d6b529a",
+      "content_hash": "77fe5871f6ceb33a7214196edf4a2fdb2d4174e6f47222c890d6bd65ec14d602",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_form_ulpidamiskohustuslase_kinnitus",
+      "canonical_item_id": "saarde_vald:form:ulpidamiskohustuslase_kinnitus",
+      "itemType": "form",
+      "title": "Seadusjärgse ülalpidamiskohustuslase kinnitus",
+      "status": "active",
+      "summary": "Vorm seadusjärgse ülalpidamiskohustuslase kinnituse esitamiseks sotsiaalhoolekande asjaajamises.",
+      "format": "rtf",
+      "submissionChannels": [
+        "in_person",
+        "mail",
+        "email"
+      ],
+      "officialUrl": "https://saarde.ee/documents/119303/27779480/Seadusj%C3%A4rgse%2B%C3%BClalpidamiskohustuslase%2Bkinnitus.rtf/0406c4b6-227b-4f45-93cb-a9c059c6946b",
+      "relatedTo": [
+        "saarde_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus"
+      ],
+      "sourceKeys": [
+        "form_ulpidamiskohustuslase_kinnitus",
+        "forms_overview"
+      ],
+      "item_type": "form",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "form_ulpidamiskohustuslase_kinnitus",
+        "forms_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_form_ulpidamiskohustuslase_kinnitus",
+      "document_id": "saarde_vald_form_ulpidamiskohustuslase_kinnitus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/documents/119303/27779480/Seadusj%C3%A4rgse%2B%C3%BClalpidamiskohustuslase%2Bkinnitus.rtf/0406c4b6-227b-4f45-93cb-a9c059c6946b",
+      "content_hash": "7d698a9301a054b59a4be2b194b4411c8c91bba8d13b3a3cb5e583ca36fa0e02",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_form_hoolekandeteenuse_rahastamine",
+      "canonical_item_id": "saarde_vald:form:hoolekandeteenuse_rahastamine",
+      "itemType": "form",
+      "title": "Taotlus hoolekandeteenuse rahastamiseks Saarde valla eelarvest",
+      "status": "active",
+      "summary": "Taotlusvorm hoolekandeteenuse rahastamiseks Saarde valla eelarvest; vorm on seostatav üldhooldusteenuse rahastamisega.",
+      "format": "rtf",
+      "submissionChannels": [
+        "in_person",
+        "mail",
+        "email"
+      ],
+      "officialUrl": "https://saarde.ee/documents/119303//Taotlus%2Bhoolekandeteenuse%2Brahastamiseks%2BSaarde%2Bvalla%2Beelarvest.rtf/bc8690ab-2f24-46c7-ab16-970ccf2649e1",
+      "relatedTo": [
+        "saarde_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus"
+      ],
+      "sourceKeys": [
+        "form_hoolekandeteenuse_rahastamine",
+        "forms_overview"
+      ],
+      "item_type": "form",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "form_hoolekandeteenuse_rahastamine",
+        "forms_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_form_hoolekandeteenuse_rahastamine",
+      "document_id": "saarde_vald_form_hoolekandeteenuse_rahastamine",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/documents/119303//Taotlus%2Bhoolekandeteenuse%2Brahastamiseks%2BSaarde%2Bvalla%2Beelarvest.rtf/bc8690ab-2f24-46c7-ab16-970ccf2649e1",
+      "content_hash": "f4d14e62a19aae629027fde08a959661e8e1ed9823efaca75b0d1b4c73f2ec76",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_form_hooldekodu_tasu_surju",
+      "canonical_item_id": "saarde_vald:form:hooldekodu_tasu_surju",
+      "itemType": "form",
+      "title": "Hooldekodu teenuse osalise tasu maksmise üle võtmise avaldus (Surju Hooldekodu)",
+      "status": "active",
+      "summary": "Avaldus hooldekodu teenuse osalise tasu maksmise üle võtmiseks Surju Hooldekodu puhul.",
+      "format": "docx",
+      "submissionChannels": [
+        "in_person",
+        "mail",
+        "email"
+      ],
+      "officialUrl": "https://saarde.ee/documents/119303/27779480/Blankett_Surju%2BHK.docx/472ea051-56ba-440c-b965-5f964fe90f73",
+      "relatedTo": [
+        "saarde_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus"
+      ],
+      "sourceKeys": [
+        "form_hooldekodu_tasu_surju",
+        "forms_overview"
+      ],
+      "item_type": "form",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "form_hooldekodu_tasu_surju",
+        "forms_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_form_hooldekodu_tasu_surju",
+      "document_id": "saarde_vald_form_hooldekodu_tasu_surju",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/documents/119303/27779480/Blankett_Surju%2BHK.docx/472ea051-56ba-440c-b965-5f964fe90f73",
+      "content_hash": "ff9d1ceaabd41a3b89722e0d3aaa3e58f0d959e9706167565d3d4bbfd533ed57",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_form_hooldekodu_tasu_kilingi_villa",
+      "canonical_item_id": "saarde_vald:form:hooldekodu_tasu_kilingi_villa",
+      "itemType": "form",
+      "title": "Hooldekodu teenuse osalise tasu maksmise üle võtmise avaldus (Kilingi Villa)",
+      "status": "active",
+      "summary": "Avaldus hooldekodu teenuse osalise tasu maksmise üle võtmiseks Kilingi Villa puhul.",
+      "format": "docx",
+      "submissionChannels": [
+        "in_person",
+        "mail",
+        "email"
+      ],
+      "officialUrl": "https://saarde.ee/documents/119303/27779480/Blankett_Kilingi%2BVilla.docx/e6be2760-7e24-4c13-8ba7-8b54e4b2ee7c",
+      "relatedTo": [
+        "saarde_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus"
+      ],
+      "sourceKeys": [
+        "form_hooldekodu_tasu_kilingi_villa",
+        "forms_overview"
+      ],
+      "item_type": "form",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "form_hooldekodu_tasu_kilingi_villa",
+        "forms_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_form_hooldekodu_tasu_kilingi_villa",
+      "document_id": "saarde_vald_form_hooldekodu_tasu_kilingi_villa",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/documents/119303/27779480/Blankett_Kilingi%2BVilla.docx/e6be2760-7e24-4c13-8ba7-8b54e4b2ee7c",
+      "content_hash": "9797a6fa3447d826545c87d4734bf4656d85947768d95cc768f6529c187b2b03",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saarde_vald_form_hooldekodu_tasu_kilingi_nomme_thk",
+      "canonical_item_id": "saarde_vald:form:hooldekodu_tasu_kilingi_nomme_thk",
+      "itemType": "form",
+      "title": "Hooldekodu teenuse osalise tasu maksmise üle võtmise avaldus (Kilingi-Nõmme Hoolduskeskus)",
+      "status": "active",
+      "summary": "Avaldus hooldekodu teenuse osalise tasu maksmise üle võtmiseks Kilingi-Nõmme Tervise- ja Hoolduskeskuse puhul.",
+      "format": "docx",
+      "submissionChannels": [
+        "in_person",
+        "mail",
+        "email"
+      ],
+      "officialUrl": "https://saarde.ee/documents/119303/27779480/Blankett_KilingiN%C3%B5mme%2BTHK.docx/b169d153-d36d-40d4-8ed8-de355510ff8d",
+      "relatedTo": [
+        "saarde_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus"
+      ],
+      "sourceKeys": [
+        "form_hooldekodu_tasu_kilingi_nomme_thk",
+        "forms_overview"
+      ],
+      "item_type": "form",
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "form_hooldekodu_tasu_kilingi_nomme_thk",
+        "forms_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saarde_vald_form_hooldekodu_tasu_kilingi_nomme_thk",
+      "document_id": "saarde_vald_form_hooldekodu_tasu_kilingi_nomme_thk",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://saarde.ee/documents/119303/27779480/Blankett_KilingiN%C3%B5mme%2BTHK.docx/b169d153-d36d-40d4-8ed8-de355510ff8d",
+      "content_hash": "9f3a46482ef5e2ae669c2c6d235635ea86dbd370581ac57380c32f24201afe31",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Saarde vald",
+  "checked_at": "2026-05-01",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

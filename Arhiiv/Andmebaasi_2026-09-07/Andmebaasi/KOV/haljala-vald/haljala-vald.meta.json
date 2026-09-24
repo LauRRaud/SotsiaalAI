@@ -1,0 +1,64 @@
+{
+  "id": "haljala_vald",
+  "municipality": "Haljala vald",
+  "county": "Lääne-Virumaa",
+  "checkedAt": "2026-04-11",
+  "status": "ingest_ready",
+  "coverage": {
+    "services": 10,
+    "benefits": 8,
+    "resources": 16,
+    "contacts": 4,
+    "forms": 5,
+    "regulations": 0
+  },
+  "notes": [],
+  "unresolvedIssues": [
+    "Haljala valla avalikul veebilehel ei leitud eraldi detaillehti võlanõustamisteenuse, varjupaigateenuse ega turvakoduteenuse kohta; nende olemasolu kinnitab sotsiaalteenuste taotluse ametlik leht, kuid avalikud teenusekirjeldused, tingimused ja võimalik maksumus jäid täpsustamata.",
+    "Koduteenuse, sünnitoetuse ja matusetoetuse hetkel kehtivaid summasid ei olnud Haljala valla avalikel detaillehtedel välja toodud; kontrollimata summasid paketti ei lisatud.",
+    "Parkimiskaardi leht ei nimeta eraldi Haljala valla blanketti ega konkreetset vastutavat ametnikku; seetõttu jäeti parkimiskaardi kirjele vormi- ja kontaktiseos lisamata.",
+    "Mitmel toetuse lehel on taotlemine viidatud SPOKU kaudu, kuid avalik veeb ei kuva alati eraldi vormi täpset sisemist SPOKU URL-i; vormide ametliku lingina kasutati avalikku Haljala valla toimingu- või teenuslehte."
+  ],
+  "schemaVersion": "v2.5-sourcepackage",
+  "municipality_id": "haljala_vald",
+  "municipality_name": "Haljala vald",
+  "checked_at": "2026-04-11",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "collection_id": "kov_services",
+  "jurisdiction_level": "MUNICIPALITY",
+  "sourceRegisterFile": "haljala-vald.sources.json",
+  "sourceCount": 32,
+  "counts": {
+    "services": 10,
+    "benefits": 8,
+    "resources": 16,
+    "contacts": 4,
+    "forms": 5,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "haljala_vald",
+    "source_register_file": "haljala-vald.sources.json",
+    "service_benefit_resource_items": 34,
+    "items_with_source_keys": 34,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 14,
+    "items_without_related_forms": 20,
+    "items_with_related_contacts": 24,
+    "items_without_related_contacts": 10,
+    "form_sources": 1,
+    "contact_sources": 1,
+    "regulation_sources": 0,
+    "warnings": [
+      "3 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "warnings": [
+    "3 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

@@ -1,0 +1,4762 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-narva-joesuu-linn",
+  "document_id": "kov-narva-joesuu-linn",
+  "municipality": "Narva-Jõesuu linn",
+  "municipality_id": "narva_joesuu_linn",
+  "county": "Ida-Virumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "narva_joesuu_linn_contact_narva_joesuu_linnavalitsus",
+      "canonical_item_id": "narva_joesuu_linn:contact:narva_joesuu_linnavalitsus",
+      "itemType": "contact",
+      "title": "Narva-Jõesuu Linnavalitsus",
+      "status": "active",
+      "summary": "Narva-Jõesuu Linnavalitsuse üldkontakt, mida KOV sotsiaalvaldkonna lehed kasutavad footer-kontaktina.",
+      "sourceKeys": [
+        "home"
+      ],
+      "name": "Narva-Jõesuu Linnavalitsus",
+      "role": "üldkontakt",
+      "department": "Linnavalitsus",
+      "address": "Jaan Poska tänav 26, Narva-Jõesuu linn",
+      "reception": null,
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "home"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_contact_narva_joesuu_linnavalitsus",
+      "document_id": "narva_joesuu_linn_contact_narva_joesuu_linnavalitsus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "d6f0d3a0a38fa9cb68916d1e76b9c4ef70b44b929d16ca234db4449e2b1e4bd3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_contact_sotsiaalosakond",
+      "canonical_item_id": "narva_joesuu_linn:contact:sotsiaalosakond",
+      "itemType": "contact",
+      "title": "Sotsiaalosakond",
+      "status": "active",
+      "summary": "Narva-Jõesuu sotsiaalosakonna üldkontakt ja vastuvõtukohad. Vastuvõtt toimub Narva-Jõesuus J. Poska 26 aadressil, Olginas Narva mnt 12 aadressil ja Sinimäel Aia 1-1 aadressil.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Sotsiaalosakond",
+      "role": "osakond",
+      "department": "Sotsiaalosakond",
+      "address": "J. Poska 26, Narva-Jõesuu; Narva mnt 12, Olgina; Aia 1-1, Sinimäe",
+      "reception": "Narva-Jõesuu: E 10.00-12.00 ja 13.00-17.00, K 15.00-19.00; Olgina: T 08.30-16.00; Sinimäe: K 09.00-12.00 ja 13.00-19.00",
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_contact_sotsiaalosakond",
+      "document_id": "narva_joesuu_linn_contact_sotsiaalosakond",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "13149fbfdc1917c29ff126e1d8630c4c0cdd0f3eedd549cfe056f9dcd2d73d15",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_contact_veronika_stepanova",
+      "canonical_item_id": "narva_joesuu_linn:contact:veronika_stepanova",
+      "itemType": "contact",
+      "title": "Veronika Stepanova",
+      "status": "active",
+      "summary": "Sotsiaalosakonna juhataja, kelle kontakt on avaldatud sotsiaalosakonna kontaktilehel ning mitme teenuse ja toetuse juures.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Veronika Stepanova",
+      "role": "juhataja",
+      "department": "Sotsiaalosakond",
+      "address": "J. Poska 26, Narva-Jõesuu",
+      "reception": "eelregistreerimisega",
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_contact_veronika_stepanova",
+      "document_id": "narva_joesuu_linn_contact_veronika_stepanova",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "ee5890aea8a2ed66d7f6c0d628f9cc3f57e3e468e2963e5b7822e7ca54ad352d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_contact_zanna_golubtsikova",
+      "canonical_item_id": "narva_joesuu_linn:contact:zanna_golubtsikova",
+      "itemType": "contact",
+      "title": "Žanna Golubtšikova",
+      "status": "active",
+      "summary": "Lastekaitse spetsialist, kelle kontakt on avaldatud sotsiaalosakonna kontaktilehel ning lapse ja perega seotud teenuste juures.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Žanna Golubtšikova",
+      "role": "lastekaitsespetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Jaan Poska tänav 26, 2. korrus, Narva-Jõesuu",
+      "reception": "E 10.00-12.00 ja 13.00-17.00, K 15.00-19.00",
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_contact_zanna_golubtsikova",
+      "document_id": "narva_joesuu_linn_contact_zanna_golubtsikova",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "707a873e97e45444669f2fee1f45bfab2f949afec93647b781c1c46c2fd12b71",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_contact_alla_ojavere",
+      "canonical_item_id": "narva_joesuu_linn:contact:alla_ojavere",
+      "itemType": "contact",
+      "title": "Alla Ojavere",
+      "status": "active",
+      "summary": "Sotsiaaltöö peaspetsialist, kelle kontakt on avaldatud sotsiaalosakonna kontaktilehel ning koduteenuse, sotsiaaltranspordi ja hoolduse lehtedel.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Alla Ojavere",
+      "role": "sotsiaaltöö peaspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Jaan Poska tänav 26, 2. korrus, Narva-Jõesuu; Aia 1-2, Sinimäe",
+      "reception": "Narva-Jõesuu: E 10.00-12.00 ja 13.00-17.00; Sinimäe: K 15.00-19.00",
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_contact_alla_ojavere",
+      "document_id": "narva_joesuu_linn_contact_alla_ojavere",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "3699daf428b36651be84f496033e7d91cecde9c383cff4f3eb9a7caa2665b42e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_contact_polina_merkulova",
+      "canonical_item_id": "narva_joesuu_linn:contact:polina_merkulova",
+      "itemType": "contact",
+      "title": "Polina Merkulova",
+      "status": "active",
+      "summary": "Sotsiaaltöö spetsialist, kelle kontakt on avaldatud sotsiaalosakonna kontaktilehel ning terviseteenuse lehel.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Polina Merkulova",
+      "role": "sotsiaaltöö spetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "J. Poska 26, Narva-Jõesuu; Aia 1-2, Sinimäe; Narva mnt 12, Olgina",
+      "reception": "Narva-Jõesuu: E 10.00-12.00 ja 13.00-17.00; Sinimäe: K 15.00-19.00; Olgina: paarisnädala T 08.30-16.00",
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_contact_polina_merkulova",
+      "document_id": "narva_joesuu_linn_contact_polina_merkulova",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "9a8edb4f98e67d12a131237dc3175ab70bc5a8681b4dd584f909ddc83895700f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_contact_kristina_ostyak",
+      "canonical_item_id": "narva_joesuu_linn:contact:kristina_ostyak",
+      "itemType": "contact",
+      "title": "Kristina Ostyak",
+      "status": "active",
+      "summary": "Koduhooldustöötaja, kelle ja on avaldatud KOV sotsiaalosakonna kontaktilehel.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Kristina Ostyak",
+      "role": "koduhooldustöötaja",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "reception": null,
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_contact_kristina_ostyak",
+      "document_id": "narva_joesuu_linn_contact_kristina_ostyak",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "be25d82a3fc417d57e6750c75d480ca073e2ab47743d47ab637d28c7e94c5a73",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_contact_olesya_kukina",
+      "canonical_item_id": "narva_joesuu_linn:contact:olesya_kukina",
+      "itemType": "contact",
+      "title": "Olesya Kukina",
+      "status": "active",
+      "summary": "Koduhooldustöötaja, kelle kontakt on avaldatud KOV sotsiaalosakonna kontaktilehel.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Olesya Kukina",
+      "role": "koduhooldustöötaja",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "reception": null,
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_contact_olesya_kukina",
+      "document_id": "narva_joesuu_linn_contact_olesya_kukina",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "ed07768abb5a6901d6b083d7d0f00b66d9eb4f097131d7de854548ffb61c6e8e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_contact_andrei_karsten",
+      "canonical_item_id": "narva_joesuu_linn:contact:andrei_karsten",
+      "itemType": "contact",
+      "title": "Andrei Kärsten",
+      "status": "active",
+      "summary": "Sotsiaaltranspordi bussijuht, kelle kontakt on avaldatud KOV sotsiaalosakonna kontaktilehel.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Andrei Kärsten",
+      "role": "bussijuht",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "reception": null,
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_contact_andrei_karsten",
+      "document_id": "narva_joesuu_linn_contact_andrei_karsten",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "8e35bff14c6c89bedc95a6b18b7c90b4776f9c91a8469e4179907bb6809f9f58",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_contact_sirje_neeme",
+      "canonical_item_id": "narva_joesuu_linn:contact:sirje_neeme",
+      "itemType": "contact",
+      "title": "Sirje Neeme",
+      "status": "active",
+      "summary": "Koduanduri kasutamise soovi korral nimetab KOV leht kontaktisikuks sotsiaaltöö peaspetsialisti Sirje Neeme.",
+      "sourceKeys": [
+        "abi_page"
+      ],
+      "name": "Sirje Neeme",
+      "role": "sotsiaaltöö peaspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "reception": null,
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "abi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_contact_sirje_neeme",
+      "document_id": "narva_joesuu_linn_contact_sirje_neeme",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "bb0456b926cda44cb4af2dd4e7f36ee33411284279071519daba052f6517e080",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_contact_tarmo_koduandur",
+      "canonical_item_id": "narva_joesuu_linn:contact:tarmo_koduandur",
+      "itemType": "contact",
+      "title": "Tarmo (koduanduri lisainfo)",
+      "status": "active",
+      "summary": "Koduanduri teenuse kohta avaldab KOV leht välise lisainfo telefonina Tarmo numbri.",
+      "sourceKeys": [
+        "abi_page"
+      ],
+      "name": "Tarmo (koduanduri lisainfo)",
+      "role": "koduanduri lisainfo",
+      "department": "Koduandur",
+      "address": null,
+      "reception": null,
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "abi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_contact_tarmo_koduandur",
+      "document_id": "narva_joesuu_linn_contact_tarmo_koduandur",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "7023cd78061370502f56fae9a8e44b65daec751335704678665b319b5d3382a2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_contact_andrei_saitsuk",
+      "canonical_item_id": "narva_joesuu_linn:contact:andrei_saitsuk",
+      "itemType": "contact",
+      "title": "Andrei Saitšuk",
+      "status": "active",
+      "summary": "SA Narva-Jõesuu Peremajad juhatuse liige.",
+      "sourceKeys": [
+        "sa_peremajad_page"
+      ],
+      "name": "Andrei Saitšuk",
+      "role": "juhatuse liige",
+      "department": "SA Narva-Jõesuu Peremajad",
+      "address": "Jaan Poska 26, 29023 Narva-Jõesuu",
+      "reception": null,
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "sa_peremajad_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_contact_andrei_saitsuk",
+      "document_id": "narva_joesuu_linn_contact_andrei_saitsuk",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "3cfb736763d5b157d3345339a3acc218cd3141b5245f6fc94d51a82289cc5a9e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_contact_anastassia_belova",
+      "canonical_item_id": "narva_joesuu_linn:contact:anastassia_belova",
+      "itemType": "contact",
+      "title": "Anastassia Belova",
+      "status": "active",
+      "summary": "Ohvriabitöötaja piirkonnas Narva, Sillamäe ja Narva-Jõesuu.",
+      "sourceKeys": [
+        "ohvriabi_page"
+      ],
+      "name": "Anastassia Belova",
+      "role": "ohvriabitöötaja",
+      "department": "Ohvriabi",
+      "address": "Vahtra 3, Narva; I. Pavlovi tn 4, Sillamäe (kohtumised kokkuleppel)",
+      "reception": null,
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "ohvriabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_contact_anastassia_belova",
+      "document_id": "narva_joesuu_linn_contact_anastassia_belova",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "270f38961f5b42ccf5b542a6e1f15604c90d15aba5dfb545e4aae757e3de2c51",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_contact_inna_bahlinova",
+      "canonical_item_id": "narva_joesuu_linn:contact:inna_bahlinova",
+      "itemType": "contact",
+      "title": "Inna Bahlinova",
+      "status": "active",
+      "summary": "Ohvriabitöötaja piirkonnas Narva, Sillamäe ja Narva-Jõesuu.",
+      "sourceKeys": [
+        "ohvriabi_page"
+      ],
+      "name": "Inna Bahlinova",
+      "role": "ohvriabitöötaja",
+      "department": "Ohvriabi",
+      "address": "Vahtra 3, Narva; I. Pavlovi tn 4, Sillamäe (kohtumised kokkuleppel)",
+      "reception": null,
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "ohvriabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_contact_inna_bahlinova",
+      "document_id": "narva_joesuu_linn_contact_inna_bahlinova",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "33ef63de7e38af15e8d2b231f3eef47ab7f105fc3b25d988881ee8141046d574",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_contact_vesta_ida_viru_keskhaigla",
+      "canonical_item_id": "narva_joesuu_linn:contact:vesta_ida_viru_keskhaigla",
+      "itemType": "contact",
+      "title": "VESTA Ida-Viru Keskhaigla",
+      "status": "active",
+      "summary": "VESTA Ida-Viru Keskhaigla tervisejuhi kontakttelefon VESTA teenuse kasutamiseks.",
+      "sourceKeys": [
+        "vesta_page"
+      ],
+      "name": "VESTA Ida-Viru Keskhaigla",
+      "role": "tervisejuhi kontakt",
+      "department": "VESTA",
+      "address": "Tervise 1, Kohtla-Järve",
+      "reception": null,
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "vesta_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_contact_vesta_ida_viru_keskhaigla",
+      "document_id": "narva_joesuu_linn_contact_vesta_ida_viru_keskhaigla",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "4dea23bbaede914ef4e5e921049d17c28eb8ecc475ad31fa8e868e5382efde9f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_contact_vesta_narva_haigla",
+      "canonical_item_id": "narva_joesuu_linn:contact:vesta_narva_haigla",
+      "itemType": "contact",
+      "title": "VESTA Narva Haigla",
+      "status": "active",
+      "summary": "VESTA Narva Haigla tervisejuhi kontakttelefon VESTA teenuse kasutamiseks.",
+      "sourceKeys": [
+        "vesta_page"
+      ],
+      "name": "VESTA Narva Haigla",
+      "role": "tervisejuhi kontakt",
+      "department": "VESTA",
+      "address": "Haigla 5, Narva",
+      "reception": null,
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "vesta_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_contact_vesta_narva_haigla",
+      "document_id": "narva_joesuu_linn_contact_vesta_narva_haigla",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "05196262a3736d442a86caf63fd8bbdcfa2069b4e597e10ed6e2b14a186872f3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_contact_vesta_jarve_tervisemaja",
+      "canonical_item_id": "narva_joesuu_linn:contact:vesta_jarve_tervisemaja",
+      "itemType": "contact",
+      "title": "VESTA Järve Tervisemaja",
+      "status": "active",
+      "summary": "VESTA Järve Tervisemaja tervisejuhi kontakttelefon VESTA teenuse kasutamiseks.",
+      "sourceKeys": [
+        "vesta_page"
+      ],
+      "name": "VESTA Järve Tervisemaja",
+      "role": "tervisejuhi kontakt",
+      "department": "VESTA",
+      "address": "Ravi 10d, Kohtla-Järve",
+      "reception": null,
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "vesta_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_contact_vesta_jarve_tervisemaja",
+      "document_id": "narva_joesuu_linn_contact_vesta_jarve_tervisemaja",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "7f7f5b970e47e6322a6fbd41d504db6b0d4cb2a6b2c200794cc93570a843d4bd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_contact_vesta_narva_perearstikeskus_kangelaste",
+      "canonical_item_id": "narva_joesuu_linn:contact:vesta_narva_perearstikeskus_kangelaste",
+      "itemType": "contact",
+      "title": "VESTA Narva Perearstikeskus (Kangelaste 24)",
+      "status": "active",
+      "summary": "VESTA Narva Perearstikeskus (Kangelaste 24) tervisejuhi kontakttelefon VESTA teenuse kasutamiseks.",
+      "sourceKeys": [
+        "vesta_page"
+      ],
+      "name": "VESTA Narva Perearstikeskus (Kangelaste 24)",
+      "role": "tervisejuhi kontakt",
+      "department": "VESTA",
+      "address": "Kangelaste 24, Narva",
+      "reception": null,
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "vesta_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_contact_vesta_narva_perearstikeskus_kangelaste",
+      "document_id": "narva_joesuu_linn_contact_vesta_narva_perearstikeskus_kangelaste",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "d8a2e5e4b843a52a9eba1265c35eeda92b21d6e9e0b347ae0b68bd26dc582fe8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_contact_vesta_ahtme_tervisemaja",
+      "canonical_item_id": "narva_joesuu_linn:contact:vesta_ahtme_tervisemaja",
+      "itemType": "contact",
+      "title": "VESTA Ahtme Tervisemaja",
+      "status": "active",
+      "summary": "VESTA Ahtme Tervisemaja tervisejuhi kontakttelefon VESTA teenuse kasutamiseks.",
+      "sourceKeys": [
+        "vesta_page"
+      ],
+      "name": "VESTA Ahtme Tervisemaja",
+      "role": "tervisejuhi kontakt",
+      "department": "VESTA",
+      "address": "Ilmajaama 14, Kohtla-Järve",
+      "reception": null,
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "vesta_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_contact_vesta_ahtme_tervisemaja",
+      "document_id": "narva_joesuu_linn_contact_vesta_ahtme_tervisemaja",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "3af5fafe378b72f2889e7c61038a7916f2b32ef109376c1db77392d8dedf2122",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_contact_vesta_narva_perearstikeskus_partisani",
+      "canonical_item_id": "narva_joesuu_linn:contact:vesta_narva_perearstikeskus_partisani",
+      "itemType": "contact",
+      "title": "VESTA Narva Perearstikeskus (Partisani 5a)",
+      "status": "active",
+      "summary": "VESTA Narva Perearstikeskus (Partisani 5a) tervisejuhi kontakttelefon VESTA teenuse kasutamiseks.",
+      "sourceKeys": [
+        "vesta_page"
+      ],
+      "name": "VESTA Narva Perearstikeskus (Partisani 5a)",
+      "role": "tervisejuhi kontakt",
+      "department": "VESTA",
+      "address": "Partisani 5a, Narva",
+      "reception": null,
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "vesta_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_contact_vesta_narva_perearstikeskus_partisani",
+      "document_id": "narva_joesuu_linn_contact_vesta_narva_perearstikeskus_partisani",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "600cb8ecf0d78006306470327f2394bac4d03772a1b8849889c8e2c474c32c37",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_contact_vesta_corrigo",
+      "canonical_item_id": "narva_joesuu_linn:contact:vesta_corrigo",
+      "itemType": "contact",
+      "title": "VESTA Tervisekeskus Corrigo",
+      "status": "active",
+      "summary": "VESTA Tervisekeskus Corrigo tervisejuhi kontakttelefon VESTA teenuse kasutamiseks.",
+      "sourceKeys": [
+        "vesta_page"
+      ],
+      "name": "VESTA Tervisekeskus Corrigo",
+      "role": "tervisejuhi kontakt",
+      "department": "VESTA",
+      "address": "Jaama 34b, Jõhvi",
+      "reception": null,
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "vesta_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_contact_vesta_corrigo",
+      "document_id": "narva_joesuu_linn_contact_vesta_corrigo",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "ca0b5e8e4a63a1b37d283fab7928a0b46ab5cfbb062b07244853a2224c124712",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_contact_vesta_neeme",
+      "canonical_item_id": "narva_joesuu_linn:contact:vesta_neeme",
+      "itemType": "contact",
+      "title": "VESTA Perearstide Keskus Neeme",
+      "status": "active",
+      "summary": "VESTA Perearstide Keskus Neeme tervisejuhi kontakttelefon VESTA teenuse kasutamiseks.",
+      "sourceKeys": [
+        "vesta_page"
+      ],
+      "name": "VESTA Perearstide Keskus Neeme",
+      "role": "tervisejuhi kontakt",
+      "department": "VESTA",
+      "address": "I. Pavlovi 12a, Sillamäe",
+      "reception": null,
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "vesta_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_contact_vesta_neeme",
+      "document_id": "narva_joesuu_linn_contact_vesta_neeme",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "14201634efff8d0e231b27458ae7587e654f769bcdd2119f5a9f10346f9a3439",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_service_koduteenus",
+      "canonical_item_id": "narva_joesuu_linn:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenuse eesmärk on täisealise inimese iseseisva ja turvalise toimetuleku tagamine kodustes tingimustes. Teenus hõlmab muu hulgas toiduainete, ravimite ja abivahenditega varustamist, terviseabi korraldamist, asjaajamisel abistamist, toidu valmistamist, riietumist, eluruumi koristust, kütmisabi, pesemisel ja isiklikul hügieenil abistamist. Teenuse maht määratakse individuaalses hooldusplaanis.",
+      "sourceKeys": [
+        "koduteenus_page"
+      ],
+      "targetGroup": "Täisealine inimene, kes terviseseisundi, tegevusvõime või elukeskkonna tõttu vajab kodus kõrvalabi.",
+      "conditions": "Teenust osutatakse määramise otsuses toodud tingimustel ning linnavalitsuse ja teenust vajava isiku või tema seadusjärgse ülalpidaja vahel sõlmitud kirjaliku lepingu alusel. Leping sõlmitakse üheks aastaks ja vaadatakse tähtaja lõppedes üle.",
+      "application": {
+        "channels": [
+          "paper",
+          "representative",
+          "social_worker_or_doctor"
+        ],
+        "steps": [
+          "Teenuse taotleja, seaduslik esindaja, perearst või sotsiaaltöötaja esitab linnavalitsusele kirjaliku taotluse.",
+          "Taotluses märgitakse isiku nimi, sünniaeg, elukoht, isiku ja esindajate kontaktandmed ning koduteenuse vajaduse põhjendus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Kui teenusevajadus on 2 või rohkem tundi nädalas: 30 eurot kuus. Kui teenusevajadus on alla 2 tunni nädalas: 6 eurot tunnis.",
+      "amount": null,
+      "officialUrl": "https://narva-joesuu.ee/koduteenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_alla_ojavere",
+        "narva_joesuu_linn_contact_kristina_ostyak",
+        "narva_joesuu_linn_contact_olesya_kukina"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "koduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_service_koduteenus",
+      "document_id": "narva_joesuu_linn_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/koduteenus",
+      "content_hash": "cd2b1edb1526b96c746d631c2bc90731b8497fb5a5375464fe7fb1aa14b08894",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "canonical_item_id": "narva_joesuu_linn:service:valjaspool_kodu_osutatav_uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Ööpäevaringselt osutatav üldhooldusteenus on KOV korraldatav sotsiaalteenus, mille eesmärk on tagada turvaline elukeskkond ja toimetulek täisealisele inimesele, kes terviseseisundi, tegevusvõime või elukeskkonna tõttu ei saa kodus iseseisvalt hakkama.",
+      "sourceKeys": [
+        "uldhooldusteenus_page"
+      ],
+      "targetGroup": "Täisealine inimene, kes ei suuda iseseisvalt kodustes tingimustes toime tulla.",
+      "conditions": "Teenusele suunamine toimub Narva-Jõesuu Linnavalitsuse korralduse alusel pärast abivajaduse hindamist. Kui abivajaja ei saa terviseseisundi tõttu taotlust esitada, võib seda teha seaduslik või lepinguline esindaja.",
+      "application": {
+        "channels": [
+          "paper",
+          "representative"
+        ],
+        "steps": [
+          "Esitada taotlus üldhooldusteenuse saamiseks.",
+          "Sotsiaalosakond hindab abivajadust.",
+          "Teenusele suunamine vormistatakse linnavalitsuse korraldusega."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Hooldekodu kohamaksumus jaguneb teenust vajava isiku ja kohaliku omavalitsuse vahel. Narva-Jõesuu linn katab hoolduskulude osa kuni 500 eurot kuus ning vajadusel hüvitab teenuse saaja sissetuleku ja teenuse maksumuse vahe määratud tingimustel.",
+      "amount": null,
+      "officialUrl": "https://narva-joesuu.ee/valjaspool-kodu-osutatava-uldhooldusteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_uldhooldusteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_veronika_stepanova",
+        "narva_joesuu_linn_contact_alla_ojavere"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "uldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "document_id": "narva_joesuu_linn_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/valjaspool-kodu-osutatava-uldhooldusteenus",
+      "content_hash": "33290bfea6cf082b27fa0336d0d742998c69bfc8a8eb6261b4438c6d33c91465",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_service_tugiisikuteenus",
+      "canonical_item_id": "narva_joesuu_linn:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenuse eesmärk on iseseisva toimetuleku toetamine olukorras, kus inimene vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu olulisel määral kõrvalabi. Kõrvalabi seisneb juhendamises, motiveerimises ning iseseisvuse ja omavastutuse arendamises.",
+      "sourceKeys": [
+        "tugiisikuteenus_page"
+      ],
+      "targetGroup": "Raske või sügava puudega laps, laps kelle vanematel on hoolitsemisel raskusi, abi vajav lapsevanem või eestkostja, täisealine puudega inimene ning kinnipidamiskohast vabanenud inimene.",
+      "conditions": "Tugiisik peab olema täisealine, täieliku teovõimega füüsiline isik, kes on läbinud tööks vajaliku koolituse või sobib isikuomaduste ja kogemuste poolest ning sobib teenuse saajaga. Teenust ei tohi osutada isik, kelle karistatus võib teenuse saajat ohustada, teenuse saaja lähisugulane või samas eluruumis püsivalt elav isik.",
+      "application": {
+        "channels": [
+          "paper"
+        ],
+        "steps": [
+          "Esitada taotlus tugiisikuteenuse saamiseks.",
+          "Teenuse vajadust hinnatakse ning teenus määratakse linnavalitsuse korraldusega.",
+          "Teenuse osutamise aluseks sõlmitakse haldusleping teenuse saaja, teenuseosutaja ja linnavalitsuse vahel."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://narva-joesuu.ee/tugiisikuteenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_alla_ojavere",
+        "narva_joesuu_linn_contact_zanna_golubtsikova"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "tugiisikuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_service_tugiisikuteenus",
+      "document_id": "narva_joesuu_linn_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/tugiisikuteenus",
+      "content_hash": "45e83175f6ad87d174235ccd2d4dce8b2693802c1bcef223a17a0780f76d3d23",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_service_riigi_rahastatav_lapsehoiuteenus_puudega_lapsele",
+      "canonical_item_id": "narva_joesuu_linn:service:riigi_rahastatav_lapsehoiuteenus_puudega_lapsele",
+      "itemType": "service",
+      "title": "Riigi rahastatav lapsehoiuteenus puudega lapsele",
+      "status": "active",
+      "summary": "Lapsehoiuteenus toetab lapse hooldusõigust omava isiku või hooldaja toimetulekut ja töötamist. Teenuse osutamise ajal tagab lapsehoiuteenuse osutaja lapse hooldamise, arendamise ja turvalisuse.",
+      "sourceKeys": [
+        "lapsehoiuteenus_page"
+      ],
+      "targetGroup": "Puudega laps ja tema hooldusõigusega vanem või hooldaja.",
+      "conditions": "KOV lehel avaldatud info kirjeldab teenuse üldist eesmärki ja suunab täpse taotlemise lastekaitsespetsialistile.",
+      "application": {
+        "channels": [
+          "contact_specialist"
+        ],
+        "steps": [
+          "Võtta ühendust lastekaitsespetsialistiga Žanna Golubtšikova."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://narva-joesuu.ee/riigi-rahastatav-lapsehoiuteenus-puudega-lapsele",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_puudega_lapse_toetava_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_zanna_golubtsikova"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "KOV lehel ei ole teenuse taotlemise praktiline kord ega otsustamise aeg detailselt kirjeldatud."
+      ],
+      "item_type": "service",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "lapsehoiuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_service_riigi_rahastatav_lapsehoiuteenus_puudega_lapsele",
+      "document_id": "narva_joesuu_linn_service_riigi_rahastatav_lapsehoiuteenus_puudega_lapsele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/riigi-rahastatav-lapsehoiuteenus-puudega-lapsele",
+      "content_hash": "7ef745714f71927f457d141923e835364ee65db053adecac77a196a4f83a1302",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_service_eluruumi_tagamine",
+      "canonical_item_id": "narva_joesuu_linn:service:eluruumi_tagamine",
+      "itemType": "service",
+      "title": "Eluruumi tagamine",
+      "status": "active",
+      "summary": "Eluruumi tagamise eesmärk on tagada eluruumi kasutamise võimalus inimesele, kes ei ole sotsiaalmajanduslikust olukorrast tulenevalt võimeline endale ja oma perele vajadustele vastavat eluruumi tagama. Puudest tingitud liikumis-, toimetuleku- või suhtlemisraskuse korral abistab linnavalitsus eluruumi kohandamisel või sobivama eluruumi saamisel.",
+      "sourceKeys": [
+        "eluruumi_tagamine_page"
+      ],
+      "targetGroup": "Inimene või pere, kes ei suuda sotsiaalmajandusliku olukorra tõttu sobivat eluruumi tagada; samuti puudega inimene, kellel on eluruumis liikumise või toimetulekuga raskusi.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "contact_specialist"
+        ],
+        "steps": [
+          "Võtta ühendust sotsiaalosakonnaga ja esitada eluruumi vajadust selgitav taotlus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://narva-joesuu.ee/eluruumi-tagamine",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_veronika_stepanova"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "KOV leht ei avalda detailset taotlusvormi ega menetluskäiku selle teenuse juures."
+      ],
+      "item_type": "service",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "eluruumi_tagamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_service_eluruumi_tagamine",
+      "document_id": "narva_joesuu_linn_service_eluruumi_tagamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/eluruumi-tagamine",
+      "content_hash": "8b124b16b1b1fe795c1021e106f522e33451142b26e7c46a078b9157c7ae5bca",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "narva_joesuu_linn:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus võimaldab puudega isikul, kelle puue takistab isikliku või ühissõiduki kasutamist, kasutada vajadustele vastavat transpordivahendit tööle, õppeasutusse või avalikele teenustele sõitmiseks.",
+      "sourceKeys": [
+        "sotsiaaltransport_page"
+      ],
+      "targetGroup": "Rahvastikuregistri andmetel Narva-Jõesuu linnas alaliselt elav puudega või eakas inimene, kes vajab terviseseisundi või puude tõttu transporti ega saa kasutada ühistransporti või isiklikku sõiduautot või transporti iseseisvalt korraldada.",
+      "conditions": "Teenuse saaja saatja omaosalus on 50% kehtestatud omaosalustasust. Puudega lapsed koos saatjatega on omaosalustasu maksmisest vabastatud. Tasuda saab arve alusel või sularahas bussijuhile enne sõitu.",
+      "application": {
+        "channels": [
+          "paper",
+          "form"
+        ],
+        "steps": [
+          "Esitada sotsiaaltransporditeenuse taotlus.",
+          "Sotsiaalosakond otsustab teenuse võimaldamise ja korraldab sõidu."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Edasi-tagasi sõidu omaosalus: Narva-Jõesuu linna piires 3 eurot; Narva ja Sillamäe 5 eurot; Ida-Viru maakonna piires, välja arvatud Narva ja Sillamäe, 10 eurot; väljaspool Ida-Viru maakonda 30 eurot.",
+      "amount": null,
+      "officialUrl": "https://narva-joesuu.ee/sotsiaaltransporditeenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_sotsiaaltransporditeenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_alla_ojavere",
+        "narva_joesuu_linn_contact_andrei_karsten"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "sotsiaaltransport_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_service_sotsiaaltransporditeenus",
+      "document_id": "narva_joesuu_linn_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/sotsiaaltransporditeenus",
+      "content_hash": "16b6e4f7732aba6aee5a59024f5e83d0e8206f2de03fe62cff1b4814ecb891e6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_service_volanoustamisteenus",
+      "canonical_item_id": "narva_joesuu_linn:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus on suunatud inimestele, kellel on tekkinud või tekkimas võlgnevus ja kes ei ole iseseisvalt võlgnevustega toime tulema võimelised. Teenus hõlmab nõustamist, juhendamist ja edasiste võlgade tekkimise ennetamist.",
+      "sourceKeys": [
+        "volanoustamine_page"
+      ],
+      "targetGroup": "Inimene, kellel on võlad, laenude tagasimaksmise raskused, üüri- ja kommunaalmaksete võlgnevused, arestitud konto või muud võlgadega seotud probleemid.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "form",
+          "contact_specialist"
+        ],
+        "steps": [
+          "Esitada võlanõustamise taotlus või pöörduda sotsiaalosakonna poole.",
+          "Leppida kokku nõustamise aeg."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://narva-joesuu.ee/volanoustamisteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_volanoustamise_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_veronika_stepanova"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "volanoustamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_service_volanoustamisteenus",
+      "document_id": "narva_joesuu_linn_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/volanoustamisteenus",
+      "content_hash": "3a88124898191580c2bab83232792d61cc49df851bcfa1578e6f641bb4a2d7f4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_service_terviseteenus_ujula",
+      "canonical_item_id": "narva_joesuu_linn:service:terviseteenus_ujula",
+      "itemType": "service",
+      "title": "Terviseteenus (ujula)",
+      "status": "active",
+      "summary": "Terviseteenuse raames saavad linnaelanikud tervise toetamiseks külastada ujulat. Lehel on nimetatud partnerid Meresuu SPA, Narva ujula ja Sillamäe Spordikompleks Kalev ning külastuse hinnad ja ajad.",
+      "sourceKeys": [
+        "terviseteenus_page"
+      ],
+      "targetGroup": "Vanaduspensionärid, keskmise, raske või sügava puudega inimesed ning puuduva töövõimega inimesed.",
+      "conditions": "KOV lehel on teenuse mahuks märgitud 2025. aastal 40 eurot inimese kohta aastas. Teenuse kasutamiseks tuleb esitada taotlus jooksval aastal.",
+      "application": {
+        "channels": [
+          "form",
+          "paper"
+        ],
+        "steps": [
+          "Esitada terviseteenuse taotlus.",
+          "Kasutada teenust KOV lehel nimetatud ujulates vastavalt tingimustele."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Meresuu SPA tööpäeviti 9.00-15.00 kolm tundi 10 eurot; Narva ujula 90 min 4 või 6 eurot; Sillamäe Spordikompleks Kalev 60 min 2,5 või 3,5 eurot.",
+      "amount": null,
+      "officialUrl": "https://narva-joesuu.ee/terviseteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_terviseteenuse_avaldus_ujula"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_polina_merkulova"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "Leht on uuendatud 2026. aastal, kuid tekstis on teenuse mahuks avaldatud 2025. aasta maht; 2026. aasta maht ei ole eraldi kinnitatud."
+      ],
+      "item_type": "service",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "terviseteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_service_terviseteenus_ujula",
+      "document_id": "narva_joesuu_linn_service_terviseteenus_ujula",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/terviseteenus",
+      "content_hash": "56b7f9fdfd7f84e95cd371bfc51e3d6341b9628b818b27e55daad6476c0b2bff",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_service_puudega_lapse_hoolduse_seadmine",
+      "canonical_item_id": "narva_joesuu_linn:service:puudega_lapse_hoolduse_seadmine",
+      "itemType": "service",
+      "title": "Puudega lapse hoolduse seadmine",
+      "status": "active",
+      "summary": "Puudega lapse hoolduse seadmine ja hooldaja määramine võimaldab määrata hooldaja 3–18-aastase puudega lapse hooldamiseks. Leht seob hoolduse seadmise hooldajatoetuse taotlemisega.",
+      "sourceKeys": [
+        "puudega_lapse_hooldus_page"
+      ],
+      "targetGroup": "3–18-aastane puudega laps ja tema hooldaja (lapsevanem, vanema abikaasa või eestkostja).",
+      "conditions": "Hooldajatoetuse taotleja ja lapse elukoht peab rahvastikuregistri andmetel olema Narva-Jõesuu linn.",
+      "application": {
+        "channels": [
+          "form",
+          "paper"
+        ],
+        "steps": [
+          "Esitada taotlus puudega lapse hoolduse seadmiseks ja hooldajatoetuse määramiseks."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://narva-joesuu.ee/puudega-lapse-hooldus",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_puudega_lapse_hooldajatoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_zanna_golubtsikova"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "puudega_lapse_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_service_puudega_lapse_hoolduse_seadmine",
+      "document_id": "narva_joesuu_linn_service_puudega_lapse_hoolduse_seadmine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/puudega-lapse-hooldus",
+      "content_hash": "34e425a51d345295a65b88eed3fccbac3ac769431fc523000925657f083ca1b6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_service_taisealise_isiku_hoolduse_seadmine",
+      "canonical_item_id": "narva_joesuu_linn:service:taisealise_isiku_hoolduse_seadmine",
+      "itemType": "service",
+      "title": "Täisealise isiku hoolduse seadmine",
+      "status": "active",
+      "summary": "Täisealise isiku hooldus seatakse inimesele, kes vaimse või kehalise puude tõttu vajab järelevalvet ja abi oma õiguste teostamiseks ja kohustuste täitmiseks. Hoolduse seadmisel määratakse hooldaja ülesanded hooldust vajava isiku vajadustest lähtudes.",
+      "sourceKeys": [
+        "tais_isiku_hooldus_page"
+      ],
+      "targetGroup": "Täisealine vaimse või kehalise puudega inimene, kelle rahvastikuregistrijärgne ja tegelik elukoht on Narva-Jõesuu linn.",
+      "conditions": "Hooldus seatakse hooldust vajava isiku nõusolekul. Hooldust ei seata isikule, kellel on perekonnaseaduse alusel ülalpidamiskohustusega isikud.",
+      "application": {
+        "channels": [
+          "form",
+          "paper"
+        ],
+        "steps": [
+          "Esitada taotlus hoolduse seadmiseks ja hooldaja määramiseks.",
+          "Lisada hooldatava nõusolek.",
+          "Sotsiaaltöötaja hindab hooldusvajadust."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://narva-joesuu.ee/taisealise-isiku-hooldus",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_taisealise_isiku_hoolduse_taotlus",
+        "narva_joesuu_linn_form_hooldatava_nousolek"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_alla_ojavere"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "tais_isiku_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_service_taisealise_isiku_hoolduse_seadmine",
+      "document_id": "narva_joesuu_linn_service_taisealise_isiku_hoolduse_seadmine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/taisealise-isiku-hooldus",
+      "content_hash": "7a08b72e2bcfca7e4257cf52b02a5cbaf905489dfe2c866967c194d144e2e4f3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_service_vaimse_tervise_teenus",
+      "canonical_item_id": "narva_joesuu_linn:service:vaimse_tervise_teenus",
+      "itemType": "service",
+      "title": "Vaimse tervise teenus",
+      "status": "active",
+      "summary": "Vaimse tervise teenuse eesmärk on toetada linnaelanike psühhosotsiaalset heaolu, ennetada vaimse tervise probleeme ja pakkuda professionaalset tuge keerulistes eluolukordades. Teenused on KOV lehel märgitud tasuta ja rahastatud riigieelarvest.",
+      "sourceKeys": [
+        "vaimse_tervise_page"
+      ],
+      "targetGroup": "Narva-Jõesuu linna elanik, kelle rahvastikuregistrijärgne ja tegelik elukoht on Narva-Jõesuu linn ning kes vajab vaimse tervise tuge.",
+      "conditions": "KOV lehel nimetatud teenuseliigid on psühholoogiline nõustamine, kriisinõustamine, hingehoidlik nõustamine, perenõustamine ja pereteraapia, leinanõustamine, kogemusnõustamine ning loovteraapia.",
+      "application": {
+        "channels": [
+          "paper",
+          "contact_specialist"
+        ],
+        "steps": [
+          "Esitada taotlus linnavalitsuse sotsiaalosakonnale.",
+          "Lisada vajadusel täiendavad andmed teenuse vajaduse kohta.",
+          "Otsus põhineb inimese olukorra analüüsil, juhtumiplaanil või spetsialistide hinnangul."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://narva-joesuu.ee/vaimse-tervise-teenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_veronika_stepanova"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "vaimse_tervise_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_service_vaimse_tervise_teenus",
+      "document_id": "narva_joesuu_linn_service_vaimse_tervise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/vaimse-tervise-teenus",
+      "content_hash": "8c34a3328e8f00e935623b42180c1e97243dfa0e0b01d6d8b16e685fd3b91917",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_service_vesta_teenus",
+      "canonical_item_id": "narva_joesuu_linn:service:vesta_teenus",
+      "itemType": "service",
+      "title": "VESTA teenus",
+      "status": "active",
+      "summary": "VESTA on valdkondadeülene sotsiaal- ja tervishoiuteenuste toetus ning abi. Teenus ühendab tervishoiu- ja sotsiaalvaldkonna spetsialistid ühtseks meeskonnaks, et toetada inimesi pärast haiglast koju naasmist või keerulistes igapäevaoludes.",
+      "sourceKeys": [
+        "vesta_page"
+      ],
+      "targetGroup": "Ida-Viru maakonna täisealised elanikud, kellel on mitu kroonilist haigust koos sotsiaalsete raskustega.",
+      "conditions": "Teenusele saavad suunata perearst, pereõde, eriarst ja kohaliku omavalitsuse sotsiaaltöötaja. Teenust juhib tervisejuht, kes koostab koos abivajajaga heaoluplaani ja koordineerib teenuseid.",
+      "application": {
+        "channels": [
+          "referral",
+          "phone",
+          "contact_specialist"
+        ],
+        "steps": [
+          "Pöörduda perearsti, eriarsti, pereõe või kohaliku omavalitsuse sotsiaaltöötaja poole, et saada suunamine teenusele.",
+          "Võtta vajadusel ühendust piirkondliku VESTA tervisejuhi kontakttelefonil."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://narva-joesuu.ee/vesta-teenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_vesta_ida_viru_keskhaigla",
+        "narva_joesuu_linn_contact_vesta_narva_haigla",
+        "narva_joesuu_linn_contact_vesta_jarve_tervisemaja",
+        "narva_joesuu_linn_contact_vesta_narva_perearstikeskus_kangelaste",
+        "narva_joesuu_linn_contact_vesta_ahtme_tervisemaja",
+        "narva_joesuu_linn_contact_vesta_narva_perearstikeskus_partisani",
+        "narva_joesuu_linn_contact_vesta_corrigo",
+        "narva_joesuu_linn_contact_vesta_neeme"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "vesta_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_service_vesta_teenus",
+      "document_id": "narva_joesuu_linn_service_vesta_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/vesta-teenus",
+      "content_hash": "30abf080066d88b5279ae028a2907dfa44946fa2699f818d65c796e81aaf5cfd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_service_puudega_lapsele_toetav_sotsiaalteenus",
+      "canonical_item_id": "narva_joesuu_linn:service:puudega_lapsele_toetav_sotsiaalteenus",
+      "itemType": "service",
+      "title": "Puudega lapsele toetav sotsiaalteenus",
+      "status": "active",
+      "summary": "KOV blanketilehel on eraldi nimetatud vorm puudega lapsele toetava sotsiaalteenuse taotlemiseks. Detailset teenuse kirjeldust, tingimusi ja menetluskorda KOV lehelt ei leitud.",
+      "sourceKeys": [
+        "social_forms_page"
+      ],
+      "targetGroup": "Puudega laps ja tema pere.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "form",
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Esitada vorm puudega lapsele toetava sotsiaalteenuse taotlemiseks."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://narva-joesuu.ee/blanketid_sotsiaal",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_puudega_lapse_toetava_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_zanna_golubtsikova"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "Teenuse detaillehte ei leitud; olemas on ainult vormi nimetus KOV blanketilehel."
+      ],
+      "item_type": "service",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_service_puudega_lapsele_toetav_sotsiaalteenus",
+      "document_id": "narva_joesuu_linn_service_puudega_lapsele_toetav_sotsiaalteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/blanketid_sotsiaal",
+      "content_hash": "a01b66cd13cc3ff4695e30b412682c9cb9661c2b3a5eabd2aa0dfbc2a0d865ac",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_benefit_toimetulekutoetus",
+      "canonical_item_id": "narva_joesuu_linn:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on riigi abi puuduses inimestele, mida maksab kohalik omavalitsus. 2026. aasta 1. jaanuarist on toimetulekupiir üksi elavale inimesele või perekonna esimesele liikmele 220 eurot kuus, iga alaealise liikme piir 264 eurot ning perekonna teise ja iga järgmise täisealise liikme piir 176 eurot kuus.",
+      "sourceKeys": [
+        "toimetulekutoetus_page"
+      ],
+      "targetGroup": "Üksi elav inimene või perekond, kelle kuu netosissetulek pärast eluruumi alaliste kulude mahaarvamist on alla kehtestatud toimetulekupiiri.",
+      "conditions": "Taotlusele lisatakse pereliikmete andmed, eelmise kuu netosissetulekuid ja makstud elatist tõendavad dokumendid ning eluasemekulude katmisel eluruumi kasutamise õigust ja jooksvaid eluasemekulusid tõendavad dokumendid.",
+      "application": {
+        "channels": [
+          "paper",
+          "form"
+        ],
+        "steps": [
+          "Esitada jooksva kuu eest taotlus hiljemalt kuu viimaseks tööpäevaks kohalikule omavalitsusele.",
+          "Lisada nõutud sissetuleku, eluaseme ja vara dokumendid."
+        ],
+        "deadline": "jooksva kuu viimane tööpäev"
+      },
+      "decisionTime": "Määratakse viie tööpäeva jooksul pärast kõigi dokumentide esitamist; makstakse välja kolme tööpäeva jooksul otsuse tegemisest.",
+      "pricing": null,
+      "amount": "2026 piirmäärad: 220 eurot esimesele liikmele, 176 eurot teisele ja igale järgmisele täisealisele, 264 eurot alaealisele; ainult alaealistest koosneva pere täiendav toetus 15 eurot.",
+      "officialUrl": "https://narva-joesuu.ee/toimetulekutoetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_toimetulekutoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_alla_ojavere",
+        "narva_joesuu_linn_contact_sotsiaalosakond"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_benefit_toimetulekutoetus",
+      "document_id": "narva_joesuu_linn_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/toimetulekutoetus",
+      "content_hash": "423709924d9b7c0f009cae0b6cbde66ffac835a852bd20d028b12f54b9c4de58",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_benefit_haigla_voodipaevatasu_kompenseerimine",
+      "canonical_item_id": "narva_joesuu_linn:benefit:haigla_voodipaevatasu_kompenseerimine",
+      "itemType": "benefit",
+      "title": "Toetus haigla voodipäevatasu kompenseerimiseks",
+      "status": "active",
+      "summary": "Voodipäevatasu kompenseeritakse eakatele, raske, sügava või keskmise puudega isikutele ja puuduva töövõimega isikutele avalduse ja maksedokumendi alusel.",
+      "sourceKeys": [
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Eakad, raske, sügava või keskmise puudega isikud ning puuduva töövõimega isikud.",
+      "conditions": "Tuleb esitada sissetulekust sõltuva toetuse taotlus, eelmise kolme kuu kommunaalkulude dokumendid, kõikide pereliikmete arveldusarvete väljavõtted ja voodipäevatasu maksedokument.",
+      "application": {
+        "channels": [
+          "paper",
+          "email",
+          "form"
+        ],
+        "steps": [
+          "Esitada sissetulekust sõltuva sotsiaaltoetuse taotlus ja nõutud lisadokumendid."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": "kuni 40 eurot aastas",
+      "officialUrl": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_sissetulekust_soltuv_sotsiaaltoetus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_sotsiaalosakond"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_benefit_haigla_voodipaevatasu_kompenseerimine",
+      "document_id": "narva_joesuu_linn_benefit_haigla_voodipaevatasu_kompenseerimine",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "content_hash": "6e3ebdc167f1cb93b31c0241eb4ab59d617806c6d54a3ae9f625364d9e9cdae6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_benefit_kuttekulude_huvitamine",
+      "canonical_item_id": "narva_joesuu_linn:benefit:kuttekulude_huvitamine",
+      "itemType": "benefit",
+      "title": "Toetus küttekulude hüvitamiseks",
+      "status": "active",
+      "summary": "Toetust makstakse vähekindlustatud peredele küttekulude hüvitamiseks lokaalküttega eluruumides elavatele inimestele, kellele ei ole küttekulusid kompenseeritud toimetulekutoetuse või riikliku küttekulude hüvitamise abimeetme kaudu.",
+      "sourceKeys": [
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Lokaalküttega eluruumis elav vähekindlustatud leibkond.",
+      "conditions": "Eelneva kolme kuu keskmine sissetulek pärast eluasemekulude mahaarvamist peab olema alla 400 eurot esimese pereliikme kohta, alla 280 eurot iga järgmise täiskasvanu kohta ja alla 320 eurot iga lapse kohta.",
+      "application": {
+        "channels": [
+          "paper",
+          "email",
+          "form"
+        ],
+        "steps": [
+          "Esitada sissetulekust sõltuva sotsiaaltoetuse taotlus.",
+          "Lisada eelneva kolme kuu kommunaalkulude dokumendid, kõikide pereliikmete arveldusarvete väljavõtted ning puukütte, briketi või pelleti ostu maksedokument."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": "kuni 200 eurot aastas",
+      "officialUrl": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_sissetulekust_soltuv_sotsiaaltoetus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_sotsiaalosakond"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_benefit_kuttekulude_huvitamine",
+      "document_id": "narva_joesuu_linn_benefit_kuttekulude_huvitamine",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "content_hash": "068a98f38333717e356b8f857703421744fa4c3f36fad0a18afe47748c1034ad",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_benefit_puudega_isiku_erivajaduse_toetus",
+      "canonical_item_id": "narva_joesuu_linn:benefit:puudega_isiku_erivajaduse_toetus",
+      "itemType": "benefit",
+      "title": "Toetus raske, sügava ja keskmise puude isikute erivajaduste rahuldamiseks",
+      "status": "active",
+      "summary": "Toetus on ette nähtud keskmise, raske ja sügava puudega inimestele puudest tingitud erivajaduste, näiteks abivahendite, ravimite ja transpordikulude katmiseks.",
+      "sourceKeys": [
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Keskmise, raske või sügava puudega Narva-Jõesuu elanik.",
+      "conditions": "Toetust saab taotleda kaks korda aastas juunis ja detsembris. Taotlusele lisatakse sissetulekust sõltuva toetuse dokumendid ja puuet tõendav dokument.",
+      "application": {
+        "channels": [
+          "paper",
+          "email",
+          "form"
+        ],
+        "steps": [
+          "Esitada sissetulekust sõltuva sotsiaaltoetuse taotlus.",
+          "Lisada eelneva kolme kuu kommunaalkulude dokumendid, arveldusarvete väljavõtted ja puuet tõendav dokument."
+        ],
+        "deadline": "juuni ja detsember"
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": "60 eurot sügava puude, 50 eurot raske puude ja 40 eurot keskmise puude korral kaks korda aastas",
+      "officialUrl": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_sissetulekust_soltuv_sotsiaaltoetus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_sotsiaalosakond"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_benefit_puudega_isiku_erivajaduse_toetus",
+      "document_id": "narva_joesuu_linn_benefit_puudega_isiku_erivajaduse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "content_hash": "cd22e8396ecd86f88c78eeaeaaa52a669b2794b2d33cf9a0b97cb767027f6b15",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_benefit_valtimatu_sotsiaalabi",
+      "canonical_item_id": "narva_joesuu_linn:benefit:valtimatu_sotsiaalabi",
+      "itemType": "benefit",
+      "title": "Vältimatu sotsiaalabi",
+      "status": "active",
+      "summary": "Vältimatut sotsiaalabi osutatakse inimesele, kes on sattunud sotsiaalselt abitusse olukorda elatusvahendite kaotuse või puudumise tõttu. Abi võib tagada toidu, riietuse või ajutise peavarju varjupaigas; rahalise toetusena makstakse abi koheselt vältimatu abi eelarvest.",
+      "sourceKeys": [
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Isik või perekond, kes on elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitus olukorras.",
+      "conditions": "Kui vältimatu abi määratakse rahas, makstakse see abivajajale koheselt. KOV leht seob taotlemise sissetulekust sõltuva sotsiaaltoetuse vormiga.",
+      "application": {
+        "channels": [
+          "paper",
+          "email",
+          "form"
+        ],
+        "steps": [
+          "Pöörduda sotsiaalosakonna poole ja esitada vajadusel sissetulekust sõltuva sotsiaaltoetuse taotlus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": "kuni 100 eurot isiku või perekonna kohta aastas",
+      "officialUrl": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_sissetulekust_soltuv_sotsiaaltoetus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_sotsiaalosakond"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_benefit_valtimatu_sotsiaalabi",
+      "document_id": "narva_joesuu_linn_benefit_valtimatu_sotsiaalabi",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "content_hash": "80375831ebea0d9df0bbec0900ba7bae1ff25c7e2df4c5615ba5111205fd2629",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_benefit_paljulapseliste_perede_toetus",
+      "canonical_item_id": "narva_joesuu_linn:benefit:paljulapseliste_perede_toetus",
+      "itemType": "benefit",
+      "title": "Paljulapseliste perede toetus",
+      "status": "active",
+      "summary": "Paljulapseliste perede toetust makstakse kolme ja enamat last kasvatavale perele kuni lapse 18-aastaseks saamiseni või 19-aastaseks saamiseni, kui laps õpib kesk-, kutse- või kõrghariduses kuni jooksva õppeaasta lõpuni.",
+      "sourceKeys": [
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Kolme ja enamat last kasvatav pere.",
+      "conditions": "Taotlusele tuleb lisada sissetulekust sõltuva toetuse taotluse dokumendid, sh eelneva kolme kuu kommunaalkulude dokumendid ja kõigi pereliikmete arveldusarvete väljavõtted.",
+      "application": {
+        "channels": [
+          "paper",
+          "email",
+          "form"
+        ],
+        "steps": [
+          "Esitada sissetulekust sõltuva sotsiaaltoetuse taotlus ja nõutud lisadokumendid."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": "130 eurot poolaastas; makstakse märtsis ja novembris",
+      "officialUrl": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_sissetulekust_soltuv_sotsiaaltoetus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_sotsiaalosakond"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_benefit_paljulapseliste_perede_toetus",
+      "document_id": "narva_joesuu_linn_benefit_paljulapseliste_perede_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "content_hash": "02e37d289b0e2d638bcaf6d8fccd7a01b38191fd61b02245d3075bae04ed3b42",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_benefit_sunnitoetus",
+      "canonical_item_id": "narva_joesuu_linn:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus määratakse lapse vanemale või vanematele KOV lehel kirjeldatud elukohatingimustel. Toetus makstakse välja kolmes osas: 35% lapse sünni puhul, 30% lapse üheaastaseks saamisel ja 35% lapse kaheaastaseks saamisel.",
+      "sourceKeys": [
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Narva-Jõesuu linna elanikust lapsevanem või üksikvanem.",
+      "conditions": "Täies ulatuses on vähemalt üks vanematest olnud rahvastikuregistri järgi Narva-Jõesuu linna elanik vähemalt kuus kuud enne lapse sündi ning taotlemise ajal on laps ja vanemad või üksikvanem Narva-Jõesuu linna elanikud. Kui lapsel on kaks vanemat ja tingimused täituvad osaliselt, määratakse sünnitoetus pooles ulatuses.",
+      "application": {
+        "channels": [
+          "paper",
+          "email",
+          "form"
+        ],
+        "steps": [
+          "Esitada sünnitoetuse avaldus ja lapse sünnitõend kuni lapse 1-aastaseks saamiseni.",
+          "Teise ja kolmanda osa saamiseks esitada avaldus vastavalt kuni lapse 2- ja 3-aastaseks saamiseni."
+        ],
+        "deadline": "esimene avaldus kuni lapse 1-aastaseks saamiseni; järgmised osad kuni lapse 2- ja 3-aastaseks saamiseni"
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": "1000 eurot",
+      "officialUrl": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_sunnitoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_sotsiaalosakond"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "Lehel on märgitud, et 2025. aasta lõpuni sündinud laste puhul kohaldatakse enne 01.01.2026 kehtinud tingimusi; täiendavaid üleminekutingimusi veebipaketis ei tõlgendata."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_benefit_sunnitoetus",
+      "document_id": "narva_joesuu_linn_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "content_hash": "1c86c5b38a0494371c16e30dd70255690919d1af59e0ab7369105413242d00f7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_benefit_koolitoetus",
+      "canonical_item_id": "narva_joesuu_linn:benefit:koolitoetus",
+      "itemType": "benefit",
+      "title": "Koolitoetus",
+      "status": "active",
+      "summary": "Koolitoetus makstakse põhikoolis, gümnaasiumis ja ametikoolis õppivatele kuni 19-aastastele õpilastele.",
+      "sourceKeys": [
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Põhikoolis, gümnaasiumis või ametikoolis õppiv kuni 19-aastane õpilane.",
+      "conditions": "Haridusasutuse tõendit lisada ei ole vaja. Toetust saab taotleda 1. augustist kuni 30. septembrini.",
+      "application": {
+        "channels": [
+          "paper",
+          "email",
+          "form"
+        ],
+        "steps": [
+          "Esitada koolitoetuse taotlus.",
+          "Toetus makstakse välja 15. septembrist kuni 15. oktoobrini."
+        ],
+        "deadline": "1. august kuni 30. september"
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": "40 eurot alates 2. klassist õppiva lapse kohta aastas; 100 eurot 1. klassi õpilase kohta aastas",
+      "officialUrl": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_koolitoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_sotsiaalosakond"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_benefit_koolitoetus",
+      "document_id": "narva_joesuu_linn_benefit_koolitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "content_hash": "c988fdb12fe785136a29ff83a599204132c94b12345b20191636aa5cb44c4178",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_benefit_gumnaasiumi_lopetamise_toetus",
+      "canonical_item_id": "narva_joesuu_linn:benefit:gumnaasiumi_lopetamise_toetus",
+      "itemType": "benefit",
+      "title": "Toetus gümnaasiumi lõpetamise puhul",
+      "status": "active",
+      "summary": "Toetus makstakse kõigile jooksval aastal gümnaasiumi hõbe- või kuldmedaliga lõpetanud noortele.",
+      "sourceKeys": [
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Jooksval aastal gümnaasiumi kuld- või hõbemedaliga lõpetanud noor.",
+      "conditions": "Taotlusele tuleb lisada lõputunnistuse koopia ja hinneteleht.",
+      "application": {
+        "channels": [
+          "paper",
+          "email",
+          "form"
+        ],
+        "steps": [
+          "Esitada avaldus ning lisada lõputunnistuse koopia ja hinneteleht."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": "100 eurot kuldmedaliga lõpetanule; 80 eurot hõbemedaliga lõpetanule",
+      "officialUrl": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_uldtaotlus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_sotsiaalosakond"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_benefit_gumnaasiumi_lopetamise_toetus",
+      "document_id": "narva_joesuu_linn_benefit_gumnaasiumi_lopetamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "content_hash": "13aa764bedc93af1757d4dba524dc78cd0ab163f27b9253d66d7d1e07742aca4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_benefit_matusetoetus",
+      "canonical_item_id": "narva_joesuu_linn:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on matuse korraldamise kulude osaliseks katmiseks matusekorraldajale makstav ühekordne sotsiaaltoetus.",
+      "sourceKeys": [
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Linnaelaniku surma puhul üks lahkunu omastest või matusekorraldaja.",
+      "conditions": "Taotlusele lisatakse perekonnaseisuasutuse surmatõend.",
+      "application": {
+        "channels": [
+          "paper",
+          "email",
+          "form"
+        ],
+        "steps": [
+          "Esitada matusetoetuse taotlus ja lisada surmatõend."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": "300 eurot",
+      "officialUrl": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_matusetoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_sotsiaalosakond"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_benefit_matusetoetus",
+      "document_id": "narva_joesuu_linn_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "content_hash": "53d562deca2b5054107125adf9e3ee790ced7d47fda579cdc205f6e8f5418001",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_benefit_eakate_sunnipaeva_toetus",
+      "canonical_item_id": "narva_joesuu_linn:benefit:eakate_sunnipaeva_toetus",
+      "itemType": "benefit",
+      "title": "Eakate sünnipäeva toetus",
+      "status": "active",
+      "summary": "Linnavalitsus õnnitleb eakaid linnaelanikke 70., 75., 80., 85. sünnipäeval ja kõiki üle 85-aastaseid igal aastal.",
+      "sourceKeys": [
+        "social_benefits_overview"
+      ],
+      "targetGroup": "70-, 75-, 80-, 85-aastased ja üle 85-aastased Narva-Jõesuu linnaelanikud.",
+      "conditions": "Toetus makstakse ainult vastava taotluse alusel. Avalduse saab esitada paberkandjal või suuliselt telefoni teel.",
+      "application": {
+        "channels": [
+          "paper",
+          "phone",
+          "form"
+        ],
+        "steps": [
+          "Esitada avaldus paberkandjal või suuliselt telefoni teel."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": "20 eurot",
+      "officialUrl": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_eakate_sunnipaeva_toetus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_sotsiaalosakond"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_benefit_eakate_sunnipaeva_toetus",
+      "document_id": "narva_joesuu_linn_benefit_eakate_sunnipaeva_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "content_hash": "35c02fe2f9f387284d9345812283eaaa2fb8e0c0c03ca63f1f69500aeb3f73da",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_benefit_erakorraline_toetus",
+      "canonical_item_id": "narva_joesuu_linn:benefit:erakorraline_toetus",
+      "itemType": "benefit",
+      "title": "Erakorraline toetus",
+      "status": "active",
+      "summary": "Erakorraline toetus määratakse inimesele või perele, kes on sattunud abitusse olukorda elatusvahendi kaotuse, õnnetusjuhtumi, kriisiolukorra või muu sarnase juhtumi tõttu.",
+      "sourceKeys": [
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Isik või pere, kes on sattunud abitusse olukorda.",
+      "conditions": "Erakorralise toetuse maksmise otsustab Narva-Jõesuu Linnavalitsus sotsiaalosakonna juhataja ettepanekul.",
+      "application": {
+        "channels": [
+          "paper",
+          "email",
+          "form"
+        ],
+        "steps": [
+          "Esitada erakorralise toetuse taotlus ja vajadust tõendavad dokumendid."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": "kuni 640 eurot aastas",
+      "officialUrl": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_uldtaotlus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_veronika_stepanova",
+        "narva_joesuu_linn_contact_sotsiaalosakond"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_benefit_erakorraline_toetus",
+      "document_id": "narva_joesuu_linn_benefit_erakorraline_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "content_hash": "5ad2711a0269e20d900581971f02d4b5abbf4e69417f96da93ab8968d4c3a866",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_benefit_uliopilase_toetus",
+      "canonical_item_id": "narva_joesuu_linn:benefit:uliopilase_toetus",
+      "itemType": "benefit",
+      "title": "Üliõpilase toetus",
+      "status": "active",
+      "summary": "Üliõpilase toetust makstakse riiklikult akrediteeritud õppekava alusel esimest kõrgharidust omandavale üliõpilasele. Toetust makstakse päevases ja sessiooniõppes kõrgharidust omandavale kuni 26-aastasele üliõpilasele ning magistriõppes õppivale üliõpilasele kuni 26. eluaastani.",
+      "sourceKeys": [
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Narva-Jõesuu linna kuni 26-aastane üliõpilane, kes omandab esimest kõrgharidust riiklikult akrediteeritud õppekava alusel.",
+      "conditions": "Akadeemilisel puhkusel viibivatele üliõpilastele toetust ei maksta.",
+      "application": {
+        "channels": [
+          "paper",
+          "email",
+          "form"
+        ],
+        "steps": [
+          "Esitada üliõpilase toetuse avaldus."
+        ],
+        "deadline": "kevadsemestril 1. märts kuni 30. aprill; sügissemestril 10. september kuni 31. oktoober"
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": "200 eurot aastas; makstakse kaks korda aastas mais ja novembris",
+      "officialUrl": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_uliopilase_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_sotsiaalosakond"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_benefit_uliopilase_toetus",
+      "document_id": "narva_joesuu_linn_benefit_uliopilase_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "content_hash": "8c6628a9ad43047e1281fe6ebe2ec86221fab618ef06920338386adeec8dc3a5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_benefit_funktsioonihairtega_laste_prillitoetus",
+      "canonical_item_id": "narva_joesuu_linn:benefit:funktsioonihairtega_laste_prillitoetus",
+      "itemType": "benefit",
+      "title": "Toetus funktsioonihäiretega laste erivajaduste rahuldamiseks",
+      "status": "active",
+      "summary": "Toetust võib taotleda funktsioonihäire tõttu prille vajavale lapsele. Toetus katab osa prillide maksumusest.",
+      "sourceKeys": [
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Laps, kes vajab funktsioonihäire tõttu prille.",
+      "conditions": "Taotlusele tuleb lisada prillide maksedokument.",
+      "application": {
+        "channels": [
+          "paper",
+          "email",
+          "form"
+        ],
+        "steps": [
+          "Esitada taotlus ja lisada prillide maksedokument."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": "50% prillide maksumusest, kuid mitte rohkem kui 50 eurot aastas lapse kohta",
+      "officialUrl": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_uldtaotlus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_sotsiaalosakond"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_benefit_funktsioonihairtega_laste_prillitoetus",
+      "document_id": "narva_joesuu_linn_benefit_funktsioonihairtega_laste_prillitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/sotsiaaltoetused",
+      "content_hash": "a559341ec09c2fc627fa8f6c21951862cc8584e162306519e77021d9131ed6a8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_benefit_puudega_lapse_hooldajatoetus",
+      "canonical_item_id": "narva_joesuu_linn:benefit:puudega_lapse_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Puudega lapse hooldajatoetus",
+      "status": "active",
+      "summary": "Hooldajatoetust makstakse 3–18-aastase puudega lapse hooldajale, kes ei saa töötada puudega lapse hooldamise tõttu.",
+      "sourceKeys": [
+        "puudega_lapse_hooldus_page"
+      ],
+      "targetGroup": "3–18-aastase puudega lapse hooldaja (lapsevanem, vanema abikaasa või eestkostja), kelle enda ja lapse elukoht on rahvastikuregistri andmetel Narva-Jõesuu linn.",
+      "conditions": "Toetust saab taotleda puudega lapse hooldaja; lehel on toetuse määrad puude raskusastme järgi.",
+      "application": {
+        "channels": [
+          "paper",
+          "email",
+          "form"
+        ],
+        "steps": [
+          "Esitada puudega lapse hooldajatoetuse taotlus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": "3–18-aastase keskmise puudega lapse hooldajale 30 eurot kuus; 3–18-aastase raske puudega lapse hooldajale 75 eurot kuus; 3–16-aastase sügava puudega lapse hooldajale 100 eurot kuus",
+      "officialUrl": "https://narva-joesuu.ee/puudega-lapse-hooldus",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_puudega_lapse_hooldajatoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_zanna_golubtsikova"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "puudega_lapse_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_benefit_puudega_lapse_hooldajatoetus",
+      "document_id": "narva_joesuu_linn_benefit_puudega_lapse_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/puudega-lapse-hooldus",
+      "content_hash": "4e94058cc370bd0bfa358b638030aa2600f1bdbbb375c9784c520abc2a10efa1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_benefit_taisealise_isiku_hooldajatoetus",
+      "canonical_item_id": "narva_joesuu_linn:benefit:taisealise_isiku_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Täisealise isiku hooldajatoetus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldajatoetust makstakse hooldajale, kelle hooldatav vajab vaimse või kehalise puude tõttu järelevalvet ja abi oma õiguste teostamiseks ja kohustuste täitmiseks.",
+      "sourceKeys": [
+        "tais_isiku_hooldus_page"
+      ],
+      "targetGroup": "Sügava või raske puudega täisealise isiku hooldaja.",
+      "conditions": "Hooldus seatakse hooldust vajava inimese nõusolekul ja pärast hooldusvajaduse hindamist.",
+      "application": {
+        "channels": [
+          "paper",
+          "email",
+          "form"
+        ],
+        "steps": [
+          "Esitada taotlus täisealise isiku hoolduse seadmiseks ja hooldaja määramiseks.",
+          "Lisada hooldatava nõusolek."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": "sügava puudega täisealise isiku hooldajale 60 eurot kuus; raske puudega täisealise isiku hooldajale 40 eurot kuus",
+      "officialUrl": "https://narva-joesuu.ee/taisealise-isiku-hooldus",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_taisealise_isiku_hoolduse_taotlus",
+        "narva_joesuu_linn_form_hooldatava_nousolek"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_alla_ojavere"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "tais_isiku_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_benefit_taisealise_isiku_hooldajatoetus",
+      "document_id": "narva_joesuu_linn_benefit_taisealise_isiku_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/taisealise-isiku-hooldus",
+      "content_hash": "303ab2c962ea1e159e1d515e28dfe123ea392fbb815627540d70f3693ec437fb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_benefit_eluruumide_kohandamise_huvitis",
+      "canonical_item_id": "narva_joesuu_linn:benefit:eluruumide_kohandamise_huvitis",
+      "itemType": "benefit",
+      "title": "Eluruumide kohandamise kulude hüvitamine",
+      "status": "active",
+      "summary": "Narva-Jõesuu linnavalitsus võtab vastu taotlusi eluaseme kohandamise kulude hüvitamiseks erivajadustega inimestele. Eesmärk on luua puudega inimesele turvalised tingimused, mugav juurdepääs eluruumile ja sealt väljumisele ning võimalikult iseseisev toimetulek.",
+      "sourceKeys": [
+        "eluruumide_kohandamine_page"
+      ],
+      "targetGroup": "Narva-Jõesuu linna elanik, kellel on Sotsiaalkindlustusameti määratud puude raskusaste.",
+      "conditions": "Hüvitada saab liikumisvõimaluste parandamist, hügieenitoimingute hõlbustamist ja köögitoimingute kohandamist. Taotlusele lisatakse vähemalt kolm hinnapakkumist, omaniku või kaasomaniku nõusolekud, vajadusel korteriühistu nõusolek ja majanduslikku seisu tõendavad dokumendid. Kohandatav eluruum peab olema taotleja rahvastikuregistrijärgne ja tegelik elukoht.",
+      "application": {
+        "channels": [
+          "paper",
+          "email",
+          "form"
+        ],
+        "steps": [
+          "Esitada taotlus sotsiaalosakonnale enne tööde alustamist.",
+          "Lisada kohandustööde hinnapakkumised ja nõutud nõusolekud ning dokumendid."
+        ],
+        "deadline": "2025. aastal 10. september"
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": "kuni 65% kohandustööde maksumusest, kuid mitte rohkem kui 5000 eurot ühe taotleja kohta",
+      "officialUrl": "https://narva-joesuu.ee/eluruumide-kohandamine",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_eluruumi_kohandamise_huvitise_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_veronika_stepanova"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "Lehel on avaldatud 2025. aasta taotluste tähtaeg; 2026. aasta taotlusvooru tähtaega ei ole KOV lehel eraldi kinnitatud."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "eluruumide_kohandamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_benefit_eluruumide_kohandamise_huvitis",
+      "document_id": "narva_joesuu_linn_benefit_eluruumide_kohandamise_huvitis",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/eluruumide-kohandamine",
+      "content_hash": "5aa0927199087ef7c0da964901a66e16c7a4f1eaf64793b55c181b218a01d70c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_benefit_elluastumistoetus",
+      "canonical_item_id": "narva_joesuu_linn:benefit:elluastumistoetus",
+      "itemType": "benefit",
+      "title": "Elluastumistoetus",
+      "status": "active",
+      "summary": "KOV sotsiaalvaldkonna blanketilehel on eraldi nimetatud elluastumistoetuse taotlus. Detailseid tingimusi, sihtrühma ega summat ei ole sotsiaalvaldkonna veebilehel avaldatud.",
+      "sourceKeys": [
+        "social_forms_page"
+      ],
+      "targetGroup": null,
+      "conditions": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email",
+          "form"
+        ],
+        "steps": [
+          "Esitada üldtaotlus või vorm, mille KOV blanketileht seob elluastumistoetusega."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://narva-joesuu.ee/blanketid_sotsiaal",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_uldtaotlus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_sotsiaalosakond"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "Elluastumistoetuse detaillehte, tingimusi ja summat ei leitud KOV sotsiaalvaldkonna lehtedelt."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_benefit_elluastumistoetus",
+      "document_id": "narva_joesuu_linn_benefit_elluastumistoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/blanketid_sotsiaal",
+      "content_hash": "f96600e898c34e934519e0f1ba4616fc9fb559b1b06042b8ffb6a6399e298e0c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_benefit_lastelaagrite_tuusikute_huvitamine",
+      "canonical_item_id": "narva_joesuu_linn:benefit:lastelaagrite_tuusikute_huvitamine",
+      "itemType": "benefit",
+      "title": "Toetus lastelaagrite tuusikute hüvitamiseks",
+      "status": "active",
+      "summary": "KOV blanketilehel on sissetulekust sõltuva sotsiaaltoetuse vormi all eraldi nimetatud toetus lastelaagrite tuusikute hüvitamiseks. Detailseid tingimusi, summat ja taotlemise tähtaega ei ole veebilehel avaldatud.",
+      "sourceKeys": [
+        "social_forms_page"
+      ],
+      "targetGroup": null,
+      "conditions": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email",
+          "form"
+        ],
+        "steps": [
+          "Esitada sissetulekust sõltuva sotsiaaltoetuse taotlus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://narva-joesuu.ee/blanketid_sotsiaal",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_sissetulekust_soltuv_sotsiaaltoetus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_sotsiaalosakond"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "Toetuse detailne kirjeldus, summa ja tingimused puuduvad KOV veebis; vorm seob selle sissetulekust sõltuva sotsiaaltoetuse taotlusega."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_benefit_lastelaagrite_tuusikute_huvitamine",
+      "document_id": "narva_joesuu_linn_benefit_lastelaagrite_tuusikute_huvitamine",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/blanketid_sotsiaal",
+      "content_hash": "cc881cadf5737927b03b547fc492a9519c4784e9a7b041aaf1d610c12edc3832",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_resource_abivajav_laps",
+      "canonical_item_id": "narva_joesuu_linn:resource:abivajav_laps",
+      "itemType": "resource",
+      "title": "Abivajav laps ja hädaohus laps",
+      "status": "active",
+      "summary": "KOV lastekaitse leht selgitab, et abivajav laps on laps, kelle heaolu on ohustatud või kelle puhul on kahtlus väärkohtlemise, hooletusse jätmise või muu lapse õigusi rikkuva olukorra suhtes. Lehel on avaldatud lasteabi hädaohus lapse korral hädaabi ning kadunud lapse 116000.",
+      "sourceKeys": [
+        "abivajav_laps_page"
+      ],
+      "resourceType": "lastekaitse_abikanal",
+      "officialUrl": "https://narva-joesuu.ee/abivajav-laps",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_zanna_golubtsikova"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "abivajav_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_resource_abivajav_laps",
+      "document_id": "narva_joesuu_linn_resource_abivajav_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/abivajav-laps",
+      "content_hash": "ba5734ae5d3af67820bc0b3a801731ce2f906ca19bf20836697c1f66bfcd8b69",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_resource_lapsevanematele_viited",
+      "canonical_item_id": "narva_joesuu_linn:resource:lapsevanematele_viited",
+      "itemType": "resource",
+      "title": "Lapsevanematele mõeldud abiviited",
+      "status": "active",
+      "summary": "KOV leht koondab lapsevanematele kasulikke väliseid abiviiteid, sealhulgas lapsevanema õiguste ja kohustuste, lastekaitse, Tarkvanema, perelepituse, eestkoste, riiklike peretoetuste ja tasuta juriidilise nõustamise viited. KOV leht kinnitab viidete olemasolu, kuid väliseid allikaid ei kasutatud korje põhiallikana.",
+      "sourceKeys": [
+        "lapsevanematele_page"
+      ],
+      "resourceType": "abiviited",
+      "officialUrl": "https://narva-joesuu.ee/lapsevanematele",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_zanna_golubtsikova"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "Väliste abiviidete sisu ei kontrollitud allikapiirangu tõttu."
+      ],
+      "item_type": "resource",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "lapsevanematele_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_resource_lapsevanematele_viited",
+      "document_id": "narva_joesuu_linn_resource_lapsevanematele_viited",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/lapsevanematele",
+      "content_hash": "61dcd81c04c43370b68ff956c1b0de1a58da0282b4d307495e15ab5f5c41ac3e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_resource_sa_narva_joesuu_peremajad",
+      "canonical_item_id": "narva_joesuu_linn:resource:sa_narva_joesuu_peremajad",
+      "itemType": "resource",
+      "title": "SA Narva-Jõesuu Peremajad",
+      "status": "active",
+      "summary": "SA Narva-Jõesuu Peremajad eesmärk on võimaldada vanemliku hoolitsuseta lastele ja noortele peresarnased elamistingimused, turvalisus ja arenguks soodne elukeskkond ning valmistada neid ette toimetulekuks täiskasvanuna. Tegutsemiskohad on E. Vilde 63, Metsa 34 ja Nurme 49 Narva-Jõesuus.",
+      "sourceKeys": [
+        "sa_peremajad_page"
+      ],
+      "resourceType": "hoolekandeasutus",
+      "officialUrl": "https://narva-joesuu.ee/njperemajad",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_andrei_saitsuk"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "sa_peremajad_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_resource_sa_narva_joesuu_peremajad",
+      "document_id": "narva_joesuu_linn_resource_sa_narva_joesuu_peremajad",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/njperemajad",
+      "content_hash": "a6ee1a197fa59d215a8fe46e5f7c375f09f9ee84a83ad35e3b2e80e3af468cca",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_resource_uldhooldusteenuse_teenuseosutajate_loetelu",
+      "canonical_item_id": "narva_joesuu_linn:resource:uldhooldusteenuse_teenuseosutajate_loetelu",
+      "itemType": "resource",
+      "title": "Üldhooldusteenuse teenuseosutajate loetelu",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatava üldhooldusteenuse leht nimetab hoolekandeasutuste ja teenuseosutajatena Narva-Jõesuu Hooldekodu, Narva Sotsiaaltöökeskuse, Sillamäe Haigla hooldusosakonna, Häke OÜ, SA Alutaguse Hoolekeskuse, MTÜ Vahtra Hooldemaja ja OÜ A.M.V.K Hooldusteenuse.",
+      "sourceKeys": [
+        "uldhooldusteenus_page"
+      ],
+      "resourceType": "teenuseosutajate_loetelu",
+      "officialUrl": "https://narva-joesuu.ee/valjaspool-kodu-osutatava-uldhooldusteenus",
+      "relatedTo": [
+        "narva_joesuu_linn_service_valjaspool_kodu_osutatav_uldhooldusteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "Teenuseosutajate väliseid veebilehti ei kasutatud korje allikana; info piirdub KOV lehel avaldatud loeteluga."
+      ],
+      "item_type": "resource",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "uldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_resource_uldhooldusteenuse_teenuseosutajate_loetelu",
+      "document_id": "narva_joesuu_linn_resource_uldhooldusteenuse_teenuseosutajate_loetelu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/valjaspool-kodu-osutatava-uldhooldusteenus",
+      "content_hash": "48e368f488f693553a314410cdec7ad9c85e09c9b031ead8acf3cae7c38e61da",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_resource_ohvriabi_ja_kriisiabi",
+      "canonical_item_id": "narva_joesuu_linn:resource:ohvriabi_ja_kriisiabi",
+      "itemType": "resource",
+      "title": "Ohvriabi ja kriisiabi",
+      "status": "active",
+      "summary": "KOV ohvriabi leht selgitab, et ohvriabi toetab ohvrite toimetulekut ja turvatunnet ning ennetab vägivalla kordumist. Praktilised abikanalid on, lasteabi, ohvriabi kriisitelefon, inimkaubanduse nõuandeliin, vägivallast loobumise tugiliin ja naiste tugikeskused.",
+      "sourceKeys": [
+        "ohvriabi_page"
+      ],
+      "resourceType": "kriisiabi",
+      "officialUrl": "https://narva-joesuu.ee/ohvriabi",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_anastassia_belova",
+        "narva_joesuu_linn_contact_inna_bahlinova"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "ohvriabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_resource_ohvriabi_ja_kriisiabi",
+      "document_id": "narva_joesuu_linn_resource_ohvriabi_ja_kriisiabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/ohvriabi",
+      "content_hash": "9fe366dd2aaabb10b2ec6f79ad83b7c5218d127e6ee96de061f6688ded07d748",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_resource_koduandur",
+      "canonical_item_id": "narva_joesuu_linn:resource:koduandur",
+      "itemType": "resource",
+      "title": "Koduandur",
+      "status": "active",
+      "summary": "Koduanduri lahendus kasutab juhtmevabu andureid, mis registreerivad ruumides liikumist ja temperatuuri ning annavad märku võimalikust ohuolukorrast. KOV leht märgib, et projekti raames soetatud koduandurit saab võtta tasuta kasutusele.",
+      "sourceKeys": [
+        "abi_page"
+      ],
+      "resourceType": "eakate_tugiabi",
+      "officialUrl": "https://narva-joesuu.ee/abi",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_sirje_neeme",
+        "narva_joesuu_linn_contact_tarmo_koduandur"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "abi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_resource_koduandur",
+      "document_id": "narva_joesuu_linn_resource_koduandur",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/abi",
+      "content_hash": "6aadbf2dc7e1b3cf9200dbff0d546e8980d2e9721810b4b7922c4f6208046eb2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_resource_perearsti_nouandetelefon",
+      "canonical_item_id": "narva_joesuu_linn:resource:perearsti_nouandetelefon",
+      "itemType": "resource",
+      "title": "Perearsti nõuandetelefon 1220",
+      "status": "active",
+      "summary": "Perearsti nõuandetelefon 1220 on üleriigiline ööpäevane meditsiinilise nõustamise. KOV lehe järgi saab sealt nõu lihtsamate terviseprobleemide korral, juhiseid esmaseks abiks ning vajadusel infot tervishoiu korralduse kohta.",
+      "sourceKeys": [
+        "perearstid_page"
+      ],
+      "resourceType": "tervise_abikanal",
+      "officialUrl": "https://narva-joesuu.ee/perearstid",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "perearstid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_resource_perearsti_nouandetelefon",
+      "document_id": "narva_joesuu_linn_resource_perearsti_nouandetelefon",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/perearstid",
+      "content_hash": "a85018691996bc982b17628d42ce1c08704c012df7266d90ab1655dbdcc99b97",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_resource_sotsiaalteenuste_arendamise_projekt",
+      "canonical_item_id": "narva_joesuu_linn:resource:sotsiaalteenuste_arendamise_projekt",
+      "itemType": "resource",
+      "title": "Projekt „Sotsiaalteenuste arendamine ja integreerimine Narva-Jõesuu linnas“",
+      "status": "active",
+      "summary": "Projekt toetab tööealise inimese hoolduskoormuse vähendamist, tööturule sisenemise või tööturul jätkamise toetamist ja toimetulekuraskustes inimese toimetulekut. Projekti raames arendati koduteenust ning KOV lehe järgi pakuti isikliku abistaja ja võlanõustamisteenust ning tugirühmi.",
+      "sourceKeys": [
+        "projektid_page"
+      ],
+      "resourceType": "projekt",
+      "officialUrl": "https://narva-joesuu.ee/projektidsotsiaal",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "Projekt kestis 01.09.2021–31.08.2023; lehel ei kinnitata, et kõik projekti raames pakutud lisateenused on 2026. aastal aktiivsed eraldi teenustena."
+      ],
+      "item_type": "resource",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "projektid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_resource_sotsiaalteenuste_arendamise_projekt",
+      "document_id": "narva_joesuu_linn_resource_sotsiaalteenuste_arendamise_projekt",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/projektidsotsiaal",
+      "content_hash": "f838569224aa7e4e72e8f21ac39417d8613b33593dc5ace444b7ac5f4119d192",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_resource_tasuta_oigusabi",
+      "canonical_item_id": "narva_joesuu_linn:resource:tasuta_oigusabi",
+      "itemType": "resource",
+      "title": "Tasuta õigusabi Eesti elanikele",
+      "status": "active",
+      "summary": "KOV kasuliku info leht viitab HUGO.legal tasuta õigusabile ning kirjeldab, et esimesed kaks nõustamistundi on tasuta ja abi saab kohapeal, e-posti või videosilla vahendusel. See on KOV lehel nimetatud väline abikanal.",
+      "sourceKeys": [
+        "kasulik_teada_page"
+      ],
+      "resourceType": "õigusabi",
+      "officialUrl": "https://narva-joesuu.ee/kasulik-teada_sotsiaal",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "Välise teenuse tingimusi ei kontrollitud väljaspool KOV lehte."
+      ],
+      "item_type": "resource",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "kasulik_teada_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_resource_tasuta_oigusabi",
+      "document_id": "narva_joesuu_linn_resource_tasuta_oigusabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/kasulik-teada_sotsiaal",
+      "content_hash": "199cfc292dab2a153d9066d3aa23e33f059850f69ef71c457c786ee3f56ed028",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_resource_erilise_lapse_kasiraamat",
+      "canonical_item_id": "narva_joesuu_linn:resource:erilise_lapse_kasiraamat",
+      "itemType": "resource",
+      "title": "Teekond erilise lapse kõrval",
+      "status": "active",
+      "summary": "KOV kasuliku info leht viitab käsiraamatule puudega ja erivajadustega laste ning noorte lähedastele. Tegemist on lapsevanematele ja lähedastele mõeldud praktilise abimaterjaliga.",
+      "sourceKeys": [
+        "kasulik_teada_page"
+      ],
+      "resourceType": "abimaterjal",
+      "officialUrl": "https://narva-joesuu.ee/kasulik-teada_sotsiaal",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_zanna_golubtsikova"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "Käsiraamatu välist sisu ei kontrollitud allikapiirangu tõttu."
+      ],
+      "item_type": "resource",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "kasulik_teada_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_resource_erilise_lapse_kasiraamat",
+      "document_id": "narva_joesuu_linn_resource_erilise_lapse_kasiraamat",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/kasulik-teada_sotsiaal",
+      "content_hash": "b8662551133e1eb2ea40dd50109cdf4f0d12792d396d53e73bad299a74ca667c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_resource_puudega_isiku_parkimiskaart",
+      "canonical_item_id": "narva_joesuu_linn:resource:puudega_isiku_parkimiskaart",
+      "itemType": "resource",
+      "title": "Puudega inimese sõiduki parkimiskaart",
+      "status": "active",
+      "summary": "KOV blanketilehel on sotsiaalvaldkonna vormide hulgas eraldi nimetatud sõiduki parkimiskaardi taotlus. Parkimiskaart on praktiline ressurss puudega inimese sõiduki kasutamiseks.",
+      "sourceKeys": [
+        "social_forms_page"
+      ],
+      "resourceType": "parkimiskaart",
+      "officialUrl": "https://narva-joesuu.ee/blanketid_sotsiaal",
+      "relatedTo": [],
+      "relatedForms": [
+        "narva_joesuu_linn_form_parkimiskaardi_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_joesuu_linn_contact_sotsiaalosakond"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "KOV lehel on avaldatud vormi link, kuid parkimiskaardi detailne menetluskord ei ole sotsiaalvaldkonna lehel lahti kirjutatud."
+      ],
+      "item_type": "resource",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_resource_puudega_isiku_parkimiskaart",
+      "document_id": "narva_joesuu_linn_resource_puudega_isiku_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/blanketid_sotsiaal",
+      "content_hash": "55780888a0dd31f41fafc80b48fd03f4175e44a5fd810571b56d936874093782",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_form_toimetulekutoetuse_taotlus",
+      "canonical_item_id": "narva_joesuu_linn:form:toimetulekutoetuse_taotlus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse taotlus",
+      "status": "active",
+      "summary": "Toimetulekutoetuse taotlusvorm on seotud toimetulekutoetuse saamisega. Vorm on avaldatud KOV toimetulekutoetuse lehel ja sotsiaalvaldkonna blanketilehel.",
+      "sourceKeys": [
+        "form_toimetulekutoetus_file",
+        "social_forms_page",
+        "toimetulekutoetus_page"
+      ],
+      "format": "doc",
+      "officialUrl": "https://narva-joesuu.ee/documents/2032937//toimetulekutoetuse%2Btaotlus%2B2025.doc/9a7c53ca-a2c6-4e26-8f5c-3520dc64ca5b",
+      "submissionChannels": [
+        "digiallkirjastatult e-postile",
+        "paberkandjal linnavalitsuses J. Poska 26",
+        "paberkandjal sotsiaalosakonna vastuvõtukohtades Narva-Jõesuus, Olginas või Sinimäel"
+      ],
+      "relatedTo": [
+        "narva_joesuu_linn_benefit_toimetulekutoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_toimetulekutoetus_file",
+        "social_forms_page",
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_form_toimetulekutoetuse_taotlus",
+      "document_id": "narva_joesuu_linn_form_toimetulekutoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/documents/2032937//toimetulekutoetuse%2Btaotlus%2B2025.doc/9a7c53ca-a2c6-4e26-8f5c-3520dc64ca5b",
+      "content_hash": "a70deda8691bbe4c5e7784f886cd6bcccd292f20b64d545d8a05050c52863b3d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_form_sissetulekust_soltuv_sotsiaaltoetus",
+      "canonical_item_id": "narva_joesuu_linn:form:sissetulekust_soltuv_sotsiaaltoetus",
+      "itemType": "form",
+      "title": "Sissetulekust sõltuva sotsiaaltoetuse taotlus",
+      "status": "active",
+      "summary": "Sissetulekust sõltuva sotsiaaltoetuse taotlus on ühine vorm haigla voodipäevatasu kompensatsiooni, küttekulude hüvitamise, puudega inimese erivajaduse toetuse, vältimatu sotsiaalabi, paljulapseliste perede toetuse ja lastelaagrite tuusikute hüvitamise taotlemiseks.",
+      "sourceKeys": [
+        "form_sissetulekust_soltuv_file",
+        "social_benefits_overview",
+        "social_forms_page"
+      ],
+      "format": "doc",
+      "officialUrl": "https://narva-joesuu.ee/documents/2032937//sissetulekust%2Bs%C3%B5ltuva%2Bsotsiaaltoetuse%2Btaotlus_2022.doc/0271a044-52ee-46d5-930f-743abc8bee1d",
+      "submissionChannels": [
+        "digiallkirjastatult e-postile",
+        "paberkandjal linnavalitsuses J. Poska 26",
+        "paberkandjal sotsiaalosakonna vastuvõtukohtades Narva-Jõesuus, Olginas või Sinimäel"
+      ],
+      "relatedTo": [
+        "narva_joesuu_linn_benefit_haigla_voodipaevatasu_kompenseerimine",
+        "narva_joesuu_linn_benefit_kuttekulude_huvitamine",
+        "narva_joesuu_linn_benefit_puudega_isiku_erivajaduse_toetus",
+        "narva_joesuu_linn_benefit_valtimatu_sotsiaalabi",
+        "narva_joesuu_linn_benefit_paljulapseliste_perede_toetus",
+        "narva_joesuu_linn_benefit_lastelaagrite_tuusikute_huvitamine"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_sissetulekust_soltuv_file",
+        "social_benefits_overview",
+        "social_forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_form_sissetulekust_soltuv_sotsiaaltoetus",
+      "document_id": "narva_joesuu_linn_form_sissetulekust_soltuv_sotsiaaltoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/documents/2032937//sissetulekust%2Bs%C3%B5ltuva%2Bsotsiaaltoetuse%2Btaotlus_2022.doc/0271a044-52ee-46d5-930f-743abc8bee1d",
+      "content_hash": "f3c7e880bff12acbd4392d2a38becd04c3a82b71cd3d9836538e08a41c3e796b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_form_sunnitoetuse_taotlus",
+      "canonical_item_id": "narva_joesuu_linn:form:sunnitoetuse_taotlus",
+      "itemType": "form",
+      "title": "Sünnitoetuse taotlus",
+      "status": "active",
+      "summary": "Sünnitoetuse taotlusvorm on seotud lapse sünni puhul makstava sotsiaaltoetusega.",
+      "sourceKeys": [
+        "form_synnitoetus_file",
+        "social_benefits_overview",
+        "social_forms_page"
+      ],
+      "format": "docx",
+      "officialUrl": "https://narva-joesuu.ee/documents/2032926//taotlus_sunnitoetus_010126.docx/b7d567e3-cdb6-4676-a0bb-d01139a57aad",
+      "submissionChannels": [
+        "digiallkirjastatult e-postile",
+        "paberkandjal linnavalitsuses J. Poska 26",
+        "paberkandjal sotsiaalosakonna vastuvõtukohtades Narva-Jõesuus, Olginas või Sinimäel"
+      ],
+      "relatedTo": [
+        "narva_joesuu_linn_benefit_sunnitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_synnitoetus_file",
+        "social_benefits_overview",
+        "social_forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_form_sunnitoetuse_taotlus",
+      "document_id": "narva_joesuu_linn_form_sunnitoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/documents/2032926//taotlus_sunnitoetus_010126.docx/b7d567e3-cdb6-4676-a0bb-d01139a57aad",
+      "content_hash": "ee49673163eb64b939c17d91af57e8e427ac93c481dca7482c1de92b25c311eb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_form_koolitoetuse_taotlus",
+      "canonical_item_id": "narva_joesuu_linn:form:koolitoetuse_taotlus",
+      "itemType": "form",
+      "title": "Koolitoetuse taotlus",
+      "status": "active",
+      "summary": "Koolitoetuse taotlusvorm on seotud koolitoetuse ehk ranitsatoetuse taotlemisega.",
+      "sourceKeys": [
+        "form_koolitoetus_file",
+        "social_benefits_overview",
+        "social_forms_page"
+      ],
+      "format": "doc",
+      "officialUrl": "https://narva-joesuu.ee/documents/2032937//taotlus%2Bkoolitoetuse%2Bm%C3%A4%C3%A4ramiseks.doc/f14e4489-754e-43df-b1f7-b47ff9eeee8f",
+      "submissionChannels": [
+        "digiallkirjastatult e-postile",
+        "paberkandjal linnavalitsuses J. Poska 26",
+        "paberkandjal sotsiaalosakonna vastuvõtukohtades Narva-Jõesuus, Olginas või Sinimäel"
+      ],
+      "relatedTo": [
+        "narva_joesuu_linn_benefit_koolitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_koolitoetus_file",
+        "social_benefits_overview",
+        "social_forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_form_koolitoetuse_taotlus",
+      "document_id": "narva_joesuu_linn_form_koolitoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/documents/2032937//taotlus%2Bkoolitoetuse%2Bm%C3%A4%C3%A4ramiseks.doc/f14e4489-754e-43df-b1f7-b47ff9eeee8f",
+      "content_hash": "89f187849729f628051ef309c3420aa5c5baedc23b1dd0d6430ff701493dfe7d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_form_matusetoetuse_taotlus",
+      "canonical_item_id": "narva_joesuu_linn:form:matusetoetuse_taotlus",
+      "itemType": "form",
+      "title": "Matusetoetuse taotlus",
+      "status": "active",
+      "summary": "Matusetoetuse taotlusvorm on seotud matuse korraldamise kulude osaliseks katmiseks makstava toetusega.",
+      "sourceKeys": [
+        "form_matusetoetus_file",
+        "social_benefits_overview",
+        "social_forms_page"
+      ],
+      "format": "doc",
+      "officialUrl": "https://narva-joesuu.ee/documents/2032937//taotlus%2Bmatusetoetuse%2Bm%C3%A4%C3%A4ramiseks.doc/8af96aa9-6653-411a-a187-d39adfcc67fe",
+      "submissionChannels": [
+        "digiallkirjastatult e-postile",
+        "paberkandjal linnavalitsuses J. Poska 26",
+        "paberkandjal sotsiaalosakonna vastuvõtukohtades Narva-Jõesuus, Olginas või Sinimäel"
+      ],
+      "relatedTo": [
+        "narva_joesuu_linn_benefit_matusetoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_matusetoetus_file",
+        "social_benefits_overview",
+        "social_forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_form_matusetoetuse_taotlus",
+      "document_id": "narva_joesuu_linn_form_matusetoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/documents/2032937//taotlus%2Bmatusetoetuse%2Bm%C3%A4%C3%A4ramiseks.doc/8af96aa9-6653-411a-a187-d39adfcc67fe",
+      "content_hash": "c434f56a41911cd8c0936377463238b6e7558489d627178ba23f354c2627169a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_form_eakate_sunnipaeva_toetus",
+      "canonical_item_id": "narva_joesuu_linn:form:eakate_sunnipaeva_toetus",
+      "itemType": "form",
+      "title": "Eakate sünnipäeva toetuse vorm",
+      "status": "active",
+      "summary": "Eakate sünnipäeva toetuse vorm on seotud eakate sünnipäevatoetusega.",
+      "sourceKeys": [
+        "form_eakate_sunnipaev_file",
+        "social_benefits_overview",
+        "social_forms_page"
+      ],
+      "format": "doc",
+      "officialUrl": "https://narva-joesuu.ee/documents/2032937//s%C3%BCnnip%C3%A4eva%2Btoetus.doc/da4178e6-54c8-4724-bb92-331b97aa305e",
+      "submissionChannels": [
+        "digiallkirjastatult e-postile",
+        "paberkandjal linnavalitsuses J. Poska 26",
+        "paberkandjal sotsiaalosakonna vastuvõtukohtades Narva-Jõesuus, Olginas või Sinimäel"
+      ],
+      "relatedTo": [
+        "narva_joesuu_linn_benefit_eakate_sunnipaeva_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_eakate_sunnipaev_file",
+        "social_benefits_overview",
+        "social_forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_form_eakate_sunnipaeva_toetus",
+      "document_id": "narva_joesuu_linn_form_eakate_sunnipaeva_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/documents/2032937//s%C3%BCnnip%C3%A4eva%2Btoetus.doc/da4178e6-54c8-4724-bb92-331b97aa305e",
+      "content_hash": "3b50cd55ac7b17a1f702d6eee8dc109436c0be8c56d4614bd93c46fe8bc704e1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_form_uliopilase_toetuse_taotlus",
+      "canonical_item_id": "narva_joesuu_linn:form:uliopilase_toetuse_taotlus",
+      "itemType": "form",
+      "title": "Üliõpilase toetuse taotlus",
+      "status": "active",
+      "summary": "Üliõpilase toetuse taotlusvorm on seotud kuni 26-aastasele üliõpilasele makstava toetusega.",
+      "sourceKeys": [
+        "form_uliopilase_toetus_file",
+        "social_benefits_overview",
+        "social_forms_page"
+      ],
+      "format": "doc",
+      "officialUrl": "https://narva-joesuu.ee/documents/2032937//taotlus%2B%C3%BCli%C3%B5pilase%2Btoetuse%2Bm%C3%A4%C3%A4ramiseks.doc/33e58442-bf80-4e2d-a4d1-ccabd04b45a3",
+      "submissionChannels": [
+        "digiallkirjastatult e-postile",
+        "paberkandjal linnavalitsuses J. Poska 26",
+        "paberkandjal sotsiaalosakonna vastuvõtukohtades Narva-Jõesuus, Olginas või Sinimäel"
+      ],
+      "relatedTo": [
+        "narva_joesuu_linn_benefit_uliopilase_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_uliopilase_toetus_file",
+        "social_benefits_overview",
+        "social_forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_form_uliopilase_toetuse_taotlus",
+      "document_id": "narva_joesuu_linn_form_uliopilase_toetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/documents/2032937//taotlus%2B%C3%BCli%C3%B5pilase%2Btoetuse%2Bm%C3%A4%C3%A4ramiseks.doc/33e58442-bf80-4e2d-a4d1-ccabd04b45a3",
+      "content_hash": "50a0783c8bc4a12b7100f4c9260ff8b0adda48cc039537c029fd5ce7e7afe64b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_form_uldtaotlus",
+      "canonical_item_id": "narva_joesuu_linn:form:uldtaotlus",
+      "itemType": "form",
+      "title": "Üldtaotlus",
+      "status": "active",
+      "summary": "Üldtaotlus on KOV blanketilehel kasutatud mitme toetuse vormina, sh elluastumistoetus, erakorraline toetus ja funktsioonihäiretega laste erivajaduse toetus. Seos on lisatud ainult nende kirjete juurde, mille puhul KOV vormileht või toetuse leht vormi nimetab.",
+      "sourceKeys": [
+        "form_uldtaotlus_file",
+        "social_forms_page"
+      ],
+      "format": "doc",
+      "officialUrl": "https://narva-joesuu.ee/documents/2032937//taotlus_%C3%BCld.doc/4842ec3c-b5d0-47a4-9997-fa5f23e8d62e",
+      "submissionChannels": [
+        "digiallkirjastatult e-postile",
+        "paberkandjal linnavalitsuses J. Poska 26",
+        "paberkandjal sotsiaalosakonna vastuvõtukohtades Narva-Jõesuus, Olginas või Sinimäel"
+      ],
+      "relatedTo": [
+        "narva_joesuu_linn_benefit_elluastumistoetus",
+        "narva_joesuu_linn_benefit_erakorraline_toetus",
+        "narva_joesuu_linn_benefit_funktsioonihairtega_laste_prillitoetus",
+        "narva_joesuu_linn_benefit_gumnaasiumi_lopetamise_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_uldtaotlus_file",
+        "social_forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_form_uldtaotlus",
+      "document_id": "narva_joesuu_linn_form_uldtaotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/documents/2032937//taotlus_%C3%BCld.doc/4842ec3c-b5d0-47a4-9997-fa5f23e8d62e",
+      "content_hash": "1afa4664ed62046bebce84128471eb43135d365569e05d175dab4f23ca0be270",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_form_puudega_lapse_hooldajatoetuse_taotlus",
+      "canonical_item_id": "narva_joesuu_linn:form:puudega_lapse_hooldajatoetuse_taotlus",
+      "itemType": "form",
+      "title": "Puudega lapse hooldajatoetuse taotlus",
+      "status": "active",
+      "summary": "Puudega lapse hooldajatoetuse taotlusvorm on seotud puudega lapse hoolduse seadmise ja hooldajatoetuse määramisega.",
+      "sourceKeys": [
+        "form_puudega_lapse_hooldajatoetus_file",
+        "puudega_lapse_hooldus_page",
+        "social_forms_page"
+      ],
+      "format": "doc",
+      "officialUrl": "https://narva-joesuu.ee/documents/2032937//Puudega%2Blapse%2Bhooldajale%2Bhooldajatoetuse%2Btaotlus.doc/bde9cf08-25f9-4fbf-b443-6812328f6021",
+      "submissionChannels": [
+        "digiallkirjastatult e-postile",
+        "paberkandjal linnavalitsuses J. Poska 26",
+        "paberkandjal sotsiaalosakonna vastuvõtukohtades Narva-Jõesuus, Olginas või Sinimäel"
+      ],
+      "relatedTo": [
+        "narva_joesuu_linn_service_puudega_lapse_hoolduse_seadmine",
+        "narva_joesuu_linn_benefit_puudega_lapse_hooldajatoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_puudega_lapse_hooldajatoetus_file",
+        "puudega_lapse_hooldus_page",
+        "social_forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_form_puudega_lapse_hooldajatoetuse_taotlus",
+      "document_id": "narva_joesuu_linn_form_puudega_lapse_hooldajatoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/documents/2032937//Puudega%2Blapse%2Bhooldajale%2Bhooldajatoetuse%2Btaotlus.doc/bde9cf08-25f9-4fbf-b443-6812328f6021",
+      "content_hash": "838e11eecd5e20693d94d3fb60765b9d04b68cfb20f8fbe31a05ddc2b731d601",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_form_puudega_lapse_toetava_sotsiaalteenuse_taotlus",
+      "canonical_item_id": "narva_joesuu_linn:form:puudega_lapse_toetava_sotsiaalteenuse_taotlus",
+      "itemType": "form",
+      "title": "Puudega lapsele toetava sotsiaalteenuse taotlus",
+      "status": "active",
+      "summary": "Puudega lapsele toetava sotsiaalteenuse vorm on KOV blanketilehel eraldi nimetatud lapsega seotud vorm.",
+      "sourceKeys": [
+        "form_puudega_lapse_teenus_file",
+        "social_forms_page"
+      ],
+      "format": "doc",
+      "officialUrl": "https://narva-joesuu.ee/documents/2032937//Puudega_Lapse_teenusetaotlus.doc/1557deaa-227f-4a65-8d74-aad70d78974e",
+      "submissionChannels": [
+        "digiallkirjastatult e-postile",
+        "paberkandjal linnavalitsuses J. Poska 26",
+        "paberkandjal sotsiaalosakonna vastuvõtukohtades Narva-Jõesuus, Olginas või Sinimäel"
+      ],
+      "relatedTo": [
+        "narva_joesuu_linn_service_riigi_rahastatav_lapsehoiuteenus_puudega_lapsele",
+        "narva_joesuu_linn_service_puudega_lapsele_toetav_sotsiaalteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_puudega_lapse_teenus_file",
+        "social_forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_form_puudega_lapse_toetava_sotsiaalteenuse_taotlus",
+      "document_id": "narva_joesuu_linn_form_puudega_lapse_toetava_sotsiaalteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/documents/2032937//Puudega_Lapse_teenusetaotlus.doc/1557deaa-227f-4a65-8d74-aad70d78974e",
+      "content_hash": "c218d021771a0f4d135f853b8eb5290bea4f2fa37c6ff9e0c1234b96dd62074c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_form_terviseteenuse_avaldus_ujula",
+      "canonical_item_id": "narva_joesuu_linn:form:terviseteenuse_avaldus_ujula",
+      "itemType": "form",
+      "title": "Terviseteenuse avaldus (ujula)",
+      "status": "active",
+      "summary": "Terviseteenuse ehk ujula teenuse avaldus on seotud pensionäride, puuetega inimeste ja puuduva töövõimega inimeste ujulateenuse kasutamisega.",
+      "sourceKeys": [
+        "form_terviseteenus_file",
+        "social_forms_page",
+        "terviseteenus_page"
+      ],
+      "format": "docx",
+      "officialUrl": "https://narva-joesuu.ee/documents/2032937//taotlus%2B-%2Bujula%2B2023.docx/a1b5d24f-284e-40f7-869f-fb4c8b3153ce",
+      "submissionChannels": [
+        "digiallkirjastatult e-postile",
+        "paberkandjal linnavalitsuses J. Poska 26",
+        "paberkandjal sotsiaalosakonna vastuvõtukohtades Narva-Jõesuus, Olginas või Sinimäel"
+      ],
+      "relatedTo": [
+        "narva_joesuu_linn_service_terviseteenus_ujula"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_terviseteenus_file",
+        "social_forms_page",
+        "terviseteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_form_terviseteenuse_avaldus_ujula",
+      "document_id": "narva_joesuu_linn_form_terviseteenuse_avaldus_ujula",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/documents/2032937//taotlus%2B-%2Bujula%2B2023.docx/a1b5d24f-284e-40f7-869f-fb4c8b3153ce",
+      "content_hash": "4058863f1e512fa0fd408bbe85a16df48aad934d217dd3841b32c68bb5145d85",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_form_parkimiskaardi_taotlus",
+      "canonical_item_id": "narva_joesuu_linn:form:parkimiskaardi_taotlus",
+      "itemType": "form",
+      "title": "Sõiduki parkimiskaardi taotlus",
+      "status": "active",
+      "summary": "Sõiduki parkimiskaardi taotlus on KOV sotsiaalvaldkonna vormide lehel nimetatud vorm puudega inimese parkimiskaardi taotlemiseks.",
+      "sourceKeys": [
+        "form_parkimiskaart_file",
+        "social_forms_page"
+      ],
+      "format": "doc",
+      "officialUrl": "https://narva-joesuu.ee/documents/2032937//taotlus%2Bparkimiskaart.doc/be1d7d64--ac75-862ba36c3b36",
+      "submissionChannels": [
+        "digiallkirjastatult e-postile",
+        "paberkandjal linnavalitsuses J. Poska 26",
+        "paberkandjal sotsiaalosakonna vastuvõtukohtades Narva-Jõesuus, Olginas või Sinimäel"
+      ],
+      "relatedTo": [
+        "narva_joesuu_linn_resource_puudega_isiku_parkimiskaart"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_parkimiskaart_file",
+        "social_forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_form_parkimiskaardi_taotlus",
+      "document_id": "narva_joesuu_linn_form_parkimiskaardi_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/documents/2032937//taotlus%2Bparkimiskaart.doc/be1d7d64--ac75-862ba36c3b36",
+      "content_hash": "bf439895d39dcd2d7a8db6e6875f405abf2dd0f0406d398942e4b2d855a44e63",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_form_sotsiaaltransporditeenuse_taotlus",
+      "canonical_item_id": "narva_joesuu_linn:form:sotsiaaltransporditeenuse_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaaltransporditeenuse taotlus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenuse taotlusvorm on seotud KOV sotsiaaltransporditeenusega.",
+      "sourceKeys": [
+        "form_sotsiaaltransport_file",
+        "social_forms_page",
+        "sotsiaaltransport_page"
+      ],
+      "format": "doc",
+      "officialUrl": "https://narva-joesuu.ee/documents/2032937//taotlus%2Bsotsiaaltransporditeenuse%2Bsaamiseks.doc/feab4ad3-c071-4774-8b42-a9975d03412c",
+      "submissionChannels": [
+        "digiallkirjastatult e-postile",
+        "paberkandjal linnavalitsuses J. Poska 26",
+        "paberkandjal sotsiaalosakonna vastuvõtukohtades Narva-Jõesuus, Olginas või Sinimäel"
+      ],
+      "relatedTo": [
+        "narva_joesuu_linn_service_sotsiaaltransporditeenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_sotsiaaltransport_file",
+        "social_forms_page",
+        "sotsiaaltransport_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_form_sotsiaaltransporditeenuse_taotlus",
+      "document_id": "narva_joesuu_linn_form_sotsiaaltransporditeenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/documents/2032937//taotlus%2Bsotsiaaltransporditeenuse%2Bsaamiseks.doc/feab4ad3-c071-4774-8b42-a9975d03412c",
+      "content_hash": "31029b6448360a5d0f86f71a5ea2d9ada8151b26f211664ccde15aeb9fdf622e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_form_uldhooldusteenuse_taotlus",
+      "canonical_item_id": "narva_joesuu_linn:form:uldhooldusteenuse_taotlus",
+      "itemType": "form",
+      "title": "Üldhooldusteenuse taotlus",
+      "status": "active",
+      "summary": "Üldhooldusteenuse taotlusvorm on seotud väljaspool kodu osutatava üldhooldusteenuse taotlemisega.",
+      "sourceKeys": [
+        "form_uldhooldus_file",
+        "uldhooldusteenus_page"
+      ],
+      "format": "doc",
+      "officialUrl": "https://narva-joesuu.ee/documents/2032937//Hooldusteenuse%2Btaotlus%2B2023.doc/63f49746-0a92-4219-ac9f-ed2c81c429a5",
+      "submissionChannels": [
+        "digiallkirjastatult e-postile",
+        "paberkandjal linnavalitsuses J. Poska 26",
+        "paberkandjal sotsiaalosakonna vastuvõtukohtades Narva-Jõesuus, Olginas või Sinimäel"
+      ],
+      "relatedTo": [
+        "narva_joesuu_linn_service_valjaspool_kodu_osutatav_uldhooldusteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_uldhooldus_file",
+        "uldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_form_uldhooldusteenuse_taotlus",
+      "document_id": "narva_joesuu_linn_form_uldhooldusteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/documents/2032937//Hooldusteenuse%2Btaotlus%2B2023.doc/63f49746-0a92-4219-ac9f-ed2c81c429a5",
+      "content_hash": "f65b477eb435bfc2894b91d5af54a9cc4b5ebbb761bab4deef662484e7982d8f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_form_volanoustamise_taotlus",
+      "canonical_item_id": "narva_joesuu_linn:form:volanoustamise_taotlus",
+      "itemType": "form",
+      "title": "Võlanõustamise taotlus",
+      "status": "active",
+      "summary": "Võlanõustamise taotlusvorm on seotud võlanõustamisteenuse taotlemisega.",
+      "sourceKeys": [
+        "form_volanoustamine_file",
+        "volanoustamine_page"
+      ],
+      "format": "docx",
+      "officialUrl": "https://narva-joesuu.ee/documents/2032937//v%C3%B5lan%C3%B5ustamine_taotlus.docx/e71ffdb4-28b0-4047-adba-5a64abc8231b",
+      "submissionChannels": [
+        "digiallkirjastatult e-postile",
+        "paberkandjal linnavalitsuses J. Poska 26",
+        "paberkandjal sotsiaalosakonna vastuvõtukohtades Narva-Jõesuus, Olginas või Sinimäel"
+      ],
+      "relatedTo": [
+        "narva_joesuu_linn_service_volanoustamisteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_volanoustamine_file",
+        "volanoustamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_form_volanoustamise_taotlus",
+      "document_id": "narva_joesuu_linn_form_volanoustamise_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/documents/2032937//v%C3%B5lan%C3%B5ustamine_taotlus.docx/e71ffdb4-28b0-4047-adba-5a64abc8231b",
+      "content_hash": "9e795b210a7860ee0cb3a642a10fed8d24608cda209f6a792e08a81963ddf330",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_form_taisealise_isiku_hoolduse_taotlus",
+      "canonical_item_id": "narva_joesuu_linn:form:taisealise_isiku_hoolduse_taotlus",
+      "itemType": "form",
+      "title": "Täisealise isiku hoolduse seadmise ja hooldaja määramise taotlus",
+      "status": "active",
+      "summary": "PDF-taotlus on seotud täisealise isiku hoolduse seadmise ja hooldaja määramisega.",
+      "sourceKeys": [
+        "form_tais_isiku_hooldus_pdf",
+        "tais_isiku_hooldus_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://narva-joesuu.ee/documents/2032937//t%C3%A4isealise%2Bisikule%2Bhoolduse%2Bseadmise%2Bja%2Bhooldaja%2Bm%C3%A4%C3%A4ramise%2Btaotlus.pdf/68af5ac6-e9a2-40f0-856e-710b65d77e30",
+      "submissionChannels": [
+        "digiallkirjastatult e-postile",
+        "paberkandjal linnavalitsuses J. Poska 26",
+        "paberkandjal sotsiaalosakonna vastuvõtukohtades Narva-Jõesuus, Olginas või Sinimäel"
+      ],
+      "relatedTo": [
+        "narva_joesuu_linn_service_taisealise_isiku_hoolduse_seadmine",
+        "narva_joesuu_linn_benefit_taisealise_isiku_hooldajatoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_tais_isiku_hooldus_pdf",
+        "tais_isiku_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_form_taisealise_isiku_hoolduse_taotlus",
+      "document_id": "narva_joesuu_linn_form_taisealise_isiku_hoolduse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/documents/2032937//t%C3%A4isealise%2Bisikule%2Bhoolduse%2Bseadmise%2Bja%2Bhooldaja%2Bm%C3%A4%C3%A4ramise%2Btaotlus.pdf/68af5ac6-e9a2-40f0-856e-710b65d77e30",
+      "content_hash": "1b1315fac4e2e78b2dcf359d8994207827dce91978a17fd69754e12993b3ed2f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_form_hooldatava_nousolek",
+      "canonical_item_id": "narva_joesuu_linn:form:hooldatava_nousolek",
+      "itemType": "form",
+      "title": "Hooldatava nõusolek hooldaja määramiseks",
+      "status": "active",
+      "summary": "PDF-vorm on hooldatava nõusolek hooldajatoetuse määramiseks ja hooldajaks määratava isiku nõusoleku vorm.",
+      "sourceKeys": [
+        "form_hooldatava_nousolek_pdf",
+        "tais_isiku_hooldus_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://narva-joesuu.ee/documents/2032937//hooldajatoetuse%2Bm%C3%A4%C3%A4ramiseks%2Bja%2Bhooldajaks%2Bm%C3%A4%C3%A4ratava%2Bisiku%2Bn%C3%B5usolek.pdf/83b8b2cc-45ad-48f4-ab41-e6909d5a2201",
+      "submissionChannels": [
+        "digiallkirjastatult e-postile",
+        "paberkandjal linnavalitsuses J. Poska 26",
+        "paberkandjal sotsiaalosakonna vastuvõtukohtades Narva-Jõesuus, Olginas või Sinimäel"
+      ],
+      "relatedTo": [
+        "narva_joesuu_linn_service_taisealise_isiku_hoolduse_seadmine",
+        "narva_joesuu_linn_benefit_taisealise_isiku_hooldajatoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_hooldatava_nousolek_pdf",
+        "tais_isiku_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_form_hooldatava_nousolek",
+      "document_id": "narva_joesuu_linn_form_hooldatava_nousolek",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/documents/2032937//hooldajatoetuse%2Bm%C3%A4%C3%A4ramiseks%2Bja%2Bhooldajaks%2Bm%C3%A4%C3%A4ratava%2Bisiku%2Bn%C3%B5usolek.pdf/83b8b2cc-45ad-48f4-ab41-e6909d5a2201",
+      "content_hash": "ac75f882e0cf1580d99a8909318dce8afc7ace7d60488d910713dc871592fec1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_joesuu_linn_form_eluruumi_kohandamise_huvitise_taotlus",
+      "canonical_item_id": "narva_joesuu_linn:form:eluruumi_kohandamise_huvitise_taotlus",
+      "itemType": "form",
+      "title": "Puudega isiku eluruumi kohandamise hüvitamise taotlus",
+      "status": "active",
+      "summary": "Eluruumi kohandamise hüvitise taotlusvorm on seotud puudega inimese eluruumi kohandamise kulude hüvitamisega.",
+      "sourceKeys": [
+        "eluruumide_kohandamine_page",
+        "form_eluruumide_kohandamine_file"
+      ],
+      "format": "docx",
+      "officialUrl": "https://narva-joesuu.ee/documents/2032937//PUUDEGA%2BISIKU%2BELURUUMI%2B%2BKOHANDAMISE%2BH%C3%9CVITAMISE%2BTAOTLUS%2C%202024.docx/9c8d2b2e-a5fb-488d-ba80-2bb923d5d1eb",
+      "submissionChannels": [
+        "digiallkirjastatult e-postile",
+        "paberkandjal linnavalitsuses J. Poska 26",
+        "paberkandjal sotsiaalosakonna vastuvõtukohtades Narva-Jõesuus, Olginas või Sinimäel"
+      ],
+      "relatedTo": [
+        "narva_joesuu_linn_benefit_eluruumide_kohandamise_huvitis"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "eluruumide_kohandamine_page",
+        "form_eluruumide_kohandamine_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_joesuu_linn_form_eluruumi_kohandamise_huvitise_taotlus",
+      "document_id": "narva_joesuu_linn_form_eluruumi_kohandamise_huvitise_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://narva-joesuu.ee/documents/2032937//PUUDEGA%2BISIKU%2BELURUUMI%2B%2BKOHANDAMISE%2BH%C3%9CVITAMISE%2BTAOTLUS%2C%202024.docx/9c8d2b2e-a5fb-488d-ba80-2bb923d5d1eb",
+      "content_hash": "e291d1d11e5cddfb215faae896f15e1b850f72410a30ef582a3afc680b067688",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Narva-Jõesuu linn",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

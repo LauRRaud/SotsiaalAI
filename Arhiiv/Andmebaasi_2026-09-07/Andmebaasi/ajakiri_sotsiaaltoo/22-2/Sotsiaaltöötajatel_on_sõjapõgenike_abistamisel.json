@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-2-2022",
+  "articleId": "sotsiaaltootajatel-on-sojapogenike-abistamisel-kaed-jalad-tood-tais-2022-2",
+  "title": "Sotsiaaltöötajatel on sõjapõgenike abistamisel käed-jalad tööd täis",
+  "authors": [
+    "Tiia Spitsõn",
+    "Karmen Vetemäe",
+    "Katre Mägi"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2022",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "49-55",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kogemuslugu, milles Harku, Kastre ja Järva valla sotsiaalosakondade juhid kirjeldavad Ukraina sõjapõgenike vastuvõtmist ja abistamist 2022. aasta kevadel. Avatakse ajutise majutuse ja toimetulekutoetuste korraldamist, dokumentide vormistamist, lasteaia- ja koolikohtade leidmist ning koostööd sotsiaalkindlustusameti, perearstide, koguduste ja vabatahtlikega. Tuuakse välja sõjapõgenikega töötamise emotsionaalne koormus, sotsiaaltöötajate töömahu kasv, kriisiolukorras „valgusfoori põhimõtte“ kasutamine ning õppetunnid edaspidiseks valmisolekuks ja ennetavaks tööks.",
+  "tags": [
+    "Ukraina sõjapõgenikud",
+    "kriisitöö",
+    "kohalik omavalitsus",
+    "toimetulekutoetus",
+    "ajutine kaitse",
+    "majutamine",
+    "lasteaia- ja koolikohad",
+    "sotsiaaltöötajate koormus"
+  ],
+  "source_type": "file",
+  "source_path": "2022_2_artikkel_10_sojapogenike_abistamine.pdf",
+  "document_id": "sotsiaaltoo-2-2022-sotsiaaltootajatel-on-sojapogenike-abistamisel-kaed-jalad-tood-tais-2022-2",
+  "source_format": "pdf",
+  "source_sha256": "6a2796be9444d28b8d929300dd79f40b1f8172b19eb2dcf60a65d90cf1bebf37",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2022-sotsiaaltootajatel-on-sojapogenike-abistamisel-kaed-jalad-tood-tais-2022-2",
+    "previous_source_path": "2022_2_artikkel_10_sojapogenike_abistamine.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "6a2796be9444d28b8d929300dd79f40b1f8172b19eb2dcf60a65d90cf1bebf37",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

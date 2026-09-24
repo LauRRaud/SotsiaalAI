@@ -1,0 +1,1392 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-kastre-vald",
+  "document_id": "kov-kastre-vald",
+  "municipality": "Kastre vald",
+  "municipality_id": "kastre_vald",
+  "county": "Tartumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "kastre_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "kastre_vald:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Kastre vald pakub lapsehoiuteenust, et toetada peresid lapse heaolu tagamisel. Teenus aitab last hooldada ajal, mil vanemad tööl või vajavad puhkust, ning suunatud eelkõige peredele, kellel on puudega või erivajadusega laps. Avalduse esitamiseks tuleb võtta ühendust lastekaitsespetsialistiga ja täita lapsehoiuteenuse taotluse vorm, mis on kättesaadav taotlusvormide lehel.",
+      "sourceKeys": [
+        "child_services_page"
+      ],
+      "application": {
+        "channels": [
+          "kirjalik taotlus",
+          ""
+        ],
+        "steps": [
+          "Täida lapsehoiuteenuse taotlus",
+          "Esita see piirkonna lastekaitsespetsialistile"
+        ],
+        "deadline": null
+      },
+      "relatedContacts": [
+        "kastre_vald_contact_laura_kuusk",
+        "kastre_vald_contact_kati_aviste"
+      ],
+      "item_type": "service",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "child_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_service_lapsehoiuteenus",
+      "document_id": "kastre_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "40541c2b2c22c540e0812329d961ef4067d8198a5c92c0e7d4616b31120ca7ca",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_service_tugiisikuteenuse",
+      "canonical_item_id": "kastre_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus annab abivajajale isikliku abistaja, kes toetab igapäevase toimetuleku, asjaajamise ja sotsiaalsete oskuste arendamisel. Teenust saavad taotleda nii täisealised kui lapsed, kellel esineb erivajadus või sotsiaalne toimetulekuraskus. Taotlemiseks tuleb esitada vormikohane taotlus piirkonna sotsiaaltöötajale.",
+      "sourceKeys": [
+        "child_services_page"
+      ],
+      "relatedContacts": [
+        "kastre_vald_contact_iiri_sepping",
+        "kastre_vald_contact_heidi_kelt",
+        "kastre_vald_contact_laire_lodison",
+        "kastre_vald_contact_andre_lepik"
+      ],
+      "item_type": "service",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "child_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_service_tugiisikuteenuse",
+      "document_id": "kastre_vald_service_tugiisikuteenuse",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "a0d9c0ec39c0f8110d2a36cc79207e0738211af68596da4bab0235e6e43f39b4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_service_sotsiaaltransport",
+      "canonical_item_id": "kastre_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus võimaldab puudega või liikumisraskustega inimestel sõita arsti, rehabilitatsiooni või muude toimingute juurde. Teenuse tellimiseks tuleb ühendust võtta sotsiaaltöötajaga; sõidud toimuvad eelregistreerimisel ja kasutajalt võidakse küsida omaosalus. Täpsem info avaldatakse valla teenuste lehel.",
+      "sourceKeys": [
+        "child_services_page"
+      ],
+      "relatedContacts": [
+        "kastre_vald_contact_iiri_sepping",
+        "kastre_vald_contact_heidi_kelt",
+        "kastre_vald_contact_andre_lepik"
+      ],
+      "item_type": "service",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "child_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_service_sotsiaaltransport",
+      "document_id": "kastre_vald_service_sotsiaaltransport",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "b0fec69eb37fd8db833a38c6561d4e1c9d815ffc85217952b1f080bd95cb732c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_service_turvakoduteenus",
+      "canonical_item_id": "kastre_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenus tagab ajutise turvalise majutuse ja toe lastele või täiskasvanutele, kes satuvad vägivalla või pereprobleemide tõttu kriisiolukorda. Kastre vald suunab abivajajad vastava teenuse pakkuja juurde ning toetab vajadusel teenuse eest tasumist. Teenuse saamiseks tuleb pöörduda lastekaitsespetsialisti või sotsiaaltöötaja poole.",
+      "sourceKeys": [
+        "child_services_page"
+      ],
+      "relatedContacts": [
+        "kastre_vald_contact_laura_kuusk",
+        "kastre_vald_contact_kati_aviste",
+        "kastre_vald_contact_iiri_sepping"
+      ],
+      "item_type": "service",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "child_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_service_turvakoduteenus",
+      "document_id": "kastre_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "1144b5532163749947e5b826d51727f3184cf7d085f86ca0f9abd36a53ad9c11",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_service_asendushooldusteenus",
+      "canonical_item_id": "kastre_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus tagab lapsele perepõhise hoolduse olukorras, kus vanemad ei saa lapse kasvatamisega hakkama. Teenus hõlmab lapse paigutamist kas perekonda, peremajja või asenduskodusse. Teenuse määramiseks tehakse koostööd lastekaitse spetsialistiga ja sotsiaaltöötajaga.",
+      "sourceKeys": [
+        "child_services_page"
+      ],
+      "relatedContacts": [
+        "kastre_vald_contact_laura_kuusk",
+        "kastre_vald_contact_kati_aviste"
+      ],
+      "item_type": "service",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "child_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_service_asendushooldusteenus",
+      "document_id": "kastre_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "7ca01710e09a3a694b3d303a1223a34fdb4128e035f946ba8523c89663d22a39",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "kastre_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus pakub tuge ja nõustamist noortele, kes on väljunud asendushooldusest, et toetada nende iseseisva elu alustamist. Teenus võib hõlmata eluaseme pakkumist, nõustamist, koolitust ja individuaalset juhendamist. Teenuse saamiseks tuleb pöörduda lastekaitsespetsialisti poole.",
+      "sourceKeys": [
+        "child_services_page"
+      ],
+      "relatedContacts": [
+        "kastre_vald_contact_laura_kuusk",
+        "kastre_vald_contact_kati_aviste"
+      ],
+      "item_type": "service",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "child_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_service_jarelhooldusteenus",
+      "document_id": "kastre_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "f6cfaf80dc8dbd4a6461d4cb4efe5433bde95892aa5bd29f26a8433de2c8473c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_benefit_sunnitoetus",
+      "canonical_item_id": "kastre_vald:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetust makstakse lapsevanemale või õigustatud isikule, kui lapse ja vähemalt ühe vanema elukoht on rahvastikuregistris Kastre vald. Taotlemiseks tuleb esitada vormikohane taotlus ja lapse sünnitõend【597773008972650†L408-L417】. Toetuse suurus on määratud valla eelarves.",
+      "sourceKeys": [
+        "child_services_page"
+      ],
+      "application": {
+        "channels": [
+          "kirjalik taotlus"
+        ],
+        "steps": [
+          "Täida sünnitoetuse taotlus",
+          "Lisa lapse sünnitõend",
+          "Esita taotlus vallavalitsusele"
+        ],
+        "deadline": null
+      },
+      "relatedForms": [
+        "kastre_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kastre_vald_contact_iiri_sepping"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "child_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_benefit_sunnitoetus",
+      "document_id": "kastre_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "750aca5f07eb33875577309eddd285576b146c67f37de79335855586450ce6dc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_benefit_hobelusikas",
+      "canonical_item_id": "kastre_vald:benefit:hobelusikas",
+      "itemType": "benefit",
+      "title": "Hõbelusikas vastsündinule",
+      "status": "active",
+      "summary": "Hõbelusikas on asjaline toetus, mida kingitakse Kastre valla vastsündinutele sünnitoetuse esimese osa saamisel. Nimelise hõbelusika annab vallavanem üle vastuvõtul tingimusel, et lapse registrijärgne elukoht on Kastre vald【597773008972650†L428-L434】.",
+      "sourceKeys": [
+        "child_services_page"
+      ],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "child_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_benefit_hobelusikas",
+      "document_id": "kastre_vald_benefit_hobelusikas",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "77a6bac8e6a34e9656a06ea48e617029df79f567ed095ddb668ad91846242f5a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_benefit_ranitsatoetus",
+      "canonical_item_id": "kastre_vald:benefit:ranitsatoetus",
+      "itemType": "benefit",
+      "title": "Ranitsatoetus",
+      "status": "active",
+      "summary": "Ranitsatoetust makstakse lapsevanemale, eestkostjale või perehooldajale, kui laps asub 1. klassi Kastre valla koolis või erivajadustega laste õppeasutuses. Toetuse taotlemise periood on 20. augustist 31. oktoobrini ja taotlust saab esitada SPOKU süsteemis või vormikohase avaldusena. Toetuse suurus on 150 eurot【597773008972650†L448-L467】.",
+      "sourceKeys": [
+        "child_services_page"
+      ],
+      "application": {
+        "channels": [
+          "veebivorm",
+          "kirjalik taotlus"
+        ],
+        "steps": [
+          "Esita ranitsatoetuse avaldus SPOKU süsteemis või paberil",
+          "Esita taotlus lastekaitsespetsialistile"
+        ],
+        "deadline": "20.08–31.10"
+      },
+      "amount": "150 €",
+      "relatedForms": [
+        "kastre_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kastre_vald_contact_laura_kuusk",
+        "kastre_vald_contact_kati_aviste"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "child_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_benefit_ranitsatoetus",
+      "document_id": "kastre_vald_benefit_ranitsatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "a4af570846a37a05dc6ff6dcea54f5087f513aad357f8a64b218a97e8c507153",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_benefit_joulupakk",
+      "canonical_item_id": "kastre_vald:benefit:joulupakkide_toetus",
+      "itemType": "benefit",
+      "title": "Jõulupakkide toetus",
+      "status": "active",
+      "summary": "Jõulupakkide toetus on asjaline toetus, mille saamise õigus on Kastre valla eelkooliealistel lastel, valla munitsipaallasteasutustes käivatel lastel ning asendushooldusel olevatel lastel【597773008972650†L486-L490】. Toetus realiseerub jõulupaki näol ning seda ei maksta rahas.",
+      "sourceKeys": [
+        "child_services_page"
+      ],
+      "relatedContacts": [
+        "kastre_vald_contact_laura_kuusk",
+        "kastre_vald_contact_kati_aviste"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "child_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_benefit_joulupakk",
+      "document_id": "kastre_vald_benefit_joulupakk",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "ab10164237893b045f47c16fbb8eaa1b62af7f79a111136a053ccdbb2198b93c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_benefit_puudega_lapse_hooldajatoetus",
+      "canonical_item_id": "kastre_vald:benefit:puudega_lapse_hooldajale_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Puudega lapse hooldajale hooldajatoetus",
+      "status": "active",
+      "summary": "Hooldajatoetuse eesmärk on pakkuda puudega lapse hooldajale igapäevase abi ja järelevalve kompenseerimiseks rahalist tuge ning hüvitada osaliselt saamata jäänud sissetulek【597773008972650†L501-L507】. Taotlemiseks tuleb esitada vormikohane avaldus lastekaitsespetsialistile.",
+      "sourceKeys": [
+        "child_services_page"
+      ],
+      "relatedForms": [
+        "kastre_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kastre_vald_contact_laura_kuusk",
+        "kastre_vald_contact_kati_aviste"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "child_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_benefit_puudega_lapse_hooldajatoetus",
+      "document_id": "kastre_vald_benefit_puudega_lapse_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "562f213c4a2a06b22d7d6ca3fe8e1077a4efd819112e8ebaf8e2df35809a4920",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_benefit_koolieelse_kohamaksu_toetus",
+      "canonical_item_id": "kastre_vald:benefit:koolieelse_lasteasutuse_kohamaksu_toetus",
+      "itemType": "benefit",
+      "title": "Koolieelse lasteasutuse kohamaksu ja toiduraha toetus",
+      "status": "active",
+      "summary": "See sissetulekust sõltuv toetus aitab katta koolieelses lasteasutuses või lapsehoius käiva lapse kohamaksu ja toiduraha kuni üheks õppeaastaks. Toetuse saamiseks tuleb esitada vormikohane taotlus või vabas vormis avaldus piirkonna lastekaitsespetsialistile【597773008972650†L526-L537】.",
+      "sourceKeys": [
+        "child_services_page"
+      ],
+      "relatedForms": [
+        "kastre_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kastre_vald_contact_laura_kuusk",
+        "kastre_vald_contact_kati_aviste"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "child_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_benefit_koolieelse_kohamaksu_toetus",
+      "document_id": "kastre_vald_benefit_koolieelse_kohamaksu_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "ffb780f8d780947b73ecc862f33a148fe2313dab761a7958d8fce525b7f8c208",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_benefit_koolitoetus",
+      "canonical_item_id": "kastre_vald:benefit:koolitoetus",
+      "itemType": "benefit",
+      "title": "Koolitoetus",
+      "status": "active",
+      "summary": "Koolitoetus (koolitoidutoetus) hüvitab osaliselt laste hommikusöögi, koolilõuna ja pikapäevarühma toidukulud. Toetus on sissetulekust sõltuv ja taotluse saab esitada vormikohasel kujul piirkonna lastekaitsespetsialistile【597773008972650†L549-L559】.",
+      "sourceKeys": [
+        "child_services_page"
+      ],
+      "relatedForms": [
+        "kastre_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kastre_vald_contact_laura_kuusk",
+        "kastre_vald_contact_kati_aviste"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "child_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_benefit_koolitoetus",
+      "document_id": "kastre_vald_benefit_koolitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "35b3a92bef964af071f1f7b2917a8333396be3ddcabd63daf36a64f994eab0f7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_benefit_prillitoetus",
+      "canonical_item_id": "kastre_vald:benefit:prillitoetus",
+      "itemType": "benefit",
+      "title": "Prillitoetus",
+      "status": "active",
+      "summary": "Prillitoetus on sissetulekust sõltuv toetus kuni 18‑aastastele õppuritele prilliklaaside hüvitamiseks kuludokumentide alusel üks kord aastas【597773008972650†L571-L576】. Taotlus esitatakse lastekaitsespetsialistile.",
+      "sourceKeys": [
+        "child_services_page"
+      ],
+      "relatedForms": [
+        "kastre_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kastre_vald_contact_laura_kuusk",
+        "kastre_vald_contact_kati_aviste"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "child_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_benefit_prillitoetus",
+      "document_id": "kastre_vald_benefit_prillitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "e190a315f5f0e8df771a0a32cd6c9187d7416ad3acf49f5eae867d2510053fb4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_benefit_ravimite_toetus",
+      "canonical_item_id": "kastre_vald:benefit:ravimite_abivahendite_toetus",
+      "itemType": "benefit",
+      "title": "Ravimite, abivahendite ja raviteenuste toetus",
+      "status": "active",
+      "summary": "Toetust makstakse kuni 18‑aastastele lastele ravimite, abivahendite ja raviteenuste maksumuse hüvitamiseks kuludokumentide alusel. Toetus on sissetulekust sõltuv【597773008972650†L593-L597】.",
+      "sourceKeys": [
+        "child_services_page"
+      ],
+      "relatedForms": [
+        "kastre_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kastre_vald_contact_laura_kuusk",
+        "kastre_vald_contact_kati_aviste"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "child_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_benefit_ravimite_toetus",
+      "document_id": "kastre_vald_benefit_ravimite_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "77272c17d12fab0a1ebc78a5c105e9e291fafc6d1f665a1a4b2d2e3e1976cc80",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_benefit_sotsiaaltoetus_lastele",
+      "canonical_item_id": "kastre_vald:benefit:sotsiaaltoetus_lastele",
+      "itemType": "benefit",
+      "title": "Sotsiaaltoetus lastele",
+      "status": "active",
+      "summary": "Sotsiaaltoetus lastele on ühekordne toetus peredele, et katta kulutusi nagu laagritasud, õppevahendid, riided, jalanõud või kooli lõpetamisega seotud kulud【597773008972650†L615-L619】. Taotlus tuleb esitada vormikohasel kujul lastekaitsespetsialistile.",
+      "sourceKeys": [
+        "child_services_page"
+      ],
+      "relatedForms": [
+        "kastre_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kastre_vald_contact_laura_kuusk",
+        "kastre_vald_contact_kati_aviste"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "child_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_benefit_sotsiaaltoetus_lastele",
+      "document_id": "kastre_vald_benefit_sotsiaaltoetus_lastele",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "083188da559bc4dea0a143116a30b11fc29cfb9f434888e6aebc8f489a3cf3a8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_resource_harmalong",
+      "canonical_item_id": "kastre_vald:resource:sa_hooldekodu_harmalong",
+      "itemType": "resource",
+      "title": "SA Hooldekodu Härmalõng",
+      "status": "active",
+      "summary": "SA Hooldekodu Härmalõng pakub ööpäevaringset üldhooldusteenust inimestele, kes kõrvalabi ja hooldusvajaduse tõttu ei saa enam iseseisvalt kodus hakkama. Hooldekodu juhatuse liige on Katrina Kütt; asutusel on kaks osakonda: Võnnu kodu (Tööstuse tee 4, Võnnu,. ) ja Kastre kodu (Mõisahäärberi, Kastre küla,. )【482275029074277†L281-L305】.",
+      "sourceKeys": [
+        "care_institutions_page"
+      ],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "care_institutions_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_resource_harmalong",
+      "document_id": "kastre_vald_resource_harmalong",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "6511ddd78121fb270522c19c230977996eded217f09f089bf8d9b7fa5116dcfe",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_resource_poka_centre",
+      "canonical_item_id": "kastre_vald:resource:poka_sotsiaalteenuste_keskus",
+      "itemType": "resource",
+      "title": "Poka sotsiaalteenuste keskus",
+      "status": "active",
+      "summary": "Poka sotsiaalteenuste keskus asub aadressil Poka tee 39, Poka küla ja pakub päevahoiuteenust täisealistele, sotsiaalmajutust ning pesuteenust. Päevahoiu kuutasu on 100 eurot (igapäevane kasutus) või 10 eurot päevas; sotsiaalmajutus maksab 200 eurot kuus valla elanikele ja 400 eurot väljaspool valda elavatele isikutele, lisaks tasu alaealistele pereliikmetele. Keskuse kontakt on projektijuht Cessika Hindriksoo (. )【482275029074277†L321-L407】.",
+      "sourceKeys": [
+        "care_institutions_page"
+      ],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "care_institutions_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_resource_poka_centre",
+      "document_id": "kastre_vald_resource_poka_centre",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "2bae92f62f318f1904aa53f38abecdf9bbc3a1a353a59b8d95ce53acad13914b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_resource_melliste_meditsiinikeskus",
+      "canonical_item_id": "kastre_vald:resource:melliste_meditsiinikeskus",
+      "itemType": "resource",
+      "title": "Melliste meditsiinikeskus (perearst)",
+      "status": "active",
+      "summary": "Melliste meditsiinikeskus asub Järve põik 5, Melliste külas. Perearst Ave Pedaja võtab vastu esmaspäeval ja kolmapäeval; pereõde Pilvi Eensalu võtab vastu igal tööpäeval erinevatel aegadel. Vastuvõtule tuleb eelregistreeruda telefonil. Välisajal on abi saamiseks perearsti nõuandetelefon 1220 või hädaabinumber 【789522365119467†L283-L302】.",
+      "sourceKeys": [
+        "medical_page"
+      ],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "medical_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_resource_melliste_meditsiinikeskus",
+      "document_id": "kastre_vald_resource_melliste_meditsiinikeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "9ff734c4bebcb1e2de9775c2b483322afb23a19b80861a1f3c80bbe306333a65",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_resource_vonnu_perearst",
+      "canonical_item_id": "kastre_vald:resource:vonnu_perearst",
+      "itemType": "resource",
+      "title": "Võnnu perearst ja apteek",
+      "status": "active",
+      "summary": "Võnnu perearsti teenust osutab OÜ Tartu Raatuse PAK (perearst Ants Tammepuu ja pereõde Malve Vaiksaar). Vastuvõtud toimuvad Võnnu kultuurimajas (Tartu tn 24) ning avatud ajad on esmaspäevast reedeni erinevatel kellaaegadel. Registratuuri telefonid: ja; perearsti nõuandetelefon 1220. Võnnu apteek on avatud E–R 9–16, 【789522365119467†L308-L370】.",
+      "sourceKeys": [
+        "medical_page"
+      ],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "medical_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_resource_vonnu_perearst",
+      "document_id": "kastre_vald_resource_vonnu_perearst",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "b6c3951e59f407037fadf7a1910972a74e076288c45fd4da7423a0634fd09bfe",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_resource_roiu_perearst",
+      "canonical_item_id": "kastre_vald:resource:roiu_perearst",
+      "itemType": "resource",
+      "title": "Roiu perearst ja apteek",
+      "status": "active",
+      "summary": "Roiu perearst dr Virve Raidma võtab vastu E, N, R 8–16; T 13–18; K 9–13, 15–17. Pereõe vastuvõtud toimuvad samuti igal tööpäeval erinevatel kellaaegadel. Vastuvõtuks on vajalik eelregistreerimine telefonil. Roiu apteek asub Kesk 9 ja on avatud kindlatel päevadel; 【789522365119467†L373-L410】.",
+      "sourceKeys": [
+        "medical_page"
+      ],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "medical_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_resource_roiu_perearst",
+      "document_id": "kastre_vald_resource_roiu_perearst",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "e7d98b32d9c88e83a18ae25b54787eec2fabdd39ce70edb4d682c46107de1a17",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_resource_abivajav_laps_info",
+      "canonical_item_id": "kastre_vald:resource:abivajav_laps",
+      "itemType": "resource",
+      "title": "Abivajav laps – info ja kontakt",
+      "status": "active",
+      "summary": "Lehekülg selgitab, kuidas eristada abivajavat ja hädaohus olevat last, ning rõhutab kohustust teavitada lastekaitsespetsialisti või lasteabi telefonile. Samuti viidatakse noorte heaolu spetsialistile Triin Tokmanile, kelle poole saab pöörduda noorte muredega【206448736175798†L316-L370】.",
+      "sourceKeys": [
+        "child_protection_page"
+      ],
+      "relatedContacts": [
+        "kastre_vald_contact_triin_tokman"
+      ],
+      "item_type": "resource",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "child_protection_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_resource_abivajav_laps_info",
+      "document_id": "kastre_vald_resource_abivajav_laps_info",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "a6c354b34e63d68c5b25fb3c228034f294f763479f7d8031a2a3523556e5e1fd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_contact_iiri_sepping",
+      "canonical_item_id": "kastre_vald:contact:iiri_sepping",
+      "itemType": "contact",
+      "title": "Iiri Sepping",
+      "status": "active",
+      "name": "Iiri Sepping",
+      "role": "Sotsiaaltöö peaspetsialist (asendav juhataja)",
+      "department": "Kastre valla sotsiaalosakond",
+      "address": null,
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_contact_iiri_sepping",
+      "document_id": "kastre_vald_contact_iiri_sepping",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "1bfb5a5dfdba8e0bc2d3d0f9a4ad84a897bd49a1bfa458af1549af244c071db7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_contact_heidi_kelt",
+      "canonical_item_id": "kastre_vald:contact:heidi_kelt",
+      "itemType": "contact",
+      "title": "Heidi Kelt",
+      "status": "active",
+      "name": "Heidi Kelt",
+      "role": "Sotsiaaltöö peaspetsialist",
+      "department": "Kastre valla sotsiaalosakond",
+      "address": null,
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_contact_heidi_kelt",
+      "document_id": "kastre_vald_contact_heidi_kelt",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "a45941861b9eb02b5100fffac1631108f09468999012c7e3a55733a41e84784a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_contact_laire_lodison",
+      "canonical_item_id": "kastre_vald:contact:laire_lodison",
+      "itemType": "contact",
+      "title": "Laire Lodison",
+      "status": "active",
+      "name": "Laire Lodison",
+      "role": "Sotsiaaltööspetsialist (Kurepalu vallamaja)",
+      "department": "Kastre valla sotsiaalosakond",
+      "address": null,
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_contact_laire_lodison",
+      "document_id": "kastre_vald_contact_laire_lodison",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "8b902acf193c16308105483682a1cf2cc86943a5f6667cad62e5362ebeae148e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_contact_andre_lepik",
+      "canonical_item_id": "kastre_vald:contact:andre_lepik",
+      "itemType": "contact",
+      "title": "Andre Lepik",
+      "status": "active",
+      "name": "Andre Lepik",
+      "role": "Sotsiaaltööspetsialist (Võnnu teenuskeskus)",
+      "department": "Kastre valla sotsiaalosakond",
+      "address": null,
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_contact_andre_lepik",
+      "document_id": "kastre_vald_contact_andre_lepik",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "71b544b1211607ecf214ee46a9acf800a147da519a3831b33e9cadbb3da93e16",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_contact_laura_kuusk",
+      "canonical_item_id": "kastre_vald:contact:laura_kuusk",
+      "itemType": "contact",
+      "title": "Laura Kuusk",
+      "status": "active",
+      "name": "Laura Kuusk",
+      "role": "Lastekaitsespetsialist",
+      "department": "Kastre valla sotsiaalosakond",
+      "address": null,
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_contact_laura_kuusk",
+      "document_id": "kastre_vald_contact_laura_kuusk",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "7e26d241c7cf855c582c9e42cfcc7a719bedc42308b3c5dd7258d0684aa8e305",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_contact_kati_aviste",
+      "canonical_item_id": "kastre_vald:contact:kati_aviste",
+      "itemType": "contact",
+      "title": "Kati Aviste",
+      "status": "active",
+      "name": "Kati Aviste",
+      "role": "Lastekaitsespetsialist",
+      "department": "Kastre valla sotsiaalosakond",
+      "address": null,
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_contact_kati_aviste",
+      "document_id": "kastre_vald_contact_kati_aviste",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "55da69a332110d9a7c49c03d65d3c2df8703d8edc7ca356d87aa4cfe782e7d03",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_contact_triin_tokman",
+      "canonical_item_id": "kastre_vald:contact:triin_tokman",
+      "itemType": "contact",
+      "title": "Triin Tokman",
+      "status": "active",
+      "name": "Triin Tokman",
+      "role": "Noorte heaolu spetsialist",
+      "department": "Kastre valla sotsiaalosakond",
+      "address": null,
+      "sourceKeys": [
+        "child_protection_page"
+      ],
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "child_protection_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_contact_triin_tokman",
+      "document_id": "kastre_vald_contact_triin_tokman",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "5e6b6434740196264f6129adfd8a68f08b15aee416713970d18b8e281dd809ff",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kastre_vald_form_sotsiaaltoetuse_taotlus",
+      "canonical_item_id": "kastre_vald:form:sotsiaaltoetuse_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaaltoetuse taotlus",
+      "status": "active",
+      "summary": "See üldine taotlusvorm on kasutatav mitme Kastre valla sotsiaaltoetuse ja -teenuse taotlemiseks, sealhulgas sünnitoetuse, ranitsatoetuse, prillitoetuse, ravimite ja abivahendite toetuse ning sotsiaaltoetuse lastele taotlemisel. Vorm on PDF-formaadis ja allkirjastatuna tuleb see esitada vallavalitsusele või saata e-postiga.",
+      "sourceKeys": [
+        "form_sotsiaaltoetuse_taotlus_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "submissionChannels": [
+        "paber",
+        ""
+      ],
+      "relatedTo": [
+        "kastre_vald_benefit_sunnitoetus",
+        "kastre_vald_benefit_ranitsatoetus",
+        "kastre_vald_benefit_puudega_lapse_hooldajatoetus",
+        "kastre_vald_benefit_koolieelse_kohamaksu_toetus",
+        "kastre_vald_benefit_koolitoetus",
+        "kastre_vald_benefit_prillitoetus",
+        "kastre_vald_benefit_ravimite_toetus",
+        "kastre_vald_benefit_sotsiaaltoetus_lastele"
+      ],
+      "item_type": "form",
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "form_sotsiaaltoetuse_taotlus_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kastre_vald_form_sotsiaaltoetuse_taotlus",
+      "document_id": "kastre_vald_form_sotsiaaltoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "3481cfc999f547040ce78140100342ca14a530b61a4d74fb9ffb3e278d322725",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Kastre vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

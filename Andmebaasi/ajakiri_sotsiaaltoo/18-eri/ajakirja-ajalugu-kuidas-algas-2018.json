@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-eri-2018",
+  "articleId": "regina-lind-20-aastat-ajakirjaga-sotsiaaltoo-2018",
+  "title": "Regina Lind: 20 aastat ajakirjaga Sotsiaaltöö",
+  "authors": [
+    "Rait Kuuse"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö (juubeliväljaanne)",
+  "issueLabel": "Eri/2018",
+  "section": "Ajakirja juubel",
+  "pageRange": "10-12",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Rait Kuuse intervjuu kauaaegse toimetaja Regina Lindiga ajakirja Sotsiaaltöö kahekümnest aastast, ajakirja rollist ja sotsiaaltöö eriala arengust.",
+  "tags": [
+    "Sotsiaaltöö ajakiri",
+    "Regina Lind",
+    "ajakirja ajalugu",
+    "juubel",
+    "toimetamine",
+    "sotsiaaltöö eriala"
+  ],
+  "source_type": "file",
+  "source_path": "ST_eri_2018_web_link_Part5.pdf",
+  "source_url": "https://www.tai.ee/sites/default/files/2022-01/153813499736_ST_eri_2018_web_link.pdf",
+  "mapping_status": "VERIFIED",
+  "mapping_checked": "2026-08-14",
+  "mapping_note": "Pealkiri, autor(id) ja kohalik täistekst kontrollitud artikli enda ning väljaandja ametliku allika järgi.",
+  "document_id": "sotsiaaltoo-eri-2018-regina-lind-20-aastat-ajakirjaga-sotsiaaltoo-2018",
+  "source_format": "pdf",
+  "source_sha256": "8b700447864e51457cc7063bb6b14774b5c5b10840bab5e4288e7f5a471c390c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2018-regina-lind-20-aastat-ajakirjaga-sotsiaaltoo-2018",
+    "previous_source_path": "ST_eri_2018_web_link_Part5.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "8b700447864e51457cc7063bb6b14774b5c5b10840bab5e4288e7f5a471c390c",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

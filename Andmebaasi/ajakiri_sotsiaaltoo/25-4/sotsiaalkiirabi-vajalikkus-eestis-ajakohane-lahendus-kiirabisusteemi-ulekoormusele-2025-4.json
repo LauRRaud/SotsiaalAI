@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2025",
+  "articleId": "sotsiaalkiirabi-vajalikkus-eestis-ajakohane-lahendus-kiirabisusteemi-ulekoormusele-2025-4",
+  "title": "Sotsiaalkiirabi vajalikkus Eestis: ajakohane lahendus kiirabisüsteemi ülekoormusele",
+  "authors": [
+    "Eduard Ristoja"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2025",
+  "section": "Sotsiaalkiirabi",
+  "pageRange": "1–5",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb sotsiaalkiirabi vajadust Eestis ning selgitab, kuidas sotsiaalsete ja psühhosotsiaalsete probleemide tõttu ülekoormatud kiirabisüsteemi saaks toetada sotsiaaltöötajate ja teiste spetsialistide kaasamisega. Autor toob välja rahvusvahelise praktika, Eesti kitsaskohad ja ettepanekud interdistsiplinaarseks reageerimismudeliks.",
+  "tags": [
+    "sotsiaalkiirabi",
+    "kiirabisüsteem",
+    "erakorraline abi",
+    "sotsiaaltöö",
+    "psühhosotsiaalne tugi",
+    "võrgustikutöö",
+    "kriisiabi"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaalkiirabi vajalikkus Eestis_ajakohane lahendus kiirabisüsteemi ülekoormusele.pdf",
+  "document_id": "sotsiaaltoo-4-2025-sotsiaalkiirabi-vajalikkus-eestis-ajakohane-lahendus-kiirabisusteemi-ulekoormusele-2025-4",
+  "source_format": "pdf",
+  "source_sha256": "d154369bbe700d21ee74ed303ef9fa7c19ea91bf8bd1a1a7289da48650f3d43f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2025-sotsiaalkiirabi-vajalikkus-eestis-ajakohane-lahendus-kiirabisusteemi-ulekoormusele-2025-4",
+    "previous_source_path": "Sotsiaalkiirabi vajalikkus Eestis_ajakohane lahendus kiirabisüsteemi ülekoormusele.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d154369bbe700d21ee74ed303ef9fa7c19ea91bf8bd1a1a7289da48650f3d43f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

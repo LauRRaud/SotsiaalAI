@@ -1,0 +1,81 @@
+{
+  "source": {
+    "source_id": "sotsiaalkindlustusamet_marac_i_vorgustiku_mudeli_moju_hindamine_loppraport",
+    "title": "MARAC-i võrgustiku mudeli mõju hindamine. Lõppraport",
+    "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-01/MARACi%20v%C3%B5rgustiku%20mudeli%20m%C3%B5ju%20hindamine_l%C3%B5ppraport.pdf",
+    "normalized_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-01/MARACi võrgustiku mudeli mõju hindamine_lõppraport.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "Sotsiaalkindlustusamet",
+    "organization_id": "sotsiaalkindlustusamet",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "Sotsiaalkindlustusamet",
+      "ohvriabi",
+      "MARAC",
+      "riskihindamine",
+      "võrgustikutöö",
+      "abivajaduse hindamine",
+      "hindamisvahend",
+      "uuring",
+      "raport",
+      "analüüs",
+      "SKA"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "SKA",
+      "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+      "heading_4": null,
+      "line": 475,
+      "order": 253
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "MARAC-i võrgustiku mudeli mõju hindamine. Lõppraport"
+    ],
+    "collection_hints": [
+      "research_reports"
+    ],
+    "source_types_seen": [
+      "research_report"
+    ],
+    "resource_types_seen": [
+      "research_evidence"
+    ],
+    "publishers_seen": [
+      "Sotsiaalkindlustusamet"
+    ],
+    "organizations_seen": [
+      "sotsiaalkindlustusamet"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "SKA",
+        "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+        "line": 475,
+        "order": 253
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-01/MARACi võrgustiku mudeli mõju hindamine_lõppraport.pdf"
+  },
+  "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-01/MARACi%20v%C3%B5rgustiku%20mudeli%20m%C3%B5ju%20hindamine_l%C3%B5ppraport.pdf",
+  "redirects": [],
+  "sha256": "3b671cb0faf3e4e26f342c06178a719280926530372db84c9a1034a0e3110d05",
+  "bytes": 7814444,
+  "downloaded_at": "2026-08-14T08:00:51.105Z"
+}

@@ -1,0 +1,16 @@
+{
+  "source": {
+    "source_id": "harno_opitulemuste_vahendamine_asendamine_ja_kohustusliku_oppeaine",
+    "title": "Õpitulemuste vähendamine, asendamine ja kohustusliku õppeaine õppimisest vabastamine",
+    "url": "https://harno.ee/sites/default/files/documents/2022-02/V2hendamine_2022.pdf",
+    "source_url": "https://harno.ee/sites/default/files/documents/2022-02/V2hendamine_2022.pdf",
+    "source_format": "pdf",
+    "ingest_status": "ingest_candidate",
+    "recommended_pipeline": "knowledge_doc_pipeline"
+  },
+  "final_url": "https://harno.ee/sites/default/files/documents/2022-02/V2hendamine_2022.pdf",
+  "local_origin": "consolidated_existing_file",
+  "recorded_at": "2026-08-14T09:25:00.000Z",
+  "bytes": 1413642,
+  "sha256": "3c36e2568123e883308855fa62047399b863006d0745db2dcaaab6200c21d172"
+}

@@ -1,0 +1,38 @@
+{
+  "docId": "sotsiaaltoo-4-2022",
+  "articleId": "muhu-noortesobralik-omavalitsus-2022-4",
+  "title": "Noortesõbralikus Muhu vallas unistatakse suurelt",
+  "authors": [
+    "Kairiin Nuudi"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2022",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "8-13",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Muhu valla sotsiaal- ja noorsootöö koostööst ning kogukonna tugevusest.",
+  "tags": [
+    "kohalik omavalitsus",
+    "Muhu vald",
+    "noorsootöö",
+    "kogukond"
+  ],
+  "source_type": "file",
+  "source_path": "2022_4_artikkel_3_muhu.pdf",
+  "document_id": "sotsiaaltoo-4-2022-muhu-noortesobralik-omavalitsus-2022-4",
+  "source_format": "pdf",
+  "source_sha256": "4d97fa7092e01960fc828f10c5b7f1beea6679add86fed19c97edbfcb7cb354f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2022-muhu-noortesobralik-omavalitsus-2022-4",
+    "previous_source_path": "2022_4_artikkel_3_muhu.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "4d97fa7092e01960fc828f10c5b7f1beea6679add86fed19c97edbfcb7cb354f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

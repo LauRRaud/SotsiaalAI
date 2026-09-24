@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2023",
+  "articleId": "varske-inimarengu-aruanne-vaimset-heaolu-loob-igapaevane-elukeskkond-2023-2",
+  "title": "Värske inimarengu aruanne: vaimset heaolu loob igapäevane elukeskkond",
+  "authors": [
+    "Merike Sisask"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2023",
+  "section": "Raamatu tutvustus",
+  "pageRange": "94-96",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Raamatu tutvustus võtab kokku Eesti inimarengu aruande 2023 põhisisu, keskendudes vaimsele tervisele ja\nheaolule. Autor kirjeldab, kuidas aruanne nihutab fookuse häirekeskse statistika ja ravisüsteemi juurest\nennetusele ning elukeskkonna – suhte-, digi- ja füüsilise keskkonna – kujundamisele. Esile tuuakse seosed\nelukvaliteedi, vaimse tervise, eluviiside ja ebavõrdsusega ning rõhutatakse igapäevase elukeskkonna rolli\nvaimse heaolu toetamisel. Tutvustus käsitleb ka aruandes esitatud tulevikustsenaariume, mis kutsuvad\nlugejat mõtlema, millist vaimse tervisega seotud arenguteed Eesti ühiskond eelistab.",
+  "tags": [
+    "Eesti inimarengu aruanne",
+    "vaimne tervis",
+    "vaimne heaolu",
+    "elukeskkond",
+    "digikeskkond",
+    "eluviisid",
+    "ebavõrdsus",
+    "ennetamine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2023_web_par_Part20.pdf",
+  "document_id": "sotsiaaltoo-2-2023-varske-inimarengu-aruanne-vaimset-heaolu-loob-igapaevane-elukeskkond-2023-2",
+  "source_format": "pdf",
+  "source_sha256": "4336a2939aee2bfb28e68dee0a0373c9cdb4610884efcafcae3188cf204d3ca8",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2023-varske-inimarengu-aruanne-vaimset-heaolu-loob-igapaevane-elukeskkond-2023-2",
+    "previous_source_path": "Sotsiaaltoo_2_2023_web_par_Part20.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "4336a2939aee2bfb28e68dee0a0373c9cdb4610884efcafcae3188cf204d3ca8",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

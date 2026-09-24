@@ -1,0 +1,38 @@
+{
+  "docId": "sotsiaaltoo-4-2019",
+  "articleId": "sotsiaaltoo-peipsimaal-mustvee-vallas-2019",
+  "title": "Sotsiaaltöö Peipsimaa pealinnas ja Mustvee vallas",
+  "authors": [
+    "Tiina Tuur"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2019",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "26-28",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Mustvee valla sotsiaaltöö korralduse ja kohalike väljakutsete ülevaade.",
+  "tags": [
+    "KOV",
+    "Mustvee",
+    "sotsiaaltöö"
+  ],
+  "source_type": "file",
+  "source_path": "ST4_2019_web_link_Part8.pdf",
+  "mapping_fixed": "20260814-161821",
+  "document_id": "sotsiaaltoo-4-2019-sotsiaaltoo-peipsimaal-mustvee-vallas-2019",
+  "source_format": "pdf",
+  "source_sha256": "3375f27fa51d5e1c73624d0071cd58f18f81b65fee4ad22f7857121b730bd58b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2019-sotsiaaltoo-peipsimaal-mustvee-vallas-2019",
+    "previous_source_path": "ST4_2019_web_link_Part8.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "3375f27fa51d5e1c73624d0071cd58f18f81b65fee4ad22f7857121b730bd58b",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

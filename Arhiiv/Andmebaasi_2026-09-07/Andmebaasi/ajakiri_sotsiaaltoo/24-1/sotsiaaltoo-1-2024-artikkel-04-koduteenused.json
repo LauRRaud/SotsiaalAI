@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-1-2024",
+  "articleId": "koduteenuste-korralduses-on-parandamisruumi-2024-1",
+  "title": "Koduteenuste korralduses on parandamisruumi",
+  "authors": [
+    "Anneliis Arm"
+  ],
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2024",
+  "section": "Analüüs",
+  "pageRange": "15-19",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Analüüs põhineb Riigikontrolli auditil, mis hindab koduteenuse korraldust kümnes omavalitsuses ning riigi panust teenuse kättesaadavuse parandamisse aastatel 2018–2023. Artiklis käsitletakse, millised on peamised kitsaskohad taotluste menetlemisel, abivajaduse hindamisel ja teenuse juhtimisel ning kui hästi vastavad omavalitsuste kordad koduteenuse kvaliteedijuhisele ja SHS-i nõuetele. Autor toob esile, et kuigi teenuse formaalne kättesaadavus on üldiselt tagatud, on hindamisvahendite kasutamine ebaühtlane ja alati ei selgu, kuidas kogutud info seostub teenusevajadusega. Samuti tehakse ettepanekuid, kuidas riik ja KOV-id saaksid süsteemselt toetada koduteenuse arendamist ja rahastamist.",
+  "tags": [
+    "koduteenus",
+    "koduteenuse korraldus",
+    "riigikontrolli audit",
+    "abivajaduse hindamine",
+    "kvaliteedijuhis",
+    "sotsiaalhoolekande seadus",
+    "omavalitsus",
+    "teenuse kättesaadavus",
+    "menetlus",
+    "sotsiaalteenuste arendamine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_1_2024_web_Part5.pdf",
+  "document_id": "sotsiaaltoo-1-2024-koduteenuste-korralduses-on-parandamisruumi-2024-1",
+  "source_format": "pdf",
+  "source_sha256": "91851b89aeacdd04a053ff64eb3aaefa1daa6423b67ea71fe2382bc262f3ffbe",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2024-koduteenuste-korralduses-on-parandamisruumi-2024-1",
+    "previous_source_path": "Sotsiaaltoo_1_2024_web_Part5.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "91851b89aeacdd04a053ff64eb3aaefa1daa6423b67ea71fe2382bc262f3ffbe",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

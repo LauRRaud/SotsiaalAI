@@ -1,0 +1,110 @@
+{
+  "created_at": "2026-08-14T12:16:49.2765672+03:00",
+  "removed_count": 18,
+  "actions": [
+    {
+      "action": "remove_duplicate_backup_pdf",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\server_repair_2026-08-14\\baseline\\harno_opitulemuste_vahendamine_asendamine_ja_kohustusliku_oppeaine.pdf",
+      "canonical": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\master_sources_pdf\\harno_opitulemuste_vahendamine_asendamine_ja_kohustusliku_oppeaine.pdf",
+      "sha256": "3c36e2568123e883308855fa62047399b863006d0745db2dcaaab6200c21d172"
+    },
+    {
+      "action": "remove_duplicate_backup_pdf",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\server_repair_2026-08-14\\baseline\\harno-opitulemuste-vahendamine-asendamine-ja-oppeainest-vabastamine.pdf",
+      "canonical": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\master_sources_pdf\\harno_opitulemuste_vahendamine_asendamine_ja_kohustusliku_oppeaine.pdf",
+      "sha256": "3c36e2568123e883308855fa62047399b863006d0745db2dcaaab6200c21d172"
+    },
+    {
+      "action": "remove_duplicate_backup_pdf",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\server_repair_2026-08-14\\baseline\\paasteamet_hoolekande_ja_tervishoiuasutuste_tuleohutus_pdf.pdf",
+      "canonical": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\master_sources_pdf\\paasteamet_hoolekande_ja_tervishoiuasutuste_tuleohutus_pdf.pdf",
+      "sha256": "3eab944a784e5260f636cff5778f08f6be3623fe970cbfee72536cf794dbef8a"
+    },
+    {
+      "action": "remove_duplicate_backup_pdf",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\server_repair_2026-08-14\\baseline\\paasteamet-hoolekande-ja-tervishoiuasutuste-tuleohutus.pdf",
+      "canonical": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\master_sources_pdf\\paasteamet_hoolekande_ja_tervishoiuasutuste_tuleohutus_pdf.pdf",
+      "sha256": "3eab944a784e5260f636cff5778f08f6be3623fe970cbfee72536cf794dbef8a"
+    },
+    {
+      "action": "remove_duplicate_backup_pdf",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\server_repair_2026-08-14\\baseline\\peaasi_ee_koolilaste_ja_noorte_vaimne_tervis.pdf",
+      "canonical": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\master_sources_pdf\\peaasi_ee_koolilaste_ja_noorte_vaimne_tervis.pdf",
+      "sha256": "9fc1e42ef514df9036bef7ca14c97c766ca7720d512cb86e922fad94a6fc5667"
+    },
+    {
+      "action": "remove_duplicate_backup_pdf",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\server_repair_2026-08-14\\baseline\\peaasi-ee-koolilaste-ja-noorte-vaimne-tervis.pdf",
+      "canonical": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\master_sources_pdf\\peaasi_ee_koolilaste_ja_noorte_vaimne_tervis.pdf",
+      "sha256": "9fc1e42ef514df9036bef7ca14c97c766ca7720d512cb86e922fad94a6fc5667"
+    },
+    {
+      "action": "remove_duplicate_backup_pdf",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\server_repair_2026-08-14\\baseline\\ska-seksuaalvagivalla-kriisiabikeskusi-tutvustav-voldik-est.pdf",
+      "canonical": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\master_sources_pdf\\sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est.pdf",
+      "sha256": "72bcb2ccd145ef6db931f20ecef8fab002e3c9c5e8481a6464ea6626648a9a49"
+    },
+    {
+      "action": "remove_duplicate_backup_pdf",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\server_repair_2026-08-14\\baseline\\sotsiaalkindlustusamet_rus.pdf",
+      "canonical": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\master_sources_pdf\\sotsiaalkindlustusamet_rus.pdf",
+      "sha256": "90a2e58be2883a1ea9621db0ba6967d6c696ca48444bde9f063e91ba84cfb645"
+    },
+    {
+      "action": "remove_duplicate_backup_pdf",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\server_repair_2026-08-14\\baseline\\sotsiaalkindlustusamet_seksuaalivakivallan_kriisikeskukset_fin.pdf",
+      "canonical": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\master_sources_pdf\\sotsiaalkindlustusamet_seksuaalivakivallan_kriisikeskukset_fin.pdf",
+      "sha256": "a4c1136166e574a1944345d3eb2f657f8ec8f2ab60c17389abc969095c64fa1f"
+    },
+    {
+      "action": "remove_duplicate_backup_pdf",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\server_repair_2026-08-14\\baseline\\sotsiaalkindlustusamet_seksuaalsest_ahistamisest_vaba_ooelu_juhend.pdf",
+      "canonical": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\master_sources_pdf\\sotsiaalkindlustusamet_seksuaalsest_ahistamisest_vaba_ooelu_juhend.pdf",
+      "sha256": "e8437a96b20dd1368417cecc5b0ff63ac7ed29758cac6f0b838a427e4c940b56"
+    },
+    {
+      "action": "remove_duplicate_backup_pdf",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\server_repair_2026-08-14\\baseline\\sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est.pdf",
+      "canonical": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\master_sources_pdf\\sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est.pdf",
+      "sha256": "72bcb2ccd145ef6db931f20ecef8fab002e3c9c5e8481a6464ea6626648a9a49"
+    },
+    {
+      "action": "remove_duplicate_backup_pdf",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\server_repair_2026-08-14\\baseline\\sotsiaalkindlustusamet_sexual_assault_crisis_centre_eng.pdf",
+      "canonical": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\master_sources_pdf\\sotsiaalkindlustusamet_sexual_assault_crisis_centre_eng.pdf",
+      "sha256": "e73e0a6402d91939d24a3733b5c9259d04b971065a48550a1f54181436e0631a"
+    },
+    {
+      "action": "remove_duplicate_backup_pdf",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\server_repair_2026-08-14\\baseline\\sotsiaalkindlustusamet_ua.pdf",
+      "canonical": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\master_sources_pdf\\sotsiaalkindlustusamet_ua.pdf",
+      "sha256": "e9979fb82e71647a9ea1f51971236121b3f38413773b2f8c82fa56c7bb8944a1"
+    },
+    {
+      "action": "remove_duplicate_backup_pdf",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\server_repair_2026-08-14\\baseline\\tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega.pdf",
+      "canonical": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\master_sources_pdf\\tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega.pdf",
+      "sha256": "e45924e05c1c71324f8def556ba3fe5db00e93a6baceb4fd05698e3dca0319a2"
+    },
+    {
+      "action": "remove_duplicate_backup_pdf",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\server_repair_2026-08-14\\baseline\\tarkvanem_tooleht_rahunemispaus.pdf",
+      "canonical": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\master_sources_pdf\\tarkvanem_tooleht_rahunemispaus.pdf",
+      "sha256": "5ad051c5e5dbee8694f6d9fa6c4b97889c2f33519fffaed6d618bdcbe3982674"
+    },
+    {
+      "action": "remove_duplicate_backup_pdf",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\server_repair_2026-08-14\\baseline\\tarkvanem-tooleht-abikusimused-vestluseks-algkoolilapsega.pdf",
+      "canonical": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\master_sources_pdf\\tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega.pdf",
+      "sha256": "e45924e05c1c71324f8def556ba3fe5db00e93a6baceb4fd05698e3dca0319a2"
+    },
+    {
+      "action": "remove_extracted_transport_archive",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\server_repair_2026-08-14\\baseline.tar.gz"
+    },
+    {
+      "action": "remove_extracted_transport_archive",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\server_repair_2026-08-14\\ocr-results.tar.gz"
+    }
+  ]
+}

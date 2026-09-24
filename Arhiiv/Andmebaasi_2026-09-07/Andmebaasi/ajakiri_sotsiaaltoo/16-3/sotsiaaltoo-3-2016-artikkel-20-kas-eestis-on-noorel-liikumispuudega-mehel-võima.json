@@ -1,0 +1,73 @@
+{
+  "docId": "sotsiaaltoo-3-2016",
+  "articleId": "sotsiaaltoo-3-2016-artikkel-20-kas-eestis-on-noorel-liikumispuudega-mehel-võima",
+  "title": "Kas Eestis on noorel liikumispuudega mehel võimalik iseseisvalt elada?",
+  "authors": [
+    "Mihkel Kruusmaa",
+    "Dagmar Narusson"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2016",
+  "section": "Uurimus",
+  "pageRange": "72-73",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kruusmaa ja Narusson tutvustavad Tartu Ülikoolis 2016. aastal kaitstud bakalaureusetööd, milles intervjueeriti nelja piiratud liikumisvõimega noort meest; intervjueerijal endal oli sama kogemus. Osalejate hinnangul mõjutavad ühiskonnaelus osalemist suhted teiste inimestega, ligipääsetavus, õigused ja toetavad teenused. Kooli- ja büroohoonete ligipääsmatus kitsendab hariduse ja töö valikuid ning isikliku abistaja teenuse kättesaadavus erineb omavalitsuseti nii palju, et elukohta ei saa vabalt valida. Autorid soovitavad muuta ehitusseadustikus kohustuslikuks universaalse disaini ja vaadata üle perekonnaseaduse hoolduskohustus.",
+  "tags": [
+    "uurimus",
+    "liikumispuue",
+    "iseseisev elu",
+    "ligipääsetavus",
+    "isikliku abistaja teenus",
+    "inimõigused"
+  ],
+  "source_type": "file",
+  "source_path": "2016_3_artikkel_20_kas_eestis_on_noorel_liikumispuudega_mehel_voimalik.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2016-sotsiaaltoo-3-2016-artikkel-20-kas-eestis-on-noorel-liikumispuudega-mehel-v-ima",
+  "source_sha256": "a213475b1d8e7daa5156a52f98ea8e2068f89cab8456ca75e3aa5311aa21fb15",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2016-sotsiaaltoo-3-2016-artikkel-20-kas-eestis-on-noorel-liikumispuudega-mehel-v-ima",
+    "previous_source_path": "2016_3_artikkel_20_kas_eestis_on_noorel_liikumispuudega_mehel_voimalik.txt",
+    "previous_source_original_path": "3-2016.pdf",
+    "reference_stored_source_sha256": "942c8d5eb68c7b200e9eae1d3a6cf321a8e2a5cbcbf783b327a34cd5caf117dd",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\3-2016.pdf",
+      "source_sha256": "7a9be30ca3f1a959b3d48a3f12065bc9c37d0f618f6cbb71e681f6e83199aacc",
+      "pdf_start_page": 74,
+      "pdf_end_page": 75,
+      "printed_page_range": "72-74",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 76,
+      "source_regions": [
+        {
+          "source_pdf_page": 74,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 75,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "72-73"
+    },
+    "server_page_range": "72-74"
+  }
+}

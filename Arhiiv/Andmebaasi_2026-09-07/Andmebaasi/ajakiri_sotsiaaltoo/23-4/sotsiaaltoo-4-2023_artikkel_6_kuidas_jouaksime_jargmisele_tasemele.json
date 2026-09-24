@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-4-2023",
+  "articleId": "kuidas-jouaksime-jargmisele-tasemele-tuge-vajavate-inimeste-abistamisel-2023-4",
+  "title": "Kuidas jõuaksime järgmisele tasemele tuge vajavate inimeste abistamisel?",
+  "authors": [
+    "Siim Espenberg"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2023",
+  "section": "Analüüs",
+  "pageRange": "24-29",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Analüüs tutvustab Sotsiaalministeeriumi algatatud projekti, mille eesmärk oli luua registriandmetel põhinev\nriskihindamise instrument sotsiaalhoolekandelise abivajadusega eakate varasemaks tuvastamiseks. Autor selgitab,\nmilliseid andmeid ja õiguslikke eeldusi selline lahendus vajaks ning miks algselt kavandatud mudelit ei ole\npraegu võimalik rakendada. Artiklis rõhutatakse andmekogude ühildamise, andmete kvaliteedi, valdkondadeülese\nkoostöö ja võrgustikutöö tähtsust, tuues näiteks PAIK-projekti kogemused. Uuringu tulemused pakuvad suunda,\nkuidas liikuda süsteemsemate otsuste ja investeeringuteni, et abi jõuaks abivajajateni varem ja tõhusamalt.",
+  "tags": [
+    "riskihindamine",
+    "vanemaealised",
+    "sotsiaalhoolekanne",
+    "andmekogud",
+    "andmete kvaliteet",
+    "PAIK",
+    "võrgustikutöö",
+    "innovatsioon"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2023_web_Part7.pdf",
+  "document_id": "sotsiaaltoo-4-2023-kuidas-jouaksime-jargmisele-tasemele-tuge-vajavate-inimeste-abistamisel-2023-4",
+  "source_format": "pdf",
+  "source_sha256": "f6b7590a1a49f6f0301532a3c3c8c743acc839b73768cefdb39e6fe5d9df3ccd",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2023-kuidas-jouaksime-jargmisele-tasemele-tuge-vajavate-inimeste-abistamisel-2023-4",
+    "previous_source_path": "Sotsiaaltoo_4_2023_web_Part7.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "f6b7590a1a49f6f0301532a3c3c8c743acc839b73768cefdb39e6fe5d9df3ccd",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

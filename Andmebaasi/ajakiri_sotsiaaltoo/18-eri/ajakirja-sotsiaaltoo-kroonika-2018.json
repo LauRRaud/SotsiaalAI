@@ -1,0 +1,38 @@
+{
+  "docId": "sotsiaaltoo-eri-2018",
+  "articleId": "ajakirja-sotsiaaltoo-kroonika-2018",
+  "title": "Ajakirja Sotsiaaltöö kroonika",
+  "authors": [
+    "Toimetus"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö (juubeli erinumber)",
+  "issueLabel": "Eri/2018",
+  "section": "Ajakirja ajalugu",
+  "pageRange": "73-73",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kroonika ajakirja Sotsiaaltöö ilmumisest alates 1997. aastast, väljaandjate ja formaadi muutustest, olulisematest teemadest ning juubeliprojektidest.",
+  "tags": [
+    "Sotsiaaltöö ajakiri",
+    "ajakirja ajalugu",
+    "meediakroonika",
+    "juubelinumber"
+  ],
+  "source_type": "file",
+  "source_path": "ST_eri_2018_web_link_Part20ajakiri.pdf",
+  "document_id": "sotsiaaltoo-eri-2018-ajakirja-sotsiaaltoo-kroonika-2018",
+  "source_format": "pdf",
+  "source_sha256": "00c8e7ecf79ada13c7eff45d7b05121e674ff086fb81a3e159af34f74690dec5",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2018-ajakirja-sotsiaaltoo-kroonika-2018",
+    "previous_source_path": "ST_eri_2018_web_link_Part20ajakiri.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "00c8e7ecf79ada13c7eff45d7b05121e674ff086fb81a3e159af34f74690dec5",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

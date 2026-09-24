@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-1-2020",
+  "articleId": "personaalne-taastumine-ja-perekond-2020-1",
+  "title": "Personaalne taastumine ja perekond",
+  "authors": [
+    "Riina Järve-Tammiste"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2020",
+  "section": "Taastumist toetavad meetodid",
+  "pageRange": "69-71",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel avab personaalse taastumise mõistet ja tähtsust vaimse tervise raskustega inimese ja tema perekonna jaoks, tuginedes CARe metoodikale ja rahvusvahelistele uuringutele. Käsitletakse lähedaste koormust ja leinaprotsessi, pere toetamise ja peretöö olulisust, tugirühmade rolli ning kogemuslugude ja võrgustikutöö mõju paremale toimetulekule.",
+  "tags": [
+    "personaalne taastumine",
+    "pere toetamine",
+    "CARe metoodika",
+    "vaimne tervis",
+    "lähedased",
+    "peretöö",
+    "tugigrupid",
+    "kogemusnõustamine",
+    "haavatavus"
+  ],
+  "source_type": "file",
+  "source_path": "ST1_2020_web_link_Part15.pdf",
+  "document_id": "sotsiaaltoo-1-2020-personaalne-taastumine-ja-perekond-2020-1",
+  "source_format": "pdf",
+  "source_sha256": "0d8fc6d45f217084376e71d68d3d49d9b79c8544dbb92f550fddcc3fdbc4e872",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2020-personaalne-taastumine-ja-perekond-2020-1",
+    "previous_source_path": "ST1_2020_web_link_Part15.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "0d8fc6d45f217084376e71d68d3d49d9b79c8544dbb92f550fddcc3fdbc4e872",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

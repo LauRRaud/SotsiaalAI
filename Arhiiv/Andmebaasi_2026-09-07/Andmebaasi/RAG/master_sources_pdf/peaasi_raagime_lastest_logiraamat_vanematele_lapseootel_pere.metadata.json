@@ -1,0 +1,81 @@
+{
+  "source": {
+    "source_id": "peaasi_raagime_lastest_logiraamat_vanematele_lapseootel_pere",
+    "title": "Räägime Lastest logiraamat vanematele: lapseootel pere",
+    "url": "https://peaasi.ee/wp-content/uploads/2026/02/1.-Logiraamat-vanematele_lapseootel-pere-TAIDETAV.pdf",
+    "normalized_url": "https://peaasi.ee/wp-content/uploads/2026/02/1.-Logiraamat-vanematele_lapseootel-pere-TAIDETAV.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "method_guidance",
+    "publisher": "Peaasi",
+    "organization_id": "peaasi",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Peaasi.ee",
+      "lapsed ja pered",
+      "laps",
+      "lapsevanem",
+      "pere",
+      "vanemlus",
+      "Räägime Lastest",
+      "perevestlus",
+      "perede nõustamine",
+      "logiraamat",
+      "praktiline töövahend"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "Peaasi",
+      "heading_4": null,
+      "line": 603,
+      "order": 307
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Räägime Lastest logiraamat vanematele: lapseootel pere"
+    ],
+    "collection_hints": [
+      "organization_materials"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Peaasi"
+    ],
+    "organizations_seen": [
+      "peaasi"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "Peaasi",
+        "line": 603,
+        "order": 307
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://peaasi.ee/wp-content/uploads/2026/02/1.-Logiraamat-vanematele_lapseootel-pere-TAIDETAV.pdf"
+  },
+  "final_url": "https://peaasi.ee/wp-content/uploads/2026/02/1.-Logiraamat-vanematele_lapseootel-pere-TAIDETAV.pdf",
+  "redirects": [],
+  "sha256": "a94fb4c51c3e66c28fce0b47eaae55b0f5c90588e9ee4c0eb6ac8914990cdb89",
+  "bytes": 1405439,
+  "downloaded_at": "2026-08-14T08:00:58.091Z"
+}

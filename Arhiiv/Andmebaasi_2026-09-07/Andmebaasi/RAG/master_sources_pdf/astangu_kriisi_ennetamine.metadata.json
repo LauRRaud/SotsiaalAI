@@ -1,0 +1,75 @@
+{
+  "source": {
+    "source_id": "astangu_kriisi_ennetamine",
+    "title": "Kriisi ennetamine",
+    "url": "https://www.astangu.ee/sites/default/files/media/To%CC%88o%CC%88vahend_5_Moodul-1-Kriisi_ennetamine.pdf",
+    "normalized_url": "https://www.astangu.ee/sites/default/files/media/Töövahend_5_Moodul-1-Kriisi_ennetamine.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Astangu",
+    "organization_id": "astangu",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Astangu Kutserehabilitatsiooni Keskus",
+      "kriisivalmidus",
+      "riskijuhtimine",
+      "infomaterjal",
+      "Astangu"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "Astangu",
+      "heading_4": null,
+      "line": 581,
+      "order": 298
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Kriisi ennetamine"
+    ],
+    "collection_hints": [
+      "organization_materials"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Astangu"
+    ],
+    "organizations_seen": [
+      "astangu"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "Astangu",
+        "line": 581,
+        "order": 298
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.astangu.ee/sites/default/files/media/Töövahend_5_Moodul-1-Kriisi_ennetamine.pdf"
+  },
+  "final_url": "https://www.astangu.ee/sites/default/files/media/To%CC%88o%CC%88vahend_5_Moodul-1-Kriisi_ennetamine.pdf",
+  "redirects": [],
+  "sha256": "e8238f5e40f494a22358a2024997b6dcf6194d997711f4676ee0012c226b2204",
+  "bytes": 792746,
+  "downloaded_at": "2026-08-14T08:00:56.964Z"
+}

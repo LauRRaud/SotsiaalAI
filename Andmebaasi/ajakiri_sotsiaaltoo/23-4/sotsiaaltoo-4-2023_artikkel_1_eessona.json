@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-4-2023",
+  "articleId": "eessona-tervishoiu-ja-sotsiaalsusteemi-loimimisest-2023-4",
+  "title": "Eessõna",
+  "authors": [
+    "Anniki Lai",
+    "Hanna Vseviov",
+    "Nele Labi"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2023",
+  "section": "Eessõna",
+  "pageRange": "2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Eessõnas avavad sotsiaalministeeriumi esindajad tervise-, sotsiaal- ja innovatsioonivaldkonna ühist eesmärki\nlõimida süsteeme nii, et inimesele pakutav abi oleks sujuvam ja inimesekesksem. Rõhutatakse, et valdkondade\nsidustamine aitab vähendada topelttööd ja bürokraatiat ning toetab elanike tervena elatud aastaid ja heaolu.\nTuues näiteks piloteeritud lahendused nagu PAIK ja teised koostööprojektid, kutsutakse üles kasutama olemasolevaid\nteadmisi ja andmeid, et kujundada ühine inforuum ja tõenduspõhine juhtimine nii tervishoius kui sotsiaalhoolekandes.",
+  "tags": [
+    "eessõna",
+    "tervishoiu ja sotsiaalvaldkonna lõimimine",
+    "inimesekeskne süsteem",
+    "PAIK",
+    "andmete kasutamine",
+    "valdkondadeülene koostöö"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2023_web_Part2.pdf",
+  "document_id": "sotsiaaltoo-4-2023-eessona-tervishoiu-ja-sotsiaalsusteemi-loimimisest-2023-4",
+  "source_format": "pdf",
+  "source_sha256": "8a5dc586d2ed42a5a713e3394f484868025eb3fb78a46e4379ac0215663286bb",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2023-eessona-tervishoiu-ja-sotsiaalsusteemi-loimimisest-2023-4",
+    "previous_source_path": "Sotsiaaltoo_4_2023_web_Part2.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "8a5dc586d2ed42a5a713e3394f484868025eb3fb78a46e4379ac0215663286bb",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

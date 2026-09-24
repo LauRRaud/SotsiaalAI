@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2021",
+  "articleId": "kogumishaire-on-enamat-kui-lihtsalt-hamsterlus-2021-2",
+  "title": "Kogumishäire on enamat kui lihtsalt hamsterlus",
+  "authors": [
+    "Valdar Parve"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2021",
+  "section": "Vaimne tervis",
+  "pageRange": "85-87",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Vaimse tervise teemaline artikkel selgitab, mis on kogumishäire (hoarding disorder) ning kuidas see erineb tavalisest asjade kogumisest või „hamsterlusest“. Autor avab diagnoosi kriteeriume, seosed teiste vaimse tervise häiretega (nt depressioon, obsessiiv-kompulsiivne häire, dementsus), võimalikud põhjused ja riskitegurid ning selle mõju inimese igapäevaelule, suhetele ja turvalisusele. Artikkel käsitleb ka sekkumisvõimalusi – motiveeriv intervjueerimine, kognitiiv-käitumuslik teraapia, võrgustikutöö ja sotsiaaltöötaja roll – ning rõhutab empaatilise, mitte-hukkamõistva hoiaku vajadust nii spetsialistide kui ka lähedaste poolt.",
+  "tags": [
+    "kogumishäire",
+    "hoarding disorder",
+    "vaimne tervis",
+    "obsessiiv-kompulsiivne häire",
+    "dementsus",
+    "kognitiiv-käitumuslik teraapia",
+    "sotsiaaltöö sekkumised"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2021_web_link_Part18.pdf",
+  "document_id": "sotsiaaltoo-2-2021-kogumishaire-on-enamat-kui-lihtsalt-hamsterlus-2021-2",
+  "source_format": "pdf",
+  "source_sha256": "9b6e085f5620bba1a32ae75e3da80298ef77e37224fc86dca8d465369f12e50f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2021-kogumishaire-on-enamat-kui-lihtsalt-hamsterlus-2021-2",
+    "previous_source_path": "Sotsiaaltoo_2_2021_web_link_Part18.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "9b6e085f5620bba1a32ae75e3da80298ef77e37224fc86dca8d465369f12e50f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

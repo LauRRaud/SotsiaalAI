@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2020",
+  "articleId": "miks-sobib-taastav-oigus-noortele-2020-4",
+  "title": "Miks sobib taastav õigus noortele?",
+  "authors": [
+    "Laidi Surva"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2020",
+  "section": "Taastav õigus",
+  "pageRange": "14-18",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel selgitab, miks on taastav õigus eriti sobiv lähenemine alaealiste ja noorte õigusrikkumiste korral. Käsitletakse noorte arengulisi iseärasusi, taasintegreeriva häbistamise teooriat ning taastava õiguse meetodeid, mis toetavad vastutuse võtmist, kahju heastamist, suhete taastamist ja kogukonna turvalisust.",
+  "tags": [
+    "taastav õigus",
+    "alaealised õigusrikkujad",
+    "noorte kuritegevus",
+    "rehabilitatsioon",
+    "kogukondlik turvalisus",
+    "häbistamine",
+    "õiguspoliitika"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2020_web_link_Part5.pdf",
+  "document_id": "sotsiaaltoo-4-2020-miks-sobib-taastav-oigus-noortele-2020-4",
+  "source_format": "pdf",
+  "source_sha256": "82c54b686f525b09a61f69e78027e2157f7bfa3aa6df2cc9771e55817688ada5",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2020-miks-sobib-taastav-oigus-noortele-2020-4",
+    "previous_source_path": "Sotsiaaltoo_4_2020_web_link_Part5.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "82c54b686f525b09a61f69e78027e2157f7bfa3aa6df2cc9771e55817688ada5",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

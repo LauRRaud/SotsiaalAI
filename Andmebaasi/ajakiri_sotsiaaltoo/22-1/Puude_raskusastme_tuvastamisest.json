@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-1-2022",
+  "articleId": "puude-raskusastme-tuvastamisest-lastel-ent-mitte-ainult-2022-1",
+  "title": "Puude raskusastme tuvastamisest lastel, ent mitte ainult",
+  "authors": [
+    "Juta Saarevet",
+    "Gevin Kalm"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2022",
+  "section": "Õigus",
+  "pageRange": "20-23",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Õiguslik analüüs, mis selgitab laste (ja ka teiste vanuserühmade) puude raskusastme tuvastamise reegleid pärast 2019. aastal toimunud muutusi ning Riigikohtu 2021. aasta otsust. Autorid käsitlevad juhtumeid, kus laps vajab ravitoimingute tegemisel püsivalt abi või järelevalvet, ning selgitavad, kuidas hinnata abivajadust, ohte lapse elule ja tervisele ning millal on alust puude raskusastme määramiseks. Artiklis rõhutatakse, et vanema panus lapse tervise hoidmisel ei välista puude määramist, selgitatakse vaide ja kaebuse esitamise võimalusi ning antakse praktilisi juhiseid nii sotsiaalkindlustusametile kui ka lapsevanematele.",
+  "tags": [
+    "puude raskusaste",
+    "lapsed",
+    "Riigikohtu lahend",
+    "sotsiaalkindlustus",
+    "harvikhaigused",
+    "ravitoimingud",
+    "õiguskaitsevahendid"
+  ],
+  "source_type": "file",
+  "source_path": "2022_artikkel_5_puude_raskusaste_lastel.pdf",
+  "document_id": "sotsiaaltoo-1-2022-puude-raskusastme-tuvastamisest-lastel-ent-mitte-ainult-2022-1",
+  "source_format": "pdf",
+  "source_sha256": "4dd316ec3df1a19f85d9d219d817b97b0b8343a729dfcb318cc7a9c6e1b2fd27",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2022-puude-raskusastme-tuvastamisest-lastel-ent-mitte-ainult-2022-1",
+    "previous_source_path": "2022_artikkel_5_puude_raskusaste_lastel.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "4dd316ec3df1a19f85d9d219d817b97b0b8343a729dfcb318cc7a9c6e1b2fd27",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

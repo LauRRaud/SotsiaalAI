@@ -1,0 +1,82 @@
+{
+  "docId": "sotsiaaltoo-3-2018",
+  "articleId": "kov-sotsiaalse-kaitse-rahastamine-2018",
+  "title": "Kohalikud omavalitsused ja sotsiaalse kaitse rahastamine",
+  "authors": [
+    "Andrus Jõgi"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2018",
+  "section": "Sotsiaalpoliitika",
+  "pageRange": "17-19",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Rahandusministeeriumi nõuniku ülevaade sellest, kust tuleb raha omavalitsuste sotsiaalse kaitse kuludeks ja kui palju omavalitsused sellesse ise panustavad. 2018. aastal oli toetusfondist sotsiaalse kaitse kuludeks ette nähtud 51 mln eurot kuuele meetmele; 2017. aastal ulatusid omavalitsuste sotsiaalse kaitse kulud 146 mln euroni, millest 84 mln oli omavalitsuste enda panus. Eesti omavalitsused kulutavad sotsiaalsele kaitsele 0,7% SKP-st, Soomes on vastav näitaja 6%, Rootsis 7,1% ja Taanis 19,7%; omapanus kõigub 14 eurost 110 euroni elaniku kohta aastas ega ole seletatav rahaliste võimaluste ega abivajaduse erinevusega. Näitab, et 2017. aastal panustati sotsiaalsesse kaitsesse sama palju kui 2016, kuigi sissetulekud kasvasid 11% — reaalselt tähendas see kärbet.",
+  "tags": [
+    "sotsiaalse kaitse rahastamine",
+    "kohalik omavalitsus",
+    "toetusfond",
+    "omavalitsuste eelarve",
+    "Põhjamaade võrdlus",
+    "ebavõrdsus"
+  ],
+  "source_type": "file",
+  "source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part5.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2018-kov-sotsiaalse-kaitse-rahastamine-2018",
+  "source_sha256": "10568535c9eb7fbf89749ae840de4e9fe068a57a79aaa1b55c8598addffea213",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2018-kov-sotsiaalse-kaitse-rahastamine-2018",
+    "previous_source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part5.txt",
+    "previous_source_original_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part5.pdf",
+    "reference_stored_source_sha256": "f3ccfc0cd3afade0f83e4a783bd6b47a2a0ff44e625dc6351233d3232ec74b32",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\18-3\\155619680390_Sotsiaaltoo_nr3_2018_veebi_link.pdf",
+      "source_sha256": "45eac17c335ef472708d0eb485f916c201e5db46ac64163cc7aeeb1f47dd10a9",
+      "pdf_start_page": 19,
+      "pdf_end_page": 21,
+      "printed_page_range": "17-19",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 21,
+      "source_regions": [
+        {
+          "source_pdf_page": 19,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 20,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 21,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "17-19",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\18-3\\155619680390_Sotsiaaltoo_nr3_2018_veebi_link.pdf"
+    },
+    "server_page_range": "17-19"
+  }
+}

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="3703ddfc-c1cb-4def-a80f-0de49d22b0ed" xsi:schemaLocation="muutmismaarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/muutmismaarus_1_10.02.2010.xsd" xmlns="muutmismaarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Haljala Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2026-01-20</aktikuupaev>
+  
+  
+  <aktiNr>3</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-01-23</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>3</RTartikkel><aktViide>423012026003</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2026-01-26+02:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2026-01-20</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>muutmismaarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>423012026003</globaalID>
+ <metaandmedVersioon>7</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-01-22</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <eesmark>Muutmismääruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>koostamine</dokumentEtapp><dokumentStaatus>koostamisel</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2026-01-20</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Marika Sundla</metaandmedVersioonPohjustaja></versiooniMuutus><versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>2</metaandmedVersioon><metaandmedVersioonKuupaev>2026-01-20</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Marika Sundla</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="b1b7795b-5aae-4a56-b199-81b1dddac172">
+  <nimi id="026e5a9e-99df-45d1-a75e-4905c6484047"><pealkiri>Haljala Vallavolikogu 19.11.2024 määruse nr 72 „Haljala valla sotsiaalhoolekandelise abi andmise tingimused ja kord” muutmine</pealkiri></nimi>
+ </aktinimi>
+ <sisu id="4fefcc9e-fa80-40a3-9d2c-11334fb655d5"><preambul id="e2e6edc7-d28f-44d7-9ffa-e49b40660c8d">
+   <tavatekst id="ab28d9ca-0225-4865-b3be-4d57542b6d0a">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 ning sotsiaalhoolekande seaduse § 14 alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="14721a61-0e36-4a08-86f8-e8eb05bbcc2c">1</paragrahvNr>
+   <kuvatavNr id="2ef03234-6312-4de6-878b-d01e06b6588d"><![CDATA[§ 1. ]]></kuvatavNr>
+      <sisuTekst id="6af4af15-2592-4579-8487-588484e15857">
+    <tavatekst id="70b2a4ac-3302-488d-bae4-5ced0f36d64d">Haljala Vallavolikogu 19.11.2024 määruses nr 72 „Haljala valla sotsiaalhoolekandelise abi andmise tingimused ja kord” tehakse järgmised muudatused:</tavatekst>
+   </sisuTekst>
+  <loige id="para1lg1">
+   <loigeNr id="4d7fbd02-0baa-4087-9fed-ea7c70e1e1ac"/>
+   <kuvatavNr id="667160bf-25a4-4203-bfdd-5cd2a4c64bf7"/>
+   <sisuTekst id="1e3c40bd-728f-4191-8527-892aac2f9ec2">
+    <tavatekst id="afc263f1-eba2-4044-b2eb-5af698a5aa9f"/>
+   </sisuTekst>
+  <alampunkt id="para1lg1p1">
+   <alampunktNr id="03e740ac-6a76-41c6-a967-021208de9aec">1</alampunktNr>
+   <kuvatavNr id="f53ccb53-2bb2-4182-92ff-3a1031f22014"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="2e9e6301-bc6c-4e2a-a10b-79d3532b80e5">
+    <tavatekst id="d30dd796-383b-489a-b2c1-6bddaac64662">paragrahvi 22 muudetakse ja sõnastatakse järgmiselt:<reavahetus/></tavatekst>
+   </sisuTekst>
+  <sisuTekst id="5dac6b92-f82b-483c-b915-3dca56d9a6bc">
+	<tavatekst id="c864f8ba-9f10-43d8-9059-1c6c5dc93c44"><reavahetus/><reavahetus/>„<b>§ 22. Sotsiaalteenuste liigid</b><reavahetus/>Määruse alusel osutatavad ja/või korraldatavad teenuste liigid on:<reavahetus/>1) koduteenus;<reavahetus/> 2) väljaspool kodu osutatav üldhooldusteenus;<reavahetus/>3) tugiisikuteenus;<reavahetus/>4) raske või sügava puudega isiku hooldus;<reavahetus/>5) isikliku abistaja teenus;<reavahetus/>6) varjupaigateenus;<reavahetus/>7) turvakoduteenus;<reavahetus/>8) sotsiaaltransporditeenus;<reavahetus/>9) eluruumi tagamine;<reavahetus/>10) võlanõustamisteenus;<reavahetus/>11) sotsiaalnõustamine;<reavahetus/>12) asendushooldusteenus;<reavahetus/>13) järelhooldusteenus;<reavahetus/>14) vaimse tervise toetamise teenus;<reavahetus/>15) muu vajaduspõhine teenus.“;</tavatekst>
+	</sisuTekst></alampunkt><alampunkt id="para1lg1p2">
+   <alampunktNr id="f0bf776e-755a-4a67-aed2-4a4840832699">2</alampunktNr>
+   <kuvatavNr id="4e68a72c-83b6-47bf-9100-c05d4a7fed06"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="a3dfc128-abed-4ae1-b502-871fb9dd3a0b">
+    <tavatekst id="6e201c05-605c-4a63-9317-430db4bb4699">määrust täiendatakse paragrahviga 33<sup>1</sup> järgmises sõnastuses:<reavahetus/></tavatekst>
+   </sisuTekst>
+  <sisuTekst id="c9a5d6cb-9021-42f3-9f01-75ded2a19d30">
+	<tavatekst id="28db3717-068a-48ce-b5c9-430a64c7cf91"><reavahetus/><reavahetus/>„<b>§ 33</b><b><sup>1</sup></b><b>. Vaimse tervise toetamise teenused</b><reavahetus/>(1) Vaimse tervise toetamise teenus on psühhosotsiaalse või psühholoogilise abi tagamine Haljala valla elanikele käesolevas määruses sätestatud tingimustel. Vaimse tervise toetamise teenust osutatakse riigi- ja vallaeelarvest teenuse osutamiseks eraldatud toetuse mahus.<reavahetus/>(2) Lähtuvalt teenuse saaja vajadusest osutatakse järgmiseid vaimse tervise toetamise teenuseid:<reavahetus/>1) psühholoogi teenus;<reavahetus/>2) perenõustamine;<reavahetus/>3) pereteraapia;<reavahetus/>4) kogemusnõustamine;<reavahetus/>5) leinanõustamine;<reavahetus/>6) kriisinõustamine;<reavahetus/>7) vajadusel muu nõustamine või teraapia. <reavahetus/>(3) Vaimse tervise toetamise teenuse saamiseks esitab isik ametiasutusele käesoleva määruse paragrahvis 5 sätestatud nõuetele vastava taotluse.<reavahetus/>(4) Teenuse andmise või teenuse andmisest keeldumise otsustab Haljala Vallavalitsuse sotsiaaltoetuste ja -teenuste komisjon.<reavahetus/>(5) Teenuse osutamist korraldab ametiasutuse haridus- ja sotsiaalteenistus. Teenuse osutamisel tasutakse teenuse kulud teenuseosutaja arve alusel teenuse osutaja arveldusarvele.“;<reavahetus/></tavatekst>
+	</sisuTekst></alampunkt><alampunkt id="para1lg1p3">
+   <alampunktNr id="6e1f665e-6bae-4c3a-8782-e4d0f74ebfd7">3</alampunktNr>
+   <kuvatavNr id="31e5c123-fe38-4090-8447-8b5416772148"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="d711c75c-a988-4149-a54d-40ba43a72546">
+    <tavatekst id="4f42b630-93bf-4752-82d3-33955a3fa879">paragrahvi 34 lõiget 2 muudetakse ja sõnastatakse järgmiselt:</tavatekst>
+   </sisuTekst>
+  <sisuTekst id="01550902-c281-4177-9b2e-9a075b264047">
+	<tavatekst id="90476a0f-a7ec-426b-8efc-52154107bbe0"><reavahetus/>„(2) Isikule või perekonnale võib osutada või korraldada lähtuvalt isiku abivajadusest järgnevaid täiendavaid teenuseid:<reavahetus/>1) tugirühmad, tugiprogrammid ja koolitused;<reavahetus/>2) kriisiabi, sh laste leinalaagrid;<reavahetus/>3) sõltuvusravi;<reavahetus/>4) viipekeele tõlketeenus;<reavahetus/>5) muud toetavad teenused.“.</tavatekst>
+	</sisuTekst></alampunkt></loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="d0724ed4-7b6c-4877-a2ce-91a3aa696eb9">2</paragrahvNr>
+   <kuvatavNr id="1f9d033d-f134-4e8a-991b-2a8262224efd"><![CDATA[§ 2. ]]></kuvatavNr>
+      <sisuTekst id="5c1e4c8f-3f2c-4f8b-a24b-d790c20de163">
+    <tavatekst id="edddb99a-544e-4971-bc72-97e0eba5ebf0">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst>
+   </sisuTekst>
+  </paragrahv></sisu>
+<allkiri id="9b189782-446b-48a9-844f-0cf3d8e195a9"><allkiriKoht id="dcbdf49d-b649-40db-9435-73b280c88e1a"/><allkirjastaja id="696ddd4c-4ee2-4578-bd00-5b5202f6af2e"><ametinimetus id="6aaa3086-f6ad-4ebe-8e57-1f913f4ef6e6">volikogu esimees</ametinimetus><eesnimi id="1fdea848-e753-41bf-92f0-2214be9f934a">Agu</eesnimi><perekonnanimi id="7f240864-b7a3-4190-88f0-24094fbdd705">Trofimov</perekonnanimi></allkirjastaja></allkiri></oigusakt>

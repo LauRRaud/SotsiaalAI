@@ -1,0 +1,146 @@
+{
+  "source_path": "sotsiaalkindlustusamet_perevagivalla_toimepanijatele_suunatud_programmide_euroopa_s.pdf",
+  "source_format": "pdf",
+  "sha256": "57fe80902048b35fa5a926b53bd45268f2cffed70e0d72ef42aa97da2433b714",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/sotsiaalkindlustusamet_perevagivalla_toimepanijatele_suunatud_programmide_euroopa_s.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "sotsiaalkindlustusamet_perevagivalla_toimepanijatele_suunatud_programmide_euroopa_s",
+          "title": "Perevägivalla toimepanijatele suunatud programmide Euroopa standardid",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Perevagivalla%20toimepanijatele%20suunatud%20programmide%20Euroopa%20standardid.pdf",
+          "normalized_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Perevagivalla toimepanijatele suunatud programmide Euroopa standardid.pdf",
+          "source_format": "pdf",
+          "source_type": "official_guideline",
+          "resource_type": "method_guidance",
+          "publisher": "Sotsiaalkindlustusamet",
+          "organization_id": "sotsiaalkindlustusamet",
+          "collection_hint": "guidance_and_methods",
+          "evidence_role": "practice_guidance",
+          "topic_tags": [
+            "Sotsiaalkindlustusamet",
+            "lapsed ja pered",
+            "lapsevanem",
+            "pere",
+            "vanemlus",
+            "praktiline töövahend",
+            "SKA",
+            "vägivald",
+            "ohvriabi",
+            "spetsialisti juhend"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "high",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "SKA",
+            "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+            "heading_4": null,
+            "line": 469,
+            "order": 250
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Perevägivalla toimepanijatele suunatud programmide Euroopa standardid"
+          ],
+          "collection_hints": [
+            "policy_analyses"
+          ],
+          "source_types_seen": [
+            "policy_analysis"
+          ],
+          "resource_types_seen": [
+            "policy_context"
+          ],
+          "publishers_seen": [
+            "Sotsiaalkindlustusamet"
+          ],
+          "organizations_seen": [
+            "sotsiaalkindlustusamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "SKA",
+              "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+              "line": 469,
+              "order": 250
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Perevagivalla toimepanijatele suunatud programmide Euroopa standardid.pdf"
+        },
+        "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Perevagivalla%20toimepanijatele%20suunatud%20programmide%20Euroopa%20standardid.pdf",
+        "redirects": [],
+        "sha256": "57fe80902048b35fa5a926b53bd45268f2cffed70e0d72ef42aa97da2433b714",
+        "bytes": 892023,
+        "downloaded_at": "2026-08-14T08:00:49.893Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "sotsiaalkindlustusamet_perevagivalla_toimepanijatele_suunatud_programmide_euroopa_s",
+      "metadata": {
+        "createdAt": "2026-06-11T18:51:27.699625+00:00",
+        "type": "FILE",
+        "fileName": "Perevagivalla toimepanijatele suunatud programmide Euroopa standardid.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-11T18:51:27.637328+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/bd1c0fdb0a2c/Perevagivalla toimepanijatele suunatud programmide Euroopa standardid.pdf",
+        "title": "Perevägivalla toimepanijatele suunatud programmide Euroopa standardid",
+        "description": "Source master headings: SKA; Ohvriabi, MARAC, naiste tugikeskused",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2025,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–44",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "policy_analyses",
+        "source_id": "sotsiaalkindlustusamet_perevagivalla_toimepanijatele_suunatud_programmide_euroopa_s",
+        "document_id": "sotsiaalkindlustusamet_perevagivalla_toimepanijatele_suunatud_programmide_euroopa_s",
+        "source_type": "official_guideline",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-11",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "38ee679868a538258049d9cdd4ecf5f3d67aa07750f16aa186ca802372bb9ba5",
+        "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Perevagivalla%20toimepanijatele%20suunatud%20programmide%20Euroopa%20standardid.pdf",
+        "url_canonical": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Perevagivalla toimepanijatele suunatud programmide Euroopa standardid.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "sotsiaalkindlustusamet_perevagivalla_toimepanijatele_suunatud_programmide_euroopa_s",
+        "updatedAt": "2026-06-11T18:51:27.699649+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

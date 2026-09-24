@@ -1,0 +1,3461 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-vaike-maarja-vald",
+  "document_id": "kov-vaike-maarja-vald",
+  "municipality": "Väike-Maarja vald",
+  "municipality_id": "vaike_maarja_vald",
+  "county": "Lääne-Virumaa",
+  "checkedAt": "2026-04-30",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "vaike_maarja_vald_contact_silvi_sirelpuu",
+      "canonical_item_id": "vaike_maarja_vald:contact:silvi_sirelpuu",
+      "itemType": "contact",
+      "title": "Silvi Sirelpuu",
+      "status": "active",
+      "summary": "Korraldab sotsiaalvaldkonna tööd, sotsiaalnõustamist ja omavalitsuse eestkostel olevate täisealiste isikute eestkostet.",
+      "name": "Silvi Sirelpuu",
+      "role": "sotsiaalosakonna juhataja",
+      "department": "Sotsiaalosakond",
+      "address": "Pikk 7, 46202 Väike-Maarja",
+      "sourceKeys": [
+        "sotsiaalosakonna_kontaktid"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sotsiaalosakonna_kontaktid"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_contact_silvi_sirelpuu",
+      "document_id": "vaike_maarja_vald_contact_silvi_sirelpuu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "7549cb20dcb41ffba6b66e73ed41c29e16026185d553181d84afdec313d9c2cb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_contact_tiia_kaselo",
+      "canonical_item_id": "vaike_maarja_vald:contact:tiia_kaselo",
+      "itemType": "contact",
+      "title": "Tiia Kaselo",
+      "status": "active",
+      "summary": "Tegeleb lastekaitsealase nõustamise, laste heaolu toetamise, eestkoste ja juhtumikorraldusega.",
+      "name": "Tiia Kaselo",
+      "role": "lastekaitsespetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Pikk 7, 46202 Väike-Maarja",
+      "sourceKeys": [
+        "sotsiaalosakonna_kontaktid"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sotsiaalosakonna_kontaktid"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_contact_tiia_kaselo",
+      "document_id": "vaike_maarja_vald_contact_tiia_kaselo",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "9beda0fdc88c703b6da1994dc2450195b69684fc2df55cfa8a5330810ed1fec3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_contact_eve_hiietamm",
+      "canonical_item_id": "vaike_maarja_vald:contact:eve_hiietamm",
+      "itemType": "contact",
+      "title": "Eve Hiietamm",
+      "status": "active",
+      "summary": "Menetleb riiklikke ja valla sotsiaaltoetusi, väljastab parkimiskaarte ja korraldab toiduabi teenust.",
+      "name": "Eve Hiietamm",
+      "role": "toetuste menetleja",
+      "department": "Sotsiaalosakond",
+      "address": "Pikk 7, 46202 Väike-Maarja; iga kuu 3. neljapäeval vastuvõtt Rakkes 8.30–13.00",
+      "sourceKeys": [
+        "sotsiaalosakonna_kontaktid"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sotsiaalosakonna_kontaktid"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_contact_eve_hiietamm",
+      "document_id": "vaike_maarja_vald_contact_eve_hiietamm",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "9b19dfccbe7f0e6688e50c5f84f5b29e1badf8f46fbeea5eefe8dc05f23a5a85",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_contact_kersti_sepp",
+      "canonical_item_id": "vaike_maarja_vald:contact:kersti_sepp",
+      "itemType": "contact",
+      "title": "Kersti Sepp",
+      "status": "active",
+      "summary": "Toetab noorte haridust ja tööturule liikumist, iseseisvat toimetulekut ning erivajadustega inimeste hoolekandeteenuseid.",
+      "name": "Kersti Sepp",
+      "role": "juhtumikorraldaja",
+      "department": "Sotsiaalosakond",
+      "address": "Pikk 7, 46202 Väike-Maarja",
+      "sourceKeys": [
+        "sotsiaalosakonna_kontaktid"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sotsiaalosakonna_kontaktid"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_contact_kersti_sepp",
+      "document_id": "vaike_maarja_vald_contact_kersti_sepp",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "7efabd0c2c444fa1a015a3f1c0f500cd435a750af5af3f550e985a162f304b51",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_contact_ave_rosental",
+      "canonical_item_id": "vaike_maarja_vald:contact:ave_rosental",
+      "itemType": "contact",
+      "title": "Ave Rosental",
+      "status": "active",
+      "summary": "Psühholoogiline nõustaja, kelle vastuvõtt on Väike-Maarja valla elanikele tasuta eelregistreerimisega.",
+      "name": "Ave Rosental",
+      "role": "psühholoog",
+      "department": "Sotsiaalosakond / tervisekeskus",
+      "address": "Väike-Maarja tervisekeskus, II korrus, kabinet 25",
+      "sourceKeys": [
+        "sotsiaalosakonna_kontaktid"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sotsiaalosakonna_kontaktid"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_contact_ave_rosental",
+      "document_id": "vaike_maarja_vald_contact_ave_rosental",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "2fa2838b43f9a2addc955b79310e5126232405c43a0f5234a3739aa640e302d4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_contact_marin_prits",
+      "canonical_item_id": "vaike_maarja_vald:contact:marin_prits",
+      "itemType": "contact",
+      "title": "Marin Prits",
+      "status": "active",
+      "summary": "Korraldab koduteenuseid Väike-Maarja piirkonnas, Triigis ja Eipris.",
+      "name": "Marin Prits",
+      "role": "sotsiaaltöötaja",
+      "department": "Sotsiaalosakond",
+      "address": "Väike-Maarja piirkond, Triigi, Eipri",
+      "sourceKeys": [
+        "sotsiaalosakonna_kontaktid"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sotsiaalosakonna_kontaktid"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_contact_marin_prits",
+      "document_id": "vaike_maarja_vald_contact_marin_prits",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "96dc37b47e6f44fc83fef55284ebe98465371077278630bb5c0e7d893e840706",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_contact_anne_terner_boiko",
+      "canonical_item_id": "vaike_maarja_vald:contact:anne_terner_boiko",
+      "itemType": "contact",
+      "title": "Anne Terner-Boiko",
+      "status": "active",
+      "summary": "Korraldab koduteenuseid Rakke piirkonnas.",
+      "name": "Anne Terner-Boiko",
+      "role": "sotsiaaltöötaja",
+      "department": "Sotsiaalosakond",
+      "address": "Rakke kultuurikeskus, Simuna tee 10; vastuvõtt E 9–11, N 14–16",
+      "sourceKeys": [
+        "sotsiaalosakonna_kontaktid"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sotsiaalosakonna_kontaktid"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_contact_anne_terner_boiko",
+      "document_id": "vaike_maarja_vald_contact_anne_terner_boiko",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "7ef15fc014a0bdb34f5d78a7f8c4806c2808aaca6f18070eab6ad130d2916dc7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_contact_merje_sapelson",
+      "canonical_item_id": "vaike_maarja_vald:contact:merje_sapelson",
+      "itemType": "contact",
+      "title": "Merje Sapelson",
+      "status": "active",
+      "summary": "Osutab koduteenuseid Väike-Maarja, Koonu, Pandivere ja Aburi piirkonnas.",
+      "name": "Merje Sapelson",
+      "role": "avahooldustöötaja",
+      "department": "Sotsiaalosakond",
+      "address": "Väike-Maarja, Koonu, Pandivere, Aburi",
+      "sourceKeys": [
+        "sotsiaalosakonna_kontaktid"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sotsiaalosakonna_kontaktid"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_contact_merje_sapelson",
+      "document_id": "vaike_maarja_vald_contact_merje_sapelson",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "545e1712228469724db8dc2128f9ff818d15a2b16b6c1d34d2883638869b790b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_contact_riina_rajaste",
+      "canonical_item_id": "vaike_maarja_vald:contact:riina_rajaste",
+      "itemType": "contact",
+      "title": "Riina Rajaste",
+      "status": "active",
+      "summary": "Osutab koduteenuseid Simuna piirkonnas.",
+      "name": "Riina Rajaste",
+      "role": "avahooldustöötaja",
+      "department": "Sotsiaalosakond",
+      "address": "Simuna spordihoone, Lai 1, Simuna; vastuvõtt T 9–12",
+      "sourceKeys": [
+        "sotsiaalosakonna_kontaktid"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sotsiaalosakonna_kontaktid"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_contact_riina_rajaste",
+      "document_id": "vaike_maarja_vald_contact_riina_rajaste",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "1ee7e76c36a644ee2f23ad57dea61d7f2c8bfb9d3e4312d50312c2f0cff3de69",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_contact_terje_amor",
+      "canonical_item_id": "vaike_maarja_vald:contact:terje_amor",
+      "itemType": "contact",
+      "title": "Terje Amor",
+      "status": "active",
+      "summary": "Osutab koduteenuseid Rakke piirkonnas.",
+      "name": "Terje Amor",
+      "role": "avahooldustöötaja",
+      "department": "Sotsiaalosakond",
+      "address": "Rakke piirkond",
+      "sourceKeys": [
+        "sotsiaalosakonna_kontaktid"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sotsiaalosakonna_kontaktid"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_contact_terje_amor",
+      "document_id": "vaike_maarja_vald_contact_terje_amor",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "244a1874bcf3cdee88d4e9714f71eb2fd15fcbcd174d6838264141207b8e8c6b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_contact_merike_adamson",
+      "canonical_item_id": "vaike_maarja_vald:contact:merike_adamson",
+      "itemType": "contact",
+      "title": "Merike Adamson",
+      "status": "active",
+      "summary": "Korraldab koduteenuseid Kiltsi, Vao ja Pikevere piirkonnas.",
+      "name": "Merike Adamson",
+      "role": "sotsiaaltöötaja",
+      "department": "Sotsiaalosakond",
+      "address": "Kiltsi, Vao, Pikevere",
+      "sourceKeys": [
+        "sotsiaalosakonna_kontaktid"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sotsiaalosakonna_kontaktid"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_contact_merike_adamson",
+      "document_id": "vaike_maarja_vald_contact_merike_adamson",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "6c602ed243c28e9dc4a9d62e0d9d4f449003f6ab2da2cf6938424d5aa69cf6eb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_contact_anneli_mikiver",
+      "canonical_item_id": "vaike_maarja_vald:contact:anneli_mikiver",
+      "itemType": "contact",
+      "title": "Anneli Mikiver",
+      "status": "active",
+      "summary": "Päevakeskuse kontaktisik; kodus elavad eakad saavad tegevustes osalemise kokku leppida telefoni teel.",
+      "name": "Anneli Mikiver",
+      "role": "päevakeskuse kontakt",
+      "department": "Päevakeskus",
+      "address": "Väike-Maarja Hooldekodu ruumid",
+      "sourceKeys": [
+        "paevakeskus_page"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "paevakeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_contact_anneli_mikiver",
+      "document_id": "vaike_maarja_vald_contact_anneli_mikiver",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "66daed127d368426e4e04d07d4d645a4b281a8007456ad2ac11e457ed8714449",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_service_koduteenus",
+      "canonical_item_id": "vaike_maarja_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus tagab täisealise inimese iseseisva ja turvalise toimetuleku kodus. Teenuse käigus aidatakse toimingutes, mida inimene terviseseisundi, tegevusvõime või elukeskkonna tõttu kõrvalabita teha ei suuda, näiteks kütmine, toiduvalmistamine, eluruumi ja riiete korrastamine ning toiduainete ja majapidamistarvete ostmine. Teenuse maht selgitatakse välja abivajaduse hindamisel ning teenuse osutamiseks sõlmitakse kolmepoolne leping.",
+      "targetGroup": "Täisealine inimene, kes vajab kodustes tingimustes kõrvalabi.",
+      "conditions": "Abivajadus tuvastatakse hindamise käigus; lepingus määratakse teenuse maht, tähtaeg, hind ja teenuse osutaja.",
+      "application": {
+        "channels": [
+          "iseteenindusportaal",
+          "kohapeal paberkandjal",
+          "e-postiga digiallkirjastatult"
+        ],
+        "steps": [
+          "Esita taotlus Väike-Maarja valla iseteenindusportaalis või täida Sotsiaalteenuse avaldus.",
+          "Too vorm vallamajja või saada digiallkirjastatult vallavalitsusele.",
+          "Vallavalitsus hindab abivajadust ja sõlmib kolmepoolse lepingu."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "5 eurot kord; uued hinnad alates 01.05.2025"
+      },
+      "amount": null,
+      "officialUrl": "https://v-maarja.ee/koduteenuse-taotlemine",
+      "relatedTo": [],
+      "relatedForms": [
+        "vaike_maarja_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_silvi_sirelpuu",
+        "vaike_maarja_vald_contact_marin_prits",
+        "vaike_maarja_vald_contact_anne_terner_boiko",
+        "vaike_maarja_vald_contact_merje_sapelson",
+        "vaike_maarja_vald_contact_riina_rajaste",
+        "vaike_maarja_vald_contact_terje_amor",
+        "vaike_maarja_vald_contact_merike_adamson"
+      ],
+      "sourceKeys": [
+        "koduteenus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "koduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_service_koduteenus",
+      "document_id": "vaike_maarja_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/koduteenuse-taotlemine",
+      "content_hash": "9c9109c1de37d710cb02f80be7fc69fa0d048ffa8593f341d02c5df5b925f06d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_service_eluruumi_tagamise_teenus",
+      "canonical_item_id": "vaike_maarja_vald:service:eluruumi_tagamise_teenus",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenus kindlustab eluruumi kasutamise inimesele, kes ei suuda sotsiaalmajanduslikust olukorrast tulenevalt endale või oma perele sobivat eluruumi tagada. Teenust antakse eelkõige tervislike raskuste, sotsiaalhoolekandelise abi vajaduse, tulekahju või muu eluaseme kaotuse ning asendushoolduselt või kinnipidamisasutusest naasmise korral. Eluruum antakse üldjuhul tähtajaliselt ja selleks sõlmitakse kirjalik üürileping.",
+      "targetGroup": "Isikud ja pered, kes ei suuda eluaset ise tagada ning kelle toimetulek, elu või tervis võib teenuse puudumisel olla ohus.",
+      "conditions": "Õigustatud isikute hulka kuuluvad muu hulgas tervisliku liikumisraskusega isikud, sotsiaalhoolekandelist abi vajavad pered, eluaseme kaotanud isikud ning asendushoolduselt või kinnipidamisasutusest naasnud isikud.",
+      "application": {
+        "channels": [
+          "iseteenindusportaal",
+          "kohapeal paberkandjal",
+          "e-postiga digiallkirjastatult"
+        ],
+        "steps": [
+          "Esita taotlus iseteenindusportaalis või täida Sotsiaalteenuse avaldus.",
+          "Lisa eluruumi vajadust põhjendavad andmed.",
+          "Vallavalitsus teeb korralduse ning sõlmitakse üürileping."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://v-maarja.ee/eluruumi-tagamise-teenuse-taotlemine",
+      "relatedTo": [],
+      "relatedForms": [
+        "vaike_maarja_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_silvi_sirelpuu",
+        "vaike_maarja_vald_contact_eve_hiietamm"
+      ],
+      "sourceKeys": [
+        "eluruumi_tagamise_teenus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "eluruumi_tagamise_teenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_service_eluruumi_tagamise_teenus",
+      "document_id": "vaike_maarja_vald_service_eluruumi_tagamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/eluruumi-tagamise-teenuse-taotlemine",
+      "content_hash": "1ca871c77e7b8f52b89fe9d10feef2852223b85f00072c017c2c67237c708132",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_service_valjaspool_kodu_uldhooldusteenus",
+      "canonical_item_id": "vaike_maarja_vald:service:valjaspool_kodu_uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool isiku kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatav üldhooldusteenus tagab täisealisele inimesele turvalise keskkonna ja toimetuleku, kui ta terviseseisundi, tegevusvõime või elukeskkonna tõttu ei suuda kodus iseseisvalt või püsivalt toime tulla. Taotluse saab esitada iseteeninduses või vormidega ning vajadusel saab esitada hoolekandeteenuse kompenseerimise taotluse.",
+      "targetGroup": "Täisealised inimesed, kes ei suuda kodustes tingimustes iseseisvalt või püsivalt toime tulla.",
+      "conditions": "Vajadus hinnatakse individuaalselt; teenuse rahastamisel arvestatakse inimese ja pere maksevõimet.",
+      "application": {
+        "channels": [
+          "iseteenindusportaal",
+          "kohapeal paberkandjal",
+          "e-postiga digiallkirjastatult"
+        ],
+        "steps": [
+          "Esita taotlus iseteenindusportaalis või täida Avaldus hoolekandeasutusse suunamiseks.",
+          "Vajadusel täida Hoolekandeteenuse kompenseerimise taotlus.",
+          "Vallavalitsus hindab vajadust ja maksevõimet."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://v-maarja.ee/valjaspool-isiku-kodu-osutatava-uldhooldusteenuse-taotlemine",
+      "relatedTo": [],
+      "relatedForms": [
+        "vaike_maarja_vald_form_hoolekandeasutusse_suunamine",
+        "vaike_maarja_vald_form_hoolekandeteenuse_kompenseerimise_taotlus"
+      ],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_silvi_sirelpuu"
+      ],
+      "sourceKeys": [
+        "uldhooldusteenus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "uldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_service_valjaspool_kodu_uldhooldusteenus",
+      "document_id": "vaike_maarja_vald_service_valjaspool_kodu_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/valjaspool-isiku-kodu-osutatava-uldhooldusteenuse-taotlemine",
+      "content_hash": "c643a0f71efbb986219710cca23c03ebd12a08ebf35f3b6259981e693bfc24c2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_service_tugiisikuteenus",
+      "canonical_item_id": "vaike_maarja_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenuse eesmärk on toetada iseseisvat toimetulekut olukordades, kus inimene vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu olulisel määral kõrvalabi oma kohustuste täitmisel ja õiguste teostamisel. Last kasvatava isiku puhul toetab teenus lapse hooldamist ning turvalise ja toetava kasvukeskkonna tagamist.",
+      "targetGroup": "Inimesed ja pered, kes vajavad kõrvalabi kohustuste täitmisel ja õiguste teostamisel.",
+      "conditions": "Vajadus tuvastatakse abivajaduse hindamisel; teenuse eesmärk on juhendamine, motiveerimine ja omavastutusvõime arendamine.",
+      "application": {
+        "channels": [
+          "iseteenindusportaal",
+          "kohapeal paberkandjal",
+          "e-postiga digiallkirjastatult"
+        ],
+        "steps": [
+          "Esita taotlus iseteeninduses või täida Sotsiaalteenuse avaldus.",
+          "Too vorm vallamajja või saada digiallkirjastatult.",
+          "Sotsiaalosakond hindab vajadust ja korraldab teenuse."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://v-maarja.ee/tugiisikuteenuse-taotlemine",
+      "relatedTo": [],
+      "relatedForms": [
+        "vaike_maarja_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_tiia_kaselo"
+      ],
+      "sourceKeys": [
+        "tugiisikuteenuse_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "tugiisikuteenuse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_service_tugiisikuteenus",
+      "document_id": "vaike_maarja_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/tugiisikuteenuse-taotlemine",
+      "content_hash": "e482f3d367d379659ce23c3410a54ccd0ecbf7386fdda4a09d506a5a72e1eb6f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "vaike_maarja_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenuse eesmärk on suurendada puude tõttu füüsilist kõrvalabi vajava täisealise inimese iseseisvat toimetulekut ja osalemist kõigis eluvaldkondades. Abistaja aitab igapäevaelu tegevustes, näiteks liikumisel, söömisel, toidu valmistamisel, riietumisel ja hügieenitoimingutel. Teenust vajav inimene võib valida teenust osutava isiku ning vajadusel aitab vallavalitsus abistaja leidmisel.",
+      "targetGroup": "Täisealised puudega inimesed, kes vajavad füüsilist kõrvalabi.",
+      "conditions": "Teenust antakse vajaduse hindamise alusel; inimene võib abistaja valida või paluda vallavalitsuse abi sobiva abistaja leidmisel.",
+      "application": {
+        "channels": [
+          "iseteenindusportaal",
+          "kohapeal paberkandjal",
+          "e-postiga digiallkirjastatult"
+        ],
+        "steps": [
+          "Esita taotlus iseteeninduses või täida Sotsiaalteenuse avaldus.",
+          "Märgi vajadusel teenust osutav isik.",
+          "Vallavalitsus hindab vajadust ja korraldab teenuse."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "teenuse hind vastavalt kehtivale hinnakirjale; uued hinnad alates 01.05.2025"
+      },
+      "amount": null,
+      "officialUrl": "https://v-maarja.ee/isikliku-abistaja-teenuse-taotlemine",
+      "relatedTo": [],
+      "relatedForms": [
+        "vaike_maarja_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_silvi_sirelpuu",
+        "vaike_maarja_vald_contact_eve_hiietamm"
+      ],
+      "sourceKeys": [
+        "isikliku_abistaja_teenus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "isikliku_abistaja_teenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_service_isikliku_abistaja_teenus",
+      "document_id": "vaike_maarja_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/isikliku-abistaja-teenuse-taotlemine",
+      "content_hash": "d448e45d7b1bf3971ef59a9fca6e94df9210339f306c3f728a2b68712b358dbd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "vaike_maarja_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hoolduse taotlemine",
+      "status": "active",
+      "summary": "Vallavalitsus seab hoolduse täisealisele inimesele, kes vaimse või kehalise puude tõttu vajab abi oma õiguste teostamiseks ja kohustuste täitmiseks. Hoolduse seadmisel määratakse hooldaja ülesanded ning hooldus seatakse hooldatava nõusolekul.",
+      "targetGroup": "Täisealised vaimse või kehalise puudega inimesed, kes vajavad abi õiguste ja kohustuste teostamisel.",
+      "conditions": "Hooldus seatakse ja hooldaja määratakse hooldatava nõusolekul; vallavalitsus hindab abivajadust.",
+      "application": {
+        "channels": [
+          "iseteenindusportaal",
+          "kohapeal paberkandjal",
+          "e-postiga digiallkirjastatult"
+        ],
+        "steps": [
+          "Esita taotlus iseteeninduses või täida Sotsiaaltoetuse avaldus.",
+          "Too vorm vallamajja või saada digiallkirjastatult.",
+          "Vallavalitsus hindab olukorda ja määrab hooldaja."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://v-maarja.ee/taisealise-isiku-hoolduse-taotlemine",
+      "relatedTo": [],
+      "relatedForms": [
+        "vaike_maarja_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_eve_hiietamm"
+      ],
+      "sourceKeys": [
+        "taisealise_hoolduse_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "taisealise_hoolduse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_service_taisealise_isiku_hooldus",
+      "document_id": "vaike_maarja_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/taisealise-isiku-hoolduse-taotlemine",
+      "content_hash": "35fd4a60751ff109d66d2c2aeae548c7fdfb7541db8f719ff727f74345b2bb72",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "vaike_maarja_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus on mõeldud liikumis- ja nägemispuudega inimestele ning eakatele, kes tervisliku seisundi tõttu ei saa sõita ühistranspordiga. Kui teenust kasutab korraga mitu inimest, jagatakse sõidukulu üldjuhul kasutajate vahel.",
+      "targetGroup": "Liikumis- ja nägemispuudega isikud ning eakad, kes ei saa terviseseisundi tõttu kasutada ühistransporti.",
+      "conditions": "Teenust kasutatakse vajaduspõhiselt; sõidukulud võivad jaguneda kasutajate vahel.",
+      "application": {
+        "channels": [
+          "kontakt sotsiaalosakonnaga"
+        ],
+        "steps": [
+          "Võta ühendust sotsiaalosakonna kontaktisikuga.",
+          "Lepi kokku sõidu sihtkoht, aeg ja tasu."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "vallasisene sõit 4 €, väljaspool tööaega 8 €; Rakvere 20/30 €, Jõgeva 30/45 €, Jõhvi 70/105 €, Tartu 70/105 €, muud piirkonnad 0,40 €/km"
+      },
+      "amount": null,
+      "officialUrl": "https://v-maarja.ee/sotsiaaltransporditeenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_silvi_sirelpuu",
+        "vaike_maarja_vald_contact_eve_hiietamm",
+        "vaike_maarja_vald_contact_kersti_sepp"
+      ],
+      "sourceKeys": [
+        "sotsiaaltransporditeenus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sotsiaaltransporditeenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_service_sotsiaaltransporditeenus",
+      "document_id": "vaike_maarja_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/sotsiaaltransporditeenus",
+      "content_hash": "25918398eafd6d84544cbbe10509183c7c8a2774bce9f9e5861a8ad8c4ab0446",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_service_varjupaigateenus",
+      "canonical_item_id": "vaike_maarja_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenuse eesmärk on ajutise ööbimiskoha kindlustamine täisealisele inimesele, kes ei ole võimeline endale ööbimiskohta leidma. Ajutises ööbimiskohas on voodikoht, pesemisvõimalus ja turvaline keskkond.",
+      "targetGroup": "Täisealised inimesed, kes ei suuda endale ajutist ööbimiskohta leida.",
+      "conditions": "Teenust kasutatakse ajutise majutuse vajaduse korral.",
+      "application": {
+        "channels": [
+          "kontakt sotsiaalosakonnaga"
+        ],
+        "steps": [
+          "Võta ühendust sotsiaalosakonnaga.",
+          "Sotsiaalosakond hindab olukorda ja suunab sobivasse ajutisse ööbimiskohta."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://v-maarja.ee/varjupaigateenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_silvi_sirelpuu",
+        "vaike_maarja_vald_contact_tiia_kaselo"
+      ],
+      "sourceKeys": [
+        "varjupaigateenus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "varjupaigateenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_service_varjupaigateenus",
+      "document_id": "vaike_maarja_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/varjupaigateenus",
+      "content_hash": "bcfc7da01dc01469aba6b7be52c0f9926f66d1f4c4afc22482e6ecd13f67acac",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_service_turvakoduteenus",
+      "canonical_item_id": "vaike_maarja_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenuse eesmärk on tagada ajutine eluase lapsele, kelle elu, tervis või areng on ohus või kelle hooldamises esineb puudusi, ning täisealisele inimesele, kes vajab turvalist keskkonda.",
+      "targetGroup": "Lapsed ja täisealised inimesed, kes vajavad ajutist turvalist keskkonda.",
+      "conditions": "Teenust kasutatakse ohustatuse või turvalise keskkonna vajaduse korral.",
+      "application": {
+        "channels": [
+          "kontakt sotsiaalosakonnaga"
+        ],
+        "steps": [
+          "Võta kiiresti ühendust sotsiaalosakonna või lastekaitsespetsialistiga.",
+          "Sotsiaalosakond hindab olukorda ja korraldab turvakoduteenuse."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://v-maarja.ee/turvakoduteenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_silvi_sirelpuu",
+        "vaike_maarja_vald_contact_tiia_kaselo"
+      ],
+      "sourceKeys": [
+        "turvakoduteenus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "turvakoduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_service_turvakoduteenus",
+      "document_id": "vaike_maarja_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/turvakoduteenus",
+      "content_hash": "75c5a2ce2eb277fcbb4a6fbfd3e2ed3542cabbc09710a62aec638dd1e3cc0372",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_service_volanoustamisteenus",
+      "canonical_item_id": "vaike_maarja_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab inimesel kindlaks teha varalise olukorra, pidada läbirääkimisi võlausaldajatega, rahuldada nõudeid ja vältida uute võlgnevuste tekkimist. Teenus toetab toimetulekuvõime parandamist ja aitab lahendada võlgnevusega seotud probleeme.",
+      "targetGroup": "Inimesed, kellel on võlgnevused või makseraskused.",
+      "conditions": "Teenust kasutatakse võlgnevuste ja maksevõimega seotud probleemide korral.",
+      "application": {
+        "channels": [
+          "kontakt sotsiaalosakonnaga"
+        ],
+        "steps": [
+          "Võta ühendust sotsiaalosakonna juhataja või juhtumikorraldajaga.",
+          "Sotsiaalosakond hindab vajadust ja korraldab nõustamise."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://v-maarja.ee/volanoustamisteenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_silvi_sirelpuu",
+        "vaike_maarja_vald_contact_kersti_sepp"
+      ],
+      "sourceKeys": [
+        "volanoustamisteenus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "volanoustamisteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_service_volanoustamisteenus",
+      "document_id": "vaike_maarja_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/volanoustamisteenus",
+      "content_hash": "c6a274a382c0410ec91c2a05567ce4667bbb243d069943cbf1480514e011f21d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "vaike_maarja_vald:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenuse eesmärk on toetada raske või sügava puudega last kasvatava isiku toimetulekut või vähendada lapse erivajadusest tulenevat hoolduskoormust.",
+      "targetGroup": "Raske või sügava puudega lapsed ja nende hooldajad/vanemad.",
+      "conditions": "Teenust kasutatakse erivajadusest tuleneva hoolduskoormuse vähendamiseks.",
+      "application": {
+        "channels": [
+          "kontakt lastekaitsespetsialistiga"
+        ],
+        "steps": [
+          "Võta ühendust lastekaitsespetsialistiga.",
+          "Lastekaitsespetsialist hindab vajadust ja annab info võimalike teenuste kohta."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://v-maarja.ee/lapsehoiuteenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_tiia_kaselo"
+      ],
+      "sourceKeys": [
+        "lapsehoiuteenus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "lapsehoiuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_service_lapsehoiuteenus",
+      "document_id": "vaike_maarja_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/lapsehoiuteenus",
+      "content_hash": "2fb6d63276ebc1d3ddc03fbb1c71ea96f1167989690deee7c764220c9f3082e5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_service_asendushooldusteenus",
+      "canonical_item_id": "vaike_maarja_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenuse eesmärk on lapse heaolu ja õiguste tagamine pika- või lühiajaliselt, lapsele peresarnaste elutingimuste võimaldamine ning turvalise ja arenguks soodsa elukeskkonna loomine. Teenus toetab lapse ettevalmistamist võimetekohaseks toimetulekuks täisealisena.",
+      "targetGroup": "Lapsed, kes vajavad asendushooldust või kelle vanemlik hoolitsus on puudulik.",
+      "conditions": "Teenust korraldatakse lapse heaolu ja õiguste tagamiseks.",
+      "application": {
+        "channels": [
+          "kontakt lastekaitsespetsialistiga"
+        ],
+        "steps": [
+          "Võta ühendust lastekaitsespetsialistiga.",
+          "Lastekaitsespetsialist hindab lapse olukorda ja korraldab vajalikud sammud."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://v-maarja.ee/asendushooldusteenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_tiia_kaselo"
+      ],
+      "sourceKeys": [
+        "asendushooldusteenus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "asendushooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_service_asendushooldusteenus",
+      "document_id": "vaike_maarja_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/asendushooldusteenus",
+      "content_hash": "1998bc110b7491f67436549b063c8f4912b655d420357a1c4062de4f0108bf55",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "vaike_maarja_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenuse eesmärk on toetada asendushooldusteenuselt või eestkostelt lahkuva inimese iseseisvat toimetulekut ja õpingute jätkamist.",
+      "targetGroup": "Asendushoolduselt või eestkostelt lahkuvad noored ja täisealiseks saanud isikud.",
+      "conditions": "Teenust kasutatakse iseseisva elu alustamise ja õpingute jätkamise toetamiseks.",
+      "application": {
+        "channels": [
+          "kontakt lastekaitsespetsialistiga"
+        ],
+        "steps": [
+          "Võta ühendust lastekaitsespetsialistiga.",
+          "Hinnatakse vajadust ja lepitakse kokku toetusmeetmed."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://v-maarja.ee/jarelhooldusteenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_tiia_kaselo"
+      ],
+      "sourceKeys": [
+        "jarelhooldusteenus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "jarelhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_service_jarelhooldusteenus",
+      "document_id": "vaike_maarja_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/jarelhooldusteenus",
+      "content_hash": "5c71963000521528d82585ead2af18fac06e84424ed1ab21d345e5e187a652d3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "vaike_maarja_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on ajutine abimeede, millega leevendatakse inimese või pere materiaalset puudust ja tagatakse minimaalsed vahendid esmavajaduste rahuldamiseks. Taotlus tuleb esitada jooksva kuu eest hiljemalt kuu viimaseks tööpäevaks. Alates 2026. aastast on toimetulekupiir esimesele täiskasvanule 220 €, igale alaealisele 264 € ja teisele ning järgmisele täisealisele 176 €; üksnes alaealistega leibkonnale lisandub 15 €.",
+      "targetGroup": "Madala sissetulekuga inimesed ja pered, kelle tegelik elukoht on Väike-Maarja vallas.",
+      "conditions": "Arvestatakse leibkonna koosseisu, sissetulekuid ja eluasemekulusid; pere koosseisu kuuluvad sama eluruumi ühise majapidamisega inimesed.",
+      "application": {
+        "channels": [
+          "iseteenindusportaal",
+          "kohapeal paberkandjal",
+          "e-postiga digiallkirjastatult"
+        ],
+        "steps": [
+          "Esita taotlus iseteeninduses või täida toimetulekutoetuse taotlus.",
+          "Lisa sissetulekuid ja eluasemekulusid tõendavad dokumendid.",
+          "Esita taotlus hiljemalt kuu viimaseks tööpäevaks."
+        ],
+        "deadline": "kuu viimane tööpäev"
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": {
+        "amount": "arvutatakse individuaalselt; 2026 piirid: 220 €, 264 €, 176 €; täiendav 15 € üksnes alaealistega leibkonnale",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://v-maarja.ee/toimetulekutoetus-",
+      "relatedTo": [],
+      "relatedForms": [
+        "vaike_maarja_vald_form_toimetulekutoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_eve_hiietamm"
+      ],
+      "sourceKeys": [
+        "toimetulekutoetus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_benefit_toimetulekutoetus",
+      "document_id": "vaike_maarja_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/toimetulekutoetus-",
+      "content_hash": "0d63b3315a48a7b67f93dab66564d23d302b8c3403152dce62fc0e200435cfde",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_benefit_hooldajatoetus",
+      "canonical_item_id": "vaike_maarja_vald:benefit:hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus",
+      "status": "active",
+      "summary": "Hooldajatoetust makstakse raske või sügava puudega isiku hooldajale või inimesele, kes hooldab raske või sügava puudega last. Sügava puudega täisealise hooldajale makstakse 100% ja raske puudega täisealise hooldajale 75% hooldajatoetuse määrast; hooldajatoetuse määr on 50 € kuus.",
+      "targetGroup": "Raske või sügava puudega inimese hooldajad ja raske või sügava puudega lapse hooldajad.",
+      "conditions": "Hooldajat üldjuhul ei määrata, kui hooldataval on perekonnaseaduse alusel ülalpidamiskohustusega isikud; erand on võimalik, kui toimetulek igapäevatoimingutega on raskelt häiritud.",
+      "application": {
+        "channels": [
+          "iseteenindusportaal",
+          "kohapeal paberkandjal",
+          "e-postiga digiallkirjastatult"
+        ],
+        "steps": [
+          "Esita taotlus iseteenindusportaalis või täida Sotsiaaltoetuse avaldus.",
+          "Too vorm vallamajja või saada digiallkirjastatult.",
+          "Vallavalitsus kontrollib hooldajaks määramist ja määrab toetuse."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": {
+        "amount": "50 € kuus; 100% sügava puudega täisealise hooldajale, 75% raske puudega täisealise hooldajale",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://v-maarja.ee/hooldajatoetuse-taotlemine",
+      "relatedTo": [],
+      "relatedForms": [
+        "vaike_maarja_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_eve_hiietamm",
+        "vaike_maarja_vald_contact_silvi_sirelpuu"
+      ],
+      "sourceKeys": [
+        "hooldajatoetus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "hooldajatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_benefit_hooldajatoetus",
+      "document_id": "vaike_maarja_vald_benefit_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/hooldajatoetuse-taotlemine",
+      "content_hash": "94ef0dd858aaf72153a1792782d72807e1e09218925352a0b3d761f3e69e63e0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_benefit_koolitoetus",
+      "canonical_item_id": "vaike_maarja_vald:benefit:koolitoetus",
+      "itemType": "benefit",
+      "title": "Koolitoetus",
+      "status": "active",
+      "summary": "Koolitoetust makstakse madala sissetulekuga perele laste kooliriiete ja koolitarvete ostmiseks. Toetus määratakse vähekindlustatud perele, kelle ühe kuu sissetulek on väiksem kui kahekordne toimetulekutoetuse määr (2026. aastal 440 €).",
+      "targetGroup": "Madala sissetulekuga lastega pered.",
+      "conditions": "Pere sissetulek peab jääma alla kahekordse toimetulekutoetuse määra; madala sissetulekuga üksikisiku puhul kasutatakse 2,5-kordset piiri.",
+      "application": {
+        "channels": [
+          "kohapeal paberkandjal",
+          "e-postiga digiallkirjastatult"
+        ],
+        "steps": [
+          "Täida Sotsiaaltoetuse avaldus.",
+          "Too vorm vallamajja või saada digiallkirjastatult.",
+          "Lisa pere sissetulekuandmed."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": {
+        "amount": "vastavalt vajadusele",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://v-maarja.ee/koolitoetuse-taotlemine",
+      "relatedTo": [],
+      "relatedForms": [
+        "vaike_maarja_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_eve_hiietamm"
+      ],
+      "sourceKeys": [
+        "koolitoetus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "koolitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_benefit_koolitoetus",
+      "document_id": "vaike_maarja_vald_benefit_koolitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/koolitoetuse-taotlemine",
+      "content_hash": "c16758b7f4dc9578abee01beb3dd7264d63795e243da1f0a42a906a7d4f07b89",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_benefit_kuttetoetus",
+      "canonical_item_id": "vaike_maarja_vald:benefit:kuttetoetus",
+      "itemType": "benefit",
+      "title": "Küttetoetus",
+      "status": "active",
+      "summary": "Küttetoetus määratakse üks kord aastas vähekindlustatud inimesele või perele, kelle kuu sissetulek inimese kohta on väiksem kui kahekordne toimetulekutoetuse määr. Toetuse määr on 200 € ja seda makstakse küttepuude ostu kompenseerimiseks kuludokumendi alusel.",
+      "targetGroup": "Madala sissetulekuga inimesed ja pered, kes vajavad abi küttepuude ostuks.",
+      "conditions": "Taotleda saab üks kord aastas; hüvitamine toimub kuludokumendi alusel.",
+      "application": {
+        "channels": [
+          "kohapeal paberkandjal",
+          "e-postiga digiallkirjastatult"
+        ],
+        "steps": [
+          "Täida Sotsiaaltoetuse avaldus.",
+          "Lisa küttepuude ostu kuludokument.",
+          "Too vorm vallamajja või saada digiallkirjastatult."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": {
+        "amount": "200",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://v-maarja.ee/kuttetoetuse-taotlemine",
+      "relatedTo": [],
+      "relatedForms": [
+        "vaike_maarja_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_eve_hiietamm"
+      ],
+      "sourceKeys": [
+        "kuttetoetus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "kuttetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_benefit_kuttetoetus",
+      "document_id": "vaike_maarja_vald_benefit_kuttetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/kuttetoetuse-taotlemine",
+      "content_hash": "4291ac09bdfb49e2184ddfb1b823b51e44977ffa0aae62947ab401c0f6b159c0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_benefit_lasteaia_osalustasu_ja_toidukulu_toetus",
+      "canonical_item_id": "vaike_maarja_vald:benefit:lasteaia_osalustasu_ja_toidukulu_toetus",
+      "itemType": "benefit",
+      "title": "Lasteaia osalustasu ja toidukulude toetus",
+      "status": "active",
+      "summary": "Toetust makstakse madala sissetulekuga perele lasteaia osalustasu ja toidukulude katmiseks. Avaldus tuleb esitada kaks korda aastas hiljemalt 20. septembriks ja 20. jaanuariks; sissetulekute olulisel vähenemisel võib avalduse esitada erandkorras ka muul ajal.",
+      "targetGroup": "Madala sissetulekuga pered, kelle laps käib lasteaias.",
+      "conditions": "Pere sissetulek peab jääma alla määratud piiri; vajadust hinnatakse taotluse ja sissetulekuandmete alusel.",
+      "application": {
+        "channels": [
+          "kohapeal paberkandjal",
+          "e-postiga digiallkirjastatult"
+        ],
+        "steps": [
+          "Täida Sotsiaaltoetuse avaldus.",
+          "Esita avaldus hiljemalt 20. septembriks ja 20. jaanuariks.",
+          "Sissetuleku olulisel vähenemisel võib avalduse esitada ka muul ajal."
+        ],
+        "deadline": "20. september ja 20. jaanuar"
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": {
+        "amount": "vastavalt tegelikele kuludele",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://v-maarja.ee/lasteaia-osalustasu-ja-toidukulude-toetuse-taotlemine",
+      "relatedTo": [],
+      "relatedForms": [
+        "vaike_maarja_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_eve_hiietamm"
+      ],
+      "sourceKeys": [
+        "lasteaia_toetus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "lasteaia_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_benefit_lasteaia_osalustasu_ja_toidukulu_toetus",
+      "document_id": "vaike_maarja_vald_benefit_lasteaia_osalustasu_ja_toidukulu_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/lasteaia-osalustasu-ja-toidukulude-toetuse-taotlemine",
+      "content_hash": "ead414b84de321725ed4682ca3e78d7b3c0d4a7b0ce6d95a8333566375c30efd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_benefit_matusetoetus",
+      "canonical_item_id": "vaike_maarja_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on ühekordne toetus, mida makstakse sellise isiku surma korral, kelle viimaseks elukohaks rahvastikuregistris oli Väike-Maarja vald. Toetuse suurus on 375 €.",
+      "targetGroup": "Matuse korraldaja, kui lahkunu viimane rahvastikuregistrijärgne elukoht oli Väike-Maarja vald.",
+      "conditions": "Toetus on ühekordne; taotlus esitatakse iseteeninduses või matusetoetuse avaldusega.",
+      "application": {
+        "channels": [
+          "iseteenindusportaal",
+          "kohapeal paberkandjal",
+          "e-postiga digiallkirjastatult"
+        ],
+        "steps": [
+          "Esita taotlus iseteeninduses või täida Matusetoetuse avaldus.",
+          "Too vorm vallamajja või saada digiallkirjastatult.",
+          "Vald maksab toetuse matuse korraldajale."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": {
+        "amount": "375",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://v-maarja.ee/matusetoetuse-taotlemine",
+      "relatedTo": [],
+      "relatedForms": [
+        "vaike_maarja_vald_form_matusetoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_eve_hiietamm"
+      ],
+      "sourceKeys": [
+        "matusetoetus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "matusetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_benefit_matusetoetus",
+      "document_id": "vaike_maarja_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/matusetoetuse-taotlemine",
+      "content_hash": "5c937c8466409fc21a3e3271db0bccfd4b91ac1f962bc92ec218c1b25301011a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_benefit_sunnitoetus",
+      "canonical_item_id": "vaike_maarja_vald:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus määratakse lapse vanemale, kui laps on rahvastikuregistri andmetel Väike-Maarja valla elanik sünni registreerimisest alates ja elab toetuse taotlejaga samal aadressil. Toetuse määr on 600 € ja see makstakse kahes osas: 300 € pärast sünni registreerimist ning 300 € lapse aastaseks saamisel, kui laps ja vanem elavad endiselt Väike-Maarja vallas.",
+      "targetGroup": "Lapse vanem, kelle laps on sünnist alates Väike-Maarja valla elanik ja elab taotlejaga samal aadressil.",
+      "conditions": "Laps ja vanem peavad olema rahvastikuregistris Väike-Maarja valla elanikud; teise osa saamiseks peab elukoht püsima lapse aastaseks saamisel.",
+      "application": {
+        "channels": [
+          "iseteenindusportaal",
+          "kohapeal paberkandjal",
+          "e-postiga digiallkirjastatult"
+        ],
+        "steps": [
+          "Esita taotlus iseteeninduses või täida Sünnitoetuse avaldus.",
+          "Esimene osa makstakse pärast sünni registreerimist.",
+          "Teine osa makstakse lapse aastaseks saamisel elukoha tingimuste täitmisel."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": {
+        "amount": "600 € kahes osas: 300 € + 300 €",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://v-maarja.ee/sunnitoetuse-taotlemine",
+      "relatedTo": [],
+      "relatedForms": [
+        "vaike_maarja_vald_form_sunnitoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_eve_hiietamm"
+      ],
+      "sourceKeys": [
+        "sunnitoetus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sunnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_benefit_sunnitoetus",
+      "document_id": "vaike_maarja_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/sunnitoetuse-taotlemine",
+      "content_hash": "b745d1d264893ade62b5bed9aa0bec19358dcd0c9162c20d0176d58be4d775f7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_benefit_valtimatu_sotsiaalabi_toetus",
+      "canonical_item_id": "vaike_maarja_vald:benefit:valtimatu_sotsiaalabi_toetus",
+      "itemType": "benefit",
+      "title": "Vältimatu sotsiaalabi toetus",
+      "status": "active",
+      "summary": "Vältimatut sotsiaalabi antakse inimesele, kes on sattunud sotsiaalselt abitusse olukorda elatusvahendite kaotuse või puudumise tõttu. Vältimatu abi tagab vähemalt toidu, hädavajalikud riided ja ajutise majutuse, sotsiaalnõustamise ning sotsiaaltranspordi. Abi osutatakse seni, kuni inimene ei ole enam elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitus olukorras.",
+      "targetGroup": "Elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitus olukorras inimesed.",
+      "conditions": "Abi osutatakse vältimatu vajaduse korral seni, kuni sotsiaalselt abitu olukord lõpeb.",
+      "application": {
+        "channels": [
+          "iseteenindusportaal",
+          "kohapeal paberkandjal",
+          "e-postiga digiallkirjastatult"
+        ],
+        "steps": [
+          "Esita taotlus iseteeninduses või täida Sotsiaaltoetuse avaldus.",
+          "Kiire vajaduse korral pöördu sotsiaalosakonda."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": {
+        "amount": "vastavalt vältimatule vajadusele",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://v-maarja.ee/valtimatu-sotsiaalabi-toetuse-taotlemine",
+      "relatedTo": [],
+      "relatedForms": [
+        "vaike_maarja_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_eve_hiietamm"
+      ],
+      "sourceKeys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_benefit_valtimatu_sotsiaalabi_toetus",
+      "document_id": "vaike_maarja_vald_benefit_valtimatu_sotsiaalabi_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/valtimatu-sotsiaalabi-toetuse-taotlemine",
+      "content_hash": "6944a4af1ee9dedf5114fdb90ce9fe0a26033fbaca61e84f2440f4cdfabd75db",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_benefit_opilaskodu_kohatasu_toetus",
+      "canonical_item_id": "vaike_maarja_vald:benefit:opilaskodu_kohatasu_toetus",
+      "itemType": "benefit",
+      "title": "Õpilaskodu kohatasu toetus",
+      "status": "active",
+      "summary": "Õpilaskodu kohatasu toetust makstakse vanemliku hoolitsuseta õpilaste õpilaskodu koha eest. Toetus kuulub sissetulekust sõltuvate sotsiaaltoetuste hulka ning on seotud madala sissetulekuga pere või üksikisiku kriteeriumidega.",
+      "targetGroup": "Vanemliku hoolitsuseta õpilased, kelle õpilaskodu kohatasu vajab katmist.",
+      "conditions": "Taotlemisel kasutatakse sissetulekust sõltuva toetuse kriteeriume.",
+      "application": {
+        "channels": [
+          "kohapeal paberkandjal",
+          "e-postiga digiallkirjastatult"
+        ],
+        "steps": [
+          "Täida Sotsiaaltoetuse avaldus.",
+          "Too vorm vallamajja või saada digiallkirjastatult."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": {
+        "amount": "vastavalt kohatasu vajadusele",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://v-maarja.ee/opilaskodu-kohatasu-toetuse-taotlemine",
+      "relatedTo": [],
+      "relatedForms": [
+        "vaike_maarja_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_eve_hiietamm"
+      ],
+      "sourceKeys": [
+        "opilaskodu_kohatasu_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "opilaskodu_kohatasu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_benefit_opilaskodu_kohatasu_toetus",
+      "document_id": "vaike_maarja_vald_benefit_opilaskodu_kohatasu_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/opilaskodu-kohatasu-toetuse-taotlemine",
+      "content_hash": "fb98ffc7e0178d4b7b9f0a0a82dd63ca812ced033dce25668ba76ca38dfdac53",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_benefit_uhekordne_toetus",
+      "canonical_item_id": "vaike_maarja_vald:benefit:uhekordne_toetus",
+      "itemType": "benefit",
+      "title": "Ühekordne toetus",
+      "status": "active",
+      "summary": "Ühekordset toetust saab taotleda põhjendatud kulutuste hüvitamiseks, sealhulgas retseptiravimite osaliseks kompenseerimiseks (mitte sagedamini kui kord kvartalis), prillide ostu osaliseks kompenseerimiseks, madala sissetulekuga ja paljulapseliste perede laste lastelaagris osalemiseks ning muude erakorraliste põhjendatud kulude hüvitamiseks.",
+      "targetGroup": "Madala sissetulekuga inimesed ja pered, kellel on põhjendatud erakorraline kulu.",
+      "conditions": "Toetuse aluseks on põhjendatud kulu; retseptiravimite hüvitist ei anta sagedamini kui kord kvartalis.",
+      "application": {
+        "channels": [
+          "kohapeal paberkandjal",
+          "e-postiga digiallkirjastatult"
+        ],
+        "steps": [
+          "Täida Sotsiaaltoetuse avaldus.",
+          "Lisa kuludokumendid ja põhjendus.",
+          "Too vorm vallamajja või saada digiallkirjastatult."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": {
+        "amount": "vastavalt põhjendatud kulule",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://v-maarja.ee/uhekordse-toetuse-taotlemine",
+      "relatedTo": [],
+      "relatedForms": [
+        "vaike_maarja_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_eve_hiietamm"
+      ],
+      "sourceKeys": [
+        "uhekordne_toetus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "uhekordne_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_benefit_uhekordne_toetus",
+      "document_id": "vaike_maarja_vald_benefit_uhekordne_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/uhekordse-toetuse-taotlemine",
+      "content_hash": "76447e2c9f4f223085ada7c8d024738b26767444059717af29d10fc8337efcac",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_benefit_esimese_klassi_toetus",
+      "canonical_item_id": "vaike_maarja_vald:benefit:esimese_klassi_toetus",
+      "itemType": "benefit",
+      "title": "Esmakordselt esimesse klassi mineva lapse toetus",
+      "status": "active",
+      "summary": "Toetust makstakse kõigile Väike-Maarja vallas asuvate koolide esmakordselt esimesse klassi õppima asuvatele lastele sõltumata elukohast. Samuti makstakse toetust Väike-Maarja valla erivajadusega lastele esmakordselt esimesse klassi asumisel sõltumata kooli asukohast. Toetus määratakse koolide esitatud õpilaste nimekirjade alusel ning vanem esitab vajalikud andmed koolile lapse I klassi registreerimisel.",
+      "targetGroup": "Esmakordselt 1. klassi minevad lapsed Väike-Maarja valla koolides ning Väike-Maarja valla erivajadusega lapsed.",
+      "conditions": "Avaldust vallale ei esitata; vajalikud andmed esitab lapsevanem koolile lapse registreerimisel.",
+      "application": {
+        "channels": [
+          "andmed koolile lapse registreerimisel"
+        ],
+        "steps": [
+          "Lapsevanem esitab vajalikud andmed koolile lapse I klassi registreerimisel.",
+          "Ametnik määrab toetuse haldusaktiga kooli nimekirja alusel."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": {
+        "amount": "määr kehtiva toetuse määra järgi",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://v-maarja.ee/esmakordselt-esimesse-klassi-mineva-lapse-toetus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_tiia_kaselo"
+      ],
+      "sourceKeys": [
+        "esimese_klassi_toetus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "esimese_klassi_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_benefit_esimese_klassi_toetus",
+      "document_id": "vaike_maarja_vald_benefit_esimese_klassi_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/esmakordselt-esimesse-klassi-mineva-lapse-toetus",
+      "content_hash": "40e6a431ab05f036503037637f2dc925c49bbb512b108dc00447f0f8db790341",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_benefit_juubelitoetus",
+      "canonical_item_id": "vaike_maarja_vald:benefit:juubelitoetus",
+      "itemType": "benefit",
+      "title": "Juubelitoetus",
+      "status": "active",
+      "summary": "Juubelitoetust makstakse inimesele tema 80., 85., 90. ja iga järgmise sünnipäeva puhul. Toetust makstakse sünnikuupäeval kehtiva toetuse määra alusel ning avaldust ei esitata.",
+      "targetGroup": "Väike-Maarja valla elanikud 80., 85., 90. ja iga järgmise sünnipäeva puhul.",
+      "conditions": "Toetus makstakse sünnikuupäeval kehtiva määra järgi; avaldust ei esitata.",
+      "application": {
+        "channels": [
+          "automaatne menetlus"
+        ],
+        "steps": [
+          "Avaldust ei esitata.",
+          "Toetus makstakse sünnipäeva alusel ametniku menetluses."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": {
+        "amount": "sünnikuupäeval kehtiv määr",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://v-maarja.ee/juubelitoetus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_eve_hiietamm"
+      ],
+      "sourceKeys": [
+        "juubelitoetus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "juubelitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_benefit_juubelitoetus",
+      "document_id": "vaike_maarja_vald_benefit_juubelitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/juubelitoetus",
+      "content_hash": "0b6d75ca6488b9d30976a77fae3abb9796f4203087040dd5eda87b2e461664a4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_resource_toiduabi_rimi_kaart",
+      "canonical_item_id": "vaike_maarja_vald:resource:toiduabi_rimi_kaart",
+      "itemType": "resource",
+      "title": "Toiduabi/RIMI kaart",
+      "status": "active",
+      "summary": "Toiduabi/RIMI kaart on mõeldud majanduslikult raskes olukorras inimesele või leibkonnale, kelle abivajaduse on välja selgitanud KOV toetuste menetleja koos sotsiaalosakonna töötajatega. 2026. aasta II kvartalist laetakse toiduabikaardile 40 € ühe abivajaja kohta; toiduabi võib saada toimetulekutoetuse saaja, selle lähedal olev taotleja või KOV toetuse saaja.",
+      "targetGroup": "Majanduslikult raskes olukorras isik või leibkond.",
+      "conditions": "Abivajadus peab olema KOV poolt välja selgitatud; inimene kantakse nimekirja oma nõusolekul.",
+      "contact": null,
+      "address": null,
+      "officialUrl": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toiduabirimi-kaart",
+      "relatedTo": [],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_eve_hiietamm"
+      ],
+      "sourceKeys": [
+        "toiduabi_rimi_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "toiduabi_rimi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_resource_toiduabi_rimi_kaart",
+      "document_id": "vaike_maarja_vald_resource_toiduabi_rimi_kaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toiduabirimi-kaart",
+      "content_hash": "b06095c8407c2ba7444b26088fb2cb5688b5ec817f5769ce977ed946a402da07",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_resource_puudega_isiku_parkimiskaart",
+      "canonical_item_id": "vaike_maarja_vald:resource:puudega_isiku_parkimiskaart",
+      "itemType": "resource",
+      "title": "Puudega isiku parkimiskaart",
+      "status": "active",
+      "summary": "Puudega isiku sõiduki parkimiskaart on inimestele, kellel on liikumis- või nägemisfunktsiooni kõrvalekalle. Taotleda saab inimene, kellel on keskmisele, raskele või sügavale puudele vastav liikumis- või nägemisfunktsiooni kõrvalekalle või ajutine liikumis- või nägemisfunktsiooni kõrvalekalle. Vajalikud dokumendid on isikut tõendav dokument, 3×4 cm foto ning ajutise kaardi puhul pere- või eriarsti teatis.",
+      "targetGroup": "Liikumis- või nägemisfunktsiooni kõrvalekaldega inimesed.",
+      "conditions": "Kaart kehtib puuet tõendava dokumendi kehtivuse ajal, kuid mitte üle 5 aasta; ajutine kaart kuni 6 kuud, pikendamisega kuni 12 kuud.",
+      "contact": null,
+      "address": null,
+      "officialUrl": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/puudega-isiku-parkimiskaart",
+      "relatedTo": [],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_eve_hiietamm"
+      ],
+      "sourceKeys": [
+        "parkimiskaart_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "parkimiskaart_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_resource_puudega_isiku_parkimiskaart",
+      "document_id": "vaike_maarja_vald_resource_puudega_isiku_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/puudega-isiku-parkimiskaart",
+      "content_hash": "a5856b39787acb50dcb9f534ba1eb4ea87da5d21aac4485bbea549ecae3bef28",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_resource_vaimse_tervise_abi",
+      "canonical_item_id": "vaike_maarja_vald:resource:vaimse_tervise_abi",
+      "itemType": "resource",
+      "title": "Vaimse tervise abi",
+      "status": "active",
+      "summary": "Väike-Maarja valla elanikul on võimalik saada tasuta vaimse tervise abi. Psühholoogilist nõustamist osutab Ave Rosental, kliinilise psühholoogi teenust osutab Heidy Õunapuu perearsti saatekirja ja eelregistreerimisega ning loovteraapiat osutab Aveli Veisner-Tamm abivajaduse hindamise alusel.",
+      "targetGroup": "Väike-Maarja valla elanikud, kes vajavad vaimse tervise tuge.",
+      "conditions": "Teenuse tingimused sõltuvad teenuse liigist; loovteraapia vajab sotsiaalosakonna abivajaduse hindamist.",
+      "contact": null,
+      "address": null,
+      "officialUrl": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/vaimne-tervis",
+      "relatedTo": [],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_ave_rosental"
+      ],
+      "sourceKeys": [
+        "vaimne_tervis_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "vaimne_tervis_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_resource_vaimse_tervise_abi",
+      "document_id": "vaike_maarja_vald_resource_vaimse_tervise_abi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/vaimne-tervis",
+      "content_hash": "5d076294ba672bf8c67218fd6fa65121e05358acc4e8b0051e2d182889834989",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_resource_ohvriabi",
+      "canonical_item_id": "vaike_maarja_vald:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "Ohvriabisse võib pöörduda, kui inimene on langenud füüsilise, vaimse või seksuaalse vägivalla või hooletuse ohvriks, kriisiolukorras või on pealt näinud halba kohtlemist. Abi pakutakse ka lähedastele, sõltumata sellest, kas kuriteomenetlus on alustatud.",
+      "targetGroup": "Vägivalla, hooletuse, kriisi või halva kohtlemisega kokku puutunud inimesed ja nende lähedased.",
+      "conditions": null,
+      "contact": null,
+      "address": null,
+      "officialUrl": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/ohvriabi",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "ohvriabi_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "ohvriabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_resource_ohvriabi",
+      "document_id": "vaike_maarja_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/ohvriabi",
+      "content_hash": "60f1bdcf0edd949304a52380fc0c78b1939b530faf0daa879fcd25204899581a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_resource_lastekaitse",
+      "canonical_item_id": "vaike_maarja_vald:resource:lastekaitse",
+      "itemType": "resource",
+      "title": "Lastekaitse",
+      "status": "active",
+      "summary": "Lastekaitse eesmärk on lapse õiguste ja heaolu tagamine. Vallavalitsus korraldab lastekaitset kohalikul tasandil, toetab abivajavaid perekondi võimalikult varajases etapis ning sekkub lapse heaolu kaitsmiseks, kui vanemad ei saa lapse eest hoolitseda.",
+      "targetGroup": "Lapsed, pered ja inimesed, kes on mures lapse heaolu pärast.",
+      "conditions": "Abivajavast lapsest teatamine on iga inimese kohustus; pöörduda saab lastekaitsespetsialisti poole.",
+      "contact": null,
+      "address": null,
+      "officialUrl": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse",
+      "relatedTo": [],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_tiia_kaselo"
+      ],
+      "sourceKeys": [
+        "lastekaitse_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_resource_lastekaitse",
+      "document_id": "vaike_maarja_vald_resource_lastekaitse",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse",
+      "content_hash": "8d40d0fb6085afaffe17f62991b9f04a9596253637bd309328701d71b91b152b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_resource_teata_abivajavast_lapsest",
+      "canonical_item_id": "vaike_maarja_vald:resource:teata_abivajavast_lapsest",
+      "itemType": "resource",
+      "title": "Teata abivajavast lapsest",
+      "status": "active",
+      "summary": "Iga inimene peab teatama abivajavast lapsest. Abivajav laps on laps, kelle heaolu on ohustatud või kelle puhul on kahtlus väärkohtlemises, hooletusse jätmises või lapse õigusi rikkuvas olukorras; hädaohus olevast lapsest tuleb viivitamata teatada numbril. Lehel on ka veebivorm abivajavast lapsest teavitamiseks.",
+      "targetGroup": "Abivajava või hädaohus lapse märkajad.",
+      "conditions": "Hädaohus olevast lapsest tuleb teatada kohe hädaabinumbril; muudel juhtudel saab teavitada lastekaitset või lasteabi telefoni.",
+      "contact": null,
+      "address": null,
+      "officialUrl": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/teata-abivajavast-lapsest",
+      "relatedTo": [],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_tiia_kaselo"
+      ],
+      "sourceKeys": [
+        "abivajav_laps_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "abivajav_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_resource_teata_abivajavast_lapsest",
+      "document_id": "vaike_maarja_vald_resource_teata_abivajavast_lapsest",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/teata-abivajavast-lapsest",
+      "content_hash": "30e3531b0f8582c36d0b34160d19383d3c7bcf42bde07749b63535079005bc90",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_resource_erivajadusega_laps",
+      "canonical_item_id": "vaike_maarja_vald:resource:erivajadusega_laps",
+      "itemType": "resource",
+      "title": "Erivajadusega laps",
+      "status": "active",
+      "summary": "Erivajadusega lapse infoleht selgitab, et kui laps saab puude, liigub teavitus kohalikule omavalitsusele. Lastekaitsespetsialist teeb perele esmase nõustamise ja annab vajadusel infot võimalike toetuste ja teenuste kohta.",
+      "targetGroup": "Erivajadusega lapsed ja nende pered.",
+      "conditions": "Info jõuab KOV lastekaitsespetsialistini lapse puude tuvastamisel; pere saab esmase nõustamise.",
+      "contact": null,
+      "address": null,
+      "officialUrl": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/erivajadusega-laps",
+      "relatedTo": [],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_tiia_kaselo"
+      ],
+      "sourceKeys": [
+        "erivajadusega_laps_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "erivajadusega_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_resource_erivajadusega_laps",
+      "document_id": "vaike_maarja_vald_resource_erivajadusega_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/erivajadusega-laps",
+      "content_hash": "d39d37e9c7dc17e126c9a541b33188a657c2c62715b2635b580767c51f6bc552",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_resource_vanemlus",
+      "canonical_item_id": "vaike_maarja_vald:resource:vanemlus",
+      "itemType": "resource",
+      "title": "Vanemlus",
+      "status": "active",
+      "summary": "Vanemluse infoleht selgitab lapsevanema õigust ja kohustust hoolitseda alaealise lapse eest, sh isiku- ja varahooldusõigust. Leht suunab vanemluse toetamise ressurssidele nagu Tarkvanem, „Imelised aastad” ja riiklik perelepitus.",
+      "targetGroup": "Lapsevanemad ja lapse eest hoolitsevad isikud.",
+      "conditions": "Leht sisaldab suunavaid viiteid, mitte eraldi KOV teenuse taotlemise korda.",
+      "contact": null,
+      "address": null,
+      "officialUrl": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/vanemlus",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "vanemlus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "vanemlus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_resource_vanemlus",
+      "document_id": "vaike_maarja_vald_resource_vanemlus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/vanemlus",
+      "content_hash": "6f37e7b9b9415abb5e631a0c16b141002ba116bf11c8d03c05f1862b905a0bbf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_resource_vaike_maarja_paevakeskus",
+      "canonical_item_id": "vaike_maarja_vald:resource:vaike_maarja_paevakeskus",
+      "itemType": "resource",
+      "title": "Väike-Maarja Päevakeskus",
+      "status": "active",
+      "summary": "Väike-Maarja Päevakeskus tegutseb Väike-Maarja Hooldekodu ruumides alates 2019. aastast. Päevakeskuses osutatakse erihoolekandeteenust psüühikahäire diagnoosiga tööealistele täiskasvanutele ning teenust rahastab Sotsiaalkindlustusamet. Kodus elavad eakad saavad päevakeskuse tegevustes osaleda teisipäeviti 14.00–15.30 eelneval kokkuleppel.",
+      "targetGroup": "Psüühikahäire diagnoosiga tööealised täiskasvanud ning kokkuleppel kodus elavad eakad.",
+      "conditions": "Erihoolekandeteenuse puhul rahastab teenust Sotsiaalkindlustusamet; eakate tegevustes osalemiseks tuleb enne telefonitsi kokku leppida.",
+      "contact": null,
+      "address": null,
+      "officialUrl": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/tervise-ja-hoolekandeasutused/paevakeskus",
+      "relatedTo": [],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_anneli_mikiver"
+      ],
+      "sourceKeys": [
+        "paevakeskus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "paevakeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_resource_vaike_maarja_paevakeskus",
+      "document_id": "vaike_maarja_vald_resource_vaike_maarja_paevakeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/tervise-ja-hoolekandeasutused/paevakeskus",
+      "content_hash": "616aa517dc6ec5e08f809326121fd56a3e39632350f01b51761d8db6758d6971",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_resource_vaike_maarja_hooldekodu",
+      "canonical_item_id": "vaike_maarja_vald:resource:vaike_maarja_hooldekodu",
+      "itemType": "resource",
+      "title": "Väike-Maarja Hooldekodu",
+      "status": "active",
+      "summary": "Väike-Maarja Hooldekodu pakub ööpäevaringset üldhooldusteenust 67 kliendile. Teenuste hulka kuuluvad ööpäevaringne hooldus, esmatasandi meditsiiniabi, toitlustus, sotsiaaltöötaja teenus, puhtad eluruumid ja vaba aja sisustamine. Kohatasu alates 01.04.2026 on ühekohalises toas 1500 €, kahekohalises 1400 € ja kolmekohalises 1350 € kuus; hoolduskulud 600 € kuus.",
+      "targetGroup": "Täisealised inimesed, kes vajavad üldhooldekodu teenust.",
+      "conditions": "Külastused tuleb registreerida üks päev ette kella 8–20; külastusajad on E–P määratud kellaaegadel.",
+      "contact": "Sirje Bammer",
+      "address": "Ravi 1, Väike-Maarja",
+      "officialUrl": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/tervise-ja-hoolekandeasutused/hooldekodud",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "hooldekodud_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "hooldekodud_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_resource_vaike_maarja_hooldekodu",
+      "document_id": "vaike_maarja_vald_resource_vaike_maarja_hooldekodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/tervise-ja-hoolekandeasutused/hooldekodud",
+      "content_hash": "a59d498146c9cf3b15c9483f105346db30f2b948bbd2a1e4c09cf8d9cad3326d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_resource_tammiku_hooldekodu",
+      "canonical_item_id": "vaike_maarja_vald:resource:tammiku_hooldekodu",
+      "itemType": "resource",
+      "title": "Tammiku hooldekodu",
+      "status": "active",
+      "summary": "Tammiku hooldekodu asub Tammiku külas ja pakub hooldekoduteenust. Kohatasu alates 01.04.2026 on 1350 € kuus ja hoolduskulud 720 €; kohatasule lisanduvad vajadusel mähkmete, arstivisiidi, transpordi ja haiglas viibitud päevade voodikohatasu kulud.",
+      "targetGroup": "Täisealised inimesed, kes vajavad üldhooldekodu teenust.",
+      "conditions": null,
+      "contact": "Anne Põldmaa",
+      "address": "Tammiku küla, Väike-Maarja vald, 46329 Lääne-Virumaa",
+      "officialUrl": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/tervise-ja-hoolekandeasutused/hooldekodud",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "hooldekodud_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "hooldekodud_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_resource_tammiku_hooldekodu",
+      "document_id": "vaike_maarja_vald_resource_tammiku_hooldekodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/tervise-ja-hoolekandeasutused/hooldekodud",
+      "content_hash": "e370ea1d0a3e4dc006a5ddcb391a41b0546081b646d1e14343f802677ca2a90e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_resource_teised_hooldekodud",
+      "canonical_item_id": "vaike_maarja_vald:resource:teised_hooldekodud",
+      "itemType": "resource",
+      "title": "Teised Väike-Maarja valla territooriumil asuvad hooldekodud",
+      "status": "active",
+      "summary": "KOV leht nimetab Väike-Maarja valla territooriumil asuvate muude hooldekodudena Pandivere Pansioni ja Maarjamaja OÜ. Väline info nende asutuste veebidest ei ole selles KOV veebipaketis eraldi kogutud.",
+      "targetGroup": "Üldhooldusteenuse otsijad.",
+      "conditions": null,
+      "contact": null,
+      "address": null,
+      "officialUrl": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/tervise-ja-hoolekandeasutused/hooldekodud",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "hooldekodud_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "hooldekodud_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_resource_teised_hooldekodud",
+      "document_id": "vaike_maarja_vald_resource_teised_hooldekodud",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/tervise-ja-hoolekandeasutused/hooldekodud",
+      "content_hash": "ca18f04d7dc271db421fd4ff850da42357c28e9c240345322893d97647379b5a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_resource_iste_teenusmudel",
+      "canonical_item_id": "vaike_maarja_vald:resource:iste_teenusmudel",
+      "itemType": "resource",
+      "title": "ISTE isikukeskne erihoolekande teenusmudel",
+      "status": "active",
+      "summary": "Väike-Maarja vald jätkab 2025–2026 Sotsiaalkindlustusameti pilootprojektiga, kus psüühilise erivajadusega inimestele ja nende lähedastele vajalikku abi korraldab kohalik omavalitsus. Projekti raames saab Väike-Maarja vallas tuge 10 inimest ja abi käsitletakse ühe tervikuna inimese ning pere vajadustest lähtudes.",
+      "targetGroup": "Raske, sügava või püsiva kuluga psüühilise erivajadusega vähemalt 18-aastased inimesed ning teatud jätkutoe vajadusega noored.",
+      "conditions": "Inimesel peab olema tuvastatud igapäevaeluga toimetuleku abi- ja toetusvajadus; projektis osalemine ei tohi kattuda samalaadsete teenustega riiklikus süsteemis või teise ESF tegevuse raames.",
+      "contact": null,
+      "address": null,
+      "officialUrl": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/projektid/iste-isikukeskne-erihoolekande-teenus",
+      "relatedTo": [],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_kersti_sepp"
+      ],
+      "sourceKeys": [
+        "iste_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "iste_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_resource_iste_teenusmudel",
+      "document_id": "vaike_maarja_vald_resource_iste_teenusmudel",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/projektid/iste-isikukeskne-erihoolekande-teenus",
+      "content_hash": "d8c7ebdf68105bd06c120ab1a4c962e9d61215efc7366d1c82ca971a4adfdeec",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_resource_neet_noortegarantii",
+      "canonical_item_id": "vaike_maarja_vald:resource:neet_noortegarantii",
+      "itemType": "resource",
+      "title": "NEET Noortegarantii tugisüsteem",
+      "status": "active",
+      "summary": "Noortegarantii tugisüsteem toetab 16–29-aastaseid noori, kes on tööturult kõrvale jäänud või kelle haridustee on katkenud. Juhtumikorraldaja kaardistab võimalusi, teeb koostööd eri valdkondadega, toetab noore enesearengut ning aitab suhtluses ametiasutuste ja ettevõtjatega. Projekt kestab 01.01.2025–31.12.2027.",
+      "targetGroup": "16–29-aastased noored, kes vajavad tuge õppima või tööle liikumisel.",
+      "conditions": null,
+      "contact": null,
+      "address": null,
+      "officialUrl": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/projektid/neet-noortegarantii-tugisusteem",
+      "relatedTo": [],
+      "relatedContacts": [
+        "vaike_maarja_vald_contact_kersti_sepp"
+      ],
+      "sourceKeys": [
+        "neet_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "neet_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_resource_neet_noortegarantii",
+      "document_id": "vaike_maarja_vald_resource_neet_noortegarantii",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/projektid/neet-noortegarantii-tugisusteem",
+      "content_hash": "8dec4c5610893c45d916618b3872991bac6ff4703b5dee549cc04ca1d055beb8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_form_sotsiaalteenuse_avaldus",
+      "canonical_item_id": "vaike_maarja_vald:form:sotsiaalteenuse_avaldus",
+      "itemType": "form",
+      "title": "Sotsiaalteenuse avaldus",
+      "status": "active",
+      "summary": "Üldine RTF-vorm Väike-Maarja valla sotsiaalteenuste taotlemiseks, sh koduteenus, eluruumi tagamine, tugiisikuteenus ja isikliku abistaja teenus.",
+      "format": "rtf",
+      "submissionChannels": [
+        "iseteenindusportaal",
+        "",
+        "paberil"
+      ],
+      "officialUrl": "https://v-maarja.ee/sites/default/files/documents/2026-01/Sotsiaalteenuse%20avaldus.rtf",
+      "sourceKeys": [
+        "sotsiaalteenuse_avaldus_file"
+      ],
+      "relatedTo": [
+        "vaike_maarja_vald_service_koduteenus",
+        "vaike_maarja_vald_service_eluruumi_tagamise_teenus",
+        "vaike_maarja_vald_service_tugiisikuteenus",
+        "vaike_maarja_vald_service_isikliku_abistaja_teenus"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sotsiaalteenuse_avaldus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_form_sotsiaalteenuse_avaldus",
+      "document_id": "vaike_maarja_vald_form_sotsiaalteenuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/sites/default/files/documents/2026-01/Sotsiaalteenuse%20avaldus.rtf",
+      "content_hash": "0bd1aeb7e399c1f42901e727a3803fe35a6b0de60ca174f289930a5088694cda",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_form_sotsiaaltoetuse_avaldus",
+      "canonical_item_id": "vaike_maarja_vald:form:sotsiaaltoetuse_avaldus",
+      "itemType": "form",
+      "title": "Sotsiaaltoetuse avaldus",
+      "status": "active",
+      "summary": "Üldine RTF-vorm Väike-Maarja valla sotsiaaltoetuste ja mõnede hooldusega seotud taotluste esitamiseks.",
+      "format": "rtf",
+      "submissionChannels": [
+        "iseteenindusportaal",
+        "",
+        "paberil"
+      ],
+      "officialUrl": "https://v-maarja.ee/sites/default/files/documents/2026-01/Sotsiaaltoetuse%20avaldus.rtf",
+      "sourceKeys": [
+        "sotsiaaltoetuse_avaldus_file"
+      ],
+      "relatedTo": [
+        "vaike_maarja_vald_benefit_hooldajatoetus",
+        "vaike_maarja_vald_benefit_koolitoetus",
+        "vaike_maarja_vald_benefit_kuttetoetus",
+        "vaike_maarja_vald_benefit_lasteaia_osalustasu_ja_toidukulu_toetus",
+        "vaike_maarja_vald_benefit_valtimatu_sotsiaalabi_toetus",
+        "vaike_maarja_vald_benefit_opilaskodu_kohatasu_toetus",
+        "vaike_maarja_vald_benefit_uhekordne_toetus",
+        "vaike_maarja_vald_service_taisealise_isiku_hooldus"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sotsiaaltoetuse_avaldus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_form_sotsiaaltoetuse_avaldus",
+      "document_id": "vaike_maarja_vald_form_sotsiaaltoetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/sites/default/files/documents/2026-01/Sotsiaaltoetuse%20avaldus.rtf",
+      "content_hash": "4752d34f784bad8830f170a7476ca4aafb6cf6211699f6d8659b7533570f34c5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_form_toimetulekutoetuse_taotlus",
+      "canonical_item_id": "vaike_maarja_vald:form:toimetulekutoetuse_taotlus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse taotlus",
+      "status": "active",
+      "summary": "DOCX-vorm riikliku toimetulekutoetuse taotlemiseks.",
+      "format": "docx",
+      "submissionChannels": [
+        "iseteenindusportaal",
+        "",
+        "paberil"
+      ],
+      "officialUrl": "https://v-maarja.ee/sites/default/files/documents/2025-11/Toimetulekutoetuse%20taotlus_0.docx",
+      "sourceKeys": [
+        "toimetulekutoetuse_taotlus_file"
+      ],
+      "relatedTo": [
+        "vaike_maarja_vald_benefit_toimetulekutoetus"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "toimetulekutoetuse_taotlus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_form_toimetulekutoetuse_taotlus",
+      "document_id": "vaike_maarja_vald_form_toimetulekutoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/sites/default/files/documents/2025-11/Toimetulekutoetuse%20taotlus_0.docx",
+      "content_hash": "58bad645d9abe33e0467cf1283b19ba9e6ead1f9be5d11311321c002081571c2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_form_matusetoetuse_avaldus",
+      "canonical_item_id": "vaike_maarja_vald:form:matusetoetuse_avaldus",
+      "itemType": "form",
+      "title": "Matusetoetuse avaldus",
+      "status": "active",
+      "summary": "DOCX-vorm matusetoetuse taotlemiseks.",
+      "format": "docx",
+      "submissionChannels": [
+        "iseteenindusportaal",
+        "",
+        "paberil"
+      ],
+      "officialUrl": "https://v-maarja.ee/sites/default/files/documents/2025-10/Matusetoetuse%20avaldus.docx",
+      "sourceKeys": [
+        "matusetoetuse_avaldus_file"
+      ],
+      "relatedTo": [
+        "vaike_maarja_vald_benefit_matusetoetus"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "matusetoetuse_avaldus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_form_matusetoetuse_avaldus",
+      "document_id": "vaike_maarja_vald_form_matusetoetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/sites/default/files/documents/2025-10/Matusetoetuse%20avaldus.docx",
+      "content_hash": "8b147f0e5774037bd29ca89f55f7699d35a25ebaa1712fc6b48b994128e5aebe",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_form_sunnitoetuse_avaldus",
+      "canonical_item_id": "vaike_maarja_vald:form:sunnitoetuse_avaldus",
+      "itemType": "form",
+      "title": "Sünnitoetuse avaldus",
+      "status": "active",
+      "summary": "DOCX-vorm sünnitoetuse taotlemiseks.",
+      "format": "docx",
+      "submissionChannels": [
+        "iseteenindusportaal",
+        "",
+        "paberil"
+      ],
+      "officialUrl": "https://v-maarja.ee/sites/default/files/documents/2025-10/S%C3%BCnnitoetuse%20avaldus.docx",
+      "sourceKeys": [
+        "sunnitoetuse_avaldus_file"
+      ],
+      "relatedTo": [
+        "vaike_maarja_vald_benefit_sunnitoetus"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sunnitoetuse_avaldus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_form_sunnitoetuse_avaldus",
+      "document_id": "vaike_maarja_vald_form_sunnitoetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/sites/default/files/documents/2025-10/S%C3%BCnnitoetuse%20avaldus.docx",
+      "content_hash": "a0b5f14ba88c10548a59f09d7af4ac66936b2179edd49703977051fdde4644e2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_form_hoolekandeasutusse_suunamine",
+      "canonical_item_id": "vaike_maarja_vald:form:hoolekandeasutusse_suunamine",
+      "itemType": "form",
+      "title": "Avaldus hoolekandeasutusse suunamiseks",
+      "status": "active",
+      "summary": "DOCX-vorm väljaspool kodu osutatava üldhooldusteenuse ehk hoolekandeasutusse suunamise taotlemiseks.",
+      "format": "docx",
+      "submissionChannels": [
+        "iseteenindusportaal",
+        "",
+        "paberil"
+      ],
+      "officialUrl": "https://v-maarja.ee/sites/default/files/documents/2025-11/Avaldus%20hoolekandeasutusse%20suunamiseks.docx",
+      "sourceKeys": [
+        "hoolekandeasutusse_suunamise_avaldus_file"
+      ],
+      "relatedTo": [
+        "vaike_maarja_vald_service_valjaspool_kodu_uldhooldusteenus"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "hoolekandeasutusse_suunamise_avaldus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_form_hoolekandeasutusse_suunamine",
+      "document_id": "vaike_maarja_vald_form_hoolekandeasutusse_suunamine",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/sites/default/files/documents/2025-11/Avaldus%20hoolekandeasutusse%20suunamiseks.docx",
+      "content_hash": "6decaef7126dbccffba15295fa1038b538484da963870a5c77f1223f370cc558",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_form_hoolekandeteenuse_kompenseerimise_taotlus",
+      "canonical_item_id": "vaike_maarja_vald:form:hoolekandeteenuse_kompenseerimise_taotlus",
+      "itemType": "form",
+      "title": "Hoolekandeteenuse kompenseerimise taotlus",
+      "status": "active",
+      "summary": "DOCX-vorm hoolekandeteenuse maksete kompenseerimise taotlemiseks.",
+      "format": "docx",
+      "submissionChannels": [
+        "",
+        "paberil"
+      ],
+      "officialUrl": "https://v-maarja.ee/sites/default/files/documents/2025-11/Hoolekandeteenuse%20kompenseerimise%20taotlus.docx",
+      "sourceKeys": [
+        "hoolekandeteenuse_kompenseerimise_taotlus_file"
+      ],
+      "relatedTo": [
+        "vaike_maarja_vald_service_valjaspool_kodu_uldhooldusteenus"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "hoolekandeteenuse_kompenseerimise_taotlus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_form_hoolekandeteenuse_kompenseerimise_taotlus",
+      "document_id": "vaike_maarja_vald_form_hoolekandeteenuse_kompenseerimise_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/sites/default/files/documents/2025-11/Hoolekandeteenuse%20kompenseerimise%20taotlus.docx",
+      "content_hash": "00405cb57462d2ba69a10d0f5596539ae3df2d78535092d55d203b944592d5e6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_form_teata_abivajavast_lapsest",
+      "canonical_item_id": "vaike_maarja_vald:form:teata_abivajavast_lapsest",
+      "itemType": "form",
+      "title": "Teata abivajavast lapsest",
+      "status": "active",
+      "summary": "KOV veebivorm abivajavast lapsest teatamiseks. Vorm küsib teataja nime, telefoni ja e-posti ning abivajava lapse nime, elukohta, telefoni ja pöördumise sisu.",
+      "format": "web_form",
+      "submissionChannels": [
+        "veebivorm"
+      ],
+      "officialUrl": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/teata-abivajavast-lapsest",
+      "sourceKeys": [
+        "abivajav_laps_page"
+      ],
+      "relatedTo": [
+        "vaike_maarja_vald_resource_teata_abivajavast_lapsest"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "abivajav_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_form_teata_abivajavast_lapsest",
+      "document_id": "vaike_maarja_vald_form_teata_abivajavast_lapsest",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/teata-abivajavast-lapsest",
+      "content_hash": "6379d4bd6174dfd5113a75f0c029d5e0bd4673244795983708f57bdfc3d2e3de",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vaike_maarja_vald_form_teata_abivajajast",
+      "canonical_item_id": "vaike_maarja_vald:form:teata_abivajajast",
+      "itemType": "form",
+      "title": "Teata abivajajast",
+      "status": "active",
+      "summary": "KOV veebivorm abivajajast inimesest teatamiseks. Vorm küsib teataja nime, telefoni ja e-posti ning abivajaja nime, elukohta, telefoni ja pöördumise sisu.",
+      "format": "web_form",
+      "submissionChannels": [
+        "veebivorm"
+      ],
+      "officialUrl": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/kontaktid/teata-abivajajast",
+      "sourceKeys": [
+        "teata_abivajajast_page"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "teata_abivajajast_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vaike_maarja_vald_form_teata_abivajajast",
+      "document_id": "vaike_maarja_vald_form_teata_abivajajast",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://v-maarja.ee/pere-sotsiaal-ja-tervishoid/kontaktid/teata-abivajajast",
+      "content_hash": "482d943e311434fcb8eab16d88fd7130c6c59fc61a08014a394e2cce107fecd0",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Väike-Maarja vald",
+  "checked_at": "2026-04-30",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

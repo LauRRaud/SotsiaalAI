@@ -1,0 +1,76 @@
+{
+  "source": {
+    "source_id": "epikoda_giidi_too_kasiraamat_pohimotted_ja_soovitused",
+    "title": "Giidi töö käsiraamat – põhimõtted ja soovitused",
+    "url": "https://epikoda.ee/wp-content/uploads/2026/04/Giidi-too-kasiraamat-%E2%80%93pohimotted-ja-soovitused-2025.pdf",
+    "normalized_url": "https://epikoda.ee/wp-content/uploads/2026/04/Giidi-too-kasiraamat-–pohimotted-ja-soovitused-2025.pdf",
+    "source_format": "pdf",
+    "source_type": "official_guideline",
+    "resource_type": "method_guidance",
+    "publisher": "EPIKoda",
+    "organization_id": "epikoda",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Eesti Puuetega Inimeste Koda",
+      "giid",
+      "turism",
+      "ligipääsetav teenindus",
+      "spetsialisti juhend",
+      "EPIKoda"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "high",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "EPIKoda",
+      "heading_4": null,
+      "line": 567,
+      "order": 292
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Giidi töö käsiraamat – põhimõtted ja soovitused"
+    ],
+    "collection_hints": [
+      "organization_guidelines"
+    ],
+    "source_types_seen": [
+      "official_guideline"
+    ],
+    "resource_types_seen": [
+      "method_guidance"
+    ],
+    "publishers_seen": [
+      "EPIKoda"
+    ],
+    "organizations_seen": [
+      "epikoda"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "EPIKoda",
+        "line": 567,
+        "order": 292
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://epikoda.ee/wp-content/uploads/2026/04/Giidi-too-kasiraamat-–pohimotted-ja-soovitused-2025.pdf"
+  },
+  "final_url": "https://epikoda.ee/wp-content/uploads/2026/04/Giidi-too-kasiraamat-%E2%80%93pohimotted-ja-soovitused-2025.pdf",
+  "redirects": [],
+  "sha256": "06e81616249d8a141f7071295550cdba839da5130b8ed209b0f7462aaebf48ec",
+  "bytes": 6488338,
+  "downloaded_at": "2026-08-14T08:00:56.296Z"
+}

@@ -1,0 +1,90 @@
+{
+  "docId": "sotsiaaltoo-3-2017",
+  "articleId": "vorgustikutoo-pagulasperega-2017-3",
+  "title": "Võrgustikutöö pagulasperega Padise vallas",
+  "authors": [
+    "Laur Raudsoo"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2017",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "50-53",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Juhtumikirjeldus neljaliikmelise Süüria pagulaspere vastuvõtust Padise vallas oktoobris 2016. Ettevalmistus algas sama aasta maikuus; peret toetasid valla sotsiaalnõunik, EELK Risti kogudus ja õpetaja Annika Laats, Risti põhikool ning Ameerikast pärit tugiisik. Näide sellest, kuidas väike kogukond kohanemist toetas, ja üks vähestest põhjalikest pagulastöö juhtumikirjeldustest enne 2022. aasta Ukraina sõjapõgenike lainet.",
+  "tags": [
+    "pagulased",
+    "Süüria",
+    "kogukond",
+    "võrgustikutöö",
+    "kirik",
+    "kohanemine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part14.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2017-vorgustikutoo-pagulasperega-2017-3",
+  "source_sha256": "e1d9af7c4723e3eff5f3298f646e1b7cafe69dff1d0d752e64a3da21f2d27313",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2017-vorgustikutoo-pagulasperega-2017-3",
+    "previous_source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part14.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part14.pdf",
+    "reference_stored_source_sha256": "f96bd6a05c3f2a74fe8335ebdccb0f7c788760d54594975216946ce839a1f07d",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf",
+      "source_sha256": "3f27c22982b22a396dace8a957798cc21d3240489c7ce4d92802bf1a94bde7a8",
+      "pdf_start_page": 52,
+      "pdf_end_page": 55,
+      "printed_page_range": "50-53",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 55,
+      "source_regions": [
+        {
+          "source_pdf_page": 52,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 53,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 54,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 55,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "50-53"
+    },
+    "server_page_range": "50-53"
+  }
+}

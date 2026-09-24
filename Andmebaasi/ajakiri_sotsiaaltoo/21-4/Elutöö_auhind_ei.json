@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-4-2021",
+  "articleId": "elutoo-auhind-ei-anna-oigust-loorberitele-2021-4",
+  "title": "Elutöö auhind ei anna õigust loorberitele puhkama jääda",
+  "authors": [
+    "Sirle Sommer-Kalda"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2021",
+  "section": "Persoon",
+  "pageRange": "3-8",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu kauaaegsest sotsiaaltöötajast Evi Kruzmanist, keskendudes tema tööfilosoofiale, kogukondade toetamisele, rasketes olukordades töötamisele ning professionaalsuse hoidmisele sotsiaalvaldkonna muutuvates oludes.",
+  "tags": [
+    "persoon",
+    "sotsiaaltöötaja",
+    "kogukonnatöö",
+    "hoolekanne",
+    "professionaalsus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2021_web_Part3.pdf",
+  "authors_vana": [
+    "Kristina Traks"
+  ],
+  "authors_parandatud": "2026-08-17, A5 pöördsuuna kontroll, kinnitatud lähte-PDF-i autorirea vastu",
+  "document_id": "sotsiaaltoo-4-2021-elutoo-auhind-ei-anna-oigust-loorberitele-2021-4",
+  "source_format": "pdf",
+  "source_sha256": "55729855f1d23d3ebecd4f1c7c11e4195c124f08bd841bfcbd2159e01eef9002",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2021-elutoo-auhind-ei-anna-oigust-loorberitele-2021-4",
+    "previous_source_path": "Sotsiaaltoo_4_2021_web_Part3.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "55729855f1d23d3ebecd4f1c7c11e4195c124f08bd841bfcbd2159e01eef9002",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

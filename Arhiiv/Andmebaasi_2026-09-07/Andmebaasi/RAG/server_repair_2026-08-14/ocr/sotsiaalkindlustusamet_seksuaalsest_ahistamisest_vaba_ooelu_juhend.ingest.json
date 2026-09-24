@@ -1,0 +1,27 @@
+{
+  "ingest": {
+    "ok": true,
+    "inserted": 25,
+    "docId": "sotsiaalkindlustusamet_seksuaalsest_ahistamisest_vaba_ooelu_juhend",
+    "pageRange": "1–12",
+    "shortRef": "Seksuaalsest ahistamisest vaba ööelu juhend. 2026. lk 1–12.",
+    "originalDocId": null,
+    "fileName": "Seksuaalsest ahistamisest vaba ööelu juhend A4_veeb linkidega.pdf",
+    "collection": "sotsiaalai",
+    "pageStart": null,
+    "pageEnd": null
+  },
+  "verification": {
+    "doc_id": "sotsiaalkindlustusamet_seksuaalsest_ahistamisest_vaba_ooelu_juhend",
+    "inserted": 25,
+    "chunks": 25,
+    "language": "et",
+    "search_hits": 3,
+    "search_doc_ids": [
+      "sotsiaalkindlustusamet_seksuaalsest_ahistamisest_vaba_ooelu_juhend",
+      "sotsiaalkindlustusamet_seksuaalsest_ahistamisest_vaba_ooelu_juhend",
+      "sotsiaalkindlustusamet_seksuaalsest_ahistamisest_vaba_ooelu_juhend"
+    ],
+    "query_sha256": "5f42a3db52f6bd8ac4614e14b18837a970506c47401116add9750fe689307d30"
+  }
+}

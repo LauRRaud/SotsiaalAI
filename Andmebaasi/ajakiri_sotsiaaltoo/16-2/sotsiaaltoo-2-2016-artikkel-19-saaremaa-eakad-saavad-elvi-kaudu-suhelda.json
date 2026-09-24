@@ -1,0 +1,66 @@
+{
+  "docId": "sotsiaaltoo-2-2016",
+  "articleId": "sotsiaaltoo-2-2016-artikkel-19-saaremaa-eakad-saavad-elvi-kaudu-suhelda",
+  "title": "Saaremaa eakad saavad ELVI kaudu suhelda ja spetsialistilt nõu küsida",
+  "authors": [],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2016",
+  "section": "Info",
+  "pageRange": "81",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade videohoolduse süsteemi ELVI testversioonist, mis on Saaremaal kasutusel alates 2016. aasta oktoobrist: Saaremaa Arenduskeskus koostöös Kuressaare Hoolekandekeskusega pakub selle kaudu eakatele kolm korda nädalas organiseeritud virtuaalseid rühmategevusi (vestlusringid, toolivõimlemine, ühislaulmine) ja alalist ühendust sotsiaaltöötajaga. Süsteem töötab videokonverentsi põhimõttel puutetundliku ekraaniga eriseadmel või eaka isiklikus arvutis; välja töötanud Telia (endine Elion), aluseks rahvusvaheline telehoolduse projekt VIRTU (Virtual Elderly Care Services on the Baltic Islands), milles Saaremaa osales 2010–2013 koos Soome ja Ahvenamaaga. Rõhutatakse, et videohooldus ei asenda sotsiaaltöötajat, arsti ega lähedasi, vaid täiendab toetussüsteemi neile, kelle kodust väljumine on raskendatud. Sihtrühm on sotsiaalselt aktiivsed, kuid vahemaa või liikumisraskuste tõttu isoleeritud eakad ning puudega lähedase eest hoolitsevad pereliikmed.",
+  "tags": [
+    "telehooldus",
+    "videohooldus",
+    "ELVI",
+    "VIRTU",
+    "digilahendus",
+    "eakad",
+    "üksildus",
+    "Saaremaa",
+    "kogukonnateenus",
+    "koduteenus"
+  ],
+  "source_type": "file",
+  "source_path": "2016_2_artikkel_19_saaremaa_eakad_saavad_elvi_kaudu_suhelda.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-19-saaremaa-eakad-saavad-elvi-kaudu-suhelda",
+  "source_sha256": "23ea23ad09f9f58c0072932f1e59d38e77fab53e3c1402349985991db23b1850",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-19-saaremaa-eakad-saavad-elvi-kaudu-suhelda",
+    "previous_source_path": "2016_2_artikkel_19_saaremaa_eakad_saavad_elvi_kaudu_suhelda.txt",
+    "previous_source_original_path": "2-2016.pdf",
+    "reference_stored_source_sha256": "fcbec352c879f5bd151254d89fd59a03b0058c2f5dc45878bae3977a10df7e94",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\2-2016.pdf",
+      "source_sha256": "cf45b61607b21a62a1003f99c97d65180c4fb4f591a874c983c4b63e5c804a36",
+      "pdf_start_page": 83,
+      "pdf_end_page": 83,
+      "printed_page_range": "81",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 83,
+      "source_regions": [
+        {
+          "source_pdf_page": 83,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "81",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2-2016.pdf"
+    },
+    "server_page_range": "81"
+  }
+}

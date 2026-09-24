@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-3-2020",
+  "articleId": "pilootprojekt-paik-koostoo-patsiendi-heaks-2020-3",
+  "title": "Pilootprojekt PAIK – koostöö patsiendi heaks",
+  "authors": [
+    "Svea Seidla",
+    "Kadri Oras",
+    "Livia Kask"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2020",
+  "section": "Teenuste integratsioon",
+  "pageRange": "38-40",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Viljandimaal algatatud PAIK-pilootprojektis luuakse koostöömudel, kus kroonilise haigusega inimese toetamisel teevad ühtse meeskonnana koostööd perearst, pereõde, haigla, kohaliku omavalitsuse sotsiaaltöötaja, apteeker, kogukond ja perekond. Artikkel selgitab tervisejuhi rolli, võrgustikupõhise terviseplaani koostamist ja IT-platvormi Teleskoop kasutamist, et vältida inimeste „aukku kukkumist” tervishoiu- ja sotsiaalsüsteemi vahel.",
+  "tags": [
+    "PAIK-projekt",
+    "integreeritud teenused",
+    "perearstisüsteem",
+    "sotsiaaltöö",
+    "tervisejuht",
+    "Viljandimaa",
+    "võrgustikutöö",
+    "kroonilised haigused"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2020_web_link_Part9.pdf",
+  "document_id": "sotsiaaltoo-3-2020-pilootprojekt-paik-koostoo-patsiendi-heaks-2020-3",
+  "source_format": "pdf",
+  "source_sha256": "37f071bf6dd04f2d41f610274913a8e6d1389298e9549296ea09e0d0ec7c2f56",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2020-pilootprojekt-paik-koostoo-patsiendi-heaks-2020-3",
+    "previous_source_path": "Sotsiaaltoo_3_2020_web_link_Part9.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "37f071bf6dd04f2d41f610274913a8e6d1389298e9549296ea09e0d0ec7c2f56",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

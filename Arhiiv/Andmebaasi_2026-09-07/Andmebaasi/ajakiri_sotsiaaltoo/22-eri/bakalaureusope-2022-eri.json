@@ -1,0 +1,61 @@
+{
+  "docId": "sotsiaaltoo-eri-2022",
+  "articleId": "bakalaureusope-2022-eri",
+  "title": "Bakalaureuseõpe aitab mõista inimest ja ühiskonda",
+  "authors": [
+    "Marju Medar"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö (erinumber)",
+  "issueLabel": "Eri/2022",
+  "section": "30 aastat õpetamist",
+  "pageRange": "57",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Lühiülevaade sotsiaaltöö bakalaureuseõppest, mida Tallinna Ülikoolis on õpetatud alates 1991. aastast. Õppekava annab üldharidusliku põhja ja eriala alusteadmised ning toetab sotsiaalteadusliku suutlikkuse arenemist ühiskonna ja avatud valitsemise valdkonnas; kohustuslike alusainete kaudu areneb suutlikkus lahendada interdistsiplinaarseid probleeme meeskonnatöös.",
+  "tags": [
+    "bakalaureuseõpe",
+    "sotsiaaltööharidus",
+    "õppekava",
+    "interdistsiplinaarsus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo-ERINUMBER_2022_Part11.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-eri-2022-bakalaureusope-2022-eri",
+  "source_sha256": "e3d91613114f73f3b93a54c984f83a10951d11d2acce54928934aaa200350733",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2022-bakalaureusope-2022-eri",
+    "previous_source_path": "Sotsiaaltoo-ERINUMBER_2022_Part11.txt",
+    "previous_source_original_path": "Sotsiaaltoo-ERINUMBER_2022_Part11.pdf",
+    "reference_stored_source_sha256": "01e40d30a8b85ab5d69c9b92469a58e48e048979a7135fd61d86d3e89548e0e0",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo-ERINUMBER_2022.pdf",
+      "source_sha256": "807b48240fe049838a94b8cffd3e1b388f778591bddb0ad5cb542d3cd6ff73b1",
+      "pdf_start_page": 59,
+      "pdf_end_page": 59,
+      "printed_page_range": "57-57",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 59,
+      "source_regions": [
+        {
+          "source_pdf_page": 59,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "57"
+    },
+    "server_page_range": "57-57"
+  }
+}

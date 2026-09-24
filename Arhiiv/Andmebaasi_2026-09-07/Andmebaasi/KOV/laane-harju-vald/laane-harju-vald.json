@@ -1,0 +1,4599 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "municipality": "Lääne-Harju vald",
+  "municipality_id": "laane_harju_vald",
+  "county": "Harjumaa",
+  "checkedAt": "2026-04-29",
+  "docId": "kov-laane-harju-vald",
+  "document_id": "kov-laane-harju-vald",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "laane_harju_vald_service_sotsiaalnoustamine",
+      "canonical_item_id": "laane_harju_vald:service:sotsiaalnoustamine",
+      "itemType": "service",
+      "title": "Sotsiaalnõustamine",
+      "status": "active",
+      "summary": "Sotsiaalnõustamine aitab ennetada sotsiaalsete probleemide tekkimist ja toetab inimesi või peresid, kelle toimetulek on majanduslike, sotsiaalsete, tervislike või psühholoogiliste tegurite tõttu häiritud. Sotsiaaltööspetsialist selgitab õigusi ja võimalusi, hindab ressursse ning juhendab teenuste, toetuste või muu abi taotlemisel.",
+      "sourceKeys": [
+        "sotsiaalnoustamine_page"
+      ],
+      "targetGroup": "Isikud ja pered, kelle iseseisev toimetulek on häiritud või häirumas.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "kontakt sotsiaaltööspetsialistiga"
+        ],
+        "steps": [
+          "Võtke ühendust oma piirkonna sotsiaaltööspetsialistiga."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/sotsiaalnoustamine",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalnoustamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_sotsiaalnoustamine",
+      "document_id": "laane_harju_vald_service_sotsiaalnoustamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/sotsiaalnoustamine",
+      "content_hash": "a23c5572245eba336f46a6fd40414ced2de2d940b129db8fd1a1a673b21e4ad2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_koduteenus",
+      "canonical_item_id": "laane_harju_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus toetab täisealise inimese iseseisvat ja turvalist toimetulekut kodustes tingimustes. Teenuse käigus abistatakse toimingutes, mida inimene terviseseisundi, tegevusvõime või elukeskkonna tõttu kõrvalabita teha ei suuda, kuid mis on vajalikud kodus elamiseks. Lääne-Harju vallas osutab koduteenust Lääne-Harju Valla Tugikeskuse Ämari Päevakeskus.",
+      "sourceKeys": [
+        "koduteenus_page"
+      ],
+      "targetGroup": "Täisealised, kes vajavad kodustes tingimustes kõrvalabi.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "kontakt sotsiaaltööspetsialistiga",
+          "paberavaldus",
+          "digiallkirjastatud avaldus e-postiga"
+        ],
+        "steps": [
+          "Võtke ühendust sotsiaaltööspetsialistiga.",
+          "Täitke sotsiaalteenuse taotlus ja esitage see sotsiaalosakonnale."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://laaneharju.ee/koduteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "koduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_koduteenus",
+      "document_id": "laane_harju_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/koduteenus",
+      "content_hash": "3bc584d9c323251f70d24f4f26c02caf4f7abe551a9dcc40d22b870d10c0ac98",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_tugiisikuteenus",
+      "canonical_item_id": "laane_harju_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus toetab iseseisvat toimetulekut olukordades, kus inimene vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu kõrvalabi. Tugiisik juhendab, motiveerib ja arendab inimese iseseisvust ning teenus võib olla suunatud lapsele, eakale või erivajadusega inimesele. Teenus määratakse rehabilitatsiooniplaani või juhtumiplaanis kirjeldatud abivajaduse alusel.",
+      "sourceKeys": [
+        "laps_pere_overview",
+        "tugiisikuteenus_page"
+      ],
+      "targetGroup": "Lapsed, eakad ja erivajadusega inimesed, kes vajavad toimetulekuks juhendamist või tuge.",
+      "conditions": "Teenuse määramisel lähtutakse rehabilitatsiooniplaanis või juhtumiplaanis kirjeldatud abivajadusest.",
+      "application": {
+        "channels": [
+          "paberavaldus",
+          "digiallkirjastatud avaldus e-postiga",
+          "kontakt sotsiaaltööspetsialistiga"
+        ],
+        "steps": [
+          "Täitke sotsiaalteenuse taotlus.",
+          "Esitage taotlus oma piirkonna sotsiaaltööspetsialistile või saatke digiallkirjastatult e-posti teel."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/tugiisikuteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "laps_pere_overview",
+        "tugiisikuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_tugiisikuteenus",
+      "document_id": "laane_harju_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/tugiisikuteenus",
+      "content_hash": "c63d09eaf352e8134657103d44da33cb4b26cce236e4490009c1e6227bcfe6a7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "laane_harju_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenuse eesmärk on abistada teenuse saajat tegevustes, mille sooritamiseks vajab inimene puude tõttu füüsilist kõrvalabi. Abistaja aitab igapäevastes tegevustes, näiteks liikumisel, söömisel, toidu valmistamisel, riietumisel, hügieenitoimingutes, majapidamistoimingutes ja muudes toimingutes. Teenus lähtub konkreetse inimese vajadustest ja tema antavatest tööjuhistest.",
+      "sourceKeys": [
+        "isiklik_abistaja_page"
+      ],
+      "targetGroup": "Puudega inimesed, kes vajavad igapäevatoimingutes füüsilist kõrvalabi.",
+      "conditions": "Teenuse saaja peab olema võimeline korraldama oma asjaajamist ja koordineerima isikliku abistaja tööd.",
+      "application": {
+        "channels": [
+          "kontakt sotsiaaltööspetsialistiga",
+          "paberavaldus"
+        ],
+        "steps": [
+          "Pöörduge piirkonna sotsiaaltööspetsialisti poole ja esitage vajadusel sotsiaalteenuse taotlus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://laaneharju.ee/isikliku-abistaja-teenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "isiklik_abistaja_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_isikliku_abistaja_teenus",
+      "document_id": "laane_harju_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/isikliku-abistaja-teenus",
+      "content_hash": "9ae7766d4a483de479c65533f81c2a843682d8849a3b107bd63b2f19877674f8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_uldhooldusteenus",
+      "canonical_item_id": "laane_harju_vald:service:uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Üldhooldusteenus on mõeldud täisealisele inimesele, kes terviseseisundi, tegevusvõime või elukeskkonna tõttu ei suuda kodustes tingimustes ajutiselt või püsivalt iseseisvalt toime tulla. Teenusega tagatakse turvaline keskkond ja vajalik hooldus ööpäevaringsel üldhooldusteenusel. Lääne-Harju vald tasub teenuskoha maksumusest hoolduspersonali kulud kuni kehtestatud piirmäärani, inimesele jäävad üldjuhul majutuse, toitlustuse ja isiklike vajadustega seotud kulud.",
+      "sourceKeys": [
+        "eakad_overview",
+        "uldhooldusteenus_page"
+      ],
+      "targetGroup": "Täisealised inimesed, kelle vajalikku abi ei ole võimalik tagada muude kodus elamist toetavate teenustega.",
+      "conditions": "Teenuse vajadust hinnatakse abivajaja toimetuleku ja elukeskkonna põhjal. Teenuse rahastust saab taotleda rahvastikuregistri järgi Lääne-Harju vallas elav isik.",
+      "application": {
+        "channels": [
+          "kontakt sotsiaaltööspetsialistiga",
+          "paberavaldus"
+        ],
+        "steps": [
+          "Pöörduge piirkonna sotsiaaltööspetsialisti poole.",
+          "Esitage üldhooldusteenuse tagamise toetuse või muu nõutav avaldus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Hoolduspersonali kulude tasumise piirmäär on kuni 700 eurot ühe teenusesaaja kohta kuus; alla eelmise aasta keskmise vanaduspensioni sissetuleku korral võib vald hüvitada sissetuleku ja keskmise vanaduspensioni vahe.",
+      "officialUrl": "https://laaneharju.ee/uldhooldusteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_uldhooldusteenuse_tagamise_toetus",
+        "laane_harju_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eakad_overview",
+        "uldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_uldhooldusteenus",
+      "document_id": "laane_harju_vald_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/uldhooldusteenus",
+      "content_hash": "35d956579f032af9aada4090f505c9cb01b69008b75e0b2cf4c57e0db777907d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "laane_harju_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus on mõeldud kõrvalabi vajavatele puudega isikutele või vanaduspensionäridele, kes puude või muu mõjuva põhjuse tõttu ei saa kasutada ühistransporti. Teenus aitab jõuda vajalike teenuste, töö, õppe või muude igapäevaeluks vajalike sihtkohtadeni. Sotsiaaltransporti saab tellida telefoni teel ning kehtivad omaosalustasud sõidutsoonide kaupa.",
+      "sourceKeys": [
+        "eakad_overview",
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Puudega isikud ja vanaduspensionärid, kellel on takistus ühistranspordi kasutamisel.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "telefonibroneerimine"
+        ],
+        "steps": [
+          "Tellige sotsiaaltransport telefonil."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Omaosalus: sõidutsoon 1 kuni Keilani 2 eurot; sõidutsoon 2 kuni Tallinnani, sh Tallinn, 5 eurot; sõidutsoon 3 muu piirkond 10 eurot. Saatjale omaosalust ei rakendata.",
+      "officialUrl": "https://laaneharju.ee/sotsiaalteenused",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eakad_overview",
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_sotsiaaltransporditeenus",
+      "document_id": "laane_harju_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/sotsiaalteenused",
+      "content_hash": "db83badae5dee76740b2cf59b4771a8fb50896302b96b67cbd64ba43bc5c0446",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_eluruumiteenus",
+      "canonical_item_id": "laane_harju_vald:service:eluruumiteenus",
+      "itemType": "service",
+      "title": "Eluruumiteenus",
+      "status": "active",
+      "summary": "Eluruumiteenuse eesmärk on tagada ajutine eluruumi kasutamise võimalus inimesele või perele, kes ei ole sotsiaalmajandusliku olukorra tõttu võimeline endale vajadustele vastavat eluruumi tagama. Teenus on osa toimetulekuraskustega inimeste abistamisest ning vajadust hinnatakse individuaalselt.",
+      "sourceKeys": [
+        "sotsiaalteenused_page",
+        "toimetulek_overview"
+      ],
+      "targetGroup": "Inimesed või pered, kes ei suuda sotsiaalmajandusliku olukorra tõttu endale sobivat eluruumi tagada.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "kontakt sotsiaaltööspetsialistiga",
+          "paberavaldus"
+        ],
+        "steps": [
+          "Pöörduge piirkonna sotsiaaltööspetsialisti poole ja esitage sotsiaalteenuse taotlus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://laaneharju.ee/sotsiaalteenused",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page",
+        "toimetulek_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_eluruumiteenus",
+      "document_id": "laane_harju_vald_service_eluruumiteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/sotsiaalteenused",
+      "content_hash": "abac97441d566146a5bed580066371a1b959a66e36fef2e0eb04dda1ffef0d25",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_eluaseme_kohandamise_teenus",
+      "canonical_item_id": "laane_harju_vald:service:eluaseme_kohandamise_teenus",
+      "itemType": "service",
+      "title": "Eluaseme füüsilise kohandamise teenus",
+      "status": "active",
+      "summary": "Eluaseme füüsilise kohandamise teenuse eesmärk on tagada puudest tuleneva tegevuspiiranguga inimesele paremad elamis-, õppimis- ja töötamistingimused. Teenuse raames kohandatakse eluruume individuaalsetest vajadustest lähtuvalt, sealhulgas ligipääsu, hügieenitoimingute või köögitoimingute parandamiseks. Teenuse rahastuse maht on üldjuhul kuni 85% kohandamise maksumusest, kuid mitte rohkem kui vallavalitsuse poolt kehtestatud maksimaalne summa.",
+      "sourceKeys": [
+        "eakad_overview"
+      ],
+      "targetGroup": "Puudega inimesed, kelle rahvastikuregistrijärgne ja tegelik elukoht on Lääne-Harju vald ning kelle eluruum vajab kohandamist.",
+      "conditions": "Taotlusele tuleb märkida või lisada taotleja andmed, kohandatava eluruumi andmed, kohandamise vajadus ja probleemkohad ning eluruumi omaniku, kaasomanike või korteriühistu nõusolekud, kui neid on vaja.",
+      "application": {
+        "channels": [
+          "paberavaldus",
+          "digiallkirjastatud avaldus e-postiga",
+          "kontakt sotsiaaltööspetsialistiga"
+        ],
+        "steps": [
+          "Täitke eluaseme kohandamise taotlus.",
+          "Lisage vajalikud nõusolekud ja vajadusel hinnapakkumised.",
+          "Esitage taotlus oma piirkonna sotsiaaltööspetsialistile või saatke digiallkirjastatult e-postiga."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Üldjuhul kuni 85% kohandamise maksumusest, kuid mitte rohkem kui vallavalitsuse kehtestatud maksimaalne summa.",
+      "officialUrl": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/teenused-ja-toetused",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_eluaseme_kohandamise_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eakad_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_eluaseme_kohandamise_teenus",
+      "document_id": "laane_harju_vald_service_eluaseme_kohandamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/teenused-ja-toetused",
+      "content_hash": "8903ca88953c1bec364a3d6a8d60c2a734825d4d64d5de769a3c2b8adf7c2466",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_varjupaigateenus",
+      "canonical_item_id": "laane_harju_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenuse eesmärk on kindlustada ajutine ööbimiskoht täisealisele inimesele, kes ei ole võimeline endale ööbimiskohta leidma. Ajutises ööbimiskohas tagatakse voodikoht, pesemisvõimalus ja turvaline keskkond. Lääne-Harju vallas osutatakse varjupaigateenust Lääne-Harju Valla Tugikeskuses.",
+      "sourceKeys": [
+        "sotsiaalteenused_page",
+        "toimetulek_overview"
+      ],
+      "targetGroup": "Täisealised inimesed, kes vajavad ajutist ööbimiskohta.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "kontakt sotsiaaltööspetsialistiga",
+          "paberavaldus"
+        ],
+        "steps": [
+          "Pöörduge piirkonna sotsiaaltööspetsialisti poole või esitage sotsiaalteenuse taotlus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused-ja-toetused",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page",
+        "toimetulek_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_varjupaigateenus",
+      "document_id": "laane_harju_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused-ja-toetused",
+      "content_hash": "3d2a303bd101656c20fc362109a566ead293ae0f835ea0fcc1c7d7847d1a8a25",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_turvakoduteenus",
+      "canonical_item_id": "laane_harju_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenuse eesmärk on tagada täisealisele inimesele või lapsele turvaline keskkond, esmane abi ning lapsele vajadusel järelevalve. Teenust kasutatakse olukorras, kus isik vajab ajutist turvalist keskkonda või kus lapse hooldamises esinevad puudused ohustavad lapse elu, tervist või arengut.",
+      "sourceKeys": [
+        "laps_pere_overview",
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Lapsed ja täisealised isikud, kes vajavad ajutist turvalist keskkonda ja esmast abi.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "kontakt sotsiaaltööspetsialistiga",
+          "kontakt laste heaolu spetsialistiga"
+        ],
+        "steps": [
+          "Pöörduge sotsiaaltööspetsialisti või laste heaolu spetsialisti poole, kes hindab abivajadust ja korraldab teenuse."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://laaneharju.ee/sotsiaalteenused",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "laps_pere_overview",
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_turvakoduteenus",
+      "document_id": "laane_harju_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/sotsiaalteenused",
+      "content_hash": "aca0051e591962c1c0cd7694c1f5167d77fb619ad2dff97981e72744296769f4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "laane_harju_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldus on mõeldud vaimse või kehalise puude tõttu abi vajavale inimesele. Hoolduse eesmärk on aidata hooldataval oma õigusi teostada ja kohustusi täita ning toetada teda söömisel, hügieenitoimingutes, riietumisel, liikumisel, suhtlemisel või järelevalve vajaduse korral. Hooldajatoetuse maksmine on seotud hooldajaks määramisega.",
+      "sourceKeys": [
+        "eakad_overview",
+        "hooldajatoetus_taisealise_page"
+      ],
+      "targetGroup": "Täisealised inimesed, kes vajavad vaimse või kehalise puude tõttu kõrvalabi.",
+      "conditions": "Hooldajaks ei määrata isikut, kellel endal on määratud raske või sügav puue.",
+      "application": {
+        "channels": [
+          "kontakt sotsiaaltööspetsialistiga",
+          "paberavaldus"
+        ],
+        "steps": [
+          "Pöörduge piirkonna sotsiaaltööspetsialisti poole.",
+          "Hooldajaks määramiseks ja hooldajatoetuseks esitage vastav taotlus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/teenused-ja-toetused",
+      "relatedTo": [
+        "laane_harju_vald_benefit_hooldajatoetus_taisealise"
+      ],
+      "relatedForms": [
+        "laane_harju_vald_form_hooldajatoetus_taisealise_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eakad_overview",
+        "hooldajatoetus_taisealise_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_taisealise_isiku_hooldus",
+      "document_id": "laane_harju_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/teenused-ja-toetused",
+      "content_hash": "b7c844f6913103263dbb745e1fac57e145b43707516fc8caf1db5ba708d231ca",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_asendushooldusteenus",
+      "canonical_item_id": "laane_harju_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenuse eesmärk on tagada lapse heaolu ja õigused pika- või lühiajaliselt, võimaldades talle peresarnased elutingimused ning turvalise ja arengut toetava kasvukeskkonna. Teenust kasutatakse juhul, kui lapsele ei ole võimalik tagada vajalikku hoolt tema sünniperes.",
+      "sourceKeys": [
+        "laps_pere_overview",
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Lapsed, kelle heaolu ja õiguste tagamiseks on vaja asendushooldust.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "kontakt laste heaolu spetsialistiga"
+        ],
+        "steps": [
+          "Pöörduge laste heaolu spetsialisti poole, kes hindab lapse abivajadust ja korraldab menetluse."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://laaneharju.ee/sotsiaalteenused",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "laps_pere_overview",
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_asendushooldusteenus",
+      "document_id": "laane_harju_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/sotsiaalteenused",
+      "content_hash": "0ecabc64d2d8d99b6937c0fa352f9b62acfe24bc0cadb34bb600e9671675b706",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "laane_harju_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus toetab asendushoolduselt või eestkostelt lahkuva noore iseseisvat toimetulekut ja õpingute jätkamist. Teenust osutatakse juhtumiplaani alusel ja selle eesmärk on toetada noort iseseisva elu alustamisel.",
+      "sourceKeys": [
+        "laps_pere_overview",
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Asendushoolduselt või eestkostelt lahkuvad noored.",
+      "conditions": "Teenust osutatakse juhtumiplaani alusel.",
+      "application": {
+        "channels": [
+          "kontakt laste heaolu spetsialistiga"
+        ],
+        "steps": [
+          "Pöörduge laste heaolu spetsialisti poole, kes hindab abivajadust ja koordineerib teenust."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://laaneharju.ee/sotsiaalteenused",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "laps_pere_overview",
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_jarelhooldusteenus",
+      "document_id": "laane_harju_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/sotsiaalteenused",
+      "content_hash": "bd17fe67aea3fb1272740b485c3d9e7c0916b863cb64c9aad17e07990d409f74",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "laane_harju_vald:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenuse eesmärk on toetada last kasvatava isiku toimetulekut või töötamist ning vähendada lapse erivajadusest tulenevat hoolduskoormust. Teenust võimaldatakse kuni 18-aastasele raske või sügava puudega lapsele ning 18-aastaseks saanud raske või sügava puudega isikule kuni selle kalendriaasta lõpuni, mil ta 18-aastaseks sai. Teenuse määramisel lähtutakse lapse hooldusvajadusest ja teiste teenuste mahust.",
+      "sourceKeys": [
+        "lapsehoiuteenus_page"
+      ],
+      "targetGroup": "Raske või sügava puudega lapsed ning nende pered.",
+      "conditions": "Teenust võimaldatakse kuni 18-aastasele raske või sügava puudega lapsele; 18-aastaseks saanud raske või sügava puudega isikule saab teenust osutada kuni selle kalendriaasta lõpuni.",
+      "application": {
+        "channels": [
+          "paberavaldus",
+          "digiallkirjastatud avaldus e-postiga",
+          "kontakt laste heaolu spetsialistiga"
+        ],
+        "steps": [
+          "Täitke sotsiaalteenuse taotlus.",
+          "Esitage taotlus piirkonna sotsiaaltööspetsialistile või saatke digiallkirjastatult e-postiga."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://laaneharju.ee/lapsehoiuteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "laane_harju_vald_contact_kullike_zukker"
+      ],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lapsehoiuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_lapsehoiuteenus",
+      "document_id": "laane_harju_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/lapsehoiuteenus",
+      "content_hash": "64bb0645fe694b42fe5ab46210d53d125bd4908bc5eae4e44183eeacf66840bc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_volanoustamisteenus",
+      "canonical_item_id": "laane_harju_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenuse eesmärk on abistada inimest tema varalise olukorra kindlakstegemisel, võlausaldajaga läbirääkimiste pidamisel ja võlgnevusega seotud probleemide lahendamisel. Nõustamine aitab vältida uute võlgnevuste tekkimist ja toetada toimetuleku taastamist.",
+      "sourceKeys": [
+        "sotsiaalteenused_page",
+        "toimetulek_overview"
+      ],
+      "targetGroup": "Inimesed, kellel on võlgnevused või risk uute võlgade tekkeks.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "kontakt sotsiaaltööspetsialistiga",
+          "paberavaldus"
+        ],
+        "steps": [
+          "Pöörduge piirkonna sotsiaaltööspetsialisti poole.",
+          "Vajadusel täitke sotsiaalteenuse taotlus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused-ja-toetused",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page",
+        "toimetulek_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_volanoustamisteenus",
+      "document_id": "laane_harju_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused-ja-toetused",
+      "content_hash": "cc5495b63dcd20cba1c50a5963369e6dd0bf1ea1c454239d368c19e53625ebe8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_valtimatu_sotsiaalabi",
+      "canonical_item_id": "laane_harju_vald:service:valtimatu_sotsiaalabi",
+      "itemType": "service",
+      "title": "Vältimatu sotsiaalabi",
+      "status": "active",
+      "summary": "Vältimatu sotsiaalabi on abi inimesele, kes on sattunud sotsiaalselt abitusse olukorda elatusvahendite kaotuse või puudumise tõttu. Vallavalitsus tagab vältimatu abi vähemalt toidu, riietuse ja ajutise majutuse ulatuses. Abivajaduse korral korraldab abi see kohaliku omavalitsuse üksus, kelle haldusterritooriumil inimene abi vajab.",
+      "sourceKeys": [
+        "sotsiaalteenused_page",
+        "toimetulek_overview"
+      ],
+      "targetGroup": "Elatusvahenditeta või sotsiaalselt abituses olukorras inimesed.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "kontakt sotsiaaltööspetsialistiga",
+          "hädaolukorras pöördumine vallavalitsuse poole"
+        ],
+        "steps": [
+          "Võtke abi saamiseks ühendust sotsiaaltööspetsialisti või vallavalitsusega."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://laaneharju.ee/sotsiaalteenused",
+      "relatedTo": [
+        "laane_harju_vald_benefit_toetus_valtimatuks_sotsiaalabiks"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page",
+        "toimetulek_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_valtimatu_sotsiaalabi",
+      "document_id": "laane_harju_vald_service_valtimatu_sotsiaalabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/sotsiaalteenused",
+      "content_hash": "9ee241ad6e8283d039f09f08cc88d35def23a56665bdbefd812f2ffed6de3a14",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_resotsialiseerimisteenus",
+      "canonical_item_id": "laane_harju_vald:service:resotsialiseerimisteenus",
+      "itemType": "service",
+      "title": "Resotsialiseerimisteenus",
+      "status": "active",
+      "summary": "Resotsialiseerimisteenuse eesmärk on individuaalselt nõustada ja juhendada igapäevaelu korraldamisel abi vajavat inimest, et toetada tema toimetulekut ning tagada majutusvõimalus. Teenust osutatakse seni, kuni inimene on võimeline iseseisvalt ühiskonnas toime tulema, sealhulgas tagama endale eluruumi ja täitma sellega seotud kohustusi. Teenust osutatakse Lääne-Harju Valla Tugikeskuses.",
+      "sourceKeys": [
+        "toimetulek_overview"
+      ],
+      "targetGroup": "Inimesed, kes vajavad tuge igapäevaelu korraldamisel, majutuses ja ühiskonda naasmisel.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "kontakt sotsiaaltööspetsialistiga",
+          "paberavaldus"
+        ],
+        "steps": [
+          "Pöörduge piirkonna sotsiaaltööspetsialisti poole ja esitage sotsiaalteenuse taotlus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused-ja-toetused",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "toimetulek_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_resotsialiseerimisteenus",
+      "document_id": "laane_harju_vald_service_resotsialiseerimisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused-ja-toetused",
+      "content_hash": "2b24734696b7bfbcf0716303db80cb07e49679c65fa2116cd1a12aa92a43d12f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_erivajadusega_last_toetav_teenus",
+      "canonical_item_id": "laane_harju_vald:service:erivajadusega_last_toetav_teenus",
+      "itemType": "service",
+      "title": "Erivajadusega last toetav teenus",
+      "status": "active",
+      "summary": "Erivajadusega last toetavad teenused võivad hõlmata rehabilitatsiooni- ja teraapiateenuseid, ratsutamis- või ujumisteraapiat, abivahendi soetamist, eluruumi kohandamist, erivajadustega lastele suunatud laagreid ja muid pere toimetulekut toetavaid teenuseid. Teenuse vajadust hinnatakse iga lapse puhul eraldi, lähtudes konkreetse lapse ja pere vajadustest.",
+      "sourceKeys": [
+        "laps_pere_overview",
+        "raske_sugav_laps_eform_page",
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Raske või sügava puudega või muude erivajadustega lapsed ja nende pered.",
+      "conditions": "Teenuse vajadus hinnatakse lapse ja pere vajaduste alusel; osa toetusi on seotud raske või sügava puudega lapsega.",
+      "application": {
+        "channels": [
+          "kontakt laste heaolu spetsialistiga",
+          "e-taotlus",
+          "pabervorm"
+        ],
+        "steps": [
+          "Pöörduge laste heaolu spetsialisti poole.",
+          "Raske või sügava puudega lapse sotsiaalteenuste toetuse taotlust saab esitada valla iseteeninduses või pabervormil."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://laaneharju.ee/elektrooniline-riigi-rahastatava-raske-ja-sugava-puudega-lastele-sotsiaalteenuste-osutamise-toetuse-rahaliste-vahendite-kasutamiseks",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_raske_sugava_puudega_lapse_sotsiaalteenuste_toetus"
+      ],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "laps_pere_overview",
+        "raske_sugav_laps_eform_page",
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_erivajadusega_last_toetav_teenus",
+      "document_id": "laane_harju_vald_service_erivajadusega_last_toetav_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/elektrooniline-riigi-rahastatava-raske-ja-sugava-puudega-lastele-sotsiaalteenuste-osutamise-toetuse-rahaliste-vahendite-kasutamiseks",
+      "content_hash": "56e6d2d821bd2b36ad0581189fcd2c3ac7270a7d5b7ad9d3c6ef2a9b47881bb1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_vaimse_tervise_teenused",
+      "canonical_item_id": "laane_harju_vald:service:vaimse_tervise_teenused",
+      "itemType": "service",
+      "title": "Vaimse tervise teenused",
+      "status": "active",
+      "summary": "Vaimse tervise teenuste eesmärk on toetada ja parandada inimese või pere psühhosotsiaalset heaolu ja vaimset tervist. Teenusteks on psühholoogiline nõustamine, pereteraapia, loovteraapia, kriisinõustamine ja muud vajaduspõhised abimeetmed. Teenuse saamiseks tuleb pöörduda laste heaolu spetsialisti või piirkonna sotsiaaltööspetsialisti poole, kes hindab abivajadust ja suunab vajadusel teenuseosutaja juurde.",
+      "sourceKeys": [
+        "sotsiaalteenused_page",
+        "vaimse_tervise_page"
+      ],
+      "targetGroup": "Lapsed, täiskasvanud ja pered, kes vajavad psühhosotsiaalset või vaimse tervise tuge.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "kontakt laste heaolu spetsialistiga",
+          "kontakt sotsiaaltööspetsialistiga",
+          "paberavaldus",
+          "digiallkirjastatud avaldus e-postiga"
+        ],
+        "steps": [
+          "Võtke ühendust valla laste heaolu spetsialisti või piirkonna sotsiaaltööspetsialistiga.",
+          "Täitke avaldus ning saatke see digiallkirjastatult või esitage paberkandjal oma piirkonna sotsiaaltööspetsialistile."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenuse omaosalus on 10 eurot üks kord (tund); põhjendatud juhul võib sotsiaalosakonna juhataja omaosaluse tasumisest vabastada.",
+      "officialUrl": "https://laaneharju.ee/vaimse-tervise-teenused",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_sotsiaaltoetuse_taotlus_vallavalitsusele"
+      ],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page",
+        "vaimse_tervise_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_vaimse_tervise_teenused",
+      "document_id": "laane_harju_vald_service_vaimse_tervise_teenused",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/vaimse-tervise-teenused",
+      "content_hash": "5b8a644902bf0a0af64257e61a905882dcfcf91399a63fd4c55caca85bec3c3c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_viipekeele_tolk",
+      "canonical_item_id": "laane_harju_vald:service:viipekeele_tolk",
+      "itemType": "service",
+      "title": "Viipekeeletõlgi teenus",
+      "status": "active",
+      "summary": "Viipekeeletõlgi teenus on nimetatud Lääne-Harju valla muude vajaduspõhiste sotsiaalteenuste seas. Vallavalitsus osutab võimalusel ja inimese tegelikust abivajadusest lähtudes täiendavaid sotsiaalteenuseid, mis toetavad toimetulekut ja suhtlemist.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Kuulmispuudega või viipekeelset tuge vajavad inimesed.",
+      "conditions": "Teenust osutatakse võimalusel ja abivajaduse hindamise alusel.",
+      "application": {
+        "channels": [
+          "kontakt sotsiaaltööspetsialistiga"
+        ],
+        "steps": [
+          "Pöörduge piirkonna sotsiaaltööspetsialisti poole, kes hindab abivajadust."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://laaneharju.ee/sotsiaalteenused",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_viipekeele_tolk",
+      "document_id": "laane_harju_vald_service_viipekeele_tolk",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/sotsiaalteenused",
+      "content_hash": "07a7237a16eea80866134524ec0963559eb841e811ffbd4faaed8f209cbbdf83",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_hairenuputeenus",
+      "canonical_item_id": "laane_harju_vald:service:hairenuputeenus",
+      "itemType": "service",
+      "title": "Häirenuputeenus",
+      "status": "active",
+      "summary": "Häirenuputeenus on nimetatud valla muude vajaduspõhiste sotsiaalteenuste loetelus. Teenus on mõeldud abivajaduse korral kiire teavitamise ja turvatunde suurendamise toetamiseks, kui inimese tegelik olukord seda vajab.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Inimesed, kelle turvalisuse ja iseseisva toimetuleku tagamiseks võib olla vajalik häirenupu kasutamine.",
+      "conditions": "Teenust osutatakse võimalusel ja abivajaduse hindamise alusel.",
+      "application": {
+        "channels": [
+          "kontakt sotsiaaltööspetsialistiga"
+        ],
+        "steps": [
+          "Pöörduge piirkonna sotsiaaltööspetsialisti poole."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://laaneharju.ee/sotsiaalteenused",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_hairenuputeenus",
+      "document_id": "laane_harju_vald_service_hairenuputeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/sotsiaalteenused",
+      "content_hash": "48b9792512c59735642f8b115eb128c831246257a75240707e684436d95aefc5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_toiduabi",
+      "canonical_item_id": "laane_harju_vald:service:toiduabi",
+      "itemType": "service",
+      "title": "Toiduabi",
+      "status": "active",
+      "summary": "Toiduabi on nimetatud valla muude vajaduspõhiste sotsiaalteenuste hulgas ja toiduabikaardi lehel kirjeldatakse Euroopa abifondi toiduabi korraldust. Toiduabi saajate nimekiri koostatakse toimetulekutoetuse ja kohaliku omavalitsuse toetuste taotluste ning abivajaduse hindamise alusel.",
+      "sourceKeys": [
+        "sotsiaalteenused_page",
+        "toiduabikaart_page"
+      ],
+      "targetGroup": "Toimetulekutoetuse saajad, toetuste taotlejad ja muud abivajaduse hindamisel toiduabi vajavaks tunnistatud inimesed.",
+      "conditions": "Toiduabi saamise kriteeriumid on seotud toimetulekutoetuse, kohaliku omavalitsuse toetuste ja abivajaduse hindamisega.",
+      "application": {
+        "channels": [
+          "abivajaduse hindamine toetuse taotlemisel",
+          "kontakt sotsiaaltööspetsialistiga"
+        ],
+        "steps": [
+          "Pöörduge sotsiaaltööspetsialisti poole või esitage vajaduspõhise toetuse taotlus, mille käigus hinnatakse toiduabi vajadust."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/toiduabikaart",
+      "relatedTo": [
+        "laane_harju_vald_resource_toiduabikaart"
+      ],
+      "relatedForms": [
+        "laane_harju_vald_form_sotsiaaltoetuse_taotlus_2026"
+      ],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page",
+        "toiduabikaart_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_toiduabi",
+      "document_id": "laane_harju_vald_service_toiduabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/toiduabikaart",
+      "content_hash": "82817baf35f3fe0b91c4686b9e3f73e3af4aa97ee89654cd194178275a1160b3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_eriaspetsialisti_noustamine",
+      "canonical_item_id": "laane_harju_vald:service:eriaspetsialisti_noustamine",
+      "itemType": "service",
+      "title": "Erialaspetsialisti nõustamine",
+      "status": "active",
+      "summary": "Erialaspetsialisti nõustamine on nimetatud Lääne-Harju valla muude vajaduspõhiste sotsiaalteenuste seas. Seda kasutatakse juhul, kui inimese tegelik abivajadus eeldab täiendavat spetsialisti nõu või suunamist.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Inimesed või pered, kelle abivajadus eeldab erialaspetsialisti nõustamist.",
+      "conditions": "Teenust osutatakse võimalusel ja abivajaduse hindamise alusel.",
+      "application": {
+        "channels": [
+          "kontakt sotsiaaltööspetsialistiga"
+        ],
+        "steps": [
+          "Pöörduge piirkonna sotsiaaltööspetsialisti poole, kes hindab abivajadust ja suunab sobiva spetsialisti juurde."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://laaneharju.ee/sotsiaalteenused",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_eriaspetsialisti_noustamine",
+      "document_id": "laane_harju_vald_service_eriaspetsialisti_noustamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/sotsiaalteenused",
+      "content_hash": "dfe63f78a348a4f5405111972da30cdffc890f62fc7c4e8f5590026048cb671e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_kriisiabi",
+      "canonical_item_id": "laane_harju_vald:service:kriisiabi",
+      "itemType": "service",
+      "title": "Kriisiabi",
+      "status": "active",
+      "summary": "Kriisiabi on nimetatud Lääne-Harju valla muude vajaduspõhiste sotsiaalteenuste hulgas. Teenuse eesmärk on toetada inimest või perekonda kriisiolukorras ning taastada igapäevaelus tegutsemise võime või suunata sobiva abi juurde.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Kriisiolukorras abi vajavad inimesed ja pered.",
+      "conditions": "Teenust osutatakse võimalusel ja abivajaduse hindamise alusel.",
+      "application": {
+        "channels": [
+          "kontakt sotsiaaltööspetsialistiga",
+          "hädaolukorras"
+        ],
+        "steps": [
+          "Pöörduge valla sotsiaaltööspetsialisti poole; otsese ohu või kiireloomulise abi korral helistage."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://laaneharju.ee/sotsiaalteenused",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_kriisiabi",
+      "document_id": "laane_harju_vald_service_kriisiabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/sotsiaalteenused",
+      "content_hash": "9e61009fbf2c3d8ae12dcbcc0362179a2e4e57ffb7fd46d93bf4231ac243f425",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_service_soltuvusravi_suunamine",
+      "canonical_item_id": "laane_harju_vald:service:soltuvusravi_suunamine",
+      "itemType": "service",
+      "title": "Sõltuvusravi suunamine või tugi",
+      "status": "active",
+      "summary": "Sõltuvusravi on nimetatud Lääne-Harju valla muude vajaduspõhiste sotsiaalteenuste seas. Valla lehel on see esitatud täiendava abivõimalusena, mida saab kasutada inimese tegelikust abivajadusest lähtudes.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Sõltuvusprobleemiga inimesed, kes vajavad ravi või nõustamisele suunamist.",
+      "conditions": "Teenust või suunamist osutatakse võimalusel ja abivajaduse hindamise alusel.",
+      "application": {
+        "channels": [
+          "kontakt sotsiaaltööspetsialistiga"
+        ],
+        "steps": [
+          "Pöörduge piirkonna sotsiaaltööspetsialisti poole."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://laaneharju.ee/sotsiaalteenused",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_service_soltuvusravi_suunamine",
+      "document_id": "laane_harju_vald_service_soltuvusravi_suunamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/sotsiaalteenused",
+      "content_hash": "4ff989bcb0cd53d48c59eee78cbed66d942eb4232b62a9e0c79ac3d6a43ea3b2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "laane_harju_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on riigi rahaline abi puuduses inimestele, mida maksab kohalik omavalitsus siis, kui muud vaesuse ja puuduse leevendamise abinõud on ebapiisavad. Arvestuse aluseks on üksi elava inimese või pere kõigi liikmete eelmise kuu netosissetulek, jooksval kuul tasumisele kuuluvad eluasemekulud ja toimetulekupiir. Alates 1. jaanuarist 2026 on toimetulekupiir üksi elavale inimesele või pere esimesele liikmele 220 eurot, alaealisele liikmele 264 eurot ning pere teisele ja järgmisele täisealisele liikmele 176 eurot kuus.",
+      "sourceKeys": [
+        "toimetulekutoetus_page"
+      ],
+      "targetGroup": "Inimesed ja pered, kelle sissetulek jääb pärast arvestatavaid kulusid alla toimetulekupiiri.",
+      "conditions": "Taotlusele lisatakse sissetulekuid ja vajadusel eluasemekulusid tõendavad dokumendid; eluasemekulude katmiseks tuleb tõendada eluruumi kasutamise õigust ja jooksval kuul tasumisele kuuluvaid kulusid.",
+      "application": {
+        "channels": [
+          "paberavaldus",
+          "digiallkirjastatud avaldus e-postiga"
+        ],
+        "steps": [
+          "Täitke toimetulekutoetuse taotlus.",
+          "Lisage sissetulekuid ja eluasemekulusid tõendavad dokumendid.",
+          "Esitage taotlus sotsiaaltööspetsialistile või saatke digiallkirjastatult e-posti teel."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": null,
+      "officialUrl": "https://laaneharju.ee/toimetulekutoetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_toimetulekutoetuse_taotlus",
+        "laane_harju_vald_form_sotsiaaltoetuse_taotlus_2026"
+      ],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_benefit_toimetulekutoetus",
+      "document_id": "laane_harju_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/toimetulekutoetus",
+      "content_hash": "9709a49f29f18442e08fb9f8f4f20e73a0e45ff63089e931232d054a10118fb7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_benefit_toetus_valtimatuks_sotsiaalabiks",
+      "canonical_item_id": "laane_harju_vald:benefit:toetus_valtimatuks_sotsiaalabiks",
+      "itemType": "benefit",
+      "title": "Toetus vältimatuks sotsiaalabiks",
+      "status": "active",
+      "summary": "Toetus vältimatuks sotsiaalabiks on mõeldud elatusvahenditeta inimesele hädavajalike kulude, näiteks toidu, riietuse ja ajutise peavarju katmiseks. See on rahaline toetus, mis täiendab vältimatu sotsiaalabi teenuslikku korraldust.",
+      "sourceKeys": [
+        "valtimatu_toetus_page"
+      ],
+      "targetGroup": "Elatusvahenditeta inimesed, kellel on vaja katta hädavajalikud kulud.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "paberavaldus",
+          "digiallkirjastatud avaldus e-postiga",
+          "kontakt sotsiaaltööspetsialistiga"
+        ],
+        "steps": [
+          "Täitke sotsiaaltoetuse taotlus.",
+          "Esitage see oma piirkonna sotsiaaltööspetsialistile või saatke digiallkirjastatult e-postiga."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Toetust võib maksta ulatuses, mis tagab isikule kehtiva riikliku toimetulekupiiri.",
+      "officialUrl": "https://laaneharju.ee/toetus-valtimatuks-sotsiaalabiks",
+      "relatedTo": [
+        "laane_harju_vald_service_valtimatu_sotsiaalabi"
+      ],
+      "relatedForms": [
+        "laane_harju_vald_form_sotsiaaltoetuse_taotlus_2026"
+      ],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "valtimatu_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_benefit_toetus_valtimatuks_sotsiaalabiks",
+      "document_id": "laane_harju_vald_benefit_toetus_valtimatuks_sotsiaalabiks",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/toetus-valtimatuks-sotsiaalabiks",
+      "content_hash": "d3a052d939ad0df272433c64560160b86e823a1a4d544b28eb4c67a8b46fb5fe",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_benefit_puudega_isiku_transporditoetus",
+      "canonical_item_id": "laane_harju_vald:benefit:puudega_isiku_transporditoetus",
+      "itemType": "benefit",
+      "title": "Puudega isiku transporditoetus",
+      "status": "active",
+      "summary": "Puudega isiku transporditoetus aitab katta sõidukulusid, kui puudega inimesel on vaja liikuda igapäevaelus vajalikesse kohtadesse ja ta ei saa puude tõttu kasutada tavalist transporti. Toetust makstakse kuludokumentide alusel. Transpordikulu kompenseeritakse 0,20 eurot kilomeetri kohta ja kuni 200 eurot kuus.",
+      "sourceKeys": [
+        "eakad_overview",
+        "puudega_transporditoetus_page"
+      ],
+      "targetGroup": "Puudega inimesed, kellel on puude tõttu takistus tavalise transpordi kasutamisel.",
+      "conditions": "Toetust makstakse kuludokumentide alusel.",
+      "application": {
+        "channels": [
+          "paberavaldus",
+          "digiallkirjastatud avaldus e-postiga",
+          "kontakt sotsiaaltööspetsialistiga"
+        ],
+        "steps": [
+          "Täitke sotsiaalteenuse taotlus.",
+          "Esitage see oma piirkonna sotsiaaltööspetsialistile või saatke digiallkirjastatult e-postiga."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "0,20 eurot kilomeetri kohta, kuni 200 eurot kuus.",
+      "officialUrl": "https://laaneharju.ee/puudega-isiku-transporditoetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eakad_overview",
+        "puudega_transporditoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_benefit_puudega_isiku_transporditoetus",
+      "document_id": "laane_harju_vald_benefit_puudega_isiku_transporditoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/puudega-isiku-transporditoetus",
+      "content_hash": "a0be4f445e86dbe4646b47a1984a7951ff10825d5780e66bc8dae198a6942a04",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_benefit_sotsiaalteenuste_toetus",
+      "canonical_item_id": "laane_harju_vald:benefit:sotsiaalteenuste_toetus",
+      "itemType": "benefit",
+      "title": "Sotsiaalteenuste toetus",
+      "status": "active",
+      "summary": "Sotsiaalteenuste toetus on juhtumipõhine toetus sotsiaalteenuse eest osaliseks või täielikuks tasumiseks, kui teenusele on suunanud või teenuse on korraldanud sotsiaalosakond. Toetust kasutatakse konkreetse abivajaduse ja teenuse maksumuse katmiseks.",
+      "sourceKeys": [
+        "sotsiaalteenuste_toetus_page"
+      ],
+      "targetGroup": "Inimesed, kellele sotsiaalosakond on korraldanud või suunanud sotsiaalteenuse.",
+      "conditions": "Teenusele peab olema suunanud või selle korraldanud sotsiaalosakond.",
+      "application": {
+        "channels": [
+          "paberavaldus",
+          "digiallkirjastatud avaldus e-postiga",
+          "kontakt sotsiaaltööspetsialistiga"
+        ],
+        "steps": [
+          "Täitke sotsiaaltoetuse taotlus ja esitage vajalikud tõendid."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Juhtumipõhine; sõltub eelarve võimalustest ja konkreetsest vajadusest.",
+      "officialUrl": "https://laaneharju.ee/sotsiaalteenuste-toetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_sotsiaaltoetuse_taotlus_2026"
+      ],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenuste_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_benefit_sotsiaalteenuste_toetus",
+      "document_id": "laane_harju_vald_benefit_sotsiaalteenuste_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/sotsiaalteenuste-toetus",
+      "content_hash": "dd053567f6ea1bd6eb9eb8c82dc647234bc09c4bcaedf64b9c13b9cd99d5da32",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_benefit_toetus_raske_majandusliku_olukorra_puhul",
+      "canonical_item_id": "laane_harju_vald:benefit:toetus_raske_majandusliku_olukorra_puhul",
+      "itemType": "benefit",
+      "title": "Toetus raske majandusliku olukorra puhul",
+      "status": "active",
+      "summary": "Toetus raske majandusliku olukorra puhul on mõeldud inimesele või perele, kes on sattunud toimetulekuraskustesse sotsiaalsete riskide, elatusvahendite kaotuse või planeerimatu väljamineku tõttu. Toetus aitab katta ootamatuid või hädavajalikke kulusid.",
+      "sourceKeys": [
+        "raske_majandus_toetus_page",
+        "toimetulek_overview"
+      ],
+      "targetGroup": "Inimesed ja pered, kes on sattunud toimetulekuraskustesse või ootamatu kulu ette.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "paberavaldus",
+          "digiallkirjastatud avaldus e-postiga",
+          "kontakt sotsiaaltööspetsialistiga"
+        ],
+        "steps": [
+          "Täitke sotsiaaltoetuse taotlus ning lisage vajadust tõendavad dokumendid."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Kuni 300 eurot leibkonna kohta aastas; kütte kompenseerimisel kuni 50% piirmäärast.",
+      "officialUrl": "https://laaneharju.ee/toetus-raske-majandusliku-olukorra-puhul",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_sotsiaaltoetuse_taotlus_vallavalitsusele",
+        "laane_harju_vald_form_sotsiaaltoetuse_taotlus_2026"
+      ],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "raske_majandus_toetus_page",
+        "toimetulek_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_benefit_toetus_raske_majandusliku_olukorra_puhul",
+      "document_id": "laane_harju_vald_benefit_toetus_raske_majandusliku_olukorra_puhul",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/toetus-raske-majandusliku-olukorra-puhul",
+      "content_hash": "82a26d38e920dd797e17fc8344e641e2eb6beea4c0b2a12c22abec31d8e0fe1a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_benefit_tervisetoetus",
+      "canonical_item_id": "laane_harju_vald:benefit:tervisetoetus",
+      "itemType": "benefit",
+      "title": "Tervisetoetus",
+      "status": "active",
+      "summary": "Tervisetoetus aitab hüvitada tervisega seotud kulusid, näiteks laste prillide ja täiskasvanute prilliklaaside, abivahendi ostu või rentimise, retseptiravimite, raviprotseduuride, raviasutuse omaosalusarvete ja ravikindlustuseta isiku hädavajalike raviteenuste kulu. Toetus on sissetulekust sõltuv ja seotud vajaduspõhise hindamisega.",
+      "sourceKeys": [
+        "eakad_overview",
+        "sissetulekust_soltuvad_toetused_page"
+      ],
+      "targetGroup": "Madala sissetulekuga inimesed ja pered, kellel on tervisega seotud kulud.",
+      "conditions": "Toetuse üldtingimus koondlehel: netosissetulek ühe pereliikme kohta pärast eluasemekulude mahaarvamist peab jääma alla 400 euro ühe isiku kohta või alla 480 euro alaealiste pereliikmete puhul.",
+      "application": {
+        "channels": [
+          "paberavaldus",
+          "digiallkirjastatud avaldus e-postiga",
+          "kontakt sotsiaaltööspetsialistiga"
+        ],
+        "steps": [
+          "Täitke sotsiaaltoetuse taotlus ning lisage kuludokumendid ja sissetulekuid tõendavad dokumendid."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Retseptiravimite kulu kuni 60 eurot kvartalis; hooldusvahendite, ravi- ja tervishoiuteenuste või abivahendite kulu kuni 120 eurot aastas ühe taotleja kohta.",
+      "officialUrl": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/teenused-ja-toetused",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_sotsiaaltoetuse_taotlus_2026",
+        "laane_harju_vald_form_sotsiaaltoetuse_taotlus_vallavalitsusele"
+      ],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eakad_overview",
+        "sissetulekust_soltuvad_toetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_benefit_tervisetoetus",
+      "document_id": "laane_harju_vald_benefit_tervisetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/teenused-ja-toetused",
+      "content_hash": "212ea46570712b6eafb312a94722a15ab984605f383d6d8f0b7589fea69f3a52",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_benefit_hooldajatoetus_taisealise",
+      "canonical_item_id": "laane_harju_vald:benefit:hooldajatoetus_taisealise",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus täisealise isiku hooldajale",
+      "status": "active",
+      "summary": "Hooldajatoetust saab taotleda isik, kes on määratud hooldajaks raske või sügava puudega täisealisele inimesele. Toetus aitab kompenseerida hooldamisega seotud koormust ning seda makstakse igakuiselt alates hooldajaks määramisele järgnevast kalendrikuust.",
+      "sourceKeys": [
+        "eakad_overview",
+        "hooldajatoetus_taisealise_page"
+      ],
+      "targetGroup": "Raske või sügava puudega täisealise inimese hooldajaks määratud isik.",
+      "conditions": "Hooldataval peab olema raske või sügav puue; hooldajaks ei määrata isikut, kellel endal on raske või sügav puue.",
+      "application": {
+        "channels": [
+          "paberavaldus",
+          "kontakt sotsiaaltööspetsialistiga"
+        ],
+        "steps": [
+          "Täitke täisealise isiku hooldajatoetuse taotlus ja esitage see sotsiaaltööspetsialistile."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "30 eurot kuus raske puudega isiku hooldajale; 50 eurot kuus sügava puudega isiku hooldajale.",
+      "officialUrl": "https://laaneharju.ee/hooldajatoetus-taisealise-isiku-hooldajale",
+      "relatedTo": [
+        "laane_harju_vald_service_taisealise_isiku_hooldus"
+      ],
+      "relatedForms": [
+        "laane_harju_vald_form_hooldajatoetus_taisealise_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eakad_overview",
+        "hooldajatoetus_taisealise_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_benefit_hooldajatoetus_taisealise",
+      "document_id": "laane_harju_vald_benefit_hooldajatoetus_taisealise",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/hooldajatoetus-taisealise-isiku-hooldajale",
+      "content_hash": "8fb6baa71544d3ddd7b5b282e85952fe5b152715d429850840f5c4f1b11da126",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_benefit_hooldajatoetus_puudega_lapse",
+      "canonical_item_id": "laane_harju_vald:benefit:hooldajatoetus_puudega_lapse",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus puudega lapse hooldajale",
+      "status": "active",
+      "summary": "Puudega lapse hooldajale mõeldud toetus aitab hüvitada lapse hooldamisega seotud hädavajalikke kulusid, näiteks koolitarbeid, riideid, jalanõusid, tugi- ja raviteenuseid, spordi- ja lastelaagri osalustasu ning kutseõppe õpilaskodu või ühiselamu üüri. Taotluse võib esitada lapse vanem, eestkostja või lepinguline hooldaja.",
+      "sourceKeys": [
+        "hooldajatoetus_lapse_page",
+        "laps_pere_overview"
+      ],
+      "targetGroup": "Puudega lapse vanem, eestkostja või lepinguline hooldaja.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "digiallkirjastatud avaldus e-postiga",
+          "paberavaldus"
+        ],
+        "steps": [
+          "Täitke avaldus, digiallkirjastage ja saatke e-postiga või tooge paberkandjal piirkonna sotsiaaltööspetsialistile."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Sügava puudega lapse hooldajale 50 eurot kuus ja raske puudega lapse hooldajale 30 eurot kuus, kui toetuse piirmäära kohaldatakse hooldajatoetusele.",
+      "officialUrl": "https://laaneharju.ee/hooldajatoetus-puudega-lapse-hooldajale",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_sotsiaaltoetuse_taotlus_2026"
+      ],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "hooldajatoetus_lapse_page",
+        "laps_pere_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_benefit_hooldajatoetus_puudega_lapse",
+      "document_id": "laane_harju_vald_benefit_hooldajatoetus_puudega_lapse",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/hooldajatoetus-puudega-lapse-hooldajale",
+      "content_hash": "4c8b9140a46d9f5f3831a57f4c2f88a9377815dee2c399982c42acc079fe5ae6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_benefit_sunnitoetus",
+      "canonical_item_id": "laane_harju_vald:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus on Lääne-Harju valla eelarvest makstav ühekordne toetus lapse sünni puhul. Toetuse kogusumma on 550 eurot: esimene osa 350 eurot ja teine osa 200 eurot. Esimene osa sõltub lapse ema ja ühe vanema elukohatingimustest lapse sünni ajal ning teine osa makstakse pärast lapse ühe aasta vanuseks saamist, kui laps ja vähemalt üks vanem on olnud katkematult valla elanikud.",
+      "sourceKeys": [
+        "lapse_sund_page",
+        "sunnitoetus_page"
+      ],
+      "targetGroup": "Lapsevanemad või üksikvanem lapse sünni puhul.",
+      "conditions": "Lapse ema peab olema lapse sünnihetkel rahvastikuregistri järgi Lääne-Harju valla elanik ja üks lapsevanematest peab olema elanud vallas katkematult vähemalt kuus kuud enne lapse sündi; teise osa saamiseks peavad laps ja vähemalt üks vanem või üksikvanem olema valla elanikud lapse sünnist kuni aastaseks saamiseni.",
+      "application": {
+        "channels": [
+          "SPOKU e-taotlus",
+          "digiallkirjastatud avaldus e-postiga",
+          "paberavaldus"
+        ],
+        "steps": [
+          "Esitage taotlus e-taotluste keskkonnas SPOKU või täitke pabervorm.",
+          "Taotluse võib saata digiallkirjastatult e-postiga või tuua vallamajja või teeninduspunkti."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "550 eurot kokku: 350 eurot esimene osa ja 200 eurot teine osa.",
+      "officialUrl": "https://laaneharju.ee/sunnitoetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_sunnitoetuse_taotlus",
+        "laane_harju_vald_form_spoku_sunnitoetus"
+      ],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lapse_sund_page",
+        "sunnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_benefit_sunnitoetus",
+      "document_id": "laane_harju_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/sunnitoetus",
+      "content_hash": "73e8e47ec9111cd934caba7cf78af3699d37e360cb8e5674d1bd31bd56a9b073",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_benefit_matusetoetus",
+      "canonical_item_id": "laane_harju_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on ühekordne rahaline toetus matuse korraldajale isiku surma korral, kui lahkunu viimane elukoht oli rahvastikuregistri järgi Lääne-Harju vald. Toetust makstakse samaväärselt ka Lääne-Harju valla elanikust matuse korraldajale juhul, kui lahkunul puudus rahvastikuregistrijärgne elukoht või lahkunu elukohajärgsest omavalitsusest ei olnud võimalik toetust saada. Toetus makstakse välja võimalikult kiiresti, kuid mitte hiljem kui kahe nädala jooksul pärast taotluse esitamist.",
+      "sourceKeys": [
+        "lahedase_surm_page"
+      ],
+      "targetGroup": "Matuse korraldaja.",
+      "conditions": "Lahkunu viimane rahvastikuregistrijärgne elukoht peab üldjuhul olema Lääne-Harju vald; erandina saab toetust taotleda valla elanikust matuse korraldaja teatud juhtudel.",
+      "application": {
+        "channels": [
+          "SPOKU e-taotlus",
+          "paberavaldus",
+          "digiallkirjastatud avaldus e-postiga"
+        ],
+        "steps": [
+          "Esitage taotlus SPOKU keskkonnas, vallamajas või teeninduspunktis.",
+          "E-postiga esitamisel täitke vorm, digiallkirjastage ja saatke vallale."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Väljamaksmine võimalikult kiiresti, kuid hiljemalt kahe nädala jooksul pärast taotluse esitamist.",
+      "amount": "230 eurot.",
+      "officialUrl": "https://laaneharju.ee/vald-uudised-ja-kontakt/rahvastikutoimingud/lahedase-surm",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_matusetoetuse_taotlus",
+        "laane_harju_vald_form_spoku_matusetoetus"
+      ],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lahedase_surm_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_benefit_matusetoetus",
+      "document_id": "laane_harju_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/vald-uudised-ja-kontakt/rahvastikutoimingud/lahedase-surm",
+      "content_hash": "0b244dc3706084701679f7731c1790a92d607525a92ea915960c42eb601abdb9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_benefit_ranitsatoetus",
+      "canonical_item_id": "laane_harju_vald:benefit:ranitsatoetus",
+      "itemType": "benefit",
+      "title": "Esmakordselt koolimineva lapse toetus ehk ranitsatoetus",
+      "status": "active",
+      "summary": "Esmakordselt kooli mineva lapse toetus ehk ranitsatoetus on ühekordne toetus lapsele, kes läheb esimesse klassi. Toetuse suurus on 130 eurot. Tingimuseks on, et lapse ja ühe vanema, hooldaja või eestkostja elukoht on 15. augusti seisuga rahvastikuregistri järgi Lääne-Harju vald.",
+      "sourceKeys": [
+        "ranitsatoetus_page"
+      ],
+      "targetGroup": "Esimest korda kooli minevad lapsed ja nende vanemad või eestkostjad.",
+      "conditions": "Laps ja üks vanem, hooldaja või eestkostja peavad olema 15. augusti seisuga rahvastikuregistri järgi Lääne-Harju valla elanikud.",
+      "application": {
+        "channels": [
+          "SPOKU e-taotlus",
+          "digiallkirjastatud avaldus e-postiga",
+          "paberavaldus"
+        ],
+        "steps": [
+          "Esitage taotlus e-taotluste keskkonnas SPOKU.",
+          "Võimalik on esitada digiallkirjastatud avaldus toetust menetlevale sotsiaaltööspetsialistile või paberkandjal piirkonna sotsiaaltööspetsialistile."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "130 eurot.",
+      "officialUrl": "https://laaneharju.ee/haridus-ja-noored/taotlused-ja-toetused/ranitsatoetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_ranitsatoetuse_taotlus",
+        "laane_harju_vald_form_spoku_ranitsatoetus"
+      ],
+      "relatedContacts": [
+        "laane_harju_vald_contact_mari_liis_asu"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "ranitsatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_benefit_ranitsatoetus",
+      "document_id": "laane_harju_vald_benefit_ranitsatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/haridus-ja-noored/taotlused-ja-toetused/ranitsatoetus",
+      "content_hash": "b06fe5eda329ed705297302426b1866bf175ae3a62570169be6e532e3c0723d9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_benefit_lasteaia_osalustasu_ja_koolitoidu_toetus",
+      "canonical_item_id": "laane_harju_vald:benefit:lasteaia_osalustasu_ja_koolitoidu_toetus",
+      "itemType": "benefit",
+      "title": "Lasteaia osalustasu ning lasteaia- ja koolitoidu toetus",
+      "status": "active",
+      "summary": "Lasteaia osalustasu ning lasteaia- ja koolitoidu toetus on perekonna sissetulekust sõltuv toetus. Toetus määratakse jooksva aasta või õppeaasta lõpuni ning kantakse haridusasutuse arvele.",
+      "sourceKeys": [
+        "laps_pere_overview",
+        "lasteaia_toidu_toetus_page"
+      ],
+      "targetGroup": "Madala sissetulekuga pered, kelle laps käib lasteaias või koolis.",
+      "conditions": "Toetus on perekonna sissetulekust sõltuv.",
+      "application": {
+        "channels": [
+          "digiallkirjastatud avaldus e-postiga",
+          "paberavaldus"
+        ],
+        "steps": [
+          "Täitke avaldus, digiallkirjastage ja saatke e-postiga või tooge paberkandjal oma piirkonna sotsiaaltööspetsialistile."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Vastavalt tegelikule kulule.",
+      "officialUrl": "https://laaneharju.ee/haridus-ja-noored/taotlused-ja-toetused/lasteaia-osalustasu-ning-lasteaia-ja-koolitoidu-toetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_sotsiaaltoetuse_taotlus_vallavalitsusele"
+      ],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "laps_pere_overview",
+        "lasteaia_toidu_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_benefit_lasteaia_osalustasu_ja_koolitoidu_toetus",
+      "document_id": "laane_harju_vald_benefit_lasteaia_osalustasu_ja_koolitoidu_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/haridus-ja-noored/taotlused-ja-toetused/lasteaia-osalustasu-ning-lasteaia-ja-koolitoidu-toetus",
+      "content_hash": "4faf39aeb1fb2eff1879553a46ed6f2d5cfff09ac41b54415176b21eaf5a030e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_benefit_lastega_pere_toetus",
+      "canonical_item_id": "laane_harju_vald:benefit:lastega_pere_toetus",
+      "itemType": "benefit",
+      "title": "Lastega pere toetus",
+      "status": "active",
+      "summary": "Lastega pere toetus aitab katta lapsega seotud kulusid, näiteks koolitarbeid, riideid, jalanõusid, tugi- ja raviteenuseid, spordi- ja lastelaagri osalustasu ning kutseõppe õpilaskodu või ühiselamu üüri. Toetus on mõeldud lapse vanemale, eestkostjale või lepingulisele hooldajale.",
+      "sourceKeys": [
+        "laps_pere_overview",
+        "lastega_pere_toetus_page"
+      ],
+      "targetGroup": "Madala sissetulekuga lastega pered.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "digiallkirjastatud avaldus e-postiga",
+          "paberavaldus"
+        ],
+        "steps": [
+          "Täitke avaldus ja esitage see digiallkirjastatult e-postiga või paberkandjal oma piirkonna sotsiaaltööspetsialistile."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Kuni 100 eurot lapse kohta aastas; ühiselamu või õpilaskodu üüri tasumiseks vastavalt tegelikule kulule.",
+      "officialUrl": "https://laaneharju.ee/lastega-pere-toetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_sotsiaaltoetuse_taotlus_vallavalitsusele"
+      ],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "laps_pere_overview",
+        "lastega_pere_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_benefit_lastega_pere_toetus",
+      "document_id": "laane_harju_vald_benefit_lastega_pere_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/lastega-pere-toetus",
+      "content_hash": "5fb4ae309c8562ec3bc535d7b2828a5d8ec2d96990350756c8310238ee758123",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_benefit_huvialaringi_toetus",
+      "canonical_item_id": "laane_harju_vald:benefit:huvialaringi_toetus",
+      "itemType": "benefit",
+      "title": "Huvialaringi toetus",
+      "status": "active",
+      "summary": "Huvialaringi toetus aitab vähekindlustatud isiku või perekonna lapsel osaleda huvikoolis, huviringis või trennis. Toetust saab taotleda ühe huviringi või huvikooli eest tasumiseks ning toetust makstakse kuludokumentide alusel. Toetuse suurus on kuni 30 eurot lapse kohta ühes kuus õppeaasta jooksul.",
+      "sourceKeys": [
+        "laps_pere_overview",
+        "noorte_huvialade_toetus_page"
+      ],
+      "targetGroup": "Vähekindlustatud perede lapsed, kes osalevad huvikoolis, huviringis või trennis.",
+      "conditions": "Pere netosissetulek peab jääma alla toimetulekuks vajaliku piiri; toetus on ühe huviringi või huvikooli eest tasumiseks.",
+      "application": {
+        "channels": [
+          "kontakt sotsiaalosakonnaga",
+          "kuludokumendid"
+        ],
+        "steps": [
+          "Pöörduge vallavalitsuse sotsiaalosakonna poole ja esitage kuludokumendid."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Kuni 30 eurot lapse kohta kuus õppeaasta jooksul.",
+      "officialUrl": "https://laaneharju.ee/noorte-huvialade-toetused",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_sotsiaaltoetuse_taotlus_vallavalitsusele"
+      ],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "laps_pere_overview",
+        "noorte_huvialade_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_benefit_huvialaringi_toetus",
+      "document_id": "laane_harju_vald_benefit_huvialaringi_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/noorte-huvialade-toetused",
+      "content_hash": "80b64156b41286ef850334ca2ae22b14f0743a73023952b2b850a26644991c63",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_benefit_koolisoidutoetus",
+      "canonical_item_id": "laane_harju_vald:benefit:koolisoidutoetus",
+      "itemType": "benefit",
+      "title": "Koolisõidutoetus",
+      "status": "active",
+      "summary": "Koolisõidutoetus kompenseerib üldhariduskooli õpilase ühistranspordi sõidukulusid vastavalt tegelikele kuludele. Toetust võib taotleda lapsevanem, lapse seaduslik esindaja või vähemalt 16-aastane õpilane, kui vähemalt üks vanem ja laps on rahvastikuregistri järgi Lääne-Harju valla aadressandmetega. Toetus ei kata sõidukulusid, kui lapse elukohajärgses asulas asub üldhariduskool või vald on korraldanud õpilastranspordi.",
+      "sourceKeys": [
+        "koolisoidutoetus_page",
+        "laps_pere_overview"
+      ],
+      "targetGroup": "Üldhariduskooli õpilased, kelle koolisõit vajab kulude kompenseerimist.",
+      "conditions": "Taotleja ja laps peavad olema valla elanikud; kompenseeritakse mitte rohkem kui üks edasi-tagasi sõit õppepäeva kohta ning kuludokumendid võivad olla kuni 3 kuud vanad ja selgesti loetavad.",
+      "application": {
+        "channels": [
+          "digiallkirjastatud avaldus e-postiga",
+          "paberavaldus",
+          "kuludokumendid"
+        ],
+        "steps": [
+          "Esitage iga õppeaasta alguses koolisõidutoetuse taotlus.",
+          "Lisage jooksvalt iga kuu lõikes kulusid tõendavad dokumendid."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Vastavalt tegelikele ühistranspordi kuludele; hariduslike erivajadustega laste puhul võib hüvitada kütusekulu kuludokumentide alusel.",
+      "officialUrl": "https://laaneharju.ee/koolisoidutoetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "laane_harju_vald_form_koolisoidutoetuse_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "koolisoidutoetus_page",
+        "laps_pere_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_benefit_koolisoidutoetus",
+      "document_id": "laane_harju_vald_benefit_koolisoidutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/koolisoidutoetus",
+      "content_hash": "f8b1f6cfaabf3d5eb04e5062296223b96b09e611b071259f3cbdbd7fc4fdbf94",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_resource_toiduabikaart",
+      "canonical_item_id": "laane_harju_vald:resource:toiduabikaart",
+      "itemType": "resource",
+      "title": "Toiduabikaart",
+      "status": "active",
+      "summary": "Toiduabikaart on Euroopa abifondi toiduabi lahendus, mille kaudu kantakse toetussumma kvartalis kaardile ja inimene saab valida toidu- ja esmatarbekaupu. Lääne-Harju lehe järgi kantakse kaardile kvartalis 36 eurot inimese kohta ning ühe pere kohta väljastatakse üks kaart. Toiduabisaajate nimekiri koostatakse toimetulekutoetuse ja kohaliku omavalitsuse toetuste taotluste ning abivajaduse hindamise alusel.",
+      "sourceKeys": [
+        "toiduabikaart_page"
+      ],
+      "application": {
+        "channels": [
+          "abivajaduse hindamine toetuse taotlemisel"
+        ],
+        "steps": [
+          "Toiduabi saajate nimekiri koostatakse toetuste taotluste ja abivajaduse hindamise alusel; kaart toimetatakse posti teel või sotsiaaltöötaja kaudu."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/toiduabikaart",
+      "relatedTo": [
+        "laane_harju_vald_service_toiduabi"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "toiduabikaart_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_resource_toiduabikaart",
+      "document_id": "laane_harju_vald_resource_toiduabikaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/toiduabikaart",
+      "content_hash": "91b6dec8aeeb39b866ca6f3613e7982b5ceea91b297c90686b8d7e2d1e5a3aa9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_resource_parkimiskaart",
+      "canonical_item_id": "laane_harju_vald:resource:parkimiskaart",
+      "itemType": "resource",
+      "title": "Puudega inimese sõiduki parkimiskaart",
+      "status": "active",
+      "summary": "Puudega inimese sõiduki parkimiskaart väljastatakse keskmise, raske või sügava liikumis- või nägemisfunktsiooni kõrvalekalde korral. Ajutist parkimiskaarti saab taotleda kuni kuueks kuuks pere- või eriarsti tõendi alusel. Taotlemisel tuleb esitada isikut tõendav dokument ja 3 x 4 cm foto.",
+      "sourceKeys": [
+        "eakad_overview",
+        "parkimiskaart_page"
+      ],
+      "application": {
+        "channels": [
+          "kontakt piirkondliku sotsiaaltööspetsialistiga"
+        ],
+        "steps": [
+          "Esitage isikut tõendav dokument ja foto; ajutise kaardi puhul lisage arsti teatis ajutise liikumis- või nägemisfunktsiooni kõrvalekalde kohta."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://laaneharju.ee/puudega-inimese-soiduki-parkimiskaart",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eakad_overview",
+        "parkimiskaart_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_resource_parkimiskaart",
+      "document_id": "laane_harju_vald_resource_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/puudega-inimese-soiduki-parkimiskaart",
+      "content_hash": "0b21f0a46a52f3dd62694ebb5d29254a6e07c14e1cad42260107abcbac1f760c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_resource_lasteabi_ja_abivajav_laps",
+      "canonical_item_id": "laane_harju_vald:resource:lasteabi_ja_abivajav_laps",
+      "itemType": "resource",
+      "title": "Abivajav laps, lasteabi ja hädaabi",
+      "status": "active",
+      "summary": "Lääne-Harju valla lapse ja pere heaolu leht juhendab, et abivajavast lapsest tuleb tööpäeval teatada vallavalitsuse laste ja perede talitusele või piirkondlikele laste heaolu spetsialistidele. Kui vallavalitsuse ei vasta või abi on vaja nädalavahetusel, tuleb info edastada lasteabitelefonil või politsei lühinumbril. Lasteabi veebileht on nimetatud lisakanalina.",
+      "sourceKeys": [
+        "lapse_pere_heaolu_page"
+      ],
+      "application": null,
+      "officialUrl": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lapse-ja-pere-heaolu",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lapse_pere_heaolu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_resource_lasteabi_ja_abivajav_laps",
+      "document_id": "laane_harju_vald_resource_lasteabi_ja_abivajav_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lapse-ja-pere-heaolu",
+      "content_hash": "8057a3244b83bae3e7524ee9e7afb1927fb6bb148506e32d113a5479b9a191ee",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_resource_laane_harju_tugikeskus",
+      "canonical_item_id": "laane_harju_vald:resource:laane_harju_tugikeskus",
+      "itemType": "resource",
+      "title": "Lääne-Harju Valla Tugikeskus",
+      "status": "active",
+      "summary": "Lääne-Harju Valla Tugikeskus on valla allasutus, mille eesmärk on paremini korraldada toimetulekuraskustega inimeste ja perede toetamist. KOV lehe järgi on tugikeskuse peamine eesmärk pakkuda eluruumi- ja resotsialiseerimisteenust ning tugikeskus korraldab ka vältimatut sotsiaalabi. Tugikeskus asub Ämaris, Lennu tn 18.",
+      "sourceKeys": [
+        "hoolekandeasutused_page",
+        "koduteenus_page"
+      ],
+      "application": null,
+      "officialUrl": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused",
+      "relatedTo": [
+        "laane_harju_vald_service_varjupaigateenus",
+        "laane_harju_vald_service_resotsialiseerimisteenus",
+        "laane_harju_vald_service_valtimatu_sotsiaalabi"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "name": "Lääne-Harju Valla Tugikeskus",
+      "address": "Lennu tn 18, Ämari alevik, Lääne-Harju vald, Harju maakond 76102",
+      "item_type": "resource",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "hoolekandeasutused_page",
+        "koduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_resource_laane_harju_tugikeskus",
+      "document_id": "laane_harju_vald_resource_laane_harju_tugikeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused",
+      "content_hash": "a71065e9283653983c8db73b0160063374a6a19d9677bbf891179dc96b96b6b6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_resource_karjakyla_sotsiaalkeskus",
+      "canonical_item_id": "laane_harju_vald:resource:karjakyla_sotsiaalkeskus",
+      "itemType": "resource",
+      "title": "Karjaküla Sotsiaalkeskus OÜ",
+      "status": "active",
+      "summary": "Karjaküla Sotsiaalkeskus on 100% valla osalusega äriühing ja üldhooldekodu Lääne-Harju vallas. Lehe järgi on kohatasud alates 01.04.2025 ühe inimese toas 1650 eurot kuus ja mitmekohalises toas 1500 eurot kuus; kuutasu sisaldab retseptiravimeid ning põetus- ja hooldusvahendeid. Hoolduskomponent kohatasus on 660 eurot kuus.",
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "application": null,
+      "officialUrl": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused",
+      "relatedTo": [
+        "laane_harju_vald_service_uldhooldusteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "name": "Karjaküla Sotsiaalkeskus OÜ",
+      "address": "Keila tee 15, Karjaküla alevik, Lääne-Harju vald, 76620 Harjumaa",
+      "pricing": "Alates 01.04.2025: 1-kohaline tuba 1650 €/kuu, mitmekohaline tuba 1500 €/kuu; hoolduskomponent 660 €/kuu.",
+      "item_type": "resource",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_resource_karjakyla_sotsiaalkeskus",
+      "document_id": "laane_harju_vald_resource_karjakyla_sotsiaalkeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused",
+      "content_hash": "c3ac1788034b22c4c039422592b05fb911a459c1e5831786bcb9702fcaeb2932",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_resource_benita_kodu",
+      "canonical_item_id": "laane_harju_vald:resource:benita_kodu",
+      "itemType": "resource",
+      "title": "Benita Kodu AS",
+      "status": "active",
+      "summary": "Benita Kodu AS on eakate kodu, õendushaigla ja rehabilitatsioonikeskus Lääne-Harju vallas Valkse külas. KOV leht nimetab asutust hoolekandeasutuste loetelus ja suunab lisainfoks asutuse kodulehele.",
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "application": null,
+      "officialUrl": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused",
+      "relatedTo": [
+        "laane_harju_vald_service_uldhooldusteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "name": "Benita Kodu AS",
+      "address": "Kodu tee 8, Valkse küla, Lääne-Harju vald, 76616 Harjumaa",
+      "item_type": "resource",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_resource_benita_kodu",
+      "document_id": "laane_harju_vald_resource_benita_kodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused",
+      "content_hash": "309a0ac39162636db693e1401d6051a52a624a2a236be82092f5537f618bd4d9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_resource_keila_teraapiakeskus",
+      "canonical_item_id": "laane_harju_vald:resource:keila_teraapiakeskus",
+      "itemType": "resource",
+      "title": "Keila Teraapiakeskus OÜ",
+      "status": "active",
+      "summary": "Keila Teraapiakeskus OÜ on Lääne-Harju valla vaimse tervise teenuse lehel nimetatud teenuseosutaja. KOV leht seostab teenusepakkujaga psühholoogilise nõustamise, pereteraapia ja loovteraapia.",
+      "sourceKeys": [
+        "vaimse_tervise_page"
+      ],
+      "application": null,
+      "officialUrl": "https://laaneharju.ee/vaimse-tervise-teenused",
+      "relatedTo": [
+        "laane_harju_vald_service_vaimse_tervise_teenused"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "name": "Keila Teraapiakeskus OÜ",
+      "address": "Keskväljak 17, Keila",
+      "item_type": "resource",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "vaimse_tervise_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_resource_keila_teraapiakeskus",
+      "document_id": "laane_harju_vald_resource_keila_teraapiakeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/vaimse-tervise-teenused",
+      "content_hash": "df1700473d61c9e032804e7f1109dfa759cd2c2d165b0f06edb0c3f0233dcdc5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_resource_mtu_toetus",
+      "canonical_item_id": "laane_harju_vald:resource:mtu_toetus",
+      "itemType": "resource",
+      "title": "MTÜ Toetus",
+      "status": "active",
+      "summary": "MTÜ Toetus on Lääne-Harju valla vaimse tervise teenuse lehel nimetatud teenuseosutaja. KOV leht seostab teenusepakkujaga psühholoogilise nõustamise ja pereteraapia.",
+      "sourceKeys": [
+        "vaimse_tervise_page"
+      ],
+      "application": null,
+      "officialUrl": "https://laaneharju.ee/vaimse-tervise-teenused",
+      "relatedTo": [
+        "laane_harju_vald_service_vaimse_tervise_teenused"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "name": "MTÜ Toetus",
+      "address": "Keskväljak 10, Keila",
+      "item_type": "resource",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "vaimse_tervise_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_resource_mtu_toetus",
+      "document_id": "laane_harju_vald_resource_mtu_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/vaimse-tervise-teenused",
+      "content_hash": "fd58561acc033d4494a53568531572712cf4cf5250daac1b020cadcad8dd72cb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_resource_teeninduspunktid",
+      "canonical_item_id": "laane_harju_vald:resource:teeninduspunktid",
+      "itemType": "resource",
+      "title": "Teeninduspunktid ja sotsiaaltööspetsialistide vastuvõtud",
+      "status": "active",
+      "summary": "Lääne-Harju valla teeninduspunktide lehel on avaldatud vallavalitsuse, Keila teeninduspunkti ning Rummu, Vasalemma ja Padise vastuvõtukohtade info. Vallavalitsus asub Rae tn 38 Paldiskis ja üldtelefon on. Sotsiaaltööspetsialistide vastuvõtud toimuvad muu hulgas Keilas teisipäeviti ja neljapäeviti, Rummus teisipäeval, Vasalemmas teisipäeval ja neljapäeval ning Padisel teisipäeval ja neljapäeval.",
+      "sourceKeys": [
+        "service_points_page"
+      ],
+      "application": null,
+      "officialUrl": "https://laaneharju.ee/teeninduspunktid-ja-sotsiaaltoospetsialistide-vastuvotud",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "address": "Rae tn 38, Paldiski linn, Harjumaa 76806; Keila teeninduspunkt Haapsalu mnt 31a-3; Rummu Aia 5; Vasalemma Ranna tee 8; Padise Vallamaja",
+      "item_type": "resource",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "service_points_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_resource_teeninduspunktid",
+      "document_id": "laane_harju_vald_resource_teeninduspunktid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/teeninduspunktid-ja-sotsiaaltoospetsialistide-vastuvotud",
+      "content_hash": "e941358bde35daa38295f553792eea11a13903ec5da0a5df2884107368b254a0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_contact_sotsiaalosakond",
+      "canonical_item_id": "laane_harju_vald:contact:sotsiaalosakond",
+      "itemType": "contact",
+      "title": "Lääne-Harju Vallavalitsuse üldkontakt",
+      "status": "active",
+      "summary": "Lääne-Harju Vallavalitsus on Lääne-Harju valla sotsiaalvaldkonna kontakt. Üldkontakt asub Rae tn 38 Paldiskis; vallavalitsuse tööajad on E ja K 8.30-17.00, T ja N 8.30-18.00 ning R 8.30-15.00.",
+      "sourceKeys": [
+        "contact_page",
+        "service_points_page"
+      ],
+      "name": "Lääne-Harju Vallavalitsus",
+      "role": "Vallavalitsuse üldkontakt",
+      "department": "Sotsiaalosakond",
+      "address": "Rae tn 38, Paldiski linn, Harjumaa 76806",
+      "officialUrl": "https://laaneharju.ee/kontakt",
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "contact",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "contact_page",
+        "service_points_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_contact_sotsiaalosakond",
+      "document_id": "laane_harju_vald_contact_sotsiaalosakond",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/kontakt",
+      "content_hash": "face6b3ad5ad34f8c641a030e228ab286f01dbd6f4e55655b73228b1f7a7879e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_contact_triin_vanem",
+      "canonical_item_id": "laane_harju_vald:contact:triin_vanem",
+      "itemType": "contact",
+      "title": "Triin Vanem",
+      "status": "active",
+      "summary": "Triin Vanem on Lääne-Harju valla sotsiaalvaldkonna kontakt. Ta vastutab sotsiaalhoolekande korraldamise ning sotsiaaltoetuste ja -teenuste kättesaadavuse tagamise eest.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "name": "Triin Vanem",
+      "role": "Sotsiaalosakonna osakonnajuhataja asetäitja",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://laaneharju.ee/kontakt",
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "contact",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_contact_triin_vanem",
+      "document_id": "laane_harju_vald_contact_triin_vanem",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/kontakt",
+      "content_hash": "2f1db74cbfac655e8e62d0edcb3e73662c3f95e8c2b58aea333c4f50dc86e113",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_contact_anne_ly_padrik",
+      "canonical_item_id": "laane_harju_vald:contact:anne_ly_padrik",
+      "itemType": "contact",
+      "title": "Anne-Ly Padrik",
+      "status": "active",
+      "summary": "Anne-Ly Padrik on Lääne-Harju valla sotsiaalvaldkonna kontakt. Kontakt on seotud sotsiaalteenustega Paldiski piirkonnas.",
+      "sourceKeys": [
+        "contact_page",
+        "social_workers_contact_page"
+      ],
+      "name": "Anne-Ly Padrik",
+      "role": "Sotsiaaltöö peaspetsialist, Paldiski piirkond",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://laaneharju.ee/sotsiaaltoospetsialistid",
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "contact",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "contact_page",
+        "social_workers_contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_contact_anne_ly_padrik",
+      "document_id": "laane_harju_vald_contact_anne_ly_padrik",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/sotsiaaltoospetsialistid",
+      "content_hash": "394f3937ca23f5e5ac55f6e244a1260a00c257b02abf65fa1c2694e9a83187a3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_contact_reet_taevere",
+      "canonical_item_id": "laane_harju_vald:contact:reet_taevere",
+      "itemType": "contact",
+      "title": "Reet Taevere",
+      "status": "active",
+      "summary": "Reet Taevere on Lääne-Harju valla sotsiaalvaldkonna kontakt. Kontakt on seotud sotsiaaltoetuste ja -teenustega Padise piirkonnas.",
+      "sourceKeys": [
+        "contact_page",
+        "service_points_page",
+        "social_workers_contact_page"
+      ],
+      "name": "Reet Taevere",
+      "role": "Sotsiaaltöö peaspetsialist, Padise piirkond",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://laaneharju.ee/sotsiaaltoospetsialistid",
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "contact",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "contact_page",
+        "service_points_page",
+        "social_workers_contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_contact_reet_taevere",
+      "document_id": "laane_harju_vald_contact_reet_taevere",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/sotsiaaltoospetsialistid",
+      "content_hash": "e813a410d2340dd2f94faf285425e8eac35fed9f6d5e4315d419395094664fc3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_contact_helika_arm",
+      "canonical_item_id": "laane_harju_vald:contact:helika_arm",
+      "itemType": "contact",
+      "title": "Helika Arm",
+      "status": "active",
+      "summary": "Helika Arm on Lääne-Harju valla sotsiaalvaldkonna kontakt. Kontakt on seotud Keila piirkonna sotsiaalteenuste ja toimetulekutoetustega.",
+      "sourceKeys": [
+        "contact_page",
+        "social_workers_contact_page"
+      ],
+      "name": "Helika Arm",
+      "role": "Sotsiaaltööspetsialist, Keila piirkond",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://laaneharju.ee/sotsiaaltoospetsialistid",
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "contact",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "contact_page",
+        "social_workers_contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_contact_helika_arm",
+      "document_id": "laane_harju_vald_contact_helika_arm",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/sotsiaaltoospetsialistid",
+      "content_hash": "218d450f7e445aca4c3d1fb50caf18fd3cf3a51d9d4eed0ef4ed6582d376337e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_contact_mari_liis_asu",
+      "canonical_item_id": "laane_harju_vald:contact:mari_liis_asu",
+      "itemType": "contact",
+      "title": "Mari-Liis Asu",
+      "status": "active",
+      "summary": "Mari-Liis Asu on Lääne-Harju valla sotsiaalvaldkonna kontakt. Kontakt on seotud sotsiaaltoetustega Keila piirkonnas ja ranitsatoetuse menetlemisega.",
+      "sourceKeys": [
+        "contact_page",
+        "social_workers_contact_page"
+      ],
+      "name": "Mari-Liis Asu",
+      "role": "Sotsiaaltööspetsialist, Keila piirkonna toetused",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://laaneharju.ee/sotsiaaltoospetsialistid",
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "contact",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "contact_page",
+        "social_workers_contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_contact_mari_liis_asu",
+      "document_id": "laane_harju_vald_contact_mari_liis_asu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/sotsiaaltoospetsialistid",
+      "content_hash": "c37e62e7fe900cec037a8d13c397bb9ed7b147118444e5f358056a23c7adeabd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_contact_annely_kuunarpuu",
+      "canonical_item_id": "laane_harju_vald:contact:annely_kuunarpuu",
+      "itemType": "contact",
+      "title": "Annely Küünarpuu",
+      "status": "active",
+      "summary": "Annely Küünarpuu on Lääne-Harju valla sotsiaalvaldkonna kontakt. Kontakt on seotud sotsiaaltoetuste ja -teenustega Vasalemma piirkonnas ning vastuvõttudega Rummus ja Ämaris.",
+      "sourceKeys": [
+        "contact_page",
+        "social_workers_contact_page"
+      ],
+      "name": "Annely Küünarpuu",
+      "role": "Sotsiaaltööspetsialist, Vasalemma piirkond",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://laaneharju.ee/sotsiaaltoospetsialistid",
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "contact",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "contact_page",
+        "social_workers_contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_contact_annely_kuunarpuu",
+      "document_id": "laane_harju_vald_contact_annely_kuunarpuu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/sotsiaaltoospetsialistid",
+      "content_hash": "214097728b3397d0f0ae725532b5133d0560d96e701fb078c9a077ac47ac47ed",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_contact_reilika_pelt",
+      "canonical_item_id": "laane_harju_vald:contact:reilika_pelt",
+      "itemType": "contact",
+      "title": "Reilika Pelt",
+      "status": "active",
+      "summary": "Reilika Pelt on Lääne-Harju valla sotsiaalvaldkonna kontakt. Kontakt on seotud sotsiaaltoetuste ja -teenustega Paldiski piirkonnas.",
+      "sourceKeys": [
+        "contact_page",
+        "social_workers_contact_page"
+      ],
+      "name": "Reilika Pelt",
+      "role": "Sotsiaaltööspetsialist, Paldiski piirkond",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://laaneharju.ee/sotsiaaltoospetsialistid",
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "contact",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "contact_page",
+        "social_workers_contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_contact_reilika_pelt",
+      "document_id": "laane_harju_vald_contact_reilika_pelt",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/sotsiaaltoospetsialistid",
+      "content_hash": "6d05292eb0c4ddd9405f12c14f54ba340ddabe4ebff084d130136ea196e38fbb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_contact_ekaterina_vorobjova",
+      "canonical_item_id": "laane_harju_vald:contact:ekaterina_vorobjova",
+      "itemType": "contact",
+      "title": "Ekaterina Vorobjova",
+      "status": "active",
+      "summary": "Ekaterina Vorobjova on Lääne-Harju valla sotsiaalvaldkonna kontakt. Kontakt tegeleb mittetöötavate ja -õppivate abivajavate noorte (13-29) motiveerimise ning teenustele suunamisega.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "name": "Ekaterina Vorobjova",
+      "role": "Noorte heaolu spetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://laaneharju.ee/kontakt",
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "contact",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_contact_ekaterina_vorobjova",
+      "document_id": "laane_harju_vald_contact_ekaterina_vorobjova",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/kontakt",
+      "content_hash": "7f6a076a8e9432553d33eeab4d447f42299a401d3f5be94a134113e7e6068a98",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_contact_svitlana_oksen",
+      "canonical_item_id": "laane_harju_vald:contact:svitlana_oksen",
+      "itemType": "contact",
+      "title": "Svitlana Oksen",
+      "status": "active",
+      "summary": "Svitlana Oksen on Lääne-Harju valla sotsiaalvaldkonna kontakt. Kontakt on KOV lehel nimetatud Ukraina põgenike koordinaatorina.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "name": "Svitlana Oksen",
+      "role": "Ukraina põgenike koordinaator",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://laaneharju.ee/kontakt",
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "contact",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_contact_svitlana_oksen",
+      "document_id": "laane_harju_vald_contact_svitlana_oksen",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/kontakt",
+      "content_hash": "72b02455a599ea7153e9a63d1fce1860b66ee63bda23cd06da10f2377f75ec7b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_contact_signe_nomm",
+      "canonical_item_id": "laane_harju_vald:contact:signe_nomm",
+      "itemType": "contact",
+      "title": "Signe Nõmm",
+      "status": "active",
+      "summary": "Signe Nõmm on Lääne-Harju valla sotsiaalvaldkonna kontakt. Kontakt on laste heaolu spetsialist Paldiski ja Padise piirkonnas.",
+      "sourceKeys": [
+        "lapse_pere_heaolu_page"
+      ],
+      "name": "Signe Nõmm",
+      "role": "Laste heaolu spetsialist, Paldiski ja Padise piirkond",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lapse-ja-pere-heaolu",
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "contact",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lapse_pere_heaolu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_contact_signe_nomm",
+      "document_id": "laane_harju_vald_contact_signe_nomm",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lapse-ja-pere-heaolu",
+      "content_hash": "6ff3c756d0beabfaaea9f5d2bc7eb6838a00e6d6e61755f1220bee3c9a1cbafb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_contact_ingrid_sogenbits",
+      "canonical_item_id": "laane_harju_vald:contact:ingrid_sogenbits",
+      "itemType": "contact",
+      "title": "Ingrid Sogenbits",
+      "status": "active",
+      "summary": "Ingrid Sogenbits on Lääne-Harju valla sotsiaalvaldkonna kontakt. Kontakt on laste heaolu spetsialist Paldiski ja Padise piirkonnas.",
+      "sourceKeys": [
+        "lapse_pere_heaolu_page"
+      ],
+      "name": "Ingrid Sogenbits",
+      "role": "Laste heaolu spetsialist, Paldiski ja Padise piirkond",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lapse-ja-pere-heaolu",
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "contact",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lapse_pere_heaolu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_contact_ingrid_sogenbits",
+      "document_id": "laane_harju_vald_contact_ingrid_sogenbits",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lapse-ja-pere-heaolu",
+      "content_hash": "2564930e0a045cdfb212a2b838de7e316177b5b681d092ebfa7f12a3302ac966",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_contact_kullike_zukker",
+      "canonical_item_id": "laane_harju_vald:contact:kullike_zukker",
+      "itemType": "contact",
+      "title": "Küllike Zukker",
+      "status": "active",
+      "summary": "Küllike Zukker on Lääne-Harju valla sotsiaalvaldkonna kontakt. Kontakt on laste heaolu spetsialist Paldiski ja Padise piirkonnas ning lapsehoiuteenuse lehel nimetatud kontakt.",
+      "sourceKeys": [
+        "lapse_pere_heaolu_page",
+        "lapsehoiuteenus_page"
+      ],
+      "name": "Küllike Zukker",
+      "role": "Laste heaolu spetsialist, Paldiski ja Padise piirkond",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lapse-ja-pere-heaolu",
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "contact",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lapse_pere_heaolu_page",
+        "lapsehoiuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_contact_kullike_zukker",
+      "document_id": "laane_harju_vald_contact_kullike_zukker",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lapse-ja-pere-heaolu",
+      "content_hash": "ffee39e070234d7cfcc3572d8ecf7ce3cbf9d9333880f91bb1bbf37f991d92e2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_contact_lada_raja",
+      "canonical_item_id": "laane_harju_vald:contact:lada_raja",
+      "itemType": "contact",
+      "title": "Lada Raja",
+      "status": "active",
+      "summary": "Lada Raja on Lääne-Harju valla sotsiaalvaldkonna kontakt. Kontakt on laste heaolu spetsialist Keila ja Vasalemma piirkonnas.",
+      "sourceKeys": [
+        "lapse_pere_heaolu_page"
+      ],
+      "name": "Lada Raja",
+      "role": "Laste heaolu spetsialist, Keila ja Vasalemma piirkond",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lapse-ja-pere-heaolu",
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "contact",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lapse_pere_heaolu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_contact_lada_raja",
+      "document_id": "laane_harju_vald_contact_lada_raja",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lapse-ja-pere-heaolu",
+      "content_hash": "41a7d8e46c42583fe63c01f5843072ac84adfad2d0ef3bd0de733e614f52a0fa",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_contact_kairit_kamber",
+      "canonical_item_id": "laane_harju_vald:contact:kairit_kamber",
+      "itemType": "contact",
+      "title": "Kairit Kamber",
+      "status": "active",
+      "summary": "Kairit Kamber on Lääne-Harju valla sotsiaalvaldkonna kontakt. Kontakt on laste heaolu spetsialist Keila ja Vasalemma piirkonnas.",
+      "sourceKeys": [
+        "lapse_pere_heaolu_page"
+      ],
+      "name": "Kairit Kamber",
+      "role": "Laste heaolu spetsialist, Keila ja Vasalemma piirkond",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lapse-ja-pere-heaolu",
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "contact",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lapse_pere_heaolu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_contact_kairit_kamber",
+      "document_id": "laane_harju_vald_contact_kairit_kamber",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lapse-ja-pere-heaolu",
+      "content_hash": "30eb21ea6452e179e25b0216b5db26614dfd7afc30175037d403af956f75b646",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_contact_teija_liisi_madissoo",
+      "canonical_item_id": "laane_harju_vald:contact:teija_liisi_madissoo",
+      "itemType": "contact",
+      "title": "Teija Liisi Madissoo",
+      "status": "active",
+      "summary": "Teija Liisi Madissoo on Lääne-Harju valla sotsiaalvaldkonna kontakt. Kontakt on laste heaolu spetsialist Keila ja Vasalemma piirkonnas.",
+      "sourceKeys": [
+        "lapse_pere_heaolu_page"
+      ],
+      "name": "Teija Liisi Madissoo",
+      "role": "Laste heaolu spetsialist, Keila ja Vasalemma piirkond",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lapse-ja-pere-heaolu",
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "contact",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lapse_pere_heaolu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_contact_teija_liisi_madissoo",
+      "document_id": "laane_harju_vald_contact_teija_liisi_madissoo",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lapse-ja-pere-heaolu",
+      "content_hash": "cf7c5deef494530b4333c56423c50f37a1d90094d4f509c0280f80450e2ed199",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_form_sotsiaalteenuse_taotlus",
+      "canonical_item_id": "laane_harju_vald:form:sotsiaalteenuse_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaalteenuse taotlus 2026",
+      "status": "active",
+      "summary": "Ühine sotsiaalteenuse taotluse vorm, mida KOV leht seob koduteenuse, tugiisikuteenuse, puudega isiku transporditoetuse ja mitme muu sotsiaalteenuse taotlemisega. Vorm on lehtedel nimetatud failina „6. Sotsiaalteenuse taotlus 2026.docx“ või „Sotsiaalteenuse taotlus.docx“.",
+      "sourceKeys": [
+        "forms_page",
+        "koduteenus_page",
+        "lapsehoiuteenus_page",
+        "puudega_transporditoetus_page",
+        "tugiisikuteenus_page"
+      ],
+      "format": "docx",
+      "submissionChannels": [
+        "paberavaldus",
+        "digiallkirjastatud avaldus e-postiga"
+      ],
+      "officialUrl": "https://laaneharju.ee/koduteenus",
+      "relatedTo": [
+        "laane_harju_vald_service_koduteenus",
+        "laane_harju_vald_service_tugiisikuteenus",
+        "laane_harju_vald_service_isikliku_abistaja_teenus",
+        "laane_harju_vald_service_lapsehoiuteenus",
+        "laane_harju_vald_service_eluruumiteenus",
+        "laane_harju_vald_service_varjupaigateenus",
+        "laane_harju_vald_service_resotsialiseerimisteenus",
+        "laane_harju_vald_benefit_puudega_isiku_transporditoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "fileUrl": null,
+      "unresolvedIssues": [
+        "Täpne allalaaditav faili URL jäi veebilehe dünaamilise faililingi tõttu kinnitamata; allikas on ametlik KOV leht, kus vorm on avaldatud või nimetatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "koduteenus_page",
+        "lapsehoiuteenus_page",
+        "puudega_transporditoetus_page",
+        "tugiisikuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_form_sotsiaalteenuse_taotlus",
+      "document_id": "laane_harju_vald_form_sotsiaalteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/koduteenus",
+      "content_hash": "9ea9e45c4ce4c4070080d4f0ba253ccd9745f7bcab09ca9b3cfc86fe7bb87393",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_form_sotsiaaltoetuse_taotlus_2026",
+      "canonical_item_id": "laane_harju_vald:form:sotsiaaltoetuse_taotlus_2026",
+      "itemType": "form",
+      "title": "Sotsiaaltoetuse taotlus 2026 (koos)",
+      "status": "active",
+      "summary": "Sotsiaaltoetuse taotlusvorm, mida KOV leht seob toimetulekutoetuse, vältimatu sotsiaalabi toetuse, sotsiaalteenuste toetuse ja puudega lapse hooldajatoetusega. Lehtedel on vorm nimetatud failina „5. Sotsiaaltoetuse taotlus 2026 (koos).docx“.",
+      "sourceKeys": [
+        "forms_page",
+        "hooldajatoetus_lapse_page",
+        "sotsiaalteenuste_toetus_page",
+        "toimetulekutoetus_page",
+        "valtimatu_toetus_page"
+      ],
+      "format": "docx",
+      "submissionChannels": [
+        "paberavaldus",
+        "digiallkirjastatud avaldus e-postiga"
+      ],
+      "officialUrl": "https://laaneharju.ee/toimetulekutoetus",
+      "relatedTo": [
+        "laane_harju_vald_benefit_toimetulekutoetus",
+        "laane_harju_vald_benefit_toetus_valtimatuks_sotsiaalabiks",
+        "laane_harju_vald_benefit_sotsiaalteenuste_toetus",
+        "laane_harju_vald_benefit_hooldajatoetus_puudega_lapse",
+        "laane_harju_vald_benefit_toetus_raske_majandusliku_olukorra_puhul"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "fileUrl": null,
+      "unresolvedIssues": [
+        "Täpne allalaaditav faili URL jäi veebilehe dünaamilise faililingi tõttu kinnitamata; allikas on ametlik KOV leht, kus vorm on avaldatud või nimetatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "hooldajatoetus_lapse_page",
+        "sotsiaalteenuste_toetus_page",
+        "toimetulekutoetus_page",
+        "valtimatu_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_form_sotsiaaltoetuse_taotlus_2026",
+      "document_id": "laane_harju_vald_form_sotsiaaltoetuse_taotlus_2026",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/toimetulekutoetus",
+      "content_hash": "ea26972759f3fe30a32831d35a5c9888d469ae13c8ae8a87de33922854c3ec7f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_form_sotsiaaltoetuse_taotlus_vallavalitsusele",
+      "canonical_item_id": "laane_harju_vald:form:sotsiaaltoetuse_taotlus_vallavalitsusele",
+      "itemType": "form",
+      "title": "Sotsiaaltoetuse taotlus Lääne-Harju vallavalitsusele",
+      "status": "active",
+      "summary": "Sotsiaaltoetuse taotlusvorm, mida KOV leht seob lasteaia osalustasu ja koolitoidu toetuse, lastega pere toetuse, raske majandusliku olukorra toetuse ja vaimse tervise teenusega.",
+      "sourceKeys": [
+        "forms_page",
+        "lasteaia_toidu_toetus_page",
+        "lastega_pere_toetus_page",
+        "raske_majandus_toetus_page",
+        "vaimse_tervise_page"
+      ],
+      "format": "docx",
+      "submissionChannels": [
+        "paberavaldus",
+        "digiallkirjastatud avaldus e-postiga"
+      ],
+      "officialUrl": "https://laaneharju.ee/haridus-ja-noored/taotlused-ja-toetused/lasteaia-osalustasu-ning-lasteaia-ja-koolitoidu-toetus",
+      "relatedTo": [
+        "laane_harju_vald_benefit_lasteaia_osalustasu_ja_koolitoidu_toetus",
+        "laane_harju_vald_benefit_lastega_pere_toetus",
+        "laane_harju_vald_benefit_toetus_raske_majandusliku_olukorra_puhul",
+        "laane_harju_vald_service_vaimse_tervise_teenused",
+        "laane_harju_vald_benefit_huvialaringi_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "fileUrl": null,
+      "unresolvedIssues": [
+        "Täpne allalaaditav faili URL jäi veebilehe dünaamilise faililingi tõttu kinnitamata; allikas on ametlik KOV leht, kus vorm on avaldatud või nimetatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "lasteaia_toidu_toetus_page",
+        "lastega_pere_toetus_page",
+        "raske_majandus_toetus_page",
+        "vaimse_tervise_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_form_sotsiaaltoetuse_taotlus_vallavalitsusele",
+      "document_id": "laane_harju_vald_form_sotsiaaltoetuse_taotlus_vallavalitsusele",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/haridus-ja-noored/taotlused-ja-toetused/lasteaia-osalustasu-ning-lasteaia-ja-koolitoidu-toetus",
+      "content_hash": "d215cec35fcdf1457ad337856107f39e5a9af79829e1bda89ae9efbfb3aaed94",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_form_toimetulekutoetuse_taotlus",
+      "canonical_item_id": "laane_harju_vald:form:toimetulekutoetuse_taotlus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse taotlus",
+      "status": "active",
+      "summary": "Toimetulekutoetuse taotluse vorm, mida kasutatakse toimetulekutoetuse igakuiseks taotlemiseks koos sissetuleku ja eluasemekulusid tõendavate dokumentidega. Uuendatud toimetulekutoetuse leht nimetab sotsiaaltoetuse 2026 koondvormi; varasem koondleht nimetab ka eraldi toimetulekutoetuse taotlust.",
+      "sourceKeys": [
+        "forms_page",
+        "toimetulekutoetus_page"
+      ],
+      "format": "doc/docx",
+      "submissionChannels": [
+        "paberavaldus",
+        "digiallkirjastatud avaldus e-postiga"
+      ],
+      "officialUrl": "https://laaneharju.ee/toimetulekutoetus",
+      "relatedTo": [
+        "laane_harju_vald_benefit_toimetulekutoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "fileUrl": null,
+      "unresolvedIssues": [
+        "Täpne allalaaditav faili URL jäi veebilehe dünaamilise faililingi tõttu kinnitamata; allikas on ametlik KOV leht, kus vorm on avaldatud või nimetatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_form_toimetulekutoetuse_taotlus",
+      "document_id": "laane_harju_vald_form_toimetulekutoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/toimetulekutoetus",
+      "content_hash": "86e3cd10ecff975e7691d25e49a717d47add923341cef8479d21396b90d82aea",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_form_sunnitoetuse_taotlus",
+      "canonical_item_id": "laane_harju_vald:form:sunnitoetuse_taotlus",
+      "itemType": "form",
+      "title": "Sünnitoetuse taotlus",
+      "status": "active",
+      "summary": "Sünnitoetuse pabervorm lapse sünnitoetuse taotlemiseks. Leht nimetab faili „Sünnitoetuse taotlus.docx“ või „Sünnitoetuse taotlus_1.docx“.",
+      "sourceKeys": [
+        "forms_page",
+        "lapse_sund_page",
+        "sunnitoetus_page"
+      ],
+      "format": "docx",
+      "submissionChannels": [
+        "paberavaldus",
+        "digiallkirjastatud avaldus e-postiga"
+      ],
+      "officialUrl": "https://laaneharju.ee/sunnitoetus",
+      "relatedTo": [
+        "laane_harju_vald_benefit_sunnitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "fileUrl": null,
+      "unresolvedIssues": [
+        "Täpne allalaaditav faili URL jäi veebilehe dünaamilise faililingi tõttu kinnitamata; allikas on ametlik KOV leht, kus vorm on avaldatud või nimetatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "lapse_sund_page",
+        "sunnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_form_sunnitoetuse_taotlus",
+      "document_id": "laane_harju_vald_form_sunnitoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/sunnitoetus",
+      "content_hash": "b94869600c41184d30d8f1d05b852324986ae7b53a3c6f49f8b48a0bfb88c4a9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_form_matusetoetuse_taotlus",
+      "canonical_item_id": "laane_harju_vald:form:matusetoetuse_taotlus",
+      "itemType": "form",
+      "title": "Matusetoetuse taotlus",
+      "status": "active",
+      "summary": "Matusetoetuse pabervorm matuse korraldajale makstava toetuse taotlemiseks. Leht nimetab faili „Matusetoetuse taotlus__0.docx“.",
+      "sourceKeys": [
+        "forms_page",
+        "lahedase_surm_page"
+      ],
+      "format": "docx",
+      "submissionChannels": [
+        "paberavaldus",
+        "digiallkirjastatud avaldus e-postiga"
+      ],
+      "officialUrl": "https://laaneharju.ee/vald-uudised-ja-kontakt/rahvastikutoimingud/lahedase-surm",
+      "relatedTo": [
+        "laane_harju_vald_benefit_matusetoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "fileUrl": null,
+      "unresolvedIssues": [
+        "Täpne allalaaditav faili URL jäi veebilehe dünaamilise faililingi tõttu kinnitamata; allikas on ametlik KOV leht, kus vorm on avaldatud või nimetatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "lahedase_surm_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_form_matusetoetuse_taotlus",
+      "document_id": "laane_harju_vald_form_matusetoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/vald-uudised-ja-kontakt/rahvastikutoimingud/lahedase-surm",
+      "content_hash": "cdeb8b1860aad1173ba1e70e10368c90d967861e18fbbd223f8260957a531179",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_form_ranitsatoetuse_taotlus",
+      "canonical_item_id": "laane_harju_vald:form:ranitsatoetuse_taotlus",
+      "itemType": "form",
+      "title": "Esmakordselt kooli mineva lapse koolitoetuse vorm",
+      "status": "active",
+      "summary": "Pabervorm ranitsatoetuse ehk esmakordselt kooli mineva lapse toetuse taotlemiseks. Leht nimetab faili „Esmakordselt kooli mineva lapse koolitoetus.doc“.",
+      "sourceKeys": [
+        "forms_page",
+        "ranitsatoetus_page"
+      ],
+      "format": "doc",
+      "submissionChannels": [
+        "paberavaldus",
+        "digiallkirjastatud avaldus e-postiga"
+      ],
+      "officialUrl": "https://laaneharju.ee/haridus-ja-noored/taotlused-ja-toetused/ranitsatoetus",
+      "relatedTo": [
+        "laane_harju_vald_benefit_ranitsatoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "fileUrl": null,
+      "unresolvedIssues": [
+        "Täpne allalaaditav faili URL jäi veebilehe dünaamilise faililingi tõttu kinnitamata; allikas on ametlik KOV leht, kus vorm on avaldatud või nimetatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "ranitsatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_form_ranitsatoetuse_taotlus",
+      "document_id": "laane_harju_vald_form_ranitsatoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/haridus-ja-noored/taotlused-ja-toetused/ranitsatoetus",
+      "content_hash": "0f5379b2b2671dbc11fd04ab300059cb9ff9f61e3a8a5cec740e366384ffb8c1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_form_koolisoidutoetuse_taotlus",
+      "canonical_item_id": "laane_harju_vald:form:koolisoidutoetuse_taotlus",
+      "itemType": "form",
+      "title": "Koolisõidutoetuse taotlus",
+      "status": "active",
+      "summary": "Pabervorm üldhariduskooli õpilase koolisõidukulude kompenseerimise taotlemiseks. Leht nimetab faili „4. Koolisõidutoetuse taotlus.docx“.",
+      "sourceKeys": [
+        "forms_page",
+        "koolisoidutoetus_page"
+      ],
+      "format": "docx",
+      "submissionChannels": [
+        "paberavaldus",
+        "digiallkirjastatud avaldus e-postiga"
+      ],
+      "officialUrl": "https://laaneharju.ee/koolisoidutoetus",
+      "relatedTo": [
+        "laane_harju_vald_benefit_koolisoidutoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "fileUrl": null,
+      "unresolvedIssues": [
+        "Täpne allalaaditav faili URL jäi veebilehe dünaamilise faililingi tõttu kinnitamata; allikas on ametlik KOV leht, kus vorm on avaldatud või nimetatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "koolisoidutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_form_koolisoidutoetuse_taotlus",
+      "document_id": "laane_harju_vald_form_koolisoidutoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/koolisoidutoetus",
+      "content_hash": "5c618e87167e7f46b3fae80f978e749916141b36ec265a89ace2b2ea4aee0d14",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_form_hooldajatoetus_taisealise_taotlus",
+      "canonical_item_id": "laane_harju_vald:form:hooldajatoetus_taisealise_taotlus",
+      "itemType": "form",
+      "title": "Hooldajatoetuse taotlus täisealise isiku hooldajale",
+      "status": "active",
+      "summary": "Pabervorm täisealise raske või sügava puudega isiku hooldajale hooldajatoetuse taotlemiseks. Leht nimetab faili „Taotlus-Hooldaja toetus täiskasvanud isiku hooldajale.doc“.",
+      "sourceKeys": [
+        "forms_page",
+        "hooldajatoetus_taisealise_page"
+      ],
+      "format": "doc",
+      "submissionChannels": [
+        "paberavaldus",
+        "digiallkirjastatud avaldus e-postiga"
+      ],
+      "officialUrl": "https://laaneharju.ee/hooldajatoetus-taisealise-isiku-hooldajale",
+      "relatedTo": [
+        "laane_harju_vald_benefit_hooldajatoetus_taisealise",
+        "laane_harju_vald_service_taisealise_isiku_hooldus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "fileUrl": null,
+      "unresolvedIssues": [
+        "Täpne allalaaditav faili URL jäi veebilehe dünaamilise faililingi tõttu kinnitamata; allikas on ametlik KOV leht, kus vorm on avaldatud või nimetatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "hooldajatoetus_taisealise_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_form_hooldajatoetus_taisealise_taotlus",
+      "document_id": "laane_harju_vald_form_hooldajatoetus_taisealise_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/hooldajatoetus-taisealise-isiku-hooldajale",
+      "content_hash": "61928c08e41fdd5eba574e0b94aaf412b2fa65e16cc1ad572993d6d13ab36b92",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_form_eluaseme_kohandamise_taotlus",
+      "canonical_item_id": "laane_harju_vald:form:eluaseme_kohandamise_taotlus",
+      "itemType": "form",
+      "title": "Taotlus eluaseme kohandamiseks",
+      "status": "active",
+      "summary": "Pabervorm puudega inimese eluaseme füüsilise kohandamise taotlemiseks. Leht nimetab faili „Taotlus_eluaseme_kohandamine.docx“.",
+      "sourceKeys": [
+        "eakad_overview",
+        "forms_page"
+      ],
+      "format": "docx",
+      "submissionChannels": [
+        "paberavaldus",
+        "digiallkirjastatud avaldus e-postiga"
+      ],
+      "officialUrl": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/teenused-ja-toetused",
+      "relatedTo": [
+        "laane_harju_vald_service_eluaseme_kohandamise_teenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "fileUrl": null,
+      "unresolvedIssues": [
+        "Täpne allalaaditav faili URL jäi veebilehe dünaamilise faililingi tõttu kinnitamata; allikas on ametlik KOV leht, kus vorm on avaldatud või nimetatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eakad_overview",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_form_eluaseme_kohandamise_taotlus",
+      "document_id": "laane_harju_vald_form_eluaseme_kohandamise_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/teenused-ja-toetused",
+      "content_hash": "25dfbc81bee1ff7a927049d51fe80b49a09cd9f9a236f5db088cf7a71d887f57",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_form_uldhooldusteenuse_tagamise_toetus",
+      "canonical_item_id": "laane_harju_vald:form:uldhooldusteenuse_tagamise_toetus",
+      "itemType": "form",
+      "title": "Üldhooldusteenuse tagamise toetus",
+      "status": "active",
+      "summary": "Pabervorm väljaspool kodu osutatava üldhooldusteenuse tagamise toetuse või teenuse rahastuse taotlemiseks. Leht nimetab faili „Üldhooldusteenuse tagamise toetus.docx“.",
+      "sourceKeys": [
+        "forms_page",
+        "uldhooldusteenus_page"
+      ],
+      "format": "docx",
+      "submissionChannels": [
+        "paberavaldus",
+        "digiallkirjastatud avaldus e-postiga"
+      ],
+      "officialUrl": "https://laaneharju.ee/uldhooldusteenus",
+      "relatedTo": [
+        "laane_harju_vald_service_uldhooldusteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "fileUrl": null,
+      "unresolvedIssues": [
+        "Täpne allalaaditav faili URL jäi veebilehe dünaamilise faililingi tõttu kinnitamata; allikas on ametlik KOV leht, kus vorm on avaldatud või nimetatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "uldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_form_uldhooldusteenuse_tagamise_toetus",
+      "document_id": "laane_harju_vald_form_uldhooldusteenuse_tagamise_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/uldhooldusteenus",
+      "content_hash": "5b6089bece39610e7c5c169a8d8639ed02756eb82d2bcea85ec7e5242f4b04cb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_form_raske_sugava_puudega_lapse_sotsiaalteenuste_toetus",
+      "canonical_item_id": "laane_harju_vald:form:raske_sugava_puudega_lapse_sotsiaalteenuste_toetus",
+      "itemType": "form",
+      "title": "Raske või sügava puudega lapse sotsiaalteenuste toetuse taotlus",
+      "status": "active",
+      "summary": "Pabervorm riigi rahastatava raske ja sügava puudega lastele sotsiaalteenuste osutamise toetuse rahaliste vahendite kasutamiseks. KOV e-teenuse leht nimetab pabervormi ja e-taotluse võimalust.",
+      "sourceKeys": [
+        "forms_page",
+        "raske_sugav_laps_eform_page"
+      ],
+      "format": "rtf",
+      "submissionChannels": [
+        "paberavaldus",
+        "digiallkirjastatud avaldus e-postiga"
+      ],
+      "officialUrl": "https://laaneharju.ee/elektrooniline-riigi-rahastatava-raske-ja-sugava-puudega-lastele-sotsiaalteenuste-osutamise-toetuse-rahaliste-vahendite-kasutamiseks",
+      "relatedTo": [
+        "laane_harju_vald_service_erivajadusega_last_toetav_teenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "fileUrl": null,
+      "unresolvedIssues": [
+        "Täpne allalaaditav faili URL jäi veebilehe dünaamilise faililingi tõttu kinnitamata; allikas on ametlik KOV leht, kus vorm on avaldatud või nimetatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "raske_sugav_laps_eform_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_form_raske_sugava_puudega_lapse_sotsiaalteenuste_toetus",
+      "document_id": "laane_harju_vald_form_raske_sugava_puudega_lapse_sotsiaalteenuste_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/elektrooniline-riigi-rahastatava-raske-ja-sugava-puudega-lastele-sotsiaalteenuste-osutamise-toetuse-rahaliste-vahendite-kasutamiseks",
+      "content_hash": "bd47cb2c721273431e707987263a6acbeb19064b1e977e15128ad83bec53e7e2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_form_spoku_sunnitoetus",
+      "canonical_item_id": "laane_harju_vald:form:spoku_sunnitoetus",
+      "itemType": "form",
+      "title": "SPOKU e-taotlus: sünnitoetus",
+      "status": "active",
+      "summary": "E-taotlus sünnitoetuse esitamiseks Lääne-Harju valla e-taotluste keskkonnas SPOKU. KOV sünnitoetuse ja lapse sünni lehed nimetavad SPOKU kasutamist taotluskanalina.",
+      "sourceKeys": [
+        "eforms_page",
+        "lapse_sund_page",
+        "sunnitoetus_page"
+      ],
+      "format": "web_form",
+      "submissionChannels": [
+        "SPOKU e-taotlus"
+      ],
+      "officialUrl": "https://laaneharju.ee/av-lisatud-vormid",
+      "relatedTo": [
+        "laane_harju_vald_benefit_sunnitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eforms_page",
+        "lapse_sund_page",
+        "sunnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_form_spoku_sunnitoetus",
+      "document_id": "laane_harju_vald_form_spoku_sunnitoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/av-lisatud-vormid",
+      "content_hash": "97eb74b42a1ddfc86df6a94a6e1c8db2a35038d7a6d6a24c0fb58d1d5e2ba08c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_form_spoku_matusetoetus",
+      "canonical_item_id": "laane_harju_vald:form:spoku_matusetoetus",
+      "itemType": "form",
+      "title": "SPOKU e-taotlus: matusetoetus",
+      "status": "active",
+      "summary": "E-taotlus matusetoetuse esitamiseks Lääne-Harju valla e-taotluste keskkonnas SPOKU. KOV lähedase surma leht nimetab SPOKU kanalit matusetoetuse taotlemiseks.",
+      "sourceKeys": [
+        "eforms_page",
+        "lahedase_surm_page"
+      ],
+      "format": "web_form",
+      "submissionChannels": [
+        "SPOKU e-taotlus"
+      ],
+      "officialUrl": "https://laaneharju.ee/av-lisatud-vormid",
+      "relatedTo": [
+        "laane_harju_vald_benefit_matusetoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eforms_page",
+        "lahedase_surm_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_form_spoku_matusetoetus",
+      "document_id": "laane_harju_vald_form_spoku_matusetoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/av-lisatud-vormid",
+      "content_hash": "98c4da94ad3e1c009d16a06b53eda05ecf5c9d3d416128a514f959fb83d17ec1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laane_harju_vald_form_spoku_ranitsatoetus",
+      "canonical_item_id": "laane_harju_vald:form:spoku_ranitsatoetus",
+      "itemType": "form",
+      "title": "SPOKU e-taotlus: esmakordselt koolimineva lapse toetus",
+      "status": "active",
+      "summary": "E-taotlus ranitsatoetuse ehk esmakordselt kooli mineva lapse toetuse esitamiseks Lääne-Harju valla e-taotluste keskkonnas SPOKU. KOV ranitsatoetuse leht nimetab SPOKU esmane taotluskanalina.",
+      "sourceKeys": [
+        "eforms_page",
+        "ranitsatoetus_page"
+      ],
+      "format": "web_form",
+      "submissionChannels": [
+        "SPOKU e-taotlus"
+      ],
+      "officialUrl": "https://laaneharju.ee/av-lisatud-vormid",
+      "relatedTo": [
+        "laane_harju_vald_benefit_ranitsatoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "laane_harju_vald_contact_mari_liis_asu"
+      ],
+      "item_type": "form",
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eforms_page",
+        "ranitsatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laane_harju_vald_form_spoku_ranitsatoetus",
+      "document_id": "laane_harju_vald_form_spoku_ranitsatoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://laaneharju.ee/av-lisatud-vormid",
+      "content_hash": "926e76b782f1899a52905ce7fb0dbc61cbe540ee9fb3d78f8c5fc578143dbb65",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Lääne-Harju vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

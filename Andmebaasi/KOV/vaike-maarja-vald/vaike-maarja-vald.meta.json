@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-vaike-maarja-vald",
+  "document_id": "kov-vaike-maarja-vald",
+  "municipality": "Väike-Maarja vald",
+  "municipality_id": "vaike_maarja_vald",
+  "county": "Lääne-Virumaa",
+  "checkedAt": "2026-04-30",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-vaike-maarja-vald",
+  "coverage": {
+    "services": 13,
+    "benefits": 12,
+    "resources": 14,
+    "contacts": 12,
+    "forms": 9,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "vaike_maarja_vald",
+    "source_register_file": "vaike-maarja-vald.sources.json",
+    "service_benefit_resource_items": 39,
+    "items_with_source_keys": 39,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 16,
+    "items_without_related_forms": 23,
+    "items_with_related_contacts": 34,
+    "items_without_related_contacts": 5,
+    "form_sources": 9,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "5 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Järelkontrollis asendati varasem docx-põhine RAG-vaade puhta Markdown-failiga ning parandati mitu URL-i ametlikeks v-maarja.ee URL-ideks.",
+    "KOV veebipaketist jäeti teadlikult välja Riigi Teataja ja muud õigusallikad; neid tuleb kontrollida eraldi RT/legal kihis."
+  ],
+  "unresolvedIssues": [
+    "Mitme sotsiaalosakonna kontakti e-posti aadress oli veebitööriista vaates varjestatud; täpne on jäetud tühjaks, kui seda ei olnud varasemates failides ega avatud lehel kindlalt loetav.",
+    "KOV leht suunab osade ressursside puhul välistele saitidele (nt palunabi.ee, Sotsiaalkindlustusamet, Pandivere Pansion, Maarjamaja OÜ); väliste saitide sisu ei kogutud, info kajastab ainult KOV lehel kinnitatut.",
+    "SPOKU iseteenindusportaali välise taotluskeskkonna vormisamme ei testitud; kanal on kajastatud KOV lehel nimetatud taotlusviisina.",
+    "Kriis.ee üldlink on KOV avalehel, kuid eraldi sotsiaalvaldkonna kriisiabi lehte ei tuvastatud; ohvriabi ja abivajava lapse kanalid on lisatud KOV sotsiaalharu põhjal."
+  ],
+  "municipality_name": "Väike-Maarja vald",
+  "checked_at": "2026-04-30",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "vaike-maarja-vald.sources.json",
+  "sourceCount": 51,
+  "counts": {
+    "services": 13,
+    "benefits": 12,
+    "resources": 14,
+    "contacts": 12,
+    "forms": 9,
+    "regulations": 0
+  },
+  "warnings": [
+    "5 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

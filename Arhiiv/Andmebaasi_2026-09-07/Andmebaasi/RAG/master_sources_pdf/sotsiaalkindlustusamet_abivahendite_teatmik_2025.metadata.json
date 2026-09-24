@@ -1,0 +1,76 @@
+{
+  "source": {
+    "source_id": "sotsiaalkindlustusamet_abivahendite_teatmik_2025",
+    "title": "Abivahendite teatmik 2025",
+    "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-02/Abivahendite%20teatmik%202025-1.pdf",
+    "normalized_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-02/Abivahendite teatmik 2025-1.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Sotsiaalkindlustusamet",
+    "organization_id": "sotsiaalkindlustusamet",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Sotsiaalkindlustusamet",
+      "abivahendid",
+      "tehnilised abivahendid",
+      "abivahendi taotlemine",
+      "infomaterjal",
+      "SKA"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "SKA",
+      "heading_3": "Puue, rehabilitatsioon, hoolekanne",
+      "heading_4": null,
+      "line": 505,
+      "order": 267
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Abivahendite teatmik 2025"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Sotsiaalkindlustusamet"
+    ],
+    "organizations_seen": [
+      "sotsiaalkindlustusamet"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "SKA",
+        "heading_3": "Puue, rehabilitatsioon, hoolekanne",
+        "line": 505,
+        "order": 267
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-02/Abivahendite teatmik 2025-1.pdf"
+  },
+  "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-02/Abivahendite%20teatmik%202025-1.pdf",
+  "redirects": [],
+  "sha256": "c86d9a226c3ab910cf0a24f5403fefdb445a67cff540856d1f91e4316e9406b4",
+  "bytes": 639378,
+  "downloaded_at": "2026-08-14T08:00:52.995Z"
+}

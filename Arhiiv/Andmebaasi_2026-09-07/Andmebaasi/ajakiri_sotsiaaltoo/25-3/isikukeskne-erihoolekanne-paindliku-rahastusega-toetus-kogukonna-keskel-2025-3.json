@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2025",
+  "articleId": "isikukeskne-erihoolekanne-paindliku-rahastusega-toetus-kogukonna-keskel-2025-3",
+  "title": "Isikukeskne (eri)hoolekanne: paindliku rahastusega toetus kogukonna keskel",
+  "authors": [
+    "Kristi Kähär"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2025",
+  "section": "Erihoolekanne",
+  "pageRange": "44-49",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel analüüsib Eesti erihoolekande peamisi kitsaskohti, nagu jäik teenusekorraldus, alarahastus ja pikad järjekorrad, ning toob välja vajaduse elukaareülese tervikvaate järele. Autor põhjendab paindlikuma rahastusmudeli, kogukonnapõhiste teenuste ja isikukeskse teenusdisaini vajalikkust.",
+  "tags": [
+    "erihoolekanne",
+    "isikukeskne teenus",
+    "paindlik rahastus",
+    "kogukonnapõhine tugi",
+    "teenusedisain",
+    "psüühiline erivajadus",
+    "rehabilitatsioon",
+    "teenuskohtade puudus"
+  ],
+  "source_type": "file",
+  "source_path": "8web_sotsiaaltoo_3-2025.pdf",
+  "document_id": "sotsiaaltoo-3-2025-isikukeskne-erihoolekanne-paindliku-rahastusega-toetus-kogukonna-keskel-2025-3",
+  "source_format": "pdf",
+  "source_sha256": "11f9e1f71a817e27f9517bd82b3bac675bbcfc7b938467d619d9d02e1fe37784",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2025-isikukeskne-erihoolekanne-paindliku-rahastusega-toetus-kogukonna-keskel-2025-3",
+    "previous_source_path": "8web_sotsiaaltoo_3-2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "11f9e1f71a817e27f9517bd82b3bac675bbcfc7b938467d619d9d02e1fe37784",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

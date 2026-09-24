@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-4-2020",
+  "articleId": "sotsiaalvaldkonna-voimalused-ja-arengud-koroonakriisi-kevadel-2020-4",
+  "title": "Sotsiaalvaldkonna võimalused ja arengud koroonakriisi kevadel",
+  "authors": [
+    "Helle Kahm"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2020",
+  "section": "Kogemus",
+  "pageRange": "54-60",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Saaremaa valla kogemusel põhinev artikkel analüüsib sotsiaalvaldkonna töökorraldust ja arenguid COVID-19 esimese laine ajal. Kirjeldatakse kriisi mõju hoolekandeteenustele, hooldekodudele ja abi vajavatele peredele, vabatahtlike rolli, omavalitsuse ja kogukonna koostööd ning kriisist õpitud õppetunde. Autor rõhutab usaldusväärse kommunikatsiooni, võrgustike tugevdamise, personali koolitamise ja kriisivalmiduse plaanide olulisust.",
+  "tags": [
+    "COVID-19",
+    "Saaremaa",
+    "sotsiaalhoolekanne",
+    "kriisijuhtimine",
+    "vabatahtlik töö",
+    "hooldekodud",
+    "kogukond",
+    "kohalik omavalitsus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2020_web_link_Part11.pdf",
+  "document_id": "sotsiaaltoo-4-2020-sotsiaalvaldkonna-voimalused-ja-arengud-koroonakriisi-kevadel-2020-4",
+  "source_format": "pdf",
+  "source_sha256": "1d390b931d3ff159fdb39e24f9cf91ae1807b559335c26f31f9fb6451e3ab6e2",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2020-sotsiaalvaldkonna-voimalused-ja-arengud-koroonakriisi-kevadel-2020-4",
+    "previous_source_path": "Sotsiaaltoo_4_2020_web_link_Part11.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "1d390b931d3ff159fdb39e24f9cf91ae1807b559335c26f31f9fb6451e3ab6e2",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

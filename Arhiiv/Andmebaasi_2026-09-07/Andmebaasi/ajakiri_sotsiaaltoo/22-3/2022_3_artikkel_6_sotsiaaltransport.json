@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2022",
+  "articleId": "sotsiaaltranspordi-uhise-korraldusmudeli-katsetamine-parnumaal-2022-3",
+  "title": "Sotsiaaltranspordi ühise korraldusmudeli katsetamine Pärnumaal",
+  "authors": [
+    "Andrus Kärpuk",
+    "Külliki Kübar"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2022",
+  "section": "Projekt",
+  "pageRange": "18-22",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel kirjeldab Pärnumaa sotsiaaltranspordi korraldusmudeli testimist, mille eesmärk oli luua ühtne ja tõhus nõudepõhine transpordisüsteem. Käsitletakse teenuse korraldamise põhimõtteid, logistikakeskuse rolli, transpordivahendite kohandamist erivajadustega klientidele ning osutamiskindlust isegi kriisiaegadel. Tuuakse esile koostöö kohalike omavalitsuste, riigi ja vedajatega ning hinnanguid klientide rahulolule.",
+  "tags": [
+    "sotsiaaltransport",
+    "nõudetransport",
+    "Pärnumaa",
+    "ühistransport",
+    "logistika",
+    "KOV koostöö",
+    "ligipääsetavus"
+  ],
+  "source_type": "file",
+  "source_path": "2022_3_artikkel_6_sotsiaaltransport.pdf",
+  "document_id": "sotsiaaltoo-3-2022-sotsiaaltranspordi-uhise-korraldusmudeli-katsetamine-parnumaal-2022-3",
+  "source_format": "pdf",
+  "source_sha256": "f21d6e381dc31e32943a7c559d362ec53345d9487cff57dc06ae259b973749e2",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2022-sotsiaaltranspordi-uhise-korraldusmudeli-katsetamine-parnumaal-2022-3",
+    "previous_source_path": "2022_3_artikkel_6_sotsiaaltransport.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "f21d6e381dc31e32943a7c559d362ec53345d9487cff57dc06ae259b973749e2",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-4-2023",
+  "articleId": "nooresobralik-ja-kogukonnateadlik-ringist-valja-vorgustikutoo-2023-4",
+  "title": "Nooresõbralik ja kogukonnateadlik „Ringist välja“ võrgustikutöö",
+  "authors": [
+    "Annely Reile",
+    "Kersti Kruus"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2023",
+  "section": "Projekt",
+  "pageRange": "74-79",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Projektikirjeldus tutvustab „Ringist välja“ võrgustikutöö mudelit, millega toetatakse riskikäitumisega\nvõi õigusrikkumistega silma paistvaid alaealisi ja nende peresid. Autorid selgitavad, kuidas eri valdkondade\nspetsialistid – lastekaitsetöötaja, politsei, noorsootöötaja, kool jt – töötavad koos noorega, kasutades\ntrauma- ja noorekesksust, taastava õiguse põhimõtteid ning struktureeritud töövahendeid. Artikkel kirjeldab\nprotsessi etappe alates riskitaseme hindamisest ja nõusoleku küsimisest kuni „Minu plaani“ koostamise ja\njärelseireni ning toob välja kogemused, mis näitavad kogukonna ja turvaliste täiskasvanute rolli noore\nkäitumise muutumisel.",
+  "tags": [
+    "Ringist välja",
+    "alaealised õigusrikkujad",
+    "võrgustikutöö",
+    "taastav õigus",
+    "traumateadlik lähenemine",
+    "noore osalus",
+    "kogukonnapõhine töö",
+    "riskikäitumise ennetamine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2023_web_Part16.pdf",
+  "document_id": "sotsiaaltoo-4-2023-nooresobralik-ja-kogukonnateadlik-ringist-valja-vorgustikutoo-2023-4",
+  "source_format": "pdf",
+  "source_sha256": "4e7459d2390c1eb1f07ac9d35bd31413f6337cd67ae853a64fd4ffa140733bb2",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2023-nooresobralik-ja-kogukonnateadlik-ringist-valja-vorgustikutoo-2023-4",
+    "previous_source_path": "Sotsiaaltoo_4_2023_web_Part16.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "4e7459d2390c1eb1f07ac9d35bd31413f6337cd67ae853a64fd4ffa140733bb2",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

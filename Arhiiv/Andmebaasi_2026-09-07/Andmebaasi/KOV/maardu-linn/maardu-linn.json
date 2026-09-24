@@ -1,0 +1,3744 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-maardu-linn",
+  "document_id": "kov-maardu-linn",
+  "municipality": "Maardu linn",
+  "municipality_id": "maardu_linn",
+  "county": "Harjumaa",
+  "checkedAt": "2026-05-21",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "maardu_linn_service_sotsiaalnoustamine",
+      "canonical_item_id": "maardu_linn:service:sotsiaalnoustamine",
+      "itemType": "service",
+      "title": "Sotsiaalnõustamine",
+      "status": "active",
+      "summary": "Nõustamine Maardu elanikele ja peredele, kellel on raskusi igapäevaeluga toimetulekul; hõlmab ka abi sobiva teenuse või toetuse leidmisel.",
+      "sourceKeys": [
+        "src_maardu_sotsiaalnoustamine"
+      ],
+      "item_type": "service",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_sotsiaalnoustamine"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_sotsiaalnoustamine",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/sotsiaalnoustamine",
+      "content_hash": "24c4c942120e0a14",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/sotsiaalnoustamine",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application"
+      ],
+      "targetGroup": [
+        "Maardu linna elanikud",
+        "toimetulekuraskustes isikud ja pered"
+      ],
+      "application": {
+        "channels": [
+          "Maardu ametlikul lehel nimetatud sotsiaalnõustamise pöördumiskanalid"
+        ],
+        "steps": [
+          "Kirjelda abivajadust",
+          "Sotsiaalvaldkonna töötaja hindab sobivat abi või suunamist"
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_service_uldhooldusteenus",
+      "canonical_item_id": "maardu_linn:service:uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Teenuse eesmärk on tagada turvaline keskkond ja toimetulek täisealisele isikule, kes ei tule terviseseisundi või tegevusvõime tõttu kodus iseseisvalt toime.",
+      "sourceKeys": [
+        "src_maardu_eeskirjad_ja_korrad",
+        "src_maardu_uldhooldusteenus"
+      ],
+      "item_type": "service",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_eeskirjad_ja_korrad",
+        "src_maardu_uldhooldusteenus"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_uldhooldusteenus",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/uldhooldusteenus",
+      "content_hash": "cc7d3df900fff7bd",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/uldhooldusteenus",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "conditions",
+        "application",
+        "amount"
+      ],
+      "targetGroup": [
+        "Maardu linna elanikud, kelle abivajadus on hinnatud"
+      ],
+      "conditions": [
+        "Teenuse vajadus tuvastatakse hindamise käigus"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu Linnavalitsusele"
+        ],
+        "steps": [
+          "Esita taotlus ja nõutud dokumendid",
+          "Linn hindab abivajadust ja teenuse rahastamise ulatust"
+        ]
+      },
+      "amount": "Teenuselehel: Maardu linn tasub hoolduskulu kuni 600 eurot kuus. Eeskirjade ja kordade lehel viidatud 2026. aasta piirmäär on 650 eurot kuus; enne kasutamist kontrollida.",
+      "relatedResources": [
+        "maardu_linn_resource_minumaardu_iseteenindus"
+      ],
+      "unresolvedIssues": [
+        "Teenuselehe ja 2026. aasta piirmäära info vajab sisulist üle kontrollimist."
+      ]
+    },
+    {
+      "id": "maardu_linn_service_sotsiaaleluasemeteenus",
+      "canonical_item_id": "maardu_linn:service:sotsiaaleluasemeteenus",
+      "itemType": "service",
+      "title": "Sotsiaaleluasemeteenus",
+      "status": "active",
+      "summary": "Sotsiaaleluasemeteenus on mõeldud inimestele või peredele, kes ei ole võimelised endale või oma perele eluruumi tagama.",
+      "sourceKeys": [
+        "src_maardu_sotsiaaleluasemeteenus"
+      ],
+      "item_type": "service",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_sotsiaaleluasemeteenus"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_sotsiaaleluasemeteenus",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/sotsiaaleluasemeteenus",
+      "content_hash": "6bdbc1e32ed6870f",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/sotsiaaleluasemeteenus",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "forms"
+      ],
+      "targetGroup": [
+        "eluruumi vajavad Maardu linna elanikud",
+        "sotsiaalmaja teenuse vajajad"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu Linnavalitsusele"
+        ],
+        "steps": [
+          "Esita sotsiaaleluaseme taotlus",
+          "Linn hindab vajadust ja sõlmib vajadusel lepingu"
+        ]
+      },
+      "relatedResources": [
+        "maardu_linn_resource_sotsiaalmaja"
+      ]
+    },
+    {
+      "id": "maardu_linn_service_eestkoste_seadmine",
+      "canonical_item_id": "maardu_linn:service:eestkoste_seadmine",
+      "itemType": "service",
+      "title": "Eestkoste seadmine",
+      "status": "active",
+      "summary": "Eestkoste seadmine puudutab olukordi, kus isik vajab õiguste ja huvide kaitseks eestkostet ning protsess toimub kohtu kaudu.",
+      "sourceKeys": [
+        "src_maardu_eestkoste_seadmine"
+      ],
+      "item_type": "service",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_eestkoste_seadmine"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_eestkoste_seadmine",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/eestkoste-seadmine",
+      "content_hash": "ed78e8ef82071e56",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/eestkoste-seadmine",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "forms"
+      ],
+      "targetGroup": [
+        "alaealised või täisealised isikud, kellele võib olla vaja eestkostet"
+      ],
+      "application": {
+        "channels": [
+          "E-vorm või ametlik dokument Maardu veebis"
+        ],
+        "steps": [
+          "Täida eestkoste seadmise e-vorm või nõusoleku vorm",
+          "Esita vajalikud dokumendid kohtule/linnale vastavalt juhisele"
+        ]
+      },
+      "relatedForms": [
+        "maardu_linn_form_eestkoste_evorm",
+        "maardu_linn_form_eestkoste_nousolek"
+      ]
+    },
+    {
+      "id": "maardu_linn_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "maardu_linn:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus toetab isikuid, kellel on puudest, terviseseisundist või sotsiaalsest olukorrast tulenev takistus kasutada ühistransporti või isiklikku transporti.",
+      "sourceKeys": [
+        "src_maardu_sotsiaaltransporditeenus"
+      ],
+      "item_type": "service",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_sotsiaaltransporditeenus"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_sotsiaaltransporditeenus",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/sotsiaaltransporditeenus",
+      "content_hash": "38788d7d5b638bcc",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/sotsiaaltransporditeenus",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "forms"
+      ],
+      "targetGroup": [
+        "puudest või terviseseisundist tingitud liikumisraskustega inimesed"
+      ],
+      "application": {
+        "channels": [
+          "Sotsiaalteenuse taotlus või e-vorm"
+        ],
+        "steps": [
+          "Esita sotsiaalteenuse taotlus",
+          "Lisa vajadust põhjendavad dokumendid, kui neid küsitakse"
+        ]
+      },
+      "relatedForms": [
+        "maardu_linn_form_sotsiaalteenuste_taotlus",
+        "maardu_linn_form_sotsiaalteenuse_evorm"
+      ]
+    },
+    {
+      "id": "maardu_linn_service_koduteenus",
+      "canonical_item_id": "maardu_linn:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus aitab inimest koduses keskkonnas toimingutes, mida ta terviseseisundi või tegevusvõime tõttu ise piisavalt teha ei saa.",
+      "sourceKeys": [
+        "src_maardu_koduteenus"
+      ],
+      "item_type": "service",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_koduteenus"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_koduteenus",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/koduteenus",
+      "content_hash": "e66f255bdc570345",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/koduteenus",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "pricing",
+        "forms"
+      ],
+      "targetGroup": [
+        "kodus elavad abivajavad täisealised Maardu elanikud"
+      ],
+      "application": {
+        "channels": [
+          "Sotsiaalteenuse taotlus või e-vorm"
+        ],
+        "steps": [
+          "Esita sotsiaalteenuse taotlus",
+          "Abivajadust hinnatakse ning lepitakse kokku teenuse sisu ja maht"
+        ]
+      },
+      "pricing": "Teenuselehel: koduabi 3 eurot/tund ja isikuabi 5 eurot/tund.",
+      "relatedForms": [
+        "maardu_linn_form_sotsiaalteenuste_taotlus",
+        "maardu_linn_form_sotsiaalteenuse_evorm"
+      ]
+    },
+    {
+      "id": "maardu_linn_service_tugiisikuteenus",
+      "canonical_item_id": "maardu_linn:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus toetab isiku iseseisvat toimetulekut, juhendamist ja sotsiaalsete oskuste arendamist.",
+      "sourceKeys": [
+        "src_maardu_tugiisikuteenus"
+      ],
+      "item_type": "service",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_tugiisikuteenus"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_tugiisikuteenus",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/tugiisikuteenus",
+      "content_hash": "23b975a31d54833e",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/tugiisikuteenus",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "conditions",
+        "application"
+      ],
+      "targetGroup": [
+        "lapsed ja täisealised abivajajad vastavalt teenuse eesmärgile"
+      ],
+      "conditions": [
+        "Teenuseosutajale on seatud sobivuse ja piirangute nõuded"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu Linnavalitsusele"
+        ],
+        "steps": [
+          "Kirjelda abivajadust",
+          "Linn hindab teenuse sobivust ja mahtu"
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_service_hoolduse_seadmine",
+      "canonical_item_id": "maardu_linn:service:hoolduse_seadmine",
+      "itemType": "service",
+      "title": "Hoolduse seadmine",
+      "status": "active",
+      "summary": "Hoolduse seadmine puudutab olukordi, kus täisealine isik vajab hooldajat igapäevase toimetuleku toetamiseks.",
+      "sourceKeys": [
+        "src_maardu_hoolduse_seadmine"
+      ],
+      "item_type": "service",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_hoolduse_seadmine"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_hoolduse_seadmine",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/hoolduse-seadmine",
+      "content_hash": "e7223c30fc220d7d",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/hoolduse-seadmine",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "conditions",
+        "application"
+      ],
+      "targetGroup": [
+        "täisealised abivajajad, kellele on vaja määrata hooldaja"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu Linnavalitsusele"
+        ],
+        "steps": [
+          "Esita hoolduse seadmise taotlus",
+          "Linn hindab hooldusvajadust ja hooldaja sobivust"
+        ]
+      },
+      "relatedResources": [
+        "maardu_linn_benefit_hooldajatoetus"
+      ]
+    },
+    {
+      "id": "maardu_linn_service_puudega_lapse_lapsehoiuteenus",
+      "canonical_item_id": "maardu_linn:service:puudega_lapse_lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Raske ja sügava puudega laste toetavad sotsiaalteenused",
+      "status": "active",
+      "summary": "Teenused on mõeldud raske või sügava puudega lapse ja pere toetamiseks, sh lapsehoiuteenuse ja teiste toetavate teenuste kasutamiseks.",
+      "sourceKeys": [
+        "src_maardu_puudega_lapse_lapsehoiuteenus"
+      ],
+      "item_type": "service",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_puudega_lapse_lapsehoiuteenus"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_puudega_lapse_lapsehoiuteenus",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/puudega-lapse-lapsehoiuteenus",
+      "content_hash": "42911636c8dc82a6",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/puudega-lapse-lapsehoiuteenus",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "decisionTime"
+      ],
+      "targetGroup": [
+        "raske või sügava puudega lapsed ja nende pered"
+      ],
+      "application": {
+        "channels": [
+          "Riigi rahastatava lapsehoiuteenuse e-vorm või Maardu ametlik juhis"
+        ],
+        "steps": [
+          "Esita taotlus",
+          "Lisa vajalikud dokumendid",
+          "Linn menetleb taotlust ja teeb otsuse"
+        ]
+      },
+      "decisionTime": "Maardu lehe järgi kuni 10 tööpäeva pärast vajalike dokumentide esitamist.",
+      "relatedForms": [
+        "maardu_linn_form_riigi_lapsehoiuteenus_evorm"
+      ]
+    },
+    {
+      "id": "maardu_linn_service_isiklik_abistaja",
+      "canonical_item_id": "maardu_linn:service:isiklik_abistaja",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus toetab puudega inimese iseseisvat osalemist igapäevaelus ja toimingutes, mida ta puude tõttu ise teha ei saa.",
+      "sourceKeys": [
+        "src_maardu_isiklik_abistaja"
+      ],
+      "item_type": "service",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_isiklik_abistaja"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_isiklik_abistaja",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/isikliku-abistaja-teenus",
+      "content_hash": "7f7489220d465ab5",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/isikliku-abistaja-teenus",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "decisionTime",
+        "pricing"
+      ],
+      "targetGroup": [
+        "puudega inimesed, kellel on vajadus kõrvalabi järele"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu Linnavalitsusele"
+        ],
+        "steps": [
+          "Esita taotlus",
+          "Linn hindab abivajadust ja teenuse mahtu"
+        ]
+      },
+      "decisionTime": "Maardu lehe järgi tehakse otsus 10 tööpäeva jooksul pärast vajalike dokumentide saamist.",
+      "pricing": "Teenuse hind ja teenuseosutaja määratakse Maardu linna kehtestatud korra alusel."
+    },
+    {
+      "id": "maardu_linn_service_parkimiskaart",
+      "canonical_item_id": "maardu_linn:service:parkimiskaart",
+      "itemType": "service",
+      "title": "Puudega inimese sõiduki parkimiskaardi väljastamine",
+      "status": "active",
+      "summary": "Puudega inimese sõiduki parkimiskaart on isiklik kaart, mida saab kasutada õigustatud isiku sõiduki parkimise eritingimusteks.",
+      "sourceKeys": [
+        "src_maardu_parkimiskaart"
+      ],
+      "item_type": "service",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_parkimiskaart"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_parkimiskaart",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/puudega-inimese-soiduki-parkimiskaardi-valjastamine",
+      "content_hash": "c11c9fe817cfa3e6",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/puudega-inimese-soiduki-parkimiskaardi-valjastamine",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "validity"
+      ],
+      "targetGroup": [
+        "puudega inimesed, kes vastavad parkimiskaardi tingimustele"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu Linnavalitsusele"
+        ],
+        "steps": [
+          "Esita taotlus ja nõutud dokumendid",
+          "Linn väljastab kaardi, kui tingimused on täidetud"
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_service_supikoogiteenus",
+      "canonical_item_id": "maardu_linn:service:supikoogiteenus",
+      "itemType": "service",
+      "title": "Supiköögiteenus",
+      "status": "active",
+      "summary": "Supiköögiteenus pakub Maardu ametliku info järgi sooja toitu abivajavatele inimestele.",
+      "sourceKeys": [
+        "src_maardu_supikoogiteenus"
+      ],
+      "item_type": "service",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_supikoogiteenus"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_supikoogiteenus",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/supikoogiteenus",
+      "content_hash": "0a694f8347b10d55",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/supikoogiteenus",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application"
+      ],
+      "targetGroup": [
+        "toimetulekuraskustes Maardu elanikud"
+      ],
+      "application": {
+        "channels": [
+          "Maardu ametlikul lehel nimetatud supiköögi kasutamise kord"
+        ],
+        "steps": [
+          "Pöördu teenuse saamiseks Maardu ametliku juhise järgi"
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_service_kahjude_vahendamine",
+      "canonical_item_id": "maardu_linn:service:kahjude_vahendamine",
+      "itemType": "service",
+      "title": "Kahjude vähendamise teenus",
+      "status": "active",
+      "summary": "Kahjude vähendamise teenus on suunatud narkootikume tarvitavatele inimestele ja nende lähedastele ning hõlmab terviseriskide vähendamist ja nõustamist.",
+      "sourceKeys": [
+        "src_maardu_kahjude_vahendamine"
+      ],
+      "item_type": "service",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_kahjude_vahendamine"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_kahjude_vahendamine",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/narkovoorutuse-punkt",
+      "content_hash": "bf7a04434ba75f18",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/narkovoorutuse-punkt",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "provider"
+      ],
+      "targetGroup": [
+        "narkootikume tarvitavad inimesed ja nende lähedased"
+      ],
+      "application": {
+        "channels": [
+          "Maardu ametlikul lehel nimetatud teenuse osutamise koht või partner"
+        ],
+        "steps": [
+          "Kasuta Maardu lehel kirjeldatud teenuse kanalit"
+        ]
+      },
+      "unresolvedIssues": [
+        "Teenuse detailsem kirjeldus sõltub välisest teenuseosutajast; paketis on kasutatud ainult Maardu lehel avaldatud infot."
+      ]
+    },
+    {
+      "id": "maardu_linn_service_asendushooldusteenus",
+      "canonical_item_id": "maardu_linn:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus tagab lapsele hoolduse ja kasvatamise väljaspool bioloogilist perekonda, kui lapse heaolu kaitseks on see vajalik.",
+      "sourceKeys": [
+        "src_maardu_asendus_jarelhooldus"
+      ],
+      "item_type": "service",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_asendus_jarelhooldus"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_asendus_jarelhooldus",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/asendus-ja-jarelhooldusteenus",
+      "content_hash": "8839310312994765",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/asendus-ja-jarelhooldusteenus",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application"
+      ],
+      "targetGroup": [
+        "lapsed, kes vajavad hooldust väljaspool sünniperekonda"
+      ],
+      "application": {
+        "channels": [
+          "Maardu Linnavalitsuse lastekaitse- või sotsiaalvaldkonna menetluskanal"
+        ],
+        "steps": [
+          "Teenusele suunamine toimub lapse juhtumimenetluse ja abivajaduse hindamise alusel"
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_service_jarelhooldusteenus",
+      "canonical_item_id": "maardu_linn:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus toetab asendushoolduselt või eestkostelt iseseisvasse ellu astuvat noort.",
+      "sourceKeys": [
+        "src_maardu_asendus_jarelhooldus"
+      ],
+      "item_type": "service",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_asendus_jarelhooldus"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_asendus_jarelhooldus",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/asendus-ja-jarelhooldusteenus",
+      "content_hash": "059bc68844746f1f",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/asendus-ja-jarelhooldusteenus",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application"
+      ],
+      "targetGroup": [
+        "asendushoolduselt või eestkostelt elluastuvad noored"
+      ],
+      "application": {
+        "channels": [
+          "Maardu Linnavalitsuse sotsiaalvaldkonna menetluskanal"
+        ],
+        "steps": [
+          "Teenusele suunamine toimub abivajaduse hindamise ja juhtumiplaani alusel"
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_service_varjupaik_turvakodu",
+      "canonical_item_id": "maardu_linn:service:varjupaik_turvakodu",
+      "itemType": "service",
+      "title": "Varjupaiga- ja turvakoduteenus",
+      "status": "active",
+      "summary": "Varjupaiga- ja turvakoduteenus pakub ajutist turvalist kohta inimestele, kes vajavad vältimatut peavarju või kaitset.",
+      "sourceKeys": [
+        "src_maardu_varjupaik_turvakodu"
+      ],
+      "item_type": "service",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_varjupaik_turvakodu"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_varjupaik_turvakodu",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/289",
+      "content_hash": "6b79e04e663626b5",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/289",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "externalResources"
+      ],
+      "targetGroup": [
+        "peavarjuta või kriisiolukorras inimesed",
+        "vägivalla või muu ohu tõttu turvalist kohta vajavad inimesed"
+      ],
+      "application": {
+        "channels": [
+          "Maardu ametlikul lehel nimetatud teenusekanalid ja välised tugikeskused"
+        ],
+        "steps": [
+          "Kriisiolukorras pöörduda Maardu lehel nimetatud juhise järgi või hädaohu korral 112"
+        ]
+      },
+      "unresolvedIssues": [
+        "Väliste teenusepakkujate detailset infot ei kontrollitud eraldi; kasutatud on ainult Maardu lehel nimetatud infot."
+      ]
+    },
+    {
+      "id": "maardu_linn_service_volanoustamine",
+      "canonical_item_id": "maardu_linn:service:volanoustamine",
+      "itemType": "service",
+      "title": "Võlanõustamine",
+      "status": "active",
+      "summary": "Võlanõustamine aitab inimesel selgitada võlgnevuste olukorda, koostada tegevusplaani ja otsida lahendusi makseraskuste korral.",
+      "sourceKeys": [
+        "src_maardu_volanoustamine"
+      ],
+      "item_type": "service",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_volanoustamine"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_volanoustamine",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/volanoustamine",
+      "content_hash": "dd25d40424e3cf91",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/volanoustamine",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application"
+      ],
+      "targetGroup": [
+        "võlgnevuste või makseraskustega Maardu elanikud"
+      ],
+      "application": {
+        "channels": [
+          "Maardu ametlikul lehel nimetatud võlanõustamise kanalid"
+        ],
+        "steps": [
+          "Pöördu teenuse saamiseks Maardu sotsiaalvaldkonna kaudu",
+          "Võta kaasa võlgnevusi ja sissetulekuid puudutavad dokumendid, kui leht seda nõuab"
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_service_psuhholoogiline_noustamine",
+      "canonical_item_id": "maardu_linn:service:psuhholoogiline_noustamine",
+      "itemType": "service",
+      "title": "Psühholoogiline nõustamine",
+      "status": "active",
+      "summary": "Psühholoogiline nõustamine toetab inimest emotsionaalsete, pere- või toimetulekuraskuste korral.",
+      "sourceKeys": [
+        "src_maardu_psuhholoogiline_noustamine"
+      ],
+      "item_type": "service",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_psuhholoogiline_noustamine"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_psuhholoogiline_noustamine",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/psuhholoogiline-noustamine",
+      "content_hash": "6f9799b467845419",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/psuhholoogiline-noustamine",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application"
+      ],
+      "targetGroup": [
+        "Maardu linna elanikud, kes vajavad psühholoogilist tuge"
+      ],
+      "application": {
+        "channels": [
+          "Maardu ametlikul lehel nimetatud psühholoogilise nõustamise kanalid"
+        ],
+        "steps": [
+          "Pöördu nõustamisele Maardu ametliku juhise järgi"
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_resource_abivahendi_taotlemine",
+      "canonical_item_id": "maardu_linn:resource:abivahendi_taotlemine",
+      "itemType": "resource",
+      "title": "Abivahendi taotlemine",
+      "status": "active",
+      "summary": "Maardu leht viitab abivahendite taotlemise ja riikliku soodustuse üldisele korrale ning abivahendi vajadusega seotud praktilisele infole.",
+      "sourceKeys": [
+        "src_maardu_abivahendi_taotlemine"
+      ],
+      "item_type": "resource",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_abivahendi_taotlemine"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_abivahendi_taotlemine",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/abivahendi-taotlemine",
+      "content_hash": "6389466a1183baef",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/abivahendi-taotlemine",
+      "sections_present": [
+        "description",
+        "application"
+      ],
+      "targetGroup": [
+        "abivahendit vajavad inimesed"
+      ],
+      "application": {
+        "channels": [
+          "Maardu ametlik abivahendi taotlemise info"
+        ],
+        "steps": [
+          "Kontrolli Maardu lehel kirjeldatud abivahendi taotlemise juhist"
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_resource_toidupank",
+      "canonical_item_id": "maardu_linn:resource:toidupank",
+      "itemType": "resource",
+      "title": "Toidupank",
+      "status": "active",
+      "summary": "Maardu Toidupank on ametlikul lehel kirjeldatud abikanal toiduabi vajavatele inimestele.",
+      "sourceKeys": [
+        "src_maardu_toidupank"
+      ],
+      "item_type": "resource",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_toidupank"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_toidupank",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/toidupank",
+      "content_hash": "4441ef363ebd89f3",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/toidupank",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application"
+      ],
+      "targetGroup": [
+        "toiduabi vajavad Maardu elanikud"
+      ],
+      "application": {
+        "channels": [
+          "Maardu lehel nimetatud toiduabi korraldus"
+        ],
+        "steps": [
+          "Abivajadust hinnatakse Maardu lehel kirjeldatud korras"
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_resource_ohvriabi",
+      "canonical_item_id": "maardu_linn:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "Ohvriabi info koondab abi vägivalla, kuriteo, kriisi või muu traumeeriva sündmuse korral ning Maardu leht viitab riiklikele abikanalitele.",
+      "sourceKeys": [
+        "src_maardu_ohvriabi"
+      ],
+      "item_type": "resource",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_ohvriabi"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_ohvriabi",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/ohvriabi",
+      "content_hash": "48f212f5cc4e4d25",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/ohvriabi",
+      "sections_present": [
+        "description",
+        "channels"
+      ],
+      "targetGroup": [
+        "vägivalla, kuriteo või kriisi tõttu abi vajavad inimesed"
+      ],
+      "application": {
+        "channels": [
+          "Hädaohu korral 112",
+          "Lasteabi 116111",
+          "Ohvriabi kriisitelefon 116006 või palunabi.ee, kui Maardu leht seda nimetab"
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_resource_sotsiaalmaja",
+      "canonical_item_id": "maardu_linn:resource:sotsiaalmaja",
+      "itemType": "resource",
+      "title": "Sotsiaalmaja",
+      "status": "active",
+      "summary": "Maardu Sotsiaalmaja on ametlikul lehel kirjeldatud sotsiaalvaldkonna asutus/ressurss, kus pakutakse erinevaid sotsiaalteenuseid ja tuge.",
+      "sourceKeys": [
+        "src_maardu_sotsiaalmaja"
+      ],
+      "item_type": "resource",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_sotsiaalmaja"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_sotsiaalmaja",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/sotsiaalmaja",
+      "content_hash": "b5950309e901e135",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/sotsiaalmaja",
+      "sections_present": [
+        "description",
+        "services"
+      ],
+      "targetGroup": [
+        "sotsiaalmaja teenuseid vajavad inimesed"
+      ],
+      "application": {
+        "channels": [
+          "Maardu Sotsiaalmaja ametlikul lehel nimetatud teenusekanalid"
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_resource_tervishoiuasutused",
+      "canonical_item_id": "maardu_linn:resource:tervishoiuasutused",
+      "itemType": "resource",
+      "title": "Tervishoiuasutused",
+      "status": "active",
+      "summary": "Maardu lehel on koondatud tervishoiuasutuste ja apteekide info; paketis kajastatakse seda ressursina, mitte kontaktikorjena.",
+      "sourceKeys": [
+        "src_maardu_tervishoiuasutused"
+      ],
+      "item_type": "resource",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_tervishoiuasutused"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_tervishoiuasutused",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/tervishoiuasutused",
+      "content_hash": "c62e6936b4dcf735",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/tervishoiuasutused",
+      "sections_present": [
+        "description",
+        "resources"
+      ],
+      "targetGroup": [
+        "Maardu elanikud, kes vajavad tervishoiuressursside infot"
+      ],
+      "application": {
+        "channels": [
+          "Maardu ametlik tervishoiuasutuste leht"
+        ]
+      },
+      "unresolvedIssues": [
+        "Leht sisaldab kontaktandmeid; neid ei normaliseeritud eraldi contact itemitena."
+      ]
+    },
+    {
+      "id": "maardu_linn_resource_riiklikud_sotsiaaltoetused",
+      "canonical_item_id": "maardu_linn:resource:riiklikud_sotsiaaltoetused",
+      "itemType": "resource",
+      "title": "Riiklikud sotsiaaltoetused",
+      "status": "active",
+      "summary": "Maardu ametlik leht suunab riiklike sotsiaaltoetuste info juurde, sh peretoetused ja muud riiklikud toetused.",
+      "sourceKeys": [
+        "src_maardu_riiklikud_sotsiaaltoetused"
+      ],
+      "item_type": "resource",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_riiklikud_sotsiaaltoetused"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_riiklikud_sotsiaaltoetused",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/riiklikud-sotsiaaltoetused-2018",
+      "content_hash": "400707634d7d4452",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/riiklikud-sotsiaaltoetused-2018",
+      "sections_present": [
+        "description",
+        "externalResources"
+      ],
+      "targetGroup": [
+        "riiklike toetuste infot vajavad inimesed"
+      ],
+      "application": {
+        "channels": [
+          "Maardu ametlik riiklike sotsiaaltoetuste infoleht"
+        ]
+      },
+      "unresolvedIssues": [
+        "Riiklike toetuste sisuline kontroll kuulub eraldi riikliku kihi alla; siin on kajastatud Maardu lehe suunav info."
+      ]
+    },
+    {
+      "id": "maardu_linn_resource_minumaardu_iseteenindus",
+      "canonical_item_id": "maardu_linn:resource:minumaardu_iseteenindus",
+      "itemType": "resource",
+      "title": "minumaardu.ee iseteenindus",
+      "status": "active",
+      "summary": "Maardu linna iseteeninduskeskkond võimaldab esitada taotlusi elektrooniliselt ning kasutada e-vorme.",
+      "sourceKeys": [
+        "src_maardu_minumaardu"
+      ],
+      "item_type": "resource",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_minumaardu"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_minumaardu",
+      "document_id": "kov-maardu-linn",
+      "source_type": "web_form",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://minumaardu.ee/",
+      "content_hash": "1f072d0f387f423e",
+      "evidence_allowed": true,
+      "officialUrl": "https://minumaardu.ee/",
+      "sections_present": [
+        "e_service",
+        "authentication",
+        "applicationSubmission"
+      ],
+      "targetGroup": [
+        "Maardu elanikud ja teenuste/toetuste taotlejad"
+      ],
+      "application": {
+        "channels": [
+          "minumaardu.ee"
+        ],
+        "steps": [
+          "Logi sisse ID-kaardi, Mobiil-ID või Smart-ID abil",
+          "Täida sobiv e-vorm",
+          "Allkirjasta ja esita taotlus digitaalselt"
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_resource_spoku_toetused",
+      "canonical_item_id": "maardu_linn:resource:spoku_toetused",
+      "itemType": "resource",
+      "title": "SPOKU toetuste e-taotlused",
+      "status": "active",
+      "summary": "Maardu ametliku teate järgi saab osa toetuste taotlusi esitada elektrooniliselt SPOKU kaudu.",
+      "sourceKeys": [
+        "src_maardu_spoku_toetused_2025"
+      ],
+      "item_type": "resource",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_spoku_toetused_2025"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_spoku_toetused_2025",
+      "document_id": "kov-maardu-linn",
+      "source_type": "web_form",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/uudised-ja-teated/-/asset_publisher/GOSUWtP4XUy9/content/id/42051223",
+      "content_hash": "af63a1a6663b4c68",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/uudised-ja-teated/-/asset_publisher/GOSUWtP4XUy9/content/id/42051223",
+      "sections_present": [
+        "e_forms",
+        "applicationSubmission"
+      ],
+      "targetGroup": [
+        "Maardu toetuste taotlejad"
+      ],
+      "application": {
+        "channels": [
+          "SPOKU/minumaardu.ee"
+        ],
+        "steps": [
+          "Vali sobiv e-taotlus",
+          "Täida ja esita taotlus elektrooniliselt"
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_benefit_toimetulekutoetus",
+      "canonical_item_id": "maardu_linn:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Riiklik toimetulekutoetus väikese sissetulekuga leibkonnale; Maardu leht kirjeldab 2026. aasta toimetulekupiire ja taotlemist.",
+      "sourceKeys": [
+        "src_maardu_toimetulekutoetus"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_toimetulekutoetus"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_toimetulekutoetus",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/toimetulekutoetus",
+      "content_hash": "245dd4d671ff4075",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/toimetulekutoetus",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "amount"
+      ],
+      "targetGroup": [
+        "Väikese sissetulekuga leibkonnad"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel kirjeldatud korras"
+        ],
+        "steps": [
+          "Taotlus esitatakse Maardu ametliku juhise järgi; otsus tehakse Maardu lehe järgi hiljemalt 5 tööpäeva jooksul pärast kõigi dokumentide saamist."
+        ]
+      },
+      "amount": "2026: esimesele pereliikmele 200 eurot, igale järgnevale täisealisele 160 eurot ja igale alaealisele lapsele 240 eurot.",
+      "relatedForms": [
+        "maardu_linn_form_toimetulekutoetuse_avaldus"
+      ]
+    },
+    {
+      "id": "maardu_linn_benefit_ravimitoetus",
+      "canonical_item_id": "maardu_linn:benefit:ravimitoetus",
+      "itemType": "benefit",
+      "title": "Ravimitoetus",
+      "status": "active",
+      "summary": "Perekonna sissetulekust sõltuv toetus retseptiravimite maksumuse osaliseks või täielikuks hüvitamiseks.",
+      "sourceKeys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_taiendavad_sotsiaaltoetused",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "content_hash": "7f28ea42879ce7dc",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "amount"
+      ],
+      "targetGroup": [
+        "mittetöötavad üksi elavad vanaduspensionärid ja puudega isikud"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel kirjeldatud korras"
+        ],
+        "steps": [
+          "Taotletakse kuludokumentide alusel; taotleda saab 1 kord kvartalis."
+        ]
+      },
+      "amount": "Kuni 110 eurot aastas."
+    },
+    {
+      "id": "maardu_linn_benefit_abivahendi_hooldusvahendi_toetus",
+      "canonical_item_id": "maardu_linn:benefit:abivahendi_hooldusvahendi_toetus",
+      "itemType": "benefit",
+      "title": "Toetus isiklike abivahendite ja hooldusvahendite ostmisel või rentimisel",
+      "status": "active",
+      "summary": "Perekonna sissetulekust sõltuv toetus puudega inimese omaosaluse osaliseks või täielikuks katmiseks abivahendite ja hooldusvahendite ostmisel või rentimisel.",
+      "sourceKeys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_taiendavad_sotsiaaltoetused",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "content_hash": "d8394610e52ff77c",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "amount"
+      ],
+      "targetGroup": [
+        "mittetöötavad puudega isikud"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel kirjeldatud korras"
+        ],
+        "steps": [
+          "Taotletakse nimeliste kuludokumentide alusel; taotleda saab 1 kord kvartalis."
+        ]
+      },
+      "amount": "Kuni 160 eurot aastas."
+    },
+    {
+      "id": "maardu_linn_benefit_suvelaagri_tuusiku_toetus",
+      "canonical_item_id": "maardu_linn:benefit:suvelaagri_tuusiku_toetus",
+      "itemType": "benefit",
+      "title": "Suvelaagri tuusiku toetus",
+      "status": "active",
+      "summary": "Toetus vähekindlustatud pere lapse suvelaagri kulude katmiseks või hüvitamiseks.",
+      "sourceKeys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_taiendavad_sotsiaaltoetused",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "content_hash": "5c5d4310374a05b8",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application"
+      ],
+      "targetGroup": [
+        "vähekindlustatud perede lapsed"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel kirjeldatud korras"
+        ],
+        "steps": [
+          "Esitatakse põhjendatud taotlus ja kuludokumendid Maardu ametliku korra järgi."
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_benefit_lasteaiatoidu_toetus",
+      "canonical_item_id": "maardu_linn:benefit:lasteaiatoidu_toetus",
+      "itemType": "benefit",
+      "title": "Lasteaiatoidu toetus",
+      "status": "active",
+      "summary": "Toetus vähekindlustatud pere lapse Maardu munitsipaallasteaia toidu maksumuse osaliseks või täielikuks hüvitamiseks.",
+      "sourceKeys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_taiendavad_sotsiaaltoetused",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "content_hash": "feea80a774c1d3a2",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application"
+      ],
+      "targetGroup": [
+        "vähekindlustatud pered"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel kirjeldatud korras"
+        ],
+        "steps": [
+          "Taotlus tuleb esitada hiljemalt 1. septembriks või raske majandusliku olukorra tekkimisel."
+        ]
+      },
+      "relatedForms": [
+        "maardu_linn_form_kooli_lasteaia_toiduraha_avaldus",
+        "maardu_linn_form_toiduraha_evorm"
+      ]
+    },
+    {
+      "id": "maardu_linn_benefit_pikapaevaruhma_toidu_toetus",
+      "canonical_item_id": "maardu_linn:benefit:pikapaevaruhma_toidu_toetus",
+      "itemType": "benefit",
+      "title": "Pikapäevarühma toidu toetus",
+      "status": "active",
+      "summary": "Toetus vähekindlustatud pere lapse üldhariduskooli pikapäevarühma toidu maksumuse osaliseks või täielikuks hüvitamiseks.",
+      "sourceKeys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_taiendavad_sotsiaaltoetused",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "content_hash": "1addfed1170778ff",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application"
+      ],
+      "targetGroup": [
+        "vähekindlustatud pered"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel kirjeldatud korras"
+        ],
+        "steps": [
+          "Taotlus tuleb esitada hiljemalt 1. septembriks või raske majandusliku olukorra tekkimisel; toetus määratakse kuni üheks õppeaastaks."
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_benefit_lopetamise_kulude_toetus",
+      "canonical_item_id": "maardu_linn:benefit:lopetamise_kulude_toetus",
+      "itemType": "benefit",
+      "title": "Põhikooli ja gümnaasiumi lõpetamise kulude toetus",
+      "status": "active",
+      "summary": "Toetus lapse põhikooli ja gümnaasiumi lõpetamise kulude osaliseks katmiseks.",
+      "sourceKeys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_taiendavad_sotsiaaltoetused",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "content_hash": "80611889b445e38e",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application"
+      ],
+      "targetGroup": [
+        "vähekindlustatud, eestkoste-, hooldus- ja lasterikkad pered"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel kirjeldatud korras"
+        ],
+        "steps": [
+          "Toetuse suuruse otsustab linnavalitsus."
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_benefit_raske_majandusliku_olukorra_toetus",
+      "canonical_item_id": "maardu_linn:benefit:raske_majandusliku_olukorra_toetus",
+      "itemType": "benefit",
+      "title": "Ühekordne toetus raske majandusliku olukorra puhul",
+      "status": "active",
+      "summary": "Ühekordne toetus vähekindlustatud inimesele raske majandusliku olukorra puhul või muudel erandjuhtudel.",
+      "sourceKeys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_taiendavad_sotsiaaltoetused",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "content_hash": "a535976a2e06967c",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "amount"
+      ],
+      "targetGroup": [
+        "vähekindlustatud inimesed"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel kirjeldatud korras"
+        ],
+        "steps": [
+          "Esitatakse põhjendatud taotlus Maardu ametliku korra järgi."
+        ]
+      },
+      "amount": "Kuni 190 eurot aastas."
+    },
+    {
+      "id": "maardu_linn_benefit_muud_sissetulekust_soltuva_toetused",
+      "canonical_item_id": "maardu_linn:benefit:muud_sissetulekust_soltuva_toetused",
+      "itemType": "benefit",
+      "title": "Muud perekonna sissetulekust sõltuvad toetused",
+      "status": "active",
+      "summary": "Erandjuhtudel võib maksta ka muid korras nimetamata toetusi linnavalitsuse korralduse alusel.",
+      "sourceKeys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_taiendavad_sotsiaaltoetused",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "content_hash": "4db47912619b8de7",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application"
+      ],
+      "targetGroup": [
+        "vähekindlustatud inimesed või määratletud abivajajate sihtrühm"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel kirjeldatud korras"
+        ],
+        "steps": [
+          "Vajadus ja toetus otsustatakse erandjuhtumi alusel."
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_benefit_sunnitoetus",
+      "canonical_item_id": "maardu_linn:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus lapse sünniga seotud kulude katmiseks Maardus registreeritud peredele.",
+      "sourceKeys": [
+        "src_maardu_sunnitoetus_2027",
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_sunnitoetus_2027",
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_taiendavad_sotsiaaltoetused",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "content_hash": "f7cd3975dc7659b2",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "amount"
+      ],
+      "targetGroup": [
+        "Maardu linna elanikest lapsevanemad"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel kirjeldatud korras"
+        ],
+        "steps": [
+          "Taotlus esitatakse osade kaupa 6 kuu jooksul pärast lapse sündi, 1-aastaseks või 2-aastaseks saamist; väljamakse 30 päeva jooksul pärast taotlust."
+        ]
+      },
+      "amount": "Kehtival toetuste lehel: 400/500/1160/1540 eurot lapse järjekorrast sõltuvalt; Maardu 24.03.2026 teate järgi alates 01.01.2027: 1000/1100/1200/1600 eurot.",
+      "relatedForms": [
+        "maardu_linn_form_sunnitoetus_evorm"
+      ]
+    },
+    {
+      "id": "maardu_linn_benefit_koolitoetus",
+      "canonical_item_id": "maardu_linn:benefit:koolitoetus",
+      "itemType": "benefit",
+      "title": "Koolitoetus",
+      "status": "active",
+      "summary": "Toetus lapse koolimineku kulude katmiseks esimesse kuni kuuendasse klassi mineva lapse puhul.",
+      "sourceKeys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_taiendavad_sotsiaaltoetused",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "content_hash": "0be2f980b1eeb97b",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "amount"
+      ],
+      "targetGroup": [
+        "1.–6. klassi minevate laste vanemad/eestkostjad/hoolduspere vanemad"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel kirjeldatud korras"
+        ],
+        "steps": [
+          "Kui laps õpib väljaspool Maardut, tuleb taotlus esitada toetuse õiguse tekkimise aasta 1. detsembriks."
+        ]
+      },
+      "amount": "1. klassi mineva lapse puhul 150 eurot; 2.–6. klassi mineva lapse puhul 50 eurot."
+    },
+    {
+      "id": "maardu_linn_benefit_vee_kanalisatsiooni_toetus",
+      "canonical_item_id": "maardu_linn:benefit:vee_kanalisatsiooni_toetus",
+      "itemType": "benefit",
+      "title": "Vee- ja kanalisatsiooni abonenttasu hüvitamise toetus",
+      "status": "active",
+      "summary": "Toetus vee- ja kanalisatsiooni abonenttasu hüvitamiseks.",
+      "sourceKeys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_taiendavad_sotsiaaltoetused",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "content_hash": "45a7dda5b2a29254",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "amount"
+      ],
+      "targetGroup": [
+        "üksi elavad pensionärid ja lasterikkad pered"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel kirjeldatud korras"
+        ],
+        "steps": [
+          "Taotlemine Maardu ametliku korra järgi."
+        ]
+      },
+      "amount": "Kuni 1 euro kuus."
+    },
+    {
+      "id": "maardu_linn_benefit_elluastujate_toetus",
+      "canonical_item_id": "maardu_linn:benefit:elluastujate_toetus",
+      "itemType": "benefit",
+      "title": "Toetus elluastujatele",
+      "status": "active",
+      "summary": "Ühekordne toetus täisealiseks saanud asenduskoduteenuselt lahkunutele, kelle elukoht enne asenduskoduteenusele suunamist oli Maardu linn.",
+      "sourceKeys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_taiendavad_sotsiaaltoetused",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "content_hash": "064cccd778b10d09",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "amount"
+      ],
+      "targetGroup": [
+        "asenduskoduteenuselt lahkunud elluastujad"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel kirjeldatud korras"
+        ],
+        "steps": [
+          "Taotlemine Maardu ametliku korra järgi."
+        ]
+      },
+      "amount": "400 eurot."
+    },
+    {
+      "id": "maardu_linn_benefit_sunnipaevatoetus",
+      "canonical_item_id": "maardu_linn:benefit:sunnipaevatoetus",
+      "itemType": "benefit",
+      "title": "Sünnipäevatoetus",
+      "status": "active",
+      "summary": "Toetus 65-aastastele ja vanematele Maardu elanikele iga sünnipäeva puhul.",
+      "sourceKeys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_taiendavad_sotsiaaltoetused",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "content_hash": "12db024aef505692",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "amount"
+      ],
+      "targetGroup": [
+        "65-aastased ja vanemad Maardu elanikud"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel kirjeldatud korras"
+        ],
+        "steps": [
+          "Maksmiseks peab taotleja olema esitanud arveldusarve numbri Maardu ametliku korra järgi."
+        ]
+      },
+      "amount": "100 eurot."
+    },
+    {
+      "id": "maardu_linn_benefit_tsernoboli_toetus",
+      "canonical_item_id": "maardu_linn:benefit:tsernoboli_toetus",
+      "itemType": "benefit",
+      "title": "Toetus Tšernobõli AEJ tuumakatastroofi likvideerimistöödest osavõtjaile",
+      "status": "active",
+      "summary": "Aastane toetus Tšernobõli AEJ tuumakatastroofi likvideerimistöödest osavõtnule.",
+      "sourceKeys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_taiendavad_sotsiaaltoetused",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "content_hash": "524a4d57c19c2f85",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "amount"
+      ],
+      "targetGroup": [
+        "Tšernobõli AEJ tuumakatastroofi likvideerimistöödest osavõtjad"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel kirjeldatud korras"
+        ],
+        "steps": [
+          "Makstakse üks kord aastas aprillikuus; esmasel taotlemisel tuleb esitada arveldusarve number."
+        ]
+      },
+      "amount": "300 eurot aastas."
+    },
+    {
+      "id": "maardu_linn_benefit_maamaksu_toetus",
+      "canonical_item_id": "maardu_linn:benefit:maamaksu_toetus",
+      "itemType": "benefit",
+      "title": "Maamaksu toetus",
+      "status": "active",
+      "summary": "Toetus pensionäridele Maardu elamumaa sihtotstarbega maatüki maamaksu osaliseks hüvitamiseks.",
+      "sourceKeys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_taiendavad_sotsiaaltoetused",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "content_hash": "fdab67cbe65e5775",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "amount"
+      ],
+      "targetGroup": [
+        "pensionärid"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel kirjeldatud korras"
+        ],
+        "steps": [
+          "Taotlemine Maardu ametliku korra järgi."
+        ]
+      },
+      "amount": "Kuni 50% maamaksu summast, kuid mitte üle 32 euro aastas.",
+      "relatedForms": [
+        "maardu_linn_form_maamaksu_pensionar_avaldus"
+      ]
+    },
+    {
+      "id": "maardu_linn_benefit_puudega_taisealise_lisakulutuste_toetus",
+      "canonical_item_id": "maardu_linn:benefit:puudega_taisealise_lisakulutuste_toetus",
+      "itemType": "benefit",
+      "title": "Toetus täisealistele raske või sügava puudega isikutele lisakulutuste katmiseks",
+      "status": "active",
+      "summary": "Igakuine toetus raske või sügava puudega inimese lisakulutuste katmiseks.",
+      "sourceKeys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_taiendavad_sotsiaaltoetused",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "content_hash": "3412841efe198601",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "amount"
+      ],
+      "targetGroup": [
+        "raske või sügava puudega täisealised isikud"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel kirjeldatud korras"
+        ],
+        "steps": [
+          "Toetust ei maksta isikule, kelle hooldajale makstakse hooldajatoetust."
+        ]
+      },
+      "amount": "Sügava puudega isikule 39 eurot kuus; raske puudega isikule 28 eurot kuus."
+    },
+    {
+      "id": "maardu_linn_benefit_matusetoetus",
+      "canonical_item_id": "maardu_linn:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Ühekordne toetus Maardu linna elaniku matuse korraldajale.",
+      "sourceKeys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_taiendavad_sotsiaaltoetused",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "content_hash": "d740723ee7e5f8f2",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "amount"
+      ],
+      "targetGroup": [
+        "matust korraldav füüsiline isik"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel kirjeldatud korras"
+        ],
+        "steps": [
+          "Taotleda saab kolme kuu jooksul alates surmakuupäevast; lisada tuleb kulude kandmist tõendavad dokumendid."
+        ]
+      },
+      "amount": "Kuni 250 eurot.",
+      "relatedForms": [
+        "maardu_linn_form_matusetoetuse_avaldus",
+        "maardu_linn_form_matusetoetuse_evorm"
+      ]
+    },
+    {
+      "id": "maardu_linn_benefit_lasterikaste_perede_lasteaiatoidu_toetus",
+      "canonical_item_id": "maardu_linn:benefit:lasterikaste_perede_lasteaiatoidu_toetus",
+      "itemType": "benefit",
+      "title": "Lasterikaste perede lasteaiatoidu toetus",
+      "status": "active",
+      "summary": "Toetus lasterikaste perede Maardu munitsipaallasteaedades käiva lapse toiduraha hüvitamiseks täies ulatuses.",
+      "sourceKeys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_taiendavad_sotsiaaltoetused"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_taiendavad_sotsiaaltoetused",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "content_hash": "7401a091beecf7a7",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/taiendavad-sotsiaaltoetused",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "amount"
+      ],
+      "targetGroup": [
+        "lasterikkad pered, 3 ja enam alaealist last"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel kirjeldatud korras"
+        ],
+        "steps": [
+          "Taotlus tuleb esitada hiljemalt jooksva aasta 1. septembriks või toetusele õiguse tekkimisel."
+        ]
+      },
+      "amount": "Toiduraha hüvitamine täies ulatuses."
+    },
+    {
+      "id": "maardu_linn_benefit_hooldajatoetus",
+      "canonical_item_id": "maardu_linn:benefit:hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus",
+      "status": "active",
+      "summary": "Toetus määratud hooldajale hooldatava igapäevase toimetuleku toetamise eest.",
+      "sourceKeys": [
+        "src_maardu_hooldajatoetus"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_hooldajatoetus"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_hooldajatoetus",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/hooldajatoetus",
+      "content_hash": "498edc2d8c2463b3",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/hooldajatoetus",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application"
+      ],
+      "targetGroup": [
+        "hooldajaks määratud isikud"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel kirjeldatud korras"
+        ],
+        "steps": [
+          "Seotud hoolduse seadmise menetlusega; täpne määr ja tingimused kontrollida Maardu ametlikult lehelt."
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_benefit_puudega_lapse_hooldajatoetus",
+      "canonical_item_id": "maardu_linn:benefit:puudega_lapse_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus puudega lapse hooldajale",
+      "status": "active",
+      "summary": "Toetus puudega lapse hooldajale lapse hooldamisega seotud koormuse ja lisakulude toetamiseks.",
+      "sourceKeys": [
+        "src_maardu_puudega_lapse_hooldajatoetus"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_puudega_lapse_hooldajatoetus"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_puudega_lapse_hooldajatoetus",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/hooldajatoetus-puudega-lapse-hooldajale",
+      "content_hash": "58be190f9c1149d9",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/hooldajatoetus-puudega-lapse-hooldajale",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application"
+      ],
+      "targetGroup": [
+        "puudega lapse hooldajad"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel kirjeldatud korras"
+        ],
+        "steps": [
+          "Esitatakse taotlus ja nõutud dokumendid Maardu ametliku juhise järgi."
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_benefit_lapsehoiutoetus",
+      "canonical_item_id": "maardu_linn:benefit:lapsehoiutoetus",
+      "itemType": "benefit",
+      "title": "Lapsehoiutoetus",
+      "status": "active",
+      "summary": "Lapsehoiutoetus toetab lapsehoiuteenuse kasutamist Maardu linna ametlikul lehel kirjeldatud tingimustel.",
+      "sourceKeys": [
+        "src_maardu_lapsehoiutoetus"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_lapsehoiutoetus"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_lapsehoiutoetus",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/lapsehoiutoetus",
+      "content_hash": "b2d4a88e9aceda62",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/lapsehoiutoetus",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application"
+      ],
+      "targetGroup": [
+        "lapsehoiuteenust vajavad pered"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel kirjeldatud korras"
+        ],
+        "steps": [
+          "Taotlus esitatakse Maardu ametliku juhise järgi; seotud PDF-blankett ja e-vorm on Maardu lehel."
+        ]
+      },
+      "relatedForms": [
+        "maardu_linn_form_lapsehoiutoetus_pdf",
+        "maardu_linn_form_lapsehoiutoetus_evorm"
+      ]
+    },
+    {
+      "id": "maardu_linn_benefit_uksi_elava_pensionari_toetus",
+      "canonical_item_id": "maardu_linn:benefit:uksi_elava_pensionari_toetus",
+      "itemType": "benefit",
+      "title": "Üksi elava pensionäri toetus",
+      "status": "active",
+      "summary": "Riiklik üksi elava pensionäri toetus, mille kohta Maardu leht annab suunava info.",
+      "sourceKeys": [
+        "src_maardu_uksi_elava_pensionari_toetus"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_uksi_elava_pensionari_toetus"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_uksi_elava_pensionari_toetus",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/uksi-elava-pensionari-toetus",
+      "content_hash": "bf095698e155b308",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/uksi-elava-pensionari-toetus",
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application"
+      ],
+      "targetGroup": [
+        "üksi elavad pensionärid"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel kirjeldatud korras"
+        ],
+        "steps": [
+          "Sisuline riiklik kontroll tuleb teha eraldi riiklikust allikast; siin on Maardu lehel avaldatud suunav info."
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_form_sotsiaalteenuste_taotlus",
+      "canonical_item_id": "maardu_linn:form:sotsiaalteenuste_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaalteenuste taotluse vorm",
+      "status": "active",
+      "summary": "RTF-vorm sotsiaalteenuse taotlemiseks Maardu ametlikul veebilehel.",
+      "sourceKeys": [
+        "src_maardu_form_sotsiaalteenuste_taotlus_rtf"
+      ],
+      "item_type": "form",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_form_sotsiaalteenuste_taotlus_rtf"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_form_sotsiaalteenuste_taotlus_rtf",
+      "document_id": "kov-maardu-linn",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/documents/820601/948099/Sotsiaalteenuste%2Btaotluse%2Bvorm.rtf/eccb18d9-9822-4b31-af2a-47ef391a92fb",
+      "content_hash": "150bfbef2f246d1c",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/documents/820601/948099/Sotsiaalteenuste%2Btaotluse%2Bvorm.rtf/eccb18d9-9822-4b31-af2a-47ef391a92fb",
+      "sections_present": [
+        "form",
+        "application"
+      ],
+      "application": {
+        "channels": [
+          "Ametlik link",
+          "Maardu ametlik faililink"
+        ],
+        "steps": [
+          "Ava ametlik vorm",
+          "Täida nõutud väljad",
+          "Esita või allkirjasta vastavalt vormi juhisele"
+        ]
+      },
+      "relatedResources": [
+        "maardu_linn_service_koduteenus",
+        "maardu_linn_service_sotsiaaltransporditeenus"
+      ],
+      "format": "rtf"
+    },
+    {
+      "id": "maardu_linn_form_sotsiaalteenuse_evorm",
+      "canonical_item_id": "maardu_linn:form:sotsiaalteenuse_evorm",
+      "itemType": "form",
+      "title": "Sotsiaalteenuse taotluse e-vorm",
+      "status": "active",
+      "summary": "E-vorm sotsiaalteenuse taotluse esitamiseks; Maardu leht kirjeldab sisselogimist ja digiallkirjastamist.",
+      "sourceKeys": [
+        "src_maardu_form_sotsiaalteenuse_evorm"
+      ],
+      "item_type": "form",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_form_sotsiaalteenuse_evorm"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_form_sotsiaalteenuse_evorm",
+      "document_id": "kov-maardu-linn",
+      "source_type": "web_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/sotsiaalteenuse-taotluse-e-vorm",
+      "content_hash": "998e79f88728884d",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/sotsiaalteenuse-taotluse-e-vorm",
+      "sections_present": [
+        "form",
+        "application"
+      ],
+      "application": {
+        "channels": [
+          "Ametlik link",
+          "minumaardu.ee/SPOKU või Maardu e-vormi leht"
+        ],
+        "steps": [
+          "Ava ametlik vorm",
+          "Täida nõutud väljad",
+          "Esita või allkirjasta vastavalt vormi juhisele"
+        ]
+      },
+      "relatedResources": [
+        "maardu_linn_service_koduteenus",
+        "maardu_linn_service_sotsiaaltransporditeenus"
+      ],
+      "format": "html"
+    },
+    {
+      "id": "maardu_linn_form_eestkoste_nousolek",
+      "canonical_item_id": "maardu_linn:form:eestkoste_nousolek",
+      "itemType": "form",
+      "title": "Nõusolek kohtule eestkoste seadmiseks",
+      "status": "active",
+      "summary": "DOCX-vorm eestkoste seadmise menetluseks.",
+      "sourceKeys": [
+        "src_maardu_form_eestkoste_nousolek_docx"
+      ],
+      "item_type": "form",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_form_eestkoste_nousolek_docx"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_form_eestkoste_nousolek_docx",
+      "document_id": "kov-maardu-linn",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/documents/820601/39394333/N%C3%B5usolek%2Bkohtule_eestkoste.docx/d8165227-516f-4e2f-bb28-3e8a289a5c1e",
+      "content_hash": "a7c547fdb0d7c624",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/documents/820601/39394333/N%C3%B5usolek%2Bkohtule_eestkoste.docx/d8165227-516f-4e2f-bb28-3e8a289a5c1e",
+      "sections_present": [
+        "form",
+        "application"
+      ],
+      "application": {
+        "channels": [
+          "Ametlik link",
+          "Maardu ametlik faililink"
+        ],
+        "steps": [
+          "Ava ametlik vorm",
+          "Täida nõutud väljad",
+          "Esita või allkirjasta vastavalt vormi juhisele"
+        ]
+      },
+      "relatedResources": [
+        "maardu_linn_service_eestkoste_seadmine"
+      ],
+      "format": "docx"
+    },
+    {
+      "id": "maardu_linn_form_eestkoste_evorm",
+      "canonical_item_id": "maardu_linn:form:eestkoste_evorm",
+      "itemType": "form",
+      "title": "Eestkoste seadmise taotluse e-vorm",
+      "status": "active",
+      "summary": "E-vorm eestkoste seadmise taotluse esitamiseks.",
+      "sourceKeys": [
+        "src_maardu_form_eestkoste_evorm"
+      ],
+      "item_type": "form",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_form_eestkoste_evorm"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_form_eestkoste_evorm",
+      "document_id": "kov-maardu-linn",
+      "source_type": "web_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/et/eestkoste-seadmise-taotluse-e-vorm",
+      "content_hash": "7982ff018afd02e4",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/et/eestkoste-seadmise-taotluse-e-vorm",
+      "sections_present": [
+        "form",
+        "application"
+      ],
+      "application": {
+        "channels": [
+          "Ametlik link",
+          "minumaardu.ee/SPOKU või Maardu e-vormi leht"
+        ],
+        "steps": [
+          "Ava ametlik vorm",
+          "Täida nõutud väljad",
+          "Esita või allkirjasta vastavalt vormi juhisele"
+        ]
+      },
+      "relatedResources": [
+        "maardu_linn_service_eestkoste_seadmine"
+      ],
+      "format": "html"
+    },
+    {
+      "id": "maardu_linn_form_toimetulekutoetuse_avaldus",
+      "canonical_item_id": "maardu_linn:form:toimetulekutoetuse_avaldus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse avaldus",
+      "status": "active",
+      "summary": "DOCX-vorm toimetulekutoetuse taotlemiseks.",
+      "sourceKeys": [
+        "src_maardu_form_toimetulekutoetus_docx"
+      ],
+      "item_type": "form",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_form_toimetulekutoetus_docx"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_form_toimetulekutoetus_docx",
+      "document_id": "kov-maardu-linn",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/documents/820601/38257696/TTT%2Bblank%2B-%2BUUS2024.docx/0e741cb2-d71a-4e6b-8a74-e3e22baaf03f",
+      "content_hash": "becb114061037049",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/documents/820601/38257696/TTT%2Bblank%2B-%2BUUS2024.docx/0e741cb2-d71a-4e6b-8a74-e3e22baaf03f",
+      "sections_present": [
+        "form",
+        "application"
+      ],
+      "application": {
+        "channels": [
+          "Ametlik link",
+          "Maardu ametlik faililink"
+        ],
+        "steps": [
+          "Ava ametlik vorm",
+          "Täida nõutud väljad",
+          "Esita või allkirjasta vastavalt vormi juhisele"
+        ]
+      },
+      "relatedResources": [
+        "maardu_linn_benefit_toimetulekutoetus"
+      ],
+      "format": "docx"
+    },
+    {
+      "id": "maardu_linn_form_lapsehoiutoetus_pdf",
+      "canonical_item_id": "maardu_linn:form:lapsehoiutoetus_pdf",
+      "itemType": "form",
+      "title": "Lapsehoiutoetuse taotlus",
+      "status": "active",
+      "summary": "PDF-blankett lapsehoiutoetuse taotlemiseks.",
+      "sourceKeys": [
+        "src_maardu_form_lapsehoiutoetus_pdf"
+      ],
+      "item_type": "form",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_form_lapsehoiutoetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_form_lapsehoiutoetus_pdf",
+      "document_id": "kov-maardu-linn",
+      "source_type": "pdf_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/documents/820601/948099/lapsehoiutoetuse%2Btaotlus.pdf/5eda9f8a-cc79-49e6-9720-bbf87966c15c",
+      "content_hash": "f9c23908b025eeae",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/documents/820601/948099/lapsehoiutoetuse%2Btaotlus.pdf/5eda9f8a-cc79-49e6-9720-bbf87966c15c",
+      "sections_present": [
+        "form",
+        "application"
+      ],
+      "application": {
+        "channels": [
+          "Ametlik link",
+          "Maardu ametlik faililink"
+        ],
+        "steps": [
+          "Ava ametlik vorm",
+          "Täida nõutud väljad",
+          "Esita või allkirjasta vastavalt vormi juhisele"
+        ]
+      },
+      "relatedResources": [
+        "maardu_linn_benefit_lapsehoiutoetus"
+      ],
+      "format": "pdf"
+    },
+    {
+      "id": "maardu_linn_form_lapsehoiutoetus_evorm",
+      "canonical_item_id": "maardu_linn:form:lapsehoiutoetus_evorm",
+      "itemType": "form",
+      "title": "Lastehoiuteenuse toetuse taotluse e-vorm",
+      "status": "active",
+      "summary": "E-vorm lastehoiuteenuse toetuse taotlemiseks.",
+      "sourceKeys": [
+        "src_maardu_form_lapsehoiutoetus_evorm"
+      ],
+      "item_type": "form",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_form_lapsehoiutoetus_evorm"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_form_lapsehoiutoetus_evorm",
+      "document_id": "kov-maardu-linn",
+      "source_type": "web_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/et/lastehoiuteenuse-toetuse-taotluse-e-vorm",
+      "content_hash": "55511c94d6c1b509",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/et/lastehoiuteenuse-toetuse-taotluse-e-vorm",
+      "sections_present": [
+        "form",
+        "application"
+      ],
+      "application": {
+        "channels": [
+          "Ametlik link",
+          "minumaardu.ee/SPOKU või Maardu e-vormi leht"
+        ],
+        "steps": [
+          "Ava ametlik vorm",
+          "Täida nõutud väljad",
+          "Esita või allkirjasta vastavalt vormi juhisele"
+        ]
+      },
+      "relatedResources": [
+        "maardu_linn_benefit_lapsehoiutoetus"
+      ],
+      "format": "html"
+    },
+    {
+      "id": "maardu_linn_form_sunnitoetus_evorm",
+      "canonical_item_id": "maardu_linn:form:sunnitoetus_evorm",
+      "itemType": "form",
+      "title": "Sünnitoetuse taotluse e-vorm",
+      "status": "active",
+      "summary": "E-vorm sünnitoetuse taotlemiseks.",
+      "sourceKeys": [
+        "src_maardu_form_sunnitoetus_evorm"
+      ],
+      "item_type": "form",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_form_sunnitoetus_evorm"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_form_sunnitoetus_evorm",
+      "document_id": "kov-maardu-linn",
+      "source_type": "web_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/et/sunnituetuse-taoluse-e-vorm",
+      "content_hash": "34c9ab06883ec92a",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/et/sunnituetuse-taoluse-e-vorm",
+      "sections_present": [
+        "form",
+        "application"
+      ],
+      "application": {
+        "channels": [
+          "Ametlik link",
+          "minumaardu.ee/SPOKU või Maardu e-vormi leht"
+        ],
+        "steps": [
+          "Ava ametlik vorm",
+          "Täida nõutud väljad",
+          "Esita või allkirjasta vastavalt vormi juhisele"
+        ]
+      },
+      "relatedResources": [
+        "maardu_linn_benefit_sunnitoetus"
+      ],
+      "format": "html"
+    },
+    {
+      "id": "maardu_linn_form_riigi_lapsehoiuteenus_evorm",
+      "canonical_item_id": "maardu_linn:form:riigi_lapsehoiuteenus_evorm",
+      "itemType": "form",
+      "title": "Riigi rahastatava lapsehoiuteenuse taotluse e-vorm",
+      "status": "active",
+      "summary": "E-vorm riigi rahastatava lapsehoiuteenuse taotlemiseks.",
+      "sourceKeys": [
+        "src_maardu_form_riigi_lapsehoiuteenus_evorm"
+      ],
+      "item_type": "form",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_form_riigi_lapsehoiuteenus_evorm"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_form_riigi_lapsehoiuteenus_evorm",
+      "document_id": "kov-maardu-linn",
+      "source_type": "web_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/et/riigi-rahastatava-lapsehoiuteenuse-taotluse-e-vorm",
+      "content_hash": "db994772481fd878",
+      "evidence_allowed": true,
+      "officialUrl": "https://maardu.ee/et/riigi-rahastatava-lapsehoiuteenuse-taotluse-e-vorm",
+      "sections_present": [
+        "form",
+        "application"
+      ],
+      "application": {
+        "channels": [
+          "Ametlik link",
+          "minumaardu.ee/SPOKU või Maardu e-vormi leht"
+        ],
+        "steps": [
+          "Ava ametlik vorm",
+          "Täida nõutud väljad",
+          "Esita või allkirjasta vastavalt vormi juhisele"
+        ]
+      },
+      "relatedResources": [
+        "maardu_linn_service_puudega_lapse_lapsehoiuteenus"
+      ],
+      "format": "html"
+    },
+    {
+      "id": "maardu_linn_form_minumaardu_iseteenindus",
+      "canonical_item_id": "maardu_linn:form:minumaardu_iseteenindus",
+      "itemType": "form",
+      "title": "minumaardu.ee e-taotlused",
+      "status": "active",
+      "summary": "Iseteeninduse e-vormide keskkond Maardu taotluste elektrooniliseks esitamiseks.",
+      "sourceKeys": [
+        "src_maardu_minumaardu"
+      ],
+      "item_type": "form",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_minumaardu"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_minumaardu",
+      "document_id": "kov-maardu-linn",
+      "source_type": "web_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://minumaardu.ee/",
+      "content_hash": "844374cb063714ab",
+      "evidence_allowed": true,
+      "officialUrl": "https://minumaardu.ee/",
+      "sections_present": [
+        "form",
+        "application"
+      ],
+      "application": {
+        "channels": [
+          "Ametlik link",
+          "minumaardu.ee/SPOKU või Maardu e-vormi leht"
+        ],
+        "steps": [
+          "Ava ametlik vorm",
+          "Täida nõutud väljad",
+          "Esita või allkirjasta vastavalt vormi juhisele"
+        ]
+      },
+      "relatedResources": [
+        "maardu_linn_resource_minumaardu_iseteenindus"
+      ],
+      "format": "html"
+    },
+    {
+      "id": "maardu_linn_benefit_huvihariduse_ja_huvitegevuse_toetus",
+      "canonical_item_id": "maardu_linn:benefit:huvihariduse_ja_huvitegevuse_toetus",
+      "itemType": "benefit",
+      "title": "Huvihariduse ja huvitegevuse toetus",
+      "status": "active",
+      "summary": "Riigieelarvest huvihariduse ja huvitegevuse toetus toetab 7–19-aastaste Maardu noorte huviharidust ja -tegevust. Toetust saab taotleda nii juriidiline isik (huviharidus või huvitegevuse pakkuja, projektid kuni 15 000 eurot aastas) kui ka vähekindlustatud ja lasterikkad pered või lapse seaduslik esindaja. Toetus on suunatud Maardu linna haldusterritooriumil toimuvatele juhendatud huvialaringidele või tegevustele.",
+      "sourceKeys": [
+        "src_maardu_huvihariduse_toetus"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_huvihariduse_toetus"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_huvihariduse_toetus",
+      "document_id": "kov-maardu-linn",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/riigieelarvest-huvihariduse-ja-huvitegevuse-toetuse-andmise-kord",
+      "content_hash": "f56e088ad729ccf1",
+      "evidence_allowed": true,
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "amount",
+        "relatedForms"
+      ],
+      "officialUrl": "https://maardu.ee/riigieelarvest-huvihariduse-ja-huvitegevuse-toetuse-andmise-kord",
+      "targetGroup": [
+        "7–19-aastaste Maardu lapsed ja noored; lasterikkad ja vähekindlustatud pered; Maardus tegutsevad juriidilised isikud (huviharidus või huvitegevus)"
+      ],
+      "application": {
+        "channels": [
+          "Taotlus Maardu ametlikul lehel nimetatud korras (e-vorm või pabervorm)"
+        ],
+        "steps": [
+          "Esita korrektne taotlusvorm (juriidilised isikud alates 1. aprillist 2025 SPOKU kaudu; füüsilised isikud minumaardu.ee kaudu või pabervorm).",
+          "Lisa nõutud andmed projekti või huvitegevuse kohta ning allkirjasta digitaalselt.",
+          "Linnavalitsus hindab taotluse vastavust tingimustele ja teeb otsuse."
+        ]
+      },
+      "amount": "Juriidilistele isikutele kuni 15 000 eurot aastas; füüsilistele isikutele toetuse suurus vastavalt Maardu linnavalitsuse otsusele.",
+      "relatedForms": [
+        "maardu_linn_form_huvihariduse_ja_huvitegevuse_toetuse_evorm"
+      ]
+    },
+    {
+      "id": "maardu_linn_form_kooli_lasteaia_toiduraha_avaldus",
+      "canonical_item_id": "maardu_linn:form:kooli_lasteaia_toiduraha_avaldus",
+      "itemType": "form",
+      "title": "Kooli-lasteaia toiduraha toetuse avaldus",
+      "status": "active",
+      "summary": "DOCX-vorm kooli- ja lasteaia toiduraha toetuse taotlemiseks. Täida vorm ja esita see Maardu linnavalitsusele vastavalt juhistele.",
+      "sourceKeys": [
+        "src_maardu_form_toiduraha_avaldus"
+      ],
+      "item_type": "form",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_form_toiduraha_avaldus"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_form_toiduraha_avaldus",
+      "document_id": "kov-maardu-linn",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/documents/820601/948099/toiduraha_uus.docx",
+      "content_hash": "e528e2c34b9f20e1",
+      "evidence_allowed": true,
+      "sections_present": [
+        "form",
+        "application"
+      ],
+      "officialUrl": "https://maardu.ee/documents/820601/948099/toiduraha_uus.docx",
+      "format": "docx",
+      "application": {
+        "channels": [
+          "Ametlik link",
+          "Maardu ametlik faililink"
+        ],
+        "steps": [
+          "Ava ametlik vorm",
+          "Täida nõutud väljad",
+          "Esita allkirjastatult linna dokumendihaldussüsteemi või paberkandjal"
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_form_matusetoetuse_avaldus",
+      "canonical_item_id": "maardu_linn:form:matusetoetuse_avaldus",
+      "itemType": "form",
+      "title": "Matusetoetuse avaldus",
+      "status": "active",
+      "summary": "DOCX-blankett matusetoetuse taotlemiseks. Täida vorm ja esita see Maardu linnavalitsusele koos nõutud dokumentidega.",
+      "sourceKeys": [
+        "src_maardu_form_matusetoetus_avaldus"
+      ],
+      "item_type": "form",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_form_matusetoetus_avaldus"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_form_matusetoetus_avaldus",
+      "document_id": "kov-maardu-linn",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/documents/820601/948099/matusetoetus_oige.docx",
+      "content_hash": "71c9e549b1c34d0e",
+      "evidence_allowed": true,
+      "sections_present": [
+        "form",
+        "application"
+      ],
+      "officialUrl": "https://maardu.ee/documents/820601/948099/matusetoetus_oige.docx",
+      "format": "docx",
+      "application": {
+        "channels": [
+          "Ametlik link",
+          "Maardu ametlik faililink"
+        ],
+        "steps": [
+          "Ava ametlik vorm",
+          "Täida nõutud väljad",
+          "Esita taotlus Maardu linnavalitsusele kolme kuu jooksul alates surmakuupäevast"
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_form_matusetoetuse_evorm",
+      "canonical_item_id": "maardu_linn:form:matusetoetuse_evorm",
+      "itemType": "form",
+      "title": "Matusetoetuse taotluse e-vorm",
+      "status": "active",
+      "summary": "E-vorm matusetoetuse taotluse esitamiseks digitaalselt. Logi sisse minumaardu.ee või Maardu e-vormi kaudu, täida vorm ja esita taotlus.",
+      "sourceKeys": [
+        "src_maardu_form_matusetoetus_evorm"
+      ],
+      "item_type": "form",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_form_matusetoetus_evorm"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_form_matusetoetus_evorm",
+      "document_id": "kov-maardu-linn",
+      "source_type": "web_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/et/matusetoetuse-taotluse-e-vorm",
+      "content_hash": "006c7894ecc4a40a",
+      "evidence_allowed": true,
+      "sections_present": [
+        "form",
+        "application"
+      ],
+      "officialUrl": "https://maardu.ee/et/matusetoetuse-taotluse-e-vorm",
+      "format": "html",
+      "application": {
+        "channels": [
+          "Ametlik link",
+          "minumaardu.ee/SPOKU või Maardu e-vormi leht"
+        ],
+        "steps": [
+          "Ava ametlik e-vorm",
+          "Logi sisse",
+          "Täida nõutud väljad",
+          "Allkirjasta ja esita taotlus digitaalselt"
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_form_toiduraha_evorm",
+      "canonical_item_id": "maardu_linn:form:toiduraha_evorm",
+      "itemType": "form",
+      "title": "Lasteaia toiduraha toetuse taotluse e-vorm",
+      "status": "active",
+      "summary": "E-vorm lasteaia toiduraha toetuse taotluse esitamiseks. Logi sisse Maardu e-teeninduse keskkonda, täida vorm ja esita taotlus digitaalselt.",
+      "sourceKeys": [
+        "src_maardu_form_toiduraha_evorm"
+      ],
+      "item_type": "form",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_form_toiduraha_evorm"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_form_toiduraha_evorm",
+      "document_id": "kov-maardu-linn",
+      "source_type": "web_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.ee/lasteaia-toiduraha-toetuse-e-vorm",
+      "content_hash": "1a56616c80190b92",
+      "evidence_allowed": true,
+      "sections_present": [
+        "form",
+        "application"
+      ],
+      "officialUrl": "https://maardu.ee/lasteaia-toiduraha-toetuse-e-vorm",
+      "format": "html",
+      "application": {
+        "channels": [
+          "Ametlik link",
+          "Maardu e-vormi või minumaardu.ee keskkond"
+        ],
+        "steps": [
+          "Ava ametlik e-vorm",
+          "Logi sisse",
+          "Täida nõutud väljad",
+          "Allkirjasta ja esita taotlus digitaalselt"
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_form_maamaksu_pensionar_avaldus",
+      "canonical_item_id": "maardu_linn:form:maamaksu_pensionar_avaldus",
+      "itemType": "form",
+      "title": "Pensionäri maamaksu soodustuse avaldus",
+      "status": "active",
+      "summary": "PDF-blankett pensionäri maamaksu soodustuse taotlemiseks. Täida vorm ja esita see Maardu linnavalitsusele.",
+      "sourceKeys": [
+        "src_maardu_form_maamaksu_pensionar_pdf"
+      ],
+      "item_type": "form",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_form_maamaksu_pensionar_pdf"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_form_maamaksu_pensionar_pdf",
+      "document_id": "kov-maardu-linn",
+      "source_type": "pdf_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.kovtp.ee/documents/820601/948099/maamaksust%20vabastamine%20pens.pdf/957911d0-6254-4bb9-8e52-c6fda651c33b",
+      "content_hash": "2d74c3dd4e0d1cc6",
+      "evidence_allowed": true,
+      "sections_present": [
+        "form",
+        "application"
+      ],
+      "officialUrl": "https://maardu.kovtp.ee/documents/820601/948099/maamaksust%20vabastamine%20pens.pdf/957911d0-6254-4bb9-8e52-c6fda651c33b",
+      "format": "pdf",
+      "application": {
+        "channels": [
+          "Ametlik link",
+          "Maardu ametlik faililink"
+        ],
+        "steps": [
+          "Ava ametlik vorm",
+          "Täida nõutud väljad",
+          "Esita taotlus Maardu linnavalitsusele koos nõutud dokumentidega"
+        ]
+      }
+    },
+    {
+      "id": "maardu_linn_form_huvihariduse_ja_huvitegevuse_toetuse_evorm",
+      "canonical_item_id": "maardu_linn:form:huvihariduse_ja_huvitegevuse_toetuse_evorm",
+      "itemType": "form",
+      "title": "Huvihariduse ja huvitegevuse toetuse taotluse e-vorm",
+      "status": "active",
+      "summary": "E-vorm huvihariduse ja huvitegevuse toetuse taotluse esitamiseks. Taotlejad saavad täita vormi Maardu e-teeninduses.",
+      "sourceKeys": [
+        "src_maardu_form_huvihariduse_evorm"
+      ],
+      "item_type": "form",
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "src_maardu_form_huvihariduse_evorm"
+      ],
+      "metadata_schema_version": "v2.5-sourcepackage",
+      "source_id": "src_maardu_form_huvihariduse_evorm",
+      "document_id": "kov-maardu-linn",
+      "source_type": "web_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "Maardu Linnavalitsus",
+      "audience": "public",
+      "language": "et",
+      "checked_at": "2026-05-21",
+      "last_checked": "2026-05-21",
+      "retrieved_at": "2026-05-21",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://maardu.kovtp.ee/huvihariduse-ja-huvitegevuse-toetuse-taotlus",
+      "content_hash": "27052d467e351d23",
+      "evidence_allowed": true,
+      "sections_present": [
+        "form",
+        "application"
+      ],
+      "officialUrl": "https://maardu.kovtp.ee/huvihariduse-ja-huvitegevuse-toetuse-taotlus",
+      "format": "html",
+      "application": {
+        "channels": [
+          "Ametlik link",
+          "minumaardu.ee/SPOKU või Maardu e-vormi leht"
+        ],
+        "steps": [
+          "Ava ametlik e-vorm",
+          "Logi sisse",
+          "Täida nõutud väljad",
+          "Allkirjasta ja esita taotlus digitaalselt"
+        ]
+      }
+    }
+  ],
+  "municipality_name": "Maardu linn",
+  "checked_at": "2026-05-21",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

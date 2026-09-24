@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "knowledge-doc-v1",
+  "country": "EE",
+  "sector": "social",
+  "audience": "BOTH",
+  "audiences": [
+    "SOCIAL_WORKER",
+    "CLIENT"
+  ],
+  "language": "et",
+  "source_origin_type": "file",
+  "source_format": "pdf",
+  "source_status": "active",
+  "historical": false,
+  "checked_at": "2026-05-03",
+  "copyright_status": "restricted_citation_summary_only",
+  "display_full_text": false,
+  "allow_excerpts": "short_only",
+  "ingest": {
+    "chunking_strategy": "section_aware",
+    "preserve_page_numbers": true,
+    "preserve_heading_path": true,
+    "display_full_text": false,
+    "allow_short_excerpts": true
+  },
+  "quality": {
+    "metadata_complete": false,
+    "section_index_complete": false,
+    "ocr_required": false,
+    "needs_manual_review": true,
+    "review_note": "Draft metadata generated for test ingestion. Codex should validate field names against the current project schema."
+  },
+  "docId": "ska-seksuaalvagivalla-kriisiabikeskusi-tutvustav-voldik-est",
+  "canonical_source_id": "ska-seksuaalvagivalla-kriisiabikeskusi-tutvustav-voldik-est",
+  "source_id": "sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est",
+  "document_id": "ska-seksuaalvagivalla-kriisiabikeskusi-tutvustav-voldik-est",
+  "title": "Seksuaalvägivalla kriisiabikeskusi tutvustav voldik (EST)",
+  "description": "Sotsiaalkindlustusameti ohvriabi infovoldik seksuaalvägivalla kriisiabikeskuste ja pöördumisvõimaluste kohta.",
+  "publisher": "Sotsiaalkindlustusamet",
+  "source_organization": "Sotsiaalkindlustusamet",
+  "organization_id": "sotsiaalkindlustusamet",
+  "publisher_type": "government_agency",
+  "authority_level": "national_agency_information",
+  "year": 2026,
+  "publication_date": "2026-01",
+  "document_kind": "manual",
+  "resource_type": "information_material",
+  "source_type": "information_material",
+  "collection_id": "organization_materials",
+  "collection_hint": "information_materials",
+  "domain": "victim_support",
+  "evidence_role": "background",
+  "allowed_claim_types": [
+    "background",
+    "support_pathway",
+    "contact_guidance",
+    "risk_awareness",
+    "crisis_information"
+  ],
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "legal_entitlement_as_final_decision",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment",
+    "emergency_triage_as_final_decision"
+  ],
+  "topics": [
+    "Sotsiaalkindlustusamet",
+    "kriisivalmidus",
+    "riskijuhtimine",
+    "ohvriabi",
+    "seksuaalvägivald",
+    "seksuaalne ahistamine",
+    "seksuaalvägivalla kriisiabikeskus",
+    "vägivald",
+    "infomaterjal",
+    "SKA"
+  ],
+  "target_groups": [
+    "seksuaalvägivalla ohvrid",
+    "vägivalla ohvrid",
+    "lähedased",
+    "spetsialistid",
+    "abivajajad"
+  ],
+  "source_path": "Ohvriabi infovoldik SAK EST+bleed3mm.pdf",
+  "source_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi%20infovoldik%20SAK%20EST%2Bbleed3mm.pdf",
+  "page_count": 2,
+  "registry_source": {
+    "source_master_source_id": "sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est",
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi infovoldik SAK EST+bleed3mm.pdf"
+  },
+  "jurisdiction_level": "NATIONAL"
+}

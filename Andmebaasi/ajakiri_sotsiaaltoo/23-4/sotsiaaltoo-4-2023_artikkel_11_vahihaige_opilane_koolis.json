@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2023",
+  "articleId": "millist-tuge-vajab-vahihaige-opilane-koolis-2023-4",
+  "title": "Millist tuge vajab vähihaige õpilane koolis?",
+  "authors": [
+    "Merike Puusepp"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2023",
+  "section": "Uurimus",
+  "pageRange": "51-58",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimus käsitleb vähihaigete laste hariduslikku tugisüsteemi lapsevanemate kogemuse vaatenurgast.\nAutor analüüsib, milliseid hariduslikke ja psühhosotsiaalseid vajadusi vähidiagnoosiga õpilastel on ning\nmillist tuge pakuvad koolid, tugispetsialistid ja haiglad. Tulemused näitavad, et kuigi paljudes koolides\non tugispetsialistid olemas, ei jõua toetus vähihaige õpilaseni alati piisaval määral ning koduõppe puhul\njääb vastutus sageli vanema kanda. Artiklis rõhutatakse paindlikku õppekorraldust, süsteemset koostööd\nharidus-, sotsiaal- ja tervisevaldkonna vahel ning vajadust toetada ka lapse vanemaid.",
+  "tags": [
+    "vähihaige laps",
+    "hariduslik erivajadus",
+    "kaasav haridus",
+    "koduõpe",
+    "kooli tugisüsteem",
+    "vanemate toetus",
+    "laste vähk"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2023_web_Part12.pdf",
+  "document_id": "sotsiaaltoo-4-2023-millist-tuge-vajab-vahihaige-opilane-koolis-2023-4",
+  "source_format": "pdf",
+  "source_sha256": "cc7b23e3ccf59afdcd8108538c578e9b10c7f20ff365609b0010a35c1633e6dc",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2023-millist-tuge-vajab-vahihaige-opilane-koolis-2023-4",
+    "previous_source_path": "Sotsiaaltoo_4_2023_web_Part12.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "cc7b23e3ccf59afdcd8108538c578e9b10c7f20ff365609b0010a35c1633e6dc",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2018",
+  "articleId": "sotsiaaltoo-praktika-kui-intersubjektiivne-protsess-2018",
+  "title": "Sotsiaaltöö praktika kui intersubjektiivne protsess",
+  "authors": [
+    "Dagmar Kutsar"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2018",
+  "section": "Teoreetilised lähtekohad",
+  "pageRange": "65-70",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Teoreetiline käsitlus sotsiaaltöö praktikast kui intersubjektiivsest protsessist, kus sotsiaaltöötaja ja klient loovad koos tähendusi, jagavad vastutust ning liiguvad hierarhilisest võimusuhtest partnerluse ja eluilmakeskse lähenemise suunas.",
+  "tags": [
+    "sotsiaaltöö praktika",
+    "intersubjektiivsus",
+    "võimusuhte tasakaalustamine",
+    "eluilmakeskne sotsiaaltöö",
+    "klient-keskne lähenemine",
+    "professionaalne asjatundlikkus",
+    "suhtekeskne töö",
+    "sotsiaaltöö teooria"
+  ],
+  "source_type": "file",
+  "source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part17.pdf",
+  "document_id": "sotsiaaltoo-2-2018-sotsiaaltoo-praktika-kui-intersubjektiivne-protsess-2018",
+  "source_format": "pdf",
+  "source_sha256": "72989bbd6eab9f13b3cb1157f0243b8dc62a3bcc99b37e543ac245a81fe1ed00",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2018-sotsiaaltoo-praktika-kui-intersubjektiivne-protsess-2018",
+    "previous_source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part17.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "72989bbd6eab9f13b3cb1157f0243b8dc62a3bcc99b37e543ac245a81fe1ed00",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

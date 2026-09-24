@@ -1,0 +1,77 @@
+{
+  "source": {
+    "source_id": "praxis_centar_taiskasvanud_erivajadusega_inimeste_abivajaduse_hindamine_ja_2",
+    "title": "Täiskasvanud erivajadusega inimeste abivajaduse hindamine ja teenuste osutamine – lühikokkuvõte",
+    "url": "https://www.praxis.ee/uploads/2020/05/Luhikokkuvote-abivajaduse-hindamise-raportist.pdf",
+    "normalized_url": "https://www.praxis.ee/uploads/2020/05/Luhikokkuvote-abivajaduse-hindamise-raportist.pdf",
+    "source_format": "pdf",
+    "source_type": "official_guideline",
+    "resource_type": "method_guidance",
+    "publisher": "Praxis / CentAR",
+    "organization_id": "praxis_centar",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Praxis",
+      "puue",
+      "puudega inimene",
+      "erivajadus",
+      "abivajaduse hindamine",
+      "hindamisvahend",
+      "praktiline töövahend",
+      "spetsialisti juhend"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "high",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Praxis / CentAR / poliitikauuringud",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 435,
+      "order": 235
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Täiskasvanud erivajadusega inimeste abivajaduse hindamine ja teenuste osutamine – lühikokkuvõte"
+    ],
+    "collection_hints": [
+      "research_reports"
+    ],
+    "source_types_seen": [
+      "research_report"
+    ],
+    "resource_types_seen": [
+      "research_evidence"
+    ],
+    "publishers_seen": [
+      "Praxis / CentAR"
+    ],
+    "organizations_seen": [
+      "praxis_centar"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Praxis / CentAR / poliitikauuringud",
+        "line": 435,
+        "order": 235
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.praxis.ee/uploads/2020/05/Luhikokkuvote-abivajaduse-hindamise-raportist.pdf"
+  },
+  "final_url": "https://www.praxis.ee/uploads/2020/05/Luhikokkuvote-abivajaduse-hindamise-raportist.pdf",
+  "redirects": [],
+  "sha256": "0d9a52da16e799c34fe097a1050f6aa157d94600e91fa053f5cfbdade31e69c7",
+  "bytes": 707881,
+  "downloaded_at": "2026-08-14T08:00:47.508Z"
+}

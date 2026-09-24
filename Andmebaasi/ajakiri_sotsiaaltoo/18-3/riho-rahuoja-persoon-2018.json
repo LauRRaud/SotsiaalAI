@@ -1,0 +1,101 @@
+{
+  "docId": "sotsiaaltoo-3-2018",
+  "articleId": "riho-rahuoja-persoon-2018",
+  "title": "Riho Rahuoja: „Sotsiaalsed probleemid on olemas ja need vajavad meie tähelepanu!”",
+  "authors": [
+    "Rain Resmeldt Uusen"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2018",
+  "section": "Persoon",
+  "pageRange": "3-7",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu Riho Rahuojast (61), ajakirja Sotsiaaltöö kolleegiumi liikmest ja Hiiumaa Sotsiaalkeskuse juhatajast, kes sai kevadel ESTA elutöö tegija tiitli. Meenutab 1990. aastate „metsikut läänt”, kus seadusi polnud ja sotsiaaltöötajaid ei õpetatud; tööd Hiiu maavalitsuses sotsiaalnõunikuna, Eesti sotsiaalnõukoja juhtimist ja hilisemat asekantsleri ametit sotsiaalministeeriumis, kus tema juhtimisel valmis hoolekande arengukava ja kasvas välja STAR. Hindab, et sotsiaalkaitse struktuur on nüüd olemas, kuid „mõnes kohas võib olla isegi üle reguleeritud”, ja et paljud regulatsioonid ei tööta inimeste heaks, vaid ametnike kaitseks. Peab suurimateks probleemideks omastehoolduse koormust perede kanda, sotsiaaltöötajate aja kulumist paberimajandusele märkamise asemel ning motiveeritud töötajate puudust.",
+  "tags": [
+    "persoonilugu",
+    "sotsiaaltöö ajalugu",
+    "STAR",
+    "omastehooldus",
+    "bürokraatia",
+    "sotsiaaltöötajate järelkasv",
+    "Hiiumaa"
+  ],
+  "source_type": "file",
+  "source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part3.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2018-riho-rahuoja-persoon-2018",
+  "source_sha256": "82d983ac2b92ec6768d9f864fd3ec32a7a24f297ba3029b8072fb93d2183a8ef",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2018-riho-rahuoja-persoon-2018",
+    "previous_source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part3.txt",
+    "previous_source_original_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part3.pdf",
+    "reference_stored_source_sha256": "28b3651b8bc93b00318d8ff6cbd2aa732f244043736ff787e1040316181dadea",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\18-3\\155619680390_Sotsiaaltoo_nr3_2018_veebi_link.pdf",
+      "source_sha256": "45eac17c335ef472708d0eb485f916c201e5db46ac64163cc7aeeb1f47dd10a9",
+      "pdf_start_page": 5,
+      "pdf_end_page": 9,
+      "printed_page_range": "3-7",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 9,
+      "source_regions": [
+        {
+          "source_pdf_page": 5,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 6,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 7,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 8,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 9,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "3-7",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\18-3\\155619680390_Sotsiaaltoo_nr3_2018_veebi_link.pdf"
+    },
+    "server_page_range": "3-7"
+  }
+}

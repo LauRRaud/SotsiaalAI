@@ -1,0 +1,45 @@
+{
+  "docId": "sotsiaaltoo-3-2023",
+  "articleId": "haabersti-sotsiaaltootajad-toetavad-abivajajaid-ja-pyyavad-vastu-pidada-2023-3",
+  "title": "Haabersti sotsiaaltöötajad toetavad abivajajaid ja püüavad vastu pidada",
+  "authors": [
+    "Karmen Kaar",
+    "Angela Altmets",
+    "Kerli Sööt",
+    "Tiina Juurik"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2023",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "37-42",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Haabersti linnaosa sotsiaalhoolekande osakonna töötajad avavad artiklis oma igapäevatöö sisu ja väljakutsed\nkiiresti kasvava ja mitmekeelese linnaosa tingimustes. Kirjeldatakse sotsiaaltoetuste ja -teenuste talituste ning\nlapse heaolu talituse ülesandeid, sh hooldaja määramist, üldhooldusteenusele suunamist, sotsiaaltranspordi\nkorraldamist, eestkoste ja laste kaitsega seotud tööd. Autorid kirjeldavad koostööd paljude partneritega,\nkriiside – pandeemia, energiakriisi, Ukraina sõja – mõju töökoormusele ning seda, kuidas meeskonnatöö,\nvastastikune tugi ja paindlik korraldus aitavad läbipõlemist ennetada. Lugu rõhutab sotsiaaltöötajate rolli\nabivajajate mõistmisel, järjepideval toetamisel ja süsteemsete lahenduste otsimisel.",
+  "tags": [
+    "Haabersti",
+    "kohalik sotsiaaltöö",
+    "sotsiaalhoolekande osakond",
+    "hooldus ja eestkoste",
+    "lapse heaolu",
+    "kriisid sotsiaaltöös",
+    "meeskonnatöö",
+    "läbipõlemise ennetamine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2023_web_Part9.pdf",
+  "document_id": "sotsiaaltoo-3-2023-haabersti-sotsiaaltootajad-toetavad-abivajajaid-ja-pyyavad-vastu-pidada-2023-3",
+  "source_format": "pdf",
+  "source_sha256": "6ebcfcf746e0c2e02b2560453d17831659f4a5977859147a751daad9eb42ac0e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2023-haabersti-sotsiaaltootajad-toetavad-abivajajaid-ja-pyyavad-vastu-pidada-2023-3",
+    "previous_source_path": "Sotsiaaltoo_3_2023_web_Part9.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "6ebcfcf746e0c2e02b2560453d17831659f4a5977859147a751daad9eb42ac0e",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2019",
+  "articleId": "omavalitsuste-noustamisuksus-2019",
+  "title": "Omavalitsuste jaoks loodud nõustamisüksus",
+  "authors": [
+    "Heli Ferschel",
+    "Evelyn Hallika",
+    "Kätlin Hanson",
+    "Meeli Tuubel"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2019",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "20-23",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab omavalitsuste nõustamisüksust ja selle rolli sotsiaaltöö toetamisel.",
+  "tags": [
+    "KOV",
+    "nõustamine",
+    "sotsiaaltöö korraldus"
+  ],
+  "source_type": "file",
+  "source_path": "ST4_2019_web_link_Part7.pdf",
+  "mapping_fixed": "20260814-161821",
+  "document_id": "sotsiaaltoo-4-2019-omavalitsuste-noustamisuksus-2019",
+  "source_format": "pdf",
+  "source_sha256": "ac65e1124a05d3d215c8abfcbd28f7006e47454e0bd3d9c1de4efecafaf44761",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2019-omavalitsuste-noustamisuksus-2019",
+    "previous_source_path": "ST4_2019_web_link_Part7.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ac65e1124a05d3d215c8abfcbd28f7006e47454e0bd3d9c1de4efecafaf44761",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

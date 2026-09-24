@@ -1,0 +1,117 @@
+{
+  "docId": "sotsiaaltoo-eri-2022",
+  "articleId": "doktoritoo-teadmusloome-2022-eri",
+  "title": "Doktoritöö uurimus kui sotsiaaltöö teadmusloome",
+  "authors": [
+    "Reeli Sirotkina"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö (erinumber)",
+  "issueLabel": "Eri/2022",
+  "section": "30 aastat õpetamist",
+  "pageRange": "63-69",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Analüüs Eesti sotsiaaltööteaduse suundumustest kolmekümneaastase lähiajaloo põhjal: vaadeldakse 13 Eestis tegutseva sotsiaaltöö teadlase doktoritööd, millest üheksa on kaitstud Tallinna Ülikoolis, kolm Soomes ja üks Tartu Ülikoolis. Tõdeb, et doktorikraad on ülikoolis õpetamise eeldus juba viimased viis aastat, kuid nõue pole praktikas juurdunud ja tudengite motivatsioon jätkata pärast magistriõpet on madal.",
+  "tags": [
+    "doktoritööd",
+    "sotsiaaltööteadus",
+    "teadmusloome",
+    "sotsiaaltööharidus",
+    "teadlaskond"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo-ERINUMBER_2022_Part13.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-eri-2022-doktoritoo-teadmusloome-2022-eri",
+  "source_sha256": "183b7024fe8764d56c05735406a58a7da61c375de0811ddd0d4dba58bc4ee3d0",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2022-doktoritoo-teadmusloome-2022-eri",
+    "previous_source_path": "Sotsiaaltoo-ERINUMBER_2022_Part13.txt",
+    "previous_source_original_path": "Sotsiaaltoo-ERINUMBER_2022_Part13.pdf",
+    "reference_stored_source_sha256": "9ac6a92fdf9733b058dc5db566666b7d3922973808152b6addb46b285baa8995",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo-ERINUMBER_2022.pdf",
+      "source_sha256": "807b48240fe049838a94b8cffd3e1b388f778591bddb0ad5cb542d3cd6ff73b1",
+      "pdf_start_page": 65,
+      "pdf_end_page": 71,
+      "printed_page_range": "63-69",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 71,
+      "source_regions": [
+        {
+          "source_pdf_page": 65,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 66,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 67,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 68,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 69,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 70,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 71,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "63-69",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo-ERINUMBER_2022.pdf"
+    },
+    "server_page_range": "63-69"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "docId": "sotsiaaltoo-2-2017",
+  "articleId": "sotsiaalpedagoogika-avaneda-2017-2",
+  "title": "Sotsiaalpedagoogika peaks aitama inimesel avaneda",
+  "authors": [
+    "Kersti Türk"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2017",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "26-27",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalpedagoogika kolmanda kursuse üliõpilase lugu. Autor kirjeldab sotsiaalpedagoogikat kui ala, mis aitab inimesel suhestuda iseenda, teiste ja oma keskkonnaga nii, et ta saaks avaneda ja jutustada oma loo, ning tõdeb, et haridussüsteemi muutmine on aeglane.",
+  "tags": [
+    "sotsiaalpedagoogika",
+    "haridussüsteem",
+    "üliõpilase vaade"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2-2017_veebi_link_Part12.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2017-sotsiaalpedagoogika-avaneda-2017-2",
+  "source_sha256": "ca639500bdea345d9514fa8683f30b3ba00b6e46f260b4b2fc30e3657205aa0a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2017-sotsiaalpedagoogika-avaneda-2017-2",
+    "previous_source_path": "Sotsiaaltoo_2-2017_veebi_link_Part12.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2-2017_veebi_link_Part12.pdf",
+    "reference_stored_source_sha256": "e1bffe867776179ed96b462eaac6e57ce7aa9c7227195108f37ca3e86d47f2c4",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf",
+      "source_sha256": "609af110244e684ccbb68aea9504f2490fce2852b1e7caa7bedacb621d661a8a",
+      "pdf_start_page": 28,
+      "pdf_end_page": 29,
+      "printed_page_range": "26-27",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 29,
+      "source_regions": [
+        {
+          "source_pdf_page": 28,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 29,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "26-27"
+    },
+    "server_page_range": "26-27"
+  }
+}

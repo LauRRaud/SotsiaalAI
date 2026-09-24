@@ -1,0 +1,2102 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-ruhnu-vald",
+  "document_id": "kov-ruhnu-vald",
+  "municipality": "Ruhnu vald",
+  "municipality_id": "ruhnu_vald",
+  "county": "Saaremaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "ruhnu_vald_service_koduteenus",
+      "canonical_item_id": "ruhnu_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus on Ruhnu Vallavalitsuse osutatav sotsiaalteenus täisealise iseseisva ja turvalise toimetuleku tagamiseks kodus. Teenuse eesmärk on säilitada ja parandada abivajaja elukvaliteeti. Koduteenuse saamiseks tuleb esitada vallavalitsuse sotsiaalametnikule põhjendatud avaldus ja teenuse osutamiseks sõlmitakse kliendi ning vallavalitsuse vahel leping.",
+      "sourceKeys": [
+        "service_koduteenus"
+      ],
+      "targetGroup": "Täisealised Ruhnu valla elanikud, kes vajavad kõrvalabi kodustes tingimustes toimetulekuks.",
+      "conditions": "Taotluses tuleb põhjendada kõrvalabi vajadust; teenuse osutamiseks sõlmitakse leping kliendi ja vallavalitsuse vahel.",
+      "application": {
+        "channels": [
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Esita vallavalitsuse sotsiaalametnikule põhjendatud avaldus koduteenuse saamiseks.",
+          "Vajaduse täpsustamiseks täida koduteenuste taotlus ja koduteenuste nimekiri.",
+          "Teenuse osutamise tingimused fikseeritakse kliendi ja vallavalitsuse vahelises lepingus."
+        ],
+        "deadline": null
+      },
+      "pricing": {
+        "amount": null,
+        "notes": "Koduteenuste nimekirja vormil on märgitud, et teenused on tasulised Ruhnu Vallavalitsuse kehtestatud hinnakirja alusel."
+      },
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/koduteenus/",
+      "relatedForms": [
+        "ruhnu_vald_form_koduteenuste_taotlus",
+        "ruhnu_vald_form_koduteenuste_nimekiri"
+      ],
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "item_type": "service",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "service_koduteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_service_koduteenus",
+      "document_id": "ruhnu_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/koduteenus/",
+      "content_hash": "1cb7b8a41c0cb0e54a153417868ccd6cb897d3ed485087661f21eb9c8efe650c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_service_uldhooldusteenus",
+      "canonical_item_id": "ruhnu_vald:service:uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatav üldhooldusteenus on Ruhnu vallavalitsuse korraldatav sotsiaalteenus täisealisele inimesele, kes terviseseisundi, tegevusvõime või elukeskkonna tõttu ei suuda kodus ajutiselt või püsivalt iseseisvalt toime tulla. Teenuse vajaduse korral tuleb võtta ühendust sotsiaaltöötajaga. Leht suunab ka hooldereformi ja hoolduskulude infole.",
+      "sourceKeys": [
+        "service_uldhooldusteenus"
+      ],
+      "targetGroup": "Täisealised inimesed, kes ei saa kodus iseseisvalt toime tulla ja vajavad ööpäevaringset üldhooldusteenust.",
+      "conditions": "Teenuse vajadust hindab sotsiaaltöötaja; inimene või tema lähedane peab pöörduma vallavalitsuse poole.",
+      "application": {
+        "channels": [
+          "phone",
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Võta ühendust Ruhnu valla sotsiaaltöötajaga ja kirjelda hooldusvajadust.",
+          "Sotsiaaltöötaja hindab teenuse vajadust ning korraldab edasise suunamise."
+        ],
+        "deadline": null
+      },
+      "pricing": {
+        "amount": null,
+        "notes": "Konkreetset omaosaluse summat ei ole valla teenuse lehel avaldatud; üldhooldusteenuse rahastamise kohta on eraldi hooldereformi info."
+      },
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/valjaspool-kodu-osutatav-uldhooldusteenus/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "item_type": "service",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "service_uldhooldusteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_service_uldhooldusteenus",
+      "document_id": "ruhnu_vald_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/valjaspool-kodu-osutatav-uldhooldusteenus/",
+      "content_hash": "0a756110b82f74c633604ad5847149748e34ecf2994f17fb4eb9c880ecc747f7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_service_tugiisikuteenus",
+      "canonical_item_id": "ruhnu_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenuse eesmärk on toetada iseseisvat toimetulekut olukordades, kus inimene vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu olulisel määral kõrvalabi oma kohustuste täitmisel ja õiguste teostamisel. Lapse tugiisik toetab koostöös last kasvatava isikuga lapse arengut, juhendamist, motiveerimist ja suhtlemist perekonnaliikmete või teiste inimestega.",
+      "sourceKeys": [
+        "service_tugiisikuteenus"
+      ],
+      "targetGroup": "Lapsed ja täiskasvanud, kes vajavad toimetulekuks juhendamist, motiveerimist või muud kõrvalabi.",
+      "conditions": "Teenuse soovija peab esitama sotsiaaltöötajale vastavasisulise avalduse.",
+      "application": {
+        "channels": [
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Esita sotsiaaltöötajale avaldus tugiisikuteenuse saamiseks."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/tugiisikuteenus/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "item_type": "service",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "service_tugiisikuteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_service_tugiisikuteenus",
+      "document_id": "ruhnu_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/tugiisikuteenus/",
+      "content_hash": "8c9404088b23ba293db2f063816f43465bb6190a442af749cba15966ab11408e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "ruhnu_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldus seatakse hooldusvajadusega inimesele, kes vajab vaimse või kehalise puude tõttu kõrvalabi, juhendamist ja järelevalvet. Hooldust ei seata üldjuhul siis, kui hooldataval on ülalpidamiskohustusega pereliikmed või kui toimetulekut saab tagada teiste sotsiaalteenuste, toetuste või muu abiga. Erandina võib hooldus siiski olla võimalik, kui ülalpidamiskohustusega isikud ei suuda kohustust täita.",
+      "sourceKeys": [
+        "service_taisealise_isiku_hooldus"
+      ],
+      "targetGroup": "Täisealised hooldusvajadusega inimesed, kellel on vaimse või kehalise puude tõttu kõrvalabi vajadus.",
+      "conditions": "Hooldust ei seata, kui abi saab tagada ülalpidamiskohustusega pereliikmete või muude teenuste abil; erandeid hinnatakse juhtumipõhiselt.",
+      "application": {
+        "channels": [
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Hooldajaks taotleja esitab sotsiaaltöötajale taotluse täisealise isiku hoolduse määramiseks."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/taisealise-isiku-hooldus/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "item_type": "service",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "service_taisealise_isiku_hooldus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_service_taisealise_isiku_hooldus",
+      "document_id": "ruhnu_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/taisealise-isiku-hooldus/",
+      "content_hash": "8b4a8b1ca5ba05a1a89aa7421b5a97278dababbe29c4bd92193e15e7e005f428",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "ruhnu_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus aitab puudega täisealisel inimesel teha igapäevaseid toiminguid ja toetab tema võimalikult iseseisvat toimetulekut ühiskonnaelu eri valdkondades. Abistamine võib puudutada liikumist, söömist, riietumist, suhtlemist, hügieeni, kirjutamist, lugemist, majapidamistöid ja muid toiminguid, milles inimene puude tõttu abi vajab.",
+      "sourceKeys": [
+        "service_isikliku_abistaja_teenus"
+      ],
+      "targetGroup": "Puudega täisealised inimesed, kes vajavad füüsilist abi igapäevastes tegevustes.",
+      "conditions": "Teenuse saamiseks tuleb esitada avaldus sotsiaaltöötajale.",
+      "application": {
+        "channels": [
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Esita sotsiaaltöötajale avaldus isikliku abistaja teenuse saamiseks."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/isikliku-abistaja-teenus/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "item_type": "service",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "service_isikliku_abistaja_teenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_service_isikliku_abistaja_teenus",
+      "document_id": "ruhnu_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/isikliku-abistaja-teenus/",
+      "content_hash": "a2ae7ac5c9e8e8fa96258d013b41023cf53a988ae859c0d2914a925b8ea2559a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "ruhnu_vald:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenuse eesmärk on toetada last kasvatava isiku toimetulekut ja töötamist või vähendada lapse erivajadusest tulenevat hoolduskoormust. Teenust on õigus saada raske või sügava puudega last kasvataval isikul kuni selle kalendriaasta lõpuni, mil laps saab 18-aastaseks. Teenuse eelduseks on muu hulgas, et lapse hooldusteenuste vajadus on rehabilitatsiooniplaanis ning lapse hooldamist ei tagata samal ajal teiste teenustega.",
+      "sourceKeys": [
+        "service_lapsehoiuteenus"
+      ],
+      "targetGroup": "Raske või sügava puudega lapse kasvatav isik, kuni lapse 18-aastaseks saamise kalendriaasta lõpuni.",
+      "conditions": "Lapse hooldusteenuste vajadus peab olema rehabilitatsiooniplaanis; laps ei tohi samal ajal olla haridusasutuses ega saada samaaegselt teist hooldusteenust, välja arvatud lapse perekonnas hooldamine.",
+      "application": {
+        "channels": [
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Esita lapsehoiuteenuse taotlus sotsiaaltöötajale."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/lapsehoiuteenus/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "item_type": "service",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "service_lapsehoiuteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_service_lapsehoiuteenus",
+      "document_id": "ruhnu_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/lapsehoiuteenus/",
+      "content_hash": "bfa773f7178fd7815c43b8e5fde173351914e078b537a300332b180dbb59f181",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_service_asendushooldusteenus",
+      "canonical_item_id": "ruhnu_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus tagab pika- või lühiajaliselt lapse heaolu ja õigused, võimaldades lapse põhivajaduste rahuldamiseks peresarnaseid elutingimusi ning turvalist ja arenguks sobivat keskkonda. Teenust võib osutada hoolduspere, perekodu või asenduskodu. Vajaduse korral tuleb pöörduda Ruhnu valla sotsiaaltöötaja poole.",
+      "sourceKeys": [
+        "service_asendushooldusteenus"
+      ],
+      "targetGroup": "Lapsed, kes vajavad perest eraldamist, asendushooldust või ajutist peresarnast hoolduskeskkonda.",
+      "conditions": "Teenuse vajadus hinnatakse juhtumipõhiselt; teenuse vajaduse korral tuleb pöörduda sotsiaaltöötaja poole.",
+      "application": {
+        "channels": [
+          "phone",
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Võta asendushooldusteenuse vajaduse korral ühendust sotsiaaltöötajaga."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/asendushooldusteenus/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "item_type": "service",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "service_asendushooldusteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_service_asendushooldusteenus",
+      "document_id": "ruhnu_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/asendushooldusteenus/",
+      "content_hash": "3aa48912d18abcfb7f14104c5e1b98ea89a9f87f72d87ebff5b0a34511963f4f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "ruhnu_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus toetab asendushoolduselt ja eestkostelt lahkuva noore iseseisvat toimetulekut ja õpingute jätkamist. Teenust osutatakse juhtumiplaani alusel ning vallavalitsus tagab vajadusel eluaseme, tugiteenused ja toetused. Teenuse vajaduse korral tuleb pöörduda sotsiaaltöötaja poole.",
+      "sourceKeys": [
+        "service_jarelhooldusteenus"
+      ],
+      "targetGroup": "Asendushoolduselt või eestkostelt lahkuvad noored, kes vajavad iseseisva elu alustamiseks tuge.",
+      "conditions": "Teenust osutatakse juhtumiplaani alusel; konkreetne abi sõltub noore vajadusest.",
+      "application": {
+        "channels": [
+          "phone",
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Pöördu järelhooldusteenuse vajaduse korral sotsiaaltöötaja poole."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/jarelhooldusteenus/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "item_type": "service",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "service_jarelhooldusteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_service_jarelhooldusteenus",
+      "document_id": "ruhnu_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/jarelhooldusteenus/",
+      "content_hash": "7cf78d30e85a20369cd53166f55a68297ca0249f5464b6c45cb86a0964a9573c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_service_varjupaigateenus",
+      "canonical_item_id": "ruhnu_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus tagab ajutise ööbimiskoha täisealisele inimesele, kes ei ole võimeline endale ööbimiskohta leidma. Ajutises ööbimiskohas peavad olema tagatud voodikoht, pesemisvõimalus ja turvaline keskkond. Teenuse vajaduse korral tuleb võtta ühendust sotsiaaltöötajaga.",
+      "sourceKeys": [
+        "service_varjupaigateenus"
+      ],
+      "targetGroup": "Täisealised inimesed, kes ei ole võimelised endale ajutist ööbimiskohta leidma.",
+      "conditions": "Teenuse vajadus hinnatakse sotsiaaltöötaja kaudu.",
+      "application": {
+        "channels": [
+          "phone",
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Võta varjupaigateenuse vajaduse korral ühendust sotsiaaltöötajaga."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/varjupaigateenus/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "item_type": "service",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "service_varjupaigateenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_service_varjupaigateenus",
+      "document_id": "ruhnu_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/varjupaigateenus/",
+      "content_hash": "09740d3b57e693a2094080920919f79c5a2b97c9f210be3d5eac1f28122d57ff",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_service_turvakoduteenus",
+      "canonical_item_id": "ruhnu_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenusega tagatakse ajutine eluase, turvaline keskkond ja esmane abi lapsele, kelle elu, tervis või areng on hooldamises esinevate puuduste tõttu ohus, või inimesele, kes on langenud lähisuhtes füüsilise, vaimse või seksuaalse vägivalla ohvriks. Valla lehel on turvakoduteenuse kontaktina toodud sotsiaaltöötaja.",
+      "sourceKeys": [
+        "service_turvakoduteenus"
+      ],
+      "targetGroup": "Lapsed, kelle elu, tervis või areng on ohus, ning lähisuhtevägivalla ohvrid, kes vajavad turvalist keskkonda.",
+      "conditions": "Teenuse vajaduse korral tuleb pöörduda sotsiaaltöötaja poole; vajadus hinnatakse juhtumipõhiselt.",
+      "application": {
+        "channels": [
+          "phone"
+        ],
+        "steps": [
+          "Võta turvakoduteenuse vajaduse korral ühendust sotsiaaltöötajaga telefonil."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/turvakoduteenus/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "item_type": "service",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "service_turvakoduteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_service_turvakoduteenus",
+      "document_id": "ruhnu_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/turvakoduteenus/",
+      "content_hash": "14d22661c3b7493a2dd9e4242690576686e796ec34e4956109957f3d2dda5e7b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "ruhnu_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenuse eesmärk on võimaldada puudega inimesel, kelle puue takistab isikliku või ühissõiduki kasutamist, kasutada vajadustele vastavat transpordivahendit tööle, õppeasutusse või avalikele teenustele sõitmiseks. Teenust vajav inimene või tema esindaja esitab sotsiaalametnikule kirjaliku või suulise avalduse ja nimetab külastatavad asutused. Avaldus tuleb esitada vähemalt üks tööpäev enne sõitu; mandrisõitudest palutakse teavitada varakult, et broneerida koht laeval või lennukil.",
+      "sourceKeys": [
+        "service_sotsiaaltransporditeenus"
+      ],
+      "targetGroup": "Puudega inimesed, kelle puue takistab isikliku või ühissõiduki kasutamist.",
+      "conditions": "Avaldus tuleb esitada vähemalt üks tööpäev enne sõitu; avalduses tuleb nimetada teenuse vajalikkus ja külastatavad asutused.",
+      "application": {
+        "channels": [
+          "phone",
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Esita sotsiaalametnikule kirjalik või suuline avaldus teenuse vajalikkuse kohta, nimetades külastatavad asutused.",
+          "Esita avaldus vähemalt üks tööpäev enne sõitu; mandrile sõitude korral anna soovist varakult teada."
+        ],
+        "deadline": "Vähemalt üks tööpäev enne teenuse kasutamist."
+      },
+      "pricing": null,
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/sotsiaaltransporditeenus/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "unresolvedIssues": [
+        "Teenuse lehel olev sotsiaaltöötaja e-posti aadress on veebis varjestatud; aadress säilitati varjestatuna."
+      ],
+      "item_type": "service",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "service_sotsiaaltransporditeenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_service_sotsiaaltransporditeenus",
+      "document_id": "ruhnu_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/sotsiaaltransporditeenus/",
+      "content_hash": "32ff06f128c18b7c58c55799aa6b32816c92275e19eeb9307284adb155bec08a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_service_eluruumi_tagamise_teenus",
+      "canonical_item_id": "ruhnu_vald:service:eluruumi_tagamise_teenus",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenus seisneb Ruhnu valla munitsipaalomandis oleva sotsiaalkorteri või muu eluruumi üürile andmises inimesele ja tema perele, kes vajab hädasti eluaset ega suuda seda ise tagada. Sotsiaalkorteri üürile andmise või mitteandmise otsustab vallavalitsus.",
+      "sourceKeys": [
+        "service_eluruumi_tagamise_teenus"
+      ],
+      "targetGroup": "Eluaset hädasti vajavad inimesed ja pered, kes ei suuda endale eluruumi tagada.",
+      "conditions": "Taotleja peab esitama vallavalitsusele vabas vormis kirjaliku avalduse; vallavalitsus otsustab sotsiaalkorteri üürile andmise või mitteandmise.",
+      "application": {
+        "channels": [
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Esita vallavalitsusele vabas vormis kirjalik avaldus sotsiaalkorteri üürimiseks."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/eluruumi-tagamise-teenus/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "item_type": "service",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "service_eluruumi_tagamise_teenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_service_eluruumi_tagamise_teenus",
+      "document_id": "ruhnu_vald_service_eluruumi_tagamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/eluruumi-tagamise-teenus/",
+      "content_hash": "100e4e66750a3a82c0a7823d7727e949fc427e775add067f52136347f5a84423",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_service_volanoustamisteenus",
+      "canonical_item_id": "ruhnu_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab inimesel kindlaks teha varalise olukorra, pidada läbirääkimisi võlausaldajatega, rahuldada nõudeid ja vältida uute võlgnevuste tekkimist toimetuleku parandamise kaudu. Teenus hõlmab nõustamist, juhendamist ja võlgade tekkimise ennetamist. Teenuse vajaduse korral tuleb pöörduda sotsiaaltöötaja poole.",
+      "sourceKeys": [
+        "service_volanoustamisteenus"
+      ],
+      "targetGroup": "Inimesed, kellel on võlgnevuse või varalise olukorraga seotud probleemid.",
+      "conditions": "Teenuse vajadus hinnatakse sotsiaaltöötaja kaudu.",
+      "application": {
+        "channels": [
+          "phone",
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Pöördu võlanõustamisteenuse vajaduse korral sotsiaaltöötaja poole."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/volanoustamisteenus/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "item_type": "service",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "service_volanoustamisteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_service_volanoustamisteenus",
+      "document_id": "ruhnu_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/volanoustamisteenus/",
+      "content_hash": "a3bcbe6a79cd4510a18905dabad4fe88bd13132e6847c4be5896ed2b0de2697f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_service_vaimse_tervise_toetamine",
+      "canonical_item_id": "ruhnu_vald:service:vaimse_tervise_toetamine",
+      "itemType": "service",
+      "title": "Vaimse tervise toetamine",
+      "status": "active",
+      "summary": "Ruhnu valla veebis on vaimse tervise toetamine eraldi sotsiaalteenuste lehel nimetatud. Lehel on avaldatud viide vaimse tervise teenuste osutamise ja rahastamise korrale, kuid praktilist kirjeldust, sihtrühma, taotlemise juhist ega kontaktseost ei ole lehel sisuliselt esitatud.",
+      "sourceKeys": [
+        "service_vaimse_tervise_toetamine"
+      ],
+      "targetGroup": null,
+      "conditions": null,
+      "application": null,
+      "pricing": null,
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/vaimse-tervise-toetamine/",
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [
+        "Lehel puudub praktiline teenuse kirjeldus; avaldatud on üksnes viide vaimse tervise teenuste osutamise ja rahastamise korrale."
+      ],
+      "item_type": "service",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "service_vaimse_tervise_toetamine"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_service_vaimse_tervise_toetamine",
+      "document_id": "ruhnu_vald_service_vaimse_tervise_toetamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/vaimse-tervise-toetamine/",
+      "content_hash": "0baa5677cbe1197175958825952445f2f3c38633cad88b23524bfec1d7b549e7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_benefit_synnitoetus",
+      "canonical_item_id": "ruhnu_vald:benefit:synnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus on ühekordne toetus elusalt sündinud lapse sünni puhul. Mõlema vanema või üksikvanema vähemalt ühe aasta pikkuse Ruhnu valla elanikuks olemise korral makstakse sünnitoetust kahes osas: pärast sünni registreerimist 50% ning lapse üheaastaseks saamisel ülejäänud 50%, kui laps on jätkuvalt Ruhnu valla registris. Kui valla elanik on ainult üks lapsevanem, makstakse toetusest 50% samadel tingimustel.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Elusalt sündinud lapse vanem või üksikvanem, kelle rahvastikuregistrijärgne elukoht vastab valla veebis kirjeldatud tingimustele.",
+      "conditions": "Mõlemad vanemad või üksikvanem peavad olema olnud Ruhnu valla elanikud vähemalt üks aasta enne lapse sündi; ühe Ruhnu valla elanikust vanema korral makstakse 50% toetusest.",
+      "application": {
+        "channels": [
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Esita sünnitoetuse taotlus vallavalitsusele pärast lapse sünni registreerimist."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "currency": "EUR",
+        "value": 500,
+        "notes": "500 €; ühe Ruhnu valla elanikust vanema korral 50%."
+      },
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_benefit_synnitoetus",
+      "document_id": "ruhnu_vald_benefit_synnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "dab6e46cd421d9b27d09cb07d9aa3568bf836495536836c4e05a1cc77da53c77",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_benefit_matusetoetus",
+      "canonical_item_id": "ruhnu_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on Ruhnu valla eelarvest makstav ühekordne sotsiaaltoetus matusekulude osaliseks kompenseerimiseks. Toetust võib taotleda surnu abikaasa, sugulane või muu füüsiline või juriidiline isik, kes kannab matuse korraldamise kulud; taotleja elukoht ei pea olema Ruhnu vald. Toetust ei maksta teadmata kadunud isiku surnuks tunnistamise korral.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Matusekorraldaja, kes kannab Ruhnu valla elanikuks olnud surnu matuse korraldamise kulud.",
+      "conditions": "Surnu viimane rahvastikuregistrijärgne elukoht peab olema Ruhnu vald; taotlus tuleb esitada kahe kuu jooksul surmapäevast arvates.",
+      "application": {
+        "channels": [
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Esita matusetoetuse taotlus vallavalitsusele.",
+          "Lisa surmateatise või surmatõendi koopia ja vajadusel muud asjakohased dokumendid."
+        ],
+        "deadline": "Kahe kuu jooksul surmapäevast arvates."
+      },
+      "amount": {
+        "currency": "EUR",
+        "value": 250,
+        "notes": "250 €."
+      },
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "unresolvedIssues": [
+        "Toimetuslikult on valla lehel mõned kirjavead; sisu säilitati sisuliselt, mitte täpse kirjapildina."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_benefit_matusetoetus",
+      "document_id": "ruhnu_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "d0564906418d2d199395528787cebf03c703b26dfa0f7aba604253d2610cd437",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "ruhnu_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on riigi abi puudusekannatajatele, mida määrab ja maksab kohalik omavalitsus. Valla lehel on avaldatud toimetulekupiirid alates 01.06.2022: esimesele pereliikmele või üksi elavale inimesele 200 €, igale alaealisele 240 € ja igale järgmisele täisealisele 160 €. Taotleja esitab jooksva kuu eest taotluse hiljemalt kuu viimaseks tööpäevaks ning lisab sissetuleku, eluasemekulude ja eluruumi kasutusõiguse tõendid.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Puuduses inimesed ja pered, kelle sissetulek pärast arvestatavaid eluasemekulusid jääb alla toimetulekupiiri.",
+      "conditions": "Taotlusele lisatakse eluruumi kasutamise õigust, jooksva kuu eluasemekulusid ja eelmise kuu netosissetulekut tõendavad dokumendid.",
+      "application": {
+        "channels": [
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Esita toimetulekutoetuse avaldus vallavalitsusele jooksva kuu eest hiljemalt kuu viimaseks tööpäevaks.",
+          "Esmakordsel taotlemisel või varade muutumisel esita varade andmete leht.",
+          "Lisa dokumendid eluruumi kasutusõiguse, eluasemekulude ning sissetulekute kohta."
+        ],
+        "deadline": "Hiljemalt kuu viimane tööpäev."
+      },
+      "amount": {
+        "currency": "EUR",
+        "value": null,
+        "notes": "Arvutatakse sissetuleku, eluasemekulude ja toimetulekupiiri alusel."
+      },
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedForms": [
+        "ruhnu_vald_form_toimetulekutoetuse_avaldus",
+        "ruhnu_vald_form_varade_leht"
+      ],
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "unresolvedIssues": [
+        "Toimetulekupiiride kohta on valla lehel avaldatud 01.06.2022 seisuga andmed; praktiline info vajab perioodilist kontrolli."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_benefit_toimetulekutoetus",
+      "document_id": "ruhnu_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "c1fe1a526205b70cdc56a5eff0f30b016df0219cd96e3ab936286372feb3b340",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_benefit_taiendav_sotsiaaltoetus_toimetulekutoetuse_saajale",
+      "canonical_item_id": "ruhnu_vald:benefit:taiendav_sotsiaaltoetus_toimetulekutoetuse_saajale",
+      "itemType": "benefit",
+      "title": "Täiendav sotsiaaltoetus toimetulekutoetuse saajale",
+      "status": "active",
+      "summary": "Toimetulekutoetuse saajal, kelle kõik pereliikmed on alaealised, on valla lehel avaldatud info järgi õigus saada koos toimetulekutoetusega täiendavat sotsiaaltoetust 15 eurot. Toetust maksab kohalik omavalitsus riigieelarvelistest vahenditest.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Toimetulekutoetuse saajad, kelle kõik perekonnaliikmed on alaealised.",
+      "conditions": "Õigus tekib koos toimetulekutoetusega, kui kõik pereliikmed on alaealised.",
+      "application": {
+        "channels": [
+          "in_person",
+          "mail",
+          "email"
+        ],
+        "steps": [
+          "Esita toimetulekutoetuse taotlus; täiendav toetus arvestatakse koos toimetulekutoetusega, kui tingimused on täidetud."
+        ],
+        "deadline": "Koos toimetulekutoetuse taotlusega, hiljemalt kuu viimane tööpäev."
+      },
+      "amount": {
+        "currency": "EUR",
+        "value": 15,
+        "notes": "15 € koos toimetulekutoetusega."
+      },
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedForms": [
+        "ruhnu_vald_form_toimetulekutoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_benefit_taiendav_sotsiaaltoetus_toimetulekutoetuse_saajale",
+      "document_id": "ruhnu_vald_benefit_taiendav_sotsiaaltoetus_toimetulekutoetuse_saajale",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "cce737cbf08a326c9ff0d8609689a1d712ea8ac49e2e201b8e3e277822a6908e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_benefit_koolitoetus_gumnaasiumi_opilastele",
+      "canonical_item_id": "ruhnu_vald:benefit:koolitoetus_gumnaasiumi_opilastele",
+      "itemType": "benefit",
+      "title": "Koolitoetus gümnaasiumi õpilastele",
+      "status": "active",
+      "summary": "Ruhnu valla sotsiaaltoetuste määrade lehel on avaldatud koolitoetus gümnaasiumi õpilastele. Määr on 100 eurot kuus, välja arvatud juuni–august.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Gümnaasiumiõpilased, kellele Ruhnu vald maksab koolitoetust.",
+      "conditions": "Täpsemad tingimused ei ole sotsiaaltoetuste lehel avaldatud.",
+      "application": null,
+      "amount": {
+        "currency": "EUR",
+        "value": 100,
+        "notes": "100 € kuus, v.a juuni–august."
+      },
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "unresolvedIssues": [
+        "Täpne taotlemise kord ja tingimused ei ole valla sotsiaaltoetuste lehel avaldatud."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_benefit_koolitoetus_gumnaasiumi_opilastele",
+      "document_id": "ruhnu_vald_benefit_koolitoetus_gumnaasiumi_opilastele",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "2c4ea5387b1a109f12e33a23dd581a7ca2b1a9cf19d425733fc285a5ff8c4159",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_benefit_koolitoetus_uliopilastele",
+      "canonical_item_id": "ruhnu_vald:benefit:koolitoetus_uliopilastele",
+      "itemType": "benefit",
+      "title": "Koolitoetus üliõpilastele",
+      "status": "active",
+      "summary": "Ruhnu valla sotsiaaltoetuste määrade lehel on avaldatud koolitoetus üliõpilastele. Määr on 50 eurot kuus, välja arvatud juuni–august.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Üliõpilased, kellele Ruhnu vald maksab koolitoetust.",
+      "conditions": "Täpsemad tingimused ei ole sotsiaaltoetuste lehel avaldatud.",
+      "application": null,
+      "amount": {
+        "currency": "EUR",
+        "value": 50,
+        "notes": "50 € kuus, v.a juuni–august."
+      },
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "unresolvedIssues": [
+        "Täpne taotlemise kord ja tingimused ei ole valla sotsiaaltoetuste lehel avaldatud."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_benefit_koolitoetus_uliopilastele",
+      "document_id": "ruhnu_vald_benefit_koolitoetus_uliopilastele",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "329406ba594b1aca54d2076a195cd6054b3ec2c87411bc19ae133aa9c67c0edd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_benefit_ranitsatoetus",
+      "canonical_item_id": "ruhnu_vald:benefit:ranitsatoetus",
+      "itemType": "benefit",
+      "title": "Ranitsatoetus",
+      "status": "active",
+      "summary": "Ruhnu valla sotsiaaltoetuste määrade lehel on avaldatud ranitsatoetus lapsevanemale, kelle laps läheb esimesse klassi. Toetuse määr on 32 eurot.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Esimesse klassi mineva lapse vanem.",
+      "conditions": "Täpsemad tingimused ei ole sotsiaaltoetuste lehel avaldatud.",
+      "application": null,
+      "amount": {
+        "currency": "EUR",
+        "value": 32,
+        "notes": "32 €."
+      },
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "unresolvedIssues": [
+        "Täpne taotlemise kord ja tingimused ei ole valla sotsiaaltoetuste lehel avaldatud."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_benefit_ranitsatoetus",
+      "document_id": "ruhnu_vald_benefit_ranitsatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "d356572344a7f426930d5995d3cadc7308dd686344c15dcedf9e9b214115cf29",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_benefit_lastehoiutoetus",
+      "canonical_item_id": "ruhnu_vald:benefit:lastehoiutoetus",
+      "itemType": "benefit",
+      "title": "Lastehoiutoetus",
+      "status": "active",
+      "summary": "Ruhnu valla sotsiaaltoetuste määrade lehel on avaldatud lastehoiutoetus. Toetuse määr on 64 eurot.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Lapsehoiu kuluga seotud pered või lastevanemad.",
+      "conditions": "Täpsemad tingimused ei ole sotsiaaltoetuste lehel avaldatud.",
+      "application": null,
+      "amount": {
+        "currency": "EUR",
+        "value": 64,
+        "notes": "64 €."
+      },
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "unresolvedIssues": [
+        "Täpne taotlemise kord ja tingimused ei ole valla sotsiaaltoetuste lehel avaldatud."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_benefit_lastehoiutoetus",
+      "document_id": "ruhnu_vald_benefit_lastehoiutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "581aef74215ad0c07b30eddebbcf3c1ad228ccdc72dc3f1f306ddc0ef4965ab4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_benefit_kooli_lopetamise_toetus",
+      "canonical_item_id": "ruhnu_vald:benefit:kooli_lopetamise_toetus",
+      "itemType": "benefit",
+      "title": "Kooli lõpetamise toetus",
+      "status": "active",
+      "summary": "Ruhnu valla sotsiaaltoetuste määrade lehel on avaldatud kooli lõpetamise toetus. Toetuse määr on 64 eurot.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Õpilased või noored, kes lõpetavad kooli ja vastavad valla toetuse tingimustele.",
+      "conditions": "Täpsemad tingimused ei ole sotsiaaltoetuste lehel avaldatud.",
+      "application": null,
+      "amount": {
+        "currency": "EUR",
+        "value": 64,
+        "notes": "64 €."
+      },
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "unresolvedIssues": [
+        "Täpne taotlemise kord ja tingimused ei ole valla sotsiaaltoetuste lehel avaldatud."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_benefit_kooli_lopetamise_toetus",
+      "document_id": "ruhnu_vald_benefit_kooli_lopetamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "8363ca4e573f280fc3bcffa9af8e7d1cf681240f887eae7d978a040ad6720392",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_benefit_kolimistoetus",
+      "canonical_item_id": "ruhnu_vald:benefit:kolimistoetus",
+      "itemType": "benefit",
+      "title": "Kolimistoetus",
+      "status": "active",
+      "summary": "Ruhnu valla sotsiaaltoetuste määrade lehel on avaldatud kolimistoetus. Toetuse määr on 60 eurot.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Inimesed, kellel on valla tingimuste järgi õigus kolimistoetusele.",
+      "conditions": "Täpsemad tingimused ei ole sotsiaaltoetuste lehel avaldatud.",
+      "application": null,
+      "amount": {
+        "currency": "EUR",
+        "value": 60,
+        "notes": "60 €."
+      },
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "unresolvedIssues": [
+        "Täpne taotlemise kord ja tingimused ei ole valla sotsiaaltoetuste lehel avaldatud."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_benefit_kolimistoetus",
+      "document_id": "ruhnu_vald_benefit_kolimistoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "cc6d229e7b9b2d69042a7cf6f9c672c92e56ccb45a3887226534cb901b04cd36",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_resource_hooldereform",
+      "canonical_item_id": "ruhnu_vald:resource:hooldereform",
+      "itemType": "resource",
+      "title": "Hooldereform ja pikaajaline hooldus",
+      "status": "active",
+      "summary": "Hooldereformi leht selgitab, et 1. juulist 2023 hakkas riik osalema hooldekodu kohatasu maksmisel ning vähendas inimese omaosalust. Riik katab hoolduspersonali kulude osa, inimese omaosaluseks jäävad majutus, toitlustus ja muud isiklikud kulud. Leht rõhutab, et eelistada tuleb abi, mis toetab inimese hakkamasaamist kodus, ning hooldekodu teenus on vajalik siis, kui kodus elamine kõrvalabi toel ei ole võimalik.",
+      "sourceKeys": [
+        "resource_hooldereform"
+      ],
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/hooldereform/",
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "resource_hooldereform"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_resource_hooldereform",
+      "document_id": "ruhnu_vald_resource_hooldereform",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/hooldereform/",
+      "content_hash": "83ce17f833e78e75ecd24d0762ccf919e92ec2fbbe11878bc4408be44d2e98fd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_resource_arstiabi",
+      "canonical_item_id": "ruhnu_vald:resource:arstiabi",
+      "itemType": "resource",
+      "title": "Arstiabi ja esmaabi Ruhnus",
+      "status": "active",
+      "summary": "Ruhnus töötab Põhja-Eesti Regionaalhaigla juhendamisel Erakorralise Abi Brigaad. Esmaabi vajadusel tuleb helistada Häirekeskuse numbrile.",
+      "sourceKeys": [
+        "resource_arstiabi"
+      ],
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/abi-ja-tugiteenused/arstiabi/",
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "resource_arstiabi"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_resource_arstiabi",
+      "document_id": "ruhnu_vald_resource_arstiabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/abi-ja-tugiteenused/arstiabi/",
+      "content_hash": "734739fb5e86edffb678fc1f8e3d31360a09db63d66423b72473097ecfd62174",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_resource_lasteabi",
+      "canonical_item_id": "ruhnu_vald:resource:lasteabi",
+      "itemType": "resource",
+      "title": "Lasteabi",
+      "status": "active",
+      "summary": "Lasteabi on ööpäevaringne tasuta teenus abivajavast lapsest teatamiseks või nõu küsimiseks lastega seotud teemadel. Pöörduja võib jääda anonüümseks, kui see ei ohusta lapse elu ega tervist; nõustamine toimub eesti, vene ja inglise keeles. Valla leht suunab ka lasteabi veebivestlusele ja lasteabi äpile.",
+      "sourceKeys": [
+        "resource_lasteabi"
+      ],
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/abi-ja-tugiteenused/lasteabi/",
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "resource_lasteabi"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_resource_lasteabi",
+      "document_id": "ruhnu_vald_resource_lasteabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/abi-ja-tugiteenused/lasteabi/",
+      "content_hash": "4c67fe5aab2d089f7a64e4a14b55028b82c68d688f21b6aaee8097758d5287eb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_resource_medi_hairenupp",
+      "canonical_item_id": "ruhnu_vald:resource:medi_hairenupp",
+      "itemType": "resource",
+      "title": "Medi häirenupp",
+      "status": "active",
+      "summary": "Medi häirenupp on eakatele ja puuetega inimestele mõeldud sotsiaalne valveteenus, millega saab ühe nupuvajutusega abi kutsuda. Teenus koosneb häirenupust ja hoolekandetelefonist; häire korral võtab süsteem ühendust ööpäevaringse Medi kõnekeskusega, kes selgitab häire põhjuse ja teavitab usaldusisikuid või vajadusel kutsub kiirabi, päästeameti või politsei. Valla lehel on lisainfo andjana märgitud sotsiaaltöötaja.",
+      "sourceKeys": [
+        "resource_medi_hairenupp"
+      ],
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/abi-ja-tugiteenused/medi-hairenupp/",
+      "relatedContacts": [
+        "ruhnu_vald_contact_tiina_allik"
+      ],
+      "item_type": "resource",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "resource_medi_hairenupp"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_resource_medi_hairenupp",
+      "document_id": "ruhnu_vald_resource_medi_hairenupp",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/abi-ja-tugiteenused/medi-hairenupp/",
+      "content_hash": "004f53cfa5a8d8063e6fc9bec308792c36bf39da474df8bc8d0b08e06b9b2911",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_resource_ohvriabi",
+      "canonical_item_id": "ruhnu_vald:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi ja kriisitelefonid",
+      "status": "active",
+      "summary": "Ohvriabi leht suunab abivajajaid ohvriabi teenustele, kui inimene või tema lähedane on langenud hooletuse, halva kohtlemise, vägivalla või kuriteo ohvriks. Leht annab juhised helistada hädaolukorras, pöörduda lasteabi telefonile, ohvriabi kriisitelefonile või veebivestlusse palunabi.ee ning nimetab ka inimkaubanduse nõuandeliini ja vägivallast loobumise tugiliini",
+      "sourceKeys": [
+        "resource_ohvriabi"
+      ],
+      "officialUrl": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/abi-ja-tugiteenused/ohvriabi/",
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "resource_ohvriabi"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_resource_ohvriabi",
+      "document_id": "ruhnu_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/pere-sotsiaal-ja-tervishoid/abi-ja-tugiteenused/ohvriabi/",
+      "content_hash": "968d8926abddcf48b0b565f48134e414d470c072ae38c4b6e8a9dc5436b90e3e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_resource_kriisivalmidus",
+      "canonical_item_id": "ruhnu_vald:resource:kriisivalmidus",
+      "itemType": "resource",
+      "title": "Kriisivalmidus",
+      "status": "active",
+      "summary": "Kriisivalmiduse leht suunab riiklikele soovitustele kriis.ee keskkonnas ning mobiilirakendusele “Ole valmis”. Valla avalehel on lisaks riigi infotelefonid, perearsti nõuandetelefon 1220 ja hädaabi.",
+      "sourceKeys": [
+        "resource_kriisivalmidus"
+      ],
+      "officialUrl": "https://ruhnu.ee/vald-uudised-ja-kontakt/kogukond/kriisivalmidus/",
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "resource_kriisivalmidus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_resource_kriisivalmidus",
+      "document_id": "ruhnu_vald_resource_kriisivalmidus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/vald-uudised-ja-kontakt/kogukond/kriisivalmidus/",
+      "content_hash": "b8321846acd8bcd292420728d4b3440c9361c74f604a555aa59247d08979e13c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_resource_kodanikukaitse",
+      "canonical_item_id": "ruhnu_vald:resource:kodanikukaitse",
+      "itemType": "resource",
+      "title": "Kodanikukaitse ja piirkonna turvakontaktid",
+      "status": "active",
+      "summary": "Kodanikukaitse leht toob välja Kuressaare politseijaoskonna kontaktid ning piirkonna politseiniku, noorsoopolitseiniku ja abipolitseiniku telefonid. Samuti on lehel märgitud, et Ruhnus tegutseb MTÜ Ruhnu Vabatahtlik Päästeselt, MTÜ Saaremaa Vabatahtlik Merepääste Selts Ruhnu päästeüksuse ja SAR-alusega ning Kaitseliidu Saaremaa maleva Ruhnu rühm.",
+      "sourceKeys": [
+        "resource_kodanikukaitse"
+      ],
+      "officialUrl": "https://ruhnu.ee/vald-uudised-ja-kontakt/kogukond/kodanikukaitse/",
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "resource_kodanikukaitse"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_resource_kodanikukaitse",
+      "document_id": "ruhnu_vald_resource_kodanikukaitse",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/vald-uudised-ja-kontakt/kogukond/kodanikukaitse/",
+      "content_hash": "99a867793d40dab89e659a52bfe56b1507fee292407c03a2f630442655f12d80",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_resource_riigi_infotelefonid",
+      "canonical_item_id": "ruhnu_vald:resource:riigi_infotelefonid",
+      "itemType": "resource",
+      "title": "Riigi infotelefonid",
+      "status": "active",
+      "summary": "Ruhnu valla veebilehe jaluses on avaldatud riigi infotelefon, perearsti nõuandetelefon 1220 ja hädaabi number.",
+      "sourceKeys": [
+        "home"
+      ],
+      "officialUrl": "https://ruhnu.ee/",
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "home"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_resource_riigi_infotelefonid",
+      "document_id": "ruhnu_vald_resource_riigi_infotelefonid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/",
+      "content_hash": "478452d4a7978073a2db5fe4e39d7a78ffb412c49e4b87632bf9660fd9df6355",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_contact_tiina_allik",
+      "canonical_item_id": "ruhnu_vald:contact:tiina_allik",
+      "itemType": "contact",
+      "title": "Tiina Allik",
+      "status": "active",
+      "summary": "Ruhnu vallavalitsuse vallasekretär-sotsiaaltöötaja, kelle poole saab pöörduda sotsiaalteenuste ja sotsiaaltoetuste asjus.",
+      "name": "Tiina Allik",
+      "role": "Vallasekretär-sotsiaaltöötaja",
+      "department": "Ruhnu Vallavalitsus",
+      "address": "Vallamaja, Ruhnu küla, Ruhnu vald, Saaremaa 93001",
+      "officialUrl": "https://ruhnu.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "relatedTo": [],
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "unresolvedIssues": [
+        "E-posti aadress on valla veebis varjestatud ja säilitati kujul **."
+      ],
+      "item_type": "contact",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_contact_tiina_allik",
+      "document_id": "ruhnu_vald_contact_tiina_allik",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "content_hash": "003cb0d7052e723e506cf6d2f87e61cb53d575736dc02136280fa19c98f9cdfb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_contact_ruhnu_vallavalitsus",
+      "canonical_item_id": "ruhnu_vald:contact:ruhnu_vallavalitsus",
+      "itemType": "contact",
+      "title": "Ruhnu Vallavalitsus üldkontakt",
+      "status": "active",
+      "summary": "Ruhnu Vallavalitsuse üldkontakt. Valla veebis on üldtelefon ja kuvatud varjestatuna.",
+      "name": "Ruhnu Vallavalitsus",
+      "role": "Üldkontakt",
+      "department": "Ruhnu Vallavalitsus",
+      "address": "Vallamaja, Ruhnu küla, Ruhnu vald, Saaremaa 93001",
+      "officialUrl": "https://ruhnu.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "relatedTo": [],
+      "sourceKeys": [
+        "contact_page",
+        "home"
+      ],
+      "unresolvedIssues": [
+        "Üldine e-posti aadress on valla veebis varjestatud ja säilitati kujul **."
+      ],
+      "item_type": "contact",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "contact_page",
+        "home"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_contact_ruhnu_vallavalitsus",
+      "document_id": "ruhnu_vald_contact_ruhnu_vallavalitsus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "content_hash": "b8d12785697dcf8797492ba80101b9323662b5be65952476a8979d1f0c660ce3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_form_koduteenuste_taotlus",
+      "canonical_item_id": "ruhnu_vald:form:koduteenuste_taotlus",
+      "itemType": "form",
+      "title": "Koduteenuste taotlus",
+      "status": "active",
+      "summary": "PDF-vorm “Kliendi kaart / Koduteenuste taotlus”, millega kogutakse taotleja isikuandmed, pere- ja kontaktandmed, eluaseme info, tervislik seisund ning soovitud teenused koduteenuse taotlemiseks.",
+      "sourceKeys": [
+        "form_koduteenuste_taotlus"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://ruhnu.ee/wp-content/uploads/2025/11/koduteenustetaotlus.pdf",
+      "submissionChannels": [
+        "in_person",
+        "mail",
+        "email"
+      ],
+      "relatedTo": [
+        "ruhnu_vald_service_koduteenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "form_koduteenuste_taotlus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_form_koduteenuste_taotlus",
+      "document_id": "ruhnu_vald_form_koduteenuste_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/wp-content/uploads/2025/11/koduteenustetaotlus.pdf",
+      "content_hash": "ab62489d9348a07174f9ce1303654bfefcf94bc6958863b3546b60f4a93583b6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_form_koduteenuste_nimekiri",
+      "canonical_item_id": "ruhnu_vald:form:koduteenuste_nimekiri",
+      "itemType": "form",
+      "title": "Koduteenuste nimekiri",
+      "status": "active",
+      "summary": "PDF-vorm, millel taotleja märgib, milliseid Ruhnu Vallavalitsuse koduabiteenuseid või isikuabiteenuseid ta vajab. Vormil on märgitud, et teenused on tasulised vastavalt vallavalitsuse kehtestatud hinnakirjale.",
+      "sourceKeys": [
+        "form_koduteenuste_nimekiri"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://ruhnu.ee/wp-content/uploads/2025/11/koduteenustenimekiri.pdf",
+      "submissionChannels": [
+        "in_person",
+        "mail",
+        "email"
+      ],
+      "relatedTo": [
+        "ruhnu_vald_service_koduteenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "form_koduteenuste_nimekiri"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_form_koduteenuste_nimekiri",
+      "document_id": "ruhnu_vald_form_koduteenuste_nimekiri",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/wp-content/uploads/2025/11/koduteenustenimekiri.pdf",
+      "content_hash": "a4a3c06e1e42b3f902c7fcc3bfd64d47e04e63c0d2dcb9fd58beff27702ec2b3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_form_toimetulekutoetuse_avaldus",
+      "canonical_item_id": "ruhnu_vald:form:toimetulekutoetuse_avaldus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse avaldus",
+      "status": "active",
+      "summary": "DOC-vorm toimetulekutoetuse taotlemiseks. Vorm on valla toimetulekutoetuse lehel seotud toimetulekutoetuse taotlemisega.",
+      "sourceKeys": [
+        "form_toimetulekutoetuse_avaldus"
+      ],
+      "format": "doc",
+      "officialUrl": "https://ruhnu.ee/wp-content/uploads/2025/11/Toimetulekutoetuse-avaldus.doc",
+      "submissionChannels": [
+        "in_person",
+        "mail",
+        "email"
+      ],
+      "relatedTo": [
+        "ruhnu_vald_benefit_toimetulekutoetus",
+        "ruhnu_vald_benefit_taiendav_sotsiaaltoetus_toimetulekutoetuse_saajale"
+      ],
+      "unresolvedIssues": [
+        "Faili sisu ei õnnestunud automaatselt tekstiks avada, kuid link pärineb valla ametlikult toimetulekutoetuse lehelt."
+      ],
+      "item_type": "form",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "form_toimetulekutoetuse_avaldus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_form_toimetulekutoetuse_avaldus",
+      "document_id": "ruhnu_vald_form_toimetulekutoetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/wp-content/uploads/2025/11/Toimetulekutoetuse-avaldus.doc",
+      "content_hash": "26d35f3ad511b5b4d8afdcdb581e45d1dd3e0dc3f93949b7ca29d990504a70ee",
+      "evidence_allowed": true
+    },
+    {
+      "id": "ruhnu_vald_form_varade_leht",
+      "canonical_item_id": "ruhnu_vald:form:varade_leht",
+      "itemType": "form",
+      "title": "Varade leht",
+      "status": "active",
+      "summary": "RTF-vorm, millega esitatakse toimetulekutoetuse esmakordsel taotlemisel või varade muutumisel andmed taotleja ja perekonnaliikmete kasutuses või omandis oleva vara kohta.",
+      "sourceKeys": [
+        "form_varade_leht"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://ruhnu.ee/wp-content/uploads/2025/11/Varade_leht.rtf",
+      "submissionChannels": [
+        "in_person",
+        "mail",
+        "email"
+      ],
+      "relatedTo": [
+        "ruhnu_vald_benefit_toimetulekutoetus",
+        "ruhnu_vald_benefit_taiendav_sotsiaaltoetus_toimetulekutoetuse_saajale"
+      ],
+      "unresolvedIssues": [
+        "Faili sisu ei õnnestunud automaatselt tekstiks avada, kuid link pärineb valla ametlikult toimetulekutoetuse lehelt."
+      ],
+      "item_type": "form",
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "form_varade_leht"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "ruhnu_vald_form_varade_leht",
+      "document_id": "ruhnu_vald_form_varade_leht",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://ruhnu.ee/wp-content/uploads/2025/11/Varade_leht.rtf",
+      "content_hash": "ad5e400c6fbee68a09f898fa15d7f63aef935e52b8214f91d76dfe460feee9f1",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Ruhnu vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

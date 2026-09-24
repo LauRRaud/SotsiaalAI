@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2025",
+  "articleId": "dementsuse-ennetamise-toenduspohised-soovitused-ja-perearsti-kogemused-2025-3",
+  "title": "Dementsuse ennetamise tõenduspõhised soovitused ja perearsti kogemused",
+  "authors": [
+    "Eve Kivistik"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2025",
+  "section": "Dementsus",
+  "pageRange": "32-39",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel koondab teaduspõhised soovitused dementsuse ennetamiseks, käsitledes muu hulgas liikumist, toitumist, und, vaimset aktiivsust ja krooniliste haiguste mõju. Lisaks avab autor perearsti vaate dementsuse varajasele märkamisele ning tervishoiu ja hoolekande koostöö kitsaskohtadele Eestis.",
+  "tags": [
+    "dementsus",
+    "ennetamine",
+    "perearst",
+    "riskitegurid",
+    "vaimne aktiivsus",
+    "uni",
+    "toitumine",
+    "rahvatervis"
+  ],
+  "source_type": "file",
+  "source_path": "6web_sotsiaaltoo_3-2025.pdf",
+  "document_id": "sotsiaaltoo-3-2025-dementsuse-ennetamise-toenduspohised-soovitused-ja-perearsti-kogemused-2025-3",
+  "source_format": "pdf",
+  "source_sha256": "2c2c7578ef5f91fbf450b8204df7e86d43151456ae6920d533baa367438dba9f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2025-dementsuse-ennetamise-toenduspohised-soovitused-ja-perearsti-kogemused-2025-3",
+    "previous_source_path": "6web_sotsiaaltoo_3-2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "2c2c7578ef5f91fbf450b8204df7e86d43151456ae6920d533baa367438dba9f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

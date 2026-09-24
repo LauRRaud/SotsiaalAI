@@ -1,0 +1,80 @@
+{
+  "source": {
+    "source_id": "sotsiaalkindlustusamet_perevagivalla_toimepanijatele_suunatud_programmide_euroopa_s",
+    "title": "Perevägivalla toimepanijatele suunatud programmide Euroopa standardid",
+    "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Perevagivalla%20toimepanijatele%20suunatud%20programmide%20Euroopa%20standardid.pdf",
+    "normalized_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Perevagivalla toimepanijatele suunatud programmide Euroopa standardid.pdf",
+    "source_format": "pdf",
+    "source_type": "official_guideline",
+    "resource_type": "method_guidance",
+    "publisher": "Sotsiaalkindlustusamet",
+    "organization_id": "sotsiaalkindlustusamet",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Sotsiaalkindlustusamet",
+      "lapsed ja pered",
+      "lapsevanem",
+      "pere",
+      "vanemlus",
+      "praktiline töövahend",
+      "SKA",
+      "vägivald",
+      "ohvriabi",
+      "spetsialisti juhend"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "high",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "SKA",
+      "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+      "heading_4": null,
+      "line": 469,
+      "order": 250
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Perevägivalla toimepanijatele suunatud programmide Euroopa standardid"
+    ],
+    "collection_hints": [
+      "policy_analyses"
+    ],
+    "source_types_seen": [
+      "policy_analysis"
+    ],
+    "resource_types_seen": [
+      "policy_context"
+    ],
+    "publishers_seen": [
+      "Sotsiaalkindlustusamet"
+    ],
+    "organizations_seen": [
+      "sotsiaalkindlustusamet"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "SKA",
+        "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+        "line": 469,
+        "order": 250
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Perevagivalla toimepanijatele suunatud programmide Euroopa standardid.pdf"
+  },
+  "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Perevagivalla%20toimepanijatele%20suunatud%20programmide%20Euroopa%20standardid.pdf",
+  "redirects": [],
+  "sha256": "57fe80902048b35fa5a926b53bd45268f2cffed70e0d72ef42aa97da2433b714",
+  "bytes": 892023,
+  "downloaded_at": "2026-08-14T08:00:49.893Z"
+}

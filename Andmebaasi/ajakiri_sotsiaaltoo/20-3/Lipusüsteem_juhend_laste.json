@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2020",
+  "articleId": "lipususteem-juhend-laste-ja-noorte-seksuaalkaitumise-hindamiseks-2020-3",
+  "title": "Lipusüsteem – juhend laste ja noorte seksuaalkäitumise hindamiseks ja sellele reageerimiseks",
+  "authors": [
+    "Liana Rumvolt"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2020",
+  "section": "Metoodika",
+  "pageRange": "77-81",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab Belgias välja töötatud ja Eestis kohandatud Lipusüsteemi, mis aitab spetsialistidel hinnata laste ja noorte seksuaalkäitumise sobivust ning valida sobiva reageerimisviisi. Selgitatakse kuut hindamiskriteeriumi (nõusolek, vabatahtlikkus, võrdsus, eakohasus, tausta sobivus, eneseaustus), nelja „lipuvärvi” tähendust ning tuuakse näiteid, kuidas meetodit praktilistes olukordades kasutada, et toetada noore turvalist seksuaalset arengut.",
+  "tags": [
+    "Lipusüsteem",
+    "seksuaalkäitumine",
+    "laste seksuaalne areng",
+    "seksuaalharidus",
+    "ennetustöö",
+    "riskikäitumine",
+    "Tervise Arengu Instituut",
+    "metoodika"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2020_web_link_Part17.pdf",
+  "document_id": "sotsiaaltoo-3-2020-lipususteem-juhend-laste-ja-noorte-seksuaalkaitumise-hindamiseks-2020-3",
+  "source_format": "pdf",
+  "source_sha256": "88768bd977ab413bd31d67fd1765a4e5ace2d58477906afbbd52008d31c300c3",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2020-lipususteem-juhend-laste-ja-noorte-seksuaalkaitumise-hindamiseks-2020-3",
+    "previous_source_path": "Sotsiaaltoo_3_2020_web_link_Part17.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "88768bd977ab413bd31d67fd1765a4e5ace2d58477906afbbd52008d31c300c3",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

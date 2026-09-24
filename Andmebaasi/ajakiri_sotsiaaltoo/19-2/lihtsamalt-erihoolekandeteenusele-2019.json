@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2019",
+  "articleId": "lihtsamalt-ja-kiiremini-erihoolekandeteenusele-2019",
+  "title": "Lihtsamalt ja kiiremini erihoolekandeteenusele",
+  "authors": [
+    "Katrin Tsuiman"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2019",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "16-20",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade sotsiaalhoolekande seaduse muudatusest, mis võimaldab psüühikahäirega täisealisel pöörduda otse Sotsiaalkindlustusameti juhtumikorraldaja poole erihoolekandeteenuse saamiseks, ning kirjeldus teenusevajaduse hindamise uutest põhimõtetest.",
+  "tags": [
+    "erihoolekandeteenus",
+    "psüühikahäire",
+    "teenusevajaduse hindamine",
+    "Sotsiaalkindlustusamet",
+    "juhtumikorraldus",
+    "sotsiaalhoolekande seadus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part5.pdf",
+  "document_id": "sotsiaaltoo-2-2019-lihtsamalt-ja-kiiremini-erihoolekandeteenusele-2019",
+  "source_format": "pdf",
+  "source_sha256": "8e4efc5584f9371db555da628c156277e250b1199f47bb4f738a06f7850e60ad",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2019-lihtsamalt-ja-kiiremini-erihoolekandeteenusele-2019",
+    "previous_source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part5.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "8e4efc5584f9371db555da628c156277e250b1199f47bb4f738a06f7850e60ad",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

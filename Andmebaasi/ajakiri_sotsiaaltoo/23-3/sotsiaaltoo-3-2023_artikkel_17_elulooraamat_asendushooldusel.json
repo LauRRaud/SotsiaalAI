@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-3-2023",
+  "articleId": "ilmus-eestikeelne-elulooraamat-asendushooldusel-ja-lapsendatud-lastele-2023-3",
+  "title": "Ilmus eestikeelne elulooraamat asendushooldusel ja lapsendatud lastele",
+  "authors": [
+    "Judit Strömpl"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2023",
+  "section": "Metoodika",
+  "pageRange": "88-90",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artiklis tutvustatakse traumateadliku elulootöö raames loodud eestikeelset elulooraamatut, mis on mõeldud\nasendushooldusel ja lapsendatud lastele. Autor kirjeldab, kuidas elulooraamat aitab lapsel koguda ja mõtestada\noma elulugu ning toetab identiteeti, autonoomiat ja turvatunnet. Selgitatakse, millist rolli mängivad raamatu\ntäitmisel hooldajad ja lastekaitsetöötajad ning miks on oluline info jagamine lapsega järk-järgult ja\nlapsesõbralikus keeles. Elulooraamatut nähakse kui praktilist töövahendit, mis seob kokku lapse kogemused,\nsuhted ja mälestused.",
+  "tags": [
+    "elulootöö",
+    "elulooraamat",
+    "asendushooldus",
+    "lapsendamine",
+    "identiteedi toetamine",
+    "traumateadlik lähenemine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2023_web_Part18.pdf",
+  "document_id": "sotsiaaltoo-3-2023-ilmus-eestikeelne-elulooraamat-asendushooldusel-ja-lapsendatud-lastele-2023-3",
+  "source_format": "pdf",
+  "source_sha256": "ff647ead919cbb2b407939cdb58a5a547ec33cafadd64581ee6c38a2062cd5f3",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2023-ilmus-eestikeelne-elulooraamat-asendushooldusel-ja-lapsendatud-lastele-2023-3",
+    "previous_source_path": "Sotsiaaltoo_3_2023_web_Part18.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ff647ead919cbb2b407939cdb58a5a547ec33cafadd64581ee6c38a2062cd5f3",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

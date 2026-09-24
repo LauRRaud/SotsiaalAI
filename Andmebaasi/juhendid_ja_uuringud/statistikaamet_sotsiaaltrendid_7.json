@@ -1,0 +1,146 @@
+{
+  "source_path": "statistikaamet_sotsiaaltrendid_7.pdf",
+  "source_format": "pdf",
+  "sha256": "e31fd9a178e0206abf9bfdba6e1de8d2ac99ac25b8871b0c699fe60d0d9a28b6",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/statistikaamet_sotsiaaltrendid_7.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "statistikaamet_sotsiaaltrendid_7",
+          "title": "Sotsiaaltrendid 7",
+          "url": "https://www.stat.ee/sites/default/files/2020-07/sotsiaaltrendid_7.pdf",
+          "normalized_url": "https://www.stat.ee/sites/default/files/2020-07/sotsiaaltrendid_7.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "Statistikaamet",
+          "organization_id": "statistikaamet",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Statistikaamet",
+            "statistika",
+            "sotsiaalnäitajad",
+            "uuring",
+            "raport",
+            "analüüs"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_021",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet. Metadata konservatiivselt täpsustatud pealkirja ja registriinfo põhjal; PDF-i sisukord/täistekst vajaks vajadusel eraldi kontrolli.",
+          "source_context": {
+            "heading_2": "Statistikaamet",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 225,
+            "order": 143
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Sotsiaaltrendid 7"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Statistikaamet"
+          ],
+          "organizations_seen": [
+            "statistikaamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Statistikaamet",
+              "line": 225,
+              "order": 143
+            },
+            {
+              "heading_2": "Statistikaamet",
+              "line": 699,
+              "order": 350
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.stat.ee/sites/default/files/2020-07/sotsiaaltrendid_7.pdf"
+        },
+        "final_url": "https://www.stat.ee/sites/default/files/2020-07/sotsiaaltrendid_7.pdf",
+        "redirects": [],
+        "sha256": "e31fd9a178e0206abf9bfdba6e1de8d2ac99ac25b8871b0c699fe60d0d9a28b6",
+        "bytes": 1407748,
+        "downloaded_at": "2026-08-14T08:00:36.158Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "statistikaamet_sotsiaaltrendid_7",
+      "metadata": {
+        "createdAt": "2026-06-12T04:18:42.396725+00:00",
+        "type": "FILE",
+        "fileName": "sotsiaaltrendid_7.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T04:18:42.336512+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/985fd54d67ec/sotsiaaltrendid_7.pdf",
+        "title": "Sotsiaaltrendid 7",
+        "description": "Duplikaadid ühendatud: 1 lisakirjet. Metadata konservatiivselt täpsustatud pealkirja ja registriinfo põhjal; PDF-i sisukord/täistekst vajaks vajadusel eraldi kontrolli. Source master headings: Statistikaamet",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2020,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–181",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "statistikaamet_sotsiaaltrendid_7",
+        "document_id": "statistikaamet_sotsiaaltrendid_7",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "d1d1b37ae554a25007e5e393e55ea74950c3680b4960ba52bda4a38eef70e025",
+        "url": "https://www.stat.ee/sites/default/files/2020-07/sotsiaaltrendid_7.pdf",
+        "url_canonical": "https://www.stat.ee/sites/default/files/2020-07/sotsiaaltrendid_7.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "statistikaamet_sotsiaaltrendid_7",
+        "updatedAt": "2026-06-12T04:18:42.396750+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

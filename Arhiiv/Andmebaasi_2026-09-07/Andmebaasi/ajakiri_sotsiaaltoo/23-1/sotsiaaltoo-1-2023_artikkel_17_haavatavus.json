@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-1-2023",
+  "articleId": "haavatavus-kui-tugevus-2023-1",
+  "title": "Haavatavus kui tugevus",
+  "authors": [
+    "Riina Järve-Tammiste"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2023",
+  "section": "Metoodika",
+  "pageRange": "81-84",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel avab haavatavuse teema sotsiaaltöös, rõhutades, et ebakindluse ja pingete tunnistamine võib olla jõudu taastav ning toetada sisemist tasakaalu. Autor kirjeldab, kuidas haavatavuse aktsepteerimine loob ruumi ausatele vestlustele, enesehoiu praktikatele ja tervislikule piiride seadmisele.",
+  "tags": [
+    "haavatavus",
+    "vaimne tervis",
+    "eneseregulatsioon",
+    "enesehoid",
+    "supervisioon"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_1_2023_web_Part17.pdf",
+  "authors_vana": [
+    "Dagmar Narusson"
+  ],
+  "authors_parandatud": "2026-08-17, A5 pöördsuuna kontroll, kinnitatud lähte-PDF-i autorirea vastu",
+  "document_id": "sotsiaaltoo-1-2023-haavatavus-kui-tugevus-2023-1",
+  "source_format": "pdf",
+  "source_sha256": "7efba6e597b295fd2c365fee37d4b44d6e3425723a97c2f5909a3481f74b2979",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2023-haavatavus-kui-tugevus-2023-1",
+    "previous_source_path": "Sotsiaaltoo_1_2023_web_Part17.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "7efba6e597b295fd2c365fee37d4b44d6e3425723a97c2f5909a3481f74b2979",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

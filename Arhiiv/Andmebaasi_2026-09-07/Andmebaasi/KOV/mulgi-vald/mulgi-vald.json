@@ -1,0 +1,3662 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-mulgi-vald",
+  "document_id": "kov-mulgi-vald",
+  "municipality": "Mulgi vald",
+  "municipality_id": "mulgi_vald",
+  "county": "Viljandimaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "mulgi_vald_service_koduteenus",
+      "canonical_item_id": "mulgi_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus aitab inimest kodustes tingimustes toimingutega, mida ta kõrvalabita teha ei suuda, näiteks küttepuude või vee tuppa toomine, toidu valmistamine, koristamine, hügieenitoimingud ning väljaspool kodu vajalikud asjaajamised. Teenuse osutamiseks sõlmitakse kirjalik leping teenuse saaja, vajadusel ülalpidaja või eestkostja, teenuse osutaja ja vallavalitsuse vahel.",
+      "targetGroup": [
+        "Inimesed, kes vajavad kodus igapäevaeluks kõrvalabi."
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Teenuse saamiseks tuleb pöörduda Mulgi valla sotsiaaltööspetsialisti poole ja esitada taotlus.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "7 eurot tund; miinimumaeg 30 minutit; sooja toidu kojuviimine 2 eurot kord, millele lisandub toidu maksumus.",
+      "amount": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/koduteenus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "koduteenus_page",
+        "sotsiaalteenuse_avaldus_docx"
+      ],
+      "item_type": "service",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "koduteenus_page",
+        "sotsiaalteenuse_avaldus_docx"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_service_koduteenus",
+      "document_id": "mulgi_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/koduteenus/",
+      "content_hash": "223a7b03c479ef9d5fc51a818c2a1e01a879cf7c6664fbb5ee82f5eec6a190eb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_service_uldhooldusteenus",
+      "canonical_item_id": "mulgi_vald:service:uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Üldhooldusteenus on ajutise või püsiva hooldusvajadusega täisealisele inimesele, kelle abivajadust ei ole võimalik kodustes tingimustes katta. Teenus võib olla päevahoiu, intervallhoolduse või ööpäevaringse hoolduse vormis ning sisaldab hooldusplaani alusel isikuabi, toitlustust, majutust ja vajadusel tervishoiuteenuste vajaduse hindamist.",
+      "targetGroup": [
+        "Täisealised inimesed, kelle hooldusvajadust ei saa kodus tagada."
+      ],
+      "conditions": "Hooldusvajadus hinnatakse ja teenuse osutamisel koostatakse hooldusplaan. KOV katab hoolduskulude osa piirmäära ulatuses ning inimene tasub majutuse ja toitlustuse ning muud isiklikud kulud.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Teenuse saamiseks tuleb pöörduda Mulgi valla sotsiaaltööspetsialisti poole ja esitada taotlus.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "KOV katab hoolduskulude osa kuni 520 eurot kuus; muud kulud jäävad inimese omaosaluseks või neid hinnatakse sissetuleku järgi.",
+      "amount": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/valjaspool-kodu-osutatav-uldhooldusteenus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenuse_avaldus_docx",
+        "uldhooldusteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "sotsiaalteenuse_avaldus_docx",
+        "uldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_service_uldhooldusteenus",
+      "document_id": "mulgi_vald_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/valjaspool-kodu-osutatav-uldhooldusteenus/",
+      "content_hash": "f8615afef685bf0f93cba78399082586b7388a2c1138c47760a46b8cc73f42a9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_service_tugiisikuteenus",
+      "canonical_item_id": "mulgi_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus toetab inimest olukordades, kus sotsiaalsed, majanduslikud, psühholoogilised või terviseprobleemid takistavad kohustuste täitmist ja õiguste kasutamist. Tugiisik juhendab, motiveerib ja aitab arendada iseseisvust, kuid ei asenda hooldajat ega isikliku hügieeni abistajat.",
+      "targetGroup": [
+        "Lapsed, lapsevanemad ja täisealised inimesed, kes vajavad juhendamist ja toimetuleku tuge."
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Teenuse saamiseks tuleb pöörduda Mulgi valla sotsiaaltööspetsialisti poole ja esitada taotlus.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Tasuta.",
+      "amount": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/tugiisikuteenus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenuse_avaldus_docx",
+        "tugiisikuteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "sotsiaalteenuse_avaldus_docx",
+        "tugiisikuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_service_tugiisikuteenus",
+      "document_id": "mulgi_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/tugiisikuteenus/",
+      "content_hash": "a5b45c92783a050833f1e35fb407cdc2263ec4b347e7dc3ac53883ec60dfd6ec",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "mulgi_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldus aitab vaimse või füüsilise puude tõttu abi vajaval inimesel kasutada oma õigusi ja täita kohustusi. Hooldaja ülesanded lepitakse kokku hooldatava, hooldaja ja vallavalitsuse vahel ning võivad hõlmata toiduvalmistamist, pesemist, majapidamist või arsti juurde saatmist.",
+      "targetGroup": [
+        "Täisealised puudega inimesed, kellel on hooldusvajadus."
+      ],
+      "conditions": "Hooldus seatakse inimese nõusolekul ning hooldajaks võib olla isiku valitud sobiv inimene või vallavalitsuse tagatud hooldaja.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Teenuse saamiseks tuleb pöörduda Mulgi valla sotsiaaltööspetsialisti poole ja esitada taotlus.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Tasuta.",
+      "amount": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/taisealise-isiku-hooldus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenuse_avaldus_docx",
+        "taisealise_isiku_hooldus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "sotsiaalteenuse_avaldus_docx",
+        "taisealise_isiku_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_service_taisealise_isiku_hooldus",
+      "document_id": "mulgi_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/taisealise-isiku-hooldus/",
+      "content_hash": "47d003db827f0ee104c99dd5b694ce6f9bb5c359e56572e301dd3e844637a541",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "mulgi_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus suurendab füüsilise puudega täisealise isiku iseseisvat toimetulekut ja ühiskonnas osalemist. Teenus on mõeldud eelkõige raske liikumis- või nägemispuudega inimesele, kes suudab ise otsustada ja anda abistajale juhiseid.",
+      "targetGroup": [
+        "Füüsilise puudega täisealised inimesed, kes vajavad kõrvalabi igapäevatoimingutes."
+      ],
+      "conditions": "Teenuse saaja peab suutma ise teenuse korraldust juhtida; teenus ei hõlma meditsiini-, tõlke-, õigus-, remondi- ega ehitusteenuseid.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Teenuse saamiseks tuleb pöörduda Mulgi valla sotsiaaltööspetsialisti poole ja esitada taotlus.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/isikliku-abistaja-teenus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "isikliku_abistaja_teenus_page",
+        "sotsiaalteenuse_avaldus_docx"
+      ],
+      "item_type": "service",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "isikliku_abistaja_teenus_page",
+        "sotsiaalteenuse_avaldus_docx"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_service_isikliku_abistaja_teenus",
+      "document_id": "mulgi_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/isikliku-abistaja-teenus/",
+      "content_hash": "f89bc143e1bb660bd9a2b7c8957800e4c1c0341f0b1dfdc72b65298f2ad3f8ae",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_service_varjupaigateenus",
+      "canonical_item_id": "mulgi_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus on ajutine abi täisealisele inimesele, kes vajab kiirelt turvalist ööbimiskohta ja kelle elu või tervis võib abi puudumisel ohtu sattuda. Teenus pakub voodikohta, pesemisvõimalust ja turvalist keskkonda ning töötaja saab vajadusel kutsuda kiirabi, politsei või päästeameti.",
+      "targetGroup": [
+        "Täisealised inimesed vältimatus ohus, sh kodutud või vägivallaohvrid."
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Teenuse saamiseks tuleb pöörduda Mulgi valla sotsiaaltööspetsialisti poole ja esitada taotlus.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Tasuta.",
+      "amount": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/varjupaigateenus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenuse_avaldus_docx",
+        "varjupaigateenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "sotsiaalteenuse_avaldus_docx",
+        "varjupaigateenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_service_varjupaigateenus",
+      "document_id": "mulgi_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/varjupaigateenus/",
+      "content_hash": "3f7f2fb2d429ba7fd1e1169da09d0a4c07123fca7f17ad10321e12cb047941be",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_service_turvakoduteenus",
+      "canonical_item_id": "mulgi_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenus pakub lapsele, lastega perele või täisealisele turvalist ajutist elukohta, kui senine elukoht on ohtlik või puudulik. Teenus hõlmab turvalist keskkonda, vajadusel esmast abi, pesemis- ja pesupesemisvõimalust, lastele mängimis- ja õppimisvõimalusi, toitu, riideid, peavarju, hoolitsust ning kriisiabi.",
+      "targetGroup": [
+        "Lapsed, lastega pered ja täiskasvanud, kes vajavad ajutist turvalist elukohta."
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Teenuse saamiseks tuleb pöörduda Mulgi valla sotsiaaltööspetsialisti poole ja esitada taotlus.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Tasuta.",
+      "amount": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/turvakoduteenus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenuse_avaldus_docx",
+        "turvakoduteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "sotsiaalteenuse_avaldus_docx",
+        "turvakoduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_service_turvakoduteenus",
+      "document_id": "mulgi_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/turvakoduteenus/",
+      "content_hash": "f6abbb471a04cbf71dc8b2b5c406a076454e34906effb22280adde2bda90828f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "mulgi_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus võimaldab erivajadusega inimesel kasutada sobivat transporti tööle, õppeasutusse või avalikele teenustele sõitmiseks, kui puue takistab isikliku või ühissõiduki kasutamist. Teenuse osutaja abistab vajadusel sõidukisse sisenemisel, väljumisel ja sihtkohta jõudmisel.",
+      "targetGroup": [
+        "Puuetega inimesed, kes vajavad tööks, õppimiseks või avalike teenuste kasutamiseks eritransporti."
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Taotleja, hooldaja või seaduslik esindaja esitab vallavalitsusele kirjaliku avalduse, milles põhjendab teenuse vajadust ning märgib kuupäeva, lähte- ja sihtkoha.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "0,30 eurot kilomeeter või 0,45 eurot kilomeeter vastavalt teenuse saaja sissetulekule ja hinnakirjale.",
+      "amount": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/sotsiaaltransporditeenus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenuse_avaldus_docx",
+        "sotsiaaltransporditeenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "sotsiaalteenuse_avaldus_docx",
+        "sotsiaaltransporditeenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_service_sotsiaaltransporditeenus",
+      "document_id": "mulgi_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/sotsiaaltransporditeenus/",
+      "content_hash": "d0b8db36713cedc25699299bb125d2c39e6493bab362d46f3226737aead32ab8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_service_eluruumi_tagamine",
+      "canonical_item_id": "mulgi_vald:service:eluruumi_tagamine",
+      "itemType": "service",
+      "title": "Eluruumi tagamine",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenus aitab inimest või peret, kes ei suuda sotsiaalmajandusliku olukorra tõttu endale sobivat eluaset osta või üürida, kuid on muus osas iseseisev ja suudab eluruumi kulusid tasuda. Vallavalitsus võib anda valla eluruumi, vahendada üüripinda või toetada esmase üüri sissemaksega.",
+      "targetGroup": [
+        "Inimesed ja pered, kes ei suuda endale eluruumi soetada või üürida."
+      ],
+      "conditions": "Teenuse vajadust ja valla eluruumi lepinguid hinnatakse regulaarselt, tavaliselt kord aastas.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Teenuse saamiseks tuleb pöörduda Mulgi valla sotsiaaltööspetsialisti poole ja esitada taotlus.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/eluruumi-tagamine/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "eluruumi_tagamine_page",
+        "sotsiaalteenuse_avaldus_docx"
+      ],
+      "item_type": "service",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "eluruumi_tagamine_page",
+        "sotsiaalteenuse_avaldus_docx"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_service_eluruumi_tagamine",
+      "document_id": "mulgi_vald_service_eluruumi_tagamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/eluruumi-tagamine/",
+      "content_hash": "a078c577856d5240224b781abc391a4a4c48e585cfd195e7118a058f17836019",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_service_volanoustamisteenus",
+      "canonical_item_id": "mulgi_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab inimesel selgitada oma varalist olukorda, pidada läbirääkimisi võlausaldajatega, rahuldada nõudeid ja lahendada võlgnevusega seotud probleeme. Teenus aitab ennetada uute võlgade teket ja parandada toimetulekut.",
+      "targetGroup": [
+        "Inimesed, kellel on võlgnevused või võlgnevuste tekke risk."
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Teenuse saamiseks tuleb pöörduda Mulgi valla sotsiaaltööspetsialisti poole ja esitada taotlus.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Tasuta.",
+      "amount": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/volanoustamisteenus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenuse_avaldus_docx",
+        "volanoustamisteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "sotsiaalteenuse_avaldus_docx",
+        "volanoustamisteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_service_volanoustamisteenus",
+      "document_id": "mulgi_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/volanoustamisteenus/",
+      "content_hash": "6aad52d40b58c5e8d2f85e52b74cff9850d86859a146fb612f6d4b8ed12e42e5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "mulgi_vald:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenus toetab 1,5–3-aastase lapse vanema või hooldaja toimetulekut ja töötamist ning aitab suure hooldus- või abivajadusega last hooldava inimese koormust vähendada. Raske või sügava puudega lapse puhul hinnatakse teenuse vajadust individuaalselt.",
+      "targetGroup": [
+        "1,5–3-aastased lapsed ja raske või sügava puudega kuni 18-aastased lapsed koos hooldajaga."
+      ],
+      "conditions": "Teenust ei kasutata lasteaia, kooli pikapäevarühma või ühiselamu puudumise kompenseerimiseks.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Teenuse saamiseks tuleb pöörduda Mulgi valla sotsiaaltööspetsialisti poole ja esitada taotlus.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Tasuta.",
+      "amount": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/lapsehoiuteenus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "lapsehoiuteenus_page",
+        "sotsiaalteenuse_avaldus_docx"
+      ],
+      "item_type": "service",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "lapsehoiuteenus_page",
+        "sotsiaalteenuse_avaldus_docx"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_service_lapsehoiuteenus",
+      "document_id": "mulgi_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/lapsehoiuteenus/",
+      "content_hash": "1e02ac9edafdf231df2e22a578bf4ec64d7d142747d66a14ee15a5d17c0b0377",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_service_asendushooldusteenus",
+      "canonical_item_id": "mulgi_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus tagab lapsele pika- või lühiajalise heaolu, õiguste kaitse ja peresarnase elukeskkonna, kui vanemad ei saa lapse eest hoolitseda. Teenust osutatakse hooldusperes, perekodus või asenduskodus ning eelistatakse peresarnast hooldusperet.",
+      "targetGroup": [
+        "Lapsed, kelle vanemad on surnud, piiratud hooldusõigusega, hooldusõiguseta või kelle eestkostja ei saa hoolitseda."
+      ],
+      "conditions": "Teenuse vajadus tekib seaduses kirjeldatud juhtudel ning seda võib osutada ka lühiajaliselt kuni 90 päeva vanema nõusolekul.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Teenuse saamiseks tuleb pöörduda Mulgi valla sotsiaaltööspetsialisti poole ja esitada taotlus.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Tasuta.",
+      "amount": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/asendushooldusteenus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "asendushooldusteenus_page",
+        "sotsiaalteenuse_avaldus_docx"
+      ],
+      "item_type": "service",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "asendushooldusteenus_page",
+        "sotsiaalteenuse_avaldus_docx"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_service_asendushooldusteenus",
+      "document_id": "mulgi_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/asendushooldusteenus/",
+      "content_hash": "31aa5b1794f020b0d3ec1fa4b77fa7cd135e4fb886c0a2e9ea9d0dd9f5263958",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "mulgi_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus toetab asendushoolduselt või eestkostelt lahkuva noore iseseisvat toimetulekut ja õpingute jätkamist. Vallavalitsus tagab juhtumiplaani alusel eluaseme ning vajaduspõhised tugiteenused ja toetused.",
+      "targetGroup": [
+        "Asendushoolduselt või eestkostelt iseseisvasse ellu astuvad noored."
+      ],
+      "conditions": "Teenust tagatakse õpinguid jätkavatele noortele kehtestatud vanusepiirini ning vajadusel ka mitt õppivatele noortele kuni 21. eluaastani.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Teenuse saamiseks tuleb pöörduda Mulgi valla sotsiaaltööspetsialisti poole ja esitada taotlus.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Tasuta.",
+      "amount": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/jarelhooldusteenus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "jarelhooldusteenus_page",
+        "sotsiaalteenuse_avaldus_docx"
+      ],
+      "item_type": "service",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "jarelhooldusteenus_page",
+        "sotsiaalteenuse_avaldus_docx"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_service_jarelhooldusteenus",
+      "document_id": "mulgi_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/jarelhooldusteenus/",
+      "content_hash": "7a4df5f3b1f1fe55ca827eb4d2ae3f1d8201c166cc56bf9d945e608d10574c38",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_service_valtimatu_sotsiaalabi",
+      "canonical_item_id": "mulgi_vald:service:valtimatu_sotsiaalabi",
+      "itemType": "service",
+      "title": "Vältimatu sotsiaalabi",
+      "status": "active",
+      "summary": "Vältimatu sotsiaalabi tagab piisavate elatusvahenditeta inimesele hädavajalikud abinõud, mis kindlustavad vähemalt toidu, riietuse ja ajutise peavarju. Abi antakse Mulgi valla elanikele ning vajadusel ka vallas viibivatele inimestele, kelle elukoht ei asu vallas või kelle elukoht on teadmata.",
+      "targetGroup": [
+        "Piisavate elatusvahenditeta inimesed vältimatu abi vajaduses."
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Teenuse saamiseks tuleb pöörduda Mulgi valla sotsiaaltööspetsialisti poole ja esitada taotlus.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Tasuta.",
+      "amount": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/valtimatu-sotsiaalabi/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenuse_avaldus_docx",
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "sotsiaalteenuse_avaldus_docx",
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_service_valtimatu_sotsiaalabi",
+      "document_id": "mulgi_vald_service_valtimatu_sotsiaalabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/valtimatu-sotsiaalabi/",
+      "content_hash": "0f42d169cb220248e87529c42cf98be6858265fd7037eea9715729c952b2ddd8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_service_taiendavad_vajaduspohised_teenused",
+      "canonical_item_id": "mulgi_vald:service:taiendavad_vajaduspohised_teenused",
+      "itemType": "service",
+      "title": "Täiendavad vajaduspõhised ja vaimset tervist toetavad teenused",
+      "status": "active",
+      "summary": "Täiendavate vajaduspõhiste ja vaimset tervist toetavate teenuste eesmärk on pakkuda inimese tegelikust abivajadusest lähtuvat tuge. Teenused võivad hõlmata psühholoogilist nõustamist, kogemusnõustamist, pere- või paarinõustamist, mänguteraapiat ja muid vaimse tervise toetavaid teenuseid.",
+      "targetGroup": [
+        "Inimesed, kelle abivajadus vajab täiendavat või vaimset tervist toetavat teenust."
+      ],
+      "conditions": "Teenuseid võimaldatakse hinnatud abivajaduse ja eelarvevahendite piires.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Teenuse saamiseks tuleb pöörduda Mulgi valla sotsiaaltööspetsialisti poole ja esitada taotlus.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Tasuta.",
+      "amount": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/taiendavad-vajaduspohised-ja-vaimset-tervist-toetavad-teenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenuse_avaldus_docx",
+        "taiendavad_vajaduspohised_teenused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "sotsiaalteenuse_avaldus_docx",
+        "taiendavad_vajaduspohised_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_service_taiendavad_vajaduspohised_teenused",
+      "document_id": "mulgi_vald_service_taiendavad_vajaduspohised_teenused",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/taiendavad-vajaduspohised-ja-vaimset-tervist-toetavad-teenused/",
+      "content_hash": "f2531b1cfb2f11e562dc76d25ae1bef08be1b3c5ed4ec4f19770053d3274b7e7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_benefit_synnitoetus",
+      "canonical_item_id": "mulgi_vald:benefit:synnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus on lapse sünni korral ühele vanemale makstav rahaline toetus. Esimene osa makstakse lapse sünni registreerimisel ja teine osa lapse 1,5-aastaseks saamisel, kui lapse elukoht on jätkuvalt Mulgi vald. Mitmike sünni korral makstakse toetust iga lapse eest.",
+      "targetGroup": [
+        "Mulgi vallas registreeritud lapse vanem, eestkostja või lapsendaja."
+      ],
+      "conditions": "Lapse elukoha aadress peab sünni registreerimisel olema Mulgi vald; teise osa eelduseks on lapse elukoht Mulgi vallas ka 1,5-aastaselt.",
+      "amount": "1000 eurot, makstakse kahes võrdses osas",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Esita sünnitoetuse I või II osa avaldus vallavalitsusele; vajadusel lisa lapse sünniandmed ja elukohainfo.",
+        "deadline": null
+      },
+      "decisionTime": "Esimesel võimalusel, kuid mitte hiljem kui 5 päeva jooksul esitamisest.",
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/sunnitoetus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_sunnitoetuse_i_osa_avaldus",
+        "mulgi_vald_form_sunnitoetuse_ii_osa_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "sunnitoetuse_i_osa_doc",
+        "sunnitoetuse_i_osa_pdf",
+        "sunnitoetuse_ii_osa_doc",
+        "sunnitoetuse_ii_osa_pdf",
+        "synnitoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "sunnitoetuse_i_osa_doc",
+        "sunnitoetuse_i_osa_pdf",
+        "sunnitoetuse_ii_osa_doc",
+        "sunnitoetuse_ii_osa_pdf",
+        "synnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_benefit_synnitoetus",
+      "document_id": "mulgi_vald_benefit_synnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/sunnitoetus/",
+      "content_hash": "44999a39e89028ebdce523b40e0baa4e06bb540e6a90de3e0d98aacca9249968",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_benefit_ranitsatoetus",
+      "canonical_item_id": "mulgi_vald:benefit:ranitsatoetus",
+      "itemType": "benefit",
+      "title": "Ranitsatoetus",
+      "status": "active",
+      "summary": "Ranitsatoetus on ühekordne rahaline toetus esimest korda 1. klassi õppima asuva lapse vanemale, eestkostjale või hooldajale. Toetus makstakse taotleja arveldusarvele hiljemalt 30. septembriks.",
+      "targetGroup": [
+        "Esimest korda 1. klassi minev Mulgi valla laps ja tema vanem, eestkostja või hooldaja."
+      ],
+      "conditions": "Lapse rahvastikuregistrijärgne elukoht peab olema 1. juuni seisuga Mulgi vald ja laps peab asuma õppima 1. klassi.",
+      "amount": "100 eurot",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Esita avaldus koos kinnitusega, et laps asub õppima 1. klassi.",
+        "deadline": "15. september"
+      },
+      "decisionTime": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/ranitsatoetus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_ranitsatoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "ranitsatoetus_page",
+        "ranitsatoetuse_avaldus_doc"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "ranitsatoetus_page",
+        "ranitsatoetuse_avaldus_doc"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_benefit_ranitsatoetus",
+      "document_id": "mulgi_vald_benefit_ranitsatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/ranitsatoetus/",
+      "content_hash": "cadf4519765c07311b4cea2ed8c925cb7194c9809dc51676d67ecbfaa94c71ed",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_benefit_eakate_sunnipaevatoetus",
+      "canonical_item_id": "mulgi_vald:benefit:eakate_sunnipaevatoetus",
+      "itemType": "benefit",
+      "title": "Eakate sünnipäevatoetus",
+      "status": "active",
+      "summary": "Sünnipäevatoetus on rahaline toetus Mulgi valla eakatele juubelisünnipäeva puhul. Toetus makstakse sotsiaaltööspetsialistide koostatud nimekirja alusel ja avaldust esitada ei ole vaja.",
+      "targetGroup": [
+        "Mulgi vallas elavad 80-, 85-, 90-aastased ja vanemad inimesed."
+      ],
+      "conditions": "Toetus makstakse eakale automaatselt valla nimekirja alusel.",
+      "amount": "50 eurot",
+      "application": {
+        "channels": [],
+        "steps": "Avaldust ei pea esitama.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/eakate-sunnipaevatoetus/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "eakate_sunnipaevatoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "eakate_sunnipaevatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_benefit_eakate_sunnipaevatoetus",
+      "document_id": "mulgi_vald_benefit_eakate_sunnipaevatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/eakate-sunnipaevatoetus/",
+      "content_hash": "f22f47ad10191953c9960a862c40712d67c48e5718f7445c94e3caa7094555bf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_benefit_joulutoetus",
+      "canonical_item_id": "mulgi_vald:benefit:joulutoetus",
+      "itemType": "benefit",
+      "title": "Jõulutoetus",
+      "status": "active",
+      "summary": "Jõulutoetus on mitterahaline jõulukingitus Mulgi valla eelkooliealistele lastele. Toetust ei pea taotlema ja kingitus antakse valla korraldusel.",
+      "targetGroup": [
+        "Mulgi valla eelkooliealised lapsed."
+      ],
+      "conditions": "Jõulukingitus antakse eelkooliealistele lastele automaatselt.",
+      "amount": "Jõulupakk väärtusega 5 eurot",
+      "application": {
+        "channels": [],
+        "steps": "Avaldust ei pea esitama.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/joulutoetus/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "joulutoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "joulutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_benefit_joulutoetus",
+      "document_id": "mulgi_vald_benefit_joulutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/joulutoetus/",
+      "content_hash": "4225c2a94ab4a1fc232d488614386a9f273be8dde8eae96ce943387b1a2632de",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_benefit_hooldajatoetus",
+      "canonical_item_id": "mulgi_vald:benefit:hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus",
+      "status": "active",
+      "summary": "Hooldajatoetus jaguneb puudega lapse hooldajatoetuseks ja puudega täisealise isiku hooldajatoetuseks. Toetus määratakse hooldusvajaduse hindamise järel ja seda makstakse üks kord kalendrikuus. Toetuse määr sõltub hooldatava puude raskusastmest ja vanusest.",
+      "targetGroup": [
+        "Puudega lapse hooldajad ning puudega täisealise isiku hooldajad."
+      ],
+      "conditions": "Hooldusvajadus hinnatakse sotsiaaltööspetsialisti poolt. Hooldajaks ei määrata isikut, kellele on määratud raske või sügav puue.",
+      "amount": "Sügava puudega täiskasvanu või lapse hooldajale 50 eurot; raske puudega täiskasvanu või lapse hooldajale 40 eurot; keskmise puudega täiskasvanu või lapse hooldajale 30 eurot.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Esita hooldaja/hooldajatoetuse avaldus vallavalitsusele.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/hooldajatoetus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_hooldajatoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "hooldajatoetus_page",
+        "hooldajatoetuse_avaldus_doc",
+        "hooldajatoetuse_avaldus_pdf"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "hooldajatoetus_page",
+        "hooldajatoetuse_avaldus_doc",
+        "hooldajatoetuse_avaldus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_benefit_hooldajatoetus",
+      "document_id": "mulgi_vald_benefit_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/hooldajatoetus/",
+      "content_hash": "31909aa008c3c66693cb58e10ba54ed9641631cccf94de06b5dc706170f52df9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_benefit_matusetoetus",
+      "canonical_item_id": "mulgi_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on matusekulude osaliseks katmiseks makstav rahaline toetus Mulgi valla alalise elaniku surma korral. Toetust makstakse avalduse ja surmatõendi alusel.",
+      "targetGroup": [
+        "Matuse korraldaja Mulgi valla alalise elaniku surma korral."
+      ],
+      "conditions": "Taotlusele tuleb lisada surmatõend.",
+      "amount": "250 eurot",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Esita matusetoetuse avaldus koos surmatõendiga.",
+        "deadline": null
+      },
+      "decisionTime": "Esimesel võimalusel, kuid mitte hiljem kui 5 päeva jooksul esitamisest.",
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/matusetoetus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_matusetoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "matusetoetus_page",
+        "matusetoetuse_avaldus_doc",
+        "matusetoetuse_avaldus_pdf"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "matusetoetus_page",
+        "matusetoetuse_avaldus_doc",
+        "matusetoetuse_avaldus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_benefit_matusetoetus",
+      "document_id": "mulgi_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/matusetoetus/",
+      "content_hash": "02f12510a52feadcd12bda6ced0a870a419dab3ae2fe504b20b2796336aa891a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_benefit_lapse_toimetuleku_toetus",
+      "canonical_item_id": "mulgi_vald:benefit:lapse_toimetuleku_toetus",
+      "itemType": "benefit",
+      "title": "Lapse toimetuleku tagamise toetus",
+      "status": "active",
+      "summary": "Lapse toimetuleku tagamise toetus aitab katta lapse koolitarvete, prillide, riiete, jalanõude ja muu hädavajaliku ostmise kulusid. Toetust taotletakse sotsiaaltoetuse avaldusega ja vajadusel lisatakse kuludokumendid.",
+      "targetGroup": [
+        "Mulgi valla lastega pered, kellel on lapse hädavajalike kulude katmise vajadus."
+      ],
+      "conditions": null,
+      "amount": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Esita Mulgi valla sotsiaaltoetuse avaldus ja vajadusel kuludokumendid.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/lapse-toimetuleku-tagamise-toetus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "lapse_toimetuleku_toetus_page",
+        "sotsiaaltoetuse_avaldus_doc"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "lapse_toimetuleku_toetus_page",
+        "sotsiaaltoetuse_avaldus_doc"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_benefit_lapse_toimetuleku_toetus",
+      "document_id": "mulgi_vald_benefit_lapse_toimetuleku_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/lapse-toimetuleku-tagamise-toetus/",
+      "content_hash": "d018010b1849f2219a5019329c2af4dd44bce7a497502642a6b64909b2f5e1e7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_benefit_transporditoetus",
+      "canonical_item_id": "mulgi_vald:benefit:transporditoetus",
+      "itemType": "benefit",
+      "title": "Transporditoetus",
+      "status": "active",
+      "summary": "Transporditoetus hüvitab raviprotseduuridel, taastusravil ja hoolekandeasutustes käimise kulusid ning erandkorras ka puudega lapse haridus-, ravi- või rehabilitatsiooniasutusse sõidutamise kulusid. Toetus makstakse kuludokumentide alusel üks kord kuus.",
+      "targetGroup": [
+        "Mulgi valla elanikud, kellel on vaja hüvitada ravi-, hooldus- või puudega lapse transpordikulu."
+      ],
+      "conditions": "Taotlusele lisatakse kuludokumendid või lapse kohalolekut tõendavad dokumendid.",
+      "amount": "0,20 eurot kilomeetri kohta või kaks kolmandikku kuludokumendi maksumusest, kuid mitte üle 200 euro kuus.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Esita sotsiaaltoetuse avaldus koos transpordikulu tõendavate dokumentidega.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/transporditoetus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "sotsiaaltoetuse_avaldus_doc",
+        "transporditoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "sotsiaaltoetuse_avaldus_doc",
+        "transporditoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_benefit_transporditoetus",
+      "document_id": "mulgi_vald_benefit_transporditoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/transporditoetus/",
+      "content_hash": "046e12f1be33096291a22e78db3e01a94a0d683288cf9e447485a798786edd67",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_benefit_ravitoetus",
+      "canonical_item_id": "mulgi_vald:benefit:ravitoetus",
+      "itemType": "benefit",
+      "title": "Ravitoetus",
+      "status": "active",
+      "summary": "Ravitoetus hüvitab retseptiravimite ostmise ning raviprotseduuridel osalemise kulusid osas, mida Eesti Haigekassa või Sotsiaalkindlustusamet ei rahasta.",
+      "targetGroup": [
+        "Mulgi valla elanikud, kes vajavad abi ravimite või raviprotseduuride omaosaluse katmisel."
+      ],
+      "conditions": null,
+      "amount": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Esita sotsiaaltoetuse avaldus koos ravimite või raviprotseduuride kuludokumentidega.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/ravitoetus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "ravitoetus_page",
+        "sotsiaaltoetuse_avaldus_doc"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "ravitoetus_page",
+        "sotsiaaltoetuse_avaldus_doc"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_benefit_ravitoetus",
+      "document_id": "mulgi_vald_benefit_ravitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/ravitoetus/",
+      "content_hash": "e5012b36349d2e18447ca8cb2da43eb64c32f65b0e0c5d4da275942932c30117",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_benefit_abivahenditoetus",
+      "canonical_item_id": "mulgi_vald:benefit:abivahenditoetus",
+      "itemType": "benefit",
+      "title": "Abivahenditoetus",
+      "status": "active",
+      "summary": "Abivahenditoetus on puuetega isikutele mõeldud toetus abivahendi ostmise, rentimise ja kasutamise kulude osaliseks hüvitamiseks.",
+      "targetGroup": [
+        "Puudega inimesed, kes vajavad abivahendi ostmise või rentimise toetust."
+      ],
+      "conditions": null,
+      "amount": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Esita sotsiaaltoetuse avaldus koos abivahendi kuludokumentide või hinnapakkumisega.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/abivahenditoetus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "abivahenditoetus_page",
+        "sotsiaaltoetuse_avaldus_doc"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "abivahenditoetus_page",
+        "sotsiaaltoetuse_avaldus_doc"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_benefit_abivahenditoetus",
+      "document_id": "mulgi_vald_benefit_abivahenditoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/abivahenditoetus/",
+      "content_hash": "66f666baac530f2769acbe17476ca963086558d5cbd64057fe36e221a0b655ba",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_benefit_kuttetoetus",
+      "canonical_item_id": "mulgi_vald:benefit:kuttetoetus",
+      "itemType": "benefit",
+      "title": "Küttetoetus",
+      "status": "active",
+      "summary": "Küttetoetus on ette nähtud autonoomse küttesüsteemiga eluruumi kasutajale küttematerjali ostmiseks. Toetust makstakse kord aastas ning see katab küttematerjali maksumust kuni kehtestatud piirmäärani.",
+      "targetGroup": [
+        "Mulgi valla elanikud, kes vajavad abi küttepuude, briketi või muu küttematerjali ostmisel."
+      ],
+      "conditions": null,
+      "amount": "Küttematerjali maksumus kuni 200 eurot aastas",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Esita sotsiaaltoetuse avaldus koos küttematerjali kuludokumentidega.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/kuttetoetus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "kuttetoetus_page",
+        "sotsiaaltoetuse_avaldus_doc"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "kuttetoetus_page",
+        "sotsiaaltoetuse_avaldus_doc"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_benefit_kuttetoetus",
+      "document_id": "mulgi_vald_benefit_kuttetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/kuttetoetus/",
+      "content_hash": "a360fbdb9a8fd3056cbb86fb0c1838a30032c79c66a19c6ca580cb076ae76872",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_benefit_erakorraline_toetus",
+      "canonical_item_id": "mulgi_vald:benefit:erakorraline_toetus",
+      "itemType": "benefit",
+      "title": "Erakorraline toetus",
+      "status": "active",
+      "summary": "Erakorraline toetus leevendab kriisiolukorda, mille on põhjustanud näiteks loodusõnnetus, õnnetusjuhtum, perekonna toitja surm või haigestumine.",
+      "targetGroup": [
+        "Mulgi valla elanikud, kes on sattunud ootamatusse kriisiolukorda."
+      ],
+      "conditions": "Toetus on mõeldud kriisiolukorrast tulenevate vältimatute kulude katmiseks.",
+      "amount": "200 eurot",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Esita sotsiaaltoetuse avaldus ja kriisiolukorda või kulu tõendavad dokumendid.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/erakorraline-toetus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "erakorraline_toetus_page",
+        "sotsiaaltoetuse_avaldus_doc"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "erakorraline_toetus_page",
+        "sotsiaaltoetuse_avaldus_doc"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_benefit_erakorraline_toetus",
+      "document_id": "mulgi_vald_benefit_erakorraline_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/erakorraline-toetus/",
+      "content_hash": "951d862f122a65731ef3700f3df339b2831387e24e3a06ae80ed15b09d7cc0a2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "mulgi_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on riigi rahaline abi puuduses inimestele ning seda maksab kohalik omavalitsus. Toetust arvestatakse leibkonna eelmise kuu netosissetuleku, eluasemekulude ja toimetulekupiiri alusel. 2026. aastal on toimetulekupiir üksi elavale inimesele või pere esimesele liikmele 220 eurot, alaealisele 264 eurot ja igale järgmisele täisealisele liikmele 176 eurot kuus.",
+      "targetGroup": [
+        "Puuduses elavad Mulgi valla inimesed ja pered."
+      ],
+      "conditions": "Toimetulekutoetust makstakse siis, kui muud vaesuse ja puuduse leevendamise abinõud on ebapiisavad. Peredel, kus kõik liikmed on alaealised, on õigus koos toimetulekutoetusega 15 euro suurusele täiendavale sotsiaaltoetusele.",
+      "amount": "Vastavalt toimetulekupiirile; kõigi alaealiste liikmetega perele lisaks 15 eurot.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Esita toimetulekutoetuse taotlus ning taotleja ja pere andmete vorm koos sissetulekuid ning kulusid tõendavate dokumentidega.",
+        "deadline": "Jooksva kuu viimane tööpäev"
+      },
+      "decisionTime": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/toimetulekutoetus/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_toimetulekutoetuse_taotlus",
+        "mulgi_vald_form_toimetulekutoetuse_pere_andmed"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "toimetulekutoetus_page",
+        "toimetulekutoetuse_pere_andmed_doc",
+        "toimetulekutoetuse_pere_andmed_pdf",
+        "toimetulekutoetuse_taotlus_doc",
+        "toimetulekutoetuse_taotlus_pdf"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "toimetulekutoetus_page",
+        "toimetulekutoetuse_pere_andmed_doc",
+        "toimetulekutoetuse_pere_andmed_pdf",
+        "toimetulekutoetuse_taotlus_doc",
+        "toimetulekutoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_benefit_toimetulekutoetus",
+      "document_id": "mulgi_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/toimetulekutoetus/",
+      "content_hash": "d12f96b9eaa014f781ad0f62f3db3f2adf44a38f1e3497c204f4aac802c95636",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_benefit_muud_nimetamata_toetused",
+      "canonical_item_id": "mulgi_vald:benefit:muud_nimetamata_toetused",
+      "itemType": "benefit",
+      "title": "Muud nimetamata toetused",
+      "status": "active",
+      "summary": "Muud nimetamata toetused on mõeldud nende hädavajalike kulude katmiseks, mida ei ole kirjeldatud eraldi toetuse liigina. Toetuse vajadus ja suurus hinnatakse individuaalselt.",
+      "targetGroup": [
+        "Mulgi valla elanikud, kellel on muu vältimatu sotsiaalne kuluvajadus."
+      ],
+      "conditions": null,
+      "amount": null,
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Esita sotsiaaltoetuse avaldus ja kuludokumendid.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/muud-nimetamata-toetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mulgi_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "muud_nimetamata_toetused_page",
+        "sotsiaaltoetuse_avaldus_doc"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "muud_nimetamata_toetused_page",
+        "sotsiaaltoetuse_avaldus_doc"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_benefit_muud_nimetamata_toetused",
+      "document_id": "mulgi_vald_benefit_muud_nimetamata_toetused",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/muud-nimetamata-toetused/",
+      "content_hash": "845d2fa00519a750b5717f2af2619051dadba68a4742ae38cec3f34d765e766d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_contact_sotsiaalosakond",
+      "canonical_item_id": "mulgi_vald:contact:sotsiaalosakond",
+      "itemType": "contact",
+      "title": "Mulgi vallavalitsuse sotsiaalosakond",
+      "status": "active",
+      "summary": "Mulgi vallavalitsuse sotsiaalosakond – sotsiaalosakonna üldkontakt.",
+      "name": "Mulgi vallavalitsuse sotsiaalosakond",
+      "role": "sotsiaalosakonna üldkontakt",
+      "department": null,
+      "address": "Pärnu mnt 30, Abja-Paluoja 69403",
+      "officialUrl": "https://mulgivald.ee/vald-uudised-ja-kontakt/valla-info/kontakt/",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_contact_sotsiaalosakond",
+      "document_id": "mulgi_vald_contact_sotsiaalosakond",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/vald-uudised-ja-kontakt/valla-info/kontakt/",
+      "content_hash": "1c9d4d680409b815a1f855aa28f6d81ba7ca610ed818e4ed11f1f1d8dec5a7bf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_contact_margus_talimaa",
+      "canonical_item_id": "mulgi_vald:contact:margus_talimaa",
+      "itemType": "contact",
+      "title": "Margus Talimaa",
+      "status": "active",
+      "summary": "Margus Talimaa – laste heaolu spetsialist.",
+      "name": "Margus Talimaa",
+      "role": "laste heaolu spetsialist",
+      "department": "sotsiaalosakond",
+      "address": "Pärnu mnt 30, Abja-Paluoja",
+      "officialUrl": "https://mulgivald.ee/vald-uudised-ja-kontakt/valla-info/kontakt/",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_contact_margus_talimaa",
+      "document_id": "mulgi_vald_contact_margus_talimaa",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/vald-uudised-ja-kontakt/valla-info/kontakt/",
+      "content_hash": "66aa3daef0228ae58c4443ea850b5a6a86979cdf2f7df872bfea66f1834bd59a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_contact_liivi_loi",
+      "canonical_item_id": "mulgi_vald:contact:liivi_loi",
+      "itemType": "contact",
+      "title": "Liivi Loi",
+      "status": "active",
+      "summary": "Liivi Loi – sotsiaaltööspetsialist.",
+      "name": "Liivi Loi",
+      "role": "sotsiaaltööspetsialist",
+      "department": "sotsiaalosakond",
+      "address": "Viljandi mnt 1, Karksi-Nuia",
+      "officialUrl": "https://mulgivald.ee/vald-uudised-ja-kontakt/valla-info/kontakt/",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_contact_liivi_loi",
+      "document_id": "mulgi_vald_contact_liivi_loi",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/vald-uudised-ja-kontakt/valla-info/kontakt/",
+      "content_hash": "d0366ff1391948bb617a7aee54fa47b8752bd50bb51ada5cb1fb089262edc888",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_contact_monika_erreline",
+      "canonical_item_id": "mulgi_vald:contact:monika_erreline",
+      "itemType": "contact",
+      "title": "Monika Erreline",
+      "status": "active",
+      "summary": "Monika Erreline – sotsiaaltööspetsialist.",
+      "name": "Monika Erreline",
+      "role": "sotsiaaltööspetsialist",
+      "department": "sotsiaalosakond",
+      "address": "Leerimaja, Kulla küla",
+      "officialUrl": "https://mulgivald.ee/vald-uudised-ja-kontakt/valla-info/kontakt/",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_contact_monika_erreline",
+      "document_id": "mulgi_vald_contact_monika_erreline",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/vald-uudised-ja-kontakt/valla-info/kontakt/",
+      "content_hash": "04daf18a77ab13f04090f7b0b24a20e4640dcbe3c991641761ff8a1a7fb44815",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_contact_merily_toevalja",
+      "canonical_item_id": "mulgi_vald:contact:merily_toevalja",
+      "itemType": "contact",
+      "title": "Merily Tõevälja",
+      "status": "active",
+      "summary": "Merily Tõevälja – sotsiaaltööspetsialist.",
+      "name": "Merily Tõevälja",
+      "role": "sotsiaaltööspetsialist",
+      "department": "sotsiaalosakond",
+      "address": "Pärnu mnt 30, Abja-Paluoja; Kesk tn 4, Mõisaküla",
+      "officialUrl": "https://mulgivald.ee/vald-uudised-ja-kontakt/valla-info/kontakt/",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_contact_merily_toevalja",
+      "document_id": "mulgi_vald_contact_merily_toevalja",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/vald-uudised-ja-kontakt/valla-info/kontakt/",
+      "content_hash": "7e1b5fa372beeedea8badc31f2505ecaba1281f7dca052eae9e72ecf23ce601d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_contact_agu_eichenbaum",
+      "canonical_item_id": "mulgi_vald:contact:agu_eichenbaum",
+      "itemType": "contact",
+      "title": "Agu Eichenbaum",
+      "status": "active",
+      "summary": "Agu Eichenbaum – eestkostespetsialist.",
+      "name": "Agu Eichenbaum",
+      "role": "eestkostespetsialist",
+      "department": "sotsiaalosakond",
+      "address": "Pärnu mnt 30, Abja-Paluoja",
+      "officialUrl": "https://mulgivald.ee/vald-uudised-ja-kontakt/valla-info/kontakt/",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_contact_agu_eichenbaum",
+      "document_id": "mulgi_vald_contact_agu_eichenbaum",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/vald-uudised-ja-kontakt/valla-info/kontakt/",
+      "content_hash": "294e556f480e849769cf8691bac76493f3ecf6ed8af3d0cfa9996672da799585",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_contact_lota_orav",
+      "canonical_item_id": "mulgi_vald:contact:lota_orav",
+      "itemType": "contact",
+      "title": "Lota Orav",
+      "status": "active",
+      "summary": "Lota Orav – noorte heaolu spetsialist.",
+      "name": "Lota Orav",
+      "role": "noorte heaolu spetsialist",
+      "department": "sotsiaalosakond",
+      "address": "Pärnu mnt 30, Abja-Paluoja",
+      "officialUrl": "https://mulgivald.ee/vald-uudised-ja-kontakt/valla-info/kontakt/",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_contact_lota_orav",
+      "document_id": "mulgi_vald_contact_lota_orav",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/vald-uudised-ja-kontakt/valla-info/kontakt/",
+      "content_hash": "c46bdcf72028a2ba2a2fcf9e2766306e2b8e09f827fd988f58303c92a2b1d3bd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_contact_liana_andrusko",
+      "canonical_item_id": "mulgi_vald:contact:liana_andrusko",
+      "itemType": "contact",
+      "title": "Liana Andruško",
+      "status": "active",
+      "summary": "Liana Andruško – sotsiaalnõunik.",
+      "name": "Liana Andruško",
+      "role": "sotsiaalnõunik",
+      "department": "sotsiaalosakond",
+      "address": "Pärnu mnt 30, Abja-Paluoja",
+      "officialUrl": "https://mulgivald.ee/vald-uudised-ja-kontakt/valla-info/kontakt/",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_contact_liana_andrusko",
+      "document_id": "mulgi_vald_contact_liana_andrusko",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/vald-uudised-ja-kontakt/valla-info/kontakt/",
+      "content_hash": "9f73615d8fe004e8c5b987d47018ea93de2c79426528fbe67acbb1ff0c196e5b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_resource_sotsiaalse_rehabilitatsiooni_teenus",
+      "canonical_item_id": "mulgi_vald:resource:sotsiaalse_rehabilitatsiooni_teenus",
+      "itemType": "resource",
+      "title": "Sotsiaalse rehabilitatsiooni teenus",
+      "status": "active",
+      "summary": "Sotsiaalse rehabilitatsiooni teenus on riigi korraldatav tugiteenus puudega või vähenenud töövõimega inimestele. Teenuse eesmärk on toetada iseseisvat toimetulekut, elamist ja õppimist ning selles võivad osaleda sotsiaaltöötaja, psühholoog, tegevusterapeut, eripedagoog ja teised spetsialistid.",
+      "contact": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalse-rehabilitatsiooni-teenus/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "sotsiaalse_rehabilitatsiooni_teenus_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "sotsiaalse_rehabilitatsiooni_teenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_resource_sotsiaalse_rehabilitatsiooni_teenus",
+      "document_id": "mulgi_vald_resource_sotsiaalse_rehabilitatsiooni_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalse-rehabilitatsiooni-teenus/",
+      "content_hash": "c85e8dcd8ae9b7367abe4f7a772f48b2a1b0060c25520bc1ffd43f4c52913b0e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_resource_erihoolekandeteenused",
+      "canonical_item_id": "mulgi_vald:resource:erihoolekandeteenused",
+      "itemType": "resource",
+      "title": "Erihoolekandeteenused",
+      "status": "active",
+      "summary": "Erihoolekandeteenused on mõeldud psüühilise erivajadusega inimestele ning neid rahastab riik Sotsiaalkindlustusameti kaudu. Teenuste hulka kuuluvad igapäevaelu toetamine, töötamise toetamine, toetatud elamine, kogukonnas elamine ja ööpäevaringne erihoolekanne.",
+      "contact": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/erihoolekandeteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "erihoolekandeteenused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "erihoolekandeteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_resource_erihoolekandeteenused",
+      "document_id": "mulgi_vald_resource_erihoolekandeteenused",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/erihoolekandeteenused/",
+      "content_hash": "4a15d94f6ab9531ed4a303e5563d4bd60e7bf6f20307838f126761aece80484a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_resource_lepitusteenus",
+      "canonical_item_id": "mulgi_vald:resource:lepitusteenus",
+      "itemType": "resource",
+      "title": "Lepitusteenus",
+      "status": "active",
+      "summary": "Lepitusteenus on riiklik teenus, mida kasutatakse kriminaalmenetluses teise astme kuritegude puhul kannatanu ja kahtlustatava või süüdistatava lepitamiseks. Lepitaja aitab osapooltel saavutada kokkuleppe kahju heastamise ja suhtluse taastamise kohta.",
+      "contact": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/lepitusteenus/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "lepitusteenus_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "lepitusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_resource_lepitusteenus",
+      "document_id": "mulgi_vald_resource_lepitusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/lepitusteenus/",
+      "content_hash": "d534270fc1dfd2ffa5884d159228584013e0ee409f6096417b4ba2b955960c7a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_resource_ohvriabi",
+      "canonical_item_id": "mulgi_vald:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "Ohvriabi toetab inimesi, kes on kannatanud kuriteo, vägivalla või kriisijuhtumi tõttu. KOV lehel on toodud ohvriabi kriisitelefon, lasteabi inimkaubanduse nõuandeliin ja vägivallast loobumise tugiliin.",
+      "contact": {
+        "website": "https://palunabi.ee"
+      },
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/ohvriabi/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "ohvriabi_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "ohvriabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_resource_ohvriabi",
+      "document_id": "mulgi_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/ohvriabi/",
+      "content_hash": "c5d87be52b836e8c4d64f6815e27f37fb49c81c10ddc2306d1090052fcb23e1a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_resource_perelepitusteenus",
+      "canonical_item_id": "mulgi_vald:resource:perelepitusteenus",
+      "itemType": "resource",
+      "title": "Perelepitusteenus",
+      "status": "active",
+      "summary": "Perelepitusteenus aitab lahku minevatel või lahus elavatel vanematel leppida kokku lapse elukorralduses, suhtlemises ja ülalpidamises. Teenus on tasuta, eeldab üldjuhul mõlema vanema nõusolekut ning seda pakub Sotsiaalkindlustusamet.",
+      "contact": {},
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/perelepitusteenus/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "perelepitusteenus_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "perelepitusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_resource_perelepitusteenus",
+      "document_id": "mulgi_vald_resource_perelepitusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/perelepitusteenus/",
+      "content_hash": "97f28a3b0f213f2f4a7401b8651fd90750c517f563b92dbc51c8362cf53337bc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_resource_teavita_abivajajast",
+      "canonical_item_id": "mulgi_vald:resource:teavita_abivajajast",
+      "itemType": "resource",
+      "title": "Teavita abivajajast",
+      "status": "active",
+      "summary": "Mulgi valla veebilehel saab anda teada lapsest või täisealisest inimesest, kes vajab abi. Teavituse vorm võimaldab soovi korral jääda anonüümseks ja on mõeldud kiireks reageerimiseks ning õigel ajal sekkumiseks.",
+      "contact": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/teavita-abivajajast/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "teavita_abivajajast_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "teavita_abivajajast_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_resource_teavita_abivajajast",
+      "document_id": "mulgi_vald_resource_teavita_abivajajast",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/teavita-abivajajast/",
+      "content_hash": "482a8214d055a28e08a79d98b057026e30941a74e0421dc6fe33ca84b2af0247",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_resource_lastekaitse",
+      "canonical_item_id": "mulgi_vald:resource:lastekaitse",
+      "itemType": "resource",
+      "title": "Lastekaitse",
+      "status": "active",
+      "summary": "Lastekaitse eesmärk on tagada lapse huvid ja toetada abivajavaid peresid. KOV leht rõhutab, et abivajavast või hädaohus lapsest tuleb teatada ning hädaohus lapsest tuleb viivitamata helistada hädaabinumbril.",
+      "contact": {},
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/lastekaitse/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "mulgi_vald_contact_margus_talimaa"
+      ],
+      "sourceKeys": [
+        "lastekaitse_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_resource_lastekaitse",
+      "document_id": "mulgi_vald_resource_lastekaitse",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/lastekaitse/",
+      "content_hash": "1843b3c05a69dfface8f4c78d95ac29b851cc4f7a14b8c9407c99c1a58b44dca",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_resource_lasteabi_telefon",
+      "canonical_item_id": "mulgi_vald:resource:lasteabi_telefon",
+      "itemType": "resource",
+      "title": "Lasteabi",
+      "status": "active",
+      "summary": "Lasteabi on ööpäevaringne tasuta nõu andmise, kuulamise ja abistamise teenus lastega seotud murede korral. Nõu saab telefoni ja veebivestluse kaudu ning pöörduda võivad nii lapsed kui täiskasvanud.",
+      "contact": {
+        "website": "https://www.lasteabi.ee"
+      },
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/lastekaitse/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "lastekaitse_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_resource_lasteabi_telefon",
+      "document_id": "mulgi_vald_resource_lasteabi_telefon",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/lastekaitse/",
+      "content_hash": "a9981b3d8880d2a5faaa64ee80c3246a583f0d47d48680572c6f6425c6686b97",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_resource_hairenuputeenus",
+      "canonical_item_id": "mulgi_vald:resource:hairenuputeenus",
+      "itemType": "resource",
+      "title": "Häirenuputeenus",
+      "status": "active",
+      "summary": "Mulgi valla lehel tutvustatakse Medi häirenuputeenust ja nutikaid abivahendeid, mis aitavad eakatel, erivajadusega või toimetulekuraskustega inimestel kodus turvalisemalt elada. Häirenupp võimaldab 24/7 häirekõne ning vajadusel kaasatakse lähedased või kiirabi, päästeamet või politsei.",
+      "contact": {
+        "website": "https://www.medi.ee"
+      },
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/hairenuputeenus/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "hairenuputeenus_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "hairenuputeenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_resource_hairenuputeenus",
+      "document_id": "mulgi_vald_resource_hairenuputeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/hairenuputeenus/",
+      "content_hash": "fdfd09ffb7ce919bc1eedc493e754a144c4836a0cc7a3a71ff89e98f4cf612df",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_resource_hooldereform",
+      "canonical_item_id": "mulgi_vald:resource:hooldereform",
+      "itemType": "resource",
+      "title": "Hooldereform",
+      "status": "active",
+      "summary": "Hooldereformi info selgitab, et alates 1. juulist 2023 jaguneb hooldekodu kohamaksumus inimese ja kohaliku omavalitsuse vahel. Mulgi Vallavalitsuse üldhooldusteenuse hoolduskulude piirmäär on 520 eurot.",
+      "contact": null,
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/hooldereform/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "hooldereform_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "hooldereform_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_resource_hooldereform",
+      "document_id": "mulgi_vald_resource_hooldereform",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/hooldereform/",
+      "content_hash": "feadfbc42af4d7f0b374561a647ca7cc26d37cf6103f36dd73f3105833108df4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_resource_abja_saun",
+      "canonical_item_id": "mulgi_vald:resource:abja_saun",
+      "itemType": "resource",
+      "title": "Abja saun",
+      "status": "active",
+      "summary": "Abja avalik saun asub aadressil Aia tn 18, Abja-Paluoja. Saun on avatud laupäeviti kell 10.00–21.00 ja pileti hind on 5 eurot.",
+      "contact": {
+        "address": "Aia tn 18, Abja-Paluoja"
+      },
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/avalikud-saunad/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "avalikud_saunad_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "avalikud_saunad_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_resource_abja_saun",
+      "document_id": "mulgi_vald_resource_abja_saun",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/avalikud-saunad/",
+      "content_hash": "3d272b6a9d45b568bcf9eeb8a43fff73ae54a032134763a83e4c623e293f8e20",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_resource_moisakula_saun",
+      "canonical_item_id": "mulgi_vald:resource:moisakula_saun",
+      "itemType": "resource",
+      "title": "Mõisaküla saun",
+      "status": "active",
+      "summary": "Mõisaküla avalik saun asub aadressil Kiikre 13a, Mõisaküla. Saun on avatud reedeti kell 15.00–18.00 naistele ja 18.00–21.00 meestele ning pileti hind on 5 eurot.",
+      "contact": {
+        "address": "Kiikre 13a, Mõisaküla"
+      },
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/avalikud-saunad/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "avalikud_saunad_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "avalikud_saunad_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_resource_moisakula_saun",
+      "document_id": "mulgi_vald_resource_moisakula_saun",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/avalikud-saunad/",
+      "content_hash": "9afeb88d976681998cf3e9f1190a288935a7daf72543243df8b76916cdee29e3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_resource_abja_haigla_sa",
+      "canonical_item_id": "mulgi_vald:resource:abja_haigla_sa",
+      "itemType": "resource",
+      "title": "Abja Haigla SA",
+      "status": "active",
+      "summary": "Abja Haigla SA on Mulgi valla hoolekandeasutuste loetelus. Asutuse juhataja on Kairit Luisk, aadress Järve 1, Abja-Paluoja, 69403, Mulgi vald,",
+      "contact": {
+        "name": "Kairit Luisk",
+        "address": "Järve 1, Abja-Paluoja, 69403, Mulgi vald",
+        "website": "https://abjahaigla.ee"
+      },
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/tervishoiuasutused/hoolekandeasutused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_resource_abja_haigla_sa",
+      "document_id": "mulgi_vald_resource_abja_haigla_sa",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/tervishoiuasutused/hoolekandeasutused/",
+      "content_hash": "c763c48d0e410532f55b0f62d4e0d470377ad9d307c02a669913c4dd1220b492",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_resource_mulgi_hoolekandekeskus",
+      "canonical_item_id": "mulgi_vald:resource:mulgi_hoolekandekeskus",
+      "itemType": "resource",
+      "title": "Mulgi Hoolekandekeskus",
+      "status": "active",
+      "summary": "Mulgi Hoolekandekeskus on valla hoolekandeasutus registrikoodiga. Asutusel on tegevuskohad Mõisakülas ja Pollis ning juhataja on Merike Andruško.",
+      "contact": {
+        "name": "Merike Andruško",
+        "address": "Kiikre 15, Mõisaküla, 69302, Mulgi vald",
+        "website": "https://mulgihoolekandekeskus.ee"
+      },
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/tervishoiuasutused/hoolekandeasutused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_resource_mulgi_hoolekandekeskus",
+      "document_id": "mulgi_vald_resource_mulgi_hoolekandekeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/tervishoiuasutused/hoolekandeasutused/",
+      "content_hash": "665c02418eac5c8af5d1fbf0bc1139c75e78983bed87e738d112b0bd2c3de99b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_resource_eakatekodu_mulgi_haarber",
+      "canonical_item_id": "mulgi_vald:resource:eakatekodu_mulgi_haarber",
+      "itemType": "resource",
+      "title": "Eakatekodu Mulgi Häärber OÜ",
+      "status": "active",
+      "summary": "Eakatekodu Mulgi Häärber OÜ on hoolekandeasutus Halliste alevikus aadressil Viljandi mnt 4. Kontakttelefon on ja on.",
+      "contact": {
+        "address": "Viljandi mnt 4, Halliste alevik, 69501, Mulgi vald",
+        "website": "https://mulgihaarber.ee"
+      },
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/tervishoiuasutused/hoolekandeasutused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_resource_eakatekodu_mulgi_haarber",
+      "document_id": "mulgi_vald_resource_eakatekodu_mulgi_haarber",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/tervishoiuasutused/hoolekandeasutused/",
+      "content_hash": "b53a48748aceaa831f3709ba4ad55859e7accdf3606a91d7631549d25ebfa829",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_resource_karksi_kodu",
+      "canonical_item_id": "mulgi_vald:resource:karksi_kodu",
+      "itemType": "resource",
+      "title": "Lõuna-Eesti Hooldekeskuse Karksi Kodu",
+      "status": "active",
+      "summary": "Lõuna-Eesti Hooldekeskuse Karksi Kodu on hoolekandeasutus Karksi külas aadressil Kivi 20. Juhataja on Ilmar Hurt, ja.",
+      "contact": {
+        "name": "Ilmar Hurt",
+        "address": "Kivi 20, Karksi küla, 69104, Mulgi vald",
+        "website": "https://www.hooldekodu.ee"
+      },
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/tervishoiuasutused/hoolekandeasutused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_resource_karksi_kodu",
+      "document_id": "mulgi_vald_resource_karksi_kodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/tervishoiuasutused/hoolekandeasutused/",
+      "content_hash": "0eed6270d9472e7bfb8fc3d5c6b956198de4913f9d400e99bdaae9178f804a0c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_resource_abja_paevakeskus",
+      "canonical_item_id": "mulgi_vald:resource:abja_paevakeskus",
+      "itemType": "resource",
+      "title": "Abja Päevakeskus",
+      "status": "active",
+      "summary": "Abja Päevakeskus tegutseb aadressil Pärnu mnt 10, Abja-Paluoja, Mulgi vald. Päevakeskus on avatud E–R 8.00–16.30, lõuna 12.00–12.30; juhataja on Mari Saarela ja perenaine Ivi Sikka. Päevakeskuses toimuvad erihoolekanne, koduteenusega seotud tegevused ja mitmed huvitegevused.",
+      "contact": {
+        "name": "Mari Saarela",
+        "address": "Pärnu mnt 10, Abja-Paluoja, Mulgi vald, Viljandimaa, 69402"
+      },
+      "officialUrl": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/tervishoiuasutused/abja-paevakeskus/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "abja_paevakeskus_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "abja_paevakeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_resource_abja_paevakeskus",
+      "document_id": "mulgi_vald_resource_abja_paevakeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/pere-sotsiaal-ja-tervishoid/tervishoiuasutused/abja-paevakeskus/",
+      "content_hash": "310af708f62414b2ec473e344dc208bcc2bab89e4730922fdff07d579c4444f2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_resource_riigi_infotelefonid",
+      "canonical_item_id": "mulgi_vald:resource:riigi_infotelefonid",
+      "itemType": "resource",
+      "title": "Riigi infotelefonid",
+      "status": "active",
+      "summary": "Mulgi valla sotsiaalvaldkonna lehtedel on avaldatud riigi infotelefonid: riigiinfo 1220 perearsti nõuandetelefon, konsulaarabi ja hädaabi.",
+      "contact": {},
+      "officialUrl": "https://mulgivald.ee",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "home"
+      ],
+      "item_type": "resource",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "home"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_resource_riigi_infotelefonid",
+      "document_id": "mulgi_vald_resource_riigi_infotelefonid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee",
+      "content_hash": "55d1968afc9a09d2b06fe0965a220f3c37540a3f6541e80dd68ad83d38f63c99",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_form_sotsiaalteenuse_avaldus",
+      "canonical_item_id": "mulgi_vald:form:sotsiaalteenuse_avaldus",
+      "itemType": "form",
+      "title": "Sotsiaalteenuse avaldus",
+      "status": "active",
+      "summary": "Vorm Mulgi valla sotsiaalteenuste taotlemiseks. Sama vorm on seotud kõigi KOVi korraldatavate kohalike sotsiaalteenustega.",
+      "format": [
+        "docx"
+      ],
+      "submissionChannels": [
+        "paper",
+        "email"
+      ],
+      "officialUrl": "https://mulgivald.ee/wp-content/uploads/2025/03/Lisa-1-Sotsiaalteenuse-avaldus.docx",
+      "urls": [
+        "https://mulgivald.ee/wp-content/uploads/2025/03/Lisa-1-Sotsiaalteenuse-avaldus.docx"
+      ],
+      "relatedTo": [
+        "mulgi_vald_service_koduteenus",
+        "mulgi_vald_service_uldhooldusteenus",
+        "mulgi_vald_service_tugiisikuteenus",
+        "mulgi_vald_service_taisealise_isiku_hooldus",
+        "mulgi_vald_service_isikliku_abistaja_teenus",
+        "mulgi_vald_service_varjupaigateenus",
+        "mulgi_vald_service_turvakoduteenus",
+        "mulgi_vald_service_sotsiaaltransporditeenus",
+        "mulgi_vald_service_eluruumi_tagamine",
+        "mulgi_vald_service_volanoustamisteenus",
+        "mulgi_vald_service_lapsehoiuteenus",
+        "mulgi_vald_service_asendushooldusteenus",
+        "mulgi_vald_service_jarelhooldusteenus",
+        "mulgi_vald_service_valtimatu_sotsiaalabi",
+        "mulgi_vald_service_taiendavad_vajaduspohised_teenused"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenuse_avaldus_docx"
+      ],
+      "item_type": "form",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "sotsiaalteenuse_avaldus_docx"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_form_sotsiaalteenuse_avaldus",
+      "document_id": "mulgi_vald_form_sotsiaalteenuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/wp-content/uploads/2025/03/Lisa-1-Sotsiaalteenuse-avaldus.docx",
+      "content_hash": "6e36b9d430328ddbc3a68416a681a20604837fb94d51ff7c4550514fdaa564f7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_form_sotsiaaltoetuse_avaldus",
+      "canonical_item_id": "mulgi_vald:form:sotsiaaltoetuse_avaldus",
+      "itemType": "form",
+      "title": "Mulgi valla sotsiaaltoetuse avaldus",
+      "status": "active",
+      "summary": "Üldine avaldus Mulgi valla sissetulekust sõltuvate ja muude vajaduspõhiste sotsiaaltoetuste taotlemiseks.",
+      "format": [
+        "doc"
+      ],
+      "submissionChannels": [
+        "paper",
+        "email"
+      ],
+      "officialUrl": "https://mulgivald.ee/wp-content/uploads/2025/03/Sotsiaaltoetuse-avaldus.doc",
+      "urls": [
+        "https://mulgivald.ee/wp-content/uploads/2025/03/Sotsiaaltoetuse-avaldus.doc"
+      ],
+      "relatedTo": [
+        "mulgi_vald_benefit_lapse_toimetuleku_toetus",
+        "mulgi_vald_benefit_transporditoetus",
+        "mulgi_vald_benefit_ravitoetus",
+        "mulgi_vald_benefit_abivahenditoetus",
+        "mulgi_vald_benefit_kuttetoetus",
+        "mulgi_vald_benefit_erakorraline_toetus",
+        "mulgi_vald_benefit_muud_nimetamata_toetused"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "sotsiaaltoetuse_avaldus_doc"
+      ],
+      "item_type": "form",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "sotsiaaltoetuse_avaldus_doc"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_form_sotsiaaltoetuse_avaldus",
+      "document_id": "mulgi_vald_form_sotsiaaltoetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/wp-content/uploads/2025/03/Sotsiaaltoetuse-avaldus.doc",
+      "content_hash": "4bb38c6a956bad42a343a0465316a47b4280887fc8d39f9745799784b7ca79e8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_form_sunnitoetuse_i_osa_avaldus",
+      "canonical_item_id": "mulgi_vald:form:sunnitoetuse_i_osa_avaldus",
+      "itemType": "form",
+      "title": "Sünnitoetuse I osa avaldus",
+      "status": "active",
+      "summary": "Avaldus sünnitoetuse esimese osa taotlemiseks lapse sünni registreerimisel.",
+      "format": [
+        "doc",
+        "pdf"
+      ],
+      "submissionChannels": [
+        "paper",
+        "email"
+      ],
+      "officialUrl": "https://mulgivald.ee/wp-content/uploads/2025/03/Sunnitoetuse-I-osa-avaldus.doc",
+      "urls": [
+        "https://mulgivald.ee/wp-content/uploads/2025/03/Sunnitoetuse-I-osa-avaldus.doc",
+        "https://mulgivald.ee/wp-content/uploads/2025/03/Sunnitoetuse-I-osa-avaldus.pdf"
+      ],
+      "relatedTo": [
+        "mulgi_vald_benefit_synnitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "sunnitoetuse_i_osa_doc",
+        "sunnitoetuse_i_osa_pdf"
+      ],
+      "item_type": "form",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "sunnitoetuse_i_osa_doc",
+        "sunnitoetuse_i_osa_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_form_sunnitoetuse_i_osa_avaldus",
+      "document_id": "mulgi_vald_form_sunnitoetuse_i_osa_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/wp-content/uploads/2025/03/Sunnitoetuse-I-osa-avaldus.doc",
+      "content_hash": "f69510c922d5f15061743435d3fdf48cec42ecb716fa8ec9521671266f8a6c5f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_form_sunnitoetuse_ii_osa_avaldus",
+      "canonical_item_id": "mulgi_vald:form:sunnitoetuse_ii_osa_avaldus",
+      "itemType": "form",
+      "title": "Sünnitoetuse II osa avaldus",
+      "status": "active",
+      "summary": "Avaldus sünnitoetuse teise osa taotlemiseks lapse 1,5-aastaseks saamisel.",
+      "format": [
+        "doc",
+        "pdf"
+      ],
+      "submissionChannels": [
+        "paper",
+        "email"
+      ],
+      "officialUrl": "https://mulgivald.ee/wp-content/uploads/2025/03/Sunnitoetuse-II-osa-avaldus.doc",
+      "urls": [
+        "https://mulgivald.ee/wp-content/uploads/2025/03/Sunnitoetuse-II-osa-avaldus.doc",
+        "https://mulgivald.ee/wp-content/uploads/2025/03/Sunnitoetuse-II-osa-avaldus.pdf"
+      ],
+      "relatedTo": [
+        "mulgi_vald_benefit_synnitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "sunnitoetuse_ii_osa_doc",
+        "sunnitoetuse_ii_osa_pdf"
+      ],
+      "item_type": "form",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "sunnitoetuse_ii_osa_doc",
+        "sunnitoetuse_ii_osa_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_form_sunnitoetuse_ii_osa_avaldus",
+      "document_id": "mulgi_vald_form_sunnitoetuse_ii_osa_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/wp-content/uploads/2025/03/Sunnitoetuse-II-osa-avaldus.doc",
+      "content_hash": "d5c93260862de5bdd9f4ae99e26699311fc5c4dba40b608eab751ac350cb3188",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_form_ranitsatoetuse_avaldus",
+      "canonical_item_id": "mulgi_vald:form:ranitsatoetuse_avaldus",
+      "itemType": "form",
+      "title": "Ranitsatoetuse avaldus",
+      "status": "active",
+      "summary": "Avaldus ranitsatoetuse taotlemiseks esimest korda 1. klassi õppima asuva lapse kohta.",
+      "format": [
+        "doc"
+      ],
+      "submissionChannels": [
+        "paper",
+        "email"
+      ],
+      "officialUrl": "https://mulgivald.ee/wp-content/uploads/2025/07/Ranitsatoetuse-avaldus.doc",
+      "urls": [
+        "https://mulgivald.ee/wp-content/uploads/2025/07/Ranitsatoetuse-avaldus.doc"
+      ],
+      "relatedTo": [
+        "mulgi_vald_benefit_ranitsatoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "ranitsatoetuse_avaldus_doc"
+      ],
+      "item_type": "form",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "ranitsatoetuse_avaldus_doc"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_form_ranitsatoetuse_avaldus",
+      "document_id": "mulgi_vald_form_ranitsatoetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/wp-content/uploads/2025/07/Ranitsatoetuse-avaldus.doc",
+      "content_hash": "a0f548aed15d0d83ba36d5f50ff2564ac16b7cc51381948c0b11bdd3b459f4a1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_form_hooldajatoetuse_avaldus",
+      "canonical_item_id": "mulgi_vald:form:hooldajatoetuse_avaldus",
+      "itemType": "form",
+      "title": "Avaldus hooldaja/hooldajatoetuse taotlemiseks",
+      "status": "active",
+      "summary": "Avaldus hoolduse seadmise ja hooldajatoetuse taotlemiseks puudega lapse või täisealise isiku hooldamisel.",
+      "format": [
+        "doc",
+        "pdf"
+      ],
+      "submissionChannels": [
+        "paper",
+        "email"
+      ],
+      "officialUrl": "https://mulgivald.ee/wp-content/uploads/2025/03/Avaldus-hooldaja-hooldajatoetuse-taotlemiseks.doc",
+      "urls": [
+        "https://mulgivald.ee/wp-content/uploads/2025/03/Avaldus-hooldaja-hooldajatoetuse-taotlemiseks.doc",
+        "https://mulgivald.ee/wp-content/uploads/2025/03/Avaldus-hooldaja-hooldajatoetuse-taotlemiseks.pdf"
+      ],
+      "relatedTo": [
+        "mulgi_vald_benefit_hooldajatoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "hooldajatoetuse_avaldus_doc",
+        "hooldajatoetuse_avaldus_pdf"
+      ],
+      "item_type": "form",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "hooldajatoetuse_avaldus_doc",
+        "hooldajatoetuse_avaldus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_form_hooldajatoetuse_avaldus",
+      "document_id": "mulgi_vald_form_hooldajatoetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/wp-content/uploads/2025/03/Avaldus-hooldaja-hooldajatoetuse-taotlemiseks.doc",
+      "content_hash": "862243fe8d243ef52f8c2f8c95876b9d6298a64bb5d137c789c61e5bb86d6660",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_form_matusetoetuse_avaldus",
+      "canonical_item_id": "mulgi_vald:form:matusetoetuse_avaldus",
+      "itemType": "form",
+      "title": "Matusetoetuse avaldus",
+      "status": "active",
+      "summary": "Avaldus matusekulude osaliseks hüvitamiseks Mulgi valla alalise elaniku surma korral.",
+      "format": [
+        "doc",
+        "pdf"
+      ],
+      "submissionChannels": [
+        "paper",
+        "email"
+      ],
+      "officialUrl": "https://mulgivald.ee/wp-content/uploads/2025/03/Matusetoetuse-avaldus.doc",
+      "urls": [
+        "https://mulgivald.ee/wp-content/uploads/2025/03/Matusetoetuse-avaldus.doc",
+        "https://mulgivald.ee/wp-content/uploads/2025/03/Matusetoetuse-avaldus.pdf"
+      ],
+      "relatedTo": [
+        "mulgi_vald_benefit_matusetoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "matusetoetuse_avaldus_doc",
+        "matusetoetuse_avaldus_pdf"
+      ],
+      "item_type": "form",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "matusetoetuse_avaldus_doc",
+        "matusetoetuse_avaldus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_form_matusetoetuse_avaldus",
+      "document_id": "mulgi_vald_form_matusetoetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/wp-content/uploads/2025/03/Matusetoetuse-avaldus.doc",
+      "content_hash": "0656dfa8e9f0b80ce6d8e6b26650733137a6c6da9cc23719a6616a6f7a3cfa28",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_form_toimetulekutoetuse_taotlus",
+      "canonical_item_id": "mulgi_vald:form:toimetulekutoetuse_taotlus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse taotlemise avaldus",
+      "status": "active",
+      "summary": "Avaldus jooksva kuu toimetulekutoetuse taotlemiseks.",
+      "format": [
+        "doc",
+        "pdf"
+      ],
+      "submissionChannels": [
+        "paper",
+        "email"
+      ],
+      "officialUrl": "https://mulgivald.ee/wp-content/uploads/2025/03/Toimetulekutoetuse-taotlemise-avaldus.doc",
+      "urls": [
+        "https://mulgivald.ee/wp-content/uploads/2025/03/Toimetulekutoetuse-taotlemise-avaldus.doc",
+        "https://mulgivald.ee/wp-content/uploads/2025/03/Toimetulekutoetuse-taotlemise-avaldus.pdf"
+      ],
+      "relatedTo": [
+        "mulgi_vald_benefit_toimetulekutoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "toimetulekutoetuse_taotlus_doc",
+        "toimetulekutoetuse_taotlus_pdf"
+      ],
+      "item_type": "form",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "toimetulekutoetuse_taotlus_doc",
+        "toimetulekutoetuse_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_form_toimetulekutoetuse_taotlus",
+      "document_id": "mulgi_vald_form_toimetulekutoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/wp-content/uploads/2025/03/Toimetulekutoetuse-taotlemise-avaldus.doc",
+      "content_hash": "d42b592ea6ebd84ae6789a4da5f6f32cdabbcaddf7f3bc0e417856e9ba821d90",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mulgi_vald_form_toimetulekutoetuse_pere_andmed",
+      "canonical_item_id": "mulgi_vald:form:toimetulekutoetuse_pere_andmed",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse taotleja ja tema pere andmed",
+      "status": "active",
+      "summary": "Täiendav vorm toimetulekutoetuse taotleja ja tema pere koosseisu, sissetulekute ja varaandmete esitamiseks.",
+      "format": [
+        "doc",
+        "pdf"
+      ],
+      "submissionChannels": [
+        "paper",
+        "email"
+      ],
+      "officialUrl": "https://mulgivald.ee/wp-content/uploads/2025/03/Toimetulekutoetuse-taotleja-ja-tema-pere-andmed.doc",
+      "urls": [
+        "https://mulgivald.ee/wp-content/uploads/2025/03/Toimetulekutoetuse-taotleja-ja-tema-pere-andmed.doc",
+        "https://mulgivald.ee/wp-content/uploads/2025/03/Toimetulekutoetuse-taotleja-ja-tema-pere-andmed.pdf"
+      ],
+      "relatedTo": [
+        "mulgi_vald_benefit_toimetulekutoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "mulgi_vald_contact_sotsiaalosakond"
+      ],
+      "sourceKeys": [
+        "toimetulekutoetuse_pere_andmed_doc",
+        "toimetulekutoetuse_pere_andmed_pdf"
+      ],
+      "item_type": "form",
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "toimetulekutoetuse_pere_andmed_doc",
+        "toimetulekutoetuse_pere_andmed_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mulgi_vald_form_toimetulekutoetuse_pere_andmed",
+      "document_id": "mulgi_vald_form_toimetulekutoetuse_pere_andmed",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mulgivald.ee/wp-content/uploads/2025/03/Toimetulekutoetuse-taotleja-ja-tema-pere-andmed.doc",
+      "content_hash": "678a7855220fed46392a1d6a2180edad2a466ceef4e78273acda3606c21ae168",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Mulgi vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

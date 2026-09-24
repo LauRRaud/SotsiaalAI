@@ -1,0 +1,142 @@
+{
+  "source_path": "sotsiaalministeerium_ligipaasetavuse_kulu_tulu_analuus_lopparuanne.pdf",
+  "source_format": "pdf",
+  "sha256": "78c957e0215ecd471cecff3bb358794b2fcbb208e35281be1e87ceee15c16df0",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/sotsiaalministeerium_ligipaasetavuse_kulu_tulu_analuus_lopparuanne.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "sotsiaalministeerium_ligipaasetavuse_kulu_tulu_analuus_lopparuanne",
+          "title": "Ligipääsetavuse kulu-tulu analüüs. Lõpparuanne",
+          "url": "https://www.sm.ee/sites/default/files/documents/2022-10/Ligip%C3%A4%C3%A4setavuse%20kulu-tulu%20anal%C3%BC%C3%BCs.%20L%C3%B5pparuanne_0.pdf",
+          "normalized_url": "https://www.sm.ee/sites/default/files/documents/2022-10/Ligipääsetavuse kulu-tulu analüüs. Lõpparuanne_0.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "Sotsiaalministeerium",
+          "organization_id": "sotsiaalministeerium",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Sotsiaalministeerium",
+            "ligipääsetavus",
+            "universaalne disain",
+            "uuring",
+            "raport",
+            "analüüs"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Sotsiaalministeerium",
+            "heading_3": "Puue, töövõime, ligipääsetavus",
+            "heading_4": null,
+            "line": 525,
+            "order": 275
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Ligipääsetavuse kulu-tulu analüüs. Lõpparuanne"
+          ],
+          "collection_hints": [
+            "research_reports"
+          ],
+          "source_types_seen": [
+            "research_report"
+          ],
+          "resource_types_seen": [
+            "research_evidence"
+          ],
+          "publishers_seen": [
+            "Sotsiaalministeerium"
+          ],
+          "organizations_seen": [
+            "sotsiaalministeerium"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Sotsiaalministeerium",
+              "heading_3": "Puue, töövõime, ligipääsetavus",
+              "line": 525,
+              "order": 275
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.sm.ee/sites/default/files/documents/2022-10/Ligipääsetavuse kulu-tulu analüüs. Lõpparuanne_0.pdf"
+        },
+        "final_url": "https://www.sm.ee/sites/default/files/documents/2022-10/Ligip%C3%A4%C3%A4setavuse%20kulu-tulu%20anal%C3%BC%C3%BCs.%20L%C3%B5pparuanne_0.pdf",
+        "redirects": [],
+        "sha256": "78c957e0215ecd471cecff3bb358794b2fcbb208e35281be1e87ceee15c16df0",
+        "bytes": 3512675,
+        "downloaded_at": "2026-08-14T08:00:54.174Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "sotsiaalministeerium_ligipaasetavuse_kulu_tulu_analuus_lopparuanne",
+      "metadata": {
+        "createdAt": "2026-06-12T03:58:12.589242+00:00",
+        "type": "FILE",
+        "fileName": "Ligipääsetavuse kulu-tulu analüüs. Lõpparuanne_0.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:58:12.519139+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/ec51185cea67/Ligipääsetavuse kulu-tulu analüüs. Lõpparuanne_0.pdf",
+        "title": "Ligipääsetavuse kulu-tulu analüüs. Lõpparuanne",
+        "description": "Source master headings: Sotsiaalministeerium; Puue, töövõime, ligipääsetavus",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2022,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–108",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "research_reports",
+        "source_id": "sotsiaalministeerium_ligipaasetavuse_kulu_tulu_analuus_lopparuanne",
+        "document_id": "sotsiaalministeerium_ligipaasetavuse_kulu_tulu_analuus_lopparuanne",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "add9d40bc78ef9394c731664efe3af14966bc7d55ae84057457ad21bc147e250",
+        "url": "https://www.sm.ee/sites/default/files/documents/2022-10/Ligip%C3%A4%C3%A4setavuse%20kulu-tulu%20anal%C3%BC%C3%BCs.%20L%C3%B5pparuanne_0.pdf",
+        "url_canonical": "https://www.sm.ee/sites/default/files/documents/2022-10/Ligipääsetavuse kulu-tulu analüüs. Lõpparuanne_0.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "sotsiaalministeerium_ligipaasetavuse_kulu_tulu_analuus_lopparuanne",
+        "updatedAt": "2026-06-12T03:58:12.589264+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

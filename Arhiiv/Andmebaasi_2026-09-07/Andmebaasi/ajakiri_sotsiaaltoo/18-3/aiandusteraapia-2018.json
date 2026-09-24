@@ -1,0 +1,100 @@
+{
+  "docId": "sotsiaaltoo-3-2018",
+  "articleId": "aiandusteraapia-2018",
+  "title": "Aiandusteraapia parandab inimese tegevusvõimet",
+  "authors": [
+    "Hanna-Maria Põldma",
+    "Karin Lilienberg"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2018",
+  "section": "Teraapia",
+  "pageRange": "80-84",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tallinna Tervishoiu Kõrgkooli tervisehariduse keskuse töötajate tutvustus aiandusteraapiast kui erivajadustega inimeste elukvaliteeti ja tegevusvõimet parandavast teraapiavormist. Selgitab mõiste päritolu, teraapia sobivust füüsiliste, kognitiivsete, sotsiaalsete või psüühiliste probleemidega inimestele ning terapeudi rolli: taimede tundmist, kliendi seisundi hindamist, sobiva ja ohutu keskkonna valimist. Toob näiteid, kuidas keskkonda kohandada — autismispektri häirega lastele eraldatud, hekiga ümbritsetud ala, eakatele vanaemadeaegsed taimed Oslo Botaanikaaia eeskujul. Artikli lõpus on Meeli Müüripealt eraldi lühilugu Tallinna Botaanikaaia Meelte aiast, kus on ligipääsetavuse lahendused ratastooliga liikujatele ning punktkirjas relieefkaardid vaegnägijatele.",
+  "tags": [
+    "aiandusteraapia",
+    "tegevusvõime",
+    "erivajadused",
+    "rehabilitatsioon",
+    "ligipääsetavus",
+    "loodus ja tervis"
+  ],
+  "source_type": "file",
+  "source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part18.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2018-aiandusteraapia-2018",
+  "source_sha256": "c6f7dfd6d87c90cbf6d6f26d2bb5072cd0e7c0ced1eae35959c4b5849bb49886",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2018-aiandusteraapia-2018",
+    "previous_source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part18.txt",
+    "previous_source_original_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part18.pdf",
+    "reference_stored_source_sha256": "a55f8fbdc98c793e411983b71e7bb9a257131c201450d467686a59002872abe0",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\18-3\\155619680390_Sotsiaaltoo_nr3_2018_veebi_link.pdf",
+      "source_sha256": "45eac17c335ef472708d0eb485f916c201e5db46ac64163cc7aeeb1f47dd10a9",
+      "pdf_start_page": 82,
+      "pdf_end_page": 86,
+      "printed_page_range": "80-84",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 86,
+      "source_regions": [
+        {
+          "source_pdf_page": 82,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 83,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 84,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 85,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 86,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "80-84"
+    },
+    "server_page_range": "80-84"
+  }
+}

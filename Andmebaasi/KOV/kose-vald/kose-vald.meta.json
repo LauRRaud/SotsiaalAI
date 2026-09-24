@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-kose-vald",
+  "document_id": "kov-kose-vald",
+  "municipality": "Kose vald",
+  "municipality_id": "kose_vald",
+  "county": "Harjumaa",
+  "checkedAt": "2026-04-29",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-kose-vald",
+  "coverage": {
+    "services": 21,
+    "benefits": 21,
+    "resources": 9,
+    "contacts": 9,
+    "forms": 10,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "kose_vald",
+    "source_register_file": "kose-vald.sources.json",
+    "service_benefit_resource_items": 51,
+    "items_with_source_keys": 51,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 25,
+    "items_without_related_forms": 26,
+    "items_with_related_contacts": 43,
+    "items_without_related_contacts": 8,
+    "form_sources": 0,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "1 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Korje käsitleb Kose valla ametlikul veebilehel avaldatud praktilist sotsiaalvaldkonna infot ning jätab õigusaktid ja Riigi Teataja eraldi kihile.",
+    "Sama sisuga korduvad sotsiaaltransporditeenuse ja turvakoduteenuse plokid koondati üheks kanoniliseks teenuseks."
+  ],
+  "unresolvedIssues": [
+    "Vaimse tervise teenused 2024 lehel kirjeldatud toetusmeetme aeg oli KOV veebiteksti järgi kuni 2024. aasta lõpuni; 2026. aasta aktiivset jätkuteenust ei õnnestunud KOV veebist kinnitada.",
+    "SPOKU e-taotlused on KOV veebis nimetatud välise e-teenusena; üksikute SPOKU vormide detailstruktuuri ei avatud ega kasutatud eraldi allikana.",
+    "Mõne teenuse juures avaldatud kuvatakse KOV veebis tehniliselt varjestatuna; kontaktide e-postid on normaliseeritud sama KOV veebikihi ja korduvate leheplokkide põhjal.",
+    "Hooldereformi, hooldekodude koha saadavuse ja väliste teenusepakkujate detailseid tingimusi ei kontrollitud väljaspool KOV veebikihti.",
+    "Õigusaktide ja RT-linkide sisu ei ole selles paketis kasutatud; need tuleb kontrollida eraldi RT/legal kihis."
+  ],
+  "municipality_name": "Kose vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "kose-vald.sources.json",
+  "sourceCount": 24,
+  "counts": {
+    "services": 21,
+    "benefits": 21,
+    "resources": 9,
+    "contacts": 9,
+    "forms": 10,
+    "regulations": 0
+  },
+  "warnings": [
+    "1 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

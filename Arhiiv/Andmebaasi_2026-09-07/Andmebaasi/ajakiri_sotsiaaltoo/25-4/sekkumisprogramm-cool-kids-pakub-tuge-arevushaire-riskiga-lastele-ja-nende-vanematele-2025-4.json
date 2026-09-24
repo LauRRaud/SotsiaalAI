@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2025",
+  "articleId": "sekkumisprogramm-cool-kids-pakub-tuge-arevushaire-riskiga-lastele-ja-nende-vanematele-2025-4",
+  "title": "Sekkumisprogramm „Cool Kids“ pakub tuge ärevushäire riskiga lastele ja nende vanematele",
+  "authors": [
+    "Krista Järv"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2025",
+  "section": "Laste vaimne tervis",
+  "pageRange": "1–4",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab tõenduspõhist kognitiiv-käitumuslikku sekkumisprogrammi „Cool Kids“, mis on mõeldud ärevushäire riskiga 7–17-aastaste laste ja noorte ning nende vanemate toetamiseks. Kirjeldatakse programmi ülesehitust, tõenduspõhisust ja Eesti katseprojekti eesmärke vaimse tervise varajase toe parandamisel.",
+  "tags": [
+    "laste vaimne tervis",
+    "ärevushäired",
+    "Cool Kids",
+    "kognitiiv-käitumisteraapia",
+    "vanemlus",
+    "varajane sekkumine",
+    "tõenduspõhine programm"
+  ],
+  "source_type": "file",
+  "source_path": "Sekkumisprogramm „Cool Kids“ pakub tuge ärevushäire riskiga lastele ja nende vanematele.pdf",
+  "document_id": "sotsiaaltoo-4-2025-sekkumisprogramm-cool-kids-pakub-tuge-arevushaire-riskiga-lastele-ja-nende-vanematele-2025-4",
+  "source_format": "pdf",
+  "source_sha256": "70acb047f6e0eea0820ed98b52a0aa3a64b97b25f8dd8d27a9ae876e434bfda2",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2025-sekkumisprogramm-cool-kids-pakub-tuge-arevushaire-riskiga-lastele-ja-nende-vanematele-2025-4",
+    "previous_source_path": "Sekkumisprogramm „Cool Kids“ pakub tuge ärevushäire riskiga lastele ja nende vanematele.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "70acb047f6e0eea0820ed98b52a0aa3a64b97b25f8dd8d27a9ae876e434bfda2",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

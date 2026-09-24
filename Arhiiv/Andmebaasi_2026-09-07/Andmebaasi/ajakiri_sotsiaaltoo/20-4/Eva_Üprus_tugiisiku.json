@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2020",
+  "articleId": "eva-uprus-tugiisiku-too-mote-on-inimesi-inspireerida-2020-4",
+  "title": "Eva Üprus: tugiisiku töö mõte on inimesi inspireerida",
+  "authors": [
+    "Hille Tarto"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2020",
+  "section": "Persoon",
+  "pageRange": "3-8",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu vanglast vabanenute tugiisiku ja taastava õiguse praktiku Eva Üprusega. Intervjuus räägib ta oma kujunemisteest, tööst õigusrikkujate ja ohvritega, vastutuse võtmisest, sildade loomisest kogukonnaga ning sellest, miks tugiisiku roll on eelkõige inimeste inspireerimine ja lootuse taastamine.",
+  "tags": [
+    "tugiisiku teenus",
+    "vanglast vabanenud",
+    "taastav õigus",
+    "kogukonnatöö",
+    "persoonilugu",
+    "rehabilitatsioon",
+    "sotsiaaltöö praktika"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2020_web_link_Part3.pdf",
+  "document_id": "sotsiaaltoo-4-2020-eva-uprus-tugiisiku-too-mote-on-inimesi-inspireerida-2020-4",
+  "source_format": "pdf",
+  "source_sha256": "abfb6ef012f7572d23b555005def86105d0a9c66e07d7f94d51caad5aac3aa67",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2020-eva-uprus-tugiisiku-too-mote-on-inimesi-inspireerida-2020-4",
+    "previous_source_path": "Sotsiaaltoo_4_2020_web_link_Part3.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "abfb6ef012f7572d23b555005def86105d0a9c66e07d7f94d51caad5aac3aa67",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-tartu-vald",
+  "document_id": "kov-tartu-vald",
+  "municipality": "Tartu vald",
+  "municipality_id": "tartu_vald",
+  "county": "Tartumaa",
+  "checkedAt": "2026-04-30",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-tartu-vald",
+  "coverage": {
+    "services": 16,
+    "benefits": 16,
+    "resources": 7,
+    "contacts": 11,
+    "forms": 7,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "tartu_vald",
+    "source_register_file": "tartu-vald.sources.json",
+    "service_benefit_resource_items": 39,
+    "items_with_source_keys": 39,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 25,
+    "items_without_related_forms": 14,
+    "items_with_related_contacts": 36,
+    "items_without_related_contacts": 3,
+    "form_sources": 0,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": []
+  },
+  "notes": [
+    "Pakett on koostatud Tartu valla ametliku veebilehe sotsiaal-, pere-, tervise-, haridus- ja e-teenuste haru kontrolli põhjal.",
+    "RT/legal kiht on teadlikult välja jäetud; õigusaktide lingid on KOV veebilehel olemas, kuid neid ei lisatud KOV veebipaketi allikateks."
+  ],
+  "unresolvedIssues": [
+    "Sotsiaalteenuste ja toetuste taotlusvormide sisufailid on viidatud ametliku veebilehe linkide järgi; failide täielikku vormisisu ei ole selles paketis eraldi välja loetud.",
+    "Eluruumi tagamise, turvakoduteenuse ja varjupaigateenuse lehtedel esines vormilingi puhul prelive.vportal.ee domeenile viitavaid linke; paketi kanonilise vormina kasutati Tartu valla ametliku domeeni üldavaldust.",
+    "Hoolduskoordinaatori teenus ilmus Tartu valla menüüs, kuid eraldi detaillehte ei avatud ega normaliseeritud; see vajab eraldi järelkontrolli.",
+    "Hoolekandeasutuse/paevakeskuse teema on normaliseeritud Sotsiaalteenuste Keskuse ressursina, kuid kõiki võimalikke hoolekandeasutusi ja päevakeskusi ei kontrollitud eraldi teenusepakkujate registrina.",
+    "SPOKU iseteenindus on märgitud resource itemina KOV lehel avaldatud suunamise põhjal; välise iseteeninduse sisemisi vorme ei kasutatud allikana."
+  ],
+  "RT_CANDIDATES_FOR_SEPARATE_MANIFEST": [
+    "Sotsiaalhoolekandelise abi andmise kord",
+    "Tartu valla eelarvest makstavate sotsiaaltoetuste määrad",
+    "Sotsiaalhoolekande seadus"
+  ],
+  "municipality_name": "Tartu vald",
+  "checked_at": "2026-04-30",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "tartu-vald.sources.json",
+  "sourceCount": 40,
+  "counts": {
+    "services": 16,
+    "benefits": 16,
+    "resources": 7,
+    "contacts": 11,
+    "forms": 7,
+    "regulations": 0
+  },
+  "warnings": []
+}

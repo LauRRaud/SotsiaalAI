@@ -1,0 +1,113 @@
+{
+  "docId": "sotsiaaltoo-eri-2022",
+  "articleId": "oppimisest-ja-opetamisest-tlu-2022-eri",
+  "title": "Sotsiaaltöö õppimisest ja õpetamisest Tallinna Ülikoolis",
+  "authors": [
+    "Marju Medar",
+    "Kersti Kriisk",
+    "Reeli Sirotkina",
+    "Merike Sisask",
+    "Marika Voogre",
+    "Karmen Toros"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö (erinumber)",
+  "issueLabel": "Eri/2022",
+  "section": "30 aastat õpetamist",
+  "pageRange": "44-49",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade sellest, kuidas on Tallinna Ülikoolis korraldatud sotsiaaltöö õpe pärast 2015. aasta ülikooli haldusreformi, mil eriala viidi ühiskonnateaduste instituudi sotsiaalkaitse suuna koosseisu. 2021. aasta seisuga toimub õpe viie õppekava alusel: sotsiaaltöö bakalaureuse-, magistri- ja doktoriõpe, sotsiaalpedagoogika ja lastekaitse magistriõpe ning inglisekeelne sotsiaalse ettevõtluse magistriõpe.",
+  "tags": [
+    "õppekavad",
+    "Tallinna Ülikool",
+    "sotsiaaltööharidus",
+    "sotsiaalne ettevõtlus",
+    "õppekorraldus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo-ERINUMBER_2022_Part7.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-eri-2022-oppimisest-ja-opetamisest-tlu-2022-eri",
+  "source_sha256": "411dea233fa7b385224f01592c524753dece46d6d93dec742859b2e1a52b2a8a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2022-oppimisest-ja-opetamisest-tlu-2022-eri",
+    "previous_source_path": "Sotsiaaltoo-ERINUMBER_2022_Part7.txt",
+    "previous_source_original_path": "Sotsiaaltoo-ERINUMBER_2022_Part7.pdf",
+    "reference_stored_source_sha256": "057d92050255a907ac8810f1c35a6edbed4e90c39512c4f37b5bdf3120831937",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo-ERINUMBER_2022.pdf",
+      "source_sha256": "807b48240fe049838a94b8cffd3e1b388f778591bddb0ad5cb542d3cd6ff73b1",
+      "pdf_start_page": 46,
+      "pdf_end_page": 51,
+      "printed_page_range": "44-49",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 51,
+      "source_regions": [
+        {
+          "source_pdf_page": 46,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 47,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 48,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 49,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 50,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 51,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "44-49",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo-ERINUMBER_2022.pdf"
+    },
+    "server_page_range": "44-49"
+  }
+}

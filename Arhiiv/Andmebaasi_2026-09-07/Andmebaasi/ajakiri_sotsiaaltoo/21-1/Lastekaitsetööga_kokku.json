@@ -1,0 +1,37 @@
+{
+  "docId": "sotsiaaltoo-1-2021",
+  "articleId": "lastekaitsetooga-kokku-puutunud-vaade-eestis-2021-1",
+  "title": "Lastekaitsetööga kokku puutunud laste ja lähedaste vaade lastekaitsetööle Eestis",
+  "authors": [
+    "Tuuli-Brit Vaga"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2021",
+  "section": "Uurimus",
+  "pageRange": "63-69",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimus laste ja lähedaste hinnangutest lastekaitsetööle.",
+  "tags": [
+    "lastekaitsetöö",
+    "lapsed",
+    "lähedased"
+  ],
+  "source_type": "file",
+  "source_path": "artikkel_11_lastekaitsetoo_vaade.pdf",
+  "document_id": "sotsiaaltoo-1-2021-lastekaitsetooga-kokku-puutunud-vaade-eestis-2021-1",
+  "source_format": "pdf",
+  "source_sha256": "e82f91729f45645ee66a6df6b959d593fb978aae7e29ee433f1cba440f2de8ea",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2021-lastekaitsetooga-kokku-puutunud-vaade-eestis-2021-1",
+    "previous_source_path": "artikkel_11_lastekaitsetoo_vaade.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e82f91729f45645ee66a6df6b959d593fb978aae7e29ee433f1cba440f2de8ea",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

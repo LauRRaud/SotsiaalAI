@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2021",
+  "articleId": "hooldekodu-elanike-autonoomiaga-arvestamine-kolme-hooldekodu-naitel-2021-3",
+  "title": "Hooldekodu elanike autonoomiaga arvestamine kolme hooldekodu näitel",
+  "authors": [
+    "Kadri Kuulpak"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2021",
+  "section": "Uurimus",
+  "pageRange": "44-52",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimus vaatleb, kuidas arvestatakse hooldekodu elanike autonoomiaga kolmes erinevas Eesti hooldekodus. Analüüsitakse elanike, töötajate ja juhtide vaateid õigusele otsustada oma igapäevaelu, ajakasutuse, suhtluse ja isiklike harjumuste üle. Tuuakse välja takistused, mis tulenevad nii ressursi- ja personalikitsikusest kui ka hoiakutest, hirmust riskide ees ja institutsionaalsest kultuurist. Artikkel toob esile häid praktikaid, mis suurendavad elanike võimalusi valida, osaleda ja säilitada väärikus, ning annab soovitusi hooldekodude juhtidele ja poliitikakujundajatele, kuidas liikuda inimkesksema, autonoomiat toetava hoolekandesüsteemi poole.",
+  "tags": [
+    "hooldekodu",
+    "elanike autonoomia",
+    "inimkeskne hoolekanne",
+    "eakad",
+    "hooldustöötajad",
+    "institutsionaalne kultuur",
+    "valikuvabadus",
+    "hea praktika"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2021_web_link_Part11.pdf",
+  "document_id": "sotsiaaltoo-3-2021-hooldekodu-elanike-autonoomiaga-arvestamine-kolme-hooldekodu-naitel-2021-3",
+  "source_format": "pdf",
+  "source_sha256": "e08f00b06e0b19b9dd85fde8dc962cb0dbfd191dba631c6c69e814afb70e7961",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2021-hooldekodu-elanike-autonoomiaga-arvestamine-kolme-hooldekodu-naitel-2021-3",
+    "previous_source_path": "Sotsiaaltoo_3_2021_web_link_Part11.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e08f00b06e0b19b9dd85fde8dc962cb0dbfd191dba631c6c69e814afb70e7961",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

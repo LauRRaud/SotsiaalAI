@@ -1,0 +1,80 @@
+{
+  "source": {
+    "source_id": "tarkvanem_infomaterjal_beebivanematele_kodu_kohandamiseks_lapse_esimes",
+    "title": "Infomaterjal beebivanematele kodu kohandamiseks lapse esimesel eluaastal",
+    "url": "https://tarkvanem.ee/wp-content/uploads/2023/10/infomaterjal-beebivanematele-kodu-kohandamiseks-lapse-esimesel-eluaastal.pdf",
+    "normalized_url": "https://tarkvanem.ee/wp-content/uploads/2023/10/infomaterjal-beebivanematele-kodu-kohandamiseks-lapse-esimesel-eluaastal.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Tarkvanem",
+    "organization_id": "tarkvanem",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Tarkvanem",
+      "lapsed ja pered",
+      "laps",
+      "lapsevanem",
+      "pere",
+      "vanemlus",
+      "koduohutus",
+      "kodukeskkond",
+      "kodukülastus",
+      "infomaterjal"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "Tarkvanem",
+      "heading_4": null,
+      "line": 633,
+      "order": 321
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Infomaterjal beebivanematele kodu kohandamiseks lapse esimesel eluaastal"
+    ],
+    "collection_hints": [
+      "organization_materials"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Tarkvanem"
+    ],
+    "organizations_seen": [
+      "tarkvanem"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "Tarkvanem",
+        "line": 633,
+        "order": 321
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://tarkvanem.ee/wp-content/uploads/2023/10/infomaterjal-beebivanematele-kodu-kohandamiseks-lapse-esimesel-eluaastal.pdf"
+  },
+  "final_url": "https://tarkvanem.ee/wp-content/uploads/2023/10/infomaterjal-beebivanematele-kodu-kohandamiseks-lapse-esimesel-eluaastal.pdf",
+  "redirects": [],
+  "sha256": "b4e936ef149255e9c59273ae83920994472b8187f59c408922212587e05b55fd",
+  "bytes": 2130512,
+  "downloaded_at": "2026-08-14T08:00:59.016Z"
+}

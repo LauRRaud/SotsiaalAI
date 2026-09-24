@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2021",
+  "articleId": "eessona-2021-1",
+  "title": "EESSÕNA",
+  "authors": [
+    "Kersti Kaljulaid"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2021",
+  "section": "Eessõna",
+  "pageRange": "2-2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Eesti Vabariigi presidendi Kersti Kaljulaidi sissejuhatav mõtisklus hoolivuse, sotsiaalse solidaarsuse ja hoolekandesüsteemi rolli üle. Ta arutleb, kuidas on aastatega muutunud arusaam vastutusest abivajajate ees, millist mõju avaldab COVID-19 kriis hooldekodudele ja sotsiaalvaldkonna töötajatele ning miks on oluline väärtustada nii hooldust vajavaid inimesi kui ka nende peresid ja sotsiaaltöötajaid. Eessõnas rõhutatakse, et iga inimese potentsiaal on ühiskonna varandus ning et samm-sammult liigutakse hoolivama heaoluühiskonna suunas.",
+  "tags": [
+    "hoolivus",
+    "sotsiaalpoliitika",
+    "sotsiaaltöö väärtustamine",
+    "COVID-19",
+    "heaoluühiskond",
+    "president",
+    "solidaarsus"
+  ],
+  "source_type": "file",
+  "source_path": "artikkel_1_eessona.pdf",
+  "document_id": "sotsiaaltoo-1-2021-eessona-2021-1",
+  "source_format": "pdf",
+  "source_sha256": "b65a148c718d4cf554e206fe1474c1f44e1c1aea7f95d9da867352525ada934a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2021-eessona-2021-1",
+    "previous_source_path": "artikkel_1_eessona.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b65a148c718d4cf554e206fe1474c1f44e1c1aea7f95d9da867352525ada934a",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

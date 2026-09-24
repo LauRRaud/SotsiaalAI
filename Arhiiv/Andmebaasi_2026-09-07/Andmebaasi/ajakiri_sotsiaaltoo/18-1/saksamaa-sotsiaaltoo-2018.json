@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-1-2018",
+  "articleId": "saksa-sotsiaaltoo-aktuaalsed-teemad-ii-2018",
+  "title": "Aktuaalsed teemad Saksamaa sotsiaaltöö poliitikas, hariduses ja kutsetegevuses II",
+  "authors": [
+    "Peter Erath",
+    "Jutta Harrer"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2018",
+  "section": "Uued suunad Euroopas",
+  "pageRange": "77-80",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Saksamaa sotsiaaltöö meetodite uute arengute, tõenduspõhisuse, vabatahtlike rolli ja professionaalse identiteedi väljakutsete analüüs.",
+  "tags": [
+    "rahvusvaheline sotsiaaltöö",
+    "Saksamaa",
+    "tõenduspõhine praktika",
+    "sotsiaaltöö meetodid",
+    "vabatahtlik töö",
+    "sotsiaalpoliitika"
+  ],
+  "source_type": "file",
+  "source_path": "Part20_155619647682_ST1_2018_link.pdf",
+  "mapping_fixed": "20260814-161821",
+  "document_id": "sotsiaaltoo-1-2018-saksa-sotsiaaltoo-aktuaalsed-teemad-ii-2018",
+  "source_format": "pdf",
+  "source_sha256": "4aa7bf19f1e4afe46492d438c0ff6f2266eb33f68b2b3a1c844eda0b66f1c1b6",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2018-saksa-sotsiaaltoo-aktuaalsed-teemad-ii-2018",
+    "previous_source_path": "Part20_155619647682_ST1_2018_link.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "4aa7bf19f1e4afe46492d438c0ff6f2266eb33f68b2b3a1c844eda0b66f1c1b6",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

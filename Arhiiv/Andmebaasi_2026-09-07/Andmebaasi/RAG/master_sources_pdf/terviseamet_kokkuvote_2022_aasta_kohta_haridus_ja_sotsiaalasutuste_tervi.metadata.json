@@ -1,0 +1,82 @@
+{
+  "source": {
+    "source_id": "terviseamet_kokkuvote_2022_aasta_kohta_haridus_ja_sotsiaalasutuste_tervi",
+    "title": "Kokkuvõte 2022. aasta kohta: haridus- ja sotsiaalasutuste tervisekaitse järelevalve",
+    "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-06/2022.%20a%20kokkuv%C3%B5te_haridus_sotsiaal_.pdf",
+    "normalized_url": "https://www.terviseamet.ee/sites/default/files/documents/2024-06/2022. a kokkuvõte_haridus_sotsiaal_.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "Terviseamet",
+    "organization_id": "terviseamet",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "Terviseamet",
+      "uuring",
+      "raport",
+      "analüüs",
+      "tervisekaitse",
+      "järelevalve",
+      "haridusasutus",
+      "sotsiaalasutus"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_054",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+    "source_context": {
+      "heading_2": "Terviseamet",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 303,
+      "order": 176
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "Kokkuvõte 2022. aasta kohta: haridus- ja sotsiaalasutuste tervisekaitse järelevalve"
+    ],
+    "collection_hints": [
+      "research_reports"
+    ],
+    "source_types_seen": [
+      "research_report"
+    ],
+    "resource_types_seen": [
+      "research_evidence"
+    ],
+    "publishers_seen": [
+      "Terviseamet"
+    ],
+    "organizations_seen": [
+      "terviseamet"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Terviseamet",
+        "line": 303,
+        "order": 176
+      },
+      {
+        "heading_2": "Terviseamet",
+        "line": 777,
+        "order": 383
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.terviseamet.ee/sites/default/files/documents/2024-06/2022. a kokkuvõte_haridus_sotsiaal_.pdf"
+  },
+  "final_url": "https://www.terviseamet.ee/sites/default/files/documents/2024-06/2022.%20a%20kokkuv%C3%B5te_haridus_sotsiaal_.pdf",
+  "redirects": [],
+  "sha256": "cfb555e888000293983356a093181710e09387e8c155b50de308e5a107303280",
+  "bytes": 118523,
+  "downloaded_at": "2026-08-14T08:00:37.788Z"
+}

@@ -1,0 +1,38 @@
+{
+  "docId": "sotsiaaltoo-4-2017",
+  "articleId": "vabatahtlikkuse-pohimote-2017",
+  "title": "Vabatahtlikkuse põhimõte üldhooldusteenuse osutamisel",
+  "authors": [
+    "Maria Sults",
+    "Eva Lillemaa"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2017",
+  "section": "Õigus",
+  "pageRange": "21-28",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Õigusanalyüs vabatahtlikkuse põhimõtte rakendamisest üldhooldusteenusel.",
+  "tags": [
+    "õigus",
+    "hooldus",
+    "vabaduspõhiõigus"
+  ],
+  "source_type": "file",
+  "source_path": "Vabatahtlikkuse põhimõte üldhooldusteenuse osutamisel.pdf",
+  "document_id": "sotsiaaltoo-4-2017-vabatahtlikkuse-pohimote-2017",
+  "source_format": "pdf",
+  "source_sha256": "e9e96b4b5773ca23192000fdeb4332ac5be7554ccdbefac175ccf0700ee11ad0",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2017-vabatahtlikkuse-pohimote-2017",
+    "previous_source_path": "Vabatahtlikkuse põhimõte üldhooldusteenuse osutamisel.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e9e96b4b5773ca23192000fdeb4332ac5be7554ccdbefac175ccf0700ee11ad0",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

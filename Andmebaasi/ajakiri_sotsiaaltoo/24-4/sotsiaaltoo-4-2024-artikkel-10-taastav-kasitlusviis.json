@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-4-2024",
+  "issueLabel": "4/2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "taastav-kasitlusviis-2024-4",
+  "title": "Taastav käsitlusviis loob suhteid ja muudab ühiskonda sidusamaks",
+  "authors": [
+    "Annegrete Johanson"
+  ],
+  "section": "Metoodika",
+  "pageRange": "63–68",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "source_path": "sotsiaaltoo_4_2024_web_Part12.pdf",
+  "description": "Artikkel avab taastava õiguse, taastava praktika ja taastava käsitlusviisi põhimõtted ning näitab, kuidas neid saab rakendada lisaks kriminaalõigusele ka hariduses, sotsiaaltöös, organisatsioonides ja igapäevaelus. Rõhutatakse dialoogi, kahju heastamist, suhte taastamist ja kõigi osapoolte kaasamist konfliktide lahendamisse. Autor toob näiteid taastavate aruteluringide ja vahenduse kasutamisest noortega ja kogukondades ning selgitab, kuidas taastav käsitlus aitab vähendada korduvaid õigusrikkumisi, tugevdada suhted ja luua sidusamat ühiskonda.",
+  "tags": [
+    "taastav õigus",
+    "taastav praktika",
+    "taastav käsitlusviis",
+    "vahendus",
+    "aruteluringid",
+    "konfliktide lahendamine",
+    "kogukond",
+    "sotsiaaltöö metoodika"
+  ],
+  "document_id": "sotsiaaltoo-4-2024-taastav-kasitlusviis-2024-4",
+  "source_format": "pdf",
+  "source_sha256": "d6770b720a9970605d93b01507e486b9f5e4e04c481613707b9e286c467ecb03",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2024-taastav-kasitlusviis-2024-4",
+    "previous_source_path": "sotsiaaltoo_4_2024_web_Part12.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d6770b720a9970605d93b01507e486b9f5e4e04c481613707b9e286c467ecb03",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

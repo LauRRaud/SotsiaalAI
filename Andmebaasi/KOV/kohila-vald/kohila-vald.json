@@ -1,0 +1,4460 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-kohila-vald",
+  "document_id": "kov-kohila-vald",
+  "municipality": "Kohila vald",
+  "municipality_id": "kohila_vald",
+  "county": "Raplamaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "kohila_vald_contact_kohila_vallavalitsus",
+      "canonical_item_id": "kohila_vald:contact:kohila_vallavalitsus",
+      "itemType": "contact",
+      "title": "Kohila Vallavalitsus",
+      "status": "active",
+      "summary": "Kohila Vallavalitsus on üldkontakt sotsiaalteenuste ja sotsiaaltoetuste taotluste esitamiseks ning ametnikega ühenduse võtmiseks. Sotsiaaltoetuste leht nimetab taotluste esitamise e-posti aadressina ning kontaktileht annab vallavalitsuse aadressi ja telefonid.",
+      "sourceKeys": [
+        "contact_page",
+        "social_benefits"
+      ],
+      "name": "Kohila Vallavalitsus",
+      "role": "üldkontakt",
+      "department": "Kohila Vallavalitsus",
+      "address": "Vabaduse 1, Kohila 79804",
+      "relatedTo": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email",
+        "address"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "contact_page",
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_contact_kohila_vallavalitsus",
+      "document_id": "kohila_vald_contact_kohila_vallavalitsus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "beba50fe325631019c19bb95640a6c79514daa8499cbcd444fd8624c979963b1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_contact_angela_poder",
+      "canonical_item_id": "kohila_vald:contact:angela_poder",
+      "itemType": "contact",
+      "title": "Angela Põder",
+      "status": "active",
+      "summary": "Angela Põder on Kohila Vallavalitsuse sotsiaalnõunik. Kontaktileht avaldab tema telefoninumbri, kuid e-posti aadress on veebis varjestatud.",
+      "sourceKeys": [
+        "contact_page",
+        "social_overview"
+      ],
+      "name": "Angela Põder",
+      "role": "sotsiaalnõunik",
+      "department": "Kohila Vallavalitsus",
+      "address": "Vabaduse 1, Kohila 79804",
+      "relatedTo": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email"
+      ],
+      "unresolvedIssues": [
+        "E-posti aadress on KOV veebis varjestatud kujul."
+      ],
+      "item_type": "contact",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "contact_page",
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_contact_angela_poder",
+      "document_id": "kohila_vald_contact_angela_poder",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "339ccb479838ea6c07ccc8ac212ab0c1c34989ca1b893a407c4884f2a09d80c8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_contact_liisa_lee",
+      "canonical_item_id": "kohila_vald:contact:liisa_lee",
+      "itemType": "contact",
+      "title": "Liisa Lee",
+      "status": "active",
+      "summary": "Liisa Lee on Kohila Vallavalitsuse sotsiaaltöö spetsialist. Sotsiaalteenuste leht nimetab teda koduteenuse ja üldhooldusteenuse kontaktina ning tugiisikuteenuse täisealiste kontaktina.",
+      "sourceKeys": [
+        "contact_page",
+        "social_benefits",
+        "social_services"
+      ],
+      "name": "Liisa Lee",
+      "role": "sotsiaaltöö spetsialist",
+      "department": "Kohila Vallavalitsus",
+      "address": "Vabaduse 1, Kohila 79804",
+      "relatedTo": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email"
+      ],
+      "unresolvedIssues": [
+        "E-posti aadress on KOV veebis varjestatud kujul."
+      ],
+      "item_type": "contact",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "contact_page",
+        "social_benefits",
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_contact_liisa_lee",
+      "document_id": "kohila_vald_contact_liisa_lee",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "91a9a48a15434a5d95f12a66912b4a61dfef9c21314bafef69b9ee5014fcdf67",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_contact_kaisa_hogren",
+      "canonical_item_id": "kohila_vald:contact:kaisa_hogren",
+      "itemType": "contact",
+      "title": "Kaisa Högren",
+      "status": "active",
+      "summary": "Kaisa Högren on Kohila Vallavalitsuse sotsiaaltöö spetsialist. Sotsiaalteenuste leht nimetab teda eluruumi tagamise teenuse, sotsiaaltransporditeenuse ja täisealise isiku tugiisikuteenuse kontaktina.",
+      "sourceKeys": [
+        "contact_page",
+        "social_benefits",
+        "social_services"
+      ],
+      "name": "Kaisa Högren",
+      "role": "sotsiaaltöö spetsialist",
+      "department": "Kohila Vallavalitsus",
+      "address": "Vabaduse 1, Kohila 79804",
+      "relatedTo": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email"
+      ],
+      "unresolvedIssues": [
+        "E-posti aadress on KOV veebis varjestatud kujul."
+      ],
+      "item_type": "contact",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "contact_page",
+        "social_benefits",
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_contact_kaisa_hogren",
+      "document_id": "kohila_vald_contact_kaisa_hogren",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "0f109482aeb631fb345cf7e2479cea48bcd7c1d2a0902daac94007ec08b6c4d7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_contact_karmen_metssalu",
+      "canonical_item_id": "kohila_vald:contact:karmen_metssalu",
+      "itemType": "contact",
+      "title": "Karmen Metssalu",
+      "status": "active",
+      "summary": "Karmen Metssalu on Kohila Vallavalitsuse lastekaitsespetsialist. KOV veebis on ta nimetatud tugiisikuteenuse lapse kontaktina ning Kohila aleviku laste ja perede piirkondliku lastekaitsespetsialistina.",
+      "sourceKeys": [
+        "child_protection",
+        "contact_page",
+        "social_services"
+      ],
+      "name": "Karmen Metssalu",
+      "role": "lastekaitsespetsialist",
+      "department": "Kohila Vallavalitsus",
+      "address": "Vabaduse 1, Kohila 79804",
+      "relatedTo": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email"
+      ],
+      "unresolvedIssues": [
+        "E-posti aadress on KOV veebis varjestatud kujul."
+      ],
+      "item_type": "contact",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "child_protection",
+        "contact_page",
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_contact_karmen_metssalu",
+      "document_id": "kohila_vald_contact_karmen_metssalu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "f7823c9d180c2cb1e7af0bd187b31be19058eb6bde715551434af28231ac5102",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_contact_anna_nikulitseva",
+      "canonical_item_id": "kohila_vald:contact:anna_nikulitseva",
+      "itemType": "contact",
+      "title": "Anna Nikulitševa",
+      "status": "active",
+      "summary": "Anna Nikulitševa on Kohila Vallavalitsuse lastekaitsespetsialist. Lastekaitse leht kirjeldab tema piirkonnana Hageri, Aespa ja Prillimäe alevikke ning mitmeid Kohila valla külasid.",
+      "sourceKeys": [
+        "child_protection",
+        "contact_page"
+      ],
+      "name": "Anna Nikulitševa",
+      "role": "lastekaitsespetsialist",
+      "department": "Kohila Vallavalitsus",
+      "address": "Vabaduse 1, Kohila 79804",
+      "relatedTo": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email",
+        "territory"
+      ],
+      "unresolvedIssues": [
+        "E-posti aadress on KOV veebis varjestatud kujul."
+      ],
+      "item_type": "contact",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "child_protection",
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_contact_anna_nikulitseva",
+      "document_id": "kohila_vald_contact_anna_nikulitseva",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "ed96d65e3c9120f15ab677959396ccc3846e13b4aed0224f2eebaab035ca55a9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_service_koduteenus",
+      "canonical_item_id": "kohila_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus aitab täisealisel isikul iseseisvalt ja turvaliselt kodus toime tulla ning säilitada või parandada elukvaliteeti. Teenuse raames abistatakse toimingutes, mida inimene terviseseisundi, tegevusvõime või elukeskkonna tõttu kõrvalabita teha ei suuda, näiteks kütmine, toiduvalmistamine, eluruumi ja riiete korrastamine ning toiduainete ja majapidamistarvete ostmine.",
+      "sourceKeys": [
+        "social_services"
+      ],
+      "targetGroup": "täisealine isik, kes vajab kodustes tingimustes kõrvalabi",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "phone",
+          "in-person"
+        ],
+        "steps": [
+          "Pöörduda sotsiaaltöö spetsialist Liisa Lee poole."
+        ],
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kohila_vald_contact_liisa_lee"
+      ],
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "contact"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_service_koduteenus",
+      "document_id": "kohila_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/",
+      "content_hash": "4b2044c948d92fc98d469a1db17b0d0d8f0ac288f2d8f54bfb6eeecd7009e2b6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "canonical_item_id": "kohila_vald:service:valjaspool_kodu_osutatav_uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatav üldhooldusteenus on mõeldud inimesele, kellel on ajutine või püsiv hooldusvajadus, mida ei ole võimalik kodustes tingimustes tagada. Teenuse valla poolse rahastuse küsimuses tuleb pöörduda sotsiaaltöö spetsialisti poole.",
+      "sourceKeys": [
+        "social_services"
+      ],
+      "targetGroup": "inimene, kelle ajutist või püsivat hooldusvajadust ei saa kodus tagada",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "phone",
+          "in-person"
+        ],
+        "steps": [
+          "Pöörduda sotsiaaltöö spetsialist Liisa Lee poole."
+        ],
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kohila_vald_form_hooldekodukoha_avaldus_docx"
+      ],
+      "relatedContacts": [
+        "kohila_vald_contact_liisa_lee"
+      ],
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "contact"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "document_id": "kohila_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/",
+      "content_hash": "023c9e6f656771f0d677a7d02391bccf4ef4aac6c465737250081e6a0d288346",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_service_tugiisikuteenus",
+      "canonical_item_id": "kohila_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus toetab iseseisvat toimetulekut olukordades, kus inimene vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu kõrvalabi. Abi seisneb juhendamises, motiveerimises ning isiku suurema iseseisvuse ja omavastutuse arendamises.",
+      "sourceKeys": [
+        "social_services"
+      ],
+      "targetGroup": "lapsed ja täisealised isikud, kes vajavad tugiisiku kõrvalabi",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "phone",
+          "in-person"
+        ],
+        "steps": [
+          "Lapse tugiisikuteenuse saamiseks pöörduda Karmen Metssalu poole.",
+          "Täisealise isiku tugiisikuteenuse saamiseks pöörduda Liisa Lee või Kaisa Högreni poole."
+        ],
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kohila_vald_contact_karmen_metssalu",
+        "kohila_vald_contact_liisa_lee",
+        "kohila_vald_contact_kaisa_hogren"
+      ],
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "contact"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_service_tugiisikuteenus",
+      "document_id": "kohila_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/",
+      "content_hash": "65dff2fdd6aa6f956ec8526916175d8e33872c8d7807dac16ba437a037301b6f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_service_eluruumi_tagamise_teenus",
+      "canonical_item_id": "kohila_vald:service:eluruumi_tagamise_teenus",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenus on mõeldud inimesele või perekonnale, kes ei ole sotsiaalmajandusliku olukorra tõttu võimeline endale sobivat eluaset ostma või vabaturult üürima. Võimaluse korral tagab kohalik omavalitsus teenuse raames KOV-i omandis oleva eluruumi või kasutab vabaturu võimalusi, näiteks korteri üürimist ja vahendamist eluruumi vajajale.",
+      "sourceKeys": [
+        "social_services"
+      ],
+      "targetGroup": "isik või perekond, kes ei suuda sobivat eluaset osta või üürida",
+      "conditions": "Sotsiaaleluruumi võivad taotleda Kohila valla elanikeregistris olevad isikud; eluruum antakse üürile tähtajaliselt.",
+      "application": {
+        "channels": [
+          "phone",
+          "in-person"
+        ],
+        "steps": [
+          "Võtta ühendust sotsiaaltöö spetsialist Kaisa Högreniga."
+        ],
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kohila_vald_contact_kaisa_hogren"
+      ],
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "conditions",
+        "application",
+        "contact"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_service_eluruumi_tagamise_teenus",
+      "document_id": "kohila_vald_service_eluruumi_tagamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/",
+      "content_hash": "d2b2e1a9f0e7ef2d588b558ee76ee328efbe9b2e863d13711505c03360588d02",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "kohila_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus on mõeldud inimesele, kes vajab töötamiseks, õppimiseks või avalike teenuste kasutamiseks transporti, kuid kelle erivajadus takistab isikliku või ühissõiduki kasutamist.",
+      "sourceKeys": [
+        "social_services"
+      ],
+      "targetGroup": "isik, kelle erivajadus takistab isikliku või ühissõiduki kasutamist",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "phone",
+          "in-person"
+        ],
+        "steps": [
+          "Võtta ühendust sotsiaaltöö spetsialist Kaisa Högreniga."
+        ],
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kohila_vald_contact_kaisa_hogren"
+      ],
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "contact"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_service_sotsiaaltransporditeenus",
+      "document_id": "kohila_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalteenused/",
+      "content_hash": "0450367a6ccdb7cbfabd52dacd1efc42eb8c5a617ecfde63d4bf15782e94580f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_service_lapse_ja_pere_noustamine",
+      "canonical_item_id": "kohila_vald:service:lapse_ja_pere_noustamine",
+      "itemType": "service",
+      "title": "Lapse ja pere nõustamine",
+      "status": "active",
+      "summary": "Kohila valla lastekaitsespetsialistid nõustavad valla elanikke erinevates lapsi ja peresid puudutavates küsimustes. Lastekaitse ülesannete hulka kuuluvad lapse õiguste ja heaolu kaitse, perede nõustamine, lastega seotud vaidluste lahendamisele kaasaaitamine ning laste ja perede sotsiaalteenuste korraldamine.",
+      "sourceKeys": [
+        "child_protection"
+      ],
+      "targetGroup": "Kohila valla lapsed, lapsevanemad ja lastega pered",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "phone",
+          "in-person"
+        ],
+        "steps": [
+          "Pöörduda lastekaitsespetsialisti poole piirkonna järgi."
+        ],
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kohila_vald_contact_karmen_metssalu",
+        "kohila_vald_contact_anna_nikulitseva"
+      ],
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "contact",
+        "territory"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "child_protection"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_service_lapse_ja_pere_noustamine",
+      "document_id": "kohila_vald_service_lapse_ja_pere_noustamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse/",
+      "content_hash": "f938831ebd5e3e758e51d41a36253da42c22240caa06d6a43f8c2e45a3c9b039",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_service_lapsehoiuteenuse_korraldamine",
+      "canonical_item_id": "kohila_vald:service:lapsehoiuteenuse_korraldamine",
+      "itemType": "service",
+      "title": "Lapsehoiuteenuse korraldamine",
+      "status": "active",
+      "summary": "Lastekaitse leht märgib, et Karmen Metssalu töövaldkonda kuulub lapsehoiuteenuse korraldamine ja teenuse vajaduse hindamine. Leht loetleb ka lapsehoiuteenuse pakkujad, kes võivad teenust pakkuda, kui teenusepakkuja vastab sotsiaalhoolekande seaduses sätestatud nõuetele.",
+      "sourceKeys": [
+        "child_protection"
+      ],
+      "targetGroup": "lapsed ja pered, kes vajavad lapsehoiuteenust",
+      "conditions": "Teenusepakkuja peab vastama sotsiaalhoolekande seaduses sätestatud nõuetele.",
+      "application": {
+        "channels": [
+          "phone",
+          "in-person"
+        ],
+        "steps": [
+          "Pöörduda lastekaitsespetsialist Karmen Metssalu poole teenuse vajaduse hindamiseks."
+        ],
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kohila_vald_contact_karmen_metssalu"
+      ],
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "conditions",
+        "application",
+        "contact",
+        "providers"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "child_protection"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_service_lapsehoiuteenuse_korraldamine",
+      "document_id": "kohila_vald_service_lapsehoiuteenuse_korraldamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse/",
+      "content_hash": "16914dbf73c82b4c9004fa895a6ddbbe8d1dd819b47ef0d64c200c721552cfd5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_service_asendushoolduse_ja_eestkoste_korraldamine",
+      "canonical_item_id": "kohila_vald:service:asendushoolduse_ja_eestkoste_korraldamine",
+      "itemType": "service",
+      "title": "Asendushoolduse, hooldus- ja eestkostepere korraldamine",
+      "status": "active",
+      "summary": "Lastekaitse ülesannete hulgas on vanemliku hoolitsuseta laste hoolduse korraldamine asenduskodus, hooldus- või eestkosteperes ning elluastumisele kaasaaitamine. Samal lehel on välja toodud ka eestkostja ülesannete täitmine valla eestkostel olevate laste osas.",
+      "sourceKeys": [
+        "child_protection"
+      ],
+      "targetGroup": "vanemliku hoolitsuseta lapsed ja valla eestkostel olevad lapsed",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "phone",
+          "in-person"
+        ],
+        "steps": [
+          "Pöörduda Kohila valla lastekaitsespetsialisti poole."
+        ],
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kohila_vald_contact_karmen_metssalu",
+        "kohila_vald_contact_anna_nikulitseva"
+      ],
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application",
+        "contact"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "child_protection"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_service_asendushoolduse_ja_eestkoste_korraldamine",
+      "document_id": "kohila_vald_service_asendushoolduse_ja_eestkoste_korraldamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse/",
+      "content_hash": "6b531cfbac24813691940c899f5c04ffd6950fdafe17fa637901d7db573d777a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "kohila_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on ajutine abimeede, mis leevendab abi vajavate isikute ja perekondade materiaalset puudust ning aitab tagada minimaalsed vahendid esmavajaduste rahuldamiseks. Toetust saab taotleda, kui kuu netosissetulek pärast arvestatud eluasemekulude mahaarvamist on alla kehtestatud toimetulekupiiri.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "isik või perekond, kelle netosissetulek pärast eluasemekulude mahaarvamist on alla toimetulekupiiri",
+      "conditions": "Taotleja tegelik elukoht on Kohila vallas; toetus sõltub netosissetulekust ja arvestatud eluasemekuludest.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "paper",
+          "in-person"
+        ],
+        "steps": [
+          "Esitada jooksva kuu toimetulekutoetuse taotlus hiljemalt 20. kuupäevaks.",
+          "Lisada vajalikud dokumendid.",
+          "Taotluse saab esitada SPOKU iseteeninduses, digiallkirjastatult e-posti aadressile või paberkandjal."
+        ],
+        "deadline": "jooksva kuu 20. kuupäev",
+        "decisionTime": "5 tööpäeva pärast kõikide dokumentide esitamist"
+      },
+      "pricing": null,
+      "amount": "Toimetulekupiir: 200 eurot üksi elavale inimesele või pere esimesele liikmele; 160 eurot pere teisele ja igale järgmisele liikmele; 240 eurot iga alaealise pereliikme kohta.",
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kohila_vald_form_toimetulekutoetuse_taotlus_docx"
+      ],
+      "relatedContacts": [
+        "kohila_vald_contact_liisa_lee",
+        "kohila_vald_contact_kaisa_hogren"
+      ],
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "conditions",
+        "application",
+        "amount",
+        "decisionTime"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_benefit_toimetulekutoetus",
+      "document_id": "kohila_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "cc82d3bc0d4f9362bddb9a9f8345fa112f60c9fe7155557a9b1f99641fb6260b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_benefit_taiendav_sotsiaaltoetus_alaealiste_perele",
+      "canonical_item_id": "kohila_vald:benefit:taiendav_sotsiaaltoetus_alaealiste_perele",
+      "itemType": "benefit",
+      "title": "Täiendav sotsiaaltoetus toimetulekutoetuse saajale",
+      "status": "active",
+      "summary": "KOV sotsiaaltoetuste leht märgib, et toimetulekutoetuse saajal, kelle kõik perekonnaliikmed on alaealised, on õigus saada koos toimetulekutoetusega täiendavat sotsiaaltoetust. Toetus on seotud toimetulekutoetuse määramisega.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "toimetulekutoetuse saaja, kelle kõik perekonnaliikmed on alaealised",
+      "conditions": "Kõik perekonnaliikmed on alaealised ja isikul on õigus toimetulekutoetusele.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "paper",
+          "in-person"
+        ],
+        "steps": [
+          "Täiendav sotsiaaltoetus määratakse koos toimetulekutoetusega."
+        ],
+        "deadline": "jooksva kuu 20. kuupäev koos toimetulekutoetuse taotlusega",
+        "decisionTime": "5 tööpäeva pärast kõikide dokumentide esitamist"
+      },
+      "pricing": null,
+      "amount": "15 eurot",
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedTo": [
+        "kohila_vald_benefit_toimetulekutoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kohila_vald_contact_liisa_lee",
+        "kohila_vald_contact_kaisa_hogren"
+      ],
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "conditions",
+        "application",
+        "amount",
+        "decisionTime"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_benefit_taiendav_sotsiaaltoetus_alaealiste_perele",
+      "document_id": "kohila_vald_benefit_taiendav_sotsiaaltoetus_alaealiste_perele",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "b26ccf46eb24bd4c3da4f7467c18c1d8a17e2adb0894bc1248d91fced6c50196",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_benefit_opitoetus",
+      "canonical_item_id": "kohila_vald:benefit:opitoetus",
+      "itemType": "benefit",
+      "title": "Õpitoetus",
+      "status": "active",
+      "summary": "Õpitoetus on sissetulekust sõltuv sotsiaaltoetus koolitarvete, koolirõivaste, huviringide ja õpilaskodu kulude katmiseks. Leht käsitleb õpitoetuse all ka toiduraha ja kohatasu toetust.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "leibkond, mille netosissetulek kuus on alla riiklikult kehtestatud toimetulekupiiri kahekordse määra",
+      "conditions": "Netosissetuleku hulka loetakse kõik sissetulekud, välja arvatud puudega lapse toetus ja ühekordselt makstavad peretoetused.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "paper",
+          "in-person"
+        ],
+        "steps": [
+          "Esitada toetuse avaldus koos vajalike lisadega.",
+          "Sissetulekust sõltuva toetuse taotlus tuleb esitada käesoleva kuu viimaseks tööpäevaks."
+        ],
+        "deadline": "käesoleva kuu viimane tööpäev",
+        "decisionTime": "hiljemalt 10 tööpäeva alates nõuetekohase taotluse esitamisest"
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kohila_vald_contact_liisa_lee",
+        "kohila_vald_contact_kaisa_hogren"
+      ],
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "conditions",
+        "application",
+        "decisionTime"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_benefit_opitoetus",
+      "document_id": "kohila_vald_benefit_opitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "e900fbb52a33473c89f3a9aa8728e812d832635bcf42669751b53191320dce6a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_benefit_toiduraha_ja_kohatasu_toetus",
+      "canonical_item_id": "kohila_vald:benefit:toiduraha_ja_kohatasu_toetus",
+      "itemType": "benefit",
+      "title": "Toiduraha ja kohatasu toetus",
+      "status": "active",
+      "summary": "Toiduraha ja kohatasu toetust makstakse lastehoiu või lasteaia toiduraha ja kohatasu ning koolilõuna osaliseks või täielikuks kompenseerimiseks. Toetus makstakse teenust pakkuvale asutusele kuludokumendi alusel vastavalt lapse tegelikele kulutustele.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "lastehoius, lasteaias või koolis käiva lapse pere",
+      "conditions": "Toetus on sissetulekust sõltuv; taotlus tuleb esitada koos vajalike lisadega.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "paper",
+          "in-person"
+        ],
+        "steps": [
+          "Esitada avaldus koos vajalike lisadega.",
+          "Perioodi 1. september kuni 31. jaanuar toetuseks esitada avaldus hiljemalt 25. septembriks.",
+          "Perioodi 1. veebruar kuni 31. august toetuseks esitada avaldus hiljemalt 10. jaanuariks."
+        ],
+        "deadline": "25. september või 10. jaanuar",
+        "decisionTime": "hiljemalt 10 tööpäeva alates nõuetekohase taotluse esitamisest"
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kohila_vald_contact_liisa_lee",
+        "kohila_vald_contact_kaisa_hogren"
+      ],
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "conditions",
+        "application",
+        "decisionTime"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_benefit_toiduraha_ja_kohatasu_toetus",
+      "document_id": "kohila_vald_benefit_toiduraha_ja_kohatasu_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "efd4721edf8b4734323d5cbdb182e31afeef7f0006af9d18440aedb3c942b717",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_benefit_ravimi_ja_abivahendi_toetus",
+      "canonical_item_id": "kohila_vald:benefit:ravimi_ja_abivahendi_toetus",
+      "itemType": "benefit",
+      "title": "Ravimi- ja abivahendi toetus",
+      "status": "active",
+      "summary": "Ravimi- ja abivahenditoetust makstakse ravimite ostu kompenseerimiseks lastele, töötutele, mittetöötavatele vanadus- ja töövõimetuspensionäridele ning puudega inimestele. Taotlusele tuleb lisada ravimite ostu tõendavad tšekid.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "lapsed, töötud, mittetöötavad vanadus- ja töövõimetuspensionärid ning puudega inimesed",
+      "conditions": "Taotlusele tuleb lisada ravimite ostu tõendavad tšekid.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "paper",
+          "in-person"
+        ],
+        "steps": [
+          "Esitada toetuse avaldus.",
+          "Lisada ravimite ostu tõendavad tšekid."
+        ],
+        "deadline": "käesoleva kuu viimane tööpäev sissetulekust sõltuva toetuse puhul",
+        "decisionTime": "hiljemalt 10 tööpäeva alates nõuetekohase taotluse esitamisest"
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kohila_vald_contact_liisa_lee",
+        "kohila_vald_contact_kaisa_hogren"
+      ],
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "conditions",
+        "application",
+        "decisionTime"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_benefit_ravimi_ja_abivahendi_toetus",
+      "document_id": "kohila_vald_benefit_ravimi_ja_abivahendi_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "7f1d046720b8dc30c01b7183924fa01417247c28dd0d6813ba357ae33edc315f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_benefit_eluasemega_seotud_kulutuste_toetus",
+      "canonical_item_id": "kohila_vald:benefit:eluasemega_seotud_kulutuste_toetus",
+      "itemType": "benefit",
+      "title": "Eluasemega seotud kulutuste osalise katmise toetus",
+      "status": "active",
+      "summary": "Eluasemega seotud kulutuste osalise katmise toetus on kütte ja muude eluasemekulude osaliseks kompenseerimiseks. KOV leht nimetab näidetena elektrikütte, küttepuude, kaugkütte ja kommunaalkulude arved.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "Kohila valla elanikud, kelle eluasemekulude katmine vajab toetust",
+      "conditions": "Taotlusele tuleb lisada kulu tõendavad dokumendid, näiteks elektriarve, küttepuude eest tasumist tõendav tšekk või kommunaalkulude arve.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "paper",
+          "in-person"
+        ],
+        "steps": [
+          "Esitada toetuse avaldus koos kulu tõendavate dokumentidega."
+        ],
+        "deadline": "käesoleva kuu viimane tööpäev sissetulekust sõltuva toetuse puhul",
+        "decisionTime": "hiljemalt 10 tööpäeva alates nõuetekohase taotluse esitamisest"
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kohila_vald_contact_liisa_lee",
+        "kohila_vald_contact_kaisa_hogren"
+      ],
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "conditions",
+        "application",
+        "decisionTime"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_benefit_eluasemega_seotud_kulutuste_toetus",
+      "document_id": "kohila_vald_benefit_eluasemega_seotud_kulutuste_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "3147fe1a775a6d8ffa4704cc334851d72110b13f1d6e8a7b1af610169481a11b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_benefit_sunnitoetus",
+      "canonical_item_id": "kohila_vald:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus on ühekordne toetus lapse sünni puhul. Toetus makstakse lapse sündi registreerivale lapsevanemale, kui KOV lehel nimetatud elukohatingimused on täidetud.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "lapse sündi registreeriv lapsevanem",
+      "conditions": "Vähemalt ühe lapsevanema elukoht oli lapse sünnile eelneva aasta 31. detsembril rahvastikuregistri andmetel Kohila vallas ning mõlema lapsevanema, välja arvatud üksikvanema, elukoht on sünni registreerimise hetkel Kohila vallas.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "paper",
+          "in-person"
+        ],
+        "steps": [
+          "Esitada sünnitoetuse taotlus.",
+          "Taotleda saab kolme kuu jooksul pärast lapse sünni registreerimist."
+        ],
+        "deadline": "3 kuud pärast lapse sünni registreerimist",
+        "decisionTime": "hiljemalt 10 tööpäeva alates nõuetekohase taotluse ja lisadokumentide esitamisest"
+      },
+      "pricing": null,
+      "amount": "500 eurot lapse kohta",
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kohila_vald_form_sunnitoetuse_avaldus_docx",
+        "kohila_vald_form_sunnitoetuse_e_vorm"
+      ],
+      "relatedContacts": [
+        "kohila_vald_contact_liisa_lee",
+        "kohila_vald_contact_kaisa_hogren"
+      ],
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "conditions",
+        "application",
+        "amount",
+        "decisionTime"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_benefit_sunnitoetus",
+      "document_id": "kohila_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "25b8b81980e8603cc7122684b7d9e65e678a621321d9702954ef47b429b740b1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_benefit_koduse_lapse_toetus",
+      "canonical_item_id": "kohila_vald:benefit:koduse_lapse_toetus",
+      "itemType": "benefit",
+      "title": "Koduse lapse toetus",
+      "status": "active",
+      "summary": "Koduse lapse toetuse eesmärk on toetada lapsevanemat olukorras, kus tema lapsel ei ole võimalust kasutada kohta munitsipaal- ega eralasteasutuses, kuigi kohta on taotletud. Toetust ei maksta juulikuus ega tagasiulatuvalt.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "lapsevanem, kelle 1 aasta 6 kuu kuni 3-aastasel lapsel puudub lasteasutuse koht",
+      "conditions": "Laps on taotlemise ajal 1 aasta ja 6 kuu kuni 3-aastane; laps ja vähemalt üks vanem elavad rahvastikuregistri järgi Kohila vallas; toetust taotleb üks lapsevanem; toetust ei maksta, kui KOV lehel nimetatud välistavad asjaolud esinevad.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "paper",
+          "in-person"
+        ],
+        "steps": [
+          "Esitada toetuse taotlus.",
+          "Kui taotlus esitatakse enne 20. kuupäeva, makstakse toetust alates samast kuust; 20. kuupäeval või hiljem taotlemisel alates järgmisest kalendrikuust."
+        ],
+        "deadline": null,
+        "decisionTime": "hiljemalt 10 tööpäeva alates nõuetekohase taotluse ja lisadokumentide esitamisest"
+      },
+      "pricing": null,
+      "amount": "200 eurot kuus",
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kohila_vald_contact_liisa_lee",
+        "kohila_vald_contact_kaisa_hogren"
+      ],
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "conditions",
+        "application",
+        "amount",
+        "decisionTime"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_benefit_koduse_lapse_toetus",
+      "document_id": "kohila_vald_benefit_koduse_lapse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "b8c6475acb80bb32c07c23b4043a7fa4cfda6c144dfc39ae65ee7621e156a857",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_benefit_esmakordselt_kooli_mineva_lapse_toetus",
+      "canonical_item_id": "kohila_vald:benefit:esmakordselt_kooli_mineva_lapse_toetus",
+      "itemType": "benefit",
+      "title": "Esmakordselt kooli mineva lapse toetus",
+      "status": "active",
+      "summary": "Esmakordselt kooli mineva lapse toetust makstakse rahvastikuregistri andmetel Kohila valla elanike registris oleva esmakordselt 1. klassi mineva lapse seaduslikule esindajale. Toetust saab taotleda lapse 1. klassi astumise aastal.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "esmakordselt 1. klassi mineva lapse seaduslik esindaja",
+      "conditions": "Laps ja seaduslik esindaja on rahvastikuregistri andmetel Kohila valla elanikud.",
+      "application": {
+        "channels": [
+          "online"
+        ],
+        "steps": [
+          "Esitada e-vorm.",
+          "Taotleda saab lapse 1. klassi astumise aastal kuni 31. oktoobrini."
+        ],
+        "deadline": "31. oktoober lapse 1. klassi astumise aastal",
+        "decisionTime": "hiljemalt 10 tööpäeva alates nõuetekohase taotluse ja lisadokumentide esitamisest"
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kohila_vald_form_esmakordselt_kooli_mineva_lapse_toetuse_e_vorm"
+      ],
+      "relatedContacts": [
+        "kohila_vald_contact_liisa_lee",
+        "kohila_vald_contact_kaisa_hogren"
+      ],
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "conditions",
+        "application",
+        "decisionTime"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_benefit_esmakordselt_kooli_mineva_lapse_toetus",
+      "document_id": "kohila_vald_benefit_esmakordselt_kooli_mineva_lapse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "ea2c941413533bdf0d38afd05200b8fad0b95c9db288ff5c42df47f083227399",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_benefit_transporditoetus",
+      "canonical_item_id": "kohila_vald:benefit:transporditoetus",
+      "itemType": "benefit",
+      "title": "Transporditoetus",
+      "status": "active",
+      "summary": "Transporditoetust makstakse alus- ja üldharidust omandava hariduslike erivajadustega lapse haridusasutuse ja kodu vahelise sõidu kompenseerimiseks, kui lapsele ei ole võimalik pakkuda vastava hariduse omandamist valla vastavas haridusasutuses.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "alus- ja üldharidust omandav hariduslike erivajadustega laps",
+      "conditions": "Taotlusega tuleb esitada sõidupiletid, sõidukaart või vastav väljavõte transpordiettevõtte iseteenindusportaalist.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "paper",
+          "in-person"
+        ],
+        "steps": [
+          "Esitada avaldus.",
+          "Lisada sõidukulude tõendid."
+        ],
+        "deadline": null,
+        "decisionTime": "hiljemalt 10 tööpäeva alates nõuetekohase taotluse ja lisadokumentide esitamisest"
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kohila_vald_form_opilase_soidukulude_kompenseerimise_avaldus_docx",
+        "kohila_vald_form_soidukulude_kompenseerimise_e_vorm"
+      ],
+      "relatedContacts": [
+        "kohila_vald_contact_liisa_lee",
+        "kohila_vald_contact_kaisa_hogren"
+      ],
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "conditions",
+        "application",
+        "decisionTime"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_benefit_transporditoetus",
+      "document_id": "kohila_vald_benefit_transporditoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "1b91a82dea019bfa2485221b7aaa4b2da093c1361af797e48bf599f7013591b4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_benefit_tugiteenuste_toetus",
+      "canonical_item_id": "kohila_vald:benefit:tugiteenuste_toetus",
+      "itemType": "benefit",
+      "title": "Tugiteenuste toetus",
+      "status": "active",
+      "summary": "Tugiteenuste toetuse kohta teatab Kohila vald, et alates 1.08.2025 tuleb lapsevanemal logopeedi ja teiste tugiteenuste sisu ning rahastamise küsimustes pöörduda oma lasteaia või kooli poole.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "laps, kes vajab logopeedi või muud tugiteenust",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "school_or_kindergarten"
+        ],
+        "steps": [
+          "Pöörduda oma lasteaia või kooli poole."
+        ],
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kohila_vald_form_logopeedi_teenuse_toetuse_e_vorm"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "application"
+      ],
+      "unresolvedIssues": [
+        "KOV leht ei avalda toetuse täpseid tingimusi ega summat; alates 1.08.2025 suunatakse lapsevanem kooli või lasteaia poole."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_benefit_tugiteenuste_toetus",
+      "document_id": "kohila_vald_benefit_tugiteenuste_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "b193c7e460e38a5e2d9ec523337a2706bfb65d1e8897cabe762e1f4dfc7150e1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_benefit_hooldajatoetus",
+      "canonical_item_id": "kohila_vald:benefit:hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus",
+      "status": "active",
+      "summary": "Kohila valla sotsiaaltoetuste leht nimetab hooldajatoetust sissetulekust mittesõltuvate toetuste hulgas, kuid sama leht ei avalda toetuse kirjeldust, tingimusi ega summat. Leht viitab hooldajatoetuse piirmäärade ja hoolduse seadmise korrale.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": null,
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "paper",
+          "in-person"
+        ],
+        "steps": [
+          "Pöörduda Kohila valla sotsiaalosakonna poole või esitada toetuse taotlus üldises korras."
+        ],
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kohila_vald_contact_liisa_lee",
+        "kohila_vald_contact_kaisa_hogren"
+      ],
+      "sections_present": [
+        "name",
+        "application"
+      ],
+      "unresolvedIssues": [
+        "KOV sotsiaaltoetuste leht nimetab toetust, kuid ei avalda praktilisi tingimusi ega summat."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_benefit_hooldajatoetus",
+      "document_id": "kohila_vald_benefit_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "bc2b2b1ea5225ed7de220daf1a48ca62e6dbb9d20414fad96cd2dc1a93f366ee",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_benefit_hooldusperetoetus",
+      "canonical_item_id": "kohila_vald:benefit:hooldusperetoetus",
+      "itemType": "benefit",
+      "title": "Hooldusperetoetus",
+      "status": "active",
+      "summary": "Kohila valla sotsiaaltoetuste leht nimetab hooldusperetoetust sissetulekust mittesõltuvate toetuste hulgas, kuid sama leht ei avalda toetuse kirjeldust, tingimusi ega summat.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": null,
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "paper",
+          "in-person"
+        ],
+        "steps": [
+          "Pöörduda Kohila valla sotsiaalosakonna poole või esitada toetuse taotlus üldises korras."
+        ],
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kohila_vald_contact_liisa_lee",
+        "kohila_vald_contact_kaisa_hogren"
+      ],
+      "sections_present": [
+        "name",
+        "application"
+      ],
+      "unresolvedIssues": [
+        "KOV sotsiaaltoetuste leht nimetab toetust, kuid ei avalda praktilisi tingimusi ega summat."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_benefit_hooldusperetoetus",
+      "document_id": "kohila_vald_benefit_hooldusperetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "fbfffc1236d7106975957ab7671e02ea6127a8e91d5aeb1702979b386be6c1ae",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_benefit_jarelhooldustoetus",
+      "canonical_item_id": "kohila_vald:benefit:jarelhooldustoetus",
+      "itemType": "benefit",
+      "title": "Järelhooldustoetus",
+      "status": "active",
+      "summary": "Kohila valla sotsiaaltoetuste leht nimetab järelhooldustoetust sissetulekust mittesõltuvate toetuste hulgas, kuid sama leht ei avalda toetuse kirjeldust, tingimusi ega summat.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": null,
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "paper",
+          "in-person"
+        ],
+        "steps": [
+          "Pöörduda Kohila valla sotsiaalosakonna poole või esitada toetuse taotlus üldises korras."
+        ],
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kohila_vald_contact_liisa_lee",
+        "kohila_vald_contact_kaisa_hogren"
+      ],
+      "sections_present": [
+        "name",
+        "application"
+      ],
+      "unresolvedIssues": [
+        "KOV sotsiaaltoetuste leht nimetab toetust, kuid ei avalda praktilisi tingimusi ega summat."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_benefit_jarelhooldustoetus",
+      "document_id": "kohila_vald_benefit_jarelhooldustoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "ddcc2209935b8c32420d0a00a8b28b7aa15bdcb1beb2e2f18fbb694da5829c09",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_benefit_matusetoetus",
+      "canonical_item_id": "kohila_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetust makstakse rahvastikuregistri andmetel Kohila valla elaniku surma korral matuse korraldamiseks. Matuse korraldaja ei pea ise olema Kohila valla elanik.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "Kohila valla elaniku matuse korraldaja",
+      "conditions": "Surnu peab olema rahvastikuregistri andmetel Kohila valla elanik; taotlusele tuleb lisada surmatunnistus.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "paper",
+          "in-person"
+        ],
+        "steps": [
+          "Esitada matusetoetuse taotlus.",
+          "Lisada surmatunnistus."
+        ],
+        "deadline": "2 kuud pärast surma registreerimist",
+        "decisionTime": "hiljemalt 10 tööpäeva alates nõuetekohase taotluse ja lisadokumentide esitamisest"
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kohila_vald_form_matusetoetuse_avaldus_docx",
+        "kohila_vald_form_matusetoetuse_e_vorm"
+      ],
+      "relatedContacts": [
+        "kohila_vald_contact_liisa_lee",
+        "kohila_vald_contact_kaisa_hogren"
+      ],
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "conditions",
+        "application",
+        "decisionTime"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_benefit_matusetoetus",
+      "document_id": "kohila_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "4479be51eaf8f7f95ccc67defa5b49283a6c1385d6a1ecbfb4eff7d8762e7748",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_benefit_erakorraline_toetus",
+      "canonical_item_id": "kohila_vald:benefit:erakorraline_toetus",
+      "itemType": "benefit",
+      "title": "Erakorraline toetus",
+      "status": "active",
+      "summary": "Erakorraline toetus määratakse õnnetusjuhtumi, näiteks tulekahju, või muu ettenägematu sündmuse tõttu raskesse majanduslikku olukorda sattunud isikule või perekonnale.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "õnnetusjuhtumi või muu ettenägematu sündmuse tõttu raskesse majanduslikku olukorda sattunud isik või pere",
+      "conditions": "Toetus on seotud õnnetusjuhtumi või muu ettenägematu sündmusega.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "paper",
+          "in-person"
+        ],
+        "steps": [
+          "Esitada toetuse taotlus koos asjaolusid tõendavate dokumentidega."
+        ],
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kohila_vald_contact_liisa_lee",
+        "kohila_vald_contact_kaisa_hogren"
+      ],
+      "sections_present": [
+        "description",
+        "targetGroup",
+        "conditions",
+        "application"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_benefit_erakorraline_toetus",
+      "document_id": "kohila_vald_benefit_erakorraline_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "b4f9b2d833629cb0efa845427dfdb452ce3cd1a825b37ff3cc9475723337d13e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_benefit_valtimatu_sotsiaaltoetus",
+      "canonical_item_id": "kohila_vald:benefit:valtimatu_sotsiaaltoetus",
+      "itemType": "benefit",
+      "title": "Vältimatu sotsiaaltoetus",
+      "status": "active",
+      "summary": "Kohila valla sotsiaaltoetuste leht nimetab vältimatut sotsiaaltoetust eraldi toetusena, kuid sama leht ei avalda toetuse kirjeldust, tingimusi ega summat.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": null,
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "paper",
+          "in-person"
+        ],
+        "steps": [
+          "Pöörduda Kohila valla sotsiaalosakonna poole või esitada toetuse taotlus üldises korras."
+        ],
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kohila_vald_contact_liisa_lee",
+        "kohila_vald_contact_kaisa_hogren"
+      ],
+      "sections_present": [
+        "name",
+        "application"
+      ],
+      "unresolvedIssues": [
+        "KOV sotsiaaltoetuste leht nimetab toetust, kuid ei avalda praktilisi tingimusi ega summat."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_benefit_valtimatu_sotsiaaltoetus",
+      "document_id": "kohila_vald_benefit_valtimatu_sotsiaaltoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaaltoetused/",
+      "content_hash": "a4a71e38e13c3d4beb9bf0dbc9c9d8ccd02e76f01c33c75304154dde6418a34f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_benefit_saunapileti_soodustus",
+      "canonical_item_id": "kohila_vald:benefit:saunapileti_soodustus",
+      "itemType": "benefit",
+      "title": "Saunapileti soodustus",
+      "status": "active",
+      "summary": "Kohila valla e-teenuste ja blankettide leht nimetab sotsiaaltoetuste all avalduse saunapileti soodustuseks. Vormileht kinnitab soodustuse taotlemise võimaluse, kuid ei avalda tingimusi ega summat.",
+      "sourceKeys": [
+        "social_forms"
+      ],
+      "targetGroup": null,
+      "conditions": null,
+      "application": {
+        "channels": [
+          "email",
+          "paper"
+        ],
+        "steps": [
+          "Täita saunapileti kompensatsiooni avaldus ja esitada vallavalitsusele."
+        ],
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://kohila.ee/juhtimine-ja-majandus/asjaajamine-ja-korrad/e-teenused-ja-blanketid/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kohila_vald_form_saunapileti_soodustuse_avaldus_docx"
+      ],
+      "relatedContacts": [
+        "kohila_vald_contact_liisa_lee",
+        "kohila_vald_contact_kaisa_hogren"
+      ],
+      "sections_present": [
+        "name",
+        "form",
+        "application"
+      ],
+      "unresolvedIssues": [
+        "Vormileht nimetab saunapileti soodustuse avaldust, kuid tingimused ja summad ei ole avaldatud."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_forms"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_benefit_saunapileti_soodustus",
+      "document_id": "kohila_vald_benefit_saunapileti_soodustus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/juhtimine-ja-majandus/asjaajamine-ja-korrad/e-teenused-ja-blanketid/",
+      "content_hash": "ec16e88160b6c6bb9e6a8589c1f22c2bd03f74becad46127bff41ccb8d6bd67f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_mtu_kati_tugikeskus",
+      "canonical_item_id": "kohila_vald:resource:mtu_kati_tugikeskus",
+      "itemType": "resource",
+      "title": "MTÜ Kati Tugikeskus",
+      "status": "active",
+      "summary": "MTÜ Kati Tugikeskus on Kohila valla lehel nimetatud vanurite ja erivajadustega inimeste päevakeskusena. Kontaktandmetena on avaldatud aadress Vabaduse 1B, 79801 Kohila ja",
+      "sourceKeys": [
+        "care_institutions"
+      ],
+      "name": "MTÜ Kati Tugikeskus",
+      "role": "vanurite ja erivajadustega inimeste päevakeskus",
+      "address": "Vabaduse 1B, 79801 Kohila",
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalhoolekandeasutused/",
+      "externalUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email",
+        "address"
+      ],
+      "unresolvedIssues": [
+        "E-posti aadress on KOV veebis varjestatud kujul."
+      ],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "care_institutions"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_mtu_kati_tugikeskus",
+      "document_id": "kohila_vald_resource_mtu_kati_tugikeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalhoolekandeasutused/",
+      "content_hash": "3a21c5920e0182545fe2dfb156c29742b01c8baf3912be9591262f9c099d6ebc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_hageri_hooldekodu",
+      "canonical_item_id": "kohila_vald:resource:hageri_hooldekodu",
+      "itemType": "resource",
+      "title": "Hageri Hooldekodu",
+      "status": "active",
+      "summary": "Hageri Hooldekodu on KOV veebis nimetatud eakatele inimestele mõeldud hoolekandeasutusena. Kontaktandmetena on avaldatud aadress 79701 Hageri ning telefonid ja juhataja Urmas Soomerega.",
+      "sourceKeys": [
+        "care_institutions"
+      ],
+      "name": "Hageri Hooldekodu",
+      "role": "hoolekandeasutus eakatele inimestele",
+      "address": "79701 Hageri",
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalhoolekandeasutused/",
+      "externalUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email",
+        "address"
+      ],
+      "unresolvedIssues": [
+        "E-posti aadress on KOV veebis varjestatud kujul."
+      ],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "care_institutions"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_hageri_hooldekodu",
+      "document_id": "kohila_vald_resource_hageri_hooldekodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalhoolekandeasutused/",
+      "content_hash": "462f5f8d7633334dc47359189d2e5a13eddea6337be7294c65d81ff482d4ab93",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_pahkla_camphilli_kula_sa",
+      "canonical_item_id": "kohila_vald:resource:pahkla_camphilli_kula_sa",
+      "itemType": "resource",
+      "title": "Pahkla Camphilli Küla SA",
+      "status": "active",
+      "summary": "Pahkla Camphilli Küla SA on KOV veebis nimetatud intellektipuudega inimestele mõeldud külakogukonnana. KOV leht avaldab varjestatud e-posti ja viitab välisele kodulehele pahklack.org.",
+      "sourceKeys": [
+        "care_institutions"
+      ],
+      "name": "Pahkla Camphilli Küla SA",
+      "role": "külakogukond intellektipuuetega inimestele",
+      "address": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalhoolekandeasutused/",
+      "externalUrl": "http://pahklack.org/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "name",
+        "role",
+        "email",
+        "externalUrl"
+      ],
+      "unresolvedIssues": [
+        "E-posti aadress on KOV veebis varjestatud kujul; välise kodulehe sisu ei kasutatud allikana."
+      ],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "care_institutions"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_pahkla_camphilli_kula_sa",
+      "document_id": "kohila_vald_resource_pahkla_camphilli_kula_sa",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/sotsiaalhoolekandeasutused/",
+      "content_hash": "4d0627aa56a79aaa8cd8871eff11abfa16df149a8eea8d8638d26bb65bd44cd1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_confido_tervisekeskus_kohilas",
+      "canonical_item_id": "kohila_vald:resource:confido_tervisekeskus_kohilas",
+      "itemType": "resource",
+      "title": "Confido Tervisekeskus Kohilas",
+      "status": "active",
+      "summary": "Confido Tervisekeskus Kohilas asub Kohila tervisekeskuse teisel korrusel ning teenindab perearstinimistut N0607. Vastuvõtule tulemiseks on vajalik eelregistreerimine Perearst24.ee kaudu või registratuuri telefonil 6.",
+      "sourceKeys": [
+        "health_institutions",
+        "important_phone_numbers"
+      ],
+      "name": "Confido Tervisekeskus Kohilas",
+      "role": "perearstikeskus",
+      "address": "Tööstuse 5, 2. korrus, kabinetid 204 ja 206, Kohila",
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/tervishoiuasutused/",
+      "externalUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email",
+        "address",
+        "openingHours"
+      ],
+      "unresolvedIssues": [
+        "E-posti aadress on KOV veebis varjestatud kujul."
+      ],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "health_institutions",
+        "important_phone_numbers"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_confido_tervisekeskus_kohilas",
+      "document_id": "kohila_vald_resource_confido_tervisekeskus_kohilas",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/tervishoiuasutused/",
+      "content_hash": "5d9e779bd4ad9deac9dae0ac9db630b4ebe8105b12c59038331a60f297a9329b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_as_medicum_tervishoiuteenused",
+      "canonical_item_id": "kohila_vald:resource:as_medicum_tervishoiuteenused",
+      "itemType": "resource",
+      "title": "AS Medicum Tervishoiuteenused / dr Rooväli",
+      "status": "active",
+      "summary": "Kohila tervishoiuasutuste leht nimetab AS Medicum Tervishoiuteenuseid ja dr Roovälit, kuid ei avalda selles plokis praktilisi kontakte ega täpsemaid teenuseandmeid.",
+      "sourceKeys": [
+        "health_institutions"
+      ],
+      "name": "AS Medicum Tervishoiuteenused / dr Rooväli",
+      "role": "tervishoiuteenuse osutaja",
+      "address": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/tervishoiuasutused/",
+      "externalUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "name"
+      ],
+      "unresolvedIssues": [
+        "KOV lehel puuduvad selle ressursi juures praktilised kontaktandmed."
+      ],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "health_institutions"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_as_medicum_tervishoiuteenused",
+      "document_id": "kohila_vald_resource_as_medicum_tervishoiuteenused",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/tervishoiuasutused/",
+      "content_hash": "338e602865afcc28a2e550750e0ef3da044de6eef739df5bdbff4ccb19694a1d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_cilia_silmakabinet",
+      "canonical_item_id": "kohila_vald:resource:cilia_silmakabinet",
+      "itemType": "resource",
+      "title": "Cilia Silmakabinet",
+      "status": "active",
+      "summary": "Cilia Silmakabinet pakub ambulatoorset oftalmoloogiat. KOV lehe järgi asub kabinet Tööstuse tn 5, Kohila alev, I korrus; avatud on E-R 8.00-16.00 ning info ja registreerimine toimub telefonil 48 94 202.",
+      "sourceKeys": [
+        "health_institutions"
+      ],
+      "name": "Cilia Silmakabinet",
+      "role": "silmaarst / ambulatoorne oftalmoloogia",
+      "address": "Tööstuse tn 5, Kohila alev, I korrus",
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/tervishoiuasutused/",
+      "externalUrl": "https://cilia.ee/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "address",
+        "openingHours",
+        "externalUrl"
+      ],
+      "unresolvedIssues": [
+        "Välise kodulehe sisu ei kasutatud allikana."
+      ],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "health_institutions"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_cilia_silmakabinet",
+      "document_id": "kohila_vald_resource_cilia_silmakabinet",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/tervishoiuasutused/",
+      "content_hash": "133445cf49214ef93f745edb60c21c7fa13162e548c7262e43db75b1183a19f9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_kiirabi",
+      "canonical_item_id": "kohila_vald:resource:kiirabi",
+      "itemType": "resource",
+      "title": "Kiirabi",
+      "status": "active",
+      "summary": "Kohila tervishoiuasutuste leht nimetab kiirabi asukohana Tööstuse tn 5, Kohila alev ja kiirabi väljakutse tasuta telefonina.",
+      "sourceKeys": [
+        "crisis_page",
+        "health_institutions",
+        "important_phone_numbers"
+      ],
+      "name": "Kiirabi",
+      "role": "erakorraline abi",
+      "address": "Tööstuse tn 5, Kohila alev",
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/tervishoiuasutused/",
+      "externalUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "address"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "crisis_page",
+        "health_institutions",
+        "important_phone_numbers"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_kiirabi",
+      "document_id": "kohila_vald_resource_kiirabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/tervishoiuasutused/",
+      "content_hash": "e80c9549eec29bf2ce6a1bd79f999a8fd1644c668af09bad3a2133448e938d3e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_kohila_risto_apteek",
+      "canonical_item_id": "kohila_vald:resource:kohila_risto_apteek",
+      "itemType": "resource",
+      "title": "Kohila Risto Apteek",
+      "status": "active",
+      "summary": "Kohila Risto Apteek on KOV lehel nimetatud apteegina. Lehel on avaldatud aadress Vabaduse 9B, 79801 Kohila, telefonid ja ning lahtiolekuajad E-R 9.00-18.00 ja L 9.00-14.00.",
+      "sourceKeys": [
+        "health_institutions"
+      ],
+      "name": "Kohila Risto Apteek",
+      "role": "apteek",
+      "address": "Vabaduse 9B, 79801 Kohila",
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/tervishoiuasutused/",
+      "externalUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "address",
+        "openingHours"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "health_institutions"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_kohila_risto_apteek",
+      "document_id": "kohila_vald_resource_kohila_risto_apteek",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/tervishoiuasutused/",
+      "content_hash": "38a11cacd6f0760c1ad931473232c732267eafd0afaac00bc9758118e7c44351",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_kohila_meedik_ou_hambaravi",
+      "canonical_item_id": "kohila_vald:resource:kohila_meedik_ou_hambaravi",
+      "itemType": "resource",
+      "title": "Kohila meedik OÜ hambaravi",
+      "status": "active",
+      "summary": "Kohila meedik OÜ pakub hambaravi, hambaproteesimist ja proteesilabori teenust. KOV leht avaldab aadressi Vabaduse 20A, 79801 Kohila, telefoni, faksi ja varjestatud e-posti.",
+      "sourceKeys": [
+        "health_institutions"
+      ],
+      "name": "Kohila meedik OÜ hambaravi",
+      "role": "hambaravi",
+      "address": "Vabaduse 20A, 79801 Kohila",
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/tervishoiuasutused/",
+      "externalUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email",
+        "address",
+        "fax"
+      ],
+      "unresolvedIssues": [
+        "E-posti aadress on KOV veebis varjestatud kujul."
+      ],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "health_institutions"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_kohila_meedik_ou_hambaravi",
+      "document_id": "kohila_vald_resource_kohila_meedik_ou_hambaravi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/teenused-ja-toetused/tervishoiuasutused/",
+      "content_hash": "ac9ca42dba684763487058ea9eef9c5376a1af027f4ca66d07eb00788b289575",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_perelepitus",
+      "canonical_item_id": "kohila_vald:resource:perelepitus",
+      "itemType": "resource",
+      "title": "Perelepitus",
+      "status": "active",
+      "summary": "Lastekaitse leht kirjeldab perelepitust kui professionaalset teenust perekonfliktide ja abielulahutuste valdkonnas. KOV lehe järgi aitab lepitaja vanematel leida kohtuväliseid lahendusi ja teha laste vajadustest lähtuvaid kokkuleppeid.",
+      "sourceKeys": [
+        "child_protection"
+      ],
+      "name": "Perelepitus",
+      "role": "perelepituse info ja suunamine",
+      "address": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse/",
+      "externalUrl": "https://www.lepitus.ee",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "description",
+        "externalUrl"
+      ],
+      "unresolvedIssues": [
+        "Välise perelepituse veebilehe sisu ei kasutatud allikana."
+      ],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "child_protection"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_perelepitus",
+      "document_id": "kohila_vald_resource_perelepitus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse/",
+      "content_hash": "7a0d80ce8a74fc6776c8ff7e33b87ceed8bf5b553453e798967d35b09c9b5d64",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_puudega_lapse_vanema_info",
+      "canonical_item_id": "kohila_vald:resource:puudega_lapse_vanema_info",
+      "itemType": "resource",
+      "title": "Info puudega lapse vanemale",
+      "status": "active",
+      "summary": "Lastekaitse leht selgitab kuni 16-aastase lapse puude raskusastme tuvastamise üldpõhimõtteid ja märgib, et ekspertiisitaotluse vormi on võimalik küsida lastekaitsespetsialistilt. Lehel viidatakse ka Sotsiaalkindlustusameti infole.",
+      "sourceKeys": [
+        "child_protection"
+      ],
+      "name": "Info puudega lapse vanemale",
+      "role": "puudega lapse vanema info",
+      "address": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse/",
+      "externalUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kohila_vald_contact_karmen_metssalu",
+        "kohila_vald_contact_anna_nikulitseva"
+      ],
+      "sections_present": [
+        "description",
+        "guidance",
+        "contact"
+      ],
+      "unresolvedIssues": [
+        "Välise Sotsiaalkindlustusameti veebilehe sisu ei kasutatud allikana."
+      ],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "child_protection"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_puudega_lapse_vanema_info",
+      "document_id": "kohila_vald_resource_puudega_lapse_vanema_info",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse/",
+      "content_hash": "ea9445de268173bf5734f97df8416a18998ade5c99a6162ccfe9bb8949688e8f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_abivajav_voi_hadaohus_laps",
+      "canonical_item_id": "kohila_vald:resource:abivajav_voi_hadaohus_laps",
+      "itemType": "resource",
+      "title": "Abivajavast või hädaohus olevast lapsest teavitamine",
+      "status": "active",
+      "summary": "KOV lastekaitse leht selgitab, et abivajavast lapsest tuleb teatada vallavalitsuse lastekaitsespetsialistile või tasuta lasteabi telefonile. Hädaohus lapse puhul tuleb viivitamatult helistada häirekeskuse numbrile.",
+      "sourceKeys": [
+        "child_protection"
+      ],
+      "name": "Abivajavast või hädaohus olevast lapsest teavitamine",
+      "role": "teavitamine ja abikanal",
+      "address": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse/",
+      "externalUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kohila_vald_contact_karmen_metssalu",
+        "kohila_vald_contact_anna_nikulitseva"
+      ],
+      "sections_present": [
+        "description",
+        "phone",
+        "contact"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "child_protection"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_abivajav_voi_hadaohus_laps",
+      "document_id": "kohila_vald_resource_abivajav_voi_hadaohus_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse/",
+      "content_hash": "43acffe9ae052eea0caa9a34d45c4b8e5e183610987eab0c07566928fb8fa171",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_mtu_headuse_puu",
+      "canonical_item_id": "kohila_vald:resource:mtu_headuse_puu",
+      "itemType": "resource",
+      "title": "MTÜ Headuse Puu",
+      "status": "active",
+      "summary": "MTÜ Headuse Puu on Kohila valla lastekaitse lehel nimetatud lapsehoiuteenuse pakkujana. Lehe järgi pakub ta kodus lapse hoidmise teenust ja on.",
+      "sourceKeys": [
+        "child_protection"
+      ],
+      "name": "MTÜ Headuse Puu",
+      "role": "lapsehoiuteenuse pakkuja",
+      "address": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse/",
+      "externalUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email"
+      ],
+      "unresolvedIssues": [
+        "E-posti aadress on KOV veebis varjestatud kujul."
+      ],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "child_protection"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_mtu_headuse_puu",
+      "document_id": "kohila_vald_resource_mtu_headuse_puu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse/",
+      "content_hash": "37cda156bdaf2ad57439d4605f923bfc48fba9ec7466adacb963087835ace07b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_linnupoja_paevahoid_sutlemas",
+      "canonical_item_id": "kohila_vald:resource:linnupoja_paevahoid_sutlemas",
+      "itemType": "resource",
+      "title": "Linnupoja päevahoid Sutlemas",
+      "status": "active",
+      "summary": "Linnupoja päevahoid Sutlemas on Kohila valla lastekaitse lehel nimetatud lapsehoiuteenuse pakkujana, kes pakub teenust peamiselt sõime- ja lasteaiaealistele lastele lastehoius. on.",
+      "sourceKeys": [
+        "child_protection"
+      ],
+      "name": "Linnupoja päevahoid Sutlemas",
+      "role": "lapsehoiuteenuse pakkuja",
+      "address": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse/",
+      "externalUrl": "https://www.linnupojad.ee",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email",
+        "externalUrl"
+      ],
+      "unresolvedIssues": [
+        "E-posti aadress on KOV veebis varjestatud kujul; välise kodulehe sisu ei kasutatud allikana."
+      ],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "child_protection"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_linnupoja_paevahoid_sutlemas",
+      "document_id": "kohila_vald_resource_linnupoja_paevahoid_sutlemas",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse/",
+      "content_hash": "8534c480fb4b6c2d07e1e3173f8fbb85f618d632bf417aae0c514bccd0f49f82",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_triinu_ja_taavi_paevahoid",
+      "canonical_item_id": "kohila_vald:resource:triinu_ja_taavi_paevahoid",
+      "itemType": "resource",
+      "title": "Triinu ja Taavi päevahoid",
+      "status": "active",
+      "summary": "Triinu ja Taavi päevahoid on Kohila valla lastekaitse lehel nimetatud lapsehoiuteenuse pakkujana. Lehe järgi pakub päevahoid lapsehoiuteenust peamiselt sõime- ja lasteaiaealistele lastele lastehoius.",
+      "sourceKeys": [
+        "child_protection"
+      ],
+      "name": "Triinu ja Taavi päevahoid",
+      "role": "lapsehoiuteenuse pakkuja",
+      "address": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse/",
+      "externalUrl": "https://www.teiemeie.ee",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "name",
+        "role",
+        "externalUrl"
+      ],
+      "unresolvedIssues": [
+        "KOV lehel ei avaldata selle pakkuja telefoninumbrit ega e-posti; välise kodulehe sisu ei kasutatud allikana."
+      ],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "child_protection"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_triinu_ja_taavi_paevahoid",
+      "document_id": "kohila_vald_resource_triinu_ja_taavi_paevahoid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse/",
+      "content_hash": "aa4d2d4eec2c19e3afac4afa025460ed2ceb087fdaf796752aaddc361071c5f7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_hadaabi_",
+      "canonical_item_id": "kohila_vald:resource:hadaabi_",
+      "itemType": "resource",
+      "title": "Hädaabi",
+      "status": "active",
+      "summary": "Hädaabinumber on KOV kriisi ja oluliste telefoninumbrite lehtedel nimetatud kiire abi kanalina, sh hädaohus lapse ja kiirabi kutsumise korral.",
+      "sourceKeys": [
+        "crisis_page",
+        "important_phone_numbers"
+      ],
+      "name": "Hädaabi",
+      "role": "abikanal / kriisiressurss",
+      "address": null,
+      "officialUrl": "https://kohila.ee/vald-uudised-ja-kontakt/korrakaitse-ja-turvalisus/kriis/",
+      "externalUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "description",
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "crisis_page",
+        "important_phone_numbers"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_hadaabi_",
+      "document_id": "kohila_vald_resource_hadaabi_",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/vald-uudised-ja-kontakt/korrakaitse-ja-turvalisus/kriis/",
+      "content_hash": "8b997249a1729740f2bebbae59b95cfcbea7bda6546817aeedab58a9cb8c9521",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_riigiinfo_",
+      "canonical_item_id": "kohila_vald:resource:riigiinfo_",
+      "itemType": "resource",
+      "title": "Riigiinfo",
+      "status": "active",
+      "summary": "Riigiinfo pakub KOV kriisi lehe järgi infot ja nõu olukordades, mille puhul ei ole ohus elu, tervis ega vara.",
+      "sourceKeys": [
+        "crisis_page"
+      ],
+      "name": "Riigiinfo",
+      "role": "abikanal / kriisiressurss",
+      "address": null,
+      "officialUrl": "https://kohila.ee/vald-uudised-ja-kontakt/korrakaitse-ja-turvalisus/kriis/",
+      "externalUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "description",
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "crisis_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_riigiinfo_",
+      "document_id": "kohila_vald_resource_riigiinfo_",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/vald-uudised-ja-kontakt/korrakaitse-ja-turvalisus/kriis/",
+      "content_hash": "47b4a6ca648f25e8b905a1bed5f346156b772ceb442a613927239fb5bddbea15",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_murgistusinfo_16662",
+      "canonical_item_id": "kohila_vald:resource:murgistusinfo_16662",
+      "itemType": "resource",
+      "title": "Mürgistusinfo 16 662",
+      "status": "active",
+      "summary": "Mürgistusinfo 16 662 on KOV kriisi lehel nimetatud Terviseameti hallatava infonumbrina.",
+      "sourceKeys": [
+        "crisis_page"
+      ],
+      "name": "Mürgistusinfo 16 662",
+      "role": "abikanal / kriisiressurss",
+      "address": null,
+      "officialUrl": "https://kohila.ee/vald-uudised-ja-kontakt/korrakaitse-ja-turvalisus/kriis/",
+      "externalUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "description",
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "crisis_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_murgistusinfo_16662",
+      "document_id": "kohila_vald_resource_murgistusinfo_16662",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/vald-uudised-ja-kontakt/korrakaitse-ja-turvalisus/kriis/",
+      "content_hash": "6db586d1edbf0938088558d4f65f7cf2dbc0ec689f146e0099059413d999cedc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_perearsti_nouandeliin_1220",
+      "canonical_item_id": "kohila_vald:resource:perearsti_nouandeliin_1220",
+      "itemType": "resource",
+      "title": "Perearsti nõuandeliin 1220",
+      "status": "active",
+      "summary": "Perearsti nõuandeliin 1220 annab KOV kriisi ja oluliste telefoninumbrite lehe järgi nõu tervisemurede korral, mis ei vaja kiirabi sekkumist.",
+      "sourceKeys": [
+        "crisis_page",
+        "important_phone_numbers"
+      ],
+      "name": "Perearsti nõuandeliin 1220",
+      "role": "abikanal / kriisiressurss",
+      "address": null,
+      "officialUrl": "https://kohila.ee/vald-uudised-ja-kontakt/korrakaitse-ja-turvalisus/kriis/",
+      "externalUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "description",
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "crisis_page",
+        "important_phone_numbers"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_perearsti_nouandeliin_1220",
+      "document_id": "kohila_vald_resource_perearsti_nouandeliin_1220",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/vald-uudised-ja-kontakt/korrakaitse-ja-turvalisus/kriis/",
+      "content_hash": "4e7ff0b9e7c05ff24008c13b0683e47b4a792bcb0a337539d5dc941f322a9223",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_naiste_tugiliin_1492",
+      "canonical_item_id": "kohila_vald:resource:naiste_tugiliin_1492",
+      "itemType": "resource",
+      "title": "Naiste tugiliin 1492",
+      "status": "active",
+      "summary": "Naiste tugiliin 1492 on KOV kriisi lehel nimetatud anonüümse abivõimalusena lähisuhtevägivalla all kannatavatele naistele.",
+      "sourceKeys": [
+        "crisis_page"
+      ],
+      "name": "Naiste tugiliin 1492",
+      "role": "abikanal / kriisiressurss",
+      "address": null,
+      "officialUrl": "https://kohila.ee/vald-uudised-ja-kontakt/korrakaitse-ja-turvalisus/kriis/",
+      "externalUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "description",
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "crisis_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_naiste_tugiliin_1492",
+      "document_id": "kohila_vald_resource_naiste_tugiliin_1492",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/vald-uudised-ja-kontakt/korrakaitse-ja-turvalisus/kriis/",
+      "content_hash": "527580e3ca61ddf64476de381d5bcd8e4362e4861ef3e77866a60d8585491202",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_ohvriabi_kriisitelefon_",
+      "canonical_item_id": "kohila_vald:resource:ohvriabi_kriisitelefon_",
+      "itemType": "resource",
+      "title": "Ohvriabi kriisitelefon",
+      "status": "active",
+      "summary": "Ohvriabi kriisitelefon on KOV oluliste telefoninumbrite lehe järgi avatud iga päev 24 tundi. Välismaalt helistamiseks on lehel toodud",
+      "sourceKeys": [
+        "important_phone_numbers"
+      ],
+      "name": "Ohvriabi kriisitelefon",
+      "role": "abikanal / kriisiressurss",
+      "address": null,
+      "officialUrl": "https://kohila.ee/vald-uudised-ja-kontakt/valla-info/olulised-telefoninumbrid/",
+      "externalUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "description",
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "important_phone_numbers"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_ohvriabi_kriisitelefon_",
+      "document_id": "kohila_vald_resource_ohvriabi_kriisitelefon_",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/vald-uudised-ja-kontakt/valla-info/olulised-telefoninumbrid/",
+      "content_hash": "0e0b1158284c9fc94be55259e2830716069b45618ca2a427b046d99edee12a15",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_ohvriabi_raplamaal",
+      "canonical_item_id": "kohila_vald:resource:ohvriabi_raplamaal",
+      "itemType": "resource",
+      "title": "Ohvriabi Raplamaal",
+      "status": "active",
+      "summary": "KOV oluliste telefoninumbrite lehel on Raplamaa ohvriabi kontaktidena avaldatud telefonid ja ning asukoht Rapla, Savi 2.",
+      "sourceKeys": [
+        "important_phone_numbers"
+      ],
+      "name": "Ohvriabi Raplamaal",
+      "role": "abikanal / kriisiressurss",
+      "address": null,
+      "officialUrl": "https://kohila.ee/vald-uudised-ja-kontakt/valla-info/olulised-telefoninumbrid/",
+      "externalUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "description",
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "important_phone_numbers"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_ohvriabi_raplamaal",
+      "document_id": "kohila_vald_resource_ohvriabi_raplamaal",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/vald-uudised-ja-kontakt/valla-info/olulised-telefoninumbrid/",
+      "content_hash": "338d69ced1fc6f52043f6628fed5d0ad1fdee3e5bb8c53b64abffb898f0ae9e2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_emotsionaalse_toe_telefon",
+      "canonical_item_id": "kohila_vald:resource:emotsionaalse_toe_telefon",
+      "itemType": "resource",
+      "title": "Emotsionaalse toe",
+      "status": "active",
+      "summary": "Emotsionaalse toe 116 123 on KOV oluliste telefoninumbrite lehe järgi avatud iga päev kell 10-24.",
+      "sourceKeys": [
+        "important_phone_numbers"
+      ],
+      "name": "Emotsionaalse toe",
+      "role": "abikanal / kriisiressurss",
+      "address": null,
+      "officialUrl": "https://kohila.ee/vald-uudised-ja-kontakt/valla-info/olulised-telefoninumbrid/",
+      "externalUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "description",
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "important_phone_numbers"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_emotsionaalse_toe_telefon",
+      "document_id": "kohila_vald_resource_emotsionaalse_toe_telefon",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/vald-uudised-ja-kontakt/valla-info/olulised-telefoninumbrid/",
+      "content_hash": "75de25b6e212ed1877231e8849fd0f20759dd244379bf62e074fdf1eebc19387",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_hingehoiu_telefon",
+      "canonical_item_id": "kohila_vald:resource:hingehoiu_telefon",
+      "itemType": "resource",
+      "title": "Hingehoiu",
+      "status": "active",
+      "summary": "Hingehoiu 116 123 on KOV oluliste telefoninumbrite lehe järgi avatud iga päev kell 16-24.",
+      "sourceKeys": [
+        "important_phone_numbers"
+      ],
+      "name": "Hingehoiu",
+      "role": "abikanal / kriisiressurss",
+      "address": null,
+      "officialUrl": "https://kohila.ee/vald-uudised-ja-kontakt/valla-info/olulised-telefoninumbrid/",
+      "externalUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "description",
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "important_phone_numbers"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_hingehoiu_telefon",
+      "document_id": "kohila_vald_resource_hingehoiu_telefon",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/vald-uudised-ja-kontakt/valla-info/olulised-telefoninumbrid/",
+      "content_hash": "c431847d8688950c4fb58a78ddc786e876174a53ffb2e00facae98bdf84232db",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_lasteabi_telefon_",
+      "canonical_item_id": "kohila_vald:resource:lasteabi_telefon_",
+      "itemType": "resource",
+      "title": "Lasteabi",
+      "status": "active",
+      "summary": "Lasteabi on KOV lastekaitse ja oluliste telefoninumbrite lehtedel nimetatud ööpäevaringse abikanalina lastega seotud mure korral.",
+      "sourceKeys": [
+        "child_protection",
+        "important_phone_numbers"
+      ],
+      "name": "Lasteabi",
+      "role": "abikanal / kriisiressurss",
+      "address": null,
+      "officialUrl": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse/",
+      "externalUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "description",
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "child_protection",
+        "important_phone_numbers"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_lasteabi_telefon_",
+      "document_id": "kohila_vald_resource_lasteabi_telefon_",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse/",
+      "content_hash": "df34c9da6d83081aaaa9813de111692b8e05e431a2995e1690f80dfcbe4307be",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_inimkaubanduse_ennetamise_nouandeliin",
+      "canonical_item_id": "kohila_vald:resource:inimkaubanduse_ennetamise_nouandeliin",
+      "itemType": "resource",
+      "title": "Inimkaubanduse ennetamise nõuandeliin",
+      "status": "active",
+      "summary": "Inimkaubanduse ennetamise nõuandeliin on KOV oluliste telefoninumbrite lehe järgi avatud tööpäevadel 8.30-17.00.",
+      "sourceKeys": [
+        "important_phone_numbers"
+      ],
+      "name": "Inimkaubanduse ennetamise nõuandeliin",
+      "role": "abikanal / kriisiressurss",
+      "address": null,
+      "officialUrl": "https://kohila.ee/vald-uudised-ja-kontakt/valla-info/olulised-telefoninumbrid/",
+      "externalUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "description",
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "important_phone_numbers"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_inimkaubanduse_ennetamise_nouandeliin",
+      "document_id": "kohila_vald_resource_inimkaubanduse_ennetamise_nouandeliin",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/vald-uudised-ja-kontakt/valla-info/olulised-telefoninumbrid/",
+      "content_hash": "8989219560c6f8e2961db7b8c0c2cb13cbd57da4a66eaf6a88affd9fee26b766",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_vagivallast_loobumise_tugiliin",
+      "canonical_item_id": "kohila_vald:resource:vagivallast_loobumise_tugiliin",
+      "itemType": "resource",
+      "title": "Vägivallast loobumise tugiliin",
+      "status": "active",
+      "summary": "Vägivallast loobumise tugiliin on KOV oluliste telefoninumbrite lehe järgi avatud tööpäevadel 10-16.",
+      "sourceKeys": [
+        "important_phone_numbers"
+      ],
+      "name": "Vägivallast loobumise tugiliin",
+      "role": "abikanal / kriisiressurss",
+      "address": null,
+      "officialUrl": "https://kohila.ee/vald-uudised-ja-kontakt/valla-info/olulised-telefoninumbrid/",
+      "externalUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "description",
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "important_phone_numbers"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_vagivallast_loobumise_tugiliin",
+      "document_id": "kohila_vald_resource_vagivallast_loobumise_tugiliin",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/vald-uudised-ja-kontakt/valla-info/olulised-telefoninumbrid/",
+      "content_hash": "1e30c12156371a789a98a9d7d91bce7aeeddc6e1f6c8cc678aa9e456263ba99b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_resource_kerksuskeskused",
+      "canonical_item_id": "kohila_vald:resource:kerksuskeskused",
+      "itemType": "resource",
+      "title": "Kohila valla kerksuskeskused",
+      "status": "active",
+      "summary": "KOV kriisi lehel on kerksuskeskustena nimetatud Kohila Spordikeskus ja Hageri rahvamaja. Kerksuskeskus avatakse kriisiolukorras ning pakub infot, juhiseid, abi, nõu, joogivett, telefoni laadimise võimalust ja vahel esmaabi või psühholoogilist tuge.",
+      "sourceKeys": [
+        "crisis_page"
+      ],
+      "name": "Kohila valla kerksuskeskused",
+      "role": "abikanal / kriisiressurss",
+      "address": null,
+      "officialUrl": "https://kohila.ee/vald-uudised-ja-kontakt/korrakaitse-ja-turvalisus/kriis/",
+      "externalUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "description",
+        "locations"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "crisis_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_resource_kerksuskeskused",
+      "document_id": "kohila_vald_resource_kerksuskeskused",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/vald-uudised-ja-kontakt/korrakaitse-ja-turvalisus/kriis/",
+      "content_hash": "6602ed0b224ce8b5219d57d71e5d800bac20b694c5900910236972fb84b01c69",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_form_toimetulekutoetuse_taotlus_docx",
+      "canonical_item_id": "kohila_vald:form:toimetulekutoetuse_taotlus_docx",
+      "itemType": "form",
+      "title": "Avaldus toimetulekutoetuse taotlemiseks",
+      "status": "active",
+      "summary": "KOV vormide leht avaldab toimetulekutoetuse taotlemiseks DOCX-vormis avalduse. Vorm on seotud toimetulekutoetuse taotlemisega.",
+      "sourceKeys": [
+        "social_forms",
+        "toimetulekutoetus_esmane_docx"
+      ],
+      "format": "docx",
+      "officialUrl": "https://kohila.ee/wp-content/uploads/2025/03/Toimetulekutoetus-esmane.docx",
+      "sourcePageUrl": "https://kohila.ee/juhtimine-ja-majandus/asjaajamine-ja-korrad/e-teenused-ja-blanketid/",
+      "submissionChannels": [
+        "email",
+        "paper",
+        "in-person"
+      ],
+      "relatedTo": [
+        "kohila_vald_benefit_toimetulekutoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "format",
+        "officialUrl",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_forms",
+        "toimetulekutoetus_esmane_docx"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_form_toimetulekutoetuse_taotlus_docx",
+      "document_id": "kohila_vald_form_toimetulekutoetuse_taotlus_docx",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/wp-content/uploads/2025/03/Toimetulekutoetus-esmane.docx",
+      "content_hash": "d776fe348617f060e910b9d88e13fddc3c761fed3338bb008a6130dcb3370ab7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_form_saunapileti_soodustuse_avaldus_docx",
+      "canonical_item_id": "kohila_vald:form:saunapileti_soodustuse_avaldus_docx",
+      "itemType": "form",
+      "title": "Avaldus saunapileti soodustuseks",
+      "status": "active",
+      "summary": "KOV vormide leht avaldab DOCX-vormis avalduse saunapileti soodustuse taotlemiseks. Tingimused ja summa ei ole samal lehel avaldatud.",
+      "sourceKeys": [
+        "saunapileti_kompensatsiooni_avaldus_docx",
+        "social_forms"
+      ],
+      "format": "docx",
+      "officialUrl": "https://kohila.ee/wp-content/uploads/2025/03/Saunapileti-kompensatsiooni-avaldus.docx",
+      "sourcePageUrl": "https://kohila.ee/juhtimine-ja-majandus/asjaajamine-ja-korrad/e-teenused-ja-blanketid/",
+      "submissionChannels": [
+        "email",
+        "paper",
+        "in-person"
+      ],
+      "relatedTo": [
+        "kohila_vald_benefit_saunapileti_soodustus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "format",
+        "officialUrl",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "unresolvedIssues": [
+        "Vormileht ei avalda soodustuse täpseid tingimusi."
+      ],
+      "item_type": "form",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "saunapileti_kompensatsiooni_avaldus_docx",
+        "social_forms"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_form_saunapileti_soodustuse_avaldus_docx",
+      "document_id": "kohila_vald_form_saunapileti_soodustuse_avaldus_docx",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/wp-content/uploads/2025/03/Saunapileti-kompensatsiooni-avaldus.docx",
+      "content_hash": "6a49318f873b986736caeb37f7735acf7a96b08b4872e2b24a2a1757bec5adef",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_form_hooldekodukoha_avaldus_docx",
+      "canonical_item_id": "kohila_vald:form:hooldekodukoha_avaldus_docx",
+      "itemType": "form",
+      "title": "Avaldus hooldekodukoha saamiseks",
+      "status": "active",
+      "summary": "KOV vormide leht avaldab DOCX-vormis avalduse hooldekodukoha saamiseks. Vorm on sisuliselt seotud väljaspool kodu osutatava üldhooldusteenuse ja hooldekodukoha vajadusega.",
+      "sourceKeys": [
+        "hooldekodukoha_avaldus_docx",
+        "social_forms"
+      ],
+      "format": "docx",
+      "officialUrl": "https://kohila.ee/wp-content/uploads/2025/03/Hooldekodukoha-avaldus.docx",
+      "sourcePageUrl": "https://kohila.ee/juhtimine-ja-majandus/asjaajamine-ja-korrad/e-teenused-ja-blanketid/",
+      "submissionChannels": [
+        "email",
+        "paper",
+        "in-person"
+      ],
+      "relatedTo": [
+        "kohila_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "format",
+        "officialUrl",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "hooldekodukoha_avaldus_docx",
+        "social_forms"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_form_hooldekodukoha_avaldus_docx",
+      "document_id": "kohila_vald_form_hooldekodukoha_avaldus_docx",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/wp-content/uploads/2025/03/Hooldekodukoha-avaldus.docx",
+      "content_hash": "de571e5a3faed6bdd16a51550657ba00f7383f8b2bde1eada33c3eeac4c8e2a6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_form_matusetoetuse_avaldus_docx",
+      "canonical_item_id": "kohila_vald:form:matusetoetuse_avaldus_docx",
+      "itemType": "form",
+      "title": "Avaldus matusetoetuse saamiseks",
+      "status": "active",
+      "summary": "KOV vormide leht avaldab DOCX-vormis avalduse matusetoetuse saamiseks. Vorm on seotud matusetoetuse taotlemisega.",
+      "sourceKeys": [
+        "matusetoetuse_avaldus_docx",
+        "social_forms"
+      ],
+      "format": "docx",
+      "officialUrl": "https://kohila.ee/wp-content/uploads/2025/03/matusetoetuse-avaldus.docx",
+      "sourcePageUrl": "https://kohila.ee/juhtimine-ja-majandus/asjaajamine-ja-korrad/e-teenused-ja-blanketid/",
+      "submissionChannels": [
+        "email",
+        "paper",
+        "in-person"
+      ],
+      "relatedTo": [
+        "kohila_vald_benefit_matusetoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "format",
+        "officialUrl",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "matusetoetuse_avaldus_docx",
+        "social_forms"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_form_matusetoetuse_avaldus_docx",
+      "document_id": "kohila_vald_form_matusetoetuse_avaldus_docx",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/wp-content/uploads/2025/03/matusetoetuse-avaldus.docx",
+      "content_hash": "a0353e407432bf96a3ed6da7b1290e9c967615c998b63d39c5929a403905f726",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_form_matusetoetuse_e_vorm",
+      "canonical_item_id": "kohila_vald:form:matusetoetuse_e_vorm",
+      "itemType": "form",
+      "title": "Matusetoetuse e-vorm",
+      "status": "active",
+      "summary": "KOV vormide leht suunab matusetoetuse e-vormile SPOKU iseteeninduses. Välist vormi ei kasutatud andmekorje allikana; seos matusetoetusega on kinnitatud KOV vormide lehel.",
+      "sourceKeys": [
+        "social_forms"
+      ],
+      "format": "web_form",
+      "officialUrl": "https://piksel.ee/spoku/kohila/matuset2/ylevaade?asutus=5808&toetus=375",
+      "sourcePageUrl": "https://kohila.ee/juhtimine-ja-majandus/asjaajamine-ja-korrad/e-teenused-ja-blanketid/",
+      "submissionChannels": [
+        "online"
+      ],
+      "relatedTo": [
+        "kohila_vald_benefit_matusetoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "format",
+        "officialUrl",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "unresolvedIssues": [
+        "E-vorm asub välises SPOKU keskkonnas; välise lehe sisu ei kasutatud allikana."
+      ],
+      "item_type": "form",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_forms"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_form_matusetoetuse_e_vorm",
+      "document_id": "kohila_vald_form_matusetoetuse_e_vorm",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://piksel.ee/spoku/kohila/matuset2/ylevaade?asutus=5808&toetus=375",
+      "content_hash": "bb3729a499c61935c8dd89808fdfcddead99281ac1a23c1da2da188e2095d98e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_form_sunnitoetuse_avaldus_docx",
+      "canonical_item_id": "kohila_vald:form:sunnitoetuse_avaldus_docx",
+      "itemType": "form",
+      "title": "Avaldus sünnitoetuse saamiseks",
+      "status": "active",
+      "summary": "KOV vormide leht avaldab DOCX-vormis avalduse sünnitoetuse saamiseks. Vorm on seotud sünnitoetuse taotlemisega.",
+      "sourceKeys": [
+        "social_forms",
+        "sunnitoetuse_avaldus_docx"
+      ],
+      "format": "docx",
+      "officialUrl": "https://kohila.ee/wp-content/uploads/2025/03/Sunnitoetuse-avaldus.docx",
+      "sourcePageUrl": "https://kohila.ee/juhtimine-ja-majandus/asjaajamine-ja-korrad/e-teenused-ja-blanketid/",
+      "submissionChannels": [
+        "email",
+        "paper",
+        "in-person"
+      ],
+      "relatedTo": [
+        "kohila_vald_benefit_sunnitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "format",
+        "officialUrl",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_forms",
+        "sunnitoetuse_avaldus_docx"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_form_sunnitoetuse_avaldus_docx",
+      "document_id": "kohila_vald_form_sunnitoetuse_avaldus_docx",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/wp-content/uploads/2025/03/Sunnitoetuse-avaldus.docx",
+      "content_hash": "16b83ebb4c51b468db08f0037a9c992e5e588cc2f686e9d818d4771ffbe2c371",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_form_sunnitoetuse_e_vorm",
+      "canonical_item_id": "kohila_vald:form:sunnitoetuse_e_vorm",
+      "itemType": "form",
+      "title": "Sünnitoetuse e-vorm",
+      "status": "active",
+      "summary": "KOV vormide leht suunab sünnitoetuse e-vormile SPOKU iseteeninduses. Välist vormi ei kasutatud andmekorje allikana; seos sünnitoetusega on kinnitatud KOV vormide lehel.",
+      "sourceKeys": [
+        "social_forms"
+      ],
+      "format": "web_form",
+      "officialUrl": "https://piksel.ee/spoku/kohila/synd/ylevaade?_andl_id=1",
+      "sourcePageUrl": "https://kohila.ee/juhtimine-ja-majandus/asjaajamine-ja-korrad/e-teenused-ja-blanketid/",
+      "submissionChannels": [
+        "online"
+      ],
+      "relatedTo": [
+        "kohila_vald_benefit_sunnitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "format",
+        "officialUrl",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "unresolvedIssues": [
+        "E-vorm asub välises SPOKU keskkonnas; välise lehe sisu ei kasutatud allikana."
+      ],
+      "item_type": "form",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_forms"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_form_sunnitoetuse_e_vorm",
+      "document_id": "kohila_vald_form_sunnitoetuse_e_vorm",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://piksel.ee/spoku/kohila/synd/ylevaade?_andl_id=1",
+      "content_hash": "447ef8cfbf55bf69e43a90d5b6df27fd0110076b2d05b8470fb19e61ebbceace",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_form_esmakordselt_kooli_mineva_lapse_toetuse_e_vorm",
+      "canonical_item_id": "kohila_vald:form:esmakordselt_kooli_mineva_lapse_toetuse_e_vorm",
+      "itemType": "form",
+      "title": "Avaldus 1. klassi astuja toetuse saamiseks e-vorm",
+      "status": "active",
+      "summary": "KOV vormide leht suunab 1. klassi astuja toetuse e-vormile SPOKU iseteeninduses. Seos esmakordselt kooli mineva lapse toetusega on kinnitatud KOV vormide lehel.",
+      "sourceKeys": [
+        "social_forms"
+      ],
+      "format": "web_form",
+      "officialUrl": "https://piksel.ee/spoku/kohila/kooliminekutoetus/ylevaade?asutus=5808&toetus=377",
+      "sourcePageUrl": "https://kohila.ee/juhtimine-ja-majandus/asjaajamine-ja-korrad/e-teenused-ja-blanketid/",
+      "submissionChannels": [
+        "online"
+      ],
+      "relatedTo": [
+        "kohila_vald_benefit_esmakordselt_kooli_mineva_lapse_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "format",
+        "officialUrl",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "unresolvedIssues": [
+        "E-vorm asub välises SPOKU keskkonnas; välise lehe sisu ei kasutatud allikana."
+      ],
+      "item_type": "form",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_forms"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_form_esmakordselt_kooli_mineva_lapse_toetuse_e_vorm",
+      "document_id": "kohila_vald_form_esmakordselt_kooli_mineva_lapse_toetuse_e_vorm",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://piksel.ee/spoku/kohila/kooliminekutoetus/ylevaade?asutus=5808&toetus=377",
+      "content_hash": "abaf8782e422ef1c687fbd33ccc4d4816ca85fbc473eed628c9ac38927969004",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_form_opilase_soidukulude_kompenseerimise_avaldus_docx",
+      "canonical_item_id": "kohila_vald:form:opilase_soidukulude_kompenseerimise_avaldus_docx",
+      "itemType": "form",
+      "title": "Avaldus õpilase sõidukulude kompenseerimiseks",
+      "status": "active",
+      "summary": "KOV vormide leht avaldab DOCX-vormis avalduse õpilase sõidukulude kompenseerimiseks. Vorm on seotud transporditoetusega.",
+      "sourceKeys": [
+        "social_forms",
+        "soidukulude_huvitamine_docx"
+      ],
+      "format": "docx",
+      "officialUrl": "https://kohila.ee/wp-content/uploads/2025/03/Soidukulude-huvitamine.docx",
+      "sourcePageUrl": "https://kohila.ee/juhtimine-ja-majandus/asjaajamine-ja-korrad/e-teenused-ja-blanketid/",
+      "submissionChannels": [
+        "email",
+        "paper",
+        "in-person"
+      ],
+      "relatedTo": [
+        "kohila_vald_benefit_transporditoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "format",
+        "officialUrl",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_forms",
+        "soidukulude_huvitamine_docx"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_form_opilase_soidukulude_kompenseerimise_avaldus_docx",
+      "document_id": "kohila_vald_form_opilase_soidukulude_kompenseerimise_avaldus_docx",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kohila.ee/wp-content/uploads/2025/03/Soidukulude-huvitamine.docx",
+      "content_hash": "4e3fdc5762352ba5d43d8a66851c5a81df6e2c2c0ed1f444174814a70ca554c9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_form_soidukulude_kompenseerimise_e_vorm",
+      "canonical_item_id": "kohila_vald:form:soidukulude_kompenseerimise_e_vorm",
+      "itemType": "form",
+      "title": "Sõidukulude kompenseerimise e-vorm",
+      "status": "active",
+      "summary": "KOV vormide leht suunab sõidukulude kompenseerimise e-vormile SPOKU iseteeninduses. Seos transporditoetusega on kinnitatud KOV vormide lehel.",
+      "sourceKeys": [
+        "social_forms"
+      ],
+      "format": "web_form",
+      "officialUrl": "https://piksel.ee/spoku/kohila/soidukulukomp/ylevaade?asutus=5808&toetus=379",
+      "sourcePageUrl": "https://kohila.ee/juhtimine-ja-majandus/asjaajamine-ja-korrad/e-teenused-ja-blanketid/",
+      "submissionChannels": [
+        "online"
+      ],
+      "relatedTo": [
+        "kohila_vald_benefit_transporditoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "format",
+        "officialUrl",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "unresolvedIssues": [
+        "E-vorm asub välises SPOKU keskkonnas; välise lehe sisu ei kasutatud allikana."
+      ],
+      "item_type": "form",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_forms"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_form_soidukulude_kompenseerimise_e_vorm",
+      "document_id": "kohila_vald_form_soidukulude_kompenseerimise_e_vorm",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://piksel.ee/spoku/kohila/soidukulukomp/ylevaade?asutus=5808&toetus=379",
+      "content_hash": "6aaa350e2a8bafd87757c464aaffb72e79f1f493ee8ef3f1bd0fa8d85868c059",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kohila_vald_form_logopeedi_teenuse_toetuse_e_vorm",
+      "canonical_item_id": "kohila_vald:form:logopeedi_teenuse_toetuse_e_vorm",
+      "itemType": "form",
+      "title": "Logopeedi teenuse toetuse taotluse e-vorm",
+      "status": "active",
+      "summary": "KOV vormide leht suunab logopeedi teenuse toetuse e-vormile SPOKU iseteeninduses. Seos tugiteenuste toetusega on kinnitatud vormi nimetuse kaudu.",
+      "sourceKeys": [
+        "social_forms"
+      ],
+      "format": "web_form",
+      "officialUrl": "https://piksel.ee/spoku/kohila/Logtaot/ylevaade?toetus=388",
+      "sourcePageUrl": "https://kohila.ee/juhtimine-ja-majandus/asjaajamine-ja-korrad/e-teenused-ja-blanketid/",
+      "submissionChannels": [
+        "online"
+      ],
+      "relatedTo": [
+        "kohila_vald_benefit_tugiteenuste_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "format",
+        "officialUrl",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "unresolvedIssues": [
+        "E-vorm asub välises SPOKU keskkonnas; välise lehe sisu ei kasutatud allikana."
+      ],
+      "item_type": "form",
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_forms"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kohila_vald_form_logopeedi_teenuse_toetuse_e_vorm",
+      "document_id": "kohila_vald_form_logopeedi_teenuse_toetuse_e_vorm",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://piksel.ee/spoku/kohila/Logtaot/ylevaade?toetus=388",
+      "content_hash": "c23112223c0feaf183ae6069e4ca3ed6ad1c0495cf3a37c188c6c3b50f535a4e",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Kohila vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

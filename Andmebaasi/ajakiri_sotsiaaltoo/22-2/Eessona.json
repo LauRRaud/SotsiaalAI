@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2022",
+  "articleId": "eessona-2022-2",
+  "title": "Eessõna",
+  "authors": [
+    "Hanna Vseviov"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2022",
+  "section": "Eessõna",
+  "pageRange": "2-2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi sotsiaalala asekantsler vaatab tagasi sotsiaalvaldkonna arengule ja rõhutab inimkeskse lähenemise ning disainmõtlemise olulisust poliitika kujundamisel. Eessõnas analüüsitakse, kuidas keerulised kriisid – COVID-19, energia- ja pagulaskriis – on muutnud ootusi sotsiaaltööle ning toonitatud on paindlike, kiirete ja empaatiliste lahenduste vajadust. Autor rõhutab meeskonnatöö, eri valdkondade koostöö ja hästi haritud, suhtlemisergaste sotsiaaltöötajate rolli inimeste usalduse kujundamisel.",
+  "tags": [
+    "sotsiaalpoliitika",
+    "inimkeskne lähenemine",
+    "disainmõtlemine",
+    "kriisid",
+    "sotsiaalvaldkonna areng",
+    "sotsiaaltöötaja roll"
+  ],
+  "source_type": "file",
+  "source_path": "2022_2_artikkel_1_eessona.pdf",
+  "document_id": "sotsiaaltoo-2-2022-eessona-2022-2",
+  "source_format": "pdf",
+  "source_sha256": "425bba113cc423132dbbe2aa6a54786fcb9f17c85e0267dd2b94cd95c54b4bc1",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2022-eessona-2022-2",
+    "previous_source_path": "2022_2_artikkel_1_eessona.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "425bba113cc423132dbbe2aa6a54786fcb9f17c85e0267dd2b94cd95c54b4bc1",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

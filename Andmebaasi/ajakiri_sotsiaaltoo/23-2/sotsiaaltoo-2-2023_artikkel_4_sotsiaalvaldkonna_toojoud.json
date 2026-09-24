@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2023",
+  "articleId": "sotsiaalvaldkonna-toojõud-padevus-ja-vaartustamine-2023-2",
+  "title": "Sotsiaalvaldkonna tööjõud, pädevus ja väärtustamine",
+  "authors": [
+    "Meeli Tuubel"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2023",
+  "section": "Sotsiaalpoliitika",
+  "pageRange": "13-14",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb sotsiaalvaldkonna tööjõupuudust ja pädevusnõudeid olukorras, kus rahvastiku vananemine ja\nteenuste kvaliteediootus suurendavad spetsialistide vajadust. Autor tutvustab OSKA prognoose hooldustöötajate\nja teiste võtmerollide kohta, kirjeldab hooldekodukoha rahastamise muudatuste mõju palkadele ning kavandatavaid\nmeetmeid kvalifikatsiooni tõstmiseks ja uute töötajate koolitamiseks. Samuti rõhutatakse sotsiaalvaldkonna töö\nväärtustamist, erialahariduse ja kutsestandardite arendamist ning ESTA rolli töötajate tunnustamisel.",
+  "tags": [
+    "sotsiaalvaldkonna tööjõud",
+    "hooldustöötajad",
+    "OSKA",
+    "kvalifikatsioon",
+    "hooldereform",
+    "kutsestandard",
+    "ESTA"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2023_web_par_Part5.pdf",
+  "document_id": "sotsiaaltoo-2-2023-sotsiaalvaldkonna-toojo-ud-padevus-ja-vaartustamine-2023-2",
+  "source_format": "pdf",
+  "source_sha256": "d0630f5dd23537d7a6cb3ba5af6c397d13e38630f6b75f74168a1d832fac519c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2023-sotsiaalvaldkonna-toojo-ud-padevus-ja-vaartustamine-2023-2",
+    "previous_source_path": "Sotsiaaltoo_2_2023_web_par_Part5.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d0630f5dd23537d7a6cb3ba5af6c397d13e38630f6b75f74168a1d832fac519c",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

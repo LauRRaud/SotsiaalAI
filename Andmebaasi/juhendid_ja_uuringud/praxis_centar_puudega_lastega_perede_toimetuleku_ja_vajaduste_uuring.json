@@ -1,0 +1,147 @@
+{
+  "source_path": "praxis_centar_puudega_lastega_perede_toimetuleku_ja_vajaduste_uuring.pdf",
+  "source_format": "pdf",
+  "sha256": "25efef954fcf900a7fa4e79ac4a4310412a2226b31b9e6e0842a8581027477c7",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/praxis_centar_puudega_lastega_perede_toimetuleku_ja_vajaduste_uuring.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "praxis_centar_puudega_lastega_perede_toimetuleku_ja_vajaduste_uuring",
+          "title": "Puudega lastega perede toimetuleku ja vajaduste uuring",
+          "url": "https://centar.ee/pdf/ee/2017_Puudega_lastega_perede_toimetuleku_ja_vajaduste_uuring.pdf",
+          "normalized_url": "https://centar.ee/pdf/ee/2017_Puudega_lastega_perede_toimetuleku_ja_vajaduste_uuring.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "Praxis / CentAR",
+          "organization_id": "praxis_centar",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Praxis",
+            "puue",
+            "puudega inimene",
+            "erivajadus",
+            "lapsed ja pered",
+            "laps",
+            "lapsevanem",
+            "pere",
+            "vanemlus",
+            "uuring",
+            "raport",
+            "analüüs"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Praxis / CentAR / poliitikauuringud",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 449,
+            "order": 242
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Puudega lastega perede toimetuleku ja vajaduste uuring"
+          ],
+          "collection_hints": [
+            "research_reports"
+          ],
+          "source_types_seen": [
+            "research_report"
+          ],
+          "resource_types_seen": [
+            "research_evidence"
+          ],
+          "publishers_seen": [
+            "Praxis / CentAR"
+          ],
+          "organizations_seen": [
+            "praxis_centar"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Praxis / CentAR / poliitikauuringud",
+              "line": 449,
+              "order": 242
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://centar.ee/pdf/ee/2017_Puudega_lastega_perede_toimetuleku_ja_vajaduste_uuring.pdf"
+        },
+        "final_url": "https://centar.ee/pdf/ee/2017_Puudega_lastega_perede_toimetuleku_ja_vajaduste_uuring.pdf",
+        "redirects": [],
+        "sha256": "25efef954fcf900a7fa4e79ac4a4310412a2226b31b9e6e0842a8581027477c7",
+        "bytes": 12064458,
+        "downloaded_at": "2026-08-14T08:00:49.375Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "praxis_centar_puudega_lastega_perede_toimetuleku_ja_vajaduste_uuring",
+      "metadata": {
+        "createdAt": "2026-06-12T04:19:31.804481+00:00",
+        "type": "FILE",
+        "fileName": "2017_Puudega_lastega_perede_toimetuleku_ja_vajaduste_uuring.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T04:19:31.741550+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/5680f215aab0/2017_Puudega_lastega_perede_toimetuleku_ja_vajaduste_uuring.pdf",
+        "title": "Puudega lastega perede toimetuleku ja vajaduste uuring",
+        "description": "Source master headings: Praxis / CentAR / poliitikauuringud",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": null,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–282",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "research_reports",
+        "source_id": "praxis_centar_puudega_lastega_perede_toimetuleku_ja_vajaduste_uuring",
+        "document_id": "praxis_centar_puudega_lastega_perede_toimetuleku_ja_vajaduste_uuring",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "5a138e1bb125094b6ad8c10f243294dd7f9a6bab9177ddb7b41efc5f30e02014",
+        "url": "https://centar.ee/pdf/ee/2017_Puudega_lastega_perede_toimetuleku_ja_vajaduste_uuring.pdf",
+        "url_canonical": "https://centar.ee/pdf/ee/2017_Puudega_lastega_perede_toimetuleku_ja_vajaduste_uuring.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "praxis_centar_puudega_lastega_perede_toimetuleku_ja_vajaduste_uuring",
+        "updatedAt": "2026-06-12T04:19:31.804504+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

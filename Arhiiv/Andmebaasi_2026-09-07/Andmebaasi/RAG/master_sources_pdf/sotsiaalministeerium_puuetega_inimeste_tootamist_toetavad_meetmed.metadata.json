@@ -1,0 +1,75 @@
+{
+  "source": {
+    "source_id": "sotsiaalministeerium_puuetega_inimeste_tootamist_toetavad_meetmed",
+    "title": "Puuetega inimeste töötamist toetavad meetmed",
+    "url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/pittm_1ja2etapp_kokku_2_.pdf",
+    "normalized_url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/pittm_1ja2etapp_kokku_2_.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Sotsiaalministeerium",
+    "organization_id": "sotsiaalministeerium",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Sotsiaalministeerium",
+      "puue",
+      "puudega inimene",
+      "erivajadus",
+      "infomaterjal"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Sotsiaalministeerium",
+      "heading_3": "Vanemad, aga endiselt kasulikud taustauuringud",
+      "heading_4": null,
+      "line": 545,
+      "order": 283
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Puuetega inimeste töötamist toetavad meetmed"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Sotsiaalministeerium"
+    ],
+    "organizations_seen": [
+      "sotsiaalministeerium"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Sotsiaalministeerium",
+        "heading_3": "Vanemad, aga endiselt kasulikud taustauuringud",
+        "line": 545,
+        "order": 283
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/pittm_1ja2etapp_kokku_2_.pdf"
+  },
+  "final_url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/pittm_1ja2etapp_kokku_2_.pdf",
+  "redirects": [],
+  "sha256": "7ec7d369c62706857891c9be805ed882e3eccf254eb96809f55b5b1e3e093bd5",
+  "bytes": 382247,
+  "downloaded_at": "2026-08-14T08:00:55.248Z"
+}

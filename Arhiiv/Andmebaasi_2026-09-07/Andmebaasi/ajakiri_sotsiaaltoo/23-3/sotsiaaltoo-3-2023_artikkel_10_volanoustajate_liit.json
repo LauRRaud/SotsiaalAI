@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-3-2023",
+  "articleId": "volanoustajate-liit-uhendab-ala-asjatundjad-2023-3",
+  "title": "Võlanõustajate liit ühendab ala asjatundjad",
+  "authors": [
+    "Ülle Schmidt"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2023",
+  "section": "Sotsiaalteenus",
+  "pageRange": "48-50",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel annab ülevaate Eesti Võlanõustajate Liidu (EVNL) tekkeloost, eesmärkidest ja rollist võlanõustamise\nteenuse arendamisel. Kirjeldatakse võlanõustaja kutsestandardit, kvalifikatsiooninõudeid ja koolitust, samuti\nliidu panust õigusloomesse, kutsete andmisse ja teenuse kvaliteedi tagamisse. Autor käsitleb Eestis laialt\nlevinud maksehäireid ja võlakoormust, seletab positiivse laenuregistri vajalikkust ning toob esile, kui oluline\non ennetus ja inimestele arusaadav rahandusnõustamine. Lõpus juhitakse tähelepanu kättesaadavatele\ninfoallikatele ja nõuandetele, mis aitavad nii võlanõustajatel kui ka klientidel oma õigusi ja võimalusi paremini\nkasutada.",
+  "tags": [
+    "võlanõustamine",
+    "Eesti Võlanõustajate Liit",
+    "kutsestandard",
+    "maksehäired",
+    "positiivne laeneregister",
+    "finantsnõustamine",
+    "sotsiaalteenus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2023_web_Part11.pdf",
+  "document_id": "sotsiaaltoo-3-2023-volanoustajate-liit-uhendab-ala-asjatundjad-2023-3",
+  "source_format": "pdf",
+  "source_sha256": "373105da1ee2272feabd80f7a06de68a3d780469d797429c8206b68c0e1c5722",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2023-volanoustajate-liit-uhendab-ala-asjatundjad-2023-3",
+    "previous_source_path": "Sotsiaaltoo_3_2023_web_Part11.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "373105da1ee2272feabd80f7a06de68a3d780469d797429c8206b68c0e1c5722",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

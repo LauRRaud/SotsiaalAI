@@ -1,0 +1,83 @@
+{
+  "docId": "sotsiaaltoo-2-2016",
+  "articleId": "sotsiaaltoo-2-2016-artikkel-18-rajaleidja-keskus-aitab-leida-suuna-lapsel-noore",
+  "title": "Rajaleidja keskus aitab leida suuna lapsel, noorel, lapsevanemal ja spetsialistil",
+  "authors": [
+    "Margus Tõnissaar",
+    "Kristina Orion",
+    "Evelin Ergma"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2016",
+  "section": "Info",
+  "pageRange": "78-80",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Innove hariduse tugiteenuste agentuuri spetsialistid kirjeldavad Rajaleidja keskuste tööd, mida SA Innove on koordineerinud 2014. aastast ja kus karjääri- ja õppenõustamist pakutakse lõimitult. Karjääriteenused on mõeldud 7–26aastastele, sealhulgas NEET-noortele; õppenõustamine hõlmab eripedagoogilist, psühholoogilist, sotsiaalpedagoogilist ja logopeedilist nõustamist. 2015. aastal sai individuaalset karjäärinõustamist ligi 16 000 noort ja grupitegevustes osales pea 44 000; õppenõustajate poole pöörduti 9093 lapse ja noore küsimuses ning nõustamiskomisjon andis 2325 soovitust. Teenuseid rahastatakse Euroopa Sotsiaalfondist.",
+  "tags": [
+    "info",
+    "Rajaleidja",
+    "karjäärinõustamine",
+    "õppenõustamine",
+    "Innove",
+    "NEET-noored"
+  ],
+  "source_type": "file",
+  "source_path": "2016_2_artikkel_18_rajaleidja_keskus_aitab_leida_suuna_lapsel_noorel_la.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-18-rajaleidja-keskus-aitab-leida-suuna-lapsel-noore",
+  "source_sha256": "208e2c88fca962be2de039686ba52e0ec3bea5f511d592b25612f0740352a97a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-18-rajaleidja-keskus-aitab-leida-suuna-lapsel-noore",
+    "previous_source_path": "2016_2_artikkel_18_rajaleidja_keskus_aitab_leida_suuna_lapsel_noorel_la.txt",
+    "previous_source_original_path": "2-2016.pdf",
+    "reference_stored_source_sha256": "d7f468e6f51d0c87242e5bed61ff24a2e322bdbe61bea2de5f2f6acf7bba30c1",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2-2016.pdf",
+      "source_sha256": "cf45b61607b21a62a1003f99c97d65180c4fb4f591a874c983c4b63e5c804a36",
+      "pdf_start_page": 80,
+      "pdf_end_page": 82,
+      "printed_page_range": "78-82",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 84,
+      "source_regions": [
+        {
+          "source_pdf_page": 80,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 81,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 82,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "78-80"
+    },
+    "server_page_range": "78-82"
+  }
+}

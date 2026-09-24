@@ -1,0 +1,156 @@
+{
+  "source_path": "paasteamet_tuleohutuspaigaldised_ja_paastevahendid_haiglates_hooldekodu.pdf",
+  "source_format": "pdf",
+  "sha256": "e053f82bfa39ea746c1188c230283be344334e8ab2558d4b7cff63a1b2d9b383",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/paasteamet_tuleohutuspaigaldised_ja_paastevahendid_haiglates_hooldekodu.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "paasteamet_tuleohutuspaigaldised_ja_paastevahendid_haiglates_hooldekodu",
+          "title": "Tuleohutuspaigaldised ja päästevahendid haiglates/hooldekodudes",
+          "url": "https://www.rescue.ee/files/2018-09/tuleohutuspaigaldised-ja-paastevahendid-haiglates-ja-hooldekodudes.pdf",
+          "normalized_url": "https://www.rescue.ee/files/2018-09/tuleohutuspaigaldised-ja-paastevahendid-haiglates-ja-hooldekodudes.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "Päästeamet",
+          "organization_id": "paasteamet",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Päästeamet",
+            "hoolekanne",
+            "sotsiaalteenused",
+            "hooldus",
+            "hooldekodu",
+            "hoolekandeasutus",
+            "tuleohutus",
+            "pääste",
+            "evakuatsioon",
+            "kriisivalmidus",
+            "infomaterjal"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [
+            "OK"
+          ],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_002",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "6) Kvaliteet, järelevalve ja ohutus",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 164,
+            "order": 116
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Tuleohutuspaigaldised ja päästevahendid haiglates/hooldekodudes (PDF)",
+            "Tuleohutuspaigaldiste ja päästevahendite rakendamise juhend haiglates ja hooldekodudes"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material",
+            "official_guideline"
+          ],
+          "resource_types_seen": [
+            "information_material",
+            "best_practice_guidance"
+          ],
+          "publishers_seen": [
+            "Päästeamet"
+          ],
+          "organizations_seen": [
+            "paasteamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "6) Kvaliteet, järelevalve ja ohutus",
+              "line": 164,
+              "order": 116
+            },
+            {
+              "heading_2": "Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+              "line": 397,
+              "order": 218
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.rescue.ee/files/2018-09/tuleohutuspaigaldised-ja-paastevahendid-haiglates-ja-hooldekodudes.pdf"
+        },
+        "final_url": "https://www.rescue.ee/files/2018-09/tuleohutuspaigaldised-ja-paastevahendid-haiglates-ja-hooldekodudes.pdf",
+        "redirects": [],
+        "sha256": "e053f82bfa39ea746c1188c230283be344334e8ab2558d4b7cff63a1b2d9b383",
+        "bytes": 5275025,
+        "downloaded_at": "2026-08-14T08:00:34.860Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "paasteamet_tuleohutuspaigaldised_ja_paastevahendid_haiglates_hooldekodu",
+      "metadata": {
+        "createdAt": "2026-06-12T03:36:39.279516+00:00",
+        "type": "FILE",
+        "fileName": "tuleohutuspaigaldised-ja-paastevahendid-haiglates-ja-hooldekodudes.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:36:39.215201+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/d8374817ced9/tuleohutuspaigaldised-ja-paastevahendid-haiglates-ja-hooldekodudes.pdf",
+        "title": "Tuleohutuspaigaldised ja päästevahendid haiglates/hooldekodudes",
+        "description": "Duplikaadid ühendatud: 1 lisakirjet. Source master headings: 6) Kvaliteet, järelevalve ja ohutus; Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2018,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–64",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "paasteamet_tuleohutuspaigaldised_ja_paastevahendid_haiglates_hooldekodu",
+        "document_id": "paasteamet_tuleohutuspaigaldised_ja_paastevahendid_haiglates_hooldekodu",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "6e1c3d4eab521212ca9c4d3bbf8bbdfb35a06abc92747a8360cf853bef41355d",
+        "url": "https://www.rescue.ee/files/2018-09/tuleohutuspaigaldised-ja-paastevahendid-haiglates-ja-hooldekodudes.pdf",
+        "url_canonical": "https://www.rescue.ee/files/2018-09/tuleohutuspaigaldised-ja-paastevahendid-haiglates-ja-hooldekodudes.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "paasteamet_tuleohutuspaigaldised_ja_paastevahendid_haiglates_hooldekodu",
+        "updatedAt": "2026-06-12T03:36:39.279541+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

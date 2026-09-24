@@ -1,0 +1,45 @@
+{
+  "verified_at": "2026-09-07T20:20:10.454Z",
+  "registered_files": 2529,
+  "total_active_files": 2531,
+  "archive_original_files_verified": 2711,
+  "server_guide_hash_matches": 170,
+  "legal_mappings_verified": 78,
+  "restored_index_records_preserved": 5011,
+  "journal_provenance_paths_updated": 211,
+  "counts": {
+    "ajakiri": {
+      "files": 1784,
+      "sources": 892
+    },
+    "juhendid_ja_uuringud": {
+      "files": 370,
+      "sources": 185
+    },
+    "KOV": {
+      "files": 234,
+      "sources": 78
+    },
+    "kontaktid": {
+      "files": 10,
+      "sources": 0
+    },
+    "organisatsioonid": {
+      "files": 3,
+      "sources": 1
+    },
+    "oigusaktid": {
+      "files": 104,
+      "sources": 104
+    },
+    "register": {
+      "files": 2,
+      "sources": 0
+    },
+    "taastatud_allikad": {
+      "files": 22,
+      "sources": 0
+    }
+  },
+  "ingest_run": false
+}

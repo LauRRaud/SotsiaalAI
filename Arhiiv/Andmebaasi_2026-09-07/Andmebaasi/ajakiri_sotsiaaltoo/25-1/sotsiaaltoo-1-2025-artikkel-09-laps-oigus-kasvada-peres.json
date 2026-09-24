@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "lapse-oigus-kasvada-peres-suhetel-pohinevad-lapse-oigused-asendushooldusel-2025-1",
+  "title": "Lapse õigus kasvada peres: suhetel põhinevad lapse õigused asendushooldusel",
+  "authors": [
+    "Ingrid Sindi"
+  ],
+  "section": "Teoreetilised lähtekohad",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "description": "Artikkel käsitleb lapse õigust kasvada peres suhetel põhinevate lapse õiguste teooria vaatenurgast. Ingrid Sindi selgitab, kuidas ÜRO lapse õiguste konventsioon ja hilisemad käsitlused kutsuvad mõistma lapse õigusi mitte ainult individuaalse autonoomiana, vaid suhetes vanemate, sugulaste, hooldajate ja kogukonnaga. Arutletakse individualistliku ja kollektivistliku perekäsitluse tasakaalu, ajalooliste kogemuste mõju Eesti mõttelaadile ning Ubuntu-filosoofia eeskuju. Asendushoolduse kontekstis rõhutatakse lapsele oluliste suhete hoidmist, kuuluvuse ja identiteedi tähtsust ning jagatud vastutust lapse heaolu eest.",
+  "tags": [
+    "lapse õigused",
+    "asendushooldus",
+    "perekeskne lähenemine",
+    "suhetel põhinevad õigused",
+    "ÜRO lapse õiguste konventsioon",
+    "kogukond",
+    "Ubuntu"
+  ],
+  "source_path": "Lapse õigus kasvada peres_1_2025.pdf",
+  "pageRange": "1–5",
+  "document_id": "sotsiaaltoo-1-2025-lapse-oigus-kasvada-peres-suhetel-pohinevad-lapse-oigused-asendushooldusel-2025-1",
+  "source_format": "pdf",
+  "source_sha256": "1a9add38b0f227a66931b2f60ef4505cf2ed7cea335711e44dc74648d7648373",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2025-lapse-oigus-kasvada-peres-suhetel-pohinevad-lapse-oigused-asendushooldusel-2025-1",
+    "previous_source_path": "Lapse õigus kasvada peres_1_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "1a9add38b0f227a66931b2f60ef4505cf2ed7cea335711e44dc74648d7648373",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

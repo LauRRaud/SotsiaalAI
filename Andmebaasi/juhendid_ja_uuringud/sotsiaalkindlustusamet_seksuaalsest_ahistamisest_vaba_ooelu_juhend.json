@@ -1,0 +1,89 @@
+{
+  "source_path": "sotsiaalkindlustusamet_seksuaalsest_ahistamisest_vaba_ooelu_juhend.pdf",
+  "source_format": "pdf",
+  "sha256": "e8437a96b20dd1368417cecc5b0ff63ac7ed29758cac6f0b838a427e4c940b56",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/sotsiaalkindlustusamet_seksuaalsest_ahistamisest_vaba_ooelu_juhend.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "sotsiaalkindlustusamet_seksuaalsest_ahistamisest_vaba_ooelu_juhend",
+          "title": "Seksuaalsest ahistamisest vaba ööelu juhend",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Seksuaalsest%20ahistamisest%20vaba%20o%CC%88o%CC%88elu%20juhend%20A4_veeb%20linkidega.pdf",
+          "normalized_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Seksuaalsest ahistamisest vaba ööelu juhend A4_veeb linkidega.pdf",
+          "source_format": "pdf",
+          "source_type": "official_guideline",
+          "resource_type": "method_guidance",
+          "publisher": "Sotsiaalkindlustusamet",
+          "organization_id": "sotsiaalkindlustusamet",
+          "collection_hint": "guidance_and_methods",
+          "evidence_role": "practice_guidance",
+          "topic_tags": [
+            "Sotsiaalkindlustusamet",
+            "ohvriabi",
+            "seksuaalvägivald",
+            "seksuaalne ahistamine",
+            "spetsialisti juhend",
+            "SKA"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "needs_review",
+          "ingest_priority": "high",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "SKA",
+            "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+            "heading_4": null,
+            "line": 491,
+            "order": 261
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Seksuaalsest ahistamisest vaba ööelu juhend"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "official_guideline"
+          ],
+          "resource_types_seen": [
+            "best_practice_guidance"
+          ],
+          "publishers_seen": [
+            "Sotsiaalkindlustusamet"
+          ],
+          "organizations_seen": [
+            "sotsiaalkindlustusamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "SKA",
+              "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+              "line": 491,
+              "order": 261
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Seksuaalsest ahistamisest vaba ööelu juhend A4_veeb linkidega.pdf",
+          "status_note": "ingested 2026-06-11 but 0 chunks extracted (likely scanned/no text layer; needs OCR)"
+        },
+        "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Seksuaalsest%20ahistamisest%20vaba%20o%CC%88o%CC%88elu%20juhend%20A4_veeb%20linkidega.pdf",
+        "redirects": [],
+        "sha256": "e8437a96b20dd1368417cecc5b0ff63ac7ed29758cac6f0b838a427e4c940b56",
+        "bytes": 2917669,
+        "downloaded_at": "2026-08-14T08:00:52.269Z"
+      }
+    }
+  ],
+  "server_metadata": [],
+  "review_status": "metadata_conversion_pending"
+}

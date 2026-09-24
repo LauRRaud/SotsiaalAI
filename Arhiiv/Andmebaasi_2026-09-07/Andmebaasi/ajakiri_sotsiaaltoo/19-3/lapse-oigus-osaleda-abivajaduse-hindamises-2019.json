@@ -1,0 +1,38 @@
+{
+  "docId": "sotsiaaltoo-3-2019",
+  "articleId": "lapse-oigus-osaleda-abivajaduse-hindamises-2019",
+  "title": "Lapse õigus osaleda abivajaduse hindamises: kuidas lastekaitsetöötajad seda tõlgendavad?",
+  "authors": [
+    "Karmen Toros"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2019",
+  "section": "Lapsesõbralik lastekaitse",
+  "pageRange": "27-31",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb Harjumaa lastekaitsetöötajate arusaamu ja praktikaid seoses lapse õigusega osaleda abivajaduse hindamise protsessis, tuginedes intervjuupõhise uuringu tulemustele.",
+  "tags": [
+    "lapse osalus",
+    "abivajaduse hindamine",
+    "lapsekaitse",
+    "lapsesõbralik praktika"
+  ],
+  "source_type": "file",
+  "source_path": "ST3_2019_veeb_link_Part7.pdf",
+  "document_id": "sotsiaaltoo-3-2019-lapse-oigus-osaleda-abivajaduse-hindamises-2019",
+  "source_format": "pdf",
+  "source_sha256": "931ca59e8b4c675cf8f665abddcc4ce86dcf62a8ae28645862461ff1f8fa72ca",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2019-lapse-oigus-osaleda-abivajaduse-hindamises-2019",
+    "previous_source_path": "ST3_2019_veeb_link_Part7.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "931ca59e8b4c675cf8f665abddcc4ce86dcf62a8ae28645862461ff1f8fa72ca",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

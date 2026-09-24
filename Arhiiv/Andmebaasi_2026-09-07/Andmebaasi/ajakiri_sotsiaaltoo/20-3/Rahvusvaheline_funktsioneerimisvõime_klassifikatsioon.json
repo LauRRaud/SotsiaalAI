@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2020",
+  "articleId": "rahvusvaheline-funktsioneerimisvoime-klassifikatsioon-2020-3",
+  "title": "Rahvusvaheline funktsioneerimisvõime klassifikatsioon",
+  "authors": [
+    "Karin Hanga"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2020",
+  "section": "Metoodika",
+  "pageRange": "65-73",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab rahvusvahelist funktsioneerimisvõime, vaeguste ja tervise klassifikatsiooni (RFK/ICF) kui raamistikku, mille abil saab süsteemselt kirjeldada inimese funktsioneerimisvõimet ja igapäevast toimetulekut. Selgitatakse RFK põhimõisteid, biopsühhosotsiaalset käsitlust ning käsitletakse, kuidas RFKd kasutada tööhõive- ja rehabilitatsioonivaldkonnas poliitikakujunduse ja teenuste arendamise toetamiseks.",
+  "tags": [
+    "RFK",
+    "ICF",
+    "funktsioneerimisvõime",
+    "rehabilitatsioon",
+    "tööhõive",
+    "biopsühhosotsiaalne mudel",
+    "metoodika"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2020_web_link_Part15.pdf",
+  "mapping_fixed": "20260814-161821",
+  "document_id": "sotsiaaltoo-3-2020-rahvusvaheline-funktsioneerimisvoime-klassifikatsioon-2020-3",
+  "source_format": "pdf",
+  "source_sha256": "bc7981fd44e12bb1516c0f9607c313f0e57102b4f4079c80a24b43ec675b97d0",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2020-rahvusvaheline-funktsioneerimisvoime-klassifikatsioon-2020-3",
+    "previous_source_path": "Sotsiaaltoo_3_2020_web_link_Part15.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "bc7981fd44e12bb1516c0f9607c313f0e57102b4f4079c80a24b43ec675b97d0",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "docId": "sotsiaaltoo-1-2016",
+  "articleId": "sotsiaaltoo-1-2016-artikkel-06-töövõimereform-töövõime-hindamine-uutmoodi",
+  "title": "Töövõimereform: töövõime hindamine uutmoodi",
+  "authors": [
+    "Hille Maas",
+    "Monika Aasa"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2016",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "14-16",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Eesti Töötukassa spetsialistid kirjeldavad, et töötukassa alustab 1. juulil 2016 töövõime hindamist ja töövõimetoetuse maksmist, hinnates 2016. aastal ainult neid, kelle töövõimekaotust pole viie aasta jooksul hinnatud; alates 1. jaanuarist 2017 hindab töövõimet ainult töötukassa. Metoodika töötas 2013. aastal välja Eesti Töötervishoiuarstide Selts ja see põhineb Maailma Terviseorganisatsiooni klassifikatsioonil RFK. Hindamine koosneb viiest sammust ning eksperdiarvamuse koostab töötukassa-väline ekspertarst. Otsus – töövõimeline, osaline või puuduv töövõime – kehtib viis aastat. Töövõimet välistavate seisundite korral hinnatakse lihtsustatud korras.",
+  "tags": [
+    "töövõimereform",
+    "töövõime hindamine",
+    "eesti töötukassa",
+    "rfk",
+    "ekspertarst",
+    "töövõimetoetus"
+  ],
+  "source_type": "file",
+  "source_path": "2016_1_artikkel_06_toovoimereform_toovoime_hindamine_uutmoodi.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-06-t-v-imereform-t-v-ime-hindamine-uutmoodi",
+  "source_sha256": "4998a73f31d7f98ea3a3d4fee120284cba39d7b51dfaf88a6cbcd282354bc01e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-06-t-v-imereform-t-v-ime-hindamine-uutmoodi",
+    "previous_source_path": "2016_1_artikkel_06_toovoimereform_toovoime_hindamine_uutmoodi.txt",
+    "previous_source_original_path": "1-2016.pdf",
+    "reference_stored_source_sha256": "5f374e3c08d863230e3f0cc99b59ee48c97ed75763985ecc74c5fd4ff1a3bdcc",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf",
+      "source_sha256": "2c193295e54f58982562b509b6283e93aa58b1695464671e1768e24e90888a6c",
+      "pdf_start_page": 16,
+      "pdf_end_page": 18,
+      "printed_page_range": "14-16",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 18,
+      "source_regions": [
+        {
+          "source_pdf_page": 16,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 17,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 18,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "14-16"
+    },
+    "server_page_range": "14-16"
+  }
+}

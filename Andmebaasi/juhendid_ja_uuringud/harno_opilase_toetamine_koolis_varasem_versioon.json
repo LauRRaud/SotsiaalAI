@@ -1,0 +1,148 @@
+{
+  "source_path": "harno_opilase_toetamine_koolis_varasem_versioon.pdf",
+  "source_format": "pdf",
+  "sha256": "4cd50cad848a79f55137e31787ad8f43397b961637817b1c6c1ba713db15f213",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/harno_opilase_toetamine_koolis_varasem_versioon.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "harno_opilase_toetamine_koolis_varasem_versioon",
+          "title": "Õpilase toetamine koolis (varasem versioon)",
+          "url": "https://harno.ee/sites/default/files/documents/2022-02/Juhendmaterjal_6pilase_toetamiseks_22.pdf",
+          "normalized_url": "https://harno.ee/sites/default/files/documents/2022-02/Juhendmaterjal_6pilase_toetamiseks_22.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "HARNO",
+          "organization_id": "harno",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Haridus- ja Noorteamet",
+            "lapsed ja pered",
+            "haridus",
+            "kool",
+            "õpilase toetamine",
+            "tugimeetmed",
+            "infomaterjal"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_072",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "HARNO / HEV / kooli tugimeetmed",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 369,
+            "order": 205
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Õpilase toetamine koolis (varasem versioon)",
+            "Õpilase toetamine koolis"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "HARNO"
+          ],
+          "organizations_seen": [
+            "harno"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "HARNO / HEV / kooli tugimeetmed",
+              "line": 369,
+              "order": 205
+            },
+            {
+              "heading_2": "Laste ja noorte vaimne tervis / kool / pere ristumiskoht",
+              "line": 427,
+              "order": 232
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://harno.ee/sites/default/files/documents/2022-02/Juhendmaterjal_6pilase_toetamiseks_22.pdf"
+        },
+        "final_url": "https://harno.ee/sites/default/files/documents/2022-02/Juhendmaterjal_6pilase_toetamiseks_22.pdf",
+        "redirects": [],
+        "sha256": "4cd50cad848a79f55137e31787ad8f43397b961637817b1c6c1ba713db15f213",
+        "bytes": 422261,
+        "downloaded_at": "2026-08-14T08:00:44.465Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "harno_opilase_toetamine_koolis_varasem_versioon",
+      "metadata": {
+        "createdAt": "2026-06-12T03:44:35.557454+00:00",
+        "type": "FILE",
+        "fileName": "Juhendmaterjal_6pilase_toetamiseks_22.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:44:35.489662+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/01946e7a9497/Juhendmaterjal_6pilase_toetamiseks_22.pdf",
+        "title": "Õpilase toetamine koolis (varasem versioon)",
+        "description": "Duplikaadid ühendatud: 1 lisakirjet. Source master headings: HARNO / HEV / kooli tugimeetmed; Laste ja noorte vaimne tervis / kool / pere ristumiskoht",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2022,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–27",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "harno_opilase_toetamine_koolis_varasem_versioon",
+        "document_id": "harno_opilase_toetamine_koolis_varasem_versioon",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "4b6cfd7199f547aa6a1af0a6babde1abd072ca23a8b0bc5ab1f4774300affd83",
+        "url": "https://harno.ee/sites/default/files/documents/2022-02/Juhendmaterjal_6pilase_toetamiseks_22.pdf",
+        "url_canonical": "https://harno.ee/sites/default/files/documents/2022-02/Juhendmaterjal_6pilase_toetamiseks_22.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "harno_opilase_toetamine_koolis_varasem_versioon",
+        "updatedAt": "2026-06-12T03:44:35.557478+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

@@ -1,0 +1,79 @@
+{
+  "source": {
+    "source_id": "tervisekassa_esmatasandi_tervishoiu_arengumudel_lahima_10_aasta_perspekti",
+    "title": "Esmatasandi tervishoiu arengumudel lähima 10 aasta perspektiivis",
+    "url": "https://tervisekassa.ee/sites/default/files/uuringud_aruanded/esmatasandi_toimemudel_lahima_10_aasta_perspektiivis.pdf",
+    "normalized_url": "https://tervisekassa.ee/sites/default/files/uuringud_aruanded/esmatasandi_toimemudel_lahima_10_aasta_perspektiivis.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Tervisekassa",
+    "organization_id": "tervisekassa",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Tervisekassa",
+      "tervishoid",
+      "esmatasand",
+      "patsient",
+      "infomaterjal"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_047",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+    "source_context": {
+      "heading_2": "Tervisekassa",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 287,
+      "order": 169
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "Esmatasandi tervishoiu arengumudel lähima 10 aasta perspektiivis"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Tervisekassa"
+    ],
+    "organizations_seen": [
+      "tervisekassa"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Tervisekassa",
+        "line": 287,
+        "order": 169
+      },
+      {
+        "heading_2": "Tervisekassa",
+        "line": 761,
+        "order": 376
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://tervisekassa.ee/sites/default/files/uuringud_aruanded/esmatasandi_toimemudel_lahima_10_aasta_perspektiivis.pdf"
+  },
+  "final_url": "https://tervisekassa.ee/sites/default/files/uuringud_aruanded/esmatasandi_toimemudel_lahima_10_aasta_perspektiivis.pdf",
+  "redirects": [],
+  "sha256": "f17bac84fcd0e1b4972f4388b0a4ca5791cd9ab6878f41b0140764f12807391a",
+  "bytes": 1878116,
+  "downloaded_at": "2026-08-14T08:00:37.387Z"
+}

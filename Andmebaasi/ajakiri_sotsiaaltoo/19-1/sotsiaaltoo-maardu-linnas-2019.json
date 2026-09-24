@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2019",
+  "articleId": "mone-omapara-sotsiaaltoo-maardu-linnas-2019",
+  "title": "Mõne omapäraga sotsiaaltöö Maardu linnas",
+  "authors": [
+    "Kairiin Nuudi",
+    "Laur Raudsoo"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2019",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "56-60",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Maardu linna sotsiaalabi osakonna töö ja eripärade kirjeldus, keskendudes venekeelse elanikkonna vajadustele, sotsiaalteenuste korraldusele ja koostööle kohalike ühendustega.",
+  "tags": [
+    "kohalik omavalitsus",
+    "Maardu linn",
+    "sotsiaalabi osakond",
+    "sotsiaalteenused",
+    "venekeelne elanikkond",
+    "kogukonnatöö"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part14.pdf",
+  "document_id": "sotsiaaltoo-1-2019-mone-omapara-sotsiaaltoo-maardu-linnas-2019",
+  "source_format": "pdf",
+  "source_sha256": "916a56dcecd474c1e818d16dc70cd5be00e93378093dc78248dc96e65cb56024",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2019-mone-omapara-sotsiaaltoo-maardu-linnas-2019",
+    "previous_source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part14.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "916a56dcecd474c1e818d16dc70cd5be00e93378093dc78248dc96e65cb56024",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "source": {
+    "source_id": "riigikontroll_haridusliku_erivajadusega_noorte_kutseopingute_ja_tooturule_",
+    "title": "Haridusliku erivajadusega noorte kutseõpingute ja tööturule jõudmise toetamine",
+    "url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19750_RKTR_6598_2-1.4_2344_003-2.pdf",
+    "normalized_url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19750_RKTR_6598_2-1.4_2344_003-2.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "Riigikontroll",
+    "organization_id": "riigikontroll",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "Riigikontroll",
+      "puue",
+      "puudega inimene",
+      "erivajadus",
+      "lapsed ja pered",
+      "noor",
+      "haridus",
+      "kool",
+      "õpilase toetamine",
+      "tugimeetmed",
+      "töövõime",
+      "vähenenud töövõime",
+      "töötamine",
+      "tööturuteenused",
+      "kutseõpe",
+      "tööle siirdumine",
+      "audit",
+      "avaliku sektori kontroll"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_063",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+    "source_context": {
+      "heading_2": "Riigikontroll",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 323,
+      "order": 185
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "Haridusliku erivajadusega noorte kutseõpingute ja tööturule jõudmise toetamine"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Riigikontroll"
+    ],
+    "organizations_seen": [
+      "riigikontroll"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Riigikontroll",
+        "line": 323,
+        "order": 185
+      },
+      {
+        "heading_2": "Riigikontroll",
+        "line": 797,
+        "order": 392
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19750_RKTR_6598_2-1.4_2344_003-2.pdf"
+  },
+  "final_url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19750_RKTR_6598_2-1.4_2344_003-2.pdf",
+  "redirects": [],
+  "sha256": "315abbf50c92f0ea88ecdcae8fdf534bc8a69b5717fe809efdf292d4c7a08a40",
+  "bytes": 954261,
+  "downloaded_at": "2026-08-14T08:00:39.387Z"
+}

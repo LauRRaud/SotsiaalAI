@@ -1,0 +1,47 @@
+{
+  "docId": "sotsiaaltoo-1-2023",
+  "articleId": "projektis-osalevate-meeskondade-kogemused-avatud-dialoogiga-2023-1",
+  "title": "Projektis osalevate meeskondade kogemused",
+  "authors": [
+    "Evi Vilgats",
+    "Kadri Vilgats",
+    "Kaja Koger",
+    "Erle Maidla",
+    "Elena Erm",
+    "Ruth Sepp",
+    "Ewa Roots",
+    "Marika Käggo",
+    "Mirjam Veermäe"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2023",
+  "section": "Metoodika",
+  "pageRange": "72-75",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artiklis jagavad eri asutuste meeskonnad kogemusi Avatud Dialoogi põhimõtete rakendamisest laste\nsotsiaalses rehabilitatsioonis. Reflekteeritakse, kuidas muutus spetsialistide roll – eksperdist kaasloojaks –\nning millist mõju avaldas tööviis meeskonnatundele ja koostööle peredega. Välja tuuakse nii eduelamused\nkui ka raskused, näiteks aja- ja ressursinõudlikkus ning harjumuspäraste tööviiside ümberõppimine.",
+  "tags": [
+    "Avatud Dialoog",
+    "meeskonnatöö",
+    "laste rehabilitatsioon",
+    "projektikogemus",
+    "reflektiivne praktika"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_1_2023_web_Part15.pdf",
+  "document_id": "sotsiaaltoo-1-2023-projektis-osalevate-meeskondade-kogemused-avatud-dialoogiga-2023-1",
+  "source_format": "pdf",
+  "source_sha256": "0943aa24bc3943394ae7cd560dc5be7a4bbd1a9354a0e50a718b6eafa279a108",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2023-projektis-osalevate-meeskondade-kogemused-avatud-dialoogiga-2023-1",
+    "previous_source_path": "Sotsiaaltoo_1_2023_web_Part15.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "0943aa24bc3943394ae7cd560dc5be7a4bbd1a9354a0e50a718b6eafa279a108",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-2-2018",
+  "articleId": "spirituaalsus-kui-ressurss-taastumisel-ja-rehabilitatsioonis-2018",
+  "title": "Spirituaalsus kui ressurss inimeste taastumisel ja rehabilitatsioonis",
+  "authors": [
+    "Indrek Linnuste"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2018",
+  "section": "Eelretsenseeritud artikkel",
+  "pageRange": "80-97",
+  "pdf_start_page": 1,
+  "pdf_end_page": 18,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Eelretsenseeritud artikkel, mis käsitleb spirituaalsust kui seni alakasutatud ressurssi psüühikahäiretega inimeste taastumisel ja laiemalt rehabilitatsioonis, tuues esile taastumiskeskse mõtteviisi, spirituaalse toe võimalused ja nõuded spetsialistide kompetentsile.",
+  "tags": [
+    "spirituaalsus",
+    "vaimne tervis",
+    "taastumiskeskne lähenemine",
+    "rehabilitatsioon",
+    "psüühikahäirega inimesed",
+    "holistiline tervisekäsitus",
+    "kogukonnapõhised teenused",
+    "terapeutilised suhted",
+    "spirituaalne tugi"
+  ],
+  "source_type": "file",
+  "source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part20.pdf",
+  "document_id": "sotsiaaltoo-2-2018-spirituaalsus-kui-ressurss-taastumisel-ja-rehabilitatsioonis-2018",
+  "source_format": "pdf",
+  "source_sha256": "85c9757469b0d08dc1a3a088a25853113c71c3bb977276ab6226ba161677f8e3",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2018-spirituaalsus-kui-ressurss-taastumisel-ja-rehabilitatsioonis-2018",
+    "previous_source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part20.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "85c9757469b0d08dc1a3a088a25853113c71c3bb977276ab6226ba161677f8e3",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

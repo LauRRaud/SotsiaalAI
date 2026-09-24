@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-1-2020",
+  "articleId": "care-metoodika-kui-koikeholmav-rehabilitatsioonikasitlus-2020-1",
+  "title": "CARe metoodika kui kõikehõlmav rehabilitatsioonikäsitlus",
+  "authors": [
+    "Karin Hanga"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2020",
+  "section": "Taastumist toetavad meetodid",
+  "pageRange": "17-22",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "CARe metoodika tutvustus haavatavas positsioonis olevate inimestega töö raamistikuna: inimkeskne ja tugevustele suunatud lähenemine, isikliku profiili ja tegevusplaani kasutamine ning kohalolu ja samaväärse suhte roll taastumise toetamisel.",
+  "tags": [
+    "CARe metoodika",
+    "rehabilitatsioon",
+    "taastumiskeskne lähenemine",
+    "haavatavad inimesed",
+    "psühhosotsiaalne tugi"
+  ],
+  "source_type": "file",
+  "source_path": "ST1_2020_web_link_Part5.pdf",
+  "document_id": "sotsiaaltoo-1-2020-care-metoodika-kui-koikeholmav-rehabilitatsioonikasitlus-2020-1",
+  "source_format": "pdf",
+  "source_sha256": "1ddf62f218949971563e8715f318c06720c4a86f78167c3141f106f1be9e7142",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2020-care-metoodika-kui-koikeholmav-rehabilitatsioonikasitlus-2020-1",
+    "previous_source_path": "ST1_2020_web_link_Part5.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "1ddf62f218949971563e8715f318c06720c4a86f78167c3141f106f1be9e7142",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

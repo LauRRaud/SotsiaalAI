@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-1-2018",
+  "articleId": "eestkostelapse-elatisraha-2018",
+  "title": "Omavalitsuse eestkostel oleva lapse elatisraha. Nõuda seda või mitte?",
+  "authors": [
+    "Tambet Drell"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2018",
+  "section": "Õigus",
+  "pageRange": "49-51",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel selgitab omavalitsuse kohustust nõuda eestkostel oleva lapse elatisraha ning toob välja levinud probleemkohad õiguslikus ja praktilises korralduses.",
+  "tags": [
+    "eestkoste",
+    "elatisraha",
+    "perekonnaseadus",
+    "KOV kohustused",
+    "õiguspõhimõtted",
+    "sotsiaalabi",
+    "laste õigused"
+  ],
+  "source_type": "file",
+  "source_path": "Part13_155619647682_ST1_2018_link.pdf",
+  "mapping_fixed": "20260814-161821",
+  "document_id": "sotsiaaltoo-1-2018-eestkostelapse-elatisraha-2018",
+  "source_format": "pdf",
+  "source_sha256": "d687cceada5d30269c6d688c85d0df036726ad8ded58b32cac5a92e48479b052",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2018-eestkostelapse-elatisraha-2018",
+    "previous_source_path": "Part13_155619647682_ST1_2018_link.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d687cceada5d30269c6d688c85d0df036726ad8ded58b32cac5a92e48479b052",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

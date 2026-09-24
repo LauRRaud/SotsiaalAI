@@ -1,0 +1,91 @@
+{
+  "docId": "sotsiaaltoo-1-2016",
+  "articleId": "sotsiaaltoo-1-2016-artikkel-21-perevägivallast-politseiniku-pilgu-läbi",
+  "title": "Perevägivallast politseiniku pilgu läbi",
+  "authors": [
+    "Dei Stein"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2016",
+  "section": "Koostöö",
+  "pageRange": "70-73",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Noorsoopolitseinik kirjeldab perevägivallajuhtumite menetlust ja põhjuseid, miks ohvrid avaldust ei esita: soov peret koos hoida, hirm vägivallatseja ees, majanduslik sõltuvus ja vähene usaldus kriminaalsüsteemi vastu. Alates 2011. aastast, mil lähisuhtevägivalda hakati süsteemselt registreerima, moodustab kehaline väärkohtlemine ligi 80% juhtumitest ja ähvardamine 13%. Eakate ohvrite puhul on 61% juhtudest vägivallatsejaks nende pojad ja tütred, lähisuhtes vägistamise kannatanud on peamiselt 4–12aastased. Autor soovitab lähenemiskeeldu, vägivallatsejatele suunatud programme, ohvriabi käsiraamatut ja ümarlaudu ning viitab naiste tugitelefonile 1492.",
+  "tags": [
+    "perevägivald",
+    "lähisuhtevägivald",
+    "politsei",
+    "ohvriabi",
+    "lähenemiskeeld",
+    "lastekaitse",
+    "koostöö"
+  ],
+  "source_type": "file",
+  "source_path": "2016_1_artikkel_21_perevagivallast_politseiniku_pilgu_labi.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-21-perev-givallast-politseiniku-pilgu-l-bi",
+  "source_sha256": "274f7c09aa9e6f048df316c66a9cefcb21e48b4c0488c983f8a861ae964cc621",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-21-perev-givallast-politseiniku-pilgu-l-bi",
+    "previous_source_path": "2016_1_artikkel_21_perevagivallast_politseiniku_pilgu_labi.txt",
+    "previous_source_original_path": "1-2016.pdf",
+    "reference_stored_source_sha256": "2ee069e36cd9861fc3aea9f342eb8b437963bfc276f75ac2cf92bfc2014fb21d",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf",
+      "source_sha256": "2c193295e54f58982562b509b6283e93aa58b1695464671e1768e24e90888a6c",
+      "pdf_start_page": 72,
+      "pdf_end_page": 75,
+      "printed_page_range": "70-73",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 75,
+      "source_regions": [
+        {
+          "source_pdf_page": 72,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 73,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 74,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 75,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            274.179
+          ]
+        }
+      ],
+      "effective_printed_page_range": "70-73"
+    },
+    "server_page_range": "70-73"
+  }
+}

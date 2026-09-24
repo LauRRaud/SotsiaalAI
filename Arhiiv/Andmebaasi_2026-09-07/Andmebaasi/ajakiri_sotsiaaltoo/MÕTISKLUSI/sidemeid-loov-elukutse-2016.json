@@ -1,0 +1,40 @@
+{
+  "docId": "motisklusi-sotsiaaltoost-2016",
+  "articleId": "sidemeid-loov-elukutse-2016",
+  "title": "Sidemeid loov elukutse",
+  "authors": [
+    "Hans van Ewijk"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "MÕTISKLUSI",
+  "section": "Hea praktika",
+  "pageRange": "23-25",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel mõtestab sotsiaaltööd sidemeid loova elukutsena, kus oluline on luua ja hoida seoseid kliendi, tema eluolukorra, sotsiaalpoliitika, professiooni ja iseendaga. Fookuses on keerukates eluoludes inimeste toetamine väikeste sammude, stabiilsuse, elamisväärsuse ja püsivate pidepunktide kaudu, mitte üksnes jõuliste sekkumiste või kiire probleemilahenduse kaudu.",
+  "tags": [
+    "sidemete loomine",
+    "elamisväärsus",
+    "keerukad eluolud",
+    "toetav suhe",
+    "sotsiaalpoliitika",
+    "marginaliseerumise ennetamine"
+  ],
+  "source_type": "file",
+  "source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part10.pdf",
+  "document_id": "motisklusi-sotsiaaltoost-2016-sidemeid-loov-elukutse-2016",
+  "source_format": "pdf",
+  "source_sha256": "b38c3b2299278e541d68d7231d808253cf3e08ec995fc8973cfee79a36a7ebe7",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "motisklusi-sotsiaaltoost-2016-sidemeid-loov-elukutse-2016",
+    "previous_source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part10.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b38c3b2299278e541d68d7231d808253cf3e08ec995fc8973cfee79a36a7ebe7",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

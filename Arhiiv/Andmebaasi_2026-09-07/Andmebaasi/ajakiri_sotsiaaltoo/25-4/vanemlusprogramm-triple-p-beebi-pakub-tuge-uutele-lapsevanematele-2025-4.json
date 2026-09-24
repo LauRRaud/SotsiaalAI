@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2025",
+  "articleId": "vanemlusprogramm-triple-p-beebi-pakub-tuge-uutele-lapsevanematele-2025-4",
+  "title": "Vanemlusprogramm „Triple P Beebi“ pakub tuge uutele lapsevanematele",
+  "authors": [
+    "Aire Nurm"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2025",
+  "section": "Vanemlus",
+  "pageRange": "1–3",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab tõenduspõhist vanemlusprogrammi „Triple P Beebi“, mis on mõeldud lapseootel ja kuni ühe aasta vanuste laste vanematele. Käsitletakse prooviprojekti ülesehitust Eestis, koolitajate väljaõpet ning programmi eesmärki toetada vanemaid, vähendada stressi ja tugevdada turvalist kiindumussuhet.",
+  "tags": [
+    "vanemlus",
+    "Triple P Beebi",
+    "lapsevanemad",
+    "varajane tugi",
+    "lapse heaolu",
+    "tõenduspõhine programm",
+    "perede toetamine"
+  ],
+  "source_type": "file",
+  "source_path": "Vanemlusprogramm „Triple P Beebi“ pakub tuge uutele lapsevanematele.pdf",
+  "document_id": "sotsiaaltoo-4-2025-vanemlusprogramm-triple-p-beebi-pakub-tuge-uutele-lapsevanematele-2025-4",
+  "source_format": "pdf",
+  "source_sha256": "587a14320e44e4e3cd70d96246d9d464006e585614aa2ebdc87d0aad901aea0c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2025-vanemlusprogramm-triple-p-beebi-pakub-tuge-uutele-lapsevanematele-2025-4",
+    "previous_source_path": "Vanemlusprogramm „Triple P Beebi“ pakub tuge uutele lapsevanematele.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "587a14320e44e4e3cd70d96246d9d464006e585614aa2ebdc87d0aad901aea0c",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

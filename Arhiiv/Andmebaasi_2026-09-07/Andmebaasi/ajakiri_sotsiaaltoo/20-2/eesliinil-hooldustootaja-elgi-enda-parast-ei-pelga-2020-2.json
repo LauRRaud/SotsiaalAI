@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2020",
+  "articleId": "eesliinil-hooldustootaja-elgi-enda-parast-ei-pelga-2020-2",
+  "title": "Eesliinil hooldustöötaja Elgi enda pärast ei pelga",
+  "authors": [
+    "Anne-Ly Sumre"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2020",
+  "section": "Kogemus",
+  "pageRange": "16-18",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Intervjuuartikkel tutvustab koduhooldustöötaja Elgi Sassi tööd eriolukorra ajal ning toob esile eakate hooldamise praktilise ja emotsionaalse poole. Lugu näitab, kuidas hooldustöö ühendab igapäevase abi, usaldussuhte loomise ja kriisiaegse vastutuse.",
+  "tags": [
+    "koduhooldus",
+    "hooldustöötaja",
+    "eakad",
+    "eriolukord",
+    "koroonakriis",
+    "intervjuu"
+  ],
+  "source_type": "file",
+  "source_path": "ST2_2020_web_link_Part8.pdf",
+  "document_id": "sotsiaaltoo-2-2020-eesliinil-hooldustootaja-elgi-enda-parast-ei-pelga-2020-2",
+  "source_format": "pdf",
+  "source_sha256": "d1ac2b4bd0084a3aedb1c7e95ae30815079269964983f110b9ac83a1d484b682",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2020-eesliinil-hooldustootaja-elgi-enda-parast-ei-pelga-2020-2",
+    "previous_source_path": "ST2_2020_web_link_Part8.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d1ac2b4bd0084a3aedb1c7e95ae30815079269964983f110b9ac83a1d484b682",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

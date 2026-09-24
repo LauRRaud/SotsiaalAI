@@ -1,0 +1,37 @@
+{
+  "docId": "sotsiaaltoo-1-2024",
+  "articleId": "rollide-tahendus-sotsiaaltoos-2024-1",
+  "title": "Rollide tähendus sotsiaaltöös",
+  "authors": [
+    "Reeli Sirotkina"
+  ],
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2024",
+  "section": "Eetika",
+  "pageRange": "33-41",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab rolliteooriat ja selle rakendust sotsiaaltöös. Autor kirjeldab rollikonflikte, professionaalset identiteeti ja piiride seadmist tööalas.",
+  "tags": [
+    "rolliteooria",
+    "identiteet",
+    "eetika"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_1_2024_web_Part8.pdf",
+  "document_id": "sotsiaaltoo-1-2024-rollide-tahendus-sotsiaaltoos-2024-1",
+  "source_format": "pdf",
+  "source_sha256": "0e565b9a12360cadd7f04208b393e4e2cbbe30793c14c1687af90e09110b1881",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2024-rollide-tahendus-sotsiaaltoos-2024-1",
+    "previous_source_path": "Sotsiaaltoo_1_2024_web_Part8.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "0e565b9a12360cadd7f04208b393e4e2cbbe30793c14c1687af90e09110b1881",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

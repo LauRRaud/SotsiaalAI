@@ -1,0 +1,72 @@
+{
+  "docId": "sotsiaaltoo-1-2016",
+  "articleId": "sotsiaaltoo-1-2016-artikkel-22-sotsiaaltöö-valdkonnas-käivitub-tööjõu-ja-oskust",
+  "title": "Sotsiaaltöö valdkonnas käivitub tööjõu ja oskuste vajaduse prognoosisüsteem OSKA",
+  "authors": [
+    "Elo Tuppits"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2016",
+  "section": "Projekt",
+  "pageRange": "73-74",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "SA Kutsekoja koordinaator teatab, et 2015. aasta aprillis käivitunud tööjõuvajaduse seire- ja prognoosisüsteem OSKA jõuab sotsiaaltöö valdkonda: analüüs algas 2016. aasta alguses ja valdkondlik eksperdikogu koguneb esimest korda veebruaris. OSKA kontseptsiooni töötas välja Riigikantselei juures aastatel 2012–2014 tegutsenud rakkerühm ning valitsus kiitis selle heaks 2014. aastal. Euroopa Sotsiaalfondi toel analüüsitakse viie aasta jooksul 24 valdkonda, esimestena IKT, metsandus ja puidutööstus ning majandusarvestus. Eksperdikogus on kuni 20 liiget, kellest vähemalt pooled on tööandjad.",
+  "tags": [
+    "oska",
+    "tööjõuvajadus",
+    "kutsekoda",
+    "prognoos",
+    "eksperdikogu",
+    "õppekavad"
+  ],
+  "source_type": "file",
+  "source_path": "2016_1_artikkel_22_sotsiaaltoo_valdkonnas_kaivitub_toojou_ja_oskuste_va.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-22-sotsiaalt-valdkonnas-k-ivitub-t-j-u-ja-oskust",
+  "source_sha256": "5fa156494b95716defc0e406ff38e4d5057d0be950e5ebf690bd68fb9c8982e9",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-22-sotsiaalt-valdkonnas-k-ivitub-t-j-u-ja-oskust",
+    "previous_source_path": "2016_1_artikkel_22_sotsiaaltoo_valdkonnas_kaivitub_toojou_ja_oskuste_va.txt",
+    "previous_source_original_path": "1-2016.pdf",
+    "reference_stored_source_sha256": "b95c41917c7355b566bf6b1367680c44e922d15ec062ed43465f0188862a81c1",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf",
+      "source_sha256": "2c193295e54f58982562b509b6283e93aa58b1695464671e1768e24e90888a6c",
+      "pdf_start_page": 75,
+      "pdf_end_page": 76,
+      "printed_page_range": "73-75",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 77,
+      "source_regions": [
+        {
+          "source_pdf_page": 75,
+          "bounds": [
+            0,
+            274.179,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 76,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "73-74"
+    },
+    "server_page_range": "73-75"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-4-2019",
+  "articleId": "puudevoi-muu-erivajadusega-inimese-inimkaubanduse-risk-2019",
+  "title": "Puude või muu erivajadusega inimese oht sattuda inimkaubanduse ohvriks",
+  "authors": [
+    "Eda Mölder",
+    "Merle Haruoja"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2019",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "49-53",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb puude või muu erivajadusega inimeste eripärast haavatavust inimkaubanduse suhtes, kirjeldades ärakasutamise viise, ohvrite märkamise ja sekkumise juhiseid ning MTÜ Eluliini kogemust ohvrite abistamisel.",
+  "tags": [
+    "inimkaubandus",
+    "puudega inimesed",
+    "erivajadus",
+    "ohvrite abistamine",
+    "MTÜ Eluliin"
+  ],
+  "source_type": "file",
+  "source_path": "ST4_2019_web_link_Part13.pdf",
+  "document_id": "sotsiaaltoo-4-2019-puudevoi-muu-erivajadusega-inimese-inimkaubanduse-risk-2019",
+  "source_format": "pdf",
+  "source_sha256": "67a739f7855f5d73e0a2fe00d000e024c36463aa0aefbf4b5b9479fa99f1f0e4",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2019-puudevoi-muu-erivajadusega-inimese-inimkaubanduse-risk-2019",
+    "previous_source_path": "ST4_2019_web_link_Part13.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "67a739f7855f5d73e0a2fe00d000e024c36463aa0aefbf4b5b9479fa99f1f0e4",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

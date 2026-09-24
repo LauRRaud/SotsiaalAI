@@ -1,0 +1,38 @@
+{
+  "docId": "sotsiaaltoo-4-2022",
+  "articleId": "ukraina-pagulaste-kohanemine-2022-4",
+  "title": "Ukraina pagulasperede sotsiaalpsühholoogiline kohanemine Eestis",
+  "authors": [
+    "Yuliia Kravchenko"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2022",
+  "section": "Kogemus",
+  "pageRange": "19-22",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Psühholoogiline ülevaade Ukraina laste ja perede kohanemisraskustest Eestis.",
+  "tags": [
+    "Ukraina",
+    "kohanemine",
+    "pagulased",
+    "psühholoogia"
+  ],
+  "source_type": "file",
+  "source_path": "2022_4_artikkel_5_ukraina.pdf",
+  "document_id": "sotsiaaltoo-4-2022-ukraina-pagulaste-kohanemine-2022-4",
+  "source_format": "pdf",
+  "source_sha256": "e9f114866be0fa1aa4aa5b7cb5f6ecd5674efd3e77e7b066bf4292f5421fdebc",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2022-ukraina-pagulaste-kohanemine-2022-4",
+    "previous_source_path": "2022_4_artikkel_5_ukraina.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e9f114866be0fa1aa4aa5b7cb5f6ecd5674efd3e77e7b066bf4292f5421fdebc",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "source_path": "tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega.pdf",
+  "source_format": "pdf",
+  "sha256": "e45924e05c1c71324f8def556ba3fe5db00e93a6baceb4fd05698e3dca0319a2",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega",
+          "title": "TÖÖLEHT: Abiküsimused vestluseks algkoolilapsega",
+          "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_abikysimused_vestluseks_algkoolilapsega.pdf",
+          "source_url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_abikysimused_vestluseks_algkoolilapsega.pdf",
+          "source_format": "pdf",
+          "ingest_status": "ingest_candidate",
+          "recommended_pipeline": "knowledge_doc_pipeline"
+        },
+        "final_url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_abikysimused_vestluseks_algkoolilapsega.pdf",
+        "local_origin": "consolidated_existing_file",
+        "recorded_at": "2026-08-14T09:25:00.000Z",
+        "bytes": 104285,
+        "sha256": "e45924e05c1c71324f8def556ba3fe5db00e93a6baceb4fd05698e3dca0319a2"
+      }
+    },
+    {
+      "original_path": "lisatest/tarkvanem-tooleht-abikusimused-vestluseks-algkoolilapsega.json",
+      "metadata": {
+        "schemaVersion": "knowledge-doc-v1",
+        "country": "EE",
+        "sector": "social",
+        "audience": "BOTH",
+        "audiences": [
+          "SOCIAL_WORKER",
+          "CLIENT"
+        ],
+        "language": "et",
+        "source_origin_type": "file",
+        "source_format": "pdf",
+        "source_status": "active",
+        "historical": false,
+        "checked_at": "2026-05-03",
+        "copyright_status": "restricted_citation_summary_only",
+        "display_full_text": false,
+        "allow_excerpts": "short_only",
+        "ingest": {
+          "chunking_strategy": "section_aware",
+          "preserve_page_numbers": true,
+          "preserve_heading_path": true,
+          "display_full_text": false,
+          "allow_short_excerpts": true
+        },
+        "quality": {
+          "metadata_complete": false,
+          "section_index_complete": false,
+          "ocr_required": false,
+          "needs_manual_review": true,
+          "review_note": "Draft metadata generated for test ingestion. Codex should validate field names against the current project schema."
+        },
+        "docId": "tarkvanem-tooleht-abikusimused-vestluseks-algkoolilapsega",
+        "canonical_source_id": "tarkvanem-tooleht-abikusimused-vestluseks-algkoolilapsega",
+        "source_id": "tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega",
+        "document_id": "tarkvanem-tooleht-abikusimused-vestluseks-algkoolilapsega",
+        "title": "TÖÖLEHT: Abiküsimused vestluseks algkoolilapsega",
+        "description": "Tarkvanema praktiline tööleht abiküsimustega algkoolilapsega vestlemiseks; sobib lastega töötavatele spetsialistidele ja lapsevanematele suhtlemise toetamiseks.",
+        "publisher": "Tarkvanem",
+        "source_organization": "Tarkvanem",
+        "organization_id": "tarkvanem",
+        "publisher_type": "public_information_portal",
+        "authority_level": "public_health_parenting_guidance",
+        "year": 2018,
+        "publication_date": "2018-05",
+        "document_kind": "training_material",
+        "resource_type": "method_guidance",
+        "source_type": "training_material",
+        "collection_id": "training_materials",
+        "collection_hint": "guidance_and_methods",
+        "domain": "children_and_families",
+        "evidence_role": "practice_guidance",
+        "allowed_claim_types": [
+          "practice_recommendation",
+          "communication_guidance",
+          "casework_tool",
+          "methodology_background"
+        ],
+        "disallowed_claim_types": [
+          "legal_entitlement",
+          "benefit_amount",
+          "municipal_service_availability",
+          "application_deadline",
+          "medical_diagnosis_or_treatment"
+        ],
+        "topics": [
+          "lapsed ja pered",
+          "laps",
+          "haridus",
+          "kool",
+          "õpilase toetamine",
+          "tugimeetmed",
+          "tööleht",
+          "lapse kasvatamine",
+          "suhtlemisoskused",
+          "algkool",
+          "praktiline töövahend"
+        ],
+        "target_groups": [
+          "algkoolilapsed",
+          "lapsevanemad",
+          "õpetajad",
+          "lastega töötavad spetsialistid"
+        ],
+        "source_path": "Tark_Vanem_tooleht_abikysimused_vestluseks_algkoolilapsega.pdf",
+        "source_url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_abikysimused_vestluseks_algkoolilapsega.pdf",
+        "page_count": 1,
+        "registry_source": {
+          "source_master_source_id": "tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega",
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_abikysimused_vestluseks_algkoolilapsega.pdf"
+        },
+        "jurisdiction_level": "NATIONAL"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega",
+      "metadata": {
+        "createdAt": "2026-06-12T04:00:02.669211+00:00",
+        "type": "FILE",
+        "fileName": "Tark_Vanem_tooleht_abikysimused_vestluseks_algkoolilapsega.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T04:00:02.596884+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/7ebd7dbf6a35/Tark_Vanem_tooleht_abikysimused_vestluseks_algkoolilapsega.pdf",
+        "title": "TÖÖLEHT: Abiküsimused vestluseks algkoolilapsega",
+        "description": "Source master headings: Partnerid; Tarkvanem",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2018,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "organization_guidelines",
+        "source_id": "tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega",
+        "document_id": "tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "1d72264a16ce51dd32df04028f281ac620af4458e87d851eee3a9992f6b63280",
+        "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_abikysimused_vestluseks_algkoolilapsega.pdf",
+        "url_canonical": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_abikysimused_vestluseks_algkoolilapsega.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega",
+        "updatedAt": "2026-06-12T04:00:02.669236+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

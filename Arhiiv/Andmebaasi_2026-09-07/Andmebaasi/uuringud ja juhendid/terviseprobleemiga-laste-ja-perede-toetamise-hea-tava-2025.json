@@ -1,0 +1,339 @@
+{
+  "schemaVersion": "knowledge-doc-v1",
+  "docId": "sm-terviseprobleemiga-laste-perede-hea-tava-2025",
+  "canonical_source_id": "sm-terviseprobleemiga-laste-perede-hea-tava-2025",
+  "title": "Terviseprobleemiga laste ja nende perede toetamise hea tava",
+  "description": "Sotsiaalministeeriumi hea tava juhendmaterjal spetsialistidele; pöördujale kasutamiseks lihtsustatud selgituste ja praktiliste soovituste alusena.",
+  "publisher": "Sotsiaalministeerium",
+  "source_organization": "Sotsiaalministeerium",
+  "publisher_type": "government_ministry",
+  "authority_level": "national_ministry_guidance",
+  "authors": [],
+  "contributors": [],
+  "year": 2025,
+  "publication_date": "2025-12-12",
+  "checked_at": "2026-04-29",
+  "language": "et",
+  "document_kind": "guideline",
+  "resource_type": "best_practice_guidance",
+  "source_type": "official_guideline",
+  "source_origin_type": "file",
+  "source_format": "pdf",
+  "collection_id": "national_guidelines",
+  "jurisdiction_level": "NATIONAL",
+  "country": "EE",
+  "sector": "social",
+  "domain": "children_and_families",
+  "audience": "BOTH",
+  "audiences": [
+    "SOCIAL_WORKER",
+    "CLIENT"
+  ],
+  "secondary_audiences": [
+    "CLIENT_SIMPLIFIED_ADAPTATION"
+  ],
+  "evidence_role": "practice_guidance",
+  "allowed_claim_types": [
+    "practice_recommendation",
+    "professional_ethics",
+    "communication_guidance",
+    "methodology_background",
+    "case_example",
+    "definition"
+  ],
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "topics": [
+    "laste heaolu",
+    "terviseprobleemiga laps",
+    "puudega laps",
+    "pere toetamine",
+    "ametniku eetika",
+    "lapse kaasamine",
+    "traumateadlik suhtlus"
+  ],
+  "target_groups": [
+    "terviseprobleemiga lapsed",
+    "puudega lapsed",
+    "lastega pered",
+    "lastega töötavad spetsialistid"
+  ],
+  "conditions_or_target_groups": [
+    "mõlema silma pimedus",
+    "intellektipuue",
+    "harvikhaigused",
+    "autismi raskemad vormid",
+    "Downi sündroom",
+    "vähidiagnoosid"
+  ],
+  "source_path": "Terviseprobleemiga laste ja nende perede toetamise hea tava 12.122025_VEEB.pdf",
+  "source_url": null,
+  "source_status": "active",
+  "historical": false,
+  "copyright_status": "restricted_citation_summary_only",
+  "display_full_text": false,
+  "allow_excerpts": "short_only",
+  "ingest": {
+    "chunking_strategy": "section_aware",
+    "preserve_page_numbers": true,
+    "preserve_heading_path": true,
+    "display_full_text": false,
+    "allow_short_excerpts": true
+  },
+  "quality": {
+    "metadata_complete": true,
+    "section_index_complete": true,
+    "ocr_required": false,
+    "needs_manual_review": false
+  },
+  "sectionIndex": [
+    {
+      "section_id": "eessona",
+      "title": "Eessõna",
+      "page_start": 4,
+      "page_end": 4,
+      "section_type": "front_matter",
+      "evidence_role": "background",
+      "allowed_claim_types": [
+        "background",
+        "definition"
+      ],
+      "disallowed_claim_types": [
+        "legal_entitlement",
+        "benefit_amount",
+        "municipal_service_availability",
+        "application_deadline",
+        "medical_diagnosis_or_treatment"
+      ],
+      "topic_tags": [
+        "juhendi eesmärk",
+        "taust"
+      ]
+    },
+    {
+      "section_id": "sissejuhatus",
+      "title": "Sissejuhatus",
+      "page_start": 5,
+      "page_end": 5,
+      "section_type": "introduction",
+      "evidence_role": "practice_guidance",
+      "allowed_claim_types": [
+        "practice_recommendation",
+        "methodology_background",
+        "definition"
+      ],
+      "disallowed_claim_types": [
+        "legal_entitlement",
+        "benefit_amount",
+        "municipal_service_availability",
+        "application_deadline",
+        "medical_diagnosis_or_treatment"
+      ],
+      "topic_tags": [
+        "lapse toetamine",
+        "pere toetamine",
+        "spetsialistid"
+      ]
+    },
+    {
+      "section_id": "ametniku-sekkumise-eetika",
+      "title": "Ametniku sekkumise eetika",
+      "page_start": 6,
+      "page_end": 18,
+      "section_type": "ethics_guidance",
+      "evidence_role": "professional_ethics",
+      "allowed_claim_types": [
+        "professional_ethics",
+        "communication_guidance",
+        "practice_recommendation",
+        "case_example"
+      ],
+      "disallowed_claim_types": [
+        "legal_entitlement",
+        "benefit_amount",
+        "municipal_service_availability",
+        "application_deadline",
+        "medical_diagnosis_or_treatment"
+      ],
+      "topic_tags": [
+        "ametniku eetika",
+        "lapse kaasamine",
+        "traumateadlik suhtlus",
+        "pere toetamine"
+      ]
+    },
+    {
+      "section_id": "molema-silma-pimedus",
+      "title": "Mõlema silma pimedus",
+      "page_start": 20,
+      "page_end": 26,
+      "section_type": "condition_overview",
+      "evidence_role": "practice_guidance",
+      "allowed_claim_types": [
+        "practice_recommendation",
+        "professional_ethics",
+        "communication_guidance",
+        "methodology_background",
+        "case_example",
+        "definition"
+      ],
+      "disallowed_claim_types": [
+        "legal_entitlement",
+        "benefit_amount",
+        "municipal_service_availability",
+        "application_deadline",
+        "medical_diagnosis_or_treatment"
+      ],
+      "topic_tags": [
+        "mõlema silma pimedus",
+        "puudega laps",
+        "praktiline toetamine"
+      ]
+    },
+    {
+      "section_id": "intellektipuue",
+      "title": "Intellektipuue",
+      "page_start": 27,
+      "page_end": 33,
+      "section_type": "condition_overview",
+      "evidence_role": "practice_guidance",
+      "allowed_claim_types": [
+        "practice_recommendation",
+        "professional_ethics",
+        "communication_guidance",
+        "methodology_background",
+        "case_example",
+        "definition"
+      ],
+      "disallowed_claim_types": [
+        "legal_entitlement",
+        "benefit_amount",
+        "municipal_service_availability",
+        "application_deadline",
+        "medical_diagnosis_or_treatment"
+      ],
+      "topic_tags": [
+        "intellektipuue",
+        "puudega laps",
+        "pere toetamine"
+      ]
+    },
+    {
+      "section_id": "harvikhaigused",
+      "title": "Harvikhaigused",
+      "page_start": 34,
+      "page_end": 41,
+      "section_type": "condition_overview",
+      "evidence_role": "practice_guidance",
+      "allowed_claim_types": [
+        "practice_recommendation",
+        "professional_ethics",
+        "communication_guidance",
+        "methodology_background",
+        "case_example",
+        "definition"
+      ],
+      "disallowed_claim_types": [
+        "legal_entitlement",
+        "benefit_amount",
+        "municipal_service_availability",
+        "application_deadline",
+        "medical_diagnosis_or_treatment"
+      ],
+      "topic_tags": [
+        "harvikhaigused",
+        "terviseprobleemiga laps",
+        "pere toetamine"
+      ]
+    },
+    {
+      "section_id": "autismi-raskemad-vormid",
+      "title": "Autismi raskemad vormid",
+      "page_start": 42,
+      "page_end": 53,
+      "section_type": "condition_overview",
+      "evidence_role": "practice_guidance",
+      "allowed_claim_types": [
+        "practice_recommendation",
+        "professional_ethics",
+        "communication_guidance",
+        "methodology_background",
+        "case_example",
+        "definition"
+      ],
+      "disallowed_claim_types": [
+        "legal_entitlement",
+        "benefit_amount",
+        "municipal_service_availability",
+        "application_deadline",
+        "medical_diagnosis_or_treatment"
+      ],
+      "topic_tags": [
+        "autismi raskemad vormid",
+        "kommunikatsioon",
+        "lapse kaasamine"
+      ]
+    },
+    {
+      "section_id": "downi-sundroom",
+      "title": "Downi sündroom",
+      "page_start": 54,
+      "page_end": 57,
+      "section_type": "condition_overview",
+      "evidence_role": "practice_guidance",
+      "allowed_claim_types": [
+        "practice_recommendation",
+        "professional_ethics",
+        "communication_guidance",
+        "methodology_background",
+        "case_example",
+        "definition"
+      ],
+      "disallowed_claim_types": [
+        "legal_entitlement",
+        "benefit_amount",
+        "municipal_service_availability",
+        "application_deadline",
+        "medical_diagnosis_or_treatment"
+      ],
+      "topic_tags": [
+        "Downi sündroom",
+        "puudega laps",
+        "praktiline toetamine"
+      ]
+    },
+    {
+      "section_id": "vahidiagnoosid",
+      "title": "Vähidiagnoosid",
+      "page_start": 58,
+      "page_end": 64,
+      "section_type": "condition_overview",
+      "evidence_role": "practice_guidance",
+      "allowed_claim_types": [
+        "practice_recommendation",
+        "professional_ethics",
+        "communication_guidance",
+        "methodology_background",
+        "case_example",
+        "definition"
+      ],
+      "disallowed_claim_types": [
+        "legal_entitlement",
+        "benefit_amount",
+        "municipal_service_availability",
+        "application_deadline",
+        "medical_diagnosis_or_treatment"
+      ],
+      "topic_tags": [
+        "vähidiagnoosid",
+        "terviseprobleemiga laps",
+        "pere toetamine"
+      ]
+    }
+  ]
+}

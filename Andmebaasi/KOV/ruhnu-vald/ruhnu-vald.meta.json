@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-ruhnu-vald",
+  "document_id": "kov-ruhnu-vald",
+  "municipality": "Ruhnu vald",
+  "municipality_id": "ruhnu_vald",
+  "county": "Saaremaa",
+  "checkedAt": "2026-04-29",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-ruhnu-vald",
+  "coverage": {
+    "services": 14,
+    "benefits": 10,
+    "resources": 8,
+    "contacts": 2,
+    "forms": 4,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "ruhnu_vald",
+    "source_register_file": "ruhnu-vald.sources.json",
+    "service_benefit_resource_items": 32,
+    "items_with_source_keys": 32,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 3,
+    "items_without_related_forms": 29,
+    "items_with_related_contacts": 24,
+    "items_without_related_contacts": 8,
+    "form_sources": 4,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Paketis on kasutatud ainult Ruhnu valla ametliku veebilehe avaldatud praktilist infot ja seal avatud ametlikke faililinke.",
+    "RT ja õigusaktide lingid jäeti KOV veebipaketist välja ning kuuluvad eraldi õiguskihi kontrolli."
+  ],
+  "unresolvedIssues": [
+    "Valla veebis on mitu sotsiaalteenust kirjeldatud väga lühidalt; mitme teenuse puhul puudub avaldatud otsustamise aeg, täpne menetluskäik või hinnainfo.",
+    "Vaimse tervise toetamise leht sisaldab praktilise teenuse kirjelduse asemel üksnes viidet korrale; taotlemise juhis ja sihtrühm jäid veebikihis täpsustamata.",
+    "Kontaktide ja teenuste lehtedel on e-posti aadressid varjestatud kujul **; neid ei taastatud oletuse põhjal.",
+    "Sotsiaaltoetuste määrade leht nimetab gümnaasiumiõpilaste koolitoetuse, üliõpilaste koolitoetuse, ranitsatoetuse, lastehoiutoetuse, kooli lõpetamise toetuse ja kolimistoetuse summa, kuid ei avalda nende täpseid taotlemise tingimusi ega tähtaegu.",
+    "Hooldajatoetuse, puudega lapse hooldajatoetuse, täisealise hooldajatoetuse, erakorralise toetuse ja eluruumi kohandamise toetuse kohta ei leitud Ruhnu valla veebikihist eraldi praktilist lehte.",
+    "Asjaajamise vormide koondlehel ei olnud sotsiaalvaldkonna vorme; sotsiaalvaldkonna vormid leiti üksikutelt teenuse ja toetuse lehtedelt.",
+    "Toimetulekutoetuse avalduse DOC-faili ja varade lehe RTF-faili ei õnnestunud tekstina parsida, kuid nende ametlikud faililingid olid valla toimetulekutoetuse lehel avaldatud.",
+    "Toimetulekutoetuse lehel avaldatud toimetulekupiirid on märgitud alates 01.06.2022; praktiline kasutamine vajab ülevaatamist, kui hilisemad riiklikud määrad erinevad."
+  ],
+  "municipality_name": "Ruhnu vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "ruhnu-vald.sources.json",
+  "sourceCount": 30,
+  "counts": {
+    "services": 14,
+    "benefits": 10,
+    "resources": 8,
+    "contacts": 2,
+    "forms": 4,
+    "regulations": 0
+  },
+  "warnings": [
+    "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

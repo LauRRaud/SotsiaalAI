@@ -1,0 +1,144 @@
+{
+  "source_path": "epikoda_epikoja_arengukava_2025_2030.pdf",
+  "source_format": "pdf",
+  "sha256": "e3d7e30a0b5672b02f35241a9616158f54d61f0bdcad4052a74bb59665450f60",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/epikoda_epikoja_arengukava_2025_2030.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "epikoda_epikoja_arengukava_2025_2030",
+          "title": "EPIKoja arengukava 2025–2030",
+          "url": "https://epikoda.ee/wp-content/uploads/2025/09/EPIKoja-arengukava-2025-2030.pdf",
+          "normalized_url": "https://epikoda.ee/wp-content/uploads/2025/09/EPIKoja-arengukava-2025-2030.pdf",
+          "source_format": "pdf",
+          "source_type": "policy_analysis",
+          "resource_type": "policy_context",
+          "publisher": "EPIKoda",
+          "organization_id": "epikoda",
+          "collection_hint": "policy_and_strategy",
+          "evidence_role": "policy_context",
+          "topic_tags": [
+            "Eesti Puuetega Inimeste Koda",
+            "strateegia",
+            "poliitika planeerimine",
+            "EPIKoda",
+            "organisatsiooni areng",
+            "asutuse eesmärgid",
+            "puuetega inimeste esindusorganisatsioon",
+            "huvikaitse"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Partnerid",
+            "heading_3": "EPIKoda",
+            "heading_4": null,
+            "line": 565,
+            "order": 291
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "EPIKoja arengukava 2025–2030"
+          ],
+          "collection_hints": [
+            "policy_analyses"
+          ],
+          "source_types_seen": [
+            "policy_analysis"
+          ],
+          "resource_types_seen": [
+            "policy_context"
+          ],
+          "publishers_seen": [
+            "EPIKoda"
+          ],
+          "organizations_seen": [
+            "epikoda"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Partnerid",
+              "heading_3": "EPIKoda",
+              "line": 565,
+              "order": 291
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://epikoda.ee/wp-content/uploads/2025/09/EPIKoja-arengukava-2025-2030.pdf"
+        },
+        "final_url": "https://epikoda.ee/wp-content/uploads/2025/09/EPIKoja-arengukava-2025-2030.pdf",
+        "redirects": [],
+        "sha256": "e3d7e30a0b5672b02f35241a9616158f54d61f0bdcad4052a74bb59665450f60",
+        "bytes": 1696088,
+        "downloaded_at": "2026-08-14T08:00:56.489Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "epikoda_epikoja_arengukava_2025_2030",
+      "metadata": {
+        "createdAt": "2026-06-12T03:59:04.775087+00:00",
+        "type": "FILE",
+        "fileName": "EPIKoja-arengukava-2025-2030.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:59:04.705381+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/7ebf8ae8493f/EPIKoja-arengukava-2025-2030.pdf",
+        "title": "EPIKoja arengukava 2025–2030",
+        "description": "Source master headings: Partnerid; EPIKoda",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2025,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–16",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "policy_analyses",
+        "source_id": "epikoda_epikoja_arengukava_2025_2030",
+        "document_id": "epikoda_epikoja_arengukava_2025_2030",
+        "source_type": "policy_analysis",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "7e7ea3f5da3fe2df1390ba5cd8300e4882a23cbf99478ad938a00188d6b57bb5",
+        "url": "https://epikoda.ee/wp-content/uploads/2025/09/EPIKoja-arengukava-2025-2030.pdf",
+        "url_canonical": "https://epikoda.ee/wp-content/uploads/2025/09/EPIKoja-arengukava-2025-2030.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "epikoda_epikoja_arengukava_2025_2030",
+        "updatedAt": "2026-06-12T03:59:04.775110+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

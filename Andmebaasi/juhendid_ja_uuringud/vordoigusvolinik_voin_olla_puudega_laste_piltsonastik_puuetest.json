@@ -1,0 +1,150 @@
+{
+  "source_path": "vordoigusvolinik_voin_olla_puudega_laste_piltsonastik_puuetest.pdf",
+  "source_format": "pdf",
+  "sha256": "e49ddfa8ea15bd8b6d4cd34e8854ea7d56e793da1de7e4354814646849a2155f",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/vordoigusvolinik_voin_olla_puudega_laste_piltsonastik_puuetest.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "vordoigusvolinik_voin_olla_puudega_laste_piltsonastik_puuetest",
+          "title": "Võin olla puudega – laste piltsõnastik puuetest",
+          "url": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2026-01/piltsonastiku-veebiversioon2.pdf",
+          "normalized_url": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2026-01/piltsonastiku-veebiversioon2.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "Võrdõigusvolinik",
+          "organization_id": "vordoigusvolinik",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Võrdõigusvolinik",
+            "puue",
+            "puudega inimene",
+            "erivajadus",
+            "lapsed ja pered",
+            "laps",
+            "võrdne kohtlemine",
+            "diskrimineerimine",
+            "võrdõiguslikkus",
+            "infomaterjal"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_066",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "Võrdõigusvolinik",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 331,
+            "order": 188
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Võin olla puudega – laste piltsõnastik puuetest"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Võrdõigusvolinik"
+          ],
+          "organizations_seen": [
+            "vordoigusvolinik"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Võrdõigusvolinik",
+              "line": 331,
+              "order": 188
+            },
+            {
+              "heading_2": "Võrdõigusvolinik",
+              "line": 805,
+              "order": 395
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2026-01/piltsonastiku-veebiversioon2.pdf"
+        },
+        "final_url": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2026-01/piltsonastiku-veebiversioon2.pdf",
+        "redirects": [],
+        "sha256": "e49ddfa8ea15bd8b6d4cd34e8854ea7d56e793da1de7e4354814646849a2155f",
+        "bytes": 3176547,
+        "downloaded_at": "2026-08-14T08:00:39.967Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "vordoigusvolinik_voin_olla_puudega_laste_piltsonastik_puuetest",
+      "metadata": {
+        "createdAt": "2026-06-12T03:43:55.027819+00:00",
+        "type": "FILE",
+        "fileName": "piltsonastiku-veebiversioon2.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:43:54.962334+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/6d4e944a9dcc/piltsonastiku-veebiversioon2.pdf",
+        "title": "Võin olla puudega – laste piltsõnastik puuetest",
+        "description": "Duplikaadid ühendatud: 1 lisakirjet. Source master headings: Võrdõigusvolinik",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2026,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–30",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "vordoigusvolinik_voin_olla_puudega_laste_piltsonastik_puuetest",
+        "document_id": "vordoigusvolinik_voin_olla_puudega_laste_piltsonastik_puuetest",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "da40f525961c5cc8682e46fe52b924724efb3dcbab66458a1bfae3f8d8b7e2a2",
+        "url": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2026-01/piltsonastiku-veebiversioon2.pdf",
+        "url_canonical": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2026-01/piltsonastiku-veebiversioon2.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "vordoigusvolinik_voin_olla_puudega_laste_piltsonastik_puuetest",
+        "updatedAt": "2026-06-12T03:43:55.027844+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

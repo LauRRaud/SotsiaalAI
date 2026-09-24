@@ -1,0 +1,143 @@
+{
+  "source_path": "sotsiaalkindlustusamet_juhendmaterjal_kubervagivallast_ohvritega_tootavatele_spetsi.pdf",
+  "source_format": "pdf",
+  "sha256": "dac27574f59b92d2469f092c5ebc6269f0fce8f107a3c0b56d84a2bc3f9108eb",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/sotsiaalkindlustusamet_juhendmaterjal_kubervagivallast_ohvritega_tootavatele_spetsi.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "sotsiaalkindlustusamet_juhendmaterjal_kubervagivallast_ohvritega_tootavatele_spetsi",
+          "title": "Juhendmaterjal kübervägivallast ohvritega töötavatele spetsialistidele",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-10/Juhendmaterjal%20k%C3%BCberv%C3%A4givallast%20ohvritega%20t%C3%B6%C3%B6tavatele%20spetsialistidele.pdf",
+          "normalized_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-10/Juhendmaterjal kübervägivallast ohvritega töötavatele spetsialistidele.pdf",
+          "source_format": "pdf",
+          "source_type": "official_guideline",
+          "resource_type": "method_guidance",
+          "publisher": "Sotsiaalkindlustusamet",
+          "organization_id": "sotsiaalkindlustusamet",
+          "collection_hint": "guidance_and_methods",
+          "evidence_role": "practice_guidance",
+          "topic_tags": [
+            "Sotsiaalkindlustusamet",
+            "spetsialisti juhend",
+            "SKA",
+            "kübervägivald",
+            "digivägivald",
+            "ohvriabi",
+            "vägivald"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "high",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "SKA",
+            "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+            "heading_4": null,
+            "line": 465,
+            "order": 248
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Juhendmaterjal kübervägivallast ohvritega töötavatele spetsialistidele"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "official_guideline"
+          ],
+          "resource_types_seen": [
+            "best_practice_guidance"
+          ],
+          "publishers_seen": [
+            "Sotsiaalkindlustusamet"
+          ],
+          "organizations_seen": [
+            "sotsiaalkindlustusamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "SKA",
+              "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+              "line": 465,
+              "order": 248
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-10/Juhendmaterjal kübervägivallast ohvritega töötavatele spetsialistidele.pdf"
+        },
+        "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-10/Juhendmaterjal%20k%C3%BCberv%C3%A4givallast%20ohvritega%20t%C3%B6%C3%B6tavatele%20spetsialistidele.pdf",
+        "redirects": [],
+        "sha256": "dac27574f59b92d2469f092c5ebc6269f0fce8f107a3c0b56d84a2bc3f9108eb",
+        "bytes": 730357,
+        "downloaded_at": "2026-08-14T08:00:49.648Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "sotsiaalkindlustusamet_juhendmaterjal_kubervagivallast_ohvritega_tootavatele_spetsi",
+      "metadata": {
+        "createdAt": "2026-06-11T18:51:24.723720+00:00",
+        "type": "FILE",
+        "fileName": "Juhendmaterjal kübervägivallast ohvritega töötavatele spetsialistidele.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-11T18:51:24.661465+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/3a85e0636c63/Juhendmaterjal kübervägivallast ohvritega töötavatele spetsialistidele.pdf",
+        "title": "Juhendmaterjal kübervägivallast ohvritega töötavatele spetsialistidele",
+        "description": "Source master headings: SKA; Ohvriabi, MARAC, naiste tugikeskused",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2024,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–25",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "sotsiaalkindlustusamet_juhendmaterjal_kubervagivallast_ohvritega_tootavatele_spetsi",
+        "document_id": "sotsiaalkindlustusamet_juhendmaterjal_kubervagivallast_ohvritega_tootavatele_spetsi",
+        "source_type": "official_guideline",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-11",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "e80b46a0d3a8a133621be7e3855d75dcd41dd6890690001f7a24b05d8838d3f1",
+        "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-10/Juhendmaterjal%20k%C3%BCberv%C3%A4givallast%20ohvritega%20t%C3%B6%C3%B6tavatele%20spetsialistidele.pdf",
+        "url_canonical": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-10/Juhendmaterjal kübervägivallast ohvritega töötavatele spetsialistidele.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "sotsiaalkindlustusamet_juhendmaterjal_kubervagivallast_ohvritega_tootavatele_spetsi",
+        "updatedAt": "2026-06-11T18:51:24.723744+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

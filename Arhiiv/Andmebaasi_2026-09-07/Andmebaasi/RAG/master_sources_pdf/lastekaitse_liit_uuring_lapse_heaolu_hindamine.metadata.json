@@ -1,0 +1,84 @@
+{
+  "source": {
+    "source_id": "lastekaitse_liit_uuring_lapse_heaolu_hindamine",
+    "title": "Uuring “Lapse heaolu hindamine”",
+    "url": "https://www.lastekaitseliit.ee/wp-content/uploads/2011/04/Uuring-Lapse-heaolu-hindamine.pdf",
+    "normalized_url": "https://www.lastekaitseliit.ee/wp-content/uploads/2011/04/Uuring-Lapse-heaolu-hindamine.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "Lastekaitse Liit",
+    "organization_id": "lastekaitse_liit",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "Lastekaitse Liit",
+      "lapsed ja pered",
+      "laps",
+      "lastekaitse",
+      "lapse heaolu",
+      "abivajav laps",
+      "statistika",
+      "sotsiaalnäitajad",
+      "heaolu",
+      "abivajaduse hindamine",
+      "hindamisvahend",
+      "uuring",
+      "raport",
+      "analüüs"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "Lastekaitse Liit",
+      "heading_4": null,
+      "line": 599,
+      "order": 306
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Uuring “Lapse heaolu hindamine”"
+    ],
+    "collection_hints": [
+      "research_reports"
+    ],
+    "source_types_seen": [
+      "research_report"
+    ],
+    "resource_types_seen": [
+      "research_evidence"
+    ],
+    "publishers_seen": [
+      "Lastekaitse Liit"
+    ],
+    "organizations_seen": [
+      "lastekaitse_liit"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "Lastekaitse Liit",
+        "line": 599,
+        "order": 306
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.lastekaitseliit.ee/wp-content/uploads/2011/04/Uuring-Lapse-heaolu-hindamine.pdf"
+  },
+  "final_url": "https://www.lastekaitseliit.ee/wp-content/uploads/2011/04/Uuring-Lapse-heaolu-hindamine.pdf",
+  "redirects": [],
+  "sha256": "cffa1512b4ff14863596851d9a0e3d86e65c5d33bd61ab5be9564d7448f48042",
+  "bytes": 391508,
+  "downloaded_at": "2026-08-14T08:00:57.726Z"
+}

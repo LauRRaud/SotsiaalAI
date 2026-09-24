@@ -1,0 +1,40 @@
+{
+  "docId": "motisklusi-sotsiaaltoost-2016",
+  "articleId": "oma-praktika-kujundamine-sotsiaaltootaja-on-oma-ala-meister-2016",
+  "title": "Oma praktika kujundamine. Sotsiaaltöötaja on oma ala meister",
+  "authors": [
+    "Jean Pierre Wilken"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "MÕTISKLUSI",
+  "section": "Peegeldusi Euroopast",
+  "pageRange": "17-19",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel rõhutab, et sotsiaaltöötaja peab oma praktikat teadlikult kujundama, lähtudes kliendi huvidest, eetilistest põhimõtetest ja pidevast refleksioonist. Käsitletakse meisterlikkust, isiklik-professionaalset suhet ja loovat tegutsemist olukordades, kus sobiv lähenemine tuleb iga kord uuesti luua.",
+  "tags": [
+    "praktika kujundamine",
+    "meisterlikkus",
+    "kliendikesksus",
+    "refleksioon",
+    "professionaalne suhe",
+    "kutseidentiteet"
+  ],
+  "source_type": "file",
+  "source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part8.pdf",
+  "document_id": "motisklusi-sotsiaaltoost-2016-oma-praktika-kujundamine-sotsiaaltootaja-on-oma-ala-meister-2016",
+  "source_format": "pdf",
+  "source_sha256": "d81ac52abf35c474f170b5ecc155601adc3b21e18f8c1c4b38d025b6539c9a61",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "motisklusi-sotsiaaltoost-2016-oma-praktika-kujundamine-sotsiaaltootaja-on-oma-ala-meister-2016",
+    "previous_source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part8.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d81ac52abf35c474f170b5ecc155601adc3b21e18f8c1c4b38d025b6539c9a61",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2025",
+  "articleId": "vanemaealised-liikluses-kas-meedia-toetab-voi-takistab-2025-4",
+  "title": "Vanemaealised liikluses: kas meedia toetab või takistab?",
+  "authors": [
+    "Merilin Meltsa"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2025",
+  "section": "Vanemaealised",
+  "pageRange": "1–6",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel analüüsib vanemaealiste liiklejate meediakuvandit Eestis ja selle mõju hoiakutele ning liikluspoliitikale. Uuring toob esile, et meedias domineerivad stereotüübid, kuigi statistika ei kinnita vanemaealisi juhte suurima ohuna, ning rõhutab vanusesõbraliku liikluskeskkonna vajadust.",
+  "tags": [
+    "vanemaealised",
+    "liiklusohutus",
+    "meedia",
+    "stereotüübid",
+    "vanusesõbralikkus",
+    "liikluskäitumine",
+    "magistriuurimus"
+  ],
+  "source_type": "file",
+  "source_path": "Vanemaealised liikluses_kas meedia toetab või takistab.pdf",
+  "document_id": "sotsiaaltoo-4-2025-vanemaealised-liikluses-kas-meedia-toetab-voi-takistab-2025-4",
+  "source_format": "pdf",
+  "source_sha256": "70b37dfa340bc50d1f9f558b8b236054d27db082d3543ef81569e499a92cb800",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2025-vanemaealised-liikluses-kas-meedia-toetab-voi-takistab-2025-4",
+    "previous_source_path": "Vanemaealised liikluses_kas meedia toetab või takistab.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "70b37dfa340bc50d1f9f558b8b236054d27db082d3543ef81569e499a92cb800",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

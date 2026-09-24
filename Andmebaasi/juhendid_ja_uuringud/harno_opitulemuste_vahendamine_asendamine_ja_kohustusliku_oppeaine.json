@@ -1,0 +1,182 @@
+{
+  "source_path": "harno_opitulemuste_vahendamine_asendamine_ja_kohustusliku_oppeaine.pdf",
+  "source_format": "pdf",
+  "sha256": "3c36e2568123e883308855fa62047399b863006d0745db2dcaaab6200c21d172",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/harno_opitulemuste_vahendamine_asendamine_ja_kohustusliku_oppeaine.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "harno_opitulemuste_vahendamine_asendamine_ja_kohustusliku_oppeaine",
+          "title": "Õpitulemuste vähendamine, asendamine ja kohustusliku õppeaine õppimisest vabastamine",
+          "url": "https://harno.ee/sites/default/files/documents/2022-02/V2hendamine_2022.pdf",
+          "source_url": "https://harno.ee/sites/default/files/documents/2022-02/V2hendamine_2022.pdf",
+          "source_format": "pdf",
+          "ingest_status": "ingest_candidate",
+          "recommended_pipeline": "knowledge_doc_pipeline"
+        },
+        "final_url": "https://harno.ee/sites/default/files/documents/2022-02/V2hendamine_2022.pdf",
+        "local_origin": "consolidated_existing_file",
+        "recorded_at": "2026-08-14T09:25:00.000Z",
+        "bytes": 1413642,
+        "sha256": "3c36e2568123e883308855fa62047399b863006d0745db2dcaaab6200c21d172"
+      }
+    },
+    {
+      "original_path": "lisatest/harno-opitulemuste-vahendamine-asendamine-ja-oppeainest-vabastamine.json",
+      "metadata": {
+        "schemaVersion": "knowledge-doc-v1",
+        "country": "EE",
+        "sector": "social",
+        "audience": "BOTH",
+        "audiences": [
+          "SOCIAL_WORKER",
+          "CLIENT"
+        ],
+        "language": "et",
+        "source_origin_type": "file",
+        "source_format": "pdf",
+        "source_status": "active",
+        "historical": false,
+        "checked_at": "2026-05-03",
+        "copyright_status": "restricted_citation_summary_only",
+        "display_full_text": false,
+        "allow_excerpts": "short_only",
+        "ingest": {
+          "chunking_strategy": "section_aware",
+          "preserve_page_numbers": true,
+          "preserve_heading_path": true,
+          "display_full_text": false,
+          "allow_short_excerpts": true
+        },
+        "quality": {
+          "metadata_complete": false,
+          "section_index_complete": false,
+          "ocr_required": false,
+          "needs_manual_review": true,
+          "review_note": "Draft metadata generated for test ingestion. Codex should validate field names against the current project schema."
+        },
+        "docId": "harno-opitulemuste-vahendamine-asendamine-ja-oppeainest-vabastamine",
+        "canonical_source_id": "harno-opitulemuste-vahendamine-asendamine-ja-oppeainest-vabastamine",
+        "source_id": "harno_opitulemuste_vahendamine_asendamine_ja_kohustusliku_oppeaine_oppimisest_vabastamine",
+        "document_id": "harno-opitulemuste-vahendamine-asendamine-ja-oppeainest-vabastamine",
+        "title": "Õpitulemuste vähendamine, asendamine ja kohustusliku õppeaine õppimisest vabastamine",
+        "description": "HARNO infomaterjal haridusliku erivajadusega õpilase õpitulemuste vähendamise, asendamise ja kohustusliku õppeaine õppimisest vabastamise teemal.",
+        "publisher": "HARNO",
+        "source_organization": "Haridus- ja Noorteamet",
+        "organization_id": "harno",
+        "publisher_type": "government_agency",
+        "authority_level": "national_agency_information",
+        "year": 2022,
+        "publication_date": "2022-02",
+        "document_kind": "manual",
+        "resource_type": "information_material",
+        "source_type": "information_material",
+        "collection_id": "organization_materials",
+        "collection_hint": "information_materials",
+        "domain": "education_support",
+        "evidence_role": "background",
+        "allowed_claim_types": [
+          "background",
+          "practice_recommendation",
+          "support_pathway",
+          "definition",
+          "educational_support_guidance"
+        ],
+        "disallowed_claim_types": [
+          "legal_entitlement",
+          "legal_entitlement_as_final_decision",
+          "benefit_amount",
+          "municipal_service_availability",
+          "application_deadline",
+          "medical_diagnosis_or_treatment"
+        ],
+        "topics": [
+          "haridus",
+          "kool",
+          "õpilase toetamine",
+          "tugimeetmed",
+          "hariduslik erivajadus",
+          "individuaalne õppekava",
+          "õpitulemuste vähendamine",
+          "õpitulemuste asendamine",
+          "õppeainest vabastamine",
+          "nõustamismeeskond"
+        ],
+        "target_groups": [
+          "haridusliku erivajadusega õpilased",
+          "õpilased",
+          "koolid",
+          "õpetajad",
+          "tugispetsialistid",
+          "lapsevanemad"
+        ],
+        "source_path": "V2hendamine_2022.pdf",
+        "source_url": "https://harno.ee/sites/default/files/documents/2022-02/V2hendamine_2022.pdf",
+        "page_count": 30,
+        "registry_source": {
+          "source_master_source_id": "harno_opitulemuste_vahendamine_asendamine_ja_kohustusliku_oppeaine_oppimisest_vabastamine",
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://harno.ee/sites/default/files/documents/2022-02/V2hendamine_2022.pdf"
+        },
+        "jurisdiction_level": "NATIONAL"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "harno_opitulemuste_vahendamine_asendamine_ja_kohustusliku_oppeaine",
+      "metadata": {
+        "createdAt": "2026-06-12T03:44:39.277729+00:00",
+        "type": "FILE",
+        "fileName": "V2hendamine_2022.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:44:39.210262+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/49d1d922a0e5/V2hendamine_2022.pdf",
+        "title": "Õpitulemuste vähendamine, asendamine ja kohustusliku õppeaine õppimisest vabastamine",
+        "description": "Source master headings: HARNO / HEV / kooli tugimeetmed",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2022,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–30",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "harno_opitulemuste_vahendamine_asendamine_ja_kohustusliku_oppeaine",
+        "document_id": "harno_opitulemuste_vahendamine_asendamine_ja_kohustusliku_oppeaine",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "cf0daeef83853d5fd84bd69c896b14583072fab8da4984251c412cbe194a1ed4",
+        "url": "https://harno.ee/sites/default/files/documents/2022-02/V2hendamine_2022.pdf",
+        "url_canonical": "https://harno.ee/sites/default/files/documents/2022-02/V2hendamine_2022.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "harno_opitulemuste_vahendamine_asendamine_ja_kohustusliku_oppeaine",
+        "updatedAt": "2026-06-12T03:44:39.277751+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

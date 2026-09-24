@@ -1,0 +1,82 @@
+{
+  "docId": "sotsiaaltoo-1-2016",
+  "articleId": "sotsiaaltoo-1-2016-artikkel-03-supervisiooniteenus-kohalike-omavalitsuste-sotsi",
+  "title": "Supervisiooniteenus kohalike omavalitsuste sotsiaaltöötajatele",
+  "authors": [
+    "Õnne Liv Valberg"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2016",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "7-9",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi peaspetsialist teatab, et Euroopa Sotsiaalfondi toetuste andmise tingimuste „Tööturul osalemist toetavad hoolekandeteenused” raames hakatakse 2016. aastal pakkuma kohalike omavalitsuste sotsiaalvaldkonna spetsialistidele supervisiooni. Esimeses etapis saab grupisupervisiooni sada spetsialisti, struktuuritoetuste perioodil kokku 420 töötajat neljas piirkonnas. Superviisoritelt nõutakse Eesti Supervisiooni ja Coachingu Ühingu kvalifikatsiooni; ühing koondab üle 60 superviisori. ISCI 2013. aasta uuringu järgi oli regulaarse supervisiooni kogemus 7,16%-l ja üksikute supervisioonipäevade kogemus 17,34%-l vastanutest. Lastekaitsetöötajad sihtrühma ei kuulu, neile pakub supervisiooni Sotsiaalkindlustusamet.",
+  "tags": [
+    "supervisioon",
+    "töönõustamine",
+    "kohalik omavalitsus",
+    "euroopa sotsiaalfond",
+    "läbipõlemine",
+    "sotsiaaltöötajate pädevus"
+  ],
+  "source_type": "file",
+  "source_path": "2016_1_artikkel_03_supervisiooniteenus_kohalike_omavalitsuste_sotsiaalt.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-03-supervisiooniteenus-kohalike-omavalitsuste-sotsi",
+  "source_sha256": "bb580d126133728547f6efa56b23d7883da801fd3bb66926df97db1e9bb95750",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-03-supervisiooniteenus-kohalike-omavalitsuste-sotsi",
+    "previous_source_path": "2016_1_artikkel_03_supervisiooniteenus_kohalike_omavalitsuste_sotsiaalt.txt",
+    "previous_source_original_path": "1-2016.pdf",
+    "reference_stored_source_sha256": "ed94c3a9dcab33d9cd4d5105b45fa8d0d8707d8b5e715cea34bc9a570be1712d",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf",
+      "source_sha256": "2c193295e54f58982562b509b6283e93aa58b1695464671e1768e24e90888a6c",
+      "pdf_start_page": 9,
+      "pdf_end_page": 11,
+      "printed_page_range": "7-9",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 11,
+      "source_regions": [
+        {
+          "source_pdf_page": 9,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 10,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 11,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            204.299
+          ]
+        }
+      ],
+      "effective_printed_page_range": "7-9",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf"
+    },
+    "server_page_range": "7-9"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-johvi-vald",
+  "document_id": "kov-johvi-vald",
+  "municipality": "Jõhvi vald",
+  "municipality_id": "johvi_vald",
+  "county": "Ida-Virumaa",
+  "checkedAt": "2026-04-29",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-johvi-vald",
+  "coverage": {
+    "services": 28,
+    "benefits": 14,
+    "resources": 23,
+    "contacts": 15,
+    "forms": 11,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "johvi_vald",
+    "source_register_file": "johvi-vald.sources.json",
+    "service_benefit_resource_items": 65,
+    "items_with_source_keys": 65,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 32,
+    "items_without_related_forms": 33,
+    "items_with_related_contacts": 43,
+    "items_without_related_contacts": 22,
+    "form_sources": 12,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "1 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Paketis on käsitletud Jõhvi valla ametliku veebilehe Pere, sotsiaal ja tervishoid haru ning KOV veebis ametliku sisuna avaldatud sotsiaalvaldkonna vorme ja teavitusi.",
+    "Riigi Teataja ja muud õigusallikad on KOV veebipaketist välja jäetud; õigusliku aluse kontrollimiseks tuleb kasutada eraldi RT/legal kihti."
+  ],
+  "unresolvedIssues": [
+    "Osa e-posti aadresse on Jõhvi veebilehe tekstiväljavõttes varjestatud kujul **; kontaktiväljade täitmisel kasutati ainult KOV veebis loetavalt kuvatud ametlikke aadresse või säilitati varjestus.",
+    "Mõned vormilingid esinevad veebis mitmes versioonis või varasema nimega. Paketis kasutati ainult tegelikult avatud ametlikke KOV PDF-linke ning katkised või ebaselged DOCX-lingid jäeti kasutamata.",
+    "Väliseid teenuseosutajaid ja riiklikke abikanaleid ei kontrollitud väljaspool Jõhvi valla veebilehte; need kajastati ainult ulatuses, milles KOV leht neid nimetas.",
+    "Sotsiaalvaldkonna projektide detaillehti ei normaliseeritud eraldi teenuse või toetuse itemiteks, sest koondlehel oli projektide loetelu ja mitte kõigi projektide praktiline menetlusinfo.",
+    "Sotsiaalteenuste koondleht sisaldab palju teenuseid ühel lehel; detailseid otsustamisaegu ja tähtaegu ei olnud kõigi teenuste juures avaldatud."
+  ],
+  "municipality_name": "Jõhvi vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "johvi-vald.sources.json",
+  "sourceCount": 26,
+  "counts": {
+    "services": 28,
+    "benefits": 14,
+    "resources": 23,
+    "contacts": 15,
+    "forms": 11,
+    "regulations": 0
+  },
+  "warnings": [
+    "1 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "source": {
+    "source_id": "praxis_centar_ska_ja_kovid_loppraport",
+    "title": "SKA ja KOVid – lõppraport",
+    "url": "https://centar.ee/pdf/ee/2023_SKA%20ja%20KOVid_Loppraport_avaldamiseks.pdf",
+    "normalized_url": "https://centar.ee/pdf/ee/2023_SKA ja KOVid_Loppraport_avaldamiseks.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "Praxis / CentAR",
+    "organization_id": "praxis_centar",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "Praxis",
+      "kohalik omavalitsus",
+      "KOV",
+      "uuring",
+      "raport",
+      "analüüs",
+      "Sotsiaalkindlustusamet"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Praxis / CentAR / poliitikauuringud",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 447,
+      "order": 241
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "SKA ja KOVid – lõppraport"
+    ],
+    "collection_hints": [
+      "research_reports"
+    ],
+    "source_types_seen": [
+      "research_report"
+    ],
+    "resource_types_seen": [
+      "research_evidence"
+    ],
+    "publishers_seen": [
+      "Praxis / CentAR"
+    ],
+    "organizations_seen": [
+      "praxis_centar"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Praxis / CentAR / poliitikauuringud",
+        "line": 447,
+        "order": 241
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://centar.ee/pdf/ee/2023_SKA ja KOVid_Loppraport_avaldamiseks.pdf"
+  },
+  "final_url": "https://centar.ee/pdf/ee/2023_SKA%20ja%20KOVid_Loppraport_avaldamiseks.pdf",
+  "redirects": [],
+  "sha256": "4a34f1560bbc52d2ff38051d4b0c3de4b9e774acf0ad50ee11a1e981e4479e62",
+  "bytes": 552413,
+  "downloaded_at": "2026-08-14T08:00:48.451Z"
+}

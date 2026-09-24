@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-3-2021",
+  "articleId": "tegevuspiiranguga-inimeste-toimetulekut-kodus-tuleb-toetada-senisest-rohkem-2021-3",
+  "title": "Tegevuspiiranguga inimeste toimetulekut kodus tuleb toetada senisest rohkem",
+  "authors": [
+    "Tiina Linno",
+    "Vaike Vainu"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2021",
+  "section": "Analüüs",
+  "pageRange": "27-34",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Analüüs põhineb uuringutel ja registriandmetel ning käsitleb tegevuspiiranguga inimeste toimetulekut koduses keskkonnas. Autorid vaatlevad, milliseid sotsiaal- ja tervishoiuteenuseid inimesed saavad, millised on regionaalsed erinevused ning millised tegurid soodustavad iseseisvat toimetulekut või suurendavad hooldusvajadust. Eraldi pööratakse tähelepanu kodu kohandamisele, abivahendite kättesaadavusele, lähedaste hoolduskoormusele ja kohalike omavalitsuste praktikale. Analüüsist joonistub välja vajadus tugevdada koduteenuseid, arendada integreeritud teenusemudeleid ja anda tegevuspiiranguga inimestele suurem sõnaõigus nende enda elu puudutavate otsuste tegemisel.",
+  "tags": [
+    "tegevuspiiranguga inimesed",
+    "toimetulek kodus",
+    "koduteenus",
+    "abivahendid",
+    "hoolduskoormus",
+    "integreeritud teenused",
+    "sotsiaal- ja tervishoiusüsteem",
+    "regionaalsed erinevused"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2021_web_link_Part9.pdf",
+  "document_id": "sotsiaaltoo-3-2021-tegevuspiiranguga-inimeste-toimetulekut-kodus-tuleb-toetada-senisest-rohkem-2021-3",
+  "source_format": "pdf",
+  "source_sha256": "acc64e42c68127373e78716b545f4416e59c7264be7149a211ddf0552decc0c9",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2021-tegevuspiiranguga-inimeste-toimetulekut-kodus-tuleb-toetada-senisest-rohkem-2021-3",
+    "previous_source_path": "Sotsiaaltoo_3_2021_web_link_Part9.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "acc64e42c68127373e78716b545f4416e59c7264be7149a211ddf0552decc0c9",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

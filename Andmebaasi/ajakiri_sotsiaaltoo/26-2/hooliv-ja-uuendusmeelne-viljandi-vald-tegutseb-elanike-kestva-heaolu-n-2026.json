@@ -1,0 +1,49 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "hooliv-ja-uuendusmeelne-viljandi-vald-tegutseb-elanike-kestva-heaolu-n-2026",
+  "title": "Hooliv ja uuendusmeelne Viljandi vald tegutseb elanike kestva heaolu nimel",
+  "authors": [
+    "Marta Rohtla"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Kohalik omavalitsus",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade Viljandi valla sotsiaalvaldkonna korraldusest, mis tugineb teenuste piirkondlikule lähendamisele ja tugevatele koostöösuhetele. Kirjeldatakse osakonna juhtimispõhimõtteid, töötajate professionaalse arengu toetamist ning valla tunnustusi hästi toimiva sotsiaalasutuse ja tervist edendava töökoha eest.",
+  "tags": [
+    "kohalik omavalitsus",
+    "Viljandi vald",
+    "sotsiaalteenused",
+    "hea praktika",
+    "teenuste korraldus",
+    "peretöö",
+    "tööheaolu",
+    "kogukonna heaolu"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-04-15",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/hooliv-ja-uuendusmeelne-viljandi-vald-tegutseb-elanike-kestva-heaolu-nimel",
+  "source_type": "web",
+  "source_path": "hooliv-ja-uuendusmeelne-viljandi-vald-tegutseb-elanike-kestva-heaolu-nimel.html",
+  "lead": "Spetsialistide leidmine ja hoidmine väiksemas omavalitsuses nõuab paindlikkust ja tugevat koostööd. Viljandi vallas ollakse hoolivad ja uuendusmeelsed, tähelepanu keskmes on elanike heaolu.",
+  "document_id": "sotsiaaltoo-2-2026-hooliv-ja-uuendusmeelne-viljandi-vald-tegutseb-elanike-kestva-heaolu-n-2026",
+  "source_format": "html",
+  "source_sha256": "a608b53cdc2b4f6ee3f16ae1cb06ffc1ae610c65e6ed8f58ab5d08bb9595d343",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-hooliv-ja-uuendusmeelne-viljandi-vald-tegutseb-elanike-kestva-heaolu-n-2026",
+    "previous_source_path": "hooliv-ja-uuendusmeelne-viljandi-vald-tegutseb-elanike-kestva-heaolu-nimel.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "369c8eb615cd090b8760da0cd7f1ec142eafe4aa9b65821ec7270f52e8c46b13",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "193a0a963edd0f3ce1cb987be6e20b81354e75af6913790e931da3283224a1be",
+    "observed_web_title": "Hooliv ja uuendusmeelne Viljandi vald tegutseb elanike kestva heaolu nimel"
+  },
+  "retrieved_at": "2026-09-07T19:39:36.328416+00:00"
+}

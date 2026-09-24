@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-4-2020",
+  "articleId": "praktika-ja-teooria-seosed-sotsiaaltoos-2020-4",
+  "title": "Praktika ja teooria seosed sotsiaaltöös",
+  "authors": [
+    "Malcolm Payne"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2020",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "75-83",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Rahvusvaheliselt tuntud sotsiaaltöö teoreetik Malcolm Payne arutleb, kuidas on seotud sotsiaaltöö praktika ja teooria ning miks on lihtsustatud vastandus \"praktika põllul\" ja teooria akadeemilises maailmas eksitav. Artikkel eristab eri tüüpi teooriaid, analüüsib teooriakasutuse poliitikat ja kriitikat ning pakub välja viise, kuidas praktikud ja teadlased saaksid koos luua teadmisi, mis aitavad paremini mõista sotsiaalset maailma ja toetada professionaalset tegutsemist.",
+  "tags": [
+    "sotsiaaltöö teooria",
+    "praktika ja teooria seosed",
+    "professionaalne identiteet",
+    "teaduspõhine praktika",
+    "sotsiaaltöö kui elukutse"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2020_web_link_Part15.pdf",
+  "document_id": "sotsiaaltoo-4-2020-praktika-ja-teooria-seosed-sotsiaaltoos-2020-4",
+  "source_format": "pdf",
+  "source_sha256": "4d5e053684792bb48114e92bdf566a163bcf93a36cf5798aa2286f883475b224",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2020-praktika-ja-teooria-seosed-sotsiaaltoos-2020-4",
+    "previous_source_path": "Sotsiaaltoo_4_2020_web_link_Part15.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "4d5e053684792bb48114e92bdf566a163bcf93a36cf5798aa2286f883475b224",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

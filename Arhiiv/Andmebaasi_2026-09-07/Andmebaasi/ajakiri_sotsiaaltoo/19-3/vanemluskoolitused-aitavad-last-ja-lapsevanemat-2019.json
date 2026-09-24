@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-3-2019",
+  "articleId": "vanemluskoolitused-aitavad-last-ja-lapsevanemat-2019",
+  "title": "Vanemluskoolitused aitavad last ja lapsevanemat",
+  "authors": [
+    "Pirjo Turk",
+    "Ly Kasvandik",
+    "Stina Suurväli"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2019",
+  "section": "Vanemlus",
+  "pageRange": "22-26",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab vanemlusprogrammi „Imelised aastad” rakendamist Eestis, koolituste sisu ja korraldust, vanemate tagasisidet ning mõõdetud mõju laste käitumisprobleemidele ja pere toimimisele.",
+  "tags": [
+    "vanemlusprogramm",
+    "Imelised aastad",
+    "vanemaharidus",
+    "laste käitumisprobleemid",
+    "ennetustöö"
+  ],
+  "source_type": "file",
+  "source_path": "ST3_2019_veeb_link_Part6.pdf",
+  "document_id": "sotsiaaltoo-3-2019-vanemluskoolitused-aitavad-last-ja-lapsevanemat-2019",
+  "source_format": "pdf",
+  "source_sha256": "e1c3fa4a07eb3307db71a89e6a9d043a2653741f57740ca87069a5f97c25b31c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2019-vanemluskoolitused-aitavad-last-ja-lapsevanemat-2019",
+    "previous_source_path": "ST3_2019_veeb_link_Part6.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e1c3fa4a07eb3307db71a89e6a9d043a2653741f57740ca87069a5f97c25b31c",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

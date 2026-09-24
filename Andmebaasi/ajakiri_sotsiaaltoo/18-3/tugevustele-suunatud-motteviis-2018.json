@@ -1,0 +1,110 @@
+{
+  "docId": "sotsiaaltoo-3-2018",
+  "articleId": "tugevustele-suunatud-motteviis-2018",
+  "title": "Tugevustele suunatud mõtteviis: pere kaasamist toetav lähenemine",
+  "authors": [
+    "Karmen Toros",
+    "Michael C. LaSala"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2018",
+  "section": "Sotsiaaltöö meetodid",
+  "pageRange": "69-74",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tallinna Ülikooli professori ja Rutgersi ülikooli dotsendi ühisartikkel tugevustele suunatud mõtteviisist kui pere kaasamist toetavast lähenemisest lapse abivajaduse hindamisel. Lähtub 2018. aasta mais Tallinna Ülikoolis toimunud konverentsist „Pere kaasamine lapse abivajaduse hindamisprotsessis” ja küsib, kas hindamisel keskenduda raskustele ja puudujääkidele või indiviidi, pere ja kogukonna tugevustele ning ressurssidele. Tutvustab 1980. aastatel kasutusele võetud tugevustele suunatud lähenemist, Saleebey CPR-raamistikku ja mitteteadja positsiooni tööl peredega. Viitab Välba, Torose ja Tiko Harjumaa uurimusele, milles lastekaitsetöötaja võrdles oma tegevust sillaga, mille abil klient jõuab selgituste, julgustuse ja toetuse najal uuele teadmisele.",
+  "tags": [
+    "tugevustele suunatud lähenemine",
+    "pere kaasamine",
+    "lapse abivajaduse hindamine",
+    "lastekaitse",
+    "mitteteadja positsioon",
+    "sotsiaaltöö meetodid"
+  ],
+  "source_type": "file",
+  "source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part16.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2018-tugevustele-suunatud-motteviis-2018",
+  "source_sha256": "cc2f8b853451b60eb60668d3b860007a0c5d294b5f5c735e0e017cee707cfbac",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2018-tugevustele-suunatud-motteviis-2018",
+    "previous_source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part16.txt",
+    "previous_source_original_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part16.pdf",
+    "reference_stored_source_sha256": "f9b223cacd7e750bc48c87c445a4ba79af00bb7faee32b9bb8446e9b7ce1dfe1",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\18-3\\155619680390_Sotsiaaltoo_nr3_2018_veebi_link.pdf",
+      "source_sha256": "45eac17c335ef472708d0eb485f916c201e5db46ac64163cc7aeeb1f47dd10a9",
+      "pdf_start_page": 71,
+      "pdf_end_page": 76,
+      "printed_page_range": "69-74",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 76,
+      "source_regions": [
+        {
+          "source_pdf_page": 71,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 72,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 73,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 74,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 75,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 76,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "69-74",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\18-3\\155619680390_Sotsiaaltoo_nr3_2018_veebi_link.pdf"
+    },
+    "server_page_range": "69-74"
+  }
+}

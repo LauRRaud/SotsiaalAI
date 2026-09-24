@@ -1,0 +1,97 @@
+{
+  "source_path": "terviseamet_nakkushaiguste_ennetamise_ja_torjealane_tegevusjuhend_hoolde.pdf",
+  "source_format": "pdf",
+  "sha256": "9fd0db64450d9b8677434f51aa0c1ac2f3e32403fc8d1b214485ae31a8d42161",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/terviseamet_nakkushaiguste_ennetamise_ja_torjealane_tegevusjuhend_hoolde.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "terviseamet_nakkushaiguste_ennetamise_ja_torjealane_tegevusjuhend_hoolde",
+          "title": "Nakkushaiguste ennetamise ja tõrjealane tegevusjuhend hooldekodudele",
+          "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/Nakkushaiguste_ennetamise_ja_torjealane_tegevusjuhend_hooldekodudele%20%282017%29.pdf",
+          "normalized_url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/Nakkushaiguste_ennetamise_ja_torjealane_tegevusjuhend_hooldekodudele (2017).pdf",
+          "source_format": "pdf",
+          "source_type": "official_guideline",
+          "resource_type": "method_guidance",
+          "publisher": "Terviseamet",
+          "organization_id": "terviseamet",
+          "collection_hint": "guidance_and_methods",
+          "evidence_role": "practice_guidance",
+          "topic_tags": [
+            "Terviseamet",
+            "hoolekanne",
+            "sotsiaalteenused",
+            "hooldus",
+            "hooldekodu",
+            "hoolekandeasutus",
+            "tervishoid",
+            "nakkushaigused",
+            "infektsioonikontroll",
+            "spetsialisti juhend"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "low",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_051",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "Terviseamet",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 297,
+            "order": 173
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Nakkushaiguste ennetamise ja tõrjealane tegevusjuhend hooldekodudele"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "official_guideline"
+          ],
+          "resource_types_seen": [
+            "best_practice_guidance"
+          ],
+          "publishers_seen": [
+            "Terviseamet"
+          ],
+          "organizations_seen": [
+            "terviseamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Terviseamet",
+              "line": 297,
+              "order": 173
+            },
+            {
+              "heading_2": "Terviseamet",
+              "line": 771,
+              "order": 380
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/Nakkushaiguste_ennetamise_ja_torjealane_tegevusjuhend_hooldekodudele (2017).pdf",
+          "priority_note": "covid-era guidance; deprioritized 2026-06-11 per owner decision"
+        },
+        "final_url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/Nakkushaiguste_ennetamise_ja_torjealane_tegevusjuhend_hooldekodudele%20%282017%29.pdf",
+        "redirects": [],
+        "sha256": "9fd0db64450d9b8677434f51aa0c1ac2f3e32403fc8d1b214485ae31a8d42161",
+        "bytes": 404130,
+        "downloaded_at": "2026-08-14T08:00:37.657Z"
+      }
+    }
+  ],
+  "server_metadata": [],
+  "review_status": "metadata_conversion_pending"
+}

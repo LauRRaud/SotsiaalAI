@@ -1,0 +1,3304 @@
+{
+  "summary": {
+    "generated_at": "2026-08-14T09:23:30.698Z",
+    "server_documents": 5819,
+    "confirmed_local_full_content": 5809,
+    "confirmed_missing_local": 2,
+    "local_metadata_only": 8,
+    "server_zero_chunk_sources": 0,
+    "server_zero_chunk_documents": 0,
+    "failed_pdf_downloads": 6,
+    "duplicate_source_matches": 0,
+    "master_entries_missing_from_server": 156,
+    "master_html_missing_from_server": 143,
+    "master_pdf_missing_from_server": 13,
+    "missing_html_referenced_only": 137,
+    "missing_html_ingest_candidate": 6,
+    "missing_pdf_needs_review": 7,
+    "missing_pdf_ingest_candidate": 6,
+    "strong_content_matches_with_id_drift": 20,
+    "server_matches_master_identity_not_proven": 167,
+    "master_matches_freshness_not_proven": 167,
+    "raw_html_snapshots": 0,
+    "note": "Categories overlap and must not be added together. Source-master identity and freshness are not proven because the normalized server export omits those fields."
+  },
+  "categories": [
+    {
+      "category": "CONFIRMED_MISSING_LOCAL",
+      "severity": "high",
+      "rows": [
+        {
+          "id": "national-rt-130122025029",
+          "title": "Sotsiaalhoolekande seadus",
+          "format": "TEXT",
+          "url": "https://www.riigiteataja.ee/akt/130122025029",
+          "server_status": "PRESENT",
+          "local_status": "NOT_FOUND",
+          "details": "none"
+        },
+        {
+          "id": "kov::maardu-linn::item::maardu_linn_form_sunnitoetuse_avaldus",
+          "title": "Sünnitoetuse avaldus",
+          "format": "TEXT",
+          "url": "https://maardu.ee/valdkonna-blanketid",
+          "server_status": "PRESENT",
+          "local_status": "NOT_FOUND",
+          "details": "none"
+        }
+      ]
+    },
+    {
+      "category": "LOCAL_METADATA_ONLY",
+      "severity": "high",
+      "rows": [
+        {
+          "id": "kov::maardu-linn::item::maardu_linn_resource_abivahendite_info",
+          "title": "Abivahendite taotlemise info",
+          "format": "TEXT",
+          "url": "https://maardu.ee/abivahendi-taotlemine",
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_METADATA_ONLY",
+          "details": "normalized_url_without_local_source_content; docs/Andmebaas/KOV/maardu-linn/maardu-linn.json | docs/Andmebaas/KOV/maardu-linn/maardu-linn.sources.json"
+        },
+        {
+          "id": "kov::maardu-linn::item::maardu_linn_form_eestkoste_taotlus",
+          "title": "Eestkoste seadmise taotlus",
+          "format": "TEXT",
+          "url": "https://maardu.ee/eestkoste-seadmine",
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_METADATA_ONLY",
+          "details": "normalized_url_without_local_source_content; docs/Andmebaas/KOV/maardu-linn/maardu-linn.json | docs/Andmebaas/KOV/maardu-linn/maardu-linn.sources.json"
+        },
+        {
+          "id": "kov::maardu-linn::item::maardu_linn_form_eluruumi_teenuse_taotlus",
+          "title": "Eluruumi teenuse taotlus",
+          "format": "TEXT",
+          "url": "https://maardu.ee/sotsiaaleluasemeteenus",
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_METADATA_ONLY",
+          "details": "normalized_url_without_local_source_content; docs/Andmebaas/KOV/maardu-linn/maardu-linn.json | docs/Andmebaas/KOV/maardu-linn/maardu-linn.sources.json"
+        },
+        {
+          "id": "kov::maardu-linn::item::maardu_linn_form_koduteenuse_taotlus",
+          "title": "Koduteenuse taotluse vorm",
+          "format": "TEXT",
+          "url": "https://maardu.ee/koduteenus",
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_METADATA_ONLY",
+          "details": "normalized_url_without_local_source_content; docs/Andmebaas/KOV/maardu-linn/maardu-linn.json | docs/Andmebaas/KOV/maardu-linn/maardu-linn.sources.json"
+        },
+        {
+          "id": "kov::maardu-linn::item::maardu_linn_form_lapsehoiutoetuse_taotlus",
+          "title": "Lapsehoiutoetuse taotlus",
+          "format": "TEXT",
+          "url": "https://maardu.ee/lapsehoiutoetus",
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_METADATA_ONLY",
+          "details": "normalized_url_without_local_source_content; docs/Andmebaas/KOV/maardu-linn/maardu-linn.json | docs/Andmebaas/KOV/maardu-linn/maardu-linn.sources.json"
+        },
+        {
+          "id": "kov::maardu-linn::item::maardu_linn_benefit_raske_ja_sugava_puudega_laste_teenuste_toetus",
+          "title": "Raske ja sügava puudega laste toetavad teenused",
+          "format": "TEXT",
+          "url": "https://maardu.ee/puudega-lapse-lapsehoiuteenus",
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_METADATA_ONLY",
+          "details": "normalized_url_without_local_source_content; docs/Andmebaas/KOV/maardu-linn/maardu-linn.json | docs/Andmebaas/KOV/maardu-linn/maardu-linn.sources.json"
+        },
+        {
+          "id": "kov::maardu-linn::item::maardu_linn_form_sotsiaalteenuse_taotlus",
+          "title": "Sotsiaalteenuse taotlus",
+          "format": "TEXT",
+          "url": "https://maardu.ee/isikliku-abistaja-teenus",
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_METADATA_ONLY",
+          "details": "normalized_url_without_local_source_content; docs/Andmebaas/KOV/maardu-linn/maardu-linn.json | docs/Andmebaas/KOV/maardu-linn/maardu-linn.sources.json"
+        },
+        {
+          "id": "kov::maardu-linn::item::maardu_linn_form_raske_sugava_puudega_lapse_teenuse_taotlus",
+          "title": "Taotlus raske ja sügava puudega lapsele teenuse osutamiseks",
+          "format": "TEXT",
+          "url": "https://maardu.ee/puudega-lapse-lapsehoiuteenus",
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_METADATA_ONLY",
+          "details": "normalized_url_without_local_source_content; docs/Andmebaas/KOV/maardu-linn/maardu-linn.json | docs/Andmebaas/KOV/maardu-linn/maardu-linn.sources.json"
+        }
+      ]
+    },
+    {
+      "category": "SERVER_ZERO_CHUNK_SOURCES",
+      "severity": "high",
+      "rows": []
+    },
+    {
+      "category": "PDF_DOWNLOAD_FAILED",
+      "severity": "high",
+      "rows": [
+        {
+          "id": "tai_tai_aastaaruanne_2025",
+          "title": "TAI aastaaruanne 2025",
+          "format": "pdf",
+          "url": "https://staging.tai.ee/sites/default/files/2026-02/aastaaruanne_2025_18.02.pdf",
+          "server_status": "MISSING",
+          "local_status": "DOWNLOAD_FAILED",
+          "details": "HTTP 401"
+        },
+        {
+          "id": "terviseamet_patsiendiohutusjuhtumi_raporteerimise_ja_menetlemise_juhend",
+          "title": "Patsiendiohutusjuhtumi raporteerimise ja menetlemise juhend",
+          "format": "pdf",
+          "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-11/patsiendiohutusjuhtumi_raporteerimise_ja_menetlemise_juhend.pdf",
+          "server_status": "MISSING",
+          "local_status": "DOWNLOAD_FAILED",
+          "details": "HTTP 404"
+        },
+        {
+          "id": "terviseamet_pohak_i_aasta_kokkuvote",
+          "title": "POHAK I aasta kokkuvõte",
+          "format": "pdf",
+          "url": "https://terviseamet.ee/sites/default/files/documents/2026-04/POHAK_I%20aasta%20kokkuv%C3%B5te.pdf",
+          "server_status": "MISSING",
+          "local_status": "DOWNLOAD_FAILED",
+          "details": "HTTP 404"
+        },
+        {
+          "id": "terviseamet_taiskasvanute_vaktsineerimissoovitused",
+          "title": "Täiskasvanute vaktsineerimissoovitused",
+          "format": "pdf",
+          "url": "https://www.terviseamet.ee/sites/default/files/documents/2026-04/T%C3%A4iskasvanute%20vaktsineerimine_0.pdf",
+          "server_status": "MISSING",
+          "local_status": "DOWNLOAD_FAILED",
+          "details": "HTTP 404"
+        },
+        {
+          "id": "tootukassa_ska_sotsiaalministeerium_kes_aitab_ja_kuhu_poorduda_kui_vajad_tooealisena_tuge",
+          "title": "Kes aitab ja kuhu pöörduda, kui vajad tööealisena tuge?",
+          "format": "pdf",
+          "url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-02/puudeta-tooealisele.pdf",
+          "server_status": "MISSING",
+          "local_status": "DOWNLOAD_FAILED",
+          "details": "HTTP 404"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_ohvriabi_infomaterjalide_kataloog_2026",
+          "title": "Ohvriabi infomaterjalide kataloog 2026",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-02/OA%20infomaterjalide%20kataloog%202026.pdf",
+          "server_status": "MISSING",
+          "local_status": "DOWNLOAD_FAILED",
+          "details": "HTTP 404"
+        }
+      ]
+    },
+    {
+      "category": "SERVER_DUPLICATE_SOURCE_MATCH",
+      "severity": "medium",
+      "rows": []
+    },
+    {
+      "category": "MASTER_MISSING_FROM_SERVER",
+      "severity": "info",
+      "rows": [
+        {
+          "id": "eesti_puuetega_inimeste_koda_eesti_puuetega_inimeste_koda_epikoda",
+          "title": "Eesti Puuetega Inimeste Koda (EPIKoda)",
+          "format": "html",
+          "url": "https://epikoda.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "eesti_puuetega_inimeste_koda_epikoja_liikmed",
+          "title": "EPIKoja liikmed",
+          "format": "html",
+          "url": "https://epikoda.ee/epikoja-liikmed/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "eesti_puuetega_inimeste_koda_epikoja_vorgustiku_kontaktid",
+          "title": "EPIKoja võrgustiku kontaktid",
+          "format": "html",
+          "url": "https://epikoda.ee/epikoja-liikmed/koja-liikmed/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "1_katusorganisatsioonid_ja_kojad_tallinna_puuetega_inimeste_koda",
+          "title": "Tallinna Puuetega Inimeste Koda",
+          "format": "html",
+          "url": "https://tallinnakoda.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "1_katusorganisatsioonid_ja_kojad_tallinna_koja_liikmesuhingud",
+          "title": "Tallinna Koja liikmesühingud",
+          "format": "html",
+          "url": "https://tallinnakoda.ee/liikmesuhingud/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "1_katusorganisatsioonid_ja_kojad_eesti_puuetega_inimeste_fond",
+          "title": "Eesti Puuetega Inimeste Fond",
+          "format": "html",
+          "url": "https://www.epifond.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "maakondlikud_kojad_tartu_puuetega_inimeste_koda",
+          "title": "Tartu Puuetega Inimeste Koda",
+          "format": "html",
+          "url": "https://tartukoda.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "maakondlikud_kojad_parnumaa_puuetega_inimeste_koda",
+          "title": "Pärnumaa Puuetega Inimeste Koda",
+          "format": "html",
+          "url": "https://xn--prnukoda-0za.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "maakondlikud_kojad_ida_virumaa_puuetega_inimeste_koda",
+          "title": "Ida-Virumaa Puuetega Inimeste Koda",
+          "format": "html",
+          "url": "https://www.erivajadus.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "maakondlikud_kojad_laane_virumaa_puuetega_inimeste_koda",
+          "title": "Lääne-Virumaa Puuetega Inimeste Koda",
+          "format": "html",
+          "url": "https://www.virukoda.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "maakondlikud_kojad_saaremaa_puuetega_inimeste_koda",
+          "title": "Saaremaa Puuetega Inimeste Koda",
+          "format": "html",
+          "url": "https://www.saarekoda.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "maakondlikud_kojad_viljandimaa_puuetega_inimeste_noukoda",
+          "title": "Viljandimaa Puuetega Inimeste Nõukoda",
+          "format": "html",
+          "url": "https://viljandipin.eu/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "maakondlikud_kojad_vorumaa_puuetega_inimeste_koda",
+          "title": "Võrumaa Puuetega Inimeste Koda",
+          "format": "html",
+          "url": "https://www.vorukoda.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "maakondlikud_kojad_polvamaa_puuetega_inimeste_koda_kataloogileht",
+          "title": "Põlvamaa Puuetega Inimeste Koda (kataloogileht)",
+          "format": "html",
+          "url": "https://www.polvakoda.ee/eesti-puuetega-inimeste-liidud-ja-kojad",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "nagemispuue_ja_liitpuue_eesti_pimedate_liit",
+          "title": "Eesti Pimedate Liit",
+          "format": "html",
+          "url": "https://pimedateliit.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "nagemispuue_ja_liitpuue_epl_liikmesuhingud",
+          "title": "EPL liikmesühingud",
+          "format": "html",
+          "url": "https://pimedateliit.ee/liikmesuhingud/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "nagemispuue_ja_liitpuue_pohja_eesti_pimedate_uhing",
+          "title": "Põhja-Eesti Pimedate Ühing",
+          "format": "html",
+          "url": "https://ppy.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "nagemispuue_ja_liitpuue_ppu_infoleht_kuukiir",
+          "title": "PPÜ infoleht \"Kuukiir\"",
+          "format": "html",
+          "url": "https://ppy.ee/kuukiir/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "nagemispuue_ja_liitpuue_eesti_pimekurtide_tugiliit",
+          "title": "Eesti Pimekurtide Tugiliit",
+          "format": "html",
+          "url": "https://www.pimekurdid.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "nagemispuue_ja_liitpuue_pimedate_raamatukogu_rara",
+          "title": "Pimedate raamatukogu (RaRa)",
+          "format": "html",
+          "url": "https://www.rara.ee/meist/rara/pimedate-raamatukogu/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "nagemispuue_ja_liitpuue_tallinna_noustamine_nagemispuudega_inimesele",
+          "title": "Tallinna nõustamine nägemispuudega inimesele",
+          "format": "html",
+          "url": "https://www.tallinn.ee/et/noustamine-nagemispuudega-inimesele",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "nagemispuue_ja_liitpuue_nirk",
+          "title": "NIRK",
+          "format": "html",
+          "url": "https://nirkkeskus.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "nagemispuue_ja_liitpuue_epl_teemaleht_nagemispuue",
+          "title": "EPL teemaleht „Nägemispuue”",
+          "format": "html",
+          "url": "https://pimedateliit.ee/nagemispuue/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "nagemispuue_ja_liitpuue_sotsiaalministeeriumi_kompetentsikeskus_eesti_pimedate_liit",
+          "title": "Sotsiaalministeeriumi kompetentsikeskus: Eesti Pimedate Liit",
+          "format": "html",
+          "url": "https://kompetentsikeskus.sm.ee/et/vordsed-voimalused/ligipaasetavus/tahad-teada-rohkem/infoportaalid-ja-vorgustikud/eesti-pimedate-liit",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "kuulmispuue_kurtus_ja_viipekeel_eesti_kurtide_liit",
+          "title": "Eesti Kurtide Liit",
+          "format": "html",
+          "url": "https://www.ead.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "kuulmispuue_kurtus_ja_viipekeel_tallinna_ja_harjumaa_kurtide_uhing",
+          "title": "Tallinna ja Harjumaa Kurtide Ühing",
+          "format": "html",
+          "url": "https://www.thky.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "kuulmispuue_kurtus_ja_viipekeel_eesti_vaegkuuljate_liit",
+          "title": "Eesti Vaegkuuljate Liit",
+          "format": "html",
+          "url": "https://vaegkuuljad.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "kuulmispuue_kurtus_ja_viipekeel_evl_liidust",
+          "title": "EVL „Liidust”",
+          "format": "html",
+          "url": "https://vaegkuuljad.ee/liidust/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "kuulmispuue_kurtus_ja_viipekeel_eesti_kuulmispuuetega_laste_vanemate_liit",
+          "title": "Eesti Kuulmispuuetega Laste Vanemate Liit",
+          "format": "html",
+          "url": "https://www.eklvl.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "kuulmispuue_kurtus_ja_viipekeel_eesti_viipekeeletolkide_kutseuhing",
+          "title": "Eesti Viipekeeletõlkide Kutseühing",
+          "format": "html",
+          "url": "https://evkty.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "kuulmispuue_kurtus_ja_viipekeel_viipekeeletolgid_ou",
+          "title": "Viipekeeletõlgid OÜ",
+          "format": "html",
+          "url": "https://www.viipekeeletolgid.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "liikumispuue_ja_iseseisev_elu_eesti_liikumispuudega_inimeste_liit",
+          "title": "Eesti Liikumispuudega Inimeste Liit",
+          "format": "html",
+          "url": "https://elil.ee/et/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "liikumispuue_ja_iseseisev_elu_tallinna_liikumispuudega_inimeste_uhing",
+          "title": "Tallinna Liikumispuudega Inimeste Ühing",
+          "format": "html",
+          "url": "https://www.tliy.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "liikumispuue_ja_iseseisev_elu_mtu_iseseisev_elu",
+          "title": "MTÜ Iseseisev Elu",
+          "format": "html",
+          "url": "https://www.iseseisev-elu.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "liikumispuue_ja_iseseisev_elu_eesti_paralumpiakomitee",
+          "title": "Eesti Paralümpiakomitee",
+          "format": "html",
+          "url": "https://www.paralympic.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "intellekti_autismi_psuuhikahairete__vaimukad_eesti_vaimupuudega_inimeste_tugiliit",
+          "title": "Vaimukad / Eesti Vaimupuudega Inimeste Tugiliit",
+          "format": "html",
+          "url": "https://vaimukad.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "intellekti_autismi_psuuhikahairete__tugiliisu",
+          "title": "Tugiliisu",
+          "format": "html",
+          "url": "https://tugiliisu.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "intellekti_autismi_psuuhikahairete__eesti_autismiliit",
+          "title": "Eesti Autismiliit",
+          "format": "html",
+          "url": "https://www.autismiliit.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "intellekti_autismi_psuuhikahairete__pohja_eesti_autismi_liit",
+          "title": "Põhja-Eesti Autismi Liit",
+          "format": "html",
+          "url": "https://autism.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "intellekti_autismi_psuuhikahairete__eppil",
+          "title": "EPPiL",
+          "format": "html",
+          "url": "https://epill.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "intellekti_autismi_psuuhikahairete__dementsuse_kompetentsikeskus",
+          "title": "Dementsuse Kompetentsikeskus",
+          "format": "html",
+          "url": "https://dementsus.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "intellekti_autismi_psuuhikahairete__elu_dementsusega",
+          "title": "Elu dementsusega",
+          "format": "html",
+          "url": "https://eludementsusega.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "intellekti_autismi_psuuhikahairete__eesti_puuetega_naiste_uhenduste_liit",
+          "title": "Eesti Puuetega Naiste Ühenduste Liit",
+          "format": "html",
+          "url": "https://epnu.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "intellekti_autismi_psuuhikahairete__eesti_aspergerite_autistide_liidu_vana_wordpress_kanal",
+          "title": "Eesti Aspergerite / Autistide liidu vana WordPress-kanal",
+          "format": "html",
+          "url": "https://aspiyhing.wordpress.com/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "kone_ja_kommunikatsioonihaired_eesti_afaasialiit",
+          "title": "Eesti Afaasialiit",
+          "format": "html",
+          "url": "https://afaasia.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "kone_ja_kommunikatsioonihaired_eesti_kogelejate_uhing",
+          "title": "Eesti Kogelejate Ühing",
+          "format": "html",
+          "url": "https://kogelus.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "neuroloogilised_ja_kroonilised_seis_eesti_sclerosis_multiplexi_uhingute_liit",
+          "title": "Eesti Sclerosis Multiplexi Ühingute Liit",
+          "format": "html",
+          "url": "https://smk.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "neuroloogilised_ja_kroonilised_seis_eesti_parkinsoniliit",
+          "title": "Eesti Parkinsoniliit",
+          "format": "html",
+          "url": "https://www.parkinson.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "neuroloogilised_ja_kroonilised_seis_eesti_insuldipatsientide_selts",
+          "title": "Eesti Insuldipatsientide Selts",
+          "format": "html",
+          "url": "https://www.insuldiselts.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "neuroloogilised_ja_kroonilised_seis_eesti_hemofiiliauhing",
+          "title": "Eesti Hemofiiliaühing",
+          "format": "html",
+          "url": "https://www.hemofiilia.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "neuroloogilised_ja_kroonilised_seis_eesti_lihasehaigete_selts",
+          "title": "Eesti Lihasehaigete Selts",
+          "format": "html",
+          "url": "https://www.els.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "neuroloogilised_ja_kroonilised_seis_eesti_allergialiit",
+          "title": "Eesti Allergialiit",
+          "format": "html",
+          "url": "https://allergialiit.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "neuroloogilised_ja_kroonilised_seis_eesti_diabeediliit",
+          "title": "Eesti Diabeediliit",
+          "format": "html",
+          "url": "https://www.diabetes.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "neuroloogilised_ja_kroonilised_seis_eesti_reumaliit",
+          "title": "Eesti Reumaliit",
+          "format": "html",
+          "url": "https://reumaliit.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "neuroloogilised_ja_kroonilised_seis_eesti_kopsuliit",
+          "title": "Eesti Kopsuliit",
+          "format": "html",
+          "url": "https://www.kopsuliit.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "neuroloogilised_ja_kroonilised_seis_eesti_vahiliit",
+          "title": "Eesti Vähiliit",
+          "format": "html",
+          "url": "https://cancer.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "neuroloogilised_ja_kroonilised_seis_eesti_neeruhaigete_liit",
+          "title": "Eesti Neeruhaigete Liit",
+          "format": "html",
+          "url": "https://www.neer.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "neuroloogilised_ja_kroonilised_seis_pohja_eesti_neeruhaigete_selts_facebook",
+          "title": "Põhja-Eesti Neeruhaigete Selts (Facebook)",
+          "format": "html",
+          "url": "https://www.facebook.com/p/P%C3%B5hja-Eesti-Neeruhaigete-Selts-100011071697630/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "neuroloogilised_ja_kroonilised_seis_eesti_epilepsialiit_ajalooline_registripohine_viide",
+          "title": "Eesti Epilepsialiit (ajalooline / registripõhine viide)",
+          "format": "html",
+          "url": "https://www.inforegister.ee/80068934-EESTI-EPILEPSIALIIT-MTU/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "neuroloogilised_ja_kroonilised_seis_epilepsiaga_inimeste_tugigrupp_facebook",
+          "title": "Epilepsiaga inimeste tugigrupp (Facebook)",
+          "format": "html",
+          "url": "https://www.facebook.com/groups/epilepsialiit/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "sotsiaalkindlustusamet_ska_abivahendi_vajajale",
+          "title": "SKA: Abivahendi vajajale",
+          "format": "html",
+          "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/abivahendid/abivahendi-vajajale",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "sotsiaalkindlustusamet_ska_abivahendite_otsimootor",
+          "title": "SKA abivahendite otsimootor",
+          "format": "html",
+          "url": "https://sotsiaalkindlustusamet.ee/abivahendite-otsimootor",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "sotsiaalkindlustusamet_ska_abivahendi_ettevottele",
+          "title": "SKA: Abivahendi ettevõttele",
+          "format": "html",
+          "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/abivahendi-ettevottele",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "riiklik_info_ja_otsingud_msa_abivahendite_jaemuujate_otsing",
+          "title": "MSA abivahendite jaemüüjate otsing",
+          "format": "html",
+          "url": "https://msa.sm.ee/est/otsing/jmu/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "uldised_pakkujad_invaru",
+          "title": "Invaru",
+          "format": "html",
+          "url": "https://www.invaru.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "uldised_pakkujad_itak",
+          "title": "ITAK",
+          "format": "html",
+          "url": "https://www.itak.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "uldised_pakkujad_teresa_abivahendikeskus",
+          "title": "Teresa Abivahendikeskus",
+          "format": "html",
+          "url": "https://teresa.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "uldised_pakkujad_tervise_abi",
+          "title": "Tervise Abi",
+          "format": "html",
+          "url": "https://terviseabi.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "uldised_pakkujad_egero_invaabivahendid",
+          "title": "Egero / Invaabivahendid",
+          "format": "html",
+          "url": "https://www.invaabivahendid.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "uldised_pakkujad_invago",
+          "title": "INVAGO",
+          "format": "html",
+          "url": "https://invago.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "uldised_pakkujad_rol_lift",
+          "title": "Rol-Lift",
+          "format": "html",
+          "url": "https://www.rol-lift.ee/et/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "nagemisabivahendid_silmalaegas",
+          "title": "Silmalaegas",
+          "format": "html",
+          "url": "https://silmalaegas.laegas.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "nagemisabivahendid_eesti_nagemistervisekeskus_abivahendid",
+          "title": "Eesti Nägemistervisekeskus / abivahendid",
+          "format": "html",
+          "url": "https://silmatervis.ee/abivahendid/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "kuulmisabivahendid_kuulmisrehabilitatsiooni_keskus",
+          "title": "Kuulmisrehabilitatsiooni Keskus",
+          "format": "html",
+          "url": "https://heakuulmine.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "kuulmisabivahendid_audiomed_kuulmiskeskus",
+          "title": "Audiomed kuulmiskeskus",
+          "format": "html",
+          "url": "https://kuulmiseni.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "kuulmisabivahendid_kuuldeaparaadid_ou",
+          "title": "Kuuldeaparaadid OÜ",
+          "format": "html",
+          "url": "https://kuuldeaparaadid.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "kuulmisabivahendid_tervise_abi_kuulmisabivahendid",
+          "title": "Tervise Abi / kuulmisabivahendid",
+          "format": "html",
+          "url": "https://terviseabi.ee/tootekategooria/kuulmisabivahendid/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "remont_hooldus_ortoosid_itak_remont_ja_hooldus",
+          "title": "ITAK remont ja hooldus",
+          "format": "html",
+          "url": "https://www.itak.ee/invaabivahendite-remont-ja-hooldus/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "remont_hooldus_ortoosid_e_ratastoolid",
+          "title": "E-ratastoolid",
+          "format": "html",
+          "url": "https://www.e-ratastoolid.eu/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "remont_hooldus_ortoosid_ortopeediakeskus",
+          "title": "Ortopeediakeskus",
+          "format": "html",
+          "url": "https://ortopeediakeskus.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "remont_hooldus_ortoosid_ortopeediakeskus_abivahendite_taotlemine",
+          "title": "Ortopeediakeskus / abivahendite taotlemine",
+          "format": "html",
+          "url": "https://ortopeediakeskus.ee/abivahendite-taotlemine/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "remont_hooldus_ortoosid_eesti_ortoosikeskus",
+          "title": "Eesti Ortoosikeskus",
+          "format": "html",
+          "url": "https://www.ortoosikeskus.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "remont_hooldus_ortoosid_jalaexpert",
+          "title": "Jalaexpert",
+          "format": "html",
+          "url": "https://jalaexpert.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "remont_hooldus_ortoosid_jalakabinet",
+          "title": "Jalakabinet",
+          "format": "html",
+          "url": "https://jalakabinet.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "remont_hooldus_ortoosid_mediq_eesti",
+          "title": "Mediq Eesti",
+          "format": "html",
+          "url": "https://mediq.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "4_ligipaasetavus_eesti_ee_ligipaasetavuse_juhis",
+          "title": "eesti.ee ligipääsetavuse juhis",
+          "format": "html",
+          "url": "https://www.eesti.ee/eraisik/et/artikkel/ligipaasetavuse-juhis",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus",
+          "title": "Sotsiaalministeeriumi kompetentsikeskus / ligipääsetavus",
+          "format": "html",
+          "url": "https://kompetentsikeskus.sm.ee/et/vordsed-voimalused/ligipaasetavus",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "4_ligipaasetavus_mis_on_ligipaasetavus",
+          "title": "Mis on ligipääsetavus?",
+          "format": "html",
+          "url": "https://kompetentsikeskus.sm.ee/et/vordsed-voimalused/ligipaasetavus/mis-see/aluspohimotted/mis-ligipaasetavus",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "4_ligipaasetavus_ligipaasetavuse_tagamine_sotsiaalkaitse_ja_sotsiaalse_kaasat",
+          "title": "Ligipääsetavuse tagamine sotsiaalkaitse ja sotsiaalse kaasatuse valdkonnas",
+          "format": "html",
+          "url": "https://kompetentsikeskus.sm.ee/et/abiks-rakendajale/2021-2027/toetuse-taotlejale-ja-saajale/digitooriist/kuidas-projektis-tagada-ligipaasetavus/ligipaasetavuse-tagamine-sotsiaalkaitse-ja-sotsiaalse-kaasatuse-valdkonnas",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "tervise_arengu_instituut_tai_ligipaasetavus_kelle_jaoks",
+          "title": "TAI: Ligipääsetavus – kelle jaoks?",
+          "format": "html",
+          "url": "https://www.tai.ee/et/sotsiaaltoo/ligipaasetavus-kelle-jaoks",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "eesti_puuetega_inimeste_koda_epikoda_digiligipaasetavus",
+          "title": "EPIKoda: digiligipääsetavus",
+          "format": "html",
+          "url": "https://epikoda.ee/digiligipaasetavus/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "sotsiaalkindlustusamet_ska_teenusepakkujad",
+          "title": "SKA teenusepakkujad",
+          "format": "html",
+          "url": "https://sotsiaalkindlustusamet.ee/teenusepakkujad",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "sotsiaalkindlustusamet_ska_teenuskohad",
+          "title": "SKA teenuskohad",
+          "format": "html",
+          "url": "https://www.sotsiaalkindlustusamet.ee/teenuskohad",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "sotsiaalkindlustusamet_rehabilitatsiooniteenuste_osutajatele",
+          "title": "Rehabilitatsiooniteenuste osutajatele",
+          "format": "html",
+          "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/rehabilitatsiooniteenuse-osutajale",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "sotsiaalkindlustusamet_erihoolekandeteenuse_osutajale",
+          "title": "Erihoolekandeteenuse osutajale",
+          "format": "html",
+          "url": "https://sotsiaalkindlustusamet.ee/erihoolekandeteenuse-osutajale",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "registrid_mtr",
+          "title": "MTR",
+          "format": "html",
+          "url": "https://mtr.ttja.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "registrid_ttja_teade_mtr_kohta",
+          "title": "TTJA teade MTR kohta",
+          "format": "html",
+          "url": "https://ttja.ee/lugupeetud-majandustegevuse-registri-kasutajad",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "registrid_riha_mtr_kirje",
+          "title": "RIHA MTR kirje",
+          "format": "html",
+          "url": "https://www.riha.ee/Infos%C3%BCsteemid/Vaata/mtr",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "registrid_andmed_eesti_ee_mtr_andmestik",
+          "title": "andmed.eesti.ee / MTR andmestik",
+          "format": "html",
+          "url": "https://andmed.eesti.ee/datasets/majandustegevuse-register",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "registrid_medre",
+          "title": "Medre",
+          "format": "html",
+          "url": "https://medre.tehik.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "registrid_eesti_ee_erihoolekandeteenuse_osutaja_tegevusluba",
+          "title": "eesti.ee / erihoolekandeteenuse osutaja tegevusluba",
+          "format": "html",
+          "url": "https://www.eesti.ee/eraisik/et/artikkel/erinouetega-tegevusalad/sotsiaalhoolekanne/erihoolekandeteenuse-osutaja-tegevusluba",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "terviseamet_terviseamet_tervishoiutootajale",
+          "title": "Terviseamet / tervishoiutöötajale",
+          "format": "html",
+          "url": "https://www.terviseamet.ee/tervishoiukorraldus/tervishoiutootajale",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "terviseamet_tervishoiutootajate_registreerimine",
+          "title": "Tervishoiutöötajate registreerimine",
+          "format": "html",
+          "url": "https://www.terviseamet.ee/tervishoiukorraldus/tervishoiutootajale/tervishoiutootajate-registreerimine",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "terviseamet_tegevusload_tervishoiuteenuse_osutamiseks",
+          "title": "Tegevusload tervishoiuteenuse osutamiseks",
+          "format": "html",
+          "url": "https://www.terviseamet.ee/tervishoiukorraldus/tervishoiutootajale/tegevusload",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "tervisekassa_tervisekassa_tervishoiuteenuste_osutajad",
+          "title": "Tervisekassa / tervishoiuteenuste osutajad",
+          "format": "html",
+          "url": "https://tervisekassa.ee/tervishoid-ja-tervishoiuteenuste-osutajad",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "registrid_e_ariregister",
+          "title": "e-Äriregister",
+          "format": "html",
+          "url": "https://ariregister.rik.ee/",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "registrid_rik_e_ariregistri_portaal",
+          "title": "RIK / e-äriregistri portaal",
+          "format": "html",
+          "url": "https://www.rik.ee/et/e-ariregister/e-ariregistri-portaal",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "sotsiaalkindlustusamet_ska_sotsiaalteenuste_jarelevalve",
+          "title": "SKA sotsiaalteenuste järelevalve",
+          "format": "html",
+          "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/jarelevalve",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "sotsiaalkindlustusamet_uldhooldusteenus_kov_noustamine_jarelevalve_raam",
+          "title": "Üldhooldusteenus (KOV nõustamine + järelevalve raam)",
+          "format": "html",
+          "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine/uldhooldusteenus",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "sotsiaalkindlustusamet_ska_2024_jarelevalve_kokkuvote",
+          "title": "SKA 2024 järelevalve kokkuvõte",
+          "format": "html",
+          "url": "https://sotsiaalkindlustusamet.ee/uudised/sotsiaalkindlustusameti-2024-aasta-jarelevalves-rohkem-rikkumisi-aga-ka-haid-naiteid",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "terviseamet_terviseamet_sotsiaalasutuste_jarelevalve",
+          "title": "Terviseamet / sotsiaalasutuste järelevalve",
+          "format": "html",
+          "url": "https://www.terviseamet.ee/keskkonnatervis/ettevotjale-ja-kohalikule-omavalitsusele/sotsiaalasutused",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "terviseamet_terviseamet_erihoolekandeteenused",
+          "title": "Terviseamet / erihoolekandeteenused",
+          "format": "html",
+          "url": "https://www.terviseamet.ee/keskkonnatervis/sotsiaalasutused/erihoolekandeteenused",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "terviseamet_terviseamet_infomaterjalid_hoolekandeasutustele",
+          "title": "Terviseamet / infomaterjalid hoolekandeasutustele",
+          "format": "html",
+          "url": "https://www.terviseamet.ee/nakkushaigused/info-koostoopartneritele/hoolekandeasutused",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "paasteamet_paasteamet_tuleohutusnouded",
+          "title": "Päästeamet / tuleohutusnõuded",
+          "format": "html",
+          "url": "https://www.rescue.ee/et/tuleohutusnouded",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "6_kvaliteet_jarelevalve_ja_ohutus_riigi_teataja_ehitisele_esitatavad_tuleohutusnouded",
+          "title": "Riigi Teataja / ehitisele esitatavad tuleohutusnõuded",
+          "format": "html",
+          "url": "https://www.riigiteataja.ee/akt/123022021013",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "oiguskantsler_avaldus_oiguskantslerile",
+          "title": "Avaldus õiguskantslerile",
+          "format": "html",
+          "url": "https://www.oiguskantsler.ee/kontaktid/avaldus-oiguskantslerile",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "andmekaitse_inspektsioon_aki_kaebus_isikuandmete_kaitse_asjas",
+          "title": "AKI kaebus isikuandmete kaitse asjas",
+          "format": "html",
+          "url": "https://www.aki.ee/meist/vota-uhendust/kaebus-isikuandmete-kaitse-asjas",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "andmekaitse_inspektsioon_aki_nousolek",
+          "title": "AKI nõusolek",
+          "format": "html",
+          "url": "https://www.aki.ee/nousolek",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "riigikontroll_riigikontrolli_auditileht_hoolekande_audit",
+          "title": "Riigikontrolli auditileht (hoolekande audit)",
+          "format": "html",
+          "url": "https://www.riigikontroll.ee/Auditeeritavaile/Audititeplaan/tabid/120/AuditId/246/language/et-EE/Default.aspx",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "8_markused_puhastamisel_kopsuliidu_puhul_kasutas_fail_aadressi_kuid_kontrollitav_ja_",
+          "title": "Kopsuliidu puhul kasutas fail aadressi `, kuid kontrollitav ja toimiv kuju oli `https://www.kopsuliit.ee/`.",
+          "format": "html",
+          "url": "https://kopsuliit.ee/`",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "8_markused_puhastamisel_kopsuliidu_puhul_kasutas_fail_aadressi_https_kopsuliit_ee_ku",
+          "title": "Kopsuliidu puhul kasutas fail aadressi `https://kopsuliit.ee/`, kuid kontrollitav ja toimiv kuju oli `.",
+          "format": "html",
+          "url": "https://www.kopsuliit.ee/`",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "8_markused_puhastamisel_parnumaa_koja_puhul_kasutasin_toimivat_punycode_kuju",
+          "title": "Pärnumaa koja puhul kasutasin toimivat punycode-kuju `.",
+          "format": "html",
+          "url": "https://xn--prnukoda-0za.ee/`",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "tai_tai_aastaaruanne_2025",
+          "title": "TAI aastaaruanne 2025",
+          "format": "pdf",
+          "url": "https://staging.tai.ee/sites/default/files/2026-02/aastaaruanne_2025_18.02.pdf",
+          "server_status": "MISSING",
+          "local_status": "DOWNLOAD_FAILED",
+          "details": "HTTP 401"
+        },
+        {
+          "id": "tartu_ulikooli_repositoorium_sotsiaaltootajad_raagivad_sotsiaaltoo_praktika_muutumisest",
+          "title": "Sotsiaaltöötajad räägivad sotsiaaltöö praktika muutumisest",
+          "format": "html",
+          "url": "https://dspace.ut.ee/bitstreams/59b00b06-47ef-4a18-b2a4-c4e0c0e42f31/download",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "tartu_ulikooli_repositoorium_info_ja_kommunikatsioonitehnoloogia_kasutamine_sotsiaaltoos",
+          "title": "Info- ja kommunikatsioonitehnoloogia kasutamine sotsiaaltöös",
+          "format": "html",
+          "url": "https://dspace.ut.ee/bitstreams/c3697e36-9faf-4585-bb36-b0f5f77ffdd1/download",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "tartu_ulikooli_repositoorium_lastekaitsetootajate_tolgendused",
+          "title": "Lastekaitsetöötajate tõlgendused ...",
+          "format": "html",
+          "url": "https://dspace.ut.ee/bitstreams/b8ce2eca-f5e0-4083-a492-e1a3d440ac04/download",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "tartu_ulikooli_repositoorium_lastekaitsetooga_kokku_puutunud_laste_ja_lahedaste_vaade_las",
+          "title": "Lastekaitsetööga kokku puutunud laste ja lähedaste vaade lastekaitsetööle Eestis",
+          "format": "html",
+          "url": "https://dspace.ut.ee/bitstreams/be77d123-192a-4083-a10a-7d9954af1cff/download",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "tartu_ulikooli_repositoorium_sotsiaaltootajate_voimu_kasutus_ja_piirangud_sotsiaaltoo_pra",
+          "title": "Sotsiaaltöötajate võimu kasutus ja piirangud sotsiaaltöö praktikas",
+          "format": "html",
+          "url": "https://dspace.ut.ee/bitstreams/d642ea84-39ce-4695-a05c-44f5dd12b2c8/download",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "tartu_ulikooli_repositoorium_kogukonna_kaasamine_olulistesse_kogukonda_puudutavatesse_ots",
+          "title": "Kogukonna kaasamine olulistesse kogukonda puudutavatesse otsustesse",
+          "format": "html",
+          "url": "https://dspace.ut.ee/bitstreams/a9783bef-5458-4675-be91-619b2f6457f9/download",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "tartu_ulikooli_repositoorium_fotod_kui_toetav_vahend_sotsiaaltoos",
+          "title": "Fotod kui toetav vahend sotsiaaltöös",
+          "format": "html",
+          "url": "https://dspace.ut.ee/bitstreams/58c77e20-683d-4b66-9d17-4492ef5dbe4c/download",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "taltechi_digikogu_labipolemise_teemaline_too",
+          "title": "Läbipõlemise teemaline töö",
+          "format": "html",
+          "url": "https://digikogu.taltech.ee/et/Download/793bffd2-263b-4a18-9509-3ba6bf31d893",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "taltechi_digikogu_taiendav_taltechi_too",
+          "title": "Täiendav TalTechi töö",
+          "format": "html",
+          "url": "https://digikogu.taltech.ee/et/Download/8bf38940-7c70-4024-9756-0de872ef0168",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "tai_sotsiaaltoo_1_2025",
+          "title": "Sotsiaaltöö 1/2025",
+          "format": "html",
+          "url": "https://www.tai.ee/et/valjaanded/sotsiaaltoo-12025",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "tai_sotsiaaltoo_2_2025",
+          "title": "Sotsiaaltöö 2/2025",
+          "format": "html",
+          "url": "https://www.tai.ee/et/valjaanded/sotsiaaltoo-22025",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "tai_sotsiaaltoo_2_2022",
+          "title": "Sotsiaaltöö 2/2022",
+          "format": "html",
+          "url": "https://www.tai.ee/et/valjaanded/sotsiaaltoo-22022",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "tai_sotsiaaltoo_4_2019",
+          "title": "Sotsiaaltöö 4/2019",
+          "format": "html",
+          "url": "https://www.tai.ee/et/valjaanded/sotsiaaltoo-42019",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "tai_ajakirja_sotsiaaltoo_tutvustus_arhiiv",
+          "title": "Ajakirja Sotsiaaltöö tutvustus / arhiiv",
+          "format": "html",
+          "url": "https://www.tai.ee/et/ajakiri-sotsiaaltoo/ajakirja-tutvustus-tellimine-ja-kaastood",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "tai_dea_valjaande_leht",
+          "title": "DEA väljaande leht",
+          "format": "html",
+          "url": "https://dea.digar.ee/publication/AKsotsiaaltoo",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "tervisekassa_vaevuste_leevendamine_palliatiivses_ravis",
+          "title": "Vaevuste leevendamine palliatiivses ravis",
+          "format": "html",
+          "url": "https://tervisekassa.ee/media/388/download?inline=",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "tervisekassa_pikk_covid_patsiendijuhend",
+          "title": "Pikk COVID patsiendijuhend",
+          "format": "pdf",
+          "url": "https://tervisekassa.ee/sites/default/files/Pikk_Covid_patsiendijuhend_web.pdf",
+          "server_status": "MISSING",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": ""
+        },
+        {
+          "id": "tervisekassa_pikk_covid_esmatasandil_kasitlusjuhend",
+          "title": "Pikk COVID esmatasandil: käsitlusjuhend",
+          "format": "pdf",
+          "url": "https://tervisekassa.ee/sites/default/files/Pikk_Covid_k%C3%A4sitlusjuhend_web.pdf",
+          "server_status": "MISSING",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": ""
+        },
+        {
+          "id": "terviseamet_infektsioonikontrollialase_toimepidevuse_ja_riskijuhtimise_j",
+          "title": "Infektsioonikontrollialase toimepidevuse ja riskijuhtimise juhendmaterjal hoolekandeasutustele",
+          "format": "pdf",
+          "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/infektsioonikontrollialase_toimepidevuse_ja_riskijuhtimise_juhendmaterjal%20%282023%29.pdf",
+          "server_status": "MISSING",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": ""
+        },
+        {
+          "id": "terviseamet_infektsioonikontrollialase_toimepidevuse_ja_riskijuhtimise_m",
+          "title": "Infektsioonikontrollialase toimepidevuse ja riskijuhtimise metoodika",
+          "format": "pdf",
+          "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/infektsioonikontrollialase_toimepidevuse_ja_riskijuhtimise_metoodika.pdf",
+          "server_status": "MISSING",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": ""
+        },
+        {
+          "id": "terviseamet_nakkushaiguste_ennetamise_ja_torjealane_tegevusjuhend_hoolde",
+          "title": "Nakkushaiguste ennetamise ja tõrjealane tegevusjuhend hooldekodudele",
+          "format": "pdf",
+          "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/Nakkushaiguste_ennetamise_ja_torjealane_tegevusjuhend_hooldekodudele%20%282017%29.pdf",
+          "server_status": "MISSING",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": ""
+        },
+        {
+          "id": "terviseamet_hoolekandeasutuste_tegevusjuhis_covid_19_tingimustes",
+          "title": "Hoolekandeasutuste tegevusjuhis COVID-19 tingimustes",
+          "format": "pdf",
+          "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-11/Hoolekandeasutuste%20tegevusjuhis%20COVID-19%20tingimustes.pdf",
+          "server_status": "MISSING",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": ""
+        },
+        {
+          "id": "terviseamet_patsiendiohutusjuhtumi_raporteerimise_ja_menetlemise_juhend",
+          "title": "Patsiendiohutusjuhtumi raporteerimise ja menetlemise juhend",
+          "format": "pdf",
+          "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-11/patsiendiohutusjuhtumi_raporteerimise_ja_menetlemise_juhend.pdf",
+          "server_status": "MISSING",
+          "local_status": "DOWNLOAD_FAILED",
+          "details": "HTTP 404"
+        },
+        {
+          "id": "terviseamet_pohak_i_aasta_kokkuvote",
+          "title": "POHAK I aasta kokkuvõte",
+          "format": "pdf",
+          "url": "https://terviseamet.ee/sites/default/files/documents/2026-04/POHAK_I%20aasta%20kokkuv%C3%B5te.pdf",
+          "server_status": "MISSING",
+          "local_status": "DOWNLOAD_FAILED",
+          "details": "HTTP 404"
+        },
+        {
+          "id": "terviseamet_taiskasvanute_vaktsineerimissoovitused",
+          "title": "Täiskasvanute vaktsineerimissoovitused",
+          "format": "pdf",
+          "url": "https://www.terviseamet.ee/sites/default/files/documents/2026-04/T%C3%A4iskasvanute%20vaktsineerimine_0.pdf",
+          "server_status": "MISSING",
+          "local_status": "DOWNLOAD_FAILED",
+          "details": "HTTP 404"
+        },
+        {
+          "id": "tootukassa_ska_sotsiaalministeerium_toovoime_hindamise_metoodika",
+          "title": "Töövõime hindamise metoodika",
+          "format": "html",
+          "url": "https://www.sm.ee/media/60/download",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "tootukassa_ska_sotsiaalministeerium_toovoime_hindamine",
+          "title": "Töövõime hindamine",
+          "format": "html",
+          "url": "https://www.sm.ee/media/59/download",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "tootukassa_ska_sotsiaalministeerium_kes_aitab_ja_kuhu_poorduda_kui_vajad_tooealisena_tuge",
+          "title": "Kes aitab ja kuhu pöörduda, kui vajad tööealisena tuge?",
+          "format": "pdf",
+          "url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-02/puudeta-tooealisele.pdf",
+          "server_status": "MISSING",
+          "local_status": "DOWNLOAD_FAILED",
+          "details": "HTTP 404"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_ohvriabi_infomaterjalide_kataloog_2026",
+          "title": "Ohvriabi infomaterjalide kataloog 2026",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-02/OA%20infomaterjalide%20kataloog%202026.pdf",
+          "server_status": "MISSING",
+          "local_status": "DOWNLOAD_FAILED",
+          "details": "HTTP 404"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_sotsiaalse_rehabilitatsiooni_teenuse_osutamise_juhend",
+          "title": "Sotsiaalse rehabilitatsiooni teenuse osutamise juhend",
+          "format": "html",
+          "url": "https://www.sotsiaalkindlustusamet.ee/node/12902/main_chapter/20207/pdf",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "sotsiaalministeerium_puude_raskusastme_tuvastamine_ja_toovoime_hindamine",
+          "title": "Puude raskusastme tuvastamine ja töövõime hindamine",
+          "format": "html",
+          "url": "https://www.sm.ee/media/1823/download",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "sotsiaalministeerium_ohvriabi_susteemi_arendamine",
+          "title": "Ohvriabi süsteemi arendamine",
+          "format": "html",
+          "url": "https://sm.ee/media/2471/download",
+          "server_status": "MISSING",
+          "local_status": "NO_RAW_HTML_SNAPSHOT",
+          "details": ""
+        },
+        {
+          "id": "astangu_harjutuste_kogu",
+          "title": "Harjutuste kogu",
+          "format": "pdf",
+          "url": "https://www.astangu.ee/sites/default/files/media/Harjutuste%20kogu.pdf",
+          "server_status": "MISSING",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": ""
+        }
+      ]
+    },
+    {
+      "category": "ID_DRIFT_STRONG_CONTENT_MATCH",
+      "severity": "medium",
+      "rows": [
+        {
+          "id": "sotsiaaltoo-2-2024-elut-preemia-laureaat-kai-rannastu-uksi-sotsiaaltood-ei-tee-2024-2",
+          "title": "Elutööpreemia laureaat Kai Rannastu: „Üksi sotsiaaltööd ei tee!“",
+          "format": "FILE",
+          "url": null,
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_ORIGINAL_TITLE",
+          "details": "unique_journal_title; docs/Andmebaas/ajakiri_sotsiaaltoo/24-2/Sotsiaaltoo_2_2024_web_Part3.pdf | docs/Andmebaas/ajakiri_sotsiaaltoo/24-2/sotsiaaltoo-2-2024-artikkel-02-kai_rannastu.json"
+        },
+        {
+          "id": "sotsiaaltoo-4-2020-ennetava-sekkumise-mojuanal-si-voimalusi-spin-programmi-naitel-2020-4",
+          "title": "Ennetava sekkumise mõjuanalüüsi võimalusi SPIN-programmi näitel",
+          "format": "FILE",
+          "url": null,
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_ORIGINAL_TITLE",
+          "details": "unique_journal_title; docs/Andmebaas/ajakiri_sotsiaaltoo/20-4/Ennetava_sekkumise_mõjuanalüüsi.json | docs/Andmebaas/ajakiri_sotsiaaltoo/20-4/Sotsiaaltoo_4_2020_web_link_Part14.pdf"
+        },
+        {
+          "id": "sotsiaaltoo-3-2021-interdistsiplinaarsed-loovmeetodid-sotsiaalt-s-virtuaalne-konverents-tudengilt-tudengile",
+          "title": "Interdistsiplinaarsed loovmeetodid sotsiaaltöös (virtuaalne konverents tudengilt‑tudengile)",
+          "format": "FILE",
+          "url": null,
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_ORIGINAL_TITLE",
+          "details": "unique_journal_title; docs/Andmebaas/ajakiri_sotsiaaltoo/21-3/Interdistsiplinaarsed_loovmeetodid_sotsiaaltöös.json | docs/Andmebaas/ajakiri_sotsiaaltoo/21-3/Sotsiaaltoo_3_2021_web_link_Part17.pdf"
+        },
+        {
+          "id": "kov::maardu-linn::item::maardu_linn_service_isikliku_abistaja_teenus",
+          "title": "Isikliku abistaja teenus",
+          "format": "TEXT",
+          "url": "https://maardu.ee/isikliku-abistaja-teenus",
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_STRUCTURED_URL_TITLE",
+          "details": "kov_normalized_url_and_title; docs/Andmebaas/KOV/maardu-linn/maardu-linn.json"
+        },
+        {
+          "id": "kov::maardu-linn::item::maardu_linn_contact_jekaterina_djomina",
+          "title": "Jekaterina Djomina",
+          "format": "TEXT",
+          "url": "https://maardu.ee/ametnikud1",
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_STRUCTURED_URL_TITLE",
+          "details": "kov_normalized_url_and_title; docs/Andmebaas/KOV/kov_kontaktid_loplik.json"
+        },
+        {
+          "id": "kov::maardu-linn::item::maardu_linn_contact_jelena_afonova",
+          "title": "Jelena Afonova",
+          "format": "TEXT",
+          "url": "https://maardu.ee/ametnikud1",
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_STRUCTURED_URL_TITLE",
+          "details": "kov_normalized_url_and_title; docs/Andmebaas/KOV/kov_kontaktid_loplik.json"
+        },
+        {
+          "id": "sotsiaaltoo-3-2021-kanep-mis-on-mis",
+          "title": "Kanep – mis on mis?",
+          "format": "FILE",
+          "url": null,
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_ORIGINAL_TITLE",
+          "details": "unique_journal_title; docs/Andmebaas/ajakiri_sotsiaaltoo/21-3/Kanep_–_mis.json | docs/Andmebaas/ajakiri_sotsiaaltoo/21-3/Sotsiaaltoo_3_2021_web_link_Part18.pdf"
+        },
+        {
+          "id": "kov::maardu-linn::item::maardu_linn_contact_karina_neimla_nikiforova",
+          "title": "Karina Neimla-Nikiforova",
+          "format": "TEXT",
+          "url": "https://maardu.ee/ametnikud1",
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_STRUCTURED_URL_TITLE",
+          "details": "kov_normalized_url_and_title; docs/Andmebaas/KOV/kov_kontaktid_loplik.json"
+        },
+        {
+          "id": "kov::maardu-linn::item::maardu_linn_contact_marina_keizo",
+          "title": "Marina Keizo",
+          "format": "TEXT",
+          "url": "https://maardu.ee/ametnikud1",
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_STRUCTURED_URL_TITLE",
+          "details": "kov_normalized_url_and_title; docs/Andmebaas/KOV/kov_kontaktid_loplik.json"
+        },
+        {
+          "id": "sotsiaaltoo-4-2023-mis-juhtuks-kui-meditsiini-ja-sotsiaalvaldkonna-terminoloogias-tehtaks-koosto-d-2023-4",
+          "title": "Mis juhtuks, kui meditsiini- ja sotsiaalvaldkonna terminoloogias tehtaks koostööd?",
+          "format": "FILE",
+          "url": null,
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_ORIGINAL_TITLE",
+          "details": "unique_journal_title; docs/Andmebaas/ajakiri_sotsiaaltoo/23-4/Sotsiaaltoo_4_2023_web_Part9.pdf | docs/Andmebaas/ajakiri_sotsiaaltoo/23-4/sotsiaaltoo-4-2023_artikkel_8_meditsiini_ja_sotsiaalvaldkonna_terminoloogia.json"
+        },
+        {
+          "id": "kov::maardu-linn::item::maardu_linn_contact_natalja_fjodorova",
+          "title": "Natalja Fjodorova",
+          "format": "TEXT",
+          "url": "https://maardu.ee/ametnikud1",
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_STRUCTURED_URL_TITLE",
+          "details": "kov_normalized_url_and_title; docs/Andmebaas/KOV/kov_kontaktid_loplik.json"
+        },
+        {
+          "id": "kov::maardu-linn::item::maardu_linn_contact_natalja_tuulik",
+          "title": "Natalja Tuulik",
+          "format": "TEXT",
+          "url": "https://maardu.ee/ametnikud1",
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_STRUCTURED_URL_TITLE",
+          "details": "kov_normalized_url_and_title; docs/Andmebaas/KOV/kov_kontaktid_loplik.json"
+        },
+        {
+          "id": "kov::maardu-linn::item::maardu_linn_contact_olga_jevdokimova",
+          "title": "Olga Jevdokimova",
+          "format": "TEXT",
+          "url": "https://maardu.ee/ametnikud1",
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_STRUCTURED_URL_TITLE",
+          "details": "kov_normalized_url_and_title; docs/Andmebaas/KOV/kov_kontaktid_loplik.json"
+        },
+        {
+          "id": "sotsiaaltoo-4-2018-pille-vaiksaar-eesm-rk-on-et-lapsed-saaksid-meie-juurest-lahkudes-eluga-paremini-hakkama-2018",
+          "title": "Pille Vaiksaar: eesmärk on, et lapsed saaksid meie juurest lahkudes eluga paremini hakkama",
+          "format": "FILE",
+          "url": null,
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_ORIGINAL_TITLE",
+          "details": "unique_journal_title; docs/Andmebaas/ajakiri_sotsiaaltoo/18-4/155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part3.pdf | docs/Andmebaas/ajakiri_sotsiaaltoo/18-4/pille-vaiksaar-persoon-2018.json"
+        },
+        {
+          "id": "kov::maardu-linn::item::maardu_linn_service_parkimiskaardi_valjastamine",
+          "title": "Puudega inimese sõiduki parkimiskaardi väljastamine",
+          "format": "TEXT",
+          "url": "https://maardu.ee/puudega-inimese-soiduki-parkimiskaardi-valjastamine",
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_STRUCTURED_URL_TITLE",
+          "details": "kov_normalized_url_and_title; docs/Andmebaas/KOV/maardu-linn/maardu-linn.json"
+        },
+        {
+          "id": "sotsiaaltoo-2-2023-sotsiaalvaldkonna-toojo-ud-padevus-ja-vaartustamine-2023-2",
+          "title": "Sotsiaalvaldkonna tööjõud, pädevus ja väärtustamine",
+          "format": "FILE",
+          "url": null,
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_ORIGINAL_TITLE",
+          "details": "unique_journal_title; docs/Andmebaas/ajakiri_sotsiaaltoo/23-2/Sotsiaaltoo_2_2023_web_par_Part5.pdf | docs/Andmebaas/ajakiri_sotsiaaltoo/23-2/sotsiaaltoo-2-2023_artikkel_4_sotsiaalvaldkonna_toojoud.json"
+        },
+        {
+          "id": "kov::maardu-linn::item::maardu_linn_contact_tatjana_chaus",
+          "title": "Tatjana Chaus",
+          "format": "TEXT",
+          "url": "https://maardu.ee/ametnikud1",
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_STRUCTURED_URL_TITLE",
+          "details": "kov_normalized_url_and_title; docs/Andmebaas/KOV/kov_kontaktid_loplik.json"
+        },
+        {
+          "id": "sotsiaaltoo-2-2019-tegevusjuhendaja-vs-hooldusto-taja-2019",
+          "title": "Tegevusjuhendaja versus hooldustöötaja",
+          "format": "FILE",
+          "url": null,
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_ORIGINAL_TITLE",
+          "details": "unique_journal_title; docs/Andmebaas/ajakiri_sotsiaaltoo/19-2/Sotsiaaltoo_nr2_2019_veeb_link_Part20.pdf | docs/Andmebaas/ajakiri_sotsiaaltoo/19-2/tegevusjuhendaja-vs-hooldustoötaja-2019.json"
+        },
+        {
+          "id": "sotsiaaltoo-1-2024-valikud-uu-ja-vana-vahel-kilde-euroopa-liidu-uute-liikmesriikide-perepoliitikast-ii-2024-1",
+          "title": "Valikud uue ja vana vahel – kilde Euroopa Liidu „uute liikmesriikide“ perepoliitikast (II)",
+          "format": "FILE",
+          "url": null,
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_ORIGINAL_TITLE",
+          "details": "unique_journal_title; docs/Andmebaas/ajakiri_sotsiaaltoo/24-1/Sotsiaaltoo_1_2024_web_Part15.pdf | docs/Andmebaas/ajakiri_sotsiaaltoo/24-1/sotsiaaltoo-1-2024-artikkel-15-perepoliitika_ii.json"
+        },
+        {
+          "id": "kov::maardu-linn::item::maardu_linn_contact_viktoria_danilova",
+          "title": "Viktoria Danilova",
+          "format": "TEXT",
+          "url": "https://maardu.ee/ametnikud1",
+          "server_status": "PRESENT",
+          "local_status": "LOCAL_STRUCTURED_URL_TITLE",
+          "details": "kov_normalized_url_and_title; docs/Andmebaas/KOV/kov_kontaktid_loplik.json"
+        }
+      ]
+    },
+    {
+      "category": "SOURCE_MASTER_IDENTITY_NOT_PROVEN_IN_EXPORT",
+      "severity": "not_proven",
+      "rows": [
+        {
+          "id": "paasteamet_hoolekande_ja_tervishoiuasutuste_tuleohutus_pdf",
+          "title": "Hoolekande- ja tervishoiuasutuste tuleohutus",
+          "format": "pdf",
+          "url": "https://www.rescue.ee/files/Materjalid/2024-03-03-hoolekande-ja-tervishoiuasutuste-tuleohutus.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: paasteamet_hoolekande_ja_tervishoiuasutuste_tuleohutus_pdf"
+        },
+        {
+          "id": "paasteamet_tuleohutuspaigaldised_ja_paastevahendid_haiglates_hooldekodu",
+          "title": "Tuleohutuspaigaldised ja päästevahendid haiglates/hooldekodudes",
+          "format": "pdf",
+          "url": "https://www.rescue.ee/files/2018-09/tuleohutuspaigaldised-ja-paastevahendid-haiglates-ja-hooldekodudes.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: paasteamet_tuleohutuspaigaldised_ja_paastevahendid_haiglates_hooldekodu"
+        },
+        {
+          "id": "oiguskantsler_juhend_abivajavast_lapsest_teatamine_ja_andmekaitse",
+          "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+          "format": "pdf",
+          "url": "https://www.oiguskantsler.ee/sites/default/files/JUHEND%20-%20abivajavast%20lapsest%20teatamine%20ja%20andmekaitse%20%28jaanuar%202021%29.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: oiguskantsler_juhend_abivajavast_lapsest_teatamine_ja_andmekaitse"
+        },
+        {
+          "id": "oiguskantsler_2025_aasta_tegevuse_ulevaade_puuetega_inimeste_oigused",
+          "title": "2025. aasta tegevuse ülevaade: puuetega inimeste õigused",
+          "format": "pdf",
+          "url": "https://www.oiguskantsler.ee/ylevaade2025/pdf/puuetega-inimeste-oigused.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: oiguskantsler_2025_aasta_tegevuse_ulevaade_puuetega_inimeste_oigused"
+        },
+        {
+          "id": "oiguskantsler_puuetega_inimeste_oigused_kriisis",
+          "title": "Puuetega inimeste õigused kriisis",
+          "format": "pdf",
+          "url": "https://www.oiguskantsler.ee/sites/default/files/2024-11/Puuetega%20inimeste%20%C3%B5igused%20kriisis.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: oiguskantsler_puuetega_inimeste_oigused_kriisis"
+        },
+        {
+          "id": "oiguskantsler_lapse_oigused",
+          "title": "Lapse õigused",
+          "format": "pdf",
+          "url": "https://www.oiguskantsler.ee/sites/default/files/L%C3%95K%20voldik%202022_EST.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: oiguskantsler_lapse_oigused"
+        },
+        {
+          "id": "oiguskantsler_vordne_kohtlemine",
+          "title": "Võrdne kohtlemine",
+          "format": "pdf",
+          "url": "https://www.oiguskantsler.ee/ylevaade2024/pdf/vordne-kohtlemine.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: oiguskantsler_vordne_kohtlemine"
+        },
+        {
+          "id": "aki_isikuandmed_sotsiaalhoolekande_ja_tervishoiusektoris",
+          "title": "Isikuandmed sotsiaalhoolekande- ja tervishoiusektoris",
+          "format": "pdf",
+          "url": "https://www.aki.ee/sites/default/files/dokumendid/isikuandmed_sotsiaalhoolekande-_ja_tervishoiusektoris.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: aki_isikuandmed_sotsiaalhoolekande_ja_tervishoiusektoris"
+        },
+        {
+          "id": "aki_isikuandmete_tootleja_uldjuhend",
+          "title": "Isikuandmete töötleja üldjuhend",
+          "format": "pdf",
+          "url": "https://www.aki.ee/sites/default/files/dokumendid/isikuandmete_tootleja_uldjuhend.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: aki_isikuandmete_tootleja_uldjuhend"
+        },
+        {
+          "id": "aki_tto_de_kasutatavate_kliendisuhtluskeskkondade_seire_kokkuvot",
+          "title": "TTO-de kasutatavate kliendisuhtluskeskkondade seire kokkuvõte ja soovitused",
+          "format": "pdf",
+          "url": "https://www.aki.ee/sites/default/files/documents/2026-01/TTO-de%20kasutatavate%20kliendisuhtluskeskkondade%20seire%20kokkuv%C3%B5te%20ja%20soovitused.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: aki_tto_de_kasutatavate_kliendisuhtluskeskkondade_seire_kokkuvot"
+        },
+        {
+          "id": "tai_eesti_laste_vaimse_tervise_uuring",
+          "title": "Eesti laste vaimse tervise uuring",
+          "format": "pdf",
+          "url": "https://tai.ee/sites/default/files/2025-05/lvtu_lopparuanne_16mai2025.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tai_eesti_laste_vaimse_tervise_uuring"
+        },
+        {
+          "id": "tai_espad_2024_uimastite_tarvitamine_koolinoorte_seas",
+          "title": "ESPAD 2024: uimastite tarvitamine koolinoorte seas",
+          "format": "pdf",
+          "url": "https://tai.ee/sites/default/files/2025-04/espad_raport_2024_21.04.2025.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tai_espad_2024_uimastite_tarvitamine_koolinoorte_seas"
+        },
+        {
+          "id": "tai_eesti_taiskasvanud_rahvastiku_uimastite_tarvitamise_uuring_2",
+          "title": "Eesti täiskasvanud rahvastiku uimastite tarvitamise uuring 2023",
+          "format": "pdf",
+          "url": "https://www.tai.ee/sites/default/files/2024-06/tuku_2023.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tai_eesti_taiskasvanud_rahvastiku_uimastite_tarvitamise_uuring_2"
+        },
+        {
+          "id": "tai_narkootikumide_tarvitamise_olukord_eestis_2023",
+          "title": "Narkootikumide tarvitamise olukord Eestis 2023",
+          "format": "pdf",
+          "url": "https://www.tai.ee/sites/default/files/2024-06/narkootikumide_tarvitamise_olukord_eestis.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tai_narkootikumide_tarvitamise_olukord_eestis_2023"
+        },
+        {
+          "id": "tai_tai_arengukava_2025_2028",
+          "title": "TAI arengukava 2025–2028",
+          "format": "pdf",
+          "url": "https://www.tai.ee/sites/default/files/2025-02/tai_arengukava_2025_13.2.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tai_tai_arengukava_2025_2028"
+        },
+        {
+          "id": "statistikaamet_lapse_heaolu_mootmise_kasitlus",
+          "title": "Lapse heaolu mõõtmise käsitlus",
+          "format": "pdf",
+          "url": "https://www.stat.ee/sites/default/files/2020-12/Lapse%20heaolu%20m%C3%B5%C3%B5tmise%20k%C3%A4sitlus.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: statistikaamet_lapse_heaolu_mootmise_kasitlus"
+        },
+        {
+          "id": "statistikaamet_laste_subjektiivne_heaolu_kohalikus_ja_rahvusvahelises_vaate",
+          "title": "Laste subjektiivne heaolu kohalikus ja rahvusvahelises vaates",
+          "format": "pdf",
+          "url": "https://www.stat.ee/sites/default/files/2020-07/Laste_subjektiivne_heaolu_kohalikus_ja_rahvusvahelises_vaates.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: statistikaamet_laste_subjektiivne_heaolu_kohalikus_ja_rahvusvahelises_vaate"
+        },
+        {
+          "id": "statistikaamet_puudega_inimeste_sotsiaalne_loimumine",
+          "title": "Puudega inimeste sotsiaalne lõimumine",
+          "format": "pdf",
+          "url": "https://www.stat.ee/sites/default/files/2020-07/Puudega_inimeste_sotsiaalne_loimumine.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: statistikaamet_puudega_inimeste_sotsiaalne_loimumine"
+        },
+        {
+          "id": "statistikaamet_sotsiaaltrendid_6",
+          "title": "Sotsiaaltrendid 6",
+          "format": "pdf",
+          "url": "https://www.stat.ee/sites/default/files/2020-07/Sotsiaaltrendid_6.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: statistikaamet_sotsiaaltrendid_6"
+        },
+        {
+          "id": "statistikaamet_sotsiaaltrendid_7",
+          "title": "Sotsiaaltrendid 7",
+          "format": "pdf",
+          "url": "https://www.stat.ee/sites/default/files/2020-07/sotsiaaltrendid_7.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: statistikaamet_sotsiaaltrendid_7"
+        },
+        {
+          "id": "statistikaamet_vaesus_eestis",
+          "title": "Vaesus Eestis",
+          "format": "pdf",
+          "url": "https://www.stat.ee/sites/default/files/2020-07/Vaesus_Eestis_sisu.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: statistikaamet_vaesus_eestis"
+        },
+        {
+          "id": "statistikaamet_eesti_statistika_kvartalikiri_2_2018",
+          "title": "Eesti Statistika Kvartalikiri 2/2018",
+          "format": "pdf",
+          "url": "https://www.stat.ee/sites/default/files/2020-07/Kvartalikiri_2-2018.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: statistikaamet_eesti_statistika_kvartalikiri_2_2018"
+        },
+        {
+          "id": "oska_sotsiaaltoo_seirearuanne_2025",
+          "title": "Sotsiaaltöö seirearuanne 2025",
+          "format": "pdf",
+          "url": "https://uuringud.oska.kutsekoda.ee/assets/pdf/Sotsiaaltoo-SEIREARUANNE-2025.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: oska_sotsiaaltoo_seirearuanne_2025"
+        },
+        {
+          "id": "oska_oska_sotsiaaltoo_uuringu_terviktekst_2021",
+          "title": "OSKA sotsiaaltöö uuringu terviktekst 2021",
+          "format": "pdf",
+          "url": "https://oska.kutsekoda.ee/wp-content/uploads/2017/01/OSKA_sotsiaaltoo_uuringuaruanne_terviktekst_2021.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: oska_oska_sotsiaaltoo_uuringu_terviktekst_2021"
+        },
+        {
+          "id": "oska_oska_sotsiaaltoo_uuringu_luhiversioon_2021",
+          "title": "OSKA sotsiaaltöö uuringu lühiversioon 2021",
+          "format": "pdf",
+          "url": "https://uuringud.oska.kutsekoda.ee/assets/files/sotsiaaltoo/3-oska-sotsiaaltoo-uuringuaruanne-lyhiversioon-2021a.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: oska_oska_sotsiaaltoo_uuringu_luhiversioon_2021"
+        },
+        {
+          "id": "oska_oska_sotsiaaltoo_uuringu_olulisemad_tulemused",
+          "title": "OSKA sotsiaaltöö uuringu olulisemad tulemused",
+          "format": "pdf",
+          "url": "https://uuringud.oska.kutsekoda.ee/assets/files/sotsiaaltoo/4-oska-sotsiaaltoo-olulisemad-tulemused.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: oska_oska_sotsiaaltoo_uuringu_olulisemad_tulemused"
+        },
+        {
+          "id": "tervisekassa_pereoenduse_tegevusjuhend",
+          "title": "Pereõenduse tegevusjuhend",
+          "format": "pdf",
+          "url": "https://tervisekassa.ee/sites/default/files/Raviasutused/a5_pereoenduse_tegevusjuhend_netti_2.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tervisekassa_pereoenduse_tegevusjuhend"
+        },
+        {
+          "id": "tervisekassa_esmatasandi_tervishoiu_arengumudel_lahima_10_aasta_perspekti",
+          "title": "Esmatasandi tervishoiu arengumudel lähima 10 aasta perspektiivis",
+          "format": "pdf",
+          "url": "https://tervisekassa.ee/sites/default/files/uuringud_aruanded/esmatasandi_toimemudel_lahima_10_aasta_perspektiivis.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tervisekassa_esmatasandi_tervishoiu_arengumudel_lahima_10_aasta_perspekti"
+        },
+        {
+          "id": "tervisekassa_arevushaire_kasitlus_esmatasandil_kliinilise_auditi_kokkuvot",
+          "title": "Ärevushäire käsitlus esmatasandil – kliinilise auditi kokkuvõte",
+          "format": "pdf",
+          "url": "https://tervisekassa.ee/sites/default/files/kvaliteet/Haigekassa/2018_arevushaire_kasitlus_esmatasandil_kokkuvote.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tervisekassa_arevushaire_kasitlus_esmatasandil_kliinilise_auditi_kokkuvot"
+        },
+        {
+          "id": "terviseamet_kokkuvote_2024_aasta_kohta_haridus_ja_sotsiaalasutuste_tervi",
+          "title": "Kokkuvõte 2024. aasta kohta: haridus- ja sotsiaalasutuste tervisekaitse järelevalve",
+          "format": "pdf",
+          "url": "https://www.terviseamet.ee/sites/default/files/documents/2025-04/2024.%20a%20kokkuv%C3%B5te.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: terviseamet_kokkuvote_2024_aasta_kohta_haridus_ja_sotsiaalasutuste_tervi"
+        },
+        {
+          "id": "terviseamet_kokkuvote_2022_aasta_kohta_haridus_ja_sotsiaalasutuste_tervi",
+          "title": "Kokkuvõte 2022. aasta kohta: haridus- ja sotsiaalasutuste tervisekaitse järelevalve",
+          "format": "pdf",
+          "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-06/2022.%20a%20kokkuv%C3%B5te_haridus_sotsiaal_.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: terviseamet_kokkuvote_2022_aasta_kohta_haridus_ja_sotsiaalasutuste_tervi"
+        },
+        {
+          "id": "terviseamet_gripivastase_vaktsineerimise_labiviimise_juhend_2025",
+          "title": "Gripivastase vaktsineerimise läbiviimise juhend 2025",
+          "format": "pdf",
+          "url": "https://www.terviseamet.ee/sites/default/files/documents/2026-03/Lisa%202.5.1.%20Juhis_gripivastase_vaktsineerimise_labiviimiseks_2025.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: terviseamet_gripivastase_vaktsineerimise_labiviimise_juhend_2025"
+        },
+        {
+          "id": "riigikontroll_omavalitsuste_tegevus_erivajadustega_inimeste_toetamisel",
+          "title": "Omavalitsuste tegevus erivajadustega inimeste toetamisel",
+          "format": "pdf",
+          "url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19429_RKTR_6574_2-1.4_2321_001-2%20%281%29.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: riigikontroll_omavalitsuste_tegevus_erivajadustega_inimeste_toetamisel"
+        },
+        {
+          "id": "riigikontroll_ulevaade_erihoolekandeteenuste_kattesaadavusest",
+          "title": "Ülevaade erihoolekandeteenuste kättesaadavusest",
+          "format": "pdf",
+          "url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19828_RKTR_6603_2-1.4_2349_002-1.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: riigikontroll_ulevaade_erihoolekandeteenuste_kattesaadavusest"
+        },
+        {
+          "id": "riigikontroll_koduteenuste_korraldus",
+          "title": "Koduteenuste korraldus",
+          "format": "pdf",
+          "url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19294_RKTR_6564_2-1.4_2312_002-2.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: riigikontroll_koduteenuste_korraldus"
+        },
+        {
+          "id": "riigikontroll_toimetulekutoetuse_kui_riikliku_sotsiaalabi_korraldus",
+          "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+          "format": "pdf",
+          "url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/16215_RKTR_3559_2-1.4_2299_002-2.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: riigikontroll_toimetulekutoetuse_kui_riikliku_sotsiaalabi_korraldus"
+        },
+        {
+          "id": "riigikontroll_haridusliku_erivajadusega_noorte_kutseopingute_ja_tooturule_",
+          "title": "Haridusliku erivajadusega noorte kutseõpingute ja tööturule jõudmise toetamine",
+          "format": "pdf",
+          "url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19750_RKTR_6598_2-1.4_2344_003-2.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: riigikontroll_haridusliku_erivajadusega_noorte_kutseopingute_ja_tooturule_"
+        },
+        {
+          "id": "riigikontroll_toovoime_vahenemise_ennetamine",
+          "title": "Töövõime vähenemise ennetamine",
+          "format": "pdf",
+          "url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/18277_RKTR_5564_2-1.4_2308_001-2.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: riigikontroll_toovoime_vahenemise_ennetamine"
+        },
+        {
+          "id": "vordoigusvolinik_vordoiguslikkus_eestis_2024",
+          "title": "Võrdõiguslikkus Eestis 2024",
+          "format": "pdf",
+          "url": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2025-06/V%C3%B5rd%C3%B5igusvoliniku-aastaraamat-2024_1.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: vordoigusvolinik_vordoiguslikkus_eestis_2024"
+        },
+        {
+          "id": "vordoigusvolinik_voin_olla_puudega_laste_piltsonastik_puuetest",
+          "title": "Võin olla puudega – laste piltsõnastik puuetest",
+          "format": "pdf",
+          "url": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2026-01/piltsonastiku-veebiversioon2.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: vordoigusvolinik_voin_olla_puudega_laste_piltsonastik_puuetest"
+        },
+        {
+          "id": "vordoigusvolinik_juhendmaterjal_karjaarispetsialistidele",
+          "title": "Juhendmaterjal karjäärispetsialistidele",
+          "format": "pdf",
+          "url": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2024-02/BREAK-KARJA%CC%88A%CC%88RISPETS-44lk_A4_EST.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: vordoigusvolinik_juhendmaterjal_karjaarispetsialistidele"
+        },
+        {
+          "id": "vordoigusvolinik_voliniku_poole_poordumiste_statistika_2021",
+          "title": "Voliniku poole pöördumiste statistika 2021",
+          "format": "pdf",
+          "url": "https://volinik.ee/volinik-live-web-prd/s3fs-public/wp-content/uploads/2022/06/Volinik_2021_ulevaade.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: vordoigusvolinik_voliniku_poole_poordumiste_statistika_2021"
+        },
+        {
+          "id": "vordoigusvolinik_arvamus_toovoimetuslehe_teemal",
+          "title": "Arvamus töövõimetuslehe teemal",
+          "format": "pdf",
+          "url": "https://volinik.ee/volinik-live-web-prd/s3fs-public/2023-08/Arvamus-nr-44_To%CC%88o%CC%88vo%CC%83imetusleht.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: vordoigusvolinik_arvamus_toovoimetuslehe_teemal"
+        },
+        {
+          "id": "tootukassa_ska_sotsiaalministeerium_puude_raskusastme_tuvastamise_ja_toovoime_hindamise_taotlus_",
+          "title": "Puude raskusastme tuvastamise ja töövõime hindamise taotlus – tööealine",
+          "format": "pdf",
+          "url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-07/toovoime_hindamine_ja_puude_raskusastme_tuvastamise_taotlus.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tootukassa_ska_sotsiaalministeerium_puude_raskusastme_tuvastamise_ja_toovoime_hindamise_taotlus_"
+        },
+        {
+          "id": "tootukassa_ska_sotsiaalministeerium_kes_aitab_ja_kuhu_poorduda_kui_sul_on_tuvastatud_puude_rasku",
+          "title": "Kes aitab ja kuhu pöörduda, kui sul on tuvastatud puude raskusaste?",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-02/puudega-tooealisele.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tootukassa_ska_sotsiaalministeerium_kes_aitab_ja_kuhu_poorduda_kui_sul_on_tuvastatud_puude_rasku"
+        },
+        {
+          "id": "tootukassa_ska_sotsiaalministeerium_star_strateegia_2026_2030",
+          "title": "STAR strateegia 2026–2030",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-03/Lisa%201_Sotsiaalteenuste%20ja%20-toetuste%20andmeregistri%20strateegia%20aastateks%202026-2030.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tootukassa_ska_sotsiaalministeerium_star_strateegia_2026_2030"
+        },
+        {
+          "id": "tootukassa_ska_sotsiaalministeerium_star_strateegia_tegevused_2026_2029",
+          "title": "STAR strateegia tegevused 2026–2029",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-03/Lisa%203_STAR%20strateegia%20tegevused_0.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tootukassa_ska_sotsiaalministeerium_star_strateegia_tegevused_2026_2029"
+        },
+        {
+          "id": "tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_skeemi_loomise_ja_juurutamise_vahehindami",
+          "title": "Töövõime toetamise skeemi loomise ja juurutamise vahehindamise lõpparuanne",
+          "format": "pdf",
+          "url": "https://mkm.ee/sites/default/files/documents/2023-07/T%C3%B6%C3%B6v%C3%B5ime%20toetamise%20skeemi%20loomise%20ja%20juurutamise%20vahehindamise%20l%C3%B5pparuanne.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_skeemi_loomise_ja_juurutamise_vahehindami"
+        },
+        {
+          "id": "tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_skeemi_loomise_ja_juurutamise_vahehindami_2",
+          "title": "Töövõime toetamise skeemi loomise ja juurutamise vahehindamise infoleht",
+          "format": "pdf",
+          "url": "https://mkm.ee/sites/default/files/documents/2023-07/T%C3%B6%C3%B6v%C3%B5ime%20toetamise%20skeemi%20loomise%20ja%20juurutamise%20vahehindamise%20infoleht.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_skeemi_loomise_ja_juurutamise_vahehindami_2"
+        },
+        {
+          "id": "tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromaja",
+          "title": "Töövõime toetamise süsteemi loomise ja juurutamise makromajandusliku mõju hindamine",
+          "format": "pdf",
+          "url": "https://www.mkm.ee/sites/default/files/documents/2023-07/T%C3%B6%C3%B6v%C3%B5ime%20toetamise%20s%C3%BCsteemi%20loomise%20ja%20juurutamise%20makromajandusliku%20m%C3%B5ju%20hindamine%20l%C3%B5pparuanne%20%282%29.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromaja"
+        },
+        {
+          "id": "tootukassa_ska_sotsiaalministeerium_tooandjate_hoiakud_vahenenud_toovoimega_inimeste_tootamise_s",
+          "title": "Tööandjate hoiakud vähenenud töövõimega inimeste töötamise suhtes",
+          "format": "pdf",
+          "url": "https://mkm.ee/sites/default/files/documents/2023-07/2021_tvrtooandjateuuringuloppraport.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tootukassa_ska_sotsiaalministeerium_tooandjate_hoiakud_vahenenud_toovoimega_inimeste_tootamise_s"
+        },
+        {
+          "id": "tootukassa_ska_sotsiaalministeerium_teadlikkus_ja_hoiakud_vahenenud_toovoimega_inimeste_ning_too",
+          "title": "Teadlikkus ja hoiakud vähenenud töövõimega inimeste ning töövõimereformi teemal",
+          "format": "pdf",
+          "url": "https://mkm.ee/sites/default/files/documents/2023-07/2017_tvr_koondraport.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tootukassa_ska_sotsiaalministeerium_teadlikkus_ja_hoiakud_vahenenud_toovoimega_inimeste_ning_too"
+        },
+        {
+          "id": "harno_juhendmaterjal_opilase_toetamiseks_koolis",
+          "title": "Juhendmaterjal õpilase toetamiseks koolis",
+          "format": "pdf",
+          "url": "https://harno.ee/sites/default/files/documents/2023-03/Juhendmaterjal_6pilase_toetamiseks_22_1.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: harno_juhendmaterjal_opilase_toetamiseks_koolis"
+        },
+        {
+          "id": "harno_opilase_toetamine_koolis_varasem_versioon",
+          "title": "Õpilase toetamine koolis (varasem versioon)",
+          "format": "pdf",
+          "url": "https://harno.ee/sites/default/files/documents/2022-02/Juhendmaterjal_6pilase_toetamiseks_22.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: harno_opilase_toetamine_koolis_varasem_versioon"
+        },
+        {
+          "id": "harno_koolitootajad_jms_toetav_susteemne_lahenemine",
+          "title": "Koolitöötajad jms toetav süsteemne lähenemine",
+          "format": "pdf",
+          "url": "https://harno.ee/sites/default/files/documents/2022-01/Koolitootajad%20jms%20toetav%20s%C3%BCsteemne%20lahenemine_abimaterjal_kujundatud.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: harno_koolitootajad_jms_toetav_susteemne_lahenemine"
+        },
+        {
+          "id": "harno_opitulemuste_vahendamine_asendamine_ja_kohustusliku_oppeaine",
+          "title": "Õpitulemuste vähendamine, asendamine ja kohustusliku õppeaine õppimisest vabastamine",
+          "format": "pdf",
+          "url": "https://harno.ee/sites/default/files/documents/2022-02/V2hendamine_2022.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: harno_opitulemuste_vahendamine_asendamine_ja_kohustusliku_oppeaine"
+        },
+        {
+          "id": "harno_erinevate_oppijate_toetamine_opetaja_ja_tugispetsialisti_koo",
+          "title": "Erinevate õppijate toetamine õpetaja ja tugispetsialisti koostöös",
+          "format": "pdf",
+          "url": "https://harno.ee/sites/default/files/documents/2022-01/ErinevateOppijateToetamine_2021.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: harno_erinevate_oppijate_toetamine_opetaja_ja_tugispetsialisti_koo"
+        },
+        {
+          "id": "harno_opilase_individuaalsuse_arvestamine_voimetekohase_oppe_tagam",
+          "title": "Õpilase individuaalsuse arvestamine võimetekohase õppe tagamisel",
+          "format": "pdf",
+          "url": "https://harno.ee/sites/default/files/documents/2022-01/Individuaalsuse%20arvestamine%20j%C3%B5ukohase%20%C3%B5ppe%20tagamisel%2022.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: harno_opilase_individuaalsuse_arvestamine_voimetekohase_oppe_tagam"
+        },
+        {
+          "id": "harno_4_sammu_markamiseks_ja_sekkumiseks_opetajale",
+          "title": "4 sammu märkamiseks ja sekkumiseks õpetajale",
+          "format": "pdf",
+          "url": "https://harno.ee/sites/default/files/documents/2021-06/juhend%20%C3%B5petajatele-%20vaimse_tervise_nouanded_17.05.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: harno_4_sammu_markamiseks_ja_sekkumiseks_opetajale"
+        },
+        {
+          "id": "harno_juhend_laagritele_ja_malevatele_vaimse_tervise_nouanded",
+          "title": "Juhend laagritele ja malevatele: vaimse tervise nõuanded",
+          "format": "pdf",
+          "url": "https://harno.ee/sites/default/files/documents/2021-06/juhend%20laagritele%20jamalevatele-vaimse_tervise_nouanded_laagrid-malevad_14.06.2021.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: harno_juhend_laagritele_ja_malevatele_vaimse_tervise_nouanded"
+        },
+        {
+          "id": "harno_soovitused_kiusamise_valtimiseks_koolis",
+          "title": "Soovitused kiusamise vältimiseks koolis",
+          "format": "pdf",
+          "url": "https://harno.ee/sites/default/files/documents/2022-03/Koolidele%20toeks%20kiusuennetuses%20m%C3%A4rts-2022.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: harno_soovitused_kiusamise_valtimiseks_koolis"
+        },
+        {
+          "id": "harno_kutseoppeasutuste_veebilehtede_ja_haridusinfoportaali_analuu",
+          "title": "Kutseõppeasutuste veebilehtede ja haridusinfoportaali analüüs",
+          "format": "pdf",
+          "url": "https://harno.ee/sites/default/files/documents/2021-04/Kutse%C3%B5ppeasutuste%20veebilehtede%20ja%20haridusinfoportaali%20anal%C3%BC%C3%BCs.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: harno_kutseoppeasutuste_veebilehtede_ja_haridusinfoportaali_analuu"
+        },
+        {
+          "id": "harno_oppekeelest_erineva_emakeelega_opilane_koolis",
+          "title": "Õppekeelest erineva emakeelega õpilane koolis",
+          "format": "pdf",
+          "url": "https://harno.ee/sites/default/files/documents/2022-09/252_Soll_2011_Oppekeelest_erineva_emakeelega_opilane_koolis.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: harno_oppekeelest_erineva_emakeelega_opilane_koolis"
+        },
+        {
+          "id": "paasteamet_tuleohutuse_infohommik_mida_iga_hoolekandeasutus_peab_teadma",
+          "title": "Tuleohutuse infohommik: mida iga hoolekandeasutus peab teadma?",
+          "format": "pdf",
+          "url": "https://www.rescue.ee/files/Materjalid/2025.04.29hoolekandeasutused-infohommik.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: paasteamet_tuleohutuse_infohommik_mida_iga_hoolekandeasutus_peab_teadma"
+        },
+        {
+          "id": "paasteamet_haiglate_ja_hooldekodude_projekteerimise_juhis",
+          "title": "Haiglate ja hooldekodude projekteerimise juhis",
+          "format": "pdf",
+          "url": "https://www.rescue.ee/files/2018-09/haiglate-ja-hooldekodude-projekteerimise-juhis-small-.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: paasteamet_haiglate_ja_hooldekodude_projekteerimise_juhis"
+        },
+        {
+          "id": "paasteamet_evakuatsioonijuhi_koolitusmaterjal",
+          "title": "Evakuatsioonijuhi koolitusmaterjal",
+          "format": "pdf",
+          "url": "https://www.rescue.ee/files/2019-03/1552567704_evakuatsioonijuhile.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: paasteamet_evakuatsioonijuhi_koolitusmaterjal"
+        },
+        {
+          "id": "paasteamet_juhendmaterjal_praktilise_valjaoppe_labiviimiseks_haiglas_ja",
+          "title": "Juhendmaterjal praktilise väljaõppe läbiviimiseks haiglas ja hooldekodus",
+          "format": "pdf",
+          "url": "https://www.rescue.ee/files/2019-03/praktilise-v-ljaoppe-juhendmaterjal-praktilise-oppe-labiviimiseks-haiglas-ja-hooldekodus.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: paasteamet_juhendmaterjal_praktilise_valjaoppe_labiviimiseks_haiglas_ja"
+        },
+        {
+          "id": "paasteamet_paasteameti_meelespea_kohalikule_omavalitsusele",
+          "title": "Päästeameti meelespea kohalikule omavalitsusele",
+          "format": "pdf",
+          "url": "https://www.rescue.ee/files/Materjalid/2022-paasteameti-meelespea-kohalikule-omavalitsusele.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: paasteamet_paasteameti_meelespea_kohalikule_omavalitsusele"
+        },
+        {
+          "id": "paasteamet_paastevorgustiku_strateegia_aastani_2025",
+          "title": "Päästevõrgustiku strateegia aastani 2025",
+          "format": "pdf",
+          "url": "https://www.rescue.ee/files/dokumendid/paastevorgustiku-strateegia-aastani-2025-est.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: paasteamet_paastevorgustiku_strateegia_aastani_2025"
+        },
+        {
+          "id": "paasteamet_ehituslike_tuleohutusnouete_kokkuvote",
+          "title": "Ehituslike tuleohutusnõuete kokkuvõte",
+          "format": "pdf",
+          "url": "https://www.rescue.ee/files/2020-09/est-rgb.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: paasteamet_ehituslike_tuleohutusnouete_kokkuvote"
+        },
+        {
+          "id": "paasteamet_tuleohutuskonsultandi_koolitusmaterjal",
+          "title": "Tuleohutuskonsultandi koolitusmaterjal",
+          "format": "pdf",
+          "url": "https://www.rescue.ee/files/2019-03/tuleohutuskonsultandile.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: paasteamet_tuleohutuskonsultandi_koolitusmaterjal"
+        },
+        {
+          "id": "paasteamet_enesekontrolli_tuleohutusaruanne",
+          "title": "Enesekontrolli tuleohutusaruanne",
+          "format": "pdf",
+          "url": "https://www.rescue.ee/files/2018-10/1539949760_-.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: paasteamet_enesekontrolli_tuleohutusaruanne"
+        },
+        {
+          "id": "peaasi_ee_koolilaste_ja_noorte_vaimne_tervis",
+          "title": "Koolilaste ja noorte vaimne tervis",
+          "format": "pdf",
+          "url": "https://peaasi.ee/wp-content/uploads/2014/11/Laste-vaimne-tervis-koolis.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: peaasi_ee_koolilaste_ja_noorte_vaimne_tervis"
+        },
+        {
+          "id": "peaasi_ee_vaimse_tervise_hoidmine_4_7_klass",
+          "title": "Vaimse tervise hoidmine (4.–7. klass)",
+          "format": "pdf",
+          "url": "https://peaasi.ee/wp-content/uploads/2018/11/Tunnikava-4-7kl-vaimne-tervis.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: peaasi_ee_vaimse_tervise_hoidmine_4_7_klass"
+        },
+        {
+          "id": "peaasi_ee_vaimse_tervise_hoidmine_8_12_klass",
+          "title": "Vaimse tervise hoidmine (8.–12. klass)",
+          "format": "pdf",
+          "url": "https://peaasi.ee/wp-content/uploads/2018/11/Tunnikava-8-12kl-vaimne-tervis.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: peaasi_ee_vaimse_tervise_hoidmine_8_12_klass"
+        },
+        {
+          "id": "peaasi_ee_stigma_8_12_klass",
+          "title": "Stigma (8.–12. klass)",
+          "format": "pdf",
+          "url": "https://peaasi.ee/wp-content/uploads/2018/11/Tunnikava-8-12kl-stigma.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: peaasi_ee_stigma_8_12_klass"
+        },
+        {
+          "id": "peaasi_ee_peaasi_ee_haridus",
+          "title": "Peaasi.ee Haridus",
+          "format": "pdf",
+          "url": "https://peaasi.ee/wp-content/uploads/2023/10/Peaasi.ee-Haridus.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: peaasi_ee_peaasi_ee_haridus"
+        },
+        {
+          "id": "praxis_centar_taiskasvanud_erivajadusega_inimeste_abivajaduse_hindamine_ja",
+          "title": "Täiskasvanud erivajadusega inimeste abivajaduse hindamine ja teenuste osutamine",
+          "format": "pdf",
+          "url": "https://www.praxis.ee/uploads/2020/05/Erivajadustega-inimeste-abivajaduse-hindamine-ja-teenuste-osutamine_lo%CC%83ppraport_10.02.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: praxis_centar_taiskasvanud_erivajadusega_inimeste_abivajaduse_hindamine_ja"
+        },
+        {
+          "id": "praxis_centar_taiskasvanud_erivajadusega_inimeste_abivajaduse_hindamine_ja_2",
+          "title": "Täiskasvanud erivajadusega inimeste abivajaduse hindamine ja teenuste osutamine – lühikokkuvõte",
+          "format": "pdf",
+          "url": "https://www.praxis.ee/uploads/2020/05/Luhikokkuvote-abivajaduse-hindamise-raportist.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: praxis_centar_taiskasvanud_erivajadusega_inimeste_abivajaduse_hindamine_ja_2"
+        },
+        {
+          "id": "praxis_centar_sotsiaalne_innovatsioon_pikaajalises_hoolduses",
+          "title": "Sotsiaalne innovatsioon pikaajalises hoolduses",
+          "format": "pdf",
+          "url": "https://www.praxis.ee/uploads/2015/10/Sotsiaalne-innovatsioon-pikaajalises-hoolduses.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: praxis_centar_sotsiaalne_innovatsioon_pikaajalises_hoolduses"
+        },
+        {
+          "id": "praxis_centar_vanemaealiste_ja_eakate_toimetuleku_uuring_2015",
+          "title": "Vanemaealiste ja eakate toimetuleku uuring 2015",
+          "format": "pdf",
+          "url": "https://www.praxis.ee/uploads/2016/03/VEU2015-l%C3%B5pparuanne_TNSEmorSAPraxis_07122015.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: praxis_centar_vanemaealiste_ja_eakate_toimetuleku_uuring_2015"
+        },
+        {
+          "id": "praxis_centar_terviseseisundist_voi_puudest_tingitud_erivajadustega_noorte",
+          "title": "Terviseseisundist või puudest tingitud erivajadustega noorte siirdumine koolist tööle",
+          "format": "pdf",
+          "url": "https://www.praxis.ee/uploads/2015/06/Erivajadustega-noorte-siirdumine-koolist-toole.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: praxis_centar_terviseseisundist_voi_puudest_tingitud_erivajadustega_noorte"
+        },
+        {
+          "id": "praxis_centar_lapsendamise_ja_hooldusperre_paigutamise_jargne_hindamine_lo",
+          "title": "Lapsendamise ja hooldusperre paigutamise järgne hindamine / lõpparuanne",
+          "format": "pdf",
+          "url": "https://www.praxis.ee/uploads/2020/12/Lo%CC%83pparuanne_20.11.20.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: praxis_centar_lapsendamise_ja_hooldusperre_paigutamise_jargne_hindamine_lo"
+        },
+        {
+          "id": "praxis_centar_kohaliku_omavalitsuse_poolt_isikult_ja_voi_perekonnalt_sotsi",
+          "title": "Kohaliku omavalitsuse poolt isikult ja/või perekonnalt sotsiaalteenuste eest tasu nõudmine",
+          "format": "pdf",
+          "url": "https://praxis.ee/uploads/2014/08/Kohaliku-omavalitsuse-poolt-isikult-jav%C3%B5i-perekonnalt-sotsiaalteenuste-eest-tasu-n%C3%B5udmine.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: praxis_centar_kohaliku_omavalitsuse_poolt_isikult_ja_voi_perekonnalt_sotsi"
+        },
+        {
+          "id": "praxis_centar_ska_ja_kovid_loppraport",
+          "title": "SKA ja KOVid – lõppraport",
+          "format": "pdf",
+          "url": "https://centar.ee/pdf/ee/2023_SKA%20ja%20KOVid_Loppraport_avaldamiseks.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: praxis_centar_ska_ja_kovid_loppraport"
+        },
+        {
+          "id": "praxis_centar_puudega_lastega_perede_toimetuleku_ja_vajaduste_uuring",
+          "title": "Puudega lastega perede toimetuleku ja vajaduste uuring",
+          "format": "pdf",
+          "url": "https://centar.ee/pdf/ee/2017_Puudega_lastega_perede_toimetuleku_ja_vajaduste_uuring.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: praxis_centar_puudega_lastega_perede_toimetuleku_ja_vajaduste_uuring"
+        },
+        {
+          "id": "praxis_centar_toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromaja",
+          "title": "Töövõime toetamise süsteemi loomise ja juurutamise makromajandusliku mõju hindamine – metoodikaraport",
+          "format": "pdf",
+          "url": "https://centar.ee/pdf/ee/2022_Toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromajandusliku_moju_hindamine_metoodikaraport.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: praxis_centar_toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromaja"
+        },
+        {
+          "id": "praxis_centar_raviresistentse_ja_suitsiidse_depressiooni_levimus_ning_maja",
+          "title": "Raviresistentse ja suitsiidse depressiooni levimus ning majanduslik mõju",
+          "format": "pdf",
+          "url": "https://centar.ee/pdf/ee/2021_Raviresistentse_ja_suitsiidse_depressiooni_levimus_ja_majanduslik_moju.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: praxis_centar_raviresistentse_ja_suitsiidse_depressiooni_levimus_ning_maja"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_naiste_tugikeskuse_teenuse_kvaliteedijuhis",
+          "title": "Naiste tugikeskuse teenuse kvaliteedijuhis",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/NTK%20teenuse%20kvaliteedijuhis.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_naiste_tugikeskuse_teenuse_kvaliteedijuhis"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_naiste_tugikeskuste_2021_aasta_kogemusuuringu_aruanne",
+          "title": "Naiste tugikeskuste 2021. aasta kogemusuuringu aruanne",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2022-10/ntk_2021_kogemusuuringu_aruanne.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_naiste_tugikeskuste_2021_aasta_kogemusuuringu_aruanne"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_juhendmaterjal_kubervagivallast_ohvritega_tootavatele_spetsi",
+          "title": "Juhendmaterjal kübervägivallast ohvritega töötavatele spetsialistidele",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-10/Juhendmaterjal%20k%C3%BCberv%C3%A4givallast%20ohvritega%20t%C3%B6%C3%B6tavatele%20spetsialistidele.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_juhendmaterjal_kubervagivallast_ohvritega_tootavatele_spetsi"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_riskihindamine_lahisuhtevagivalla_juhtumites_tervishoiutoota",
+          "title": "Riskihindamine lähisuhtevägivalla juhtumites – tervishoiutöötajatele",
+          "format": "pdf",
+          "url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-06/Riskihindamine%20l%C3%A4hisuhtev%C3%A4givalla%20juhtumites.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_riskihindamine_lahisuhtevagivalla_juhtumites_tervishoiutoota"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_perevagivalla_toimepanijatele_suunatud_programmide_euroopa_s",
+          "title": "Perevägivalla toimepanijatele suunatud programmide Euroopa standardid",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Perevagivalla%20toimepanijatele%20suunatud%20programmide%20Euroopa%20standardid.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_perevagivalla_toimepanijatele_suunatud_programmide_euroopa_s"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_marac_i_juhendmaterjal",
+          "title": "MARAC-i juhendmaterjal",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/MARAC-i%20juhendmaterjal.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_marac_i_juhendmaterjal"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_marac_i_teavitusleht",
+          "title": "MARAC-i teavitusleht",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-03/MARAC%20teavitusleht_30.03.2023.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_marac_i_teavitusleht"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_marac_i_vorgustiku_mudeli_moju_hindamine_loppraport",
+          "title": "MARAC-i võrgustiku mudeli mõju hindamine. Lõppraport",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-01/MARACi%20v%C3%B5rgustiku%20mudeli%20m%C3%B5ju%20hindamine_l%C3%B5ppraport.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_marac_i_vorgustiku_mudeli_moju_hindamine_loppraport"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_evaluation_of_the_impact_of_the_marac_networking_model",
+          "title": "Evaluation of the impact of the MARAC networking model",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-09/Evaluation%20of%20the%20impact%20of%20the%20MARAC%20networking%20model.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_evaluation_of_the_impact_of_the_marac_networking_model"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_marac_i_mudeli_juhend_kov_lastekaitsele",
+          "title": "MARAC-i mudeli juhend KOV lastekaitsele",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-01/MARAC%20mudeli%20juhend%20KOV%20lastekaitsele.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_marac_i_mudeli_juhend_kov_lastekaitsele"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est",
+          "title": "Seksuaalvägivalla kriisiabikeskusi tutvustav voldik (EST)",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi%20infovoldik%20SAK%20EST%2Bbleed3mm.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_sexual_assault_crisis_centre_eng",
+          "title": "Sexual Assault Crisis Centre (ENG)",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi_infovoldik_SAK_ENG%2Bbleed3mm.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_sexual_assault_crisis_centre_eng"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_rus",
+          "title": "Кризисные центры помощи жертвам сексуального насилия (RUS)",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi%20infovoldik%20SAK%20RUS%2Bbleed3mm.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_rus"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_ua",
+          "title": "Кризові центри допомоги жертвам сексуального насильства (UA)",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi%20infovoldik%20SAK%20UA%2Bbleed3mm.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_ua"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_seksuaalivakivallan_kriisikeskukset_fin",
+          "title": "Seksuaaliväkivallan kriisikeskukset (FIN)",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi_infovoldik_SAK_FIN%2Bbleed3mm_0.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_seksuaalivakivallan_kriisikeskukset_fin"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_seksuaalsest_ahistamisest_vaba_ooelu_juhend",
+          "title": "Seksuaalsest ahistamisest vaba ööelu juhend",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Seksuaalsest%20ahistamisest%20vaba%20o%CC%88o%CC%88elu%20juhend%20A4_veeb%20linkidega.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_seksuaalsest_ahistamisest_vaba_ooelu_juhend"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_eesti_elanikkonna_teadlikkuse_uuring_soopohise_vagivalla_ja_",
+          "title": "Eesti elanikkonna teadlikkuse uuring soopõhise vägivalla ja inimkaubanduse valdkonnas",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Eesti%20elanikkonna%20teadlikkuse%20uuring%20soop%C3%B5hise%20v%C3%A4givalla%20ja%20inimkaubanduse%20valdkonnas.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_eesti_elanikkonna_teadlikkuse_uuring_soopohise_vagivalla_ja_"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_elanikkonna_hoiakud_ja_teadlikkus_perevagivallast",
+          "title": "Elanikkonna hoiakud ja teadlikkus perevägivallast",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Elanikkonna%20hoiakud%20ja%20teadlikkus%20perev%C3%A4givallast.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_elanikkonna_hoiakud_ja_teadlikkus_perevagivallast"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_teadlikkus_tugiteenuste_olemasolust_pere_ja_seksuaalvagivall",
+          "title": "Teadlikkus tugiteenuste olemasolust pere- ja seksuaalvägivalla ning inimkaubanduse ohvritele",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Teadlikkus%20tugiteenuste%20olemasolust%20pere-%20ja%20seksuaalv%C3%A4givalla%20ning%20inimkaubanduse%20ohvritele.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_teadlikkus_tugiteenuste_olemasolust_pere_ja_seksuaalvagivall"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_hoolekandeteenuste_kvaliteedi_juhendmaterjal",
+          "title": "Hoolekandeteenuste kvaliteedi juhendmaterjal",
+          "format": "pdf",
+          "url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/hoolekandeteenuste_kvaliteedi_juhendmaterjal.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_hoolekandeteenuste_kvaliteedi_juhendmaterjal"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_abivahendite_teatmik_2025",
+          "title": "Abivahendite teatmik 2025",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-02/Abivahendite%20teatmik%202025-1.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_abivahendite_teatmik_2025"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_puue_ja_hoolekanne_ska_aastaraamatu_pdf_osa_2025",
+          "title": "Puue ja hoolekanne — SKA aastaraamatu PDF-osa 2025",
+          "format": "pdf",
+          "url": "https://www.sotsiaalkindlustusamet.ee/node/12902/handbook/9/pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_puue_ja_hoolekanne_ska_aastaraamatu_pdf_osa_2025"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_rehabilitatsiooni_teenuseosutajate_infopaeva_materjal",
+          "title": "Rehabilitatsiooni teenuseosutajate infopäeva materjal",
+          "format": "pdf",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/rehabilitatsiooni_teenuseosutajate_infopaev_16.10.2020.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_rehabilitatsiooni_teenuseosutajate_infopaeva_materjal"
+        },
+        {
+          "id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "title": "Lapse heaolu hindamise käsiraamat",
+          "format": "pdf",
+          "url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/k%C3%A4siraamat.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+        },
+        {
+          "id": "sotsiaalministeerium_puude_toetus_ja_lisa_toetus_2025_aastal",
+          "title": "Puude-toetus ja lisa-toetus 2025. aastal",
+          "format": "pdf",
+          "url": "https://www.sm.ee/sites/default/files/documents/2024-12/puudetoetus%20ja%20lisatoetus%202025_KM.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalministeerium_puude_toetus_ja_lisa_toetus_2025_aastal"
+        },
+        {
+          "id": "sotsiaalministeerium_ligipaasetavuse_kulu_tulu_analuus_lopparuanne",
+          "title": "Ligipääsetavuse kulu-tulu analüüs. Lõpparuanne",
+          "format": "pdf",
+          "url": "https://www.sm.ee/sites/default/files/documents/2022-10/Ligip%C3%A4%C3%A4setavuse%20kulu-tulu%20anal%C3%BC%C3%BCs.%20L%C3%B5pparuanne_0.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalministeerium_ligipaasetavuse_kulu_tulu_analuus_lopparuanne"
+        },
+        {
+          "id": "sotsiaalministeerium_transpordi_ja_tehiskeskkonna_ligipaasetavuse_analuus",
+          "title": "Transpordi ja tehiskeskkonna ligipääsetavuse analüüs",
+          "format": "pdf",
+          "url": "https://www.sm.ee/sites/default/files/documents/2022-06/Transpordi%20ja%20tehiskeskkonna%20ligip%C3%A4%C3%A4setavuse%20anal%C3%BC%C3%BCs.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalministeerium_transpordi_ja_tehiskeskkonna_ligipaasetavuse_analuus"
+        },
+        {
+          "id": "sotsiaalministeerium_sotsiaalhoolekande_programm_2024_2027",
+          "title": "Sotsiaalhoolekande programm 2024–2027",
+          "format": "pdf",
+          "url": "https://www.sm.ee/sites/default/files/documents/2025-01/Sotsiaalhoolekande%20programm%202024-2027%20%281%29.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalministeerium_sotsiaalhoolekande_programm_2024_2027"
+        },
+        {
+          "id": "sotsiaalministeerium_uuring_taisealiste_puudega_inimeste_puude_tuvastamise_abivaj",
+          "title": "Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist",
+          "format": "pdf",
+          "url": "https://www.sm.ee/sites/default/files/documents/2026-03/Puuetega%20inimeste%20uuringu%20l%C3%B5ppraport.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalministeerium_uuring_taisealiste_puudega_inimeste_puude_tuvastamise_abivaj"
+        },
+        {
+          "id": "sotsiaalministeerium_soolise_vordoiguslikkuse_monitooring_2021_lahisuhtevagivald",
+          "title": "Soolise võrdõiguslikkuse monitooring 2021: Lähisuhtevägivald",
+          "format": "pdf",
+          "url": "https://www.sm.ee/sites/default/files/documents/2022-12/SVM21.%20L%C3%A4hisuhtev%C3%A4givald.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalministeerium_soolise_vordoiguslikkuse_monitooring_2021_lahisuhtevagivald"
+        },
+        {
+          "id": "sotsiaalministeerium_inimkaubanduse_ennetamine_metodoloogia_tooks_noortega",
+          "title": "Inimkaubanduse ennetamine: metodoloogia tööks noortega",
+          "format": "pdf",
+          "url": "https://sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Sooline_vordoiguslikkus/Inimkaubandus_ja_prostitusioon/inimkaubanduse_ennetamine_metodoloogia_tooks_noortega.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalministeerium_inimkaubanduse_ennetamine_metodoloogia_tooks_noortega"
+        },
+        {
+          "id": "sotsiaalministeerium_inimkaubanduse_teemal_koolitamine_praktilised_soovitused",
+          "title": "Inimkaubanduse teemal koolitamine: praktilised soovitused",
+          "format": "pdf",
+          "url": "https://www.sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Sooline_vordoiguslikkus/Inimkaubandus_ja_prostitusioon/inimkaubanduse_teemal_koolitamine.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalministeerium_inimkaubanduse_teemal_koolitamine_praktilised_soovitused"
+        },
+        {
+          "id": "sotsiaalministeerium_puuetega_inimeste_tootamist_toetavad_meetmed",
+          "title": "Puuetega inimeste töötamist toetavad meetmed",
+          "format": "pdf",
+          "url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/pittm_1ja2etapp_kokku_2_.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalministeerium_puuetega_inimeste_tootamist_toetavad_meetmed"
+        },
+        {
+          "id": "sotsiaalministeerium_puuetega_inimeste_ja_nende_pereliikmete_hoolduskoormuse_uuri",
+          "title": "Puuetega inimeste ja nende pereliikmete hoolduskoormuse uuring 2009",
+          "format": "pdf",
+          "url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/piu2009_loppraport.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalministeerium_puuetega_inimeste_ja_nende_pereliikmete_hoolduskoormuse_uuri"
+        },
+        {
+          "id": "sotsiaalministeerium_vagivald_ja_naiste_tervis",
+          "title": "Vägivald ja naiste tervis",
+          "format": "pdf",
+          "url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/vagivald_ja_naiste_tervis_1_.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalministeerium_vagivald_ja_naiste_tervis"
+        },
+        {
+          "id": "sotsiaalministeerium_vagivalla_moju_naiste_tervisele",
+          "title": "Vägivalla mõju naiste tervisele",
+          "format": "pdf",
+          "url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/meedikute_kysitlus_1_.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalministeerium_vagivalla_moju_naiste_tervisele"
+        },
+        {
+          "id": "sotsiaalministeerium_vagivald_lahisuhtes_selle_pohjused_ja_voimalikud_lahendused",
+          "title": "Vägivald lähisuhtes: selle põhjused ja võimalikud lahendused",
+          "format": "pdf",
+          "url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/allaste_vagivald_lahisuhtes_biin_retsensioon_1_.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalministeerium_vagivald_lahisuhtes_selle_pohjused_ja_voimalikud_lahendused"
+        },
+        {
+          "id": "sotsiaalministeerium_seksuaalvagivalla_levimus_ja_hoiakud_eestis",
+          "title": "Seksuaalvägivalla levimus ja hoiakud Eestis",
+          "format": "pdf",
+          "url": "https://www.sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Norra_toetused/Koduse_ja_soopohise_vagivalla_vahendamise_programm/sv_levimus_ja_hoiakud_eestis.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: sotsiaalministeerium_seksuaalvagivalla_levimus_ja_hoiakud_eestis"
+        },
+        {
+          "id": "epikoda_uro_puuetega_inimeste_oiguste_konventsioon_ja_fakultatiivpro",
+          "title": "ÜRO puuetega inimeste õiguste konventsioon ja fakultatiivprotokoll",
+          "format": "pdf",
+          "url": "https://epikoda.ee/wp-content/uploads/2025/09/raamat_veeb.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: epikoda_uro_puuetega_inimeste_oiguste_konventsioon_ja_fakultatiivpro"
+        },
+        {
+          "id": "epikoda_teekond_erilise_lapse_korval",
+          "title": "Teekond erilise lapse kõrval",
+          "format": "pdf",
+          "url": "https://epikoda.ee/wp-content/uploads/2025/09/epik_kasiraamat_2019-est-koos-low.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: epikoda_teekond_erilise_lapse_korval"
+        },
+        {
+          "id": "epikoda_epikoja_arengukava_2025_2030",
+          "title": "EPIKoja arengukava 2025–2030",
+          "format": "pdf",
+          "url": "https://epikoda.ee/wp-content/uploads/2025/09/EPIKoja-arengukava-2025-2030.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: epikoda_epikoja_arengukava_2025_2030"
+        },
+        {
+          "id": "epikoda_giidi_too_kasiraamat_pohimotted_ja_soovitused",
+          "title": "Giidi töö käsiraamat – põhimõtted ja soovitused",
+          "format": "pdf",
+          "url": "https://epikoda.ee/wp-content/uploads/2026/04/Giidi-too-kasiraamat-%E2%80%93pohimotted-ja-soovitused-2025.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: epikoda_giidi_too_kasiraamat_pohimotted_ja_soovitused"
+        },
+        {
+          "id": "epikoda_heade_praktikate_kogumik",
+          "title": "Heade praktikate kogumik",
+          "format": "pdf",
+          "url": "https://epikoda.ee/wp-content/uploads/2025/09/Heade_praktikate_kogumikEPIK2012.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: epikoda_heade_praktikate_kogumik"
+        },
+        {
+          "id": "epikoda_puudega_inimeste_toimetulek_kriisiajal_miniuuringu_kokkuvote",
+          "title": "Puudega inimeste toimetulek kriisiajal – miniuuringu kokkuvõte",
+          "format": "pdf",
+          "url": "https://epikoda.ee/wp-content/uploads/2025/09/epikoja-miniuuringu-kokkuvote-september-2020.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: epikoda_puudega_inimeste_toimetulek_kriisiajal_miniuuringu_kokkuvote"
+        },
+        {
+          "id": "astangu_erivajaduste_alase_teadlikkuse_tostmine",
+          "title": "Erivajaduste alase teadlikkuse tõstmine",
+          "format": "pdf",
+          "url": "https://www.astangu.ee/sites/default/files/media/To%CC%88o%CC%88vahend_2_moodul_1_Erivajaduste_alase_teadlikkuse_to%CC%83stmine.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: astangu_erivajaduste_alase_teadlikkuse_tostmine"
+        },
+        {
+          "id": "astangu_metoodiline_abimaterjal_kutsealase_ettevalmistuse_valjaoppe_",
+          "title": "Metoodiline abimaterjal kutsealase ettevalmistuse, väljaõppe ja töölerakendumise toetamiseks coaching’u kaudu",
+          "format": "pdf",
+          "url": "https://www.astangu.ee/sites/default/files/media/To%CC%88o%CC%88vahend_3___Va%CC%88ljao%CC%83pe_ja_to%CC%88o%CC%88lerakendumine_la%CC%88bi_coachingu.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: astangu_metoodiline_abimaterjal_kutsealase_ettevalmistuse_valjaoppe_"
+        },
+        {
+          "id": "astangu_tooandjate_noustamine_ja_toetamine",
+          "title": "Tööandjate nõustamine ja toetamine",
+          "format": "pdf",
+          "url": "https://www.astangu.ee/sites/default/files/media/To%CC%88o%CC%88vahend_6_Moodul_2_To%CC%88o%CC%88andjate_no%CC%83ustamine_ja_toetamine.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: astangu_tooandjate_noustamine_ja_toetamine"
+        },
+        {
+          "id": "astangu_kriisi_ennetamine",
+          "title": "Kriisi ennetamine",
+          "format": "pdf",
+          "url": "https://www.astangu.ee/sites/default/files/media/To%CC%88o%CC%88vahend_5_Moodul-1-Kriisi_ennetamine.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: astangu_kriisi_ennetamine"
+        },
+        {
+          "id": "astangu_supervisioon",
+          "title": "Supervisioon",
+          "format": "pdf",
+          "url": "https://www.astangu.ee/sites/default/files/media/To%CC%88o%CC%88vahend_4_moodul_1_Supervisioon.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: astangu_supervisioon"
+        },
+        {
+          "id": "astangu_hindamisvahendi_kasiraamat",
+          "title": "Hindamisvahendi käsiraamat",
+          "format": "pdf",
+          "url": "https://www.astangu.ee/sites/default/files/media/Hindamisvahendi%20k%C3%A4siraamat.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: astangu_hindamisvahendi_kasiraamat"
+        },
+        {
+          "id": "lastekaitse_liit_lapse_osalusoiguse_rakendamise_juhend",
+          "title": "Lapse osalusõiguse rakendamise juhend",
+          "format": "pdf",
+          "url": "https://www.lastekaitseliit.ee/wp-content/uploads/2025/05/Lapse_osalusoiguse_rakendamise_juhend_2025.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: lastekaitse_liit_lapse_osalusoiguse_rakendamise_juhend"
+        },
+        {
+          "id": "lastekaitse_liit_lapse_osalemise_pohimotted",
+          "title": "Lapse osalemise põhimõtted",
+          "format": "pdf",
+          "url": "https://www.lastekaitseliit.ee/wp-content/uploads/2025/05/Lapse-osalemise-pohimotted-A1_5mm-bleed.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: lastekaitse_liit_lapse_osalemise_pohimotted"
+        },
+        {
+          "id": "lastekaitse_liit_mul_on_oigus_2025",
+          "title": "Mul on õigus 2025",
+          "format": "pdf",
+          "url": "https://www.lastekaitseliit.ee/wp-content/uploads/2025/01/Mul-on-oigus-2025.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: lastekaitse_liit_mul_on_oigus_2025"
+        },
+        {
+          "id": "lastekaitse_liit_mina_olen_enda_oma_juhendmaterjal_opetajale_ja_lapsevanemale",
+          "title": "“Mina olen enda oma” juhendmaterjal õpetajale ja lapsevanemale",
+          "format": "pdf",
+          "url": "https://www.lastekaitseliit.ee/raamat/mina-olen-enda-oma/assets/download/juhendmaterial.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: lastekaitse_liit_mina_olen_enda_oma_juhendmaterjal_opetajale_ja_lapsevanemale"
+        },
+        {
+          "id": "lastekaitse_liit_uuring_lapse_heaolu_hindamine",
+          "title": "Uuring “Lapse heaolu hindamine”",
+          "format": "pdf",
+          "url": "https://www.lastekaitseliit.ee/wp-content/uploads/2011/04/Uuring-Lapse-heaolu-hindamine.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: lastekaitse_liit_uuring_lapse_heaolu_hindamine"
+        },
+        {
+          "id": "peaasi_raagime_lastest_logiraamat_vanematele_lapseootel_pere",
+          "title": "Räägime Lastest logiraamat vanematele: lapseootel pere",
+          "format": "pdf",
+          "url": "https://peaasi.ee/wp-content/uploads/2026/02/1.-Logiraamat-vanematele_lapseootel-pere-TAIDETAV.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: peaasi_raagime_lastest_logiraamat_vanematele_lapseootel_pere"
+        },
+        {
+          "id": "peaasi_raagime_lastest_logiraamat_vanematele_0_1_aastane_laps",
+          "title": "Räägime Lastest logiraamat vanematele: 0–1-aastane laps",
+          "format": "pdf",
+          "url": "https://peaasi.ee/wp-content/uploads/2026/02/2.-Logiraamat-vanematele_0-1-aastane-laps-TAIDETAV.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: peaasi_raagime_lastest_logiraamat_vanematele_0_1_aastane_laps"
+        },
+        {
+          "id": "peaasi_raagime_lastest_logiraamat_vanematele_1_5_aastane_laps",
+          "title": "Räägime Lastest logiraamat vanematele: 1–5-aastane laps",
+          "format": "pdf",
+          "url": "https://peaasi.ee/wp-content/uploads/2026/02/3.-Logiraamat-vanematele_1-5-aastane-laps-TAIDETAV.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: peaasi_raagime_lastest_logiraamat_vanematele_1_5_aastane_laps"
+        },
+        {
+          "id": "peaasi_raagime_lastest_logiraamat_vanematele_5_12_aastane_laps",
+          "title": "Räägime Lastest logiraamat vanematele: 5–12-aastane laps",
+          "format": "pdf",
+          "url": "https://peaasi.ee/wp-content/uploads/2026/02/4.-Logiraamat-vanematele_5-12-aastane-laps-TAIDETAV.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: peaasi_raagime_lastest_logiraamat_vanematele_5_12_aastane_laps"
+        },
+        {
+          "id": "peaasi_raagime_lastest_logiraamat_vanematele_12_18_aastane_noor",
+          "title": "Räägime Lastest logiraamat vanematele: 12–18-aastane noor",
+          "format": "pdf",
+          "url": "https://peaasi.ee/wp-content/uploads/2026/02/5.-Logiraamat-vanematele_12-18-aastane-laps-TAIDETAV.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: peaasi_raagime_lastest_logiraamat_vanematele_12_18_aastane_noor"
+        },
+        {
+          "id": "peaasi_raagime_lastest_logiraamat_tooks_peredega_0_1_aastane_laps",
+          "title": "Räägime Lastest logiraamat tööks peredega: 0–1-aastane laps",
+          "format": "pdf",
+          "url": "https://peaasi.ee/wp-content/uploads/2026/02/7.-Logiraamat-spetsialistile_0-1-aastane-laps-TAIDETAV.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: peaasi_raagime_lastest_logiraamat_tooks_peredega_0_1_aastane_laps"
+        },
+        {
+          "id": "peaasi_raagime_lastest_logiraamat_tooks_peredega_1_5_aastane_laps",
+          "title": "Räägime Lastest logiraamat tööks peredega: 1–5-aastane laps",
+          "format": "pdf",
+          "url": "https://peaasi.ee/wp-content/uploads/2025/10/8.-Logiraamat-spetsialistile_1%E2%80%935-aastane-laps.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: peaasi_raagime_lastest_logiraamat_tooks_peredega_1_5_aastane_laps"
+        },
+        {
+          "id": "peaasi_raagime_lastest_logiraamat_tooks_peredega_5_12_aastane_laps",
+          "title": "Räägime Lastest logiraamat tööks peredega: 5–12-aastane laps",
+          "format": "pdf",
+          "url": "https://peaasi.ee/wp-content/uploads/2026/02/9.-Logiraamat-spetsialistile_5%E2%80%9312-aastane-laps-TAIDETAV.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: peaasi_raagime_lastest_logiraamat_tooks_peredega_5_12_aastane_laps"
+        },
+        {
+          "id": "peaasi_raagime_lastest_praktikutele_1_5_aastaste_lastega_perede_nou",
+          "title": "Räägime Lastest praktikutele: 1–5-aastaste lastega perede nõustamiseks",
+          "format": "pdf",
+          "url": "https://peaasi.ee/wp-content/uploads/2024/08/8.-Logiraamat-praktikutele-vanus-1-5.docx.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: peaasi_raagime_lastest_praktikutele_1_5_aastaste_lastega_perede_nou"
+        },
+        {
+          "id": "peaasi_raagime_lastest_praktikutele_12_18_aastaste_lastega_perede_n",
+          "title": "Räägime Lastest praktikutele: 12–18-aastaste lastega perede nõustamiseks",
+          "format": "pdf",
+          "url": "https://peaasi.ee/wp-content/uploads/2024/08/10.-Logiraamat-praktikutele-vanus-12-18.docx.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: peaasi_raagime_lastest_praktikutele_12_18_aastaste_lastega_perede_n"
+        },
+        {
+          "id": "tarkvanem_tooleht_suhtekonto",
+          "title": "TÖÖLEHT: Suhtekonto",
+          "format": "pdf",
+          "url": "https://tarkvanem.ee/wp-content/uploads/2023/11/Suhtekonto_tooleht.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tarkvanem_tooleht_suhtekonto"
+        },
+        {
+          "id": "tarkvanem_tooleht_rahunemispaus",
+          "title": "TÖÖLEHT: Rahunemispaus",
+          "format": "pdf",
+          "url": "https://tarkvanem.ee/wp-content/uploads/2022/12/Tooleht_rahunemispaus.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tarkvanem_tooleht_rahunemispaus"
+        },
+        {
+          "id": "tarkvanem_tooleht_kuidas_anda_lapsele_korraldusi",
+          "title": "TÖÖLEHT: Kuidas anda lapsele korraldusi?",
+          "format": "pdf",
+          "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_kuidas_anda_lapsele_korraldusi.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tarkvanem_tooleht_kuidas_anda_lapsele_korraldusi"
+        },
+        {
+          "id": "tarkvanem_infomaterjal_beebivanematele_kodu_kohandamiseks_lapse_esimes",
+          "title": "Infomaterjal beebivanematele kodu kohandamiseks lapse esimesel eluaastal",
+          "format": "pdf",
+          "url": "https://tarkvanem.ee/wp-content/uploads/2023/10/infomaterjal-beebivanematele-kodu-kohandamiseks-lapse-esimesel-eluaastal.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tarkvanem_infomaterjal_beebivanematele_kodu_kohandamiseks_lapse_esimes"
+        },
+        {
+          "id": "tarkvanem_vaikelastega_perede_koduohutuse_hindamise_ankeet_kodukulastu",
+          "title": "Väikelastega perede koduohutuse hindamise ankeet kodukülastusi läbiviivale spetsialistile",
+          "format": "pdf",
+          "url": "https://tarkvanem.ee/wp-content/uploads/2023/10/2023-vaikelaste-koduohutuse-hindmise-ankeet-kodukulastusi-labiviivale-spetsialistile.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tarkvanem_vaikelastega_perede_koduohutuse_hindamise_ankeet_kodukulastu"
+        },
+        {
+          "id": "tarkvanem_kuidas_margata_et_noor_tarvitab_e_sigaretti_nikotiinipatja_v",
+          "title": "Kuidas märgata, et noor tarvitab e-sigaretti, nikotiinipatja või huuletubakat?",
+          "format": "pdf",
+          "url": "https://tarkvanem.ee/wp-content/uploads/2023/08/TAI_Kuidas_margata_e-sigareti_tarvitamist_lapsevanemad.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tarkvanem_kuidas_margata_et_noor_tarvitab_e_sigaretti_nikotiinipatja_v"
+        },
+        {
+          "id": "tarkvanem_sunnitusjargne_depressioon",
+          "title": "Sünnitusjärgne depressioon",
+          "format": "pdf",
+          "url": "https://tarkvanem.ee/wp-content/uploads/2023/01/Sunnitusjargne_depressioon_Gerli_Rand_voldik_99x210_veebi.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tarkvanem_sunnitusjargne_depressioon"
+        },
+        {
+          "id": "tarkvanem_tooleht_kuidas_sa_ennast_tunned",
+          "title": "TÖÖLEHT: Kuidas sa ennast tunned?",
+          "format": "pdf",
+          "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_kuidas_sa_ennast_tunned.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tarkvanem_tooleht_kuidas_sa_ennast_tunned"
+        },
+        {
+          "id": "tarkvanem_tooleht_lapse_tunnustamine",
+          "title": "TÖÖLEHT: Lapse tunnustamine",
+          "format": "pdf",
+          "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_lapse_tunnustamine.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tarkvanem_tooleht_lapse_tunnustamine"
+        },
+        {
+          "id": "tarkvanem_tooleht_marka_ja_tunnusta_positiivset_kaitumist",
+          "title": "TÖÖLEHT: Märka ja tunnusta positiivset käitumist",
+          "format": "pdf",
+          "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_marka_ja_tunnusta_positiivset_kaitumist.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tarkvanem_tooleht_marka_ja_tunnusta_positiivset_kaitumist"
+        },
+        {
+          "id": "tarkvanem_tooleht_tugevate_tunnetega_toimetulek",
+          "title": "TÖÖLEHT: Tugevate tunnetega toimetulek",
+          "format": "pdf",
+          "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_tugevate_tunnetega_toimetulek.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tarkvanem_tooleht_tugevate_tunnetega_toimetulek"
+        },
+        {
+          "id": "tarkvanem_tooleht_abikusimused_vestluseks_lasteaialapsega",
+          "title": "TÖÖLEHT: Abiküsimused vestluseks lasteaialapsega",
+          "format": "pdf",
+          "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_abikysimused_vestluseks_lasteaialapsega.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tarkvanem_tooleht_abikusimused_vestluseks_lasteaialapsega"
+        },
+        {
+          "id": "tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega",
+          "title": "TÖÖLEHT: Abiküsimused vestluseks algkoolilapsega",
+          "format": "pdf",
+          "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_abikysimused_vestluseks_algkoolilapsega.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega"
+        },
+        {
+          "id": "tarkvanem_tooleht_abikusimused_vestluseks_teismelisega",
+          "title": "TÖÖLEHT: Abiküsimused vestluseks teismelisega",
+          "format": "pdf",
+          "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_abikysimused_vestluseks_teismelisega.pdf",
+          "server_status": "IDENTITY_FIELD_ABSENT_FROM_EXPORT",
+          "local_status": "LOCAL_FILE_EXISTS",
+          "details": "server docs: tarkvanem_tooleht_abikusimused_vestluseks_teismelisega"
+        }
+      ]
+    }
+  ]
+}

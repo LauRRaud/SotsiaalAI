@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-4-2024",
+  "issueLabel": "4/2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "hadaohus-laps-2024-4",
+  "title": "Hädaohus oleva lapse abistamine lastekaitsetöötaja vaates",
+  "authors": [
+    "Kristina Laul",
+    "Maarja Kähr"
+  ],
+  "section": "Korraldus",
+  "pageRange": "40–43",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "source_path": "sotsiaaltoo_4_2024_web_Part8.pdf",
+  "description": "Artikkel selgitab, kuidas peaks kohalik omavalitsus hädaohus oleva lapse juhtumitele reageerima ja millal on õige kasutada lapse perest eraldamist haldusakti alusel ning millal paigutada laps teenusele vanema nõusolekul. Käsitletakse lastekaitseseaduse aluseid, haldusakti koostamise nõudeid, lapse ja vanema õigusi ning kaasamise põhimõtteid. Autorid rõhutavad selgitustöö olulisust lapsevanematele, lapsele arusaadavat suhtlust, turvalise keskkonna tagamist ning koostööd perega, et lapsele loodaks pikaajaliselt turvaline elukorraldus.",
+  "tags": [
+    "hädaohus olev laps",
+    "lastekaitse",
+    "perest eraldamine",
+    "haldusakt",
+    "vanema nõusolek",
+    "lastekaitseseadus",
+    "lapse õigused",
+    "juhtumikorraldus"
+  ],
+  "document_id": "sotsiaaltoo-4-2024-hadaohus-laps-2024-4",
+  "source_format": "pdf",
+  "source_sha256": "d088c71cfe4923d347cd32e2bb238298d1e689251b6eadb2f18b8a69600cc02a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2024-hadaohus-laps-2024-4",
+    "previous_source_path": "sotsiaaltoo_4_2024_web_Part8.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d088c71cfe4923d347cd32e2bb238298d1e689251b6eadb2f18b8a69600cc02a",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

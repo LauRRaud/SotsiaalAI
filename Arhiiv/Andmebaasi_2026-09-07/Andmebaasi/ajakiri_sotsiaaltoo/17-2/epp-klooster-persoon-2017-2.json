@@ -1,0 +1,89 @@
+{
+  "docId": "sotsiaaltoo-2-2017",
+  "articleId": "epp-klooster-persoon-2017-2",
+  "title": "Epp Klooster: sotsiaaltööharidus ja sotsiaaltööga tegelemine muudab inimese sallivamaks",
+  "authors": [
+    "Rain Resmeldt Uusen"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2017",
+  "section": "Persoon",
+  "pageRange": "3-6",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu Pärnu maavalitsuse sotsiaal- ja haridusosakonna pikaaegsest juhatajast Epp Kloostrist (63), kellele ESTA andis elutöö tegija tiitli. Ta meenutab 1992. aastat, mil Pärnumaa hakkas neljanda maakonnana sotsiaalabi osakonda looma, ja tõdeb, et sattus valdkonda juhuslikult. Hoiatab, et haldusreformi järel tekkivates suurtes valdades tuleb tagada, et sotsiaaltöö ei jääks inimestest kaugele, ning et sotsiaaltöötajal peab olema selgroogu seista selle eest, et ükski abivajaja ei jääks abita.",
+  "tags": [
+    "persoonilugu",
+    "maavalitsus",
+    "haldusreform",
+    "elutöö",
+    "Pärnumaa"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2-2017_veebi_link_Part3.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2017-epp-klooster-persoon-2017-2",
+  "source_sha256": "3660df0a41ea371238b9fcec5b85d76621f40f36c881e089cab1f2aeaaac2419",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2017-epp-klooster-persoon-2017-2",
+    "previous_source_path": "Sotsiaaltoo_2-2017_veebi_link_Part3.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2-2017_veebi_link_Part3.pdf",
+    "reference_stored_source_sha256": "d4b611e60e23f619e2f08aced1fb5aff33a6a940c602db7badc1ad6b0ed31904",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf",
+      "source_sha256": "609af110244e684ccbb68aea9504f2490fce2852b1e7caa7bedacb621d661a8a",
+      "pdf_start_page": 5,
+      "pdf_end_page": 8,
+      "printed_page_range": "3-6",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 8,
+      "source_regions": [
+        {
+          "source_pdf_page": 5,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 6,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 7,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 8,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "3-6"
+    },
+    "server_page_range": "3-6"
+  }
+}

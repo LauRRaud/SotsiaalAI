@@ -1,0 +1,38 @@
+{
+  "docId": "sotsiaaltoo-3-2019",
+  "articleId": "uksinda-otsustamine-lastekaitse-sotsiaaltoos-2019",
+  "title": "Üksinda otsustamine lastekaitse sotsiaaltöös: miks tuleb lapse parima huvi põhimõtte rakendamisel partneritega aru pidada",
+  "authors": [
+    "Asgeir Falch-Eriksen"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2019",
+  "section": "Lapsesõbralik lastekaitse",
+  "pageRange": "32-35",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Norra lastekaitseuurija analüüsib lapse parima huvi põhimõtte määramatust ning rõhutab vajadust teha lastekaitses otsuseid mitme osapoole arutelu ja põhjendatud kaalutluse tulemusena, mitte üksinda otsustades.",
+  "tags": [
+    "lapse parim huvi",
+    "lastekaitse",
+    "otsustamine",
+    "rahvusvaheline vaade"
+  ],
+  "source_type": "file",
+  "source_path": "ST3_2019_veeb_link_Part8.pdf",
+  "document_id": "sotsiaaltoo-3-2019-uksinda-otsustamine-lastekaitse-sotsiaaltoos-2019",
+  "source_format": "pdf",
+  "source_sha256": "7fa0573ad95a46b621f9dbe803a64f9ab8ecdab381d549bbbdc139ee0d373129",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2019-uksinda-otsustamine-lastekaitse-sotsiaaltoos-2019",
+    "previous_source_path": "ST3_2019_veeb_link_Part8.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "7fa0573ad95a46b621f9dbe803a64f9ab8ecdab381d549bbbdc139ee0d373129",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

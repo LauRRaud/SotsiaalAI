@@ -1,0 +1,91 @@
+{
+  "docId": "sotsiaaltoo-2-2017",
+  "articleId": "suurte-erihooldekodude-umberkorraldamine-2017-2",
+  "title": "Suurte erihooldekodude ümberkorraldamine on hoolikalt läbimõeldud protsess",
+  "authors": [
+    "Tuuli Ainsaar",
+    "Kersti Ojasuu"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2017",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "67-70",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "AS Hoolekandeteenused teenuste arendusspetsialisti ülevaade suurte erihooldekodude (Võisiku, Sõmera, Koluvere, Erastvere, Tori kodud ja Imastu Kool-Kodu) ümberkorraldamisest. Aasta jooksul on täpselt sada inimest saanud uued elukohad Tartus, Jõhvis, Raplas, Pärnus, Haapsalus, Viljandis ja Tallinnas; kokku leiab uue kodu ligi tuhat inimest. Kirjeldab kolimise ettevalmistust ja individuaalset lähenemist ning nimetab uue keskkonnaga kaasnevaid riske.",
+  "tags": [
+    "deinstitutsionaliseerimine",
+    "erihoolekanne",
+    "AS Hoolekandeteenused",
+    "kogukonnapõhine teenus",
+    "kolimine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2-2017_veebi_link_Part20.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2017-suurte-erihooldekodude-umberkorraldamine-2017-2",
+  "source_sha256": "81e2fdfc57a35e4abe807140db1ff94af4c2b29687306d5ad691d6fb3f68440b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2017-suurte-erihooldekodude-umberkorraldamine-2017-2",
+    "previous_source_path": "Sotsiaaltoo_2-2017_veebi_link_Part20.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2-2017_veebi_link_Part20.pdf",
+    "reference_stored_source_sha256": "0dabbb0948600be3a80a5801c015f092387e6483861f332519c08c9c54fffd02",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf",
+      "source_sha256": "609af110244e684ccbb68aea9504f2490fce2852b1e7caa7bedacb621d661a8a",
+      "pdf_start_page": 69,
+      "pdf_end_page": 72,
+      "printed_page_range": "67-70",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 72,
+      "source_regions": [
+        {
+          "source_pdf_page": 69,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 70,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 71,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 72,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "67-70",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf"
+    },
+    "server_page_range": "67-70"
+  }
+}

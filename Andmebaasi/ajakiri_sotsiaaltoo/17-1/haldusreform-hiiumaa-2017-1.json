@@ -1,0 +1,81 @@
+{
+  "docId": "sotsiaaltoo-1-2017",
+  "articleId": "haldusreform-hiiumaa-2017-1",
+  "title": "Haldusreformist ja sotsiaalteenustest Hiiumaa näitel",
+  "authors": [
+    "Riho Rahuoja"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2017",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "9-11",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Hiiu maavanem Riho Rahuoja teatab, et 2013. aastal ühinenud Kärdla ja Kõrgessaare teenused ning toetused ühtlustati ülespoole ja olid 2015. aastaks mõlema endise valla elanikele ühesugused; paranemist kinnitavad tema hinnangul rahulolu-uuring ja EQUASS-sertifikaat. Ta möönab, et avalikkuses püsib siiski tunne, nagu oleks väiksemale poolele liiga tehtud, ning et just see umbusaldus, mitte teenuste tase, hoiab Emmastet ja Pühalepat ühinemisest eemal. Kokkuvõttes leiab ta, et sotsiaalvaldkonnas ei ole ühinemist põhjust karta.",
+  "tags": [
+    "sotsiaaltöö korraldus",
+    "haldusreform",
+    "Hiiumaa",
+    "sotsiaalteenused",
+    "kohalik omavalitsus"
+  ],
+  "source_type": "file",
+  "source_path": "2017_1_Part4.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2017-haldusreform-hiiumaa-2017-1",
+  "source_sha256": "6b3de70a71860d580f60f471baa4e0ff641b2b1347c8f84e086765171d6588e6",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2017-haldusreform-hiiumaa-2017-1",
+    "previous_source_path": "2017_1_Part4.txt",
+    "previous_source_original_path": "2017_1.pdf",
+    "reference_stored_source_sha256": "306ad1675f278697d3734c36e11530c719d85cae1cc60b83965c22ad57c6a252",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf",
+      "source_sha256": "335f81467a555f12c55d0e8bf60122a178c5267567cf79607448a5d987629e50",
+      "pdf_start_page": 11,
+      "pdf_end_page": 13,
+      "printed_page_range": "9-11",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 13,
+      "source_regions": [
+        {
+          "source_pdf_page": 11,
+          "bounds": [
+            0,
+            411.893,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 12,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 13,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        }
+      ],
+      "effective_printed_page_range": "9-11",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf"
+    },
+    "server_page_range": "9-11"
+  }
+}

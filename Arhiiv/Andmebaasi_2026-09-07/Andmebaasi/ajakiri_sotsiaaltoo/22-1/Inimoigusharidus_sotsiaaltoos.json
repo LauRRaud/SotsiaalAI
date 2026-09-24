@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-1-2022",
+  "articleId": "inimoigusharidus-sotsiaaltoos-2022-1",
+  "title": "Inimõigusharidus sotsiaaltöös",
+  "authors": [
+    "Alexander Klein",
+    "Ingo Stamm"
+  ],
+  "authors_note": "Inglise keelest tõlkinud Marju Selg.",
+  "authors_fixed": "2026-08-15",
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2022",
+  "section": "Inimõigused",
+  "pageRange": "51-55",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel selgitab inimõigushariduse rolli sotsiaaltöös ja rõhutab vajadust tugevdada erialaõppes inimõigustealast pädevust. Autor arutleb, kuidas sotsiaaltöötaja saab kaitsta haavatavate inimeste õigusi ning miks on vaja teadlikkust nii rahvusvahelistest lepingutest kui ka igapäevastest eetilistest dilemmadest.",
+  "tags": [
+    "inimõigused",
+    "inimõigusharidus",
+    "sotsiaaltöö eetika",
+    "õiguste kaitse",
+    "haavatavad rühmad"
+  ],
+  "source_type": "file",
+  "source_path": "2022_artikkel_11_inimoigusharidus.pdf",
+  "document_id": "sotsiaaltoo-1-2022-inimoigusharidus-sotsiaaltoos-2022-1",
+  "source_format": "pdf",
+  "source_sha256": "57106fce1813d688f9cc78bebbed2c2a058a5ecb15590bcf5349b90a9731414a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2022-inimoigusharidus-sotsiaaltoos-2022-1",
+    "previous_source_path": "2022_artikkel_11_inimoigusharidus.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "57106fce1813d688f9cc78bebbed2c2a058a5ecb15590bcf5349b90a9731414a",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

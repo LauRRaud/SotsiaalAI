@@ -1,0 +1,81 @@
+{
+  "docId": "sotsiaaltoo-3-2017",
+  "articleId": "miks-asendushooldust-muuta-2017-3",
+  "title": "Miks on vaja asendushooldust muuta?",
+  "authors": [
+    "Signe Riisalo"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2017",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "19-21",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi laste hoolekandepoliitika juhi artikkel asendushoolduse reformi vajadusest, mille aluseks on roheline raamat ja Riigikokku saadetud sotsiaalhoolekande seaduse muutmise eelnõu. Autor tõdeb, et kunagised sajale lapsele rajatud kolooniasarnased lastekodud on asendunud hubaste peremajadega ja kuni kaheksaliikmeliste peredega, kuid keskkonna paranemise kõrval peab muutuma ka sisu. Rõhutab, et oma perest ilma jäänud lapsed on läbi elanud kaotusetrauma.",
+  "tags": [
+    "asendushooldus",
+    "deinstitutsionaliseerimine",
+    "roheline raamat",
+    "peremajad",
+    "lastekaitse"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part6.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2017-miks-asendushooldust-muuta-2017-3",
+  "source_sha256": "d68f233cabf3f836e503761629da5200fd06da98bcdb75c2ec180bdbc6605246",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2017-miks-asendushooldust-muuta-2017-3",
+    "previous_source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part6.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part6.pdf",
+    "reference_stored_source_sha256": "d12ff7f1883767900e256c5282dbd98112438ccfc9f1467cddd77d7704d2c99e",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf",
+      "source_sha256": "3f27c22982b22a396dace8a957798cc21d3240489c7ce4d92802bf1a94bde7a8",
+      "pdf_start_page": 21,
+      "pdf_end_page": 23,
+      "printed_page_range": "19-21",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 23,
+      "source_regions": [
+        {
+          "source_pdf_page": 21,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 22,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 23,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "19-21",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf"
+    },
+    "server_page_range": "19-21"
+  }
+}

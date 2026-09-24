@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2021",
+  "articleId": "heaolu-arengukava-2023-2030-2021-2",
+  "title": "Heaolu arengukava 2023–2030",
+  "authors": [
+    "Jaanika Mastik",
+    "Eha Lannes"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2021",
+  "section": "Sotsiaalpoliitika",
+  "pageRange": "9-10",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab heaolu arengukava 2023–2030 koostamise lähtekohti ja põhisuundi. Selgitatakse, kuidas kava seob tervise-, sotsiaal-, haridus- ja tööhõivepoliitika eesmärke, millistele probleemidele soovitakse järgneval kümnendil lahendusi leida ning kuidas kavandatakse haavatavate rühmade toetust ja ebavõrdsuse vähendamist. Autorid avavad ka kaasamisprotsessi, kus oluline roll on kohalikel omavalitsustel, partnerorganisatsioonidel ja elanikel.",
+  "tags": [
+    "heaolu arengukava",
+    "sotsiaalpoliitika",
+    "tervisepoliitika",
+    "hariduspoliitika",
+    "tööhõive",
+    "ebavõrdsus",
+    "poliitikakujundamine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2021_web_link_Part4.pdf",
+  "document_id": "sotsiaaltoo-2-2021-heaolu-arengukava-2023-2030-2021-2",
+  "source_format": "pdf",
+  "source_sha256": "9581ed4292bc072c55225bf6334dedd6c05ef86c5ccd913c0847be11b45eb36b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2021-heaolu-arengukava-2023-2030-2021-2",
+    "previous_source_path": "Sotsiaaltoo_2_2021_web_link_Part4.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "9581ed4292bc072c55225bf6334dedd6c05ef86c5ccd913c0847be11b45eb36b",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

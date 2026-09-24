@@ -1,0 +1,47 @@
+{
+  "docId": "sotsiaaltoo-4-2024",
+  "issueLabel": "4/2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "tootingimused-2024-4",
+  "title": "Töötingimused on sotsiaal- ja lastekaitsetöötajate heaolu põhiküsimus",
+  "authors": [
+    "Kairiin Nuudi",
+    "Karmen Toros",
+    "Kersti Kriisk",
+    "Rafaela Lehtme"
+  ],
+  "section": "Uurimus",
+  "pageRange": "17–25",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "source_path": "sotsiaaltoo_4_2024_web_Part5.pdf",
+  "description": "Uurimus käsitleb töötingimuste mõju sotsiaaltöötajate ja lastekaitsetöötajate heaolule. Fookuses on töökoormus, töötajate nappus, töövägivalla juhtumid, läbipõlemise risk ja tööandja roll töötajate hoidmisel.",
+  "tags": [
+    "uurimus",
+    "töötingimused",
+    "heaolu",
+    "lastekaitse",
+    "töökoormus",
+    "läbipõlemine"
+  ],
+  "authors_vana": [
+    "Uurimismeeskond"
+  ],
+  "authors_parandatud": "2026-08-17, A5 pöördsuuna kontroll, kinnitatud lähte-PDF-i autorirea vastu",
+  "document_id": "sotsiaaltoo-4-2024-tootingimused-2024-4",
+  "source_format": "pdf",
+  "source_sha256": "fc61f3b8f025827511ceadfe4984f6d1d75d459d96c89d595f76e3af1a022eed",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2024-tootingimused-2024-4",
+    "previous_source_path": "sotsiaaltoo_4_2024_web_Part5.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "fc61f3b8f025827511ceadfe4984f6d1d75d459d96c89d595f76e3af1a022eed",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

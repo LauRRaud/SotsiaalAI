@@ -1,0 +1,91 @@
+{
+  "docId": "sotsiaaltoo-2-2017",
+  "articleId": "erihoolekande-teenusedisain-2017-2",
+  "title": "Erihoolekande teenussüsteemi arendamine teenuse disaini toel",
+  "authors": [
+    "Katrin Tsuiman",
+    "Raiko Puustusmaa"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2017",
+  "section": "Projekt",
+  "pageRange": "71-74",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi nõuniku ülevaade erihoolekandeteenuste uue teenusesüsteemi loomisest teenuse disaini metoodika abil, alustatud 2016. aastal ESF-i meetme „Tööturul osalemist toetavad hoolekandeteenused” toel. Seotud erihoolekande arengukavaga 2014–2020 ja heaolu arengukavaga 2016–2020. Disainiprotsessi tulemusena nähakse ühe arenguna kohaliku omavalitsuse suuremat rolli erihoolekandeteenuste pakkumisel; uut mudelit katsetatakse omavalitsustes.",
+  "tags": [
+    "teenuse disain",
+    "erihoolekanne",
+    "ESF",
+    "heaolu arengukava",
+    "isikukesksus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2-2017_veebi_link_Part21.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2017-erihoolekande-teenusedisain-2017-2",
+  "source_sha256": "326bc25bcaecc035e2a04d7d09cf1ef33e2a98ca5469247c2fbe9317caef15c9",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2017-erihoolekande-teenusedisain-2017-2",
+    "previous_source_path": "Sotsiaaltoo_2-2017_veebi_link_Part21.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2-2017_veebi_link_Part21.pdf",
+    "reference_stored_source_sha256": "4483ae62527888c7ad00f7f2653ee3559293e81f84457ba3ddfd3898a7849b29",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf",
+      "source_sha256": "609af110244e684ccbb68aea9504f2490fce2852b1e7caa7bedacb621d661a8a",
+      "pdf_start_page": 73,
+      "pdf_end_page": 76,
+      "printed_page_range": "71-74",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 76,
+      "source_regions": [
+        {
+          "source_pdf_page": 73,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 74,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 75,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 76,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "71-74",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf"
+    },
+    "server_page_range": "71-74"
+  }
+}

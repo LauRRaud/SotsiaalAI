@@ -1,0 +1,63 @@
+{
+  "docId": "sotsiaaltoo-erinumber-2016",
+  "articleId": "sotsiaaltoo-erinumber-2016-artikkel-06-eesti-ainus-kestlik-ressurss-on-tootav-inimene",
+  "title": "Eesti ainus kestlik ressurss on töötav inimene",
+  "authors": [
+    "Toomas Tamsar"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "erinumber 2016",
+  "section": "Tööhõive",
+  "pageRange": "20",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Eesti Tööandjate Keskliidu juhataja väidab, et Eesti ainus kestlik ressurss on töötav inimene, ja esitab tööandjate manifesti kolm nõuet: igaüks, kes suudab kasvõi osaliselt töötada, peab saama seda teha; ligi sada tuhat töövõimetuks tunnistatut on osaliselt töövõimeline; ning tööjõupoliitika peab olema strateegiline prioriteet.",
+  "tags": [
+    "tööhõive",
+    "tööandjad",
+    "töövõimereform",
+    "tööjõupoliitika"
+  ],
+  "source_type": "file",
+  "source_path": "2016_eri_artikkel_06_eesti_ainus_kestlik_ressurss_on_tootav_inimene.pdf",
+  "added": "2026-08-18",
+  "fulltext_note": "Erinumber „Sotsiaaltöö ; erinumber 2016\" (DIGAR nlib-digar:390083), pühendatud heaolu arengukavale 2016–2023. Lisatud korpusesse 18.08.2026.",
+  "author_note": "Sisukorras „Toomas Tamsaar\", artikli autorireal „Toomas Tamsar\" — kasutatud autorirea kuju (A5 reegel).",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-06-eesti-ainus-kestlik-ressurss-on-tootav-inimene",
+  "source_sha256": "7d84c6bf6291cfa24e554fe210e70620bfc8ad717d0fb945e8ff4affddb8d023",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-06-eesti-ainus-kestlik-ressurss-on-tootav-inimene",
+    "previous_source_path": "2016_eri_artikkel_06_eesti_ainus_kestlik_ressurss_on_tootav_inimene.txt",
+    "previous_source_original_path": "2016_erinumber.pdf",
+    "reference_stored_source_sha256": "3c7ed8994991fe4f5185f71ab1ee35f881e52d6512fb4a5c610b2eb3999c6ddd",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2016_erinumber.pdf",
+      "source_sha256": "ae3bbf0a621beae80ae1e05a13206ffa00c6811806397ee8ac925f3762d93c70",
+      "pdf_start_page": 22,
+      "pdf_end_page": 22,
+      "printed_page_range": "20-20",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 22,
+      "source_regions": [
+        {
+          "source_pdf_page": 22,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "20"
+    },
+    "server_page_range": "20-20"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2019",
+  "articleId": "hakaton-koosloome-teenuste-arendamisel-2019",
+  "title": "Häkaton kui koosloomel põhinev tööriist uudsete teenuste arendamisel",
+  "authors": [
+    "Kadri Kangro",
+    "Katri-Liis Reimann"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2019",
+  "section": "Sotsiaalpoliitika",
+  "pageRange": "8-15",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab häkatoni ja loometalguid kui koosloomel põhinevaid meetodeid kohalike sotsiaalteenuste ja kogukondlike lahenduste arendamiseks, tuginedes Võrumaa praktikale ja teadus-arendusprojektile.",
+  "tags": [
+    "häkaton",
+    "koosloome",
+    "sotsiaalteenuste arendamine",
+    "kogukonnatöö",
+    "New Public Governance",
+    "avatud valitsemine",
+    "Võrumaa"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part4.pdf",
+  "document_id": "sotsiaaltoo-2-2019-hakaton-koosloome-teenuste-arendamisel-2019",
+  "source_format": "pdf",
+  "source_sha256": "e6833aa193755459032e2779eb4f23cfb60b9468378f99959f16526371bb49ef",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2019-hakaton-koosloome-teenuste-arendamisel-2019",
+    "previous_source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part4.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e6833aa193755459032e2779eb4f23cfb60b9468378f99959f16526371bb49ef",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

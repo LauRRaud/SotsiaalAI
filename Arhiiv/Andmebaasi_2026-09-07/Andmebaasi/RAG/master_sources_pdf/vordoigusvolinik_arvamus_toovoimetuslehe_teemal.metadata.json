@@ -1,0 +1,86 @@
+{
+  "source": {
+    "source_id": "vordoigusvolinik_arvamus_toovoimetuslehe_teemal",
+    "title": "Arvamus töövõimetuslehe teemal",
+    "url": "https://volinik.ee/volinik-live-web-prd/s3fs-public/2023-08/Arvamus-nr-44_To%CC%88o%CC%88vo%CC%83imetusleht.pdf",
+    "normalized_url": "https://volinik.ee/volinik-live-web-prd/s3fs-public/2023-08/Arvamus-nr-44_Töövõimetusleht.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Võrdõigusvolinik",
+    "organization_id": "vordoigusvolinik",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Võrdõigusvolinik",
+      "töövõime",
+      "vähenenud töövõime",
+      "töötamine",
+      "tööturuteenused",
+      "infomaterjal"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_069",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+    "source_context": {
+      "heading_2": "Võrdõigusvolinik",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 337,
+      "order": 191
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "Arvamus töövõimetuslehe teemal"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Võrdõigusvolinik"
+    ],
+    "organizations_seen": [
+      "vordoigusvolinik"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Võrdõigusvolinik",
+        "line": 337,
+        "order": 191
+      },
+      {
+        "heading_2": "Võrdõigusvolinik",
+        "line": 811,
+        "order": 398
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://volinik.ee/volinik-live-web-prd/s3fs-public/2023-08/Arvamus-nr-44_Töövõimetusleht.pdf"
+  },
+  "final_url": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2023-08/Arvamus-nr-44_To%CC%88o%CC%88vo%CC%83imetusleht.pdf",
+  "redirects": [
+    {
+      "status": 301,
+      "from": "https://volinik.ee/volinik-live-web-prd/s3fs-public/2023-08/Arvamus-nr-44_To%CC%88o%CC%88vo%CC%83imetusleht.pdf",
+      "to": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2023-08/Arvamus-nr-44_To%CC%88o%CC%88vo%CC%83imetusleht.pdf"
+    }
+  ],
+  "sha256": "92b98d6e12c74a80222d31bd8f9589245af549b6b120ffcb3c05580a23b937a4",
+  "bytes": 170932,
+  "downloaded_at": "2026-08-14T08:00:40.540Z"
+}

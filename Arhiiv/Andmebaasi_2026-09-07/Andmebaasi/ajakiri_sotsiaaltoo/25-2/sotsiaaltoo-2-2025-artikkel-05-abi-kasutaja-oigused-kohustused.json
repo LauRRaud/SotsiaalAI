@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "abi-kasutajal-on-oigused-aga-kas-ka-kohustused-2025-2",
+  "title": "Abi kasutajal on õigused, aga kas ka kohustused?",
+  "authors": [
+    "Valter Parve"
+  ],
+  "section": "Mõtisklus",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "description": "Arvamuslugu, mis arutleb sotsiaal- ja tervishoiuteenuste kasutaja õiguste ja kohustuste üle. Autor küsib, kuidas mõista vastutust olukorras, kus inimene vajab abi, ning milline on teenuse kasutaja roll koostöös spetsialistidega. Artikkel pakub mõtteainet selle üle, kuidas hoida tasakaalus kliendi autonoomiat, väärikust ja turvatunnet ühelt poolt ning teenuse tõhusust, ressursside piiratusest tulenevaid valikuid ja teiste abivajajate huve teiselt poolt. Lõpus esitatakse praktiline meelespea abi kasutajale.",
+  "tags": [
+    "teenuse kasutaja",
+    "õigused",
+    "kohustused",
+    "koostöö",
+    "eetika",
+    "sotsiaalteenused",
+    "tervishoiuteenused"
+  ],
+  "source_path": "Abi kasutajal on õigused, aga kas ka kohustused_2_2025.pdf",
+  "pageRange": "1–3",
+  "document_id": "sotsiaaltoo-2-2025-abi-kasutajal-on-oigused-aga-kas-ka-kohustused-2025-2",
+  "source_format": "pdf",
+  "source_sha256": "bcc9505127d6a4a982369fbbcedfc7a4b2d70004489df72c679e6bc3c0565f67",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2025-abi-kasutajal-on-oigused-aga-kas-ka-kohustused-2025-2",
+    "previous_source_path": "Abi kasutajal on õigused, aga kas ka kohustused_2_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "bcc9505127d6a4a982369fbbcedfc7a4b2d70004489df72c679e6bc3c0565f67",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

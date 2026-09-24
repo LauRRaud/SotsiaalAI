@@ -1,0 +1,78 @@
+{
+  "provenance": {
+    "kind": "recovered_from_legacy_index",
+    "source_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "source_text_store": "/var/lib/sotsiaalai-rag/lexical-index.sqlite3",
+    "recovered_at": "2026-09-07T20:11:41.708487+00:00"
+  },
+  "review_status": "compare_with_primary_source_before_ingest",
+  "document_id": "kov::maardu-linn::item::maardu_linn_contact_karina_neimla_nikiforova",
+  "metadata": {
+    "createdAt": "2026-05-20T06:14:13.289534+00:00",
+    "type": "TEXT",
+    "lastIngested": "2026-05-20T06:14:13.252390+00:00",
+    "title": "Karina Neimla-Nikiforova",
+    "description": "Tegevusvaldkonnad on eluruumi tagamise teenus, hooldaja ja hooldajatoetuse määramine ning osakonna ülesannete korraldamine.",
+    "audience": "BOTH",
+    "audiences": [
+      "CLIENT",
+      "SOCIAL_WORKER"
+    ],
+    "authors": [],
+    "tags": [
+      "contact"
+    ],
+    "language": "et",
+    "collection_id": "kov_services",
+    "country": "EE",
+    "county": "Raplamaa",
+    "jurisdiction_level": "MUNICIPALITY",
+    "municipality_name": "Märjamaa vald",
+    "municipality_id": "maardu_linn",
+    "district_name": null,
+    "district_id": null,
+    "source_format": null,
+    "checked_at": "2026-04-29",
+    "item_type": "contact",
+    "content_status": "active",
+    "resource_type": "contact",
+    "source_keys": [
+      "social_contacts"
+    ],
+    "source_urls": [
+      "https://maardu.ee/ametnikud1"
+    ],
+    "source_register_file": "maardu-linn.sources.json",
+    "source_count": 27,
+    "administering_body": null,
+    "issuer": null,
+    "act_title": null,
+    "act_reference": null,
+    "canonical_source_id": null,
+    "act_type": null,
+    "effective_start": null,
+    "effective_end": null,
+    "is_current_version": null,
+    "text_type": null,
+    "source_type": "official_contact",
+    "path": null,
+    "url": "https://maardu.ee/ametnikud1",
+    "source_sha256": null,
+    "source_updated_at": null,
+    "original_doc_id": null,
+    "fileName": null,
+    "mimeType": "text/markdown",
+    "geo_detection_method": null,
+    "geo_detection_confidence": null,
+    "docId": "kov::maardu-linn::item::maardu_linn_contact_karina_neimla_nikiforova",
+    "updatedAt": "2026-06-10T20:54:31.849401+00:00",
+    "content_hash": "1717d956e7027593f12b1186d103b0db9aafaff7d539dfdcdd95838c4dc88912"
+  },
+  "chunks": [
+    {
+      "chunk_id": "kov::maardu-linn::item::maardu_linn_contact_karina_neimla_nikiforova:0:28754312",
+      "document_version": null,
+      "text": "[TITLE] Karina Neimla-Nikiforova\n[DESC] Tegevusvaldkonnad on eluruumi tagamise teenus, hooldaja ja hooldajatoetuse määramine ning osakonna ülesannete korraldamine.\n[SECTION] Kontaktid\n[ITEM_TYPE] contact\n[STATUS] active\n[RESOURCE_TYPE] contact\n[COUNTY] Raplamaa\n[MUNICIPALITY] Märjamaa vald\n# Karina Neimla-Nikiforova Liik: contact Staatus: active Nimi: Karina Neimla-Nikiforova Roll: Sotsiaalabi osakonna juhataja asetäitja Osakond: Sotsiaalabi osakond Sihtrühm: Puudub. Auditoorium: CLIENT, SOCIAL_WORKER Kokkuvõte: Tegevusvaldkonnad on eluruumi tagamise teenus, hooldaja ja hooldajatoetuse määramine ning osakonna ülesannete korraldamine. Ressursi tüüp: contact Tingimused: Taotlemine: Puudub. Vormid: Puudub. Haldaja / teenuseosutaja: Puudub. Kontaktid: Puudub. Tasulisus või summa: Puudub. Õiguslik alus: Puudub."
+    }
+  ]
+}

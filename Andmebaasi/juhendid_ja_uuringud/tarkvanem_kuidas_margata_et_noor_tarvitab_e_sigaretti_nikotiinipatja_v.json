@@ -1,0 +1,145 @@
+{
+  "source_path": "tarkvanem_kuidas_margata_et_noor_tarvitab_e_sigaretti_nikotiinipatja_v.pdf",
+  "source_format": "pdf",
+  "sha256": "180353ed44482677514d203d3da716abc2bf446772b28e2b9d7f0bc1a0f1af63",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/tarkvanem_kuidas_margata_et_noor_tarvitab_e_sigaretti_nikotiinipatja_v.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "tarkvanem_kuidas_margata_et_noor_tarvitab_e_sigaretti_nikotiinipatja_v",
+          "title": "Kuidas märgata, et noor tarvitab e-sigaretti, nikotiinipatja või huuletubakat?",
+          "url": "https://tarkvanem.ee/wp-content/uploads/2023/08/TAI_Kuidas_margata_e-sigareti_tarvitamist_lapsevanemad.pdf",
+          "normalized_url": "https://tarkvanem.ee/wp-content/uploads/2023/08/TAI_Kuidas_margata_e-sigareti_tarvitamist_lapsevanemad.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "Tarkvanem",
+          "organization_id": "tarkvanem",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Tarkvanem",
+            "lapsed ja pered",
+            "noor",
+            "sõltuvus",
+            "uimastid",
+            "narkootikumid",
+            "ennetustöö",
+            "riskikäitumine",
+            "infomaterjal"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Partnerid",
+            "heading_3": "Tarkvanem",
+            "heading_4": null,
+            "line": 637,
+            "order": 323
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Kuidas märgata, et noor tarvitab e-sigaretti, nikotiinipatja või huuletubakat?"
+          ],
+          "collection_hints": [
+            "organization_materials"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Tarkvanem"
+          ],
+          "organizations_seen": [
+            "tarkvanem"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Partnerid",
+              "heading_3": "Tarkvanem",
+              "line": 637,
+              "order": 323
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://tarkvanem.ee/wp-content/uploads/2023/08/TAI_Kuidas_margata_e-sigareti_tarvitamist_lapsevanemad.pdf"
+        },
+        "final_url": "https://tarkvanem.ee/wp-content/uploads/2023/08/TAI_Kuidas_margata_e-sigareti_tarvitamist_lapsevanemad.pdf",
+        "redirects": [],
+        "sha256": "180353ed44482677514d203d3da716abc2bf446772b28e2b9d7f0bc1a0f1af63",
+        "bytes": 431614,
+        "downloaded_at": "2026-08-14T08:00:59.071Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "tarkvanem_kuidas_margata_et_noor_tarvitab_e_sigaretti_nikotiinipatja_v",
+      "metadata": {
+        "createdAt": "2026-06-12T03:59:57.491686+00:00",
+        "type": "FILE",
+        "fileName": "TAI_Kuidas_margata_e-sigareti_tarvitamist_lapsevanemad.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:59:57.421047+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/07de06d784f5/TAI_Kuidas_margata_e-sigareti_tarvitamist_lapsevanemad.pdf",
+        "title": "Kuidas märgata, et noor tarvitab e-sigaretti, nikotiinipatja või huuletubakat?",
+        "description": "Source master headings: Partnerid; Tarkvanem",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2023,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "organization_materials",
+        "source_id": "tarkvanem_kuidas_margata_et_noor_tarvitab_e_sigaretti_nikotiinipatja_v",
+        "document_id": "tarkvanem_kuidas_margata_et_noor_tarvitab_e_sigaretti_nikotiinipatja_v",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "0f1fd9caa625230db988abb0be1b41b965373fcd8f6f778be72c984a83b8a0ca",
+        "url": "https://tarkvanem.ee/wp-content/uploads/2023/08/TAI_Kuidas_margata_e-sigareti_tarvitamist_lapsevanemad.pdf",
+        "url_canonical": "https://tarkvanem.ee/wp-content/uploads/2023/08/TAI_Kuidas_margata_e-sigareti_tarvitamist_lapsevanemad.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "tarkvanem_kuidas_margata_et_noor_tarvitab_e_sigaretti_nikotiinipatja_v",
+        "updatedAt": "2026-06-12T03:59:57.491708+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

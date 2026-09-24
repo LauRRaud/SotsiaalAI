@@ -1,0 +1,77 @@
+{
+  "source": {
+    "source_id": "sotsiaalkindlustusamet_sexual_assault_crisis_centre_eng",
+    "title": "Sexual Assault Crisis Centre (ENG)",
+    "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi_infovoldik_SAK_ENG%2Bbleed3mm.pdf",
+    "normalized_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi_infovoldik_SAK_ENG+bleed3mm.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Sotsiaalkindlustusamet",
+    "organization_id": "sotsiaalkindlustusamet",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Sotsiaalkindlustusamet",
+      "infomaterjal",
+      "SKA",
+      "seksuaalvägivald",
+      "seksuaalvägivalla kriisiabikeskus",
+      "ohvriabi"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "needs_review",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "SKA",
+      "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+      "heading_4": null,
+      "line": 483,
+      "order": 257
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Sexual Assault Crisis Centre (ENG)"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Sotsiaalkindlustusamet"
+    ],
+    "organizations_seen": [
+      "sotsiaalkindlustusamet"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "SKA",
+        "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+        "line": 483,
+        "order": 257
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi_infovoldik_SAK_ENG+bleed3mm.pdf",
+    "status_note": "0 chunks (scanned brochure, no text layer; needs OCR) 2026-06-12"
+  },
+  "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi_infovoldik_SAK_ENG%2Bbleed3mm.pdf",
+  "redirects": [],
+  "sha256": "e73e0a6402d91939d24a3733b5c9259d04b971065a48550a1f54181436e0631a",
+  "bytes": 1143725,
+  "downloaded_at": "2026-08-14T08:00:51.481Z"
+}

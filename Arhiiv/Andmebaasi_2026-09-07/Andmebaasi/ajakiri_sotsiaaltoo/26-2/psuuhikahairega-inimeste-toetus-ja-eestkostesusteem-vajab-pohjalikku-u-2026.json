@@ -1,0 +1,52 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "psuuhikahairega-inimeste-toetus-ja-eestkostesusteem-vajab-pohjalikku-u-2026",
+  "title": "Psüühikahäirega inimeste toetus- ja eestkostesüsteem vajab põhjalikku ümbermõtestamist",
+  "authors": [
+    "Kristi Rekand",
+    "Tauno Asuja",
+    "Kristi Kähär"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Analüüs",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uuringu põhjal on psüühikahäirega täiskasvanute tugi- ja eestkostesüsteem killustunud ega arvesta piisavalt inimeste sooviga ise oma elu juhtida. Autorid soovitavad luua püsivad kontaktisikud, pakkuda ennetavat ja proaktiivset abi ning arendada toetatud otsustamise lahendusi.",
+  "tags": [
+    "psüühikahäire",
+    "eestkoste",
+    "toetatud otsustamine",
+    "erihoolekanne",
+    "enesemääramisõigus",
+    "juhtumikorraldus",
+    "teenuste koordineerimine",
+    "inimõigused",
+    "analüüs"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-06-01",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/psuuhikahairega-inimeste-toetus-ja-eestkostesusteem-vajab-pohjalikku",
+  "source_type": "web",
+  "source_path": "psuuhikahairega-inimeste-toetus-ja-eestkostesusteem-vajab-pohjalikku-umbermotest.html",
+  "lead": "Tallinnas korraldatud täisealiste psüühikahäirega inimeste, sh eestkostetavate uuring kinnitab, et inimesed tahavad ise oma elu juhtida ja otsustes kaasa rääkida. Süsteemil tuleb kohanduda inimese vajadustega.",
+  "document_id": "sotsiaaltoo-2-2026-psuuhikahairega-inimeste-toetus-ja-eestkostesusteem-vajab-pohjalikku-u-2026",
+  "source_format": "html",
+  "source_sha256": "6866c328020b7e8fcc21263d86fdaa7e8b7cf6e71ba00568420806d94947aa3c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-psuuhikahairega-inimeste-toetus-ja-eestkostesusteem-vajab-pohjalikku-u-2026",
+    "previous_source_path": "psuuhikahairega-inimeste-toetus-ja-eestkostesusteem-vajab-pohjalikku-umbermotest.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "4ab293337115a52ab3852be53e076efe9b0174274f1b440dde6257f5ab8b9295",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "2a336db7320f177c28c137ac6fa835e7a2f098cffd183fe05f318c394c3956df",
+    "observed_web_title": "Psüühikahäirega inimeste toetus- ja eestkostesüsteem vajab põhjalikku ümbermõtestamist ja muudatusi"
+  },
+  "retrieved_at": "2026-09-07T19:39:38.134198+00:00"
+}

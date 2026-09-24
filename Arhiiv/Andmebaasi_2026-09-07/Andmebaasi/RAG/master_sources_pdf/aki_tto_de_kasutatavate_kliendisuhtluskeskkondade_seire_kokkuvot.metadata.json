@@ -1,0 +1,83 @@
+{
+  "source": {
+    "source_id": "aki_tto_de_kasutatavate_kliendisuhtluskeskkondade_seire_kokkuvot",
+    "title": "TTO-de kasutatavate kliendisuhtluskeskkondade seire kokkuvõte ja soovitused",
+    "url": "https://www.aki.ee/sites/default/files/documents/2026-01/TTO-de%20kasutatavate%20kliendisuhtluskeskkondade%20seire%20kokkuv%C3%B5te%20ja%20soovitused.pdf",
+    "normalized_url": "https://www.aki.ee/sites/default/files/documents/2026-01/TTO-de kasutatavate kliendisuhtluskeskkondade seire kokkuvõte ja soovitused.pdf",
+    "source_format": "pdf",
+    "source_type": "official_guideline",
+    "resource_type": "method_guidance",
+    "publisher": "AKI",
+    "organization_id": "aki",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Andmekaitse Inspektsioon",
+      "andmekaitse",
+      "isikuandmed",
+      "GDPR",
+      "andmetöötlus",
+      "privaatsus",
+      "praktiline töövahend",
+      "AKI",
+      "spetsialisti juhend"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "high",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_010",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+    "source_context": {
+      "heading_2": "AKI",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 199,
+      "order": 132
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "TTO-de kasutatavate kliendisuhtluskeskkondade seire kokkuvõte ja soovitused"
+    ],
+    "collection_hints": [
+      "research_reports"
+    ],
+    "source_types_seen": [
+      "research_report"
+    ],
+    "resource_types_seen": [
+      "research_evidence"
+    ],
+    "publishers_seen": [
+      "AKI"
+    ],
+    "organizations_seen": [
+      "aki"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "AKI",
+        "line": 199,
+        "order": 132
+      },
+      {
+        "heading_2": "AKI",
+        "line": 673,
+        "order": 339
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.aki.ee/sites/default/files/documents/2026-01/TTO-de kasutatavate kliendisuhtluskeskkondade seire kokkuvõte ja soovitused.pdf"
+  },
+  "final_url": "https://www.aki.ee/sites/default/files/documents/2026-01/TTO-de%20kasutatavate%20kliendisuhtluskeskkondade%20seire%20kokkuv%C3%B5te%20ja%20soovitused.pdf",
+  "redirects": [],
+  "sha256": "306be1c59d43e1ba25096a8b14d3dcabd0a74b7c11621d9437458a25d19b985d",
+  "bytes": 851059,
+  "downloaded_at": "2026-08-14T08:00:34.630Z"
+}

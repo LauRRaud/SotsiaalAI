@@ -1,0 +1,84 @@
+{
+  "source": {
+    "source_id": "statistikaamet_puudega_inimeste_sotsiaalne_loimumine",
+    "title": "Puudega inimeste sotsiaalne lõimumine",
+    "url": "https://www.stat.ee/sites/default/files/2020-07/Puudega_inimeste_sotsiaalne_loimumine.pdf",
+    "normalized_url": "https://www.stat.ee/sites/default/files/2020-07/Puudega_inimeste_sotsiaalne_loimumine.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "Statistikaamet",
+    "organization_id": "statistikaamet",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "Statistikaamet",
+      "puue",
+      "puudega inimene",
+      "erivajadus",
+      "statistika",
+      "sotsiaalnäitajad",
+      "sotsiaalne lõimumine",
+      "uuring",
+      "raport",
+      "analüüs"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_019",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+    "source_context": {
+      "heading_2": "Statistikaamet",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 221,
+      "order": 141
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "Puudega inimeste sotsiaalne lõimumine"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Statistikaamet"
+    ],
+    "organizations_seen": [
+      "statistikaamet"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Statistikaamet",
+        "line": 221,
+        "order": 141
+      },
+      {
+        "heading_2": "Statistikaamet",
+        "line": 695,
+        "order": 348
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.stat.ee/sites/default/files/2020-07/Puudega_inimeste_sotsiaalne_loimumine.pdf"
+  },
+  "final_url": "https://www.stat.ee/sites/default/files/2020-07/Puudega_inimeste_sotsiaalne_loimumine.pdf",
+  "redirects": [],
+  "sha256": "c29898ae72e0ec0b71675e106b9e5860fb3d63cb94c09d5ac3bb2c10bc3621c9",
+  "bytes": 2533958,
+  "downloaded_at": "2026-08-14T08:00:36.176Z"
+}

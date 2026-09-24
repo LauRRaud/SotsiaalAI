@@ -1,0 +1,1066 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Tallinna Linnavalitsus</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2021-09-29</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT IV</RTosa>
+				<avaldamineKuupaev>2021-10-06</avaldamineKuupaev>
+				<RTartikkel>10</RTartikkel>
+				<aktViide>406102021010</aktViide>
+			</avaldamismarge>
+			<joustumine>2022-01-01</joustumine>
+			<aktiNr>30</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-04-25</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>47</RTartikkel><aktViide>425042025047</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2025-05-01</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2021-09-30</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>425042025047</globaalID>
+		<metaandmedVersioon>8</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2025-04-24</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1052687</terviktekstiGrupiID>
+	</metaandmed>
+	<aktinimi>
+		<nimi>
+			<pealkiri>Eestkoste seadmise ja teostamise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge>
+		<aktikuupaev>2025-04-22</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+			<RTartikkel>33</RTartikkel>
+			<aktViide>425042025033</aktViide>
+		</avaldamismarge>
+		<joustumine>2025-05-01</joustumine>
+	</muutmismarge>
+	<sisu>
+		<preambul>
+			<tavatekst>Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 30 lg 1 p 3 alusel ja kooskõlas perekonnaseaduse § 176 lg-tega 1 ja 2 ning § 205 lg-ga 3.</tavatekst>
+		</preambul>
+		<peatykk id="pt1">
+			<peatykkNr>1</peatykkNr>
+			<kuvatavNr><![CDATA[1. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>ÜLDSÄTTED</peatykkPealkiri>
+			<paragrahv id="para1">
+				<paragrahvNr>1</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 1.]]></kuvatavNr>
+				<paragrahvPealkiri>Reguleerimisala</paragrahvPealkiri>
+				<loige id="para1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Määrus reguleerib Tallinna Linnavalitsuse (edaspidi <i>linnavalitsus</i>) ülesandeid alaealise (edaspidi <i>laps</i>) ja täisealise isiku (edaspidi <i>täisealine</i>) üle eestkoste seadmisel ja teostamisel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lapse või täisealise üle seatakse eestkoste perekonnaseaduse alusel ja eestkostet teostatakse kohtumäärusest lähtudes.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para1lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<aktikuupaev>2025-04-22</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+							<RTartikkel>33</RTartikkel>
+							<aktViide>425042025033</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para1lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Linnavalitsuse ülesandeid eestkoste seadmisel ja teostamisel täidavad käesolevas määruses märgitud pädevuse piires linnaosade valitsused ning Tallinna Sotsiaal- ja Tervishoiuamet (edaspidi <i>sotsiaal- ja tervishoiuamet</i>).</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para1lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<aktikuupaev>2025-04-22</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+							<RTartikkel>33</RTartikkel>
+							<aktViide>425042025033</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para1lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Erieestkostet teostab sotsiaal-
+ja tervishoiuamet.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-22</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+							<RTartikkel>33</RTartikkel>
+							<aktViide>425042025033</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para2">
+				<paragrahvNr>2</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 2.]]></kuvatavNr>
+				<paragrahvPealkiri>Terminid</paragrahvPealkiri>
+				<loige id="para2lg1">
+					<sisuTekst>
+						<tavatekst>Määruses kasutatakse termineid järgmises tähenduses:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para2lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>eestkoste – seaduslikku esindatust vajava isiku õiguste ja huvide kaitsmine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>eestkostetav – laps või täisealine, kellele kohus on määranud eestkostja;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-22</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+								<RTartikkel>33</RTartikkel>
+								<aktViide>425042025033</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para2lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>eestkostja – eestkostetava seaduslik esindaja;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>eestkoste seadmine – seaduslikku esindatust vajava lapse või täisealise õiguste ja huvide kaitsmisele suunatud tegevus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>eestkoste teostamine – kohtumäärusega pandud ülesannete täitmine eestkostja poolt.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="pt2">
+			<peatykkNr>2</peatykkNr>
+			<kuvatavNr><![CDATA[2. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>EESTKOSTE LAPSE ÜLE</peatykkPealkiri>
+			<paragrahv id="para3">
+				<paragrahvNr>3</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 3.]]></kuvatavNr>
+				<paragrahvPealkiri>Vanema hooldusõiguse piiramine</paragrahvPealkiri>
+				<loige id="para3lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaal- ja tervishoiuamet esitab kohtule avalduse vanema hooldusõiguse piiramiseks, peatamiseks või täielikuks äravõtmiseks, kui lapse ja vanemate suhtes kasutusele võetud toetavatest abinõudest olenemata ei ole lapse huvide kahjustamist võimalik ära hoida ning lapse vanemad:</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-22</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+							<RTartikkel>33</RTartikkel>
+							<aktViide>425042025033</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para3lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kuritarvitavad vanema hooldusõigust;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para3lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>on jätnud lapse hooletusse;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para3lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>ei suuda täita oma kohustusi;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para3lg1p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>ei ole võimelised last kaitsma.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para3lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui lapse perekonda jätmine ohustab tema tervist või elu, võib sotsiaal- ja tervishoiuamet lapse perekonnast eraldada enne kohtumääruse jõustumist. Sellisel juhul peab sotsiaal- ja tervishoiuamet seaduses ettenähtud tähtaja jooksul esitama kohtule avalduse vanema hooldusõiguse piiramiseks, peatamiseks või täielikuks äravõtmiseks. Kohtule avalduse esitamisel taotleb sotsiaal- ja tervishoiuamet vajaduse korral esialgse õiguskaitse rakendamist.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-22</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+							<RTartikkel>33</RTartikkel>
+							<aktViide>425042025033</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para4">
+				<paragrahvNr>4</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 4.]]></kuvatavNr>
+				<paragrahvPealkiri>Eestkoste seadmine</paragrahvPealkiri>
+				<loige id="para4lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui esindusõigust ei ole lapse kummalgi vanemal või kui lapse päritolu ei ole võimalik kindlaks teha, siis sotsiaal- ja tervishoiuameti juhataja või tema volitatud isik:</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-22</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+							<RTartikkel>33</RTartikkel>
+							<aktViide>425042025033</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para4lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>esitab kohtule avalduse lapse üle eestkoste seadmiseks;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>selgitab välja eestkostjaks sobiva isiku ja tema nõusoleku saada eestkostjaks;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>küsib ja arvestab eestkoste seadmisel lapse arvamust, kui see on lapse vanust, arengutaset ja terviseseisundit arvestades asjakohane, ning kuulab ära vanema, kasuvanema, eestkostja või hooldaja arvamuse.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para4lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui kohtule on lapse üle eestkoste seadmise avalduse esitanud huvitatud isik, kogub ja esitab sotsiaal- ja tervishoiuamet kohtu nõudmisel eestkoste seadmiseks vajalikud andmed ja esitab kohtu ettepanekul kohtule oma seisukoha.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-22</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+							<RTartikkel>33</RTartikkel>
+							<aktViide>425042025033</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para4lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui eestkostjaks ei ole võimalik määrata füüsilist või juriidilist isikut, taotleb sotsiaal- ja tervishoiuamet linnavalitsuse eestkostjaks määramist.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-22</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+							<RTartikkel>33</RTartikkel>
+							<aktViide>425042025033</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para5">
+				<paragrahvNr>5</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 5.]]></kuvatavNr>
+				<paragrahvPealkiri>Eestkoste teostamine</paragrahvPealkiri>
+				<loige id="para5lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui kohus määrab lapse eestkostjaks linnavalitsuse, siis täidab eestkostjale pandud ülesandeid sotsiaal- ja tervishoiuameti juhataja või tema volitatud isik, kes esindab:</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-22</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+							<RTartikkel>33</RTartikkel>
+							<aktViide>425042025033</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para5lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>linnavalitsust kohtus seisukoha andmisel eestkostet puudutavas menetluses;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-22</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+								<RTartikkel>33</RTartikkel>
+								<aktViide>425042025033</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para5lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>eestkostetavat riigi- ja kohaliku
+omavalitsuse ametiasutustes, suhetes füüsiliste ja juriidiliste isikutega ning
+kõigis kohtutes ning eestkostetava isiku- ja varahooldusõiguse teostamisel.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-22</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+								<RTartikkel>33</RTartikkel>
+								<aktViide>425042025033</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para5lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<aktikuupaev>2025-04-22</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+							<RTartikkel>33</RTartikkel>
+							<aktViide>425042025033</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para5lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Notariaaltoimingutes esindab linnavalitsust linnapea või muu isik linnapea volikirja alusel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para5lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaal- ja tervishoiuamet esitab kohtule eestkostetava vara valitsemise ja oma muude kohtumäärusest tulenevate ülesannete täitmise kohta iga-aastase kirjaliku aruande ning kohtu nõudmisel täiendavat teavet oma ülesannete täitmise kohta.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-22</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+							<RTartikkel>33</RTartikkel>
+							<aktViide>425042025033</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para5lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaal- ja tervishoiuamet teatab kohtule viivitamata, kui:</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-22</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+							<RTartikkel>33</RTartikkel>
+							<aktViide>425042025033</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para5lg5p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>eestkostetavale on võimalik määrata füüsilisest või juriidilisest isikust eestkostja;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg5p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>eestkoste on põhjendatud lõpetada;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg5p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>tekib vajadus määrata erieestkostja;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg5p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>eestkostetava teovõimet on vaja laiendada või piirata.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para6">
+				<paragrahvNr>6</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 6.]]></kuvatavNr>
+				<paragrahvPealkiri>Linnavalitsuse eestkostel oleva lapse huvide kaitsmine</paragrahvPealkiri>
+				<loige id="para6lg1">
+					<sisuTekst>
+						<tavatekst>Sotsiaal- ja tervishoiuamet täidab kohtumäärusega linnavalitsusele pandud ülesandeid ning tagab lapse õiguste ja heaolu igakülgse kaitse, muu hulgas:</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-22</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+							<RTartikkel>33</RTartikkel>
+							<aktViide>425042025033</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para6lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>korraldab lapse elukoha, hooldamise ja kasvatamise, on kursis asendushooldusel oleva lapse eluga ja aitab ta iseseisvasse ellu;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para6lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>taastab lapse sideme talle oluliste inimestega ja hoiab seda, kui see on lapse huvides ja muu hulgas võimalik;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para6lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>taotleb lapsele vajaduse korral kodakondsuse, isikut tõendava dokumendi või reisidokumendi ning teeb muid seadustest ja teistest õigusaktidest tulenevaid toiminguid, mis on vajalikud lapse isiklike õiguste kaitseks;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-22</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+								<RTartikkel>33</RTartikkel>
+								<aktViide>425042025033</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para6lg1p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>annab leidlapsele ees- ja
+perekonnanime.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-22</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+								<RTartikkel>33</RTartikkel>
+								<aktViide>425042025033</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para7">
+				<paragrahvNr>7</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 7.]]></kuvatavNr>
+				<paragrahvPealkiri>Linnavalitsuse eestkostel oleva lapse vara eest hoolitsemine</paragrahvPealkiri>
+				<loige id="para7lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaal- ja tervishoiuamet täidab kohtumäärusega linnavalitsusele pandud ülesandeid, muu hulgas vajaduse korral:</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-22</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+							<RTartikkel>33</RTartikkel>
+							<aktViide>425042025033</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para7lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>esitab Sotsiaalkindlustusametile riikliku pensioni määramise, ümberarvutamise ja maksmise või puudega lapse toetuse maksmise avalduse, kui lapsel on õigus saada riiklikku pensioni või puudega lapse toetust. Sotsiaal- ja tervishoiuameti juhatajal või tema volitatud isikul on õigus volitada lapse perekonnas hooldaja taotlema lapsele pensioni või puudega lapse toetust linnaosa valitsuse määratud tingimustel;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-22</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+								<RTartikkel>33</RTartikkel>
+								<aktViide>425042025033</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para7lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>avab lapsele pangakonto;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para7lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>esitab kohtule elatise nõude.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para7lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<aktikuupaev>2025-04-22</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+							<RTartikkel>33</RTartikkel>
+							<aktViide>425042025033</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para7lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui eestkostetava kasutuses oleva või temale kuuluva eluasemega seotud varaliste kohustuste katmiseks ei piisa eestkostetava enda rahalistest vahenditest, võib kulutused katta linnaeelarves elamute haldamiseks ettenähtud vahenditest. Sellisel juhul esitab sotsiaal- ja tervishoiuamet Tallinna Linnavaraametile (edaspidi <i>linnavaraamet</i>) sellekohase taotluse.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="pt3">
+			<peatykkNr>3</peatykkNr>
+			<kuvatavNr><![CDATA[3. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>EESTKOSTE TÄISEALISE ÜLE</peatykkPealkiri>
+			<paragrahv id="para8">
+				<paragrahvNr>8</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 8.]]></kuvatavNr>
+				<paragrahvPealkiri>Eestkoste seadmine ja korraldamine</paragrahvPealkiri>
+				<muutmismarge>
+					<aktikuupaev>2025-04-22</aktikuupaev>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+						<RTartikkel>33</RTartikkel>
+						<aktViide>425042025033</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-05-01</joustumine>
+				</muutmismarge>
+				<loige id="para8lg1">
+					<sisuTekst>
+						<tavatekst>Kui täisealise puhul esinevad eestkoste seadmise eeldused või täisealisele
+on määratud eestkostjaks füüsiline või juriidiline isik, siis linnaosa
+valitsus:</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-22</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+							<RTartikkel>33</RTartikkel>
+							<aktViide>425042025033</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para8lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>nõustab lähedaste olemasolul
+neid avalduse esitamisel ja esitab kohtu nõudmisel seisukoha või esitab kohtule
+avalduse täisealise üle eestkoste seadmiseks, eestkostja määramiseks või
+eestkostja vabastamiseks, muu
+hulgas eestkoste lõpetamiseks;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-22</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+								<RTartikkel>33</RTartikkel>
+								<aktViide>425042025033</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para8lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>teeb täisealise üle eestkoste seadmise vajaduse väljaselgitamiseks koostööd nii tema lähedaste kui ka
+täisealise endaga ulatuses, mis on tema terviseseisundit arvestades asjakohane,
+muu hulgas selgitab
+välja, kas täisealise huve on võimalik kaitsta volituse andmise ning
+perekonnaliikmete või teiste abiliste kaudu;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-22</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+								<RTartikkel>33</RTartikkel>
+								<aktViide>425042025033</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para8lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>selgitab välja täisealise eestkostjaks sobiva isiku, arvestades tema isikuomadusi ja suhet täisealisega, ning teeb kindlaks isiku nõusoleku saada eestkostjaks;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para8lg1p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>taotleb linnavalitsuse eestkostjaks määramist, kui eestkostjaks ei ole võimalik määrata füüsilist või juriidilist isikut.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para9">
+				<paragrahvNr>9</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 9.]]></kuvatavNr>
+				<paragrahvPealkiri>Eestkoste teostamine</paragrahvPealkiri>
+				<loige id="para9lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui kohus määrab eestkostjaks linnavalitsuse, siis täisealise puhul teostab eestkostet sotsiaal- ja tervishoiuamet.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaal- ja tervishoiuamet täidab kohtumäärusega linnavalitsusele pandud ülesandeid, muu hulgas hoolitseb selle eest, et eestkostetav saaks vajalikul määral ravi- ja
+sotsiaalteenuseid.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-22</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+							<RTartikkel>33</RTartikkel>
+							<aktViide>425042025033</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para9lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaal- ja tervishoiuametile pandud ülesandeid täidab sotsiaal- ja tervishoiuameti juhataja või tema volitatud isik, kes esindab eestkostetavat riigi- ja kohaliku omavalitsuse ametiasutustes, suhetes füüsiliste ja juriidiliste isikutega ning kõigis kohtutes ning eestkostetava isikuhooldus- ja varahooldusõiguse teostamisel.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-22</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+							<RTartikkel>33</RTartikkel>
+							<aktViide>425042025033</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para9lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Notariaaltoimingutes esindab linnavalitsust linnapea või muu isik linnapea volikirja alusel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaal- ja tervishoiuamet esitab kohtule eestkostetava vara valitsemise ja oma muude kohtumäärusest tulenevate ülesannete täitmise kohta iga-aastase kirjaliku aruande ja kohtu nõudmisel täiendavat teavet oma ülesannete täitmise kohta.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-22</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+							<RTartikkel>33</RTartikkel>
+							<aktViide>425042025033</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para9lg5b1">
+					<loigeNr ylaIndeks="1">5</loigeNr>
+					<kuvatavNr><![CDATA[(5<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Eestkoste pikendamise ja lõpetamise menetluses
+seisukoha andmisel ja määruskaebuse esitamisel esindab linnavalitsust linnaosa
+valitsus, kaasates sotsiaal- ja tervishoiuameti.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-22</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+							<RTartikkel>33</RTartikkel>
+							<aktViide>425042025033</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para9lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Linnaosa valitsus, kaasates sotsiaal- ja
+tervishoiuameti, teatab kohtule viivitamata sellest, kui eestkostetavale on võimalik
+määrata füüsilisest või juriidilisest isikust eestkostja.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-22</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+							<RTartikkel>33</RTartikkel>
+							<aktViide>425042025033</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para9lg6p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<muutmismarge>
+							<tavatekst>kehtetu - </tavatekst>
+							<aktikuupaev>2025-04-22</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+								<RTartikkel>33</RTartikkel>
+								<aktViide>425042025033</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para9lg6p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<muutmismarge>
+							<tavatekst>kehtetu - </tavatekst>
+							<aktikuupaev>2025-04-22</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+								<RTartikkel>33</RTartikkel>
+								<aktViide>425042025033</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para9lg6p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<muutmismarge>
+							<tavatekst>kehtetu - </tavatekst>
+							<aktikuupaev>2025-04-22</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+								<RTartikkel>33</RTartikkel>
+								<aktViide>425042025033</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para9lg6p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<muutmismarge>
+							<tavatekst>kehtetu - </tavatekst>
+							<aktikuupaev>2025-04-22</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+								<RTartikkel>33</RTartikkel>
+								<aktViide>425042025033</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para9lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaal- ja tervishoiuamet, kaasates linnaosa
+valitsuse, teatab kohtule viivitamata sellest, kui:</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-22</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+							<RTartikkel>33</RTartikkel>
+							<aktViide>425042025033</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para9lg7p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>eestkoste on põhjendatud lõpetada;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-22</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+								<RTartikkel>33</RTartikkel>
+								<aktViide>425042025033</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para9lg7p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>eestkostetava teovõimet on vaja laiendada või piirata;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-22</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+								<RTartikkel>33</RTartikkel>
+								<aktViide>425042025033</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para9lg7p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>tekib vajadus määrata erieestkostja.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-22</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+								<RTartikkel>33</RTartikkel>
+								<aktViide>425042025033</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para10">
+				<paragrahvNr>10</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 10.]]></kuvatavNr>
+				<paragrahvPealkiri>Linnavalitsuse eestkostel oleva täisealise huvide kaitsmine ja vara eest hoolitsemine</paragrahvPealkiri>
+				<loige id="para10lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaal- ja tervishoiuamet täidab seaduse ja kohtumäärusega pandud ülesandeid, muu hulgas:</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-22</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+							<RTartikkel>33</RTartikkel>
+							<aktViide>425042025033</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para10lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>koostab ja esitab kohtule kirjaliku
+aruande eestkostetava vara kohta;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-22</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+								<RTartikkel>33</RTartikkel>
+								<aktViide>425042025033</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para10lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>haldab ja korraldab tehinguid ning
+esindab eestkostetavat kõikides tehingutes kohtumäärusega määratud ulatuses.
+Tehingute tegemisel lähtub sotsiaal- ja tervishoiuamet kohtumäärusest ja
+perekonnaseadusest ning küsib kohtu nõusoleku kinnisvaratehinguteks ja muudeks tehinguteks,
+kui see on seadusest tulenevalt vajalik.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-22</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-25</avaldamineKuupaev>
+								<RTartikkel>33</RTartikkel>
+								<aktViide>425042025033</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para10lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui eestkostetava kasutuses oleva või temale kuuluva eluasemega seotud varaliste kohustuste katmiseks ei piisa eestkostetava enda rahalistest vahenditest, võib kulutused katta linnaeelarves elamute haldamiseks ettenähtud vahenditest. Sellisel juhul esitab sotsiaal- ja tervishoiuamet linnavaraametile sellekohase taotluse.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="pt4">
+			<peatykkNr>4</peatykkNr>
+			<kuvatavNr><![CDATA[4. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>LÕPPSÄTTED</peatykkPealkiri>
+			<paragrahv id="para11">
+				<paragrahvNr>11</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 11.]]></kuvatavNr>
+				<paragrahvPealkiri>Rakendussätted</paragrahvPealkiri>
+				<loige id="para11lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui täisealisele on eestkoste määratud enne 2022. aasta 1. jaanuari ja linnaosa valitsus esitab kohtule iga-aastase aruande pärast 1. juulit 2022, kohaldatakse käesolevat määrust alates aruande esitamisest. Pärast aruande esitamist annab linnaosa valitsus eestkoste teostamise üle sotsiaal- ja tervishoiuametile.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para11lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Vara võõrandamisega seotud tehingud, mis on alustatud enne 2022. aasta 1. jaanuari, viib lõpuni linnavaraamet, lähtudes võõrandamise ajal kehtinud õiguslikust regulatsioonist.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para12">
+				<paragrahvNr>12</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 12.]]></kuvatavNr>
+				<paragrahvPealkiri>Määruse kehtetuks tunnistamine</paragrahvPealkiri>
+				<loige id="para12lg1">
+					<sisuTekst>
+						<tavatekst>[Käesolevast tekstist välja jäetud.]</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para13">
+				<paragrahvNr>13</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 13.]]></kuvatavNr>
+				<paragrahvPealkiri>Määruse jõustumine</paragrahvPealkiri>
+				<loige id="para13lg1">
+					<sisuTekst>
+						<tavatekst>Määrus jõustub 1. jaanuaril 2022.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+	</sisu>
+</oigusakt>

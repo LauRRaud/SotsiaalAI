@@ -1,0 +1,82 @@
+{
+  "docId": "sotsiaaltoo-1-2016",
+  "articleId": "sotsiaaltoo-1-2016-artikkel-13-seltsidaami-teenus-viljandis",
+  "title": "Seltsidaami teenus Viljandis",
+  "authors": [
+    "Epp Johani"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2016",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "40-42",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "MTÜ Teeme juhatuse liige kirjeldab Viljandis teist aastat pakutavat seltsidaami teenust, mille eeskujuks olid Pelgulinna seltsidaamid. Praegu tegutseb 14 seltsidaami ja toetatakse 33 eakat; alustamiseks tehti üleskutse eakate konverentsil ja kohalikus ajalehes, misjärel liitus 12 inimest. Seltsidaamid külastavad eakaid kodus, suhtlevad telefoni ja Skype’i teel, vaatavad üle kodu ohutuse ning aitavad leida abilisi ja transporti. Maal – Võhma linnas ning Karksi, Suure-Jaani ja Kolga-Jaani vallas – pakutakse seltsilise teenust hinnaga 5 eurot tunnis. Läbipõlemise vältimiseks on ühel seltsidaamil kuni kaks klienti ja kord kuus tugigrupp.",
+  "tags": [
+    "seltsidaam",
+    "eakad",
+    "vabatahtlik töö",
+    "üksildus",
+    "tugigrupp",
+    "koduabi"
+  ],
+  "source_type": "file",
+  "source_path": "2016_1_artikkel_13_seltsidaami_teenus_viljandis.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-13-seltsidaami-teenus-viljandis",
+  "source_sha256": "7884b4c98f2b776c2cbb13c5a17514df138235cb1c3c2e6e58025f035279a53e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-13-seltsidaami-teenus-viljandis",
+    "previous_source_path": "2016_1_artikkel_13_seltsidaami_teenus_viljandis.txt",
+    "previous_source_original_path": "1-2016.pdf",
+    "reference_stored_source_sha256": "cf569808e4f8a1cfd0ee97220419d48f11593f04bb7f7f8c5787e6933199fd42",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf",
+      "source_sha256": "2c193295e54f58982562b509b6283e93aa58b1695464671e1768e24e90888a6c",
+      "pdf_start_page": 42,
+      "pdf_end_page": 44,
+      "printed_page_range": "40-43",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 45,
+      "source_regions": [
+        {
+          "source_pdf_page": 42,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 43,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 44,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "40-42",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf"
+    },
+    "server_page_range": "40-43"
+  }
+}

@@ -1,0 +1,3464 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-noo-vald",
+  "document_id": "kov-noo-vald",
+  "municipality": "Nõo vald",
+  "municipality_id": "noo_vald",
+  "county": "Tartumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "noo_vald_contact_ene_molter",
+      "canonical_item_id": "noo_vald:contact:ene_molter",
+      "itemType": "contact",
+      "title": "Ene Mölter",
+      "status": "active",
+      "summary": "Sotsiaalosakonna juhataja on peamine kontakt Nõo valla sotsiaalteenuste ja toetuste korraldamisel. Sama kontakt on nimetatud mitme teenuse detaillehel.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Ene Mölter",
+      "role": "Sotsiaalosakonna juhataja",
+      "department": "Sotsiaalosakond",
+      "address": "Voika 23, Nõo alevik, 61601 Tartumaa",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_contact_ene_molter",
+      "document_id": "noo_vald_contact_ene_molter",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "2f41b4805711d0852d45bd156b4eb0ef11bcbf809987212ac7597a3fea28a0b5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_contact_annika_tamme",
+      "canonical_item_id": "noo_vald:contact:annika_tamme",
+      "itemType": "contact",
+      "title": "Annika Tamme",
+      "status": "active",
+      "summary": "Sotsiaaltööspetsialist nõustab elanikke sotsiaaltoetuste ja sotsiaalteenuste küsimustes. Kontakt on avaldatud Nõo valla kontaktide ja mitme teenuse juures.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Annika Tamme",
+      "role": "Sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Voika 23, Nõo alevik, 61601 Tartumaa",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_contact_annika_tamme",
+      "document_id": "noo_vald_contact_annika_tamme",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "d143d7f6e82eabdccce645bf82f2abe993c8414155bb5c6a29dd1a8af4e093e4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_contact_liisa_rootare",
+      "canonical_item_id": "noo_vald:contact:liisa_rootare",
+      "itemType": "contact",
+      "title": "Liisa Rootare",
+      "status": "active",
+      "summary": "Lastekaitsespetsialist on kontakt lapse heaolu, abivajava lapse, asendushoolduse ja perega seotud sotsiaalvaldkonna küsimustes.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Liisa Rootare",
+      "role": "Lastekaitsespetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Voika 23, Nõo alevik, 61601 Tartumaa",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_contact_liisa_rootare",
+      "document_id": "noo_vald_contact_liisa_rootare",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "a21253a80e03c5b2cb31f3b3322466cc1439657e69946307830fed88679994a8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_contact_triin_pedanik",
+      "canonical_item_id": "noo_vald:contact:triin_pedanik",
+      "itemType": "contact",
+      "title": "Triin Pedanik",
+      "status": "active",
+      "summary": "Hooldustöötaja kontakt on avaldatud Nõo valla sotsiaalosakonna kontaktide hulgas. Ametlikul lehel kasutatakse tema e-posti väljana sotsiaalosakonna juhataja e-posti aadressi.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Triin Pedanik",
+      "role": "Hooldustöötaja",
+      "department": "Sotsiaalosakond",
+      "address": "Voika 23, Nõo alevik, 61601 Tartumaa",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_contact_triin_pedanik",
+      "document_id": "noo_vald_contact_triin_pedanik",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "2f8254ceb3915ac5054f93942fbf5c13232718c19944d7bb83cbdb312e2226f0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_contact_leila_soomaa",
+      "canonical_item_id": "noo_vald:contact:leila_soomaa",
+      "itemType": "contact",
+      "title": "Leila Soomaa",
+      "status": "active",
+      "summary": "Hooldustöötaja kontakt on avaldatud Nõo valla sotsiaalosakonna kontaktide hulgas. Ametlikul lehel kasutatakse tema e-posti väljana sotsiaalosakonna juhataja e-posti aadressi.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Leila Soomaa",
+      "role": "Hooldustöötaja",
+      "department": "Sotsiaalosakond",
+      "address": "Voika 23, Nõo alevik, 61601 Tartumaa",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_contact_leila_soomaa",
+      "document_id": "noo_vald_contact_leila_soomaa",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "431d28608ab3fbcf252685c4de17d0a3190b25e14719f164be00f038d9460a40",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_contact_noo_vallavalitsus",
+      "canonical_item_id": "noo_vald:contact:noo_vallavalitsus",
+      "itemType": "contact",
+      "title": "Nõo Vallavalitsus",
+      "status": "active",
+      "summary": "Nõo Vallavalitsuse üldkontakt on avaldatud ametliku veebilehe jaluses ja avalehel. Üldkontakt sobib juhul, kui konkreetset teenusepõhist kontakti ei ole teada.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Nõo Vallavalitsus",
+      "role": "Nõo Vallavalitsus üldkontakt",
+      "department": null,
+      "address": "Voika 23, Nõo alevik, 61601 Tartumaa",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_contact_noo_vallavalitsus",
+      "document_id": "noo_vald_contact_noo_vallavalitsus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "b83f0f5538c13dd2f2e5eda6307918ab4b1d6a0f6166b1f20b88171fcba34fde",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_service_koduteenus",
+      "canonical_item_id": "noo_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenuse eesmärk on tagada eaka või puudega täisealise isiku iseseisev ja turvaline toimetulek kodus. Koduteenus hõlmab abi toiduainete, ravimite ja abivahendite hankimisel, majapidamistoimingutes ning asjaajamisel väljaspool kodu. Teenus on mõeldud olukorras, kus inimene ei suuda vajalikke igapäevatoiminguid kõrvalabita teha.",
+      "sourceKeys": [
+        "koduteenus_page"
+      ],
+      "targetGroup": "Täisealised eakad ja puudega inimesed, kes vajavad kodus toimetuleku toetamiseks kõrvalabi.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "pöördumine sotsiaalosakonna poole"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://nvv.ee/koduteenused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter"
+      ],
+      "sections_present": [
+        "description",
+        "target_group",
+        "service_content",
+        "contact"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "koduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_service_koduteenus",
+      "document_id": "noo_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/koduteenused",
+      "content_hash": "cccbd844f3d585e8820ea50ffc0ee71fcafaa7988184c01b9f857467acde26c9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_service_uldhooldusteenus",
+      "canonical_item_id": "noo_vald:service:uldhooldusteenus",
+      "itemType": "service",
+      "title": "Üldhooldusteenus",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatava üldhooldusteenuse eesmärk on tagada turvaline keskkond ja toimetulek täisealisele inimesele, kes ei tule kodustes tingimustes iseseisvalt toime. Nõo valla lehel on kirjeldatud hooldereformi põhimõtteid ja hoolduskulude KOV-poolse rahastuse piirmäära kuni 650 eurot kalendrikuus. KOV-poolse rahastuse eelduseks on sotsiaaltöötajate tehtav abivajaduse hindamine.",
+      "sourceKeys": [
+        "social_services_overview",
+        "uldhooldusteenus_page"
+      ],
+      "targetGroup": "Täisealised isikud, kes vajavad üldhooldusteenust väljaspool kodu.",
+      "conditions": "KOV-poolse hoolduskulude rahastuse eelduseks on abivajaduse hindamine; väiksema hoolduskoormusega kliendile riigi/KOV rahastus ei laiene.",
+      "application": {
+        "channels": [
+          "pöördumine sotsiaalosakonna poole"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Hoolduskulude KOV-poolne piirmäär kuni 650 eurot kuus; isik tasub majutuse, toitlustuse ja muud teenusega seotud kulud.",
+      "officialUrl": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/uldhooldusteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter"
+      ],
+      "sections_present": [
+        "description",
+        "target_group",
+        "pricing",
+        "application",
+        "contact"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_services_overview",
+        "uldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_service_uldhooldusteenus",
+      "document_id": "noo_vald_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/uldhooldusteenus",
+      "content_hash": "2ef3f05199efc24ad880533da794aec675e7959afa1abf40b10bddf7d16c8748",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_service_tugiisikuteenus",
+      "canonical_item_id": "noo_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus toetab iseseisvat toimetulekut olukordades, kus inimene vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu kõrvalabi. Kõrvalabi seisneb juhendamises, motiveerimises ning iseseisvuse ja vastutuse arendamises. Lapsele või last kasvatavale isikule osutades toetab teenus lapse hooldamist ja turvalist kasvukeskkonda.",
+      "sourceKeys": [
+        "tugiisikuteenus_page"
+      ],
+      "targetGroup": "Lapsed, last kasvatavad isikud ja täisealised inimesed, kes vajavad toimetuleku toetamiseks tugiisikut.",
+      "conditions": "Teenuse vajadust hindab sotsiaalosakond; teenus määratakse vallavalitsuse haldusaktiga.",
+      "application": {
+        "channels": [
+          "pöördumine sotsiaalosakonda"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenus on Nõo valla elanikele tasuta.",
+      "officialUrl": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/abi-toimetulekuraskusega-inimesele/tugiisikuteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter",
+        "noo_vald_contact_liisa_rootare"
+      ],
+      "sections_present": [
+        "description",
+        "target_group",
+        "conditions",
+        "application",
+        "pricing",
+        "contact"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "tugiisikuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_service_tugiisikuteenus",
+      "document_id": "noo_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/abi-toimetulekuraskusega-inimesele/tugiisikuteenus",
+      "content_hash": "454cfd18ef89269746237a251056c8b29564c33753de29f2016cfaaccc042b67",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "noo_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hoolduse eesmärk on tagada vaimse või kehalise puude tõttu abivajavale isikule abi õiguste teostamisel ja kohustuste täitmisel. Hooldaja aitab igapäevastes toimingutes, juhendab ja tagab järelevalve. Hooldatavale on teenus tasuta ja hooldajale võib maksta hooldajatoetust.",
+      "sourceKeys": [
+        "taisealise_isiku_hooldus_page"
+      ],
+      "targetGroup": "Täisealised raske või sügava puudega isikud, kellel on vaja igapäevast kõrvalabi või järelevalvet.",
+      "conditions": "Hooldus seatakse hooldatava nõusolekul ja abivajaduse hindamise alusel; hooldajaks ei määrata inimest, kellel on raske või sügav puue.",
+      "application": {
+        "channels": [
+          "pöördumine sotsiaalosakonna poole"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Hooldatavale tasuta; hooldajatoetus 30 eurot raske puudega ja 50 eurot sügava puudega isiku hooldajale.",
+      "officialUrl": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/taisealise-isiku-hooldus",
+      "relatedForms": [
+        "noo_vald_form_hooldajatoetus_taiskasvanu"
+      ],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter",
+        "noo_vald_contact_annika_tamme"
+      ],
+      "sections_present": [
+        "description",
+        "target_group",
+        "conditions",
+        "application",
+        "pricing",
+        "contact"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "taisealise_isiku_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_service_taisealise_isiku_hooldus",
+      "document_id": "noo_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/taisealise-isiku-hooldus",
+      "content_hash": "4b11517c20e270eafecdf8a61770f32e7982259cc8f2c71e12fd55f4ebe96ada",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "noo_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Nõo vald nimetab isikliku abistaja teenust ametlikul sotsiaalteenuste lehel eraldi sotsiaalteenusena. Detailteksti automaatkorje ei saanud täielikult avada, mistõttu teenuse tingimusi ei ole siin oletatud. Kirje säilitab teenuse olemasolu ja ametliku URL-i, et RAG-kiht saaks selle eraldi teenusena käsitleda.",
+      "sourceKeys": [
+        "isikliku_abistaja_teenus_page",
+        "social_services_overview"
+      ],
+      "targetGroup": null,
+      "conditions": null,
+      "application": {
+        "channels": null,
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://nvv.ee/isikliku-abistaja-teenus",
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "Detaillehe praktiline sisu jäi automaatkorjes ebapiisavalt lahti; tingimused ja taotlemise kord vajavad käsitsi kontrolli."
+      ],
+      "item_type": "service",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "isikliku_abistaja_teenus_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_service_isikliku_abistaja_teenus",
+      "document_id": "noo_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/isikliku-abistaja-teenus",
+      "content_hash": "e648c9f6238f2f06eca9ff13159bd34f54332414f16d9254db7791087e78d4e4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_service_varjupaigateenus",
+      "canonical_item_id": "noo_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenuse eesmärk on tagada täisealisele isikule ajutine ööbimiskoht, kui inimene ei ole ise võimeline endale ööbimisvõimalust leidma. Teenus on ajutine abimeede ja Nõo valla lehe järgi on see abivajavale isikule tasuta. Teenusele pääsemiseks tuleb pöörduda sotsiaalosakonna poole.",
+      "sourceKeys": [
+        "varjupaigateenus_page"
+      ],
+      "targetGroup": "Täisealine inimene, kellel puudub ööbimiskoht.",
+      "conditions": "Teenuse vajadust hindab sotsiaaltööspetsialist ja suunab inimese teenusele.",
+      "application": {
+        "channels": [
+          "pöördumine sotsiaalosakonda"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Abivajavale isikule tasuta.",
+      "officialUrl": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/varjupaigateenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter",
+        "noo_vald_contact_annika_tamme"
+      ],
+      "sections_present": [
+        "description",
+        "target_group",
+        "application",
+        "pricing",
+        "contact"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "varjupaigateenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_service_varjupaigateenus",
+      "document_id": "noo_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/varjupaigateenus",
+      "content_hash": "696f0996c252a2ab8713f9af726ae82e5e97be8b600999e4fa52dd5d5dc82c21",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_service_turvakoduteenus",
+      "canonical_item_id": "noo_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenuse eesmärk on tagada abivajajale ajutine eluase, turvaline keskkond ja esmane abi, sh vajadusel kriisiabi. Teenust võib saada laps, kelle elu, tervis või areng on ohus, ning täisealine isik, kes vajab turvalist keskkonda. Teenus on Nõo valla lehe järgi abivajajale tasuta.",
+      "sourceKeys": [
+        "turvakoduteenus_page"
+      ],
+      "targetGroup": "Lapsed ja täisealised isikud, kes vajavad turvalist keskkonda.",
+      "conditions": "Teenust võib korraldada ka taotluseta; vallavalitsus peab välja selgitama inimese tahte ja nõusoleku teenusele suunamiseks.",
+      "application": {
+        "channels": [
+          "taotlus või pöördumine sotsiaalosakonda",
+          "vajadusel teenuse korraldamine taotluseta"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Abivajajale tasuta.",
+      "officialUrl": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/turvakoduteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter",
+        "noo_vald_contact_liisa_rootare"
+      ],
+      "sections_present": [
+        "description",
+        "target_group",
+        "conditions",
+        "application",
+        "pricing",
+        "contact"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "turvakoduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_service_turvakoduteenus",
+      "document_id": "noo_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/turvakoduteenus",
+      "content_hash": "dc08fec74f5540cb11650df7f909d73e6bf85b4249dbaf4a725f0a28ac07e3c6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "noo_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus võimaldab eakal või puudega isikul, kelle tervislik olukord takistab isikliku või ühissõiduki kasutamist, kasutada vajadustele vastavat transporti tööle, õppeasutusse või avalike teenuste kasutamiseks. Taotlus esitatakse reeglina kolm tööpäeva enne sõitu ning puudega lapse haridusasutusse sõiduks hiljemalt 25. augustiks. Teenuse juures on avaldatud eraldi vormid puudega lapsele ja täisealisele isikule.",
+      "sourceKeys": [
+        "sotsiaaltransporditeenus_page"
+      ],
+      "targetGroup": "Eakad või puudega inimesed, kelle tervislik olukord takistab isikliku või ühissõiduki kasutamist.",
+      "conditions": "Taotluses tuleb märkida sõidu aeg, sihtkoht või marsruut ja sõidu põhjus.",
+      "application": {
+        "channels": [
+          "kirjalik taotlus Nõo Vallavalitsuse sotsiaalosakonda"
+        ],
+        "steps": null,
+        "deadline": "Reeglina kolm tööpäeva enne teenuse vajadust; puudega lapse haridusasutusse sõiduks hiljemalt 25. augustiks."
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/sotsiaaltransport",
+      "relatedForms": [
+        "noo_vald_form_sotsiaaltransport_puudega_laps",
+        "noo_vald_form_sotsiaaltransport_taisealine"
+      ],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter",
+        "noo_vald_contact_annika_tamme"
+      ],
+      "sections_present": [
+        "description",
+        "target_group",
+        "application",
+        "deadline",
+        "forms",
+        "contact"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "sotsiaaltransporditeenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_service_sotsiaaltransporditeenus",
+      "document_id": "noo_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/sotsiaaltransport",
+      "content_hash": "2ad22463375ee0089a12330a147ca28780e36e6119d8120c6760aa1398789066",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_service_eluruumi_tagamine",
+      "canonical_item_id": "noo_vald:service:eluruumi_tagamine",
+      "itemType": "service",
+      "title": "Eluruumi tagamine",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenuse eesmärk on kindlustada eluruumi kasutamise võimalus inimesele, kes ei ole sotsiaalmajanduslikust olukorrast tulenevalt võimeline endale või oma perele sobivat eluruumi tagama. Teenuse lehel on avaldatud taotluse sisu, vajalikud dokumendid ja menetlustähtaeg. Üüri suuruse määrab vallavalitsus ning üürnik tasub kõrvalkulud.",
+      "sourceKeys": [
+        "eluruumi_tagamine_page"
+      ],
+      "targetGroup": "Eluaset vajav füüsiline isik, kelle elukoht on rahvastikuregistris vähemalt üks aasta olnud Nõo vald.",
+      "conditions": "Taotluses tuleb esitada isikuandmed, pereliikmed, sissetulekud, vara, eluruumi taotlemise põhjendus ja senise eluruumi andmed.",
+      "application": {
+        "channels": [
+          "kirjalik taotlus Nõo Vallavalitsusele",
+          ""
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": "Vallavalitsus teeb otsuse 10 tööpäeva jooksul taotluse saamisest; leping sõlmitakse 30 päeva jooksul korralduse andmisest.",
+      "pricing": "Eluruumi üüri määrab vallavalitsus; üürnik tasub üüri ja kõrvalkulud.",
+      "officialUrl": "https://nvv.ee/eluruumi-tagamine",
+      "relatedForms": [],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter"
+      ],
+      "sections_present": [
+        "description",
+        "target_group",
+        "conditions",
+        "application",
+        "decision_time",
+        "pricing",
+        "documents",
+        "contact"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "eluruumi_tagamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_service_eluruumi_tagamine",
+      "document_id": "noo_vald_service_eluruumi_tagamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/eluruumi-tagamine",
+      "content_hash": "1832e26f221c4ea7106f3d1127d1f69f74c731b819fcfd86e384bc6bfaa5c81e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_service_volanoustamisteenus",
+      "canonical_item_id": "noo_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab inimesel kindlaks teha oma varalise olukorra, pidada läbirääkimisi võlausaldajaga, rahuldada nõudeid ja ennetada uusi võlgnevusi. Nõo valla lehe järgi tuleb teenuse saamiseks pöörduda sotsiaalosakonda. Sotsiaaltööspetsialist hindab teenuse vajadust ja suunab nõustamisele.",
+      "sourceKeys": [
+        "volanoustamisteenus_page"
+      ],
+      "targetGroup": "Majanduslikes raskustes Nõo valla elanikud.",
+      "conditions": "Teenuse vajaduse hindab sotsiaaltööspetsialist.",
+      "application": {
+        "channels": [
+          "pöördumine sotsiaalosakonda"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Nõo valla kodanikele tasuta.",
+      "officialUrl": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/abi-toimetulekuraskusega-inimesele/volanoustamisteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter"
+      ],
+      "sections_present": [
+        "description",
+        "target_group",
+        "application",
+        "pricing",
+        "contact"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "volanoustamisteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_service_volanoustamisteenus",
+      "document_id": "noo_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/abi-toimetulekuraskusega-inimesele/volanoustamisteenus",
+      "content_hash": "a95f16938784f69226e16eb4c8c98ac886f00161114e816b5683bb35dfdafd44",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "noo_vald:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenuse eesmärk on toetada raske või sügava puudega last kasvatava isiku toimetulekut või töötamist ning vähendada lapse erivajadusest tulenevat hoolduskoormust. Teenust võimaldatakse kuni 18-aastasele raske või sügava puudega lapsele ning teatud juhtudel kalendriaasta lõpuni, mil laps saab 18-aastaseks. Teenusele suunamiseks tuleb pöörduda sotsiaalosakonda.",
+      "sourceKeys": [
+        "lapsehoiuteenus_page"
+      ],
+      "targetGroup": "Raske või sügava puudega laps ja teda kasvatav isik.",
+      "conditions": "Osakonna spetsialist hindab teenuse vajadust; teenus on raske või sügava puudega lapsele tasuta.",
+      "application": {
+        "channels": [
+          "pöördumine sotsiaalosakonda"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://nvv.ee/lapsehoiuteenus",
+      "relatedForms": [
+        "noo_vald_form_lapsehoiuteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter"
+      ],
+      "sections_present": [
+        "description",
+        "target_group",
+        "conditions",
+        "application",
+        "forms",
+        "contact"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "lapsehoiuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_service_lapsehoiuteenus",
+      "document_id": "noo_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/lapsehoiuteenus",
+      "content_hash": "46294c66c992e6cadae3a916078b42a9551c7758b1cd0c71d9f4bfd9aed8e181",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_service_asendushooldusteenus",
+      "canonical_item_id": "noo_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenuse eesmärk on tagada vanemliku hooleta jäänud lapse heaolu, turvaline kasvukeskkond ja lapse ettevalmistamine iseseisvaks eluks. Teenuse osutaja võib olla hoolduspere, perekodu või asenduskodu. Nõo vallas suunab lapse asendushooldusteenusele lastekaitsespetsialist.",
+      "sourceKeys": [
+        "asendushooldusteenus_page"
+      ],
+      "targetGroup": "Vanemliku hooleta jäänud laps.",
+      "conditions": "Teenusele suunab lastekaitsespetsialist; igapäevaelu korraldab teenust osutav hoolduspere või asutus.",
+      "application": {
+        "channels": [
+          "pöördumine lastekaitsespetsialisti poole"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenust rahastatakse valla eelarvest ja asendushooldusel oleva lapse sissetulekutest.",
+      "officialUrl": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/asendushooldusteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "noo_vald_contact_liisa_rootare"
+      ],
+      "sections_present": [
+        "description",
+        "target_group",
+        "conditions",
+        "application",
+        "pricing",
+        "contact"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "asendushooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_service_asendushooldusteenus",
+      "document_id": "noo_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/asendushooldusteenus",
+      "content_hash": "3ff73fed9b74a76e9cb5ed30720a6f8ab0adbd150925f92c96947c2ad8741015",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "noo_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Nõo vald nimetab järelhooldusteenust ametlikul sotsiaalteenuste lehel eraldi teenusena. Automaatkorjes ei õnnestunud detailteksti terviklikult avada, seetõttu ei ole tingimusi ega menetluskäiku oletatud. Kirje on säilitatud, sest teenus on KOV veebis eraldi nimetatud.",
+      "sourceKeys": [
+        "jarelhooldusteenus_page",
+        "social_services_overview"
+      ],
+      "targetGroup": null,
+      "conditions": null,
+      "application": {
+        "channels": null,
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://nvv.ee/jarelhooldusteenus",
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "Detailne praktiline menetluskäik vajab käsitsi kontrolli."
+      ],
+      "item_type": "service",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "jarelhooldusteenus_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_service_jarelhooldusteenus",
+      "document_id": "noo_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/jarelhooldusteenus",
+      "content_hash": "f60c7ff83038e91f3cadd87deee890051afda834e424a706586b22cc336c19f3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_service_puudega_lapse_hooldamine",
+      "canonical_item_id": "noo_vald:service:puudega_lapse_hooldamine",
+      "itemType": "service",
+      "title": "Puudega lapse hooldamine",
+      "status": "active",
+      "summary": "Puudega lapse hooldamise lehel kirjeldatakse hooldamise ja hooldajatoetusega seotud tingimusi ning viidatakse taotlusele. Lehel on avaldatud olukorrad, millal toetust ei määrata, ning sotsiaalosakonna juhataja kontakt. Kirje on seotud puudega lapse hooldajatoetusega.",
+      "sourceKeys": [
+        "puudega_lapse_hooldamine_page"
+      ],
+      "targetGroup": "Puudega lapse hooldaja ja puudega laps.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "taotlusvormi esitamine",
+          "pöördumine sotsiaalosakonda"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://nvv.ee/puudega-lapse-hooldamine",
+      "relatedForms": [
+        "noo_vald_form_hooldajatoetus_puudega_laps"
+      ],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter"
+      ],
+      "sections_present": [
+        "description",
+        "conditions",
+        "forms",
+        "contact"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "puudega_lapse_hooldamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_service_puudega_lapse_hooldamine",
+      "document_id": "noo_vald_service_puudega_lapse_hooldamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/puudega-lapse-hooldamine",
+      "content_hash": "af7ab5b92ca2196071cb2156baf6bb71d2c9532989ce48d63f01e835a7f3ad48",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_service_puudega_laste_tugiteenused",
+      "canonical_item_id": "noo_vald:service:puudega_laste_tugiteenused",
+      "itemType": "service",
+      "title": "Puudega laste tugiteenused",
+      "status": "active",
+      "summary": "Puudega laste tugiteenuste lehel kirjeldatakse raske ja sügava puudega lapse perele pakutavaid tugiteenuseid. Nimetatud on lapsehoiuteenus, tugiisikuteenus ning toetava teenusena transporditeenus. Teenuseid saab taotleda kuni 17-aastase raske või sügava puudega lapse seaduslik esindaja või hoolduspere vanem.",
+      "sourceKeys": [
+        "puudega_laste_tugiteenused_page"
+      ],
+      "targetGroup": "Kuni 17-aastase raske või sügava puudega lapse seaduslik esindaja või hoolduspere vanem.",
+      "conditions": "Laps ja taotleja peavad vastama lehel nimetatud tingimustele ning pöördumine algab elukohajärgsest KOV-ist.",
+      "application": {
+        "channels": [
+          "pöördumine kohalikku omavalitsusse"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://nvv.ee/puudega-laste-tugiteenused",
+      "relatedForms": [
+        "noo_vald_form_puudega_lapse_tugiteenus"
+      ],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter",
+        "noo_vald_contact_liisa_rootare"
+      ],
+      "sections_present": [
+        "description",
+        "target_group",
+        "conditions",
+        "application",
+        "forms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "puudega_laste_tugiteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_service_puudega_laste_tugiteenused",
+      "document_id": "noo_vald_service_puudega_laste_tugiteenused",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/puudega-laste-tugiteenused",
+      "content_hash": "a9ace60390c90f1efb58e68fc2dec47a5c9e65355a9b2b634911d7155947a8de",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_service_pesupesemisteenus",
+      "canonical_item_id": "noo_vald:service:pesupesemisteenus",
+      "itemType": "service",
+      "title": "Pesupesemisteenus",
+      "status": "active",
+      "summary": "Nõo vald nimetab pesupesemisteenust ametlikul sotsiaalteenuste lehel eraldi sotsiaalteenusena. Detailteksti automaatkorje ei saanud täielikult avada, mistõttu ei ole tingimusi, tasu ega taotlemise korda oletatud. Kirje on loodud eraldi, sest teenus on KOV veebis nimetatud.",
+      "sourceKeys": [
+        "pesupesemisteenus_page",
+        "social_services_overview"
+      ],
+      "targetGroup": null,
+      "conditions": null,
+      "application": {
+        "channels": null,
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://nvv.ee/pesupesemisteenus",
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "Detaillehe praktiline sisu jäi automaatkorjes ebapiisavalt lahti; teenuse tingimused vajavad käsitsi kontrolli."
+      ],
+      "item_type": "service",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "pesupesemisteenus_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_service_pesupesemisteenus",
+      "document_id": "noo_vald_service_pesupesemisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/pesupesemisteenus",
+      "content_hash": "74516cf9aed33707f7c41fa6da7159041c1c3b37e31fec7eaaade9436a8b5385",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_service_taiendavad_vajaduspohised_teenused",
+      "canonical_item_id": "noo_vald:service:taiendavad_vajaduspohised_teenused",
+      "itemType": "service",
+      "title": "Täiendavad vajaduspõhised teenused",
+      "status": "active",
+      "summary": "Nõo vald nimetab täiendavaid vajaduspõhiseid teenuseid ametlikul sotsiaalteenuste lehel eraldi teenusena. Kirje tähistab KOV-i võimalust korraldada inimese abivajadusest lähtuvaid täiendavaid teenuseid. Detailtingimusi ei ole siin oletatud, sest detailtekst ei olnud automaatkorjes piisavalt loetav.",
+      "sourceKeys": [
+        "social_services_overview",
+        "taiendavad_vajaduspohised_teenused_page"
+      ],
+      "targetGroup": null,
+      "conditions": null,
+      "application": {
+        "channels": null,
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://nvv.ee/taiendavad-vajaduspohised-teenused",
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "Detaillehe praktiline sisu jäi automaatkorjes ebapiisavalt lahti; teenuse tingimused vajavad käsitsi kontrolli."
+      ],
+      "item_type": "service",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_services_overview",
+        "taiendavad_vajaduspohised_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_service_taiendavad_vajaduspohised_teenused",
+      "document_id": "noo_vald_service_taiendavad_vajaduspohised_teenused",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/taiendavad-vajaduspohised-teenused",
+      "content_hash": "75b7237fd24c9916e3df7bd442eb31cbd206feb79dc6d79ff2501d542070bfb9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "noo_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on ajutine abimeede, millega leevendatakse abivajavate isikute ja perede materiaalset puudust ning tagatakse minimaalsed vahendid esmavajadusteks. Toetus arvutatakse valemiga TT=(EK+TP)-S, võttes arvesse sissetulekut, eluasemekulusid ja toimetulekupiiri. 2026. aastal on toimetulekupiir esimesele pereliikmele 220 eurot, alaealisele 264 eurot ja teisele ning järgmisele täisealisele 176 eurot.",
+      "sourceKeys": [
+        "toimetulekutoetus_page"
+      ],
+      "targetGroup": "Madala sissetulekuga isikud ja pered.",
+      "conditions": "Taotleja peab esitama vormikohase avalduse ning sissetuleku ja eluasemekulude dokumendid hiljemalt kuu viimaseks tööpäevaks.",
+      "application": {
+        "channels": [
+          "vormikohane avaldus vallavalitsusele",
+          "elektrooniline avaldus infosüsteemi kaudu STAR programmis"
+        ],
+        "steps": null,
+        "deadline": "Hiljemalt kuu viimasel tööpäeval."
+      },
+      "decisionTime": null,
+      "amount": "Summa sõltub leibkonna sissetulekust, toimetulekupiirist ja arvesse võetavatest eluasemekuludest.",
+      "officialUrl": "https://nvv.ee/toimetulekutoetus",
+      "relatedForms": [
+        "noo_vald_form_toimetulekutoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter"
+      ],
+      "relatedTo": [],
+      "sections_present": [
+        "description",
+        "target_group",
+        "conditions",
+        "amount",
+        "application",
+        "deadline",
+        "forms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_benefit_toimetulekutoetus",
+      "document_id": "noo_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/toimetulekutoetus",
+      "content_hash": "422c1a572937e15f963ed246e9ad6ac2f485b71d79d005b21676d46b8cb84898",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_benefit_lapsetoetus",
+      "canonical_item_id": "noo_vald:benefit:lapsetoetus",
+      "itemType": "benefit",
+      "title": "Lapsetoetus",
+      "status": "active",
+      "summary": "Lapsetoetus on sissetulekust mittesõltuv Nõo valla sotsiaaltoetus lapse sünni puhul. Valla sotsiaaltoetuste lehel on nimetatud toetus summas 512 eurot, mis makstakse kolmes osas: 128 eurot pärast lapse sündi, 128 eurot pärast lapse üheaastaseks saamist ja 256 eurot lapse kaheaastaseks saamisel. Taotlemiseks on avaldatud eraldi lapsetoetuse avaldus.",
+      "sourceKeys": [
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Lapse vanem või taotleja, kellel on õigus Nõo valla lapsetoetusele.",
+      "conditions": null,
+      "application": {
+        "channels": null,
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "512 eurot kolmes osas: 128 €, 128 € ja 256 €.",
+      "officialUrl": "https://nvv.ee/sotsiaaltoetused1",
+      "relatedForms": [
+        "noo_vald_form_lapsetoetus"
+      ],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter"
+      ],
+      "relatedTo": [],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_benefit_lapsetoetus",
+      "document_id": "noo_vald_benefit_lapsetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/sotsiaaltoetused1",
+      "content_hash": "00b92f5a60175489b8f51007207bbd4d86b6ba3994107d3518ddaa6db3fbe378",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_benefit_koolitoetus",
+      "canonical_item_id": "noo_vald:benefit:koolitoetus",
+      "itemType": "benefit",
+      "title": "Koolitoetus esimesse klassi minevale lapsele",
+      "status": "active",
+      "summary": "Koolitoetus on sissetulekust mittesõltuv toetus esimesse klassi minevale lapsele. Nõo valla sotsiaaltoetuste lehel on toetusena nimetatud 50 eurot. Taotlemiseks on avaldatud koolitoetuse avaldus.",
+      "sourceKeys": [
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Esimesse klassi mineva lapse vanem või eestkostja.",
+      "conditions": null,
+      "application": {
+        "channels": null,
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "50 eurot.",
+      "officialUrl": "https://nvv.ee/sotsiaaltoetused1",
+      "relatedForms": [
+        "noo_vald_form_koolitoetus"
+      ],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter"
+      ],
+      "relatedTo": [],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_benefit_koolitoetus",
+      "document_id": "noo_vald_benefit_koolitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/sotsiaaltoetused1",
+      "content_hash": "615c4f933eb57207f71c686fe99256915edc5c4ccea89118d5ac236e7681ff39",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_benefit_pohikooli_lopetamise_toetus",
+      "canonical_item_id": "noo_vald:benefit:pohikooli_lopetamise_toetus",
+      "itemType": "benefit",
+      "title": "Põhikooli lõpetamise toetus",
+      "status": "active",
+      "summary": "Põhikooli lõpetamise toetus on Nõo vallas sissetulekust mittesõltuv toetus. Sotsiaaltoetuste lehel on põhikooli lõpetamise toetuse summaks märgitud 50 eurot. Taotlemiseks kasutatakse põhikooli või gümnaasiumi lõpetaja toetuse avaldust.",
+      "sourceKeys": [
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Põhikooli lõpetaja või tema esindaja.",
+      "conditions": null,
+      "application": {
+        "channels": null,
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "50 eurot.",
+      "officialUrl": "https://nvv.ee/sotsiaaltoetused1",
+      "relatedForms": [
+        "noo_vald_form_lopetaja_toetus"
+      ],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter"
+      ],
+      "relatedTo": [],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_benefit_pohikooli_lopetamise_toetus",
+      "document_id": "noo_vald_benefit_pohikooli_lopetamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/sotsiaaltoetused1",
+      "content_hash": "c6a8095d9db06dde6e8b58cfcbdf1a866bf791bb1e7ec01a137149107bf0c820",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_benefit_gumnaasiumi_lopetamise_toetus",
+      "canonical_item_id": "noo_vald:benefit:gumnaasiumi_lopetamise_toetus",
+      "itemType": "benefit",
+      "title": "Gümnaasiumi lõpetamise toetus",
+      "status": "active",
+      "summary": "Gümnaasiumi lõpetamise toetus on Nõo vallas sissetulekust mittesõltuv toetus. Sotsiaaltoetuste lehel on gümnaasiumi lõpetamise toetuse summaks märgitud 60 eurot. Taotlemiseks kasutatakse põhikooli või gümnaasiumi lõpetaja toetuse avaldust.",
+      "sourceKeys": [
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Gümnaasiumi lõpetaja või tema esindaja.",
+      "conditions": null,
+      "application": {
+        "channels": null,
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "60 eurot.",
+      "officialUrl": "https://nvv.ee/sotsiaaltoetused1",
+      "relatedForms": [
+        "noo_vald_form_lopetaja_toetus"
+      ],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter"
+      ],
+      "relatedTo": [],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_benefit_gumnaasiumi_lopetamise_toetus",
+      "document_id": "noo_vald_benefit_gumnaasiumi_lopetamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/sotsiaaltoetused1",
+      "content_hash": "71577ef21a283764d272649b3c92ce500f2bd1c0365271b15d64f947b30d945d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_benefit_represseeritute_maamaksutoetus",
+      "canonical_item_id": "noo_vald:benefit:represseeritute_maamaksutoetus",
+      "itemType": "benefit",
+      "title": "Represseeritute maamaksu tasumise toetus",
+      "status": "active",
+      "summary": "Represseeritute maamaksu tasumise toetus on sissetulekust mittesõltuv sotsiaaltoetus. Nõo valla sotsiaaltoetuste lehel on selle toetuse suuruseks märgitud kuni 20 eurot aastas. Vormiseost ei olnud samal lehel eraldi nimetatud.",
+      "sourceKeys": [
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Represseeritud isikud, kellel on õigus Nõo valla toetusele.",
+      "conditions": null,
+      "application": {
+        "channels": null,
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Kuni 20 eurot aastas.",
+      "officialUrl": "https://nvv.ee/sotsiaaltoetused1",
+      "relatedForms": [],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter"
+      ],
+      "relatedTo": [],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_benefit_represseeritute_maamaksutoetus",
+      "document_id": "noo_vald_benefit_represseeritute_maamaksutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/sotsiaaltoetused1",
+      "content_hash": "b58f364a9d65c6ce5a398bdca230c3cbc249ae066f8dbfde43163fa579c52c15",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_benefit_matusetoetus",
+      "canonical_item_id": "noo_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on Nõo valla sissetulekust mittesõltuv sotsiaaltoetus. Sotsiaaltoetuste lehel on matusetoetuse summaks märgitud 450 eurot. Taotlemiseks on avaldatud matusetoetuse taotlemise avaldus.",
+      "sourceKeys": [
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Matuse korraldaja või muu õigustatud taotleja.",
+      "conditions": null,
+      "application": {
+        "channels": null,
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "450 eurot.",
+      "officialUrl": "https://nvv.ee/sotsiaaltoetused1",
+      "relatedForms": [
+        "noo_vald_form_matusetoetus"
+      ],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter"
+      ],
+      "relatedTo": [],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_benefit_matusetoetus",
+      "document_id": "noo_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/sotsiaaltoetused1",
+      "content_hash": "fd9d3aa4b0eba4785af9a4da3ce2b146b15b1e1e374b89f81cc9babf97ce3ad7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_benefit_kriisiabi",
+      "canonical_item_id": "noo_vald:benefit:kriisiabi",
+      "itemType": "benefit",
+      "title": "Kriisiabi",
+      "status": "active",
+      "summary": "Kriisiabi on Nõo valla sotsiaaltoetuste lehel nimetatud sissetulekust mittesõltuva toetusena. Lehel ei ole samas plokis eraldi summat ega menetluse kirjeldust avaldatud. Kirje on loodud eraldi, sest KOV veeb nimetab kriisiabi eraldi toetuste loetelus.",
+      "sourceKeys": [
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Kriisiolukorda sattunud inimene või pere.",
+      "conditions": null,
+      "application": {
+        "channels": null,
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": null,
+      "officialUrl": "https://nvv.ee/sotsiaaltoetused1",
+      "relatedForms": [],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter"
+      ],
+      "relatedTo": [],
+      "sections_present": [],
+      "unresolvedIssues": [
+        "Toetuse täpne summa ja menetluskäik ei ole vaadatud lehel avaldatud."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_benefit_kriisiabi",
+      "document_id": "noo_vald_benefit_kriisiabi",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/sotsiaaltoetused1",
+      "content_hash": "d465a01929c31ae2a6ebba91adeebc236953d53788debb27f5b453ee2ceb5dc7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_benefit_toetus_lastega_peredele",
+      "canonical_item_id": "noo_vald:benefit:toetus_lastega_peredele",
+      "itemType": "benefit",
+      "title": "Toetus lastega peredele",
+      "status": "active",
+      "summary": "Toetus lastega peredele on Nõo vallas sissetulekust sõltuv sotsiaaltoetus. Sotsiaaltoetuste lehel on selle ülempiiriks märgitud kuni 400 eurot aastas. Vormiseos ei ole samal lehel eraldi nimetatud.",
+      "sourceKeys": [
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Sissetulekust sõltuvat abi vajavad lastega pered.",
+      "conditions": null,
+      "application": {
+        "channels": null,
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Kuni 400 eurot aastas.",
+      "officialUrl": "https://nvv.ee/sotsiaaltoetused1",
+      "relatedForms": [],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter"
+      ],
+      "relatedTo": [],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_benefit_toetus_lastega_peredele",
+      "document_id": "noo_vald_benefit_toetus_lastega_peredele",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/sotsiaaltoetused1",
+      "content_hash": "d9ce049dcb65785a808b4bd71d61383f6b319ad6d240ea23e7491578081dfbe0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_benefit_toetus_majandusliku_olukorra_leevendamiseks",
+      "canonical_item_id": "noo_vald:benefit:toetus_majandusliku_olukorra_leevendamiseks",
+      "itemType": "benefit",
+      "title": "Toetus majandusliku olukorra leevendamiseks",
+      "status": "active",
+      "summary": "Majandusliku olukorra leevendamise toetus on Nõo vallas sissetulekust sõltuv sotsiaaltoetus. Sotsiaaltoetuste lehel on selle ülempiiriks märgitud kuni 300 eurot aastas. Toetust kasutatakse materiaalse olukorra leevendamiseks, kui abivajadus sõltub sissetulekust.",
+      "sourceKeys": [
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Majandusliku olukorra tõttu abi vajavad isikud või pered.",
+      "conditions": null,
+      "application": {
+        "channels": null,
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Kuni 300 eurot aastas.",
+      "officialUrl": "https://nvv.ee/sotsiaaltoetused1",
+      "relatedForms": [],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter"
+      ],
+      "relatedTo": [],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_benefit_toetus_majandusliku_olukorra_leevendamiseks",
+      "document_id": "noo_vald_benefit_toetus_majandusliku_olukorra_leevendamiseks",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/sotsiaaltoetused1",
+      "content_hash": "7cc554678117882549da0f4134fabdfa7a8b160a8b965b34ccabdb1c78dc0327",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_benefit_kuttetoetus",
+      "canonical_item_id": "noo_vald:benefit:kuttetoetus",
+      "itemType": "benefit",
+      "title": "Küttetoetus",
+      "status": "active",
+      "summary": "Küttetoetus on Nõo vallas sissetulekust sõltuv sotsiaaltoetus. Sotsiaaltoetuste lehel on selle toetuse ülempiiriks märgitud kuni 300 eurot aastas. Toetuse täpsemad tingimused tuleb kontrollida eraldi korrast või sotsiaalosakonnast.",
+      "sourceKeys": [
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Sissetulekust sõltuvat kütteabi vajavad leibkonnad.",
+      "conditions": null,
+      "application": {
+        "channels": null,
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Kuni 300 eurot aastas.",
+      "officialUrl": "https://nvv.ee/sotsiaaltoetused1",
+      "relatedForms": [],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter"
+      ],
+      "relatedTo": [],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_benefit_kuttetoetus",
+      "document_id": "noo_vald_benefit_kuttetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/sotsiaaltoetused1",
+      "content_hash": "b78eaab9e6b960d32f41d81bb0fc9a297c717672bf90dc9ded2852b7971d5f84",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "canonical_item_id": "noo_vald:benefit:taisealise_isiku_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Täisealise isiku hooldajatoetus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldajatoetus on erivajadusest tulenev toetus hooldajale. Nõo valla lehel on raske puudega täisealise isiku hooldaja toetuseks märgitud 30 eurot ning sügava puudega täisealise isiku hooldaja toetuseks 50 eurot. Toetus on seotud täisealise isiku hoolduse teenusega.",
+      "sourceKeys": [
+        "social_benefits_overview",
+        "taisealise_isiku_hooldus_page"
+      ],
+      "targetGroup": "Täisealise raske või sügava puudega isiku hooldaja.",
+      "conditions": null,
+      "application": {
+        "channels": null,
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "30 eurot raske puudega isiku hooldajale; 50 eurot sügava puudega isiku hooldajale.",
+      "officialUrl": "https://nvv.ee/sotsiaaltoetused1",
+      "relatedForms": [
+        "noo_vald_form_hooldajatoetus_taiskasvanu"
+      ],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter"
+      ],
+      "relatedTo": [
+        "noo_vald_service_taisealise_isiku_hooldus"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_benefits_overview",
+        "taisealise_isiku_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "document_id": "noo_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/sotsiaaltoetused1",
+      "content_hash": "b1f39f00e9e5da232c9681cf6b91eb63be67282545b7efc3850ee5c0b58bdb5c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_benefit_puudega_lapse_hooldajatoetus",
+      "canonical_item_id": "noo_vald:benefit:puudega_lapse_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Puudega lapse hooldajatoetus",
+      "status": "active",
+      "summary": "Puudega lapse hooldajatoetus on erivajadusest tulenev toetus puudega lapse hooldajale. Sotsiaaltoetuste lehel on keskmise ja raske puudega lapse hooldajatoetuseks märgitud 50 eurot ning sügava puudega lapse hooldajatoetuseks 100 eurot. Taotlemiseks on avaldatud eraldi avaldus puudega lapse hooldajale.",
+      "sourceKeys": [
+        "puudega_lapse_hooldamine_page",
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Keskmise, raske või sügava puudega lapse hooldaja.",
+      "conditions": null,
+      "application": {
+        "channels": null,
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "50 eurot keskmise ja raske puudega lapse hooldajale; 100 eurot sügava puudega lapse hooldajale.",
+      "officialUrl": "https://nvv.ee/sotsiaaltoetused1",
+      "relatedForms": [
+        "noo_vald_form_hooldajatoetus_puudega_laps"
+      ],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter"
+      ],
+      "relatedTo": [
+        "noo_vald_service_puudega_lapse_hooldamine"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "puudega_lapse_hooldamine_page",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_benefit_puudega_lapse_hooldajatoetus",
+      "document_id": "noo_vald_benefit_puudega_lapse_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/sotsiaaltoetused1",
+      "content_hash": "6a442d19c5f6cc619446a6c3741ac8f5d0a488fbca4e819c70a4454f96670691",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_benefit_puudest_tingitud_lisakulude_toetus",
+      "canonical_item_id": "noo_vald:benefit:puudest_tingitud_lisakulude_toetus",
+      "itemType": "benefit",
+      "title": "Puudest tingitud lisakulude katmise toetus",
+      "status": "active",
+      "summary": "Puudest tingitud lisakulude katmise toetus on erivajadusest tulenev toetus, mida makstakse kuludokumentide alusel. Sotsiaaltoetuste lehel on täisealisele isikule ülempiiriks märgitud kuni 100 eurot aastas ja lapsele kuni 200 eurot aastas. Eraldi vorm on avaldatud puudega lapse vanemale lapse puudest tingitud lisakulude kompenseerimiseks.",
+      "sourceKeys": [
+        "forms_page",
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Puudega täisealine isik või puudega laps ja tema vanem.",
+      "conditions": null,
+      "application": {
+        "channels": null,
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Täisealisele kuni 100 eurot aastas; lapsele kuni 200 eurot aastas.",
+      "officialUrl": "https://nvv.ee/sotsiaaltoetused1",
+      "relatedForms": [
+        "noo_vald_form_puudega_lapse_lisakulud"
+      ],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter"
+      ],
+      "relatedTo": [],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "forms_page",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_benefit_puudest_tingitud_lisakulude_toetus",
+      "document_id": "noo_vald_benefit_puudest_tingitud_lisakulude_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/sotsiaaltoetused1",
+      "content_hash": "082e6895d79a3a09860d90ad323c2e02b7e085f66563bd0e2ba652e2aef9b5ab",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_benefit_eluruumi_kohandamise_toetus",
+      "canonical_item_id": "noo_vald:benefit:eluruumi_kohandamise_toetus",
+      "itemType": "benefit",
+      "title": "Eluruumi kohandamise toetus",
+      "status": "active",
+      "summary": "Erivajadusega Nõo valla elanikul on võimalik taotleda toetust eluaseme kohandamiseks, et parandada puudega inimese elamis-, õppimis- ja töötamistingimusi. Toetus hõlmab näiteks liikumise, hügieeni või köögitoimingutega seotud kohandusi. Kohandada saab eluruumi, mis asub Nõo vallas ning on taotleja rahvastikuregistrijärgne ja tegelik elukoht.",
+      "sourceKeys": [
+        "eluaseme_kohandamine_page"
+      ],
+      "targetGroup": "Erivajadusega Nõo valla elanik, kelle eluruum vajab puudest tulenevat kohandamist.",
+      "conditions": "Eluruum peab asuma Nõo vallas ning olema taotleja rahvastikuregistrijärgne ja tegelik elukoht.",
+      "application": {
+        "channels": [
+          "taotlusvorm",
+          "omaniku või kaasomaniku nõusolek",
+          "vajadusel korteriühistu nõusolek"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": null,
+      "officialUrl": "https://nvv.ee/puuetega-inimeste-eluaseme-fuusiline-kohandamine",
+      "relatedForms": [
+        "noo_vald_form_eluaseme_kohandamine",
+        "noo_vald_form_eluruumi_omaniku_nousolek",
+        "noo_vald_form_korteriuhistu_nousolek"
+      ],
+      "relatedContacts": [
+        "noo_vald_contact_ene_molter"
+      ],
+      "relatedTo": [],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "eluaseme_kohandamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_benefit_eluruumi_kohandamise_toetus",
+      "document_id": "noo_vald_benefit_eluruumi_kohandamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/puuetega-inimeste-eluaseme-fuusiline-kohandamine",
+      "content_hash": "93f70f7f7a7068a012c175b6ec7f91b89087395c60d44e5e3c8566fa6e9bfac2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_resource_lastekaitse",
+      "canonical_item_id": "noo_vald:resource:lastekaitse",
+      "itemType": "resource",
+      "title": "Lastekaitse",
+      "status": "active",
+      "summary": "Lastekaitse leht kirjeldab lapse õiguste ja heaolu tagamise põhimõtteid ning seda, kuidas lastekaitsespetsialist hindab lapse huve ja lapse/pere abivajadust. Lehel on kirjeldatud, et pöörduda võib igaüks, kes on mures lapse heaolu pärast. Vajadusel pakutakse perele teenuseid, toetusi või juhtumitööd.",
+      "sourceKeys": [
+        "lastekaitse_page"
+      ],
+      "name": null,
+      "address": null,
+      "officialUrl": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/lastekaitse",
+      "relatedTo": [
+        "noo_vald_contact_liisa_rootare"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_resource_lastekaitse",
+      "document_id": "noo_vald_resource_lastekaitse",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/lastekaitse",
+      "content_hash": "95850c4bd47de26605cd538e6af972b5f1ceccff36753a9dc1cb9bac4e13bebd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_resource_haedaohus_ja_abivajav_laps",
+      "canonical_item_id": "noo_vald:resource:haedaohus_ja_abivajav_laps",
+      "itemType": "resource",
+      "title": "Hädaohus ja abivajav laps",
+      "status": "active",
+      "summary": "Leht selgitab, kuidas teavitada abivajavast või hädaohus olevast lapsest. Välja on toodud lasteabitelefon, kadunud laste 116 000 ja hädaabinumber. Kirjeldatakse hädaohus oleva lapse ja abivajava lapse tunnuseid ning turvakoduteenuse seost.",
+      "sourceKeys": [
+        "haedaohus_laps_page"
+      ],
+      "name": null,
+      "address": null,
+      "officialUrl": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/hadaohus-ja-abivajav-laps",
+      "relatedTo": [
+        "noo_vald_service_turvakoduteenus",
+        "noo_vald_contact_liisa_rootare"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "haedaohus_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_resource_haedaohus_ja_abivajav_laps",
+      "document_id": "noo_vald_resource_haedaohus_ja_abivajav_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/hadaohus-ja-abivajav-laps",
+      "content_hash": "1b227f2e85a439d73bc8bb5a0e9e82f6ee25c367a73c5adf7863ed79f5ab1121",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_resource_noo_paevakeskus",
+      "canonical_item_id": "noo_vald:resource:noo_paevakeskus",
+      "itemType": "resource",
+      "title": "Nõo Päevakeskus",
+      "status": "active",
+      "summary": "Nõo Päevakeskus pakub loenguid, muusikalisi pärastlõunaid, filmipäevi, mälutreeningut, huvitegevusi ning võimalust lugeda ajalehti ja ajakirju. Vajadusel on päevakeskuses pesemisvõimalus ja lühiajaline majutus. Päevakeskus on avatud esmaspäevast reedeni kell 13.00–17.00.",
+      "sourceKeys": [
+        "paevakeskus_page"
+      ],
+      "name": "Nõo Päevakeskus",
+      "address": "Tartu 20, Nõo, 61601 Tartumaa",
+      "officialUrl": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/noo-paevakeskus",
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "paevakeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_resource_noo_paevakeskus",
+      "document_id": "noo_vald_resource_noo_paevakeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/noo-paevakeskus",
+      "content_hash": "e1c4aa4bdb1b38e649e714bdc641b8a7eb396c1645f67e459fee5b7f11bce171",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_resource_sa_noo_hooldekodu",
+      "canonical_item_id": "noo_vald:resource:sa_noo_hooldekodu",
+      "itemType": "resource",
+      "title": "SA Nõo Hooldekodu",
+      "status": "active",
+      "summary": "SA Nõo Hooldekodu on Nõo valla hooldekodu Luke külas. Valla lehel on avaldatud hooldekodu aadress, juhataja, telefonid ja e-posti aadress. Ressurss on seotud üldhooldusteenuse praktilise teenusepakkujana.",
+      "sourceKeys": [
+        "hooldekodu_page"
+      ],
+      "name": "SA Nõo Hooldekodu",
+      "address": "Luke küla, Nõo vald, 61614 Tartumaa",
+      "officialUrl": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/sa-noo-hooldekodu",
+      "relatedTo": [
+        "noo_vald_service_uldhooldusteenus"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "hooldekodu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_resource_sa_noo_hooldekodu",
+      "document_id": "noo_vald_resource_sa_noo_hooldekodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/sa-noo-hooldekodu",
+      "content_hash": "dfe5b71f3003b3cdc4e6b8fa1088ea82a1245bc5b9944d67d17c36cb2131ba62",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_resource_ohvriabi",
+      "canonical_item_id": "noo_vald:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "Ohvriabi leht suunab abi saama juhul, kui inimene või tema lähedane on kannatanud kuriteo, vägivalla või kriisijuhtumi tõttu. Leht annab ohvriabi kriisitelefoni ning välismaalt helistamise numbri Lisaks viidatakse naiste tugi- ja teabekeskusele ning Sotsiaalkindlustusameti iseteeninduse broneerimisvõimalusele.",
+      "sourceKeys": [
+        "ohvriabi_page"
+      ],
+      "name": null,
+      "address": null,
+      "officialUrl": "https://nvv.ee/ohvriabi",
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "ohvriabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_resource_ohvriabi",
+      "document_id": "noo_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/ohvriabi",
+      "content_hash": "9be822390cf4e1530674c607747eada457305f59652892443353fabb97bbef12",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_resource_puudega_isiku_parkimiskaart",
+      "canonical_item_id": "noo_vald:resource:puudega_isiku_parkimiskaart",
+      "itemType": "resource",
+      "title": "Puudega isiku parkimiskaart",
+      "status": "active",
+      "summary": "Puudega isiku parkimiskaart väljastatakse taotluse alusel inimesele, kellel on liikumis- või nägemisfunktsiooni kõrvalekalle või ajutine liikumisfunktsiooni kõrvalekalle. Kaardi taotlemisel tuleb esitada isikut tõendav dokument, SKA otsus või arstitõend ning foto. Kaart on isikupõhine, mitte sõidukipõhine.",
+      "sourceKeys": [
+        "parkimiskaart_page"
+      ],
+      "name": null,
+      "address": null,
+      "officialUrl": "https://nvv.ee/puudega-isiku-parkimiskaart1",
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "parkimiskaart_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_resource_puudega_isiku_parkimiskaart",
+      "document_id": "noo_vald_resource_puudega_isiku_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/puudega-isiku-parkimiskaart1",
+      "content_hash": "8e90029eaa729375201e7e50deb46287a78640b599078ea3a5e57e0b219ffea8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_resource_isikliku_abivahendi_kaart",
+      "canonical_item_id": "noo_vald:resource:isikliku_abivahendi_kaart",
+      "itemType": "resource",
+      "title": "Isikliku abivahendi kaart ja abivahendid",
+      "status": "active",
+      "summary": "Abivahendite leht selgitab, kuidas saada isikliku abivahendi kaart ja kuidas kasutada riigipoolse soodustusega abivahendeid. Abivahenditeks võivad olla näiteks liikumisabivahendid, mähkmed, poti- ja dušitoolid, proteesid või muud toimetulekut toetavad vahendid. Lehel viidatakse SKA taotlusvõimalustele ja üleriigilisele infotelefonile 16106.",
+      "sourceKeys": [
+        "abivahendi_kaart_page"
+      ],
+      "name": null,
+      "address": null,
+      "officialUrl": "https://nvv.ee/invaabivahendite-laenutamine-ja-ostmine1",
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "abivahendi_kaart_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_resource_isikliku_abivahendi_kaart",
+      "document_id": "noo_vald_resource_isikliku_abivahendi_kaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/invaabivahendite-laenutamine-ja-ostmine1",
+      "content_hash": "8db199efdc56bd3027e9fcff4d1c20452f8cf1a20c8f5b191b2852ffb915508a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_resource_tahtsad_abinumbrid",
+      "canonical_item_id": "noo_vald:resource:tahtsad_abinumbrid",
+      "itemType": "resource",
+      "title": "Tähtsad abinumbrid ja kriisikontaktid",
+      "status": "active",
+      "summary": "Nõo valla avalehel on koondatud tähtsad kontaktid: hädaabi, perearsti nõuandetelefon 1220, ohvriabi ja lasteabi. Need on praktilised abikanalid, mida kasutatakse kiire abi ja nõustamise saamiseks. Leht ei kirjelda nende teenuste sisu, kuid kinnitab numbrid Nõo valla ametliku veebikihi kaudu.",
+      "sourceKeys": [
+        "home"
+      ],
+      "name": null,
+      "address": null,
+      "officialUrl": "https://nvv.ee",
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "home"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_resource_tahtsad_abinumbrid",
+      "document_id": "noo_vald_resource_tahtsad_abinumbrid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee",
+      "content_hash": "8bc8a2945605b5dd7b066c2f3de97088b1b373aac37ddfde45770e5b4ff0d3e2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_resource_e_teenused",
+      "canonical_item_id": "noo_vald:resource:e_teenused",
+      "itemType": "resource",
+      "title": "Nõo valla e-teenused",
+      "status": "active",
+      "summary": "E-teenuste leht kirjeldab Nõo valla teenuste ja toimingute keskkonda, kus sotsiaal- ja haridusvaldkonnas on nimetatud lapsetoetuse, lapsehoiuteenuse, koolitoetuse, matusetoetuse, hooldajatoetuse, toimetulekutoetuse ning lõpetaja toetuse taotlemise võimalused. Leht märgib, et e-vorme saab allkirjastada ID-kaardiga. Ressurss kajastab ametlikku e-taotluste kanalit.",
+      "sourceKeys": [
+        "e_services_page"
+      ],
+      "name": null,
+      "address": null,
+      "officialUrl": "https://nvv.ee/teenused-ja-toimingud",
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "e_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_resource_e_teenused",
+      "document_id": "noo_vald_resource_e_teenused",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/teenused-ja-toimingud",
+      "content_hash": "2ace8130ed9fb7d303e934a6cd199ef907caa09d749c2bbc59644ff7e01e7644",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_form_sotsiaaltransport_puudega_laps",
+      "canonical_item_id": "noo_vald:form:sotsiaaltransport_puudega_laps",
+      "itemType": "form",
+      "title": "Sotsiaaltransporditeenus puudega lapsele",
+      "status": "active",
+      "summary": "Ametlik Nõo valla vorm 'Sotsiaaltransporditeenus puudega lapsele' teenuse või toetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_sotsiaaltransport_puudega_laps",
+        "forms_page"
+      ],
+      "format": "docx",
+      "officialUrl": "https://nvv.ee/sites/default/files/documents/2026-01/Sotsiaaltransporditeenus%20puudega%20lapsele.docx",
+      "submissionChannels": [
+        "",
+        "paberkandjal vallavalitsusse"
+      ],
+      "relatedTo": [
+        "noo_vald_service_sotsiaaltransporditeenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "form_sotsiaaltransport_puudega_laps",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_form_sotsiaaltransport_puudega_laps",
+      "document_id": "noo_vald_form_sotsiaaltransport_puudega_laps",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/sites/default/files/documents/2026-01/Sotsiaaltransporditeenus%20puudega%20lapsele.docx",
+      "content_hash": "b1d698d8ec3bbdf912bb938b7298afa13c10b4fc27dfd4af5daa29594f34fee7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_form_sotsiaaltransport_taisealine",
+      "canonical_item_id": "noo_vald:form:sotsiaaltransport_taisealine",
+      "itemType": "form",
+      "title": "Sotsiaaltransporditeenus täiesealisele",
+      "status": "active",
+      "summary": "Ametlik Nõo valla vorm 'Sotsiaaltransporditeenus täiesealisele' teenuse või toetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_sotsiaaltransport_taisealine",
+        "forms_page"
+      ],
+      "format": "docx",
+      "officialUrl": "https://nvv.ee/sites/default/files/documents/2026-01/Sotsiaaltransporditeenus%20t%C3%A4iesealisele.docx",
+      "submissionChannels": [
+        "",
+        "paberkandjal vallavalitsusse"
+      ],
+      "relatedTo": [
+        "noo_vald_service_sotsiaaltransporditeenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "form_sotsiaaltransport_taisealine",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_form_sotsiaaltransport_taisealine",
+      "document_id": "noo_vald_form_sotsiaaltransport_taisealine",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/sites/default/files/documents/2026-01/Sotsiaaltransporditeenus%20t%C3%A4iesealisele.docx",
+      "content_hash": "c31cc7c7d835fcb5cece7f206d657baf47a582a6e63c0c64dfa0d9c001ec8da7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_form_toimetulekutoetuse_avaldus",
+      "canonical_item_id": "noo_vald:form:toimetulekutoetuse_avaldus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse avaldus",
+      "status": "active",
+      "summary": "Ametlik Nõo valla vorm 'Toimetulekutoetuse avaldus' teenuse või toetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_toimetulekutoetuse_avaldus",
+        "toimetulekutoetus_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://nvv.ee/sites/default/files/documents/2026-01/Toimetulekutoetuse%20avaldus.pdf",
+      "submissionChannels": [
+        "",
+        "paberkandjal vallavalitsusse"
+      ],
+      "relatedTo": [
+        "noo_vald_benefit_toimetulekutoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "form_toimetulekutoetuse_avaldus",
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_form_toimetulekutoetuse_avaldus",
+      "document_id": "noo_vald_form_toimetulekutoetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/sites/default/files/documents/2026-01/Toimetulekutoetuse%20avaldus.pdf",
+      "content_hash": "a0fd30ffa37c403e6365b821bff7b2e2cfe71de198463bdb8c7e08a92eac1fa5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_form_hooldajatoetus_taiskasvanu",
+      "canonical_item_id": "noo_vald:form:hooldajatoetus_taiskasvanu",
+      "itemType": "form",
+      "title": "Hooldajatoetuse määramise avaldus täiskasvanule",
+      "status": "active",
+      "summary": "Ametlik Nõo valla vorm 'Hooldajatoetuse määramise avaldus täiskasvanule' teenuse või toetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_hooldajatoetus_taiskasvanu",
+        "forms_page"
+      ],
+      "format": "doc",
+      "officialUrl": "https://nvv.ee/documents/1432271/12882866/Hooldajatoetus.doc/a9e5011b-e76e-4e87-b995-9a4abbe75600",
+      "submissionChannels": [
+        "",
+        "paberkandjal vallavalitsusse"
+      ],
+      "relatedTo": [
+        "noo_vald_benefit_taisealise_isiku_hooldajatoetus",
+        "noo_vald_service_taisealise_isiku_hooldus"
+      ],
+      "item_type": "form",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "form_hooldajatoetus_taiskasvanu",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_form_hooldajatoetus_taiskasvanu",
+      "document_id": "noo_vald_form_hooldajatoetus_taiskasvanu",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/documents/1432271/12882866/Hooldajatoetus.doc/a9e5011b-e76e-4e87-b995-9a4abbe75600",
+      "content_hash": "e73fb2c064b76210040e7c75bdb3ee95298cb58c369461d167e0ce8e0fc1ecb5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_form_hooldajatoetus_puudega_laps",
+      "canonical_item_id": "noo_vald:form:hooldajatoetus_puudega_laps",
+      "itemType": "form",
+      "title": "Hooldajatoetuse määramise avaldus puudega lapse hooldajale",
+      "status": "active",
+      "summary": "Ametlik Nõo valla vorm 'Hooldajatoetuse määramise avaldus puudega lapse hooldajale' teenuse või toetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_hooldajatoetus_puudega_laps",
+        "forms_page"
+      ],
+      "format": "docx",
+      "officialUrl": "https://nvv.ee/documents/1432271//Avaldus%2Bhooldajatoetuse%2Bmaksmiseks%2Bpuudega%2Blapse%2Bhooldajale.docx/090c2d6f-f219-49e9-9c7d-dfd00450e916",
+      "submissionChannels": [
+        "",
+        "paberkandjal vallavalitsusse"
+      ],
+      "relatedTo": [
+        "noo_vald_benefit_puudega_lapse_hooldajatoetus",
+        "noo_vald_service_puudega_lapse_hooldamine"
+      ],
+      "item_type": "form",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "form_hooldajatoetus_puudega_laps",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_form_hooldajatoetus_puudega_laps",
+      "document_id": "noo_vald_form_hooldajatoetus_puudega_laps",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/documents/1432271//Avaldus%2Bhooldajatoetuse%2Bmaksmiseks%2Bpuudega%2Blapse%2Bhooldajale.docx/090c2d6f-f219-49e9-9c7d-dfd00450e916",
+      "content_hash": "0364b3940ce1d704cdf8591207b2b963399de77eefa2c8b47f8f55e0aec27413",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_form_matusetoetus",
+      "canonical_item_id": "noo_vald:form:matusetoetus",
+      "itemType": "form",
+      "title": "Matusetoetuse taotlemise avaldus",
+      "status": "active",
+      "summary": "Ametlik Nõo valla vorm 'Matusetoetuse taotlemise avaldus' teenuse või toetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_matusetoetus",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://nvv.ee/documents/1432271/18486248/Matusetoetuse%2Btaotlemise%2Bavaldus_muudetav.pdf/1b6e7959-ec76-4aa2-9112-586ce7ae1916",
+      "submissionChannels": [
+        "",
+        "paberkandjal vallavalitsusse"
+      ],
+      "relatedTo": [
+        "noo_vald_benefit_matusetoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "form_matusetoetus",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_form_matusetoetus",
+      "document_id": "noo_vald_form_matusetoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/documents/1432271/18486248/Matusetoetuse%2Btaotlemise%2Bavaldus_muudetav.pdf/1b6e7959-ec76-4aa2-9112-586ce7ae1916",
+      "content_hash": "69fbf951288fc31fc79a00b388afd4c238c26e278da83df5df8fff729af028a8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_form_lapsetoetus",
+      "canonical_item_id": "noo_vald:form:lapsetoetus",
+      "itemType": "form",
+      "title": "Lapsetoetuse taotlemise avaldus",
+      "status": "active",
+      "summary": "Ametlik Nõo valla vorm 'Lapsetoetuse taotlemise avaldus' teenuse või toetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_lapsetoetus",
+        "forms_page"
+      ],
+      "format": "doc",
+      "officialUrl": "https://nvv.ee/documents/1432271//Lapsetoetus%2Bblankett%2B2.doc/f180fb23-382d-4dd4-9cbc-6f67e686b7d0",
+      "submissionChannels": [
+        "",
+        "paberkandjal vallavalitsusse"
+      ],
+      "relatedTo": [
+        "noo_vald_benefit_lapsetoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "form_lapsetoetus",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_form_lapsetoetus",
+      "document_id": "noo_vald_form_lapsetoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/documents/1432271//Lapsetoetus%2Bblankett%2B2.doc/f180fb23-382d-4dd4-9cbc-6f67e686b7d0",
+      "content_hash": "354393674222c29546bde67d55a8297008b2d558150c186c83045050c137f36b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_form_lopetaja_toetus",
+      "canonical_item_id": "noo_vald:form:lopetaja_toetus",
+      "itemType": "form",
+      "title": "Põhikooli või gümnaasiumi lõpetaja toetuse taotlemise avaldus",
+      "status": "active",
+      "summary": "Ametlik Nõo valla vorm 'Põhikooli või gümnaasiumi lõpetaja toetuse taotlemise avaldus' teenuse või toetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_lopetaja_toetus",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://nvv.ee/documents/1432271//koolil%C3%B5putoetuse%2Bavaldus-kodukale.pdf/3dcc1ec8-9a40-45dc-8151-855587b4d3b9",
+      "submissionChannels": [
+        "",
+        "paberkandjal vallavalitsusse"
+      ],
+      "relatedTo": [
+        "noo_vald_benefit_pohikooli_lopetamise_toetus",
+        "noo_vald_benefit_gumnaasiumi_lopetamise_toetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "form_lopetaja_toetus",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_form_lopetaja_toetus",
+      "document_id": "noo_vald_form_lopetaja_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/documents/1432271//koolil%C3%B5putoetuse%2Bavaldus-kodukale.pdf/3dcc1ec8-9a40-45dc-8151-855587b4d3b9",
+      "content_hash": "904a1d835f0e9cb8f7b1ffbc50e7772e63fc8571b928a67f35f8ce5c979ffae6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_form_puudega_lapse_tugiteenus",
+      "canonical_item_id": "noo_vald:form:puudega_lapse_tugiteenus",
+      "itemType": "form",
+      "title": "Avaldus raske ja sügava puudega lapsele sotsiaalteenuse osutamise toetuse taotlemiseks",
+      "status": "active",
+      "summary": "Ametlik Nõo valla vorm 'Avaldus raske ja sügava puudega lapsele sotsiaalteenuse osutamise toetuse taotlemiseks' teenuse või toetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_puudega_lapse_tugiteenus",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://nvv.ee/documents/1432271//Raske%2Bja%2Bs%C3%BCgava%2Bpuudega%2Blaste%2Btugiteenuse%2Bveebis%2Bt%C3%A4idetav.pdf/5b3d8668-dec2-462c-90ab-d8d3e3f46b7e",
+      "submissionChannels": [
+        "",
+        "paberkandjal vallavalitsusse"
+      ],
+      "relatedTo": [
+        "noo_vald_service_puudega_laste_tugiteenused"
+      ],
+      "item_type": "form",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "form_puudega_lapse_tugiteenus",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_form_puudega_lapse_tugiteenus",
+      "document_id": "noo_vald_form_puudega_lapse_tugiteenus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/documents/1432271//Raske%2Bja%2Bs%C3%BCgava%2Bpuudega%2Blaste%2Btugiteenuse%2Bveebis%2Bt%C3%A4idetav.pdf/5b3d8668-dec2-462c-90ab-d8d3e3f46b7e",
+      "content_hash": "d62e8cbf8fae440d7d09a53620cfe7e66f06f16eaf6d28355be986ee1b75ddbd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_form_koolitoetus",
+      "canonical_item_id": "noo_vald:form:koolitoetus",
+      "itemType": "form",
+      "title": "Avaldus esimesse klassi minevale lapsele koolitoetuse taotlemiseks",
+      "status": "active",
+      "summary": "Ametlik Nõo valla vorm 'Avaldus esimesse klassi minevale lapsele koolitoetuse taotlemiseks' teenuse või toetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_koolitoetus",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://nvv.ee/documents/1432271//Avaldus%2Bkoolitoetuse%2Btaotlemiseks_new.pdf/9f68b48d-34c2--10e03cc20eac",
+      "submissionChannels": [
+        "",
+        "paberkandjal vallavalitsusse"
+      ],
+      "relatedTo": [
+        "noo_vald_benefit_koolitoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "form_koolitoetus",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_form_koolitoetus",
+      "document_id": "noo_vald_form_koolitoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/documents/1432271//Avaldus%2Bkoolitoetuse%2Btaotlemiseks_new.pdf/9f68b48d-34c2--10e03cc20eac",
+      "content_hash": "672430e3f7cb1342b6f8e3b7b22de80ff8a2fea91842e47514bd4cba3e00e8c0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_form_puudega_lapse_lisakulud",
+      "canonical_item_id": "noo_vald:form:puudega_lapse_lisakulud",
+      "itemType": "form",
+      "title": "Taotlus puudega lapse vanemale lapse puudest tingitud lisakulude kompenseerimiseks",
+      "status": "active",
+      "summary": "Ametlik Nõo valla vorm 'Taotlus puudega lapse vanemale lapse puudest tingitud lisakulude kompenseerimiseks' teenuse või toetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_puudega_lapse_lisakulud",
+        "forms_page"
+      ],
+      "format": "docx",
+      "officialUrl": "https://nvv.ee/documents/1432271/22623507/Puudega%2Blapse%2Btoetus_taotlus.docx/47b8da68-f013-49ca-9226-7b9bf9e6697d",
+      "submissionChannels": [
+        "",
+        "paberkandjal vallavalitsusse"
+      ],
+      "relatedTo": [
+        "noo_vald_benefit_puudest_tingitud_lisakulude_toetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "form_puudega_lapse_lisakulud",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_form_puudega_lapse_lisakulud",
+      "document_id": "noo_vald_form_puudega_lapse_lisakulud",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/documents/1432271/22623507/Puudega%2Blapse%2Btoetus_taotlus.docx/47b8da68-f013-49ca-9226-7b9bf9e6697d",
+      "content_hash": "6a2f97d53d6eb3da42dbf4cbeedb7fd19ba121487462af8c63b47a1cb34b0373",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_form_eluaseme_kohandamine",
+      "canonical_item_id": "noo_vald:form:eluaseme_kohandamine",
+      "itemType": "form",
+      "title": "Eluaseme kohandamise taotlusvorm",
+      "status": "active",
+      "summary": "Ametlik Nõo valla vorm 'Eluaseme kohandamise taotlusvorm' teenuse või toetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_eluaseme_kohandamine",
+        "forms_page"
+      ],
+      "format": "doc",
+      "officialUrl": "https://nvv.ee/documents/1432271/22623507/Eluaseme%2Bkohandamine%2Btaotlusvorm.doc/6c9924ee-a480-41f2-a3c5-b1d13aa76a8a",
+      "submissionChannels": [
+        "",
+        "paberkandjal vallavalitsusse"
+      ],
+      "relatedTo": [
+        "noo_vald_benefit_eluruumi_kohandamise_toetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "form_eluaseme_kohandamine",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_form_eluaseme_kohandamine",
+      "document_id": "noo_vald_form_eluaseme_kohandamine",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/documents/1432271/22623507/Eluaseme%2Bkohandamine%2Btaotlusvorm.doc/6c9924ee-a480-41f2-a3c5-b1d13aa76a8a",
+      "content_hash": "eb3dc183a7b324f713b17ac191feff48b34fdbc23dce94e03d52ed559e1d4a26",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_form_eluruumi_omaniku_nousolek",
+      "canonical_item_id": "noo_vald:form:eluruumi_omaniku_nousolek",
+      "itemType": "form",
+      "title": "Eluruumi omaniku või kaasomaniku nõusolek",
+      "status": "active",
+      "summary": "Ametlik Nõo valla vorm 'Eluruumi omaniku või kaasomaniku nõusolek' teenuse või toetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_eluruumi_omaniku_nousolek",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://nvv.ee/documents/1432271//Omaniku%2Bv%C3%B5i%2Bkaasomaniku%2Bn%C3%B5usolek_new.pdf/d39d5d28-affe-40c4-8e6e-36f46ab072b8",
+      "submissionChannels": [
+        "",
+        "paberkandjal vallavalitsusse"
+      ],
+      "relatedTo": [
+        "noo_vald_benefit_eluruumi_kohandamise_toetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "form_eluruumi_omaniku_nousolek",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_form_eluruumi_omaniku_nousolek",
+      "document_id": "noo_vald_form_eluruumi_omaniku_nousolek",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/documents/1432271//Omaniku%2Bv%C3%B5i%2Bkaasomaniku%2Bn%C3%B5usolek_new.pdf/d39d5d28-affe-40c4-8e6e-36f46ab072b8",
+      "content_hash": "c2f4e4729ba56c92697985c1683038d5ab7eb8adb014a1590805856fd55b836a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_form_korteriuhistu_nousolek",
+      "canonical_item_id": "noo_vald:form:korteriuhistu_nousolek",
+      "itemType": "form",
+      "title": "Korteriühistu nõusolek",
+      "status": "active",
+      "summary": "Ametlik Nõo valla vorm 'Korteriühistu nõusolek' teenuse või toetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_korteriuhistu_nousolek",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://nvv.ee/documents/1432271//Korteri%C3%BChistu%2Bn%C3%B5usolek.pdf/de1e1f1b-8bc0-4b42-9e43-44b983b86185",
+      "submissionChannels": [
+        "",
+        "paberkandjal vallavalitsusse"
+      ],
+      "relatedTo": [
+        "noo_vald_benefit_eluruumi_kohandamise_toetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "form_korteriuhistu_nousolek",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_form_korteriuhistu_nousolek",
+      "document_id": "noo_vald_form_korteriuhistu_nousolek",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/documents/1432271//Korteri%C3%BChistu%2Bn%C3%B5usolek.pdf/de1e1f1b-8bc0-4b42-9e43-44b983b86185",
+      "content_hash": "4ae8879787d5c6e0b56f6ec4a1bdd96eb045e758738caece0f5f2cdc8df7c964",
+      "evidence_allowed": true
+    },
+    {
+      "id": "noo_vald_form_lapsehoiuteenuse_taotlus",
+      "canonical_item_id": "noo_vald:form:lapsehoiuteenuse_taotlus",
+      "itemType": "form",
+      "title": "Lapsehoiuteenuse taotlus",
+      "status": "active",
+      "summary": "Ametlik Nõo valla vorm 'Lapsehoiuteenuse taotlus' teenuse või toetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_lapsehoiuteenuse_taotlus",
+        "forms_page"
+      ],
+      "format": "docx",
+      "officialUrl": "https://nvv.ee/documents/1432271//lapsehoiuteenuse%2Btaotlus.docx/796e2efe-4cb8-42eb-93f4-a8d172256a00",
+      "submissionChannels": [
+        "",
+        "paberkandjal vallavalitsusse"
+      ],
+      "relatedTo": [
+        "noo_vald_service_lapsehoiuteenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "form_lapsehoiuteenuse_taotlus",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "noo_vald_form_lapsehoiuteenuse_taotlus",
+      "document_id": "noo_vald_form_lapsehoiuteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://nvv.ee/documents/1432271//lapsehoiuteenuse%2Btaotlus.docx/796e2efe-4cb8-42eb-93f4-a8d172256a00",
+      "content_hash": "6c7f60c3f6f00654e7990fc2383edaee2eeb18ab361a3fcb72d6c0ae1bdda696",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Nõo vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

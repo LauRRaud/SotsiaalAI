@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-1-2022",
+  "articleId": "sigrid-petoffer-ohvrirolli-voib-kergesti-kinni-jaada-2022-1",
+  "title": "Sigrid Petoffer: „Ohvrirolli võib kergesti kinni jääda.“",
+  "authors": [
+    "Kadri Kuulpak"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2022",
+  "section": "Persoon",
+  "pageRange": "3-6",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu kogenud asendushoolduse ja peretöö spetsialistist Sigrid Petofferist, kes juhib vägivallatseva käitumisega isade sekkumisprogrammi „Hoolivad isad: turvalisem elu lastele“. Intervjuus räägitakse lapsepõlves kogetud perevägivalla mõjust, ohvrirolli ohtudest, vanemluse toetamisest ning vajadusest aidata ka vägivallatsejat, et luua lastele turvalisem elukeskkond. Artiklis käsitletakse vaimse tervise, supervisiooni ja enesehoiu tähtsust ning rõhutatakse, et laste heaolu sõltub turvalistest suhetest ja vähemalt ühest usaldusväärsest täiskasvanust.",
+  "tags": [
+    "persoon",
+    "perevägivald",
+    "vanemlus",
+    "vaimne tervis",
+    "Hoolivad isad",
+    "VAITER",
+    "supervisioon",
+    "asendushooldus"
+  ],
+  "source_type": "file",
+  "source_path": "2022_artikkel_2_persoon.pdf",
+  "document_id": "sotsiaaltoo-1-2022-sigrid-petoffer-ohvrirolli-voib-kergesti-kinni-jaada-2022-1",
+  "source_format": "pdf",
+  "source_sha256": "76ea0da8fd0e85be6732c41bff8873887d692e2caf5cb406674474b7ceda7984",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2022-sigrid-petoffer-ohvrirolli-voib-kergesti-kinni-jaada-2022-1",
+    "previous_source_path": "2022_artikkel_2_persoon.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "76ea0da8fd0e85be6732c41bff8873887d692e2caf5cb406674474b7ceda7984",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

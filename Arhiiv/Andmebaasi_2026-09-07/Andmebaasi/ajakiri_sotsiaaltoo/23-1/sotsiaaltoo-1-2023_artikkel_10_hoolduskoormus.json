@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2023",
+  "articleId": "suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+  "title": "Suure hoolduskoormusega inimesed vajavad täiendavat abi",
+  "authors": [
+    "Vaike Vainu"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2023",
+  "section": "Analüüs",
+  "pageRange": "34-42",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Analüüs põhineb elanikkonna hoolduskoormuse uuringul, mis kaardistab lähedasi hooldavate inimeste hulga,\nigapäevased hooldustoimingud ja koormuse mõju tervisele, tööelule ja majanduslikule toimetulekule.\nAutor näitab, et suure hoolduskoormusega hooldajatel on eluga rahulolu ja tervisenäitajad märksa kehvemad\nkui teistel ning nende läbipõlemise risk on kõrge. Artikkel rõhutab vajadust tõsta pikaajalise hoolduse\nrahastust, arendada kodus toimetulekut toetavaid teenuseid ning luua lahendusi, mis aitaksid ühitada töö\nja hoolduskohustused.",
+  "tags": [
+    "hoolduskoormus",
+    "omastehooldus",
+    "pikaajaline hooldus",
+    "hooldajate tervis",
+    "töö ja hooldus",
+    "sotsiaalpoliitika",
+    "uuring"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_1_2023_web_Part10.pdf",
+  "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+  "source_format": "pdf",
+  "source_sha256": "b54928c70ad115a061b7a8eafa19f7753dd0e5406becc929cb2e1211fa83d596",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+    "previous_source_path": "Sotsiaaltoo_1_2023_web_Part10.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b54928c70ad115a061b7a8eafa19f7753dd0e5406becc929cb2e1211fa83d596",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

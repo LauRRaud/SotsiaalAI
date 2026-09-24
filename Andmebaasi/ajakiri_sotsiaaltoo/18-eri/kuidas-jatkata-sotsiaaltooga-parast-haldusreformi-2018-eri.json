@@ -1,0 +1,38 @@
+{
+  "docId": "sotsiaaltoo-eri-2018",
+  "articleId": "kuidas-jatkata-sotsiaaltooga-parast-haldusreformi-2018-eri",
+  "title": "Kuidas jätkata sotsiaaltööga pärast haldusreformi?",
+  "authors": [],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "juubeli erinumber",
+  "section": "Sotsiaaltöö pärast haldusreformi",
+  "pageRange": "40-41",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel koondab ajakirja Sotsiaaltöö juubeliüritusel sõnastatud mõtted ja ettepanekud sotsiaaltöö jätkamiseks pärast haldusreformi. Fookuses on kohalike omavalitsuste võimekus, teenuste kättesaadavus, rahastamine ja riigi ning KOVide koostöö.",
+  "tags": [
+    "haldusreform",
+    "kohalik omavalitsus",
+    "sotsiaalteenused",
+    "sotsiaalpoliitika",
+    "teenuste arendamine",
+    "KOV"
+  ],
+  "source_type": "file",
+  "source_path": "ST_eri_2018_web_link_Part12.pdf",
+  "document_id": "sotsiaaltoo-eri-2018-kuidas-jatkata-sotsiaaltooga-parast-haldusreformi-2018-eri",
+  "source_format": "pdf",
+  "source_sha256": "4d948d046ef7f20885873ed938c0964d4ee7a894b02fa2fde92b2db1692d25b3",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2018-kuidas-jatkata-sotsiaaltooga-parast-haldusreformi-2018-eri",
+    "previous_source_path": "ST_eri_2018_web_link_Part12.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "4d948d046ef7f20885873ed938c0964d4ee7a894b02fa2fde92b2db1692d25b3",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

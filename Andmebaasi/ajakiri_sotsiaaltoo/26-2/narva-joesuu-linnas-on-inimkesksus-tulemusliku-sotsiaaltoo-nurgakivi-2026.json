@@ -1,0 +1,49 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "narva-joesuu-linnas-on-inimkesksus-tulemusliku-sotsiaaltoo-nurgakivi-2026",
+  "title": "Narva-Jõesuu linnas on inimkesksus tulemusliku sotsiaaltöö nurgakivi",
+  "authors": [
+    "Veronika Stepanova"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Kohalik omavalitsus",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade Narva-Jõesuu linna sotsiaaltööst, mis lähtub inimkesksest lähenemisest ja abivajaduse terviklikust hindamisest. Teenuseid osutatakse kolmes teeninduspunktis, sh koduteenus, sotsiaaltransport, vaimse tervise tugi ja perede toetamine. Väikeses omavalitsuses osutub eduteguriks usalduslik suhe sotsiaaltöötajate ja elanike vahel.",
+  "tags": [
+    "kohalik omavalitsus",
+    "Narva-Jõesuu",
+    "inimkeskne lähenemine",
+    "koduteenus",
+    "sotsiaaltransport",
+    "vaimne tervis",
+    "perede tugi",
+    "Ida-Virumaa"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-05-13",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/narva-joesuu-linnas-inimkesksus-tulemusliku-sotsiaaltoo-nurgakivi",
+  "source_type": "web",
+  "source_path": "narva-joesuu-linnas-on-inimkesksus-tulemusliku-sotsiaaltoo-nurgakivi.html",
+  "lead": "Kohaliku omavalitsuse sotsiaaltöö ülesanne on pakkuda inimestele tuge, kui nende enda või pere võimalustest ei piisa toimetulekuks. Narva-Jõesuu linnas tegutsetakse inimkeskselt: iga inimese olukorda vaadeldakse tervikuna, võttes arvesse tema vajadusi, võimalusi ja elukeskkonda.",
+  "document_id": "sotsiaaltoo-2-2026-narva-joesuu-linnas-on-inimkesksus-tulemusliku-sotsiaaltoo-nurgakivi-2026",
+  "source_format": "html",
+  "source_sha256": "de6f004558e765cbd99eb71ab0e3b6adc8b1954005f298746b7595d4281561be",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-narva-joesuu-linnas-on-inimkesksus-tulemusliku-sotsiaaltoo-nurgakivi-2026",
+    "previous_source_path": "narva-joesuu-linnas-on-inimkesksus-tulemusliku-sotsiaaltoo-nurgakivi.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ac9aff4a6f634618f1ed406b8304c364e16b9df111bb7c06b6ee025663775b94",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "70968ddc2612c7fd572678c55275296c25acc3dfb4fc64d1acc25b286ca3f2f6",
+    "observed_web_title": "Narva-Jõesuu linnas on inimkesksus tulemusliku sotsiaaltöö nurgakivi"
+  },
+  "retrieved_at": "2026-09-07T19:39:38.269846+00:00"
+}

@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-4-2019",
+  "articleId": "juhendmaterjal-inimkaubanduse-ohvrite-tuvastamiseks-2019",
+  "title": "Juhendmaterjal aitab tuvastada inimkaubanduse ohvreid ja osutada neile abi",
+  "authors": [
+    "Anu Leps",
+    "Kristiina Luht",
+    "Andrea Kink",
+    "Sirle Blumberg"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2019",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "44-48",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab 2019. aastal valminud inimkaubanduse ohvri tuvastamise ja teenusele suunamise juhist, selgitades inimkaubanduse tunnuseid, ohvri ja eeldatava ohvri mõistet ning erinevate asutuste rolli ohvrite abistamisel.",
+  "tags": [
+    "inimkaubandus",
+    "ohvriabi",
+    "juhendmaterjal",
+    "sotsiaalkindlustusamet",
+    "justiitsministeerium"
+  ],
+  "source_type": "file",
+  "source_path": "ST4_2019_web_link_Part12.pdf",
+  "document_id": "sotsiaaltoo-4-2019-juhendmaterjal-inimkaubanduse-ohvrite-tuvastamiseks-2019",
+  "source_format": "pdf",
+  "source_sha256": "9e304be48898e1ac39413c085e16572c825c07250eb4fc32c33c9629e60f64c4",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2019-juhendmaterjal-inimkaubanduse-ohvrite-tuvastamiseks-2019",
+    "previous_source_path": "ST4_2019_web_link_Part12.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "9e304be48898e1ac39413c085e16572c825c07250eb4fc32c33c9629e60f64c4",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

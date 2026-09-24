@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2023",
+  "articleId": "monika-salumaa-toeliselt-igav-kui-koik-oleksid-uhe-nao-ja-teoga-2023-1",
+  "title": "Monika Salumaa: tõeliselt igav, kui kõik oleksid ühe näo ja teoga",
+  "authors": [
+    "Kadri Kuulpak"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2023",
+  "section": "Persoon",
+  "pageRange": "3-8",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu kogenud erihoolekande spetsialisti ja koolitaja Monika Salumaaga vaatab tagasi ajale,\nmil erivajadusega inimesi hoiti suurtes asutustes ja ebainimlikes tingimustes, ning kirjeldab valdkonna\nmuutumist inimkesksemaks ja kogukonda integreeritumaks. Salumaa räägib tegevusjuhendaja rollist, \npsüühilise erivajadusega inimeste igapäevase toetamise eripäradest ja sellest, kui oluline on töötajate\nprofessionaalne ettevalmistus ning emotsionaalne tasakaal. Juttu tuleb ka läbipõlemise ennetamisest,\nloomade ja maale kolimise rollist enesehoius ning ühiskonna hoiakutest erivajadusega inimeste suhtes.",
+  "tags": [
+    "persoon",
+    "erihoolekanne",
+    "tegevusjuhendaja",
+    "erivajadusega inimesed",
+    "läbipõlemise ennetamine",
+    "hoiakud",
+    "kogukonnateenused"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_1_2023_web_Part3.pdf",
+  "document_id": "sotsiaaltoo-1-2023-monika-salumaa-toeliselt-igav-kui-koik-oleksid-uhe-nao-ja-teoga-2023-1",
+  "source_format": "pdf",
+  "source_sha256": "029a4410df5aac08dccf56120189c5687822d93f0c3c847271a21a9d5b112f2b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2023-monika-salumaa-toeliselt-igav-kui-koik-oleksid-uhe-nao-ja-teoga-2023-1",
+    "previous_source_path": "Sotsiaaltoo_1_2023_web_Part3.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "029a4410df5aac08dccf56120189c5687822d93f0c3c847271a21a9d5b112f2b",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

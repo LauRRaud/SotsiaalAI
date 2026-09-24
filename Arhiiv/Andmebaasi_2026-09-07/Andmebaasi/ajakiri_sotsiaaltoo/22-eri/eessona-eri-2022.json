@@ -1,0 +1,62 @@
+{
+  "docId": "sotsiaaltoo-eri-2022",
+  "articleId": "eessona-eri-2022",
+  "title": "Eessõna",
+  "authors": [
+    "Taimi Tulva"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö (erinumber)",
+  "issueLabel": "Eri/2022",
+  "section": "Eessõna",
+  "pageRange": "2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Erinumbri eessõna, mis avab numbri teema: sotsiaaltöötajate akadeemilise koolituse kujunemine Tallinna Ülikoolis, selle võlud ja valud. Autor meenutab 1991. aasta suve, mil Tallinna Pedagoogilisse Instituuti sotsiaaltööd õppima pürgiti, ja ühiskonna vajadust „ühiskonna arstide” järele. Numbris jagavad mõtteid nii koolituse omaaegsed eestvedajad kui ka praegused tegijad, vilistlased ja tudengid.",
+  "tags": [
+    "sotsiaaltööharidus",
+    "Tallinna Ülikool",
+    "juubel",
+    "eessõna",
+    "sotsiaaltöö ajalugu"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo-ERINUMBER_2022_Part2.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-eri-2022-eessona-eri-2022",
+  "source_sha256": "9f5f3e8ebfe1f03f4e98b4adb14b3aa97243f0366d2013929b494ca0031391cd",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2022-eessona-eri-2022",
+    "previous_source_path": "Sotsiaaltoo-ERINUMBER_2022_Part2.txt",
+    "previous_source_original_path": "Sotsiaaltoo-ERINUMBER_2022_Part2.pdf",
+    "reference_stored_source_sha256": "773b69e1403bfbcfddbf5733650432847c06eff3ac212b1424a7c161f93ab86b",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo-ERINUMBER_2022.pdf",
+      "source_sha256": "807b48240fe049838a94b8cffd3e1b388f778591bddb0ad5cb542d3cd6ff73b1",
+      "pdf_start_page": 4,
+      "pdf_end_page": 4,
+      "printed_page_range": "2-2",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 4,
+      "source_regions": [
+        {
+          "source_pdf_page": 4,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "2"
+    },
+    "server_page_range": "2-2"
+  }
+}

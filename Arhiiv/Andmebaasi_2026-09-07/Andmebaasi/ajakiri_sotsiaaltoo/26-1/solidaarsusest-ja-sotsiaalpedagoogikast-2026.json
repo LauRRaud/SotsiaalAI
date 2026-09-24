@@ -1,0 +1,49 @@
+{
+  "docId": "sotsiaaltoo-1-2026",
+  "articleId": "solidaarsusest-ja-sotsiaalpedagoogikast-2026",
+  "title": "Solidaarsusest ja sotsiaalpedagoogikast",
+  "authors": [
+    "Mare Leino"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2026",
+  "section": "Teoreetilised lähtekohad",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel analüüsib solidaarsuse ja sotsiaalpedagoogika seost Metsküla kooli juhtumi näitel, kus väikekool seisis sulgemise ohus ning lapsevanemad ja kogukond mobiliseerusid selle säilitamiseks. Autor järeldab, et solidaarsus eeldab enesekindlaid inimesi ning et tugevate indiviidide ettevalmistus on parim solidaarsuse kool.",
+  "tags": [
+    "solidaarsus",
+    "sotsiaalpedagoogika",
+    "haridus",
+    "kogukond",
+    "kodanikualgatus",
+    "Metsküla kool",
+    "koolivõrk",
+    "sotsiaalne mobiliseerumine"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-01-26",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/solidaarsusest-ja-sotsiaalpedagoogikast",
+  "source_type": "web",
+  "source_path": "solidaarsusest-ja-sotsiaalpedagoogikast.html",
+  "lead": "Solidaarsus eeldab, et inimesed on enesekindlad ja tugevad. Solidaarsus on omahuviliste pürgimuste summa, et saavutada või säilitada teatav elukvaliteet, mis sobib ka kollektiivile. Parim solidaarsuse kool on tugevate indiviidide ettevalmistus. Sotsiaalpedagoogika ja solidaarsuse ühisosa ongi indiviid.",
+  "document_id": "sotsiaaltoo-1-2026-solidaarsusest-ja-sotsiaalpedagoogikast-2026",
+  "source_format": "html",
+  "source_sha256": "7f3aa8adba657576db551d674ef5a272e0da1e553baf6c65b59b5815d47c3b39",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2026-solidaarsusest-ja-sotsiaalpedagoogikast-2026",
+    "previous_source_path": "solidaarsusest-ja-sotsiaalpedagoogikast.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "3a4637c549cd7ae351ccbd917f3e9dc86754b00e2ef41f7154bfdff89ac2f1bf",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "27ecbb4709e9780dbf6e7b6203174680e71f05a4da7015168f0a4f0057adb22c",
+    "observed_web_title": "Solidaarsusest ja sotsiaalpedagoogikast"
+  },
+  "retrieved_at": "2026-09-07T19:39:35.580559+00:00"
+}

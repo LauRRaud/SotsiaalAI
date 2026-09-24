@@ -1,0 +1,88 @@
+{
+  "source": {
+    "source_id": "vordoigusvolinik_voliniku_poole_poordumiste_statistika_2021",
+    "title": "Voliniku poole pöördumiste statistika 2021",
+    "url": "https://volinik.ee/volinik-live-web-prd/s3fs-public/wp-content/uploads/2022/06/Volinik_2021_ulevaade.pdf",
+    "normalized_url": "https://volinik.ee/volinik-live-web-prd/s3fs-public/wp-content/uploads/2022/06/Volinik_2021_ulevaade.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "Võrdõigusvolinik",
+    "organization_id": "vordoigusvolinik",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "Võrdõigusvolinik",
+      "õigused",
+      "inimõigused",
+      "statistika",
+      "sotsiaalnäitajad",
+      "uuring",
+      "raport",
+      "analüüs"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_068",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+    "source_context": {
+      "heading_2": "Võrdõigusvolinik",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 335,
+      "order": 190
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "Voliniku poole pöördumiste statistika 2021"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Võrdõigusvolinik"
+    ],
+    "organizations_seen": [
+      "vordoigusvolinik"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Võrdõigusvolinik",
+        "line": 335,
+        "order": 190
+      },
+      {
+        "heading_2": "Võrdõigusvolinik",
+        "line": 809,
+        "order": 397
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://volinik.ee/volinik-live-web-prd/s3fs-public/wp-content/uploads/2022/06/Volinik_2021_ulevaade.pdf"
+  },
+  "final_url": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/wp-content/uploads/2022/06/Volinik_2021_ulevaade.pdf",
+  "redirects": [
+    {
+      "status": 301,
+      "from": "https://volinik.ee/volinik-live-web-prd/s3fs-public/wp-content/uploads/2022/06/Volinik_2021_ulevaade.pdf",
+      "to": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/wp-content/uploads/2022/06/Volinik_2021_ulevaade.pdf"
+    }
+  ],
+  "sha256": "8658477e608ab59b565196c5cd0c9fa6889572076b4db1fac78fe193872bda85",
+  "bytes": 811639,
+  "downloaded_at": "2026-08-14T08:00:40.395Z"
+}

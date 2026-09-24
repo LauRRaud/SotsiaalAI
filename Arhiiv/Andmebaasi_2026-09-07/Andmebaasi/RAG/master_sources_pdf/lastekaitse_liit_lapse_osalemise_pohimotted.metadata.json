@@ -1,0 +1,77 @@
+{
+  "source": {
+    "source_id": "lastekaitse_liit_lapse_osalemise_pohimotted",
+    "title": "Lapse osalemise põhimõtted",
+    "url": "https://www.lastekaitseliit.ee/wp-content/uploads/2025/05/Lapse-osalemise-pohimotted-A1_5mm-bleed.pdf",
+    "normalized_url": "https://www.lastekaitseliit.ee/wp-content/uploads/2025/05/Lapse-osalemise-pohimotted-A1_5mm-bleed.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Lastekaitse Liit",
+    "organization_id": "lastekaitse_liit",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Lastekaitse Liit",
+      "lapsed ja pered",
+      "laps",
+      "infomaterjal",
+      "lapse osalus",
+      "lapse õigused",
+      "lastekaitse"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "Lastekaitse Liit",
+      "heading_4": null,
+      "line": 593,
+      "order": 303
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Lapse osalemise põhimõtted"
+    ],
+    "collection_hints": [
+      "organization_materials"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Lastekaitse Liit"
+    ],
+    "organizations_seen": [
+      "lastekaitse_liit"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "Lastekaitse Liit",
+        "line": 593,
+        "order": 303
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.lastekaitseliit.ee/wp-content/uploads/2025/05/Lapse-osalemise-pohimotted-A1_5mm-bleed.pdf"
+  },
+  "final_url": "https://www.lastekaitseliit.ee/wp-content/uploads/2025/05/Lapse-osalemise-pohimotted-A1_5mm-bleed.pdf",
+  "redirects": [],
+  "sha256": "ca7a80e2f2f66ca7ec3f1941a53d6dd4e7bc411f979ee7ae1b5056864002ea66",
+  "bytes": 5740444,
+  "downloaded_at": "2026-08-14T08:00:57.715Z"
+}

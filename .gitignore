@@ -136,3 +136,10 @@ public/*.mp4
 /docs/ajakiri_sotsiaaltoo/
 /docs/KOV/
 /docs/Seadused_rt/
+
+# Local browser traces and one-off server diagnostics
+/.playwright-cli/
+/tmp-rag-*.sh
+
+# 24.09.2026: owner explicitly requested Andmebaasi/ and Arhiiv/ in Git
+# for cloud development, including their PDFs. Keep those paths trackable.

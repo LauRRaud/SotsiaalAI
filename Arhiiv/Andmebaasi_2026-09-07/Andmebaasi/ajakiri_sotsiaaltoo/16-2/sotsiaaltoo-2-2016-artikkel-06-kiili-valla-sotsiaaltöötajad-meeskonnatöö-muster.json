@@ -1,0 +1,90 @@
+{
+  "docId": "sotsiaaltoo-2-2016",
+  "articleId": "sotsiaaltoo-2-2016-artikkel-06-kiili-valla-sotsiaaltöötajad-meeskonnatöö-muster",
+  "title": "Kiili valla sotsiaaltöötajad – meeskonnatöö musternäidis",
+  "authors": [
+    "George Zhordania"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2016",
+  "section": "Persoon",
+  "pageRange": "16-19",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu Kiili valla kolmeliikmelisest sotsiaalosakonnast, kus kaks töötajat kolmest on ESTA aasta sotsiaaltöötaja tiitliga pärjatud: Talvi Aruaas 2007. ja Ann Vahtramäe 2015. aastal, kolmas on Egle Välba. Töötajad kirjeldavad, kuidas nad teevad enne abi andmist kodukülastusi ja vestlusi ning eelistavad ühekordsele rahasüstile jätkusuutlikke lahendusi; toimetulekutoetust saab vallas 1–2 leibkonda. Vallavanem Aimar Liiva kirjutab ESTA konkursile esitatud iseloomustuses, et 5000 elanikuga vallas tuleb sotsiaalvaldkonnaga toime kolm ametnikku ja töövõimetuspensionärid on suuresti tööturule aidatud.",
+  "tags": [
+    "persoonilugu",
+    "Kiili vald",
+    "aasta sotsiaaltöötaja",
+    "meeskonnatöö",
+    "toimetulekutoetus",
+    "kohalik omavalitsus"
+  ],
+  "source_type": "file",
+  "source_path": "2016_2_artikkel_06_kiili_valla_sotsiaaltootajad_meeskonnatoo_musternaid.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-06-kiili-valla-sotsiaalt-tajad-meeskonnat-muster",
+  "source_sha256": "9f2e6dd2c21e09a23f47a4dcb0d76df56446993272c79c33e119a243c4d64835",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-06-kiili-valla-sotsiaalt-tajad-meeskonnat-muster",
+    "previous_source_path": "2016_2_artikkel_06_kiili_valla_sotsiaaltootajad_meeskonnatoo_musternaid.txt",
+    "previous_source_original_path": "2-2016.pdf",
+    "reference_stored_source_sha256": "78d3a990b8b6768ccfa312f58a6bfa0addd5a2483acea929256589aac3915795",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2-2016.pdf",
+      "source_sha256": "cf45b61607b21a62a1003f99c97d65180c4fb4f591a874c983c4b63e5c804a36",
+      "pdf_start_page": 18,
+      "pdf_end_page": 21,
+      "printed_page_range": "16-20",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 22,
+      "source_regions": [
+        {
+          "source_pdf_page": 18,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 19,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 20,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 21,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "16-19"
+    },
+    "server_page_range": "16-20"
+  }
+}

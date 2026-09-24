@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-3-2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2024",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "dementsusega-inimestele-voordsemate-voimaluste-loomisel-on-tahtis-nii-teavitusto-o-kui-ka-huvikaitse-2024-3",
+  "title": "Dementsusega inimestele võrdsemate võimaluste loomisel on tähtis nii teavitustöö kui ka huvikaitse",
+  "authors": [
+    "Chris Ellermaa"
+  ],
+  "section": "Huvikaitse",
+  "pageRange": "18-23",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "description": "MTÜ Elu Dementsusega juhatuse liikme Chris Ellermaa artikkel huvikaitsest ja teavitustööst dementsusega inimeste ning nende lähedaste võrdsemate võimaluste loomisel. Kirjeldatakse MTÜ rolli Eestis, tugigruppide ja dementsuse kompetentsikeskuse arengut, Alzheimer Europe’i ja teiste rahvusvaheliste võrgustike tegevust, Helsingi manifesti põhisõnumeid ning lähedaste kaasamist Euroopa tasandi töögruppides. Tõstatatakse aladiagnoosimise, stigmatiseerimise, õigusvõime ja toetatud otsustamisega seotud probleemid ning rõhutatakse vajadust investeerida dementsuse valdkonda vastavalt tegelikule ühiskondlikule mõjule.",
+  "tags": [
+    "dementsus",
+    "huvikaitse",
+    "MTÜ Elu Dementsusega",
+    "Alzheimer Europe",
+    "dementsussõbralik ühiskond",
+    "tugigrupid",
+    "stigmatiseerimine",
+    "toetatud otsustamine",
+    "õigused",
+    "pikaajaline hooldus"
+  ],
+  "source_path": "sotsiaaltoo_3_2024_web_Part6.pdf",
+  "document_id": "sotsiaaltoo-3-2024-dementsusega-inimestele-voordsemate-voimaluste-loomisel-on-tahtis-nii-teavitusto-o-kui-ka-huvikaitse-2024-3",
+  "source_format": "pdf",
+  "source_sha256": "ceb183fe75bc52e137ad4aeee54bdc8160410b2ea36374c01e72dde27ac7f1c1",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2024-dementsusega-inimestele-voordsemate-voimaluste-loomisel-on-tahtis-nii-teavitusto-o-kui-ka-huvikaitse-2024-3",
+    "previous_source_path": "sotsiaaltoo_3_2024_web_Part6.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ceb183fe75bc52e137ad4aeee54bdc8160410b2ea36374c01e72dde27ac7f1c1",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

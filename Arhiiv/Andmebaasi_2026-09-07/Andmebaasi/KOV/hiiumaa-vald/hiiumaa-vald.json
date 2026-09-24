@@ -1,0 +1,2689 @@
+{
+  "municipality": "Hiiumaa vald",
+  "county": "Hiiumaa",
+  "checkedAt": "2026-04-11",
+  "items": [
+    {
+      "id": "hiiumaa_vald_service_asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendus- ja järelhooldusteenus",
+      "status": "active",
+      "summary": "Asendus- ja järelhooldusteenus toetab last või noort, kes ei saa kasvada oma peres, ning aitab järelhooldusel valmistuda iseseisvaks eluks.",
+      "targetGroup": "Lapsed ja noored, kes on jäänud ilma vanemliku hoolitsuseta või vajavad järelhooldust.",
+      "conditions": "Teenuse sobiv vorm valitakse juhtumipõhiselt vastavalt lapse või noore vajadusele.",
+      "application": "Teenuse vajaduse hindab laste heaolu spetsialist. Taotluse võib esitada iseteeninduses, pabervormil või e-postiga.",
+      "sourceKeys": [
+        "tugiteenused_lastele_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_carol_kirss",
+        "hiiumaa_vald_contact_merike_randma"
+      ],
+      "relatedForms": [
+        "hiiumaa_vald_form_tugiteenus_lapsele_taotlus"
+      ],
+      "item_type": "service",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "tugiteenused_lastele_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_service_asendushooldusteenus",
+      "document_id": "hiiumaa_vald_service_asendushooldusteenus",
+      "canonical_item_id": "hiiumaa_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "4664417085b5f1efed4f6ffac41267cf8dcd1920247f76ff0872ebb265ff7c3e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_service_eluruumi_tagamine",
+      "itemType": "service",
+      "title": "Eluruumi tagamine",
+      "status": "active",
+      "summary": "Eluruumi tagamine aitab inimest, kellel puudub võimalus endale ise sobiv eluruum leida või kasutada.",
+      "targetGroup": "Inimesed ja pered, kellel ei ole võimalik endale või oma perele sobivat eluruumi tagada.",
+      "conditions": "Abi korraldamisel hinnatakse inimese või pere olukorda ning sobivat lahendust. Vajaduse korral aidatakse leida ka puudega inimese vajadustele sobivam eluruum.",
+      "application": "Eluruumi vajaduse selgitamiseks tuleb pöörduda Hiiumaa valla sotsiaaltöö spetsialisti poole.",
+      "sourceKeys": [
+        "eluruumi_tagamine_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_heli_tuisk",
+        "hiiumaa_vald_contact_urme_soonvald",
+        "hiiumaa_vald_contact_liis_sinilaid",
+        "hiiumaa_vald_contact_liia_rull",
+        "hiiumaa_vald_contact_pille_alevi"
+      ],
+      "item_type": "service",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "eluruumi_tagamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_service_eluruumi_tagamine",
+      "document_id": "hiiumaa_vald_service_eluruumi_tagamine",
+      "canonical_item_id": "hiiumaa_vald_service_eluruumi_tagamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "e2a5e2ad04f7181ba9801c1f4ee90abd943dd79d608a903b58009b0d79d1b629",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_service_erihoolekandeteenused",
+      "itemType": "service",
+      "title": "Erihoolekandeteenused",
+      "status": "active",
+      "summary": "Erihoolekandeteenused aitavad psüühilise erivajadusega inimesel arendada igapäevaoskusi, parandada toimetulekut ja saada vajalikku juhendamist, nõustamist ning järelevalvet.",
+      "targetGroup": "Psüühilise erivajadusega inimesed, kes vajavad igapäevaelus tuge.",
+      "conditions": "Teenuse vajadus ja sobiv korraldus selgitatakse välja juhtumipõhiselt.",
+      "application": "Teenuse saamiseks tuleb pöörduda Hiiumaa valla sotsiaaltöö spetsialisti poole.",
+      "sourceKeys": [
+        "erihoolekande_teenused_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_heli_tuisk",
+        "hiiumaa_vald_contact_urme_soonvald",
+        "hiiumaa_vald_contact_liis_sinilaid",
+        "hiiumaa_vald_contact_liia_rull",
+        "hiiumaa_vald_contact_pille_alevi"
+      ],
+      "item_type": "service",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "erihoolekande_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_service_erihoolekandeteenused",
+      "document_id": "hiiumaa_vald_service_erihoolekandeteenused",
+      "canonical_item_id": "hiiumaa_vald_service_erihoolekandeteenused",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "f2bf72a4c466b0d7b061ef9bbcc611af67c33f327a94a90fceda889853990f8a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_service_isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus aitab puudega täisealisel inimesel teha toiminguid, mida ta ise puude tõttu teha ei saa, et toetada iseseisvat toimetulekut.",
+      "targetGroup": "Puudega täisealised inimesed, kes vajavad füüsilist kõrvalabi.",
+      "conditions": "Teenuse vajadus ja maht selgitatakse välja abivajaduse hindamisel.",
+      "application": "Teenuse saamiseks tuleb pöörduda Hiiumaa valla sotsiaaltöö spetsialisti poole.",
+      "sourceKeys": [
+        "isikliku_abistaja_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_heli_tuisk",
+        "hiiumaa_vald_contact_urme_soonvald",
+        "hiiumaa_vald_contact_liis_sinilaid",
+        "hiiumaa_vald_contact_liia_rull",
+        "hiiumaa_vald_contact_pille_alevi"
+      ],
+      "item_type": "service",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "isikliku_abistaja_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_service_isikliku_abistaja_teenus",
+      "document_id": "hiiumaa_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "hiiumaa_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "bccd4ed9ebbb431f547f3eb34206fe8ea07023f8616d1dec44bcf9e02216bc76",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_service_koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus aitab täisealisel inimesel kodus iseseisvalt ja turvaliselt toime tulla, pakkudes vajaduse korral koduabi ja isikuabi.",
+      "targetGroup": "Täisealised inimesed, kes vajavad kodus kõrvalabi.",
+      "conditions": "Teenuse sisu ja maht selgitatakse välja abivajaduse hindamisel. Teenus on paketipõhine ja tasuline.",
+      "application": "Teenuse saamiseks tuleb pöörduda Hiiumaa valla sotsiaaltöö spetsialisti poole. Teenust osutab Hiiumaa Sotsiaalkeskus.",
+      "amount": "Koduabi paketid 21–41 € kuus ja koduabi koos isikuabiga paketid 41–151 € kuus.",
+      "sourceKeys": [
+        "koduteenus_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_heli_tuisk",
+        "hiiumaa_vald_contact_urme_soonvald",
+        "hiiumaa_vald_contact_liis_sinilaid",
+        "hiiumaa_vald_contact_liia_rull",
+        "hiiumaa_vald_contact_pille_alevi"
+      ],
+      "item_type": "service",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "koduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_service_koduteenus",
+      "document_id": "hiiumaa_vald_service_koduteenus",
+      "canonical_item_id": "hiiumaa_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "5f415787fae58890dfd33a1394ff8a6c9ffa12d936f868436873781c9744cf1e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_service_lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus puuetega lastele",
+      "status": "active",
+      "summary": "Lapsehoiuteenus annab puudega lapsele hoolduse ja järelevalve ning võimaldab vanemal töötada, õppida või puhata.",
+      "targetGroup": "Puudega lapsed kuni selle kalendriaasta lõpuni, mil laps saab 18-aastaseks.",
+      "conditions": "Teenuse vajadus ja maht hinnatakse juhtumipõhiselt ning lepitakse kokku lapse ja pere vajadustest lähtudes.",
+      "application": "Taotluse saab esitada Hiiumaa valla iseteeninduses, pabervormil või e-postiga. Teenuse korraldamiseks hinnatakse lapse abivajadust.",
+      "sourceKeys": [
+        "tugiteenused_lastele_page"
+      ],
+      "relatedForms": [
+        "hiiumaa_vald_form_tugiteenus_lapsele_taotlus"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_carol_kirss",
+        "hiiumaa_vald_contact_merike_randma"
+      ],
+      "item_type": "service",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "tugiteenused_lastele_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_service_lapsehoiuteenus",
+      "document_id": "hiiumaa_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "hiiumaa_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "bfcf99656cb30ba94783eae80a89cec1236824b2320f5d97f871787e3db106c2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_service_sotsiaaltransport",
+      "itemType": "service",
+      "title": "Sotsiaaltranspordi teenus",
+      "status": "active",
+      "summary": "Sotsiaaltranspordi teenus aitab inimesel jõuda tööle, kooli, avalikele teenustele või muudele vältimatutele käikudele, kui ta ei saa puude või terviseseisundi tõttu kasutada isiklikku või ühistransporti.",
+      "targetGroup": "Inimesed, kelle füüsiline või psüühiline erivajadus takistab tavapärase transpordi kasutamist.",
+      "conditions": "Teenust kasutatakse põhjendatud sõitudeks. Omaosalus sõltub sõidu pikkusest.",
+      "application": "Teenuse vajaduse hindamiseks tuleb pöörduda Hiiumaa valla sotsiaaltöö spetsialisti poole. Sõidud broneeritakse Hiiumaa Sotsiaalkeskuse kaudu.",
+      "amount": "Omaosalus: kuni 10 km 3 €, 10–50 km 5 €, üle 50 km 10 €, Hiiumaa–Tallinn või Tallinn–Hiiumaa 15 €, mujal Eestis 0,15 €/km koos praamipiletiga.",
+      "sourceKeys": [
+        "sotsiaaltransport_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_heli_tuisk",
+        "hiiumaa_vald_contact_urme_soonvald",
+        "hiiumaa_vald_contact_liis_sinilaid",
+        "hiiumaa_vald_contact_liia_rull",
+        "hiiumaa_vald_contact_pille_alevi"
+      ],
+      "item_type": "service",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "sotsiaaltransport_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_service_sotsiaaltransport",
+      "document_id": "hiiumaa_vald_service_sotsiaaltransport",
+      "canonical_item_id": "hiiumaa_vald_service_sotsiaaltransport",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "f120d4d5d51dce8d433cca199315da02b1b66c123861e4afa061fecf803a1195",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_service_sotsiaaltransport_lastele",
+      "itemType": "service",
+      "title": "Sotsiaaltransport lastele",
+      "status": "active",
+      "summary": "Sotsiaaltransport aitab lapsel jõuda haridusse, huvitegevusse või arsti juurde, kui puue või terviseseisund ei võimalda kasutada ühistransporti.",
+      "targetGroup": "Lapsed, kelle erivajadus takistab ühistranspordi kasutamist.",
+      "conditions": "Teenust korraldatakse juhul, kui laps ei saa puudest või terviseseisundist tulenevalt kasutada ühistransporti.",
+      "application": "Taotluse saab esitada Hiiumaa valla iseteeninduses, pabervormil või e-postiga. Teenuse vajadus hinnatakse enne korraldamist.",
+      "sourceKeys": [
+        "tugiteenused_lastele_page"
+      ],
+      "relatedForms": [
+        "hiiumaa_vald_form_tugiteenus_lapsele_taotlus"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_carol_kirss",
+        "hiiumaa_vald_contact_merike_randma"
+      ],
+      "item_type": "service",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "tugiteenused_lastele_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_service_sotsiaaltransport_lastele",
+      "document_id": "hiiumaa_vald_service_sotsiaaltransport_lastele",
+      "canonical_item_id": "hiiumaa_vald_service_sotsiaaltransport_lastele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "d965522a2968f19877927a1d2d2f19ffdc1e41a8e43a866cb2318cb8eec466f7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_service_toiduabi",
+      "itemType": "service",
+      "title": "Toiduabi",
+      "status": "active",
+      "summary": "Toiduabi aitab abivajavat inimest või peret toiduainetega olukorras, kus igapäevane toimetulek on raskendatud.",
+      "targetGroup": "Inimesed ja pered, kes vajavad abi toiduga toimetulekuks.",
+      "conditions": "Abi korraldus selgitatakse välja juhtumipõhiselt koos sotsiaaltöö spetsialistiga.",
+      "application": "Toiduabi saamiseks tuleb pöörduda Hiiumaa valla sotsiaaltöö spetsialisti poole.",
+      "sourceKeys": [
+        "toiduabi_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_heli_tuisk",
+        "hiiumaa_vald_contact_urme_soonvald",
+        "hiiumaa_vald_contact_liis_sinilaid",
+        "hiiumaa_vald_contact_liia_rull",
+        "hiiumaa_vald_contact_pille_alevi"
+      ],
+      "item_type": "service",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "toiduabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_service_toiduabi",
+      "document_id": "hiiumaa_vald_service_toiduabi",
+      "canonical_item_id": "hiiumaa_vald_service_toiduabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "02e003dd6a7d2928752b665f2c9b3eb84c6a62191613410c408eb11042a64806",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_service_tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus lapsele",
+      "status": "active",
+      "summary": "Tugiisikuteenus aitab last, kes vajab kõrvalabi õppes, suhtlemisel või igapäevaelus, et toetada lapse arengut ja toimetulekut.",
+      "targetGroup": "Lapsed, kes vajavad kõrvalabi hariduses, suhtlemisel või igapäevaelus.",
+      "conditions": "Teenuse vajadust hinnatakse juhtumipõhiselt. Tugiisik ei tohi olla lapse perekonnaliige.",
+      "application": "Taotluse saab esitada Hiiumaa valla iseteeninduses, pabervormil või e-postiga. Teenuse korraldamiseks hinnatakse lapse abivajadust ja lepitakse kokku teenuse sisu.",
+      "sourceKeys": [
+        "tugiteenused_lastele_page"
+      ],
+      "relatedForms": [
+        "hiiumaa_vald_form_tugiteenus_lapsele_taotlus"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_carol_kirss",
+        "hiiumaa_vald_contact_merike_randma"
+      ],
+      "item_type": "service",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "tugiteenused_lastele_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_service_tugiisikuteenus",
+      "document_id": "hiiumaa_vald_service_tugiisikuteenus",
+      "canonical_item_id": "hiiumaa_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "38117c8871d3bc800cf77d8c6dc11a4220463e953ee8b028d9beae60d387c1ab",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_service_turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenus tagab ohu- või kriisiolukorras viibivale inimesele ajutise elukoha, turvalise keskkonna ja esmase abi.",
+      "targetGroup": "Lapsed ja täiskasvanud, kes vajavad turvalist ajutist elukohta ja kriisiabi.",
+      "conditions": "Teenust osutatakse inimesele, kelle elu, tervis või toimetulek on ohus ning kes vajab viivitamatut turvalist keskkonda.",
+      "application": "Abi saamiseks tuleb pöörduda Hiiumaa valla sotsiaaltöö spetsialisti poole või kriisiolukorras kasutada kiiret abi.",
+      "sourceKeys": [
+        "turvakoduteenus_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_heli_tuisk",
+        "hiiumaa_vald_contact_urme_soonvald",
+        "hiiumaa_vald_contact_liis_sinilaid",
+        "hiiumaa_vald_contact_liia_rull",
+        "hiiumaa_vald_contact_pille_alevi"
+      ],
+      "item_type": "service",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "turvakoduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_service_turvakoduteenus",
+      "document_id": "hiiumaa_vald_service_turvakoduteenus",
+      "canonical_item_id": "hiiumaa_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "ada1c7e81a02ff25dbf778e5a1bee5dbf34f111a1de040ebdcba13b065ed1b64",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_service_täisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hoolduse eesmärk on tagada kõrvalabi vajavale inimesele hooldus ja järelevalve, kui ta ei tule erivajaduse tõttu iseseisvalt toime.",
+      "targetGroup": "Täisealised inimesed, kes vajavad vaimse või füüsilise erivajaduse tõttu hooldust.",
+      "conditions": "Hooldajaks võib määrata pereliikme või muu inimese, kui hooldusvajadus seda põhjendab ja hooldaja ei saa hooldamise tõttu töötada.",
+      "application": "Hooldusvajaduse selgitamiseks tuleb pöörduda Hiiumaa valla sotsiaaltöö spetsialisti poole.",
+      "sourceKeys": [
+        "taisealise_isiku_hooldus_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_heli_tuisk",
+        "hiiumaa_vald_contact_urme_soonvald",
+        "hiiumaa_vald_contact_liis_sinilaid",
+        "hiiumaa_vald_contact_liia_rull",
+        "hiiumaa_vald_contact_pille_alevi"
+      ],
+      "item_type": "service",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "taisealise_isiku_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_service_täisealise_isiku_hooldus",
+      "document_id": "hiiumaa_vald_service_täisealise_isiku_hooldus",
+      "canonical_item_id": "hiiumaa_vald_service_täisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "cc9ee289caa3ccfc310103d9998b2194473458fb835eb38b5b74059c847231ae",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_service_vaimse_tervise_teenus",
+      "itemType": "service",
+      "title": "Vaimse tervise teenus",
+      "status": "active",
+      "summary": "Vaimse tervise teenus pakub täiskasvanutele, alaealistele ja nende pereliikmetele nõustamist ja teraapiat toimetuleku, suhtlemise ja elumuutustega seotud raskuste korral.",
+      "targetGroup": "Hiiumaa valla elanikud, kes vajavad vaimse tervise tuge.",
+      "conditions": "Teenuse mahu, kestuse, korraldamise ja tasumise põhimõtted otsustab ametnik. Teenust võib saada ka otse teenuseosutajalt omaosaluse alusel.",
+      "application": "Taotluse saab esitada Hiiumaa valla iseteeninduses, pabervormil või e-postiga. Täpsemaks korraldamiseks tuleb pöörduda sotsiaaltöö spetsialisti poole.",
+      "sourceKeys": [
+        "vaimse_tervise_teenus_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_urme_soonvald"
+      ],
+      "relatedForms": [
+        "hiiumaa_vald_form_vaimse_tervise_teenuse_taotlus"
+      ],
+      "item_type": "service",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "vaimse_tervise_teenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_service_vaimse_tervise_teenus",
+      "document_id": "hiiumaa_vald_service_vaimse_tervise_teenus",
+      "canonical_item_id": "hiiumaa_vald_service_vaimse_tervise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "a04c0defacba4fefb469e3b0e3ed22230baefb7e48220582ba3e1bd4b97133c4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_service_varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus tagab täisealisele inimesele ajutise ööbimiskoha, kui tal puudub võimalus ise endale öömaja leida.",
+      "targetGroup": "Täisealised inimesed, kellel puudub ajutiselt ööbimisvõimalus.",
+      "conditions": "Teenust osutatakse inimesele, kes vajab ajutist ööbimiskohta ega suuda seda ise tagada.",
+      "application": "Abi saamiseks tuleb pöörduda Hiiumaa valla sotsiaaltöö spetsialisti poole.",
+      "sourceKeys": [
+        "varjupaigateenus_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_heli_tuisk",
+        "hiiumaa_vald_contact_urme_soonvald",
+        "hiiumaa_vald_contact_liis_sinilaid",
+        "hiiumaa_vald_contact_liia_rull",
+        "hiiumaa_vald_contact_pille_alevi"
+      ],
+      "item_type": "service",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "varjupaigateenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_service_varjupaigateenus",
+      "document_id": "hiiumaa_vald_service_varjupaigateenus",
+      "canonical_item_id": "hiiumaa_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "ddb5e6e6277e6d0ff309beeca459465dcf1c251ac0268e58a54354c57a92e33b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_service_valtimatu_sotsiaalabi",
+      "itemType": "service",
+      "title": "Vältimatu sotsiaalabi",
+      "status": "active",
+      "summary": "Vältimatu sotsiaalabi aitab sotsiaalselt abitus olukorras inimest ajutiselt toidu, riiete ja vajadusel ajutise majutusega.",
+      "targetGroup": "Hiiumaa valla territooriumil viibivad inimesed, kelle esmased elutingimused on ohus.",
+      "conditions": "Abi antakse inimesele, kellel puudub võimalus ise või muul viisil oma esmavajadusi rahuldada.",
+      "application": "Abi saamiseks tuleb pöörduda Hiiumaa valla sotsiaaltöö spetsialisti poole Kärdlas, Käinas või Emmastes.",
+      "sourceKeys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_heli_tuisk",
+        "hiiumaa_vald_contact_urme_soonvald",
+        "hiiumaa_vald_contact_liis_sinilaid",
+        "hiiumaa_vald_contact_liia_rull",
+        "hiiumaa_vald_contact_pille_alevi"
+      ],
+      "item_type": "service",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_service_valtimatu_sotsiaalabi",
+      "document_id": "hiiumaa_vald_service_valtimatu_sotsiaalabi",
+      "canonical_item_id": "hiiumaa_vald_service_valtimatu_sotsiaalabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "3e6a7087d28c770f90917b5f27b5fe79bd20d018d7cf50c8976e9431ae867ccf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_service_uldhooldusteenus",
+      "itemType": "service",
+      "title": "Üldhooldusteenus",
+      "status": "active",
+      "summary": "Üldhooldusteenus aitab inimesel saada ööpäevaringset hooldust ja järelevalvet hooldekodus, kui ta ei tule kodus iseseisvalt toime.",
+      "targetGroup": "Täisealised inimesed, kes vajavad ööpäevaringset hooldust väljaspool kodu.",
+      "conditions": "Teenuse rahastamist hinnatakse inimese ja ülalpidajate majanduslikust olukorrast lähtudes. Hoolduskulu piirmäär on 640 eurot kalendrikuus.",
+      "application": "Taotluse saab esitada iseteeninduses, pabervormil või e-postiga. Taotluses tuleb esitada andmed hooldusvajaduse, sissetulekute ja ülalpidajate kohta.",
+      "amount": "Valla finantseeritav osa kuni 640 € kuus",
+      "decisionTime": "10 tööpäeva",
+      "sourceKeys": [
+        "uldhooldusteenus_page"
+      ],
+      "relatedForms": [
+        "hiiumaa_vald_form_uldhooldusteenus_taotlus"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_heli_tuisk",
+        "hiiumaa_vald_contact_urme_soonvald",
+        "hiiumaa_vald_contact_liis_sinilaid",
+        "hiiumaa_vald_contact_liia_rull",
+        "hiiumaa_vald_contact_pille_alevi"
+      ],
+      "item_type": "service",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "uldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_service_uldhooldusteenus",
+      "document_id": "hiiumaa_vald_service_uldhooldusteenus",
+      "canonical_item_id": "hiiumaa_vald_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "7043dc7de813bb0eea3b1dce8de8576e8d89a029172981e8de946a45da2077d0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_benefit_esimese_klassi_astuja_toetus",
+      "itemType": "benefit",
+      "title": "Esimese klassi astuja toetus",
+      "status": "active",
+      "summary": "Esimese klassi astuja toetus on ühekordne rahaline toetus lapse põhihariduse alustamisega seotud kulude katmiseks.",
+      "targetGroup": "Laps ja vähemalt üks vanem peavad olema rahvastikuregistri järgi Hiiumaa valla elanikud.",
+      "conditions": "Toetust makstakse juhul, kui laps alustab esimest korda põhihariduse omandamist ja on kantud Hiiumaa vallas tegutseva kooli või väljaspool valda asuva hariduslike erivajadustega õpilaste kooli nimekirja. Kui vanem ei täida oma kohustusi, makstakse toetus eestkostjale või tegelikule hooldajale.",
+      "application": "Taotluse saab esitada kahe kuu jooksul alates lapse õppima asumisest Hiiumaa valla iseteeninduses, pabervormil või e-postiga.",
+      "amount": "130 €",
+      "decisionTime": "10 tööpäeva",
+      "sourceKeys": [
+        "esimese_klassi_astuja_toetus_page"
+      ],
+      "relatedForms": [
+        "hiiumaa_vald_form_esimese_klassi_astuja_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_heli_tuisk",
+        "hiiumaa_vald_contact_urme_soonvald",
+        "hiiumaa_vald_contact_liis_sinilaid",
+        "hiiumaa_vald_contact_liia_rull",
+        "hiiumaa_vald_contact_pille_alevi"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "esimese_klassi_astuja_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_benefit_esimese_klassi_astuja_toetus",
+      "document_id": "hiiumaa_vald_benefit_esimese_klassi_astuja_toetus",
+      "canonical_item_id": "hiiumaa_vald_benefit_esimese_klassi_astuja_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "84299c170b441b2380b5bd5d21714062c4840869e513eeb0a073e821f4893756",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_benefit_huvihariduse_toetus",
+      "itemType": "benefit",
+      "title": "Huvihariduse ja -tegevuse toetus",
+      "status": "active",
+      "summary": "Huvihariduse ja -tegevuse toetus aitab katta lapse või noore huvihariduse, huvitegevuse, transpordi, vahendite ning laagrites ja võistlustel osalemise kulusid.",
+      "targetGroup": "7–19-aastased Hiiumaa valla lapsed ja noored, kelle pere vajab majanduslikku tuge või kellel on puue.",
+      "conditions": "Toetust saab taotleda, kui lapse ja vähemalt ühe vanema elukoht on Hiiumaa vald. Perel peab olema raske majanduslik olukord või lapsel peab olema puue. Toetusega saab katta osalustasu kuni 100 € kuus, transpordikulu kuni 50 € kuus pere kohta, võistluse või laagri kulusid kuni 300 € aastas lapse kohta ning vahendeid kuni 100 € aastas lapse kohta.",
+      "application": "Taotluse saab esitada Hiiumaa valla iseteeninduses, pabervormil või e-postiga. Otsus tehakse 10 tööpäeva jooksul pärast vajalike dokumentide saamist.",
+      "amount": "Osalustasu kuni 100 € kuus lapse kohta; transport kuni 50 € kuus pere kohta; võistlused, festivalid ja laagrid kuni 300 € aastas; vahendid kuni 100 € aastas lapse kohta.",
+      "decisionTime": "10 tööpäeva",
+      "sourceKeys": [
+        "huvihariduse_toetus_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_heli_tuisk",
+        "hiiumaa_vald_contact_urme_soonvald",
+        "hiiumaa_vald_contact_liis_sinilaid",
+        "hiiumaa_vald_contact_liia_rull",
+        "hiiumaa_vald_contact_pille_alevi"
+      ],
+      "relatedForms": [
+        "hiiumaa_vald_form_huvihariduse_toetuse_taotlus"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "huvihariduse_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_benefit_huvihariduse_toetus",
+      "document_id": "hiiumaa_vald_benefit_huvihariduse_toetus",
+      "canonical_item_id": "hiiumaa_vald_benefit_huvihariduse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "c6b1504ee76710728b079a57b3bca34d19af41d737a3606a8628f4536f2705e4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_benefit_koduse_lapse_toetus",
+      "itemType": "benefit",
+      "title": "Koduse lapse toetus",
+      "status": "active",
+      "summary": "Koduse lapse toetus on toetus 1,5–3-aastase lapse eest juhul, kui vallal ei ole võimalik pakkuda lapsele teeninduspiirkonna lasteaiakohta või lapsehoiuteenust.",
+      "targetGroup": "1,5–3-aastase lapse vanem, eestkostja või hooldaja perekonnas hooldamise lepingu alusel, kui nii laps kui ka tema seaduslik esindaja on Hiiumaa valla elanikud.",
+      "conditions": "Toetust makstakse alates avalduse esitamisest, kuid mitte enne lapse 1,5-aastaseks saamist ja lasteaiakoha või lapsehoiuteenuse mittesaamise päevast. Toetuse maksmine lõpeb, kui vallal on lapsele pakkuda lasteaiakoht või lapsehoiuteenus, pakutud teenusest keeldutakse, laps saab 3-aastaseks või laps või seaduslik esindaja registreerib elukoha teise omavalitsuse territooriumile.",
+      "application": "Toetuse saamiseks tuleb esitada avaldus. Täpsemat infot annavad haridus- ja kultuuriosakonna kontaktid.",
+      "sourceKeys": [
+        "lasteaiad_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_tiina_viisut",
+        "hiiumaa_vald_contact_ivi_remmelg"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "lasteaiad_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_benefit_koduse_lapse_toetus",
+      "document_id": "hiiumaa_vald_benefit_koduse_lapse_toetus",
+      "canonical_item_id": "hiiumaa_vald_benefit_koduse_lapse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "f828ed2e2a259ae463b8f87e4f09ad667560c76b59e288232bd9005275e2175c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_benefit_matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on ühekordne sissetulekust sõltumatu toetus lahkunu matuse korraldamise kulude katmiseks.",
+      "targetGroup": "Inimene, kes korraldab Hiiumaa valla elaniku matuse.",
+      "conditions": "Lahkunu rahvastikuregistrijärgne elukoht surma hetkel pidi olema Hiiumaa vald. Taotlusega kinnitab taotleja, et katab matuse korraldamise kulud. Taotlus tuleb esitada kuue kuu jooksul surmapäevast.",
+      "application": "Taotluse saab esitada Hiiumaa valla iseteeninduses, pabervormil või e-postiga.",
+      "amount": "250 €",
+      "sourceKeys": [
+        "matusetoetus_page"
+      ],
+      "relatedForms": [
+        "hiiumaa_vald_form_matusetoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_heli_tuisk",
+        "hiiumaa_vald_contact_urme_soonvald",
+        "hiiumaa_vald_contact_liis_sinilaid",
+        "hiiumaa_vald_contact_liia_rull",
+        "hiiumaa_vald_contact_pille_alevi"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "matusetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_benefit_matusetoetus",
+      "document_id": "hiiumaa_vald_benefit_matusetoetus",
+      "canonical_item_id": "hiiumaa_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "7004070ab2622ee39479c8cad0a0a3e54778cc0850862d20f90a798fdfffdf8f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_benefit_raske_ja_sugava_puudega_lapse_toetus",
+      "itemType": "benefit",
+      "title": "Raske ja sügava puudega lapse erivajadusest tingitud toetus",
+      "status": "active",
+      "summary": "Raske ja sügava puudega laste erivajadusest tingitud toetus aitab katta lapse puudest tulenevaid lisakulusid.",
+      "targetGroup": "Raske või sügava puudega lapse vanem või eestkostja.",
+      "conditions": "Toetust saab taotleda, kui lapsel on tuvastatud raske või sügav puue, kulu on seotud lapse puudest tingitud konkreetse olukorraga ja vajadus on märgitud lapse juhtumiplaanis.",
+      "application": "Taotluse saab esitada Hiiumaa valla iseteeninduses, pabervormil või e-postiga. Vajaduse korral võib ametnik küsida lisadokumente või selgitusi.",
+      "sourceKeys": [
+        "raske_puuetega_laste_toetus_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_carol_kirss",
+        "hiiumaa_vald_contact_merike_randma"
+      ],
+      "relatedForms": [
+        "hiiumaa_vald_form_raske_puuetega_lapse_toetava_sotsiaalteenuse_taotlus"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "raske_puuetega_laste_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_benefit_raske_ja_sugava_puudega_lapse_toetus",
+      "document_id": "hiiumaa_vald_benefit_raske_ja_sugava_puudega_lapse_toetus",
+      "canonical_item_id": "hiiumaa_vald_benefit_raske_ja_sugava_puudega_lapse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "32f37799cfe5148f64eaea56e19c303e3622822197a08c0a426ae3cfc86f8762",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_benefit_sissetulekust_soltuv_toetus",
+      "itemType": "benefit",
+      "title": "Sissetulekust sõltuv toetus",
+      "status": "active",
+      "summary": "Sissetulekust sõltuv toetus aitab katta vältimatuid ja põhjendatud kulusid, kui inimene või pere on sattunud majanduslikesse raskustesse.",
+      "targetGroup": "Majanduslikes raskustes inimesed ja pered.",
+      "conditions": "Üldjuhul hüvitatakse kuni 30% põhjendatud kulust. Taotleda saab kord kuus vähemalt 10-eurose kulu hüvitamist. Vajaduse korral tuleb esitada kuludokumendid, sissetulekud, pangakonto väljavõtted ja eluasemekulude tõendid.",
+      "application": "Taotluse saab esitada Hiiumaa valla iseteeninduses, pabervormil või e-postiga. Otsus tehakse hiljemalt 10 tööpäeva jooksul pärast kõigi vajalike dokumentide saamist.",
+      "amount": "Üldjuhul kuni 30% põhjendatud kulust; erandjuhtudel võib toetus olla suurem.",
+      "decisionTime": "10 tööpäeva",
+      "sourceKeys": [
+        "sissetulekust_soltuv_toetus_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_heli_tuisk",
+        "hiiumaa_vald_contact_urme_soonvald",
+        "hiiumaa_vald_contact_liis_sinilaid",
+        "hiiumaa_vald_contact_liia_rull",
+        "hiiumaa_vald_contact_pille_alevi"
+      ],
+      "relatedForms": [
+        "hiiumaa_vald_form_sissetulekust_soltuva_toetuse_taotlus"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "sissetulekust_soltuv_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_benefit_sissetulekust_soltuv_toetus",
+      "document_id": "hiiumaa_vald_benefit_sissetulekust_soltuv_toetus",
+      "canonical_item_id": "hiiumaa_vald_benefit_sissetulekust_soltuv_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "4f52efeea71133b04239cc3455b1ad9907a0be2367bcb292247460a0c67eedca",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_benefit_sunnipaevatoetus",
+      "itemType": "benefit",
+      "title": "Sünnipäevatoetus",
+      "status": "active",
+      "summary": "Sünnipäevatoetus on toetus Hiiumaa valla eakatele juubelite tähistamiseks.",
+      "targetGroup": "Hiiumaa valla elanikud, kes saavad 75-, 80- või 85-aastaseks ning alates 90. eluaastast igal sünnipäeval.",
+      "conditions": "Toetuse maksmise aluseks on rahvastikuregistri andmed. Pangakonto andmed saab vallale esitada iseteeninduses, telefoni või e-posti teel või kodukülastusel.",
+      "application": "Ametnik algatab toetuse maksmise rahvastikuregistri andmete põhjal.",
+      "sourceKeys": [
+        "sunnipaevatoetus_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_heli_tuisk",
+        "hiiumaa_vald_contact_urme_soonvald",
+        "hiiumaa_vald_contact_liis_sinilaid",
+        "hiiumaa_vald_contact_liia_rull",
+        "hiiumaa_vald_contact_pille_alevi"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "sunnipaevatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_benefit_sunnipaevatoetus",
+      "document_id": "hiiumaa_vald_benefit_sunnipaevatoetus",
+      "canonical_item_id": "hiiumaa_vald_benefit_sunnipaevatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "d4fde53c94e42c712a686b8ee457521f4258f77fb8a21641f3ee3265be0d05d0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_benefit_sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus on Hiiumaa valla ühekordne toetus lapse sünni puhul, mida makstakse kolmes osas kokku 600 eurot.",
+      "targetGroup": "Lapse vanem või muu õigustatud taotleja, kui laps ja vähemalt üks vanem vastavad elukohanõuetele.",
+      "conditions": "Ühel vanemal peab olema Hiiumaa valla elukoht vähemalt kuus kuud enne lapse sündi ning samuti lapse 1. ja 2. sünnipäeva ajal. Lapse elukoht peab olema rahvastikuregistri järgi Hiiumaa vald.",
+      "application": "Esimese osa taotlus tuleb esitada kolme kuu jooksul lapse sünnist. Teine ja kolmas osa makstakse 14 päeva jooksul pärast lapse 1. ja 2. sünnipäeva, kui tingimused on täidetud.",
+      "amount": "200 € pärast sündi, 200 € pärast 1. sünnipäeva ja 200 € pärast 2. sünnipäeva.",
+      "sourceKeys": [
+        "sunnitoetus_page"
+      ],
+      "relatedForms": [
+        "hiiumaa_vald_form_sunnitoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_heli_tuisk",
+        "hiiumaa_vald_contact_urme_soonvald",
+        "hiiumaa_vald_contact_liis_sinilaid",
+        "hiiumaa_vald_contact_liia_rull",
+        "hiiumaa_vald_contact_pille_alevi"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "sunnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_benefit_sunnitoetus",
+      "document_id": "hiiumaa_vald_benefit_sunnitoetus",
+      "canonical_item_id": "hiiumaa_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "5c5383af693de0657d3f679a3100c404ad63c14e24c635f839eefe99fde02555",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_benefit_toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus aitab inimest või peret, kelle sissetulek pärast eluasemekulude mahaarvamist jääb alla kehtestatud toimetulekupiiri.",
+      "targetGroup": "Inimesed ja pered, kellel ei jätku sissetulekut vältimatute kulude katmiseks.",
+      "conditions": "2026. aastal on toimetulekupiir esimesele või ainsale pereliikmele 220 eurot kuus, teisele ja igale järgmisele täisealisele 176 eurot kuus ning igale lapsele 264 eurot kuus.",
+      "application": "Taotluse saab esitada Hiiumaa valla iseteeninduses, pabervormil või e-postiga. Taotlusele lisatakse vajalikud sissetuleku- ja kuludokumendid.",
+      "amount": "Toetus arvutatakse perekonna sissetuleku, eluasemekulude ja kehtiva toimetulekupiiri alusel.",
+      "sourceKeys": [
+        "toimetulekutoetus_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_heli_tuisk",
+        "hiiumaa_vald_contact_urme_soonvald",
+        "hiiumaa_vald_contact_liis_sinilaid",
+        "hiiumaa_vald_contact_liia_rull",
+        "hiiumaa_vald_contact_pille_alevi"
+      ],
+      "relatedForms": [
+        "hiiumaa_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_benefit_toimetulekutoetus",
+      "document_id": "hiiumaa_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "hiiumaa_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "8d7585dc98300abc3077baed2be4f9966f1ff438790239de544df75f03f87450",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_service_eestkoste",
+      "itemType": "resource",
+      "title": "Eestkoste",
+      "status": "active",
+      "summary": "Eestkoste on abinõu inimese õiguste ja huvide kaitseks, kui ta ei suuda psüühilise seisundi tõttu oma asju iseseisvalt korraldada. Eestkostja määrab kohus.",
+      "targetGroup": "Inimesed, kes vajavad eestkostjat oma õiguste ja huvide kaitseks.",
+      "conditions": "Täisealisele isikule eestkostja määramiseks saab avalduse kohtule esitada muu hulgas inimene ise, abikaasa, sugulane, vallavalitsus või muu põhjendatud huviga isik.",
+      "application": "Hiiumaa vallavalitsuse eestkostespetsialist nõustab eestkoste seadmise algatamise ja vajalike dokumentide osas.",
+      "sourceKeys": [
+        "eestkoste_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_kairi_priit"
+      ],
+      "item_type": "resource",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "eestkoste_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_service_eestkoste",
+      "document_id": "hiiumaa_vald_service_eestkoste",
+      "canonical_item_id": "hiiumaa_vald_service_eestkoste",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "229f3cc1974ca4808e1ddb86de19c4561c2899dca5e0dd83f5e29ea9ac230f65",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_resource_kalmistud",
+      "itemType": "resource",
+      "title": "Hiiumaa valla kalmistud",
+      "status": "active",
+      "summary": "Kalmistute leht koondab Hiiumaa valla kalmistute haldajad, kontaktid ja hauaplatsi taotlemise võimaluse.",
+      "sourceKeys": [
+        "kalmistud_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_katrin_post"
+      ],
+      "targetGroup": "Inimesed, kes vajavad infot kalmistute haldajate või hauaplatsi taotlemise kohta.",
+      "conditions": "Konkreetse kalmistu küsimustes tuleb pöörduda vastava haldaja poole. Üldinfo annab vallavalitsuse keskkonnaspetsialist.",
+      "application": "Hauaplatsi taotluse saab esitada ametliku vormiga.",
+      "relatedForms": [
+        "hiiumaa_vald_form_hauaplatsi_taotlus"
+      ],
+      "item_type": "resource",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "kalmistud_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_resource_kalmistud",
+      "document_id": "hiiumaa_vald_resource_kalmistud",
+      "canonical_item_id": "hiiumaa_vald_resource_kalmistud",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "d949630b990c76f75fa52ab65c525828b8b5f2384b5fb634443969b4193b136c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_resource_hadaohus_ja_abivajav_laps",
+      "itemType": "resource",
+      "title": "Hädaohus ja abivajav laps",
+      "status": "active",
+      "summary": "Leht koondab juhised, kuhu pöörduda siis, kui laps on hädaohus või vajab abi.",
+      "sourceKeys": [
+        "haeda_ohus_laps_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_carol_kirss",
+        "hiiumaa_vald_contact_merike_randma"
+      ],
+      "targetGroup": "Igaüks, kes märkab abi vajavat või ohus olevat last.",
+      "conditions": "Kiire ohu korral tuleb kasutada viivitamatut abi ja teavitada pädevaid asutusi.",
+      "application": "Hädaohus lapse korral tuleb pöörduda laste heaolu spetsialisti, hädaabi või lasteabi poole.",
+      "item_type": "resource",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "haeda_ohus_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_resource_hadaohus_ja_abivajav_laps",
+      "document_id": "hiiumaa_vald_resource_hadaohus_ja_abivajav_laps",
+      "canonical_item_id": "hiiumaa_vald_resource_hadaohus_ja_abivajav_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "e344fb9ecd4a8d6b1f3c3c1e9985928cca5abec34f804cef16b6f75403c6395b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_resource_lastekaitse",
+      "itemType": "resource",
+      "title": "Lastekaitse",
+      "status": "active",
+      "summary": "Lastekaitse aitab kaitsta lapse õigusi ja heaolu ning korraldada abi, kui laps või pere vajab tuge.",
+      "sourceKeys": [
+        "lastekaitse_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_carol_kirss",
+        "hiiumaa_vald_contact_merike_randma"
+      ],
+      "targetGroup": "Lapsed ja pered, kes vajavad nõu, sekkumist või abi.",
+      "conditions": "Laste heaolu spetsialist hindab olukorda ja korraldab vajaduse korral abi.",
+      "application": "Abi saamiseks või murest teatamiseks tuleb pöörduda Hiiumaa valla laste heaolu spetsialisti poole.",
+      "item_type": "resource",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_resource_lastekaitse",
+      "document_id": "hiiumaa_vald_resource_lastekaitse",
+      "canonical_item_id": "hiiumaa_vald_resource_lastekaitse",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "516b974067fca6eac68db30faee56a8f2c11257574c1eb609322aaebf5ec98c3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_resource_lahisuhte_vagivald",
+      "itemType": "resource",
+      "title": "Lähisuhtevägivald",
+      "status": "active",
+      "summary": "Leht annab infot lähisuhtevägivalla märkamisest, abi otsimisest ja esmastest pöördumisvõimalustest.",
+      "sourceKeys": [
+        "domestic_violence_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_carol_kirss",
+        "hiiumaa_vald_contact_merike_randma"
+      ],
+      "targetGroup": "Inimesed, kes kogevad lähisuhtevägivalda või märkavad seda lähedase juures.",
+      "conditions": "Ohu korral tuleb kasutada kiiret abi ja vajaduse korral pöörduda politsei või kriisiabi poole.",
+      "application": "Abi saamiseks saab pöörduda Hiiumaa valla spetsialistide poole ning kasutada lehel toodud abikanaleid.",
+      "item_type": "resource",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "domestic_violence_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_resource_lahisuhte_vagivald",
+      "document_id": "hiiumaa_vald_resource_lahisuhte_vagivald",
+      "canonical_item_id": "hiiumaa_vald_resource_lahisuhte_vagivald",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "ba42603a4d76c06b860f5f9b3d5c82939ddce4e57126705b5c9229a995118a90",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_resource_mida_teha_kaotus",
+      "itemType": "resource",
+      "title": "Mida teha lähedase kaotuse korral?",
+      "status": "active",
+      "summary": "Leht annab praktilise ülevaate, mida teha lähedase surma korral ning kust leida seotud abi ja teenuseid.",
+      "sourceKeys": [
+        "mida_teha_kaotus_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_heli_tuisk",
+        "hiiumaa_vald_contact_urme_soonvald",
+        "hiiumaa_vald_contact_liis_sinilaid",
+        "hiiumaa_vald_contact_liia_rull",
+        "hiiumaa_vald_contact_pille_alevi"
+      ],
+      "targetGroup": "Lähedase kaotusega kokku puutunud inimesed.",
+      "conditions": "Leht koondab praktilised järgmised sammud ja seotud vallateenused.",
+      "application": "Vajaduse korral saab lisainfo saamiseks pöörduda vallavalitsuse või seotud teenuste kontaktide poole.",
+      "item_type": "resource",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "mida_teha_kaotus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_resource_mida_teha_kaotus",
+      "document_id": "hiiumaa_vald_resource_mida_teha_kaotus",
+      "canonical_item_id": "hiiumaa_vald_resource_mida_teha_kaotus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "57e007f5466d158640f71c45347485b116fca5a20be17d8f8f4c5eaabcd76184",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_service_parkimiskaart",
+      "itemType": "resource",
+      "title": "Parkimiskaart",
+      "status": "active",
+      "summary": "Parkimiskaart annab õiguse kasutada puudega inimese parkimiskohti ja muid kaardiga seotud parkimisõigusi.",
+      "targetGroup": "Inimesed, kellel on mõõdukas, raske või sügav liikumis- või nägemisfunktsiooni kõrvalekalle, või ajutise liikumisraskusega inimene arstitõendi alusel.",
+      "conditions": "Parkimiskaart antakse kuni puude tähtaja lõpuni, kuid mitte kauemaks kui viieks aastaks. Ajutine parkimiskaart antakse kuni kuueks kuuks ja seda saab uue arstitõendi alusel pikendada veel kuni kuueks kuuks.",
+      "application": "Kaardi taotlemiseks tuleb pöörduda Hiiumaa valla sotsiaaltöö spetsialisti poole. Kaasa tuleb võtta 3 × 4 cm foto ning vajaduse korral pere- või eriarsti tõend.",
+      "sourceKeys": [
+        "parkimiskaart_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_heli_tuisk",
+        "hiiumaa_vald_contact_urme_soonvald",
+        "hiiumaa_vald_contact_liis_sinilaid",
+        "hiiumaa_vald_contact_liia_rull",
+        "hiiumaa_vald_contact_pille_alevi"
+      ],
+      "item_type": "resource",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "parkimiskaart_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_service_parkimiskaart",
+      "document_id": "hiiumaa_vald_service_parkimiskaart",
+      "canonical_item_id": "hiiumaa_vald_service_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "8b0c2cb3fc1aa53725a83e49d480a1dd84c9ccb52ed06a6a74a03a67814eac8d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_resource_parenting_support",
+      "itemType": "resource",
+      "title": "Vanemlikkus ja paarisuhe",
+      "status": "active",
+      "summary": "Leht koondab vanemlikkust ja paarisuhet toetava abi ning nõustamise võimalused.",
+      "sourceKeys": [
+        "parenting_support_page"
+      ],
+      "relatedContacts": [
+        "hiiumaa_vald_contact_carol_kirss",
+        "hiiumaa_vald_contact_merike_randma"
+      ],
+      "targetGroup": "Vanemad ja paarid, kes vajavad tuge suhte või vanemliku rolliga seotud küsimustes.",
+      "conditions": "Abi vorm sõltub inimese või pere vajadusest.",
+      "application": "Täpsema abi leidmiseks tuleb pöörduda Hiiumaa valla spetsialistide või lehel nimetatud tugivõimaluste poole.",
+      "item_type": "resource",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "parenting_support_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_resource_parenting_support",
+      "document_id": "hiiumaa_vald_resource_parenting_support",
+      "canonical_item_id": "hiiumaa_vald_resource_parenting_support",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "16b5d0373df599fea397cf20c4827f993be0d9db904e7ac5848a1651f6a7a3b8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_contact_carol_kirss",
+      "itemType": "contact",
+      "title": "Carol Kirss",
+      "status": "active",
+      "name": "Carol Kirss",
+      "role": "Laste heaolu spetsialist",
+      "department": "Hiiumaa vallavalitsus",
+      "sourceKeys": [
+        "tugiteenused_lastele_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "tugiteenused_lastele_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_contact_carol_kirss",
+      "document_id": "hiiumaa_vald_contact_carol_kirss",
+      "canonical_item_id": "hiiumaa_vald_contact_carol_kirss",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "11f6eb5fe5f111fe94ec5fe4478b84f8325af6bb6e936313fb259b2a4390a214",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_contact_heli_tuisk",
+      "itemType": "contact",
+      "title": "Heli Tuisk",
+      "status": "active",
+      "name": "Heli Tuisk",
+      "role": "Sotsiaaltöö spetsialist",
+      "department": "Hiiumaa vallavalitsus",
+      "sourceKeys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_contact_heli_tuisk",
+      "document_id": "hiiumaa_vald_contact_heli_tuisk",
+      "canonical_item_id": "hiiumaa_vald_contact_heli_tuisk",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "e707fd864bf89076c850e64a929fe72ce19fb6bf5817a85e1ebcf53d45f52a5f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_contact_ivi_remmelg",
+      "itemType": "contact",
+      "title": "Ivi Remmelg",
+      "status": "active",
+      "name": "Ivi Remmelg",
+      "role": "Haridusspetsialist",
+      "department": "Hiiumaa vallavalitsus",
+      "sourceKeys": [
+        "lasteaiad_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "lasteaiad_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_contact_ivi_remmelg",
+      "document_id": "hiiumaa_vald_contact_ivi_remmelg",
+      "canonical_item_id": "hiiumaa_vald_contact_ivi_remmelg",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "e1c0d63f465d5834d0ebae6b3ea5cc1f50f6dd4eea8bbb092bdd376d0e2ccf6c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_contact_kairi_priit",
+      "itemType": "contact",
+      "title": "Kairi Priit",
+      "status": "active",
+      "name": "Kairi Priit",
+      "role": "Eestkostespetsialist",
+      "department": "Hiiumaa vallavalitsus",
+      "sourceKeys": [
+        "eestkoste_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "eestkoste_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_contact_kairi_priit",
+      "document_id": "hiiumaa_vald_contact_kairi_priit",
+      "canonical_item_id": "hiiumaa_vald_contact_kairi_priit",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "22271a98e724ca1732c9c70ea8753e4fe54a9a61a56b937412843e2116a8f8c9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_contact_katrin_post",
+      "itemType": "contact",
+      "title": "Katrin Post",
+      "status": "active",
+      "name": "Katrin Post",
+      "role": "Keskkonnaspetsialist",
+      "department": "Hiiumaa vallavalitsus",
+      "sourceKeys": [
+        "kalmistud_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "kalmistud_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_contact_katrin_post",
+      "document_id": "hiiumaa_vald_contact_katrin_post",
+      "canonical_item_id": "hiiumaa_vald_contact_katrin_post",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "7155df791c0463c5efc7398d68dd728aae264fd5dfa966539685196dddc86de0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_contact_liia_rull",
+      "itemType": "contact",
+      "title": "Liia Rull",
+      "status": "active",
+      "name": "Liia Rull",
+      "role": "Sotsiaalteabe ja peretöö spetsialist",
+      "department": "Hiiumaa vallavalitsus",
+      "sourceKeys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_contact_liia_rull",
+      "document_id": "hiiumaa_vald_contact_liia_rull",
+      "canonical_item_id": "hiiumaa_vald_contact_liia_rull",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "eabc7011a05b0add3c6e6cdaf76b10c2ccdd309dc90c673159774278e7902416",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_contact_liis_sinilaid",
+      "itemType": "contact",
+      "title": "Liis Sinilaid",
+      "status": "active",
+      "name": "Liis Sinilaid",
+      "role": "Sotsiaaltöö spetsialist",
+      "department": "Hiiumaa vallavalitsus",
+      "sourceKeys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_contact_liis_sinilaid",
+      "document_id": "hiiumaa_vald_contact_liis_sinilaid",
+      "canonical_item_id": "hiiumaa_vald_contact_liis_sinilaid",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "46372a987aecf5c32ee6378652a4077d33c11e44f26aed1c3ca911c6fea8dfe4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_contact_merike_randma",
+      "itemType": "contact",
+      "title": "Merike Randma",
+      "status": "active",
+      "name": "Merike Randma",
+      "role": "Laste heaolu spetsialist",
+      "department": "Hiiumaa vallavalitsus",
+      "sourceKeys": [
+        "tugiteenused_lastele_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "tugiteenused_lastele_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_contact_merike_randma",
+      "document_id": "hiiumaa_vald_contact_merike_randma",
+      "canonical_item_id": "hiiumaa_vald_contact_merike_randma",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "0a47b5d2d7098e71fb32d1a94686e84899749d3694c55f9bb69a940ce52e1f7d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_contact_pille_alevi",
+      "itemType": "contact",
+      "title": "Pille Alevi",
+      "status": "active",
+      "name": "Pille Alevi",
+      "role": "Sotsiaalteabe ja peretöö spetsialist",
+      "department": "Hiiumaa vallavalitsus",
+      "sourceKeys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_contact_pille_alevi",
+      "document_id": "hiiumaa_vald_contact_pille_alevi",
+      "canonical_item_id": "hiiumaa_vald_contact_pille_alevi",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "2e5af408bb5cdba5dcc299ade61e81f696816a17e593bf1a92bfa7934f8c0daf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_contact_tiina_viisut",
+      "itemType": "contact",
+      "title": "Tiina Viisut",
+      "status": "active",
+      "name": "Tiina Viisut",
+      "role": "Haridus- ja kultuuriosakonna juhataja",
+      "department": "Hiiumaa vallavalitsus",
+      "sourceKeys": [
+        "lasteaiad_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "lasteaiad_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_contact_tiina_viisut",
+      "document_id": "hiiumaa_vald_contact_tiina_viisut",
+      "canonical_item_id": "hiiumaa_vald_contact_tiina_viisut",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "548f9f16aa78996f2660a259e81248e811c18c84e3d2452e99f0b068b4c86cf0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_contact_urme_soonvald",
+      "itemType": "contact",
+      "title": "Urme Soonvald",
+      "status": "active",
+      "name": "Urme Soonvald",
+      "role": "Sotsiaaltöö spetsialist",
+      "department": "Hiiumaa vallavalitsus",
+      "sourceKeys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_contact_urme_soonvald",
+      "document_id": "hiiumaa_vald_contact_urme_soonvald",
+      "canonical_item_id": "hiiumaa_vald_contact_urme_soonvald",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "8e01b2d6c82b3c495143fe687d313ec60027c87c1f337109e89d9f3664f34128",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_form_esimese_klassi_astuja_toetuse_taotlus",
+      "itemType": "form",
+      "title": "Esimesse klassi astuja toetuse taotlus",
+      "status": "active",
+      "format": "docx",
+      "description": "Taotlusvorm esimese klassi astuja toetuse taotlemiseks.",
+      "officialUrl": "https://vald.hiiumaa.ee/sites/default/files/documents/2025-09/Esimesse%20klassi%20astuja%20toetuse%20taotlus_0.docx",
+      "submissionChannels": [
+        "elektrooniline (e-teenindus)",
+        "",
+        "pabervorm vallavalitsuses"
+      ],
+      "relatedTo": [
+        "hiiumaa_vald_benefit_esimese_klassi_astuja_toetus"
+      ],
+      "sourceKeys": [
+        "esimese_klassi_astuja_toetuse_taotlus_file"
+      ],
+      "item_type": "form",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "esimese_klassi_astuja_toetuse_taotlus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_form_esimese_klassi_astuja_toetuse_taotlus",
+      "document_id": "hiiumaa_vald_form_esimese_klassi_astuja_toetuse_taotlus",
+      "canonical_item_id": "hiiumaa_vald_form_esimese_klassi_astuja_toetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vald.hiiumaa.ee/sites/default/files/documents/2025-09/Esimesse%20klassi%20astuja%20toetuse%20taotlus_0.docx",
+      "content_hash": "452731de01cd28f265d505d71617730ad8c04b0bb5cf7ff566df83977d0fa82f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_form_hauaplatsi_taotlus",
+      "itemType": "form",
+      "title": "Hiiumaa Vallavalitsuse hauaplatsi taotlus",
+      "status": "active",
+      "format": "docx",
+      "description": "Taotlusvorm hauaplatsi taotlemiseks Hiiumaa valla kalmistutel.",
+      "officialUrl": "https://vald.hiiumaa.ee/sites/default/files/documents/2025-09/Hiiumaa%20Vallavalitsuse%20hauaplatsi%20taotlus.docx",
+      "submissionChannels": [
+        "pabervorm",
+        ""
+      ],
+      "relatedTo": [
+        "hiiumaa_vald_resource_kalmistud"
+      ],
+      "sourceKeys": [
+        "hauaplatsi_taotlus_file"
+      ],
+      "item_type": "form",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "hauaplatsi_taotlus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_form_hauaplatsi_taotlus",
+      "document_id": "hiiumaa_vald_form_hauaplatsi_taotlus",
+      "canonical_item_id": "hiiumaa_vald_form_hauaplatsi_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vald.hiiumaa.ee/sites/default/files/documents/2025-09/Hiiumaa%20Vallavalitsuse%20hauaplatsi%20taotlus.docx",
+      "content_hash": "37210894ab261540dd3c6e660c14477ae97f67f41dea8b96a5f3e3876217b0d0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_form_huvihariduse_toetuse_taotlus",
+      "itemType": "form",
+      "title": "Huvihariduse ja huvitegevuse toetuse taotlus",
+      "status": "active",
+      "format": "docx",
+      "description": "Taotlusvorm huvihariduse ja -tegevuse toetuse taotlemiseks.",
+      "officialUrl": "https://vald.hiiumaa.ee/sites/default/files/documents/2025-09/Huvihariduse%20ja%20huvitegevuse%20toetus.docx",
+      "submissionChannels": [
+        "elektrooniline (e-teenindus)",
+        "",
+        "pabervorm vallavalitsuses"
+      ],
+      "relatedTo": [
+        "hiiumaa_vald_benefit_huvihariduse_toetus"
+      ],
+      "sourceKeys": [
+        "huvihariduse_toetuse_taotlus_file"
+      ],
+      "item_type": "form",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "huvihariduse_toetuse_taotlus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_form_huvihariduse_toetuse_taotlus",
+      "document_id": "hiiumaa_vald_form_huvihariduse_toetuse_taotlus",
+      "canonical_item_id": "hiiumaa_vald_form_huvihariduse_toetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vald.hiiumaa.ee/sites/default/files/documents/2025-09/Huvihariduse%20ja%20huvitegevuse%20toetus.docx",
+      "content_hash": "995a2753dcd053507d1a80f85e82c1215ee19ddb359ca0827a8b574581cb3206",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_form_matusetoetuse_taotlus",
+      "itemType": "form",
+      "title": "Matusetoetuse taotlus",
+      "status": "active",
+      "format": "docx",
+      "description": "Taotlusvorm matusetoetuse saamiseks.",
+      "officialUrl": "https://vald.hiiumaa.ee/sites/default/files/documents/2025-09/Matusetoetuse%20taotlus.docx",
+      "submissionChannels": [
+        "elektrooniline (e-teenindus)",
+        "",
+        "pabervorm vallavalitsuses"
+      ],
+      "relatedTo": [
+        "hiiumaa_vald_benefit_matusetoetus"
+      ],
+      "sourceKeys": [
+        "matusetoetuse_taotlus_file"
+      ],
+      "item_type": "form",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "matusetoetuse_taotlus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_form_matusetoetuse_taotlus",
+      "document_id": "hiiumaa_vald_form_matusetoetuse_taotlus",
+      "canonical_item_id": "hiiumaa_vald_form_matusetoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vald.hiiumaa.ee/sites/default/files/documents/2025-09/Matusetoetuse%20taotlus.docx",
+      "content_hash": "d6c77d38ada7598bbbc26a72cac513819c644869699383c78848926263cf329d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_form_raske_puuetega_lapse_toetava_sotsiaalteenuse_taotlus",
+      "itemType": "form",
+      "title": "Raske ja sügava puudega lapse toetava sotsiaalteenuse taotlus",
+      "status": "active",
+      "format": "docx",
+      "description": "Taotlusvorm raske või sügava puudega lapse erivajadusest tingitud toetuse taotlemiseks.",
+      "officialUrl": "https://vald.hiiumaa.ee/sites/default/files/documents/2025-09/Raske%20ja%20s%C3%BCgava%20puudega%20lapse%20toetava%20sotsiaalteenuse%20taotlus.docx",
+      "submissionChannels": [
+        "elektrooniline (e-teenindus)",
+        "",
+        "pabervorm vallavalitsuses"
+      ],
+      "relatedTo": [
+        "hiiumaa_vald_benefit_raske_ja_sugava_puudega_lapse_toetus"
+      ],
+      "sourceKeys": [
+        "raske_puuetega_lapse_toetava_sotsiaalteenuse_taotlus_file"
+      ],
+      "item_type": "form",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "raske_puuetega_lapse_toetava_sotsiaalteenuse_taotlus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_form_raske_puuetega_lapse_toetava_sotsiaalteenuse_taotlus",
+      "document_id": "hiiumaa_vald_form_raske_puuetega_lapse_toetava_sotsiaalteenuse_taotlus",
+      "canonical_item_id": "hiiumaa_vald_form_raske_puuetega_lapse_toetava_sotsiaalteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vald.hiiumaa.ee/sites/default/files/documents/2025-09/Raske%20ja%20s%C3%BCgava%20puudega%20lapse%20toetava%20sotsiaalteenuse%20taotlus.docx",
+      "content_hash": "9c722f9233b7c2cc7201decdb646e8d6b2309ce5b55281efa82ea5f4913cba7a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_form_sissetulekust_soltuva_toetuse_taotlus",
+      "itemType": "form",
+      "title": "Sissetulekust sõltuva toetuse taotlus",
+      "status": "active",
+      "format": "docx",
+      "description": "Taotlusvorm sissetulekust sõltuva toetuse taotlemiseks.",
+      "officialUrl": "https://vald.hiiumaa.ee/sites/default/files/documents/2025-09/Sissetulekust%20s%C3%B5ltuva%20toetuse%20taotlus%20%281%29.docx",
+      "submissionChannels": [
+        "elektrooniline (e-teenindus)",
+        "",
+        "pabervorm vallavalitsuses"
+      ],
+      "relatedTo": [
+        "hiiumaa_vald_benefit_sissetulekust_soltuv_toetus"
+      ],
+      "sourceKeys": [
+        "sissetulekust_soltuva_toetuse_taotlus_file"
+      ],
+      "item_type": "form",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "sissetulekust_soltuva_toetuse_taotlus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_form_sissetulekust_soltuva_toetuse_taotlus",
+      "document_id": "hiiumaa_vald_form_sissetulekust_soltuva_toetuse_taotlus",
+      "canonical_item_id": "hiiumaa_vald_form_sissetulekust_soltuva_toetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vald.hiiumaa.ee/sites/default/files/documents/2025-09/Sissetulekust%20s%C3%B5ltuva%20toetuse%20taotlus%20%281%29.docx",
+      "content_hash": "de5117022817581a982893f219ea66eabd08c73c755c6185b44f33d868e90871",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_form_sotsiaaltoetuse_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaaltoetuse taotlus",
+      "status": "active",
+      "format": "docx",
+      "description": "Taotlusvorm toimetulekutoetuse taotlemiseks.",
+      "officialUrl": "https://vald.hiiumaa.ee/sites/default/files/documents/2026-03/Sotsiaaltoetuse%20taotlus.docx",
+      "submissionChannels": [
+        "elektrooniline (e-teenindus)",
+        "",
+        "pabervorm vallavalitsuses"
+      ],
+      "relatedTo": [
+        "hiiumaa_vald_benefit_toimetulekutoetus"
+      ],
+      "sourceKeys": [
+        "sotsiaaltoetuse_taotlus_file"
+      ],
+      "item_type": "form",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "sotsiaaltoetuse_taotlus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_form_sotsiaaltoetuse_taotlus",
+      "document_id": "hiiumaa_vald_form_sotsiaaltoetuse_taotlus",
+      "canonical_item_id": "hiiumaa_vald_form_sotsiaaltoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vald.hiiumaa.ee/sites/default/files/documents/2026-03/Sotsiaaltoetuse%20taotlus.docx",
+      "content_hash": "21a82d32206b4c456371cf2cc9a64341dbad36d6d357b1ab270d486b2deebffa",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_form_sunnitoetuse_taotlus",
+      "itemType": "form",
+      "title": "Sünnitoetuse taotlus",
+      "status": "active",
+      "format": "docx",
+      "description": "Vorm sünnitoetuse esimese osa taotlemiseks.",
+      "officialUrl": "https://vald.hiiumaa.ee/sites/default/files/documents/2025-09/S%C3%BCnnitoetuse%20taotlus.docx",
+      "submissionChannels": [
+        "elektrooniline (e-teenindus)",
+        "",
+        "pabervorm vallavalitsuses"
+      ],
+      "relatedTo": [
+        "hiiumaa_vald_benefit_sunnitoetus"
+      ],
+      "sourceKeys": [
+        "sunnitoetuse_taotlus_file"
+      ],
+      "item_type": "form",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "sunnitoetuse_taotlus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_form_sunnitoetuse_taotlus",
+      "document_id": "hiiumaa_vald_form_sunnitoetuse_taotlus",
+      "canonical_item_id": "hiiumaa_vald_form_sunnitoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vald.hiiumaa.ee/sites/default/files/documents/2025-09/S%C3%BCnnitoetuse%20taotlus.docx",
+      "content_hash": "bcffca1d6f39381d04c07d379ca72464fbeccd1b11dbc57fe99f42c01cf18a8a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_form_tugiteenus_lapsele_taotlus",
+      "itemType": "form",
+      "title": "Teenuse taotlus lapsele",
+      "status": "active",
+      "format": "docx",
+      "description": "Vorm, mille kaudu saab taotleda lapsele tugiteenuseid.",
+      "officialUrl": "https://vald.hiiumaa.ee/sites/default/files/documents/2025-09/Teenuse%20taotlus%20lapsele.docx",
+      "submissionChannels": [
+        "elektrooniline (e-teenindus)",
+        "",
+        "pabervorm vallavalitsuses"
+      ],
+      "relatedTo": [
+        "hiiumaa_vald_service_tugiisikuteenus",
+        "hiiumaa_vald_service_lapsehoiuteenus",
+        "hiiumaa_vald_service_sotsiaaltransport_lastele",
+        "hiiumaa_vald_service_asendushooldusteenus"
+      ],
+      "sourceKeys": [
+        "tugiteenus_lapsele_taotlus_file"
+      ],
+      "item_type": "form",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "tugiteenus_lapsele_taotlus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_form_tugiteenus_lapsele_taotlus",
+      "document_id": "hiiumaa_vald_form_tugiteenus_lapsele_taotlus",
+      "canonical_item_id": "hiiumaa_vald_form_tugiteenus_lapsele_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vald.hiiumaa.ee/sites/default/files/documents/2025-09/Teenuse%20taotlus%20lapsele.docx",
+      "content_hash": "b1862a6ba82caf66fbf0cb9fda0288212af45fca2105d30ecda8ad06eddc8539",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_form_vaimse_tervise_teenuse_taotlus",
+      "itemType": "form",
+      "title": "Vaimse tervise teenuse taotlus",
+      "status": "active",
+      "format": "docx",
+      "description": "Taotlusvorm vaimse tervise teenuse taotlemiseks.",
+      "officialUrl": "https://vald.hiiumaa.ee/sites/default/files/documents/2025-09/Vaimse%20tervise%20teenuse%20taotlus%20%282%29.docx",
+      "submissionChannels": [
+        "elektrooniline (e-teenindus)",
+        "",
+        "pabervorm vallavalitsuses"
+      ],
+      "relatedTo": [
+        "hiiumaa_vald_service_vaimse_tervise_teenus"
+      ],
+      "sourceKeys": [
+        "vaimse_tervise_teenuse_taotlus_file"
+      ],
+      "item_type": "form",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "vaimse_tervise_teenuse_taotlus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_form_vaimse_tervise_teenuse_taotlus",
+      "document_id": "hiiumaa_vald_form_vaimse_tervise_teenuse_taotlus",
+      "canonical_item_id": "hiiumaa_vald_form_vaimse_tervise_teenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vald.hiiumaa.ee/sites/default/files/documents/2025-09/Vaimse%20tervise%20teenuse%20taotlus%20%282%29.docx",
+      "content_hash": "c4c420b98c3fc78fe7375de2eea2c6715b38d2aa557e1f8dbcf4bad62296a2dd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "hiiumaa_vald_form_uldhooldusteenus_taotlus",
+      "itemType": "form",
+      "title": "Üldhooldusteenuse ja rahastamise taotlus",
+      "status": "active",
+      "format": "docx",
+      "description": "Vorm üldhooldusteenuse ja rahastamise taotlemiseks.",
+      "officialUrl": "https://vald.hiiumaa.ee/sites/default/files/documents/2025-09/%C3%9Cldhooldusteenuse%20ja%20rahastamise%20taotlus.docx",
+      "submissionChannels": [
+        "elektrooniline (e-teenindus)",
+        "",
+        "pabervorm vallavalitsuses"
+      ],
+      "relatedTo": [
+        "hiiumaa_vald_service_uldhooldusteenus"
+      ],
+      "sourceKeys": [
+        "uldhooldusteenuse_taotlus_file"
+      ],
+      "item_type": "form",
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "county": "Hiiumaa",
+      "source_keys": [
+        "uldhooldusteenuse_taotlus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "hiiumaa_vald_form_uldhooldusteenus_taotlus",
+      "document_id": "hiiumaa_vald_form_uldhooldusteenus_taotlus",
+      "canonical_item_id": "hiiumaa_vald_form_uldhooldusteenus_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vald.hiiumaa.ee/sites/default/files/documents/2025-09/%C3%9Cldhooldusteenuse%20ja%20rahastamise%20taotlus.docx",
+      "content_hash": "d103984e558d88c3687e4c4fd42b9dee04ed8f546b59ac73a7bd74cf539a05ac",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_id": "hiiumaa_vald",
+  "municipality_name": "Hiiumaa vald",
+  "checked_at": "2026-04-11",
+  "schemaVersion": "v2.5-sourcepackage",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

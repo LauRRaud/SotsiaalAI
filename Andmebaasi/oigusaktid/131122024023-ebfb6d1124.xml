@@ -1,0 +1,2850 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="d0095425-6296-4876-a1a3-3960b5a64932" xsi:schemaLocation="tyviseadus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/tyviseadus_1_10.02.2010.xsd" xmlns="tyviseadus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Riigikogu</valjaandja>
+		<dokumentLiik>seadus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		
+		<lyhend>LasteKS</lyhend><dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2014-11-19</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT I</RTosa>
+				<avaldamineKuupaev>2014-12-06</avaldamineKuupaev>
+				<RTaasta>2014</RTaasta>
+				<RTartikkel>1</RTartikkel>
+				<aktViide>106122014001</aktViide>
+			</avaldamismarge>
+			<joustumine>2016-01-01</joustumine>
+			<tavatekst>, osaliselt 01.01.2020</tavatekst>
+		</vastuvoetud>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2024-12-31+02:00</avaldamineKuupaev>
+			<RTaasta>2024</RTaasta>
+			<RTartikkel>23</RTartikkel>
+			<aktViide>131122024023</aktViide>
+		</avaldamismarge>
+		<kehtivus>
+			<kehtivuseAlgus>2025-01-10</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2014-11-28</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>tyviseadus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>131122024023</globaalID>
+		<metaandmedVersioon>40</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2025-05-06</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Imre Sobnin</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1026887</terviktekstiGrupiID>
+		<eesmark>Tüviseaduse raamskeem XML struktuuri koostamiseks</eesmark>
+	</metaandmed>
+	<aktinimi>
+		<nimi>
+			<pealkiri>Lastekaitseseadus</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge>
+		<aktikuupaev>2016-12-07</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2016-12-21</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>121122016002</aktViide>
+		</avaldamismarge>
+		<joustumine>2017-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2017-11-15</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2017-11-28</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>128112017002</aktViide>
+		</avaldamismarge>
+		<joustumine>2018-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2018-11-21</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2018-12-12</avaldamineKuupaev>
+			<RTartikkel>3</RTartikkel>
+			<aktViide>112122018003</aktViide>
+		</avaldamismarge>
+		<joustumine>2019-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2022-04-13</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2022-04-28</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>128042022001</aktViide>
+		</avaldamismarge>
+		<joustumine>2022-05-08</joustumine>
+		<tavatekst>, osaliselt 01.01.2023</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2022-08-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2022-08-06</avaldamineKuupaev>
+			<RTartikkel>6</RTartikkel>
+			<aktViide>106082022006</aktViide>
+		</avaldamismarge>
+		<joustumine>2022-08-16</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2022-08-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2022-08-06</avaldamineKuupaev>
+			<RTartikkel>4</RTartikkel>
+			<aktViide>106082022004</aktViide>
+		</avaldamismarge>
+		<joustumine>2022-10-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2022-10-26</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2022-11-10</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>110112022001</aktViide>
+		</avaldamismarge>
+		<joustumine>2022-11-20</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2022-11-22</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2022-11-25</avaldamineKuupaev>
+			<RTartikkel>4</RTartikkel>
+			<aktViide>125112022004</aktViide>
+		</avaldamismarge>
+		<joustumine>2022-11-22</joustumine>
+		<tavatekst> - Riigikohtu põhiseaduslikkuse järelevalve kolleegiumi 22.11 2022 kohtuotsus - 1. Tunnistada, et lastekaitseseaduse § 20 lõige 1¹ oli kuni 30. septembrini 2022 kehtinud redaktsioonis põhiseadusvastane osas, milles sätestas lastega töötamise alalise keelu isikule, keda oli karistatud kriminaalkoodeksi § 202 esimeses alternatiivis sätestatud teo eest, arvestamata teo toimepanemise asjaolusid.</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2022-12-14</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2023-01-06</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>106012023001</aktViide>
+		</avaldamismarge>
+		<joustumine>2023-04-01</joustumine>
+	</muutmismarge>
+		<muutmismarge>
+		<aktikuupaev>2024-12-11</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2024-12-30</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>130122024001</aktViide>
+		</avaldamismarge>
+		<joustumine>2025-01-01</joustumine>
+		<tavatekst>, Vabariigi Valitsuse seaduse § 105.19 lõike 12 alusel asendatud sõna „Justiitsministeerium” sõnadega „Justiits- ja Digiministeerium” vastavas käändes</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2024-12-11</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+			<RTartikkel>3</RTartikkel>
+			<aktViide>131122024003</aktViide>
+		</avaldamismarge>
+		<joustumine>2025-01-01</joustumine>
+		<tavatekst>, osaliselt 10.01.2025</tavatekst>
+	</muutmismarge>
+	<sisu>
+		<peatykk id="ptk1">
+			<peatykkNr>1</peatykkNr>
+			<kuvatavNr><![CDATA[1. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Üldsätted</peatykkPealkiri>
+			<paragrahv id="para1">
+				<paragrahvNr>1</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 1.]]></kuvatavNr>
+				<paragrahvPealkiri>Seaduse reguleerimisala</paragrahvPealkiri>
+				<loige id="para1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesolev seadus sätestab riigi ja kohaliku omavalitsuse üksuste ametiasutuste ning nende ametiisikute, avalik-õiguslike ja eraõiguslike juriidiliste isikute ning füüsiliste isikute kohustused ja ülesanded laste õiguste ja heaolu tagamisel, lastekaitse korralduse, lastega töötavatele isikutele seatud keelud ja piirangud, lapse kohtlemise põhimõtted, abivajava lapse, hädaohus oleva lapse ja perekonnast eraldatud lapse kohtlemise põhimõtted, riikliku järelevalve seaduse täitmise üle ja vastutuse seaduse rikkumise eest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lapse õiguste ja heaolu tagamise põhimõtete ja lastekaitsemeetmete kohaldamisel eriseaduse alusel lähtutakse eriseaduses sätestatud nõuetest, järgides käesoleva seaduse 2. peatükis sätestatut. Eriseaduses reguleerimata juhtumi korral lähtutakse käesolevas seaduses sätestatust.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para1lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesolevas seaduses sätestatud haldusmenetlusele kohaldatakse haldusmenetluse seaduse sätteid, arvestades käesoleva seaduse erisusi.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para2">
+				<paragrahvNr>2</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 2.]]></kuvatavNr>
+				<paragrahvPealkiri>Seaduse eesmärk</paragrahvPealkiri>
+				<loige id="para2lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Käesolev seadus kehtestatakse last väärtustava ning lapse arengut soodustava käitumise ja elulaadi kujundamiseks ühiskonnas, last toetava keskkonna loomiseks, lapse huvide esikohale seadmiseks, lapse elukvaliteedi parendamiseks, lapse igakülgse arengu toetamiseks ning tervist ja heaolu ohustavates tingimustes olevale lapsele õigeaegse ja asjakohase abi ja hoolduse tagamiseks kooskõlas Ühinenud Rahvaste Organisatsiooni lapse õiguste konventsiooni ja selle lisaprotokollidega (edaspidi <i>konventsioon</i>) ning Euroopa Liidu põhiõiguste harta ja teiste asjakohaste õigusaktidega.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para3">
+				<paragrahvNr>3</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 3.]]></kuvatavNr>
+				<paragrahvPealkiri>Seaduse kohaldamisala</paragrahvPealkiri>
+				<loige id="para3lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesolevas seaduses sätestatut kohaldatakse riigi ja kohaliku omavalitsuse üksuste ametiasutustele ning nende ametiisikutele, avalik-õiguslikele ja eraõiguslikele juriidilistele isikutele ning füüsilistele isikutele, kes oma tegevuses puutuvad kokku laste ja lastekaitsega.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesolev seadus peab lapseks iga alla 18-aastast isikut. Kui isiku vanus ei ole teada ja on põhjust arvata, et ta on alla 18-aastane, käsitatakse isikut lapsena, kuni ei ole tõendatud vastupidist.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk2">
+			<peatykkNr>2</peatykkNr>
+			<kuvatavNr><![CDATA[2. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Lapse õiguste ja heaolu tagamine</peatykkPealkiri>
+			<paragrahv id="para4">
+				<paragrahvNr>4</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 4.]]></kuvatavNr>
+				<paragrahvPealkiri>Lapse heaolu</paragrahvPealkiri>
+				<loige id="para4lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Lapse heaolu on lapse arengut toetav seisund, milles lapse füüsilised, tervislikud, psühholoogilised, emotsionaalsed, sotsiaalsed, kognitiivsed, hariduslikud ja majanduslikud vajadused on rahuldatud.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para5">
+				<paragrahvNr>5</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 5.]]></kuvatavNr>
+				<paragrahvPealkiri>Lapse õiguste ja heaolu tagamise põhimõtted</paragrahvPealkiri>
+				<loige id="para5lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Lapse õiguste ja heaolu tagamisel tuleb lähtuda järgmistest konventsioonis sätestatud põhimõtetest:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para5lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>igal lapsel on sünnipärane õigus elule, ellujäämisele ja arengule;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>igal lapsel on õigus võrdsele kohtlemisele ilma igasuguse diskrimineerimiseta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kõigis lapsi puudutavates ettevõtmistes tuleb esikohale seada lapse huvid;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>igal lapsel on õigus iseseisvaks seisukohavõtuks kõigis teda puudutavates küsimustes ning õigus väljendada oma vaateid.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para6">
+				<paragrahvNr>6</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 6.]]></kuvatavNr>
+				<paragrahvPealkiri>Ennetamine</paragrahvPealkiri>
+				<loige id="para6lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lapse õiguste ja heaolu tagamiseks tuleb ennetada lapse heaolu ja arengut ohustavaid riske. Ennetamine hõlmab last ohustavate olukordade ja sündmuste võimalikult varast märkamist ja neile reageerimist, sealhulgas lapse arengu- ja käitumisprobleemide, kasvukeskkonnas esinevate probleemide ja väärkohtlemise tuvastamist ning lapse heaolu ja arengut soodustavate kaitsetegurite suurendamist.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Riigi ja kohaliku omavalitsuse üksuste ametiasutused peavad vastavalt võimalustele arendama välja meetmed lapse abivajaduse ennetamiseks ning olemasolevate probleemide vähendamiseks. Meetmed peavad lähtuma lapse vajadustest, toetama lapse ja teda kasvatavate isikute suhteid ja sotsiaalset toimetulekut ning olema kättesaadavad, õigeaegsed, tulemuslikud ja pikaajalise positiivse mõjuga.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para7">
+				<paragrahvNr>7</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 7.]]></kuvatavNr>
+				<paragrahvPealkiri>Lapsevanema ja last kasvatava isiku vastutus</paragrahvPealkiri>
+				<loige id="para7lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lapse arengu ja kasvu loomulikuks keskkonnaks on perekond. Esmane vastutus lapse õiguste ja heaolu tagamise eest on lapsevanemal või last kasvataval isikul.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Riigi ja kohaliku omavalitsuse üksuste ametiasutused ja nende ametiisikud ning avalik-õiguslikud ja eraõiguslikud juriidilised isikud peavad vastavalt oma pädevusele toetama lapsevanemat või last kasvatavat isikut lapse õiguste ja heaolu tagamisel.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para8">
+				<paragrahvNr>8</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 8.]]></kuvatavNr>
+				<paragrahvPealkiri>Koostöö</paragrahvPealkiri>
+				<loige id="para8lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lapse õiguste ja heaolu tagamiseks peavad riigi ja kohaliku omavalitsuse üksuste ametiasutused ja nende ametiisikud ning avalik-õiguslikud ja eraõiguslikud juriidilised isikud tegema omavahel valdkondadeüleselt koostööd kõigi lastele suunatud meetmete planeerimisel, rahastamisel ja rakendamisel, kaasates sellesse lapsi, lapsevanemaid, last kasvatavaid isikuid, huvirühmi ja avalikkust.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para8lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Välislepingu, Euroopa Liidu õigusakti või muu õigusakti alusel peavad riigi ja kohaliku omavalitsuse üksuste ametiasutused ja nende ametiisikud ning avalik-õiguslikud ja eraõiguslikud juriidilised isikud lapse õiguste ja heaolu tagamiseks tegema koostööd ja vajaduse korral kaasama teise riigi pädeva asutuse või selleks volitatud isiku.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para9">
+				<paragrahvNr>9</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 9.]]></kuvatavNr>
+				<paragrahvPealkiri>Teavitamine</paragrahvPealkiri>
+				<loige id="para9lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Riigi ja kohaliku omavalitsuse üksuste ametiasutused ja nende ametiisikud ning avalik-õiguslikud ja eraõiguslikud juriidilised isikud peavad tagama elanikkonna teavitamise lastekaitsemeetmetest, pöörates erilist tähelepanu abivajava või hädaohus oleva lapse abistamiseks vajaliku teabe avalikustamisele.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk3">
+			<peatykkNr>3</peatykkNr>
+			<kuvatavNr><![CDATA[3. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Lastekaitse korraldus</peatykkPealkiri>
+			<paragrahv id="para10">
+				<paragrahvNr>10</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 10.]]></kuvatavNr>
+				<paragrahvPealkiri>Lastekaitse</paragrahvPealkiri>
+				<loige id="para10lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Lastekaitse on lapse õiguste ja heaolu tagamiseks käesolevas seaduses sätestatud põhimõtteid järgivate tegevuste, toetuste, teenuste ja muu abi (edaspidi koos <i>meetmed</i>) kogum.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para11">
+				<paragrahvNr>11</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 11.]]></kuvatavNr>
+				<paragrahvPealkiri>Lastekaitse korraldamine</paragrahvPealkiri>
+				<loige id="para11lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Lastekaitset korraldavad Vabariigi Valitsus, ennetusnõukogu, Sotsiaalministeerium, Sotsiaalkindlustusamet ja kohaliku omavalitsuse üksused käesolevas seaduses sätestatud ülesannete alusel.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2022-08-06</avaldamineKuupaev>
+							<RTartikkel>6</RTartikkel>
+							<aktViide>106082022006</aktViide>
+						</avaldamismarge>
+						<joustumine>2022-08-16</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para12">
+				<paragrahvNr>12</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 12.]]></kuvatavNr>
+				<paragrahvPealkiri>Vabariigi Valitsuse ülesanne</paragrahvPealkiri>
+				<loige id="para12lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Vabariigi Valitsuse ülesanne lastekaitse korraldamisel on asjakohaste õigusaktide eelnõude ja riiklike strateegiate väljatöötamine ja kinnitamine ning jätkusuutliku rahastamise tagamine.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para13">
+				<paragrahvNr>13</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 13.]]></kuvatavNr>
+				<paragrahvPealkiri>Ennetusnõukogu ülesanded</paragrahvPealkiri>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2022-08-06</avaldamineKuupaev>
+						<RTartikkel>6</RTartikkel>
+						<aktViide>106082022006</aktViide>
+					</avaldamismarge>
+					<joustumine>2022-08-16</joustumine>
+				</muutmismarge>
+				<loige id="para13lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ennetusnõukogu on valitsuskomisjon, mille ülesanded lastekaitsepoliitika korraldamisel on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para13lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>strateegiliste eesmärkide ja prioriteetide seadmine ning valdkonnaüleste tegevuste koordineerimine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para13lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lapse heaolu tagamist ja lapse õiguste kaitset puudutavate ettepanekute esitamine Vabariigi Valitsusele ja teistele asjaomastele institutsioonidele;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para13lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Ühinenud Rahvaste Organisatsiooni lapse õiguste komitee esitatud riigipõhiste soovituste ülevaatamine ja sellega seonduvate tegevuste koordineerimine.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para13lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ennetusnõukogu koosseisu, juhtimise ja töökorra kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[Vabariigi Valitsus]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=131122024023&id=109112022019]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2022-08-06</avaldamineKuupaev>
+							<RTartikkel>6</RTartikkel>
+							<aktViide>106082022006</aktViide>
+						</avaldamismarge>
+						<joustumine>2022-08-16</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para14">
+				<paragrahvNr>14</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 14.]]></kuvatavNr>
+				<paragrahvPealkiri>Sotsiaalministeeriumi ülesanded</paragrahvPealkiri>
+				<loige id="para14lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalministeeriumi ülesanded lastekaitse korraldamisel on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para14lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lastekaitsepoliitika väljatöötamine ja selle rakendamise koordineerimine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para14lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Vabariigi Valitsusele laste ja perede olukorra kohta aruannete esitamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para14lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lastekaitse ja selle järelevalve riiklik koordineerimine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para14lg1p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>rahvusvahelises lastekaitsepoliitika kujundamises ja koostöös osalemine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para14lg1p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lastekaitsealaste uuringute ja analüüside tegemise korraldamine ning lastekaitsemeetmete planeerimine ja arendamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para14lg1p6">
+						<alampunktNr>6</alampunktNr>
+						<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lapse õiguste kaitseks ja heaolu tagamiseks juhiste, rakendussuuniste ja muude teabematerjalide väljatöötamine ning nendest avalikkuse teavitamine.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para14lg1p7">
+						<alampunktNr>7</alampunktNr>
+						<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+						<muutmismarge>
+							<tavatekst>kehtetu - </tavatekst>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+								<RTartikkel>3</RTartikkel>
+								<aktViide>131122024003</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para14lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>131122024003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para14lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõike 1 punktides 5 ja 6 nimetatud ülesannete täitmise võib halduslepinguga anda üle eraõiguslikule isikule.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>131122024003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para15">
+				<paragrahvNr>15</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 15.]]></kuvatavNr>
+				<paragrahvPealkiri>Sotsiaalkindlustusameti ülesanded</paragrahvPealkiri>
+				<loige id="para15lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusameti ülesanded lastekaitse korraldamisel on riikliku lastekaitsepoliitika elluviimine, riiklike strateegiate rakendamine ning valdkondadeülese lastekaitsealase koostöö ja ennetuse koordineerimine.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para15lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusamet rakendab kohaliku omavalitsuse üksuse taotluse alusel järgmisi lapsi ja peresid toetavaid riiklikke meetmeid:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para15lg2p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kohaliku omavalitsuse üksuse nõustamine lapse heaolu toetavate arengukavade koostamisel;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para15lg2p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>rahvusvaheliste lastekaitse üksikjuhtumite vahendamine kohaliku omavalitsuse üksusele ja sellealane kohaliku omavalitsuse üksuse nõustamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para15lg2p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kohaliku omavalitsuse üksuse abistamine lastekaitse juhtumite lahendamisel;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para15lg2p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kohaliku omavalitsuse üksuse toetamine lapsele või perele sobivate meetmete leidmisel olemasolevate riiklike meetmete hulgast.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para15lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusamet rakendab järgmisi lapsi ja peresid toetavaid riiklikke meetmeid:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para15lg3p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>riigisisese ja rahvusvahelise lapsendamise korraldamine ning rahvusvahelise lapsendamise komisjoni teenindamine;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2016-12-21</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>121122016002</aktViide>
+							</avaldamismarge>
+							<joustumine>2017-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para15lg3p1b1">
+						<alampunktNr ylaIndeks="1">1</alampunktNr>
+						<kuvatavNr><![CDATA[1<sup>1</sup>)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>hooldusperede leidmine, nende sobivuse hindamine ja hooldusperede ettevalmistamisega seotud toimingute tegemine;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+								<RTartikkel>3</RTartikkel>
+								<aktViide>131122024003</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-01-10</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para15lg3p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lastekaitsealase statistika kogumine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para15lg3p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>riigi ja kohaliku omavalitsuse üksuse ametiasutuste ja nende ametiisikute ning juriidiliste ja füüsiliste isikute ööpäevaringne nõustamine abivajava või hädaohus oleva lapse abistamiseks;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+								<RTartikkel>3</RTartikkel>
+								<aktViide>131122024003</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-01-10</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para15lg3p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lastekaitsealase teavitustegevuse korraldamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para15lg3p4b1">
+						<alampunktNr ylaIndeks="1">4</alampunktNr>
+						<kuvatavNr><![CDATA[4<sup>1</sup>)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lastekaitsetöötajate täienduskoolituse korraldamine;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+								<RTartikkel>3</RTartikkel>
+								<aktViide>131122024003</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para15lg3p4b2">
+						<alampunktNr ylaIndeks="2">4</alampunktNr>
+						<kuvatavNr><![CDATA[4<sup>2</sup>)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>vanemlike oskuste arendamine, sellega seotud täienduskoolituste ja ennetustegevuste korraldamine;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+								<RTartikkel>3</RTartikkel>
+								<aktViide>131122024003</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para15lg3p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<muutmismarge>
+							<tavatekst>kehtetu - </tavatekst>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+								<RTartikkel>3</RTartikkel>
+								<aktViide>131122024003</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para15lg3p6">
+						<alampunktNr>6</alampunktNr>
+						<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lasteabitelefoni 116 111 pidamine ja selle kaudu või muul viisil lasteabile saabunud teabe vastuvõtmine, lapse abivajaduse väljaselgitamine ja hädaohus oleva lapse ajutine perekonnast eraldamine käesoleva seaduse § 33 alusel;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+								<RTartikkel>3</RTartikkel>
+								<aktViide>131122024003</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-01-10</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para15lg3p6b1">
+						<alampunktNr ylaIndeks="1">6</alampunktNr>
+						<kuvatavNr><![CDATA[6<sup>1</sup>)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst> seksuaalselt väärkoheldud lapse ja seksuaalselt väärkohtlevalt käituva lapse abistamiseks käesoleva seaduse §-s 29<sup>1</sup> sätestatud meetmete pakkumine;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2022-04-28</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>128042022001</aktViide>
+							</avaldamismarge>
+							<joustumine>2022-05-08</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para15lg3p7">
+						<alampunktNr>7</alampunktNr>
+						<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>riikliku ja haldusjärelevalve teostamine käesolevas seaduses sätestatud alustel.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para15lg3b1">
+					<loigeNr ylaIndeks="1">3</loigeNr>
+					<kuvatavNr><![CDATA[(3<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõike 3 punktis 4<sup>1</sup> nimetatud lastekaitsetöötajate täienduskoolituse tingimused ja korra kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=131122024023&id=128122024019]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>131122024003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para15lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõike 3 punktis 4 loetletud ülesannete täitmise võib halduslepinguga anda üle eraõiguslikule isikule.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>131122024003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para15lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusamet täidab keskasutusena nõukogu määruse (EL) 2019/1111, mis käsitleb kohtualluvust, abieluasjade ja vanemliku vastutusega seotud kohtuasjades tehtud lahendite tunnustamist ja täitmist ning rahvusvahelisi lapserööve (uuesti sõnastatud) (ELT L 178, 02.07.2019, lk 1–115), artikli 79 punktides a, b, f ja g ning artiklites 80 ja 82 ette nähtud ülesandeid.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2022-11-10</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>110112022001</aktViide>
+						</avaldamismarge>
+						<joustumine>2022-11-20</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para16">
+				<paragrahvNr>16</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 16.]]></kuvatavNr>
+				<paragrahvPealkiri>Maavanema ülesanne</paragrahvPealkiri>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2017-11-28</avaldamineKuupaev>
+						<RTartikkel>2</RTartikkel>
+						<aktViide>128112017002</aktViide>
+					</avaldamismarge>
+					<joustumine>2018-01-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para17">
+				<paragrahvNr>17</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 17.]]></kuvatavNr>
+				<paragrahvPealkiri>Kohaliku omavalitsuse üksuse ülesanded</paragrahvPealkiri>
+				<loige id="para17lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohaliku omavalitsuse üksuse ülesanded lastekaitse korraldamisel on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para17lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lapse õiguste ja heaolu tagavate põhimõtete järgimine kohaliku omavalitsuse arengukavas;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para17lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lapse õigusi ja heaolu tagavate programmide ja projektide väljatöötamine ning nende rakendamine oma haldusterritooriumil last ohustavate riskide ennetamiseks ja vähendamiseks;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para17lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>abivajavast lapsest teada saamisel viivitamata lapse abivajaduse hindamine ja lapse abistamiseks meetmete pakkumine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para17lg1p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>perekonnast eraldatud lapsele ja tema perekonnale meetmete pakkumine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para17lg1p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kohaliku omavalitsuse üksuse hallatavate lasteasutuste sisehindamise üle teenistusliku järelevalve korraldamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para17lg1p6">
+						<alampunktNr>6</alampunktNr>
+						<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lapse arengut toetava keskkonna loomiseks ning laste, lastega perede ja lapsi kasvatavate isikute toimetuleku parandamiseks oma haldusterritooriumil vajaliku teabe kogumine laste ja perede olukorra ning vajaduste kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para17lg1p7">
+						<alampunktNr>7</alampunktNr>
+						<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>riikliku järelevalve teostamine käesolevas seaduses sätestatud alustel.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para17lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohaliku omavalitsuse üksus peab looma tingimused lastekaitsetöö tegemiseks eesmärgiga tagada käesoleva paragrahvi lõikes 1 loetletud ülesannete täitmine. Kohaliku omavalitsuse üksuse juurde moodustatakse vajaduse korral nõuandva organina laste ja perede komisjon.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk4">
+			<peatykkNr>4</peatykkNr>
+			<kuvatavNr><![CDATA[4. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Lastekaitsetöötaja ja lapsega töötav isik</peatykkPealkiri>
+			<paragrahv id="para18">
+				<paragrahvNr>18</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 18.]]></kuvatavNr>
+				<paragrahvPealkiri>Lastekaitsetöötaja ja lapsega töötav isik</paragrahvPealkiri>
+				<loige id="para18lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lastekaitsetöötaja on Sotsiaalkindlustusameti või kohaliku omavalitsuse üksuse ametnik, kes täidab talle käesolevas seaduses või muus õigusaktis sätestatud ülesandeid lapse õiguste ja heaolu tagamisel.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2017-11-28</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>128112017002</aktViide>
+						</avaldamismarge>
+						<joustumine>2018-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lapsega töötav isik on töös või kutsetegevuses lapsega vahetult kokku puutuv isik, samuti vabatahtlikus tegevuses, asendusteenistuses teenides, tööturuteenustel osaledes või praktikandina lapsega vahetult kokku puutuv isik.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para19">
+				<paragrahvNr>19</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 19.]]></kuvatavNr>
+				<paragrahvPealkiri>Lastekaitsetöötajale esitatavad nõuded</paragrahvPealkiri>
+				<loige id="para19lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lastekaitsetöötajal peab olema erialane ettevalmistus ja kõrgharidus.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para19lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lastekaitsetöötaja peab hiljemalt kahe aasta möödumisel alates lastekaitsetöötajana teenistusse asumisest omandama sotsiaaltöötaja kutse spetsialiseerumisega lastekaitsele.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para19lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Välisriigis omandatud kutsekvalifikatsiooni vastavuse käesoleva seaduse nõuetele otsustab Sotsiaalkindlustusamet välisriigi kutsekvalifikatsiooni tunnustamise seaduse alusel, arvestades käesolevast seadusest tulenevaid erisusi.</tavatekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2014-12-06</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>106122014001</aktViide>
+							</avaldamismarge>
+							<joustumine>2020-01-01</joustumine>
+						</muutmismarge>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para20">
+				<paragrahvNr>20</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 20.]]></kuvatavNr>
+				<paragrahvPealkiri>Lastekaitsetöötajana ja lapsega töötava isikuna töötamise piirangud</paragrahvPealkiri>
+				<loige id="para20lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lastekaitsetöötajana ja lapsega töötava isikuna ei tohi tegutseda isik, keda on karistatud või kellele on kohaldatud sundravi karistusseadustiku §-s 89–93, 95–112, 113, 114, 116, 118<sup>1</sup>, 133–133<sup>3</sup>, 141–145<sup>1</sup>, 175–179 või 187 sätestatud kuriteo eest, mille karistusandmed ei ole karistusregistrist karistusregistri seaduse kohaselt kustutatud või mille karistusandmed on karistusregistrist kustutatud ja kantud karistusregistri arhiivi.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2022-08-06</avaldamineKuupaev>
+							<RTartikkel>4</RTartikkel>
+							<aktViide>106082022004</aktViide>
+						</avaldamismarge>
+						<joustumine>2022-10-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para20lg1b1">
+					<loigeNr ylaIndeks="1">1</loigeNr>
+					<kuvatavNr><![CDATA[(1<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 1 sätestatud piirangut kohaldatakse ka isikule, keda on karistatud enne karistusseadustiku jõustumist tegude eest, mis on kvalifitseeritud kriminaalkoodeksi § 100–102, 115–117, § 118 lõike 2, § 200, 200<sup>3</sup>, 202, 202<sup>2</sup>, 202<sup>4</sup> või § 202<sup>6</sup> lõike 3 punkti 1 või 2 järgi, samuti isikule, keda on karistatud välisriigis toime pandud samaväärsete kuritegude eest.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2022-08-06</avaldamineKuupaev>
+							<RTartikkel>4</RTartikkel>
+							<aktViide>106082022004</aktViide>
+						</avaldamismarge>
+						<joustumine>2022-10-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para20lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lastekaitsetöötajana ja lapsega töötava isikuna ei tohi tegutseda isik, keda on karistatud või kellele on kohaldatud sundravi karistusseadustiku §-s 118, 119<sup>1</sup>, 121, 122, 125, § 134 lõike 2 punktis 2, §-s 135, § 136 lõikes 2, § 138<sup>1</sup> lõike 2 punktis 2, § 140 lõikes 2, §-s 153<sup>1</sup>, 171–174, 180–182, 182<sup>1</sup>, 185, § 195 lõike 2 punktis 2, §-s 200, 214, § 215 lõikes 3, §-s 237–237<sup>3</sup>, 244, 246, § 251 lõike 3 punktis 3, §-s 263, § 266 lõike 2 punktis 2, §-s 274, 290<sup>1</sup>, 291, 302, 303, 312, 322, 323, § 327 lõikes 3, §-s 403–405 või 435 sätestatud süüteo eest, mille karistusandmed ei ole karistusregistrist karistusregistri seaduse kohaselt kustutatud.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2022-08-06</avaldamineKuupaev>
+							<RTartikkel>4</RTartikkel>
+							<aktViide>106082022004</aktViide>
+						</avaldamismarge>
+						<joustumine>2022-10-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para20lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lapsega töötamist võimaldav isik või vastava tegevusloa väljastaja on kohustatud kontrollima käesoleva paragrahvi lõigetes 1–2 sätestatud piirangutest kinnipidamist isiku töölevõtmisel või tegevusloa väljastamisel. Lapsega töötamist võimaldav isik on kohustatud kontrollima lapsega töötava isiku vastavust käesoleva paragrahvi lõigetele 1–2 vähemalt kord 12 kuu jooksul, kui teavitust isiku karistusandmete muutumise kohta ei edastata automaatselt. Juriidilise isiku puhul on käesolevas lõikes sätestatud nõuete täitmise kohustatud korraldama juriidilise isiku seaduslik esindaja, kes võib selle kohustuse edasi delegeerida. Kui nõuete täitmise korraldamine on juriidilise isiku seadusliku esindaja poolt edasi delegeeritud, vastutab nõuete täitmise korraldamise eest isik, kellele see kohustus on delegeeritud.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2022-08-06</avaldamineKuupaev>
+							<RTartikkel>4</RTartikkel>
+							<aktViide>106082022004</aktViide>
+						</avaldamismarge>
+						<joustumine>2022-10-01</joustumine>
+						<tavatekst>; lapsega töötava isiku käesoleva seaduse nõuetele vastavuse regulaarse kontrollimise tähtaja kulgemist arvestatakse alates 2023. aasta 1. jaanuarist.</tavatekst>
+					</muutmismarge>
+				</loige>
+				<loige id="para20lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Isik, keda on karistatud kriminaalkoodeksi § 118 lõike 2 või § 202 alusel või karistusseadustiku § 175, 175<sup>1</sup>, 178 või 179 alusel, võib esitada Sotsiaalkindlustusametile taotluse lapsega töötamise piirangu ümberhindamiseks, kui piirangu aluseks olev tegu ei ole kehtiva õiguse kohaselt karistatav või on üle viidud teise süüteokoosseisu alla.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>131122024003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-10</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para20lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 4 nimetatud taotluses esitatakse põhjendused piirangu ümberhindamise aluse ja vajaduse kohta ning taotlusele lisatakse isiku suhtes jõustunud süüdimõistva kohtuotsuse koopia.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>131122024003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-10</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para20lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusamet lahendab taotluse 60 päeva jooksul ning tunnistab isikule kehtiva lapsega töötamise piirangu kehtetuks, kui taotluse esitamise ajal kehtiva õiguse alusel:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para20lg6p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>ei ole kohtuotsuse kohaselt toime pandud tegu karistatav;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para20lg6p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>ei ole kohtuotsuse kohaselt toime pandud tegu karistatav käesoleva paragrahvi lõigetes 1 ja 2 nimetatud süüteona või</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para20lg6p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>oleks kohtuotsuse kohaselt toime pandud tegu karistatav käesoleva paragrahvi lõikes 2 nimetatud süüteona ning isiku karistusandmed on karistusregistrist kustutatud ja kantud karistusregistri arhiivi.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+								<RTartikkel>3</RTartikkel>
+								<aktViide>131122024003</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-01-10</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para20lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusamet võib kaasata taotluse lahendamise menetlusse Justiits- ja Digiministeeriumi arvamuse andmiseks taotleja toime pandud teo karistatavuse kohta vastavalt käesoleva paragrahvi lõike 6 punktidele 1–3.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>131122024003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-10</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para20lg8">
+					<loigeNr>8</loigeNr>
+					<kuvatavNr><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusamet edastab otsuse lapsega töötamise piirangu kehtetuks tunnistamise kohta karistusregistri volitatud töötlejale, kes eemaldab isiku karistusandmed karistusregistri seaduse § 20 lõike 1 punkti 9 alusel tehtava päringu vastusest.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>131122024003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-10</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk5">
+			<peatykkNr>5</peatykkNr>
+			<kuvatavNr><![CDATA[5. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Lapse kohtlemise põhimõtted</peatykkPealkiri>
+			<paragrahv id="para21">
+				<paragrahvNr>21</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 21.]]></kuvatavNr>
+				<paragrahvPealkiri>Lapse huvidest lähtumine</paragrahvPealkiri>
+				<loige id="para21lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kõigi last mõjutavate otsuste vastuvõtmisel, vastu võtmata jätmisel ning otsuse kavandamisel eri võimaluste vahel valimisel (edaspidi koos <i>otsuste tegemine</i>) tuleb selgitada välja lapse huvid ning lähtuda otsuse tegemisel nendest kui esmatähtsast kaalutlusest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para21lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lapse huvide väljaselgitamiseks tuleb:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para21lg2p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>selgitada välja kõik asjassepuutuvad lapse olukorra ja isikuga seonduvad asjaolud ning muu informatsioon, mis on vajalik, et hinnata otsuse mõju lapse õigustele ja heaolule;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para21lg2p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>selgitada lapsele kavandatava otsuse sisu ja põhjuseid, kuulata laps ära tema vanust ja arengutaset arvestades sobival viisil ning võtta lähtuvalt lapse vanusest ja arengutasemest tema arvamus arvesse ühe asjaoluna huvide väljaselgitamisel;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para21lg2p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kõiki asjassepuutuvaid asjaolusid kogumis hinnates kujundada põhjendatud seisukoht lapse huvide kohta seoses kavandatava otsusega.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para21lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui lapse huvid erinevad lapse arvamusest või muul põhjusel tehakse otsus, mis ei ühti lapse arvamusega, tuleb selgitada lapsele tema arvamuse arvestamata jätmise põhjuseid.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para22">
+				<paragrahvNr>22</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 22.]]></kuvatavNr>
+				<paragrahvPealkiri>Last kasvatava isiku ja lapsega töötava isiku kohustused</paragrahvPealkiri>
+				<loige id="para22lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Last kasvatav isik on lapsevanem või last tegelikult kasvatav isik.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para22lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lapse eest hoolitsemisel ja lapse kasvatamisel peavad last kasvatav isik ja lapsega töötav isik lapse vanust ja arengutaset arvestades:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para22lg2p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>arutama lapsega hooldus- ja kasvatusküsimusi, arvestades lapse võimete ja vajaduste suurenemisega iseseisvalt ja vastutusvõimeliselt tegutseda;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para22lg2p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>juhendama ja suunama last iseseisvalt tegutsema;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para22lg2p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>selgitama lapsele, kuidas hoida oma tervist ja ennast arendada ning kuidas vähendada riske ja ennetada ohtu.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para22lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Last kasvatav isik ja lapsega töötav isik on kohustatud lapse abivajaduse ilmnemisel otsima abi ja vajaduse korral tegema koostööd lastekaitsetöötaja või teiste lapsega töötavate isikutega.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para22lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lapse abivajaduse ilmnemisel või selle kohta teate saamisel peab lapsega töötav isik viivitamata teavitama sellest last kasvatavat isikut.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para23">
+				<paragrahvNr>23</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 23.]]></kuvatavNr>
+				<paragrahvPealkiri>Alaealise avalikus kohas viibimise piirang</paragrahvPealkiri>
+				<loige id="para23lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Alla 16-aastasel alaealisel on keelatud viibida ilma täiskasvanud saatjata avalikus kohas kell 23.00–6.00. 1. juunist kuni 31. augustini on alla 16-aastasel alaealisel keelatud viibida ilma täiskasvanud saatjata avalikus kohas kell 24.00–5.00.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para23lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohaliku omavalitsuse üksusel on õigus käesolevas paragrahvis sätestatud öist liikumispiirangut ajutiselt lühendada.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para24">
+				<paragrahvNr>24</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 24.]]></kuvatavNr>
+				<paragrahvPealkiri>Lapse väärkohtlemise keeld</paragrahvPealkiri>
+				<loige id="para24lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lapse hooletusse jätmine, lapse vaimne, emotsionaalne, kehaline ja seksuaalne väärkohtlemine, sealhulgas lapse alavääristamine, hirmutamine ja kehaline karistamine, samuti lapse karistamine mis tahes muul viisil, mis ohustab tema vaimset, emotsionaalset või füüsilist tervist, on keelatud.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para24lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lapse väärkohtlemise ennetamiseks on lapse seaduslikul esindajal karistusregistri seaduse alusel õigus saada teavet teise isiku karistatuse kohta.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para24lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tegu ei ole lapse väärkohtlemisega käesoleva seaduse tähenduses, kui lapse käitumine kujutab otsest ja vahetut ohtu lapse enda või teiste isikute elule või tervisele ning seda ohtu ei ole võimalik vältida, sealhulgas vestluse, veenmise või suulise rahustamise teel, ja sellest tulenevalt tuleb last kasvataval isikul, lapsega töötaval isikul ja lastekaitsetöötajal lapse ohjeldamiseks kasutada füüsilist jõudu määral, mis ei tekita lapsele kehalisi, vaimseid ega emotsionaalseid kahjustusi ning riivab võimalikult vähe lapse õigusi ja vabadusi.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para24lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Füüsilist jõudu tohib käesoleva seaduse tähenduses kasutada vaid lapse liikumise või liigutuste piiramiseks määral, mis on proportsionaalne ja vähim vajalik teda ähvardava või temast lähtuva ohu tõrjumiseks. Füüsilist jõudu ei ole lubatud kasutada karistuse eesmärgil.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para25">
+				<paragrahvNr>25</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 25.]]></kuvatavNr>
+				<paragrahvPealkiri>Vägivalda õhutava ja pornograafilise sisuga esemete levitamise keeld</paragrahvPealkiri>
+				<loige id="para25lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Julmust ja vägivalda õhutavate trükiste, filmide, heli- ja videosalvestiste ning esemete tootmine, demonstreerimine ja levitamine lastele on keelatud.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para25lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Pornograafilise sisuga esemete, trükiste ja filmide tootmine, demonstreerimine ja levitamine lastele on keelatud.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk6">
+			<peatykkNr>6</peatykkNr>
+			<kuvatavNr><![CDATA[6. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Abivajav laps</peatykkPealkiri>
+			<paragrahv id="para26">
+				<paragrahvNr>26</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 26.]]></kuvatavNr>
+				<paragrahvPealkiri>Abivajav laps</paragrahvPealkiri>
+				<loige id="para26lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Abivajav laps on laps, kelle heaolu on ohustatud või kelle puhul on tekkinud kahtlus tema väärkohtlemise, hooletusse jätmise või muu lapse õigusi rikkuva olukorra suhtes, ja laps, kelle käitumine ohustab tema enda või teiste isikute heaolu.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para27">
+				<paragrahvNr>27</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 27.]]></kuvatavNr>
+				<paragrahvPealkiri>Abivajavast lapsest teatamine</paragrahvPealkiri>
+				<loige id="para27lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohustus abivajavast lapsest teatada on kõigil isikutel, kellel on olemas teave abivajavast lapsest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para27lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Abivajavast lapsest tuleb viivitamata teatada kohaliku omavalitsuse üksusele või lasteabitelefonil 116 111.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para27lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Abivajava lapse kohta teate vastu võtnud asutus või ametiisik, välja arvatud lapse rahvastikuregistrisse kantud elukoha järgne kohaliku omavalitsuse üksus või selle lastekaitsetöötaja, on kohustatud teate viivitamata edastama lapse rahvastikuregistrisse kantud elukoha järgsele kohaliku omavalitsuse üksusele.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para27lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui lapse rahvastikuregistrisse kantud elukoha järgne kohaliku omavalitsuse üksus ei ole teada või seda ei ole võimalik välja selgitada, tuleb teade abivajavast lapsest viivitamata edastada selle kohaliku omavalitsuse üksusele, kus laps viibib.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para27lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Abivajavast lapsest teatanud isikut ega teatamise fakti ei avalikustata, välja arvatud süüteomenetluses. Abivajavast lapsest teavitaval isikul on enda või oma perekonna kaitseks õigus jätta teavitamisel enda kohta andmed avaldamata.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para27b1">
+				<paragrahvNr ylaIndeks="1">27</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 27<sup>1</sup>.]]></kuvatavNr>
+				<paragrahvPealkiri>Lapsega töötava isiku teade abivajavast lapsest</paragrahvPealkiri>
+				<loige id="para27b1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Alus-, põhi-, kesk-, kutse- ja huvihariduse ning lastehoiu õpetaja või tugispetsialist, lastehoius töötav lapsehoidja, laste hoolekandeasutuse töötaja, noorsootöötaja või lapsega töötav treener, huviringi juhendaja, tervishoiutöötaja, politseiametnik või ohvriabitöötaja teatab töös või kutsetegevuses märgatud abivajavast lapsest käesoleva seaduse § 27 kohaselt, edastades vähimas vajalikus ulatuses temale teadaolevad § 34<sup>2</sup> lõigetes 3 ja 4 nimetatud andmed. Teatada võib ka asutuses selleks määratud kontaktisiku kaudu.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para27b1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lastekaitsetöötaja võib anda käesoleva paragrahvi lõike 1 alusel abivajavast lapsest teatanud isikule teavet juhtumi menetluse alustamise kohta, kui see on vajalik lapse heaolu toetamiseks.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>131122024003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para27b2">
+				<paragrahvNr ylaIndeks="2">27</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 27<sup>2</sup>.]]></kuvatavNr>
+				<paragrahvPealkiri>Abivajava lapse väljaselgitamine</paragrahvPealkiri>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+						<RTartikkel>3</RTartikkel>
+						<aktViide>131122024003</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-01-01</joustumine>
+					<tavatekst> - muudetud paragrahvi number 27¹ numbriks 27²</tavatekst>
+				</muutmismarge>
+				<loige id="para27b2lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lapse rahvastikuregistrisse kantud elukoha järgsel kohaliku omavalitsuse üksusel on õigus abivajava lapse väljaselgitamise eesmärgil töödelda sotsiaalteenuste ja -toetuste andmeregistris järgmiste laste andmeid:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para27b2lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lapsed, kelle puhul on Sotsiaalkindlustusametile esitatud puude raskusastme tuvastamise taotlus või kelle kohta on Sotsiaalkindlustusametile käesoleva paragrahvi lõike 4 alusel edastatud andmed puude raskusastme tuvastamiseks puuetega inimeste sotsiaaltoetuste seaduse kohaselt;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para27b2lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lapsed, kellel on puuetega inimeste sotsiaaltoetuste seaduse § 2<sup>6</sup> lõike 2 alusel sätestatud terviseseisundist tingitud püsiv toevajadus, mille kohta on kantud andmed tervise infosüsteemi.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para27b2lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõike 1 punktis 1 nimetatud laste puhul töötleb kohaliku omavalitsuse üksus järgmisi isikuandmeid:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para27b2lg2p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lapse üldandmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para27b2lg2p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>info puude raskusastme tuvastamise või mittetuvastamise kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para27b2lg2p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>info harvikhaigusega lapsele puudega lapse sotsiaaltoetuse määramise kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para27b2lg2p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>puude raskusastme tuvastamise korral puude raskusaste, kestus ja funktsiooni kõrvalekalle;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para27b2lg2p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>vanema või eestkostja nimi ja isikukood või juriidilise isiku registrikood ja kontaktandmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para27b2lg2p6">
+						<alampunktNr>6</alampunktNr>
+						<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>vanema või eestkostja rahvastikuregistrijärgne elukoht ja viibimiskoht;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para27b2lg2p7">
+						<alampunktNr>7</alampunktNr>
+						<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lapse surmakuupäev.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para27b2lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõike 1 punktis 2 nimetatud laste puhul töötleb kohaliku omavalitsuse üksus järgmisi isikuandmeid:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para27b2lg3p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lapse üldandmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para27b2lg3p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>vanema või eestkostja nimi ja isikukood või juriidilise isiku registrikood ja kontaktandmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para27b2lg3p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>vanema või eestkostja rahvastikuregistrijärgne elukoht ja viibimiskoht;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para27b2lg3p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lapse surmakuupäev.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para27b2lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohaliku omavalitsuse üksus edastab vanema või eestkostja nõusolekul andmed käesoleva paragrahvi lõike 1 punktis 2 nimetatud lapse kohta Sotsiaalkindlustusametile puude raskusastme tuvastamiseks.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>131122024003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para28">
+				<paragrahvNr>28</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 28.]]></kuvatavNr>
+				<paragrahvPealkiri>Abivajaduse hindamine</paragrahvPealkiri>
+				<loige id="para28lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Enne abivajavale lapsele sobiva meetme kohaldamist tuleb hinnata lapse abivajadust. Lapse abivajadust hindab lastekaitsetöötaja või lapsega töötav isik, välja arvatud vabatahtlikus tegevuses, asendusteenistuses teenides, tööturuteenustel osaledes või praktikandina lapsega vahetult kokku puutuv isik, kaasates selleks vajaduse korral asjaomase spetsialisti.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para28lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lapse abivajadust hinnates peab lastekaitsetöötaja või lapsega töötav isik andma hinnangu:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para28lg2p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lapse füüsilisele, tervislikule, psühholoogilisele, emotsionaalsele, sotsiaalsele, kognitiivsele, hariduslikule ja majanduslikule seisundile;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para28lg2p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>last kasvatava isiku vanemlikele oskustele.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para28lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lastekaitsetöötaja või lapsega töötav isik peab lapse abivajaduse hindamisse kaasama lapse ja last kasvatava isiku või lasteasutuse, kus laps viibib.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para29">
+				<paragrahvNr>29</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 29.]]></kuvatavNr>
+				<paragrahvPealkiri>Abivajavale lapsele abi osutamine</paragrahvPealkiri>
+				<loige id="para29lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Abivajavale lapsele abi osutamine on lapse heaolu toetava meetme kohaldamine viisil, mis parandab lapse ja last kasvatava isiku vahelisi suhteid.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para29lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Abi osutamisel tuleb rakendada võrgustikutööd, järgides juhtumikorralduse põhimõtteid sotsiaalhoolekande seaduses sätestatud korras.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para29lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohaliku omavalitsuse üksus peab kümne päeva möödumisel abivajavast lapsest teada saamisest tegema otsuse juhtumikorralduse algatamiseks või algatamata jätmiseks või juhtumi edastamiseks pädevale ametiisikule.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para29lg3b1">
+					<loigeNr ylaIndeks="1">3</loigeNr>
+					<kuvatavNr><![CDATA[(3<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui kohaliku omavalitsuse üksus saab teada lapsest, keda kasvatav isik on hädaohus olev täisealine perevägivalla ohver ohvriabi seaduse § 9 lõike 2 tähenduses, peab kohaliku omavalitsuse üksus algatama juhtumikorralduse lapsele abi osutamiseks ning tegema koostööd Sotsiaalkindlustusameti ja teiste täisealist ohvrit abistavate asutustega.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2023-01-06</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>106012023001</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-04-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para29lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Juhtumikorralduse võib algatamata jätta ainult juhul, kui lapse abivajadus on võimalik rahuldada ühekordse meetmega.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para29lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohaliku omavalitsuse üksus peab abivajava lapse abivajaduse hindamisel ja abi osutamisel välja selgitama ja dokumenteerima lapse arvamuse ning lisama selle lapsega seotud kohustuslikule juhtumiplaanile, kui eriseadus ei sätesta teisiti.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para29b1">
+				<paragrahvNr ylaIndeks="1">29</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 29<sup>1</sup>.]]></kuvatavNr>
+				<paragrahvPealkiri>Sotsiaalkindlustusameti meetmed seksuaalselt väärkoheldud lapse ja seksuaalselt väärkohtlevalt käituva lapse abistamiseks</paragrahvPealkiri>
+				<loige id="para29b1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohaliku omavalitsuse üksus teavitab abivajavast lapsest teada saades kohe Sotsiaalkindlustusametit, juhul kui laps:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para29b1lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>on seksuaalselt väärkoheldud või on selline kahtlus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para29b1lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>on kahtlustatav või menetlusalune isik seksuaalsüüteos või lapse seksuaalkäitumine ohustab teiste isikute või tema enda heaolu.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para29b1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusamet asub käesolevas paragrahvis sätestatud ülesandeid täitma ka muu asutuse või isiku pöördumise või lasteabitelefonile tulnud info alusel. Sellisel juhul teavitab Sotsiaalkindlustusamet sellest lapse juhtumikorralduse eest vastutavat kohaliku omavalitsuse üksust, kriminaalmenetluse korral arvestades kriminaalmenetluse seadustiku §-s 214 kohtueelse menetluse andmete avaldamise kohta sätestatuga.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para29b1lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 1 nimetatud lapse heaolu toetamiseks Sotsiaalkindlustusamet:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para29b1lg3p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>pakub lapsesõbralikku keskkonda lapse suhtes lastekaitse- ja süüteomenetluse toimingute tegemiseks ning lapse taastumist toetavate teenuste osutamiseks;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para29b1lg3p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kuulab vajaduse korral lapse ära väärkohtlemise väljaselgitamiseks ja videosalvestab ärakuulamise kasutamiseks tõendina süüteomenetluses;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para29b1lg3p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>hindab lapse väärkohtlemisest tulenevat või väärkohtleva käitumisega seotud abivajadust, samuti lapse väärkohtleva käitumisega seotud riske, kaasates selleks vajaduse korral asjakohase spetsialisti;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para29b1lg3p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>toetab ja nõustab last ning tema lähedasi;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para29b1lg3p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>jälgib lapse abistamiseks rakendatud meetmete tulemuslikkust.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para29b1lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõike 3 punktis 2 nimetatud lapse ärakuulamise videosalvestist säilitab Sotsiaalkindlustusamet kuni kuus kuud videosalvestamise kuupäevast arvates. Salvestise säilitamise ja väljastamise tingimused ja kord sätestatakse </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[käesoleva paragrahvi lõike 5 alusel]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=131122024023&id=128062022029]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> kehtestatud määruses.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para29b1lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 3 nimetatud ülesannete täitmise täpsemad tingimused ja korra kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=131122024023&id=128062022029]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2022-04-28</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>128042022001</aktViide>
+						</avaldamismarge>
+						<joustumine>2022-05-08</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk7">
+			<peatykkNr>7</peatykkNr>
+			<kuvatavNr><![CDATA[7. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Hädaohus olev laps</peatykkPealkiri>
+			<paragrahv id="para30">
+				<paragrahvNr>30</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 30.]]></kuvatavNr>
+				<paragrahvPealkiri>Hädaohus olev laps</paragrahvPealkiri>
+				<loige id="para30lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Hädaohus olev laps on laps, kes on oma elu või tervist ohustavas olukorras, ja laps, kelle käitumine ohustab tema enda või teiste isikute elu või tervist.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para31">
+				<paragrahvNr>31</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 31.]]></kuvatavNr>
+				<paragrahvPealkiri>Hädaohus olevast lapsest teatamine</paragrahvPealkiri>
+				<loige id="para31lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohustus hädaohus olevast lapsest teatada on kõigil isikutel, kellel on olemas teave hädaohus olevast lapsest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para31lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Hädaohus olevast lapsest tuleb viivitamata teatada hädaabinumbril 112.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para32">
+				<paragrahvNr>32</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 32.]]></kuvatavNr>
+				<paragrahvPealkiri>Hädaohus oleva lapse toimetamine ohututesse tingimustesse</paragrahvPealkiri>
+				<loige id="para32lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Hädaohus olevat last tuleb viivitamata abistada ning likvideerida selleks lapse elu või tervist ohtu seadnud olukord. Vajaduse korral võib hädaohus oleva lapse toimetada ohututesse tingimustesse kuni ohu möödumiseni, küsimata selleks lapse hooldusõigust teostava isiku nõusolekut.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para32lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui lapse ohtu sattumine ei olnud põhjustatud lapse hooldusõigust teostava isiku tegevusest või tegevusetusest või temast tulenev oht on lõppenud, antakse hädaohus olev laps üle lapse hooldusõigust teostavale isikule.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para32lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Hädaohus oleva lapse toimetab ohututesse tingimustesse lapse viibimiskoha järgse kohaliku omavalitsuse üksuse lastekaitsetöötaja või politsei korrakaitseseaduse § 46 lõike 1 punktis 8 sätestatud alusel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para32lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Hädaohus olev laps paigutatakse ohututesse tingimustesse selleks sobivat teenust osutava sotsiaal-, tervishoiu- või haridusasutuse või isiku (edaspidi <i>teenuseosutaja</i>) või lapse jaoks turvalise isiku juurde sõltuvalt lapse olukorrast ja vajadustest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para32lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui hädaohus olevat last ei ole võimalik üle anda lapse hooldusõigust teostavale isikule, võib lapse ajutiselt paigutada teenuseosutaja juurde sobiva teenuse saamiseks või lapse jaoks turvalise isiku juurde järgmistel juhtudel:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para32lg5p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lapse hooldusõigust teostava isiku nõusolekul;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para32lg5p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kohaliku omavalitsuse üksuse lastekaitsetöötaja otsusel, kui lapse hooldusõigust teostav isik ei ole kättesaadav, või</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para32lg5p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Sotsiaalkindlustusameti lastekaitsetöötaja otsusel, kui lapse hooldusõigust teostav isik ei ole kättesaadav.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para33">
+				<paragrahvNr>33</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 33.]]></kuvatavNr>
+				<paragrahvPealkiri>Hädaohus oleva lapse ajutine perekonnast eraldamine</paragrahvPealkiri>
+				<loige id="para33lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohaliku omavalitsuse üksus või Sotsiaalkindlustusamet võib eraldada lapse perekonnast ja vajaduse korral määrata lapse ja vanema suhtluskorra enne hooldusõiguse piiramise kohtumäärust, kui lapse jätmine perekonda või vanema ja lapse vaheline suhtlus ohustab lapse tervist või elu. Kohaliku omavalitsuse üksus või Sotsiaalkindlustusamet teeb otsuse hädaohus oleva lapse ajutiseks perekonnast eraldamiseks järgmistel juhtudel:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para33lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lapse ohtu sattumise on põhjustanud lapse hooldusõigust teostav isik oma tegevuse või tegevusetusega;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para33lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lapse hooldusõigust teostav isik keeldub lapse ajutisest paigutamisest teenuseosutaja juurde sobiva teenuse saamiseks.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para33lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 1 nimetatud otsusega eraldatakse hädaohus olev laps perekonnast ja määratakse tema viibimiskoht ning vajaduse korral lapse ja vanema suhtluskord kuni 72 tunniks alates lapse perekonnast eraldamisest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para33lg2b1">
+					<loigeNr ylaIndeks="1">2</loigeNr>
+					<kuvatavNr><![CDATA[(2<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 1 nimetatud otsuse resolutiivosa edastatakse ka teenuseosutajale või muule isikule, kelle juurde perekonnast eraldatud laps ajutiselt paigutatakse.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>131122024003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-10</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para33lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohaliku omavalitsuse üksus või Sotsiaalkindlustusamet peab hindama lapse olukorda ja abivajadust ning käesoleva paragrahvi lõikes 2 sätestatud tähtaega arvestades pöörduma kohtusse hooldusõiguse ja vajaduse korral suhtlusõiguse piiramiseks perekonnaseaduses sätestatud alustel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para33lg3b1">
+					<loigeNr ylaIndeks="1">3</loigeNr>
+					<kuvatavNr><![CDATA[(3<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Isik või asutus, kellel on hädaohus oleva lapse olukorra ja abivajaduse hindamiseks või käesoleva paragrahvi lõikes 1 nimetatud otsuse tegemiseks vajalikku teavet ja andmeid, vastab viivitamata lastekaitsetöötaja nõudele saada asjakohast teavet ja andmeid.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>131122024003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-10</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para33lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui hädaohus olev laps tuleb ise või satub muul viisil teenuseosutaja juurde, peab teenuseosutaja viivitamata taotlema käesoleva paragrahvi lõikes 1 nimetatud otsust lapse ajutise perekonnast eraldamise kohta, kui talle on saanud teatavaks või tal on alust arvata, et lapse hooldusõigust teostav isik on põhjustanud lapse hädaohtu sattumise.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk8">
+			<peatykkNr>8</peatykkNr>
+			<kuvatavNr><![CDATA[8. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Perekonnast eraldatud lapse kaitse</peatykkPealkiri>
+			<paragrahv id="para34">
+				<paragrahvNr>34</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 34.]]></kuvatavNr>
+				<paragrahvPealkiri>Perekonnast eraldatud lapse kaitse</paragrahvPealkiri>
+				<loige id="para34lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohaliku omavalitsuse üksus peab perekonnast eraldatud lapsele eestkostja valimisel, lapsendamiseks nõusoleku andmisel, kasuperekonna sobivuse hindamisel ja lapse asendushooldusele paigutamisel lähtuma lapse üleskasvatamise järjepidevusest, arvestades lapse etnilist, usulist, kultuurilist ja keelelist päritolu.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para34lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohaliku omavalitsuse üksuse lastekaitsetöötaja koostöös last kasvatava isiku või lasteasutusega, kus perekonnast eraldatud laps viibib, on kohustatud andma lapsele teavet tema päritolu, perekonnast eraldamise põhjuste ja teda puudutavate edasiste hooldusküsimuste kohta ning võimaluse korral säilitama ja toetama perekonnast eemal viibiva lapse ja tema perekonna vahelisi suhteid.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para34lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Õdede ja vendade lahutamine pärast perekonnast eraldamist võib olla vaid äärmuslik abinõu olukorras, kus nende kokkujäämine ohustab oluliselt nende heaolu või õigusi.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para34lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohaliku omavalitsuse üksuse lastekaitsetöötaja koostab perekonnast eraldatud lapsele käesolevas seaduses nimetatud juhtumiplaani ning tagab selle perioodilise ülevaatamise ja vajaduse korral muutmise koostöös lapse ja last kasvatava isikuga.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para34b1">
+				<paragrahvNr ylaIndeks="1">34</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 34<sup>1</sup>.]]></kuvatavNr>
+				<paragrahvPealkiri>Lapse paigutamine teisest Euroopa Liidu liikmesriigist Eestisse</paragrahvPealkiri>
+				<loige id="para34b1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusamet menetleb nõukogu määruse (EL) 2019/1111 alusel taotlusi, mis on seotud lapse paigutamisega teisest Euroopa Liidu liikmesriigist (edaspidi <i>liikmesriik</i>) Eestisse.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para34b1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lapse paigutamise taotluse andmete loetelu kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=131122024023&id=116022023001]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para34b1lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohaliku omavalitsuse üksus ja pädevad asutused on kohustatud Sotsiaalkindlustusameti taotlusel koguma ja esitama teavet, mis on seotud lapse teisest liikmesriigist Eestisse paigutamise menetlusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para34b1lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Teise liikmesriigi eestkoste seadmise menetluste puhul kontrollib Sotsiaalkindlustusamet lapse Eestisse paigutamise korral võimaliku eestkostja vastavust perekonnaseaduses sätestatud eestkostjale esitatavatele nõuetele.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para34b1lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lapse Eestisse paigutamisega seotud muu menetluse puhul kontrollib Sotsiaalkindlustusamet, kas taotluses nimetatud isik vastab sotsiaalhoolekande seaduse § 45<sup>13</sup> lõike 1 punktides 1–7 sätestatule.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para34b1lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusamet arvestab lapse teisest liikmesriigist Eestisse paigutamise otsuse tegemisel kõiki lapsesse puutuvaid asjaolusid ning hindab paigutamise võimalikku mõju lapse õigustele ja heaolule.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para34b1lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Eestisse võib lapse teisest liikmesriigist ilma Sotsiaalkindlustusameti eelneva nõusolekuta paigutada üksnes tema vanema juurde.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2022-11-10</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>110112022001</aktViide>
+						</avaldamismarge>
+						<joustumine>2022-11-20</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk8b1">
+			<peatykkNr ylaIndeks="1">8</peatykkNr>
+			<kuvatavNr><![CDATA[8<sup>1</sup>. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Isikuandmete töötlemine lapse õiguste ja heaolu tagamiseks</peatykkPealkiri>
+			<muutmismarge>
+				<avaldamismarge>
+					<RTosa>RT I</RTosa>
+					<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+					<RTartikkel>3</RTartikkel>
+					<aktViide>131122024003</aktViide>
+				</avaldamismarge>
+				<joustumine>2025-01-10</joustumine>
+			</muutmismarge>
+			<paragrahv id="para34b2">
+				<paragrahvNr ylaIndeks="2">34</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 34<sup>2</sup>.]]></kuvatavNr>
+				<paragrahvPealkiri>Isikuandmete töötlemine kohaliku omavalitsuse üksuses ja Sotsiaalkindlustusametis</paragrahvPealkiri>
+				<loige id="para34b2lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohaliku omavalitsuse üksusel on käesoleva seaduse § 17 lõike 1 punktis 3 nimetatud ülesande täitmiseks õigus töödelda lapse, lapsevanema ja last kasvatava isiku ning lapse pereliikme isikuandmeid, sealhulgas eriliiki isikuandmeid, samuti lapse sotsiaalsesse võrgustikku kuuluva isiku isikuandmeid, mis on vajalikud lapse abivajaduse hindamiseks ja sobiva abi osutamiseks. Isikuandmeid töödeldakse menetluse eesmärgi saavutamiseks vajalikul määral ja viisil, lähtudes esmajoones lapse huvidest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para34b2lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lapse pereliikmeteks käesoleva paragrahvi lõike 1 tähenduses loetakse lapse õdesid ja vendi, poolõdesid ja poolvendi, vanavanemaid ning muid lapsega ajutiselt või püsivalt koos elavaid isikuid.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para34b2lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõike 1 alusel töödeldavad lapse isikuandmed on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para34b2lg3p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>üldandmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg3p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed lapse perekonna ja leibkonna koosseisu, suhete ja sotsiaalse võrgustiku kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg3p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed lapse elutingimuste ning majandusliku ja sotsiaalse toimetuleku kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg3p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>terviseandmed, mis annavad teavet lapse võimaliku abivajaduse kohta, eelkõige lapse arengu, terviseseisundi ja -käitumise, trauma ja vigastuse, lapsele määratud ravi ja selle järgimise ning ambulatoorsel vastuvõtul käimise andmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg3p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed lapsele osutatava sotsiaal-, tervishoiu- ja ohvriabiteenuse kohta koos teenuse liigi, kestuse ja teenuseosutaja nimega;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg3p6">
+						<alampunktNr>6</alampunktNr>
+						<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed hariduse omandamise, õpikeskkonnas toimetuleku, haridusliku erivajaduse ja tugiteenuse saamise kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg3p7">
+						<alampunktNr>7</alampunktNr>
+						<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>huvihariduses ja -tegevuses osalemise andmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg3p8">
+						<alampunktNr>8</alampunktNr>
+						<kuvatavNr><![CDATA[8)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>puude raskusaste, liik, kestus ja funktsiooni kõrvalekalle;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg3p9">
+						<alampunktNr>9</alampunktNr>
+						<kuvatavNr><![CDATA[9)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed töövõime ja tööga hõivatuse kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg3p10">
+						<alampunktNr>10</alampunktNr>
+						<kuvatavNr><![CDATA[10)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed lapse ennast või teisi kahjustava käitumise kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg3p11">
+						<alampunktNr>11</alampunktNr>
+						<kuvatavNr><![CDATA[11)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>karistusregistrisse kantud karistusandmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg3p12">
+						<alampunktNr>12</alampunktNr>
+						<kuvatavNr><![CDATA[12)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lapse suhtes käimas oleva kriminaal- või väärteomenetluse andmed koos selle esemeks oleva süüteo liigi ja toimepanemise asjaoludega ning lapse suhtes kohaldatud tõkendi, karistuse, mõjutusvahendi ja kriminaalhoolduse andmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg3p13">
+						<alampunktNr>13</alampunktNr>
+						<kuvatavNr><![CDATA[13)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed lapse suhtes toime pandud või lapsega seotud vägivallajuhtumi kohta koos vägivalla liigi, toimepanemise aja ja asjaoludega ning lapse osalemise viisiga, samuti andmed juhtumi uurimiseks kriminaalmenetluse alustamise kohta ja lapse menetlusseisund;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg3p14">
+						<alampunktNr>14</alampunktNr>
+						<kuvatavNr><![CDATA[14)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed lapse kinnipidamise ja hädaohus oleva lapse ohututesse tingimustesse toimetamise kohta seaduses sätestatud korrakaitseorgani poolt koos korrakaitseseaduse § 46 lõike 6 kohaselt dokumenteeritud andmetega.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para34b2lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõike 1 alusel töödeldavad lapsevanema ja last kasvatava isiku isikuandmed on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para34b2lg4p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>üldandmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg4p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed vanemluse, hooldusõiguse ja eestkoste kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg4p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed majandusliku ja sotsiaalse toimetuleku kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg4p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>vanemlike oskuste hindamiseks vajalikud andmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg4p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>sotsiaal- või tervishoiutöötaja tehtud koduvisiidil kogutud andmed lapsevanema seisundi, toimetuleku ja toetusvajaduse kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg4p6">
+						<alampunktNr>6</alampunktNr>
+						<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>terviseandmed, mis annavad teavet lapse heaolu ohustamise ja isiku vanemliku suutlikkuse kohta, eelkõige isiku terviseseisundi ja -käitumise, raseduse, trauma ja vigastuse, isikule määratud ravi ja selle järgimise andmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg4p7">
+						<alampunktNr>7</alampunktNr>
+						<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed isikule tema toimetuleku või vanemliku suutlikkuse toetamiseks osutatava sotsiaal-, tervishoiu- ja ohvriabiteenuse kohta koos teenuse liigi, kestuse ja vajaduse korral teenuseosutaja nimega;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg4p8">
+						<alampunktNr>8</alampunktNr>
+						<kuvatavNr><![CDATA[8)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed hariduse omandamise kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg4p9">
+						<alampunktNr>9</alampunktNr>
+						<kuvatavNr><![CDATA[9)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>puude raskusaste, liik, kestus ja funktsiooni kõrvalekalle;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg4p10">
+						<alampunktNr>10</alampunktNr>
+						<kuvatavNr><![CDATA[10)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed töövõime ja tööga hõivatuse kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg4p11">
+						<alampunktNr>11</alampunktNr>
+						<kuvatavNr><![CDATA[11)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed isikut ennast või lapse heaolu kahjustava käitumise kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg4p12">
+						<alampunktNr>12</alampunktNr>
+						<kuvatavNr><![CDATA[12)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>karistusregistrisse kantud karistusandmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg4p13">
+						<alampunktNr>13</alampunktNr>
+						<kuvatavNr><![CDATA[13)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>isiku suhtes käimas oleva kriminaal- või väärteomenetluse andmed koos selle esemeks oleva süüteo liigi ja toimepanemise asjaoludega ning isiku suhtes kohaldatud tõkendi, karistuse, mõjutusvahendi ja kriminaalhoolduse andmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg4p14">
+						<alampunktNr>14</alampunktNr>
+						<kuvatavNr><![CDATA[14)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed isiku suhtes toime pandud vägivallajuhtumi kohta koos vägivalla liigi ja toimepanemise ajaga ning juhtumi uurimiseks kriminaalmenetluse alustamise kohta.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para34b2lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõike 1 alusel töödeldavad lapse pereliikme isikuandmed on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para34b2lg5p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>üldandmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg5p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed vanemluse ja eestkoste kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg5p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed isiku terviseseisundi ja -käitumise ning isikule määratud ravi ja selle järgimise kohta ulatuses, milles tema terviseseisund ja -käitumine võib mõjutada lapse heaolu;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg5p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed isikule tema toimetuleku toetamiseks osutatava sotsiaal-, tervishoiu- ja ohvriabiteenuse kohta koos teenuse liigi, kestuse ja vajaduse korral teenuseosutaja nimega ulatuses, milles isiku toimetulek võib mõjutada lapse heaolu;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg5p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed hariduse omandamise ja tööga hõivatuse kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg5p6">
+						<alampunktNr>6</alampunktNr>
+						<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>puude raskusaste, liik, kestus ja funktsiooni kõrvalekalle, kui isiku puue võib mõjutada lapse heaolu;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg5p7">
+						<alampunktNr>7</alampunktNr>
+						<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>karistusregistrisse kantud karistusandmed, kui isiku karistatus võib mõjutada lapse heaolu;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg5p8">
+						<alampunktNr>8</alampunktNr>
+						<kuvatavNr><![CDATA[8)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>isiku suhtes käimas oleva kriminaal- või väärteomenetluse andmed koos selle esemeks oleva süüteo liigi ja toimepanemise asjaoludega ning isiku suhtes kohaldatud tõkendi, karistuse, mõjutusvahendi ja kriminaalhoolduse andmed, kui isiku arvatav tegu või tema suhtes kohaldatud meede võib mõjutada lapse heaolu;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg5p9">
+						<alampunktNr>9</alampunktNr>
+						<kuvatavNr><![CDATA[9)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed isiku suhtes toime pandud vägivallajuhtumi kohta koos vägivalla liigi ja toimepanemise ajaga ning juhtumi uurimiseks kriminaalmenetluse alustamise kohta, kui juhtum võib mõjutada lapse heaolu.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para34b2lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõike 1 alusel töödeldavad lõike 3 punktis 2 nimetatud lapse sotsiaalsesse võrgustikku kuuluva isiku isikuandmed on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para34b2lg6p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>üldandmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para34b2lg6p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>seos ja suhted lapsega.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para34b2lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusametil on õigus töödelda käesoleva paragrahvi lõigetes 3–6 nimetatud isikuandmeid käesoleva seaduse § 15 lõike 2 punktides 2–4 ja lõike 3 punktides 6–7 nimetatud ülesannete täitmiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para34b2lg8">
+					<loigeNr>8</loigeNr>
+					<kuvatavNr><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohaliku omavalitsuse üksus ning käesoleva seaduse §-des 29<sup>1</sup> ja 33 sätestatud juhtudel Sotsiaalkindlustusamet võivad lapse abivajaduse hindamiseks ja sobiva abi osutamiseks kaasata selle lapsega töötavaid isikuid ning teisi asjaomaseid spetsialiste ja asutusi. Käesoleva lõike esimeses lauses nimetatud eesmärkide täitmiseks on ka menetlusse kaasatud osapooltel õigus töödelda käesoleva paragrahvi lõigetes 3–6 nimetatud andmeid.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>131122024003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-10</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para34b3">
+				<paragrahvNr ylaIndeks="3">34</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 34<sup>3</sup>.]]></kuvatavNr>
+				<paragrahvPealkiri>Konfidentsiaalsuskohustus</paragrahvPealkiri>
+				<loige id="para34b3lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse § 34<sup>2</sup> lõike 8 alusel infot saanud isikud peavad hoidma konfidentsiaalsena neile lastekaitsejuhtumi menetlemise käigus teatavaks saanud isikuandmeid, kui seaduses või kokkuleppel asjaomase isikuga ei ole ette nähtud teisiti.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>131122024003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-10</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para34b4">
+				<paragrahvNr ylaIndeks="4">34</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 34<sup>4</sup>.]]></kuvatavNr>
+				<paragrahvPealkiri>Terviseandmete töötlemine</paragrahvPealkiri>
+				<loige id="para34b4lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Kohaliku omavalitsuse üksusel ja Sotsiaalkindlustusametil on õigus saada tervishoiuteenuse osutajalt lapse, lapsevanema ja last kasvatava isiku ning lapse pereliikme terviseandmeid käesoleva seaduse § 34<sup>2</sup> lõike 3 punktides 4 ja 5, lõike 4 punktides 5–7 ning lõike 5 punktides 3 ja 4 määratud ulatuses lapse abivajaduse hindamiseks ja sobiva abi osutamiseks.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>131122024003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-10</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para34b5">
+				<paragrahvNr ylaIndeks="5">34</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 34<sup>5</sup>.]]></kuvatavNr>
+				<paragrahvPealkiri>Lasteabitelefonile tehtud kõnede salvestamine ning salvestiste säilitamine ja väljastamine</paragrahvPealkiri>
+				<loige id="para34b5lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lasteabitelefonile tehtud kõned salvestatakse lapse abivajaduse väljaselgitamiseks ja abi paremaks osutamiseks, salvestise kasutamiseks tõendina süüteomenetluses ja nõustamise kvaliteedi tagamiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para34b5lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusamet väljastab kõne salvestise Politsei- ja Piirivalveametile, prokuratuurile või kohtule tema nõudmise korral.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para34b5lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kõne salvestist säilitatakse digitaalsel andmekandjal kuus kuud salvestamise kuupäevast arvates. Nimetatud tähtaja möödumisel salvestis kustutatakse.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>131122024003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-10</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk9">
+			<peatykkNr>9</peatykkNr>
+			<kuvatavNr><![CDATA[9. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Lasteasutus</peatykkPealkiri>
+			<paragrahv id="para35">
+				<paragrahvNr>35</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 35.]]></kuvatavNr>
+				<paragrahvPealkiri>Lasteasutus</paragrahvPealkiri>
+				<loige id="para35lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Lasteasutus on riigi või kohaliku omavalitsuse üksuse asutus, avalik-õiguslik või eraõiguslik juriidiline isik või füüsiline isik, kes seaduse või muude õigusaktide alusel osutab lastele sotsiaal-, haridus- või statsionaarseid tervishoiuteenuseid.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para36">
+				<paragrahvNr>36</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 36.]]></kuvatavNr>
+				<paragrahvPealkiri>Lasteasutuses viibiva lapse arvamuse ja kaebuse esitamise õigus</paragrahvPealkiri>
+				<loige id="para36lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lasteasutuses viibival lapsel on õigus kellestki sõltumata võtta ühendust last kasvatava isiku, rahvastikuregistrisse kantud lapse elukoha järgse kohaliku omavalitsuse üksuse lastekaitsetöötaja ja õiguskantsleriga ning esitada neile lasteasutuse tegevuse kohta arvamusi ja kaebusi.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para36lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lasteasutus peab looma tingimused, mis aitavad tagada lapse käesoleva paragrahvi lõikes 1 sätestatud õigust.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para36lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lasteasutus peab tagama lapsele iseseisva ja sõltumatu võimaluse esitada lasteasutuse tegevuse kohta arvamusi ja kaebusi. Lasteasutus peab lapse arvamused ja kaebused registreerima ning andma lapsele nende kohta viivitamata asjakohast tagasisidet. Vajaduse korral tuleb ette näha muudatused lasteasutuse igapäevaelu korralduses või muus lapsele olulises eluvaldkonnas.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para36lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lasteasutus ei avalda lasteasutuse kohta arvamuse või kaebuse esitanud lapse isikut ega arvamuse või kaebuse esitamise fakti, välja arvatud süüteomenetluses.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para37">
+				<paragrahvNr>37</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 37.]]></kuvatavNr>
+				<paragrahvPealkiri>Lasteasutuse sisehindamine</paragrahvPealkiri>
+				<loige id="para37lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lasteasutuse sisehindamine on tegevus, mille käigus hinnatakse lasteasutuse töökorraldust ja töökeskkonda ning tegevuste tulemuslikkust lapse õiguste ja heaolu tagamisel. Sisehindamise käigus selgitatakse välja lasteasutuse eesmärkide täitmist toetavad ja takistavad asjaolud ning analüüsitakse lasteasutuse tegevuse vastavust õigusaktidele.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para37lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lasteasutus peab viivitamata kõrvaldama sisehindamisel selgunud asjaolud, mis takistavad lapse õiguste ja heaolu tagamist.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para37lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lasteasutuse sisehindamist korraldab lasteasutuse juht.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk10">
+			<peatykkNr>10</peatykkNr>
+			<kuvatavNr><![CDATA[10. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Riiklik ja haldusjärelevalve</peatykkPealkiri>
+			<paragrahv id="para38">
+				<paragrahvNr>38</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 38.]]></kuvatavNr>
+				<paragrahvPealkiri>Riikliku ja haldusjärelevalve teostamine</paragrahvPealkiri>
+				<loige id="para38lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Riiklikku järelevalvet käesoleva seaduse ja selle alusel kehtestatud õigusaktide nõuete täitmise üle teostavad Sotsiaalkindlustusamet, Tarbijakaitse ja Tehnilise Järelevalve Amet ja kohaliku omavalitsuse üksus (edaspidi <i>korrakaitseorgan</i>).</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2018-12-12</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>112122018003</aktViide>
+						</avaldamismarge>
+						<joustumine>2019-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para38lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusamet teostab riiklikku järelevalvet käesoleva seaduse §-des 19–21, § 22 lõigetes 2–4, § 24 lõikes 3, §-des 27 ja 28, § 29 lõigetes 2–5, §-s 31, § 32 lõigetes 1–4 ja lõike 5 punktides 1 ja 2 ning §-des 33, 34, 36 ja 37 sätestatud nõuete täitmise üle.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2017-11-28</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>128112017002</aktViide>
+						</avaldamismarge>
+						<joustumine>2018-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para38lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2017-11-28</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>128112017002</aktViide>
+						</avaldamismarge>
+						<joustumine>2018-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para38lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tarbijakaitse ja Tehnilise Järelevalve Amet teostab riiklikku järelevalvet käesoleva seaduse §-s 25 sätestatud nõuete täitmise üle.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2018-12-12</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>112122018003</aktViide>
+						</avaldamismarge>
+						<joustumine>2019-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para38lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohaliku omavalitsuse üksus teostab riiklikku järelevalvet käesoleva seaduse §-des 21 ja 22, § 23 lõikes 1 ning §-des 24, 27 ja 31 sätestatud nõuete täitmise üle.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para38lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Haldusjärelevalvet käesolevas seaduses ja selle alusel kehtestatud õigusaktides sätestatud kohaliku omavalitsuse üksuse ülesannete täitmise üle teostab Sotsiaalkindlustusamet.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>131122024003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-10</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para39">
+				<paragrahvNr>39</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 39.]]></kuvatavNr>
+				<paragrahvPealkiri>Riikliku järelevalve teostamiseks lubatud erimeetmed</paragrahvPealkiri>
+				<loige id="para39lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Korrakaitseorgan võib käesolevas seaduses sätestatud riikliku järelevalve teostamiseks kohaldada korrakaitseseaduse §-des 30–32 ja 49–52 sätestatud riikliku järelevalve erimeetmeid korrakaitseseaduses sätestatud alusel ja korras.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para39lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohaliku omavalitsuse üksus võib lisaks käesoleva paragrahvi lõikes 1 nimetatud erimeetmetele käesolevas seaduses sätestatud riikliku järelevalve teostamiseks kohaldada korrakaitseseaduse § 46 lõike 1 punktides 6 ja 8 sätestatud riikliku järelevalve erimeedet korrakaitseseaduses sätestatud alusel ja korras.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para40">
+				<paragrahvNr>40</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 40.]]></kuvatavNr>
+				<paragrahvPealkiri>Riikliku järelevalve teostamise erisused</paragrahvPealkiri>
+				<loige id="para40lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohaliku omavalitsuse üksuse või Sotsiaalkindlustusameti lastekaitsetöötajal on õigus valdusesse sisenemiseks ohukahtluse korral ohu väljaselgitamiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para40lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohaliku omavalitsuse üksuse lastekaitsetöötajal või muul kohaliku omavalitsuse üksuse nimetatud ametnikul on õigus teha last kasvatavale isikule ettekirjutusi abivajava lapse kaitseks ja kohustada last kasvatavat isikut tegema koostööd lastekaitsetöötajaga.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para40b1">
+				<paragrahvNr ylaIndeks="1">40</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 40<sup>1</sup>.]]></kuvatavNr>
+				<paragrahvPealkiri>Haldusjärelevalve meetmed</paragrahvPealkiri>
+				<loige id="para40b1lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusametil on haldusjärelevalve teostamisel õigus:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para40b1lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>külastada lasteasutust, vajaduse korral ka ette teatamata, et kontrollida käesolevas seaduses ja selle alusel lasteasutuse tegevusele kehtestatud nõuete täitmist;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para40b1lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>teavitada avalikkust ja vanemaid lasteasutuses tuvastatud rikkumistest;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para40b1lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>rakendada muid Vabariigi Valitsuse seaduses sätestatud haldusjärelevalve meetmeid.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+								<RTartikkel>3</RTartikkel>
+								<aktViide>131122024003</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-01-10</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk11">
+			<peatykkNr>11</peatykkNr>
+			<kuvatavNr><![CDATA[11. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Rakendussätted</peatykkPealkiri>
+			<paragrahv id="para41">
+				<paragrahvNr>41</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 41.]]></kuvatavNr>
+				<paragrahvPealkiri>Paragrahvide 19 ja 20 rakendamine</paragrahvPealkiri>
+				<loige id="para41lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Enne käesoleva seaduse jõustumist tööle asunud lastekaitsetöötaja peab käesoleva seaduse § 19 lõigetes 1 ja 2 sätestatud nõuded täitma hiljemalt 2022. aasta 1. jaanuariks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para41lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Enne käesoleva seaduse jõustumist tööle asunud lastekaitsetöötaja ja lapsega töötava isiku suhtes peavad käesoleva seaduse § 20 lõigetes 1–3 sätestatud nõuded olema täidetud 2017. aasta 1. jaanuariks, välja arvatud käesoleva paragrahvi lõikes 3 sätestatud juhul.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2017-11-28</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>128112017002</aktViide>
+						</avaldamismarge>
+						<joustumine>2018-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para41lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Enne käesoleva lõike jõustumist tööle asunud lastekaitsetöötaja ja lapsega töötava isiku suhtes, keda on karistatud enne karistusseadustiku jõustumist tegude eest, mis on kvalifitseeritud kriminaalkoodeksi §-de 100–102 järgi, peavad käesoleva seaduse § 20 lõikes 1<sup>1</sup> sätestatud nõuded olema täidetud 2019. aasta 1. jaanuariks.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2017-11-28</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>128112017002</aktViide>
+						</avaldamismarge>
+						<joustumine>2018-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para41b1">
+				<paragrahvNr ylaIndeks="1">41</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 41<sup>1</sup>.]]></kuvatavNr>
+				<paragrahvPealkiri>Paragrahvi 27<sup>1</sup> rakendamine</paragrahvPealkiri>
+				<loige id="para41b1lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse §-s 27<sup>1</sup> sätestatud abivajava lapse esmakordsel väljaselgitamisel teeb kohaliku omavalitsuse üksus otsuse juhtumikorralduse algatamiseks või algatamata jätmiseks 30 päeva jooksul abivajavast lapsest teadasaamisest arvates.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2022-04-28</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>128042022001</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para41b2">
+				<paragrahvNr ylaIndeks="2">41</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 41<sup>2</sup>.]]></kuvatavNr>
+				<paragrahvPealkiri>Paragrahvi 20 lõike 3 kohaldamine</paragrahvPealkiri>
+				<loige id="para41b2lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse § 20 lõikes 3 nimetatud lapsega töötava isiku käesoleva seaduse nõuetele vastavuse regulaarse kontrollimise tähtaja kulgemist arvestatakse alates 2023. aasta 1. jaanuarist.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2022-08-06</avaldamineKuupaev>
+							<RTartikkel>4</RTartikkel>
+							<aktViide>106082022004</aktViide>
+						</avaldamismarge>
+						<joustumine>2022-10-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para42">
+				<paragrahvNr kehtiv="0">42</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 42. ]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst> – </tavatekst>
+				</sisuTekst>
+			</paragrahv>
+			<paragrahv id="para46">
+				<paragrahvNr kehtiv="0">46</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 46. ]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>[Käesolevast tekstist välja jäetud.]</tavatekst>
+				</sisuTekst>
+			</paragrahv>
+			<paragrahv id="para47">
+				<paragrahvNr>47</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 47.]]></kuvatavNr>
+				<paragrahvPealkiri>Seaduse jõustumine</paragrahvPealkiri>
+				<loige id="para47lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesolev seadus jõustub 2016. aasta 1. jaanuaril.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para47lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse § 19 jõustub 2020. aasta 1. jaanuaril.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+	</sisu>
+</oigusakt>

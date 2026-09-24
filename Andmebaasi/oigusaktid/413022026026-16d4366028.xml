@@ -1,0 +1,795 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Tallinna Linnavalitsus</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2022-12-14</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT IV</RTosa>
+				<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+				<RTartikkel>4</RTartikkel>
+				<aktViide>422122022004</aktViide>
+			</avaldamismarge>
+			<joustumine>2023-01-01</joustumine>
+			<aktiNr>39</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-02-13</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>26</RTartikkel><aktViide>413022026026</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2026-02-16</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2022-12-14</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>413022026026</globaalID>
+		<metaandmedVersioon>30</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-02-12</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1055418</terviktekstiGrupiID>
+	</metaandmed>
+	<aktinimi>
+		<nimi>
+			<pealkiri>Sotsiaaltoetuste määrad</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge>
+		<aktikuupaev>2023-06-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2023-06-28</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>428062023002</aktViide>
+		</avaldamismarge>
+		<joustumine>2023-07-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2023-12-18</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2023-12-23</avaldamineKuupaev>
+			<RTartikkel>61</RTartikkel>
+			<aktViide>423122023061</aktViide>
+		</avaldamismarge>
+		<joustumine>2024-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2024-04-01</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2024-04-05</avaldamineKuupaev>
+			<RTartikkel>36</RTartikkel>
+			<aktViide>405042024036</aktViide>
+		</avaldamismarge>
+		<joustumine>2024-04-08</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2024-08-13</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2024-08-16</avaldamineKuupaev>
+			<RTartikkel>12</RTartikkel>
+			<aktViide>416082024012</aktViide>
+		</avaldamismarge>
+		<joustumine>2024-08-19</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2024-12-17</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2024-12-28</avaldamineKuupaev>
+			<RTartikkel>38</RTartikkel>
+			<aktViide>428122024038</aktViide>
+		</avaldamismarge>
+		<joustumine>2025-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2026-02-10</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2026-02-13</avaldamineKuupaev>
+			<RTartikkel>13</RTartikkel>
+			<aktViide>413022026013</aktViide>
+		</avaldamismarge>
+		<joustumine>2026-02-16</joustumine>
+	</muutmismarge>
+	<sisu>
+		<preambul>
+			<tavatekst>Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lg 1 p 5 ja sotsiaalhoolekande seaduse § 14 alusel ning kooskõlas Tallinna Linnavolikogu 7. oktoobri 2021 määruse nr 24 „Sotsiaalhoolekandelise abi andmise kord“ § 14 lg-ga 3 ja 7. oktoobri 2021 määruse nr 26 „Sotsiaaltoetuste maksmise tingimused ja kord“ § 1 lg-ga 2.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr>1</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 1.]]></kuvatavNr>
+			<paragrahvPealkiri>Sissetulekupiir</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<sisuTekst>
+					<tavatekst>Sissetulekupiir on 360 eurot inimese kohta.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<aktikuupaev>2023-12-18</aktikuupaev>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2023-12-23</avaldamineKuupaev>
+						<RTartikkel>61</RTartikkel>
+						<aktViide>423122023061</aktViide>
+					</avaldamismarge>
+					<joustumine>2024-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr>2</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 2.]]></kuvatavNr>
+			<paragrahvPealkiri>Sissetulekust sõltuvate toetuste määrad</paragrahvPealkiri>
+			<muutmismarge>
+				<aktikuupaev>2024-12-17</aktikuupaev>
+				<avaldamismarge>
+					<RTosa>RT IV</RTosa>
+					<avaldamineKuupaev>2024-12-28</avaldamineKuupaev>
+					<RTartikkel>38</RTartikkel>
+					<aktViide>428122024038</aktViide>
+				</avaldamismarge>
+				<joustumine>2025-01-01</joustumine>
+			</muutmismarge>
+			<loige id="para2lg1">
+				<sisuTekst>
+					<tavatekst>Sissetulekust sõltuvate toetuste määrad on järgmised:</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<aktikuupaev>2024-12-17</aktikuupaev>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2024-12-28</avaldamineKuupaev>
+						<RTartikkel>38</RTartikkel>
+						<aktViide>428122024038</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-01-01</joustumine>
+				</muutmismarge>
+				<alampunkt id="para2lg1p1">
+					<alampunktNr>1</alampunktNr>
+					<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>sissetulekust sõltuv toetus toimetuleku tagamiseks lapsele (alla 18-aastasele lapsele ja kuni 19-aastasele (kaasa arvatud) noorele, kes õpib üldharidus- või kutseõppeasutuses) kuni 450 eurot kalendriaastas;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2024-12-17</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2024-12-28</avaldamineKuupaev>
+							<RTartikkel>38</RTartikkel>
+							<aktViide>428122024038</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para2lg1p2">
+					<alampunktNr>2</alampunktNr>
+					<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>sissetulekust sõltuv toetus toimetuleku tagamiseks täisealisele inimesele kuni 350 eurot kalendriaastas;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2024-12-17</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2024-12-28</avaldamineKuupaev>
+							<RTartikkel>38</RTartikkel>
+							<aktViide>428122024038</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para2lg1p3">
+					<alampunktNr>3</alampunktNr>
+					<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+					
+					<muutmismarge>
+						<tavatekst>kehtetu - </tavatekst>
+						<aktikuupaev>2024-08-13</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2024-08-16</avaldamineKuupaev>
+							<RTartikkel>12</RTartikkel>
+							<aktViide>416082024012</aktViide>
+						</avaldamismarge>
+						<joustumine>2024-08-19</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para2lg1p4">
+					<alampunktNr>4</alampunktNr>
+					<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>hooldajatoetus vähemalt 3-aastase raske puudega inimese hooldajale 50 eurot kalendrikuus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p5">
+					<alampunktNr>5</alampunktNr>
+					<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>hooldajatoetus vähemalt 3-aastase sügava puudega inimese hooldajale 100 eurot kalendrikuus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p5b1">
+					<alampunktNr ylaIndeks="1">5</alampunktNr>
+					<kuvatavNr><![CDATA[5<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>hooldajatoetus erivajadusest põhjustatud, kuni kuus kuud kestva hooldusvajadusega lapse või täisealise inimese hooldajale 30 eurot kalendrikuus;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2024-08-13</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2024-08-16</avaldamineKuupaev>
+							<RTartikkel>12</RTartikkel>
+							<aktViide>416082024012</aktViide>
+						</avaldamismarge>
+						<joustumine>2024-08-19</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para2lg1p6">
+					<alampunktNr>6</alampunktNr>
+					<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>eluruumi kohandamise kulu hüvitis inimese kohta kuni 3200 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p6b1">
+					<alampunktNr ylaIndeks="1">6</alampunktNr>
+					<kuvatavNr><![CDATA[6<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>eluruumi kohandamise kulu hüvitis inimese kohta platvormtõstuki soetamisel ja paigaldamisel kuni 6400 eurot;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2026-02-10</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2026-02-13</avaldamineKuupaev>
+							<RTartikkel>13</RTartikkel>
+							<aktViide>413022026013</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-02-16</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para2lg1p7">
+					<alampunktNr>7</alampunktNr>
+					<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>üürimise toetus kuni 900 eurot pere kohta.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr>3</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 3.]]></kuvatavNr>
+			<paragrahvPealkiri>Universaaltoetuste määrad</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<sisuTekst>
+					<tavatekst>Universaaltoetuste määrad on järgmised:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para3lg1p1">
+					<alampunktNr>1</alampunktNr>
+					<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+					
+					<muutmismarge>
+						<tavatekst>kehtetu - </tavatekst>
+						<aktikuupaev>2026-02-10</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2026-02-13</avaldamineKuupaev>
+							<RTartikkel>13</RTartikkel>
+							<aktViide>413022026013</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-02-16</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg1p1b1">
+					<alampunktNr ylaIndeks="1">1</alampunktNr>
+					<kuvatavNr><![CDATA[1<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>sünnitoetus ühe lapse sünni korral 350 eurot, kui laps on sündinud 2025. aastal;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2026-02-10</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2026-02-13</avaldamineKuupaev>
+							<RTartikkel>13</RTartikkel>
+							<aktViide>413022026013</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-02-16</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg1p1b2">
+					<alampunktNr ylaIndeks="2">1</alampunktNr>
+					<kuvatavNr><![CDATA[1<sup>2</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>sünnitoetus ühe lapse sünni korral 1000 eurot, kui laps on sündinud 1. jaanuaril 2026 või hiljem;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2026-02-10</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2026-02-13</avaldamineKuupaev>
+							<RTartikkel>13</RTartikkel>
+							<aktViide>413022026013</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-02-16</joustumine>
+						<tavatekst>, rakendatakse tagasiulatuvalt 01.01.2026</tavatekst>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg1p2">
+					<alampunktNr>2</alampunktNr>
+					<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>sünnitoetus kaksikute sünni korral 1000 eurot, kui lapsed on sündinud 2025. aastal;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2026-02-10</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2026-02-13</avaldamineKuupaev>
+							<RTartikkel>13</RTartikkel>
+							<aktViide>413022026013</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-02-16</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg1p2b1">
+					<alampunktNr ylaIndeks="1">2</alampunktNr>
+					<kuvatavNr><![CDATA[2<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>sünnitoetus kaksikute sünni korral 3000 eurot, kui lapsed on sündinud 1. jaanuaril 2026 või hiljem;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2026-02-10</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2026-02-13</avaldamineKuupaev>
+							<RTartikkel>13</RTartikkel>
+							<aktViide>413022026013</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-02-16</joustumine>
+						<tavatekst>, rakendatakse tagasiulatuvalt 01.01.2026</tavatekst>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg1p3">
+					<alampunktNr>3</alampunktNr>
+					<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+					
+					<muutmismarge>
+						<tavatekst>kehtetu - </tavatekst>
+						<aktikuupaev>2026-02-10</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2026-02-13</avaldamineKuupaev>
+							<RTartikkel>13</RTartikkel>
+							<aktViide>413022026013</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-02-16</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg1p3b1">
+					<alampunktNr ylaIndeks="1">3</alampunktNr>
+					<kuvatavNr><![CDATA[3<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>sünnitoetus kolme või enama lapse sünni korral 6500 eurot, kui lapsed on sündinud 2025. aastal;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2026-02-10</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2026-02-13</avaldamineKuupaev>
+							<RTartikkel>13</RTartikkel>
+							<aktViide>413022026013</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-02-16</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg1p3b2">
+					<alampunktNr ylaIndeks="2">3</alampunktNr>
+					<kuvatavNr><![CDATA[3<sup>2</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>sünnitoetus kolme või enama lapse sünni korral 10 000 eurot, kui lapsed on sündinud 1. jaanuaril 2026 või hiljem;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2026-02-10</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2026-02-13</avaldamineKuupaev>
+							<RTartikkel>13</RTartikkel>
+							<aktViide>413022026013</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-02-16</joustumine>
+						<tavatekst>, rakendatakse tagasiulatuvalt 01.01.2026</tavatekst>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg1p4">
+					<alampunktNr>4</alampunktNr>
+					<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>õppeaasta alguse toetus esimesse klassi minevale lapsele 320 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p5">
+					<alampunktNr>5</alampunktNr>
+					<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>õppeaasta alguse toetus alatest teisest klassist 100 eurot;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2023-12-18</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2023-12-23</avaldamineKuupaev>
+							<RTartikkel>61</RTartikkel>
+							<aktViide>423122023061</aktViide>
+						</avaldamismarge>
+						<joustumine>2024-01-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg1p6">
+					<alampunktNr>6</alampunktNr>
+					<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>hooldusperes asendushooldusteenusel oleva lapse isiklike kulude toetus 240 eurot kalendrikuus;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2026-02-10</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2026-02-13</avaldamineKuupaev>
+							<RTartikkel>13</RTartikkel>
+							<aktViide>413022026013</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-02-16</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg1p7">
+					<alampunktNr>7</alampunktNr>
+					<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+					
+					<muutmismarge>
+						<tavatekst>kehtetu - </tavatekst>
+						<aktikuupaev>2026-02-10</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2026-02-13</avaldamineKuupaev>
+							<RTartikkel>13</RTartikkel>
+							<aktViide>413022026013</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-02-16</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg1p8">
+					<alampunktNr>8</alampunktNr>
+					<kuvatavNr><![CDATA[8)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>hoolduspere vanema toetus pool Vabariigi Valitsuse kehtestatud ühe kuu töötasu alammäärast ühe lapse hooldamise kohta kalendrikuus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p9">
+					<alampunktNr>9</alampunktNr>
+					<kuvatavNr><![CDATA[9)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>asendushooldusteenusel oleva lapse toetus kuni 12-aastasele (kaasa arvatud) 10 eurot kalendrikuus;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2026-02-10</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2026-02-13</avaldamineKuupaev>
+							<RTartikkel>13</RTartikkel>
+							<aktViide>413022026013</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-02-16</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg1p10">
+					<alampunktNr>10</alampunktNr>
+					<kuvatavNr><![CDATA[10)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>asendushooldusteenusel oleva lapse toetus 13-aastasele ja vanemale 20 eurot kalendrikuus;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2026-02-10</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2026-02-13</avaldamineKuupaev>
+							<RTartikkel>13</RTartikkel>
+							<aktViide>413022026013</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-02-16</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg1p10b1">
+					<alampunktNr ylaIndeks="1">10</alampunktNr>
+					<kuvatavNr><![CDATA[10<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>järelhooldusel oleva noore isiklike kulude toetus 240 eurot kalendrikuus;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2024-12-17</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2024-12-28</avaldamineKuupaev>
+							<RTartikkel>38</RTartikkel>
+							<aktViide>428122024038</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg1p11">
+					<alampunktNr>11</alampunktNr>
+					<kuvatavNr><![CDATA[11)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>ellusuunamistoetus Vabariigi Valitsuse kehtestatud ühe kuu töötasu alammääras;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p12">
+					<alampunktNr>12</alampunktNr>
+					<kuvatavNr><![CDATA[12)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>puudega lapse toetus 200 eurot kalendriaastas alates 1. jaanuarist 2026;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2026-02-10</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2026-02-13</avaldamineKuupaev>
+							<RTartikkel>13</RTartikkel>
+							<aktViide>413022026013</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-02-16</joustumine>
+						<tavatekst>, rakendatakse tagasiulatuvalt 01.01.2026</tavatekst>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg1p13">
+					<alampunktNr>13</alampunktNr>
+					<kuvatavNr><![CDATA[13)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>juhtkoera pidamise toetus 165 eurot kvartalis;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p14">
+					<alampunktNr>14</alampunktNr>
+					<kuvatavNr><![CDATA[14)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>pensionilisa 250 eurot kalendriaastas alates 1. jaanuarist 2026;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2026-02-10</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2026-02-13</avaldamineKuupaev>
+							<RTartikkel>13</RTartikkel>
+							<aktViide>413022026013</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-02-16</joustumine>
+						<tavatekst>, rakendatakse tagasiulatuvalt 01.01.2026</tavatekst>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg1p15">
+					<alampunktNr>15</alampunktNr>
+					<kuvatavNr><![CDATA[15)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>matusetoetus 250 eurot.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr>4</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 4.]]></kuvatavNr>
+			<paragrahvPealkiri>Sotsiaaltransporditeenuse kasutamise määrad</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr>1</loigeNr>
+				<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Juhuveoteenuse kasutamisel linna haldusterritooriumil asuvasse sihtkohta või sealt tagasi sõitmisel on ette nähtud:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para4lg1p1">
+					<alampunktNr>1</alampunktNr>
+					<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>maksimaalselt 12 tasuta sõidukorda kasutaja kohta kalendriaastas;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p2">
+					<alampunktNr>2</alampunktNr>
+					<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>maksimaalselt neli osaliselt tasulist sõidukorda kasutaja kohta kalendrikuus. Osaliselt tasulise sõidukorra omaosalustasu on 2 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p3">
+					<alampunktNr>3</alampunktNr>
+					<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>täistasulisi sõidukordi piiramatult kasutaja kohta kalendriaastas. Täistasulise sõidukorra tasu vastab hinnakirjale, milles on kokku leppinud Tallinna Sotsiaal- ja Tervishoiuamet ning teenuseosutaja.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr>2</loigeNr>
+				<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Juhuveoteenuse kasutamisel linna haldusterritooriumilt mujal Eestis asuvasse sihtkohta või sealt tagasi sõitmisel on ette nähtud:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para4lg2p1">
+					<alampunktNr>1</alampunktNr>
+					<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>maksimaalselt neli osaliselt tasulist sõidukorda kasutaja kohta kalendriaastas. Osaliselt tasulise sõidukorra omaosalustasu on 13 senti kilomeetri eest;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg2p2">
+					<alampunktNr>2</alampunktNr>
+					<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>täistasulisi sõidukordi piiramatult kasutaja kohta kalendriaastas. Täistasulise sõidukorra tasu vastab hinnakirjale, milles on kokku leppinud Tallinna Sotsiaal- ja Tervishoiuamet ning teenuseosutaja.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr>3</loigeNr>
+				<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Taksoveoteenuse kasutamisel on:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para4lg3p1">
+					<alampunktNr>1</alampunktNr>
+					<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>linnaeelarve vahenditest tasutav maksumus kasutaja kohta kalendrikuus 190 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg3p1b1">
+					<alampunktNr ylaIndeks="1">1</alampunktNr>
+					<kuvatavNr><![CDATA[1<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>linnaeelarve vahenditest kalendrikuu limiidi ulatuses tasutav maksumus kohandatud sõidukiga sõidu alustamise tasust on 8,70 eurot;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2024-08-13</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2024-08-16</avaldamineKuupaev>
+							<RTartikkel>12</RTartikkel>
+							<aktViide>416082024012</aktViide>
+						</avaldamismarge>
+						<joustumine>2024-08-19</joustumine>
+						<tavatekst>, rakendatakse alates 01.07.2024</tavatekst>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para4lg3p2">
+					<alampunktNr>2</alampunktNr>
+					<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>omaosalustasu üks neljandik teenuse igakordsest maksumusest kalendrikuu limiidi ulatuses;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg3p3">
+					<alampunktNr>3</alampunktNr>
+					<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>täistasulisi sõidukordi piiramatult kasutaja kohta kalendrikuus. Täistasulise sõidukorra tasu vastab hinnakirjale, milles on kokku leppinud Tallinna Sotsiaal- ja Tervishoiuamet ning teenuseosutaja.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4b1">
+			<paragrahvNr ylaIndeks="1">4</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 4<sup>1</sup>.]]></kuvatavNr>
+			<paragrahvPealkiri>Väljaspool kodu osutatava ööpäevase üldhooldusteenuse hoolduskulude tasumise piirmäär</paragrahvPealkiri>
+			<muutmismarge>
+				<aktikuupaev>2023-06-19</aktikuupaev>
+				<avaldamismarge>
+					<RTosa>RT IV</RTosa>
+					<avaldamineKuupaev>2023-06-28</avaldamineKuupaev>
+					<RTartikkel>2</RTartikkel>
+					<aktViide>428062023002</aktViide>
+				</avaldamismarge>
+				<joustumine>2023-07-01</joustumine>
+			</muutmismarge>
+			<loige id="para4b1lg1">
+				<sisuTekst>
+					<tavatekst>Üldhooldusteenuse hoolduskulude tasumise piirmäär on 856 eurot ühes kalendrikuus.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<aktikuupaev>2024-12-17</aktikuupaev>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2024-12-28</avaldamineKuupaev>
+						<RTartikkel>38</RTartikkel>
+						<aktViide>428122024038</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4b2">
+			<paragrahvNr ylaIndeks="2">4</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 4<sup>2</sup>.]]></kuvatavNr>
+			<paragrahvPealkiri>Väljaspool kodu osutatava ööpäevase üldhooldusteenuse omaosalustasu maksmise kohustusest vabastamise piirmäär</paragrahvPealkiri>
+			<muutmismarge>
+				<aktikuupaev>2023-06-19</aktikuupaev>
+				<avaldamismarge>
+					<RTosa>RT IV</RTosa>
+					<avaldamineKuupaev>2023-06-28</avaldamineKuupaev>
+					<RTartikkel>2</RTartikkel>
+					<aktViide>428062023002</aktViide>
+				</avaldamismarge>
+				<joustumine>2023-07-01</joustumine>
+			</muutmismarge>
+			<loige id="para4b2lg1">
+				<sisuTekst>
+					<tavatekst>Omaosalustasu maksmisest vabastatakse perekonnaseaduse kohane ülalpidamiskohustuslane osas, mis ületab eelmise kalendriaasta teise kvartali keskmise vanaduspensioni suurust, kui teenuse saaja sissetulek ei kata omaosalustasu. Omaosalustasu maksmise kohustusest vabastamise piirmäär on kuni 70 eurot.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<aktikuupaev>2024-04-01</aktikuupaev>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2024-04-05</avaldamineKuupaev>
+						<RTartikkel>36</RTartikkel>
+						<aktViide>405042024036</aktViide>
+					</avaldamismarge>
+					<joustumine>2024-04-08</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr>5</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 5.]]></kuvatavNr>
+			<paragrahvPealkiri>Määruse kehtetuks tunnistamine</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<sisuTekst>
+					<tavatekst>[Käesolevast tekstist välja jäetud]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5b1">
+			<paragrahvNr ylaIndeks="1">5</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 5<sup>1</sup>.]]></kuvatavNr>
+			<paragrahvPealkiri>Rakendussätted</paragrahvPealkiri>
+			<muutmismarge>
+				<aktikuupaev>2024-08-13</aktikuupaev>
+				<avaldamismarge>
+					<RTosa>RT IV</RTosa>
+					<avaldamineKuupaev>2024-08-16</avaldamineKuupaev>
+					<RTartikkel>12</RTartikkel>
+					<aktViide>416082024012</aktViide>
+				</avaldamismarge>
+				<joustumine>2024-08-19</joustumine>
+			</muutmismarge>
+			<loige id="para5b1lg1">
+				<sisuTekst>
+					<tavatekst>Määruse § 3 punktide 1<sup>2</sup>, 2<sup>1</sup>, 3<sup>2</sup>, 12 ja 14 kohaselt ettenähtud summa ja enne määruse muudatuse jõustumist tegelikult välja makstud summa vahe hüvitatakse toetuse saajale 30 kalendripäeva jooksul määruse muudatuse jõustumisest.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<aktikuupaev>2026-02-10</aktikuupaev>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2026-02-13</avaldamineKuupaev>
+						<RTartikkel>13</RTartikkel>
+						<aktViide>413022026013</aktViide>
+					</avaldamismarge>
+					<joustumine>2026-02-16</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr>6</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 6.]]></kuvatavNr>
+			<paragrahvPealkiri>Määruse jõustumine</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<sisuTekst>
+					<tavatekst>Määrus jõustub Tallinna Linnavolikogu 15. detsembri 2022 määruse „Tallinna Linnavolikogu määruste muutmine“ jõustumisel, kuid kõige varem 1. jaanuaril 2023.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

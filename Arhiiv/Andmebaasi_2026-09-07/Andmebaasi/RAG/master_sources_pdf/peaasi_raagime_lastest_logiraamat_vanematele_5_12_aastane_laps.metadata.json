@@ -1,0 +1,81 @@
+{
+  "source": {
+    "source_id": "peaasi_raagime_lastest_logiraamat_vanematele_5_12_aastane_laps",
+    "title": "Räägime Lastest logiraamat vanematele: 5–12-aastane laps",
+    "url": "https://peaasi.ee/wp-content/uploads/2026/02/4.-Logiraamat-vanematele_5-12-aastane-laps-TAIDETAV.pdf",
+    "normalized_url": "https://peaasi.ee/wp-content/uploads/2026/02/4.-Logiraamat-vanematele_5-12-aastane-laps-TAIDETAV.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "method_guidance",
+    "publisher": "Peaasi",
+    "organization_id": "peaasi",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Peaasi.ee",
+      "lapsed ja pered",
+      "laps",
+      "lapsevanem",
+      "pere",
+      "vanemlus",
+      "Räägime Lastest",
+      "perevestlus",
+      "perede nõustamine",
+      "logiraamat",
+      "praktiline töövahend"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "Peaasi",
+      "heading_4": null,
+      "line": 609,
+      "order": 310
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Räägime Lastest logiraamat vanematele: 5–12-aastane laps"
+    ],
+    "collection_hints": [
+      "organization_materials"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Peaasi"
+    ],
+    "organizations_seen": [
+      "peaasi"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "Peaasi",
+        "line": 609,
+        "order": 310
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://peaasi.ee/wp-content/uploads/2026/02/4.-Logiraamat-vanematele_5-12-aastane-laps-TAIDETAV.pdf"
+  },
+  "final_url": "https://peaasi.ee/wp-content/uploads/2026/02/4.-Logiraamat-vanematele_5-12-aastane-laps-TAIDETAV.pdf",
+  "redirects": [],
+  "sha256": "ca3d30e2a1122722a7ac03d20186c58f45ce88e312008a4be3103873624faed0",
+  "bytes": 2494348,
+  "downloaded_at": "2026-08-14T08:00:58.391Z"
+}

@@ -1,0 +1,73 @@
+{
+  "docId": "sotsiaaltoo-1-2017",
+  "articleId": "ministeerium-toetab-2017-1",
+  "title": "Ministeerium toetab sotsiaaltöö tegijaid",
+  "authors": [
+    "Sotsiaalministeeriumi hoolekande osakond"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2017",
+  "section": "Kommentaar",
+  "pageRange": "77-78",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi hoolekande osakond vastab OSKA raportile, et tööjõuprobleemid on juba käes, mitte tulevikus, ja et õppekavad peaksid muutuma multidistsiplinaarsemaks, hõlmates õigust, teenusedisaini, andmeanalüüsi ja tehnoloogiat; osalahendusena nimetatakse Helpificu platvormi. Osakond loetleb käimasolevad sammud: ESTA ja vabatahtliku tegevuse toetamine Hasartmängumaksu nõukogu kaudu, 2017. aastal viis rühmasupervisiooni kohtumist iga maakonna omavalitsuste sotsiaaltöötajatele ning Astangu keskuse koostatud kvaliteedijuhiste väljatöötamine kümnele teenusele, mida jätkab Sotsiaalkindlustusamet.",
+  "tags": [
+    "kommentaar",
+    "sotsiaalministeerium",
+    "OSKA",
+    "supervisioon",
+    "teenuste kvaliteet",
+    "vabatahtlik tegevus"
+  ],
+  "source_type": "file",
+  "source_path": "2017_1_Part18.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2017-ministeerium-toetab-2017-1",
+  "source_sha256": "6c7a19805a642082454ac89d40d5b7fdce3705ba279410eecbc572fd351f65f5",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2017-ministeerium-toetab-2017-1",
+    "previous_source_path": "2017_1_Part18.txt",
+    "previous_source_original_path": "2017_1.pdf",
+    "reference_stored_source_sha256": "2fac259aa80403ea170b7f0b6fe475e20fe05b10b93cda7be82c4bef57c61c5b",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf",
+      "source_sha256": "335f81467a555f12c55d0e8bf60122a178c5267567cf79607448a5d987629e50",
+      "pdf_start_page": 79,
+      "pdf_end_page": 80,
+      "printed_page_range": "77-78",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 80,
+      "source_regions": [
+        {
+          "source_pdf_page": 79,
+          "bounds": [
+            0,
+            379.924,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 80,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        }
+      ],
+      "effective_printed_page_range": "77-78",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf"
+    },
+    "server_page_range": "77-78"
+  }
+}

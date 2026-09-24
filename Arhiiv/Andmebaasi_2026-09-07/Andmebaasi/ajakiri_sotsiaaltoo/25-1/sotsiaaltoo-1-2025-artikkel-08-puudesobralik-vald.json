@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "kuidas-vallast-saab-puudesobralik-vald-2025-1",
+  "title": "Kuidas vallast saab puudesõbralik vald?",
+  "authors": [
+    "Bärbel Salumäe"
+  ],
+  "section": "Kogemus",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "description": "Artikkel tutvustab Rae valla kogemust puudesõbraliku omavalitsusena. Bärbel Salumäe kirjeldab, kuidas tugiisikuteenuse toomine valla sotsiaalkeskuse alla ja tugiisikute töölepinguga tööle vormistamine parandas teenuse kvaliteeti ja kättesaadavust. Samuti käsitletakse väikerühmade ja individuaalõppeklasside loomist, HEV-kooli ja kompetentsikeskuse rajamist, kogukonnalaagrite ja festivalide korraldamist ning koostööd ettevõtetega. Rõhutatakse kogukonna kaasatuse, süsteemse lähenemise ja tunnustuse rolli erivajadustega inimeste ja nende perede toetamisel.",
+  "tags": [
+    "puudesõbralik vald",
+    "Rae vald",
+    "tugiisikuteenus",
+    "erivajadustega lapsed",
+    "HEV-õpe",
+    "kogukonna kaasamine",
+    "puuetega inimeste toetus"
+  ],
+  "source_path": "Kuidas vallast saab puudesõbralik vald_1_2025.pdf",
+  "pageRange": "1–7",
+  "document_id": "sotsiaaltoo-1-2025-kuidas-vallast-saab-puudesobralik-vald-2025-1",
+  "source_format": "pdf",
+  "source_sha256": "64d124850320f25f3a7720abb57abff4ba3956e7aa58367b508b7ded13ded4a9",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2025-kuidas-vallast-saab-puudesobralik-vald-2025-1",
+    "previous_source_path": "Kuidas vallast saab puudesõbralik vald_1_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "64d124850320f25f3a7720abb57abff4ba3956e7aa58367b508b7ded13ded4a9",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

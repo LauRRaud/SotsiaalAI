@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "rahvastiku-tervis-muutuste-ja-kriiside-kontekstis-2025-1",
+  "title": "Rahvastiku tervis muutuste ja kriiside kontekstis: tervise ebavõrdsuse mustrid ja murekohad",
+  "authors": [
+    "Liis Reiter"
+  ],
+  "section": "Uudis",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "description": "Refereering Tervise arengu instituudi juhtivteaduri Mall Leinsalu ettekandest tervisedenduse konverentsil. Artikkel annab ülevaate tervise ebavõrdsuse mõjuritest Eestis ja rahvusvahelises võrdluses: hariduse ja sotsiaalmajandusliku staatuse seos oodatava eluea ja haigestumusega, suitsetamise, alkoholi, ülekaalu ja vähese liikumise roll ning ressursside ja võimaluste jaotus ühiskonnas. Kirjeldatakse, kuidas 1990. aastate üleminekukriis, 2008. aasta majanduskriis ja COVID-19 pandeemia on mõjutanud oodatavat eluiga ja süvendanud või leevendanud ebavõrdsust. Rõhutatakse vajadust pikaajaliste, kriisidele vastupidavate poliitikate järele, mis vähendaksid tervise ebavõrdsust ja toetaksid haavatavamaid rühmi.",
+  "tags": [
+    "rahvastiku tervis",
+    "tervise ebavõrdsus",
+    "Mall Leinsalu",
+    "kriisid",
+    "COVID-19",
+    "üleminekuaeg",
+    "alkohol ja suitsetamine"
+  ],
+  "source_path": "Rahvastiku tervis muutuste ja kriiside kontekstis_1_2025.pdf",
+  "pageRange": "1–7",
+  "document_id": "sotsiaaltoo-1-2025-rahvastiku-tervis-muutuste-ja-kriiside-kontekstis-2025-1",
+  "source_format": "pdf",
+  "source_sha256": "e94fefe2c7b36c5b7d7d16409150651f9f88592018d5e48744a536dd4a12d0c9",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2025-rahvastiku-tervis-muutuste-ja-kriiside-kontekstis-2025-1",
+    "previous_source_path": "Rahvastiku tervis muutuste ja kriiside kontekstis_1_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e94fefe2c7b36c5b7d7d16409150651f9f88592018d5e48744a536dd4a12d0c9",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

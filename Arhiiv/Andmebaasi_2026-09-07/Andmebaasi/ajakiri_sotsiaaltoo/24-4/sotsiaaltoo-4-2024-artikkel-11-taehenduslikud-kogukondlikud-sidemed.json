@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-4-2024",
+  "issueLabel": "4/2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "tahenduslikud-kogukondlikud-sidemed-2024-4",
+  "title": "Tähenduslikke kogukondlikke sidemeid otsimas. Vaimse tervise raskustega inimesed kaasuurijatena",
+  "authors": [
+    "Dagmar Narusson",
+    "Kadi Kass"
+  ],
+  "section": "Metoodika",
+  "pageRange": "69–74",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "source_path": "sotsiaaltoo_4_2024_web_Part13.pdf",
+  "description": "Artikkel käsitleb kaasavat uurimisviisi, kus vaimse tervise raskustega inimesed osalevad kaasuurijatena kogukondliku lõimumise ja taastumise teemalises uuringus. Tutvustatakse teoreetilist tausta (kogemusteadmine, retsiprooksus, withness thinking), kaasava uurimise põhimõtteid ja eetikat. Kirjeldatakse loovmeetodeid (päevikud, fotod, lood, kollaažid), millega kaasuurijad kaardistasid kogukonna kohti ja suhteid, ning analüüsitakse nende kogemusi olemise, tegutsemise ja kuulumise paikade leidmisel. Uuring toob esile, kuidas kogukondlikud kohad ja vastastikused suhted toetavad personaalset taastumist ning kuidas horisontaalne ekspertsus ja dialoog uurimisrühmas muudavad nii uurijate kui kaasuurijate arusaamu kogukonnast ja vaimsest tervisest.",
+  "tags": [
+    "kaasav uurimine",
+    "kogemusteadmine",
+    "vaimne tervis",
+    "kogukondlik lõimumine",
+    "kogukonnateenused",
+    "loovmeetodid",
+    "taastumine",
+    "retsiprooksus"
+  ],
+  "document_id": "sotsiaaltoo-4-2024-tahenduslikud-kogukondlikud-sidemed-2024-4",
+  "source_format": "pdf",
+  "source_sha256": "5dbf0b8ece8bf236fb8392e646eb5244b064423f4f9afdd4b9c84dccac0c9e6d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2024-tahenduslikud-kogukondlikud-sidemed-2024-4",
+    "previous_source_path": "sotsiaaltoo_4_2024_web_Part13.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "5dbf0b8ece8bf236fb8392e646eb5244b064423f4f9afdd4b9c84dccac0c9e6d",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

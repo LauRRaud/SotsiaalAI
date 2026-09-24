@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2021",
+  "articleId": "aasta-sotsiaaltootaja-paikeseliselt-soe-johanna-hollo-2021-3",
+  "title": "Aasta sotsiaaltöötaja – päikeseliselt soe Johanna Hollo",
+  "authors": [
+    "Kristina Traks"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2021",
+  "section": "Persoon",
+  "pageRange": "3-7",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu Tartu linnavalitsuse hoolduskoordinaatorist ja aasta sotsiaaltöötajast Johanna Hollost. Artikkel jälgib tema teekonda inglise filoloogia õpingutest sotsiaaltöö ja klienditöö juurde, kogemust pingelise haiglasotsiaaltööga ning naasmist kohaliku omavalitsuse hoolduskoordinaatoriks. Johanna räägib eakate ja nende lähedaste toetamisest, juhtumikorraldusest, pere- ja tööelu tasakaalust ning \"võileivapõlvkonna\" topelt hoolduskoormusest. Olulisel kohal on ka enesehoid, supervisioon ja piiride seadmine, et ennetada läbipõlemist ja pakkuda klientidele kvaliteetset tuge.",
+  "tags": [
+    "aasta sotsiaaltöötaja",
+    "hoolduskoordinaator",
+    "Tartu linnavalitsus",
+    "eakad",
+    "hoolduskoormus",
+    "võileivapõlvkond",
+    "läbipõlemise ennetamine",
+    "perso﻿onilugu"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2021_web_link_Part3.pdf",
+  "document_id": "sotsiaaltoo-3-2021-aasta-sotsiaaltootaja-paikeseliselt-soe-johanna-hollo-2021-3",
+  "source_format": "pdf",
+  "source_sha256": "d74861929509a16611ab2f2d7db66498a01bf45b10e58af569de36bc86f02e32",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2021-aasta-sotsiaaltootaja-paikeseliselt-soe-johanna-hollo-2021-3",
+    "previous_source_path": "Sotsiaaltoo_3_2021_web_link_Part3.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d74861929509a16611ab2f2d7db66498a01bf45b10e58af569de36bc86f02e32",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

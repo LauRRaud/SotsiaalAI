@@ -1,0 +1,82 @@
+{
+  "docId": "sotsiaaltoo-4-2016",
+  "articleId": "sotsiaaltoo-4-2016-artikkel-19-kuidas-lahendada-koolivägivalla-probleemi",
+  "title": "Kuidas lahendada koolivägivalla probleemi",
+  "authors": [
+    "Triin Olgo"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2016",
+  "section": "Eesti Sotsiaaltöö Üliõpilaste Selts",
+  "pageRange": "99-101",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tallinna Ülikooli sotsiaaltöö tudeng Triin Olgo kirjutab oma kogemusest koolikiusamise ohvrina: teda kiusati põhikoolis ülekaalulisuse pärast, ta puudus hirmu tõttu sageli koolist ja hinded langesid. Ta annab ülevaate praegustest ettevõtmistest – Lastekaitse Liidu programmiga „Kiusamisest vaba lasteaed ja kool” on kuue aastaga liitunud ligi kolmveerand Eesti lasteaedadest ja viiendik koolidest, KiVa programmiga neljandaks tegutsemisaastaks ligi 40 kooli – ning leiab, et vaja on riiklikult koordineeritud süsteemi, koolisisest võrgustikku ja rohkem tugispetsialiste.",
+  "tags": [
+    "tudengite rubriik",
+    "koolivägivald",
+    "koolikiusamine",
+    "kiva",
+    "kiusamisest vaba kool",
+    "tugispetsialistid"
+  ],
+  "source_type": "file",
+  "source_path": "2016_4_artikkel_19_kuidas_lahendada_koolivagivalla_probleemi.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-19-kuidas-lahendada-kooliv-givalla-probleemi",
+  "source_sha256": "e24101090446b096395cbdcc573fe3cd28701b0f41a336f8172d887aa9e9d4e7",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-19-kuidas-lahendada-kooliv-givalla-probleemi",
+    "previous_source_path": "2016_4_artikkel_19_kuidas_lahendada_koolivagivalla_probleemi.txt",
+    "previous_source_original_path": "4-2016.pdf",
+    "reference_stored_source_sha256": "314a6b561f467ae5fc7b380576cee9292daec885b3db7ed4487921ddcb0b4dcb",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf",
+      "source_sha256": "0f07da03ffde36588435e96f8dda0f52a8140fbf9cc4201bb95e85b594e03fc9",
+      "pdf_start_page": 101,
+      "pdf_end_page": 103,
+      "printed_page_range": "99-102",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 104,
+      "source_regions": [
+        {
+          "source_pdf_page": 101,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 102,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 103,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "99-101",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf"
+    },
+    "server_page_range": "99-102"
+  }
+}

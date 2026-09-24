@@ -1,0 +1,4413 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-saaremaa-vald",
+  "document_id": "kov-saaremaa-vald",
+  "municipality": "Saaremaa vald",
+  "municipality_id": "saaremaa_vald",
+  "county": "Saaremaa",
+  "checkedAt": "2026-04-30",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "saaremaa_vald_service_koduteenus",
+      "canonical_item_id": "saaremaa_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus aitab täisealisel inimesel iseseisvalt ja turvaliselt kodus toime tulla. Teenuse käigus abistatakse toimingutes, mida inimene terviseseisundi, tegevusvõime või elukeskkonna tõttu kõrvalabita teha ei saa. Kõrvalabi vajadus hinnatakse iga isiku puhul eraldi ja teenust osutab Kuressaare Hoolekanne.",
+      "sourceKeys": [
+        "koduteenus_page"
+      ],
+      "targetGroup": [
+        "Täisealised Saaremaa valla elanikud, kes vajavad kodustes tingimustes kõrvalabi"
+      ],
+      "conditions": "Kõrvalabi vajadus hinnatakse ja täpsustatakse iga isiku puhul eraldi; muutuste korral tuleb vajadust uuesti hinnata.",
+      "application": {
+        "channels": [
+          "",
+          "kohapeal"
+        ],
+        "steps": "Täita taotluse vorm ning saata digiallkirjastatult aadressile või tuua Saaremaa valla sotsiaalosakonda/piirkondlikku teenusekeskusesse.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://www.saaremaavald.ee/toiming/koduteenus",
+      "relatedForms": [
+        "saaremaa_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "koduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_service_koduteenus",
+      "document_id": "saaremaa_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/toiming/koduteenus",
+      "content_hash": "407ba091382349ea58730c9b817d06e741379a6aaa939864540684ca075ea9fa",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_service_iseseisev_toimetulek",
+      "canonical_item_id": "saaremaa_vald:service:iseseisev_toimetulek",
+      "itemType": "service",
+      "title": "Iseseisvat toimetulekut soodustav sotsiaalteenus",
+      "status": "active",
+      "summary": "Teenuse eesmärk on aidata taastada inimese iseseisvat toimetulekut ja toetada teda tööturule naasmisel. Teenust saab töövõimeline 18-aastane kuni vanaduspensioniealine inimene, kes taotleb toimetulekutoetust ning ei tööta ega õpi. Abi määramisel hinnatakse sissetulekuid, majanduslikku olukorda, taotluse põhjendatust ja inimese enda panust.",
+      "sourceKeys": [
+        "iseseisev_toimetulek_page"
+      ],
+      "targetGroup": [
+        "Toimetulekutoetust taotlevad töövõimelised 18-aastased kuni vanaduspensioniealised inimesed, kes ei tööta ega õpi"
+      ],
+      "conditions": "Abi määramisel arvestatakse inimese ja pereliikmete sissetulekuid, majanduslikku olukorda, taotluse põhjendatust, tulemuslikkust ja olemasolevaid muid abi võimalusi.",
+      "application": {
+        "channels": [
+          "",
+          "kohapeal"
+        ],
+        "steps": "Täita sotsiaalteenuse taotlus ja esitada see digiallkirjastatult või paberil sotsiaalosakonda/piirkondlikku teenusekeskusesse.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": null,
+      "officialUrl": "https://www.saaremaavald.ee/toimetulekut-soodustav-teenus",
+      "relatedForms": [
+        "saaremaa_vald_form_sotsiaalteenus_soovituslik_taotlus"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "decisionTime",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "iseseisev_toimetulek_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_service_iseseisev_toimetulek",
+      "document_id": "saaremaa_vald_service_iseseisev_toimetulek",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/toimetulekut-soodustav-teenus",
+      "content_hash": "b1f83e0d1cc8306eecf9a860e587cf58153812f652fc1c8acff330d7569e6f7f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_service_hooldusteenus_valjaspool_kodu",
+      "canonical_item_id": "saaremaa_vald:service:hooldusteenus_valjaspool_kodu",
+      "itemType": "service",
+      "title": "Hooldusteenus väljaspool kodu",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatav üldhooldusteenus tagab turvalise keskkonna ja toimetuleku täisealisele inimesele, kes ei suuda ajutiselt või püsivalt kodus iseseisvalt toime tulla. Teenust saab taotleda inimene, kes vajab ööpäevaringset kõrvalabi ning kelle elukoht on rahvastikuregistri järgi Saaremaa vallas. Teenuse vajadust hinnatakse enne hooldekodu teenusele suunamist.",
+      "sourceKeys": [
+        "hooldusteenus_page"
+      ],
+      "targetGroup": [
+        "Täisealised Saaremaa valla elanikud, kes vajavad ööpäevaringset kõrvalabi"
+      ],
+      "conditions": "Taotleja peab vajama ööpäevaringset kõrvalabi ja tema rahvastikuregistrijärgne elukoht peab olema Saaremaa vallas. Teenuse sobivust hinnatakse abivajaduse hindamisel.",
+      "application": {
+        "channels": [
+          "",
+          "kohapeal"
+        ],
+        "steps": "Esitada vastav taotlusvorm aadressile. Kui teenust vajav isik ei saa taotlust esitada, esitab selle ülalpidaja või teeb ettepaneku piirkonna sotsiaaltööspetsialist.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": {
+          "currency": "EUR",
+          "value": 560
+        },
+        "description": "Saaremaa vald tasub hoolduskomponendi piirmäärana 560 eurot; lisarahastus sõltub inimese enda võimalustest ja ülalpidajate olemasolust."
+      },
+      "officialUrl": "https://www.saaremaavald.ee/hooldekodud",
+      "relatedForms": [
+        "saaremaa_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "saaremaa_vald_contact_sotsiaalhoolekandeteenistuse_juhataja_taitmata"
+      ],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "hooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_service_hooldusteenus_valjaspool_kodu",
+      "document_id": "saaremaa_vald_service_hooldusteenus_valjaspool_kodu",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/hooldekodud",
+      "content_hash": "c92080334ae8af314f6b590a2a323f89c672e340e30cdbfcb79662a058a987cf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "saaremaa_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus suurendab puude tõttu füüsilist kõrvalabi vajava täisealise inimese iseseisvat toimetulekut ja osalemist kõigis eluvaldkondades. Teenus vähendab seadusjärgsete ülalpidajate hoolduskoormust ja toetab igapäevaelutegevustes kõrvalabi vajavat inimest.",
+      "sourceKeys": [
+        "isiklik_abistaja_page"
+      ],
+      "targetGroup": [
+        "Täisealised puudest tingitud füüsilist kõrvalabi vajavad Saaremaa valla elanikud"
+      ],
+      "conditions": "Teenust on õigus saada isikul, kellel on puudest tingitud vajadus kasutada füüsilist kõrvalabi igapäevaelutegevustes.",
+      "application": {
+        "channels": [
+          "",
+          "kohapeal"
+        ],
+        "steps": "Täita sotsiaalteenuse taotlus ja esitada see digiallkirjastatult või paberil sotsiaalosakonda/piirkondlikku teenusekeskusesse.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": null,
+      "officialUrl": "https://www.saaremaavald.ee/isiklik-abistaja",
+      "relatedForms": [
+        "saaremaa_vald_form_sotsiaalteenus_soovituslik_taotlus"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "decisionTime",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "isiklik_abistaja_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_service_isikliku_abistaja_teenus",
+      "document_id": "saaremaa_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/isiklik-abistaja",
+      "content_hash": "6bda2d49238456156b38ddfbf0f2f5dbe4e2e74f0698dfcfa8a9798b0062cb99",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "saaremaa_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hoolduse eesmärk on tagada toimetulek vaimse või kehalise puude tõttu abi vajavale inimesele. Hoolduse seadmisel määratakse hooldaja ülesanded ning perekonnaliige või seadusjärgne ülalpidaja määratakse hooldajaks ainult juhul, kui ta ei saa hooldamise tõttu töötada.",
+      "sourceKeys": [
+        "taisealise_hooldus_page"
+      ],
+      "targetGroup": [
+        "Täisealised vaimse või kehalise puude tõttu abi vajavad inimesed"
+      ],
+      "conditions": "Hooldust vajava inimese perekonnaliige või seadusjärgne ülalpidaja määratakse hooldajaks vaid juhul, kui ta ei saa hooldamise tõttu töötada.",
+      "application": {
+        "channels": [
+          "",
+          "kohapeal"
+        ],
+        "steps": "Täita sotsiaalteenuse taotlus ja esitada see vallavalitsusele digiallkirjastatult või paberil.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": null,
+      "officialUrl": "https://www.saaremaavald.ee/taisealise-hooldus",
+      "relatedForms": [
+        "saaremaa_vald_form_sotsiaalteenus_soovituslik_taotlus"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "decisionTime",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "taisealise_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_service_taisealise_isiku_hooldus",
+      "document_id": "saaremaa_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/taisealise-hooldus",
+      "content_hash": "dae8a77ad38631f301f9d99a3b2d8739ba366fa1cabb07e0dbb176be824cc814",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_service_sotsiaaltranspordi_teenus",
+      "canonical_item_id": "saaremaa_vald:service:sotsiaaltranspordi_teenus",
+      "itemType": "service",
+      "title": "Sotsiaaltranspordi teenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus võimaldab füüsilise või psüühilise erivajaduse tõttu isiklikku või ühissõidukit kasutada mitte saaval inimesel kasutada sobivat transpordivahendit tööle, õppeasutusse, avalike teenuste kasutamiseks või muudeks igapäevaeluks vajalikeks toiminguteks. Abivajaduse hindab sotsiaaltööspetsialist ning sõit tuleb tellida vähemalt kaks tööpäeva ette.",
+      "sourceKeys": [
+        "sotsiaaltransport_page"
+      ],
+      "targetGroup": [
+        "Isikud, kellel füüsilise või psüühilise erivajaduse tõttu on takistus isikliku või ühissõiduki kasutamisel"
+      ],
+      "conditions": "Abivajaduse hindab sotsiaaltööspetsialist ja otsus väljastatakse taotlejale kirjalikult.",
+      "application": {
+        "channels": [
+          "",
+          "",
+          "kohapeal"
+        ],
+        "steps": "Sõit tuleb tellida e-posti aadressil või telefonil vähemalt kaks tööpäeva enne sõidu toimumist. Taotlemisel täidetakse sotsiaalteenuse taotlus.",
+        "deadline": "vähemalt 2 tööpäeva enne sõitu"
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": null,
+        "description": "Omaosalus ühe sõidusuuna eest: Saare maakonna haldusterritooriumil 3 eurot; toetatud töötamisel 1 euro; Tallinnasse 20 eurot; Tartusse 30 eurot; Pärnusse või Haapsallu 15 eurot; mujale Eestis 0,1 eurot/km."
+      },
+      "officialUrl": "https://www.saaremaavald.ee/sotsiaaltransport",
+      "relatedForms": [
+        "saaremaa_vald_form_sotsiaalteenus_soovituslik_taotlus"
+      ],
+      "relatedContacts": [
+        "saaremaa_vald_contact_sotsiaaltranspordi_tellimine"
+      ],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "sotsiaaltransport_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_service_sotsiaaltranspordi_teenus",
+      "document_id": "saaremaa_vald_service_sotsiaaltranspordi_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/sotsiaaltransport",
+      "content_hash": "3e600904167e49b7500a0efcf491bc7d9815f2287b04dccdc25dc9cd6784a889",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_service_kuulmispuue_noustamine",
+      "canonical_item_id": "saaremaa_vald:service:kuulmispuue_noustamine",
+      "itemType": "service",
+      "title": "Kuulmispuue ja -nõustamine",
+      "status": "active",
+      "summary": "Kuulmisnõustamise eesmärk on tagada kuulmispuudega inimesele ja tema pereliikmetele nõustamine kuulmisabivahendite kasutamise ja hooldamise ning kuulmisabi ja kuulmisrehabilitatsiooni küsimustes. Teenuse kohta tehakse otsus 10 tööpäeva jooksul nõuetekohase taotluse ja vajalike dokumentide esitamisest.",
+      "sourceKeys": [
+        "kuulmispuue_page"
+      ],
+      "targetGroup": [
+        "Kuulmispuudega inimesed ja nende pereliikmed"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "",
+          "kohapeal"
+        ],
+        "steps": "Täita sotsiaalteenuse taotluse vorm ja esitada see vallavalitsusele.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": null,
+      "officialUrl": "https://www.saaremaavald.ee/kuulmispuue",
+      "relatedForms": [
+        "saaremaa_vald_form_sotsiaalteenus_soovituslik_taotlus"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "targetGroup",
+        "application",
+        "decisionTime",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "kuulmispuue_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_service_kuulmispuue_noustamine",
+      "document_id": "saaremaa_vald_service_kuulmispuue_noustamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/kuulmispuue",
+      "content_hash": "86bea22b6620f7518f64ba8098df6d5f21c0fa942513e42395648c1412ec355b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_service_volanoustamisteenus",
+      "canonical_item_id": "saaremaa_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab inimesel kindlaks teha varalise olukorra, pidada läbirääkimisi võlausaldajaga, rahuldada nõudeid, vältida uute võlgnevuste tekkimist ja lahendada muid võlgnevusega seotud probleeme. Teenust saab inimene, kellel on majanduslikud toimetulekuprobleemid, võlgnevused või oht võlgnevuste tekkimiseks ning kes ei suuda rahalisi kohustusi iseseisvalt täita.",
+      "sourceKeys": [
+        "volanoustamisteenus_page"
+      ],
+      "targetGroup": [
+        "Majanduslike toimetulekuprobleemide, võlgnevuste või võlgnevuste tekkimise ohuga inimesed"
+      ],
+      "conditions": "Vajalik on isiklik pöördumine sotsiaalosakonda või piirkondlikku teenusekeskusse.",
+      "application": {
+        "channels": [
+          "kohapeal"
+        ],
+        "steps": "Pöörduda isiklikult Saaremaa valla sotsiaalosakonda või piirkondlikku teenusekeskusesse.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": null,
+      "officialUrl": "https://www.saaremaavald.ee/volanoustamisteenus",
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "decisionTime"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "volanoustamisteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_service_volanoustamisteenus",
+      "document_id": "saaremaa_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/volanoustamisteenus",
+      "content_hash": "04963208b4d566568261230dc1f2038f5feb74310a0bf66513a96a0958911a74",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_service_tugiisikuteenus",
+      "canonical_item_id": "saaremaa_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenuse eesmärk on toetada iseseisvat toimetulekut olukorras, kus inimene vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu kohustuste täitmisel ja õiguste teostamisel olulisel määral kõrvalabi. Teenust saab laps psüühika- või käitumishäire tõttu, last kasvatav isik või täisealine igapäevase olme ja majapidamisküsimuste lahendamisel.",
+      "sourceKeys": [
+        "erivajadusega_laps_page",
+        "tugiisik_page"
+      ],
+      "targetGroup": [
+        "Lapsed, last kasvatavad isikud ja täisealised, kes vajavad tugiisiku abi"
+      ],
+      "conditions": "Teenuse määramisel hinnatakse abivajaja ja pere sissetulekuid, majanduslikku olukorda ja muid abi võimalusi.",
+      "application": {
+        "channels": [
+          "",
+          "kohapeal"
+        ],
+        "steps": "Täita sotsiaalteenuse taotlus ja esitada see vallavalitsusele. Täisealistele osutab teenust Kuressaare Hoolekanne, lastele ja peredele Saaremaa Toetava Hariduse Keskus.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": null,
+      "officialUrl": "https://www.saaremaavald.ee/tugiisikuteenus",
+      "relatedForms": [
+        "saaremaa_vald_form_sotsiaalteenus_soovituslik_taotlus"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "decisionTime",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "erivajadusega_laps_page",
+        "tugiisik_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_service_tugiisikuteenus",
+      "document_id": "saaremaa_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/tugiisikuteenus",
+      "content_hash": "ed5aa710fef45bb80a25ba82c9a2fd559a234459b35618eaca1f7ad9409dfa61",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_service_toidupangateenus",
+      "canonical_item_id": "saaremaa_vald:service:toidupangateenus",
+      "itemType": "service",
+      "title": "Toidupangateenus",
+      "status": "active",
+      "summary": "Toidupangateenuse eesmärk on pakkuda toiduainetega varustamist toimetulekuraskustes inimesele või perele. Teenust saab inimene või pere, kellele on määratud jooksval kuul riiklik toimetulekutoetus.",
+      "sourceKeys": [
+        "toidupank_page"
+      ],
+      "targetGroup": [
+        "Toimetulekuraskustes isikud ja pered, kellele on määratud jooksval kuul riiklik toimetulekutoetus"
+      ],
+      "conditions": "Teenuse määramisel arvestatakse inimese ja tema pereliikmete sissetulekuid, majanduslikku olukorda ja taotluse põhjendatust.",
+      "application": {
+        "channels": [
+          "",
+          "kohapeal"
+        ],
+        "steps": "Täita sotsiaalteenuse taotlus ja esitada see vallavalitsusele.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": null,
+      "officialUrl": "https://www.saaremaavald.ee/toidupangateenus",
+      "relatedForms": [
+        "saaremaa_vald_form_sotsiaalteenus_soovituslik_taotlus"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "decisionTime",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "toidupank_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_service_toidupangateenus",
+      "document_id": "saaremaa_vald_service_toidupangateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/toidupangateenus",
+      "content_hash": "c590ab73bd462bcb0ccdc2e278d140d98ef1bcbc9d3982a41152ccee11ded8ee",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_service_turvakoduteenus",
+      "canonical_item_id": "saaremaa_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenuse eesmärk on tagada abivajajale ajutine eluase, turvaline keskkond ja esmane kriisiabi. Teenus on tasuta ning seda saab laps, kelle hooldamises esinevad tema elu, tervist või arengut ohustavad puudused, ning täisealine inimene, kes vajab turvalist keskkonda.",
+      "sourceKeys": [
+        "turvakodu_page"
+      ],
+      "targetGroup": [
+        "Hädaohus lapsed ja täisealised, kes vajavad turvalist keskkonda"
+      ],
+      "conditions": "Teenuse saamiseks ei ole vaja taotlust; õigustatud isikul on õigus pöörduda otse valla lepingulise teenusepakkuja poole.",
+      "application": {
+        "channels": [
+          "otse teenusepakkuja poole",
+          "hädaabinumbrile"
+        ],
+        "steps": "Pöörduda otse lepingulise teenusepakkuja poole; ohu korral helistada. Lähisuhtevägivalla korral on lehel nimetatud naiste tugikeskus.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": {
+          "currency": "EUR",
+          "value": 0
+        },
+        "description": "Teenuse lehel on märgitud, et turvakoduteenus on tasuta."
+      },
+      "officialUrl": "https://www.saaremaavald.ee/turvakodu",
+      "relatedForms": [],
+      "relatedContacts": [
+        "saaremaa_vald_resource_naiste_tugikeskus_saaremaa"
+      ],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing",
+        "relatedContacts"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "turvakodu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_service_turvakoduteenus",
+      "document_id": "saaremaa_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/turvakodu",
+      "content_hash": "d98e7d04a128217e8e6b715cfa5ec63edfc9253fdde1e5ccea82ae92d723878a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_service_varjupaigateenus",
+      "canonical_item_id": "saaremaa_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenuse eesmärk on tagada ajutine ööbimiskoht täisealisele inimesele, kes ei suuda endale ööbimiskohta tagada. Lehe järgi osutab teenust Kuressaare Hoolekanne sotsiaalmajas aadressil Voolu 7, Kuressaare; teenus on avatud 20.00–08.00 ja kriisiolukorras väljaspool tööaega tuleb helistada.",
+      "sourceKeys": [
+        "varjupaik_page"
+      ],
+      "targetGroup": [
+        "Täisealised inimesed, kes ei ole võimelised endale ööbimiskohta tagama"
+      ],
+      "conditions": null,
+      "application": {
+        "channels": [
+          "kohapeal",
+          ""
+        ],
+        "steps": "Pöörduda Kuressaare Hoolekanne sotsiaalmaja poole aadressil Voolu 7 või telefonil; väljaspool tööaega ja kriisiolukorras helistada.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://www.saaremaavald.ee/varjupaigateenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "saaremaa_vald_resource_kuressaare_hoolekanne_sotsiaalmaja"
+      ],
+      "sections_present": [
+        "targetGroup",
+        "application",
+        "relatedContacts"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "varjupaik_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_service_varjupaigateenus",
+      "document_id": "saaremaa_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/varjupaigateenus",
+      "content_hash": "8cc0e7708faa0e7afbe4a950771e03641a3d833975c0787fc6ead26a60adcb2d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_service_valtimatu_sotsiaalabi",
+      "canonical_item_id": "saaremaa_vald:service:valtimatu_sotsiaalabi",
+      "itemType": "service",
+      "title": "Vältimatu sotsiaalabi teenus",
+      "status": "active",
+      "summary": "Vältimatu sotsiaalabi teenuse eesmärk on toiduabi ja/või riideabi kättesaadavaks tegemine inimesele, kes abi vajaduse hetkel viibib Saaremaa valla territooriumil. Teenust osutatakse seni, kuni inimene ei ole enam elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitus olukorras.",
+      "sourceKeys": [
+        "valtimatu_page"
+      ],
+      "targetGroup": [
+        "Saaremaa valla territooriumil abi vajavad inimesed, kes on elatusvahenditeta või sotsiaalselt abitus olukorras"
+      ],
+      "conditions": "Abi vajadust hinnatakse, arvestades inimese ja pere sissetulekuid, majanduslikku olukorda ja olemasolevaid muid abi võimalusi.",
+      "application": {
+        "channels": [
+          "",
+          "kohapeal"
+        ],
+        "steps": "Täita sotsiaalteenuse taotlus ja esitada see vallavalitsusele.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": null,
+      "officialUrl": "https://www.saaremaavald.ee/valtimatu-sotsiaalabi",
+      "relatedForms": [
+        "saaremaa_vald_form_sotsiaalteenus_soovituslik_taotlus"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "decisionTime",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "valtimatu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_service_valtimatu_sotsiaalabi",
+      "document_id": "saaremaa_vald_service_valtimatu_sotsiaalabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/valtimatu-sotsiaalabi",
+      "content_hash": "fed834c33ee0a6d3646827d04b9c7871e408b5e89d97ab802a69e417cdd5543c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_service_eluruumi_tagamine",
+      "canonical_item_id": "saaremaa_vald:service:eluruumi_tagamine",
+      "itemType": "service",
+      "title": "Eluruumi tagamine",
+      "status": "active",
+      "summary": "Eluruumi tagamise eesmärk on eluruumi kasutamise võimaluse kindlustamine inimesele, kes ei suuda sotsiaalmajanduslikust olukorrast tulenevalt endale ja oma perele vajadustele vastavat eluruumi tagada. Teenuse osutamisel hinnatakse inimese ja pere sissetulekuid, majanduslikku olukorda, taotluse põhjendatust ja muid võimalusi.",
+      "sourceKeys": [
+        "eluruumi_page"
+      ],
+      "targetGroup": [
+        "Inimesed, kes ei suuda sotsiaalmajandusliku olukorra tõttu endale sobivat eluruumi tagada"
+      ],
+      "conditions": "Abi määramisel arvestatakse abivajava isiku ja pereliikmete sissetulekuid, majanduslikku olukorda, taotluse põhjendatust ja muid võimalusi.",
+      "application": {
+        "channels": [
+          "",
+          "kohapeal"
+        ],
+        "steps": "Täita sotsiaalteenuse taotlus ja esitada see digiallkirjastatult või paberil sotsiaalosakonda/piirkondlikku teenusekeskusesse.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": null,
+      "officialUrl": "https://www.saaremaavald.ee/eluruumi-tagamine",
+      "relatedForms": [
+        "saaremaa_vald_form_sotsiaalteenus_soovituslik_taotlus"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "decisionTime",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "eluruumi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_service_eluruumi_tagamine",
+      "document_id": "saaremaa_vald_service_eluruumi_tagamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/eluruumi-tagamine",
+      "content_hash": "7faf5137ba3e2884fa82c0eacee5f2ac3c565c94744d6639b4ff21dda9136df5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_service_asendushooldusteenus",
+      "canonical_item_id": "saaremaa_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus on kohaliku omavalitsuse korraldatav teenus lapsele, kelle vanem ei saa lapse heaolu tagada või kelle hooldusõigus on peatatud, piiratud, ära võetud või kelle vanem on surnud. Teenuse eesmärk on tagada lapse heaolu ja õigused ning peresarnased elutingimused. Teenus on lapsele tasuta.",
+      "sourceKeys": [
+        "asendus_jarelhooldus_page"
+      ],
+      "targetGroup": [
+        "Lapsed, kellele on vaja tagada asendushooldus"
+      ],
+      "conditions": "Teenust osutatakse pikaajalise ööpäevaringse teenusena, aga vanema nõusolekul võib seda osutada ka lühiajaliselt kuni 90 päeva.",
+      "application": {
+        "channels": [
+          "lastekaitse spetsialisti poole"
+        ],
+        "steps": "Teenuse vajaduse korral tuleb pöörduda Saaremaa Vallavalitsuse lastekaitsespetsialisti poole.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": {
+          "currency": "EUR",
+          "value": 0
+        },
+        "description": "Lehel on märgitud, et teenus on lapsele ja noorele tasuta."
+      },
+      "officialUrl": "https://www.saaremaavald.ee/perekond-sotsiaalabi/laste-ja-perede-heaolu/asendus-ja-jarelhooldusteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "saaremaa_vald_contact_kerli_gutman_laht"
+      ],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing",
+        "relatedContacts"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "asendus_jarelhooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_service_asendushooldusteenus",
+      "document_id": "saaremaa_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/perekond-sotsiaalabi/laste-ja-perede-heaolu/asendus-ja-jarelhooldusteenus",
+      "content_hash": "622f84278590ef056c30ed502a9b6a7e15e695eeac1e1ebffeafb607899324ad",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "saaremaa_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus toetab asendushoolduselt ja eestkostelt lahkuva kuni 25-aastase noore iseseisvat toimetulekut ning õpingute jätkamist. Teenust osutatakse juhtumiplaani alusel ja kohalik omavalitsus tagab noorele eluaseme ning vajaduspõhised tugiteenused ja toetused. Teenuse taotlemiseks tuleb pöörduda lastekaitsespetsialisti poole.",
+      "sourceKeys": [
+        "asendus_jarelhooldus_page"
+      ],
+      "targetGroup": [
+        "Asendushoolduselt või eestkostelt lahkuvad kuni 25-aastased noored"
+      ],
+      "conditions": "Teenust osutatakse juhtumiplaani alusel.",
+      "application": {
+        "channels": [
+          "lastekaitse spetsialisti poole"
+        ],
+        "steps": "Pöörduda Saaremaa Vallavalitsuse lastekaitsespetsialisti poole.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": {
+          "currency": "EUR",
+          "value": 0
+        },
+        "description": "Lehel on märgitud, et asendus- ja järelhooldusteenus on lapsele ja noorele tasuta."
+      },
+      "officialUrl": "https://www.saaremaavald.ee/perekond-sotsiaalabi/laste-ja-perede-heaolu/asendus-ja-jarelhooldusteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "saaremaa_vald_contact_kerli_gutman_laht"
+      ],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing",
+        "relatedContacts"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "asendus_jarelhooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_service_jarelhooldusteenus",
+      "document_id": "saaremaa_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/perekond-sotsiaalabi/laste-ja-perede-heaolu/asendus-ja-jarelhooldusteenus",
+      "content_hash": "e1b24c0e2f27680abfad967e931da988d76c3cbcd0741c265f2f1d78e6cc4893",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "saaremaa_vald:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenus on mõeldud eelkõige raske ja sügava puudega lapse hooldaja toimetuleku või töötamise toetamiseks. Teenuse ajal tagab lapse hooldamise, arendamise ja turvalisuse tegevusluba omav lapsehoiuteenuse osutaja.",
+      "sourceKeys": [
+        "erivajadusega_laps_page"
+      ],
+      "targetGroup": [
+        "Raske või sügava puudega lapsed ja nende hooldajad"
+      ],
+      "conditions": "Teenuse info on avaldatud erivajadusega lapse lehel ning viitab Saaremaa Toetava Hariduse Keskuse lapsehoiuteenusele.",
+      "application": {
+        "channels": [
+          "Saaremaa Toetava Hariduse Keskus"
+        ],
+        "steps": "Tutvuda teenuse infoga Saaremaa Toetava Hariduse Keskuse kaudu ja pöörduda lastekaitseteenistuse poole.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://www.saaremaavald.ee/erivajadusega-laps",
+      "relatedForms": [],
+      "relatedContacts": [
+        "saaremaa_vald_contact_kerli_gutman_laht"
+      ],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "relatedContacts"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "erivajadusega_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_service_lapsehoiuteenus",
+      "document_id": "saaremaa_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/erivajadusega-laps",
+      "content_hash": "e501a79de080e666797ebccb106395b9a5fd61dedba3533c44a6eb45fcb4998b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_service_vaimse_tervise_teenuse_toetus",
+      "canonical_item_id": "saaremaa_vald:service:vaimse_tervise_teenuse_toetus",
+      "itemType": "service",
+      "title": "Vaimse tervise teenuse toetus",
+      "status": "active",
+      "summary": "Saaremaa valla elanike vaimse tervise teenuseid toetatakse Saaremaa Toetava Hariduse Keskuse kaudu. Pakutakse pereteraapiat, perenõustamist, loovteraapiat, psühhoteraapiat, kriisi- ja leinanõustamist ning vajadusel muid nõustamisteenuseid. Saaremaa valla elanikud saavad kasutada tasuta vaimse tervise teenuseid kuni viie teenuskorra ulatuses ühe taotleja kohta ühe aasta jooksul.",
+      "sourceKeys": [
+        "vaimne_tervis_page"
+      ],
+      "targetGroup": [
+        "Saaremaa valla elanikud, kes vajavad kogukondlikku vaimse tervise tuge"
+      ],
+      "conditions": "Teenust pakutakse inimestele, kelle vaimse tervise olukord ei vaja veel kliinilist sekkumist, kuid kes vajavad ennetavat tuge.",
+      "application": {
+        "channels": [
+          "",
+          ""
+        ],
+        "steps": "Võtta ühendust Saaremaa Toetava Hariduse Keskusega või Angela Mäeotsaga telefonil Koos aidatakse välja selgitada sobiv teenus.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": {
+          "currency": "EUR",
+          "value": 0
+        },
+        "description": "Tasuta kuni viis teenuskorda ühe taotleja kohta ühe aasta jooksul."
+      },
+      "officialUrl": "https://www.saaremaavald.ee/vaimne-tervis",
+      "relatedForms": [],
+      "relatedContacts": [
+        "saaremaa_vald_contact_vaimse_tervise_koordinaator"
+      ],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing",
+        "relatedContacts"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "vaimne_tervis_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_service_vaimse_tervise_teenuse_toetus",
+      "document_id": "saaremaa_vald_service_vaimse_tervise_teenuse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/vaimne-tervis",
+      "content_hash": "255af74de8a07c7eb59b83d8dcc3c2aedeb1afd863be1ddce36d51d66f8d4d0f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_benefit_sissetulekust_soltuv_sotsiaaltoetus",
+      "canonical_item_id": "saaremaa_vald:benefit:sissetulekust_soltuv_sotsiaaltoetus",
+      "itemType": "benefit",
+      "title": "Sissetulekust sõltuv sotsiaaltoetus",
+      "status": "active",
+      "summary": "Sissetulekust sõltuv sotsiaaltoetus on mõeldud inimese või pere toimetuleku tagamiseks. Sissetulekutest arvestatakse maha kolme kuu eluasemekulud ja toetust saab siis, kui inimesel jääb kätte vähem kui 440 eurot pereliikme kohta. Abi määramisel hinnatakse sissetulekut, majanduslikku olukorda, taotluse põhjendatust ja muid abi võimalusi.",
+      "sourceKeys": [
+        "sissetulekutoetus_page"
+      ],
+      "targetGroup": [
+        "Majanduslikult raskustes inimesed ja pered"
+      ],
+      "conditions": "Pärast kolme kuu eluasemekulude mahaarvamist peab kätte jääma vähem kui 440 eurot pereliikme kohta.",
+      "application": {
+        "channels": [
+          "",
+          "kohapeal"
+        ],
+        "steps": "Täita sissetulekust sõltuva sotsiaaltoetuse taotlus ja esitada see vallavalitsusele digiallkirjastatult või paberil.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "amount": null,
+      "officialUrl": "https://www.saaremaavald.ee/sissetulekutoetus",
+      "relatedForms": [
+        "saaremaa_vald_form_sissetulekutoetuse_taotlus"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "decisionTime",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "sissetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_benefit_sissetulekust_soltuv_sotsiaaltoetus",
+      "document_id": "saaremaa_vald_benefit_sissetulekust_soltuv_sotsiaaltoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/sissetulekutoetus",
+      "content_hash": "6b7c5e59f70b245184f709c830b32235d5ff243d6abb25c8d0b74f006479e1e0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "saaremaa_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on ajutine abimeede, mis leevendab abi vajavate isikute ja perekondade materiaalset puudust. Toetuse arvestamise alus on eelmise kuu netosissetulek, jooksva kuu eluasemekulud ning toimetulekupiirid. Toimetulekupiir on üksi elava inimese või pere esimese liikme puhul 220 eurot, alaealise lapse puhul 264 eurot ja iga järgmise täisealise liikme puhul 176 eurot.",
+      "sourceKeys": [
+        "toimetulekutoetus_page"
+      ],
+      "targetGroup": [
+        "Üksikisikud ja pered, kelle sissetulek ei kata kehtestatud toimetulekupiire"
+      ],
+      "conditions": "Taotleja või tema perekonnaliige peab pöörduma jooksva kuu eest hiljemalt kuu viimaseks tööpäevaks sotsiaaltööspetsialisti poole.",
+      "application": {
+        "channels": [
+          "kohapeal"
+        ],
+        "steps": "Pöörduda sotsiaaltööspetsialisti poole ja esitada toimetulekutoetuse taotlus koos lisadega.",
+        "deadline": "kuu viimane tööpäev"
+      },
+      "decisionTime": null,
+      "amount": null,
+      "officialUrl": "https://www.saaremaavald.ee/toimetulekutoetus",
+      "relatedForms": [
+        "saaremaa_vald_form_toimetulekutoetuse_taotlus_2026",
+        "saaremaa_vald_form_toimetulekutoetuse_lisa_1_rahalised_vahendid",
+        "saaremaa_vald_form_toimetulekutoetuse_lisa_2_varaline_seis"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_benefit_toimetulekutoetus",
+      "document_id": "saaremaa_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/toimetulekutoetus",
+      "content_hash": "d588b4920549f0e7e831ee46792d530917b797766e0acebfd32ebbd7e0534289",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_benefit_erakorraline_toetus",
+      "canonical_item_id": "saaremaa_vald:benefit:erakorraline_toetus",
+      "itemType": "benefit",
+      "title": "Erakorraline toetus",
+      "status": "active",
+      "summary": "Erakorralist toetust saab taotleda õnnetusjuhtumi korral raskesse majanduslikku olukorda sattunud inimese või pere konkreetse olukorra leevendamiseks. Toetuse määramisel hinnatakse sissetulekuid, majanduslikku olukorda, taotluse põhjendatust ja taotleja enda panust.",
+      "sourceKeys": [
+        "erakorraline_page"
+      ],
+      "targetGroup": [
+        "Õnnetusjuhtumi või muu erakorralise olukorra tõttu raskesse majanduslikku olukorda sattunud inimesed ja pered"
+      ],
+      "conditions": "Vajalik on isiklik kohaletulek sotsiaalosakonda või piirkondlikku teenusekeskusse.",
+      "application": {
+        "channels": [
+          "kohapeal"
+        ],
+        "steps": "Pöörduda isiklikult Saaremaa valla sotsiaalosakonda või piirkondlikku teenusekeskusse.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "amount": null,
+      "officialUrl": "https://www.saaremaavald.ee/erakorraline-toetus",
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "decisionTime"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "erakorraline_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_benefit_erakorraline_toetus",
+      "document_id": "saaremaa_vald_benefit_erakorraline_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/erakorraline-toetus",
+      "content_hash": "d100a1c0661ecae651629b852cd7b77a0d8d8bb355e8b5ddbdcf83f7a5b5c3c9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_benefit_raske_ja_sugava_puudega_lapse_toetus",
+      "canonical_item_id": "saaremaa_vald:benefit:raske_ja_sugava_puudega_lapse_toetus",
+      "itemType": "benefit",
+      "title": "Raske ja sügava puudega lapse erivajadusest tingitud toetus",
+      "status": "active",
+      "summary": "Toetust saab taotleda raske või sügava puudega lapse vanem lapse puudest tingitud konkreetse olukorra leevendamiseks, abivahendite ning lapse erivajadusest tingitud kulude hüvitamiseks. Kuludeks loetakse muu hulgas abivahendid, kodu kohandamine, ravimid, eritoit, riietus, rehabilitatsiooniteenused, tugiteenused ja teraapiad. Toetuse määramisel võetakse arvesse lapse riiklikult määratud puudetoetuse summat ja kulud hüvitatakse siis, kui need ületavad puudetoetuse summat.",
+      "sourceKeys": [
+        "raske_puudega_page"
+      ],
+      "targetGroup": [
+        "Raske või sügava puudega lapse vanemad"
+      ],
+      "conditions": "Enne taotlemist tuleb ühendust võtta piirkonna lastekaitsespetsialistiga, hinnata lapse ja pere abivajadus ning fikseerida kuluvajadus lapse juhtumiplaanis.",
+      "application": {
+        "channels": [
+          "lastekaitsespetsialisti kaudu",
+          "kohapeal"
+        ],
+        "steps": "Leppida kokku vastuvõtt piirkonna lastekaitsespetsialistiga, esitada taotlus ja kuludokumendid. Lastekaitsespetsialist suunab taotluse sotsiaalkomisjonile.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "amount": null,
+      "officialUrl": "https://www.saaremaavald.ee/toiming/raske-ja-sugava-puudega-laste-erivajadusest-tingitud-toetus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "saaremaa_vald_contact_kerli_gutman_laht"
+      ],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "decisionTime",
+        "relatedContacts"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "raske_puudega_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_benefit_raske_ja_sugava_puudega_lapse_toetus",
+      "document_id": "saaremaa_vald_benefit_raske_ja_sugava_puudega_lapse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/toiming/raske-ja-sugava-puudega-laste-erivajadusest-tingitud-toetus",
+      "content_hash": "51c81064e9d7f57a1b94825c00ebbfe896639c72dce61f63ec4464f5eeca4947",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_benefit_matusetoetus",
+      "canonical_item_id": "saaremaa_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetust saab taotleda Saaremaa valla rahvastikuregistrijärgse elaniku surma korral matuse korraldamise kulude osaliseks hüvitamiseks surmatõendi alusel. Toetust makstakse õigustatud isikule kuni kolm kuud pärast isiku surma ja toetuse suurus on 250 eurot.",
+      "sourceKeys": [
+        "matusetoetus_page"
+      ],
+      "targetGroup": [
+        "Isik, kes korraldab Saaremaa valla elaniku matuse"
+      ],
+      "conditions": "Lahkunu rahvastikuregistrijärgne elukoht peab olema Saaremaa vald; taotlusele lisatakse perearsti väljastatud surmatõendi koopia.",
+      "application": {
+        "channels": [
+          "iseteenindus",
+          "kohapeal"
+        ],
+        "steps": "Esitada taotlus iseteeninduses või täita vorm paberkandjal ja tuua sotsiaalosakonda/piirkondlikku teenusekeskusesse. Vajalikud dokumendid: isikut tõendav dokument ja surmatõend.",
+        "deadline": "3 kuud pärast isiku surma"
+      },
+      "decisionTime": null,
+      "amount": {
+        "currency": "EUR",
+        "value": 250
+      },
+      "officialUrl": "https://www.saaremaavald.ee/toiming/matusetoetus",
+      "relatedForms": [
+        "saaremaa_vald_form_matusetoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "saaremaa_vald_contact_tiia_jaarats"
+      ],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "amount",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "matusetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_benefit_matusetoetus",
+      "document_id": "saaremaa_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/toiming/matusetoetus",
+      "content_hash": "7596506caabe87b9bf6d19bb21b335c77a5211b26ea4c008d45cd03e33f155df",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_benefit_sunnitoetus",
+      "canonical_item_id": "saaremaa_vald:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetust suuruses 400 eurot saab taotleda Saaremaa vallas alaliselt elav lapsevanem, kes on vähemalt kuus kuud enne lapse sündi rahvastikuregistrisse kantud valla elanikuna ja kui lapse esmane elukoht on Saaremaa vald. Mitmike sünni puhul makstakse toetust iga vastsündinu eest. Toetust ei maksta, kui laps on riiklikul ülalpidamisel või kui sünnitoetust on makstud teisest omavalitsusest.",
+      "sourceKeys": [
+        "sunnitoetus_page"
+      ],
+      "targetGroup": [
+        "Saaremaa vallas alaliselt elavad lapsevanemad"
+      ],
+      "conditions": "Lapsevanem peab olema vähemalt kuus kuud enne lapse sündi Saaremaa valla elanik ja lapse esmaseks elukohaks peab olema Saaremaa vald.",
+      "application": {
+        "channels": [
+          "iseteenindus",
+          "kohapeal"
+        ],
+        "steps": "Esitada avaldus iseteeninduses või täita vorm paberkandjal ja tuua vallamajja Tallinna 10, Kuressaare.",
+        "deadline": "3 kuud arvates lapse sünni registreerimisest"
+      },
+      "decisionTime": null,
+      "amount": {
+        "currency": "EUR",
+        "value": 400
+      },
+      "officialUrl": "https://www.saaremaavald.ee/sunnitoetus",
+      "relatedForms": [
+        "saaremaa_vald_form_sunnitoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "saaremaa_vald_contact_kadi_nellis"
+      ],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "amount",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "sunnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_benefit_sunnitoetus",
+      "document_id": "saaremaa_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/sunnitoetus",
+      "content_hash": "ca44d4460324fbed38edd37e7eccedb126ff4dadd7279f70f0a46d3fa0ccd4ab",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_benefit_ranitsatoetus",
+      "canonical_item_id": "saaremaa_vald:benefit:ranitsatoetus",
+      "itemType": "benefit",
+      "title": "Ranitsatoetus",
+      "status": "active",
+      "summary": "Ranitsatoetust saab taotleda iga esmakordselt koolimineva lapse kohta. Lapsevanem saab kooli määramise taotlusega esitada ka 200-eurose ranitsatoetuse taotluse ARNOs. Taotlus tuleb esitada hiljemalt 10. septembriks ning toetus makstakse septembris pärast seda, kui koolid on õppima asumise kinnitanud. Eeltingimus on lasteaiakoha kasutusega seotud võlgnevuste puudumine.",
+      "sourceKeys": [
+        "ranitsatoetus_page"
+      ],
+      "targetGroup": [
+        "Esmakordselt kooli mineva lapse lapsevanemad"
+      ],
+      "conditions": "Ranitsatoetuse väljamaksmise eeltingimuseks on lasteaiakoha kasutusega seotud võlgnevuste puudumine.",
+      "application": {
+        "channels": [
+          "ARNO iseteenindus"
+        ],
+        "steps": "Esitada taotlus haridusteenuste haldamise süsteemis ARNO.",
+        "deadline": "10. september"
+      },
+      "decisionTime": null,
+      "amount": {
+        "currency": "EUR",
+        "value": 200
+      },
+      "officialUrl": "https://www.saaremaavald.ee/toiming/ranitsatoetuse-taotlemine",
+      "relatedForms": [
+        "saaremaa_vald_form_ranitsatoetuse_e_taotlus"
+      ],
+      "relatedContacts": [
+        "saaremaa_vald_contact_oilme_salumae",
+        "saaremaa_vald_contact_anne_poder"
+      ],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "amount",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "ranitsatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_benefit_ranitsatoetus",
+      "document_id": "saaremaa_vald_benefit_ranitsatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/toiming/ranitsatoetuse-taotlemine",
+      "content_hash": "f3f6fd65b6eb40cb31a9db9c80ec1cc5261fdbcb1bcf35e615e3536b915fd712",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_lastekaitse_abi",
+      "canonical_item_id": "saaremaa_vald:resource:lastekaitse_abi",
+      "itemType": "resource",
+      "title": "Lastekaitse abi ja nõustamine",
+      "status": "active",
+      "summary": "Lastekaitse eesmärk on lapse õiguste ja heaolu igakülgne tagamine. Lastekaitseteenistusse võib pöörduda igaüks, kes on mures lapse heaolu pärast, sh anonüümselt. Lastekaitsetöötaja hindab teateid ja võib vajaduse korral alustada lapse ja pere olukorra hindamist ning pakkuda teenuseid, toetusi või juhtumitööd.",
+      "sourceKeys": [
+        "lastekaitse_page"
+      ],
+      "address": null,
+      "officialUrl": "https://www.saaremaavald.ee/lastekaitse",
+      "relatedTo": [
+        "saaremaa_vald_contact_kerli_gutman_laht"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_lastekaitse_abi",
+      "document_id": "saaremaa_vald_resource_lastekaitse_abi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/lastekaitse",
+      "content_hash": "b223df483b9e29b305d3f80498e62a10d2e986013d030b39354757708c480872",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_hadaohus_ja_abivajav_laps",
+      "canonical_item_id": "saaremaa_vald:resource:hadaohus_ja_abivajav_laps",
+      "itemType": "resource",
+      "title": "Hädaohus ja abivajav laps",
+      "status": "active",
+      "summary": "Abivajav laps on laps, kelle heaolu on ohustatud või kelle käitumine ohustab teda või teisi. Igaüks, kellel on vastav teave, peab teatama abivajavast või hädaohus olevast lapsest. Lehel on märgitud lasteabitelefon, kadunud laste 116 000 ja hädaabinumber.",
+      "sourceKeys": [
+        "hadas_laps_page"
+      ],
+      "address": null,
+      "officialUrl": "https://www.saaremaavald.ee/hadas-laps",
+      "relatedTo": [],
+      "sections_present": [
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "hadas_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_hadaohus_ja_abivajav_laps",
+      "document_id": "saaremaa_vald_resource_hadaohus_ja_abivajav_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/hadas-laps",
+      "content_hash": "1d179aa89ebf474260575331b5d4e6ddcf597d7d8e63fd51467563ed36c13f5f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_erivajadusega_laps",
+      "canonical_item_id": "saaremaa_vald:resource:erivajadusega_laps",
+      "itemType": "resource",
+      "title": "Erivajadusega laps",
+      "status": "active",
+      "summary": "Erivajadusega lapse leht koondab teavet puudega või erivajadusega lapse perele. Lehel kirjeldatakse lapsehoiuteenust, lapse tugiisikuteenust, sotsiaaltransporti ja vaimse tervise abi ning juhatatakse Saaremaa Toetava Hariduse Keskuse ja Sotsiaalkindlustusameti ressursside juurde.",
+      "sourceKeys": [
+        "erivajadusega_laps_page"
+      ],
+      "address": null,
+      "officialUrl": "https://www.saaremaavald.ee/erivajadusega-laps",
+      "relatedTo": [
+        "saaremaa_vald_contact_kerli_gutman_laht"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "erivajadusega_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_erivajadusega_laps",
+      "document_id": "saaremaa_vald_resource_erivajadusega_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/erivajadusega-laps",
+      "content_hash": "3c527c353a69ea891e4c9473388451c413ca0db22c9d643e0f3f6ee7de73cd48",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_lahisuhtevagivald",
+      "canonical_item_id": "saaremaa_vald:resource:lahisuhtevagivald",
+      "itemType": "resource",
+      "title": "Lähisuhtevägivalla abiinfo",
+      "status": "active",
+      "summary": "Lähisuhtevägivalla leht kirjeldab vaimset, füüsilist, seksuaalset ja majanduslikku vägivalda lähisuhtes ning annab praktilised kontaktid. Hädaohus lapse puhul tuleb helistada; lehel on nimetatud lasteabitelefon ning naiste tugikeskuse.",
+      "sourceKeys": [
+        "lahisuhtevagivald_page",
+        "turvakodu_page"
+      ],
+      "address": null,
+      "officialUrl": "https://www.saaremaavald.ee/lahisuhtevagivald",
+      "relatedTo": [],
+      "sections_present": [
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "lahisuhtevagivald_page",
+        "turvakodu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_lahisuhtevagivald",
+      "document_id": "saaremaa_vald_resource_lahisuhtevagivald",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/lahisuhtevagivald",
+      "content_hash": "c3a29ee819ffaf3a9cbd7899b535e61de54458e039cbb2040bff8e9182ddc41a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_vanemlikkus_paarisuhe",
+      "canonical_item_id": "saaremaa_vald:resource:vanemlikkus_paarisuhe",
+      "itemType": "resource",
+      "title": "Vanemlikkus ja paarisuhe",
+      "status": "active",
+      "summary": "Vanemluse ja paarisuhte leht selgitab vanemate õigusi ning kohustusi, pakub viiteid vanemlusprogrammile „Imelised aastad“, perelepitusele ja nõustamis- või teraapiateenustele. See on praktiline suunav infokogum lastega peredele.",
+      "sourceKeys": [
+        "vanemlikkus_page"
+      ],
+      "address": null,
+      "officialUrl": "https://www.saaremaavald.ee/vanemlikkus-ja-paarisuhe",
+      "relatedTo": [],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "vanemlikkus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_vanemlikkus_paarisuhe",
+      "document_id": "saaremaa_vald_resource_vanemlikkus_paarisuhe",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/vanemlikkus-ja-paarisuhe",
+      "content_hash": "73fa53500ef88e96df4d1b1741434a9a83ff34385256f9c44b31ecb0d31a4737",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_parkimiskaart",
+      "canonical_item_id": "saaremaa_vald:resource:parkimiskaart",
+      "itemType": "resource",
+      "title": "Liikumis- või nägemispuudega inimese parkimiskaart",
+      "status": "active",
+      "summary": "Parkimiskaart on mõeldud liikumispuudega või pimedat inimest teenindava sõiduki parkimise lihtsustamiseks. Seda antakse taotluse alusel välja liikumis- või nägemisfunktsiooni kõrvalekaldega inimesele. Kaardi taotlemiseks on vajalik isiklik kohaletulek ja dokumendifoto.",
+      "sourceKeys": [
+        "parkimiskaart_page"
+      ],
+      "address": null,
+      "officialUrl": "https://www.saaremaavald.ee/parkimiskaart",
+      "relatedTo": [],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "parkimiskaart_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_parkimiskaart",
+      "document_id": "saaremaa_vald_resource_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/parkimiskaart",
+      "content_hash": "d9101b452bda0e3b3015e35e770dae82cf64e57c774ffe4794cbc278956434e8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_eestkoste",
+      "canonical_item_id": "saaremaa_vald:resource:eestkoste",
+      "itemType": "resource",
+      "title": "Eestkoste info",
+      "status": "active",
+      "summary": "Eestkostja on kohtu poolt määratud seaduslik esindaja täisealisele või alaealisele inimesele, kelle teovõime on piiratud. Lehel on praktiline info lapse ja täisealise inimese eestkoste kohta ning eestkoste valdkonna kontaktid.",
+      "sourceKeys": [
+        "eestkoste_page"
+      ],
+      "address": null,
+      "officialUrl": "https://www.saaremaavald.ee/perekond-sotsiaalabi/erivajadused-ja-igapaevaelu/eestkoste",
+      "relatedTo": [],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "eestkoste_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_eestkoste",
+      "document_id": "saaremaa_vald_resource_eestkoste",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/perekond-sotsiaalabi/erivajadused-ja-igapaevaelu/eestkoste",
+      "content_hash": "93d989ebc80526dcf42a5fc0c8496005711803828a4c4e899d2571870e7ce550",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_kuressaare_hoolekanne",
+      "canonical_item_id": "saaremaa_vald:resource:kuressaare_hoolekanne",
+      "itemType": "resource",
+      "title": "Kuressaare Hoolekanne",
+      "status": "active",
+      "summary": "Kuressaare Hoolekanne on Saaremaa valla lehel nimetatud hoolekandeasutus Saaremaa vallas või maakonnas. Lehel on avaldatud asutuse aadress ja ning viide asutuse kodulehele.",
+      "sourceKeys": [
+        "hooldusteenus_page"
+      ],
+      "address": "Tolli tn 9, 93813 Kuressaare",
+      "officialUrl": "https://www.saaremaavald.ee/hooldekodud",
+      "relatedTo": [],
+      "sections_present": [
+        "phone",
+        "address"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "hooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_kuressaare_hoolekanne",
+      "document_id": "saaremaa_vald_resource_kuressaare_hoolekanne",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/hooldekodud",
+      "content_hash": "26ebdb20bd9f0d67747511f0cf80db860e6629fe008537ec51ab19abab6b5417",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_kihelkonna_hooldekodu",
+      "canonical_item_id": "saaremaa_vald:resource:kihelkonna_hooldekodu",
+      "itemType": "resource",
+      "title": "Kihelkonna Hooldekodu",
+      "status": "active",
+      "summary": "Kihelkonna Hooldekodu on Saaremaa valla lehel nimetatud hoolekandeasutus Saaremaa vallas või maakonnas. Lehel on avaldatud asutuse aadress ja ning viide asutuse kodulehele.",
+      "sourceKeys": [
+        "hooldusteenus_page"
+      ],
+      "address": "Ravi tn 1, 93401 Kihelkonna alevik",
+      "officialUrl": "https://www.saaremaavald.ee/hooldekodud",
+      "relatedTo": [],
+      "sections_present": [
+        "phone",
+        "address"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "hooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_kihelkonna_hooldekodu",
+      "document_id": "saaremaa_vald_resource_kihelkonna_hooldekodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/hooldekodud",
+      "content_hash": "629adddce9da8649317d99a287219bd4054610da709988b289254ac2e9bbcd59",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_mustjala_paevakeskus_pansionaat",
+      "canonical_item_id": "saaremaa_vald:resource:mustjala_paevakeskus_pansionaat",
+      "itemType": "resource",
+      "title": "Mustjala päevakeskus-pansionaat",
+      "status": "active",
+      "summary": "Mustjala päevakeskus-pansionaat on Saaremaa valla lehel nimetatud hoolekandeasutus Saaremaa vallas või maakonnas. Lehel on avaldatud asutuse aadress ja ning viide asutuse kodulehele.",
+      "sourceKeys": [
+        "hooldusteenus_page"
+      ],
+      "address": "Alevi tn 16, 93601 Mustjala küla",
+      "officialUrl": "https://www.saaremaavald.ee/hooldekodud",
+      "relatedTo": [],
+      "sections_present": [
+        "phone",
+        "address"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "hooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_mustjala_paevakeskus_pansionaat",
+      "document_id": "saaremaa_vald_resource_mustjala_paevakeskus_pansionaat",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/hooldekodud",
+      "content_hash": "739d7c9974740ba7310e14d4c058823e64889432ef31c0a6066bdbb95077edec",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_parsama_hooldekodu",
+      "canonical_item_id": "saaremaa_vald:resource:parsama_hooldekodu",
+      "itemType": "resource",
+      "title": "Pärsama Hooldekodu",
+      "status": "active",
+      "summary": "Pärsama Hooldekodu on Saaremaa valla lehel nimetatud hoolekandeasutus Saaremaa vallas või maakonnas. Lehel on avaldatud asutuse aadress ja ning viide asutuse kodulehele.",
+      "sourceKeys": [
+        "hooldusteenus_page"
+      ],
+      "address": "Lasteaia, 94201 Pärsama küla",
+      "officialUrl": "https://www.saaremaavald.ee/hooldekodud",
+      "relatedTo": [],
+      "sections_present": [
+        "phone",
+        "address"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "hooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_parsama_hooldekodu",
+      "document_id": "saaremaa_vald_resource_parsama_hooldekodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/hooldekodud",
+      "content_hash": "e49ac81679802bef27262f517ef9bef180aa3598199fc8eb07a6ee25d713e747",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_saaremaa_valss",
+      "canonical_item_id": "saaremaa_vald:resource:saaremaa_valss",
+      "itemType": "resource",
+      "title": "Sihtasutus Hooldekodu Saaremaa Valss",
+      "status": "active",
+      "summary": "Sihtasutus Hooldekodu Saaremaa Valss on Saaremaa valla lehel nimetatud hoolekandeasutus Saaremaa vallas või maakonnas. Lehel on avaldatud asutuse aadress ja ning viide asutuse kodulehele.",
+      "sourceKeys": [
+        "hooldusteenus_page"
+      ],
+      "address": "Kastani tn 20, 93815 Kuressaare",
+      "officialUrl": "https://www.saaremaavald.ee/hooldekodud",
+      "relatedTo": [],
+      "sections_present": [
+        "phone",
+        "address"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "hooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_saaremaa_valss",
+      "document_id": "saaremaa_vald_resource_saaremaa_valss",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/hooldekodud",
+      "content_hash": "a1197ef62a6f09cd5cb9c63f5e48aeb1841cb13e84860cf74d00710609242f6c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_kuressaare_haigla_sa",
+      "canonical_item_id": "saaremaa_vald:resource:kuressaare_haigla_sa",
+      "itemType": "resource",
+      "title": "Kuressaare Haigla Sihtasutus",
+      "status": "active",
+      "summary": "Kuressaare Haigla Sihtasutus on Saaremaa valla lehel nimetatud hoolekandeasutus Saaremaa vallas või maakonnas. Lehel on avaldatud asutuse aadress ja ning viide asutuse kodulehele.",
+      "sourceKeys": [
+        "hooldusteenus_page"
+      ],
+      "address": "Aia tn 25, 93815 Kuressaare",
+      "officialUrl": "https://www.saaremaavald.ee/hooldekodud",
+      "relatedTo": [],
+      "sections_present": [
+        "phone",
+        "address"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "hooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_kuressaare_haigla_sa",
+      "document_id": "saaremaa_vald_resource_kuressaare_haigla_sa",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/hooldekodud",
+      "content_hash": "162c7f9e22325c65ce02bcf8f15a1a6aea881d96cddf7a8773dfd8ffff6c23a8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_muhu_hooldekeskus_sa",
+      "canonical_item_id": "saaremaa_vald:resource:muhu_hooldekeskus_sa",
+      "itemType": "resource",
+      "title": "Muhu Hooldekeskuse Sihtasutus",
+      "status": "active",
+      "summary": "Muhu Hooldekeskuse Sihtasutus on Saaremaa valla lehel nimetatud hoolekandeasutus Saaremaa vallas või maakonnas. Lehel on avaldatud asutuse aadress ja ning viide asutuse kodulehele.",
+      "sourceKeys": [
+        "hooldusteenus_page"
+      ],
+      "address": "Kadaka, 94701 Liiva küla, Muhu vald",
+      "officialUrl": "https://www.saaremaavald.ee/hooldekodud",
+      "relatedTo": [],
+      "sections_present": [
+        "phone",
+        "address"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "hooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_muhu_hooldekeskus_sa",
+      "document_id": "saaremaa_vald_resource_muhu_hooldekeskus_sa",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/hooldekodud",
+      "content_hash": "aa6b1e523b9e58aee904d89b2ee2ef79f555270d63be4eca4ed7bec68d3b55e3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_kuressaare_hoolekanne_sotsiaalmaja",
+      "canonical_item_id": "saaremaa_vald:resource:kuressaare_hoolekanne_sotsiaalmaja",
+      "itemType": "resource",
+      "title": "Kuressaare Hoolekanne, sotsiaalmaja",
+      "status": "active",
+      "summary": "Kuressaare Hoolekanne sotsiaalmaja osutab varjupaigateenust aadressil Voolu 7, Kuressaare. Teenuse lehel on avaldatud ja avatud aeg 20.00–08.00.",
+      "sourceKeys": [
+        "varjupaik_page"
+      ],
+      "address": "Voolu 7, Kuressaare",
+      "officialUrl": "https://www.saaremaavald.ee/varjupaigateenus",
+      "relatedTo": [],
+      "sections_present": [
+        "phone",
+        "address"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "varjupaik_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_kuressaare_hoolekanne_sotsiaalmaja",
+      "document_id": "saaremaa_vald_resource_kuressaare_hoolekanne_sotsiaalmaja",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/varjupaigateenus",
+      "content_hash": "1a7d60a946af6b7a2ffbab77c786e7f372353c0820cff2e32200b393b80a1248",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_naiste_tugikeskus_saaremaa",
+      "canonical_item_id": "saaremaa_vald:resource:naiste_tugikeskus_saaremaa",
+      "itemType": "resource",
+      "title": "Saaremaa/Pärnu naiste tugikeskuse abiinfo",
+      "status": "active",
+      "summary": "Saaremaa valla turvakodu ja lähisuhtevägivalla lehed suunavad lähisuhtevägivalla korral naiste tugikeskuse poole. Turvakodu lehel on Saaremaa naiste tugikeskuse infotelefon ja lähisuhtevägivalla lehel Pärnu naiste tugikeskuse",
+      "sourceKeys": [
+        "lahisuhtevagivald_page",
+        "turvakodu_page"
+      ],
+      "address": null,
+      "officialUrl": "https://www.saaremaavald.ee/turvakodu",
+      "relatedTo": [],
+      "sections_present": [
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "lahisuhtevagivald_page",
+        "turvakodu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_naiste_tugikeskus_saaremaa",
+      "document_id": "saaremaa_vald_resource_naiste_tugikeskus_saaremaa",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/turvakodu",
+      "content_hash": "826af4e1a4ce58ff5026a53dda58b93332efb26c6293f31e827bc3bb64b7868b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_hadaabi_",
+      "canonical_item_id": "saaremaa_vald:resource:hadaabi_",
+      "itemType": "resource",
+      "title": "Hädaabinumber",
+      "status": "active",
+      "summary": "Hädaabinumbrile tuleb helistada olukorras, kus ohus on elu, tervis või vara.",
+      "sourceKeys": [
+        "olulised_kontaktid_page"
+      ],
+      "address": null,
+      "officialUrl": "https://www.saaremaavald.ee/olulised-kontaktid",
+      "relatedTo": [],
+      "sections_present": [
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "olulised_kontaktid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_hadaabi_",
+      "document_id": "saaremaa_vald_resource_hadaabi_",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/olulised-kontaktid",
+      "content_hash": "cf4ea77722e940cbd05ddf417c1b84d2082d1e66bc6f42ad5ab15989f03095bb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_riigiinfo_",
+      "canonical_item_id": "saaremaa_vald:resource:riigiinfo_",
+      "itemType": "resource",
+      "title": "Riigiinfo",
+      "status": "active",
+      "summary": "Riigiinfo pakub infot ja nõu olukordades, mille puhul ei ole ohus elu, tervis ega vara.",
+      "sourceKeys": [
+        "olulised_kontaktid_page"
+      ],
+      "address": null,
+      "officialUrl": "https://www.saaremaavald.ee/olulised-kontaktid",
+      "relatedTo": [],
+      "sections_present": [
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "olulised_kontaktid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_riigiinfo_",
+      "document_id": "saaremaa_vald_resource_riigiinfo_",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/olulised-kontaktid",
+      "content_hash": "c8ae9745dbe2bfc94864e374a89e4f73907419c4893a1a7e26ecc21be804ad19",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_perearsti_nouandeliin_1220",
+      "canonical_item_id": "saaremaa_vald:resource:perearsti_nouandeliin_1220",
+      "itemType": "resource",
+      "title": "Perearsti nõuandeliin 1220",
+      "status": "active",
+      "summary": "Perearsti nõuandeliin annab nõu tervisemurede korral, mis ei vaja kiirabi sekkumist.",
+      "sourceKeys": [
+        "olulised_kontaktid_page"
+      ],
+      "address": null,
+      "officialUrl": "https://www.saaremaavald.ee/olulised-kontaktid",
+      "relatedTo": [],
+      "sections_present": [
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "olulised_kontaktid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_perearsti_nouandeliin_1220",
+      "document_id": "saaremaa_vald_resource_perearsti_nouandeliin_1220",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/olulised-kontaktid",
+      "content_hash": "cb6374f76d965041fed968fbac96f997cbf4fca8e52e54f8d8f9c1c531add8ec",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_murgistusinfo_16662",
+      "canonical_item_id": "saaremaa_vald:resource:murgistusinfo_16662",
+      "itemType": "resource",
+      "title": "Mürgistusinfo 16662",
+      "status": "active",
+      "summary": "Mürgistusinfo annab nõu mürgistuste korral.",
+      "sourceKeys": [
+        "olulised_kontaktid_page"
+      ],
+      "address": null,
+      "officialUrl": "https://www.saaremaavald.ee/olulised-kontaktid",
+      "relatedTo": [],
+      "sections_present": [
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "olulised_kontaktid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_murgistusinfo_16662",
+      "document_id": "saaremaa_vald_resource_murgistusinfo_16662",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/olulised-kontaktid",
+      "content_hash": "33adbe7c7b1fa7e75682e6bfbd537e48bebbf6b7ba874b4d11d0bf484da6fca5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_lasteabi_",
+      "canonical_item_id": "saaremaa_vald:resource:lasteabi_",
+      "itemType": "resource",
+      "title": "Lasteabi",
+      "status": "active",
+      "summary": "Lasteabi telefonile saab teatada abivajavast või hädaohtu sattunud lapsest.",
+      "sourceKeys": [
+        "olulised_kontaktid_page"
+      ],
+      "address": null,
+      "officialUrl": "https://www.saaremaavald.ee/olulised-kontaktid",
+      "relatedTo": [],
+      "sections_present": [
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "olulised_kontaktid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_lasteabi_",
+      "document_id": "saaremaa_vald_resource_lasteabi_",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/olulised-kontaktid",
+      "content_hash": "b68ca29d0f825826c95d8c2b18a8131b5d6a482469e1c99739d796d40fea30b6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_naiste_tugiliin_1492",
+      "canonical_item_id": "saaremaa_vald:resource:naiste_tugiliin_1492",
+      "itemType": "resource",
+      "title": "Naiste tugiliin 1492",
+      "status": "active",
+      "summary": "Naiste tugiliin on anonüümne abivõimalus lähisuhtevägivalla all kannatavatele naistele.",
+      "sourceKeys": [
+        "olulised_kontaktid_page"
+      ],
+      "address": null,
+      "officialUrl": "https://www.saaremaavald.ee/olulised-kontaktid",
+      "relatedTo": [],
+      "sections_present": [
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "olulised_kontaktid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_naiste_tugiliin_1492",
+      "document_id": "saaremaa_vald_resource_naiste_tugiliin_1492",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/olulised-kontaktid",
+      "content_hash": "68fcc459f597f0ac40e13561edb7e61e7018ff38c68c842099f9daf50fad0a5e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_ohvriabi_",
+      "canonical_item_id": "saaremaa_vald:resource:ohvriabi_",
+      "itemType": "resource",
+      "title": "Ohvriabi kriisitelefon",
+      "status": "active",
+      "summary": "Ohvriabi kriisitelefon annab ööpäevaringset abi süüteo, hooletuse või halva kohtlemise ohvritele.",
+      "sourceKeys": [
+        "olulised_kontaktid_page"
+      ],
+      "address": null,
+      "officialUrl": "https://www.saaremaavald.ee/olulised-kontaktid",
+      "relatedTo": [],
+      "sections_present": [
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "olulised_kontaktid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_ohvriabi_",
+      "document_id": "saaremaa_vald_resource_ohvriabi_",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/olulised-kontaktid",
+      "content_hash": "9d35b3b388efb3da8092d64f6ef06d0700b97f89d4756cde21e41b38cdecafd1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_resource_emotsionaalne_tugi_116123",
+      "canonical_item_id": "saaremaa_vald:resource:emotsionaalne_tugi_116123",
+      "itemType": "resource",
+      "title": "Emotsionaalse toe ja hingehoiu 116 123",
+      "status": "active",
+      "summary": "pakub emotsionaalset tuge, hingehoidu ja tuge leinas või haigusega toimetulekul.",
+      "sourceKeys": [
+        "olulised_kontaktid_page"
+      ],
+      "address": null,
+      "officialUrl": "https://www.saaremaavald.ee/olulised-kontaktid",
+      "relatedTo": [],
+      "sections_present": [
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "olulised_kontaktid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_resource_emotsionaalne_tugi_116123",
+      "document_id": "saaremaa_vald_resource_emotsionaalne_tugi_116123",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.saaremaavald.ee/olulised-kontaktid",
+      "content_hash": "2d7ea2335dd4a8c039898d6546b6b396666a3b7a017ced74904780d2a3b4c58f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_contact_sotsiaalosakond",
+      "canonical_item_id": "saaremaa_vald:contact:sotsiaalosakond",
+      "itemType": "contact",
+      "title": "Saaremaa Vallavalitsuse sotsiaalosakond",
+      "status": "active",
+      "summary": "Saaremaa Vallavalitsuse sotsiaalosakond – üldkontakt.",
+      "sourceKeys": [
+        "contact_page",
+        "home"
+      ],
+      "name": "Saaremaa Vallavalitsuse sotsiaalosakond",
+      "role": "üldkontakt",
+      "department": "Sotsiaalosakond",
+      "address": "Tallinna tn 10, 93819 Kuressaare",
+      "relatedTo": [],
+      "sections_present": [
+        "phone",
+        "email",
+        "address"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "contact_page",
+        "home"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_contact_sotsiaalosakond",
+      "document_id": "saaremaa_vald_contact_sotsiaalosakond",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "67dc82d37f7f1b8120074658b9f5e8995cd07127adf578d0c7e216db9f442e86",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_contact_sotsiaaltranspordi_tellimine",
+      "canonical_item_id": "saaremaa_vald:contact:sotsiaaltranspordi_tellimine",
+      "itemType": "contact",
+      "title": "Sotsiaaltranspordi tellimine",
+      "status": "active",
+      "summary": "Sotsiaaltranspordi tellimine – teenuse tellimise kontakt.",
+      "sourceKeys": [
+        "sotsiaaltransport_page"
+      ],
+      "name": "Sotsiaaltranspordi tellimine",
+      "role": "teenuse tellimise kontakt",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "relatedTo": [
+        "saaremaa_vald_service_sotsiaaltranspordi_teenus"
+      ],
+      "sections_present": [
+        "phone",
+        "email"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "sotsiaaltransport_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_contact_sotsiaaltranspordi_tellimine",
+      "document_id": "saaremaa_vald_contact_sotsiaaltranspordi_tellimine",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "d26d5ee3978dec9b50eac8cf4006c6fae226139f642f76f1a523a63e5756f688",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_contact_sotsiaalhoolekandeteenistuse_juhataja_taitmata",
+      "canonical_item_id": "saaremaa_vald:contact:sotsiaalhoolekandeteenistuse_juhataja_taitmata",
+      "itemType": "contact",
+      "title": "Sotsiaalhoolekandeteenistuse juhataja (teenistuskoht täitmata)",
+      "status": "active",
+      "summary": "Sotsiaalhoolekandeteenistuse juhataja (teenistuskoht täitmata) – teenistuse juhataja.",
+      "sourceKeys": [
+        "hooldusteenus_page"
+      ],
+      "name": "Sotsiaalhoolekandeteenistuse juhataja (teenistuskoht täitmata)",
+      "role": "teenistuse juhataja",
+      "department": "Sotsiaalhoolekandeteenistus",
+      "address": "Tallinna tn 10, Kuressaare",
+      "relatedTo": [],
+      "sections_present": [
+        "phone",
+        "address"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "hooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_contact_sotsiaalhoolekandeteenistuse_juhataja_taitmata",
+      "document_id": "saaremaa_vald_contact_sotsiaalhoolekandeteenistuse_juhataja_taitmata",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "c1df31b7fff3f5165f9a61195c73d037c5ff80feb083e05dc9ae827a397c8811",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_contact_tiia_jaarats",
+      "canonical_item_id": "saaremaa_vald:contact:tiia_jaarats",
+      "itemType": "contact",
+      "title": "Tiia Jäärats",
+      "status": "active",
+      "summary": "Tiia Jäärats – sotsiaaltööspetsialist.",
+      "sourceKeys": [
+        "matusetoetus_page"
+      ],
+      "name": "Tiia Jäärats",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "relatedTo": [
+        "saaremaa_vald_benefit_matusetoetus"
+      ],
+      "sections_present": [
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "matusetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_contact_tiia_jaarats",
+      "document_id": "saaremaa_vald_contact_tiia_jaarats",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "38d9301f1dc1f8f7319b5f6e21b4d871ff202d0108ac8da7b92d66099fd38865",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_contact_kadi_nellis",
+      "canonical_item_id": "saaremaa_vald:contact:kadi_nellis",
+      "itemType": "contact",
+      "title": "Kadi Nellis",
+      "status": "active",
+      "summary": "Kadi Nellis – sotsiaaltööspetsialist.",
+      "sourceKeys": [
+        "sunnitoetus_page"
+      ],
+      "name": "Kadi Nellis",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "relatedTo": [
+        "saaremaa_vald_benefit_sunnitoetus"
+      ],
+      "sections_present": [
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "sunnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_contact_kadi_nellis",
+      "document_id": "saaremaa_vald_contact_kadi_nellis",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "a2c47e697d7866670f8786dfb2db78e99aff9388272c09da21b5cd107ad408c6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_contact_oilme_salumae",
+      "canonical_item_id": "saaremaa_vald:contact:oilme_salumae",
+      "itemType": "contact",
+      "title": "Õilme Salumäe",
+      "status": "active",
+      "summary": "Õilme Salumäe – üldharidusnõunik.",
+      "sourceKeys": [
+        "ranitsatoetus_page"
+      ],
+      "name": "Õilme Salumäe",
+      "role": "üldharidusnõunik",
+      "department": "Haridus- ja noorsootööosakond",
+      "address": null,
+      "relatedTo": [
+        "saaremaa_vald_benefit_ranitsatoetus"
+      ],
+      "sections_present": [
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "ranitsatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_contact_oilme_salumae",
+      "document_id": "saaremaa_vald_contact_oilme_salumae",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "fe2deaff369a2dbdf829658c611c23b533f9c9ce3c61ad6ff0ea354d60ea57b9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_contact_anne_poder",
+      "canonical_item_id": "saaremaa_vald:contact:anne_poder",
+      "itemType": "contact",
+      "title": "Anne Põder",
+      "status": "active",
+      "summary": "Anne Põder – hariduse ja noorsootöö peaspetsialist.",
+      "sourceKeys": [
+        "ranitsatoetus_page"
+      ],
+      "name": "Anne Põder",
+      "role": "hariduse ja noorsootöö peaspetsialist",
+      "department": "Haridus- ja noorsootööosakond",
+      "address": null,
+      "relatedTo": [
+        "saaremaa_vald_benefit_ranitsatoetus"
+      ],
+      "sections_present": [
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "ranitsatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_contact_anne_poder",
+      "document_id": "saaremaa_vald_contact_anne_poder",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "fd95f1b2f1045cb29e6711fb7565bf3bfb7df48e5e593448756c5c3ac65f2804",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_contact_kerli_gutman_laht",
+      "canonical_item_id": "saaremaa_vald:contact:kerli_gutman_laht",
+      "itemType": "contact",
+      "title": "Kerli Gutman-Laht",
+      "status": "active",
+      "summary": "Kerli Gutman-Laht – teenistuse juhataja.",
+      "sourceKeys": [
+        "asendus_jarelhooldus_page",
+        "lastekaitse_page"
+      ],
+      "name": "Kerli Gutman-Laht",
+      "role": "teenistuse juhataja",
+      "department": "Lastekaitseteenistus",
+      "address": "Tallinna tn 10, Kuressaare",
+      "relatedTo": [
+        "saaremaa_vald_resource_lastekaitse_abi"
+      ],
+      "sections_present": [
+        "phone",
+        "address"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "asendus_jarelhooldus_page",
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_contact_kerli_gutman_laht",
+      "document_id": "saaremaa_vald_contact_kerli_gutman_laht",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "57e4e64f6c82bdc701945be8fc5f84b77e8dcf8426bc145f77a742bdd4108241",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_contact_kaide_kiil",
+      "canonical_item_id": "saaremaa_vald:contact:kaide_kiil",
+      "itemType": "contact",
+      "title": "Kaide Kiil",
+      "status": "active",
+      "summary": "Kaide Kiil – lastekaitsespetsialist.",
+      "sourceKeys": [
+        "asendus_jarelhooldus_page",
+        "lastekaitse_page"
+      ],
+      "name": "Kaide Kiil",
+      "role": "lastekaitsespetsialist",
+      "department": "Lastekaitseteenistus",
+      "address": "Orissaare TK – Kuivastu mnt 33, Orissaare alevik",
+      "relatedTo": [
+        "saaremaa_vald_resource_lastekaitse_abi"
+      ],
+      "area": "Laimjala, Orissaare, Pöide, Valjala",
+      "sections_present": [
+        "phone",
+        "address"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "asendus_jarelhooldus_page",
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_contact_kaide_kiil",
+      "document_id": "saaremaa_vald_contact_kaide_kiil",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "7c8632b4f3da700ccf30a26cdadfa1d7d2a82534d41152d670d34774055f688d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_contact_kristi_magi_sepp",
+      "canonical_item_id": "saaremaa_vald:contact:kristi_magi_sepp",
+      "itemType": "contact",
+      "title": "Kristi Mägi-Sepp",
+      "status": "active",
+      "summary": "Kristi Mägi-Sepp – lastekaitsespetsialist.",
+      "sourceKeys": [
+        "asendus_jarelhooldus_page",
+        "lastekaitse_page"
+      ],
+      "name": "Kristi Mägi-Sepp",
+      "role": "lastekaitsespetsialist",
+      "department": "Lastekaitseteenistus",
+      "address": "Tallinna tn 10, Kuressaare",
+      "relatedTo": [
+        "saaremaa_vald_resource_lastekaitse_abi"
+      ],
+      "area": "Kaarma, Kärla",
+      "sections_present": [
+        "phone",
+        "address"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "asendus_jarelhooldus_page",
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_contact_kristi_magi_sepp",
+      "document_id": "saaremaa_vald_contact_kristi_magi_sepp",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "7040867a9418e9032262bad4adf1bc0922260de608b67b178a0ff8f7d06870a5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_contact_maarja_amur",
+      "canonical_item_id": "saaremaa_vald:contact:maarja_amur",
+      "itemType": "contact",
+      "title": "Maarja Amur",
+      "status": "active",
+      "summary": "Maarja Amur – lastekaitsespetsialist.",
+      "sourceKeys": [
+        "asendus_jarelhooldus_page",
+        "lastekaitse_page"
+      ],
+      "name": "Maarja Amur",
+      "role": "lastekaitsespetsialist",
+      "department": "Lastekaitseteenistus",
+      "address": "Tallinna tn 10, Kuressaare",
+      "relatedTo": [
+        "saaremaa_vald_resource_lastekaitse_abi"
+      ],
+      "area": "Kuressaare",
+      "sections_present": [
+        "phone",
+        "address"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "asendus_jarelhooldus_page",
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_contact_maarja_amur",
+      "document_id": "saaremaa_vald_contact_maarja_amur",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "4112347a5371461f59c59fe1b96b73001fef8dc286092f53b6bac8756f909f50",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_contact_kairi_poder",
+      "canonical_item_id": "saaremaa_vald:contact:kairi_poder",
+      "itemType": "contact",
+      "title": "Kairi Põder",
+      "status": "active",
+      "summary": "Kairi Põder – lastekaitsespetsialist.",
+      "sourceKeys": [
+        "asendus_jarelhooldus_page",
+        "lastekaitse_page"
+      ],
+      "name": "Kairi Põder",
+      "role": "lastekaitsespetsialist",
+      "department": "Lastekaitseteenistus",
+      "address": "Tallinna tn 10, Kuressaare",
+      "relatedTo": [
+        "saaremaa_vald_resource_lastekaitse_abi"
+      ],
+      "area": "Kihelkonna, Lümanda, Mustjala, Salme, Torgu",
+      "sections_present": [
+        "phone",
+        "address"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "asendus_jarelhooldus_page",
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_contact_kairi_poder",
+      "document_id": "saaremaa_vald_contact_kairi_poder",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "b8f6dac21d3c4f2bc14b28a6bc320e42dc3dd134b6c3910a312a63fc3f9dc90a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_contact_jaane_remmel",
+      "canonical_item_id": "saaremaa_vald:contact:jaane_remmel",
+      "itemType": "contact",
+      "title": "Jaane Remmel",
+      "status": "active",
+      "summary": "Jaane Remmel – lastekaitsespetsialist.",
+      "sourceKeys": [
+        "asendus_jarelhooldus_page",
+        "lastekaitse_page"
+      ],
+      "name": "Jaane Remmel",
+      "role": "lastekaitsespetsialist",
+      "department": "Lastekaitseteenistus",
+      "address": "Tallinna tn 10, Kuressaare",
+      "relatedTo": [
+        "saaremaa_vald_resource_lastekaitse_abi"
+      ],
+      "area": "Kuressaare, Leisi, Pihtla",
+      "sections_present": [
+        "phone",
+        "address"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "asendus_jarelhooldus_page",
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_contact_jaane_remmel",
+      "document_id": "saaremaa_vald_contact_jaane_remmel",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "4930361b9c79b527d7b7c46a0a4e3aa40d8ed176fa4bb2e03c2f03fa4d0ebe62",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_contact_anna_maria_raukas",
+      "canonical_item_id": "saaremaa_vald:contact:anna_maria_raukas",
+      "itemType": "contact",
+      "title": "Anna Maria Raukas",
+      "status": "active",
+      "summary": "Anna Maria Raukas – lastekaitsespetsialist.",
+      "sourceKeys": [
+        "asendus_jarelhooldus_page",
+        "lastekaitse_page"
+      ],
+      "name": "Anna Maria Raukas",
+      "role": "lastekaitsespetsialist",
+      "department": "Lastekaitseteenistus",
+      "address": "Tallinna tn 10, Kuressaare",
+      "relatedTo": [
+        "saaremaa_vald_resource_lastekaitse_abi"
+      ],
+      "area": "Kuressaare",
+      "sections_present": [
+        "phone",
+        "address"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "asendus_jarelhooldus_page",
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_contact_anna_maria_raukas",
+      "document_id": "saaremaa_vald_contact_anna_maria_raukas",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "9ab0c8b6d4112ef38746be6ff0fd4004730345f278a84184e3a503067e620238",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_contact_mare_kurvits",
+      "canonical_item_id": "saaremaa_vald:contact:mare_kurvits",
+      "itemType": "contact",
+      "title": "Mare Kurvits",
+      "status": "active",
+      "summary": "Mare Kurvits – lastekaitse peaspetsialist-projektikoordinaator.",
+      "sourceKeys": [
+        "asendus_jarelhooldus_page",
+        "lastekaitse_page"
+      ],
+      "name": "Mare Kurvits",
+      "role": "lastekaitse peaspetsialist-projektikoordinaator",
+      "department": "Lastekaitseteenistus",
+      "address": "Tallinna tn 10, Kuressaare",
+      "relatedTo": [
+        "saaremaa_vald_resource_lastekaitse_abi"
+      ],
+      "sections_present": [
+        "phone",
+        "address"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "asendus_jarelhooldus_page",
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_contact_mare_kurvits",
+      "document_id": "saaremaa_vald_contact_mare_kurvits",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "c06324eb7138000e2d8699794be6c7dacbbffcf1fee143c498d4f371f29aac04",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_contact_ervin_raudsik",
+      "canonical_item_id": "saaremaa_vald:contact:ervin_raudsik",
+      "itemType": "contact",
+      "title": "Ervin Raudsik",
+      "status": "active",
+      "summary": "Ervin Raudsik – eestkoste peaspetsialist.",
+      "sourceKeys": [
+        "eestkoste_page"
+      ],
+      "name": "Ervin Raudsik",
+      "role": "eestkoste peaspetsialist",
+      "department": "Eestkoste",
+      "address": "Laimjala TK – Vallamaja, Laimjala küla",
+      "relatedTo": [
+        "saaremaa_vald_resource_eestkoste"
+      ],
+      "sections_present": [
+        "phone",
+        "address"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "eestkoste_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_contact_ervin_raudsik",
+      "document_id": "saaremaa_vald_contact_ervin_raudsik",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "9313fc354a2cfc7baefaf703bc756b925fdc04993b4a79090d019e443f7c0875",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_contact_koidu_allvee",
+      "canonical_item_id": "saaremaa_vald:contact:koidu_allvee",
+      "itemType": "contact",
+      "title": "Koidu Allvee",
+      "status": "active",
+      "summary": "Koidu Allvee – eestkostespetsialist.",
+      "sourceKeys": [
+        "eestkoste_page"
+      ],
+      "name": "Koidu Allvee",
+      "role": "eestkostespetsialist",
+      "department": "Eestkoste",
+      "address": "Lossi tn 1, Kuressaare",
+      "relatedTo": [
+        "saaremaa_vald_resource_eestkoste"
+      ],
+      "sections_present": [
+        "phone",
+        "address"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "eestkoste_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_contact_koidu_allvee",
+      "document_id": "saaremaa_vald_contact_koidu_allvee",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "24647882e073defdfbdb6d32b51510fde4ff38ba86dc543ad186f3ef57726930",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_contact_kersti_etverk",
+      "canonical_item_id": "saaremaa_vald:contact:kersti_etverk",
+      "itemType": "contact",
+      "title": "Kersti Etverk",
+      "status": "active",
+      "summary": "Kersti Etverk – eestkoste assistent.",
+      "sourceKeys": [
+        "eestkoste_page"
+      ],
+      "name": "Kersti Etverk",
+      "role": "eestkoste assistent",
+      "department": "Eestkoste",
+      "address": "Kärla TK – Pargi tn 1, Kärla alevik",
+      "relatedTo": [
+        "saaremaa_vald_resource_eestkoste"
+      ],
+      "sections_present": [
+        "phone",
+        "address"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "eestkoste_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_contact_kersti_etverk",
+      "document_id": "saaremaa_vald_contact_kersti_etverk",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "bf388835dd997df618bdedbef625ea92c14a82af5fb6302f750c8e9b9e408a7e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_contact_vaimse_tervise_koordinaator",
+      "canonical_item_id": "saaremaa_vald:contact:vaimse_tervise_koordinaator",
+      "itemType": "contact",
+      "title": "Angela Mäeots / Saaremaa Toetava Hariduse Keskus",
+      "status": "active",
+      "summary": "Angela Mäeots / Saaremaa Toetava Hariduse Keskus – vaimse tervise teenuste kontakt.",
+      "sourceKeys": [
+        "vaimne_tervis_page"
+      ],
+      "name": "Angela Mäeots / Saaremaa Toetava Hariduse Keskus",
+      "role": "vaimse tervise teenuste kontakt",
+      "department": "Saaremaa Toetava Hariduse Keskus",
+      "address": null,
+      "relatedTo": [
+        "saaremaa_vald_service_vaimse_tervise_teenuse_toetus"
+      ],
+      "sections_present": [
+        "phone"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "vaimne_tervis_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_contact_vaimse_tervise_koordinaator",
+      "document_id": "saaremaa_vald_contact_vaimse_tervise_koordinaator",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "8705830bd6886e58161c50f7389aa15b350fac6fdddc35b66d99d99068657b98",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_form_sotsiaalteenuse_taotlus",
+      "canonical_item_id": "saaremaa_vald:form:sotsiaalteenuse_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaalteenuse taotlus",
+      "status": "active",
+      "summary": "Sotsiaalteenuse taotluse vorm, mida kasutatakse koduteenuse ja mitme muu sotsiaalteenuse taotlemisel. Taotlus esitatakse digiallkirjastatult e-posti aadressile või paberkandjal sotsiaalosakonda või teenusekeskusesse.",
+      "sourceKeys": [
+        "koduteenus_page",
+        "sotsiaalteenuse_taotlus_docx_2025",
+        "sotsiaalteenuse_taotlus_pdf_2025"
+      ],
+      "format": "pdf/docx",
+      "submissionChannels": [
+        "",
+        "kohapeal"
+      ],
+      "relatedTo": [
+        "saaremaa_vald_service_koduteenus"
+      ],
+      "officialUrl": null,
+      "fileUrls": [
+        "https://www.saaremaavald.ee/sites/default/files/documents/2025-02/Sotsiaalteenuse%20taotlus%20%28pdf%29.pdf",
+        "https://www.saaremaavald.ee/sites/default/files/documents/2025-02/Sotsiaalteenuse%20taotlus%20%28docx%29.docx"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "koduteenus_page",
+        "sotsiaalteenuse_taotlus_docx_2025",
+        "sotsiaalteenuse_taotlus_pdf_2025"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_form_sotsiaalteenuse_taotlus",
+      "document_id": "saaremaa_vald_form_sotsiaalteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "6b90d27121abbc08f21324995043ec7c28c4cef94fd46897d5f83c49722943a3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_form_sotsiaalteenus_soovituslik_taotlus",
+      "canonical_item_id": "saaremaa_vald:form:sotsiaalteenus_soovituslik_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaalteenuse taotlus (soovituslik vorm)",
+      "status": "active",
+      "summary": "Sotsiaalteenuse soovituslik taotluse vorm, mida Saaremaa valla teenuselehed kasutavad mitme sotsiaalabi teenuse taotlemiseks, sh tugiisikuteenus, toidupangateenus, vältimatu sotsiaalabi, eluruumi tagamine, sotsiaaltransport, isikliku abistaja teenus ja kuulmisnõustamine.",
+      "sourceKeys": [
+        "eluruumi_page",
+        "isiklik_abistaja_page",
+        "kuulmispuue_page",
+        "sotsiaalteenus_soovituslik_docx_2024",
+        "sotsiaalteenus_soovituslik_pdf_2024",
+        "sotsiaaltransport_page",
+        "toidupank_page",
+        "tugiisik_page",
+        "valtimatu_page"
+      ],
+      "format": "pdf/docx",
+      "submissionChannels": [
+        "",
+        "kohapeal"
+      ],
+      "relatedTo": [
+        "saaremaa_vald_service_tugiisikuteenus",
+        "saaremaa_vald_service_toidupangateenus",
+        "saaremaa_vald_service_valtimatu_sotsiaalabi",
+        "saaremaa_vald_service_eluruumi_tagamine",
+        "saaremaa_vald_service_sotsiaaltranspordi_teenus",
+        "saaremaa_vald_service_isikliku_abistaja_teenus",
+        "saaremaa_vald_service_kuulmispuue_noustamine"
+      ],
+      "officialUrl": null,
+      "fileUrls": [
+        "https://www.saaremaavald.ee/sites/default/files/documents/2024-11/Sotsiaalteenus%20soovituslik%20taotlus.pdf",
+        "https://www.saaremaavald.ee/sites/default/files/documents/2024-11/Sotsiaalteenus%20soovituslik%20taotlus_1_0.docx"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "eluruumi_page",
+        "isiklik_abistaja_page",
+        "kuulmispuue_page",
+        "sotsiaalteenus_soovituslik_docx_2024",
+        "sotsiaalteenus_soovituslik_pdf_2024",
+        "sotsiaaltransport_page",
+        "toidupank_page",
+        "tugiisik_page",
+        "valtimatu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_form_sotsiaalteenus_soovituslik_taotlus",
+      "document_id": "saaremaa_vald_form_sotsiaalteenus_soovituslik_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "234309f815ae48cfcbcc43769743f5bfdb37aae61c56bd14763b5dd4cfa6c989",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_form_sissetulekutoetuse_taotlus",
+      "canonical_item_id": "saaremaa_vald:form:sissetulekutoetuse_taotlus",
+      "itemType": "form",
+      "title": "Sissetulekust sõltuva sotsiaaltoetuse taotlus",
+      "status": "active",
+      "summary": "Sissetulekust sõltuva sotsiaaltoetuse taotlusvorm, millele lisatakse sissetulekute ja eluasemekulude info. Vorm on avaldatud pdf- ja docx-formaadis.",
+      "sourceKeys": [
+        "sissetulekutoetus_page",
+        "sissetulekutoetus_taotlus_docx",
+        "sissetulekutoetus_taotlus_pdf"
+      ],
+      "format": "pdf/docx",
+      "submissionChannels": [
+        "",
+        "kohapeal"
+      ],
+      "relatedTo": [
+        "saaremaa_vald_benefit_sissetulekust_soltuv_sotsiaaltoetus"
+      ],
+      "officialUrl": null,
+      "fileUrls": [
+        "https://www.saaremaavald.ee/sites/default/files/documents/2024-01/Sissetulekust%20s%C3%B5ltuva%20sotsiaaltoetuse%20taotlus.pdf",
+        "https://www.saaremaavald.ee/sites/default/files/documents/2024-11/Sissetulekust%20s%C3%B5ltuva%20sotsiaaltoetuse%20taotlus.docx"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "sissetulekutoetus_page",
+        "sissetulekutoetus_taotlus_docx",
+        "sissetulekutoetus_taotlus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_form_sissetulekutoetuse_taotlus",
+      "document_id": "saaremaa_vald_form_sissetulekutoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "816f9cfbf95ff54be148c6e63529137e528c8019151cbec3c6a6219b9d3b6ba8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_form_toimetulekutoetuse_taotlus_2026",
+      "canonical_item_id": "saaremaa_vald:form:toimetulekutoetuse_taotlus_2026",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse taotlus 2026",
+      "status": "active",
+      "summary": "Toimetulekutoetuse taotlusvorm 2026. Vormile lisatakse vajadusel Lisa 1 rahaliste vahendite kohta ja Lisa 2 varalise seisu kohta.",
+      "sourceKeys": [
+        "toimetulekutoetus_page",
+        "toimetulekutoetus_taotlus_2026_docx"
+      ],
+      "format": "docx",
+      "submissionChannels": [
+        "kohapeal"
+      ],
+      "relatedTo": [
+        "saaremaa_vald_benefit_toimetulekutoetus"
+      ],
+      "officialUrl": null,
+      "fileUrls": [
+        "https://www.saaremaavald.ee/sites/default/files/documents/2026-02/Toimetulekutoetuse%20taotlus%202026.docx"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "toimetulekutoetus_page",
+        "toimetulekutoetus_taotlus_2026_docx"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_form_toimetulekutoetuse_taotlus_2026",
+      "document_id": "saaremaa_vald_form_toimetulekutoetuse_taotlus_2026",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "e369d8d682300083fbbdfed0d7f54546d3c0d88ffba9dfed1e67faf09fb56cd6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_form_toimetulekutoetuse_lisa_1_rahalised_vahendid",
+      "canonical_item_id": "saaremaa_vald:form:toimetulekutoetuse_lisa_1_rahalised_vahendid",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse Lisa 1 – rahalised vahendid 2026",
+      "status": "active",
+      "summary": "Toimetulekutoetuse taotluse lisa rahaliste vahendite kohta.",
+      "sourceKeys": [
+        "toimetulekutoetus_lisa1_2026_docx",
+        "toimetulekutoetus_page"
+      ],
+      "format": "docx",
+      "submissionChannels": [
+        "kohapeal"
+      ],
+      "relatedTo": [
+        "saaremaa_vald_benefit_toimetulekutoetus"
+      ],
+      "officialUrl": null,
+      "fileUrls": [
+        "https://www.saaremaavald.ee/sites/default/files/documents/2026-02/Lisa%201%20Rahalised%20vahendid%20%28lisa%202A%29%202026.docx"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "toimetulekutoetus_lisa1_2026_docx",
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_form_toimetulekutoetuse_lisa_1_rahalised_vahendid",
+      "document_id": "saaremaa_vald_form_toimetulekutoetuse_lisa_1_rahalised_vahendid",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "9f11a31f8e59abe1d3d31276d342f82f8b4f0faa1ade8c5e76e13a82b711c3d5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_form_toimetulekutoetuse_lisa_2_varaline_seis",
+      "canonical_item_id": "saaremaa_vald:form:toimetulekutoetuse_lisa_2_varaline_seis",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse Lisa 2 – varaline seis 2026",
+      "status": "active",
+      "summary": "Toimetulekutoetuse taotluse lisa varalise seisu kohta.",
+      "sourceKeys": [
+        "toimetulekutoetus_lisa2_2026_docx",
+        "toimetulekutoetus_page"
+      ],
+      "format": "docx",
+      "submissionChannels": [
+        "kohapeal"
+      ],
+      "relatedTo": [
+        "saaremaa_vald_benefit_toimetulekutoetus"
+      ],
+      "officialUrl": null,
+      "fileUrls": [
+        "https://www.saaremaavald.ee/sites/default/files/documents/2026-02/Lisa%202%20Varaline%20seis%20%28lisa%202B%29%202026.docx"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "toimetulekutoetus_lisa2_2026_docx",
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_form_toimetulekutoetuse_lisa_2_varaline_seis",
+      "document_id": "saaremaa_vald_form_toimetulekutoetuse_lisa_2_varaline_seis",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "04135001ca8ee804131ea0ee877baeb9406c45494ed840c6c209cb819c8f27ac",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_form_matusetoetuse_taotlus",
+      "canonical_item_id": "saaremaa_vald:form:matusetoetuse_taotlus",
+      "itemType": "form",
+      "title": "Matusetoetuse taotlus",
+      "status": "active",
+      "summary": "Matusetoetuse taotlusvorm, mida kasutatakse 250-eurose matusetoetuse taotlemiseks. Taotlusele lisatakse isikut tõendav dokument ja surmatõend.",
+      "sourceKeys": [
+        "matusetoetus_docx",
+        "matusetoetus_eteenindus",
+        "matusetoetus_page",
+        "matusetoetus_pdf"
+      ],
+      "format": "pdf/docx/web",
+      "submissionChannels": [
+        "iseteenindus",
+        "kohapeal"
+      ],
+      "relatedTo": [
+        "saaremaa_vald_benefit_matusetoetus"
+      ],
+      "officialUrl": null,
+      "fileUrls": [
+        "https://www.saaremaavald.ee/sites/default/files/documents/2024-02/Matusetoetus%20uus.pdf",
+        "https://www.saaremaavald.ee/sites/default/files/documents/2024-02/Matusetoetus%20uus.docx",
+        "https://iseteenindus.saaremaavald.ee"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "matusetoetus_docx",
+        "matusetoetus_eteenindus",
+        "matusetoetus_page",
+        "matusetoetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_form_matusetoetuse_taotlus",
+      "document_id": "saaremaa_vald_form_matusetoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "376f7a3df66e18faebfc50e70763f714de7210ff6a65167dedc671549f4d4016",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_form_sunnitoetuse_taotlus",
+      "canonical_item_id": "saaremaa_vald:form:sunnitoetuse_taotlus",
+      "itemType": "form",
+      "title": "Sünnitoetuse taotlus",
+      "status": "active",
+      "summary": "Sünnitoetuse taotlusvorm, millega taotletakse 400-eurost sünnitoetust kolme kuu jooksul pärast lapse sünni registreerimist.",
+      "sourceKeys": [
+        "sunnitoetus_docx",
+        "sunnitoetus_eteenindus",
+        "sunnitoetus_page",
+        "sunnitoetus_pdf"
+      ],
+      "format": "pdf/docx/web",
+      "submissionChannels": [
+        "iseteenindus",
+        "kohapeal"
+      ],
+      "relatedTo": [
+        "saaremaa_vald_benefit_sunnitoetus"
+      ],
+      "officialUrl": null,
+      "fileUrls": [
+        "https://www.saaremaavald.ee/media/4758/download",
+        "https://www.saaremaavald.ee/media/4755/download",
+        "https://iseteenindus.saaremaavald.ee"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "sunnitoetus_docx",
+        "sunnitoetus_eteenindus",
+        "sunnitoetus_page",
+        "sunnitoetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_form_sunnitoetuse_taotlus",
+      "document_id": "saaremaa_vald_form_sunnitoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "d505a5a0d0468a5186abc9b1a81abfdfc5a19b31f29c1aa920090e3c71cb6c02",
+      "evidence_allowed": true
+    },
+    {
+      "id": "saaremaa_vald_form_ranitsatoetuse_e_taotlus",
+      "canonical_item_id": "saaremaa_vald:form:ranitsatoetuse_e_taotlus",
+      "itemType": "form",
+      "title": "Ranitsatoetuse e-taotlus ARNOs",
+      "status": "active",
+      "summary": "Ranitsatoetuse taotlus esitatakse haridusteenuste haldamise süsteemis ARNO hiljemalt 10. septembriks.",
+      "sourceKeys": [
+        "ranitsatoetus_arno",
+        "ranitsatoetus_page"
+      ],
+      "format": "web_form",
+      "submissionChannels": [
+        "ARNO iseteenindus"
+      ],
+      "relatedTo": [
+        "saaremaa_vald_benefit_ranitsatoetus"
+      ],
+      "officialUrl": "https://arno.saaremaavald.ee",
+      "fileUrls": [
+        "https://arno.saaremaavald.ee"
+      ],
+      "sections_present": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "county": "Saaremaa",
+      "source_keys": [
+        "ranitsatoetus_arno",
+        "ranitsatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "saaremaa_vald_form_ranitsatoetuse_e_taotlus",
+      "document_id": "saaremaa_vald_form_ranitsatoetuse_e_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://arno.saaremaavald.ee",
+      "content_hash": "b6af1e27547313960c5a7642b39db2ffe413ea62717f46431d343861afc8b6c7",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Saaremaa vald",
+  "checked_at": "2026-04-30",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

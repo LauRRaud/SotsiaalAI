@@ -1,0 +1,82 @@
+{
+  "docId": "sotsiaaltoo-2-2017",
+  "articleId": "kiriku-sotsiaaltoo-2017-2",
+  "title": "Kiriku tehtav sotsiaaltöö keskendub inimeste võimestamisele",
+  "authors": [
+    "Maria-Elisa Tuulik"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2017",
+  "section": "Projekt",
+  "pageRange": "80-82",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade Eesti Evangeelse Luterliku Kiriku, selle koguduste ja perekeskuse tehtavast sotsiaaltööst, keskmes 2015. aasta lõpus alanud Läänemere regiooni Interreg programmi projekt SEMPRE. Projekti eesmärk on anda maapiirkondade inimestele ja asutustele võimalusi luua koostöövorme, et sotsiaalteenused oleksid kohapeal kättesaadavad. Tegevused on käivitunud viies maakonnas: Harjumaal, Lääne-Virumaal, Ida-Virumaal, Põlvamaal ja Võrumaal.",
+  "tags": [
+    "kirik",
+    "SEMPRE",
+    "kogukonnatöö",
+    "võimestamine",
+    "maapiirkonnad",
+    "tugiisik"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2-2017_veebi_link_Part23.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2017-kiriku-sotsiaaltoo-2017-2",
+  "source_sha256": "a076bb23d93674db8eeae4d8c392bfb320f91277f1cf503abf9226135fa849b3",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2017-kiriku-sotsiaaltoo-2017-2",
+    "previous_source_path": "Sotsiaaltoo_2-2017_veebi_link_Part23.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2-2017_veebi_link_Part23.pdf",
+    "reference_stored_source_sha256": "a5af72e27227db004aca39ca590641f374216b907a2f52d5acabf3e593ce5279",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf",
+      "source_sha256": "609af110244e684ccbb68aea9504f2490fce2852b1e7caa7bedacb621d661a8a",
+      "pdf_start_page": 82,
+      "pdf_end_page": 84,
+      "printed_page_range": "80-82",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 84,
+      "source_regions": [
+        {
+          "source_pdf_page": 82,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 83,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 84,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "80-82",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf"
+    },
+    "server_page_range": "80-82"
+  }
+}

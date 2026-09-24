@@ -1,0 +1,111 @@
+{
+  "generated_at": "2026-08-14T09:30:05.572Z",
+  "server": {
+    "registry_entries": 5824,
+    "active_documents": 5819,
+    "deleted_tombstones_excluded": 5,
+    "active_zero_chunk_documents": 0,
+    "service_expected": "active"
+  },
+  "repairs": {
+    "ocr_documents_repaired": 7,
+    "ocr_chunks_after": {
+      "sotsiaalkindlustusamet_rus": 5,
+      "sotsiaalkindlustusamet_seksuaalivakivallan_kriisikeskukset_fin": 6,
+      "sotsiaalkindlustusamet_seksuaalsest_ahistamisest_vaba_ooelu_juhend": 25,
+      "sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est": 5,
+      "sotsiaalkindlustusamet_sexual_assault_crisis_centre_eng": 5,
+      "sotsiaalkindlustusamet_ua": 5,
+      "tarkvanem_tooleht_rahunemispaus": 4
+    },
+    "search_verified": true,
+    "duplicate_legacy_ids_deleted": 5,
+    "deleted_ids": {
+      "paasteamet-hoolekande-ja-tervishoiuasutuste-tuleohutus": {
+        "status": "DELETED",
+        "chunks": 0,
+        "source_http_status": 404,
+        "canonical": "paasteamet_hoolekande_ja_tervishoiuasutuste_tuleohutus_pdf",
+        "canonical_chunks": 35
+      },
+      "harno-opitulemuste-vahendamine-asendamine-ja-oppeainest-vabastamine": {
+        "status": "DELETED",
+        "chunks": 0,
+        "source_http_status": 404,
+        "canonical": "harno_opitulemuste_vahendamine_asendamine_ja_kohustusliku_oppeaine",
+        "canonical_chunks": 69
+      },
+      "peaasi-ee-koolilaste-ja-noorte-vaimne-tervis": {
+        "status": "DELETED",
+        "chunks": 0,
+        "source_http_status": 404,
+        "canonical": "peaasi_ee_koolilaste_ja_noorte_vaimne_tervis",
+        "canonical_chunks": 32
+      },
+      "ska-seksuaalvagivalla-kriisiabikeskusi-tutvustav-voldik-est": {
+        "status": "DELETED",
+        "chunks": 0,
+        "source_http_status": 404,
+        "canonical": "sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est",
+        "canonical_chunks": 5
+      },
+      "tarkvanem-tooleht-abikusimused-vestluseks-algkoolilapsega": {
+        "status": "DELETED",
+        "chunks": 0,
+        "source_http_status": 404,
+        "canonical": "tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega",
+        "canonical_chunks": 2
+      }
+    }
+  },
+  "local": {
+    "coverage": {
+      "generatedAt": "2026-08-14T09:23:30.568Z",
+      "serverInventory": "docs/Andmebaas/RAG/rag_server_documents.json",
+      "serverDocuments": 5819,
+      "serverRegistryDocuments": 5819,
+      "deletedTombstonesExcluded": 0,
+      "localFullContent": 5809,
+      "localMetadataOnly": 8,
+      "notFound": 2,
+      "byteIdenticalToServerProven": 0,
+      "limitation": "Server inventory has no content hashes or full text, so ID/URL matches do not prove byte-identical content."
+    },
+    "source_master_pdfs": {
+      "total": 180,
+      "local_file_exists": 174,
+      "download_failed": 6
+    },
+    "remaining_gap_summary": {
+      "generated_at": "2026-08-14T09:23:30.698Z",
+      "server_documents": 5819,
+      "confirmed_local_full_content": 5809,
+      "confirmed_missing_local": 2,
+      "local_metadata_only": 8,
+      "server_zero_chunk_sources": 0,
+      "server_zero_chunk_documents": 0,
+      "failed_pdf_downloads": 6,
+      "duplicate_source_matches": 0,
+      "master_entries_missing_from_server": 156,
+      "master_html_missing_from_server": 143,
+      "master_pdf_missing_from_server": 13,
+      "missing_html_referenced_only": 137,
+      "missing_html_ingest_candidate": 6,
+      "missing_pdf_needs_review": 7,
+      "missing_pdf_ingest_candidate": 6,
+      "strong_content_matches_with_id_drift": 20,
+      "server_matches_master_identity_not_proven": 167,
+      "master_matches_freshness_not_proven": 167,
+      "raw_html_snapshots": 0,
+      "note": "Categories overlap and must not be added together. Source-master identity and freshness are not proven because the normalized server export omits those fields."
+    }
+  },
+  "boundaries": {
+    "maardu_server_documents_changed": false,
+    "reason": "Maardu records are active and searchable; their gap is local source mirroring, not a server defect.",
+    "byte_identity_of_all_active_server_documents": "NOT_PROVEN",
+    "freshness_of_source_master_matches": "NOT_PROVEN",
+    "application_code_deployed": false,
+    "git_push": false
+  }
+}

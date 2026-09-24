@@ -1,0 +1,46 @@
+{
+  "docId": "sotsiaaltoo-1-2022",
+  "articleId": "kunstiteraapilise-grupitoo-sobivus-ja-moju-vanemaealise-lahedase-hooldaja-2022-1",
+  "title": "Kunstiteraapilise grupitöö sobivus ja mõju vanemaealise lähedase hooldaja hoolduskoormuse ja üldise stressitaseme vähendamisel",
+  "authors": [
+    "Kristiina Kask",
+    "Eda Heinla",
+    "Marika Ratnik"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2022",
+  "section": "Uurimus",
+  "pageRange": "77-83",
+  "pdf_start_page": 1,
+  "pdf_end_page": 13,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimus kunstiteraapilise grupitöö sobivusest vanemaealise lähedase hooldajatele ning selle mõjust hoolduskoormusele ja üldisele stressitasemele.",
+  "tags": [
+    "kunstiteraapia",
+    "grupitöö",
+    "omastehooldaja",
+    "hoolduskoormus",
+    "stress",
+    "vanemaealine"
+  ],
+  "source_type": "file",
+  "source_path": "2022_artikkel_16_kunstiteraapiline_grupitoo.pdf",
+  "source_url": "https://www.tai.ee/et/valjaanded/sotsiaaltoo-12022",
+  "mapping_status": "VERIFIED",
+  "mapping_checked": "2026-08-14",
+  "mapping_note": "Pealkiri, autor(id) ja kohalik täistekst kontrollitud artikli enda ning väljaandja ametliku allika järgi.",
+  "document_id": "sotsiaaltoo-1-2022-kunstiteraapilise-grupitoo-sobivus-ja-moju-vanemaealise-lahedase-hooldaja-2022-1",
+  "source_format": "pdf",
+  "source_sha256": "b8159310f7f7d05aad25db2d8bcd80ebb4fb433dead532849febf5de32377f41",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2022-kunstiteraapilise-grupitoo-sobivus-ja-moju-vanemaealise-lahedase-hooldaja-2022-1",
+    "previous_source_path": "2022_artikkel_16_kunstiteraapiline_grupitoo.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b8159310f7f7d05aad25db2d8bcd80ebb4fb433dead532849febf5de32377f41",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

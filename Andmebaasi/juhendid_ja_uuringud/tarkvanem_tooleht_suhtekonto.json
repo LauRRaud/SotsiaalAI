@@ -1,0 +1,141 @@
+{
+  "source_path": "tarkvanem_tooleht_suhtekonto.pdf",
+  "source_format": "pdf",
+  "sha256": "dde3f058a75ec663d1f322e0c2bd04855c149ce26e9810eb4435a3ac9c8735e7",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/tarkvanem_tooleht_suhtekonto.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "tarkvanem_tooleht_suhtekonto",
+          "title": "TÖÖLEHT: Suhtekonto",
+          "url": "https://tarkvanem.ee/wp-content/uploads/2023/11/Suhtekonto_tooleht.pdf",
+          "normalized_url": "https://tarkvanem.ee/wp-content/uploads/2023/11/Suhtekonto_tooleht.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "method_guidance",
+          "publisher": "Tarkvanem",
+          "organization_id": "tarkvanem",
+          "collection_hint": "guidance_and_methods",
+          "evidence_role": "practice_guidance",
+          "topic_tags": [
+            "Tarkvanem",
+            "tööleht",
+            "lapse kasvatamine",
+            "suhtlemisoskused",
+            "praktiline töövahend"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Partnerid",
+            "heading_3": "Tarkvanem",
+            "heading_4": null,
+            "line": 627,
+            "order": 318
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "TÖÖLEHT: Suhtekonto"
+          ],
+          "collection_hints": [
+            "organization_guidelines"
+          ],
+          "source_types_seen": [
+            "official_guideline"
+          ],
+          "resource_types_seen": [
+            "method_guidance"
+          ],
+          "publishers_seen": [
+            "Tarkvanem"
+          ],
+          "organizations_seen": [
+            "tarkvanem"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Partnerid",
+              "heading_3": "Tarkvanem",
+              "line": 627,
+              "order": 318
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://tarkvanem.ee/wp-content/uploads/2023/11/Suhtekonto_tooleht.pdf"
+        },
+        "final_url": "https://tarkvanem.ee/wp-content/uploads/2023/11/Suhtekonto_tooleht.pdf",
+        "redirects": [],
+        "sha256": "dde3f058a75ec663d1f322e0c2bd04855c149ce26e9810eb4435a3ac9c8735e7",
+        "bytes": 282507,
+        "downloaded_at": "2026-08-14T08:00:58.886Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "tarkvanem_tooleht_suhtekonto",
+      "metadata": {
+        "createdAt": "2026-06-12T03:59:52.741843+00:00",
+        "type": "FILE",
+        "fileName": "Suhtekonto_tooleht.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:59:52.672341+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/e80b70d41f05/Suhtekonto_tooleht.pdf",
+        "title": "TÖÖLEHT: Suhtekonto",
+        "description": "Source master headings: Partnerid; Tarkvanem",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2023,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–5",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "organization_guidelines",
+        "source_id": "tarkvanem_tooleht_suhtekonto",
+        "document_id": "tarkvanem_tooleht_suhtekonto",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "9806079568040aab9269fd30db0f29b38fe7f83416e05a81bd22fc81190e947d",
+        "url": "https://tarkvanem.ee/wp-content/uploads/2023/11/Suhtekonto_tooleht.pdf",
+        "url_canonical": "https://tarkvanem.ee/wp-content/uploads/2023/11/Suhtekonto_tooleht.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "tarkvanem_tooleht_suhtekonto",
+        "updatedAt": "2026-06-12T03:59:52.741866+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

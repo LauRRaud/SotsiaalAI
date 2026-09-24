@@ -1,0 +1,76 @@
+{
+  "source": {
+    "source_id": "astangu_erivajaduste_alase_teadlikkuse_tostmine",
+    "title": "Erivajaduste alase teadlikkuse tõstmine",
+    "url": "https://www.astangu.ee/sites/default/files/media/To%CC%88o%CC%88vahend_2_moodul_1_Erivajaduste_alase_teadlikkuse_to%CC%83stmine.pdf",
+    "normalized_url": "https://www.astangu.ee/sites/default/files/media/Töövahend_2_moodul_1_Erivajaduste_alase_teadlikkuse_tõstmine.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Astangu",
+    "organization_id": "astangu",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Astangu Kutserehabilitatsiooni Keskus",
+      "puue",
+      "puudega inimene",
+      "erivajadus",
+      "infomaterjal",
+      "Astangu"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "Astangu",
+      "heading_4": null,
+      "line": 575,
+      "order": 295
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Erivajaduste alase teadlikkuse tõstmine"
+    ],
+    "collection_hints": [
+      "organization_materials"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Astangu"
+    ],
+    "organizations_seen": [
+      "astangu"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "Astangu",
+        "line": 575,
+        "order": 295
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.astangu.ee/sites/default/files/media/Töövahend_2_moodul_1_Erivajaduste_alase_teadlikkuse_tõstmine.pdf"
+  },
+  "final_url": "https://www.astangu.ee/sites/default/files/media/To%CC%88o%CC%88vahend_2_moodul_1_Erivajaduste_alase_teadlikkuse_to%CC%83stmine.pdf",
+  "redirects": [],
+  "sha256": "bcafc7d41fe377d12ebaab46ca8da1f51145f1a4e10d33ac4067e74ea685615b",
+  "bytes": 1433965,
+  "downloaded_at": "2026-08-14T08:00:56.812Z"
+}

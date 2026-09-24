@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-1-2022",
+  "articleId": "vana-inimene-igatseb-koju-tagasi-2022-1",
+  "title": "Vana inimene igatseb koju tagasi",
+  "authors": [
+    "Kärt Muller",
+    "Merle Malvet"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2022",
+  "section": "Õigus",
+  "pageRange": "24-27",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Õiguskantsleri nõunike artikkel käsitleb juhtumit, kus eakas inimene paigutati hooldekodusse, kuigi ta soovis elada oma kodus, ja analüüsib kohaliku omavalitsuse tegevust õiguslikust vaatenurgast. Autorid rõhutavad, et sotsiaaltöötajad peavad abivajadust terviklikult hindama, lähtuma inimese enda tahtest ja kasutama kõige vähem piiravaid lahendusi. Artikkel selgitab, millal ja kuidas võib piirata inimese õigust ise elukohta valida, milline on eestkostja roll ning kui tähtis on otsuste põhjendamine ja dokumenteerimine, et kaitsta nii eakate põhiõigusi kui ka sotsiaaltöötajate professionaalset tegevust.",
+  "tags": [
+    "eakad",
+    "õiguskantsler",
+    "hooldekodu",
+    "õigus elukohale",
+    "eestkoste",
+    "sotsiaaltöö eetika",
+    "abivajaduse hindamine"
+  ],
+  "source_type": "file",
+  "source_path": "2022_artikkel_6_vana_inimene_igatseb_koju.pdf",
+  "document_id": "sotsiaaltoo-1-2022-vana-inimene-igatseb-koju-tagasi-2022-1",
+  "source_format": "pdf",
+  "source_sha256": "8a5f25748bb44f3fd5a3a3e07a2a2f6a554ee3c73b026a4939baaa6f47b8fad3",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2022-vana-inimene-igatseb-koju-tagasi-2022-1",
+    "previous_source_path": "2022_artikkel_6_vana_inimene_igatseb_koju.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "8a5f25748bb44f3fd5a3a3e07a2a2f6a554ee3c73b026a4939baaa6f47b8fad3",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

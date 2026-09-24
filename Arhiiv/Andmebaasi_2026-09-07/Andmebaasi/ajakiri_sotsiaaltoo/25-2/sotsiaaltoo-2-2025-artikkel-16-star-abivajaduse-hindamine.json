@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-2-2025",
+  "articleId": "taisealise-inimese-abivajaduse-hindamine-uued-voimalused-star-is-2025-2",
+  "title": "Täisealise inimese abivajaduse hindamine – uued võimalused STAR-is",
+  "authors": [
+    "Aika Kaukver",
+    "Evelyn Kaasik"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2025",
+  "section": "Metoodika",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel kirjeldab, kuidas on STAR registrisse arendatud uus lahendus täisealise inimese abivajaduse hindamiseks. Selgitatakse eluvaldkondadepõhist hindamist, RFK/ICF kasutamist ning andmete koondamist ühest kohast. Tuuakse välja, kuidas standardiseeritud hindamine vähendab bürokraatiat, toetab õiglasemaid otsuseid ja koostööd teiste süsteemidega.",
+  "tags": [
+    "abivajaduse hindamine",
+    "STAR",
+    "täisealised",
+    "RFK",
+    "ICF",
+    "eluvaldkonnad",
+    "andmekogud",
+    "juhtumikorraldus"
+  ],
+  "source_type": "file",
+  "source_path": "Täisealise inimese abivajaduse hindamine – uued võimalused STAR-is_2_2025.pdf",
+  "pageRange": "1–8",
+  "document_id": "sotsiaaltoo-2-2025-taisealise-inimese-abivajaduse-hindamine-uued-voimalused-star-is-2025-2",
+  "source_format": "pdf",
+  "source_sha256": "938c2506917125e2b6d7571edf655506252c57b7b58cdfa6ff4a230c53023f89",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2025-taisealise-inimese-abivajaduse-hindamine-uued-voimalused-star-is-2025-2",
+    "previous_source_path": "Täisealise inimese abivajaduse hindamine – uued võimalused STAR-is_2_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "938c2506917125e2b6d7571edf655506252c57b7b58cdfa6ff4a230c53023f89",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

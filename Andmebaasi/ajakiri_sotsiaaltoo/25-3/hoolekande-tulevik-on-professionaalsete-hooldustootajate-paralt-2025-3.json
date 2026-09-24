@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2025",
+  "articleId": "hoolekande-tulevik-on-professionaalsete-hooldustootajate-paralt-2025-3",
+  "title": "Hoolekande tulevik on professionaalsete hooldustöötajate päralt",
+  "authors": [
+    "Jaanika Luus",
+    "Maarika Kärp"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2025",
+  "section": "Tööalane areng",
+  "pageRange": "65-69",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel annab ülevaate hooldustöötaja uuendatud kutsestandarditest ning selgitab, miks kutsealane ettevalmistus, töökogemus ja pidev täiendamine on teenuse kvaliteedi jaoks keskse tähtsusega. Samuti käsitletakse uusi tulevikuoskusi, sealhulgas digipädevust ja enesesäästlikke töövõtteid.",
+  "tags": [
+    "hooldustöötaja",
+    "kutsestandard",
+    "kutseõpe",
+    "täienduskoolitus",
+    "teenuse kvaliteet",
+    "digikirjaoskus",
+    "professionaalsus"
+  ],
+  "source_type": "file",
+  "source_path": "11web_sotsiaaltoo_3-2025.pdf",
+  "document_id": "sotsiaaltoo-3-2025-hoolekande-tulevik-on-professionaalsete-hooldustootajate-paralt-2025-3",
+  "source_format": "pdf",
+  "source_sha256": "145f68c9c039c3269d18817414e3f9e5aa49ca04b4e8c151929a7538f00759af",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2025-hoolekande-tulevik-on-professionaalsete-hooldustootajate-paralt-2025-3",
+    "previous_source_path": "11web_sotsiaaltoo_3-2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "145f68c9c039c3269d18817414e3f9e5aa49ca04b4e8c151929a7538f00759af",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

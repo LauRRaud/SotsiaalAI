@@ -1,0 +1,1452 @@
+{
+  "schemaVersion": "kov-sources-v2.5-sourcepackage",
+  "docId": "kov-kohtla-jarve-linn",
+  "document_id": "kov-kohtla-jarve-linn",
+  "municipality": "Kohtla-Järve linn",
+  "municipality_id": "kohtla_jarve_linn",
+  "county": "Ida-Virumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "sources": [
+    {
+      "source_id": "home",
+      "title": "Kohtla-Järve linna ametlik veebileht",
+      "url": "https://www.kohtla-jarve.ee",
+      "url_canonical": "https://www.kohtla-jarve.ee",
+      "normalized_url": "https://www.kohtla-jarve.ee/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "navigation",
+        "overview"
+      ],
+      "document_id": "home",
+      "source_key": "home",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_resource_konsulaarabi_",
+        "kohtla_jarve_linn_resource_kriisiinfotelefon_",
+        "kohtla_jarve_linn_resource_perearsti_nouandetelefon_1220"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "f0469d117afdb3290d9caa0adfb2a58cf52750e5c6351d3d775cf5b5cc4adb9e",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "home"
+    },
+    {
+      "source_id": "social_overview",
+      "title": "Pere, sotsiaal ja tervishoid",
+      "url": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/",
+      "url_canonical": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/",
+      "normalized_url": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "navigation",
+        "social_structure"
+      ],
+      "document_id": "social_overview",
+      "source_key": "social_overview",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "289c233b89b16bb0e754a2cd0140f1d9277ddef5414aa5e96c253dbf19aabd98",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "social_overview"
+    },
+    {
+      "source_id": "sotsiaalteenused_overview",
+      "title": "Sotsiaalteenused",
+      "url": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "url_canonical": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "normalized_url": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "services",
+        "forms",
+        "general_conditions"
+      ],
+      "document_id": "sotsiaalteenused_overview",
+      "source_key": "sotsiaalteenused_overview",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_form_sotsiaalteenuse_taotlus_doc",
+        "kohtla_jarve_linn_form_sotsiaalteenuse_taotlus_e_vorm",
+        "kohtla_jarve_linn_form_sotsiaalteenuse_taotlus_pdf",
+        "kohtla_jarve_linn_service_muu_vajalik_sotsiaalteenus_voi_abi"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "ffaafae228e02ede5ac20dc205f03bd02cef56b95ba9c3b7b1091bd25e06803f",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sotsiaalteenused_overview"
+    },
+    {
+      "source_id": "sotsiaaltoetused_overview",
+      "title": "Sotsiaaltoetused",
+      "url": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "url_canonical": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "normalized_url": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "benefits",
+        "general_application"
+      ],
+      "document_id": "sotsiaaltoetused_overview",
+      "source_key": "sotsiaaltoetused_overview",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "e5de1037ab19089c254c47d252e4f0695cba26523a41ac7f862eabfb1c49a654",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sotsiaaltoetused_overview"
+    },
+    {
+      "source_id": "koduteenus_page",
+      "title": "Koduteenus",
+      "url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/koduteenus/",
+      "url_canonical": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/koduteenus/",
+      "normalized_url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/koduteenus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service",
+        "forms"
+      ],
+      "document_id": "koduteenus_page",
+      "source_key": "koduteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_service_koduteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "eb2c660114e70ef0c20ac61a17e67b2035c85bb635788cc5896b44f059ae6b38",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "koduteenus_page"
+    },
+    {
+      "source_id": "uldhooldusteenus_page",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/valjaspool-kodu-osutatav-uldhooldusteenus/",
+      "url_canonical": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/valjaspool-kodu-osutatav-uldhooldusteenus/",
+      "normalized_url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/valjaspool-kodu-osutatav-uldhooldusteenus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service",
+        "forms"
+      ],
+      "document_id": "uldhooldusteenus_page",
+      "source_key": "uldhooldusteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_service_valjaspool_kodu_osutatav_uldhooldusteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "aab7168a088611f8d5f3d57e7c8d7fd9c7fbd7eeeba1b338ea2ff22b3e0f9042",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "uldhooldusteenus_page"
+    },
+    {
+      "source_id": "tugiisikuteenus_page",
+      "title": "Tugiisikuteenus",
+      "url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/tugiisikuteenus/",
+      "url_canonical": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/tugiisikuteenus/",
+      "normalized_url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/tugiisikuteenus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service",
+        "forms"
+      ],
+      "document_id": "tugiisikuteenus_page",
+      "source_key": "tugiisikuteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_form_vabas_vormis_puudega_lapse_teenuse_avaldus",
+        "kohtla_jarve_linn_resource_mtu_virumaa_laste_ja_perede_tugikeskus",
+        "kohtla_jarve_linn_service_tugiisikuteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "b402abd88c32cc0f1be8f9df27e422e6945e76ad62f83030112f6748356336d5",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "tugiisikuteenus_page"
+    },
+    {
+      "source_id": "taisealise_isiku_hooldus_page",
+      "title": "Täisealise isiku hooldus",
+      "url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/taisealise-isiku-hooldus/",
+      "url_canonical": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/taisealise-isiku-hooldus/",
+      "normalized_url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/taisealise-isiku-hooldus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service",
+        "forms"
+      ],
+      "document_id": "taisealise_isiku_hooldus_page",
+      "source_key": "taisealise_isiku_hooldus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_service_taisealise_isiku_hooldus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "0f76f96f7e68d756cbe6169a942b9e2c15a8c5bcf698955c9d5f9ee3a3d21cc3",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "taisealise_isiku_hooldus_page"
+    },
+    {
+      "source_id": "isikliku_abistaja_teenus_page",
+      "title": "Isikliku abistaja teenus",
+      "url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/isikliku-abistaja-teenus/",
+      "url_canonical": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/isikliku-abistaja-teenus/",
+      "normalized_url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/isikliku-abistaja-teenus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service",
+        "forms"
+      ],
+      "document_id": "isikliku_abistaja_teenus_page",
+      "source_key": "isikliku_abistaja_teenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_service_isikliku_abistaja_teenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "cf4f1a514efe7bac858effb08fa663f9519428bd3a393ce88a4bd181aa736e63",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "isikliku_abistaja_teenus_page"
+    },
+    {
+      "source_id": "varjupaigateenus_page",
+      "title": "Varjupaigateenus",
+      "url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/varjupaigateenus/",
+      "url_canonical": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/varjupaigateenus/",
+      "normalized_url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/varjupaigateenus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service",
+        "forms"
+      ],
+      "document_id": "varjupaigateenus_page",
+      "source_key": "varjupaigateenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_resource_mtu_ahtme_varjupaik",
+        "kohtla_jarve_linn_service_varjupaigateenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "20b53b7ad23b0f016eac6f30878d46f3d513b7ea633e81cb997360e7aa746415",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "varjupaigateenus_page"
+    },
+    {
+      "source_id": "turvakoduteenus_page",
+      "title": "Turvakoduteenus",
+      "url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/turvakoduteenus/",
+      "url_canonical": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/turvakoduteenus/",
+      "normalized_url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/turvakoduteenus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service",
+        "forms"
+      ],
+      "document_id": "turvakoduteenus_page",
+      "source_key": "turvakoduteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_resource_kohtla_jarve_laste_turvakodu",
+        "kohtla_jarve_linn_service_turvakoduteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "ccad44914282055d6ece377f2cf8b57527b1cda0f6ad3e18547761b298fbdd21",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "turvakoduteenus_page"
+    },
+    {
+      "source_id": "sotsiaaltransporditeenus_page",
+      "title": "Sotsiaaltransporditeenus",
+      "url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/sotsiaaltransporditeenus/",
+      "url_canonical": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/sotsiaaltransporditeenus/",
+      "normalized_url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/sotsiaaltransporditeenus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service",
+        "forms"
+      ],
+      "document_id": "sotsiaaltransporditeenus_page",
+      "source_key": "sotsiaaltransporditeenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_service_sotsiaaltransporditeenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "4372285c7a2afed3b5752ce62d808e71c6107b9a7effc5793d5b455f60b7ca57",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sotsiaaltransporditeenus_page"
+    },
+    {
+      "source_id": "eluruumi_tagamise_teenus_page",
+      "title": "Eluruumi tagamise teenus",
+      "url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/eluruumi-tagamise-teenus/",
+      "url_canonical": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/eluruumi-tagamise-teenus/",
+      "normalized_url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/eluruumi-tagamise-teenus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service",
+        "forms"
+      ],
+      "document_id": "eluruumi_tagamise_teenus_page",
+      "source_key": "eluruumi_tagamise_teenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_resource_kohtla_jarve_sotsiaalmaja",
+        "kohtla_jarve_linn_service_eluruumi_tagamise_teenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "bbcc239aaf2c80fa29e192a7e1a39ee18c3aa60409264913463639bbf9bb457f",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "eluruumi_tagamise_teenus_page"
+    },
+    {
+      "source_id": "volanoustamine_page",
+      "title": "Võlanõustamine",
+      "url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/volanoustamine/",
+      "url_canonical": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/volanoustamine/",
+      "normalized_url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/volanoustamine/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service",
+        "forms"
+      ],
+      "document_id": "volanoustamine_page",
+      "source_key": "volanoustamine_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_service_volanoustamine"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "ff296df7f404a3f2eb85f487e66a1cb13b85cebe7d21e15ee09f744e44e09969",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "volanoustamine_page"
+    },
+    {
+      "source_id": "lapsehoiuteenus_page",
+      "title": "Lapsehoiuteenus",
+      "url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/lapsehoiuteenus/",
+      "url_canonical": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/lapsehoiuteenus/",
+      "normalized_url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/lapsehoiuteenus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service",
+        "forms"
+      ],
+      "document_id": "lapsehoiuteenus_page",
+      "source_key": "lapsehoiuteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_resource_mtu_puuetega_laste_tugikeskus_paikesekiir",
+        "kohtla_jarve_linn_service_lapsehoiuteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "958d354db35e781553916da998de2b17b2fc0aaf98a48106a9021787f21f21e0",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "lapsehoiuteenus_page"
+    },
+    {
+      "source_id": "asendushooldusteenus_page",
+      "title": "Asendushooldusteenus",
+      "url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/asendushooldusteenus/",
+      "url_canonical": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/asendushooldusteenus/",
+      "normalized_url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/asendushooldusteenus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service",
+        "forms"
+      ],
+      "document_id": "asendushooldusteenus_page",
+      "source_key": "asendushooldusteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_service_asendushooldusteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "6c7df45e60dfd9512eb97546c09b57f5ad2744b5822e056c711ac35a911d8fbc",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "asendushooldusteenus_page"
+    },
+    {
+      "source_id": "jarelhooldusteenus_page",
+      "title": "Järelhooldusteenus",
+      "url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/jarelhooldusteenus/",
+      "url_canonical": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/jarelhooldusteenus/",
+      "normalized_url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/jarelhooldusteenus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service",
+        "forms"
+      ],
+      "document_id": "jarelhooldusteenus_page",
+      "source_key": "jarelhooldusteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_service_jarelhooldusteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "4af3a3073df09d287e2c8e77ccaece6b2cd0780999dcc24b8bd01e4f0b50ea08",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "jarelhooldusteenus_page"
+    },
+    {
+      "source_id": "valtimatu_sotsiaalabi_page",
+      "title": "Vältimatu sotsiaalabi",
+      "url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/valtimatu-sotsiaalabi/",
+      "url_canonical": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/valtimatu-sotsiaalabi/",
+      "normalized_url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/valtimatu-sotsiaalabi/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service",
+        "forms"
+      ],
+      "document_id": "valtimatu_sotsiaalabi_page",
+      "source_key": "valtimatu_sotsiaalabi_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_service_valtimatu_sotsiaalabi"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "8edc367a354e452fd5fa4d2558118a8116abb195eea9362d0a3d204ffd7d7ea5",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "valtimatu_sotsiaalabi_page"
+    },
+    {
+      "source_id": "toimetulekutoetus_page",
+      "title": "Toimetulekutoetus",
+      "url": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/toimetulekutoetus/",
+      "url_canonical": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/toimetulekutoetus/",
+      "normalized_url": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/toimetulekutoetus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "benefit",
+        "forms"
+      ],
+      "document_id": "toimetulekutoetus_page",
+      "source_key": "toimetulekutoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_benefit_toimetulekutoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "43381a4e04a7d1c32fd5cf8020c2d4bdbc369ab4a9773a403ea1e21d2759c05d",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "toimetulekutoetus_page"
+    },
+    {
+      "source_id": "sissetulekust_soltuvad_toetused_page",
+      "title": "Sissetulekust sõltuvad toetused",
+      "url": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/sissetulekust-soltuvad-toetused/",
+      "url_canonical": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/sissetulekust-soltuvad-toetused/",
+      "normalized_url": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/sissetulekust-soltuvad-toetused/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "benefit",
+        "forms"
+      ],
+      "document_id": "sissetulekust_soltuvad_toetused_page",
+      "source_key": "sissetulekust_soltuvad_toetused_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_benefit_balloonigaasi_toetus",
+        "kohtla_jarve_linn_benefit_ettenagematu_olukorra_toetus",
+        "kohtla_jarve_linn_benefit_koolieelse_lasteasutuse_toitlustuskulude_toetus",
+        "kohtla_jarve_linn_benefit_kuttepuude_toetus",
+        "kohtla_jarve_linn_benefit_lastelaagri_toetus",
+        "kohtla_jarve_linn_benefit_lemmiklooma_mikrokiibi_toetus",
+        "kohtla_jarve_linn_benefit_opilase_soidukulude_toetus",
+        "kohtla_jarve_linn_benefit_oppeekskursiooni_toetus",
+        "kohtla_jarve_linn_benefit_oppevahendite_toetus",
+        "kohtla_jarve_linn_benefit_prillide_ja_invaabivahendi_toetus",
+        "kohtla_jarve_linn_benefit_ravi_ja_medtranspordi_toetus",
+        "kohtla_jarve_linn_benefit_riiete_ja_jalanoude_toetus",
+        "kohtla_jarve_linn_form_sissetulekust_soltuv_sotsiaaltoetus_doc",
+        "kohtla_jarve_linn_form_sissetulekust_soltuv_sotsiaaltoetus_pdf"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "501209ad6ef084cbebeeb6ba90bdcfaf7b24f3032753f189fc9989e43cc06d04",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sissetulekust_soltuvad_toetused_page"
+    },
+    {
+      "source_id": "universaaltoetused_page",
+      "title": "Universaaltoetused",
+      "url": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/universaaltoetused/",
+      "url_canonical": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/universaaltoetused/",
+      "normalized_url": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/universaaltoetused/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "benefit",
+        "forms"
+      ],
+      "document_id": "universaaltoetused_page",
+      "source_key": "universaaltoetused_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_benefit_puudega_lapse_hooldajatoetus",
+        "kohtla_jarve_linn_benefit_taisealise_isiku_hooldajatoetus",
+        "kohtla_jarve_linn_form_puudega_lapse_hooldajatoetus_doc",
+        "kohtla_jarve_linn_form_puudega_lapse_hooldajatoetus_pdf",
+        "kohtla_jarve_linn_form_taisealise_hooldajatoetus_doc",
+        "kohtla_jarve_linn_form_taisealise_hooldajatoetus_pdf"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "d90c22bf88d5c102689bdbfb248e88519c43f935e3a14c264e005f9b8fe23174",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "universaaltoetused_page"
+    },
+    {
+      "source_id": "sunnitoetus_page",
+      "title": "Sünnitoetus",
+      "url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/sunnitoetus/",
+      "url_canonical": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/sunnitoetus/",
+      "normalized_url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/sunnitoetus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "benefit",
+        "forms"
+      ],
+      "document_id": "sunnitoetus_page",
+      "source_key": "sunnitoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_benefit_lapse_sunnitoetus",
+        "kohtla_jarve_linn_form_sunnitoetus_i_doc",
+        "kohtla_jarve_linn_form_sunnitoetus_i_e_vorm",
+        "kohtla_jarve_linn_form_sunnitoetus_i_pdf",
+        "kohtla_jarve_linn_form_sunnitoetus_ii_doc",
+        "kohtla_jarve_linn_form_sunnitoetus_ii_pdf",
+        "kohtla_jarve_linn_form_sunnitoetus_iii_doc",
+        "kohtla_jarve_linn_form_sunnitoetus_iii_pdf"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "48192ca838cd9c40080a0c6304a92a20646fbc7cbe665e33b372a4fe65e302f6",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sunnitoetus_page"
+    },
+    {
+      "source_id": "esimese_klassi_toetus_page",
+      "title": "Haridus ja noored - esimese klassi lapse toetus",
+      "url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/haridus-ja-noored/",
+      "url_canonical": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/haridus-ja-noored/",
+      "normalized_url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/haridus-ja-noored/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "benefit",
+        "forms"
+      ],
+      "document_id": "esimese_klassi_toetus_page",
+      "source_key": "esimese_klassi_toetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_benefit_esimesse_klassi_mineva_lapse_toetus",
+        "kohtla_jarve_linn_form_esimese_klassi_toetus_doc",
+        "kohtla_jarve_linn_form_esimese_klassi_toetus_e_vorm",
+        "kohtla_jarve_linn_form_esimese_klassi_toetus_pdf"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "1ab0d8ba1947b35371d5ff11927cdfa4c074d6ea08eae0798f35ad5887683ad4",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "esimese_klassi_toetus_page"
+    },
+    {
+      "source_id": "matusetoetus_page",
+      "title": "Matusetoetus",
+      "url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/matusetoetus/",
+      "url_canonical": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/matusetoetus/",
+      "normalized_url": "https://kohtla-jarve.ee/juhtimine-ja-majandus/e-teenused-ja-blanketid/sotsiaal-ja-tervishoid/matusetoetus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "benefit",
+        "forms"
+      ],
+      "document_id": "matusetoetus_page",
+      "source_key": "matusetoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_benefit_matusetoetus",
+        "kohtla_jarve_linn_form_matusetoetus_doc",
+        "kohtla_jarve_linn_form_matusetoetus_e_vorm",
+        "kohtla_jarve_linn_form_matusetoetus_pdf"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "364027284ad176bd69421fdd2b2182eab7f0dec091575eb30bb1e781112974fa",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "matusetoetus_page"
+    },
+    {
+      "source_id": "puudega_inimesele_page",
+      "title": "Puudega inimesele",
+      "url": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/puudega-inimesele/",
+      "url_canonical": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/puudega-inimesele/",
+      "normalized_url": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/puudega-inimesele/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resources",
+        "contacts"
+      ],
+      "document_id": "puudega_inimesele_page",
+      "source_key": "puudega_inimesele_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_form_parkimiskaart_doc",
+        "kohtla_jarve_linn_form_parkimiskaart_pdf",
+        "kohtla_jarve_linn_form_parkimiskaart_vorm",
+        "kohtla_jarve_linn_resource_parkimiskaart_puudega_inimesele",
+        "kohtla_jarve_linn_resource_puudega_inimeste_soidusoodustused",
+        "kohtla_jarve_linn_resource_taisealisele_isikule_eestkostja_maaramine",
+        "kohtla_jarve_linn_resource_tasuta_oigusnoustamine_puuetega_inimestele"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "f160ea0d2adf741915f85317a118209a9af4204974408ca3f1eb40a5311ccd48",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "puudega_inimesele_page"
+    },
+    {
+      "source_id": "laste_ja_perede_heaolu_page",
+      "title": "Laste ja perede heaolu",
+      "url": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/laste-ja-perede-heaolu/",
+      "url_canonical": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/laste-ja-perede-heaolu/",
+      "normalized_url": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/laste-ja-perede-heaolu/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resources",
+        "contacts"
+      ],
+      "document_id": "laste_ja_perede_heaolu_page",
+      "source_key": "laste_ja_perede_heaolu_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_resource_hadaabi_",
+        "kohtla_jarve_linn_resource_kadunud_lapse_telefon_116000",
+        "kohtla_jarve_linn_resource_lasteabi_",
+        "kohtla_jarve_linn_resource_lastekaitse_toovaldkond"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "6cb91955ce972946dbba323949db0dd540a1f71d8a5e44aad1463a74e5d5503c",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "laste_ja_perede_heaolu_page"
+    },
+    {
+      "source_id": "hoolekandeasutused_page",
+      "title": "Hoolekandeasutused",
+      "url": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/hoolekanne-ja-projektid/hoolekandeasutused/",
+      "url_canonical": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/hoolekanne-ja-projektid/hoolekandeasutused/",
+      "normalized_url": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/hoolekanne-ja-projektid/hoolekandeasutused/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resources",
+        "contacts"
+      ],
+      "document_id": "hoolekandeasutused_page",
+      "source_key": "hoolekandeasutused_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_resource_kohtla_jarve_sotsiaalhoolekandekeskus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "56d236364230077ef96d3fcb615701075b1de5f93a6584bbb4ffc29e5cf889db",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "hoolekandeasutused_page"
+    },
+    {
+      "source_id": "turvalisuse_arenguprogramm_page",
+      "title": "Turvalisuse arenguprogramm",
+      "url": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/hoolekanne-ja-projektid/turvalisuse-arenguprogramm/",
+      "url_canonical": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/hoolekanne-ja-projektid/turvalisuse-arenguprogramm/",
+      "normalized_url": "https://kohtla-jarve.ee/pere-sotsiaal-ja-tervishoid/hoolekanne-ja-projektid/turvalisuse-arenguprogramm/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resources",
+        "contacts"
+      ],
+      "document_id": "turvalisuse_arenguprogramm_page",
+      "source_key": "turvalisuse_arenguprogramm_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_resource_turvalisuse_arenguprogramm"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "b01dd9b4147b8b348f27e3807d6bbe3d63275ab16ea300e52db839b4d38bba97",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "turvalisuse_arenguprogramm_page"
+    },
+    {
+      "source_id": "contact_page",
+      "title": "Kontakt",
+      "url": "https://kohtla-jarve.ee/linn-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "url_canonical": "https://kohtla-jarve.ee/linn-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "normalized_url": "https://kohtla-jarve.ee/linn-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "source_type": "contact_page",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kohtla-Järve Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "contacts"
+      ],
+      "document_id": "contact_page",
+      "source_key": "contact_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kohtla-Järve linn",
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kohtla_jarve_linn_contact_aljona_kopp",
+        "kohtla_jarve_linn_contact_arina_retukova",
+        "kohtla_jarve_linn_contact_elen_hobemae",
+        "kohtla_jarve_linn_contact_elizaveta_shilman",
+        "kohtla_jarve_linn_contact_evelyn_danilov",
+        "kohtla_jarve_linn_contact_helika_maeots",
+        "kohtla_jarve_linn_contact_jelena_rodina",
+        "kohtla_jarve_linn_contact_jelena_solomanjuk",
+        "kohtla_jarve_linn_contact_jessika_erzinka_lapina",
+        "kohtla_jarve_linn_contact_joosep_magi",
+        "kohtla_jarve_linn_contact_julia_lehtla",
+        "kohtla_jarve_linn_contact_julia_skolozhabskyy",
+        "kohtla_jarve_linn_contact_kerli_peenema",
+        "kohtla_jarve_linn_contact_kirke_kubarsepp",
+        "kohtla_jarve_linn_contact_ksenia_aleksejeva",
+        "kohtla_jarve_linn_contact_laivi_siitan",
+        "kohtla_jarve_linn_contact_lilia_falovskaja",
+        "kohtla_jarve_linn_contact_linnavalitsuse_uld_kontakt",
+        "kohtla_jarve_linn_contact_ljuba_kuptsova",
+        "kohtla_jarve_linn_contact_ljudmila_selivjorstova",
+        "kohtla_jarve_linn_contact_ljudmila_stalina",
+        "kohtla_jarve_linn_contact_maie_puusepp",
+        "kohtla_jarve_linn_contact_maria_popova",
+        "kohtla_jarve_linn_contact_maria_riimast",
+        "kohtla_jarve_linn_contact_merike_kukk",
+        "kohtla_jarve_linn_contact_natalja_gainulina",
+        "kohtla_jarve_linn_contact_oksana_zaitseva",
+        "kohtla_jarve_linn_contact_olga_vorobjova",
+        "kohtla_jarve_linn_contact_svetlana_sheina",
+        "kohtla_jarve_linn_contact_vitali_ljubimov"
+      ],
+      "sections_present": [],
+      "content_hash": "42b04e83d855ee71743466ffb629cd78215764ae8d28261d6fac5bce8614a5b0",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "contact_page"
+    }
+  ],
+  "municipality_name": "Kohtla-Järve linn",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

@@ -1,0 +1,27 @@
+{
+  "ingest": {
+    "ok": true,
+    "inserted": 5,
+    "docId": "sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est",
+    "pageRange": "1–2",
+    "shortRef": "Seksuaalvägivalla kriisiabikeskusi tutvustav voldik (EST). 2026. lk 1–2.",
+    "originalDocId": null,
+    "fileName": "Ohvriabi infovoldik SAK EST+bleed3mm.pdf",
+    "collection": "sotsiaalai",
+    "pageStart": null,
+    "pageEnd": null
+  },
+  "verification": {
+    "doc_id": "sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est",
+    "inserted": 5,
+    "chunks": 5,
+    "language": "et",
+    "search_hits": 3,
+    "search_doc_ids": [
+      "sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est",
+      "sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est",
+      "sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est"
+    ],
+    "query_sha256": "00b962590fcf3929c87a1e8e0512b2fb8be0ffb777750cc70b0e10c20a5e5cb5"
+  }
+}

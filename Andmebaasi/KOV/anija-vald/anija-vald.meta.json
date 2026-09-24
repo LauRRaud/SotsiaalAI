@@ -1,0 +1,66 @@
+{
+  "id": "anija-vald",
+  "municipality": "Anija vald",
+  "county": "Harjumaa",
+  "checkedAt": "2026-04-12",
+  "status": "ingest_ready",
+  "coverage": {
+    "services": 18,
+    "benefits": 13,
+    "resources": 4,
+    "contacts": 10,
+    "forms": 9,
+    "regulations": 0
+  },
+  "notes": [],
+  "unresolvedIssues": [
+    "The Sotsiaalkeskus page lists two phone numbers ( and ) for the special care instructors Maie Sirkas and Katrin Liiv but does not state which number belongs to which person or provide their email addresses.",
+    "Many social services (e.g., Koduteenus, väljaspool kodu osutatav üldhooldusteenus, tugiisikuteenus) only have brief descriptions on the services overview page with no dedicated detail pages; there may be additional eligibility, conditions or application details not captured.",
+    "The ‘Muud sotsiaalteenused’ PDF lists additional services like counselling, psychological support and sign‑language interpretation without separate detail pages; these services have been summarised collectively, and service‑specific information may be incomplete.",
+    "The ‘Puuetega inimeste eluaseme kohandamine’ programme is described as part of a project; it is unclear whether it is an ongoing service or a past initiative.",
+    "Some child protection resources referenced on the Lastekaitse page (e.g., PDFs such as ‘Vanemliku hoolitsuseta lapsed’ and ‘Psühholoogiline nõustamine’) were not processed; additional details may exist in these documents.",
+    "Contacts Liis Põrk and Eike Mägi are noted as being on leave; it is unclear who currently handles their responsibilities."
+  ],
+  "schemaVersion": "v2.5-sourcepackage",
+  "municipality_id": "anija_vald",
+  "municipality_name": "Anija vald",
+  "checked_at": "2026-04-12",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "collection_id": "kov_services",
+  "jurisdiction_level": "MUNICIPALITY",
+  "sourceRegisterFile": "anija-vald.sources.json",
+  "sourceCount": 17,
+  "counts": {
+    "services": 18,
+    "benefits": 13,
+    "resources": 4,
+    "contacts": 10,
+    "forms": 9,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "anija_vald",
+    "source_register_file": "anija-vald.sources.json",
+    "service_benefit_resource_items": 35,
+    "items_with_source_keys": 35,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 12,
+    "items_without_related_forms": 23,
+    "items_with_related_contacts": 35,
+    "items_without_related_contacts": 0,
+    "form_sources": 10,
+    "contact_sources": 1,
+    "regulation_sources": 0,
+    "warnings": [
+      "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "warnings": [
+    "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2022",
+  "articleId": "sotsiaalhoolekande-seaduse-ja-teiste-seaduste-muutmise-seadus-toob-uuendusi-2022-2",
+  "title": "Sotsiaalhoolekande seaduse ja teiste seaduste muutmise seadus toob uuendusi",
+  "authors": [
+    "Kadri Mets"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2022",
+  "section": "Korraldus",
+  "pageRange": "9-15",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Analüütiline ülevaade ulatuslikest muudatustest sotsiaalhoolekande seaduses ja mitmes teises valdkondlikus seaduses. Artikkel avab pikaajalise hoolduse mõiste, kirjeldab perekonnaseaduse muudatust, mille kohaselt lapselapsed ei pea enam vanavanema hoolduse eest tasuma, ning selgitab kohalike omavalitsuste rolli hoolduskoormusega inimeste toetamisel. Käsitletakse andmevahetuse parandamist riigi ja KOV-ide vahel, puude raskusastme tuvastamise muudatusi ning uusi võimalusi raske ja sügava puudega laste teenuste rahastamiseks.",
+  "tags": [
+    "sotsiaalhoolekande seadus",
+    "pikaajaline hooldus",
+    "ülalpidamiskohustus",
+    "puude raskusaste",
+    "hoolduskoormus",
+    "kohalik omavalitsus",
+    "seadusemuudatused"
+  ],
+  "source_type": "file",
+  "source_path": "2022_2_artikkel_3_korraldus.pdf",
+  "document_id": "sotsiaaltoo-2-2022-sotsiaalhoolekande-seaduse-ja-teiste-seaduste-muutmise-seadus-toob-uuendusi-2022-2",
+  "source_format": "pdf",
+  "source_sha256": "92e6a04015c7981453a86052dda77b02784cdd780df75664b86e3c2b09780f5d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2022-sotsiaalhoolekande-seaduse-ja-teiste-seaduste-muutmise-seadus-toob-uuendusi-2022-2",
+    "previous_source_path": "2022_2_artikkel_3_korraldus.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "92e6a04015c7981453a86052dda77b02784cdd780df75664b86e3c2b09780f5d",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

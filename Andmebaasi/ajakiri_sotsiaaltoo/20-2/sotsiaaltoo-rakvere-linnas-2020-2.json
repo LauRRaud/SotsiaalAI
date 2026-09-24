@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2020",
+  "articleId": "sotsiaaltoo-rakvere-linnas-2020-2",
+  "title": "Sotsiaaltöö Rakvere linnas",
+  "authors": [
+    "Kersti Suun-Deket"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2020",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "39-41",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel annab ülevaate Rakvere linna sotsiaaltöö korraldusest ja teenuste arendamisest, rõhutades koostööd, juhtumipõhist lähenemist ning teenuste paremat kättesaadavust. Esile tõstetakse tugiisikuteenust, sotsiaalmaja rolli ja kohaliku tasandi paindlikke lahendusi.",
+  "tags": [
+    "Rakvere",
+    "kohalik omavalitsus",
+    "sotsiaalteenused",
+    "tugiisikuteenus",
+    "sotsiaalkeskus",
+    "kogukondlik tugi"
+  ],
+  "source_type": "file",
+  "source_path": "ST2_2020_web_link_Part13.pdf",
+  "document_id": "sotsiaaltoo-2-2020-sotsiaaltoo-rakvere-linnas-2020-2",
+  "source_format": "pdf",
+  "source_sha256": "581ed161884038881552c585b582e93feeb03d0eb3c994c02ce5bcd0ee454f20",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2020-sotsiaaltoo-rakvere-linnas-2020-2",
+    "previous_source_path": "ST2_2020_web_link_Part13.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "581ed161884038881552c585b582e93feeb03d0eb3c994c02ce5bcd0ee454f20",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

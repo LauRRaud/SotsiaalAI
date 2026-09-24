@@ -1,0 +1,142 @@
+{
+  "source_path": "sotsiaalkindlustusamet_naiste_tugikeskuse_teenuse_kvaliteedijuhis.pdf",
+  "source_format": "pdf",
+  "sha256": "99d3a928557bd60194c9f3977e6896e20ea9cfe0bee8c0f0fbea87614123c728",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/sotsiaalkindlustusamet_naiste_tugikeskuse_teenuse_kvaliteedijuhis.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "sotsiaalkindlustusamet_naiste_tugikeskuse_teenuse_kvaliteedijuhis",
+          "title": "Naiste tugikeskuse teenuse kvaliteedijuhis",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/NTK%20teenuse%20kvaliteedijuhis.pdf",
+          "normalized_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/NTK teenuse kvaliteedijuhis.pdf",
+          "source_format": "pdf",
+          "source_type": "official_guideline",
+          "resource_type": "method_guidance",
+          "publisher": "Sotsiaalkindlustusamet",
+          "organization_id": "sotsiaalkindlustusamet",
+          "collection_hint": "guidance_and_methods",
+          "evidence_role": "practice_guidance",
+          "topic_tags": [
+            "Sotsiaalkindlustusamet",
+            "ohvriabi",
+            "naiste tugikeskus",
+            "teenuse kvaliteet",
+            "spetsialisti juhend",
+            "SKA"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "high",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "SKA",
+            "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+            "heading_4": null,
+            "line": 459,
+            "order": 245
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Naiste tugikeskuse teenuse kvaliteedijuhis"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "official_guideline"
+          ],
+          "resource_types_seen": [
+            "best_practice_guidance"
+          ],
+          "publishers_seen": [
+            "Sotsiaalkindlustusamet"
+          ],
+          "organizations_seen": [
+            "sotsiaalkindlustusamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "SKA",
+              "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+              "line": 459,
+              "order": 245
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/NTK teenuse kvaliteedijuhis.pdf"
+        },
+        "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/NTK%20teenuse%20kvaliteedijuhis.pdf",
+        "redirects": [],
+        "sha256": "99d3a928557bd60194c9f3977e6896e20ea9cfe0bee8c0f0fbea87614123c728",
+        "bytes": 450186,
+        "downloaded_at": "2026-08-14T08:00:48.967Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "sotsiaalkindlustusamet_naiste_tugikeskuse_teenuse_kvaliteedijuhis",
+      "metadata": {
+        "createdAt": "2026-06-11T18:51:22.605665+00:00",
+        "type": "FILE",
+        "fileName": "NTK teenuse kvaliteedijuhis.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-11T18:51:22.543349+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/84b021731ef9/NTK teenuse kvaliteedijuhis.pdf",
+        "title": "Naiste tugikeskuse teenuse kvaliteedijuhis",
+        "description": "Source master headings: SKA; Ohvriabi, MARAC, naiste tugikeskused",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2023,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–20",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "sotsiaalkindlustusamet_naiste_tugikeskuse_teenuse_kvaliteedijuhis",
+        "document_id": "sotsiaalkindlustusamet_naiste_tugikeskuse_teenuse_kvaliteedijuhis",
+        "source_type": "official_guideline",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-11",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "4a0cc2fb30b22fd1e456a0ac023f96d6d1ba7db3eb697ffed7a971dde155844d",
+        "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/NTK%20teenuse%20kvaliteedijuhis.pdf",
+        "url_canonical": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/NTK teenuse kvaliteedijuhis.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "sotsiaalkindlustusamet_naiste_tugikeskuse_teenuse_kvaliteedijuhis",
+        "updatedAt": "2026-06-11T18:51:22.605692+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

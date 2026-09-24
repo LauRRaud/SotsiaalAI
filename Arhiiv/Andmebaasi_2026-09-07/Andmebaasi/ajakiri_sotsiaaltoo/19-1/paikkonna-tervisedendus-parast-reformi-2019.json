@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-1-2019",
+  "articleId": "paikkonna-tervisedendus-parast-reformi-2019",
+  "title": "Paikkonna tervisedendus pärast reformi",
+  "authors": [
+    "Triinu Purru"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2019",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "64-66",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade paikkonna tervisedenduse korralduse muutumisest pärast maavalitsuste kaotamist ning kohalike omavalitsuste ja tervisedendajate rollist elanike heaolu toetamisel.",
+  "tags": [
+    "tervisedendus",
+    "rahvatervis",
+    "kohalik omavalitsus",
+    "maavalitsuste reform",
+    "Tervise Arengu Instituut",
+    "kogukonna heaolu"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part16.pdf",
+  "document_id": "sotsiaaltoo-1-2019-paikkonna-tervisedendus-parast-reformi-2019",
+  "source_format": "pdf",
+  "source_sha256": "b2ff18e3006bee29cc203b70ce95bacc5d9be94c92baabdd5fc179d51d3c1f2f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2019-paikkonna-tervisedendus-parast-reformi-2019",
+    "previous_source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part16.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b2ff18e3006bee29cc203b70ce95bacc5d9be94c92baabdd5fc179d51d3c1f2f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "docId": "sotsiaaltoo-2-2019",
+  "articleId": "tegevusjuhendaja-vs-hooldustoötaja-2019",
+  "title": "Tegevusjuhendaja versus hooldustöötaja",
+  "authors": [
+    "Piret Tamme"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2019",
+  "section": "Erialane haridus",
+  "pageRange": "102–104",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel võrdleb tegevusjuhendaja ja hooldustöötaja tööd, rollijaotust, kutsestandardite erinevusi ja nende tööpraktika kattuvusi eri- ja üldhoolekandes.",
+  "tags": [
+    "tegevusjuhendaja",
+    "hooldustöötaja",
+    "erialane haridus",
+    "erihoolekanne"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part20.pdf",
+  "document_id": "sotsiaaltoo-2-2019-tegevusjuhendaja-vs-hooldusto-taja-2019",
+  "source_format": "pdf",
+  "source_sha256": "f74b9096ee9533277bd42619426efa96a59ce94e7ed9d76f49c91e80ae13cfc4",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2019-tegevusjuhendaja-vs-hooldusto-taja-2019",
+    "previous_source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part20.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "f74b9096ee9533277bd42619426efa96a59ce94e7ed9d76f49c91e80ae13cfc4",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

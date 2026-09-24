@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-2-2018",
+  "articleId": "inimoigused-ja-sotsiaalne-oiglus-2018",
+  "title": "Sotsiaalne õiglus ja inimväärikus inimõigusalastes dokumentides",
+  "authors": [
+    "Inimõigused"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2018",
+  "section": "Sotsiaalpoliitika",
+  "pageRange": "8-9",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Valik olulisemaid tsitaate rahvusvahelistest inimõiguste dokumentidest ning nende seostest sotsiaaltöö väärtustega.",
+  "tags": [
+    "inimõigused",
+    "sotsiaalne õiglus",
+    "inimväärikus",
+    "rahvusvahelised konventsioonid",
+    "sotsiaaltöö väärtused"
+  ],
+  "source_type": "file",
+  "source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part4.pdf",
+  "document_id": "sotsiaaltoo-2-2018-inimoigused-ja-sotsiaalne-oiglus-2018",
+  "source_format": "pdf",
+  "source_sha256": "ae616ac330a5b5adcf42b70204a5eb87e47aaadf8d5e7ad11c95a987e9edceb7",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2018-inimoigused-ja-sotsiaalne-oiglus-2018",
+    "previous_source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part4.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ae616ac330a5b5adcf42b70204a5eb87e47aaadf8d5e7ad11c95a987e9edceb7",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

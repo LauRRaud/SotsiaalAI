@@ -1,0 +1,99 @@
+{
+  "docId": "sotsiaaltoo-1-2017",
+  "articleId": "oska-toojou-vajadus-2017-1",
+  "title": "Tööjõu vajadus sotsiaaltöö valdkonnas kasvab demograafiliste muutuste tõttu",
+  "authors": [
+    "Karin Jõers-Türn"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2017",
+  "section": "Uurimus",
+  "pageRange": "66-70",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "OSKA sotsiaaltöö valdkonna koordinaator Karin Jõers-Türn esitab 2016. aastal valminud rakendusuuringu tulemused: järgneva 5–10 aasta jooksul kasvab tööjõuvajadus eeskätt hooldustöötajate, isiklike abistajate ja tugiisikute järele, sest rahvastik vananeb ja teenused liiguvad kogukonda. Valdkonna töötajatest on 93% naised ja 44% vähemalt 50-aastased, hooldustöötaja palk on ligi pool Eesti keskmisest. Lõpetajaid koolitatakse rohkem kui vajatakse, kuid 2012. aastal olid pea pooled omavalitsuste sotsiaaltöötajad erialase kõrghariduseta. Raport soovitab paindlikumat õppekorraldust.",
+  "tags": [
+    "uurimus",
+    "OSKA",
+    "tööjõuvajadus",
+    "sotsiaaltööharidus",
+    "hooldustöötajad",
+    "palk"
+  ],
+  "source_type": "file",
+  "source_path": "2017_1_Part15.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2017-oska-toojou-vajadus-2017-1",
+  "source_sha256": "0bb7a7ac160884537a8c43b89250c5e86506798639661b8dc40e5fb5a462c0ab",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2017-oska-toojou-vajadus-2017-1",
+    "previous_source_path": "2017_1_Part15.txt",
+    "previous_source_original_path": "2017_1.pdf",
+    "reference_stored_source_sha256": "919ef6544c42eea7c3da80619503c7bef9430e6defe8621c3d9f44575e50e99e",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf",
+      "source_sha256": "335f81467a555f12c55d0e8bf60122a178c5267567cf79607448a5d987629e50",
+      "pdf_start_page": 68,
+      "pdf_end_page": 72,
+      "printed_page_range": "66-70",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 72,
+      "source_regions": [
+        {
+          "source_pdf_page": 68,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 69,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 70,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 71,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 72,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        }
+      ],
+      "effective_printed_page_range": "66-70"
+    },
+    "server_page_range": "66-70"
+  }
+}

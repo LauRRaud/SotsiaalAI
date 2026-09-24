@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2021",
+  "articleId": "pandeemia-on-aidanud-moista-kui-olulised-me-inimestena-uksteisele-oleme-2021-4",
+  "title": "Pandeemia on aidanud mõista, kui olulised me inimestena üksteisele oleme",
+  "authors": [
+    "Maida Michelson"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2021",
+  "section": "Kogemus",
+  "pageRange": "49-49",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tallinna Sotsiaaltöö Keskuse Varre üksuse juhi kogemuslugu COVID-19 pandeemia mõjust igapäevasele sotsiaaltööle. Autor kirjeldab, kuidas tavapärasele tööle lisandus klientide pidev teavitamine ja rahustamine seoses viiruse ja vaktsineerimisega, isikukaitsevahendite kasutamine ning kriisiplaanide valmiduses hoidmine. Samal ajal vähenes vahetu kontakt koostööpartnerite ja kolleegidega, suurenes vastutus klientide ja kaastöötajate ees ning kasvas vajadus töötajate vaimse tervise ja meeskonnatunnet teadlikult hoida. Lugu rõhutab, kui tähtsad on inimlik läheduse kogemus, meeskonnatoetus ja võimalus rääkida pingetest, et kriisis töö jätkuks ning abivajajad ei jääks tähelepanuta.",
+  "tags": [
+    "COVID-19",
+    "kogemuslugu",
+    "Tallinna Sotsiaaltöö Keskus",
+    "töötajate vaimne tervis",
+    "kriisiplaan",
+    "isikukaitsevahendid",
+    "meeskonnatöö"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2021_web_Part12.pdf",
+  "document_id": "sotsiaaltoo-4-2021-pandeemia-on-aidanud-moista-kui-olulised-me-inimestena-uksteisele-oleme-2021-4",
+  "source_format": "pdf",
+  "source_sha256": "e213e980a60cf3b325d5925a09e2ac2d1e417472c60d863a4f21d3efe4eceb95",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2021-pandeemia-on-aidanud-moista-kui-olulised-me-inimestena-uksteisele-oleme-2021-4",
+    "previous_source_path": "Sotsiaaltoo_4_2021_web_Part12.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e213e980a60cf3b325d5925a09e2ac2d1e417472c60d863a4f21d3efe4eceb95",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

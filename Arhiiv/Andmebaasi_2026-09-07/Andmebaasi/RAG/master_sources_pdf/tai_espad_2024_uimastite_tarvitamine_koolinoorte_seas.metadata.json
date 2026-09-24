@@ -1,0 +1,88 @@
+{
+  "source": {
+    "source_id": "tai_espad_2024_uimastite_tarvitamine_koolinoorte_seas",
+    "title": "ESPAD 2024: uimastite tarvitamine koolinoorte seas",
+    "url": "https://tai.ee/sites/default/files/2025-04/espad_raport_2024_21.04.2025.pdf",
+    "normalized_url": "https://tai.ee/sites/default/files/2025-04/espad_raport_2024_21.04.2025.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "TAI",
+    "organization_id": "tai",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Tervise Arengu Instituut",
+      "lapsed ja pered",
+      "noor",
+      "haridus",
+      "kool",
+      "õpilase toetamine",
+      "tugimeetmed",
+      "sõltuvus",
+      "uimastid",
+      "narkootikumid",
+      "ennetustöö",
+      "riskikäitumine",
+      "infomaterjal",
+      "TAI"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_012",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+    "source_context": {
+      "heading_2": "TAI",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 205,
+      "order": 134
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "ESPAD 2024: uimastite tarvitamine koolinoorte seas"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "TAI"
+    ],
+    "organizations_seen": [
+      "tai"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "TAI",
+        "line": 205,
+        "order": 134
+      },
+      {
+        "heading_2": "TAI",
+        "line": 679,
+        "order": 341
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://tai.ee/sites/default/files/2025-04/espad_raport_2024_21.04.2025.pdf"
+  },
+  "final_url": "https://tai.ee/sites/default/files/2025-04/espad_raport_2024_21.04.2025.pdf",
+  "redirects": [],
+  "sha256": "6e8ab2ac17899f8721c470a3ec07c16bdc518a5945435809426cf1009290a12a",
+  "bytes": 3905198,
+  "downloaded_at": "2026-08-14T08:00:35.166Z"
+}

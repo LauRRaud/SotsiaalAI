@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-1-2022",
+  "articleId": "psuuhiline-erivajadus-eestkoste-osalus-2022-1",
+  "title": "Psüühilise erivajadusega inimese osalus oma eestkostes",
+  "authors": [
+    "Erle Eenmaa"
+  ],
+  "authors_fixed": "2026-08-15",
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2022",
+  "section": "Õigus",
+  "pageRange": "59-63",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb psüühilise erivajadusega inimeste õigust osaleda neid puudutavates eestkosteotsustes. Selgitatakse otsustusvõime hindamist, toetatud otsustamist ning vajadust tagada, et eestkoste ei piiraks inimese põhiõigusi rohkem kui vältimatult vajalik.",
+  "tags": [
+    "eestkoste",
+    "psüühiline erivajadus",
+    "õigusvõime",
+    "otsustusvõime",
+    "toetatud otsustamine"
+  ],
+  "source_type": "file",
+  "source_path": "2022_artikkel_13_psuuhiline_osalus_eestkoste.pdf",
+  "document_id": "sotsiaaltoo-1-2022-psuuhiline-erivajadus-eestkoste-osalus-2022-1",
+  "source_format": "pdf",
+  "source_sha256": "7872f71967db5fde02d6e41c32d11f3be00137dd7dc9b5af103bb793ef083fa4",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2022-psuuhiline-erivajadus-eestkoste-osalus-2022-1",
+    "previous_source_path": "2022_artikkel_13_psuuhiline_osalus_eestkoste.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "7872f71967db5fde02d6e41c32d11f3be00137dd7dc9b5af103bb793ef083fa4",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

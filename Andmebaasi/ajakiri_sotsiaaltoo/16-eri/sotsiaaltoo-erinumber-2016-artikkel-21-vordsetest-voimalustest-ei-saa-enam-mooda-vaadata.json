@@ -1,0 +1,73 @@
+{
+  "docId": "sotsiaaltoo-erinumber-2016",
+  "articleId": "sotsiaaltoo-erinumber-2016-artikkel-21-vordsetest-voimalustest-ei-saa-enam-mooda-vaadata",
+  "title": "Võrdsetest võimalustest ei saa enam mööda vaadata",
+  "authors": [
+    "Kari Käsper"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "erinumber 2016",
+  "section": "Võrdsed võimalused",
+  "pageRange": "76-77",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Eesti Inimõiguste Keskuse juhataja väidab, et võrdsest kohtlemisest ei saa enam mööda vaadata: ühiskond loob eeliseid ja takistusi sõltuvalt sellest, kelle vajadustega ta arvestab. Käsitleb ka LGBT-inimeste olukorda, mis on korpuses harv.",
+  "tags": [
+    "võrdne kohtlemine",
+    "inimõigused",
+    "diskrimineerimine",
+    "LGBT",
+    "mitmekesisus"
+  ],
+  "source_type": "file",
+  "source_path": "2016_eri_artikkel_21_vordsetest_voimalustest_ei_saa_enam_mooda_vaadata.pdf",
+  "added": "2026-08-18",
+  "fulltext_note": "Erinumber „Sotsiaaltöö ; erinumber 2016\" (DIGAR nlib-digar:390083), pühendatud heaolu arengukavale 2016–2023. Lisatud korpusesse 18.08.2026.",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-21-vordsetest-voimalustest-ei-saa-enam-mooda-vaadata",
+  "source_sha256": "6de5504a7041aa8e73a013159aea4e4f8427072c8111e5d25a19ce64af4784bd",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-21-vordsetest-voimalustest-ei-saa-enam-mooda-vaadata",
+    "previous_source_path": "2016_eri_artikkel_21_vordsetest_voimalustest_ei_saa_enam_mooda_vaadata.txt",
+    "previous_source_original_path": "2016_erinumber.pdf",
+    "reference_stored_source_sha256": "5d2a58b56e43c70a71642de51ada81190e2d6c4a431f1da7cd224a3b980202ea",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\2016_erinumber.pdf",
+      "source_sha256": "ae3bbf0a621beae80ae1e05a13206ffa00c6811806397ee8ac925f3762d93c70",
+      "pdf_start_page": 78,
+      "pdf_end_page": 79,
+      "printed_page_range": "76-77",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 79,
+      "source_regions": [
+        {
+          "source_pdf_page": 78,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 79,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "76-77",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2016_erinumber.pdf"
+    },
+    "server_page_range": "76-77"
+  }
+}

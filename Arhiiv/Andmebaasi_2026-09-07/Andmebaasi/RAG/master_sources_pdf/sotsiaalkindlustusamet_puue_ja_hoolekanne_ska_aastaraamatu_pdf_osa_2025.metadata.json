@@ -1,0 +1,79 @@
+{
+  "source": {
+    "source_id": "sotsiaalkindlustusamet_puue_ja_hoolekanne_ska_aastaraamatu_pdf_osa_2025",
+    "title": "Puue ja hoolekanne — SKA aastaraamatu PDF-osa 2025",
+    "url": "https://www.sotsiaalkindlustusamet.ee/node/12902/handbook/9/pdf",
+    "normalized_url": "https://www.sotsiaalkindlustusamet.ee/node/12902/handbook/9/pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Sotsiaalkindlustusamet",
+    "organization_id": "sotsiaalkindlustusamet",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Sotsiaalkindlustusamet",
+      "puue",
+      "puudega inimene",
+      "erivajadus",
+      "hoolekanne",
+      "sotsiaalteenused",
+      "hooldus",
+      "infomaterjal",
+      "SKA"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "SKA",
+      "heading_3": "Puue, rehabilitatsioon, hoolekanne",
+      "heading_4": null,
+      "line": 507,
+      "order": 268
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Puue ja hoolekanne — SKA aastaraamatu PDF-osa 2025"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Sotsiaalkindlustusamet"
+    ],
+    "organizations_seen": [
+      "sotsiaalkindlustusamet"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "SKA",
+        "heading_3": "Puue, rehabilitatsioon, hoolekanne",
+        "line": 507,
+        "order": 268
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.sotsiaalkindlustusamet.ee/node/12902/handbook/9/pdf"
+  },
+  "final_url": "https://www.sotsiaalkindlustusamet.ee/node/12902/handbook/9/pdf",
+  "redirects": [],
+  "sha256": "f8bdcd4292e8f757201b1e0f51f967636ec150937580bb0b4a36f5937ec01ace",
+  "bytes": 25276499,
+  "downloaded_at": "2026-08-14T08:00:54.082Z"
+}

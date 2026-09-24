@@ -1,0 +1,2547 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-torva-vald",
+  "document_id": "kov-torva-vald",
+  "municipality": "Tõrva vald",
+  "municipality_id": "torva_vald",
+  "county": "Valgamaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "torva_vald_contact_kersti_jurise",
+      "canonical_item_id": "torva_vald:contact:kersti_jurise",
+      "itemType": "contact",
+      "title": "Kersti Jürise",
+      "status": "active",
+      "summary": "Kersti Jürise on Tõrva valla sotsiaalvaldkonna või nõustamisteenuse kontakt. Veebis on e-posti aadress varjestatud, seetõttu säilitatakse see kujul.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Kersti Jürise",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Tõrva valla sotsiaalosakond",
+      "address": "Tartu 4, Tõrva",
+      "item_type": "contact",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_contact_kersti_jurise",
+      "document_id": "torva_vald_contact_kersti_jurise",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "5dcbdb8dd353d6114e22874769ad414a7384980ffd65e020ec2680e0ed85892e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_contact_olga_meltsas",
+      "canonical_item_id": "torva_vald:contact:olga_meltsas",
+      "itemType": "contact",
+      "title": "Olga Meltsas",
+      "status": "active",
+      "summary": "Olga Meltsas on Tõrva valla sotsiaalvaldkonna või nõustamisteenuse kontakt. Veebis on e-posti aadress varjestatud, seetõttu säilitatakse see kujul.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Olga Meltsas",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Tõrva valla sotsiaalosakond",
+      "address": "Tartu 4, Tõrva",
+      "item_type": "contact",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_contact_olga_meltsas",
+      "document_id": "torva_vald_contact_olga_meltsas",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "77adac894b7913c42c7016ed7da65fbf5e2639365abc831d57f555d3cf961efd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_contact_ragne_margus",
+      "canonical_item_id": "torva_vald:contact:ragne_margus",
+      "itemType": "contact",
+      "title": "Ragne Margus",
+      "status": "active",
+      "summary": "Ragne Margus on Tõrva valla sotsiaalvaldkonna või nõustamisteenuse kontakt. Veebis on e-posti aadress varjestatud, seetõttu säilitatakse see kujul.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Ragne Margus",
+      "role": "lastekaitsespetsialist",
+      "department": "Tõrva valla sotsiaalosakond",
+      "address": "Tartu 4, Tõrva",
+      "item_type": "contact",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_contact_ragne_margus",
+      "document_id": "torva_vald_contact_ragne_margus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "557806d4c8fbe3d35aae1edf37f8657a76c87dbabb67a1b18e5f0e33e6dbb718",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_contact_jaanika_duvin",
+      "canonical_item_id": "torva_vald:contact:jaanika_duvin",
+      "itemType": "contact",
+      "title": "Jaanika Duvin",
+      "status": "active",
+      "summary": "Jaanika Duvin on Tõrva valla sotsiaalvaldkonna või nõustamisteenuse kontakt. Veebis on e-posti aadress varjestatud, seetõttu säilitatakse see kujul.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Jaanika Duvin",
+      "role": "lastekaitsespetsialist",
+      "department": "Tõrva valla sotsiaalosakond",
+      "address": "Tartu 4, Tõrva",
+      "item_type": "contact",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_contact_jaanika_duvin",
+      "document_id": "torva_vald_contact_jaanika_duvin",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "1f97f17f884a49e51bd59fe163b0e086d4fddbd29b2b8e637b47a5c024f277bc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_contact_nadezda_selivjorstova",
+      "canonical_item_id": "torva_vald:contact:nadezda_selivjorstova",
+      "itemType": "contact",
+      "title": "Nadežda Selivjorstova",
+      "status": "active",
+      "summary": "Nadežda Selivjorstova on Tõrva valla sotsiaalvaldkonna või nõustamisteenuse kontakt. Veebis on e-posti aadress varjestatud, seetõttu säilitatakse see kujul.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Nadežda Selivjorstova",
+      "role": "psühholoog",
+      "department": "Nõustamisteenused",
+      "address": null,
+      "item_type": "contact",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_contact_nadezda_selivjorstova",
+      "document_id": "torva_vald_contact_nadezda_selivjorstova",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "552dbf66789dcb296ba9a3b2b21f74fbd9ef3d9498558e75fc9b07b10434cb9e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_contact_oie_kiis",
+      "canonical_item_id": "torva_vald:contact:oie_kiis",
+      "itemType": "contact",
+      "title": "Õie Kiis",
+      "status": "active",
+      "summary": "Õie Kiis on Tõrva valla sotsiaalvaldkonna või nõustamisteenuse kontakt. Veebis on e-posti aadress varjestatud, seetõttu säilitatakse see kujul.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Õie Kiis",
+      "role": "nõustaja",
+      "department": "Nõustamisteenused",
+      "address": null,
+      "item_type": "contact",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_contact_oie_kiis",
+      "document_id": "torva_vald_contact_oie_kiis",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "36d17d34e9fe4ae779e675464c137235748dcb9351ce441876259fa104edd352",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_service_koduteenus",
+      "canonical_item_id": "torva_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus toetab täisealise isiku iseseisvat ja turvalist toimetulekut kodustes tingimustes. Teenusega abistatakse toimingutes, mida inimene terviseseisundi, tegevusvõime või elukeskkonna tõttu kõrvalabita teha ei suuda. Teenust ei osutata isikule, kellele on määratud hooldaja või isikliku abistaja teenus. Koduteenusel on kolm paketti ja lisateenused.",
+      "sourceKeys": [
+        "koduteenus_page"
+      ],
+      "targetGroup": "Täisealised abivajajad, kes vajavad kodus kõrvalabi",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Pöörduda Tõrva valla sotsiaaltööspetsialisti või lastekaitsespetsialisti poole; kui teenuse lehel on taotlusvorm nimetatud, esitada see paberkandjal või digiallkirjastatult."
+        ],
+        "deadline": null
+      },
+      "pricing": "Pakett 1: 40 eurot kuus; pakett 2: 60 eurot kuus; pakett 3: 80 eurot kuus; lisateenused hinnakirja järgi",
+      "officialUrl": "https://kov.torva.ee/toiming/koduteenus-0",
+      "relatedTo": [],
+      "relatedForms": [
+        "torva_vald_form_sotsiaalteenuste_taotlus"
+      ],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas"
+      ],
+      "item_type": "service",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "koduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_service_koduteenus",
+      "document_id": "torva_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/koduteenus-0",
+      "content_hash": "d6f5491c8a78a6b766ab057b590d9b800f1e396a552eea905c57b550ea5b8038",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_service_tugiisikuteenus",
+      "canonical_item_id": "torva_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus pakub juhendamist, motiveerimist ja praktilist tuge inimesele, kes vajab abi sotsiaalsete, majanduslike, psühholoogiliste või terviseprobleemide tõttu. Teenus võib toetada täiskasvanut, last või lapsevanemat.",
+      "sourceKeys": [
+        "tugiisik_page"
+      ],
+      "targetGroup": "Lapsed, pered ja täiskasvanud, kes vajavad toimetulekutuge",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Pöörduda Tõrva valla sotsiaaltööspetsialisti või lastekaitsespetsialisti poole; kui teenuse lehel on taotlusvorm nimetatud, esitada see paberkandjal või digiallkirjastatult."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://kov.torva.ee/toiming/tugiisikuteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "torva_vald_form_sotsiaalteenuste_taotlus"
+      ],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas",
+        "torva_vald_contact_ragne_margus",
+        "torva_vald_contact_jaanika_duvin"
+      ],
+      "item_type": "service",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "tugiisik_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_service_tugiisikuteenus",
+      "document_id": "torva_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/tugiisikuteenus",
+      "content_hash": "a4dae8d7985ef395f335e78f9975e326305afa165ddfa028f613137dcdc79227",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "torva_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Teenusega seatakse hooldus inimesele, kes vaimse või füüsilise puude tõttu vajab oma õiguste ja kohustuste täitmisel kõrvalabi. Hooldaja aitab korraldada igapäevast toimetulekut ja asjaajamist.",
+      "sourceKeys": [
+        "adult_care_page"
+      ],
+      "targetGroup": "Täisealised puudega inimesed, kes vajavad hooldajat",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Pöörduda Tõrva valla sotsiaaltööspetsialisti või lastekaitsespetsialisti poole; kui teenuse lehel on taotlusvorm nimetatud, esitada see paberkandjal või digiallkirjastatult."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://kov.torva.ee/toiming/taisealise-isiku-hooldus",
+      "relatedTo": [],
+      "relatedForms": [
+        "torva_vald_form_taisealise_isiku_hooldaja"
+      ],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas"
+      ],
+      "item_type": "service",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "adult_care_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_service_taisealise_isiku_hooldus",
+      "document_id": "torva_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/taisealise-isiku-hooldus",
+      "content_hash": "cef980cb729d99fb2cd7166d4e3d9cca4051bc803099040b0ba3f390ae791345",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "torva_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus toetab puudega täisealist füüsilise abiga igapäevastes tegevustes. Eesmärk on suurendada iseseisvust ja vähendada pereliikmete hoolduskoormust.",
+      "sourceKeys": [
+        "personal_assistant_page"
+      ],
+      "targetGroup": "Puudega täisealised, kellel on raskusi igapäevatoimingutega",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Pöörduda Tõrva valla sotsiaaltööspetsialisti või lastekaitsespetsialisti poole; kui teenuse lehel on taotlusvorm nimetatud, esitada see paberkandjal või digiallkirjastatult."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://kov.torva.ee/toiming/isikliku-abistaja-teenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "torva_vald_form_sotsiaalteenuste_taotlus"
+      ],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas"
+      ],
+      "item_type": "service",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "personal_assistant_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_service_isikliku_abistaja_teenus",
+      "document_id": "torva_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/isikliku-abistaja-teenus",
+      "content_hash": "9f136f9dc37d77ba802f521a78b10c19da10f7b5da97c4fd064e8d51846dad07",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "torva_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus aitab liikumisraskusega inimesel jõuda arsti, rehabilitatsiooni, asjaajamise või muude vajalike teenusteni. Teenus tuleb tellida ette: maakonna piires vähemalt kolm päeva ja väljapoole maakonda vähemalt seitse päeva enne sõitu.",
+      "sourceKeys": [
+        "social_transport_page"
+      ],
+      "targetGroup": "Liikumisraskusega või puudega inimesed",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Pöörduda Tõrva valla sotsiaaltööspetsialisti või lastekaitsespetsialisti poole; kui teenuse lehel on taotlusvorm nimetatud, esitada see paberkandjal või digiallkirjastatult."
+        ],
+        "deadline": null
+      },
+      "pricing": "0,35 eurot kilomeetri kohta, vähemalt 5 eurot; muud hinnad teenuse lehel",
+      "officialUrl": "https://kov.torva.ee/toiming/sotsiaaltransport",
+      "relatedTo": [],
+      "relatedForms": [
+        "torva_vald_form_sotsiaalteenuste_taotlus"
+      ],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas"
+      ],
+      "item_type": "service",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "social_transport_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_service_sotsiaaltransporditeenus",
+      "document_id": "torva_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/sotsiaaltransport",
+      "content_hash": "651c074a33e43b935b90a469643d5e1e5309025c5fb6f1158d1fb499cac5f479",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_service_eluruumi_tagamise_teenus",
+      "canonical_item_id": "torva_vald:service:eluruumi_tagamise_teenus",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenus aitab inimest või perekonda, kes ei suuda sotsiaalmajandusliku olukorra tõttu endale sobivat eluruumi tagada. Vald võib pakkuda munitsipaaleluruumi või aidata üüripinna leidmisel.",
+      "sourceKeys": [
+        "housing_service_page"
+      ],
+      "targetGroup": "Inimesed ja pered, kellel puudub sobiv eluruum",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Pöörduda Tõrva valla sotsiaaltööspetsialisti või lastekaitsespetsialisti poole; kui teenuse lehel on taotlusvorm nimetatud, esitada see paberkandjal või digiallkirjastatult."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://kov.torva.ee/toiming/eluruumi-tagamise-teenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "torva_vald_form_sotsiaalteenuste_taotlus"
+      ],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas"
+      ],
+      "item_type": "service",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "housing_service_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_service_eluruumi_tagamise_teenus",
+      "document_id": "torva_vald_service_eluruumi_tagamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/eluruumi-tagamise-teenus",
+      "content_hash": "24d6ed58cf36bfdd444ab5f3594cb374e48274c57377fa9d438ed33bc879bab3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_service_puudega_lapse_sotsiaalteenus",
+      "canonical_item_id": "torva_vald:service:puudega_lapse_sotsiaalteenus",
+      "itemType": "service",
+      "title": "Lapsehoiu- ja muu sotsiaalteenus puudega lapsele",
+      "status": "active",
+      "summary": "Teenusega toetatakse raske või sügava puudega lapse pere toimetulekut ja lapse arengut. Abi võib hõlmata lapsehoidu, tugiisikut, nõustamist, abivahendeid, teraapiaid, laagreid, transporti või kodu kohandamist.",
+      "sourceKeys": [
+        "disabled_child_services_page"
+      ],
+      "targetGroup": "Pered, kus kasvab raske või sügava puudega laps",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Pöörduda Tõrva valla sotsiaaltööspetsialisti või lastekaitsespetsialisti poole; kui teenuse lehel on taotlusvorm nimetatud, esitada see paberkandjal või digiallkirjastatult."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://kov.torva.ee/toiming/lapsehoiu-ja-muu-sotsiaalteenus-puudega-lapsele",
+      "relatedTo": [],
+      "relatedForms": [
+        "torva_vald_form_sotsiaalteenuste_taotlus"
+      ],
+      "relatedContacts": [
+        "torva_vald_contact_ragne_margus",
+        "torva_vald_contact_jaanika_duvin"
+      ],
+      "item_type": "service",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "disabled_child_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_service_puudega_lapse_sotsiaalteenus",
+      "document_id": "torva_vald_service_puudega_lapse_sotsiaalteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/lapsehoiu-ja-muu-sotsiaalteenus-puudega-lapsele",
+      "content_hash": "46364b83a3bc1125e6fe808908f6111ae73ce91f6e6219cc7471265a05d69b99",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_service_dusi_kasutamise_ja_pesu_pesemise_teenus",
+      "canonical_item_id": "torva_vald:service:dusi_kasutamise_ja_pesu_pesemise_teenus",
+      "itemType": "service",
+      "title": "Duši kasutamise ja pesu pesemise teenus",
+      "status": "active",
+      "summary": "Teenusega saavad inimesed kasutada duši- ja pesupesemisvõimalust, kui kodus puuduvad vastavad tingimused. Teenus on praktiline igapäevaabi ja kasutuskorra eest on avaldatud tasu.",
+      "sourceKeys": [
+        "shower_laundry_page"
+      ],
+      "targetGroup": "Inimesed, kellel puudub kodus pesemis- või pesupesemisvõimalus",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "phone",
+          "visit"
+        ],
+        "steps": [
+          "Pöörduda Tõrva valla sotsiaaltööspetsialisti või lastekaitsespetsialisti poole; kui teenuse lehel on taotlusvorm nimetatud, esitada see paberkandjal või digiallkirjastatult."
+        ],
+        "deadline": null
+      },
+      "pricing": "5 eurot kasutuskorra eest",
+      "officialUrl": "https://kov.torva.ee/toiming/dusi-kasutamise-ja-pesu-pesemise-teenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas"
+      ],
+      "item_type": "service",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "shower_laundry_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_service_dusi_kasutamise_ja_pesu_pesemise_teenus",
+      "document_id": "torva_vald_service_dusi_kasutamise_ja_pesu_pesemise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/dusi-kasutamise-ja-pesu-pesemise-teenus",
+      "content_hash": "a0ea286411a74cca3af74bd1cf3b23c9e8c738dc184f0ba97bf62ba4cf1c97c6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_service_hairenuputeenus",
+      "canonical_item_id": "torva_vald:service:hairenuputeenus",
+      "itemType": "service",
+      "title": "Häirenuputeenus",
+      "status": "active",
+      "summary": "Häirenuputeenus annab kodus elavale abivajajale võimaluse kutsuda abi hädaolukorras häirenupu või automaatse kukkumistuvastuse kaudu. Teenus aitab suurendada turvatunnet ja võimaldab kiiret reageerimist.",
+      "sourceKeys": [
+        "alarm_button_page"
+      ],
+      "targetGroup": "Eakad ja teised kodus elavad riskirühma inimesed",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Pöörduda Tõrva valla sotsiaaltööspetsialisti või lastekaitsespetsialisti poole; kui teenuse lehel on taotlusvorm nimetatud, esitada see paberkandjal või digiallkirjastatult."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://kov.torva.ee/toiming/hairenuputeenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "torva_vald_form_sotsiaalteenuste_taotlus"
+      ],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas"
+      ],
+      "item_type": "service",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "alarm_button_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_service_hairenuputeenus",
+      "document_id": "torva_vald_service_hairenuputeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/hairenuputeenus",
+      "content_hash": "78d88f7709bd1bee2804ef2765044a281f345065689d93af22bbc42aa14b5c0b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_service_varjupaigateenus",
+      "canonical_item_id": "torva_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus tagab ajutise ööbimiskoha täisealisele inimesele, kes ei ole võimeline endale ööbimiskohta leidma. Ajutises ööbimiskohas peab olema voodikoht, pesemisvõimalus ja turvaline keskkond. Avaldust ei pea esitama.",
+      "sourceKeys": [
+        "shelter_page"
+      ],
+      "targetGroup": "Täisealised inimesed, kellel puudub ajutiselt ööbimiskoht",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "phone",
+          "visit"
+        ],
+        "steps": [
+          "Pöörduda Tõrva valla sotsiaaltööspetsialisti või lastekaitsespetsialisti poole; kui teenuse lehel on taotlusvorm nimetatud, esitada see paberkandjal või digiallkirjastatult."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://kov.torva.ee/toiming/varjupaigateenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas"
+      ],
+      "item_type": "service",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "shelter_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_service_varjupaigateenus",
+      "document_id": "torva_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/varjupaigateenus",
+      "content_hash": "64115ab7368583abbcf3cefc17d5438139d4c98d303f7765c81f88dbc68f7372",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_service_turvakoduteenus",
+      "canonical_item_id": "torva_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenus tagab ajutise eluaseme, turvalise keskkonna ja esmase abi lapsele, kelle elu, tervis või areng on ohus, ning täisealisele inimesele, kes vajab turvalist keskkonda. Avaldust ei pea esitama.",
+      "sourceKeys": [
+        "safe_house_page"
+      ],
+      "targetGroup": "Lapsed ja täisealised, kes vajavad turvalist ajutist keskkonda",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "phone",
+          "visit"
+        ],
+        "steps": [
+          "Pöörduda Tõrva valla sotsiaaltööspetsialisti või lastekaitsespetsialisti poole; kui teenuse lehel on taotlusvorm nimetatud, esitada see paberkandjal või digiallkirjastatult."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://kov.torva.ee/toiming/turvakoduteenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "torva_vald_contact_ragne_margus",
+        "torva_vald_contact_jaanika_duvin"
+      ],
+      "item_type": "service",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "safe_house_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_service_turvakoduteenus",
+      "document_id": "torva_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/turvakoduteenus",
+      "content_hash": "fb2142d7eac78a64b1279eaa001f86f69fcfaa68722eba0e6985455c73e32eca",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "canonical_item_id": "torva_vald:service:valjaspool_kodu_osutatav_uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatav üldhooldusteenus on hooldekodus osutatav hooldus täisealisele inimesele, kelle toimetulek kodus ei ole enam võimalik. Teenus võib olla ajutine või pikaajaline ning hõlmab majutust, toitlustust ja hooldust.",
+      "sourceKeys": [
+        "general_care_page"
+      ],
+      "targetGroup": "Täisealised inimesed, kes vajavad hooldekodu teenust",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Pöörduda Tõrva valla sotsiaaltööspetsialisti või lastekaitsespetsialisti poole; kui teenuse lehel on taotlusvorm nimetatud, esitada see paberkandjal või digiallkirjastatult."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://kov.torva.ee/toiming/valjaspool-kodu-osutatav-uldhooldusteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "torva_vald_form_sotsiaalteenuste_taotlus"
+      ],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas"
+      ],
+      "item_type": "service",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "general_care_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "document_id": "torva_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/valjaspool-kodu-osutatav-uldhooldusteenus",
+      "content_hash": "8cf9fde028c0a53846ebc1d7c36cad669c45ee5a6c95846a93b650cb7cb7bfca",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_service_volanoustamisteenus",
+      "canonical_item_id": "torva_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab hinnata inimese majanduslikku olukorda, koostada võlgade tasumise plaani ja pidada vajadusel läbirääkimisi võlausaldajatega. Teenus toetab rahakasutuse parandamist ja uute võlgade ennetamist.",
+      "sourceKeys": [
+        "debt_counselling_page"
+      ],
+      "targetGroup": "Inimesed, kellel on võlad või võlgnevuste tekke oht",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "phone",
+          "visit"
+        ],
+        "steps": [
+          "Pöörduda Tõrva valla sotsiaaltööspetsialisti või lastekaitsespetsialisti poole; kui teenuse lehel on taotlusvorm nimetatud, esitada see paberkandjal või digiallkirjastatult."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://kov.torva.ee/toiming/volanoustamisteenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas"
+      ],
+      "item_type": "service",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "debt_counselling_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_service_volanoustamisteenus",
+      "document_id": "torva_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/volanoustamisteenus",
+      "content_hash": "d04513bb8b7a32bd1fc4b77361f4621deeb635c93c8cf862d72d3dd1b095a2a9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_service_asendushooldusteenus",
+      "canonical_item_id": "torva_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus tagab lapse heaolu ja stabiilse kasvukeskkonna juhul, kui laps ei saa elada koos oma vanematega. Teenust korraldatakse perepõhiselt või asutuse kaudu vastavalt lapse vajadusele.",
+      "sourceKeys": [
+        "substitute_care_page"
+      ],
+      "targetGroup": "Lapsed, kes ei saa elada koos vanematega",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "phone",
+          "visit"
+        ],
+        "steps": [
+          "Pöörduda Tõrva valla sotsiaaltööspetsialisti või lastekaitsespetsialisti poole; kui teenuse lehel on taotlusvorm nimetatud, esitada see paberkandjal või digiallkirjastatult."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://kov.torva.ee/toiming/asendushooldusteenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "torva_vald_contact_ragne_margus",
+        "torva_vald_contact_jaanika_duvin"
+      ],
+      "item_type": "service",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "substitute_care_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_service_asendushooldusteenus",
+      "document_id": "torva_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/asendushooldusteenus",
+      "content_hash": "13483bcb2314d2febee80c6c19d2e59964825247fa9a6d87d821ab1886e4d037",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_service_noustamisteenused",
+      "canonical_item_id": "torva_vald:service:noustamisteenused",
+      "itemType": "service",
+      "title": "Nõustamisteenused",
+      "status": "active",
+      "summary": "Nõustamisteenused hõlmavad psühholoogilist nõustamist, pere- ja paariteraapiat, kriisinõustamist ning lapsevanemate nõustamist. Teenused on mõeldud Tõrva valla elanikele ning nende kasutamiseks tuleb aeg kokku leppida.",
+      "sourceKeys": [
+        "counselling_page"
+      ],
+      "targetGroup": "Tõrva valla elanikud, kes vajavad psühholoogilist või perealast nõustamist",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "phone",
+          "visit"
+        ],
+        "steps": [
+          "Pöörduda Tõrva valla sotsiaaltööspetsialisti või lastekaitsespetsialisti poole; kui teenuse lehel on taotlusvorm nimetatud, esitada see paberkandjal või digiallkirjastatult."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://kov.torva.ee/toiming/noustamisteenused",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas",
+        "torva_vald_contact_nadezda_selivjorstova",
+        "torva_vald_contact_oie_kiis"
+      ],
+      "item_type": "service",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "counselling_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_service_noustamisteenused",
+      "document_id": "torva_vald_service_noustamisteenused",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/noustamisteenused",
+      "content_hash": "9d710a46bfd748f5a495cb8c68bf4710ae7d52d3de9606077cc430af661185e8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "torva_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenuse eesmärk on toetada asendushoolduselt või eestkostelt lahkuva noore iseseisvat toimetulekut ja õpingute jätkamist. Avaldust ei pea esitama; kontaktiks on lastekaitsespetsialistid.",
+      "sourceKeys": [
+        "aftercare_page"
+      ],
+      "targetGroup": "Asendushoolduselt või eestkostelt lahkuvad noored",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "phone",
+          "visit"
+        ],
+        "steps": [
+          "Pöörduda Tõrva valla sotsiaaltööspetsialisti või lastekaitsespetsialisti poole; kui teenuse lehel on taotlusvorm nimetatud, esitada see paberkandjal või digiallkirjastatult."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://kov.torva.ee/toiming/jarelhooldusteenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "torva_vald_contact_ragne_margus",
+        "torva_vald_contact_jaanika_duvin"
+      ],
+      "item_type": "service",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "aftercare_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_service_jarelhooldusteenus",
+      "document_id": "torva_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/jarelhooldusteenus",
+      "content_hash": "8457a812cbe82f45115a19689622ff8b1f7ae923524f342c41b5cb074c1b4596",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_service_perelepitus",
+      "canonical_item_id": "torva_vald:service:perelepitus",
+      "itemType": "service",
+      "title": "Perelepitus",
+      "status": "active",
+      "summary": "Perelepitus aitab lahku minevatel või lahku läinud lapsevanematel jõuda lapse huvidest lähtuvate kokkulepeteni. Tõrva valla leht suunab riikliku perelepitusteenuse taotlemiseks Sotsiaalkindlustusametisse ning märgib, et teenus on lapsevanemale tasuta.",
+      "sourceKeys": [
+        "family_mediation_page"
+      ],
+      "targetGroup": "Lapsevanemad, kes vajavad lapsega seotud kokkuleppeid",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "phone",
+          "visit"
+        ],
+        "steps": [
+          "Pöörduda Tõrva valla sotsiaaltööspetsialisti või lastekaitsespetsialisti poole; kui teenuse lehel on taotlusvorm nimetatud, esitada see paberkandjal või digiallkirjastatult."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://kov.torva.ee/toiming/perelepitus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "torva_vald_contact_ragne_margus",
+        "torva_vald_contact_jaanika_duvin"
+      ],
+      "item_type": "service",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "family_mediation_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_service_perelepitus",
+      "document_id": "torva_vald_service_perelepitus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/perelepitus",
+      "content_hash": "51139e1080279fd9eb44e83845c19a2f4020b87e947c3de1fa232fac7a2d4451",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_service_vaimse_tervise_parendamise_teenus",
+      "canonical_item_id": "torva_vald:service:vaimse_tervise_parendamise_teenus",
+      "itemType": "service",
+      "title": "Vaimse tervise parendamise teenus Tõrva vallas",
+      "status": "active",
+      "summary": "Vaimse tervise parendamise teenus toetab Tõrva valla elanike psühhosotsiaalset toimetulekut, ennetab vaimse tervise probleemide süvenemist ning pakub varajast nõustamist. Teenus võib hõlmata psühholoogilist nõustamist, pereteraapiat, kriisinõustamist, loovteraapiaid, mänguteraapiat, hingehoidlikku nõustamist, loomateraapiat ja tugi- või eneseabigruppe.",
+      "sourceKeys": [
+        "mental_health_page"
+      ],
+      "targetGroup": "Tõrva valla elanikud, kellel on vaimse tervisega seotud raskusi",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Pöörduda Tõrva valla sotsiaaltööspetsialisti või lastekaitsespetsialisti poole; kui teenuse lehel on taotlusvorm nimetatud, esitada see paberkandjal või digiallkirjastatult."
+        ],
+        "deadline": null
+      },
+      "pricing": "Tõrva valla elanikele tasuta eelarveliste vahendite piires",
+      "officialUrl": "https://kov.torva.ee/toiming/vaimse-tervise-parendamise-teenus-torva-vallas",
+      "relatedTo": [],
+      "relatedForms": [
+        "torva_vald_form_sotsiaalteenuste_taotlus"
+      ],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas",
+        "torva_vald_contact_ragne_margus",
+        "torva_vald_contact_jaanika_duvin"
+      ],
+      "item_type": "service",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "mental_health_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_service_vaimse_tervise_parendamise_teenus",
+      "document_id": "torva_vald_service_vaimse_tervise_parendamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/vaimse-tervise-parendamise-teenus-torva-vallas",
+      "content_hash": "7449f042abcfd3ebd9e93c37effde9e67d03405c8156a56c698959a5b5ab1931",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_benefit_toetus_vahekindlustatud_leibkondadele",
+      "canonical_item_id": "torva_vald:benefit:toetus_vahekindlustatud_leibkondadele",
+      "itemType": "benefit",
+      "title": "Toetus vähekindlustatud leibkondadele",
+      "status": "active",
+      "summary": "Sissetulekust sõltuv toetus vähekindlustatud leibkondadele arvestab taotleja ja pereliikmete eelneva kolme kuu keskmist sissetulekut, materiaalset olukorda, tervist, ülalpeetavate arvu ja vanust. Toetust makstakse esmavajalike kaupade ja teenuste eest ning toetusliikide seas on näiteks toidu, riiete, prillide, kütte, retseptiravimite, abivahendite, kommunaalkulude, kooli ja huviringi kulud.",
+      "sourceKeys": [
+        "low_income_support_page"
+      ],
+      "targetGroup": "Vähekindlustatud leibkonnad",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Esita teenuse/toetuse lehel nimetatud taotlus SPOKU iseteeninduses, paberkandjal Tartu 4 aadressil või digiallkirjastatult e-posti teel."
+        ],
+        "deadline": null
+      },
+      "amount": "Toetusliigiti: nt toidu/riiete toetus kuni 30 eurot korraga, küttetoetus kuni 200 eurot aastas, prillitoetus kuni 50 eurot",
+      "officialUrl": "https://kov.torva.ee/toiming/toetus-vahekindlustatud-leibkondadele",
+      "relatedTo": [],
+      "relatedForms": [
+        "torva_vald_form_vahekindlustatud_leibkonna_toetus"
+      ],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "low_income_support_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_benefit_toetus_vahekindlustatud_leibkondadele",
+      "document_id": "torva_vald_benefit_toetus_vahekindlustatud_leibkondadele",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/toetus-vahekindlustatud-leibkondadele",
+      "content_hash": "a264dad88d72e63a03f42dd3ff5559ab8b3eb4f63e826df747a36352f04a2fb3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_benefit_sunnitoetus",
+      "canonical_item_id": "torva_vald:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus koosneb kahest võrdsest osast, mida makstakse pärast lapse sündi ja lapse 18-kuuseks saamisel. Taotleja elukoht peab olema Tõrva vald vähemalt üks kuu enne lapse sündi ja lapse elukohana peab olema registreeritud Tõrva vald.",
+      "sourceKeys": [
+        "birth_benefit_page"
+      ],
+      "targetGroup": "Lapse vanem või eestkostja",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Esita teenuse/toetuse lehel nimetatud taotlus SPOKU iseteeninduses, paberkandjal Tartu 4 aadressil või digiallkirjastatult e-posti teel."
+        ],
+        "deadline": null
+      },
+      "amount": "Summa määratakse lapse sünnikuupäeval kehtinud korra järgi",
+      "officialUrl": "https://kov.torva.ee/toiming/sunnitoetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "torva_vald_form_sissetulekust_soltumatud_toetused"
+      ],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "birth_benefit_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_benefit_sunnitoetus",
+      "document_id": "torva_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/sunnitoetus",
+      "content_hash": "54bb434dcc05055c05517ad36ce2bf19e8681f100ddfd7dbb20d28693e80e326",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_benefit_esmakordselt_kooli_mineva_lapse_toetus",
+      "canonical_item_id": "torva_vald:benefit:esmakordselt_kooli_mineva_lapse_toetus",
+      "itemType": "benefit",
+      "title": "Esmakordselt kooli mineva lapse toetus",
+      "status": "active",
+      "summary": "Toetus on 1. klassi astuva lapse perele. Õigus taotleda on ühel lapsevanemal või eestkostjal juhul, kui lapse elukoht on rahvastikuregistri järgi Tõrva vald. Taotlemise tähtaeg on 1. oktoober.",
+      "sourceKeys": [
+        "school_start_benefit_page"
+      ],
+      "targetGroup": "1. klassi alustava lapse vanem või eestkostja",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Esita teenuse/toetuse lehel nimetatud taotlus SPOKU iseteeninduses, paberkandjal Tartu 4 aadressil või digiallkirjastatult e-posti teel."
+        ],
+        "deadline": "1. oktoober"
+      },
+      "amount": "100 eurot lapse kohta",
+      "officialUrl": "https://kov.torva.ee/toiming/esmakordselt-kooli-mineva-lapse-toetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "torva_vald_form_sissetulekust_soltumatud_toetused"
+      ],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "school_start_benefit_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_benefit_esmakordselt_kooli_mineva_lapse_toetus",
+      "document_id": "torva_vald_benefit_esmakordselt_kooli_mineva_lapse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/esmakordselt-kooli-mineva-lapse-toetus",
+      "content_hash": "a10d96bc5b4de7f2f018b964615ae7321d0117ee3c8808767276d85e3545c2b8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_benefit_joulutoetus",
+      "canonical_item_id": "torva_vald:benefit:joulutoetus",
+      "itemType": "benefit",
+      "title": "Jõulutoetus",
+      "status": "active",
+      "summary": "Jõulutoetust makstakse toitjakaotuspensioni saava lapsega perele ning puudega lapsega perele. Toetus makstakse välja ühele lapsevanemale või eestkostjale detsembrikuus.",
+      "sourceKeys": [
+        "christmas_benefit_page"
+      ],
+      "targetGroup": "Puudega lapsega või toitjakaotuspensioni saava lapsega pere",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Esita teenuse/toetuse lehel nimetatud taotlus SPOKU iseteeninduses, paberkandjal Tartu 4 aadressil või digiallkirjastatult e-posti teel."
+        ],
+        "deadline": null
+      },
+      "amount": "20 eurot lapse kohta",
+      "officialUrl": "https://kov.torva.ee/toiming/joulutoetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "torva_vald_form_sissetulekust_soltumatud_toetused"
+      ],
+      "relatedContacts": [
+        "torva_vald_contact_ragne_margus",
+        "torva_vald_contact_jaanika_duvin"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "christmas_benefit_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_benefit_joulutoetus",
+      "document_id": "torva_vald_benefit_joulutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/joulutoetus",
+      "content_hash": "1ac4dbf5ab04582179e5ec29c0223e85833df9bb24b7ecfaabed050a0dad3820",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_benefit_transporditoetus",
+      "canonical_item_id": "torva_vald:benefit:transporditoetus",
+      "itemType": "benefit",
+      "title": "Transporditoetus",
+      "status": "active",
+      "summary": "Transporditoetust makstakse üks kord aastas keemia-, kiiritus- ja dialüüsravi saajale arsti tõendi alusel. Toetus aitab katta ravil käimisega seotud sõidukulusid.",
+      "sourceKeys": [
+        "transport_benefit_page"
+      ],
+      "targetGroup": "Keemia-, kiiritus- või dialüüsravi saaja",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Esita teenuse/toetuse lehel nimetatud taotlus SPOKU iseteeninduses, paberkandjal Tartu 4 aadressil või digiallkirjastatult e-posti teel."
+        ],
+        "deadline": null
+      },
+      "amount": "Summa sõltub esitatud kuludest ja otsusest",
+      "officialUrl": "https://kov.torva.ee/toiming/transporditoetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "torva_vald_form_sissetulekust_soltumatud_toetused"
+      ],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "transport_benefit_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_benefit_transporditoetus",
+      "document_id": "torva_vald_benefit_transporditoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/transporditoetus",
+      "content_hash": "94e55b6bf5a1bd56e6ffe853c39b336ce6dc13473bb8d233d53465071628b125",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_benefit_matusetoetus",
+      "canonical_item_id": "torva_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on ühekordne toetus matusekulude kandjale juhul, kui surnud isiku elukoha aadress rahvastikuregistri andmetel oli surma hetkel Tõrva vallas.",
+      "sourceKeys": [
+        "funeral_benefit_page"
+      ],
+      "targetGroup": "Matusekulude kandja",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Esita teenuse/toetuse lehel nimetatud taotlus SPOKU iseteeninduses, paberkandjal Tartu 4 aadressil või digiallkirjastatult e-posti teel."
+        ],
+        "deadline": null
+      },
+      "amount": "300 eurot",
+      "officialUrl": "https://kov.torva.ee/toiming/matusetoetus-0",
+      "relatedTo": [],
+      "relatedForms": [
+        "torva_vald_form_sissetulekust_soltumatud_toetused"
+      ],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "funeral_benefit_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_benefit_matusetoetus",
+      "document_id": "torva_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/matusetoetus-0",
+      "content_hash": "23cf69e1cf58c6e26176aba81ce1e2e4bf7b2f793f5b697129d217c40b130f0e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_benefit_kriisitoetus",
+      "canonical_item_id": "torva_vald:benefit:kriisitoetus",
+      "itemType": "benefit",
+      "title": "Kriisitoetus",
+      "status": "active",
+      "summary": "Kriisitoetust on õigus saada isikul või perekonnal, kes on ajutiselt sattunud kriisiolukorda õnnetusjuhtumi, elamu või eluruumi tulekahju, kuriteo, pereliikme äkilise haigestumise või muu sarnase juhtumi tõttu.",
+      "sourceKeys": [
+        "crisis_benefit_page"
+      ],
+      "targetGroup": "Kriisiolukorda sattunud isik või pere",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Esita teenuse/toetuse lehel nimetatud taotlus SPOKU iseteeninduses, paberkandjal Tartu 4 aadressil või digiallkirjastatult e-posti teel."
+        ],
+        "deadline": null
+      },
+      "amount": "Summa sõltub abivajadusest",
+      "officialUrl": "https://kov.torva.ee/toiming/kriisitoetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "torva_vald_form_sissetulekust_soltumatud_toetused"
+      ],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "crisis_benefit_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_benefit_kriisitoetus",
+      "document_id": "torva_vald_benefit_kriisitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/kriisitoetus",
+      "content_hash": "b9a3d509502879b0e31f7f31dc010a7f7f4f05322e6f7ae5737fa2fa9e83fcef",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_benefit_valtimatu_sotsiaalabi",
+      "canonical_item_id": "torva_vald:benefit:valtimatu_sotsiaalabi",
+      "itemType": "benefit",
+      "title": "Vältimatu sotsiaalabi",
+      "status": "active",
+      "summary": "Vältimatut sotsiaalabi osutatakse isikule, kes on sattunud sotsiaalselt abitusse olukorda elatusvahendite kaotuse või puudumise tõttu. Abi eesmärk on katta esmavajadused ja vältida olukorra süvenemist.",
+      "sourceKeys": [
+        "urgent_social_aid_page"
+      ],
+      "targetGroup": "Sotsiaalselt abitusesse olukorda sattunud inimene",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Esita teenuse/toetuse lehel nimetatud taotlus SPOKU iseteeninduses, paberkandjal Tartu 4 aadressil või digiallkirjastatult e-posti teel."
+        ],
+        "deadline": null
+      },
+      "amount": "Summa sõltub abivajadusest",
+      "officialUrl": "https://kov.torva.ee/toiming/valtimatu-sotsiaalabi",
+      "relatedTo": [],
+      "relatedForms": [
+        "torva_vald_form_sissetulekust_soltumatud_toetused"
+      ],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "urgent_social_aid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_benefit_valtimatu_sotsiaalabi",
+      "document_id": "torva_vald_benefit_valtimatu_sotsiaalabi",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/valtimatu-sotsiaalabi",
+      "content_hash": "b5cbe17dd2a96d458f32416493a63ba81908b5dbf9d5b1ab88299adadfca4ea1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_benefit_puudega_lapse_hooldajatoetus",
+      "canonical_item_id": "torva_vald:benefit:puudega_lapse_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Puudega lapse hooldajatoetus",
+      "status": "active",
+      "summary": "Puudega lapse hooldajatoetust makstakse vanemale, vanema abikaasale, eestkostjale või perehoolduslepingu alusel last hooldavale isikule, kes ei saa töötada puudega lapse hooldamise tõttu. Toetus määratakse ühele hooldajale perekonnas iga puudega lapse eest ning tähtajaliselt puude lõpptähtajani.",
+      "sourceKeys": [
+        "disabled_child_caregiver_benefit_page"
+      ],
+      "targetGroup": "Puudega lapse hooldaja",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Esita teenuse/toetuse lehel nimetatud taotlus SPOKU iseteeninduses, paberkandjal Tartu 4 aadressil või digiallkirjastatult e-posti teel."
+        ],
+        "deadline": null
+      },
+      "amount": "50 eurot kuus",
+      "officialUrl": "https://kov.torva.ee/toiming/puudega-lapse-hooldajatoetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "torva_vald_form_sissetulekust_soltumatud_toetused"
+      ],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "disabled_child_caregiver_benefit_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_benefit_puudega_lapse_hooldajatoetus",
+      "document_id": "torva_vald_benefit_puudega_lapse_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/puudega-lapse-hooldajatoetus",
+      "content_hash": "00dea0375e46a2e7133986389d0b4d61877a932e88bce6a6ad6b8cfa3829d897",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "canonical_item_id": "torva_vald:benefit:taisealise_isiku_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Täisealise isiku hooldajatoetus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldajatoetus on hooldajale makstav igakuine sotsiaaltoetus. Toetus määratakse hoolduse seadmisega seotud avalduse alusel puude lõpptähtajani.",
+      "sourceKeys": [
+        "adult_caregiver_benefit_page"
+      ],
+      "targetGroup": "Raske või sügava puudega täisealise hooldaja",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "online",
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Esita teenuse/toetuse lehel nimetatud taotlus SPOKU iseteeninduses, paberkandjal Tartu 4 aadressil või digiallkirjastatult e-posti teel."
+        ],
+        "deadline": null
+      },
+      "amount": "20 eurot kuus raske puude korral ja 30 eurot kuus sügava puude korral",
+      "officialUrl": "https://kov.torva.ee/toiming/taisealise-isiku-hooldajatoetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "torva_vald_form_taisealise_isiku_hooldaja"
+      ],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "adult_caregiver_benefit_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "document_id": "torva_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/taisealise-isiku-hooldajatoetus",
+      "content_hash": "bdf21e93c617e53442f729f54bb62f682a4a129bfc8278745f15640402cb7bcd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_benefit_joulupakitoetus",
+      "canonical_item_id": "torva_vald:benefit:joulupakitoetus",
+      "itemType": "benefit",
+      "title": "Jõulupakitoetus",
+      "status": "active",
+      "summary": "Jõulupakitoetus on jõulupakk Tõrva valla lastele vanuses 18 kuud kuni 4. klassi õpilaseni. Pakid jagatakse jõuluüritustel ning eraldi taotlust ei ole vaja esitada.",
+      "sourceKeys": [
+        "christmas_package_benefit_page"
+      ],
+      "targetGroup": "Tõrva valla laps vanuses 18 kuud kuni 4. klass",
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": [
+          "Taotlust ei pea esitama, kui teenuse leht nii ütleb."
+        ],
+        "deadline": null
+      },
+      "amount": "Kuni 10 eurot väärtusega kingipakk",
+      "officialUrl": "https://kov.torva.ee/toiming/joulupakitoetus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "christmas_package_benefit_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_benefit_joulupakitoetus",
+      "document_id": "torva_vald_benefit_joulupakitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/joulupakitoetus",
+      "content_hash": "305d1224e5e140b700008e06f867cd6f07f3768205c999d55b25aa65e56f102a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_benefit_eakate_sunnipaevatoetus",
+      "canonical_item_id": "torva_vald:benefit:eakate_sunnipaevatoetus",
+      "itemType": "benefit",
+      "title": "Eakate sünnipäevatoetus",
+      "status": "active",
+      "summary": "Eakate sünnipäevatoetust makstakse 80., 85. ja 90. sünnipäeva puhul ning alates 95. eluaastast igal sünnipäeval. Kui raha soovitakse kontole, avaldust ei pea esitama; sularaha saamiseks tuleb avaldus esitada.",
+      "sourceKeys": [
+        "elderly_birthday_benefit_page"
+      ],
+      "targetGroup": "Tõrva valla eakad juubilarid",
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": [
+          "Taotlust ei pea esitama, kui teenuse leht nii ütleb."
+        ],
+        "deadline": null
+      },
+      "amount": "50 eurot",
+      "officialUrl": "https://kov.torva.ee/toiming/eakate-sunnipaevatoetus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "torva_vald_contact_kersti_jurise",
+        "torva_vald_contact_olga_meltsas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "elderly_birthday_benefit_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_benefit_eakate_sunnipaevatoetus",
+      "document_id": "torva_vald_benefit_eakate_sunnipaevatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/eakate-sunnipaevatoetus",
+      "content_hash": "f36568fc947837c4141167e0a23daeef6743c53c9c29691ed247d1c5157b48b4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_resource_ohvriabi",
+      "canonical_item_id": "torva_vald:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "Ohvriabi on abikanal inimestele, kes on langenud hooletuse, halva kohtlemise, füüsilise, vaimse või seksuaalse vägivalla ohvriks või kes on saanud kahju või kannatusi. Tõrva valla lehel on avaldatud ohvriabi kriisitelefon, välismaalt, lasteabi, inimkaubanduse nõuandeliin ja vägivallast loobumise tugiliin",
+      "sourceKeys": [
+        "victim_support_page"
+      ],
+      "officialUrl": "https://kov.torva.ee/pere-sotsiaal-ja-tervishoid/pere-ja-laps/ohvriabi",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "victim_support_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_resource_ohvriabi",
+      "document_id": "torva_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/pere-sotsiaal-ja-tervishoid/pere-ja-laps/ohvriabi",
+      "content_hash": "b920e33bfe06992853cd5cc98ce5349ef3ffe6066cd4816a517e76b7d65e911f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_resource_psuhhosotsiaalne_kriisiabi",
+      "canonical_item_id": "torva_vald:resource:psuhhosotsiaalne_kriisiabi",
+      "itemType": "resource",
+      "title": "Psühhosotsiaalne kriisiabi",
+      "status": "active",
+      "summary": "Psühhosotsiaalne kriisiabi toetab otseselt või kaudselt kriisiolukorrast mõjutatud inimesi, aitab taastada turvatunnet, vähendada stressi ja ärevust ning toetab toimetulekut pärast traumaatilist sündmust. Lehel on lisatud vaimse tervise valgusfoori PDF.",
+      "sourceKeys": [
+        "psychosocial_crisis_aid_page"
+      ],
+      "officialUrl": "https://kov.torva.ee/kriisideks-valmisolek/psuhhosotsiaalne-kriisiabi",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "psychosocial_crisis_aid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_resource_psuhhosotsiaalne_kriisiabi",
+      "document_id": "torva_vald_resource_psuhhosotsiaalne_kriisiabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/kriisideks-valmisolek/psuhhosotsiaalne-kriisiabi",
+      "content_hash": "0509d4e4be594f68096c1be587c9f263c0f56b2206eb646c640135e35bbf3ec8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_resource_perelepituse_abc_pdf",
+      "canonical_item_id": "torva_vald:resource:perelepituse_abc_pdf",
+      "itemType": "resource",
+      "title": "Perelepituse ABC PDF",
+      "status": "active",
+      "summary": "Perelepituse ABC on Tõrva valla perelepituse lehel avaldatud PDF-materjal, mis selgitab riikliku perelepitusteenuse olemust ja protsessi.",
+      "sourceKeys": [
+        "family_mediation_pdf"
+      ],
+      "officialUrl": "https://kov.torva.ee/sites/default/files/documents/2025-10/Perelepituse_ABC.pdf",
+      "relatedTo": [
+        "torva_vald_service_perelepitus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "family_mediation_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_resource_perelepituse_abc_pdf",
+      "document_id": "torva_vald_resource_perelepituse_abc_pdf",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/sites/default/files/documents/2025-10/Perelepituse_ABC.pdf",
+      "content_hash": "a6def6ddd7c1c8f373cd13f4cd7be235f25ee38d266d5a6e87cda06a176a16dc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_resource_vaimse_tervise_valgusfoor_pdf",
+      "canonical_item_id": "torva_vald:resource:vaimse_tervise_valgusfoor_pdf",
+      "itemType": "resource",
+      "title": "Vaimse tervise valgusfoor PDF",
+      "status": "active",
+      "summary": "Vaimse tervise valgusfoor on psühhosotsiaalse kriisiabi lehel avaldatud PDF-materjal vaimse tervise seisundi hindamiseks ja abivajaduse mõistmiseks.",
+      "sourceKeys": [
+        "mental_health_traffic_light_pdf"
+      ],
+      "officialUrl": "https://kov.torva.ee/sites/default/files/documents/2025-10/Vaimse%20tervise%20valgusfoor.pdf",
+      "relatedTo": [
+        "torva_vald_resource_psuhhosotsiaalne_kriisiabi"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "mental_health_traffic_light_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_resource_vaimse_tervise_valgusfoor_pdf",
+      "document_id": "torva_vald_resource_vaimse_tervise_valgusfoor_pdf",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/sites/default/files/documents/2025-10/Vaimse%20tervise%20valgusfoor.pdf",
+      "content_hash": "5efb2f20ecfc4e75d8d67efd6eb4e7211946f67760f640913b40285d37028b51",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_form_sotsiaalteenuste_taotlus",
+      "canonical_item_id": "torva_vald:form:sotsiaalteenuste_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaalteenuste taotlus",
+      "status": "active",
+      "summary": "Sotsiaalteenuste taotlus on DOCX-vorm, mille kaudu saab esitada Tõrva valla sotsiaalteenuste taotlusi. Vorm on lingitud näiteks koduteenuse lehel ning selle saab esitada paberkandjal Tartu 4 aadressil või digiallkirjastatult e-posti teel.",
+      "sourceKeys": [
+        "services_form_file"
+      ],
+      "format": "docx",
+      "submissionChannels": [
+        "email",
+        "paper"
+      ],
+      "officialUrl": "https://kov.torva.ee/sites/default/files/documents/2025-10/Lisa%203.%20Teenused.docx",
+      "relatedTo": [
+        "torva_vald_service_koduteenus",
+        "torva_vald_service_tugiisikuteenus",
+        "torva_vald_service_isikliku_abistaja_teenus",
+        "torva_vald_service_sotsiaaltransporditeenus",
+        "torva_vald_service_eluruumi_tagamise_teenus",
+        "torva_vald_service_puudega_lapse_sotsiaalteenus",
+        "torva_vald_service_hairenuputeenus",
+        "torva_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+        "torva_vald_service_vaimse_tervise_parendamise_teenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": null,
+      "item_type": "form",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "services_form_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_form_sotsiaalteenuste_taotlus",
+      "document_id": "torva_vald_form_sotsiaalteenuste_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/sites/default/files/documents/2025-10/Lisa%203.%20Teenused.docx",
+      "content_hash": "78cab69a795b438ed10cd9d0b74d67ae7428e3090938fadb4c8a29bbd04b5d2d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_form_sissetulekust_soltumatud_toetused",
+      "canonical_item_id": "torva_vald:form:sissetulekust_soltumatud_toetused",
+      "itemType": "form",
+      "title": "Sissetulekust sõltumatud toetused",
+      "status": "active",
+      "summary": "Sissetulekust sõltumatute toetuste DOCX-vormi kasutatakse Tõrva valla toetuste puhul, mis ei sõltu otseselt leibkonna sissetulekust, näiteks sünnitoetus, koolimineku toetus, jõulutoetus, matusetoetus ja teised samal vormil taotletavad toetused.",
+      "sourceKeys": [
+        "income_independent_benefits_form_file"
+      ],
+      "format": "docx",
+      "submissionChannels": [
+        "online",
+        "email",
+        "paper"
+      ],
+      "officialUrl": "https://kov.torva.ee/sites/default/files/documents/2025-10/Lisa%201.%20Sissetulekust%20s%C3%B5ltumatud%20toetused.docx",
+      "relatedTo": [
+        "torva_vald_benefit_sunnitoetus",
+        "torva_vald_benefit_esmakordselt_kooli_mineva_lapse_toetus",
+        "torva_vald_benefit_joulutoetus",
+        "torva_vald_benefit_transporditoetus",
+        "torva_vald_benefit_matusetoetus",
+        "torva_vald_benefit_kriisitoetus",
+        "torva_vald_benefit_valtimatu_sotsiaalabi",
+        "torva_vald_benefit_puudega_lapse_hooldajatoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": null,
+      "item_type": "form",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "income_independent_benefits_form_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_form_sissetulekust_soltumatud_toetused",
+      "document_id": "torva_vald_form_sissetulekust_soltumatud_toetused",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/sites/default/files/documents/2025-10/Lisa%201.%20Sissetulekust%20s%C3%B5ltumatud%20toetused.docx",
+      "content_hash": "19258f4bf731648ab588e6008cc670e20bd09367daab201cdd50d99cdabccabf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_form_vahekindlustatud_leibkonna_toetus",
+      "canonical_item_id": "torva_vald:form:vahekindlustatud_leibkonna_toetus",
+      "itemType": "form",
+      "title": "Vähekindlustatud leibkondade toetuse taotlus",
+      "status": "active",
+      "summary": "Vähekindlustatud leibkondade toetuse DOCX-vorm on mõeldud sissetulekust sõltuva sotsiaaltoetuse taotlemiseks. Vormile lisatakse vajadusel sissetuleku- ja kuludokumendid.",
+      "sourceKeys": [
+        "low_income_support_form_file"
+      ],
+      "format": "docx",
+      "submissionChannels": [
+        "email",
+        "paper"
+      ],
+      "officialUrl": "https://kov.torva.ee/sites/default/files/documents/2025-10/Lisa%202.%20V%C3%A4hekindlustatud%20leibkondade%20toetus%20%281%29.docx",
+      "relatedTo": [
+        "torva_vald_benefit_toetus_vahekindlustatud_leibkondadele"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": null,
+      "item_type": "form",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "low_income_support_form_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_form_vahekindlustatud_leibkonna_toetus",
+      "document_id": "torva_vald_form_vahekindlustatud_leibkonna_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/sites/default/files/documents/2025-10/Lisa%202.%20V%C3%A4hekindlustatud%20leibkondade%20toetus%20%281%29.docx",
+      "content_hash": "fa1a297b70e5a363d4da5c46653bdfd3d2a77bcbf23a4bd3a271d720c1a2720a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "torva_vald_form_taisealise_isiku_hooldaja",
+      "canonical_item_id": "torva_vald:form:taisealise_isiku_hooldaja",
+      "itemType": "form",
+      "title": "Täisealise isiku hooldaja/hooldajatoetuse taotlus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldaja ja hooldajatoetuse taotlus on seotud täisealise isiku hoolduse ja täisealise isiku hooldajatoetusega. Kuna eraldi faililink on sama vormide kihiga seotud, on see vorm kajastatud teenuse/toetuse lehtede põhjal.",
+      "sourceKeys": [
+        "adult_caregiver_benefit_page"
+      ],
+      "format": "web/docx",
+      "submissionChannels": [
+        "online",
+        "email",
+        "paper"
+      ],
+      "officialUrl": "https://kov.torva.ee/toiming/taisealise-isiku-hooldajatoetus",
+      "relatedTo": [
+        "torva_vald_service_taisealise_isiku_hooldus",
+        "torva_vald_benefit_taisealise_isiku_hooldajatoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": null,
+      "item_type": "form",
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "adult_caregiver_benefit_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "torva_vald_form_taisealise_isiku_hooldaja",
+      "document_id": "torva_vald_form_taisealise_isiku_hooldaja",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kov.torva.ee/toiming/taisealise-isiku-hooldajatoetus",
+      "content_hash": "081f4a45ea6d5cbf7ec79022397a6da2ee5b7a555a4c64cd20bc0811b68a3340",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Tõrva vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

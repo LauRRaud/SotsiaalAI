@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-4-2022",
+  "articleId": "aafrika-kogemus-sotsiaaltoost-pagulaste-ja-sisserannanutega-2022-4",
+  "title": "Aafrika kogemus sotsiaaltööst pagulaste ja sisserännanutega",
+  "authors": [
+    "Regina Lind"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2022",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "62-64",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kokkuvõte Burundist pärit sotsiaaltöötaja Serges Claver Nzisabira ettekandest annab ülevaate Aafrika\npagulas- ja sisserändajate olukorrast ning sotsiaaltöö ülesannetest eri etappides – vastuvõtust kuni\nautonoomse toimetulekuni. Räägitakse pagulaslaagrite rasketest elutingimustest, inimõiguste rikkumisest\nja haavatavate rühmade erivajadustest. Artikkel tutvustab Ubuntu-filosoofial põhinevat lähenemist, mis\nrõhutab solidaarsust, kogukondlikku vastutust ja iga inimese väärikuse austamist.",
+  "tags": [
+    "pagulased",
+    "Aafrika",
+    "Serges Claver Nzisabira",
+    "sisseränne",
+    "Ubuntu",
+    "inimõigused",
+    "pagulaslaagrid",
+    "sotsiaaltöö kriisipiirkondades"
+  ],
+  "source_type": "file",
+  "source_path": "2022_4_artikkel_13_aafrika.pdf",
+  "document_id": "sotsiaaltoo-4-2022-aafrika-kogemus-sotsiaaltoost-pagulaste-ja-sisserannanutega-2022-4",
+  "source_format": "pdf",
+  "source_sha256": "32b3b710eb41a3da4821d0b790370993f736baf07cf9df1a2c4118995b785732",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2022-aafrika-kogemus-sotsiaaltoost-pagulaste-ja-sisserannanutega-2022-4",
+    "previous_source_path": "2022_4_artikkel_13_aafrika.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "32b3b710eb41a3da4821d0b790370993f736baf07cf9df1a2c4118995b785732",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

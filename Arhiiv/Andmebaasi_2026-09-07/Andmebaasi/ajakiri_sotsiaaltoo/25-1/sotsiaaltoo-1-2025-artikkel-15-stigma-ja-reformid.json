@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "stigma-ja-reformid-alaealiste-kinnipidamise-keeruline-kusimus-eestis-2025-1",
+  "title": "Stigma ja reformid: alaealiste kinnipidamise keeruline küsimus Eestis",
+  "authors": [
+    "Maria Žuravljova"
+  ],
+  "section": "Arvamus",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "description": "Arvamuslugu, mis käsitleb alaealiste kinnipidamise süsteemi Eestis, selle ajalugu ja kavandatavaid reforme. Autor analüüsib, kuidas ühiskondlik stigma, avalik arvamus ja poliitilised otsused mõjutavad alaealiste õigusrikkujate kohtlemist ning millist rolli mängivad lastekaitse, haridus ja kriminaalõigus. Rõhutatakse vajadust taastava õiguse, individuaalse lähenemise ja rehabilitatsiooni järele, et aidata noortel elus uusi võimalusi leida ning vähendada korduvate õigusrikkumiste ohtu.",
+  "tags": [
+    "alaealiste kinnipidamine",
+    "stigma",
+    "kriminaalõigus",
+    "reformid",
+    "taastav õigus",
+    "noorte õigusrikkumised",
+    "rehabilitatsioon"
+  ],
+  "source_path": "Stigma ja reformid_1_2025.pdf",
+  "pageRange": "1–6",
+  "document_id": "sotsiaaltoo-1-2025-stigma-ja-reformid-alaealiste-kinnipidamise-keeruline-kusimus-eestis-2025-1",
+  "source_format": "pdf",
+  "source_sha256": "fb131f48f22606e1748c55fdd5b7007b37a822ac7c50cf19b3f490bdcf23d758",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2025-stigma-ja-reformid-alaealiste-kinnipidamise-keeruline-kusimus-eestis-2025-1",
+    "previous_source_path": "Stigma ja reformid_1_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "fb131f48f22606e1748c55fdd5b7007b37a822ac7c50cf19b3f490bdcf23d758",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

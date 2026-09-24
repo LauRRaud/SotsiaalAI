@@ -1,0 +1,50 @@
+{
+  "docId": "sotsiaaltoo-1-2026",
+  "articleId": "solidaarsus-kui-sotsiaaltoo-erialahariduse-uurimise-ja-praktika-raamis-2026",
+  "title": "Solidaarsus kui sotsiaaltöö erialahariduse, uurimise ja praktika raamistik",
+  "authors": [
+    "Jorunn Vindegg",
+    "Håvard Aaslund"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2026",
+  "section": "Erialane haridus",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb solidaarsuse mõiste ajaloolist arengut ja rolli sotsiaaltöö erialahariduses ning praktikas, tuginedes nii klassikalistele kui ka nüüdisaegsetele käsitlustele. Praktilist rakendamist illustreeritakse Euroopa projektiga LOCUS, kus üliõpilased uurivad kogukondi koos elanike ja spetsialistidega.",
+  "tags": [
+    "solidaarsus",
+    "sotsiaaltöö haridus",
+    "kogukonnatöö",
+    "projektõpe",
+    "LOCUS",
+    "üliõpilaste praktika",
+    "rahvusvaheline koostöö",
+    "sotsiaalsed õigused"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-04-22",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/solidaarsus-kui-sotsiaaltoo-erialahariduse-uurimise-ja-praktika-raamistik",
+  "source_type": "web",
+  "source_path": "solidaarsus-kui-sotsiaaltoo-erialahariduse-uurimise-ja-praktika-raamistik.html",
+  "lead": "Artiklist saab ülevaate solidaarsuse mõiste ajaloolisest kujunemisest ja mõningatest seda käsitlevatest nüüdisaegsetest teooriatest. Rahvusvahelise projekti LOCUS näitel tutvustatakse praktilisi võimalusi solidaarse tegutsemise harjutamiseks ja seda toetavate hoiakute kujundamiseks erialahariduses.",
+  "document_id": "sotsiaaltoo-1-2026-solidaarsus-kui-sotsiaaltoo-erialahariduse-uurimise-ja-praktika-raamis-2026",
+  "source_format": "html",
+  "source_sha256": "34e77f6c98ee453b0f529357e005c625382188327e1b45a6a46493ad001fd1f9",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2026-solidaarsus-kui-sotsiaaltoo-erialahariduse-uurimise-ja-praktika-raamis-2026",
+    "previous_source_path": "solidaarsus-kui-sotsiaaltoo-erialahariduse-uurimise-ja-praktika-raamistik.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "7ddea4f3a9cbf43ea7fccefe89cb3d8bae354e0cd91cf3648cd8906d094239ff",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "c879c21f2c88440fe06c4e84b871e88bff5c116f09b66efd177e13cb8484204f",
+    "observed_web_title": "Solidaarsus kui sotsiaaltöö erialahariduse, uurimise ja praktika raamistik"
+  },
+  "retrieved_at": "2026-09-07T19:39:35.040319+00:00"
+}

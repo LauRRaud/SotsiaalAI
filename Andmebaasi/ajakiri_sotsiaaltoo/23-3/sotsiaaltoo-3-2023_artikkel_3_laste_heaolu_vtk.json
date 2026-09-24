@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2023",
+  "articleId": "sotsiaalministeerium-otsib-koos-partneritega-voimalusi-laste-heaolu-suurendamiseks-2023-3",
+  "title": "Sotsiaalministeerium otsib koos partneritega võimalusi laste heaolu suurendamiseks",
+  "authors": [
+    "Helen Jõks"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2023",
+  "section": "Korraldus",
+  "pageRange": "10-14",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab laste heaolu suurendamise väljatöötamiskavatsust, millega sotsiaalministeerium soovib\nkoos partneritega uuendada lastekaitse korraldust. Kirjeldatakse laste ja perede abistamise kitsaskohti:\nennetuse vähesus, abivajaduse hiline märkam ine, rollide ja ülesannete ebaselgus, lastekaitsetöötajate suur\ntöökoormus ning ebaühtlane kvaliteet omavalitsustes. Pakutud lahendused hõlmavad universaalse ennetuse\nja varajase abi selgemat kohustust KOVidele, valdkondadeülese abivajaduse hindamisvahendi ja tasemete\nsüsteemi kasutuselevõttu, ühtse juhtumikorralduse metoodika rakendamist ning STAR-andmeregistri\nkaasajastamist. Samuti arutletakse lastekaitse korraldusmudeli muutmise üle, sh piirkonnakesksete tiimide\nja riikliku toe tugevdamise võimalusi.",
+  "tags": [
+    "lastekaitse",
+    "laste heaolu",
+    "ennetamine",
+    "varajane märkamine",
+    "juhtumikorraldus",
+    "STAR andmeregister",
+    "lastekaitsetöötajad",
+    "sotsiaalministeerium"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2023_web_Part4.pdf",
+  "document_id": "sotsiaaltoo-3-2023-sotsiaalministeerium-otsib-koos-partneritega-voimalusi-laste-heaolu-suurendamiseks-2023-3",
+  "source_format": "pdf",
+  "source_sha256": "3dc1971f9223feca0fd593820b9fa3d306d3072469d98b502344ddff81dddf53",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2023-sotsiaalministeerium-otsib-koos-partneritega-voimalusi-laste-heaolu-suurendamiseks-2023-3",
+    "previous_source_path": "Sotsiaaltoo_3_2023_web_Part4.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "3dc1971f9223feca0fd593820b9fa3d306d3072469d98b502344ddff81dddf53",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

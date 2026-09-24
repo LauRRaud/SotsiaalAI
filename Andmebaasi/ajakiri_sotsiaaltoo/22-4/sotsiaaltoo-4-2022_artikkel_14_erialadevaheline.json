@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-4-2022",
+  "articleId": "erialadevaheline-koostoo-mitmesse-susteemi-holmatud-laste-ja-perede-toetamisel-2022-4",
+  "title": "Erialadevahelisest koostööst mitmesse süsteemi hõlmatud laste ja perede toetamisel",
+  "authors": [
+    "Koidu Saia"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2022",
+  "section": "Uurimus",
+  "pageRange": "65-73",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Doktoritööl põhinev artikkel analüüsib, kuidas erinevate süsteemide – lastekaitse, haridus, tervishoid\nja õigussüsteem – koostöö mõjutab mitmekordse abivajadusega laste ja perede toetamist. Autor kirjeldab\nkohtu- ja teenusejuhtumite analüüsi tulemusi, tuues esile nii hästitoimiva koostöö kui ka killustatuse,\nvastutuse hajumise ja info liikumise takistused. Uurimus rõhutab laste ja vanemate kaasamist, ühtse\njuhtumikorralduse vajadust ning erialadevahelise õppimise ja refleksiooni rolli, et keerulistes olukordades\ntoetada last terviklikult, mitte üksikute probleemide kaupa.",
+  "tags": [
+    "erialadevaheline koostöö",
+    "lastekaitse",
+    "kohtupraktika",
+    "juhtumikorraldus",
+    "haavatavad lapsed",
+    "mitmesse süsteemi hõlmatud pered",
+    "uurimistöö",
+    "õigussüsteem ja sotsiaaltöö"
+  ],
+  "source_type": "file",
+  "source_path": "2022_4_artikkel_14_erialadevaheline.pdf",
+  "document_id": "sotsiaaltoo-4-2022-erialadevaheline-koostoo-mitmesse-susteemi-holmatud-laste-ja-perede-toetamisel-2022-4",
+  "source_format": "pdf",
+  "source_sha256": "dfe732d9c8131588683e366ba24b94debb385e7d103a378c2896d0cefbcd356e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2022-erialadevaheline-koostoo-mitmesse-susteemi-holmatud-laste-ja-perede-toetamisel-2022-4",
+    "previous_source_path": "2022_4_artikkel_14_erialadevaheline.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "dfe732d9c8131588683e366ba24b94debb385e7d103a378c2896d0cefbcd356e",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

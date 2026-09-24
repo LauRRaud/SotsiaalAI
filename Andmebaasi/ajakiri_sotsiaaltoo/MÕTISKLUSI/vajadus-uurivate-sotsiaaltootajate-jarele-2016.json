@@ -1,0 +1,40 @@
+{
+  "docId": "motisklusi-sotsiaaltoost-2016",
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "MÕTISKLUSI",
+  "pdf_start_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "vajadus-uurivate-sotsiaaltootajate-jarele-2016",
+  "title": "Vajadus uurivate sotsiaaltöötajate järele",
+  "authors": [
+    "Hans van Ewijk"
+  ],
+  "pageRange": "37-39",
+  "pdf_end_page": 3,
+  "section": "Hea praktika",
+  "description": "Artikkel rõhutab uurimismeelsete sotsiaaltöötajate ja eriti vanemsotsiaaltöötajate olulisust, et vähendada lõhet teaduse ja praktika vahel. Käsitletakse professionaliseerumise mudeleid ning sotsiaaltööuurimuse peamisi valdkondi, tuues esile praktikute, teadlaste, juhtide ja poliitikakujundajate koostöö vajaduse.",
+  "tags": [
+    "sotsiaaltöö uurimus",
+    "uuriv praktik",
+    "professionaliseerumine",
+    "vanemsotsiaaltöötaja",
+    "teaduse ja praktika lõhe",
+    "sotsiaaltöö teadmus"
+  ],
+  "source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part14.pdf",
+  "document_id": "motisklusi-sotsiaaltoost-2016-vajadus-uurivate-sotsiaaltootajate-jarele-2016",
+  "source_format": "pdf",
+  "source_sha256": "58d19e2f3e6739082fc58e6e7c4960e61f3e7ba67412c99a593af75b0cae50b8",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "motisklusi-sotsiaaltoost-2016-vajadus-uurivate-sotsiaaltootajate-jarele-2016",
+    "previous_source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part14.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "58d19e2f3e6739082fc58e6e7c4960e61f3e7ba67412c99a593af75b0cae50b8",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

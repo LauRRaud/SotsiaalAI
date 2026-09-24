@@ -1,0 +1,78 @@
+{
+  "provenance": {
+    "kind": "recovered_from_legacy_index",
+    "source_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "source_text_store": "/var/lib/sotsiaalai-rag/lexical-index.sqlite3",
+    "recovered_at": "2026-09-07T20:11:41.708487+00:00"
+  },
+  "review_status": "compare_with_primary_source_before_ingest",
+  "document_id": "kov::maardu-linn::item::maardu_linn_resource_abivahendite_info",
+  "metadata": {
+    "createdAt": "2026-05-20T06:14:12.179974+00:00",
+    "type": "TEXT",
+    "lastIngested": "2026-05-20T06:14:12.142361+00:00",
+    "title": "Abivahendite taotlemise info",
+    "description": "Maardu kodulehel avaldatud abivahendite info selgitab, et abivahendi soetamiseks võib pöörduda abivahendeid müüvasse või rentivasse ettevõttesse, millel on Sotsiaalkindlustusametiga leping. Leht juhib abivahendite riikliku süsteemi ja Sotsiaalkindlustusameti kontaktide juurde.",
+    "audience": "BOTH",
+    "audiences": [
+      "CLIENT",
+      "SOCIAL_WORKER"
+    ],
+    "authors": [],
+    "tags": [
+      "resource"
+    ],
+    "language": "et",
+    "collection_id": "kov_services",
+    "country": "EE",
+    "county": "Raplamaa",
+    "jurisdiction_level": "MUNICIPALITY",
+    "municipality_name": "Märjamaa vald",
+    "municipality_id": "maardu_linn",
+    "district_name": null,
+    "district_id": null,
+    "source_format": null,
+    "checked_at": "2026-04-29",
+    "item_type": "resource",
+    "content_status": "active",
+    "resource_type": "resource",
+    "source_keys": [
+      "abivahend_page"
+    ],
+    "source_urls": [
+      "https://maardu.ee/abivahendi-taotlemine"
+    ],
+    "source_register_file": "maardu-linn.sources.json",
+    "source_count": 27,
+    "administering_body": null,
+    "issuer": null,
+    "act_title": null,
+    "act_reference": null,
+    "canonical_source_id": null,
+    "act_type": null,
+    "effective_start": null,
+    "effective_end": null,
+    "is_current_version": null,
+    "text_type": null,
+    "source_type": "partner_service_info",
+    "path": null,
+    "url": "https://maardu.ee/abivahendi-taotlemine",
+    "source_sha256": null,
+    "source_updated_at": null,
+    "original_doc_id": null,
+    "fileName": null,
+    "mimeType": "text/markdown",
+    "geo_detection_method": null,
+    "geo_detection_confidence": null,
+    "docId": "kov::maardu-linn::item::maardu_linn_resource_abivahendite_info",
+    "updatedAt": "2026-06-10T20:54:32.544781+00:00",
+    "content_hash": "596598faa34b214b0b4b00de9c9afb61270f4d322705bae7d34c486fb4d297c8"
+  },
+  "chunks": [
+    {
+      "chunk_id": "kov::maardu-linn::item::maardu_linn_resource_abivahendite_info:0:1c158494",
+      "document_version": null,
+      "text": "[TITLE] Abivahendite taotlemise info\n[DESC] Maardu kodulehel avaldatud abivahendite info selgitab, et abivahendi soetamiseks võib pöörduda abivahendeid müüvasse või rentivasse ettevõttesse, millel on Sotsiaalkindlustusametiga leping. Leht juhib abivahendite riikliku süsteemi ja Sotsiaalkindlustusameti kontaktide juurde.\n[SECTION] Ressursid\n[ITEM_TYPE] resource\n[STATUS] active\n[RESOURCE_TYPE] resource\n[COUNTY] Raplamaa\n[MUNICIPALITY] Märjamaa vald\n# Abivahendite taotlemise info Liik: resource Staatus: active Ametlik link: https://maardu.ee/abivahendi-taotlemine Sihtrühm: Puudub. Auditoorium: CLIENT, SOCIAL_WORKER Kokkuvõte: Maardu kodulehel avaldatud abivahendite info selgitab, et abivahendi soetamiseks võib pöörduda abivahendeid müüvasse või rentivasse ettevõttesse, millel on Sotsiaalkindlustusametiga leping. Leht juhib abivahendite riikliku süsteemi ja Sotsiaalkindlustusameti kontaktide juurde. Ressursi tüüp: resource Tingimused: Taotlemine: Puudub. Vormid: Puudub. Haldaja / teenuseosutaja: Puudub. Kontaktid: Puudub. Tasulisus või summa: Puudub. Õiguslik alus: Puudub."
+    }
+  ]
+}

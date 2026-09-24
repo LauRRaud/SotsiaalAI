@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-4-2023",
+  "articleId": "paik-teenuse-rakendamine-paneb-tervishoiu-ja-sotsiaalvaldkonna-osalised-meeskonnana-toole-2023-4",
+  "title": "PAIK teenuse rakendamine paneb tervishoiu- ja sotsiaalvaldkonna osalised meeskonnana tööle",
+  "authors": [
+    "Maarja Evert"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2023",
+  "section": "Projekt",
+  "pageRange": "66-70",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Projektikirjeldus avab paikkondliku ravijuhtimise teenuse PAIK rakendamist Viljandis ning selle laiendamist\nteistesse maakondadesse. Artiklis selgitatakse, kuidas tervisejuht – õe või sotsiaaltöötaja taustaga spetsialist –\naitab koordineerida krooniliste haigustega ja sotsiaalsete raskustega patsientide tervise- ja sotsiaalteenuseid.\nKäsitletakse kliinilise mõju-uuringu ülesehitust, sihtrühma, rahvusvahelist koostööd ja esimesi kogemusi\nvaldkondadeülese meeskonnatöö kujundamisel. PAIK teenust nähakse sillana tervishoiu ja sotsiaalhoolekande\nvahel, mis aitab vähendada hospitaliseerimise riski ja parandada inimeste elukvaliteeti.",
+  "tags": [
+    "PAIK",
+    "ravijuhtimine",
+    "kroonilised haigused",
+    "tervisejuht",
+    "Viljandi haigla",
+    "integreeritud teenused",
+    "sotsiaal- ja tervisevaldkonna koostöö",
+    "mõju-uuring"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2023_web_Part14.pdf",
+  "document_id": "sotsiaaltoo-4-2023-paik-teenuse-rakendamine-paneb-tervishoiu-ja-sotsiaalvaldkonna-osalised-meeskonnana-toole-2023-4",
+  "source_format": "pdf",
+  "source_sha256": "17c147978c46e8da5303514a4eff33932ef735c84d84ce3b07819848cdecc918",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2023-paik-teenuse-rakendamine-paneb-tervishoiu-ja-sotsiaalvaldkonna-osalised-meeskonnana-toole-2023-4",
+    "previous_source_path": "Sotsiaaltoo_4_2023_web_Part14.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "17c147978c46e8da5303514a4eff33932ef735c84d84ce3b07819848cdecc918",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

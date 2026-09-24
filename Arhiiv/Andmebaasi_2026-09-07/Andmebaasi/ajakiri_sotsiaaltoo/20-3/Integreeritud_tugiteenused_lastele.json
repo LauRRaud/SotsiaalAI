@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-3-2020",
+  "articleId": "integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+  "title": "Integreeritud tugiteenused lastele – esimene tagasiside pilootprojektile",
+  "authors": [
+    "Eva Liina Kliiman",
+    "Alice Juurik",
+    "Marge Hindriks"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2020",
+  "section": "Teenuste integratsioon",
+  "pageRange": "53-56",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab pilootprojekti, mille raames katsetatakse integreeritud tugiteenuste korraldusmudelit erivajadusega lastele kaheksas omavalitsuses. Kirjeldatakse juhtumikorraldaja rolli, valdkondadeülest koostööd, esmast hindamist ja võrgustikukohtumisi ning esimesi kogemusi ja eeldusi, mis on vajalikud mudeli püsivaks rakendamiseks.",
+  "tags": [
+    "integreeritud teenused",
+    "laste tugiteenused",
+    "juhtumikorraldus",
+    "kohalik omavalitsus",
+    "haridus ja sotsiaaltöö",
+    "pilootprojekt",
+    "võrgustikutöö"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2020_web_link_Part12.pdf",
+  "mapping_fixed": "20260814-161821",
+  "document_id": "sotsiaaltoo-3-2020-integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+  "source_format": "pdf",
+  "source_sha256": "3005a4ae9401154320fc72f51ad4f429a71f4d7d3ead5c1698a0329a534a44b1",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2020-integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+    "previous_source_path": "Sotsiaaltoo_3_2020_web_link_Part12.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "3005a4ae9401154320fc72f51ad4f429a71f4d7d3ead5c1698a0329a534a44b1",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

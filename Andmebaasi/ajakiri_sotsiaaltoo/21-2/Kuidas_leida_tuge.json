@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2021",
+  "articleId": "kuidas-leida-tuge-sotsiaaltoo-teooriatest-praktiku-vaatenurk-2021-2",
+  "title": "Kuidas leida tuge sotsiaaltöö teooriatest? Praktiku vaatenurk",
+  "authors": [
+    "Jüri Kõre"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2021",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "58-66",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "TÜ sotsiaalpoliitika lektori ja praktiku arutlev artikkel sellest, kuidas sotsiaaltöö teooriad saavad toetada igapäevast praktikat. Autor käib läbi erinevad teooriate grupid – sotsiaaltöö eneseseletusteooriad, praktikateooriad ja kliendimaailma teooriad – ning seob need Eesti sotsiaaltöö korralduse ja arengutega. Eraldi käsitletakse süsteemiteooriat, sotsiaalse õppimise teooriat ja kogukonna arendamise teooriat ning näidatakse, kuidas need aitavad mõtestada sotsiaalhoolekande süsteemi, tõenduspõhiseid sekkumisi ja kohalikku konteksti. Artikkel julgustab sotsiaaltöötajaid lisaks bürokraatlikele reeglitele rohkem toetuma teooriatele, et paremini mõista klientide olukorda, hoolekandesüsteemi piire ja võimalusi ning kujundada sisuliselt põhjendatud praktikat.",
+  "tags": [
+    "sotsiaaltöö teooria",
+    "praktikateooriad",
+    "süsteemiteooria",
+    "sotsiaalne õppimine",
+    "kogukonna arendamine",
+    "tõenduspõhine praktika",
+    "sotsiaalhoolekanne",
+    "Eesti sotsiaaltöö"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2021_web_link_Part14.pdf",
+  "document_id": "sotsiaaltoo-2-2021-kuidas-leida-tuge-sotsiaaltoo-teooriatest-praktiku-vaatenurk-2021-2",
+  "source_format": "pdf",
+  "source_sha256": "03bcbeca465ff854fed44e37275fe2081295bc099482668e054e14b8155541c6",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2021-kuidas-leida-tuge-sotsiaaltoo-teooriatest-praktiku-vaatenurk-2021-2",
+    "previous_source_path": "Sotsiaaltoo_2_2021_web_link_Part14.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "03bcbeca465ff854fed44e37275fe2081295bc099482668e054e14b8155541c6",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

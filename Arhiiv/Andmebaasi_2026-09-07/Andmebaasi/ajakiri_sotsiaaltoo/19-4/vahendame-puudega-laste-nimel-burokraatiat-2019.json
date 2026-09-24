@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-4-2019",
+  "articleId": "vahendame-puudega-laste-nimel-burokraatiat-2019",
+  "title": "Vähendame puudega laste nimel bürokraatiat",
+  "authors": [
+    "Krõõt Kroonmäe"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2019",
+  "section": "Uus lahendus sotsiaaltöös",
+  "pageRange": "97",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Lühikokkuvõte sotsiaalkindlustusameti pilootprojektist, millega ühendati puudega laste puude raskusastme, rehabilitatsiooni ja abivahendite menetlemine üheks tervikprotsessiks, et vähendada perede bürokraatiakoormust ja parandada teenuste kättesaadavust.",
+  "tags": [
+    "puudega lapsed",
+    "bürokraatia vähendamine",
+    "pilootprojekt",
+    "sotsiaalkindlustusamet",
+    "Uus lahendus sotsiaaltöös"
+  ],
+  "source_type": "file",
+  "source_path": "ST4_2019_web_link_Part20.pdf",
+  "document_id": "sotsiaaltoo-4-2019-vahendame-puudega-laste-nimel-burokraatiat-2019",
+  "source_format": "pdf",
+  "source_sha256": "591d9b28686e68ded2f05269c12964f9c49a8c06393fe8f8612d480179116b36",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2019-vahendame-puudega-laste-nimel-burokraatiat-2019",
+    "previous_source_path": "ST4_2019_web_link_Part20.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "591d9b28686e68ded2f05269c12964f9c49a8c06393fe8f8612d480179116b36",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

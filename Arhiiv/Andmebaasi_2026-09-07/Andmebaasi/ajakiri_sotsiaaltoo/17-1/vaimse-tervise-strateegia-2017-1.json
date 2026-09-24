@@ -1,0 +1,81 @@
+{
+  "docId": "sotsiaaltoo-1-2017",
+  "articleId": "vaimse-tervise-strateegia-2017-1",
+  "title": "Vaimse tervise strateegia 2016–2025 sõnastab valdkonna prioriteedid",
+  "authors": [
+    "Airi Mitendorf"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2017",
+  "section": "Kogukonnatöö",
+  "pageRange": "36-38",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Airi Mitendorf tutvustab VATEKi eestvedamisel valminud vaimse tervise strateegiat aastateks 2016–2025, mis täidab tühimiku pärast 2002. aasta alusdokumenti, millele tegevuskava ei järgnenud. Taustaks esitab ta arvud: depressiooni on kogenud 5,6% Eesti elanikest, WHO ennustab sellele 2030. aastaks levinuima haiguse kohta, 2015. aastal registreeriti Eestis 196 suitsiidi, neist 29% vähemalt 65-aastaste seas. Strateegia kolm alaeesmärki — edendamine, ennetus ning ravi ja taastumine — eeldavad sektoriülest koostööd, kus sotsiaaltöötaja on üks sihtrühm.",
+  "tags": [
+    "vaimne tervis",
+    "strateegia",
+    "VATEK",
+    "ennetus",
+    "suitsiid",
+    "sotsiaalpoliitika"
+  ],
+  "source_type": "file",
+  "source_path": "2017_1_Part11.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2017-vaimse-tervise-strateegia-2017-1",
+  "source_sha256": "75315320b13258c8d509a9ad9c5e8015c45977d3f3586bcdd1b7fc576d0bdbad",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2017-vaimse-tervise-strateegia-2017-1",
+    "previous_source_path": "2017_1_Part11.txt",
+    "previous_source_original_path": "2017_1.pdf",
+    "reference_stored_source_sha256": "704705edb2e6f26e95609ea5ef2abb2efd1964e96ba55544445abecf23db7617",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf",
+      "source_sha256": "335f81467a555f12c55d0e8bf60122a178c5267567cf79607448a5d987629e50",
+      "pdf_start_page": 38,
+      "pdf_end_page": 40,
+      "printed_page_range": "36-38",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 40,
+      "source_regions": [
+        {
+          "source_pdf_page": 38,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 39,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 40,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        }
+      ],
+      "effective_printed_page_range": "36-38"
+    },
+    "server_page_range": "36-38"
+  }
+}

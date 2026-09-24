@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-4-2018",
+  "articleId": "poliitika-suuna-muutumine-eesti-sotsiaalhoolekandes-2018",
+  "title": "Poliitika suuna muutumine Eesti sotsiaalhoolekandes: viimase saja aasta kogemus",
+  "authors": [
+    "Jüri Kõre"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2018",
+  "section": "Sotsiaalpoliitika",
+  "pageRange": "8-15",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Analüüs Eesti sotsiaalhoolekande poliitika arengust viimase saja aasta jooksul, kirjeldades institutsionaalse hoolekande domineerimist, kogukonnapõhiste lahenduste aeglast juurdumist ja poliitikavalikute mõjusid.",
+  "tags": [
+    "sotsiaalhoolekande ajalugu",
+    "Eesti sotsiaalpoliitika",
+    "institutsionaalne hoolekanne",
+    "kogukonnapõhised teenused",
+    "hoolekandesüsteemi areng",
+    "poliitikamuutused",
+    "võrdlev analüüs",
+    "sotsiaalreformid"
+  ],
+  "source_type": "file",
+  "source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part4.pdf",
+  "document_id": "sotsiaaltoo-4-2018-poliitika-suuna-muutumine-eesti-sotsiaalhoolekandes-2018",
+  "source_format": "pdf",
+  "source_sha256": "c247d268853a8394b2fbc538c3b42b3804a0fa21f434408c8a30ec4b71f444ad",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2018-poliitika-suuna-muutumine-eesti-sotsiaalhoolekandes-2018",
+    "previous_source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part4.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "c247d268853a8394b2fbc538c3b42b3804a0fa21f434408c8a30ec4b71f444ad",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

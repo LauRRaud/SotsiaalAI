@@ -1,0 +1,48 @@
+{
+  "docId": "sotsiaaltoo-2-2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2024",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "kujundades-padevaid-spetsialiste-tallinna-ulikooli-sotsiaalkaitse-suuna-oppekavade-uuendused-2024-2",
+  "title": "Kujundades pädevaid spetsialiste: Tallinna ülikooli sotsiaalkaitse suuna õppekavade uuendused",
+  "authors": [
+    "Mare Leino",
+    "Marju Medar",
+    "Mariann Märtsin",
+    "Ingrid Sindi",
+    "Merike Sisask",
+    "Karmen Toros"
+  ],
+  "section": "Erialane haridus",
+  "pageRange": "93-96",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "description": "Ülevaade Tallinna ülikooli sotsiaalkaitse suuna bakalaureuse-, magistri- ja doktoriõppe õppekavade uuendustest. Artikkel kirjeldab praktika mahu kasvu, uute ainete ja õppevormide põhimõtteid, sotsiaaltöö ja sotsiaalpedagoogika erialade fookusi ning lastekaitse magistriõppe ja sotsiaaltöö doktoriõppe ülesehitust. Rõhk on töömaailma vajadustega arvestamisel ja tõenduspõhise praktika toetamisel.",
+  "tags": [
+    "sotsiaaltöö haridus",
+    "Tallinna Ülikool",
+    "sotsiaalkaitse",
+    "bakalaureuseõpe",
+    "magistriõpe",
+    "doktoriõpe",
+    "lastekaitse",
+    "õppekava uuendamine",
+    "praktika"
+  ],
+  "source_path": "Sotsiaaltoo_2_2024_web_Part19.pdf",
+  "document_id": "sotsiaaltoo-2-2024-kujundades-padevaid-spetsialiste-tallinna-ulikooli-sotsiaalkaitse-suuna-oppekavade-uuendused-2024-2",
+  "source_format": "pdf",
+  "source_sha256": "66cec034262397a0224e3966d3becffb342d72831c8d3a60a09bb2f2db9a9261",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2024-kujundades-padevaid-spetsialiste-tallinna-ulikooli-sotsiaalkaitse-suuna-oppekavade-uuendused-2024-2",
+    "previous_source_path": "Sotsiaaltoo_2_2024_web_Part19.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "66cec034262397a0224e3966d3becffb342d72831c8d3a60a09bb2f2db9a9261",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

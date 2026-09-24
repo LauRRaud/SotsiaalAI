@@ -1,0 +1,40 @@
+{
+  "docId": "motisklusi-sotsiaaltoost-2016",
+  "articleId": "sotsiaaltoo-kui-abistava-elukutse-eetilised-alused-2016",
+  "title": "Sotsiaaltöö kui abistava elukutse eetilised alused",
+  "authors": [
+    "Jean Pierre Wilken"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "MÕTISKLUSI",
+  "section": "Hea praktika",
+  "pageRange": "20-22",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb sotsiaaltöö eetilisi aluseid kui normatiivse professiooni tuuma, rõhutades õiglust, üldist hüve, moraalset kaalutlemist ja kliendi väärikuse austamist. Fookuses on hoolimise eetika, hea abi määratlemine kliendi vaatenurgast ning dialoogiline abistamissuhe, milles spetsialist ühendab empaatia, refleksiooni ja professionaalse vastutuse.",
+  "tags": [
+    "sotsiaaltöö eetika",
+    "hoolimise eetika",
+    "moraalne kaalutlemine",
+    "kliendi väärikus",
+    "hea abi",
+    "normatiivne professioon"
+  ],
+  "source_type": "file",
+  "source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part9.pdf",
+  "document_id": "motisklusi-sotsiaaltoost-2016-sotsiaaltoo-kui-abistava-elukutse-eetilised-alused-2016",
+  "source_format": "pdf",
+  "source_sha256": "490e532f9b0f7695b66876f2134224e918696a6116132ef8dca2f5224f7c5b07",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "motisklusi-sotsiaaltoost-2016-sotsiaaltoo-kui-abistava-elukutse-eetilised-alused-2016",
+    "previous_source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part9.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "490e532f9b0f7695b66876f2134224e918696a6116132ef8dca2f5224f7c5b07",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

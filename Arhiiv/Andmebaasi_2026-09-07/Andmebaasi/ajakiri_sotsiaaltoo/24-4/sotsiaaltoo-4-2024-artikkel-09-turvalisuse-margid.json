@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-4-2024",
+  "issueLabel": "4/2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "turvalisuse-margid-2024-4",
+  "title": "Juhtumikorraldusmudel „Turvalisuse märgid“ – uus tööriist Eesti lastekaitsetöös",
+  "authors": [
+    "Helen Alton"
+  ],
+  "section": "Metoodika",
+  "pageRange": "56–62",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "source_path": "sotsiaaltoo_4_2024_web_Part11.pdf",
+  "description": "Artikkel tutvustab Austraalias välja töötatud juhtumikorraldusmudelit „Turvalisuse märgid“ ja selle kohandamist Eesti lastekaitsetöö vajadustele. Selgitatakse mudeli põhimõtteid – lapse ja pere tugevustest lähtumine, laiema võrgustiku kaasamine, selge struktuur riskide ja turvalisuse hindamiseks – ning seost Heaolu arengukava eesmärkidega ja olemasolevate tööriistadega nagu lapse heaolu kolmnurk. Kirjeldatakse, kuidas mudel aitab suurendada perede kaasatust, parandada koostööd, vähendada töötajate stressi ning luua läbipaistvamaid ja järjepidevamaid otsuseid. Samuti käsitletakse rakendamise proovikive, juhi rolli, koolituste ja supervisiooni olulisust.",
+  "tags": [
+    "lastekaitse",
+    "juhtumikorraldus",
+    "Turvalisuse märgid",
+    "Signs of Safety",
+    "Heaolu arengukava",
+    "lapse heaolu",
+    "võrgustikutöö",
+    "metoodika"
+  ],
+  "document_id": "sotsiaaltoo-4-2024-turvalisuse-margid-2024-4",
+  "source_format": "pdf",
+  "source_sha256": "a2dcc9cc50c48e13b3e1f5449776f610089a78c0581c7827ea627ac270d6941e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2024-turvalisuse-margid-2024-4",
+    "previous_source_path": "sotsiaaltoo_4_2024_web_Part11.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "a2dcc9cc50c48e13b3e1f5449776f610089a78c0581c7827ea627ac270d6941e",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

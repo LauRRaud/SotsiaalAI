@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2020",
+  "articleId": "asenduskodus-voi-perekodus-elava-lapse-suhtlus-bioloogilise-vanemaga-2020-2",
+  "title": "Asenduskodus või perekodus elava lapse suhtlus bioloogilise vanemaga",
+  "authors": [
+    "Margit Sarv"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2020",
+  "section": "Õigus",
+  "pageRange": "30-33",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb asendushooldusel elava lapse ja bioloogilise vanema suhtlusõiguse õiguslikke aluseid ning praktilist korraldamist. Rõhutatakse lapse parimate huvide, lapse arvamuse ja koostöise suhtluskorralduse tähtsust.",
+  "tags": [
+    "asendushooldus",
+    "lapse õigused",
+    "bioloogilised vanemad",
+    "suhtlusõigus",
+    "perekodu",
+    "õigus"
+  ],
+  "source_type": "file",
+  "source_path": "ST2_2020_web_link_Part11.pdf",
+  "document_id": "sotsiaaltoo-2-2020-asenduskodus-voi-perekodus-elava-lapse-suhtlus-bioloogilise-vanemaga-2020-2",
+  "source_format": "pdf",
+  "source_sha256": "f2878d1accee32bbf7fa851fedcc2ffe2861b6cd04eae995389d71edc2673caf",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2020-asenduskodus-voi-perekodus-elava-lapse-suhtlus-bioloogilise-vanemaga-2020-2",
+    "previous_source_path": "ST2_2020_web_link_Part11.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "f2878d1accee32bbf7fa851fedcc2ffe2861b6cd04eae995389d71edc2673caf",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

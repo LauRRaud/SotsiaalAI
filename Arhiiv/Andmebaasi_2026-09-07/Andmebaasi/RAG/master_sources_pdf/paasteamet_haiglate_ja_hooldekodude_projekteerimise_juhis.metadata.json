@@ -1,0 +1,76 @@
+{
+  "source": {
+    "source_id": "paasteamet_haiglate_ja_hooldekodude_projekteerimise_juhis",
+    "title": "Haiglate ja hooldekodude projekteerimise juhis",
+    "url": "https://www.rescue.ee/files/2018-09/haiglate-ja-hooldekodude-projekteerimise-juhis-small-.pdf",
+    "normalized_url": "https://www.rescue.ee/files/2018-09/haiglate-ja-hooldekodude-projekteerimise-juhis-small-.pdf",
+    "source_format": "pdf",
+    "source_type": "official_guideline",
+    "resource_type": "method_guidance",
+    "publisher": "Päästeamet",
+    "organization_id": "paasteamet",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Päästeamet",
+      "hoolekanne",
+      "sotsiaalteenused",
+      "hooldus",
+      "hooldekodu",
+      "hoolekandeasutus",
+      "spetsialisti juhend"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "high",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 395,
+      "order": 217
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Haiglate ja hooldekodude projekteerimise juhis"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Päästeamet"
+    ],
+    "organizations_seen": [
+      "paasteamet"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+        "line": 395,
+        "order": 217
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.rescue.ee/files/2018-09/haiglate-ja-hooldekodude-projekteerimise-juhis-small-.pdf"
+  },
+  "final_url": "https://www.rescue.ee/files/2018-09/haiglate-ja-hooldekodude-projekteerimise-juhis-small-.pdf",
+  "redirects": [],
+  "sha256": "be0e366c9448dbbfd8e46afcc4ab16ce4ff041eb7cdfecc1c8b1bd1fc1a4639e",
+  "bytes": 5743112,
+  "downloaded_at": "2026-08-14T08:00:46.981Z"
+}

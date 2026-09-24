@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-4-2022",
+  "articleId": "toojuupuuduse-leevendamine-pikaajalises-hoolduses-2022-4",
+  "title": "Tööjõupuuduse leevendamiseks pikaajalises hoolduses on vaja strateegilist ja paindlikku käsitlust",
+  "authors": [
+    "Anni Kurmiste"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2022",
+  "section": "Analüüs",
+  "pageRange": "28-33",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Analüüs põhineb sotsiaalministeeriumi tellimusel valminud uuringul, mis vaatleb, kuidas erinevad\nriigid tegelevad pikaajalise hoolduse tööjõupuudusega ning milliseid järeldusi saab teha Eesti jaoks.\nArtiklis kirjeldatakse tööjõukriisi põhjusena demograafilisi muutusi, madalat palgataset, rasket ja\nemotsionaalselt koormavat tööd ning hooldustöö ajaloolist alaväärtustamist, mis seostub soolise\nsegregatsiooni ja stereotüüpidega. Autor toob välja, et paljudes riikides on pikaajalise hoolduse\ntöötajatele keskmisest madalam palk, piiratud arenguvõimalused ja napp tunnustus, mis suurendab\nlahkumist ja muudab valdkonna noortele ebaatraktiivseks. Samuti käsitletakse koolituse ja praktilise\nväljaõppe rolli, välistööjõu kasutamisega seotud võimalusi ja riske ning tehnoloogiliste abivahendite,\nuute hooldusvormide ja kogukonnapõhiste lahenduste potentsiaali tööjõupuuduse leevendamisel.\nUuringu põhjal soovitab autor Eesti poliitikakujundajatele terviklikku lähenemist, mis hõlmab nii\nrahastuse ja palgakorralduse parandamist, töötajate väärtustamist kui ka innovaatiliste töökorralduse\nja tehnoloogiliste lahenduste süsteemset kasutuselevõttu.",
+  "tags": [
+    "pikaajaline hooldus",
+    "tööjõupuudus",
+    "hooldustöötajad",
+    "palk ja töötingimused",
+    "sotsiaalpoliitika",
+    "koolitus",
+    "välistööjõud",
+    "innovatsioon",
+    "deinstitutsionaliseerimine"
+  ],
+  "source_type": "file",
+  "source_path": "2022_4_artikkel_7_toopuudus.pdf",
+  "document_id": "sotsiaaltoo-4-2022-toojuupuuduse-leevendamine-pikaajalises-hoolduses-2022-4",
+  "source_format": "pdf",
+  "source_sha256": "e858061fa53db5de5d18e661c170aea7b77793ebb5d957ae84e072fd4a456157",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2022-toojuupuuduse-leevendamine-pikaajalises-hoolduses-2022-4",
+    "previous_source_path": "2022_4_artikkel_7_toopuudus.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e858061fa53db5de5d18e661c170aea7b77793ebb5d957ae84e072fd4a456157",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

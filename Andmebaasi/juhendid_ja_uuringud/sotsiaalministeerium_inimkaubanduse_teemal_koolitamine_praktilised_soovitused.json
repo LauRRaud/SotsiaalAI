@@ -1,0 +1,146 @@
+{
+  "source_path": "sotsiaalministeerium_inimkaubanduse_teemal_koolitamine_praktilised_soovitused.pdf",
+  "source_format": "pdf",
+  "sha256": "b97c3855db6ae053df4a38efb4a944d802f87f4ec18fb0688c6c2997efeeaf4d",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/sotsiaalministeerium_inimkaubanduse_teemal_koolitamine_praktilised_soovitused.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "sotsiaalministeerium_inimkaubanduse_teemal_koolitamine_praktilised_soovitused",
+          "title": "Inimkaubanduse teemal koolitamine: praktilised soovitused",
+          "url": "https://www.sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Sooline_vordoiguslikkus/Inimkaubandus_ja_prostitusioon/inimkaubanduse_teemal_koolitamine.pdf",
+          "normalized_url": "https://www.sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Sooline_vordoiguslikkus/Inimkaubandus_ja_prostitusioon/inimkaubanduse_teemal_koolitamine.pdf",
+          "source_format": "pdf",
+          "source_type": "official_guideline",
+          "resource_type": "method_guidance",
+          "publisher": "Sotsiaalministeerium",
+          "organization_id": "sotsiaalministeerium",
+          "collection_hint": "guidance_and_methods",
+          "evidence_role": "practice_guidance",
+          "topic_tags": [
+            "Sotsiaalministeerium",
+            "lapsed ja pered",
+            "haridus",
+            "kool",
+            "õpilase toetamine",
+            "tugimeetmed",
+            "ohvriabi",
+            "inimkaubandus",
+            "praktiline töövahend",
+            "spetsialisti juhend"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "high",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Sotsiaalministeerium",
+            "heading_3": "Ohvriabi, lähisuhtevägivald, inimkaubandus",
+            "heading_4": null,
+            "line": 541,
+            "order": 282
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Inimkaubanduse teemal koolitamine: praktilised soovitused"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "official_guideline"
+          ],
+          "resource_types_seen": [
+            "method_guidance"
+          ],
+          "publishers_seen": [
+            "Sotsiaalministeerium"
+          ],
+          "organizations_seen": [
+            "sotsiaalministeerium"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Sotsiaalministeerium",
+              "heading_3": "Ohvriabi, lähisuhtevägivald, inimkaubandus",
+              "line": 541,
+              "order": 282
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Sooline_vordoiguslikkus/Inimkaubandus_ja_prostitusioon/inimkaubanduse_teemal_koolitamine.pdf"
+        },
+        "final_url": "https://www.sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Sooline_vordoiguslikkus/Inimkaubandus_ja_prostitusioon/inimkaubanduse_teemal_koolitamine.pdf",
+        "redirects": [],
+        "sha256": "b97c3855db6ae053df4a38efb4a944d802f87f4ec18fb0688c6c2997efeeaf4d",
+        "bytes": 380111,
+        "downloaded_at": "2026-08-14T08:00:55.080Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "sotsiaalministeerium_inimkaubanduse_teemal_koolitamine_praktilised_soovitused",
+      "metadata": {
+        "createdAt": "2026-06-11T18:58:56.690688+00:00",
+        "type": "FILE",
+        "fileName": "inimkaubanduse_teemal_koolitamine.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-11T18:58:56.628304+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/8ab3062c8d7b/inimkaubanduse_teemal_koolitamine.pdf",
+        "title": "Inimkaubanduse teemal koolitamine: praktilised soovitused",
+        "description": "Source master headings: Sotsiaalministeerium; Ohvriabi, lähisuhtevägivald, inimkaubandus",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": null,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–58",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "sotsiaalministeerium_inimkaubanduse_teemal_koolitamine_praktilised_soovitused",
+        "document_id": "sotsiaalministeerium_inimkaubanduse_teemal_koolitamine_praktilised_soovitused",
+        "source_type": "official_guideline",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-11",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "0f988ae5a633b0cdcccca329ec56710a249b70e5b90fea4c4e577e5434169ea6",
+        "url": "https://www.sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Sooline_vordoiguslikkus/Inimkaubandus_ja_prostitusioon/inimkaubanduse_teemal_koolitamine.pdf",
+        "url_canonical": "https://www.sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Sooline_vordoiguslikkus/Inimkaubandus_ja_prostitusioon/inimkaubanduse_teemal_koolitamine.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "sotsiaalministeerium_inimkaubanduse_teemal_koolitamine_praktilised_soovitused",
+        "updatedAt": "2026-06-11T18:58:56.690712+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

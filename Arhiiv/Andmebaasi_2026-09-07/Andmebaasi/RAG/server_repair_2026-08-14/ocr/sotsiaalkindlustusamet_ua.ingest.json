@@ -1,0 +1,27 @@
+{
+  "ingest": {
+    "ok": true,
+    "inserted": 5,
+    "docId": "sotsiaalkindlustusamet_ua",
+    "pageRange": "1–2",
+    "shortRef": "Кризові центри допомоги жертвам сексуального насильства (UA). 2026. lk 1–2.",
+    "originalDocId": null,
+    "fileName": "Ohvriabi infovoldik SAK UA+bleed3mm.pdf",
+    "collection": "sotsiaalai",
+    "pageStart": null,
+    "pageEnd": null
+  },
+  "verification": {
+    "doc_id": "sotsiaalkindlustusamet_ua",
+    "inserted": 5,
+    "chunks": 5,
+    "language": "uk",
+    "search_hits": 3,
+    "search_doc_ids": [
+      "sotsiaalkindlustusamet_ua",
+      "sotsiaalkindlustusamet_ua",
+      "sotsiaalkindlustusamet_ua"
+    ],
+    "query_sha256": "727afcdcd79d0313e97f3d663afa1b9a0c8150d7d5d6eb281d0540f63d90a6f2"
+  }
+}

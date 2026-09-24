@@ -1,0 +1,76 @@
+{
+  "source": {
+    "source_id": "harno_oppekeelest_erineva_emakeelega_opilane_koolis",
+    "title": "Õppekeelest erineva emakeelega õpilane koolis",
+    "url": "https://harno.ee/sites/default/files/documents/2022-09/252_Soll_2011_Oppekeelest_erineva_emakeelega_opilane_koolis.pdf",
+    "normalized_url": "https://harno.ee/sites/default/files/documents/2022-09/252_Soll_2011_Oppekeelest_erineva_emakeelega_opilane_koolis.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "HARNO",
+    "organization_id": "harno",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Haridus- ja Noorteamet",
+      "lapsed ja pered",
+      "haridus",
+      "kool",
+      "õpilase toetamine",
+      "tugimeetmed",
+      "infomaterjal"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "HARNO / HEV / kooli tugimeetmed",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 387,
+      "order": 214
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Õppekeelest erineva emakeelega õpilane koolis"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "HARNO"
+    ],
+    "organizations_seen": [
+      "harno"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "HARNO / HEV / kooli tugimeetmed",
+        "line": 387,
+        "order": 214
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://harno.ee/sites/default/files/documents/2022-09/252_Soll_2011_Oppekeelest_erineva_emakeelega_opilane_koolis.pdf"
+  },
+  "final_url": "https://harno.ee/sites/default/files/documents/2022-09/252_Soll_2011_Oppekeelest_erineva_emakeelega_opilane_koolis.pdf",
+  "redirects": [],
+  "sha256": "215bd2c8faf12815e8f6ecb79b80963583d9caa06c89648f7a93373901448c92",
+  "bytes": 1108485,
+  "downloaded_at": "2026-08-14T08:00:45.363Z"
+}

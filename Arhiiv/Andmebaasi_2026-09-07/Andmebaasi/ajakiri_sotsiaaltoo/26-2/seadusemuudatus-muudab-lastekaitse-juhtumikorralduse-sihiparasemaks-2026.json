@@ -1,0 +1,49 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "seadusemuudatus-muudab-lastekaitse-juhtumikorralduse-sihiparasemaks-2026",
+  "title": "Seadusemuudatus muudab lastekaitse juhtumikorralduse sihipärasemaks",
+  "authors": [
+    "Anne Haller"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Õigus",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade lastekaitseseaduse muudatuste eelnõust, mis tõstab juhtumikorralduse algatamise lävendit ja võimaldab lastekaitsetöötajatel keskenduda kompleksse abivajadusega lastele. Muudatused selgitavad seost teiste valdkondade eriseadustega ja tugevdavad laste kaasatust otsustusprotsessides. Eelnõu on kavandatud jõustuma 2027. aasta 1. jaanuaril.",
+  "tags": [
+    "lastekaitseseadus",
+    "juhtumikorraldus",
+    "seadusemuudatus",
+    "abivajav laps",
+    "võrgustikutöö",
+    "lapse kaasamine",
+    "valdkondadevaheline koostöö",
+    "õigus"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-03-26",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/seadusemuudatus-muudab-lastekaitse-juhtumikorralduse-sihiparasemaks",
+  "source_type": "web",
+  "source_path": "seadusemuudatus-muudab-lastekaitse-juhtumikorralduse-sihiparasemaks.html",
+  "lead": "Lastekaitseseaduse ja täitemenetluse seadustiku muutmise seaduse eelnõuga tehakse lastekaitse juhtumikorralduses muudatusi, mis võimaldavad kohaliku omavalitsuse lastekaitsetöötajal keskenduda eelkõige kompleksse abivajadusega lastele. Toetatakse eri valdkondade koostööd ja vastutuse võtmist abivajavale lapsele abi osutamise eest. Eelnõu suurendab laste ja perede kaasatust lahenduste leidmisse ning tagab laste õiguste parema kaitse neid puudutavate kohtulahendite täitmisel.",
+  "document_id": "sotsiaaltoo-2-2026-seadusemuudatus-muudab-lastekaitse-juhtumikorralduse-sihiparasemaks-2026",
+  "source_format": "html",
+  "source_sha256": "d6a5a4f65f8e66fab29f6c5a681e0582b52577b414924c7aa5f50a90f81c059f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-seadusemuudatus-muudab-lastekaitse-juhtumikorralduse-sihiparasemaks-2026",
+    "previous_source_path": "seadusemuudatus-muudab-lastekaitse-juhtumikorralduse-sihiparasemaks.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "be0914a2ba4e24440868f25fc0140d03cbae4c64817d917dc2a8a509957df5f5",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "ee629cd4983d6d5a7f48b9c097c217187f23076c8d22e412b797043ab6ea3a38",
+    "observed_web_title": "Seadusemuudatus muudab lastekaitse juhtumikorralduse sihipärasemaks"
+  },
+  "retrieved_at": "2026-09-07T19:39:40.125028+00:00"
+}

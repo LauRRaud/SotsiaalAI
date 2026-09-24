@@ -1,0 +1,152 @@
+{
+  "source_path": "statistikaamet_lapse_heaolu_mootmise_kasitlus.pdf",
+  "source_format": "pdf",
+  "sha256": "19d03e9e2e0e908cfdf1f8b89551baff39d852c2055c083cd8d0b53948a42ef5",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/statistikaamet_lapse_heaolu_mootmise_kasitlus.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "statistikaamet_lapse_heaolu_mootmise_kasitlus",
+          "title": "Lapse heaolu mõõtmise käsitlus",
+          "url": "https://www.stat.ee/sites/default/files/2020-12/Lapse%20heaolu%20m%C3%B5%C3%B5tmise%20k%C3%A4sitlus.pdf",
+          "normalized_url": "https://www.stat.ee/sites/default/files/2020-12/Lapse heaolu mõõtmise käsitlus.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "Statistikaamet",
+          "organization_id": "statistikaamet",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Statistikaamet",
+            "lapsed ja pered",
+            "laps",
+            "lastekaitse",
+            "lapse heaolu",
+            "abivajav laps",
+            "statistika",
+            "sotsiaalnäitajad",
+            "heaolu",
+            "uuring",
+            "raport",
+            "analüüs"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_017",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "Statistikaamet",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 217,
+            "order": 139
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Lapse heaolu mõõtmise käsitlus"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Statistikaamet"
+          ],
+          "organizations_seen": [
+            "statistikaamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Statistikaamet",
+              "line": 217,
+              "order": 139
+            },
+            {
+              "heading_2": "Statistikaamet",
+              "line": 691,
+              "order": 346
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.stat.ee/sites/default/files/2020-12/Lapse heaolu mõõtmise käsitlus.pdf"
+        },
+        "final_url": "https://www.stat.ee/sites/default/files/2020-12/Lapse%20heaolu%20m%C3%B5%C3%B5tmise%20k%C3%A4sitlus.pdf",
+        "redirects": [],
+        "sha256": "19d03e9e2e0e908cfdf1f8b89551baff39d852c2055c083cd8d0b53948a42ef5",
+        "bytes": 288709,
+        "downloaded_at": "2026-08-14T08:00:35.881Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "statistikaamet_lapse_heaolu_mootmise_kasitlus",
+      "metadata": {
+        "createdAt": "2026-06-12T03:37:28.746223+00:00",
+        "type": "FILE",
+        "fileName": "Lapse heaolu mõõtmise käsitlus.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:37:28.681662+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/fd0d614ab284/Lapse heaolu mõõtmise käsitlus.pdf",
+        "title": "Lapse heaolu mõõtmise käsitlus",
+        "description": "Duplikaadid ühendatud: 1 lisakirjet. Source master headings: Statistikaamet",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2020,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–13",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "statistikaamet_lapse_heaolu_mootmise_kasitlus",
+        "document_id": "statistikaamet_lapse_heaolu_mootmise_kasitlus",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "f61b3765c7067a682a5e5bd136ef4b0ffc0a9487d23f5002e8eeb019507a5696",
+        "url": "https://www.stat.ee/sites/default/files/2020-12/Lapse%20heaolu%20m%C3%B5%C3%B5tmise%20k%C3%A4sitlus.pdf",
+        "url_canonical": "https://www.stat.ee/sites/default/files/2020-12/Lapse heaolu mõõtmise käsitlus.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "statistikaamet_lapse_heaolu_mootmise_kasitlus",
+        "updatedAt": "2026-06-12T03:37:28.746248+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

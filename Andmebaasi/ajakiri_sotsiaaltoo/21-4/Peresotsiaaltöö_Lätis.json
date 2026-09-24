@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2021",
+  "articleId": "peresotsiaaltoo-lati-sotsiaalametis-uue-metoodika-tutvustus-2021-4",
+  "title": "Peresotsiaaltöö Läti sotsiaalametis – uue metoodika tutvustus",
+  "authors": [
+    "Ieva Ozola"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2021",
+  "section": "Metoodika",
+  "pageRange": "79-87",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab Läti peresotsiaaltöö kujunemist, olulisi arenguetappe ning aastatel 2018–2020 väljatöötatud uut metoodikat. Käsitletakse sihtrühma täpsustamist, perekeskse juhtumikorralduse põhimõtteid, hindamismudeli ülesehitust ja vajadust sidusa ning professionaalse peresotsiaaltöö järele.",
+  "tags": [
+    "peresotsiaaltöö",
+    "Läti",
+    "juhtumikorraldus",
+    "lastekaitse",
+    "metoodika",
+    "sotsiaalteenused"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2021_web_Part18.pdf",
+  "mapping_fixed": "20260814-161821",
+  "document_id": "sotsiaaltoo-4-2021-peresotsiaaltoo-lati-sotsiaalametis-uue-metoodika-tutvustus-2021-4",
+  "source_format": "pdf",
+  "source_sha256": "29a4ec74004378652fff2a27426c6f34a03c7af8510bb382e459916a3624efcf",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2021-peresotsiaaltoo-lati-sotsiaalametis-uue-metoodika-tutvustus-2021-4",
+    "previous_source_path": "Sotsiaaltoo_4_2021_web_Part18.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "29a4ec74004378652fff2a27426c6f34a03c7af8510bb382e459916a3624efcf",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

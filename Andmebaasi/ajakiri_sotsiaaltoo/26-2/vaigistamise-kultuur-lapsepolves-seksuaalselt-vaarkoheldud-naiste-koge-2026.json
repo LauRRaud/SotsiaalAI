@@ -1,0 +1,51 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "vaigistamise-kultuur-lapsepolves-seksuaalselt-vaarkoheldud-naiste-koge-2026",
+  "title": "Vaigistamise kultuur lapsepõlves seksuaalselt väärkoheldud naiste kogemuste põhjal",
+  "authors": [
+    "Cristi Sikora"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Uurimus",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimus vaatleb, kuidas väljendub vaigistamise kultuur lapsepõlves seksuaalselt väärkoheldud naiste kogemustes. Üheksa täisealise naise intervjuude põhjal selgus, et vaikimist toetavad pereringis emotsionaalne ükskõiksus ja väärkohtleja manipulatsioon ning ühiskonnas levinud stereotüübid. Tulemused rõhutavad lastega töötavate spetsialistide traumateadlikkuse ja võrgustikutöö tähtsust varajases märkamises.",
+  "tags": [
+    "seksuaalne väärkohtlemine",
+    "vaigistamise kultuur",
+    "traumateadlikkus",
+    "lapse kogemus",
+    "märkamine",
+    "võrgustikutöö",
+    "ohvriabi",
+    "ennetamine",
+    "uurimus"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-06-02",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/vaigistamise-kultuur-lapsepolves-seksuaalselt-vaarkoheldud-naiste-kogemuste",
+  "source_type": "web",
+  "source_path": "vaigistamise-kultuur-lapsepolves-seksuaalselt-vaarkoheldud-naiste-kogemuste-pohj.html",
+  "lead": "Laste seksuaalne väärkohtlemine on pikaajaliste vaimsete, emotsionaalsete ja füüsiliste tagajärgedega tõsine ning enamasti varjatud sotsiaalne probleem. Vaigistamise kultuur algab sageli juba enne väärkohtlemist, kui väärkohtleja valib lapse välja ja loob temaga sideme.",
+  "abstract": "Artikkel põhineb Tallinna ülikoolis 2025. aasta kevadel kaitstud magistritööl[1]. Eesmärk oli välja selgitada, kuidas väljendub vaigistamise kultuur lapsepõlves seksuaalselt väärkoheldud naiste kogemustes ja mis aitab vaigistamist alal hoida või murda.",
+  "document_id": "sotsiaaltoo-2-2026-vaigistamise-kultuur-lapsepolves-seksuaalselt-vaarkoheldud-naiste-koge-2026",
+  "source_format": "html",
+  "source_sha256": "4e9c11e1839605f7d34f54696defd5b7aecdf964d442146afdc5dcf5134d71e1",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-vaigistamise-kultuur-lapsepolves-seksuaalselt-vaarkoheldud-naiste-koge-2026",
+    "previous_source_path": "vaigistamise-kultuur-lapsepolves-seksuaalselt-vaarkoheldud-naiste-kogemuste-pohj.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "c620297ed8b56bd5698d3502258be334360c1cfea4f1179d350d063eff055168",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "00b79fb453ffe45a6a83b73263114ad0dda8e8ecd1b8f5cd42b6004cfba0a2d7",
+    "observed_web_title": "Vaigistamise kultuur lapsepõlves seksuaalselt väärkoheldud naiste kogemuste põhjal"
+  },
+  "retrieved_at": "2026-09-07T19:39:42.063685+00:00"
+}

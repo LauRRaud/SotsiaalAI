@@ -1,0 +1,145 @@
+{
+  "source_path": "oiguskantsler_vordne_kohtlemine.pdf",
+  "source_format": "pdf",
+  "sha256": "388bcd8b11b1b849fedeb6a19f521ab2a58b2d684b63c551a056937e5a8ec959",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/oiguskantsler_vordne_kohtlemine.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "oiguskantsler_vordne_kohtlemine",
+          "title": "Võrdne kohtlemine",
+          "url": "https://www.oiguskantsler.ee/ylevaade2024/pdf/vordne-kohtlemine.pdf",
+          "normalized_url": "https://www.oiguskantsler.ee/ylevaade2024/pdf/vordne-kohtlemine.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "Õiguskantsler",
+          "organization_id": "oiguskantsler",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Õiguskantsler",
+            "võrdne kohtlemine",
+            "diskrimineerimine",
+            "võrdõiguslikkus",
+            "infomaterjal"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_007",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "Õiguskantsler",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 191,
+            "order": 129
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Võrdne kohtlemine"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Õiguskantsler"
+          ],
+          "organizations_seen": [
+            "oiguskantsler"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Õiguskantsler",
+              "line": 191,
+              "order": 129
+            },
+            {
+              "heading_2": "Õiguskantsler",
+              "line": 665,
+              "order": 336
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.oiguskantsler.ee/ylevaade2024/pdf/vordne-kohtlemine.pdf"
+        },
+        "final_url": "https://www.oiguskantsler.ee/ylevaade2024/pdf/vordne-kohtlemine.pdf",
+        "redirects": [],
+        "sha256": "388bcd8b11b1b849fedeb6a19f521ab2a58b2d684b63c551a056937e5a8ec959",
+        "bytes": 48977,
+        "downloaded_at": "2026-08-14T08:00:34.051Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "oiguskantsler_vordne_kohtlemine",
+      "metadata": {
+        "createdAt": "2026-06-12T03:36:57.642147+00:00",
+        "type": "FILE",
+        "fileName": "vordne-kohtlemine.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:36:57.577075+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/9a73aaa83738/vordne-kohtlemine.pdf",
+        "title": "Võrdne kohtlemine",
+        "description": "Duplikaadid ühendatud: 1 lisakirjet. Source master headings: Õiguskantsler",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": null,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–12",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "oiguskantsler_vordne_kohtlemine",
+        "document_id": "oiguskantsler_vordne_kohtlemine",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "e94c28a9f3fa57755c7e421e88440545c3e0a9ef9eb9f4afceec9ddf7a222869",
+        "url": "https://www.oiguskantsler.ee/ylevaade2024/pdf/vordne-kohtlemine.pdf",
+        "url_canonical": "https://www.oiguskantsler.ee/ylevaade2024/pdf/vordne-kohtlemine.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "oiguskantsler_vordne_kohtlemine",
+        "updatedAt": "2026-06-12T03:36:57.642172+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

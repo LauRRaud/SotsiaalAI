@@ -1,0 +1,37 @@
+{
+  "docId": "sotsiaaltoo-4-2019",
+  "articleId": "rita-kerdmann-persoon-2019",
+  "title": "Rita Kerdmann: sõltuvusega täidetakse tühimikke elus",
+  "authors": [
+    "Kristina Traks"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2019",
+  "section": "Persoon",
+  "pageRange": "3-7",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu Rita Kerdmannist, tema elust ja tööst sõltuvusvaldkonnas.",
+  "tags": [
+    "persoon",
+    "sõltuvus",
+    "kogemuslugu"
+  ],
+  "source_type": "file",
+  "source_path": "ST4_2019_web_link_Part3.pdf",
+  "document_id": "sotsiaaltoo-4-2019-rita-kerdmann-persoon-2019",
+  "source_format": "pdf",
+  "source_sha256": "5924aa10056fe87271c5720356cf2f583b29a061b80e626a0dbdfa7334335c1e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2019-rita-kerdmann-persoon-2019",
+    "previous_source_path": "ST4_2019_web_link_Part3.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "5924aa10056fe87271c5720356cf2f583b29a061b80e626a0dbdfa7334335c1e",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

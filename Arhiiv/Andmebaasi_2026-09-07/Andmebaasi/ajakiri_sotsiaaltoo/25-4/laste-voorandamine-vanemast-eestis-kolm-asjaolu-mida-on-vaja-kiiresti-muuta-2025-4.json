@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2025",
+  "articleId": "laste-voorandamine-vanemast-eestis-kolm-asjaolu-mida-on-vaja-kiiresti-muuta-2025-4",
+  "title": "Laste võõrandamine vanemast Eestis: kolm asjaolu, mida on vaja kiiresti muuta",
+  "authors": [
+    "Evelin Raadik"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2025",
+  "section": "Lastekaitse",
+  "pageRange": "1–4",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tõstatab lapse vanemast võõrandamise kui emotsionaalse väärkohtlemise probleemi ning toob esile kolm kiiret muutusvajadust: laste teadlikkus, ametlik definitsioon ja spetsialistide pädevus. Tekst tugineb ESTA teemapäeval kõlanud praktikute kogemustele ja süsteemsetele kitsaskohtadele Eestis.",
+  "tags": [
+    "lastekaitse",
+    "vanemast voorandamine",
+    "emotsionaalne vaarkohtlemine",
+    "lapse oigused",
+    "spetsialistide paadevused",
+    "ennetus",
+    "perekonflikt"
+  ],
+  "source_type": "file",
+  "source_path": "Laste võõrandamine vanemast Eestis_kolm asjaolu, mida on vaja kiiresti muuta.pdf",
+  "document_id": "sotsiaaltoo-4-2025-laste-voorandamine-vanemast-eestis-kolm-asjaolu-mida-on-vaja-kiiresti-muuta-2025-4",
+  "source_format": "pdf",
+  "source_sha256": "025d96c16265732c344ae7ceec0af76c8993153232adf4ab30547547b4215a1d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2025-laste-voorandamine-vanemast-eestis-kolm-asjaolu-mida-on-vaja-kiiresti-muuta-2025-4",
+    "previous_source_path": "Laste võõrandamine vanemast Eestis_kolm asjaolu, mida on vaja kiiresti muuta.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "025d96c16265732c344ae7ceec0af76c8993153232adf4ab30547547b4215a1d",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

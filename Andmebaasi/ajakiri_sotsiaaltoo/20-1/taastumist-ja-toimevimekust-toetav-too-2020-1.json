@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-1-2020",
+  "articleId": "taastumist-ja-toimevimekust-toetav-too-2020-1",
+  "title": "Taastumist ja toimevõimekust toetav töö vaimse tervise valdkonnas",
+  "authors": [
+    "Dagmar Narusson"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2020",
+  "section": "Uurimus",
+  "pageRange": "9-16",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Doktoritööl põhinev artikkel, mis avab personaalse taastumise ja toimevõimekuse mõisted vaimse tervise kontekstis ning kirjeldab, kuidas sotsiaal- ja tervishoiusüsteemid saavad toetada inimeste taastumist ja igapäevaeluga toimetulekut.",
+  "tags": [
+    "personaalselt taastumine",
+    "toimevõimekus",
+    "vaimne tervis",
+    "uuring",
+    "rehabilitatsioon"
+  ],
+  "source_type": "file",
+  "source_path": "ST1_2020_web_link_Part4.pdf",
+  "document_id": "sotsiaaltoo-1-2020-taastumist-ja-toimevimekust-toetav-too-2020-1",
+  "source_format": "pdf",
+  "source_sha256": "ac15447791116647afbcda2b4d0b829716eb5f15ff32dc7b46f9f24e86fb9c5e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2020-taastumist-ja-toimevimekust-toetav-too-2020-1",
+    "previous_source_path": "ST1_2020_web_link_Part4.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ac15447791116647afbcda2b4d0b829716eb5f15ff32dc7b46f9f24e86fb9c5e",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

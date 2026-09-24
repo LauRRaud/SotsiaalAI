@@ -1,0 +1,154 @@
+{
+  "source_path": "tai_espad_2024_uimastite_tarvitamine_koolinoorte_seas.pdf",
+  "source_format": "pdf",
+  "sha256": "6e8ab2ac17899f8721c470a3ec07c16bdc518a5945435809426cf1009290a12a",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/tai_espad_2024_uimastite_tarvitamine_koolinoorte_seas.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "tai_espad_2024_uimastite_tarvitamine_koolinoorte_seas",
+          "title": "ESPAD 2024: uimastite tarvitamine koolinoorte seas",
+          "url": "https://tai.ee/sites/default/files/2025-04/espad_raport_2024_21.04.2025.pdf",
+          "normalized_url": "https://tai.ee/sites/default/files/2025-04/espad_raport_2024_21.04.2025.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "TAI",
+          "organization_id": "tai",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Tervise Arengu Instituut",
+            "lapsed ja pered",
+            "noor",
+            "haridus",
+            "kool",
+            "õpilase toetamine",
+            "tugimeetmed",
+            "sõltuvus",
+            "uimastid",
+            "narkootikumid",
+            "ennetustöö",
+            "riskikäitumine",
+            "infomaterjal",
+            "TAI"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_012",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "TAI",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 205,
+            "order": 134
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "ESPAD 2024: uimastite tarvitamine koolinoorte seas"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "TAI"
+          ],
+          "organizations_seen": [
+            "tai"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "TAI",
+              "line": 205,
+              "order": 134
+            },
+            {
+              "heading_2": "TAI",
+              "line": 679,
+              "order": 341
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://tai.ee/sites/default/files/2025-04/espad_raport_2024_21.04.2025.pdf"
+        },
+        "final_url": "https://tai.ee/sites/default/files/2025-04/espad_raport_2024_21.04.2025.pdf",
+        "redirects": [],
+        "sha256": "6e8ab2ac17899f8721c470a3ec07c16bdc518a5945435809426cf1009290a12a",
+        "bytes": 3905198,
+        "downloaded_at": "2026-08-14T08:00:35.166Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "tai_espad_2024_uimastite_tarvitamine_koolinoorte_seas",
+      "metadata": {
+        "createdAt": "2026-06-12T03:37:18.568900+00:00",
+        "type": "FILE",
+        "fileName": "espad_raport_2024_21.04.2025.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:37:18.504956+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/036362f107b6/espad_raport_2024_21.04.2025.pdf",
+        "title": "ESPAD 2024: uimastite tarvitamine koolinoorte seas",
+        "description": "Duplikaadid ühendatud: 1 lisakirjet. Source master headings: TAI",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2024,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–70",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "tai_espad_2024_uimastite_tarvitamine_koolinoorte_seas",
+        "document_id": "tai_espad_2024_uimastite_tarvitamine_koolinoorte_seas",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "862a82298e712a55d373df39ad93e94fe8880f03fa987b687f7596bbf4657414",
+        "url": "https://tai.ee/sites/default/files/2025-04/espad_raport_2024_21.04.2025.pdf",
+        "url_canonical": "https://tai.ee/sites/default/files/2025-04/espad_raport_2024_21.04.2025.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "tai_espad_2024_uimastite_tarvitamine_koolinoorte_seas",
+        "updatedAt": "2026-06-12T03:37:18.568924+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

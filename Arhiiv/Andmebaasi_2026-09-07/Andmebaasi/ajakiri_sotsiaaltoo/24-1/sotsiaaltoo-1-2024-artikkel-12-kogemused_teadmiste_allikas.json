@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-1-2024",
+  "articleId": "kogemused-kui-sotsiaaltoo-teadmiste-oluline-allikas-2024-1",
+  "title": "Kogemused kui sotsiaaltöö teadmiste oluline allikas",
+  "authors": [
+    "Jean Pierre Wilken"
+  ],
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2024",
+  "section": "Erialane haridus",
+  "pageRange": "64-66",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artiklis käsitletakse kogemusteadmisi kui sotsiaaltöö kolmandat olulist teadmiste allikat ning selgitatakse, kuidas isiklikud ja teenusekasutajate kogemused muutuvad süstemaatilise töö kaudu kogemusteadmisteks. Rõhutatakse suhete ja usaldusliku kontakti rolli ning kogemuste jagamist ja sellest õppimist nii üksikisiku kui ka kogukonna tasandil. Tuuakse näiteid rahvusvahelistest uuringutest ja taastumislugudest, mis on aidanud mõista taastumisprotsesse ja kujundada kvaliteetset hoolekannet.",
+  "tags": [
+    "kogemusteadmised",
+    "isiklik kogemus",
+    "taastumine",
+    "võimestamine",
+    "suhtekeskne töö",
+    "sotsiaaltöö teooria",
+    "teadmiste allikad",
+    "kvaliteetne hoolekanne"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_1_2024_web_Part12.pdf",
+  "document_id": "sotsiaaltoo-1-2024-kogemused-kui-sotsiaaltoo-teadmiste-oluline-allikas-2024-1",
+  "source_format": "pdf",
+  "source_sha256": "ee7770955a923c4e55a113a8dc9a415a12a9916bcda4e873c28edfb5b0ee7cb9",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2024-kogemused-kui-sotsiaaltoo-teadmiste-oluline-allikas-2024-1",
+    "previous_source_path": "Sotsiaaltoo_1_2024_web_Part12.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ee7770955a923c4e55a113a8dc9a415a12a9916bcda4e873c28edfb5b0ee7cb9",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

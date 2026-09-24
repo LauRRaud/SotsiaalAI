@@ -1,0 +1,101 @@
+{
+  "docId": "sotsiaaltoo-erinumber-2016-artikkel-22-millistel-tingimustel-kasutab-heaolu-arengukava-sotsiaalse-e",
+  "articleId": "sotsiaaltoo-erinumber-2016-artikkel-22-millistel-tingimustel-kasutab-heaolu-arengukava-sotsiaalse-e",
+  "title": "Millistel tingimustel kasutab heaolu arengukava sotsiaalse ettevõtluse potentsiaali?",
+  "authors": [
+    "Rasmus Pedanik",
+    "Jaan Aps"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "erinumber 2016",
+  "section": "Kodanikuühiskond",
+  "pageRange": "78-82",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalsete Ettevõtete Võrgustiku esindajad küsivad, millistel tingimustel kasutab heaolu arengukava sotsiaalse ettevõtluse potentsiaali, ja väidavad näidete varal (Merimetsa Tugikeskus, Sõbralt Sõbrale, Eesti Pimemassööride Ühing), et sotsiaalsed ettevõtted „subsideerivad\" müügituluga avalikke teenuseid, kuid vajavad riigi süsteemset tuge.",
+  "tags": [
+    "sotsiaalne ettevõtlus",
+    "kodanikuühiskond",
+    "kaitstud töö",
+    "heaolu arengukava",
+    "teenuste rahastamine"
+  ],
+  "source_type": "file",
+  "source_path": "2016_eri_artikkel_22_millistel_tingimustel_kasutab_heaolu_arengukava_sots.pdf",
+  "added": "2026-08-18",
+  "fulltext_note": "Erinumber „Sotsiaaltöö ; erinumber 2016\" (DIGAR nlib-digar:390083), pühendatud heaolu arengukavale 2016–2023. Lisatud korpusesse 18.08.2026. Visuaalkontrollis 22.08.2026 parandati lõpplehekülg 82-lt 80-le ja eemaldati väljavõttest järgmine artikkel ning reklaamilehekülg.",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-erinumber-2016-artikkel-22-millistel-tingimustel-kasutab-heaolu-arengukava-sotsiaalse-e",
+  "source_sha256": "eb0bfd278c4bdae44a1f630fa07233012f5cab7d7347b55e217b4721532a81ab",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-erinumber-2016-artikkel-22-millistel-tingimustel-kasutab-heaolu-arengukava-sotsiaalse-e",
+    "previous_source_path": "2016_eri_artikkel_22_millistel_tingimustel_kasutab_heaolu_arengukava_sots.txt",
+    "previous_source_original_path": "2016_erinumber.pdf",
+    "reference_stored_source_sha256": "7fdacc2883720462412315f4a6df68a338a2be4adc6fbb41d46d3a0441d5fdb2",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\2016_erinumber.pdf",
+      "source_sha256": "ae3bbf0a621beae80ae1e05a13206ffa00c6811806397ee8ac925f3762d93c70",
+      "pdf_start_page": 80,
+      "pdf_end_page": 84,
+      "printed_page_range": "78-82",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 84,
+      "source_regions": [
+        {
+          "source_pdf_page": 80,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 81,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 82,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 83,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 84,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "78-82",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2016_erinumber.pdf"
+    },
+    "server_page_range": "78-82"
+  }
+}

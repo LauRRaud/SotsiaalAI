@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-4-2020",
+  "articleId": "ennetava-sekkumise-mojuanalüüsi-voimalusi-spin-programmi-naitel-2020-4",
+  "title": "Ennetava sekkumise mõjuanalüüsi võimalusi SPIN-programmi näitel",
+  "authors": [
+    "Jaan Aps",
+    "Johanna Salu",
+    "Erkki Kubber"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2020",
+  "section": "Analüüs",
+  "pageRange": "70-74",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Analüütiline artikkel SPIN-programmist kui spordil, eelkõige jalgpallil põhinevast noorte arenguprogrammist, mille eesmärk on vähendada riskikäitumist ja toetada sotsiaalsete ning enesejuhtimise oskuste arengut. Autorid käsitlevad programmi teoreetilist raamistikku, mõju hindamise metoodikat, riskide ja kaitsetegurite mõõtmist ning toovad välja programmis mõjusaimad komponendid, nagu kogukonnapõhine lähenemine, kohaliku tugivõrgustiku kaasamine ja eluoskuste süsteemne arendamine.",
+  "tags": [
+    "ennetustöö",
+    "noorsootöö",
+    "SPIN-programm",
+    "mõjuanalüüs",
+    "riskikäitumine",
+    "jalgpall",
+    "noorte arendamine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2020_web_link_Part14.pdf",
+  "document_id": "sotsiaaltoo-4-2020-ennetava-sekkumise-mojuanal-si-voimalusi-spin-programmi-naitel-2020-4",
+  "source_format": "pdf",
+  "source_sha256": "9c1e557e38ffc494f2c8818899862800db2f1595730d08c02cc95329701b4ca3",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2020-ennetava-sekkumise-mojuanal-si-voimalusi-spin-programmi-naitel-2020-4",
+    "previous_source_path": "Sotsiaaltoo_4_2020_web_link_Part14.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "9c1e557e38ffc494f2c8818899862800db2f1595730d08c02cc95329701b4ca3",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

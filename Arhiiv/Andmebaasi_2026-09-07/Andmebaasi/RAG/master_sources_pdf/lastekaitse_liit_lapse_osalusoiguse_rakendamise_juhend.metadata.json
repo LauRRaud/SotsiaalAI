@@ -1,0 +1,78 @@
+{
+  "source": {
+    "source_id": "lastekaitse_liit_lapse_osalusoiguse_rakendamise_juhend",
+    "title": "Lapse osalusõiguse rakendamise juhend",
+    "url": "https://www.lastekaitseliit.ee/wp-content/uploads/2025/05/Lapse_osalusoiguse_rakendamise_juhend_2025.pdf",
+    "normalized_url": "https://www.lastekaitseliit.ee/wp-content/uploads/2025/05/Lapse_osalusoiguse_rakendamise_juhend_2025.pdf",
+    "source_format": "pdf",
+    "source_type": "official_guideline",
+    "resource_type": "method_guidance",
+    "publisher": "Lastekaitse Liit",
+    "organization_id": "lastekaitse_liit",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Lastekaitse Liit",
+      "lapsed ja pered",
+      "laps",
+      "lapse õigused",
+      "lapse osalus",
+      "õigused",
+      "inimõigused",
+      "spetsialisti juhend"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "high",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "Lastekaitse Liit",
+      "heading_4": null,
+      "line": 591,
+      "order": 302
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Lapse osalusõiguse rakendamise juhend"
+    ],
+    "collection_hints": [
+      "organization_guidelines"
+    ],
+    "source_types_seen": [
+      "official_guideline"
+    ],
+    "resource_types_seen": [
+      "best_practice_guidance"
+    ],
+    "publishers_seen": [
+      "Lastekaitse Liit"
+    ],
+    "organizations_seen": [
+      "lastekaitse_liit"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "Lastekaitse Liit",
+        "line": 591,
+        "order": 302
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.lastekaitseliit.ee/wp-content/uploads/2025/05/Lapse_osalusoiguse_rakendamise_juhend_2025.pdf"
+  },
+  "final_url": "https://www.lastekaitseliit.ee/wp-content/uploads/2025/05/Lapse_osalusoiguse_rakendamise_juhend_2025.pdf",
+  "redirects": [],
+  "sha256": "a912217c46a2d21b873afb851ac7271c2832bbd3293820b132c4f3c53e046043",
+  "bytes": 1074427,
+  "downloaded_at": "2026-08-14T08:00:57.371Z"
+}

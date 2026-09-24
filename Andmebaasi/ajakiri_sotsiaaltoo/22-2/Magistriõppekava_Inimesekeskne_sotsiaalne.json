@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2022",
+  "articleId": "magistrioppekava-inimesekeskne-sotsiaalne-innovatsioon-2022-2",
+  "title": "Magistriõppekava „Inimesekeskne sotsiaalne innovatsioon“",
+  "authors": [
+    "Ewe Alliksoo"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2022",
+  "section": "Erialane haridus",
+  "pageRange": "90-92",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab Tartu Ülikooli Pärnu kolledži magistriõppekava „Inimesekeskne sotsiaalne innovatsioon“, mis ühendab sotsiaal- ja tervishoiuvaldkonna pädevused. Selgitatakse õppekava loomise tausta OSKA tööjõu-uuringute, rahvastiku tervise arengukava ja sotsiaalvaldkonna vajaduste põhjal. Kirjeldatakse inimkesksuse, koostöö, analüüsioskuse ja teenuste disaini rolli sotsiaalvaldkonna innovatsioonis ning õppekava ülesehitust, sh mooduleid, praktikat ja magistritööd. Eesmärk on koolitada spetsialiste, kes suudavad arendada lõimitud, inimese vajadustest lähtuvaid lahendusi ja teenuseid erinevatele sihtrühmadele.",
+  "tags": [
+    "magistriõpe",
+    "inimesekeskne lähenemine",
+    "sotsiaalne innovatsioon",
+    "Tartu Ülikool Pärnu kolledž",
+    "sotsiaalvaldkonna haridus",
+    "teenusedisain",
+    "lõimitud teenused"
+  ],
+  "source_type": "file",
+  "source_path": "2022_2_artikkel_15_inimesekeskne_innovatsioon.pdf",
+  "document_id": "sotsiaaltoo-2-2022-magistrioppekava-inimesekeskne-sotsiaalne-innovatsioon-2022-2",
+  "source_format": "pdf",
+  "source_sha256": "60f1ceb86c172c891e0d83ccc1d3f3a355f217f5d5211255714d0894fd7f1c44",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2022-magistrioppekava-inimesekeskne-sotsiaalne-innovatsioon-2022-2",
+    "previous_source_path": "2022_2_artikkel_15_inimesekeskne_innovatsioon.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "60f1ceb86c172c891e0d83ccc1d3f3a355f217f5d5211255714d0894fd7f1c44",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

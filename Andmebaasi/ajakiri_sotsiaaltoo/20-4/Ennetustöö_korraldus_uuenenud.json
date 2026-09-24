@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-4-2020",
+  "articleId": "ennetustoo-korraldus-uuenenud-tervise-ja-heaoluprofiili-abil-2020-4",
+  "title": "Ennetustöö korraldus uuenenud tervise- ja heaoluprofiili abil",
+  "authors": [
+    "Barbara Haage",
+    "Epp Kerge"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2020",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "65-69",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel kirjeldab, kuidas sotsiaalkindlustusameti lastekaitse osakond ja Tervise Arengu Instituut toetavad kohalikke omavalitsusi ennetustöö kavandamisel ning elluviimisel uue ühendatud tervise- ja heaoluprofiili abil. Selgitatakse rahvatervise ennetusmudelit, ennetuse tasandeid lastekaitsetöös, heaoluprofiili ülesehitust ja rolli andmete koondamisel ning pilootprojekti käiku, kus mitmed omavalitsused katsetavad süsteemsemat, analüüsipõhist lähenemist laste ja perede heaolu toetamisele.",
+  "tags": [
+    "ennetustöö",
+    "lastekaitse",
+    "heaoluprofiil",
+    "kohalik omavalitsus",
+    "rahvatervis",
+    "laste ja perede heaolu",
+    "andmepõhine juhtimine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2020_web_link_Part13.pdf",
+  "document_id": "sotsiaaltoo-4-2020-ennetustoo-korraldus-uuenenud-tervise-ja-heaoluprofiili-abil-2020-4",
+  "source_format": "pdf",
+  "source_sha256": "0a65a72d3c5b7bf0360b9a50a46fc6caa2b3617a31451504164e5a137fa6019c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2020-ennetustoo-korraldus-uuenenud-tervise-ja-heaoluprofiili-abil-2020-4",
+    "previous_source_path": "Sotsiaaltoo_4_2020_web_link_Part13.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "0a65a72d3c5b7bf0360b9a50a46fc6caa2b3617a31451504164e5a137fa6019c",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

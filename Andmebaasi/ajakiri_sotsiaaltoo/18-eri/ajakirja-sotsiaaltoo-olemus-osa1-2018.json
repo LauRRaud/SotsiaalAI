@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-eri-2018",
+  "articleId": "ajakirja-sotsiaaltoo-olemus-osa1-2018",
+  "title": "Ajakirja Sotsiaaltöö olemus",
+  "authors": [
+    "Hans van Ewijk"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö (juubeli erinumber)",
+  "issueLabel": "Eri/2018",
+  "section": "Erialased ajakirjad",
+  "pageRange": "15-16",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Analüüs ajakirja Sotsiaaltöö olemusest ja rollist rahvusvahelises erialaste ajakirjade maastikus, tuues välja kümme aspekti, mille kaudu kirjeldada ajakirja profiili, sihtrühma, sisu ja mõjukust.",
+  "tags": [
+    "Sotsiaaltöö ajakiri",
+    "erialased ajakirjad",
+    "rahvusvaheline võrdlus",
+    "sotsiaaltöö professionaalne identiteet",
+    "meediamaastik",
+    "akadeemilised ja praktilised väljaanded"
+  ],
+  "source_type": "file",
+  "source_path": "ST_eri_2018_web_link_Part7.pdf",
+  "mapping_fixed": "2026-08-14",
+  "document_id": "sotsiaaltoo-eri-2018-ajakirja-sotsiaaltoo-olemus-osa1-2018",
+  "source_format": "pdf",
+  "source_sha256": "2b682c9ab359bda9686826481f5868d62115089c5ea6040cb03f7ae2879f910f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2018-ajakirja-sotsiaaltoo-olemus-osa1-2018",
+    "previous_source_path": "ST_eri_2018_web_link_Part7.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "2b682c9ab359bda9686826481f5868d62115089c5ea6040cb03f7ae2879f910f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

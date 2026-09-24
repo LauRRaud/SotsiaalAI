@@ -1,0 +1,139 @@
+{
+  "schema_version": "rag_manual_root_causes_v1",
+  "baseline": "5074b5e03f9fa7708b6ad3db9f8bb9ca243c8d08",
+  "method": "Exact test-message canonical traces, active public source chunks and pure function counterfactuals. No model drafts. Findings do not claim every downstream defect known.",
+  "cases": [
+    {
+      "id": "U75-F04",
+      "messages": [
+        "cmthe1osq0049tzkm7v3myfnz",
+        "cmthedz3n006ztzkmk5xvk7jj"
+      ],
+      "status": "PROVEN",
+      "first_divergent_layer": "question_plan",
+      "causes": [
+        "named_scopes_collapsed_to_one_metric",
+        "observation_year_assigned_source_role",
+        "legacy_metric_assignment_forced_source_order"
+      ],
+      "baseline": {
+        "requested_metrics": 1,
+        "mapped_metrics": 0,
+        "ambiguous": true,
+        "evidence_candidates": 10,
+        "evidence_fragments": 13
+      },
+      "source_fragment_hash": "2cd40c8310290eed370f503603db4ddbf4ba55c908064ddec77b1327ab3f6150",
+      "repair": "Local named-scope label binding and explicit observation-year typing; server retest pending."
+    },
+    {
+      "id": "U75-F05",
+      "messages": [
+        "cmthe4b78004vtzkml47cwz8m",
+        "cmthefd7p007ltzkm83n6xvc3"
+      ],
+      "status": "PROVEN",
+      "first_divergent_layer": "question_plan",
+      "causes": [
+        "known_percentage_interpretation_misclassified_unknown_metric",
+        "referenced_study_period_misclassified_text_relation",
+        "source_identity_terms_in_fact_relation",
+        "whole_question_explicit_value_inherited_by_unrelated_slot"
+      ],
+      "baseline": {
+        "requested_metrics": 1,
+        "mapped_metrics": 0,
+        "evidence_candidates": 2,
+        "evidence_fragments": 106
+      },
+      "source_fragment_hash": "d042283c6e6f337b35b9deab7329ad9cc5f0d87c0d0cf3adbe97aa3a8f149171",
+      "repair": "Not implemented; typed units, age, population, frequency and citation-separated study period required."
+    },
+    {
+      "id": "U75-F06",
+      "messages": [
+        "cmthe6kby005gtzkmes50g3wo",
+        "cmthegy380086tzkmpgvd5c4r"
+      ],
+      "status": "PROVEN",
+      "first_divergent_layer": "qualitative_evidence_binding",
+      "causes": [
+        "allocation_bound_to_age_check_background",
+        "municipalities_bound_to_title_byline",
+        "lexical_completion_not_semantic_payload"
+      ],
+      "baseline": {
+        "requested_qualitative": 2,
+        "mapped_qualitative": 2,
+        "missing_answer_slots": [
+          1
+        ]
+      },
+      "wrong_binding_hashes": [
+        "f8a24ec1a35430e6b6d914df3231cd19571e9e3666073381deea447c8d5e8224",
+        "96f0978dc42d9ee2b784c283cb056863d7d9ae0258746c753cfaa5c262177ec0"
+      ],
+      "correct_source_fragment_hash": "ad254e443317c0e3a00be2a34f28a9a3825d7d38750162d413325feac2f1f66d",
+      "exact_baseline_answer_gate_reason": "NOT_PROVEN because legacy trace lacks per-gate counters and draft is intentionally not retained",
+      "repair": "Not implemented; typed allocation and complete named-set binding required."
+    },
+    {
+      "id": "U75-F07",
+      "messages": [
+        "cmthe85vt005ytzkm0krd2mfx",
+        "cmthei9w1008otzkm0n7cl7vp"
+      ],
+      "status": "PROVEN",
+      "first_divergent_layer": "document_lock",
+      "causes": [
+        "unique_current_turn_author_confirmation_still_requires_title_or_publication_year"
+      ],
+      "baseline": {
+        "reason": "document_anchor_not_confirmed",
+        "candidate_score": 64,
+        "body_subject_matches": 7,
+        "author_confirmation_matches": 1,
+        "sequential_retrieval_history_selected": 6,
+        "sequential_model_history_selected": 0
+      },
+      "correct_source_fragment_hash": "9455bff5951cfe50f20f04e0af35d7db84888606eec1cc98b97408fc2b486f19",
+      "repair": "Not implemented. Must require independent body-topic evidence before trusted-ID override, not simply remove lock predicate. Downstream two-count and household-distribution slots still need proof."
+    },
+    {
+      "id": "U75-F08",
+      "messages": [
+        "cmthea8jd006etzkmqa9y6tre",
+        "cmthejisb0094tzkm9tbjmg39"
+      ],
+      "status": "PROVEN_WRONG_BINDING_EXACT_REJECTION_GATE_NOT_PROVEN",
+      "first_divergent_layer": "question_plan_and_qualitative_evidence_binding",
+      "causes": [
+        "source_relative_clause_created_spurious_slot",
+        "order_request_bound_to_overview_keywords",
+        "generic_keyword_gate_does_not_prove_sequence"
+      ],
+      "baseline": {
+        "isolated": "PASS",
+        "sequential": "FAIL",
+        "identical_rendered_body_spans": 8,
+        "model_history_selected_both": 0,
+        "retrieval_history_selected_both": 0,
+        "context_hash": "6ca16a57c461f083404f4e2a6be8aa45eefece2e86fb7a12529c017f13772de5",
+        "missing_answer_slots": [
+          1
+        ]
+      },
+      "wrong_binding_hashes": [
+        "f39c8fad65b8b3fff22a92eb751b12cdc654c00b2131a254e9de80312d4b94c1",
+        "b391e6514b8c06c23e0e71b1087b7fc34b84961a2021bbf4b16b2411157715b5"
+      ],
+      "counterfactual": {
+        "environment": "pure_helper_not_live_chat",
+        "supported_order": "PASS",
+        "reversed_order": "PASS",
+        "reason": "requested_qualitative_slots_validated"
+      },
+      "repair": "Not implemented; typed model-specific action order required. New diagnostic counters pending release."
+    }
+  ]
+}

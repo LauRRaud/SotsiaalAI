@@ -1,0 +1,126 @@
+{
+  "docId": "sotsiaaltoo-2-2017",
+  "articleId": "piirulene-lastekaitsetoo-2017-2",
+  "title": "Ülevaatlikult piiriülesest lastekaitsetööst",
+  "authors": [
+    "Ly Rüüs"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2017",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "48-55",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalkindlustusameti nõuniku ülevaade piiriülese lastekaitse regulatsioonist ja juhtumite menetlusest juhtumikorralduse põhimõttel. Viimasel rahvaloendusel loendati Eesti kodakondsusega inimesi välisriikides ligi 60 000, neist Soomes veidi üle 29 000. Käsitleb olukordi, kus pered tõlgendavad laste heaolu küsimusi teisiti kui asukohariigi seadused, ning rahvusvaheliste abielude ja kooselude kasvu.",
+  "tags": [
+    "piiriülene lastekaitse",
+    "Sotsiaalkindlustusamet",
+    "väljaränne",
+    "juhtumikorraldus",
+    "rahvusvaheline koostöö"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2-2017_veebi_link_Part17.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2017-piirulene-lastekaitsetoo-2017-2",
+  "source_sha256": "a4a3dcd6163a753df96a13c49338ab9ca1df203ab05549e95722794df0d55a69",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2017-piirulene-lastekaitsetoo-2017-2",
+    "previous_source_path": "Sotsiaaltoo_2-2017_veebi_link_Part17.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2-2017_veebi_link_Part17.pdf",
+    "reference_stored_source_sha256": "2038cc7174b66bbc7babcaf3eefa3849c5c704ae0c165f53a9de9a9af381a962",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf",
+      "source_sha256": "609af110244e684ccbb68aea9504f2490fce2852b1e7caa7bedacb621d661a8a",
+      "pdf_start_page": 50,
+      "pdf_end_page": 57,
+      "printed_page_range": "48-55",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 57,
+      "source_regions": [
+        {
+          "source_pdf_page": 50,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 51,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 52,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 53,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 54,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 55,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 56,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 57,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "48-55",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf"
+    },
+    "server_page_range": "48-55"
+  }
+}

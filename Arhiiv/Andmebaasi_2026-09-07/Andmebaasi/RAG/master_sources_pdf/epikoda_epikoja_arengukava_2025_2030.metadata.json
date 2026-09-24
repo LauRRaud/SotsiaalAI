@@ -1,0 +1,78 @@
+{
+  "source": {
+    "source_id": "epikoda_epikoja_arengukava_2025_2030",
+    "title": "EPIKoja arengukava 2025–2030",
+    "url": "https://epikoda.ee/wp-content/uploads/2025/09/EPIKoja-arengukava-2025-2030.pdf",
+    "normalized_url": "https://epikoda.ee/wp-content/uploads/2025/09/EPIKoja-arengukava-2025-2030.pdf",
+    "source_format": "pdf",
+    "source_type": "policy_analysis",
+    "resource_type": "policy_context",
+    "publisher": "EPIKoda",
+    "organization_id": "epikoda",
+    "collection_hint": "policy_and_strategy",
+    "evidence_role": "policy_context",
+    "topic_tags": [
+      "Eesti Puuetega Inimeste Koda",
+      "strateegia",
+      "poliitika planeerimine",
+      "EPIKoda",
+      "organisatsiooni areng",
+      "asutuse eesmärgid",
+      "puuetega inimeste esindusorganisatsioon",
+      "huvikaitse"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "EPIKoda",
+      "heading_4": null,
+      "line": 565,
+      "order": 291
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "EPIKoja arengukava 2025–2030"
+    ],
+    "collection_hints": [
+      "policy_analyses"
+    ],
+    "source_types_seen": [
+      "policy_analysis"
+    ],
+    "resource_types_seen": [
+      "policy_context"
+    ],
+    "publishers_seen": [
+      "EPIKoda"
+    ],
+    "organizations_seen": [
+      "epikoda"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "EPIKoda",
+        "line": 565,
+        "order": 291
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://epikoda.ee/wp-content/uploads/2025/09/EPIKoja-arengukava-2025-2030.pdf"
+  },
+  "final_url": "https://epikoda.ee/wp-content/uploads/2025/09/EPIKoja-arengukava-2025-2030.pdf",
+  "redirects": [],
+  "sha256": "e3d7e30a0b5672b02f35241a9616158f54d61f0bdcad4052a74bb59665450f60",
+  "bytes": 1696088,
+  "downloaded_at": "2026-08-14T08:00:56.489Z"
+}

@@ -1,0 +1,78 @@
+{
+  "source": {
+    "source_id": "peaasi_ee_peaasi_ee_haridus",
+    "title": "Peaasi.ee Haridus",
+    "url": "https://peaasi.ee/wp-content/uploads/2023/10/Peaasi.ee-Haridus.pdf",
+    "normalized_url": "https://peaasi.ee/wp-content/uploads/2023/10/Peaasi.ee-Haridus.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Peaasi.ee",
+    "organization_id": "peaasi_ee",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Peaasi.ee",
+      "infomaterjal",
+      "haridus",
+      "kool",
+      "õpilased",
+      "õpetajad",
+      "vaimne tervis",
+      "ennetus",
+      "Peaasi"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "Metadata konservatiivselt täpsustatud pealkirja ja registriinfo põhjal; PDF-i sisukord/täistekst vajaks vajadusel eraldi kontrolli.",
+    "source_context": {
+      "heading_2": "Laste ja noorte vaimne tervis / kool / pere ristumiskoht",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 423,
+      "order": 230
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Peaasi.ee Haridus"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Peaasi.ee"
+    ],
+    "organizations_seen": [
+      "peaasi_ee"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Laste ja noorte vaimne tervis / kool / pere ristumiskoht",
+        "line": 423,
+        "order": 230
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://peaasi.ee/wp-content/uploads/2023/10/Peaasi.ee-Haridus.pdf"
+  },
+  "final_url": "https://peaasi.ee/wp-content/uploads/2023/10/Peaasi.ee-Haridus.pdf",
+  "redirects": [],
+  "sha256": "d20d2a11872ebe2a812893be1aa63d4ec067a80d4231fdd3dfa1fd63951800ee",
+  "bytes": 55325,
+  "downloaded_at": "2026-08-14T08:00:47.218Z"
+}

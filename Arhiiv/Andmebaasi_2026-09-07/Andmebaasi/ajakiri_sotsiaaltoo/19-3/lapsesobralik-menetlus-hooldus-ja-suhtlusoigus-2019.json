@@ -1,0 +1,38 @@
+{
+  "docId": "sotsiaaltoo-3-2019",
+  "articleId": "lapsesobralik-menetlus-hooldus-ja-suhtlusoigus-2019",
+  "title": "Lapsesõbralik menetlus. Lapse õigused vanemate vahelistes hooldus- ja suhtlusõiguse vaidlustes",
+  "authors": [
+    "Kristi Paron"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2019",
+  "section": "Hooldus- ja suhtlusõigus",
+  "pageRange": "42-47",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Õiguskantsleri Kantselei vanemnõunik selgitab lapse õigust olla ära kuulatud ja saada teavet vanematevahelistes hooldus- ja suhtlusõiguse kohtuvaidlustes ning annab juhiseid lapsesõbraliku kohtumenetluse ja lastekaitsetöö korraldamiseks.",
+  "tags": [
+    "lapsesõbralik menetlus",
+    "hooldusõigus",
+    "suhtlusõigus",
+    "lapse ärakuulamine"
+  ],
+  "source_type": "file",
+  "source_path": "ST3_2019_veeb_link_Part10.pdf",
+  "document_id": "sotsiaaltoo-3-2019-lapsesobralik-menetlus-hooldus-ja-suhtlusoigus-2019",
+  "source_format": "pdf",
+  "source_sha256": "154f5b60a04149f14ebabf550142bf4f11482e406f0de02954343058104ff7fc",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2019-lapsesobralik-menetlus-hooldus-ja-suhtlusoigus-2019",
+    "previous_source_path": "ST3_2019_veeb_link_Part10.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "154f5b60a04149f14ebabf550142bf4f11482e406f0de02954343058104ff7fc",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

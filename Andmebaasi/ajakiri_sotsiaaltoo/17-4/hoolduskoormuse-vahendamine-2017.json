@@ -1,0 +1,37 @@
+{
+  "docId": "sotsiaaltoo-4-2017",
+  "articleId": "hoolduskoormuse-vahendamine-2017",
+  "title": "Hoolduskoormuse vähendamise esmased abinõud",
+  "authors": [
+    "Häli Tarum"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2017",
+  "section": "Sotsiaalpoliitika",
+  "pageRange": "15-17",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Rakkerühma ettepanekud hoolduskoormuse vähendamiseks ja uute teenuste arendamiseks.",
+  "tags": [
+    "hoolduskoormus",
+    "perekonnad",
+    "sotsiaalpoliitika"
+  ],
+  "source_type": "file",
+  "source_path": "Hoolduskoormuse vähendamise esmased abinõud.pdf",
+  "document_id": "sotsiaaltoo-4-2017-hoolduskoormuse-vahendamine-2017",
+  "source_format": "pdf",
+  "source_sha256": "aea9fe53cc41fb4e95de692bb61647892c56c6d798707bfbd2c0ccaf9a2facd7",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2017-hoolduskoormuse-vahendamine-2017",
+    "previous_source_path": "Hoolduskoormuse vähendamise esmased abinõud.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "aea9fe53cc41fb4e95de692bb61647892c56c6d798707bfbd2c0ccaf9a2facd7",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

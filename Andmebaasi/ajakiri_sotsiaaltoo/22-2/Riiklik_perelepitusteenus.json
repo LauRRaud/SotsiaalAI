@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-2-2022",
+  "articleId": "riiklik-perelepitusteenus-2022-2",
+  "title": "Riiklik perelepitusteenus",
+  "authors": [
+    "Liisa-Lotta Raag",
+    "Rea Uudeküll",
+    "Anna Vorobjova"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2022",
+  "section": "Korraldus",
+  "pageRange": "16-22",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab riikliku perelepitusteenuse loomise tausta, eesmärke ja korraldust. Selgitatakse, millal ja kuidas saavad vanemad pöörduda sotsiaalkindlustusameti kaudu perelepitaja poole, kuidas perelepitusteenus on seotud kohtumenetlusega ning milliseid juhtumeid perelepituses käsitletakse. Käsitletakse lapse huvide keskset rolli, lapse ärakuulamist ja piiriüleste juhtumite eripära. Lisaks kirjeldatakse SKA koordinaatorite igapäevatööd ja väljakutseid teenuse juurutamisel üle Eesti.",
+  "tags": [
+    "perelepitusteenus",
+    "vanemluskokkulepe",
+    "lapse huvid",
+    "sotsiaalkindlustusamet",
+    "kohtumenetlus",
+    "peretugi",
+    "vanemate konflikt"
+  ],
+  "source_type": "file",
+  "source_path": "2022_2_artikkel_4_perelepitusteenus.pdf",
+  "document_id": "sotsiaaltoo-2-2022-riiklik-perelepitusteenus-2022-2",
+  "source_format": "pdf",
+  "source_sha256": "e154c9af440c5baa8d201fb443a477c9c4c645a6639151b8281988c8ffedf3bb",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2022-riiklik-perelepitusteenus-2022-2",
+    "previous_source_path": "2022_2_artikkel_4_perelepitusteenus.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e154c9af440c5baa8d201fb443a477c9c4c645a6639151b8281988c8ffedf3bb",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

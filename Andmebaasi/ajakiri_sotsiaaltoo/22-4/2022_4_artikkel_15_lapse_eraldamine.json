@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-4-2022",
+  "articleId": "lapse-perekonnast-eraldamine-vaimse-tervise-probleemiga-vanemalt-2022-4",
+  "title": "Lapse perekonnast eraldamine vaimse tervise probleemiga vanemalt",
+  "authors": [
+    "Merli Laur"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2022",
+  "section": "Uurimus",
+  "pageRange": "74-80",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimus analüüsib juhtumeid, kus lapse eraldamine on seotud vanema vaimse tervise probleemidega. Autor käsitleb riskitegureid, kohtupraktikat ja lapse huvide kaalumist ning toob välja, millal sekkumine on vältimatu.",
+  "tags": [
+    "lastekaitse",
+    "lapse eraldamine",
+    "vaimne tervis",
+    "uurimus",
+    "ohuhindamine"
+  ],
+  "source_type": "file",
+  "source_path": "2022_4_artikkel_15_lapse_eraldamine.pdf",
+  "authors_vana": [
+    "Evelin Lill"
+  ],
+  "authors_parandatud": "2026-08-17, A5 pöördsuuna kontroll, kinnitatud lähte-PDF-i autorirea vastu",
+  "document_id": "sotsiaaltoo-4-2022-lapse-perekonnast-eraldamine-vaimse-tervise-probleemiga-vanemalt-2022-4",
+  "source_format": "pdf",
+  "source_sha256": "01b8832553809563790ff8629b6aa5cab8ea090d54f14accbc215d2932cbd3a4",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2022-lapse-perekonnast-eraldamine-vaimse-tervise-probleemiga-vanemalt-2022-4",
+    "previous_source_path": "2022_4_artikkel_15_lapse_eraldamine.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "01b8832553809563790ff8629b6aa5cab8ea090d54f14accbc215d2932cbd3a4",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

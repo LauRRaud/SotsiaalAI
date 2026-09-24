@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2024",
+  "articleId": "eessona-abi-annab-tiivad-2024-2",
+  "title": "Eessõna",
+  "authors": [
+    "Maarja Krais-Leosk"
+  ],
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2024",
+  "section": "Eessõna",
+  "pageRange": "2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Eessõnas mõtestab autor sotsiaalvaldkonna võtmemõisteid – kättesaadavus, vajaduspõhisus, taskukohasus, kodulähedus, inimkesksus ja võrdsed võimalused – ning näitab, kui elumuutev on nende tegelik rakendamine puuetega inimeste ja nende perede jaoks. Kirjeldatakse igapäevast elu sügava puudega lapsega ning hoole ja toe rolli selles, et vanemad saaksid hingata, töötada ja panustada ühiskonda. Samuti rõhutatakse riigi ja omavalitsuste vastutust väärika toe pakkumisel ning viidatakse järelevalveasutuste seisukohtadele, mis seavad fookusesse inimese ja pere väärikuse.",
+  "tags": [
+    "eessõna",
+    "puuetega inimesed",
+    "laste pered",
+    "toetavad teenused",
+    "võrdsed võimalused",
+    "kättesaadavus",
+    "hoolduskoormus",
+    "sotsiaalpoliitika põhimõtted"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2024_web_Part2.pdf",
+  "document_id": "sotsiaaltoo-2-2024-eessona-abi-annab-tiivad-2024-2",
+  "source_format": "pdf",
+  "source_sha256": "36bc3e272b415e5c363b608a970288c5de4bb3f5db6349ba6ae0c2b742111870",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2024-eessona-abi-annab-tiivad-2024-2",
+    "previous_source_path": "Sotsiaaltoo_2_2024_web_Part2.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "36bc3e272b415e5c363b608a970288c5de4bb3f5db6349ba6ae0c2b742111870",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

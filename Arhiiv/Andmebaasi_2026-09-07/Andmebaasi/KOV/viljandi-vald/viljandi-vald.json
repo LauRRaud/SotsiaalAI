@@ -1,0 +1,2316 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-viljandi-vald",
+  "document_id": "kov-viljandi-vald",
+  "municipality": "Viljandi vald",
+  "municipality_id": "viljandi_vald",
+  "county": "Viljandimaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "viljandi_vald_service_abivajav_ja_hadaohus_laps",
+      "canonical_item_id": "viljandi_vald:service:abivajav_ja_hadaohus_laps",
+      "itemType": "service",
+      "title": "Abivajav ja hädaohus olev laps",
+      "status": "active",
+      "summary": "Viljandi vald selgitab, et abivajavate laste hulka kuuluvad ka hädaohus olevad lapsed ning abi võib olla vajalik ka sotsiaalse või haridusliku erivajaduse, pere toimetulekuraskuste või väärkohtlemise tõttu. Kõigil isikutel on kohustus teavitada abivajavast või hädaohus olevast lapsest. Hädaohus olevast lapsest tuleb teavitada kohe politseid hädaabinumbril; ööpäevaringselt saab kasutada ka lasteabi telefoni.",
+      "targetGroup": "Abivajav või hädaohus olev laps ning tema lähedased",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "",
+          ""
+        ],
+        "steps": [
+          "Teavita valla lastekaitse spetsialisti või lasteabi telefoni.",
+          "Hädaohu korral helista."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://viljandivald.ee/pere-sotsiaal-ja-tervishoid/laste-ja-perede-heaolu/abivajav-ja-hadaohus-olev-laps",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viljandi_vald_contact_merli_lepik_kiilu",
+        "viljandi_vald_contact_merilin_tops",
+        "viljandi_vald_contact_anu_kiik",
+        "viljandi_vald_contact_reelika_soovik",
+        "viljandi_vald_contact_elis_veldemann"
+      ],
+      "sourceKeys": [
+        "abivajav_laps",
+        "children_social_branch"
+      ],
+      "item_type": "service",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "abivajav_laps",
+        "children_social_branch"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_service_abivajav_ja_hadaohus_laps",
+      "document_id": "viljandi_vald_service_abivajav_ja_hadaohus_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/pere-sotsiaal-ja-tervishoid/laste-ja-perede-heaolu/abivajav-ja-hadaohus-olev-laps",
+      "content_hash": "51cf166a718954fd4700f571a238eb0995f07421c5ee771124ee979a5b6816c3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_service_asendus_ja_jarelhooldusteenus",
+      "canonical_item_id": "viljandi_vald:service:asendus_ja_jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Asendus- ja järelhooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenuse eesmärk on tagada lapse heaolu ja õigused ning luua lapsele turvaline, arenguks soodne ja peresarnane elukeskkond. Järelhooldusteenuse eesmärk on toetada asendushoolduselt või eestkostelt lahkuva noore iseseisvat toimetulekut ja õpingute jätkamist. Teenusele suunamine toimub vallavalitsuse korralduse alusel ning enne seda hinnatakse lapse või noore vajadust ja koostatakse juhtumiplaan.",
+      "targetGroup": "Asendushooldust või järelhooldust vajavad lapsed ja noored",
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": [
+          "Lastekaitsespetsialist hindab vajadust ja koostab juhtumiplaani.",
+          "Vallavalitsus teeb korralduse teenusele suunamiseks.",
+          "Teenuseosutajaga sõlmitakse leping."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://viljandivald.ee/pere-sotsiaal-ja-tervishoid/laste-ja-perede-heaolu/asendus-ja-jarelhooldusteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viljandi_vald_contact_merli_lepik_kiilu"
+      ],
+      "sourceKeys": [
+        "asendus_jarelhooldus"
+      ],
+      "item_type": "service",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "asendus_jarelhooldus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_service_asendus_ja_jarelhooldusteenus",
+      "document_id": "viljandi_vald_service_asendus_ja_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/pere-sotsiaal-ja-tervishoid/laste-ja-perede-heaolu/asendus-ja-jarelhooldusteenus",
+      "content_hash": "75aa21adedbda470241e147fe9730c875f290f618c434c45d4ac8b564a4778ce",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_service_tugiisikuteenus_lapsele",
+      "canonical_item_id": "viljandi_vald:service:tugiisikuteenus_lapsele",
+      "itemType": "service",
+      "title": "Tugiisikuteenus lapsele",
+      "status": "active",
+      "summary": "Tugiisikuteenus määratakse lapsele kodus või haridusasutuses toimetuleku tagamiseks, sealhulgas raske ja sügava puudega lastele ning lastele, kes vajavad abi puude, haiguse, sotsiaalse mahajäämuse või raske olukorra tõttu. Tugiisik juhendab, motiveerib, aitab suhtlemisel ja toetab lapse iseseisvust.",
+      "targetGroup": "Lapsed, kes vajavad kõrvalabi kodus või haridusasutuses",
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": [
+          "Võta ühendust valla laste heaolu spetsialistiga.",
+          "Spetsialist hindab lapse abivajadust ja teenuse sobivust."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://viljandivald.ee/pere-sotsiaal-ja-tervishoid/laste-ja-perede-heaolu/tugiisikuteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viljandi_vald_contact_merli_lepik_kiilu",
+        "viljandi_vald_contact_merilin_tops",
+        "viljandi_vald_contact_anu_kiik",
+        "viljandi_vald_contact_reelika_soovik",
+        "viljandi_vald_contact_elis_veldemann"
+      ],
+      "sourceKeys": [
+        "tugiisik_lapsele"
+      ],
+      "item_type": "service",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "tugiisik_lapsele"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_service_tugiisikuteenus_lapsele",
+      "document_id": "viljandi_vald_service_tugiisikuteenus_lapsele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/pere-sotsiaal-ja-tervishoid/laste-ja-perede-heaolu/tugiisikuteenus",
+      "content_hash": "febab4f2c8c4ea56ac497c668e1b4cf99c86d3ce8dc455ae7d152d7179f35a38",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "viljandi_vald:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenus toetab lapse vanema, eestkostja või hooldaja toimetulekut ja töötamist. Teenuse ajal tagab lapsehoiuteenuse osutaja lapse hooldamise, arendamise ja turvalisuse.",
+      "targetGroup": "Lastega pered, kellel on vaja lapsehoidu",
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": [
+          "Võta ühendust vallavalitsusega või esita teenuse taotlus teenuste keskkonnas."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://viljandivald.ee/toiming/lapsehoiuteenus",
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "lapsehoiuteenus"
+      ],
+      "item_type": "service",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "lapsehoiuteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_service_lapsehoiuteenus",
+      "document_id": "viljandi_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/toiming/lapsehoiuteenus",
+      "content_hash": "397f6f56a5bf1f2ad2600d5005cb30cccf54c4157eb62fdc05574d7328f6c7d1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_service_abivajadusest_tingitud_lapsehoiuteenus",
+      "canonical_item_id": "viljandi_vald:service:abivajadusest_tingitud_lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Abivajadusest tingitud lapsehoiuteenus",
+      "status": "active",
+      "summary": "Riigieelarve toetusfondist rahastatav sotsiaalteenus abivajadusega lastele ja nende peredele. Teenus hõlmab toetavate sotsiaalteenuste osutamist, korraldamist, arendamist ja nendega seotud kulutuste hüvitamist. Taotlus vaadatakse läbi 10 tööpäeva jooksul.",
+      "targetGroup": "Raske või sügava puudega ja muu abivajadusega lapsed ning nende pered",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "elektrooniliselt",
+          "paberkandjal"
+        ],
+        "steps": [
+          "Esita raske ja sügava puudega lastele sotsiaalteenuste osutamise toetuse taotlus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": null,
+      "officialUrl": "https://viljandivald.ee/toiming/abivajadusest-tingitud-lapsehoiuteenus",
+      "relatedForms": [
+        "viljandi_vald_form_abivajadusega_lapse_teenuste_toetus"
+      ],
+      "relatedContacts": [
+        "viljandi_vald_contact_merli_lepik_kiilu",
+        "viljandi_vald_contact_merilin_tops",
+        "viljandi_vald_contact_elis_veldemann",
+        "viljandi_vald_contact_anu_kiik",
+        "viljandi_vald_contact_reelika_soovik"
+      ],
+      "sourceKeys": [
+        "abivajadusest_lapsehoid",
+        "form_abivajadusega_lapse_teenuste_toetus"
+      ],
+      "item_type": "service",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "abivajadusest_lapsehoid",
+        "form_abivajadusega_lapse_teenuste_toetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_service_abivajadusest_tingitud_lapsehoiuteenus",
+      "document_id": "viljandi_vald_service_abivajadusest_tingitud_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/toiming/abivajadusest-tingitud-lapsehoiuteenus",
+      "content_hash": "1c8cde50e52a59e1372052e6d056ddb9c96971251bb4ca1a9472c8ff9824a243",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_service_paevakeskuse_teenus",
+      "canonical_item_id": "viljandi_vald:service:paevakeskuse_teenus",
+      "itemType": "service",
+      "title": "Päevakeskuse teenus",
+      "status": "active",
+      "summary": "Viljandi vallas tegutsevad päevakeskused Mustlas ja Viiratsis. Päevakeskused on avatud kogukonnakeskused, kus eakatel ja erivajadustega inimestel on võimalus sisukalt aega veeta, osaleda ühistegevustes, arendada oskusi ja saada tuge igapäevaelus.",
+      "targetGroup": "Eakad ja erivajadustega inimesed",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "kohapeal",
+          ""
+        ],
+        "steps": [
+          "Võta ühendust Viiratsi või Tarvastu päevakeskusega.",
+          "Teenuste ja ürituste kohta küsi päevakeskuse perenaiselt."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Osa teenuseid on tasulised hinnakirja alusel.",
+      "officialUrl": "https://viljandivald.ee/pere-sotsiaal-ja-tervishoid/taiskasvanud-eakad-ja-erivajadusega-inimesed/paevakeskuse-teenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viljandi_vald_contact_urve_kimmel",
+        "viljandi_vald_contact_merila_pihlap",
+        "viljandi_vald_contact_fredy_lumi"
+      ],
+      "sourceKeys": [
+        "paevakeskuse_teenus"
+      ],
+      "item_type": "service",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "paevakeskuse_teenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_service_paevakeskuse_teenus",
+      "document_id": "viljandi_vald_service_paevakeskuse_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/pere-sotsiaal-ja-tervishoid/taiskasvanud-eakad-ja-erivajadusega-inimesed/paevakeskuse-teenus",
+      "content_hash": "c455e7e46fc5bc54927b668f201c7de4a0a8a34a9f47c680036e4634e73c8648",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_service_hoolduse_seadmine",
+      "canonical_item_id": "viljandi_vald:service:hoolduse_seadmine",
+      "itemType": "service",
+      "title": "Hoolduse seadmine ja hooldajatoetuse maksmine",
+      "status": "active",
+      "summary": "Hoolduse seadmise, hooldaja määramise ja hooldajatoetuse maksmise eesmärk on tagada abi inimesele, kes vaimse või kehalise puude või hooldusvajaduse tõttu vajab abi oma õiguste teostamisel ja kohustuste täitmisel. Hooldus seatakse juhul, kui inimese toimetulekut ei saa tagada muude teenuste, toetuste või muu abiga. Otsus tehakse 10 tööpäeva jooksul.",
+      "targetGroup": "Hooldusvajadusega täisealised inimesed ja puudega lapsed ning nende hooldajad",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "elektrooniliselt",
+          "paberkandjal"
+        ],
+        "steps": [
+          "Esita hoolduse seadmise ja hooldajatoetuse maksmise taotlus.",
+          "Lisa puudeotsus ja rehabilitatsiooniplaan, kui need on olemas."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": null,
+      "officialUrl": "https://viljandivald.ee/toiming/hoolduse-seadmine-ja-hooldajatoetuse-maksmine",
+      "relatedForms": [
+        "viljandi_vald_form_puudega_lapse_hooldajatoetus",
+        "viljandi_vald_form_hoolduse_seadmine_ja_hooldajatoetus"
+      ],
+      "relatedContacts": [
+        "viljandi_vald_contact_astrid_viinapuu",
+        "viljandi_vald_contact_onne_raamat",
+        "viljandi_vald_contact_hanneli_vanamb",
+        "viljandi_vald_contact_sirli_toom"
+      ],
+      "sourceKeys": [
+        "form_hoolduse_seadmine",
+        "form_puudega_lapse_hooldajatoetus",
+        "hoolduse_seadmine"
+      ],
+      "item_type": "service",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_hoolduse_seadmine",
+        "form_puudega_lapse_hooldajatoetus",
+        "hoolduse_seadmine"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_service_hoolduse_seadmine",
+      "document_id": "viljandi_vald_service_hoolduse_seadmine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/toiming/hoolduse-seadmine-ja-hooldajatoetuse-maksmine",
+      "content_hash": "f5c9951cde29ec2495d5e9c69485cbf82f01c06860a451a736996571e87d716d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "viljandi_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenuse eesmärk on suurendada puude tõttu füüsilist kõrvalabi vajava täisealise inimese iseseisvat toimetulekut ja osalemist kõigis eluvaldkondades ning vähendada lähedaste hoolduskoormust. Isiklik abistaja aitab igapäevaelu tegevustes, kuid teenus ei hõlma meditsiini-, tervishoiu-, tõlke-, nõustamis-, juriidilisi, remondi- ega ehitusteenuseid.",
+      "targetGroup": "Täisealised puudega inimesed, kes vajavad füüsilist kõrvalabi",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "elektrooniliselt",
+          "paberkandjal"
+        ],
+        "steps": [
+          "Esita vabas vormis taotlus koos abivajaduse kirjeldusega.",
+          "Lisa rehabilitatsiooniplaan, kui see on olemas."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": null,
+      "officialUrl": "https://viljandivald.ee/toiming/isikliku-abistaja-teenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viljandi_vald_contact_sirli_toom",
+        "viljandi_vald_contact_astrid_viinapuu",
+        "viljandi_vald_contact_onne_raamat"
+      ],
+      "sourceKeys": [
+        "isikliku_abistaja"
+      ],
+      "item_type": "service",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "isikliku_abistaja"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_service_isikliku_abistaja_teenus",
+      "document_id": "viljandi_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/toiming/isikliku-abistaja-teenus",
+      "content_hash": "69e06fb217653fbfc0ed60c28b54580c0d6f6c13d95a7f21c443df3647d39ab6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_service_koduteenus",
+      "canonical_item_id": "viljandi_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenuse eesmärk on tagada täisealise isiku iseseisev ja turvaline toimetulek kodustes tingimustes. Teenusega abistatakse toimingutes, mida inimene ei suuda terviseseisundi, tegevusvõime või elukeskkonna tõttu teha kõrvalabita, kuid mis on vajalikud kodus elamiseks, näiteks kütmine, toiduvalmistamine, eluruumi ja riiete korrastamine ning asjaajamine väljaspool kodu.",
+      "targetGroup": "Täisealised inimesed, kes vajavad kodus kõrvalabi",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "elektrooniliselt",
+          "paberkandjal"
+        ],
+        "steps": [
+          "Esita koduteenuse taotlus.",
+          "Sotsiaaltöö spetsialist hindab abivajadust ja teeb otsuse."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": null,
+      "officialUrl": "https://viljandivald.ee/toiming/koduteenus-0",
+      "relatedForms": [
+        "viljandi_vald_form_koduteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "viljandi_vald_contact_hanneli_vanamb",
+        "viljandi_vald_contact_astrid_viinapuu",
+        "viljandi_vald_contact_onne_raamat"
+      ],
+      "sourceKeys": [
+        "form_koduteenuse_taotlus",
+        "koduteenus"
+      ],
+      "item_type": "service",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_koduteenuse_taotlus",
+        "koduteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_service_koduteenus",
+      "document_id": "viljandi_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/toiming/koduteenus-0",
+      "content_hash": "34a978a1fcda482f2e849175100afcd8799f014803eae65f4bfa574c63b75038",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_service_uldhooldusteenus",
+      "canonical_item_id": "viljandi_vald:service:uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Teenuse eesmärk on turvalise hoolduse tagamine Viljandi vallas elavatele inimestele, kes vajavad ööpäevaringselt kõrvalabi igapäevaelu tegevustes ning kelle iseseisev toimetulek kodus ei ole võimalik. Valla hallatavasse hoolekandeasutusse suunamine toimub sotsiaalosakonna kaudu; Viljandi vallas on kaks ööpäevaringse hoolduse pakkujat: Pärna Pansionaat ja Kärstna Hooldekodu.",
+      "targetGroup": "Viljandi valla elanikud, kes vajavad ööpäevaringset kõrvalabi",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "dokumendid"
+        ],
+        "steps": [
+          "Esita hooldekodusse paigutamise taotlus.",
+          "Lisa isikut tõendava dokumendi koopia ja väljavõte ravi- ja haigusloost.",
+          "Teenuse kohamaksu osaliseks rahastamiseks esita rahastamise taotlused ja sissetulekut/varalist seisu kirjeldavad dokumendid."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenuse saaja ja ülalpidamiskohustuslased tasuvad vastavalt varalisele olukorrale; valla eelarvest rahastatakse puudu jääv osa maksevõime hindamise järgi.",
+      "officialUrl": "https://viljandivald.ee/toiming/valjaspool-kodu-osutatav-uldhooldusteenus",
+      "relatedForms": [
+        "viljandi_vald_form_hooldekodusse_paigutamise_taotlus",
+        "viljandi_vald_form_uldhooldusteenuse_osalise_rahastamise_taotlus"
+      ],
+      "relatedContacts": [
+        "viljandi_vald_contact_astrid_viinapuu",
+        "viljandi_vald_contact_onne_raamat",
+        "viljandi_vald_contact_hanneli_vanamb"
+      ],
+      "sourceKeys": [
+        "form_hooldekodusse_paigutamine",
+        "form_uldhoolduse_rahastamine",
+        "uldhooldusteenus"
+      ],
+      "item_type": "service",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_hooldekodusse_paigutamine",
+        "form_uldhoolduse_rahastamine",
+        "uldhooldusteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_service_uldhooldusteenus",
+      "document_id": "viljandi_vald_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/toiming/valjaspool-kodu-osutatav-uldhooldusteenus",
+      "content_hash": "1b60fdab62e5132b72266b2d44df5d56a27b90910b0638e2bfaf39035846b550",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "viljandi_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenust osutatakse puudega või eakale Viljandi valla elanikule, kes erivajaduse tõttu ei saa kasutada isiklikku või ühistransporti ega korraldada iseseisvalt sõitu avalikke teenuseid pakkuvatesse asutustesse, kooli või tööle. Teenus on tasuline; kilomeetrihind on 0,40 eurot ning ooteaja tunnitasu on I teenusgrupile 15 eurot ja II teenusgrupile 20 eurot. Taotlus tuleb üldjuhul esitada hiljemalt 7 tööpäeva enne soovitud sõiduaega.",
+      "targetGroup": "Puudega inimesed ja eakad, kes ei saa kasutada isiklikku või ühistransporti",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "dokumendid"
+        ],
+        "steps": [
+          "Esita esmakordsel taotlemisel kirjalik taotlus ja tellimus.",
+          "Märgi sõidu otstarve, marsruut, kuupäev ja asjaolud, mis takistavad ühistranspordi või isikliku transpordi kasutamist.",
+          "Taotlus otsustatakse 10 tööpäeva jooksul pärast nõutud dokumentide esitamist."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": "0,40 €/km; ooteaeg I grupile 15 €/h ja II grupile 20 €/h; vähekindlustatud isiku teenuse eest võib vald tasumisest vabastada.",
+      "officialUrl": "https://viljandivald.ee/toiming/sotsiaaltransporditeenus",
+      "relatedForms": [
+        "viljandi_vald_form_sotsiaaltransporditeenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "viljandi_vald_contact_sirli_toom",
+        "viljandi_vald_contact_astrid_viinapuu",
+        "viljandi_vald_contact_onne_raamat",
+        "viljandi_vald_contact_hanneli_vanamb"
+      ],
+      "sourceKeys": [
+        "form_sotsiaaltransport",
+        "sotsiaaltransport"
+      ],
+      "item_type": "service",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_sotsiaaltransport",
+        "sotsiaaltransport"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_service_sotsiaaltransporditeenus",
+      "document_id": "viljandi_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/toiming/sotsiaaltransporditeenus",
+      "content_hash": "13a53b3af654045df9303dcae54ac8fdac5bf2600410f6f035b471f05e6d4bf5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_service_puudega_isiku_parkimiskaart",
+      "canonical_item_id": "viljandi_vald:service:puudega_isiku_parkimiskaart",
+      "itemType": "service",
+      "title": "Puudega isiku parkimiskaart",
+      "status": "active",
+      "summary": "Parkimiskaart väljastatakse taotluse alusel Viljandi valla elanikule, kellel on keskmisele, raskele või sügavale puude raskusastmele vastav liikumis- või nägemisfunktsiooni kõrvalekalle või ajutine liikumis- või nägemisfunktsiooni kõrvalekalle. Kaart kehtib puude raskusastme perioodil, kuid mitte kauem kui 5 aastat; ajutise kõrvalekalde puhul kuni 6 kuud. Kaart väljastatakse tasuta.",
+      "targetGroup": "Liikumis- või nägemispuudega inimesed ja ajutise liikumispiiranguga inimesed",
+      "conditions": "Taotlejal on puudeotsus või pere-/eriarsti teatis liikumis- või nägemisfunktsiooni kõrvalekalde kohta.",
+      "application": {
+        "channels": [
+          "elektrooniliselt",
+          "paberkandjal"
+        ],
+        "steps": [
+          "Esita parkimiskaardi avaldus.",
+          "Lisa isikut tõendav dokument, dokumendifoto, puudeotsus või arstitõend."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Tasuta",
+      "officialUrl": "https://viljandivald.ee/toiming/puudega-isiku-parkimiskaart",
+      "relatedForms": [
+        "viljandi_vald_form_puudega_inimese_parkimiskaardi_avaldus"
+      ],
+      "relatedContacts": [
+        "viljandi_vald_contact_hanneli_vanamb"
+      ],
+      "sourceKeys": [
+        "form_parkimiskaart",
+        "parkimiskaart"
+      ],
+      "item_type": "service",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_parkimiskaart",
+        "parkimiskaart"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_service_puudega_isiku_parkimiskaart",
+      "document_id": "viljandi_vald_service_puudega_isiku_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/toiming/puudega-isiku-parkimiskaart",
+      "content_hash": "dc1d683f107937de1673f3894a2cd694b338e9e2d4a0746b3429def90c45b88b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_benefit_hooldajatoetus",
+      "canonical_item_id": "viljandi_vald:benefit:hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus",
+      "status": "active",
+      "summary": "Hooldajatoetuse maksmine on seotud hoolduse seadmisega. Toetust makstakse hooldajale, kui inimene vajab puude või hooldusvajaduse tõttu abi oma õiguste teostamiseks ja kohustuste täitmiseks ning hooldus seatakse valla otsusega.",
+      "targetGroup": "Hooldajad ja hooldusvajadusega inimesed",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "elektrooniliselt",
+          "paberkandjal"
+        ],
+        "steps": [
+          "Esita hoolduse seadmise ja hooldajatoetuse maksmise taotlus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "amount": null,
+      "officialUrl": "https://viljandivald.ee/toiming/hoolduse-seadmine-ja-hooldajatoetuse-maksmine",
+      "relatedForms": [
+        "viljandi_vald_form_hoolduse_seadmine_ja_hooldajatoetus"
+      ],
+      "relatedContacts": [
+        "viljandi_vald_contact_astrid_viinapuu",
+        "viljandi_vald_contact_onne_raamat",
+        "viljandi_vald_contact_hanneli_vanamb",
+        "viljandi_vald_contact_sirli_toom"
+      ],
+      "sourceKeys": [
+        "form_hoolduse_seadmine",
+        "hoolduse_seadmine"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_hoolduse_seadmine",
+        "hoolduse_seadmine"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_benefit_hooldajatoetus",
+      "document_id": "viljandi_vald_benefit_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/toiming/hoolduse-seadmine-ja-hooldajatoetuse-maksmine",
+      "content_hash": "6c7c1b102f146bf9cbe7164b34dba042c86a2b7a61cfffa5cba7d092992c87ba",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "viljandi_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on ajutine abimeede inimesele või perekonnale, kelle sissetulek jääb alla toimetulekupiiri. Taotlemisel tuleb esitada eluasemekulude dokumendid, arveldusarvete väljavõtted ja muud nõutud dokumendid. Otsus tehakse 5 tööpäeva jooksul.",
+      "targetGroup": "Madala sissetulekuga inimesed ja pered",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "elektrooniliselt",
+          "paberkandjal"
+        ],
+        "steps": [
+          "Täida toimetulekutoetuse taotlus.",
+          "Lisa nõutud kuludokumendid ja pangakontode väljavõtted."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "5 tööpäeva",
+      "amount": null,
+      "officialUrl": "https://viljandivald.ee/toiming/toimetulekutoetus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "viljandi_vald_contact_hanneli_vanamb",
+        "viljandi_vald_contact_sirli_toom",
+        "viljandi_vald_contact_astrid_viinapuu",
+        "viljandi_vald_contact_onne_raamat"
+      ],
+      "sourceKeys": [
+        "toimetulekutoetus"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "toimetulekutoetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_benefit_toimetulekutoetus",
+      "document_id": "viljandi_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/toiming/toimetulekutoetus",
+      "content_hash": "ad2fa09ad1045b74ac79f235860c713b980aac14f17be451c294fce7cdd24f39",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_resource_lasteabi_",
+      "canonical_item_id": "viljandi_vald:resource:lasteabi_",
+      "itemType": "resource",
+      "title": "Lasteabi",
+      "status": "active",
+      "summary": "Ööpäevaringne tasuta lasteabi kuhu saab teatada abivajavast lapsest või küsida nõu lapsega seotud teemal. Hädaohu korral tuleb helistada.",
+      "targetGroup": "Lapsed, lapsevanemad, spetsialistid ja teised teavitajad",
+      "officialUrl": "https://viljandivald.ee/pere-sotsiaal-ja-tervishoid/laste-ja-perede-heaolu/abivajav-ja-hadaohus-olev-laps",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "abivajav_laps",
+        "children_social_branch"
+      ],
+      "item_type": "resource",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "abivajav_laps",
+        "children_social_branch"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_resource_lasteabi_",
+      "document_id": "viljandi_vald_resource_lasteabi_",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/pere-sotsiaal-ja-tervishoid/laste-ja-perede-heaolu/abivajav-ja-hadaohus-olev-laps",
+      "content_hash": "c7c32bd5b92284d08fbe51c1c499cb406daa7501fda9d67ee73c6c19b4f32668",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_resource_ohvriabi",
+      "canonical_item_id": "viljandi_vald:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "Ohvriabitöötaja pakub tuge kuriteo, vägivalla või kriisijuhtumi tõttu kannatanule. Teenus võib hõlmata nõustamist, traumast taastumist toetavat vaimse tervise abi, ohvriabi hüvitise taotlemise võimalust ja MARAC-võrgustiku tuge. Nõustamine võib toimuda anonüümselt ja on tasuta.",
+      "targetGroup": null,
+      "officialUrl": "https://viljandivald.ee/pere-sotsiaal-ja-tervishoid/laste-ja-perede-heaolu/ohvriabi",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "ohvriabi"
+      ],
+      "item_type": "resource",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "ohvriabi"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_resource_ohvriabi",
+      "document_id": "viljandi_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/pere-sotsiaal-ja-tervishoid/laste-ja-perede-heaolu/ohvriabi",
+      "content_hash": "f00803bdb3bb57e0614c3acf31626c7edf71866ce8191b75fb8ef4d73d1821f3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_resource_tasuta_oigusabi",
+      "canonical_item_id": "viljandi_vald:resource:tasuta_oigusabi",
+      "itemType": "resource",
+      "title": "Tasuta õigusabi võimalused",
+      "status": "active",
+      "summary": "Viljandi vald viitab tasuta õigusabi võimalustele, sh erivajadusega inimeste õigusnõustamisele ja riigi õigusabi võimalustele. Alates 1. jaanuarist 2026 ei pakuta enam riigi toel tasuta juristi nõustamise projekti; infot tuleb vaadata Juristiabi lehelt.",
+      "targetGroup": null,
+      "officialUrl": "https://viljandivald.ee/pere-sotsiaal-ja-tervishoid/laste-ja-perede-heaolu/tasuta-oigusabi",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "tasuta_oigusabi"
+      ],
+      "item_type": "resource",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "tasuta_oigusabi"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_resource_tasuta_oigusabi",
+      "document_id": "viljandi_vald_resource_tasuta_oigusabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/pere-sotsiaal-ja-tervishoid/laste-ja-perede-heaolu/tasuta-oigusabi",
+      "content_hash": "2488704cb2a0bc2c52740b791f0cf6eb4138644c6f2c77ec0c9ff48d8f4825fc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_resource_perelepitus",
+      "canonical_item_id": "viljandi_vald:resource:perelepitus",
+      "itemType": "resource",
+      "title": "Perelepitus",
+      "status": "active",
+      "summary": "Perelepitus aitab lahku minevatel lapsevanematel kokkuleppele jõuda ja sõlmida lapse huvidest lähtuvad kokkulepped. Teenus on suunatud lapsevanematele, kes plaanivad kooselu lõpetada või on selle juba lõpetanud.",
+      "targetGroup": null,
+      "officialUrl": "https://viljandivald.ee/pere-sotsiaal-ja-tervishoid/laste-ja-perede-heaolu/toetavad-teenused-ja-lisainfo",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "toetavad_teenused"
+      ],
+      "item_type": "resource",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "toetavad_teenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_resource_perelepitus",
+      "document_id": "viljandi_vald_resource_perelepitus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/pere-sotsiaal-ja-tervishoid/laste-ja-perede-heaolu/toetavad-teenused-ja-lisainfo",
+      "content_hash": "8906f895c971b22898b8ead139c3d8406fed73d335e3e89b9bdde8d8825c1693",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_resource_raseduskriisi_noustamine",
+      "canonical_item_id": "viljandi_vald:resource:raseduskriisi_noustamine",
+      "itemType": "resource",
+      "title": "Raseduskriisi nõustamine Viljandi Perepesas",
+      "status": "active",
+      "summary": "Viljandi Perepesa pakub raseduskriisi nõustamist inimestele, kellel on muresid seoses lapseootuse, raseduse katkemise või katkestamise, sünnituse, sünnitusjärgse perioodi või lapsevanemaks kasvamisega. Nõustamine on tasuta ja vajalik on eelregistreerimine.",
+      "targetGroup": null,
+      "officialUrl": "https://viljandivald.ee/pere-sotsiaal-ja-tervishoid/laste-ja-perede-heaolu/toetavad-teenused-ja-lisainfo",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "toetavad_teenused"
+      ],
+      "item_type": "resource",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "toetavad_teenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_resource_raseduskriisi_noustamine",
+      "document_id": "viljandi_vald_resource_raseduskriisi_noustamine",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/pere-sotsiaal-ja-tervishoid/laste-ja-perede-heaolu/toetavad-teenused-ja-lisainfo",
+      "content_hash": "347baa7cbe75a20abad9d09ed453fa18c75db0b9d11c3a2371c8ae53441db77c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_resource_viiratsi_paevakeskus",
+      "canonical_item_id": "viljandi_vald:resource:viiratsi_paevakeskus",
+      "itemType": "resource",
+      "title": "Viiratsi Päevakeskus",
+      "status": "active",
+      "summary": "Viiratsi Päevakeskus asub Tehnika tn 3, Viiratsi alevikus. Keskus on avatud teisipäeval 10–16 ning kolmapäeval, neljapäeval ja reedel 10–18. Pakutakse rullmassaaži, valgusteraapiat, pesupesemist, sauna, tervisetaastustoa kasutamist ja üritusi.",
+      "targetGroup": null,
+      "officialUrl": "https://viljandivald.ee/pere-sotsiaal-ja-tervishoid/taiskasvanud-eakad-ja-erivajadusega-inimesed/paevakeskuse-teenus",
+      "relatedTo": [],
+      "relatedContacts": [
+        "viljandi_vald_contact_urve_kimmel"
+      ],
+      "sourceKeys": [
+        "paevakeskuse_teenus"
+      ],
+      "item_type": "resource",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "paevakeskuse_teenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_resource_viiratsi_paevakeskus",
+      "document_id": "viljandi_vald_resource_viiratsi_paevakeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/pere-sotsiaal-ja-tervishoid/taiskasvanud-eakad-ja-erivajadusega-inimesed/paevakeskuse-teenus",
+      "content_hash": "be6d70bf5090da6a5fb6d97271e1b3c299295463a7d56346f76646df3d373def",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_resource_tarvastu_paevakeskus",
+      "canonical_item_id": "viljandi_vald:resource:tarvastu_paevakeskus",
+      "itemType": "resource",
+      "title": "Tarvastu Päevakeskus",
+      "status": "active",
+      "summary": "Tarvastu Päevakeskus asub Posti tn 36, Mustla alevikus. Keskus on avatud teisipäeval ja laupäeval 9–13 ning neljapäeval ja reedel 9–15. Päevakeskuse lahtiolekuaegadel saab kasutada pesupesemise teenust ja dušši ning osaleda tegevustes.",
+      "targetGroup": null,
+      "officialUrl": "https://viljandivald.ee/pere-sotsiaal-ja-tervishoid/taiskasvanud-eakad-ja-erivajadusega-inimesed/paevakeskuse-teenus",
+      "relatedTo": [],
+      "relatedContacts": [
+        "viljandi_vald_contact_merila_pihlap"
+      ],
+      "sourceKeys": [
+        "paevakeskuse_teenus"
+      ],
+      "item_type": "resource",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "paevakeskuse_teenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_resource_tarvastu_paevakeskus",
+      "document_id": "viljandi_vald_resource_tarvastu_paevakeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/pere-sotsiaal-ja-tervishoid/taiskasvanud-eakad-ja-erivajadusega-inimesed/paevakeskuse-teenus",
+      "content_hash": "15ae665fd9c2ac4e0fe2b4c9233a2e57cfa1aa8ff62a2b4f1bd4e0b3d5bdeced",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_resource_parna_pansionaat",
+      "canonical_item_id": "viljandi_vald:resource:parna_pansionaat",
+      "itemType": "resource",
+      "title": "Pärna Pansionaat",
+      "status": "active",
+      "summary": "Viljandi vald nimetab Pärna Pansionaati ühe ööpäevaringse hoolduse pakkujana vallas. Detailseid teenuseosutaja tingimusi selles veebipaketis väliselt ei kontrollitud.",
+      "targetGroup": null,
+      "officialUrl": "https://viljandivald.ee/toiming/valjaspool-kodu-osutatav-uldhooldusteenus",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "uldhooldusteenus"
+      ],
+      "item_type": "resource",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "uldhooldusteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_resource_parna_pansionaat",
+      "document_id": "viljandi_vald_resource_parna_pansionaat",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/toiming/valjaspool-kodu-osutatav-uldhooldusteenus",
+      "content_hash": "51f728dd2233af65dd46dc28a80ff91d9d0dff5ab6c7b3e53074d11fe8cd4dd5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_resource_karstna_hooldekodu",
+      "canonical_item_id": "viljandi_vald:resource:karstna_hooldekodu",
+      "itemType": "resource",
+      "title": "Kärstna Hooldekodu",
+      "status": "active",
+      "summary": "Viljandi vald nimetab Kärstna Hooldekodu ühe ööpäevaringse hoolduse pakkujana vallas. Detailseid teenuseosutaja tingimusi selles veebipaketis väliselt ei kontrollitud.",
+      "targetGroup": null,
+      "officialUrl": "https://viljandivald.ee/toiming/valjaspool-kodu-osutatav-uldhooldusteenus",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "uldhooldusteenus"
+      ],
+      "item_type": "resource",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "uldhooldusteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_resource_karstna_hooldekodu",
+      "document_id": "viljandi_vald_resource_karstna_hooldekodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/toiming/valjaspool-kodu-osutatav-uldhooldusteenus",
+      "content_hash": "dcc09b5f5b795f286add13c51f5e0942d3e0cb5a78473679a6693b2499b56ece",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_contact_merli_lepik_kiilu",
+      "canonical_item_id": "viljandi_vald:contact:merli_lepik_kiilu",
+      "itemType": "contact",
+      "title": "Merli Lepik-Kiilu",
+      "status": "active",
+      "summary": "Merli Lepik-Kiilu – Laste heaolu peaspetsialist.",
+      "name": "Merli Lepik-Kiilu",
+      "role": "Laste heaolu peaspetsialist",
+      "department": "Laste heaolu",
+      "address": "Sakala tn 1, Viiratsi alevik, Viljandi vald",
+      "sourceKeys": [
+        "abivajadusest_lapsehoid",
+        "abivajav_laps",
+        "asendus_jarelhooldus"
+      ],
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "abivajadusest_lapsehoid",
+        "abivajav_laps",
+        "asendus_jarelhooldus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_contact_merli_lepik_kiilu",
+      "document_id": "viljandi_vald_contact_merli_lepik_kiilu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "e715e68468fb0b49493419bb382a100186198881fbf6971d8d58eb5dcc6d61d1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_contact_merilin_tops",
+      "canonical_item_id": "viljandi_vald:contact:merilin_tops",
+      "itemType": "contact",
+      "title": "Merilin Tops",
+      "status": "active",
+      "summary": "Merilin Tops – Laste heaolu spetsialist.",
+      "name": "Merilin Tops",
+      "role": "Laste heaolu spetsialist",
+      "department": "Laste heaolu",
+      "address": "Sakala tn 1, Viiratsi alevik, Viljandi vald",
+      "sourceKeys": [
+        "abivajadusest_lapsehoid",
+        "abivajav_laps"
+      ],
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "abivajadusest_lapsehoid",
+        "abivajav_laps"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_contact_merilin_tops",
+      "document_id": "viljandi_vald_contact_merilin_tops",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "6f5739babb45e67f714152f73343a928bdae330e056e66e2afe345276a0281fd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_contact_anu_kiik",
+      "canonical_item_id": "viljandi_vald:contact:anu_kiik",
+      "itemType": "contact",
+      "title": "Anu Kiik",
+      "status": "active",
+      "summary": "Anu Kiik – Laste heaolu spetsialist.",
+      "name": "Anu Kiik",
+      "role": "Laste heaolu spetsialist",
+      "department": "Laste heaolu",
+      "address": "Sakala tn 1, Viiratsi alevik, Viljandi vald",
+      "sourceKeys": [
+        "abivajadusest_lapsehoid",
+        "abivajav_laps"
+      ],
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "abivajadusest_lapsehoid",
+        "abivajav_laps"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_contact_anu_kiik",
+      "document_id": "viljandi_vald_contact_anu_kiik",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "b1ca5ed9916f026d8af1299b582dfe08731e0cac36bf3eaae35b7e6522a1bf08",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_contact_reelika_soovik",
+      "canonical_item_id": "viljandi_vald:contact:reelika_soovik",
+      "itemType": "contact",
+      "title": "Reelika Soovik",
+      "status": "active",
+      "summary": "Reelika Soovik – Laste heaolu spetsialist.",
+      "name": "Reelika Soovik",
+      "role": "Laste heaolu spetsialist",
+      "department": "Laste heaolu",
+      "address": "Sakala tn 1, Viiratsi alevik, Viljandi vald",
+      "sourceKeys": [
+        "abivajadusest_lapsehoid",
+        "abivajav_laps"
+      ],
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "abivajadusest_lapsehoid",
+        "abivajav_laps"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_contact_reelika_soovik",
+      "document_id": "viljandi_vald_contact_reelika_soovik",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "62870b50fd8a3128d8a0285817ae7cc258ca02d9327245d973128b455682f98f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_contact_elis_veldemann",
+      "canonical_item_id": "viljandi_vald:contact:elis_veldemann",
+      "itemType": "contact",
+      "title": "Elis Veldemann",
+      "status": "active",
+      "summary": "Elis Veldemann – Laste heaolu spetsialist.",
+      "name": "Elis Veldemann",
+      "role": "Laste heaolu spetsialist",
+      "department": "Laste heaolu",
+      "address": "Sakala tn 1, Viiratsi alevik, Viljandi vald",
+      "sourceKeys": [
+        "abivajadusest_lapsehoid",
+        "abivajav_laps"
+      ],
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "abivajadusest_lapsehoid",
+        "abivajav_laps"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_contact_elis_veldemann",
+      "document_id": "viljandi_vald_contact_elis_veldemann",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "1b55bf71a55220b7d2dffc07d45fdccb137a26376deac28b54b349854d0ac130",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_contact_astrid_viinapuu",
+      "canonical_item_id": "viljandi_vald:contact:astrid_viinapuu",
+      "itemType": "contact",
+      "title": "Astrid Viinapuu",
+      "status": "active",
+      "summary": "Astrid Viinapuu – Sotsiaaltöö spetsialist.",
+      "name": "Astrid Viinapuu",
+      "role": "Sotsiaaltöö spetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Sakala tn 1, Viiratsi alevik, Viljandi vald",
+      "sourceKeys": [
+        "hoolduse_seadmine",
+        "isikliku_abistaja",
+        "koduteenus",
+        "sotsiaaltransport",
+        "uldhooldusteenus"
+      ],
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "hoolduse_seadmine",
+        "isikliku_abistaja",
+        "koduteenus",
+        "sotsiaaltransport",
+        "uldhooldusteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_contact_astrid_viinapuu",
+      "document_id": "viljandi_vald_contact_astrid_viinapuu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "763d46d6514f999c1525a79de1550470b1b62762c746cea3ac1c036e9c494a09",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_contact_onne_raamat",
+      "canonical_item_id": "viljandi_vald:contact:onne_raamat",
+      "itemType": "contact",
+      "title": "Õnne Raamat",
+      "status": "active",
+      "summary": "Õnne Raamat – Sotsiaaltöö spetsialist.",
+      "name": "Õnne Raamat",
+      "role": "Sotsiaaltöö spetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Sakala tn 1, Viiratsi alevik, Viljandi vald",
+      "sourceKeys": [
+        "hoolduse_seadmine",
+        "isikliku_abistaja",
+        "koduteenus",
+        "sotsiaaltransport",
+        "uldhooldusteenus"
+      ],
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "hoolduse_seadmine",
+        "isikliku_abistaja",
+        "koduteenus",
+        "sotsiaaltransport",
+        "uldhooldusteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_contact_onne_raamat",
+      "document_id": "viljandi_vald_contact_onne_raamat",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "4c521c2953fe15d65c3c7e638f25d0e83a876302a178fe6282c707f5fc9aebb2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_contact_hanneli_vanamb",
+      "canonical_item_id": "viljandi_vald:contact:hanneli_vanamb",
+      "itemType": "contact",
+      "title": "Hanneli Vanamb",
+      "status": "active",
+      "summary": "Hanneli Vanamb – Sotsiaaltöö spetsialist.",
+      "name": "Hanneli Vanamb",
+      "role": "Sotsiaaltöö spetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Sakala tn 1, Viiratsi alevik, Viljandi vald",
+      "sourceKeys": [
+        "hoolduse_seadmine",
+        "koduteenus",
+        "parkimiskaart",
+        "sotsiaaltransport",
+        "toimetulekutoetus",
+        "uldhooldusteenus"
+      ],
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "hoolduse_seadmine",
+        "koduteenus",
+        "parkimiskaart",
+        "sotsiaaltransport",
+        "toimetulekutoetus",
+        "uldhooldusteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_contact_hanneli_vanamb",
+      "document_id": "viljandi_vald_contact_hanneli_vanamb",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "6f169aef879845709205a12ec0dd31c8a2d55abcd40fb4753766a77596643e5e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_contact_sirli_toom",
+      "canonical_item_id": "viljandi_vald:contact:sirli_toom",
+      "itemType": "contact",
+      "title": "Sirli Toom",
+      "status": "active",
+      "summary": "Sirli Toom – Sotsiaaltöö spetsialist.",
+      "name": "Sirli Toom",
+      "role": "Sotsiaaltöö spetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Sakala tn 1, Viiratsi alevik, Viljandi vald",
+      "sourceKeys": [
+        "hoolduse_seadmine",
+        "isikliku_abistaja",
+        "sotsiaaltransport",
+        "toimetulekutoetus"
+      ],
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "hoolduse_seadmine",
+        "isikliku_abistaja",
+        "sotsiaaltransport",
+        "toimetulekutoetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_contact_sirli_toom",
+      "document_id": "viljandi_vald_contact_sirli_toom",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "807f9585cff4bbcc5b7c86c38bc21115421bf159b248ae6fd8cedcfbe4bde7eb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_contact_urve_kimmel",
+      "canonical_item_id": "viljandi_vald:contact:urve_kimmel",
+      "itemType": "contact",
+      "title": "Urve Kimmel",
+      "status": "active",
+      "summary": "Urve Kimmel – Päevakeskuse perenaine.",
+      "name": "Urve Kimmel",
+      "role": "Päevakeskuse perenaine",
+      "department": "Viiratsi Päevakeskus",
+      "address": "Tehnika tn 3, Viiratsi alevik, Viljandi vald",
+      "sourceKeys": [
+        "paevakeskuse_teenus"
+      ],
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "paevakeskuse_teenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_contact_urve_kimmel",
+      "document_id": "viljandi_vald_contact_urve_kimmel",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "3c2d713dd3e1689d8e296502fb5446029e68240741cac514cc826bc8de861faa",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_contact_merila_pihlap",
+      "canonical_item_id": "viljandi_vald:contact:merila_pihlap",
+      "itemType": "contact",
+      "title": "Merila Pihlap",
+      "status": "active",
+      "summary": "Merila Pihlap – Päevakeskuse perenaine.",
+      "name": "Merila Pihlap",
+      "role": "Päevakeskuse perenaine",
+      "department": "Tarvastu Päevakeskus",
+      "address": "Posti tn 36, Mustla alevik, Viljandi vald",
+      "sourceKeys": [
+        "paevakeskuse_teenus"
+      ],
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "paevakeskuse_teenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_contact_merila_pihlap",
+      "document_id": "viljandi_vald_contact_merila_pihlap",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "02fea7c14deb282004c46075e60c7f204c80848abec10aabdc0154364b209db7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_contact_fredy_lumi",
+      "canonical_item_id": "viljandi_vald:contact:fredy_lumi",
+      "itemType": "contact",
+      "title": "Fredy Lumi",
+      "status": "active",
+      "summary": "Fredy Lumi – Täisealiste heaolu peaspetsialist.",
+      "name": "Fredy Lumi",
+      "role": "Täisealiste heaolu peaspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Sakala tn 1, Viiratsi alevik, Viljandi vald",
+      "sourceKeys": [
+        "paevakeskuse_teenus"
+      ],
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "paevakeskuse_teenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_contact_fredy_lumi",
+      "document_id": "viljandi_vald_contact_fredy_lumi",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "654d8b2cd85643cb7176ab59a311b0ccc337ef43625e1d25def82674cae5c2ee",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_form_abivajadusega_lapse_teenuste_toetus",
+      "canonical_item_id": "viljandi_vald:form:abivajadusega_lapse_teenuste_toetus",
+      "itemType": "form",
+      "title": "Raske ja sügava puudega lastele sotsiaalteenuste osutamise toetuse taotlus",
+      "status": "active",
+      "summary": "Taotlus abivajadusega lastele ja nende peredele toetavate sotsiaalteenuste osutamise, korraldamise ja kulutuste hüvitamise teenuse saamiseks.",
+      "format": "docx",
+      "officialUrl": "https://viljandivald.ee/sites/default/files/documents/2025-09/Raske%20ja%20s%C3%BCgava%20puudega%20lastele%20sotsiaalteenuste%20osutamise%20toetuse%20taotlus.docx",
+      "submissionChannels": [
+        "elektrooniliselt",
+        "paberkandjal"
+      ],
+      "relatedTo": [
+        "viljandi_vald_service_abivajadusest_tingitud_lapsehoiuteenus"
+      ],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "abivajadusest_lapsehoid",
+        "form_abivajadusega_lapse_teenuste_toetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "abivajadusest_lapsehoid",
+        "form_abivajadusega_lapse_teenuste_toetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_form_abivajadusega_lapse_teenuste_toetus",
+      "document_id": "viljandi_vald_form_abivajadusega_lapse_teenuste_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/sites/default/files/documents/2025-09/Raske%20ja%20s%C3%BCgava%20puudega%20lastele%20sotsiaalteenuste%20osutamise%20toetuse%20taotlus.docx",
+      "content_hash": "8f4e51b693491e734d9770751320cd5e58f3f1ab4ce108313018e6d63af683fa",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_form_koduteenuse_taotlus",
+      "canonical_item_id": "viljandi_vald:form:koduteenuse_taotlus",
+      "itemType": "form",
+      "title": "Koduteenuse taotlus",
+      "status": "active",
+      "summary": "Koduteenuse saamiseks kasutatav ametlik taotlusvorm.",
+      "format": "docx",
+      "officialUrl": "https://viljandivald.ee/sites/default/files/documents/2025-09/Koduteenuse%20taotlus.docx",
+      "submissionChannels": [
+        "elektrooniliselt",
+        "paberkandjal"
+      ],
+      "relatedTo": [
+        "viljandi_vald_service_koduteenus"
+      ],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "form_koduteenuse_taotlus",
+        "koduteenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_koduteenuse_taotlus",
+        "koduteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_form_koduteenuse_taotlus",
+      "document_id": "viljandi_vald_form_koduteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/sites/default/files/documents/2025-09/Koduteenuse%20taotlus.docx",
+      "content_hash": "bb2453b636bf219319a79d54ead7e5ebadd089636ed372c5ef5df62c60da132c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_form_puudega_lapse_hooldajatoetus",
+      "canonical_item_id": "viljandi_vald:form:puudega_lapse_hooldajatoetus",
+      "itemType": "form",
+      "title": "Puudega lapse hooldajatoetuse taotlus",
+      "status": "active",
+      "summary": "Puudega lapse hooldajatoetuse taotlemiseks kasutatav ametlik vorm.",
+      "format": "docx",
+      "officialUrl": "https://viljandivald.ee/sites/default/files/documents/2025-09/Puudega%20lapse%20hooldajatoetuse%20taotlus.docx",
+      "submissionChannels": [
+        "elektrooniliselt",
+        "paberkandjal"
+      ],
+      "relatedTo": [
+        "viljandi_vald_service_hoolduse_seadmine",
+        "viljandi_vald_benefit_hooldajatoetus"
+      ],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "form_puudega_lapse_hooldajatoetus",
+        "hoolduse_seadmine"
+      ],
+      "item_type": "form",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_puudega_lapse_hooldajatoetus",
+        "hoolduse_seadmine"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_form_puudega_lapse_hooldajatoetus",
+      "document_id": "viljandi_vald_form_puudega_lapse_hooldajatoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/sites/default/files/documents/2025-09/Puudega%20lapse%20hooldajatoetuse%20taotlus.docx",
+      "content_hash": "f0d2032cf0ceb0c6aa9964f25aeee0b678398363264cbca12a08b60308d9f24d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_form_hoolduse_seadmine_ja_hooldajatoetus",
+      "canonical_item_id": "viljandi_vald:form:hoolduse_seadmine_ja_hooldajatoetus",
+      "itemType": "form",
+      "title": "Hoolduse seadmise ja hooldajatoetuse maksmise taotlus",
+      "status": "active",
+      "summary": "Hoolduse seadmise, hooldaja määramise ja hooldajatoetuse maksmise taotlemiseks kasutatav vorm.",
+      "format": "docx",
+      "officialUrl": "https://viljandivald.ee/sites/default/files/documents/2025-09/Hoolduse%20seadmise%20ja%20hooldajatoetuse%20maksmise%20taotlus.docx",
+      "submissionChannels": [
+        "elektrooniliselt",
+        "paberkandjal"
+      ],
+      "relatedTo": [
+        "viljandi_vald_service_hoolduse_seadmine",
+        "viljandi_vald_benefit_hooldajatoetus"
+      ],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "form_hoolduse_seadmine",
+        "hoolduse_seadmine"
+      ],
+      "item_type": "form",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_hoolduse_seadmine",
+        "hoolduse_seadmine"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_form_hoolduse_seadmine_ja_hooldajatoetus",
+      "document_id": "viljandi_vald_form_hoolduse_seadmine_ja_hooldajatoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/sites/default/files/documents/2025-09/Hoolduse%20seadmise%20ja%20hooldajatoetuse%20maksmise%20taotlus.docx",
+      "content_hash": "5036e05731028d60002788e5d396397297c779de7167edc34e78048c8c3280cc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_form_hooldekodusse_paigutamise_taotlus",
+      "canonical_item_id": "viljandi_vald:form:hooldekodusse_paigutamise_taotlus",
+      "itemType": "form",
+      "title": "Hooldekodusse paigutamise taotlus",
+      "status": "active",
+      "summary": "Üldhooldusteenusele suunamise ehk hooldekodusse paigutamise taotlus.",
+      "format": "docx",
+      "officialUrl": "https://viljandivald.ee/sites/default/files/documents/2025-09/Hooldekodusse%20paigutamise%20taotlus.docx",
+      "submissionChannels": [
+        "elektrooniliselt",
+        "paberkandjal"
+      ],
+      "relatedTo": [
+        "viljandi_vald_service_uldhooldusteenus"
+      ],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "form_hooldekodusse_paigutamine",
+        "uldhooldusteenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_hooldekodusse_paigutamine",
+        "uldhooldusteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_form_hooldekodusse_paigutamise_taotlus",
+      "document_id": "viljandi_vald_form_hooldekodusse_paigutamise_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/sites/default/files/documents/2025-09/Hooldekodusse%20paigutamise%20taotlus.docx",
+      "content_hash": "157d018058c78cc26f9026af12bfaa3448832e10f8891a26feba82b989937df9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_form_uldhooldusteenuse_osalise_rahastamise_taotlus",
+      "canonical_item_id": "viljandi_vald:form:uldhooldusteenuse_osalise_rahastamise_taotlus",
+      "itemType": "form",
+      "title": "Väljaspool kodu osutatava üldhooldusteenuse osalise rahastamise taotlus",
+      "status": "active",
+      "summary": "Vorm üldhooldusteenuse kohamaksu osaliseks rahastamiseks vallaeelarvest.",
+      "format": "rtf",
+      "officialUrl": "https://viljandivald.ee/sites/default/files/documents/2025-09/V%C3%A4ljaspool%20kodu%20osutatava%20%C3%BCldhooldusteenuse%20osalise%20rahastamise%20taotlus.rtf",
+      "submissionChannels": [
+        "elektrooniliselt",
+        "paberkandjal"
+      ],
+      "relatedTo": [
+        "viljandi_vald_service_uldhooldusteenus"
+      ],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "form_uldhoolduse_rahastamine",
+        "uldhooldusteenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_uldhoolduse_rahastamine",
+        "uldhooldusteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_form_uldhooldusteenuse_osalise_rahastamise_taotlus",
+      "document_id": "viljandi_vald_form_uldhooldusteenuse_osalise_rahastamise_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/sites/default/files/documents/2025-09/V%C3%A4ljaspool%20kodu%20osutatava%20%C3%BCldhooldusteenuse%20osalise%20rahastamise%20taotlus.rtf",
+      "content_hash": "4753513697baeaed2c0743a9e7997b4768a42ae7572cda1361a3d96b913247c9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_form_sotsiaaltransporditeenuse_taotlus",
+      "canonical_item_id": "viljandi_vald:form:sotsiaaltransporditeenuse_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaaltransporditeenuse taotlus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenuse esmakordseks taotlemiseks kasutatav ametlik taotlusvorm.",
+      "format": "docx",
+      "officialUrl": "https://viljandivald.ee/sites/default/files/documents/2025-09/Sotsiaaltransporditeenuse%20taotlus.docx",
+      "submissionChannels": [
+        "elektrooniliselt",
+        "paberkandjal"
+      ],
+      "relatedTo": [
+        "viljandi_vald_service_sotsiaaltransporditeenus"
+      ],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "form_sotsiaaltransport",
+        "sotsiaaltransport"
+      ],
+      "item_type": "form",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_sotsiaaltransport",
+        "sotsiaaltransport"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_form_sotsiaaltransporditeenuse_taotlus",
+      "document_id": "viljandi_vald_form_sotsiaaltransporditeenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/sites/default/files/documents/2025-09/Sotsiaaltransporditeenuse%20taotlus.docx",
+      "content_hash": "b11b09532d789ccecbb8053f3dd1af7ac832c30ec4fedb191e718c7138dee440",
+      "evidence_allowed": true
+    },
+    {
+      "id": "viljandi_vald_form_puudega_inimese_parkimiskaardi_avaldus",
+      "canonical_item_id": "viljandi_vald:form:puudega_inimese_parkimiskaardi_avaldus",
+      "itemType": "form",
+      "title": "Puudega inimese sõiduki parkimiskaardi avaldus",
+      "status": "active",
+      "summary": "Puudega isiku parkimiskaardi taotlemiseks kasutatav avalduse vorm.",
+      "format": "docx",
+      "officialUrl": "https://viljandivald.ee/sites/default/files/documents/2025-09/Puudega%20inimese%20s%C3%B5iduki%20parkimiskaardi%20avaldus.docx",
+      "submissionChannels": [
+        "elektrooniliselt",
+        "paberkandjal"
+      ],
+      "relatedTo": [
+        "viljandi_vald_service_puudega_isiku_parkimiskaart"
+      ],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "form_parkimiskaart",
+        "parkimiskaart"
+      ],
+      "item_type": "form",
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "county": "Viljandimaa",
+      "source_keys": [
+        "form_parkimiskaart",
+        "parkimiskaart"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "viljandi_vald_form_puudega_inimese_parkimiskaardi_avaldus",
+      "document_id": "viljandi_vald_form_puudega_inimese_parkimiskaardi_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://viljandivald.ee/sites/default/files/documents/2025-09/Puudega%20inimese%20s%C3%B5iduki%20parkimiskaardi%20avaldus.docx",
+      "content_hash": "724d10467c6466bb31daea5d2868dd74e2dafd1d53bd113da3af6201f0382a81",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Viljandi vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

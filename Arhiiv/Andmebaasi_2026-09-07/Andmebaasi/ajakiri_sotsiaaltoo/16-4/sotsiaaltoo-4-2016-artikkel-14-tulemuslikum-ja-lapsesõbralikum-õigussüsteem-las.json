@@ -1,0 +1,127 @@
+{
+  "docId": "sotsiaaltoo-4-2016",
+  "articleId": "sotsiaaltoo-4-2016-artikkel-14-tulemuslikum-ja-lapsesõbralikum-õigussüsteem-las",
+  "title": "Tulemuslikum ja lapsesõbralikum õigussüsteem: laste mõjutamise põhimõtted ja võimalused",
+  "authors": [
+    "Kaire Tamm",
+    "Kadri Ann Salla"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2016",
+  "section": "Abi võimalused / praktika",
+  "pageRange": "76-83",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Justiitsministeeriumi nõunik Kaire Tamm ja siseministeeriumi nõunik Kadri Ann Salla tutvustavad ettevalmistatavaid menetlusseadustike muudatusi. Politsei registreeris 2015. aastal veidi üle 10 000 alaealise süüteo, kümme aastat varem üle 27 000; 86% neist olid väärteod ning lastele määrati ligi 6200 rahatrahvi kokku umbes 270 000 euro ulatuses, keskmiselt 16 eurot suitsetamise ja 45 eurot pisivarguse eest. Kavas on laiendada hoiatamist, kahju heastamist ja lepitust, loobuda ennastkahjustavate tegude trahvimisest ning lühendada alaealise aresti 30 päevalt kümnele.",
+  "tags": [
+    "alaealised õigusrikkujad",
+    "taastav õigus",
+    "väärteomenetlus",
+    "mõjutusvahendid",
+    "arest",
+    "riskihindamine"
+  ],
+  "source_type": "file",
+  "source_path": "2016_4_artikkel_14_tulemuslikum_ja_lapsesobralikum_oigussusteem_laste_m.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-14-tulemuslikum-ja-lapses-bralikum-iguss-steem-las",
+  "source_sha256": "623d2baf2d08d7141ae3cb57e3bbea606d75fcff5eb1bc198ef7f9fcfa5c18a7",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-14-tulemuslikum-ja-lapses-bralikum-iguss-steem-las",
+    "previous_source_path": "2016_4_artikkel_14_tulemuslikum_ja_lapsesobralikum_oigussusteem_laste_m.txt",
+    "previous_source_original_path": "4-2016.pdf",
+    "reference_stored_source_sha256": "394bd294064800703a0d0a273b7aafd784a1d1a5a0509af0b94ffc4628da6617",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf",
+      "source_sha256": "0f07da03ffde36588435e96f8dda0f52a8140fbf9cc4201bb95e85b594e03fc9",
+      "pdf_start_page": 78,
+      "pdf_end_page": 85,
+      "printed_page_range": "76-83",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 85,
+      "source_regions": [
+        {
+          "source_pdf_page": 78,
+          "bounds": [
+            0,
+            214.833,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 79,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 80,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 81,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 82,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 83,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 84,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 85,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            179.223
+          ]
+        }
+      ],
+      "effective_printed_page_range": "76-83"
+    },
+    "server_page_range": "76-83"
+  }
+}

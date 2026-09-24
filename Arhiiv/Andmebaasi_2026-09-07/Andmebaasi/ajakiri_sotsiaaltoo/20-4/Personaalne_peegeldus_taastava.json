@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2020",
+  "articleId": "personaalne-peegeldus-taastava-oiguse-voimalustele-kinnipidamisasutustes-2020-4",
+  "title": "Personaalne peegeldus taastava õiguse võimalustele kinnipidamisasutustes",
+  "authors": [
+    "Jaanus Kangur"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2020",
+  "section": "Taastav õigus",
+  "pageRange": "25-30",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Vanglateenistuse vaimuliku ja koolitaja isiklik peegeldus taastava õiguse rakendamise võimalustest kinnipidamisasutustes. Autor arutleb, kuidas taastava õiguse põhimõtted – vastutuse võtmine, lepitamine, kahju heastamine ja kogukonna kaasamine – võiksid täiendada senist karistuspõhist lähenemist ning toetada kinnipeetavate muutust ja taasintegreerumist ühiskonda.",
+  "tags": [
+    "taastav õigus",
+    "vanglad",
+    "kinnipidamisasutused",
+    "rehabilitatsioon",
+    "hingehoid",
+    "lepitamine",
+    "kriminaalpoliitika"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2020_web_link_Part7.pdf",
+  "document_id": "sotsiaaltoo-4-2020-personaalne-peegeldus-taastava-oiguse-voimalustele-kinnipidamisasutustes-2020-4",
+  "source_format": "pdf",
+  "source_sha256": "f951837901f8808176d1d11e0a3434875464d848dafa08ed0f61082cd2a4ee25",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2020-personaalne-peegeldus-taastava-oiguse-voimalustele-kinnipidamisasutustes-2020-4",
+    "previous_source_path": "Sotsiaaltoo_4_2020_web_link_Part7.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "f951837901f8808176d1d11e0a3434875464d848dafa08ed0f61082cd2a4ee25",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

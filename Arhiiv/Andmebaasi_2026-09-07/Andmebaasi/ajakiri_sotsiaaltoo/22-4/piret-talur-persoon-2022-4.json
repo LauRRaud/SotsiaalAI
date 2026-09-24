@@ -1,0 +1,38 @@
+{
+  "docId": "sotsiaaltoo-4-2022",
+  "articleId": "piret-talur-persoon-2022-4",
+  "title": "Piret Talur: oleme kõik võrdsed võrdsete seas",
+  "authors": [
+    "Kadri Kuulpak"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2022",
+  "section": "Persoon",
+  "pageRange": "3-7",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Intervjuu Piret Taluriga noortevaldkonnast, rändest ja sotsiaaltööst Euroopas.",
+  "tags": [
+    "persoon",
+    "noorsootöö",
+    "rändekriis",
+    "NEET-noored"
+  ],
+  "source_type": "file",
+  "source_path": "2022_4_artikkel_2_persoon_Kadri Kuulpak.pdf",
+  "document_id": "sotsiaaltoo-4-2022-piret-talur-persoon-2022-4",
+  "source_format": "pdf",
+  "source_sha256": "99da1a00d759d6010c6e9b41496ae7f3e061c9e8d6a785b46eee6505f12aa09d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2022-piret-talur-persoon-2022-4",
+    "previous_source_path": "2022_4_artikkel_2_persoon_Kadri Kuulpak.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "99da1a00d759d6010c6e9b41496ae7f3e061c9e8d6a785b46eee6505f12aa09d",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

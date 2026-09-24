@@ -1,0 +1,89 @@
+{
+  "docId": "sotsiaaltoo-2-2017",
+  "articleId": "too-noortega-2017-2",
+  "title": "Töö noortega on tähtsamast tähtsam",
+  "authors": [
+    "Mihhail Tint"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2017",
+  "section": "Arvamus",
+  "pageRange": "89-92",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Narva koolipsühholoogi, sotsiaalpedagoogi ja skaudiklubi juhi arvamuslugu noorsootööst. Autor kritiseerib osalejate arvule keskendumist — „mida rohkem, seda uhkem” — ja küsib, milline on kasutegur, kui lapsed ei ole õnnelikud ja neid tõmbab nutitelefoni juurde. Üks väheseid Ida-Virumaa vaatepunktist kirjutatud tekste korpuses.",
+  "tags": [
+    "noorsootöö",
+    "Ida-Virumaa",
+    "Narva",
+    "mõõdikud",
+    "koolipsühholoog"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2-2017_veebi_link_Part26.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2017-too-noortega-2017-2",
+  "source_sha256": "a60921fdb894e03974bfd38702c73e6d4e9d0583d19c12ed88435251dcb0dfe2",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2017-too-noortega-2017-2",
+    "previous_source_path": "Sotsiaaltoo_2-2017_veebi_link_Part26.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2-2017_veebi_link_Part26.pdf",
+    "reference_stored_source_sha256": "0eaa05cf792a582692ab845a229d9facda305678fb4936414268f563eff6b4ac",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf",
+      "source_sha256": "609af110244e684ccbb68aea9504f2490fce2852b1e7caa7bedacb621d661a8a",
+      "pdf_start_page": 91,
+      "pdf_end_page": 94,
+      "printed_page_range": "89-92",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 94,
+      "source_regions": [
+        {
+          "source_pdf_page": 91,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 92,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 93,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 94,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "89-92"
+    },
+    "server_page_range": "89-92"
+  }
+}

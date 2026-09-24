@@ -1,0 +1,92 @@
+{
+  "docId": "sotsiaaltoo-4-2016",
+  "articleId": "sotsiaaltoo-4-2016-artikkel-11-enesekindlamad-ja-iseseisvamad-noored-kuidas-kaa",
+  "title": "Enesekindlamad ja iseseisvamad noored: kuidas kaasata erivajadusega noori noorsootöösse?",
+  "authors": [
+    "Kersti Kõiv",
+    "Marit Kannelmäe-Geerts"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2016",
+  "section": "Uurimus",
+  "pageRange": "62-65",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kersti Kõiv ja Marit Kannelmäe-Geerts tuginevad kahele uuringule: Praxise 2015. aasta sügisel Eesti Noorsootöö Keskuse tellimusel tehtud kaardistusele ja projekti HUKK-AP mõjuhindamisele. Vaid ligikaudu 40% kohalikest omavalitsustest peab erivajadustega noorte võimalusi noorsootöös osaleda piisavaks ning veidi rohkem kui kümnendik nimetab neid väga piiratuks või olematuks. Kaheaastases HUKK-AP projektis katsetas 76 organisatsiooni kaasamisviise, käivitati 69 uut huvitegevust, osales 3231 vähemate võimalustega noort, kellest 1806 käis ringides pidevalt, ning nõustati 442 lapsevanemat.",
+  "tags": [
+    "uurimus",
+    "erivajadusega noored",
+    "noorsootöö",
+    "huviharidus",
+    "kaasamine",
+    "hukk-ap"
+  ],
+  "source_type": "file",
+  "source_path": "2016_4_artikkel_11_enesekindlamad_ja_iseseisvamad_noored_kuidas_kaasata.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-11-enesekindlamad-ja-iseseisvamad-noored-kuidas-kaa",
+  "source_sha256": "36412d06d5d1a31131c055dec50405b3a9f5ea751d2441c7296edb38392f9a59",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-11-enesekindlamad-ja-iseseisvamad-noored-kuidas-kaa",
+    "previous_source_path": "2016_4_artikkel_11_enesekindlamad_ja_iseseisvamad_noored_kuidas_kaasata.txt",
+    "previous_source_original_path": "4-2016.pdf",
+    "reference_stored_source_sha256": "c12987e96f4c313f3f89022b7baafac899925db06baf77442695b3db4a3db374",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf",
+      "source_sha256": "0f07da03ffde36588435e96f8dda0f52a8140fbf9cc4201bb95e85b594e03fc9",
+      "pdf_start_page": 64,
+      "pdf_end_page": 67,
+      "printed_page_range": "62-66",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 68,
+      "source_regions": [
+        {
+          "source_pdf_page": 64,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 65,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 66,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 67,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "62-65",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf"
+    },
+    "server_page_range": "62-66"
+  }
+}

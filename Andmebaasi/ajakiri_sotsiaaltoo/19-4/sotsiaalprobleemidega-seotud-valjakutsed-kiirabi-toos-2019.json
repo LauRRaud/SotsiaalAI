@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2019",
+  "articleId": "sotsiaalprobleemidega-seotud-valjakutsed-kiirabi-toos-2019",
+  "title": "Sotsiaalprobleemidega seotud väljakutsed kiirabi töös",
+  "authors": [
+    "Argo Soolep",
+    "Eduard Gusarov",
+    "Ere Uibu"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2019",
+  "section": "Uurimus",
+  "pageRange": "68-76",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimus käsitleb kiirabibrigaadide juhtide kogemusi sotsiaalprobleemidest tingitud väljakutsetega, kirjeldades sagedasemaid probleeme (üksindus, hooldusdefitsiit, vaesus, sõltuvus, teenuste puudujäägid) ning rõhutades vajadust parema koostöö järele tervishoiu ja sotsiaalteenuste vahel.",
+  "tags": [
+    "kiirabi",
+    "sotsiaalprobleemid",
+    "erakorraline abi",
+    "sotsiaaltöö tervishoius",
+    "uuring"
+  ],
+  "source_type": "file",
+  "source_path": "ST4_2019_web_link_Part16.pdf",
+  "document_id": "sotsiaaltoo-4-2019-sotsiaalprobleemidega-seotud-valjakutsed-kiirabi-toos-2019",
+  "source_format": "pdf",
+  "source_sha256": "e3719d6732abb39ddf4cd23f98939c3cf654a72e802922e90c9b5b5fc3d2ee49",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2019-sotsiaalprobleemidega-seotud-valjakutsed-kiirabi-toos-2019",
+    "previous_source_path": "ST4_2019_web_link_Part16.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e3719d6732abb39ddf4cd23f98939c3cf654a72e802922e90c9b5b5fc3d2ee49",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-2-2025",
+  "articleId": "sunnitusosakondade-sulgemise-tottu-tervishoiu-ja-sotsiaaltoo-koostoovajadus-2025-2",
+  "title": "Sünnitusosakondade sulgemise tõttu tõuseb esiplaanile tervishoiu ja sotsiaaltöö koostöövajadus",
+  "authors": [
+    "Silja Mets-Oja",
+    "Kadi Lubi",
+    "Anu Toots"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2025",
+  "section": "Tervis",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Analüüsitakse sünnitusosakondade sulgemise mõju peredele ja kohalikele teenustele ning tervishoiu ja sotsiaaltöö koostöö vajadust, et tagada raseduse, sünnituse ja sünnitusjärgse perioodi abi kättesaadavus. Rõhutatakse piirkondlike lahenduste arendamist ja perepõhist lähenemist.",
+  "tags": [
+    "sünnitusabi",
+    "regionaalne tervishoid",
+    "rasedus",
+    "sotsiaaltöö tervishoius",
+    "teenuste kättesaadavus",
+    "perepõhine lähenemine",
+    "regionaalpoliitika"
+  ],
+  "source_type": "file",
+  "source_path": "Sünnitusosakondade sulgemise tõttu tõuseb esiplaanile tervishoiu ja sotsiaaltöö koostöövajadus_2_2025.pdf",
+  "pageRange": "1–6",
+  "document_id": "sotsiaaltoo-2-2025-sunnitusosakondade-sulgemise-tottu-tervishoiu-ja-sotsiaaltoo-koostoovajadus-2025-2",
+  "source_format": "pdf",
+  "source_sha256": "1fc94751e04c6cdcca7b42ba8a97d32d253c73d5cbc91b63984022a36970e1c2",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2025-sunnitusosakondade-sulgemise-tottu-tervishoiu-ja-sotsiaaltoo-koostoovajadus-2025-2",
+    "previous_source_path": "Sünnitusosakondade sulgemise tõttu tõuseb esiplaanile tervishoiu ja sotsiaaltöö koostöövajadus_2_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "1fc94751e04c6cdcca7b42ba8a97d32d253c73d5cbc91b63984022a36970e1c2",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

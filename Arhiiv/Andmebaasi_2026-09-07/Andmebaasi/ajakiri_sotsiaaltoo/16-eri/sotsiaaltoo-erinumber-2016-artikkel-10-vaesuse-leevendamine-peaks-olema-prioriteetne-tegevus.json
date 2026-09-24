@@ -1,0 +1,72 @@
+{
+  "docId": "sotsiaaltoo-erinumber-2016",
+  "articleId": "sotsiaaltoo-erinumber-2016-artikkel-10-vaesuse-leevendamine-peaks-olema-prioriteetne-tegevus",
+  "title": "Vaesuse leevendamine peaks olema prioriteetne tegevus",
+  "authors": [
+    "Kärt Mere"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "erinumber 2016",
+  "section": "Majanduslik toimetulek",
+  "pageRange": "33-34",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "EAPN Eesti juhatuse esimees väidab, et vaesuse leevendamine peaks olema prioriteetne tegevus, ja toob arvud: ELis kogeb vaesust 121 miljonit inimest; Eesti seadis sihiks vähendada suhtelist vaesust 2015. aastaks 16,5%-ni ja 2020. aastaks 15%-ni, tegelik seis on 18,7%. Nimetab ülimadalat toimetulekupiiri ideoloogiliseks valikuks, mitte majanduslikuks paratamatuseks.",
+  "tags": [
+    "vaesus",
+    "toimetulekupiir",
+    "EAPN",
+    "sotsiaalne tõrjutus",
+    "miinimumsissetulek"
+  ],
+  "source_type": "file",
+  "source_path": "2016_eri_artikkel_10_vaesuse_leevendamine_peaks_olema_prioriteetne_tegevu.pdf",
+  "added": "2026-08-18",
+  "fulltext_note": "Erinumber „Sotsiaaltöö ; erinumber 2016\" (DIGAR nlib-digar:390083), pühendatud heaolu arengukavale 2016–2023. Lisatud korpusesse 18.08.2026.",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-10-vaesuse-leevendamine-peaks-olema-prioriteetne-tegevus",
+  "source_sha256": "4aaffd9c6b1c112a63efbe2f85765269683e9602ff31bd69bfd8d49878719f4a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-10-vaesuse-leevendamine-peaks-olema-prioriteetne-tegevus",
+    "previous_source_path": "2016_eri_artikkel_10_vaesuse_leevendamine_peaks_olema_prioriteetne_tegevu.txt",
+    "previous_source_original_path": "2016_erinumber.pdf",
+    "reference_stored_source_sha256": "01613056d80576a32a169cd5df8f40d1a7c882070dec79aadf1fb81d762ac6fc",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2016_erinumber.pdf",
+      "source_sha256": "ae3bbf0a621beae80ae1e05a13206ffa00c6811806397ee8ac925f3762d93c70",
+      "pdf_start_page": 35,
+      "pdf_end_page": 36,
+      "printed_page_range": "33-34",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 36,
+      "source_regions": [
+        {
+          "source_pdf_page": 35,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 36,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "33-34"
+    },
+    "server_page_range": "33-34"
+  }
+}

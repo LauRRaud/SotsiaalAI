@@ -1,0 +1,108 @@
+{
+  "docId": "sotsiaaltoo-1-2017",
+  "articleId": "deinstitutsionaliseerimine-kogukonnatoo-2017-1",
+  "title": "Deinstitutsionaliseerimine annab tõuke kogukonnatööle",
+  "authors": [
+    "Valter Parve"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2017",
+  "section": "Kogukonnatöö",
+  "pageRange": "28-33",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Valter Parve väidab, et asutushoolduselt kogukonda üleminek õnnestub üksnes siis, kui kogukonnal on piisavalt sotsiaalset kapitali abivajajaid vastu võtta, ning et Eesti kogukondade valmisolek on ebaühtlane. Ta osutab, et haldusreformi lepingute arutelul Pärnumaal 2016. aasta sügisel oli kodanike osalus pea olematu, ja hoiatab, et klientide lahkumisel asutusest, näiteks Sõmeralt, kaovad paikkonnast ka töökohad ja kogukond. Kasutamata ressursina nimetab ta ligi 1400 korteriühistut, viidates oma 2008. aasta küsitlusele.",
+  "tags": [
+    "deinstitutsionaliseerimine",
+    "kogukonnatöö",
+    "sotsiaalne kapital",
+    "korteriühistud",
+    "kaasamine",
+    "haldusreform"
+  ],
+  "source_type": "file",
+  "source_path": "2017_1_Part9.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2017-deinstitutsionaliseerimine-kogukonnatoo-2017-1",
+  "source_sha256": "d823d4fea24d48826843297ae32cb38e6c791d5b2fb7d4d50139e497e59b7e23",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2017-deinstitutsionaliseerimine-kogukonnatoo-2017-1",
+    "previous_source_path": "2017_1_Part9.txt",
+    "previous_source_original_path": "2017_1.pdf",
+    "reference_stored_source_sha256": "35335b48081956cdd05b06b8c56d300bb0a30d03d43eac86ef9dd602d91129f7",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf",
+      "source_sha256": "335f81467a555f12c55d0e8bf60122a178c5267567cf79607448a5d987629e50",
+      "pdf_start_page": 30,
+      "pdf_end_page": 35,
+      "printed_page_range": "28-33",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 35,
+      "source_regions": [
+        {
+          "source_pdf_page": 30,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 31,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 32,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 33,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 34,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 35,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        }
+      ],
+      "effective_printed_page_range": "28-33"
+    },
+    "server_page_range": "28-33"
+  }
+}

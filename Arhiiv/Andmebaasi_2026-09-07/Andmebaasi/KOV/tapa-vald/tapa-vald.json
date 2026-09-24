@@ -1,0 +1,2903 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-tapa-vald",
+  "document_id": "kov-tapa-vald",
+  "municipality": "Tapa vald",
+  "municipality_id": "tapa_vald",
+  "county": "Lääne-Virumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "tapa_vald_service_koduteenus",
+      "canonical_item_id": "tapa_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenuse eesmärk on tagada täisealise inimese iseseisev ja turvaline toimetulek kodustes tingimustes. Teenuse raames abistatakse või juhendatakse inimest, kes vajab terviseseisundi, tegevusvõime või elukeskkonna tõttu kodus kõrvalabi. Tapa vald kirjeldab koduteenuse nelja paketti, mille tasud on 20, 40, 60 ja 120 eurot kuus. Koduteenus ei sisalda koduõendust ning seda ei osutata voodikesksele inimesele, kes vajab igapäevast täielikku kõrvalabi.",
+      "sourceKeys": [
+        "social_overview"
+      ],
+      "targetGroup": [
+        "Täisealine Tapa valla elanik, kes vajab kodustes tingimustes kõrvalabi"
+      ],
+      "conditions": "Teenust ei osutata sõltuvusprobleemidega või voodikesksele inimesele, kes vajab igapäevast täielikku kõrvalabi. Koduõenduse vajaduse määrab perearst.",
+      "application": {
+        "channels": [
+          "contact_social_worker",
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Võtta ühendust sotsiaalhoolekandespetsialistiga.",
+          "Esitada teenuse taotlus ja kirjeldada abivajadust.",
+          "Sotsiaaltöötaja hindab abivajadust ning lepib kokku teenuse mahu."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "Pakett 1: 20 eurot kuus; pakett 2: 40 eurot kuus; pakett 3: 60 eurot kuus; pakett 4: 120 eurot kuus",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "relatedForms": [
+        "tapa_vald_form_teenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "tapa_vald_contact_pille_eevardi"
+      ],
+      "item_type": "service",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_service_koduteenus",
+      "document_id": "tapa_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "content_hash": "28095a18b854bcd0de99769a4887dbc24a293fd3e3c5a7d7fa5e90a32e16cd49",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "tapa_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus aitab puudega täisealisel inimesel iseseisvalt toime tulla ja osaleda kõigis eluvaldkondades. Isiklik abistaja aitab tegevustes, milleks inimene vajab puude tõttu füüsilist kõrvalabi, näiteks liikumisel, söömisel, riietumisel, hügieenitoimingutes ja majapidamistöödes. Isiklikuks abistajaks ei määrata tavaliselt lähedast sugulast või samas eluruumis elavat inimest. Teenus on üldjuhul tasuline.",
+      "sourceKeys": [
+        "social_overview"
+      ],
+      "targetGroup": [
+        "Puude tõttu füüsilist kõrvalabi vajav täisealine Tapa valla elanik"
+      ],
+      "conditions": "Taotleja peab olema Tapa valla elanik. Isiklikuks abistajaks ei määrata teenuse saaja esimese või teise astme ülenejat või alanejat sugulast, samas eluruumis elavat inimest ega isikut, kelle taust võib ohustada teenuse saaja elu, tervist või vara.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Esitada vallavalitsusele taotlus.",
+          "Kirjeldada taotluses abivajadust ja lisada vajadusel tõendavad dokumendid.",
+          "Vallavalitsus otsustab teenuse andmise või sellest keeldumise kümne tööpäeva jooksul pärast taotluse või viimase lisadokumendi esitamist."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva pärast taotluse või viimase lisadokumendi esitamist; otsusest teatatakse 5 tööpäeva jooksul kirjalikult",
+      "pricing": {
+        "amount": "Üldjuhul tasuline",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "relatedForms": [
+        "tapa_vald_form_teenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "tapa_vald_contact_ragni_nikiforova"
+      ],
+      "item_type": "service",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_service_isikliku_abistaja_teenus",
+      "document_id": "tapa_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "content_hash": "f444820cdc0e7599f5d773f2bf7ca8f395604885a84700867394951ab341f5b8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_service_volanoustamisteenus",
+      "canonical_item_id": "tapa_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab inimesel selgitada oma varalist olukorda, pidada läbirääkimisi võlausaldajatega, rahuldada nõudeid ja vältida uute võlgade tekkimist. Teenus on mõeldud isikule, kellel on sissenõutavaks muutunud rahaline kohustus, mida ta ei ole võimeline iseseisvalt täitma. Tapa vald märgib teenuse maksumuseks tasuta.",
+      "sourceKeys": [
+        "social_overview"
+      ],
+      "targetGroup": [
+        "Tapa valla elanik, kellel on võlgnevused või rahalised kohustused, mida ta ei suuda iseseisvalt täita"
+      ],
+      "conditions": "Teenust saab taotleda inimene, kellele on esitatud nõue täita võlaõiguslikust suhtest või seadusest tulenev sissenõutavaks muutunud rahaline kohustus.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Esitada vallavalitsusele taotlus.",
+          "Kirjeldada abivajadust ja lisada vajadusel tõendavad dokumendid.",
+          "Vallavalitsus otsustab teenuse andmise kümne tööpäeva jooksul."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva pärast taotluse või viimase lisadokumendi esitamist; otsusest teatatakse 5 tööpäeva jooksul kirjalikult",
+      "pricing": {
+        "amount": "Tasuta",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "relatedForms": [
+        "tapa_vald_form_teenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "tapa_vald_contact_ragni_nikiforova"
+      ],
+      "item_type": "service",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_service_volanoustamisteenus",
+      "document_id": "tapa_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "content_hash": "c238e7ac7c9a711a36d01cac9449df79fd90bc1a1c8ced9957f96b1225f73a4d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "tapa_vald:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenuse eesmärk on toetada last kasvatava isiku toimetulekut või töötamist ning vähendada lapse erivajadusest tulenevat hoolduskoormust. Teenuse sihtrühm on suurenenud abivajadusega lapsed. Teenistuja selgitab välja lapse teenuse vajaduse ja ulatuse ning abistab taotlejat vajalike toimingute tegemisel ja teenuseosutaja leidmisel.",
+      "sourceKeys": [
+        "social_overview"
+      ],
+      "targetGroup": [
+        "Suurenenud abivajadusega laps ja tema seaduslik esindaja"
+      ],
+      "conditions": "Teenust saab taotleda Tapa valla elanik. Teenuse saamiseks esitab lapse seaduslik esindaja vallavalitsusele vastava taotluse.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Lapse seaduslik esindaja esitab taotluse.",
+          "Teenistuja selgitab välja lapse teenuse vajaduse ja ulatuse.",
+          "Teenistuja abistab vajadusel teenuseosutaja leidmisel."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva pärast taotluse või viimase lisadokumendi esitamist; otsusest teatatakse 5 tööpäeva jooksul kirjalikult",
+      "pricing": {
+        "amount": "Lapsevanemal tuleb tasuda omaosalust",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "relatedForms": [
+        "tapa_vald_form_teenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "tapa_vald_contact_kristi_ale"
+      ],
+      "item_type": "service",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_service_lapsehoiuteenus",
+      "document_id": "tapa_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "content_hash": "b72164ce5e1f72faedad63c86d6c647d926a0e479802e6823005d8ffdbcebc76",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "tapa_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus võimaldab puudega või muu erivajadusest tuleneva liikumisraskusega inimesel kasutada tema vajadustele vastavat sõidukit. Teenust kasutatakse tööle või õppeasutusse sõitmiseks ja avalike teenuste kasutamiseks, kui isikliku või ühissõiduki kasutamine on takistatud. Teenuse määramiseks hinnatakse inimese abivajadust.",
+      "sourceKeys": [
+        "social_overview"
+      ],
+      "targetGroup": [
+        "Puudega või liikumisraskusega inimene, kellel on takistatud isikliku või ühissõiduki kasutamine"
+      ],
+      "conditions": "Teenuse määramisest võib keelduda, kui taotleja ei vasta tingimustele, ei võimalda teenuse vajadust kontrollida, vajadust saab katta muu abi või teenusega või isikul on teenuse eest võlgnevus.",
+      "application": {
+        "channels": [
+          "oral",
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Teenust vajav isik või tema hooldust tagav isik esitab osakonnale taotluse.",
+          "Taotluses märgitakse teenuse vajaduse aeg, marsruut ja põhjus.",
+          "Teenuse vajadusest tuleb vastutavat teenistujat teavitada üldjuhul vähemalt viis tööpäeva enne teenuse kasutamist."
+        ],
+        "deadline": "Üldjuhul vähemalt 5 tööpäeva enne teenuse kasutamist"
+      },
+      "decisionTime": "Teenus loetakse määratuks, kui tellija ja ametnik on kinnitanud teenuse osutamise aja kuupäevaliselt ja kellaajaliselt",
+      "pricing": {
+        "amount": "Vallavalitsuse bussiga 0,30 eurot kilomeetri kohta; muu tellitud transpordi puhul vastavalt teenuse hinnale",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "relatedForms": [
+        "tapa_vald_form_teenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "tapa_vald_contact_pille_eevardi"
+      ],
+      "item_type": "service",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_service_sotsiaaltransporditeenus",
+      "document_id": "tapa_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "content_hash": "ee80ee6dd180023524a71db20cd60ec277e3b17f056498b063d721066516f375",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_service_tugiisikuteenus",
+      "canonical_item_id": "tapa_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenuse üldeesmärk on toetada iseseisvat toimetulekut olukorras, kus laps või täiskasvanu vajab sotsiaalsete, majanduslike, psühholoogiliste või terviseprobleemide tõttu olulist kõrvalabi. Tugiisik juhendab, motiveerib ja aitab arendada inimese omavastutust. Last kasvatava isiku puhul toetab teenus lapse hooldamist ning turvalise ja toetava kasvukeskkonna loomist.",
+      "sourceKeys": [
+        "social_overview"
+      ],
+      "targetGroup": [
+        "Laps, täiskasvanu või pere, kes vajab sotsiaalset, majanduslikku, psühholoogilist või tervisega seotud kõrvalabi"
+      ],
+      "conditions": "Teenust saab sotsiaalhoolekandega hõlmatud isik või pere, kes vajab kõrvalabi lapse eest hoolitsemisel, raske sotsiaalse olukorra, puude, haiguse, asendushoolduselt või eestkostelt lahkumise või psüühika- või käitumishäire tõttu.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Esitada vallavalitsusele taotlus.",
+          "Kirjeldada abivajadust ja lisada vajadusel tõendavad dokumendid.",
+          "Vallavalitsus otsustab teenuse andmise kümne tööpäeva jooksul."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva pärast taotluse või viimase lisadokumendi esitamist; otsusest teatatakse 5 tööpäeva jooksul kirjalikult",
+      "pricing": {
+        "amount": "Tasuta",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "relatedForms": [
+        "tapa_vald_form_teenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "tapa_vald_contact_kristi_ale",
+        "tapa_vald_contact_ragni_nikiforova"
+      ],
+      "item_type": "service",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_service_tugiisikuteenus",
+      "document_id": "tapa_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "content_hash": "6bfd20f7f7a00425fa377ea4d3a4408e6ad7ca202c770cd7165e686501c7d6c0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_service_turvakoduteenus",
+      "canonical_item_id": "tapa_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenuse eesmärk on tagada turvaline keskkond lapsele, kes vajab abi tema hooldamises esinevate puuduste tõttu, või täisealisele isikule, kes vajab turvalist keskkonda. Esmase abi raames tagatakse vajadusel kriisiabi, taastatakse psüühilist tasakaalu ja tegevusvõimet ning antakse infot teiste abi saamise võimaluste kohta. Teenus tagatakse perioodiks, mis on vajalik turvalisuse ja edasise elu korraldamiseks.",
+      "sourceKeys": [
+        "social_overview"
+      ],
+      "targetGroup": [
+        "Abivajav laps või täisealine inimene, kes vajab turvalist keskkonda"
+      ],
+      "conditions": "Teenuse vajadus tuleneb lapse hooldamise puudustest, mis ohustavad tema elu, tervist või arengut, või täisealise inimese vajadusest turvalise keskkonna järele.",
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": [
+          "Pöörduda vallavalitsuse või lastekaitsespetsialisti poole.",
+          "Teenuse osutamise aluseks on vallavalitsuse ja teenuseosutaja haldusleping või abivajaja juhtumiplaan."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "Tasuta",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "relatedForms": [],
+      "relatedContacts": [
+        "tapa_vald_contact_kristi_ale"
+      ],
+      "item_type": "service",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_service_turvakoduteenus",
+      "document_id": "tapa_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "content_hash": "af96707e8ef8f6ad15a8306fa450b15856cb7038cd629b9be113b3affc0e09a0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "tapa_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hoolduse eesmärk on korraldada hooldust täisealisele inimesele, kellele on määratud raske või sügav puue ja kes vajab vaimse või kehalise puude tõttu abi oma õiguste teostamisel ja kohustuste täitmisel. Hoolduse seadmisel hinnatakse hooldusvajadust ning määratakse hooldaja ülesanded. Hooldus seatakse ja hooldaja määratakse hooldatava ja hooldaja nõusolekul.",
+      "sourceKeys": [
+        "social_overview"
+      ],
+      "targetGroup": [
+        "Raske või sügava puudega täisealine Tapa valla elanik"
+      ],
+      "conditions": "Üldjuhul ei määrata hooldajaks inimest, kes on hooldatava suhtes ülalpidamiskohustusega või kellel endal on sügav või raske puue.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Taotleja esitab vallavalitsusele taotluse ja kirjeldab abivajadust.",
+          "Vallavalitsus hindab hooldusvajadust ning määrab vajadusel hooldaja ülesanded.",
+          "Otsus tehakse kümne tööpäeva jooksul."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva pärast taotluse või viimase lisadokumendi esitamist; otsusest teatatakse 5 tööpäeva jooksul kirjalikult",
+      "pricing": null,
+      "officialUrl": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "relatedForms": [
+        "tapa_vald_form_teenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "tapa_vald_contact_martin_kesamaa",
+        "tapa_vald_contact_pille_eevardi",
+        "tapa_vald_contact_ragni_nikiforova"
+      ],
+      "item_type": "service",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_service_taisealise_isiku_hooldus",
+      "document_id": "tapa_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "content_hash": "a4b73e8f7abc8cefad5c1501e08a0de68f4b9390488f18672fc05d229acb00f3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_service_asendus_ja_jarelhooldusteenus",
+      "canonical_item_id": "tapa_vald:service:asendus_ja_jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Asendus- ja järelhooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus tagab lapsele tema põhivajaduste rahuldamiseks peresarnased elutingimused, turvalise arengukeskkonna ja ettevalmistuse toimetulekuks täisealisena. Teenuse osutaja võib olla hoolduspere, perekodu või asenduskodu. Järelhooldusteenus toetab asendushoolduselt või eestkostelt lahkuva noore iseseisvat toimetulekut ja õpingute jätkamist.",
+      "sourceKeys": [
+        "social_overview"
+      ],
+      "targetGroup": [
+        "Asendushooldust või järelhooldust vajav laps või noor"
+      ],
+      "conditions": "Teenuse vajadus määratakse lapse või noore juhtumiplaani ja abivajaduse alusel.",
+      "application": {
+        "channels": [
+          "case_management"
+        ],
+        "steps": [
+          "Teenuse osutamise aluseks on vallavalitsuse ja teenuseosutaja vaheline leping või abivajaja juhtumiplaan.",
+          "Teenuse vajadus määratakse lapse või noore abivajaduse järgi."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "Tasuta",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "relatedForms": [],
+      "relatedContacts": [
+        "tapa_vald_contact_kristi_ale"
+      ],
+      "item_type": "service",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_service_asendus_ja_jarelhooldusteenus",
+      "document_id": "tapa_vald_service_asendus_ja_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "content_hash": "d5d2232b59b5f4cffab4aaabe11536faa6594c847fce45f3fbbf643de5fac6ed",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "canonical_item_id": "tapa_vald:service:valjaspool_kodu_osutatav_uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatav üldhooldusteenus on mõeldud inimesele, kelle hooldusvajadus on nii suur, et kodus osutatavast abist ei piisa. Tapa vald hindab abivajadust, kontrollib taotluse asjaolusid, otsustab teenuse rahastamise ja sõlmib vajadusel lepingu. Alates 1. maist 2026 on Tapa valla hoolduskulude tasumise piirmäär 700 eurot kuus. Tapa Valla Hooldekodu Tapa maja kuumaksumus on 1520 eurot ning Sääse maja kuumaksumus 1420 eurot, millest valla hoolduskulu osa on 700 eurot.",
+      "sourceKeys": [
+        "home",
+        "hoolekandeasutused_page",
+        "social_overview"
+      ],
+      "targetGroup": [
+        "Inimene, kes vajab ööpäevaringset üldhooldusteenust"
+      ],
+      "conditions": "Üldhooldusteenust vajava isiku või tema esindaja pöördumise järel hindab vallavalitsus abivajadust. Abivajavast inimesest võivad teavitada ka naabrid, arst, hooldaja, hooldustöötaja või muud isikud.",
+      "application": {
+        "channels": [
+          "paper",
+          "email",
+          "phone"
+        ],
+        "steps": [
+          "Esitada taotlus Tapa Vallavalitsuse sotsiaalosakonnale.",
+          "Taotluse võib saata digiallkirjastatult aadressile või teatada vajadusest telefonil.",
+          "Vallavalitsus hindab abivajadust, kontrollib asjaolusid, otsustab rahastamise ja sõlmib lepingu."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "Tapa valla hoolduskulu piirmäär 700 eurot kuus alates 01.05.2026; Tapa Valla Hooldekodu Tapa maja 1520 eurot kuus, Sääse maja 1420 eurot kuus",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "relatedForms": [
+        "tapa_vald_form_teenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "tapa_vald_contact_ragni_nikiforova"
+      ],
+      "item_type": "service",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "home",
+        "hoolekandeasutused_page",
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "document_id": "tapa_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "content_hash": "62d396753d1c320e33e2bb3f6f171f006af0eb06d45e332971b80ce7a0666ecf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_service_noustamisteenus",
+      "canonical_item_id": "tapa_vald:service:noustamisteenus",
+      "itemType": "service",
+      "title": "Nõustamisteenus",
+      "status": "active",
+      "summary": "Nõustamisteenuse eesmärk on aidata lahendada isikutevahelisi konflikte ja sõlmida lapse huvisid arvestavaid kokkuleppeid lapsevanemate vahel. Teenus on tasuta ja seda korraldab vallavalitsus sotsiaalvaldkonna spetsialisti kaudu.",
+      "sourceKeys": [
+        "social_overview"
+      ],
+      "targetGroup": [
+        "Pered ja lapsevanemad, kes vajavad nõustamist või kokkulepete sõlmimise tuge"
+      ],
+      "conditions": "Teenust saab taotleda Tapa valla elanik või pere, kes vajab nõustamist elukorraldust puudutavates küsimustes.",
+      "application": {
+        "channels": [
+          "paper",
+          "email",
+          "contact_social_worker"
+        ],
+        "steps": [
+          "Esitada taotlus ja kirjeldada abivajadust.",
+          "Lisada vajadusel abivajadust tõendavad dokumendid.",
+          "Vallavalitsus otsustab teenuse osutamise kümne tööpäeva jooksul."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva pärast taotluse või viimase lisadokumendi esitamist; otsusest teatatakse 5 tööpäeva jooksul kirjalikult",
+      "pricing": {
+        "amount": "Tasuta",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "relatedForms": [],
+      "relatedContacts": [
+        "tapa_vald_contact_kristi_ale"
+      ],
+      "item_type": "service",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_service_noustamisteenus",
+      "document_id": "tapa_vald_service_noustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "content_hash": "d985d9d375c7003392cb602f98b35a06e45375759134fda03012c2c55e3201e3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_service_vajaduspohine_sotsiaalteenus",
+      "canonical_item_id": "tapa_vald:service:vajaduspohine_sotsiaalteenus",
+      "itemType": "service",
+      "title": "Vajaduspõhine sotsiaalteenus",
+      "status": "active",
+      "summary": "Vajaduspõhise sotsiaalteenuse eesmärk on tagada täisealise toimetulekuraskustes inimese, tema perekonna või leibkonna iseseisev ja turvaline toimetulek kodustes tingimustes. Teenus võib sisaldada nõustamist, hoolduskoormust vähendavaid meetmeid, tehniliste vahenditega abivajaduse jälgimist, kõrvalabi igapäevatoimingutes ja vajalike asjaajamiste transporti. Teenus võib sisaldada ka teiste määruses kirjeldatud teenuste komponente.",
+      "sourceKeys": [
+        "social_overview"
+      ],
+      "targetGroup": [
+        "Täisealine toimetulekuraskustes inimene, perekond või leibkond"
+      ],
+      "conditions": "Teenust osutatakse vajaduspõhiselt pärast taotleja, perekonna või leibkonna abivajaduse hindamist.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Esitada vallavalitsusele taotlus ja kirjeldada abivajadust.",
+          "Lisada vajadusel abivajadust tõendavad dokumendid.",
+          "Teenuse komponendid ja maht selgitatakse välja menetluse käigus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "Tasuta",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "relatedForms": [
+        "tapa_vald_form_teenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "tapa_vald_contact_martin_kesamaa"
+      ],
+      "item_type": "service",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_service_vajaduspohine_sotsiaalteenus",
+      "document_id": "tapa_vald_service_vajaduspohine_sotsiaalteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "content_hash": "9252cf985916b1a51e6c5463b72959e4955099603f8154752f4359de7963d0bd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_service_varjupaigateenus",
+      "canonical_item_id": "tapa_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenuse eesmärk on tagada täisealisele inimesele ajutine turvaline ööbimiskoht ja hügieenivõimalus, et vältida peavarjuta jäämist, mis võib ohustada elu ja tervist. Teenust osutatakse nii alalise elukoha kasutamise võimaluseta inimestele kui ka vältimatu abi raames ööbimiskohta vajavatele inimestele. Teenus on tasuta.",
+      "sourceKeys": [
+        "social_overview"
+      ],
+      "targetGroup": [
+        "Täisealine inimene, kellel puudub ajutiselt turvaline ööbimiskoht"
+      ],
+      "conditions": "Teenust osutatakse alalise elukoha kasutamise võimaluseta inimesele või vältimatu abi raames ööbimiskohta vajavale inimesele.",
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": [
+          "Pöörduda vallavalitsuse sotsiaalhoolekande spetsialisti poole.",
+          "Teenuse osutamise aluseks on vallavalitsuse ja teenuseosutaja leping või abivajaja juhtumiplaan."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "Tasuta",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "relatedForms": [],
+      "relatedContacts": [
+        "tapa_vald_contact_martin_kesamaa"
+      ],
+      "item_type": "service",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_service_varjupaigateenus",
+      "document_id": "tapa_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "content_hash": "c8fb2f202b5911d264ca845ed6329c7d860c89463adc17890d2af2c6f1762b13",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_service_eluruumi_tagamine",
+      "canonical_item_id": "tapa_vald:service:eluruumi_tagamine",
+      "itemType": "service",
+      "title": "Eluruumi tagamine",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenuse eesmärk on kindlustada eluruumi kasutamise võimalus inimesele, kes ei suuda sotsiaalmajandusliku olukorra tõttu enda või oma perekonna vajadustele vastavat eluruumi tagada. Teenus võib hõlmata ka eluruumi kohandamise vajadust, kui puudest tingitud takistused segavad eluruumi kasutamist. Teenuse alusel võidakse aidata ajutise öömaja tagamisega kriisiolukorras, näiteks tulekahju, loodusõnnetuse või perevägivalla tõttu.",
+      "sourceKeys": [
+        "eluruumi_tagamine_page"
+      ],
+      "targetGroup": [
+        "Tapa valla elanik, kes ei suuda tagada endale sobivat eluruumi või vajab puudest tingitud eluruumi kohandamist"
+      ],
+      "conditions": "Teenust saab taotleda inimene, kelle elukoht on rahvastikuregistri andmetel Tapa vald. Teenuse raames tasutakse ainult eluasemekulud.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Esitada vallavalitsusele taotlus ja kirjeldada abivajadust.",
+          "Lisada vajadusel abivajadust tõendavad dokumendid.",
+          "Vallavalitsus hindab vajadust ning otsustab teenuse andmise või sellest keeldumise."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva pärast taotluse või viimase lisadokumendi esitamist; otsusest teatatakse 5 tööpäeva jooksul kirjalikult",
+      "pricing": {
+        "amount": "Teenuse raames tasutakse ainult eluasemekulud",
+        "currency": "EUR"
+      },
+      "officialUrl": "https://www.tapa.ee/toiming/eluruumi-tagamine",
+      "relatedForms": [
+        "tapa_vald_form_eluruumi_teenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "tapa_vald_contact_ragni_nikiforova"
+      ],
+      "item_type": "service",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "eluruumi_tagamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_service_eluruumi_tagamine",
+      "document_id": "tapa_vald_service_eluruumi_tagamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/toiming/eluruumi-tagamine",
+      "content_hash": "3d632d4b20c0b445b54d44fe7729b22617df598ba2a94de5e7e561d78450cfc5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_benefit_sunnitoetus",
+      "canonical_item_id": "tapa_vald:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus on lapse sünniga kaasnevate osaliste kulutuste katmiseks makstav ühekordne toetus. Toetus makstakse ühele lapsevanemale või eestkostjale, kelle elukoht on rahvastikuregistri järgi Tapa vald ja kelle lapse esmane elukoht on rahvastikuregistri andmetel Tapa vald. Toetuse suurus on 400 eurot lapse kohta ja toetus makstakse ühes osas.",
+      "sourceKeys": [
+        "synnitoetus_page"
+      ],
+      "targetGroup": [
+        "Lapsevanem või eestkostja, kelle lapse elukohaks on rahvastikuregistris esmakandena Tapa vald"
+      ],
+      "conditions": "Taotleja elukoht peab olema Tapa vald ja lapse elukohaks peab rahvastikuregistri esmakande järgi olema Tapa vald. Taotlus tuleb esitada kolme kuu jooksul alates lapse sünni registreerimisest.",
+      "application": {
+        "channels": [
+          "self_service",
+          "paper"
+        ],
+        "steps": [
+          "Esitada taotlus Tapa valla iseteeninduses või paberkandjal vallamajja Pikk tn 15, Tapa.",
+          "Esmasel pöördumisel esitada isikut tõendav dokument.",
+          "Vallavalitsus kontrollib toetuse saamise õigust ja kannab toetuse taotleja või taotluses määratud isiku arvelduskontole."
+        ],
+        "deadline": "3 kuud lapse sünni registreerimisest"
+      },
+      "decisionTime": "Kui kõik on korrektne, makstakse toetus välja 10 tööpäeva jooksul pärast taotluse esitamist",
+      "amount": "400 eurot lapse kohta",
+      "officialUrl": "https://www.tapa.ee/sunnitoetus",
+      "relatedForms": [
+        "tapa_vald_form_synnitoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "tapa_vald_contact_pille_eevardi"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "synnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_benefit_sunnitoetus",
+      "document_id": "tapa_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/sunnitoetus",
+      "content_hash": "1558c421671babb27e01de688fce3d751ee2a442f6edec56a77af2539ee07af0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_benefit_matusetoetus",
+      "canonical_item_id": "tapa_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on matusekulude osaliseks kompenseerimiseks matusekorraldajale makstav ühekordne sotsiaaltoetus. Matusekorraldaja on inimene, kes kannab surnu matuse korraldamise kulud. Tapa vallas on matusetoetus 250 eurot ning seda makstakse üks kord lahkunu kohta.",
+      "sourceKeys": [
+        "matusetoetus_page"
+      ],
+      "targetGroup": [
+        "Matusekorraldaja, kes kannab Tapa valla elaniku matuse kulud"
+      ],
+      "conditions": "Matusetoetust on õigus saada isiku eest, kelle elukoht Eesti rahvastikuregistris oli surma hetkel Tapa vald. Toetust on üldjuhul võimalik taotleda kuni kolme kuu jooksul pärast surmakande koostamist.",
+      "application": {
+        "channels": [
+          "self_service",
+          "email",
+          "paper"
+        ],
+        "steps": [
+          "Esitada taotlus iseteeninduses, digiallkirjastatult e-postiga või paberkandjal Tapa Vallavalitsuse kantseleisse.",
+          "E-postiga saadetud vorm tuleb digitaalselt allkirjastada ja saata aadressile.",
+          "Kohapeal esitades võtta kaasa isikut tõendav dokument."
+        ],
+        "deadline": "Üldjuhul kuni 3 kuud pärast surmakande koostamist"
+      },
+      "decisionTime": null,
+      "amount": "250 eurot üks kord lahkunu kohta",
+      "officialUrl": "https://www.tapa.ee/toiming/matusetoetus",
+      "relatedForms": [
+        "tapa_vald_form_matusetoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "tapa_vald_contact_helen_ruberg",
+        "tapa_vald_contact_pille_eevardi"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "matusetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_benefit_matusetoetus",
+      "document_id": "tapa_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/toiming/matusetoetus",
+      "content_hash": "66010f11a64f4548ea5f71f561adfe449a72196a8c4dc30507faedde6427a4e1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_benefit_eaka_sunnipaevatoetus",
+      "canonical_item_id": "tapa_vald:benefit:eaka_sunnipaevatoetus",
+      "itemType": "benefit",
+      "title": "Eaka sünnipäevatoetus",
+      "status": "active",
+      "summary": "Eaka sünnipäevatoetus on Tapa valla toetus vanemaealisele vallaelanikule sünnipäeva puhul. Tapa vald maksab toetust 75. ja 80. sünnipäeva puhul ning alates 85. eluaastast igal sünnipäeval. Toetuse suurus on 75 eurot.",
+      "sourceKeys": [
+        "social_overview"
+      ],
+      "targetGroup": [
+        "Tapa valla eakas elanik"
+      ],
+      "conditions": "Toetus on mõeldud Tapa valla elanikule 75. ja 80. sünnipäeva puhul ning alates 85. eluaastast igal sünnipäeval.",
+      "application": {
+        "channels": [
+          "not_published"
+        ],
+        "steps": [],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "75 eurot",
+      "officialUrl": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "relatedForms": [],
+      "relatedContacts": [
+        "tapa_vald_contact_arina_murk",
+        "tapa_vald_contact_pille_eevardi"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_benefit_eaka_sunnipaevatoetus",
+      "document_id": "tapa_vald_benefit_eaka_sunnipaevatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "content_hash": "1f8a44810d40a714487797d8e7a83374833c1c999db4ade4ac40f99a14147f70",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_benefit_toimetuleku_tagamise_toetus",
+      "canonical_item_id": "tapa_vald:benefit:toimetuleku_tagamise_toetus",
+      "itemType": "benefit",
+      "title": "Toimetuleku tagamise toetus",
+      "status": "active",
+      "summary": "Toimetuleku tagamise toetus on Tapa valla vajaduspõhine toetus ajutise majandusliku raskuse leevendamiseks. Toetust saab taotleda väikese sissetulekuga üksikisik või pere, kui pere esimese liikme sissetulek on alla kahekordse riikliku toimetulekupiiri ja järgmiste pereliikmete sissetuleku piiriks arvestatakse 50 protsenti esimese liikme piirist. Toetuse suurus on kuni 500 eurot aastas.",
+      "sourceKeys": [
+        "social_overview"
+      ],
+      "targetGroup": [
+        "Ajutises majanduslikus raskuses Tapa valla elanik või pere"
+      ],
+      "conditions": "Toetust saab taotleda, kui esimese pereliikme sissetulek jääb alla kahekordse riikliku toimetulekupiiri ja järgmiste liikmete piir on 50 protsenti esimese liikme piirist. Toetust tuleb taotleda kahe kuu jooksul pärast kulu tekkimist või sündmust.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Esitada toetuse taotlus vallavalitsusele.",
+          "Kirjeldada abivajadust ja lisada vajadusel kuludokumendid.",
+          "Vallavalitsus otsustab toetuse andmise või sellest keeldumise kümne päeva jooksul."
+        ],
+        "deadline": "2 kuud pärast kulu või sündmuse tekkimist"
+      },
+      "decisionTime": "10 päeva pärast taotluse või viimase lisadokumendi esitamist; otsusest teatatakse 5 tööpäeva jooksul kirjalikult",
+      "amount": "kuni 500 eurot aastas",
+      "officialUrl": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "relatedForms": [
+        "tapa_vald_form_toetuse_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_benefit_toimetuleku_tagamise_toetus",
+      "document_id": "tapa_vald_benefit_toimetuleku_tagamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "content_hash": "73bcc2fe830e2e96c5a81078e7ac8bc63f20b67abb44dd06a6ebf133186376f7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_benefit_valtimatu_sotsiaalabi",
+      "canonical_item_id": "tapa_vald:benefit:valtimatu_sotsiaalabi",
+      "itemType": "benefit",
+      "title": "Vältimatu sotsiaalabi",
+      "status": "active",
+      "summary": "Vältimatu sotsiaalabi toetus on elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitusse olukorda sattunud inimesele makstav toetus. Seda kasutatakse toidu, riietuse, hädavajalike ravimite ja ajutise majutamise kulude katmiseks. Tapa vald maksab toetust kuni 1000 eurot aastas.",
+      "sourceKeys": [
+        "social_overview",
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "targetGroup": [
+        "Tapa valla elanik, kes on sattunud vältimatut abi vajavasse olukorda"
+      ],
+      "conditions": "Taotleja elukoht peab olema Eesti rahvastikuregistri andmetel Tapa vald. Taotluses tuleb kirjeldada abivajadust ning lisada vajadusel abivajadust tõendavad dokumendid.",
+      "application": {
+        "channels": [
+          "email",
+          "paper"
+        ],
+        "steps": [
+          "Esitada vallavalitsusele taotlus, milles kirjeldatakse abivajadust.",
+          "Lisada vajadusel abivajadust tõendavad dokumendid.",
+          "E-postiga saadetud vorm tuleb digitaalselt allkirjastada ja saata aadressile; pabervorm tuua Tapa Vallavalitsuse kantseleisse."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva pärast taotluse või viimase lisadokumendi esitamist; otsusest teatatakse 5 tööpäeva jooksul kirjalikult",
+      "amount": "kuni 1000 eurot aastas",
+      "officialUrl": "https://www.tapa.ee/toiming/valtimatu-sotsiaalabi",
+      "relatedForms": [
+        "tapa_vald_form_valtimatu_sotsiaalabi_taotlus",
+        "tapa_vald_form_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "tapa_vald_contact_ragni_nikiforova",
+        "tapa_vald_contact_pille_eevardi"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "social_overview",
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_benefit_valtimatu_sotsiaalabi",
+      "document_id": "tapa_vald_benefit_valtimatu_sotsiaalabi",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/toiming/valtimatu-sotsiaalabi",
+      "content_hash": "a1f2001223004cbfdc591754d1d8c6944e4e5bb8a0e933050c2169645e15ee8b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_benefit_hooldajatoetus",
+      "canonical_item_id": "tapa_vald:benefit:hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus",
+      "status": "active",
+      "summary": "Hooldajatoetust saab taotleda täisealise puudega isiku hooldajale ja puudega lapse hooldajale. Täisealise puudega isiku hooldaja toetus on igakuine toetus raske või sügava puudega inimese hooldamise toetamiseks. Puudega lapse hooldaja toetus on igakuine toetus 3–18-aastast puudega last kasvatavale ja hooldavale inimesele, kes ei saa puudega lapse hooldamise tõttu töötada ning kellele ei maksta töötutoetust või riiklikku pensioni. Toetuse suurus on keskmise või raske puude korral 100 eurot kuus ja sügava puude korral 150 eurot kuus.",
+      "sourceKeys": [
+        "hooldajatoetus_page",
+        "social_overview"
+      ],
+      "targetGroup": [
+        "Täisealise puudega isiku hooldaja",
+        "3–18-aastase puudega lapse hooldaja"
+      ],
+      "conditions": "Hooldajatoetust võib taotleda hooldaja, kelle elukoht on Eesti rahvastikuregistris Tapa vald. Puudega lapse hooldaja toetust ei määrata töötavale inimesele, puudega inimesele või juhul, kui lapse hooldamine on tagatud muude teenuste ja toetustega.",
+      "application": {
+        "channels": [
+          "email",
+          "paper"
+        ],
+        "steps": [
+          "Esitada vallavalitsusele toetuse taotlus.",
+          "E-postiga saadetud vorm tuleb digitaalselt allkirjastada ja saata aadressile; pabervorm tuua Tapa Vallavalitsuse kantseleisse.",
+          "Vallavalitsus selgitab välja hooldusvajaduse ja teeb otsuse."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva pärast taotluse või viimase lisadokumendi esitamist; otsusest teatatakse 5 tööpäeva jooksul kirjalikult",
+      "amount": "100 eurot kuus keskmise või raske puude korral; 150 eurot kuus sügava puude korral",
+      "officialUrl": "https://www.tapa.ee/toiming/hooldajatoetus",
+      "relatedForms": [
+        "tapa_vald_form_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "tapa_vald_contact_kairi_kruusamae",
+        "tapa_vald_contact_martin_kesamaa",
+        "tapa_vald_contact_ragni_nikiforova",
+        "tapa_vald_contact_pille_eevardi"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "hooldajatoetus_page",
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_benefit_hooldajatoetus",
+      "document_id": "tapa_vald_benefit_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/toiming/hooldajatoetus",
+      "content_hash": "44c8e1bf93782534e7e5106e10e25992f897503bfb675bd75ad6b4c30379dd5f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_benefit_ranitsatoetus",
+      "canonical_item_id": "tapa_vald:benefit:ranitsatoetus",
+      "itemType": "benefit",
+      "title": "Ranitsatoetus",
+      "status": "active",
+      "summary": "Ranitsatoetus on Tapa valla toetus lapse koolitee alustamisega seotud kulude osaliseks katmiseks. Toetuse suurus on 150 eurot. Valla koolides õppivate esimese klassi laste puhul makstakse toetus koolide esitatud nimekirjade alusel; väljaspool Tapa valla koole õppiva lapse puhul tuleb vanemal esitada taotlus ja koolitõend.",
+      "sourceKeys": [
+        "ranitsatoetus_page",
+        "social_overview"
+      ],
+      "targetGroup": [
+        "Esimesse klassi astuva lapse vanem või eestkostja"
+      ],
+      "conditions": "Lapse ja ühe vanema või eestkostja elukoht peab olema rahvastikuregistris Tapa vald. Väljaspool Tapa valla koole õppiva lapse korral tuleb taotleda toetust kolme kuu jooksul õppeaasta algusest.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": [
+          "Tapa valla koolis õppiva lapse puhul makstakse toetus kooli esitatud nimekirja alusel.",
+          "Väljaspool Tapa valda õppiva lapse puhul esitab lapsevanem või eestkostja taotluse koos lapse ja kooli nimega ning kooli tõendiga."
+        ],
+        "deadline": "Väljaspool Tapa valla koole õppiva lapse puhul 3 kuud õppeaasta algusest"
+      },
+      "decisionTime": null,
+      "amount": "150 eurot",
+      "officialUrl": "https://www.tapa.ee/ranitsatoetus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "tapa_vald_contact_kai_puhasmets",
+        "tapa_vald_contact_pille_eevardi"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "ranitsatoetus_page",
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_benefit_ranitsatoetus",
+      "document_id": "tapa_vald_benefit_ranitsatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/ranitsatoetus",
+      "content_hash": "9551b0d13d159e1859f12b0d497e0ee4bce3db5d9304f1a84036812d3316647d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "tapa_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on rahaline abi puuduses inimesele või perele, mis tagab minimaalsed vahendid igapäevaseks eluks. Toetust on õigus saada inimesel või perel, kelle kuu netosissetulek pärast eluasemekulude mahaarvamist jääb alla kehtestatud toimetulekupiiri. 2026. aastal on toimetulekupiir pere esimesele või ainsale liikmele 220 eurot, igale järgnevale täiskasvanud pereliikmele 176 eurot ja igale alaealisele lapsele 264 eurot. Üksikvanemaga perele, kus lapsed on alaealised, makstakse koos toimetulekutoetusega täiendavat toetust 15 eurot.",
+      "sourceKeys": [
+        "toimetulekutoetus_page"
+      ],
+      "targetGroup": [
+        "Puuduses inimene või pere, kelle sissetulek jääb alla toimetulekupiiri"
+      ],
+      "conditions": "Taotleja kuu netosissetulek pärast eluasemekulude mahaarvamist peab olema alla kehtestatud toimetulekupiiri. Kui toetuse määramisel soovitakse arvesse võtta eluasemekulusid, tuleb taotlusele lisada eluruumiga seotud dokumendid.",
+      "application": {
+        "channels": [
+          "email",
+          "paper"
+        ],
+        "steps": [
+          "Esitada toimetulekutoetuse taotlus hiljemalt kuu viimaseks tööpäevaks.",
+          "Pabervorm tuua vallamajja või digiallkirjastatud taotlus saata aadressile.",
+          "Lisada eluasemekulude arvestamiseks vajalikud dokumendid."
+        ],
+        "deadline": "Hiljemalt kuu viimane tööpäev"
+      },
+      "decisionTime": null,
+      "amount": "2026. aastal toimetulekupiir 220 eurot esimesele liikmele, 176 eurot järgnevale täiskasvanule ja 264 eurot alaealisele lapsele; üksikvanemaga pere täiendav toetus 15 eurot",
+      "officialUrl": "https://www.tapa.ee/toimetulekutoetus",
+      "relatedForms": [
+        "tapa_vald_form_toimetulekutoetuse_taotlus",
+        "tapa_vald_form_perekonna_varade_loetelu"
+      ],
+      "relatedContacts": [
+        "tapa_vald_contact_ragni_nikiforova",
+        "tapa_vald_contact_pille_eevardi"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_benefit_toimetulekutoetus",
+      "document_id": "tapa_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/toimetulekutoetus",
+      "content_hash": "5535039c64029a6e7f7ca339be42459168080845eb70039127345a71f5f2da29",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_resource_parkimiskaart",
+      "canonical_item_id": "tapa_vald:resource:parkimiskaart",
+      "itemType": "resource",
+      "title": "Parkimiskaart liikumis- või nägemispuudega inimest teenindavale sõidukile",
+      "status": "active",
+      "summary": "Tapa valla veebileht selgitab, et liikumispuudega või pimedat inimest teenindava sõiduki parkimiskaart väljastatakse keskmise, raske või sügava liikumis- või nägemisfunktsiooni kõrvalekaldega inimesele. Kaart on tasuta ja seda antakse Sotsiaalkindlustusameti otsuse alusel puude raskusastme kehtivuse perioodiks, kuid mitte kauemaks kui viieks aastaks.",
+      "sourceKeys": [
+        "muud_tugiteenused_page"
+      ],
+      "officialUrl": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/muud-tugiteenused",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "muud_tugiteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_resource_parkimiskaart",
+      "document_id": "tapa_vald_resource_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/muud-tugiteenused",
+      "content_hash": "6013076ce13c11f3441f3cdc9c1411b68dee817e4ca84ef1ae2cabc80afed42d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_resource_isikliku_abivahendikaart",
+      "canonical_item_id": "tapa_vald:resource:isikliku_abivahendikaart",
+      "itemType": "resource",
+      "title": "Isikliku abivahendikaardi taotlemine",
+      "status": "active",
+      "summary": "Tapa vald viitab, et alates 01.01.2016 toimub isikliku abivahendikaardi taotlemine Sotsiaalkindlustusameti kaudu. Tegemist on riikliku abivahendite süsteemi praktilise juhisega, mitte Tapa valla enda toetusega.",
+      "sourceKeys": [
+        "muud_tugiteenused_page"
+      ],
+      "officialUrl": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/muud-tugiteenused",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "muud_tugiteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_resource_isikliku_abivahendikaart",
+      "document_id": "tapa_vald_resource_isikliku_abivahendikaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/muud-tugiteenused",
+      "content_hash": "7084cb045ed960f9b675bae1f1657195f485391ae356bad8b9de1aac83d15fc4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_resource_tootukassa_rakvere_buroo",
+      "canonical_item_id": "tapa_vald:resource:tootukassa_rakvere_buroo",
+      "itemType": "resource",
+      "title": "Abi töötule – Eesti Töötukassa Virumaa osakonna Rakvere büroo",
+      "status": "active",
+      "summary": "Tapa valla veebilehel on töötutele abikanalina esitatud Eesti Töötukassa Virumaa osakonna Rakvere büroo. Büroo aadress on Laada 22 (II korrus), 44310 Rakvere;. Vastuvõtt on E–N 8.15–16.15 ja R 8.15–14.00, kuid kuu viimasel reedel kliente ei teenindata.",
+      "sourceKeys": [
+        "muud_tugiteenused_page"
+      ],
+      "officialUrl": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/muud-tugiteenused",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "muud_tugiteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_resource_tootukassa_rakvere_buroo",
+      "document_id": "tapa_vald_resource_tootukassa_rakvere_buroo",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/muud-tugiteenused",
+      "content_hash": "1105edd8746d223b21164a76e57d1dbd247243ba734ecd1e08d4d8ea5f6f23c6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_resource_naiste_tugikeskus",
+      "canonical_item_id": "tapa_vald:resource:naiste_tugikeskus",
+      "itemType": "resource",
+      "title": "Naiste tugikeskuse teenus",
+      "status": "active",
+      "summary": "Tapa valla veebileht viitab naiste tugikeskuse teenusele, kus pakutakse turvalist keskkonda, nõustamist ja ajutist majutust naistevastase vägivalla ohvritele ning nendega kaasas olevatele lastele. Täpsema info allikana on KOV lehel nimetatud Sotsiaalkindlustusameti naiste tugikeskuste info.",
+      "sourceKeys": [
+        "muud_tugiteenused_page"
+      ],
+      "officialUrl": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/muud-tugiteenused",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "muud_tugiteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_resource_naiste_tugikeskus",
+      "document_id": "tapa_vald_resource_naiste_tugikeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/muud-tugiteenused",
+      "content_hash": "cb1639b2e00bf1899fdf0b0d986371032dfa9dc4184a3bc38b0ad85af46f5b1e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_resource_medi_hairenuputeenus",
+      "canonical_item_id": "tapa_vald:resource:medi_hairenuputeenus",
+      "itemType": "resource",
+      "title": "Medi häirenuputeenus ja nutikad abivahendid",
+      "status": "active",
+      "summary": "Tapa valla sotsiaalteenuste lehel kirjeldatakse Meditech Estonia OÜ pakutavat häirenuputeenust ja nutikaid hoolekandelahendusi. Teenus aitab eakatel, erivajadusega või toimetulekuraskustes inimestel kodus turvalisemalt iseseisvalt hakkama saada. Häirenupu vajutamisel või kukkumise tuvastamisel algab häirekõne Medi ööpäevaringsesse kõnekeskusesse; lisainfo telefonil ja e-posti aadressil.",
+      "sourceKeys": [
+        "social_overview"
+      ],
+      "officialUrl": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_resource_medi_hairenuputeenus",
+      "document_id": "tapa_vald_resource_medi_hairenuputeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "content_hash": "add129c09779621c14ca2863c828b3369139e19c25baaa88a2a54e235747c372",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_resource_tapa_valla_hooldekodu",
+      "canonical_item_id": "tapa_vald:resource:tapa_valla_hooldekodu",
+      "itemType": "resource",
+      "title": "Tapa Valla Hooldekodu",
+      "status": "active",
+      "summary": "Tapa Valla Hooldekodu tegutseb Tapa ja Sääse majana. Tapa maja asub aadressil Kesk tn 9, 45106 Tapa; telefonid ja;. Sääse maja asub aadressil Sääse tn 4-1/2, Tamsalu, 46105 Lääne-Virumaa; telefonid ja;. Alates 01.05.2026 on Tapa maja kuumaksumus 1520 eurot ja Sääse maja kuumaksumus 1420 eurot, millest valla hoolduskulu osa on mõlemas 700 eurot.",
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "officialUrl": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/hoolekandeasutused",
+      "relatedTo": [
+        "tapa_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_resource_tapa_valla_hooldekodu",
+      "document_id": "tapa_vald_resource_tapa_valla_hooldekodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/hoolekandeasutused",
+      "content_hash": "96a11fff0726b520fb7f055ae299f88f3895e87f3d5be7664d211602017e7ca8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_resource_lastekaitse_info",
+      "canonical_item_id": "tapa_vald:resource:lastekaitse_info",
+      "itemType": "resource",
+      "title": "Lastekaitse",
+      "status": "active",
+      "summary": "Tapa valla lastekaitse leht selgitab, et lapsel on õigus elule, tervisele, arengule, heaolule ja kaitsele vägivalla eest. Kohalik omavalitsus korraldab kohaliku tasandi lastekaitsetööd ning lapse või pere abivajaduse korral saab pöörduda valla laste ja perede heaolu spetsialistide poole.",
+      "sourceKeys": [
+        "lastekaitse_page"
+      ],
+      "officialUrl": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/lastekaitse",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "tapa_vald_contact_kristi_ale",
+        "tapa_vald_contact_teele_paas",
+        "tapa_vald_contact_kairi_kruusamae",
+        "tapa_vald_contact_katrin_merila"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_resource_lastekaitse_info",
+      "document_id": "tapa_vald_resource_lastekaitse_info",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/lastekaitse",
+      "content_hash": "040b0333c943846b8984daf79cdbac108613f86598b84ce7c8f4b8e67333a0e6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_resource_lahisuhtevagivald_ohvriabi",
+      "canonical_item_id": "tapa_vald:resource:lahisuhtevagivald_ohvriabi",
+      "itemType": "resource",
+      "title": "Lähisuhtevägivald ja ohvriabi",
+      "status": "active",
+      "summary": "Tapa valla veebileht suunab vägivalla, kuriteo või kriisi tõttu abi vajava inimese ohvriabi teenustele. Ohvriabi kriisitelefon on ning välismaalt helistades Lasteabi on. Välismaal tööalase või seksuaalse ärakasutamise ohvrit nõustab inimkaubanduse ennetamise ja ohvrite abistamise nõuandeliin",
+      "sourceKeys": [
+        "lahisuhtevagivald_ohvriabi_page"
+      ],
+      "officialUrl": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/lahisuhtevagivald-ohvriabi",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "lahisuhtevagivald_ohvriabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_resource_lahisuhtevagivald_ohvriabi",
+      "document_id": "tapa_vald_resource_lahisuhtevagivald_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/lahisuhtevagivald-ohvriabi",
+      "content_hash": "73a3e4537029484975ef83ee9b17f82d0b422a5d5501c34d8fb9beedb2f340ca",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_resource_olulised_abi_ja_kriisitelefonid",
+      "canonical_item_id": "tapa_vald:resource:olulised_abi_ja_kriisitelefonid",
+      "itemType": "resource",
+      "title": "Olulised abi- ja kriisitelefonid",
+      "status": "active",
+      "summary": "Tapa valla ametlikel kontaktilehtedel on koondatud olulised abi- ja kriisitelefonid. Hädaabi number on, riigiinfo ja kriisitelefon, lasteabi, naiste tugiliin 1492 ning mürgistusinfo 16662. KOV leht esitab need praktiliste kontaktidena kriisi ja abivajaduse korral.",
+      "sourceKeys": [
+        "elanikkonnakaitse_olulised_kontaktid_page",
+        "olulised_telefoninumbrid_page"
+      ],
+      "officialUrl": "https://www.tapa.ee/vald-uudised-kontakt/kontakt/olulised-telefoninumbrid",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "elanikkonnakaitse_olulised_kontaktid_page",
+        "olulised_telefoninumbrid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_resource_olulised_abi_ja_kriisitelefonid",
+      "document_id": "tapa_vald_resource_olulised_abi_ja_kriisitelefonid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/vald-uudised-kontakt/kontakt/olulised-telefoninumbrid",
+      "content_hash": "13a9e0789fab461f79a5c3ea1eafff4e960c49e825c85d7a340fa7aa33d98e37",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_contact_tapa_vallavalitsus",
+      "canonical_item_id": "tapa_vald:contact:tapa_vallavalitsus",
+      "itemType": "contact",
+      "title": "Tapa Vallavalitsuse üldkontakt",
+      "status": "active",
+      "summary": "Tapa Vallavalitsuse üldkontakt võtab vastu üldpöördumisi ning suunab sotsiaalvaldkonna küsimused vastavale spetsialistile. Ametlik aadress on Pikk 15, 45106 Tapa; üldtelefon ja. Vallavalitsuse tööaeg on E–N 8.00–16.30 ning R teenindatakse telefoni ja e-posti teel 8.00–14.00.",
+      "sourceKeys": [
+        "contact_page",
+        "home"
+      ],
+      "name": "Tapa Vallavalitsus",
+      "role": "Üldkontakt",
+      "department": "Tapa Vallavalitsus",
+      "address": "Pikk 15, 45106 Tapa",
+      "officialUrl": "https://www.tapa.ee",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "contact_page",
+        "home"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_contact_tapa_vallavalitsus",
+      "document_id": "tapa_vald_contact_tapa_vallavalitsus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee",
+      "content_hash": "09bf9613e4e706245778217840058aa22ecb0c6cd236a7a44ec0aea56e2de64c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_contact_tamsalu_teeninduskeskus",
+      "canonical_item_id": "tapa_vald:contact:tamsalu_teeninduskeskus",
+      "itemType": "contact",
+      "title": "Tamsalu teeninduskeskus",
+      "status": "active",
+      "summary": "Tamsalu teeninduskeskus on Tapa Vallavalitsuse piirkondlik kontaktpunkt. Teeninduskeskuse aadress on Tehnika 1a, 46107 Tamsalu, ja.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "name": "Tamsalu teeninduskeskus",
+      "role": "Teeninduskeskus",
+      "department": "Tapa Vallavalitsus",
+      "address": "Tehnika 1a, 46107 Tamsalu",
+      "officialUrl": "https://www.tapa.ee/kontakt",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_contact_tamsalu_teeninduskeskus",
+      "document_id": "tapa_vald_contact_tamsalu_teeninduskeskus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/kontakt",
+      "content_hash": "74827f397029665c9b45cdce0a2e81621bc46123b8623849e09483a9d469cf3d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_contact_kristi_ale",
+      "canonical_item_id": "tapa_vald:contact:kristi_ale",
+      "itemType": "contact",
+      "title": "Kristi Ale",
+      "status": "active",
+      "summary": "Kristi Ale on Tapa valla laste ja perede heaolu juhtivspetsialist. Vastuvõtt toimub eelneval kokkuleppel ning tema poole suunatakse laste ja perede heaolu, lapsehoiuteenuse, tugiisikuteenuse, turvakoduteenuse, asendus- ja järelhoolduse ning nõustamisteenuse küsimused.",
+      "sourceKeys": [
+        "contact_page",
+        "lastekaitse_page"
+      ],
+      "name": "Kristi Ale",
+      "role": "Laste ja perede heaolu juhtivspetsialist",
+      "department": "Sotsiaalhoolekanne",
+      "address": null,
+      "officialUrl": "https://www.tapa.ee/kontakt",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "contact_page",
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_contact_kristi_ale",
+      "document_id": "tapa_vald_contact_kristi_ale",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/kontakt",
+      "content_hash": "cfe0ca1b64691d56c5e642808bdf0444f19b78dc1b1989eff9177d68e8a20347",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_contact_teele_paas",
+      "canonical_item_id": "tapa_vald:contact:teele_paas",
+      "itemType": "contact",
+      "title": "Teele Paas",
+      "status": "active",
+      "summary": "Teele Paas on Tapa valla lastekaitsespetsialist. Kontaktileht seob tema töö Tapa linna lastekaitse ja tugiisikuteenustega ning vastuvõtt toimub eelregistreerimisel.",
+      "sourceKeys": [
+        "contact_page",
+        "lastekaitse_page"
+      ],
+      "name": "Teele Paas",
+      "role": "Lastekaitsespetsialist",
+      "department": "Sotsiaalhoolekanne",
+      "address": null,
+      "officialUrl": "https://www.tapa.ee/kontakt",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "contact_page",
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_contact_teele_paas",
+      "document_id": "tapa_vald_contact_teele_paas",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/kontakt",
+      "content_hash": "6e0775e87f0b2d16cd43f7900ca698e116167ca6c69b9fa34b8f5932959f2e86",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_contact_kairi_kruusamae",
+      "canonical_item_id": "tapa_vald:contact:kairi_kruusamae",
+      "itemType": "contact",
+      "title": "Kairi Kruusamäe",
+      "status": "active",
+      "summary": "Kairi Kruusamäe on Tapa valla lastekaitsespetsialist Tamsalu piirkonnas. Kontaktileht märgib vastuvõtu Tamsalus teisipäeviti 9.00–12.00 ja neljapäeviti 13.00–16.00.",
+      "sourceKeys": [
+        "contact_page",
+        "lastekaitse_page"
+      ],
+      "name": "Kairi Kruusamäe",
+      "role": "Lastekaitsespetsialist",
+      "department": "Sotsiaalhoolekanne",
+      "address": null,
+      "officialUrl": "https://www.tapa.ee/kontakt",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "contact_page",
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_contact_kairi_kruusamae",
+      "document_id": "tapa_vald_contact_kairi_kruusamae",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/kontakt",
+      "content_hash": "e192844df4f3e62311f081b6f2cb5980741f90d0cfcd01fd425ababf9ad392db",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_contact_katrin_merila",
+      "canonical_item_id": "tapa_vald:contact:katrin_merila",
+      "itemType": "contact",
+      "title": "Katrin Merila",
+      "status": "active",
+      "summary": "Katrin Merila on Tapa valla peretöötaja. Tema kontakt on valla lastekaitse lehel esitatud laste ja perede heaolu valdkonna kontaktina.",
+      "sourceKeys": [
+        "contact_page",
+        "lastekaitse_page"
+      ],
+      "name": "Katrin Merila",
+      "role": "Peretöötaja",
+      "department": "Sotsiaalhoolekanne",
+      "address": null,
+      "officialUrl": "https://www.tapa.ee/kontakt",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "contact_page",
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_contact_katrin_merila",
+      "document_id": "tapa_vald_contact_katrin_merila",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/kontakt",
+      "content_hash": "0cc24b6d2c09ad296b1b5ae57f8332db0b1b21d80507523b95cefaf59d7114a8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_contact_martin_kesamaa",
+      "canonical_item_id": "tapa_vald:contact:martin_kesamaa",
+      "itemType": "contact",
+      "title": "Martin Kesamaa",
+      "status": "active",
+      "summary": "Martin Kesamaa on Tapa valla sotsiaalhoolekande juhtivspetsialist. Kontaktileht märgib vastuvõtu iga kuu teisel ja neljandal kolmapäeval Lehtses 9.00–12.00 ja Jänedal 13.00–16.00 ning muudel aegadel kokkuleppel.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "name": "Martin Kesamaa",
+      "role": "Sotsiaalhoolekande juhtivspetsialist",
+      "department": "Sotsiaalhoolekanne",
+      "address": null,
+      "officialUrl": "https://www.tapa.ee/kontakt",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_contact_martin_kesamaa",
+      "document_id": "tapa_vald_contact_martin_kesamaa",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/kontakt",
+      "content_hash": "e12c29f82d7b2eb25ddc6c786621fd25df8099b96db9d30182419b70209ca4c1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_contact_arina_murk",
+      "canonical_item_id": "tapa_vald:contact:arina_murk",
+      "itemType": "contact",
+      "title": "Arina Mürk",
+      "status": "active",
+      "summary": "Arina Mürk on Tapa valla sotsiaaltöö assistent. Tema tööülesannete hulka kuulub piiratud teovõimega täisealiste isikute eestkostetöö korraldamine ning elanike esmane nõustamine sotsiaalabi saamise võimalustest.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "name": "Arina Mürk",
+      "role": "Sotsiaaltöö assistent",
+      "department": "Sotsiaalhoolekanne",
+      "address": null,
+      "officialUrl": "https://www.tapa.ee/kontakt",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_contact_arina_murk",
+      "document_id": "tapa_vald_contact_arina_murk",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/kontakt",
+      "content_hash": "23440724e8ee28ce4f7e8487915357c31028b552cfa0f18086444507bc9de646",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_contact_pille_eevardi",
+      "canonical_item_id": "tapa_vald:contact:pille_eevardi",
+      "itemType": "contact",
+      "title": "Pille Eevardi",
+      "status": "active",
+      "summary": "Pille Eevardi on Tapa valla sotsiaalhoolekandespetsialist. Kontaktileht seob tema vastuvõtud Tapal ja Tamsalus ning mitmel teenuse või toetuse lehel on ta märgitud vastutajaks.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "name": "Pille Eevardi",
+      "role": "Sotsiaalhoolekandespetsialist",
+      "department": "Sotsiaalhoolekanne",
+      "address": null,
+      "officialUrl": "https://www.tapa.ee/kontakt",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_contact_pille_eevardi",
+      "document_id": "tapa_vald_contact_pille_eevardi",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/kontakt",
+      "content_hash": "10d1a75f6a07d1befff95542c0510796f34d5c391ecbb4a4fc09d7d9018118fe",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_contact_ragni_nikiforova",
+      "canonical_item_id": "tapa_vald:contact:ragni_nikiforova",
+      "itemType": "contact",
+      "title": "Ragni Nikiforova",
+      "status": "active",
+      "summary": "Ragni Nikiforova on Tapa valla sotsiaalhoolekandespetsialist. Kontaktileht märgib vastuvõtu Tapal teisipäeviti 8.00–11.30 ja neljapäeviti 13.00–16.30.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "name": "Ragni Nikiforova",
+      "role": "Sotsiaalhoolekandespetsialist",
+      "department": "Sotsiaalhoolekanne",
+      "address": null,
+      "officialUrl": "https://www.tapa.ee/kontakt",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_contact_ragni_nikiforova",
+      "document_id": "tapa_vald_contact_ragni_nikiforova",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/kontakt",
+      "content_hash": "904c4054dbce073594a3b009905daa9c3e00617a3b3af6b5ac7d2502cfeca331",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_contact_helen_ruberg",
+      "canonical_item_id": "tapa_vald:contact:helen_ruberg",
+      "itemType": "contact",
+      "title": "Helen Ruberg",
+      "status": "active",
+      "summary": "Helen Ruberg on matusetoetuse lehel märgitud vastutajaks pearaamatupidajana.",
+      "sourceKeys": [
+        "contact_page",
+        "matusetoetus_page"
+      ],
+      "name": "Helen Ruberg",
+      "role": "Pearaamatupidaja",
+      "department": "Rahandus",
+      "address": null,
+      "officialUrl": "https://www.tapa.ee/kontakt",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "contact_page",
+        "matusetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_contact_helen_ruberg",
+      "document_id": "tapa_vald_contact_helen_ruberg",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/kontakt",
+      "content_hash": "1a0501d34ee459d1e0495fdea5fc1b8a022c6fd8b4ec94d9409c2c63e8a65640",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_contact_kai_puhasmets",
+      "canonical_item_id": "tapa_vald:contact:kai_puhasmets",
+      "itemType": "contact",
+      "title": "Kai Puhasmets",
+      "status": "active",
+      "summary": "Kai Puhasmets on ranitsatoetuse lehel märgitud vastutajaks finantsspetsialistina.",
+      "sourceKeys": [
+        "contact_page",
+        "ranitsatoetus_page"
+      ],
+      "name": "Kai Puhasmets",
+      "role": "Finantsspetsialist",
+      "department": "Rahandus",
+      "address": null,
+      "officialUrl": "https://www.tapa.ee/kontakt",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "contact_page",
+        "ranitsatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_contact_kai_puhasmets",
+      "document_id": "tapa_vald_contact_kai_puhasmets",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/kontakt",
+      "content_hash": "a77c7221b1023902dfb1e555d75db90733ddc4e67e187cfe86fb2b1e38bc96fa",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_form_teenuse_taotlus",
+      "canonical_item_id": "tapa_vald:form:teenuse_taotlus",
+      "itemType": "form",
+      "title": "Teenuse taotlus",
+      "status": "active",
+      "summary": "Üldine sotsiaalteenuse taotlusvorm Tapa vallas kasutatavate teenuste taotlemiseks. Vorm on seotud nende teenustega, mille KOV teenusekirjeldus nimetab taotlemise vormina 'Teenuse taotlus.rtf'.",
+      "sourceKeys": [
+        "form_teenuse_taotlus"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://www.tapa.ee/sites/default/files/documents/2026-01/Teenuse%20taotlus.rtf",
+      "submissionChannels": [
+        "email",
+        "paper"
+      ],
+      "relatedTo": [
+        "tapa_vald_service_koduteenus",
+        "tapa_vald_service_isikliku_abistaja_teenus",
+        "tapa_vald_service_volanoustamisteenus",
+        "tapa_vald_service_lapsehoiuteenus",
+        "tapa_vald_service_sotsiaaltransporditeenus",
+        "tapa_vald_service_tugiisikuteenus",
+        "tapa_vald_service_taisealise_isiku_hooldus",
+        "tapa_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+        "tapa_vald_service_vajaduspohine_sotsiaalteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "form_teenuse_taotlus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_form_teenuse_taotlus",
+      "document_id": "tapa_vald_form_teenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/sites/default/files/documents/2026-01/Teenuse%20taotlus.rtf",
+      "content_hash": "87e170b0fa2113ca62684b77f3622d4582cfc28a7df2c98560727380e8a755c1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_form_toetuse_taotlus",
+      "canonical_item_id": "tapa_vald:form:toetuse_taotlus",
+      "itemType": "form",
+      "title": "Toetuse taotlus",
+      "status": "active",
+      "summary": "Üldine toetuse taotlusvorm Tapa vallas kasutatavate sotsiaaltoetuste taotlemiseks. Vorm on seotud KOV lehel selle vormiga nimetatud toetustega, sealhulgas toimetuleku tagamise toetuse ja hooldajatoetusega.",
+      "sourceKeys": [
+        "form_toetuse_taotlus"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://www.tapa.ee/sites/default/files/documents/2026-01/Toetuse%20taotlus.rtf",
+      "submissionChannels": [
+        "email",
+        "paper"
+      ],
+      "relatedTo": [
+        "tapa_vald_benefit_toimetuleku_tagamise_toetus",
+        "tapa_vald_benefit_hooldajatoetus",
+        "tapa_vald_benefit_valtimatu_sotsiaalabi"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "form_toetuse_taotlus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_form_toetuse_taotlus",
+      "document_id": "tapa_vald_form_toetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/sites/default/files/documents/2026-01/Toetuse%20taotlus.rtf",
+      "content_hash": "33de13db38f8f8c3e25582f8363f1d8dc8a1cf28d2d4b8cf32b266b35c4cbc07",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_form_synnitoetuse_taotlus",
+      "canonical_item_id": "tapa_vald:form:synnitoetuse_taotlus",
+      "itemType": "form",
+      "title": "Sünnitoetuse taotlus",
+      "status": "active",
+      "summary": "Sünnitoetuse taotluse vorm lapse sünniga seotud toetuse taotlemiseks. Vorm on seotud sünnitoetuse detaillehel nimetatud taotlemisega.",
+      "sourceKeys": [
+        "form_synnitoetuse_taotlus"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://www.tapa.ee/sites/default/files/documents/2025-11/S%C3%BCnnitoetuse%20taotlus.rtf",
+      "submissionChannels": [
+        "self_service",
+        "paper"
+      ],
+      "relatedTo": [
+        "tapa_vald_benefit_sunnitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "form_synnitoetuse_taotlus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_form_synnitoetuse_taotlus",
+      "document_id": "tapa_vald_form_synnitoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/sites/default/files/documents/2025-11/S%C3%BCnnitoetuse%20taotlus.rtf",
+      "content_hash": "bb9ee941fffd705f431b19f5d7b11daa870db2fe76b8d38592d18de2691e0942",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_form_matusetoetuse_taotlus",
+      "canonical_item_id": "tapa_vald:form:matusetoetuse_taotlus",
+      "itemType": "form",
+      "title": "Matusetoetuse taotlus",
+      "status": "active",
+      "summary": "Matusetoetuse taotluse vorm matusekulude osaliseks kompenseerimiseks. Vorm on seotud matusetoetuse detaillehel nimetatud dokumendi ja vormiga.",
+      "sourceKeys": [
+        "form_matusetoetuse_taotlus"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://tapa.ee/sites/default/files/documents/2025-12/Matusetoetuse%20taotlus.rtf",
+      "submissionChannels": [
+        "self_service",
+        "email",
+        "paper"
+      ],
+      "relatedTo": [
+        "tapa_vald_benefit_matusetoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "form_matusetoetuse_taotlus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_form_matusetoetuse_taotlus",
+      "document_id": "tapa_vald_form_matusetoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tapa.ee/sites/default/files/documents/2025-12/Matusetoetuse%20taotlus.rtf",
+      "content_hash": "a02bf78e862b165d0002c69f8173dc2b7a3f5220d8ad1f374ebfeaa8a96aea4f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_form_toimetulekutoetuse_taotlus",
+      "canonical_item_id": "tapa_vald:form:toimetulekutoetuse_taotlus",
+      "itemType": "form",
+      "title": "Lisa 1. Toimetulekutoetuse taotlus, täidetav",
+      "status": "active",
+      "summary": "Toimetulekutoetuse täidetav PDF-taotlus. Vorm on toimetulekutoetuse lehel nimetatud seotud dokumendina.",
+      "sourceKeys": [
+        "form_toimetulekutoetuse_taotlus"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://www.tapa.ee/sites/default/files/documents/2026-01/Lisa%201.%20Toimetulekutoetuse%20taotlus%2C%20t%C3%A4idetav.pdf",
+      "submissionChannels": [
+        "email",
+        "paper"
+      ],
+      "relatedTo": [
+        "tapa_vald_benefit_toimetulekutoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "form_toimetulekutoetuse_taotlus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_form_toimetulekutoetuse_taotlus",
+      "document_id": "tapa_vald_form_toimetulekutoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/sites/default/files/documents/2026-01/Lisa%201.%20Toimetulekutoetuse%20taotlus%2C%20t%C3%A4idetav.pdf",
+      "content_hash": "eb31b79486c2a91fd1690d5fc2c43937a68656c3c18e2419cb9bdbd80d73b57f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_form_perekonna_varade_loetelu",
+      "canonical_item_id": "tapa_vald:form:perekonna_varade_loetelu",
+      "itemType": "form",
+      "title": "Lisa 2. Loetelu vorm perekonna varade kohta, täidetav",
+      "status": "active",
+      "summary": "Perekonna varade loetelu täidetav PDF-vorm toimetulekutoetuse taotluse lisana. Vorm on toimetulekutoetuse lehel nimetatud seotud dokumendina.",
+      "sourceKeys": [
+        "form_perekonna_varade_loetelu"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://www.tapa.ee/sites/default/files/documents/2026-01/Lisa%202.%20Loetelu%20vorm%20perekonna%20varade%20kohta%2C%20t%C3%A4idetav.pdf",
+      "submissionChannels": [
+        "email",
+        "paper"
+      ],
+      "relatedTo": [
+        "tapa_vald_benefit_toimetulekutoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "form_perekonna_varade_loetelu"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_form_perekonna_varade_loetelu",
+      "document_id": "tapa_vald_form_perekonna_varade_loetelu",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/sites/default/files/documents/2026-01/Lisa%202.%20Loetelu%20vorm%20perekonna%20varade%20kohta%2C%20t%C3%A4idetav.pdf",
+      "content_hash": "16ac08dcb63c0ac7c6af74c8ca3f98a286b293ea2d86db026c4966da795f7fd2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_form_valtimatu_sotsiaalabi_taotlus",
+      "canonical_item_id": "tapa_vald:form:valtimatu_sotsiaalabi_taotlus",
+      "itemType": "form",
+      "title": "Vältimatu sotsiaalabi toetuse taotlus",
+      "status": "active",
+      "summary": "Vältimatu sotsiaalabi toetuse taotluse vorm. Vorm on seotud vältimatu sotsiaalabi detaillehel nimetatud taotlemisega.",
+      "sourceKeys": [
+        "form_valtimatu_sotsiaalabi"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://www.tapa.ee/sites/default/files/documents/2026-02/V%C3%A4ltimatu%20sotsiaalabi%20toetuse%20taotlus.rtf",
+      "submissionChannels": [
+        "email",
+        "paper"
+      ],
+      "relatedTo": [
+        "tapa_vald_benefit_valtimatu_sotsiaalabi"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "form_valtimatu_sotsiaalabi"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_form_valtimatu_sotsiaalabi_taotlus",
+      "document_id": "tapa_vald_form_valtimatu_sotsiaalabi_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/sites/default/files/documents/2026-02/V%C3%A4ltimatu%20sotsiaalabi%20toetuse%20taotlus.rtf",
+      "content_hash": "b4c69adeb6f81b5123ac42108ed46143bb0e31bd8839d882fb947b77f849df0e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tapa_vald_form_eluruumi_teenuse_taotlus",
+      "canonical_item_id": "tapa_vald:form:eluruumi_teenuse_taotlus",
+      "itemType": "form",
+      "title": "Eluruumi teenuse taotlus",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenuse taotluse vorm. Vorm on seotud eluruumi tagamise detaillehel nimetatud taotlemisega.",
+      "sourceKeys": [
+        "form_eluruumi_teenus"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://www.tapa.ee/sites/default/files/documents/2026-02/Eluruumi%20teenuse%20taotlus.rtf",
+      "submissionChannels": [
+        "email",
+        "paper"
+      ],
+      "relatedTo": [
+        "tapa_vald_service_eluruumi_tagamine"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "form_eluruumi_teenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tapa_vald_form_eluruumi_teenuse_taotlus",
+      "document_id": "tapa_vald_form_eluruumi_teenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tapa.ee/sites/default/files/documents/2026-02/Eluruumi%20teenuse%20taotlus.rtf",
+      "content_hash": "428a04472103dc340efd49712890dc255d340369ad358a09457a33edc274c716",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Tapa vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-1-2020",
+  "articleId": "teekond-hooliva-kogukonnani-2020-1",
+  "title": "Teekond hooliva kogukonnani",
+  "authors": [
+    "Annika Laats"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2020",
+  "section": "Arvamus",
+  "pageRange": "91-93",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Annika Laats arutleb hooliva kogukonna kujunemise, inimeste märkamise, vastutuse ja kogukondlike suhete üle.",
+  "tags": [
+    "hooliv kogukond",
+    "kogukond",
+    "hoolimine",
+    "vastutus",
+    "kaasamine"
+  ],
+  "source_type": "file",
+  "source_path": "ST1_2020_web_link_Part20.pdf",
+  "mapping_status": "VERIFIED",
+  "mapping_note": "Pealkiri, autor(id) ja kohalik täistekst kontrollitud artikli enda ning väljaandja ametliku allika järgi.",
+  "mapping_checked": "2026-08-14",
+  "source_url": "https://www.tai.ee/et/valjaanded/sotsiaaltoo-12020",
+  "document_id": "sotsiaaltoo-1-2020-teekond-hooliva-kogukonnani-2020-1",
+  "source_format": "pdf",
+  "source_sha256": "a83d63ca3e690e5d68341479916ffb68d07edf423c5a0692036eaa641cdd265b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2020-teekond-hooliva-kogukonnani-2020-1",
+    "previous_source_path": "ST1_2020_web_link_Part20.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "a83d63ca3e690e5d68341479916ffb68d07edf423c5a0692036eaa641cdd265b",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

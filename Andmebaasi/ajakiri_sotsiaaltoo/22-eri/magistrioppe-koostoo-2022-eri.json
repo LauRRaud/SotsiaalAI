@@ -1,0 +1,62 @@
+{
+  "docId": "sotsiaaltoo-eri-2022",
+  "articleId": "magistrioppe-koostoo-2022-eri",
+  "title": "Sotsiaaltöö magistriõpe annab teadmiste ja oskuste kõrval ka võimekuse teha koostööd",
+  "authors": [
+    "Mariann Märtsin"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö (erinumber)",
+  "issueLabel": "Eri/2022",
+  "section": "30 aastat õpetamist",
+  "pageRange": "55",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Lühiülevaade sotsiaaltöö magistriõppest, millega alustati Tallinna Ülikoolis 1993. aastal. Praeguste magistrantide õpe on kooskõlas sotsiaaltöötaja 7. taseme kutsestandardiga ja lõimib kolm komponenti: teoreetilised ja teaduslikud alusteadmised, praktilised oskused ning võimekus töötada koos teiste valdkondade esindajatega. 2022. aastal seisab ees õppekava põhjalikum uuendus.",
+  "tags": [
+    "magistriõpe",
+    "kutsestandard",
+    "sotsiaaltööharidus",
+    "interprofessionaalsus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo-ERINUMBER_2022_Part9.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-eri-2022-magistrioppe-koostoo-2022-eri",
+  "source_sha256": "a7527e059877ba88a2fda5e23b8f5fc3f3d42f7b53bd3941e28755cbfaa7e567",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2022-magistrioppe-koostoo-2022-eri",
+    "previous_source_path": "Sotsiaaltoo-ERINUMBER_2022_Part9.txt",
+    "previous_source_original_path": "Sotsiaaltoo-ERINUMBER_2022_Part9.pdf",
+    "reference_stored_source_sha256": "854cbcd6ca11b5e1eb7b9c3c224cd9a01b0d20da892a1709ca68f0b2a34e50e4",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo-ERINUMBER_2022.pdf",
+      "source_sha256": "807b48240fe049838a94b8cffd3e1b388f778591bddb0ad5cb542d3cd6ff73b1",
+      "pdf_start_page": 57,
+      "pdf_end_page": 57,
+      "printed_page_range": "55-55",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 57,
+      "source_regions": [
+        {
+          "source_pdf_page": 57,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "55",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo-ERINUMBER_2022.pdf"
+    },
+    "server_page_range": "55-55"
+  }
+}

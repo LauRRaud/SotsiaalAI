@@ -1,0 +1,91 @@
+{
+  "source_path": "tarkvanem_tooleht_rahunemispaus.pdf",
+  "source_format": "pdf",
+  "sha256": "5ad051c5e5dbee8694f6d9fa6c4b97889c2f33519fffaed6d618bdcbe3982674",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/tarkvanem_tooleht_rahunemispaus.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "tarkvanem_tooleht_rahunemispaus",
+          "title": "TÖÖLEHT: Rahunemispaus",
+          "url": "https://tarkvanem.ee/wp-content/uploads/2022/12/Tooleht_rahunemispaus.pdf",
+          "normalized_url": "https://tarkvanem.ee/wp-content/uploads/2022/12/Tooleht_rahunemispaus.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "method_guidance",
+          "publisher": "Tarkvanem",
+          "organization_id": "tarkvanem",
+          "collection_hint": "guidance_and_methods",
+          "evidence_role": "practice_guidance",
+          "topic_tags": [
+            "Tarkvanem",
+            "vaimne tervis",
+            "psüühiline heaolu",
+            "nõustamine",
+            "tööleht",
+            "lapse kasvatamine",
+            "suhtlemisoskused",
+            "praktiline töövahend"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "needs_review",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Partnerid",
+            "heading_3": "Tarkvanem",
+            "heading_4": null,
+            "line": 629,
+            "order": 319
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "TÖÖLEHT: Rahunemispaus"
+          ],
+          "collection_hints": [
+            "organization_guidelines"
+          ],
+          "source_types_seen": [
+            "official_guideline"
+          ],
+          "resource_types_seen": [
+            "method_guidance"
+          ],
+          "publishers_seen": [
+            "Tarkvanem"
+          ],
+          "organizations_seen": [
+            "tarkvanem"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Partnerid",
+              "heading_3": "Tarkvanem",
+              "line": 629,
+              "order": 319
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://tarkvanem.ee/wp-content/uploads/2022/12/Tooleht_rahunemispaus.pdf",
+          "status_note": "0 chunks (image worksheet, no text layer; needs OCR) 2026-06-12"
+        },
+        "final_url": "https://tarkvanem.ee/wp-content/uploads/2022/12/Tooleht_rahunemispaus.pdf",
+        "redirects": [],
+        "sha256": "5ad051c5e5dbee8694f6d9fa6c4b97889c2f33519fffaed6d618bdcbe3982674",
+        "bytes": 2026443,
+        "downloaded_at": "2026-08-14T08:00:59.096Z"
+      }
+    }
+  ],
+  "server_metadata": [],
+  "review_status": "metadata_conversion_pending"
+}

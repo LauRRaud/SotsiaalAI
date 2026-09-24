@@ -1,0 +1,108 @@
+{
+  "docId": "sotsiaaltoo-4-2016",
+  "articleId": "sotsiaaltoo-4-2016-artikkel-13-õigusrikkumise-toime-pannud-lapse-abistamine",
+  "title": "Õigusrikkumise toime pannud lapse abistamine",
+  "authors": [
+    "Elise Nikonov"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2016",
+  "section": "Abi võimalused / praktika",
+  "pageRange": "71-76",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi peaspetsialist Elise Nikonov teatab, et ministeeriumi eelnõuga tunnistatakse kehtetuks alaealise mõjutusvahendite seadus ja lõpetatakse alaealiste komisjonide tegevus; muudatus peaks jõustuma 2018. aasta alguses ning õigusrikkumise toime pannud last hakatakse abistama üldises lastekaitsesüsteemis. Riik toetab omavalitsusi Sotsiaalkindlustusameti lastekaitseüksuse kaudu, 2017. aastal valmib Rootsi BBIC-süsteemil põhinev juhtumiraamistik ja Tervise Arengu Instituut korraldab täienduskoolitusi. Sotsiaalse rehabilitatsiooni teenusele suunamise õigus antakse omavalitsusele ning kinnise lasteasutuse teenusele saab suunata ainult kohtu kaudu.",
+  "tags": [
+    "alaealiste komisjonid",
+    "lastekaitseseadus",
+    "sotsiaalne rehabilitatsioon",
+    "kinnine lasteasutus",
+    "juhtumikorraldus",
+    "seaduseelnõu"
+  ],
+  "source_type": "file",
+  "source_path": "2016_4_artikkel_13_oigusrikkumise_toime_pannud_lapse_abistamine.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-13-igusrikkumise-toime-pannud-lapse-abistamine",
+  "source_sha256": "c8c4c6215a6e04402a4d26b7b3be761a71e993de2ff7b25bceeea5f5be8ff7b8",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-13-igusrikkumise-toime-pannud-lapse-abistamine",
+    "previous_source_path": "2016_4_artikkel_13_oigusrikkumise_toime_pannud_lapse_abistamine.txt",
+    "previous_source_original_path": "4-2016.pdf",
+    "reference_stored_source_sha256": "9e6ff8a45d333917a59f32a2060115e594a307972317255e85fbbf9d1753efdb",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf",
+      "source_sha256": "0f07da03ffde36588435e96f8dda0f52a8140fbf9cc4201bb95e85b594e03fc9",
+      "pdf_start_page": 73,
+      "pdf_end_page": 78,
+      "printed_page_range": "71-76",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 78,
+      "source_regions": [
+        {
+          "source_pdf_page": 73,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 74,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 75,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 76,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 77,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 78,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            214.833
+          ]
+        }
+      ],
+      "effective_printed_page_range": "71-76"
+    },
+    "server_page_range": "71-76"
+  }
+}

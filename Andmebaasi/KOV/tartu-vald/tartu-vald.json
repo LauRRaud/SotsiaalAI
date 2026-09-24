@@ -1,0 +1,3205 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-tartu-vald",
+  "document_id": "kov-tartu-vald",
+  "municipality": "Tartu vald",
+  "municipality_id": "tartu_vald",
+  "county": "Tartumaa",
+  "checkedAt": "2026-04-30",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "tartu_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "tartu_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on ajutine abimeede, millega Tartu vald leevendab abivajava isiku või perekonna materiaalset puudust ja tagab minimaalsed vahendid esmavajaduste rahuldamiseks. Toetus arvutatakse eelmise kuu netosissetuleku, jooksval kuul tasumisele kuuluvate eluasemekulude ja kehtiva toimetulekupiiri alusel valemiga TT=(EK+TP)-S. Toimetulekupiir on 220 eurot esimesele pereliikmele, 264 eurot alaealisele lapsele ja 176 eurot igale järgnevale täisealisele pereliikmele.",
+      "targetGroup": "Tartu valla elanik või perekond, kelle sissetulek pärast arvestatavaid eluasemekulusid jääb alla toimetulekupiiri.",
+      "conditions": "Perekonnaliikmeteks loetakse samas eluruumis ühises majapidamises elavad abielus või abieluga sarnases suhtes olevad isikud, esimese ja teise astme alanejad ja ülenejad sugulased ning muud ühise majapidamisega seotud isikud. Arvesse võetakse eelmise kuu netosissetulek ja seaduses nimetatud eluasemekulud.",
+      "application": {
+        "channels": [
+          "email",
+          "in_person"
+        ],
+        "steps": "Esita kirjalik taotlus e-posti aadressile või too see Tartu Vallavalitsuse sotsiaalosakonda. Lisa toimetulekutoetuse avalduse blankett ja vajalikud tõendid sissetulekute ning eluasemekulude kohta.",
+        "deadline": null
+      },
+      "amount": null,
+      "decisionTime": null,
+      "officialUrl": "https://tartuvald.ee/toimetulekutoetus",
+      "relatedForms": [
+        "tartu_vald_form_toimetulekutoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva"
+      ],
+      "sourceKeys": [
+        "toimetulekutoetus_page",
+        "toimetulekutoetuse_form"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "toimetulekutoetus_page",
+        "toimetulekutoetuse_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_benefit_toimetulekutoetus",
+      "document_id": "tartu_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/toimetulekutoetus",
+      "content_hash": "107b35cb8fa3a2d514f50d73ed890fc7eda120b14c624e91571c1f9fdb868a70",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_benefit_tervisetoetus",
+      "canonical_item_id": "tartu_vald:benefit:tervisetoetus",
+      "itemType": "benefit",
+      "title": "Tervisetoetus",
+      "status": "active",
+      "summary": "Tervisetoetuse eesmärk on hüvitada isiku terviserikkest, kroonilisest haigusest või muust tervislikust seisundist tulenevast erivajadusest tingitud kulutusi, mida ei rahastata Eesti Haigekassa või Sotsiaalkindlustusameti vahenditest. Tervisetoetust võib maksta ühekordse või perioodilise maksena raske majandusliku olukorra puhul. Toetus on mõeldud hädavajalike kulude osaliseks hüvitamiseks ja ajutisest majandusraskusest ülesaamiseks.",
+      "targetGroup": "Üksi elav isik või perekond, kelle kolme eelmise kuu keskmine sissetulek on alla 2,75-kordse riikliku toimetulekupiiri pereliikme kohta.",
+      "conditions": "KOV lehe järgi peab sissetulek jääma alla 2,75-kordse toimetulekupiiri pereliikme kohta ning kulu peab olema seotud terviseseisundist tuleneva erivajadusega, mida muudest allikatest ei rahastata.",
+      "application": {
+        "channels": [
+          "email",
+          "in_person"
+        ],
+        "steps": "Täida sotsiaaltoetuse ja -teenuse avaldus ning saada see e-posti aadressile või too Tartu Vallavalitsuse sotsiaalosakonda. Lisa kulusid ja vajadust tõendavad dokumendid.",
+        "deadline": null
+      },
+      "officialUrl": "https://tartuvald.ee/toiming/sissetulekust-soltuvad-toetused",
+      "relatedForms": [
+        "tartu_vald_form_sotsiaaltoetuse_ja_teenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva"
+      ],
+      "sourceKeys": [
+        "income_based_supports_page",
+        "social_support_application_form"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "income_based_supports_page",
+        "social_support_application_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_benefit_tervisetoetus",
+      "document_id": "tartu_vald_benefit_tervisetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/toiming/sissetulekust-soltuvad-toetused",
+      "content_hash": "f97ec0407cf237257330cb9fdd08df8b2deeefa4868b80b8d3df524af0b04dc4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_benefit_lastega_perede_toetus",
+      "canonical_item_id": "tartu_vald:benefit:lastega_perede_toetus",
+      "itemType": "benefit",
+      "title": "Lastega perede toetus",
+      "status": "active",
+      "summary": "Lastega perede toetuse eesmärk on katta osaliselt laste kasvatamisega seotud kulutusi ja parandada laste ning perede heaolu. Toetust võib kasutada näiteks koolitarvete, riiete ja jalanõude ostmiseks, lapse õppekavavälise tegevuse kulude katmiseks ning lasteaia kohatasu osaliseks või täielikuks kompenseerimiseks. Toetust makstakse ühekordse või perioodilise maksena raske majandusliku olukorra puhul.",
+      "targetGroup": "Tartu valla lastega pered, kelle kolme eelmise kuu keskmine sissetulek jääb alla 2,75-kordse toimetulekupiiri pereliikme kohta.",
+      "conditions": "KOV lehe järgi on toetus mõeldud laste kasvatamisega seotud kulude osaliseks hüvitamiseks raske majandusliku olukorra puhul.",
+      "application": {
+        "channels": [
+          "email",
+          "in_person"
+        ],
+        "steps": "Esita sotsiaaltoetuse ja -teenuse avaldus koos kuludokumentidega e-posti aadressile või Tartu Vallavalitsuse sotsiaalosakonda.",
+        "deadline": null
+      },
+      "officialUrl": "https://tartuvald.ee/toiming/sissetulekust-soltuvad-toetused",
+      "relatedForms": [
+        "tartu_vald_form_sotsiaaltoetuse_ja_teenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva"
+      ],
+      "sourceKeys": [
+        "income_based_supports_page",
+        "social_support_application_form"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "income_based_supports_page",
+        "social_support_application_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_benefit_lastega_perede_toetus",
+      "document_id": "tartu_vald_benefit_lastega_perede_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/toiming/sissetulekust-soltuvad-toetused",
+      "content_hash": "260d68af28abe612d3b5599e7995bb5cfdb819b5a1afce0981e88ab00414151c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_benefit_koolitoetus",
+      "canonical_item_id": "tartu_vald:benefit:koolitoetus",
+      "itemType": "benefit",
+      "title": "Koolitoetus",
+      "status": "active",
+      "summary": "Koolitoetuse eesmärk on katta osaliselt lapse üldhariduse omandamisega seotud kulusid. Toetust saab taotleda põhikoolis, gümnaasiumis või kutseõppeasutuses õppimisega seotud kulude, sealhulgas õppevahendite kompenseerimiseks õppeaasta alguses või kogu õppeperioodi vältel. KOV lehel nimetatakse ka kooli lõpetamise toetust põhikooli, gümnaasiumi või kutseõppeasutuse lõpetamisel.",
+      "targetGroup": "Tartu valla vähekindlustatud perede lapsed, kes õpivad põhikoolis, gümnaasiumis või kutseõppeasutuses.",
+      "conditions": "Sissetulekust sõltuva toetuse üldtingimus: perekonna kolme eelmise kuu keskmine sissetulek on alla 2,75-kordse toimetulekupiiri pereliikme kohta.",
+      "application": {
+        "channels": [
+          "email",
+          "in_person"
+        ],
+        "steps": "Esita sotsiaaltoetuse ja -teenuse avaldus koos kuludokumentidega vallavalitsuse sotsiaalosakonda või e-posti teel.",
+        "deadline": null
+      },
+      "officialUrl": "https://tartuvald.ee/toiming/sissetulekust-soltuvad-toetused",
+      "relatedForms": [
+        "tartu_vald_form_sotsiaaltoetuse_ja_teenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva"
+      ],
+      "sourceKeys": [
+        "income_based_supports_page",
+        "social_support_application_form"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "income_based_supports_page",
+        "social_support_application_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_benefit_koolitoetus",
+      "document_id": "tartu_vald_benefit_koolitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/toiming/sissetulekust-soltuvad-toetused",
+      "content_hash": "765756b93227ff5d771e21d0cf83b963317b4586ea46fa3e2f7bdccc2444ba9d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_benefit_lapse_toiduraha_katmise_toetus",
+      "canonical_item_id": "tartu_vald:benefit:lapse_toiduraha_katmise_toetus",
+      "itemType": "benefit",
+      "title": "Lapse toiduraha katmise toetus",
+      "status": "active",
+      "summary": "Lapse toiduraha katmise toetuse eesmärk on anda vähekindlustatud peredele abi lapse toitlustamise kulude katmiseks. Toetus puudutab koolieelses lasteasutuses, sealhulgas lastehoius, üldhariduskoolis või kutseõppeasutuses õppiva lapse toiduraha kulusid.",
+      "targetGroup": "Vähekindlustatud Tartu valla pered, kelle laps käib lasteasutuses, üldhariduskoolis või kutseõppeasutuses.",
+      "conditions": "Sissetulekust sõltuva toetuse üldtingimus: perekonna kolme eelmise kuu keskmine sissetulek on alla 2,75-kordse toimetulekupiiri pereliikme kohta.",
+      "application": {
+        "channels": [
+          "email",
+          "in_person"
+        ],
+        "steps": "Esita sotsiaaltoetuse ja -teenuse avaldus koos toiduraha kulu tõendavate dokumentidega e-posti aadressile või sotsiaalosakonda.",
+        "deadline": null
+      },
+      "officialUrl": "https://tartuvald.ee/toiming/sissetulekust-soltuvad-toetused",
+      "relatedForms": [
+        "tartu_vald_form_sotsiaaltoetuse_ja_teenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva"
+      ],
+      "sourceKeys": [
+        "income_based_supports_page",
+        "social_support_application_form"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "income_based_supports_page",
+        "social_support_application_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_benefit_lapse_toiduraha_katmise_toetus",
+      "document_id": "tartu_vald_benefit_lapse_toiduraha_katmise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/toiming/sissetulekust-soltuvad-toetused",
+      "content_hash": "bdb31eb50d8a304c8487c6236a4ce1495d47fba16c7a6abf95c0c4541954ea06",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_benefit_kuttetoetus",
+      "canonical_item_id": "tartu_vald:benefit:kuttetoetus",
+      "itemType": "benefit",
+      "title": "Küttetoetus",
+      "status": "active",
+      "summary": "Küttetoetuse eesmärk on soodustada ja parandada isiku või perekonna toimetulekuvõimet, kattes osaliselt vähekindlustatud isiku või perekonna hädavajalikke küttekulusid. Toetus kuulub Tartu valla sissetulekust sõltuvate sotsiaaltoetuste hulka.",
+      "targetGroup": "Vähekindlustatud Tartu valla elanikud ja pered, kellel on hädavajalikud küttekulud.",
+      "conditions": "Sissetulekust sõltuva toetuse üldtingimus: perekonna kolme eelmise kuu keskmine sissetulek on alla 2,75-kordse toimetulekupiiri pereliikme kohta.",
+      "application": {
+        "channels": [
+          "email",
+          "in_person"
+        ],
+        "steps": "Esita sotsiaaltoetuse ja -teenuse avaldus ning küttekulu tõendavad dokumendid e-posti aadressile või sotsiaalosakonda.",
+        "deadline": null
+      },
+      "officialUrl": "https://tartuvald.ee/toiming/sissetulekust-soltuvad-toetused",
+      "relatedForms": [
+        "tartu_vald_form_sotsiaaltoetuse_ja_teenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva"
+      ],
+      "sourceKeys": [
+        "income_based_supports_page",
+        "social_support_application_form"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "income_based_supports_page",
+        "social_support_application_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_benefit_kuttetoetus",
+      "document_id": "tartu_vald_benefit_kuttetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/toiming/sissetulekust-soltuvad-toetused",
+      "content_hash": "7e8e06a73d7bd1765b41a300b9c580b08db10fec145a9f11a3baa6c2c62ca8a0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_benefit_raske_majandusliku_olukorra_toetus",
+      "canonical_item_id": "tartu_vald:benefit:raske_majandusliku_olukorra_toetus",
+      "itemType": "benefit",
+      "title": "Raske majandusliku olukorra toetus",
+      "status": "active",
+      "summary": "Raske majandusliku olukorra toetus on Tartu valla eelarvest makstav mitteperioodiline toetus toimetulekuraskustesse sattunud isikule. Toetuse eesmärk on ajutise raske majandusliku olukorra leevendamine, toimetuleku soodustamine ning hädavajalike sotsiaalsete ja majanduslike vajadustega seotud kulude katmine.",
+      "targetGroup": "Tartu valla elanikud, kes on sattunud ajutisse raske majanduslikku olukorda.",
+      "conditions": "Toetust hinnatakse sissetulekust sõltuva toetuse raames ning arvestatakse isiku või perekonna majanduslikku olukorda ja vajadust.",
+      "application": {
+        "channels": [
+          "email",
+          "in_person"
+        ],
+        "steps": "Esita sotsiaaltoetuse ja -teenuse avaldus koos olukorda ja kulusid tõendavate dokumentidega e-posti aadressile või sotsiaalosakonda.",
+        "deadline": null
+      },
+      "officialUrl": "https://tartuvald.ee/toiming/sissetulekust-soltuvad-toetused",
+      "relatedForms": [
+        "tartu_vald_form_sotsiaaltoetuse_ja_teenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva"
+      ],
+      "sourceKeys": [
+        "income_based_supports_page",
+        "social_support_application_form"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "income_based_supports_page",
+        "social_support_application_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_benefit_raske_majandusliku_olukorra_toetus",
+      "document_id": "tartu_vald_benefit_raske_majandusliku_olukorra_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/toiming/sissetulekust-soltuvad-toetused",
+      "content_hash": "dc11dc4468a6fcbf36b3c8d1e4ccee53c4d670497b4f7a5418d82804a750c36a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_benefit_erakorraliste_kulude_huvitamine",
+      "canonical_item_id": "tartu_vald:benefit:erakorraliste_kulude_huvitamine",
+      "itemType": "benefit",
+      "title": "Erakorraliste kulude hüvitamine",
+      "status": "active",
+      "summary": "Erakorraliste kulude hüvitamist saab taotleda elukorralduse või eluasemega seotud vältimatute kulude katmiseks. Toetuse taotlemiseks esitab isik või erandkorras kolmas isik vallavalitsusele taotluse, millele lisatakse võimalusel politsei, päästeameti, tervishoiuasutuse või muu ametkonna tõendid. Toetuse määramisel arvestatakse isiku või perekonna toimetulekuvõimet ja elukondlikke vajadusi ning toetust määratakse ulatuses, mis tagab isikule kehtiva toimetulekupiiri.",
+      "targetGroup": "Tartu valla elanikud, kellel on vältimatud elukorralduse või eluasemega seotud kulud.",
+      "conditions": "Kulu vajadus peab olema vältimatu; toetuse määramisel arvestatakse toimetulekuvõimet ja elukondlikke vajadusi.",
+      "application": {
+        "channels": [
+          "email",
+          "in_person"
+        ],
+        "steps": "Täida sotsiaaltoetuse ja -teenuse avaldus, lisa võimalusel ametkondade tõendid ning saada see või too sotsiaalosakonda.",
+        "deadline": null
+      },
+      "officialUrl": "https://tartuvald.ee/toiming/erakorraliste-kulude-huvitamine",
+      "relatedForms": [
+        "tartu_vald_form_sotsiaaltoetuse_ja_teenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva"
+      ],
+      "sourceKeys": [
+        "erakorralised_kulud_page",
+        "social_support_application_form"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "erakorralised_kulud_page",
+        "social_support_application_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_benefit_erakorraliste_kulude_huvitamine",
+      "document_id": "tartu_vald_benefit_erakorraliste_kulude_huvitamine",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/toiming/erakorraliste-kulude-huvitamine",
+      "content_hash": "deb2795b99547a3a669f20b6aa7bee6c5d703c469ac149fafcbf37cb04d7afb5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_benefit_kriisiabi",
+      "canonical_item_id": "tartu_vald:benefit:kriisiabi",
+      "itemType": "benefit",
+      "title": "Kriisiabi",
+      "status": "active",
+      "summary": "Kriisiabi toetuse eesmärk on leevendada isiku või tema perekonna kriisiolukorda, mille on põhjustanud õnnetusjuhtum, loodusõnnetus, tulekahju, vargus, haigestumine, töövõimetuks muutumine, lähedase kaotus või muu sarnane sündmus. Taotlemiseks esitab isik või tema nõusolekul kolmas isik vallavalitsusele taotluse ja lisab võimalusel kriisiolukorda kinnitavad tõendid.",
+      "targetGroup": "Tartu valla elanikud ja pered, kellel on kriisiolukorrast tulenev abivajadus.",
+      "conditions": "Kriisiolukord peab olema seotud õnnetuse, loodusõnnetuse, tulekahju, varguse, haigestumise, töövõimetuse, lähedase kaotuse või muu sarnase sündmusega.",
+      "application": {
+        "channels": [
+          "email",
+          "in_person"
+        ],
+        "steps": "Täida sotsiaaltoetuse ja -teenuse avaldus, lisa võimalusel kriisiolukorda tõendavad dokumendid ning esita avaldus e-postiga või sotsiaalosakonnas.",
+        "deadline": null
+      },
+      "officialUrl": "https://tartuvald.ee/toiming/kriisiabi",
+      "relatedForms": [
+        "tartu_vald_form_sotsiaaltoetuse_ja_teenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva"
+      ],
+      "sourceKeys": [
+        "kriisiabi_page",
+        "social_support_application_form"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "kriisiabi_page",
+        "social_support_application_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_benefit_kriisiabi",
+      "document_id": "tartu_vald_benefit_kriisiabi",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/toiming/kriisiabi",
+      "content_hash": "f1ba27f4c65680e307cdd6931300359baa0cd195238d114060ac3745f146afe1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_benefit_hapniku_elektrikulu_kompenseerimine",
+      "canonical_item_id": "tartu_vald:benefit:hapniku_elektrikulu_kompenseerimine",
+      "itemType": "benefit",
+      "title": "Hapniku tootmiseks vajaliku elektri kompenseerimine",
+      "status": "active",
+      "summary": "Toetuse eesmärk on osaliselt kompenseerida elektrienergia tarbimisega seotud kulusid isikule, kes vajab pikaajalist kodust hapnikuravi. Toetuse taotlemiseks esitab isik vallavalitsusele avalduse koos meditsiiniasutuse tõendiga.",
+      "targetGroup": "Tartu valla elanik, kes vajab pikaajalist kodust hapnikuravi.",
+      "conditions": "Taotlejal peab olema meditsiiniasutuse tõend pikaajalise koduse hapnikuravi vajaduse kohta.",
+      "application": {
+        "channels": [
+          "email",
+          "in_person"
+        ],
+        "steps": "Täida sotsiaaltoetuse ja -teenuse avaldus, lisa meditsiiniasutuse tõend ning esita dokumendid e-postiga või sotsiaalosakonda.",
+        "deadline": null
+      },
+      "officialUrl": "https://tartuvald.ee/toiming/hapniku-tootmiseks-vajaliku-elektri-kompenseerimine",
+      "relatedForms": [
+        "tartu_vald_form_sotsiaaltoetuse_ja_teenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva"
+      ],
+      "sourceKeys": [
+        "hapniku_elektrikulu_page",
+        "social_support_application_form"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "hapniku_elektrikulu_page",
+        "social_support_application_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_benefit_hapniku_elektrikulu_kompenseerimine",
+      "document_id": "tartu_vald_benefit_hapniku_elektrikulu_kompenseerimine",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/toiming/hapniku-tootmiseks-vajaliku-elektri-kompenseerimine",
+      "content_hash": "395255e51b692decddc3f6c3a2a068631e5e8ac1bdb87049acff14c2f8adbe72",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_benefit_matusetoetus",
+      "canonical_item_id": "tartu_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetust saab taotleda rahvastikuregistrijärgse Tartu valla elaniku surma korral matuse korraldamise kulude osaliseks hüvitamiseks. Toetuse suurus on 250 eurot. Taotlemiseks tuleb esitada vallavalitsusele taotlus koos perearsti väljastatud surmatõendi koopiaga; taotlust saab esitada ka iseteeninduskeskkonnas.",
+      "targetGroup": "Matuse korraldaja Tartu valla elaniku surma korral.",
+      "conditions": "Lahkunu peab olema rahvastikuregistrijärgne Tartu valla elanik; taotlusele lisatakse surmatõend ja vajadusel isikut tõendav dokument.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "in_person"
+        ],
+        "steps": "Esita taotlus iseteeninduses või täida pabervorm ning too see Tartu valla sotsiaalosakonda. Lisa isikut tõendav dokument ja surmatõend.",
+        "deadline": null
+      },
+      "amount": "250 eurot",
+      "officialUrl": "https://tartuvald.ee/toiming/matusetoetus",
+      "relatedForms": [
+        "tartu_vald_form_matusetoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_general_vallavalitsus"
+      ],
+      "sourceKeys": [
+        "matusetoetus_form",
+        "matusetoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "matusetoetus_form",
+        "matusetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_benefit_matusetoetus",
+      "document_id": "tartu_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/toiming/matusetoetus",
+      "content_hash": "53233fe37258396cdd80d2d967294b888d2911013746c56cbda0516e75389a38",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_benefit_sunnitoetus",
+      "canonical_item_id": "tartu_vald:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetust makstakse lapse sünni puhul lapse vanemale või lapsendajale, kes on registreerinud elukoha Tartu vallas enne lapse sündi. Laps peab rahvastikuregistri andmetel olema Tartu valla elanik ja elama toetuse taotlejaga ühel aadressil. Toetuse määr on 512 eurot lapse kohta: 320 eurot makstakse pärast lapse sünni registreerimist ning 192 eurot lapse aastaseks saamisel, kui laps on endiselt Tartu valla elanik.",
+      "targetGroup": "Tartu vallas elav lapse vanem või lapsendaja.",
+      "conditions": "Taotleja elukoht peab olema Tartu vallas enne lapse sündi; laps peab olema rahvastikuregistri järgi Tartu valla elanik ja elama taotlejaga samal aadressil; toetust ei maksta, kui laps on riiklikul ülalpidamisel või sünnitoetus on makstud teisest omavalitsusest.",
+      "application": {
+        "channels": [
+          "online",
+          "in_person",
+          "email"
+        ],
+        "steps": "Esita kirjalik avaldus kolme kuu jooksul pärast lapse sünni registreerimist. Tartu valla leht suunab sünnitoetuse taotlemise teenusele.",
+        "deadline": "Kolme kuu jooksul arvates lapse sünni registreerimisest."
+      },
+      "amount": "512 eurot lapse kohta (320 eurot pärast sünni registreerimist ja 192 eurot lapse aastaseks saamisel)",
+      "officialUrl": "https://tartuvald.ee/lapse-sund",
+      "relatedForms": [],
+      "relatedContacts": [
+        "tartu_vald_contact_kairi_kaeval"
+      ],
+      "sourceKeys": [
+        "lapse_sund_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "lapse_sund_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_benefit_sunnitoetus",
+      "document_id": "tartu_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/lapse-sund",
+      "content_hash": "049cb3bdf6ebf944d7def1e52397c7ff7d4f6a34c6da2eb6dd98075fad11abe5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_benefit_ranitsatoetus",
+      "canonical_item_id": "tartu_vald:benefit:ranitsatoetus",
+      "itemType": "benefit",
+      "title": "Ranitsatoetus",
+      "status": "active",
+      "summary": "Ranitsatoetust saab taotleda iga esmakordselt koolimineva lapse kohta. Toetust on õigus taotleda 1. klassi mineva lapse ühel vanemal, kui lapse ja ühe vanema rahvastikuregistrijärgne elukoht on Tartu vald. Ranitsatoetuse suurus on 100 eurot ning taotlusi võetakse vastu 1. augustist kuni 31. oktoobrini.",
+      "targetGroup": "Esmakordselt 1. klassi mineva lapse vanem, kui laps ja üks vanem elavad rahvastikuregistri järgi Tartu vallas.",
+      "conditions": "Laps läheb esmakordselt 1. klassi ning lapse ja ühe vanema rahvastikuregistrijärgne elukoht on Tartu vald.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "in_person"
+        ],
+        "steps": "Esita taotlus SPOKU iseteeninduses, paberkandjal vallamajja või digiallkirjastatult e-postiga. Vajadusel kasuta ranitsatoetuse avalduse vormi.",
+        "deadline": "1. augustist kuni 31. oktoobrini."
+      },
+      "amount": "100 eurot",
+      "officialUrl": "https://tartuvald.ee/toiming/ranitsatoetuse-taotlemine",
+      "relatedForms": [
+        "tartu_vald_form_ranitsatoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_anne_aleksejev"
+      ],
+      "sourceKeys": [
+        "ranitsatoetus_form",
+        "ranitsatoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "ranitsatoetus_form",
+        "ranitsatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_benefit_ranitsatoetus",
+      "document_id": "tartu_vald_benefit_ranitsatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/toiming/ranitsatoetuse-taotlemine",
+      "content_hash": "132257d098a621528827573bb6300efd6344d598fc87da4ecbdc181b01c29cee",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_benefit_koolisoidutoetus",
+      "canonical_item_id": "tartu_vald:benefit:koolisoidutoetus",
+      "itemType": "benefit",
+      "title": "Koolisõidutoetus",
+      "status": "active",
+      "summary": "Koolisõidutoetuse eesmärk on kompenseerida kooli sõiduks tehtud kulutusi lastele, kellel on tuvastatud puue, terviserike, krooniline haigus või muu tervislikust seisundist tulenev erivajadus, mis ei võimalda kasutada ühistransporti või valla korraldatud õpilastransporti. Toetust makstakse kuni 600 eurot õppeaastas, arvestusega 0,30 eurot kilomeeter.",
+      "targetGroup": "Tartu valla lapsed, kelle puue või terviseseisund ei võimalda kasutada ühistransporti või valla õpilastransporti.",
+      "conditions": "Lapsel peab olema puue, terviserike, krooniline haigus või muu tervislikust seisundist tulenev erivajadus, mis takistab ühistranspordi või õpilastranspordi kasutamist.",
+      "application": {
+        "channels": [
+          "email",
+          "in_person"
+        ],
+        "steps": "Lapsevanem esitab vallavalitsusele avalduse koos kuludokumentidega. Avaldus ja kuludokumendid saab saata e-posti aadressile.",
+        "deadline": null
+      },
+      "amount": "Kuni 600 eurot õppeaastas, 0,30 eurot kilomeeter.",
+      "officialUrl": "https://tartuvald.ee/toiming/koolisoidutoetus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "tartu_vald_contact_anne_aleksejev"
+      ],
+      "sourceKeys": [
+        "koolisoidutoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "koolisoidutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_benefit_koolisoidutoetus",
+      "document_id": "tartu_vald_benefit_koolisoidutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/toiming/koolisoidutoetus",
+      "content_hash": "fa88d66d4fabb79ea705177c9852764a3e0f27a4b7664c2091cd84f9e71c2a21",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_benefit_lasteaia_kohatasu_vahe_huvitamise_toetus",
+      "canonical_item_id": "tartu_vald:benefit:lasteaia_kohatasu_vahe_huvitamise_toetus",
+      "itemType": "benefit",
+      "title": "Lasteaia kohatasu vahe hüvitamise toetus",
+      "status": "active",
+      "summary": "Toetuse eesmärk on kompenseerida teise omavalitsusüksuse munitsipaallasteaia õppemaksu ja Tartu valla lasteaia õppemaksu vahe lapsevanemale. Toetust saab taotleda, kui lapse elukoht on Tartu vallas, laps on ARNO kaudu lisatud järjekorda Tartu valla munitsipaallasteaeda ja Tartu vallal ei ole lapsele kohta pakkuda. Toetus makstakse taotleja pangakontole kuludokumentide alusel.",
+      "targetGroup": "Tartu valla lapsevanem, kelle laps käib teise omavalitsuse munitsipaallasteaias, sest Tartu vald ei saanud lasteaiakohta pakkuda.",
+      "conditions": "Lapse elukoht on Tartu vallas; laps on ARNO kaudu Tartu valla munitsipaallasteaia järjekorras; Tartu vallal ei ole kohta pakkuda; esitada tuleb avaldus ja kuludokumendid.",
+      "application": {
+        "channels": [
+          "email",
+          "in_person"
+        ],
+        "steps": "Täida taotluse vorm paberkandjal ja too vallamajja või digiallkirjasta vorm ja saada e-posti aadressile.",
+        "deadline": null
+      },
+      "officialUrl": "https://tartuvald.ee/toiming/lasteaia-kohatasu-vahe-huvitamise-toetus",
+      "relatedForms": [
+        "tartu_vald_form_sotsiaaltoetuse_ja_teenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_anne_aleksejev"
+      ],
+      "sourceKeys": [
+        "lasteaia_kohatasu_page",
+        "social_support_application_form"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "lasteaia_kohatasu_page",
+        "social_support_application_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_benefit_lasteaia_kohatasu_vahe_huvitamise_toetus",
+      "document_id": "tartu_vald_benefit_lasteaia_kohatasu_vahe_huvitamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/toiming/lasteaia-kohatasu-vahe-huvitamise-toetus",
+      "content_hash": "ae7312d52260cef369d1b913306348000215568f52c1addda4e3f356076f3790",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_benefit_puudega_lapse_hooldajatoetus",
+      "canonical_item_id": "tartu_vald:benefit:puudega_lapse_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus erivajadusega lapse hooldajale",
+      "status": "active",
+      "summary": "Puudega lapse hooldajatoetuse eesmärk on tagada erivajadusega lapsele igapäevane kõrvalabi, juhendamine ja järelevalve ning osaliselt hüvitada lapse hooldamise tõttu saamata jäänud sissetulek ja sotsiaalkindlustus. Toetus määratakse isikule, kelle rahvastikuregistrijärgne elukoht on Tartu vald; hooldatav laps peab elama toetuse saajaga samas eluruumis. Lastekaitsespetsialist teeb kogutud andmete põhjal otsuse 10 tööpäeva jooksul. Toetuse määr on osalise hooldusvajaduse korral 150 eurot kuus ja pideva hooldusvajaduse korral 200 eurot kuus.",
+      "targetGroup": "Tartu vallas elav erivajadusega lapse hooldaja, kelle hooldatav laps elab temaga samas eluruumis.",
+      "conditions": "Toetust ei määrata taotlejale, kes saab töötutoetust, töötuskindlustushüvitist või vanemahüvitist, ega juhul, kui lapse hooldamine on püsivalt tagatud teiste teenuste või toetustega. Muutustest tuleb teavitada vallavalitsust 10 päeva jooksul.",
+      "application": {
+        "channels": [
+          "email",
+          "in_person"
+        ],
+        "steps": "Esita kirjalik taotlus Tartu Vallavalitsuse lastekaitsespetsialistidele. Kasuta puudega lapse hooldaja hooldajatoetuse taotluse vormi.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "amount": "150 eurot kuus osalise hooldusvajaduse korral; 200 eurot kuus pideva hooldusvajaduse korral.",
+      "officialUrl": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/erivajadusega-laps",
+      "relatedForms": [
+        "tartu_vald_form_puudega_lapse_hooldajatoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_kalli_madisson",
+        "tartu_vald_contact_maret_toom",
+        "tartu_vald_contact_maiu_helmeste"
+      ],
+      "sourceKeys": [
+        "child_caregiver_form",
+        "erivajadusega_laps_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "child_caregiver_form",
+        "erivajadusega_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_benefit_puudega_lapse_hooldajatoetus",
+      "document_id": "tartu_vald_benefit_puudega_lapse_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/erivajadusega-laps",
+      "content_hash": "db93e886e4f6ab83bf02c56d9d1738389b15bf4afc7d809f4ab3f60abcb55595",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_service_asendushooldusteenus",
+      "canonical_item_id": "tartu_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenuse eesmärk on tagada pika- või lühiajaliselt lapse heaolu ja õigused, võimaldada peresarnased elutingimused, luua turvaline arengukeskkond ja valmistada laps ette võimetekohaseks iseseisvaks toimetulekuks täisealisena. Teenust osutatakse lapsele, kelle vanem on surnud, kelle vanemale on määratud eeskostja, kelle hooldusõigus on peatatud, piiratud või täielikult ära võetud, või kes on vanemast eraldatud. Teenust võib vanema nõusolekul osutada ka lühiajaliselt kuni 90 päeva.",
+      "targetGroup": "Lapsed, kes vajavad asendushooldust; hoolduspereks saamise või asendushoolduse küsimustes pöördutakse lastekaitsespetsialisti poole.",
+      "conditions": "Teenust osutatakse hooldusperes, perekodus või asenduskodus; teenus on lapsele tasuta.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": "Pöördu Tartu Vallavalitsuse lastekaitsespetsialisti poole. Vajadusel saab infot ka Sotsiaalkindlustusametilt.",
+        "deadline": null
+      },
+      "pricing": "Lapsele tasuta",
+      "officialUrl": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/asendus-ja-jarelhooldusteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "tartu_vald_contact_kalli_madisson",
+        "tartu_vald_contact_maret_toom",
+        "tartu_vald_contact_maiu_helmeste"
+      ],
+      "sourceKeys": [
+        "asendus_jarelhooldus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "asendus_jarelhooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_service_asendushooldusteenus",
+      "document_id": "tartu_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/asendus-ja-jarelhooldusteenus",
+      "content_hash": "bc186d603c2661b070a7f69d291b1ae81c6225d6a511668b86d23732deb6e4b3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "tartu_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenuse eesmärk on toetada asendushoolduselt ja eestkostelt lahkuva noore iseseisvat toimetulekut ja õpingute jätkamist. Teenust osutatakse juhtumiplaani alusel ning kohalik omavalitsus tagab vajaduse järgi eluaseme, tugiteenused ja toetused. Teenus on suunatud asendushooldusteenuselt lahkuvale kuni 25-aastasele noorele.",
+      "targetGroup": "Asendushoolduselt ja eestkostelt lahkuvad noored kuni 25. eluaastani.",
+      "conditions": "Teenust osutatakse juhtumiplaani alusel ning vajaduspõhiselt.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": "Teenuse taotlemiseks tuleb pöörduda lastekaitsespetsialisti poole.",
+        "deadline": null
+      },
+      "pricing": "Noorele tasuta",
+      "officialUrl": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/asendus-ja-jarelhooldusteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "tartu_vald_contact_kalli_madisson",
+        "tartu_vald_contact_maret_toom",
+        "tartu_vald_contact_maiu_helmeste"
+      ],
+      "sourceKeys": [
+        "asendus_jarelhooldus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "asendus_jarelhooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_service_jarelhooldusteenus",
+      "document_id": "tartu_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/asendus-ja-jarelhooldusteenus",
+      "content_hash": "aa6e1cefc04375be7c0f48017c86badfbaa4f8dc9d0a71898a87d1a44e7958cd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_service_tugiisikuteenus",
+      "canonical_item_id": "tartu_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenuse eesmärk on toetada inimese iseseisvat toimetulekut olukorras, kus ta vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu oma õiguste teostamisel ja kohustuste täitmisel olulisel määral kõrvalabi. Teenus seisneb juhendamises, motiveerimises ning iseseisvuse ja omavastutuse arendamises. Teenust saab taotleda nii täisealisele inimesele kui ka lapsele; lapse puhul toetatakse lapse arengut, vajadusel hooldustoiminguid ning suhtlemist pere või väljaspool kodu olevate inimestega.",
+      "targetGroup": "Täisealised Tartu valla elanikud ja lapsed, kes vajavad juhendamist, kõrvalabi või arengulist tuge.",
+      "conditions": "Teenuse vajadus hinnatakse abivajaduse hindamise käigus; teenuse maksumus selgub hindamisel.",
+      "application": {
+        "channels": [
+          "email",
+          "in_person"
+        ],
+        "steps": "Täida sotsiaaltoetuse ja -teenuse avaldus ning saada see või too Tartu Vallavalitsuse sotsiaalosakonda. Lapse puhul pöördu lastekaitsespetsialisti poole.",
+        "deadline": null
+      },
+      "pricing": "Maksumus selgub abivajaduse hindamise käigus.",
+      "officialUrl": "https://tartuvald.ee/tugiisikuteenus",
+      "relatedForms": [
+        "tartu_vald_form_sotsiaaltoetuse_ja_teenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva",
+        "tartu_vald_contact_kalli_madisson",
+        "tartu_vald_contact_maret_toom",
+        "tartu_vald_contact_maiu_helmeste"
+      ],
+      "sourceKeys": [
+        "erivajadusega_laps_page",
+        "social_support_application_form",
+        "tugiisikuteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "erivajadusega_laps_page",
+        "social_support_application_form",
+        "tugiisikuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_service_tugiisikuteenus",
+      "document_id": "tartu_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/tugiisikuteenus",
+      "content_hash": "fd9486344e3eda845310996203253c6e1946dd6b770f0b732c17688666f8a797",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_service_volanoustamisteenus",
+      "canonical_item_id": "tartu_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenuse eesmärk on aidata isikut tema varalise olukorra kindlakstegemisel, võlausaldajatega läbirääkimiste pidamisel ja nõuete rahuldamisel. Teenus aitab vältida uute võlgnevuste tekkimist, parandada toimetulekuvõimet ja lahendada võlgnevustega seotud probleeme. Võlanõustamisteenus on teenuse saajale tasuta.",
+      "targetGroup": "Tartu valla elanikud, kellel on võlgnevused või võlgnevustega seotud toimetulekuraskused.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": "Võta ühendust sotsiaalosakonnaga või täida sotsiaaltoetuse ja -teenuse avaldus. Vajadusel suunatakse teenusele.",
+        "deadline": null
+      },
+      "pricing": "Teenuse saajale tasuta",
+      "officialUrl": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/abi-toimetulekuraskusega-inimesele/volanoustamisteenus",
+      "relatedForms": [
+        "tartu_vald_form_sotsiaaltoetuse_ja_teenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva"
+      ],
+      "sourceKeys": [
+        "volanoustamisteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "volanoustamisteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_service_volanoustamisteenus",
+      "document_id": "tartu_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/abi-toimetulekuraskusega-inimesele/volanoustamisteenus",
+      "content_hash": "a602d5cc2f1ce1ff8452d059d821971c0b625e3fa503e7da946136ccef59bf3b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_service_vaimse_tervise_teenus",
+      "canonical_item_id": "tartu_vald:service:vaimse_tervise_teenus",
+      "itemType": "service",
+      "title": "Vaimse tervise teenus",
+      "status": "active",
+      "summary": "Tartu vald pakub koostöös Sotsiaalministeeriumiga valla elanikele vaimse tervise teenuseid. Teenust rahastatakse 2025. aasta riigieelarve alusel ja osutatakse perioodil 01.03.2025–31.12.2025. Toetavad teenused on psühholoogiline nõustamine, kriisinõustamine, perenõustamine, kunstiteraapia, mänguteraapia ja kogemusnõustamine. Teenus on Tartu valla elanikele tasuta ning määratakse kuni viis nõustamiskorda eelarveaasta jooksul.",
+      "targetGroup": "Tartu valla täisealised isikud ja pered, kelle elukoht rahvastikuregistris on Tartu vald.",
+      "conditions": "Teenuse saamiseks peab vallavalitsus hindama isiku abivajadust; teenust osutavad Ajuagentuur OÜ, Ambromed Grupp OÜ, ProVida Kliinik OÜ ja Varajase Kaasamise Keskus OÜ.",
+      "application": {
+        "channels": [
+          "email",
+          "in_person"
+        ],
+        "steps": "Täida sotsiaaltoetuse ja -teenuse avaldus ja saada see või too sotsiaalosakonda.",
+        "deadline": null
+      },
+      "pricing": "Tasuta kuni viis nõustamiskorda eelarveaastas.",
+      "officialUrl": "https://tartuvald.ee/toiming/vaimse-tervise-teenus",
+      "relatedForms": [
+        "tartu_vald_form_sotsiaaltoetuse_ja_teenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva",
+        "tartu_vald_contact_kalli_madisson",
+        "tartu_vald_contact_maret_toom",
+        "tartu_vald_contact_maiu_helmeste"
+      ],
+      "sourceKeys": [
+        "social_support_application_form",
+        "vaimse_tervise_teenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_support_application_form",
+        "vaimse_tervise_teenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_service_vaimse_tervise_teenus",
+      "document_id": "tartu_vald_service_vaimse_tervise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/toiming/vaimse-tervise-teenus",
+      "content_hash": "7c1a26fc4b627cf730cd6e4f86cd07e3c5aeca444960dfac8bdc42cbd635aacc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_service_valtimatu_sotsiaalabi_teenus",
+      "canonical_item_id": "tartu_vald:service:valtimatu_sotsiaalabi_teenus",
+      "itemType": "service",
+      "title": "Vältimatu sotsiaalabi teenus",
+      "status": "active",
+      "summary": "Vältimatu sotsiaalabi eesmärk on tagada sotsiaalselt abitus olukorras olevale isikule hädavajalik toit, riietus, ajutine peavari, sotsiaalnõustamine ja transport. Abi antakse elatusvahendite kaotuse või puudumise või eluaseme ootamatu kasutuskõlbmatuks muutumise korral. Teenust osutatakse seni, kuni inimene ei ole enam elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitus olukorras.",
+      "targetGroup": "Sotsiaalselt abitus olukorras olev isik, sh ajutiselt Eestis viibiv välismaalane.",
+      "conditions": "Abi on mõeldud hädavajaliku toidu, riietuse, ajutise peavarju, nõustamise ja transpordi tagamiseks vältimatus olukorras.",
+      "application": {
+        "channels": [
+          "email",
+          "in_person"
+        ],
+        "steps": "Täida sotsiaaltoetuse ja -teenuse avaldus ning saada see või too Tartu Vallavalitsuse sotsiaalosakonda.",
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://tartuvald.ee/toiming/valtimatu-sotsiaalabi-teenus",
+      "relatedForms": [
+        "tartu_vald_form_sotsiaaltoetuse_ja_teenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva"
+      ],
+      "sourceKeys": [
+        "social_support_application_form",
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_support_application_form",
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_service_valtimatu_sotsiaalabi_teenus",
+      "document_id": "tartu_vald_service_valtimatu_sotsiaalabi_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/toiming/valtimatu-sotsiaalabi-teenus",
+      "content_hash": "9b8f7334cc242ba3cda7e27e1cbc1b3a920144eee824d259049cec94f1e28ad2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_service_koduteenus",
+      "canonical_item_id": "tartu_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus on kohaliku omavalitsuse korraldatav sotsiaalteenus, mille eesmärk on tagada täisealise isiku iseseisev ja turvaline toimetulek kodustes tingimustes ning säilitada või parandada elukvaliteeti. Teenus hõlmab abi toimingutes, mida inimene terviseseisundi, tegevusvõime või elukeskkonna tõttu kõrvalise abita teha ei suuda. Koduteenuse hulka kuuluvad näiteks asjaajamine, toidukaupade ja ravimite toomine ning küttepuude tuppa toomine.",
+      "targetGroup": "Täisealised Tartu valla elanikud, kes vajavad kodustes tingimustes kõrvalabi.",
+      "conditions": "Sotsiaaltööspetsialist ja koduhooldustöötaja koostavad kliendile hoolduskava ning teenus kujundatakse hooldusvajaduse järgi.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": "Pöördu Tartu Vallavalitsuse sotsiaalosakonna poole. Sotsiaaltööspetsialist ja koduhooldustöötaja hindavad vajadust ning koostavad hoolduskava.",
+        "deadline": null
+      },
+      "pricing": "Koduteenuse maksumus: kuni 2 tundi nädalas 40 eurot kuus, kuni 4 tundi nädalas 60 eurot kuus, kuni 6 tundi nädalas 120 eurot kuus. Koduteenuse kliendile suunatud tasuline transporditeenus koos saatjaga: kuni 80 km 5 eurot; üle 80 km 5 eurot + 0,20 eurot iga 80 km ületava km eest.",
+      "officialUrl": "https://tartuvald.ee/toiming/koduteenus-0",
+      "relatedForms": [],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva",
+        "tartu_vald_contact_anneli_surva",
+        "tartu_vald_contact_sigrid_maidla"
+      ],
+      "sourceKeys": [
+        "koduteenus_page",
+        "social_contacts_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "koduteenus_page",
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_service_koduteenus",
+      "document_id": "tartu_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/toiming/koduteenus-0",
+      "content_hash": "ffa33cc40914955d39fd57f825a617e4d88148dcd09489dd14aa6e065cbe4cef",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_service_hooldusteenus_valjaspool_kodu",
+      "canonical_item_id": "tartu_vald:service:hooldusteenus_valjaspool_kodu",
+      "itemType": "service",
+      "title": "Hooldusteenus väljaspool kodu",
+      "status": "active",
+      "summary": "Hooldusteenus väljaspool kodu on mõeldud inimesele, kellel on ajutine või püsiv hooldusvajadus, mida ei ole võimalik kodustes tingimustes tagada. Teenust vajav inimene vajab kõrvalabi sellisel määral, et kodu kohandamisest või koduteenusest tema toimetuleku, turvalisuse ja elukvaliteedi säilitamiseks ei piisa. Tartu Vallavalitsus osaleb hooldekodu kohatasu maksmisel ning kohamaksumus jaguneb hoolduskomponendiks ja inimese omaosaluseks.",
+      "targetGroup": "Tartu valla elanikud, kelle hooldusvajadust ei saa kodus tagada.",
+      "conditions": "Vajadus selgitatakse välja abivajaduse hindamise käigus; hooldekodu kohatasu jaguneb KOV-i hoolduskomponendiks ja inimese omaosaluseks.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": "Pöördu Tartu Vallavalitsuse sotsiaalosakonna poole, et hinnata hooldusvajadust ja hooldusteenuse korraldamist.",
+        "deadline": null
+      },
+      "pricing": "Kohamaksumus jaguneb KOV-i osaks ja inimese omaosaluseks; täpne maksumus selgub hindamisel.",
+      "officialUrl": "https://tartuvald.ee/toiming/hooldusteenus-valjaspool-kodu",
+      "relatedForms": [],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva"
+      ],
+      "sourceKeys": [
+        "hooldusteenus_valjaspool_kodu_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "hooldusteenus_valjaspool_kodu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_service_hooldusteenus_valjaspool_kodu",
+      "document_id": "tartu_vald_service_hooldusteenus_valjaspool_kodu",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/toiming/hooldusteenus-valjaspool-kodu",
+      "content_hash": "6de38955d711c785a0d4f991b679a7ce2cff8ef45b7e2938bc24b28ca6f8cf9e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "tartu_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenuse eesmärk on võimaldada puudega isikul, kelle puue takistab isikliku või ühissõiduki kasutamist, kasutada tema vajadustele vastavat transpordivahendit tööle, õppeasutusse või avalike teenuste kasutamiseks. Avalikeks teenusteks loetakse muu hulgas haridus-, tervishoiu-, sotsiaalteenuseid, postkontori, panga, PPA, töötukassa või kommunaalteenustega seotud asjaajamisi. Teenust osutab OÜ Tartaline.",
+      "targetGroup": "Puudega Tartu valla elanikud, kelle puue takistab isikliku või ühistranspordi kasutamist.",
+      "conditions": "Teenust kasutatakse tööle või õppeasutusse sõitmiseks või avalike teenuste kasutamiseks.",
+      "application": {
+        "channels": [
+          "email",
+          "in_person"
+        ],
+        "steps": "Täida sotsiaaltranspordi teenuse avaldus ja saada see või too sotsiaalosakonda.",
+        "deadline": null
+      },
+      "pricing": "Koduvalla piires 3 eurot üks sõidukord; maakonna piires 5 eurot üks sõidukord. Hind on ühe sõidusuuna kohta ja ei sõltu sõidu pikkusest.",
+      "officialUrl": "https://tartuvald.ee/toiming/sotsiaaltransporditeenus",
+      "relatedForms": [
+        "tartu_vald_form_sotsiaaltranspordi_teenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva"
+      ],
+      "sourceKeys": [
+        "sotsiaaltransporditeenus_page",
+        "sotsiaaltransport_form"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "sotsiaaltransporditeenus_page",
+        "sotsiaaltransport_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_service_sotsiaaltransporditeenus",
+      "document_id": "tartu_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/toiming/sotsiaaltransporditeenus",
+      "content_hash": "51fa8c1e90c8bf78d3caa0d74c72f3c761046edcf936f5033a80fef0546ba2ba",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_service_sotsiaalkiirabi",
+      "canonical_item_id": "tartu_vald:service:sotsiaalkiirabi",
+      "itemType": "service",
+      "title": "Sotsiaalkiirabi",
+      "status": "active",
+      "summary": "Sotsiaalkiirabi on Kastre, Tartu ja Kambja vallas käivitunud pilootprojekt, mille eesmärk on parandada kvaliteetsete kodus elamist toetavate sotsiaalteenuste kättesaadavust ning ennetada abi- ja toetusvajaduse süvenemist. Projekt kestab 01.08.2025–31.05.2027. Teenus on seotud hooldus- ja abivajadusega isikute erakorralise abistamise korraldamisega väljaspool valla sotsiaalosakonna tööaega.",
+      "targetGroup": "Hooldus- ja abivajadusega inimesed Tartu vallas, kellel tekib erakorraline abivajadus väljaspool sotsiaalosakonna tööaega.",
+      "conditions": "Pilootprojekt Tartu, Kastre ja Kambja vallas perioodil 01.08.2025–31.05.2027.",
+      "application": {
+        "channels": [
+          "phone",
+          "in_person"
+        ],
+        "steps": "KOV leht ei anna detailset taotlusvormi; vajadusel pöördu sotsiaalosakonna poole või kasuta kriisiolukorras asjakohast abi. Täpsem töökorraldus vajab ülevaatamist.",
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/sotsiaalkiirabi",
+      "relatedForms": [],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva",
+        "tartu_vald_contact_rain_tomberg"
+      ],
+      "sourceKeys": [
+        "sotsiaalkiirabi_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "sotsiaalkiirabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_service_sotsiaalkiirabi",
+      "document_id": "tartu_vald_service_sotsiaalkiirabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/sotsiaalkiirabi",
+      "content_hash": "02d4dc4870d5eb1156b27f557c5fc2a181d2dcb4871596b39cf0d2ff7d67d5c9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "tartu_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealisele isikule hoolduse seadmise eesmärk on tagada vaimse või kehalise puude tõttu abivajavale inimesele abi oma õiguste teostamiseks ja kohustuste täitmiseks. Hooldus on hooldaja igapäevane füüsiline tegevus kõrvalabi osutamiseks ja hooldatava juhendamiseks söömisel, hügieenitoimingutes, riietumisel, liikumisel või suhtlemisel. Sotsiaalosakonna ametnik hindab hooldusvajadust hooldatava elukohas ning selgitab välja hoolduse ulatuse ja hooldaja võimalused.",
+      "targetGroup": "Täisealine vaimse või kehalise puude tõttu abi vajav Tartu valla elanik ja tema hooldaja.",
+      "conditions": "Hooldusvajadust hinnatakse hooldatava elukohas. Korduv hindamine toimub vastavalt vajadusele.",
+      "application": {
+        "channels": [
+          "email",
+          "in_person"
+        ],
+        "steps": "Täida täisealisele isikule hooldaja määramise ja hooldajatoetuse maksmise taotlus ning saada see või too sotsiaalosakonda.",
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://tartuvald.ee/toiming/taisealise-isiku-hooldus",
+      "relatedForms": [
+        "tartu_vald_form_taisealise_isiku_hooldaja_taotlus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva"
+      ],
+      "sourceKeys": [
+        "adult_caregiver_form",
+        "taisealise_isiku_hooldus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "adult_caregiver_form",
+        "taisealise_isiku_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_service_taisealise_isiku_hooldus",
+      "document_id": "tartu_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/toiming/taisealise-isiku-hooldus",
+      "content_hash": "8ba0dda9072721f39beabb161be81f7e0105fa8b45c3c32b3fdf454a6010104e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "tartu_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenuse eesmärk on abistada inimest tegevustes, mille tegemiseks ta vajab puude tõttu füüsilist kõrvalabi. Isiklik abistaja aitab igapäevastes tegevustes, näiteks liikumisel, söömisel, toidu valmistamisel, riietumisel, hügieeni-, majapidamis- ja muudes toimingutes, vähendades seadusjärgsete hooldajate hoolduskoormust. Teenuse kasutaja peab olema võimeline oma asjaajamist korraldama ja isikliku abistaja tööd koordineerima.",
+      "targetGroup": "Puudega Tartu valla elanik, kes vajab füüsilist kõrvalabi ja suudab isikliku abistaja tööd koordineerida.",
+      "conditions": "Teenuse kasutaja peab suutma korraldada oma asjaajamist ja koordineerida abistaja tööd; maksumus selgub abivajaduse hindamisel.",
+      "application": {
+        "channels": [
+          "email",
+          "in_person"
+        ],
+        "steps": "Täida sotsiaaltoetuse ja -teenuse avaldus ning saada see või too Tartu Vallavalitsuse sotsiaalosakonda.",
+        "deadline": null
+      },
+      "pricing": "Maksumus selgub abivajaduse hindamise käigus.",
+      "officialUrl": "https://tartuvald.ee/toiming/isikliku-abistaja-teenus",
+      "relatedForms": [
+        "tartu_vald_form_sotsiaaltoetuse_ja_teenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva"
+      ],
+      "sourceKeys": [
+        "isikliku_abistaja_teenus_page",
+        "social_support_application_form"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "isikliku_abistaja_teenus_page",
+        "social_support_application_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_service_isikliku_abistaja_teenus",
+      "document_id": "tartu_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/toiming/isikliku-abistaja-teenus",
+      "content_hash": "dba7508159da9cca71bd3b6bb6ae20ecded5bbc13636ea8d8940c53d959eb77b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "tartu_vald:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenuse eesmärk on toetada last kasvatava isiku toimetulekut või töötamist ning vähendada lapse erivajadusest tulenevat hoolduskoormust. Tartu valla lehel on teenust nimetatud erivajadusega lapse teema all. Lapsehoiuteenust võimaldatakse 1,5–3-aastase lapse vanematele nende nõusolekul lasteaiakoha asemel ning kuni 18-aastasele raske või sügava puudega lapsele; 18-aastaseks saanud raske või sügava puudega isiku puhul võib teenust osutada kuni selle kalendriaasta lõpuni, mil laps täisealiseks sai.",
+      "targetGroup": "1,5–3-aastase lapse vanemad lasteaiakoha asemel ning kuni 18-aastased raske või sügava puudega lapsed; täisealiseks saanud raske või sügava puudega isik kuni sama kalendriaasta lõpuni.",
+      "conditions": "Teenuse vajadus tuleb esitada lastekaitsespetsialistidele; teenuse aluseks on lapse või pere vajadus.",
+      "application": {
+        "channels": [
+          "email",
+          "in_person"
+        ],
+        "steps": "Esita kirjalik taotlus Tartu Vallavalitsuse lastekaitsespetsialistidele. Kasuta sotsiaaltoetuse ja -teenuse avaldust.",
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/erivajadusega-laps",
+      "relatedForms": [
+        "tartu_vald_form_sotsiaaltoetuse_ja_teenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_kalli_madisson",
+        "tartu_vald_contact_maret_toom",
+        "tartu_vald_contact_maiu_helmeste"
+      ],
+      "sourceKeys": [
+        "erivajadusega_laps_page",
+        "social_support_application_form"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "erivajadusega_laps_page",
+        "social_support_application_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_service_lapsehoiuteenus",
+      "document_id": "tartu_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/erivajadusega-laps",
+      "content_hash": "b86761ae87604e0efb96a27cc213cf2591ddf5912eb6d24ace8e304a4dc3d638",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_service_eluruumi_tagamine",
+      "canonical_item_id": "tartu_vald:service:eluruumi_tagamine",
+      "itemType": "service",
+      "title": "Eluruumi tagamine",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenuse eesmärk on kindlustada eluruumi kasutamise võimalus inimesele, kes ei ole sotsiaalmajandusliku olukorra tõttu võimeline endale ja oma perekonnale vajadustele vastavat eluruumi tagama. Teenuse maksumus selgub abivajaduse hindamise käigus.",
+      "targetGroup": "Tartu valla elanik, kes ei suuda sotsiaalmajandusliku olukorra tõttu endale või perele sobivat eluruumi tagada.",
+      "conditions": "Abivajadus hinnatakse teenuse taotlemisel; maksumus selgub hindamise käigus.",
+      "application": {
+        "channels": [
+          "email",
+          "in_person"
+        ],
+        "steps": "Esita kirjalik taotlus või kasuta sotsiaaltoetuse ja -teenuse avaldust. Tartu valla lehe mõnel alamlehel esineb vormilink prelive.vportal.ee domeenile; kanonilise vormina on kasutatud valla ametlikul domeenil avaldatud üldavaldust.",
+        "deadline": null
+      },
+      "pricing": "Maksumus selgub abivajaduse hindamise käigus.",
+      "officialUrl": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/elukoha-tagamine/eluruumi-tagamine",
+      "relatedForms": [
+        "tartu_vald_form_sotsiaaltoetuse_ja_teenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva"
+      ],
+      "sourceKeys": [
+        "eluruumi_tagamine_page",
+        "social_support_application_form"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "eluruumi_tagamine_page",
+        "social_support_application_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_service_eluruumi_tagamine",
+      "document_id": "tartu_vald_service_eluruumi_tagamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/elukoha-tagamine/eluruumi-tagamine",
+      "content_hash": "80f9d31a76576c2faf0c0ce2232bee8337b2a575e95502f7aa9225214ae7de57",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_service_turvakoduteenus",
+      "canonical_item_id": "tartu_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenuse eesmärk on tagada abivajajale ajutine eluase, turvaline keskkond ja esmane abi. Esmase abi raames tagatakse vajadusel kriisiabi, mis taastab inimese psüühilise tasakaalu ja tegevusvõime igapäevaelus, ning antakse infot teiste abi saamise võimaluste kohta. Teenust on õigus saada lapsel, kes vajab abi hooldamises esinevate puuduste tõttu, mis ohustavad elu, tervist või arengut, ning täisealisel isikul, kes vajab turvalist keskkonda. Teenus on abivajajale tasuta.",
+      "targetGroup": "Laps, kelle elu, tervis või areng on hooldamise puuduste tõttu ohus; täisealine isik, kes vajab turvalist keskkonda.",
+      "conditions": "Teenust osutatakse turvalise keskkonna ja esmase abi vajaduse korral.",
+      "application": {
+        "channels": [
+          "phone",
+          "in_person",
+          "email"
+        ],
+        "steps": "Teenuse vajaduse korral helista või tule sotsiaalosakonda. Vajadusel saab esitada sotsiaaltoetuse ja -teenuse avalduse.",
+        "deadline": null
+      },
+      "pricing": "Abivajajale tasuta",
+      "officialUrl": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/elukoha-tagamine/turvakoduteenus",
+      "relatedForms": [
+        "tartu_vald_form_sotsiaaltoetuse_ja_teenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva",
+        "tartu_vald_contact_kalli_madisson",
+        "tartu_vald_contact_maret_toom",
+        "tartu_vald_contact_maiu_helmeste"
+      ],
+      "sourceKeys": [
+        "social_support_application_form",
+        "turvakoduteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_support_application_form",
+        "turvakoduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_service_turvakoduteenus",
+      "document_id": "tartu_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/elukoha-tagamine/turvakoduteenus",
+      "content_hash": "170b47308b99a0d504dce6a6e9db390f9ef230c554f3132ea7046f7204deae05",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_service_varjupaigateenus",
+      "canonical_item_id": "tartu_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenuse eesmärk on tagada Tartu valla territooriumil viibivale täisealisele isikule, kes ei ole võimeline endale ööbimiskohta leidma, ajutine ööbimiskoha kasutamise võimalus. Teenuse maksumus selgub abivajaduse hindamise käigus.",
+      "targetGroup": "Tartu valla territooriumil viibiv täisealine isik, kes ei suuda endale ööbimiskohta leida.",
+      "conditions": "Abivajadus hinnatakse teenuse korraldamisel; maksumus selgub hindamise käigus.",
+      "application": {
+        "channels": [
+          "phone",
+          "in_person",
+          "email"
+        ],
+        "steps": "Teenuse vajaduse korral helista või tule sotsiaalosakonda. Vajadusel saab kasutada sotsiaaltoetuse ja -teenuse avaldust.",
+        "deadline": null
+      },
+      "pricing": "Maksumus selgub abivajaduse hindamise käigus.",
+      "officialUrl": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/elukoha-tagamine/varjupaigateenus",
+      "relatedForms": [
+        "tartu_vald_form_sotsiaaltoetuse_ja_teenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva"
+      ],
+      "sourceKeys": [
+        "social_support_application_form",
+        "varjupaigateenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_support_application_form",
+        "varjupaigateenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_service_varjupaigateenus",
+      "document_id": "tartu_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/elukoha-tagamine/varjupaigateenus",
+      "content_hash": "9562108a680fdd6aee0363769f47688f869af480f44c9dc91351993f790be44b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_resource_lastekaitse",
+      "canonical_item_id": "tartu_vald:resource:lastekaitse",
+      "itemType": "resource",
+      "title": "Lastekaitse ja abivajav laps",
+      "status": "active",
+      "summary": "Tartu valla lastekaitse valdkonna töötajate eesmärk on tagada lapse heaolu ja õigused. Vallavalitsus korraldab lastekaitset kohalikul tasandil ning loob tingimused laste õiguste ja heaolu tagamiseks. Lapsi puudutavate toetuste ja teenuste taotlemise osas tuleb pöörduda lastekaitsetöötaja poole. Abivajavast või hädaohus olevast lapsest tuleb viivitamata teatada kohaliku omavalitsuse lastekaitsetöötajale või lasteabitelefonil; kadunud laste on 116 000 ja hädaabinumber.",
+      "targetGroup": "Lapsed, pered ja isikud, kellel on teave abivajavast või hädaohus lapsest.",
+      "officialUrl": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/hadaohus-ja-abivajav-laps",
+      "relatedTo": [],
+      "relatedContacts": [
+        "tartu_vald_contact_kalli_madisson",
+        "tartu_vald_contact_maret_toom",
+        "tartu_vald_contact_maiu_helmeste"
+      ],
+      "sourceKeys": [
+        "lastekaitse_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_resource_lastekaitse",
+      "document_id": "tartu_vald_resource_lastekaitse",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/hadaohus-ja-abivajav-laps",
+      "content_hash": "c95c1e75a9e7a09b70241a597dfa42d94ad719fa9589f0e00a6b21beef0dbdfb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_resource_erivajadusega_laps_info",
+      "canonical_item_id": "tartu_vald:resource:erivajadusega_laps_info",
+      "itemType": "resource",
+      "title": "Erivajadusega lapse info",
+      "status": "active",
+      "summary": "Tartu valla erivajadusega lapse leht selgitab, et puudega lapsest teavitus jõuab seadusest tulenevalt kohalikule omavalitsusele. Kui laps saab puude, liigub info lastekaitsespetsialistile, kes teeb perele esmase nõustamise ja annab vajadusel infot toetuste ja teenuste kohta. Leht koondab ka erivajadusega lapsega seotud lapsehoiuteenuse, tugiisikuteenuse, sotsiaaltranspordi, vaimse tervise abi ning puudega lapse hooldajatoetuse info.",
+      "targetGroup": "Erivajadusega laste pered Tartu vallas.",
+      "officialUrl": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/erivajadusega-laps",
+      "relatedTo": [
+        "tartu_vald_service_lapsehoiuteenus",
+        "tartu_vald_service_tugiisikuteenus",
+        "tartu_vald_service_sotsiaaltransporditeenus",
+        "tartu_vald_benefit_puudega_lapse_hooldajatoetus"
+      ],
+      "relatedContacts": [
+        "tartu_vald_contact_kalli_madisson",
+        "tartu_vald_contact_maret_toom",
+        "tartu_vald_contact_maiu_helmeste"
+      ],
+      "sourceKeys": [
+        "erivajadusega_laps_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "erivajadusega_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_resource_erivajadusega_laps_info",
+      "document_id": "tartu_vald_resource_erivajadusega_laps_info",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/erivajadusega-laps",
+      "content_hash": "c5aa33c3e22fa2a1a9cf7de49ed2557cf2cec7d081b7fed0d4a1d6bfadf8a716",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_resource_sotsiaalteenuste_keskus",
+      "canonical_item_id": "tartu_vald:resource:sotsiaalteenuste_keskus",
+      "itemType": "resource",
+      "title": "Sotsiaalteenuste Keskus",
+      "status": "active",
+      "summary": "Sotsiaalteenuste Keskuse eesmärk on Tartu Vallavalitsuse sotsiaal- ja haridusosakonna määratud sotsiaalteenuste korraldamine, osutamine ja arendamine, et toetada elanike iseseisvat toimetulekut. Keskuse põhiülesanded hõlmavad erihoolekandeteenuste osutamist Sotsiaalkindlustusametiga sõlmitud lepingu alusel, koduteenuse osutamist, vältimatu abi osutamist koostöös sotsiaalosakonnaga, projektide planeerimist ja elluviimist, nõustamist ning eakate ja erivajadustega inimeste huvitegevuse ruumide kasutamise võimaldamist.",
+      "targetGroup": "Tartu valla eakad, erivajadustega inimesed ja sotsiaalteenuseid vajavad elanikud.",
+      "officialUrl": "https://tartuvald.ee/paevakeskus",
+      "relatedTo": [],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva",
+        "tartu_vald_contact_anneli_surva",
+        "tartu_vald_contact_sigrid_maidla",
+        "tartu_vald_contact_rain_tomberg"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenuste_keskus_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "sotsiaalteenuste_keskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_resource_sotsiaalteenuste_keskus",
+      "document_id": "tartu_vald_resource_sotsiaalteenuste_keskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/paevakeskus",
+      "content_hash": "3d0177db6463a894166cc748153433b27ce42fb8fa4c6d6c00fd94ec035ea528",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_resource_noorte_tugiteenused",
+      "canonical_item_id": "tartu_vald:resource:noorte_tugiteenused",
+      "itemType": "resource",
+      "title": "Noorte tugiteenused",
+      "status": "active",
+      "summary": "Tartu valla sissekirjutusega 16–29-aastastel mittetöötavatel ja mitteõppivatel noortel ning nende lähedastel on võimalik pöörduda noorte heaolu spetsialisti poole nõu saamiseks. Ennetustöö kaudu toetatakse ka 13–15-aastaseid noori. Noorele pakutakse tasuta psühholoogilist nõustamist, loovteraapiat, Edumuse e-kursuseid ja tööalast mentorlust ettevõttes; noore lähedastele võimaldatakse tasuta nõustamisteenust.",
+      "targetGroup": "Tartu valla 16–29-aastased mittetöötavad ja mitteõppivad noored, 13–15-aastased noored ennetustöö raames ning nende lähedased.",
+      "officialUrl": "https://tartuvald.ee/haridus-ja-noored/noored/noorte-tugiteenused",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "noorte_tugiteenused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "noorte_tugiteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_resource_noorte_tugiteenused",
+      "document_id": "tartu_vald_resource_noorte_tugiteenused",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/haridus-ja-noored/noored/noorte-tugiteenused",
+      "content_hash": "ba2168c4182a55804d33465246b1a9e88860c35bd95a692ae2ffeec3e2a12e69",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_resource_perelepitus",
+      "canonical_item_id": "tartu_vald:resource:perelepitus",
+      "itemType": "resource",
+      "title": "Perelepitus",
+      "status": "active",
+      "summary": "Perelepitus aitab lahku minevatel või lahku läinud lapsevanematel jõuda kokkuleppele ja sõlmida lapse huvidest lähtuvaid kokkuleppeid. Teenus pakub erapooletut tuge uue elukorralduse loomisel, aitab lahendada erimeelsused kohtuväliselt ning jääda toetavateks lapsevanemateks ka pärast lahkuminekut. Riikliku perelepitusteenuse saamiseks tuleb esitada taotlus Sotsiaalkindlustusametile; teenus on lapsevanemale tasuta.",
+      "targetGroup": "Lapsevanemad, kes plaanivad kooselu lõpetada või on selle juba lõpetanud.",
+      "officialUrl": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/perelepitus",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "perelepitus_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "perelepitus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_resource_perelepitus",
+      "document_id": "tartu_vald_resource_perelepitus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/perelepitus",
+      "content_hash": "7eadc2cfe8a0c02a15bbf8bda6a29efc605a2e21131cf3cb54deb98cadc3a785",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_resource_ohvriabi",
+      "canonical_item_id": "tartu_vald:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "Ohvriabitöötaja pakub tuge kuriteo, vägivalla või kriisijuhtumi tõttu kannatanud inimesele. Ohvriabi hõlmab tuge füüsilise, vaimse, seksuaalse või majandusliku vägivalla või õnnetusjuhtumi korral, traumast taastumist toetavat vaimse tervise abi ning võimalust taotleda ohvriabi hüvitist. Nõustamine on konfidentsiaalne ja vajadusel anonüümne ning teenus on tasuta.",
+      "targetGroup": "Kuriteo, vägivalla või kriisijuhtumi tõttu kannatanud inimesed ja nende pered.",
+      "officialUrl": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/ohvriabi",
+      "relatedTo": [],
+      "relatedContacts": [
+        "tartu_vald_contact_erle_kriisa",
+        "tartu_vald_contact_triin_jogeva",
+        "tartu_vald_contact_kalli_madisson",
+        "tartu_vald_contact_maret_toom",
+        "tartu_vald_contact_maiu_helmeste"
+      ],
+      "sourceKeys": [
+        "ohvriabi_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "ohvriabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_resource_ohvriabi",
+      "document_id": "tartu_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/abi-lapsele-ja-perele/ohvriabi",
+      "content_hash": "719a62cd252aa1afe97ec757b397014cf6359356edb8ed743b8f08bbc7a37d20",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_resource_spoku_iseteenindus",
+      "canonical_item_id": "tartu_vald:resource:spoku_iseteenindus",
+      "itemType": "resource",
+      "title": "SPOKU Tartu valla iseteenindus",
+      "status": "active",
+      "summary": "Tartu valla avalehel on e-teenuste all nimetatud SPOKU Tartu valla iseteenindus. Mitme toetuse ja teenuse juures, näiteks ranitsatoetuse ja matusetoetuse juures, on märgitud, et taotlust saab esitada iseteeninduskeskkonnas. Välise iseteeninduse täpne kasutus ja vormivalik tuleb kontrollida iseteeninduskeskkonnas.",
+      "targetGroup": "Tartu valla elanikud, kes soovivad toetusi või teenuseid elektrooniliselt taotleda.",
+      "officialUrl": "https://tartuvald.ee",
+      "relatedTo": [
+        "tartu_vald_benefit_matusetoetus",
+        "tartu_vald_benefit_ranitsatoetus"
+      ],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "home",
+        "matusetoetus_page",
+        "ranitsatoetus_page",
+        "social_menu_home"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "home",
+        "matusetoetus_page",
+        "ranitsatoetus_page",
+        "social_menu_home"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_resource_spoku_iseteenindus",
+      "document_id": "tartu_vald_resource_spoku_iseteenindus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee",
+      "content_hash": "6e7558780dfb0bbe57563780d3cd107cc4b8ae9cd5474275dff9517d1927c7b8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_form_sotsiaaltoetuse_ja_teenuse_avaldus",
+      "canonical_item_id": "tartu_vald:form:sotsiaaltoetuse_ja_teenuse_avaldus",
+      "itemType": "form",
+      "title": "Sotsiaaltoetuse ja -teenuse avaldus",
+      "status": "active",
+      "summary": "Üldvorm, mida kasutatakse Tartu valla sotsiaaltoetuste ja sotsiaalteenuste taotlemisel. Vormi kasutatakse mitme teenuse ja toetuse juures, sealhulgas sissetulekust sõltuvate toetuste, tugiisikuteenuse, vaimse tervise teenuse, vältimatu sotsiaalabi, isikliku abistaja teenuse, lapsehoiuteenuse ning teiste üldavaldusega taotletavate teenuste puhul.",
+      "format": "docx",
+      "submissionChannels": [
+        "email",
+        "in_person"
+      ],
+      "officialUrl": "https://tartuvald.ee/sites/default/files/documents/2025-07/SOTSIAALTOETUSE%20JA%20-TEENUSE%20AVALDUS.docx",
+      "relatedTo": [
+        "tartu_vald_benefit_tervisetoetus",
+        "tartu_vald_benefit_lastega_perede_toetus",
+        "tartu_vald_benefit_koolitoetus",
+        "tartu_vald_benefit_lapse_toiduraha_katmise_toetus",
+        "tartu_vald_benefit_kuttetoetus",
+        "tartu_vald_benefit_raske_majandusliku_olukorra_toetus",
+        "tartu_vald_benefit_erakorraliste_kulude_huvitamine",
+        "tartu_vald_benefit_kriisiabi",
+        "tartu_vald_benefit_hapniku_elektrikulu_kompenseerimine",
+        "tartu_vald_benefit_lasteaia_kohatasu_vahe_huvitamise_toetus",
+        "tartu_vald_service_tugiisikuteenus",
+        "tartu_vald_service_volanoustamisteenus",
+        "tartu_vald_service_vaimse_tervise_teenus",
+        "tartu_vald_service_valtimatu_sotsiaalabi_teenus",
+        "tartu_vald_service_isikliku_abistaja_teenus",
+        "tartu_vald_service_lapsehoiuteenus",
+        "tartu_vald_service_eluruumi_tagamine",
+        "tartu_vald_service_turvakoduteenus",
+        "tartu_vald_service_varjupaigateenus"
+      ],
+      "sourceKeys": [
+        "social_support_application_form"
+      ],
+      "item_type": "form",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_support_application_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_form_sotsiaaltoetuse_ja_teenuse_avaldus",
+      "document_id": "tartu_vald_form_sotsiaaltoetuse_ja_teenuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/sites/default/files/documents/2025-07/SOTSIAALTOETUSE%20JA%20-TEENUSE%20AVALDUS.docx",
+      "content_hash": "e82b4bcc3347d5dcaca8777591c0e6cb17f203dab85c6aafe565b5ae7c00b46a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_form_toimetulekutoetuse_avaldus",
+      "canonical_item_id": "tartu_vald:form:toimetulekutoetuse_avaldus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse avaldus",
+      "status": "active",
+      "summary": "Toimetulekutoetuse taotlemise vorm, mille abil esitatakse toimetulekutoetuse taotlus Tartu Vallavalitsusele. Vorm tuleb esitada koos vajalike sissetuleku- ja eluasemekulu tõenditega.",
+      "format": "doc",
+      "submissionChannels": [
+        "email",
+        "in_person"
+      ],
+      "officialUrl": "https://tartuvald.ee/sites/default/files/documents/2025-07/Toimetulekutoetuse_avalduse_blankett_2021.doc",
+      "relatedTo": [
+        "tartu_vald_benefit_toimetulekutoetus"
+      ],
+      "sourceKeys": [
+        "toimetulekutoetuse_form"
+      ],
+      "item_type": "form",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "toimetulekutoetuse_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_form_toimetulekutoetuse_avaldus",
+      "document_id": "tartu_vald_form_toimetulekutoetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/sites/default/files/documents/2025-07/Toimetulekutoetuse_avalduse_blankett_2021.doc",
+      "content_hash": "49854062d128ad7d45cb1753ac17e27b051615686d351bc24117b4252e94d3f5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_form_sotsiaaltranspordi_teenuse_avaldus",
+      "canonical_item_id": "tartu_vald:form:sotsiaaltranspordi_teenuse_avaldus",
+      "itemType": "form",
+      "title": "Sotsiaaltranspordi teenuse avaldus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenuse taotlemise vorm, mida kasutatakse Tartu valla sotsiaaltranspordi teenuse taotlemisel. Vorm tuleb täita ja saata e-posti aadressile või tuua Tartu Vallavalitsuse sotsiaalosakonda.",
+      "format": "docx",
+      "submissionChannels": [
+        "email",
+        "in_person"
+      ],
+      "officialUrl": "https://tartuvald.ee/sites/default/files/documents/2025-07/SOTSIAALTranspordi%20teenuse%20avaldus.docx",
+      "relatedTo": [
+        "tartu_vald_service_sotsiaaltransporditeenus"
+      ],
+      "sourceKeys": [
+        "sotsiaaltransport_form"
+      ],
+      "item_type": "form",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "sotsiaaltransport_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_form_sotsiaaltranspordi_teenuse_avaldus",
+      "document_id": "tartu_vald_form_sotsiaaltranspordi_teenuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/sites/default/files/documents/2025-07/SOTSIAALTranspordi%20teenuse%20avaldus.docx",
+      "content_hash": "ad20b2179e049d3ebc27503c2c9810cd76019b1e66d3cd4bb48c39254cc6966c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_form_taisealise_isiku_hooldaja_taotlus",
+      "canonical_item_id": "tartu_vald:form:taisealise_isiku_hooldaja_taotlus",
+      "itemType": "form",
+      "title": "Täisealisele isikule hooldaja määramise ja hooldajatoetuse maksmise taotlus",
+      "status": "active",
+      "summary": "Vorm täisealisele isikule hooldaja määramiseks ja hooldajatoetuse maksmiseks. Vorm on seotud täisealise isiku hoolduse teenusega ning esitatakse Tartu Vallavalitsuse sotsiaalosakonnale.",
+      "format": "docx",
+      "submissionChannels": [
+        "email",
+        "in_person"
+      ],
+      "officialUrl": "https://tartuvald.ee/sites/default/files/documents/2025-07/T%C3%84ISEALISELE%20ISIKULE%20HOOLDAJA%20M%C3%84%C3%84RAMISE%20JA%20HOOLDAJATOETUSE%20MAKSMISE%20TAOTLUS.docx",
+      "relatedTo": [
+        "tartu_vald_service_taisealise_isiku_hooldus"
+      ],
+      "sourceKeys": [
+        "adult_caregiver_form"
+      ],
+      "item_type": "form",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "adult_caregiver_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_form_taisealise_isiku_hooldaja_taotlus",
+      "document_id": "tartu_vald_form_taisealise_isiku_hooldaja_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/sites/default/files/documents/2025-07/T%C3%84ISEALISELE%20ISIKULE%20HOOLDAJA%20M%C3%84%C3%84RAMISE%20JA%20HOOLDAJATOETUSE%20MAKSMISE%20TAOTLUS.docx",
+      "content_hash": "773b3c67d286e6d89c632d6dffa9ca5e23bd7d19a2c954a104a7164a7c4769cf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_form_matusetoetuse_taotlus",
+      "canonical_item_id": "tartu_vald:form:matusetoetuse_taotlus",
+      "itemType": "form",
+      "title": "Matusetoetuse taotlus",
+      "status": "active",
+      "summary": "Matusetoetuse taotlemise vorm. Tartu valla lehe järgi tuleb pabervorm täita ja tuua sotsiaalosakonda; iseteeninduses saab taotlust esitada elektrooniliselt. Taotlusele lisatakse isikut tõendav dokument ja surmatõend.",
+      "format": "docx",
+      "submissionChannels": [
+        "online",
+        "in_person"
+      ],
+      "officialUrl": "https://tartuvald.ee/sites/default/files/documents/2025-07/MATUSETOETUSE%20TAOTLUS.docx",
+      "relatedTo": [
+        "tartu_vald_benefit_matusetoetus"
+      ],
+      "sourceKeys": [
+        "matusetoetus_form"
+      ],
+      "item_type": "form",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "matusetoetus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_form_matusetoetuse_taotlus",
+      "document_id": "tartu_vald_form_matusetoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/sites/default/files/documents/2025-07/MATUSETOETUSE%20TAOTLUS.docx",
+      "content_hash": "1885300fd059ee2e0bd5607f1b8f067f40940cae628f8e6ec06d53327de84745",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_form_puudega_lapse_hooldajatoetuse_taotlus",
+      "canonical_item_id": "tartu_vald:form:puudega_lapse_hooldajatoetuse_taotlus",
+      "itemType": "form",
+      "title": "Hooldajatoetuse taotlus puudega lapse hooldajale",
+      "status": "active",
+      "summary": "Vorm hooldajatoetuse taotlemiseks puudega lapse hooldajale. Taotlus esitatakse Tartu Vallavalitsuse lastekaitsespetsialistidele.",
+      "format": "docx",
+      "submissionChannels": [
+        "email",
+        "in_person"
+      ],
+      "officialUrl": "https://tartuvald.ee/sites/default/files/documents/2025-07/HOOLDAJATOETUSE%20TAOTLUS%20PUUDEGA%20LAPSE%20HOOLDAJALE.docx",
+      "relatedTo": [
+        "tartu_vald_benefit_puudega_lapse_hooldajatoetus"
+      ],
+      "sourceKeys": [
+        "child_caregiver_form"
+      ],
+      "item_type": "form",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "child_caregiver_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_form_puudega_lapse_hooldajatoetuse_taotlus",
+      "document_id": "tartu_vald_form_puudega_lapse_hooldajatoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/sites/default/files/documents/2025-07/HOOLDAJATOETUSE%20TAOTLUS%20PUUDEGA%20LAPSE%20HOOLDAJALE.docx",
+      "content_hash": "6eb1f0766dfc66ba67c78834e5f3686928f2cd2ac2286c5ed9bbcb48a3bcbef2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_form_ranitsatoetuse_avaldus",
+      "canonical_item_id": "tartu_vald:form:ranitsatoetuse_avaldus",
+      "itemType": "form",
+      "title": "Ranitsatoetuse avaldus",
+      "status": "active",
+      "summary": "Ranitsatoetuse taotlemise vorm esmakordselt 1. klassi mineva lapse toetuse taotlemiseks. Taotluse saab esitada SPOKU kaudu, paberkandjal vallamajja või digiallkirjastatult e-postiga.",
+      "format": "docx",
+      "submissionChannels": [
+        "online",
+        "email",
+        "in_person"
+      ],
+      "officialUrl": "https://tartuvald.ee/sites/default/files/documents/2025-07/RANITSATOETUSE_AVALDUS%20%281%29.docx",
+      "relatedTo": [
+        "tartu_vald_benefit_ranitsatoetus"
+      ],
+      "sourceKeys": [
+        "ranitsatoetus_form"
+      ],
+      "item_type": "form",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "ranitsatoetus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_form_ranitsatoetuse_avaldus",
+      "document_id": "tartu_vald_form_ranitsatoetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/sites/default/files/documents/2025-07/RANITSATOETUSE_AVALDUS%20%281%29.docx",
+      "content_hash": "51fcb39edb63caec1d3b2e9d2a3a2c61da305e9359dd78aaec3a870eb547a214",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_contact_anne_aleksejev",
+      "canonical_item_id": "tartu_vald:contact:anne_aleksejev",
+      "itemType": "contact",
+      "title": "Anne Aleksejev",
+      "status": "active",
+      "summary": "Anne Aleksejev on sotsiaal- ja haridusosakonna juhataja. Lehe järgi on tema vastutusvaldkonnaks sotsiaalhoolekandelise ja terviseedenduse töö korraldamine, osakonna töö koordineerimine ja juhtimine ning valdkondlike õigusaktide ja osakonna poliitikate väljatöötamine.",
+      "name": "Anne Aleksejev",
+      "role": "sotsiaal- ja haridusosakonna juhataja",
+      "department": "Sotsiaal- ja haridusosakond",
+      "address": "Haava tn 6, Kõrveküla alevik, Tartu vald, Tartumaa, 60512",
+      "officialUrl": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "relatedTo": [
+        "tartu_vald_benefit_ranitsatoetus",
+        "tartu_vald_benefit_koolisoidutoetus"
+      ],
+      "sourceKeys": [
+        "koolisoidutoetus_page",
+        "ranitsatoetus_page",
+        "social_contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "koolisoidutoetus_page",
+        "ranitsatoetus_page",
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_contact_anne_aleksejev",
+      "document_id": "tartu_vald_contact_anne_aleksejev",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "8c78f76fcf5d8dc126cfed584c22d370bd7d1eb1a637bb624fac404656b192c2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_contact_erle_kriisa",
+      "canonical_item_id": "tartu_vald:contact:erle_kriisa",
+      "itemType": "contact",
+      "title": "Erle Kriisa",
+      "status": "active",
+      "summary": "Erle Kriisa on sotsiaaltööspetsialist-erihoolekandeteenuste koordinaator. Tema töövaldkonnana on Tartu valla lehel nimetatud sotsiaalnõustamine, sotsiaalteenuste ja -toetuste, sh toimetulekutoetuse määramine, abi- ja hooldusvajaduse hindamine, hoolduse seadmine ja hooldajatoetuse määramine ning Tabivere ja Maarja-Magdaleena päevakeskuse erihoolekandeteenuste koordineerimine.",
+      "name": "Erle Kriisa",
+      "role": "sotsiaaltööspetsialist-erihoolekandeteenuste koordinaator",
+      "department": "Sotsiaal- ja haridusosakond",
+      "address": "Haava tn 6, Kõrveküla alevik, Tartu vald, Tartumaa, 60512",
+      "officialUrl": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "relatedTo": [],
+      "sourceKeys": [
+        "social_contacts_page",
+        "toimetulekutoetus_page",
+        "tugiisikuteenus_page",
+        "volanoustamisteenus_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_contacts_page",
+        "toimetulekutoetus_page",
+        "tugiisikuteenus_page",
+        "volanoustamisteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_contact_erle_kriisa",
+      "document_id": "tartu_vald_contact_erle_kriisa",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "78007e6b5e2b556fdb83b8ca7408bbfd61c683877185314c3fc5759134005da0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_contact_triin_jogeva",
+      "canonical_item_id": "tartu_vald:contact:triin_jogeva",
+      "itemType": "contact",
+      "title": "Triin Jõgeva",
+      "status": "active",
+      "summary": "Triin Jõgeva on sotsiaaltöö- ja eestkostespetsialist. Tema töövaldkonnana on Tartu valla lehel nimetatud eestkoste küsimused, sotsiaalnõustamine, sotsiaalteenuste ja -toetuste, sh toimetulekutoetuse määramine, abi- ja hooldusvajaduse hindamine, hoolduse seadmine ja hooldajatoetuse määramine.",
+      "name": "Triin Jõgeva",
+      "role": "sotsiaaltöö- ja eestkostespetsialist",
+      "department": "Sotsiaal- ja haridusosakond",
+      "address": "Haava tn 6, Kõrveküla alevik, Tartu vald, Tartumaa, 60512",
+      "officialUrl": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "relatedTo": [],
+      "sourceKeys": [
+        "social_contacts_page",
+        "toimetulekutoetus_page",
+        "tugiisikuteenus_page",
+        "volanoustamisteenus_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_contacts_page",
+        "toimetulekutoetus_page",
+        "tugiisikuteenus_page",
+        "volanoustamisteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_contact_triin_jogeva",
+      "document_id": "tartu_vald_contact_triin_jogeva",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "327f1e49ad3c4b257f78fe8c3c0b8b0eea3313b70e62c30619bc92ba4f0bded7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_contact_kalli_madisson",
+      "canonical_item_id": "tartu_vald:contact:kalli_madisson",
+      "itemType": "contact",
+      "title": "Kalli Madisson",
+      "status": "active",
+      "summary": "Kalli Madisson on lastekaitsespetsialist. Tema töövaldkonnana on Tartu valla lehel nimetatud lastekaitse, lapse õiguste ja heaolu tagamine, lastega perede sotsiaalnõustamine ja toetavatele sotsiaalteenustele suunamine.",
+      "name": "Kalli Madisson",
+      "role": "lastekaitsespetsialist",
+      "department": "Sotsiaal- ja haridusosakond",
+      "address": "Haava tn 6, Kõrveküla alevik, Tartu vald, Tartumaa, 60512",
+      "officialUrl": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "relatedTo": [],
+      "sourceKeys": [
+        "asendus_jarelhooldus_page",
+        "erivajadusega_laps_page",
+        "social_contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "asendus_jarelhooldus_page",
+        "erivajadusega_laps_page",
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_contact_kalli_madisson",
+      "document_id": "tartu_vald_contact_kalli_madisson",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "721ba4bf799be86662c6b8f1672cb2d95ee5d1e19b1c0125db88df13d7075383",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_contact_maret_toom",
+      "canonical_item_id": "tartu_vald:contact:maret_toom",
+      "itemType": "contact",
+      "title": "Maret Toom",
+      "status": "active",
+      "summary": "Maret Toom on lastekaitsespetsialist. Tema töövaldkonnana on Tartu valla lehel nimetatud lastekaitse, lapse õiguste ja heaolu tagamine, lastega perede sotsiaalnõustamine ja toetavatele sotsiaalteenustele suunamine.",
+      "name": "Maret Toom",
+      "role": "lastekaitsespetsialist",
+      "department": "Sotsiaal- ja haridusosakond",
+      "address": "Haava tn 6, Kõrveküla alevik, Tartu vald, Tartumaa, 60512",
+      "officialUrl": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "relatedTo": [],
+      "sourceKeys": [
+        "asendus_jarelhooldus_page",
+        "erivajadusega_laps_page",
+        "social_contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "asendus_jarelhooldus_page",
+        "erivajadusega_laps_page",
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_contact_maret_toom",
+      "document_id": "tartu_vald_contact_maret_toom",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "b8ad5b3b9fbf125f4873b38308a3e37bfe38c5b0c2087ed67d6fa45f56cb4ce2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_contact_maiu_helmeste",
+      "canonical_item_id": "tartu_vald:contact:maiu_helmeste",
+      "itemType": "contact",
+      "title": "Maiu Helmeste",
+      "status": "active",
+      "summary": "Maiu Helmeste on lastekaitsespetsialist. Tema töövaldkonnana on Tartu valla lehel nimetatud lastekaitse, lapse õiguste ja heaolu tagamine, lastega perede sotsiaalnõustamine ja toetavatele sotsiaalteenustele suunamine.",
+      "name": "Maiu Helmeste",
+      "role": "lastekaitsespetsialist",
+      "department": "Sotsiaal- ja haridusosakond",
+      "address": "Haava tn 6, Kõrveküla alevik, Tartu vald, Tartumaa, 60512",
+      "officialUrl": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "relatedTo": [],
+      "sourceKeys": [
+        "asendus_jarelhooldus_page",
+        "erivajadusega_laps_page",
+        "social_contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "asendus_jarelhooldus_page",
+        "erivajadusega_laps_page",
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_contact_maiu_helmeste",
+      "document_id": "tartu_vald_contact_maiu_helmeste",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "be5b4b724d0afa552b7ecab36a471fb1ab7512548457207ddb6ae1afae41e98b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_contact_anneli_surva",
+      "canonical_item_id": "tartu_vald:contact:anneli_surva",
+      "itemType": "contact",
+      "title": "Anneli Surva",
+      "status": "active",
+      "summary": "Anneli Surva on koduhooldustöötaja. Tartu valla lehel on tema töövaldkonnaks märgitud koduteenuse osutamine.",
+      "name": "Anneli Surva",
+      "role": "koduhooldustöötaja",
+      "department": "Sotsiaal- ja haridusosakond",
+      "address": "Haava tn 6, Kõrveküla alevik, Tartu vald, Tartumaa, 60512",
+      "officialUrl": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "relatedTo": [
+        "tartu_vald_service_koduteenus"
+      ],
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_contact_anneli_surva",
+      "document_id": "tartu_vald_contact_anneli_surva",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "c07611dc28ca2a98b13650d7b30bea0dfc7b3affe56b3a6f211877c4d90dd909",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_contact_sigrid_maidla",
+      "canonical_item_id": "tartu_vald:contact:sigrid_maidla",
+      "itemType": "contact",
+      "title": "Sigrid Maidla",
+      "status": "active",
+      "summary": "Sigrid Maidla on koduhooldustöötaja. Tartu valla lehel on tema töövaldkonnaks märgitud koduteenuse osutamine.",
+      "name": "Sigrid Maidla",
+      "role": "koduhooldustöötaja",
+      "department": "Sotsiaal- ja haridusosakond",
+      "address": "Haava tn 6, Kõrveküla alevik, Tartu vald, Tartumaa, 60512",
+      "officialUrl": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "relatedTo": [
+        "tartu_vald_service_koduteenus"
+      ],
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_contact_sigrid_maidla",
+      "document_id": "tartu_vald_contact_sigrid_maidla",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "b1925abe896c4e75c7d6479ffe6279ff27789cdfeb27402155520168295d8225",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_contact_rain_tomberg",
+      "canonical_item_id": "tartu_vald:contact:rain_tomberg",
+      "itemType": "contact",
+      "title": "Rain Tomberg",
+      "status": "active",
+      "summary": "Rain Tomberg on Tartu valla sotsiaalvaldkonna kontaktide lehel nimetatud heaolumeister.",
+      "name": "Rain Tomberg",
+      "role": "heaolumeister",
+      "department": "Sotsiaal- ja haridusosakond",
+      "address": "Haava tn 6, Kõrveküla alevik, Tartu vald, Tartumaa, 60512",
+      "officialUrl": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "relatedTo": [
+        "tartu_vald_service_sotsiaalkiirabi"
+      ],
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_contact_rain_tomberg",
+      "document_id": "tartu_vald_contact_rain_tomberg",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "88241542ec118d270bb12e46163efe21bcf7577a64f36288e76a84ec5a912680",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_contact_kairi_kaeval",
+      "canonical_item_id": "tartu_vald:contact:kairi_kaeval",
+      "itemType": "contact",
+      "title": "Kairi Kaeval",
+      "status": "active",
+      "summary": "Kairi Kaeval on kantseleispetsialist, kelle töövaldkonnana on lehel nimetatud vallavalitsuse asjaajamise ja dokumendiringluse korraldamine, kodanike teenindamine, esmase teabe andmine ning perekonnaseisu- ja rahvastikuregistritoimingud.",
+      "name": "Kairi Kaeval",
+      "role": "kantseleispetsialist",
+      "department": "Kantselei",
+      "address": "Haava tn 6, Kõrveküla alevik, Tartu vald, Tartumaa, 60512",
+      "officialUrl": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "relatedTo": [
+        "tartu_vald_benefit_sunnitoetus"
+      ],
+      "sourceKeys": [
+        "lapse_sund_page",
+        "social_contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "lapse_sund_page",
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_contact_kairi_kaeval",
+      "document_id": "tartu_vald_contact_kairi_kaeval",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "7842d58e103f1dbde4339f4933b385be56c58d22b8fda372350aca6d4d22f8ce",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_vald_contact_general_vallavalitsus",
+      "canonical_item_id": "tartu_vald:contact:general_vallavalitsus",
+      "itemType": "contact",
+      "title": "Tartu Vallavalitsus (üldkontakt)",
+      "status": "active",
+      "summary": "Tartu Vallavalitsuse üldkontakt asub Haava tn 6, Kõrveküla alevik, Tartu vald. Avalehel on avaldatud üldtelefon ja üldine e-posti aadress. Vallavalitsus on avatud E, K, N 8:00–16:30, T 8:00–18:00 ja R 8:00–15:00; lõuna iga päev 12:00–12:30.",
+      "name": "Tartu Vallavalitsus",
+      "role": "vallavalitsuse üldkontakt",
+      "department": null,
+      "address": "Haava tn 6, Kõrveküla alevik, Tartu vald, Tartumaa, 60512",
+      "officialUrl": "https://tartuvald.ee",
+      "relatedTo": [],
+      "sourceKeys": [
+        "home",
+        "social_menu_home"
+      ],
+      "item_type": "contact",
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "county": "Tartumaa",
+      "source_keys": [
+        "home",
+        "social_menu_home"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_vald_contact_general_vallavalitsus",
+      "document_id": "tartu_vald_contact_general_vallavalitsus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://tartuvald.ee",
+      "content_hash": "95e322e893f42912255dcb960845fedb7ddf991db350828b3e11aaed763f93f0",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Tartu vald",
+  "checked_at": "2026-04-30",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

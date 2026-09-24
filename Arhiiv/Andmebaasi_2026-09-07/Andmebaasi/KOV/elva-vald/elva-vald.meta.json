@@ -1,0 +1,65 @@
+{
+  "id": "elva-vald",
+  "municipality": "Elva vald",
+  "county": "Tartumaa",
+  "checkedAt": "2026-04-11",
+  "status": "ingest_ready",
+  "coverage": {
+    "services": 19,
+    "benefits": 9,
+    "resources": 3,
+    "contacts": 11,
+    "forms": 12,
+    "regulations": 0
+  },
+  "notes": [],
+  "unresolvedIssues": [
+    "Toimetulekutoetuse lehel on avaldatud 2023. aasta toimetulekupiirid; KOV lehelt ei olnud võimalik kinnitada uuemaid piirmäärasid.",
+    "Eluruumi tagamise teenuse leht ei kirjelda selgelt järjekorra moodustamise põhimõtteid ega otsuse tegemise tähtaega.",
+    "Võlanõustamisteenuse, varjupaigateenuse, toiduabi ja vältimatu sotsiaalabi lehed annavad üldise praktilise ülevaate, kuid ei täpsusta teenuse mahtu, kestust ega kõiki otsustuskriteeriume.",
+    "Asendus- ja järelhooldusteenuse leht on üldise sisuga ning ei nimeta eraldi blanketti ega detailset kohaliku menetluse kirjeldust.",
+    "Hoolekandeasutuste koondleht viitab asutuste enda välistele lehtedele; KOV lehel endal ei ole täielikku infot vabade kohtade, hinnakirjade ega teenusetingimuste kohta."
+  ],
+  "schemaVersion": "v2.5-sourcepackage",
+  "municipality_id": "elva_vald",
+  "municipality_name": "Elva vald",
+  "checked_at": "2026-04-11",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "collection_id": "kov_services",
+  "jurisdiction_level": "MUNICIPALITY",
+  "sourceRegisterFile": "elva-vald.sources.json",
+  "sourceCount": 45,
+  "counts": {
+    "services": 19,
+    "benefits": 9,
+    "resources": 3,
+    "contacts": 11,
+    "forms": 12,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "elva_vald",
+    "source_register_file": "elva-vald.sources.json",
+    "service_benefit_resource_items": 31,
+    "items_with_source_keys": 31,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 24,
+    "items_without_related_forms": 7,
+    "items_with_related_contacts": 29,
+    "items_without_related_contacts": 2,
+    "form_sources": 12,
+    "contact_sources": 1,
+    "regulation_sources": 0,
+    "warnings": [
+      "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "warnings": [
+    "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

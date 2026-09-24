@@ -1,0 +1,48 @@
+{
+  "docId": "sotsiaaltoo-4-2025",
+  "articleId": "mobiilsed-tervishoiuteenused-maapiirkondades-2025-4",
+  "title": "Mobiilsed tervishoiuteenused aitavad hoida maapiirkondade elujõulisust ja võrdset ligipääsu tervishoiule",
+  "authors": [
+    "Mariliis Känd"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2025",
+  "section": "Mobiilsed tervishoiuteenused",
+  "pageRange": "1–6",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel analüüsib mobiilsete tervishoiuteenuste rolli maapiirkondade elanike tervise ja teenuste kättesaadavuse parandamisel. Uuringu põhjal rõhutatakse, et mobiilsed kabinetid suurendavad turvatunnet, vähendavad piirkondlikku ebavõrdsust ja toetavad kogukondade heaolu.",
+  "tags": [
+    "mobiilsed tervishoiuteenused",
+    "maapiirkonnad",
+    "tervisevõrdsus",
+    "vananev rahvastik",
+    "teenuste kättesaadavus",
+    "kogukonna heaolu",
+    "regionaalne ebavõrdsus"
+  ],
+  "source_type": "file",
+  "source_format": "pdf",
+  "url": "https://www.tai.ee/et/sotsiaaltoo/mobiilsed-tervishoiuteenused-aitavad-hoida-maapiirkondade-elujoulisust-ja-vordset",
+  "source_url": "https://www.tai.ee/et/sotsiaaltoo/mobiilsed-tervishoiuteenused-aitavad-hoida-maapiirkondade-elujoulisust-ja-vordset",
+  "source_path": "Mobiilsed tervishoiuteenused aitavad hoida maapiirkondade elujõulisust ja võrdset ligipääsu tervishoiule.pdf",
+  "snapshot_contains_browser_headers": true,
+  "snapshot_timestamp_status": "not_preserved_in_text",
+  "mapping_status": "VERIFIED",
+  "mapping_checked": "2026-08-15",
+  "mapping_note": "Salvestatud fail on TAI ametliku artiklilehe PDF-väljatrükk, mitte ajakirjanumbri algupärane küljendus. Tekst sisaldab veebilehe linke ja väljatrüki elemente; väljavõtte ajatempel ei ole tekstikihis säilinud. Pealkiri ja autor on ametlikult artiklilehelt kontrollitud.",
+  "document_id": "sotsiaaltoo-4-2025-mobiilsed-tervishoiuteenused-maapiirkondades-2025-4",
+  "source_sha256": "845e0e40d57d1166ec4674d1254388c92938d5436d44545579ad2005d1582e63",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2025-mobiilsed-tervishoiuteenused-maapiirkondades-2025-4",
+    "previous_source_path": "Mobiilsed tervishoiuteenused aitavad hoida maapiirkondade elujõulisust ja võrdset ligipääsu tervishoiule.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "845e0e40d57d1166ec4674d1254388c92938d5436d44545579ad2005d1582e63",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "docId": "sotsiaaltoo-eri-2018",
+  "articleId": "pilte-ajakirja-juubeliseminarilt-2018-eri",
+  "title": "Pilte ajakirja juubeliseminarilt",
+  "authors": [],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "juubeli erinumber",
+  "section": "Ajakirja juubel",
+  "pageRange": "13-14",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Fotoreportaaž tutvustab ajakirja Sotsiaaltöö juubeliseminari, kus tähistati ajakirja sünnipäeva ja arutati eriala päevakajalisi teemasid. Ülevaates tuuakse esile seminari arutelud, esinejad ja koostööpartnerid.",
+  "tags": [
+    "ajakirja juubel",
+    "juubeliseminar",
+    "sotsiaaltöö",
+    "eriala arutelud",
+    "koostööpartnerid"
+  ],
+  "source_type": "file",
+  "source_path": "ST_eri_2018_web_link_Part6.pdf",
+  "document_id": "sotsiaaltoo-eri-2018-pilte-ajakirja-juubeliseminarilt-2018-eri",
+  "source_format": "pdf",
+  "source_sha256": "55496312ac0a5e9d1bfd2a0445f9fe30a73fd6de1a9c7a5816e48f5fd536e34b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2018-pilte-ajakirja-juubeliseminarilt-2018-eri",
+    "previous_source_path": "ST_eri_2018_web_link_Part6.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "55496312ac0a5e9d1bfd2a0445f9fe30a73fd6de1a9c7a5816e48f5fd536e34b",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

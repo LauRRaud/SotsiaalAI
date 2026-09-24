@@ -1,0 +1,108 @@
+{
+  "docId": "sotsiaaltoo-2-2017",
+  "articleId": "kainema-ja-tervema-eesti-poole-2017-2",
+  "title": "Koos kainema ja tervema Eesti poole",
+  "authors": [
+    "Jane Alop",
+    "Meida Griin"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2017",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "61-66",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tervise Arengu Instituudi eksperdi artikkel alkoholi liigtarvitamisest ja abi kättesaadavusest. Uuringute järgi on üks kolmandik täiskasvanud eestlastest alkoholi liigtarvitajad ja neist ligikaudu kümnendikul on alkoholitarvitamise häire — ligikaudu sada tuhat inimest. Autor tõdeb, et olukorras, kus raha ei jätku seadusega ettenähtud hoolekandeteenusteks, on alkoholiprobleemidega inimeste teenustest rääkimine poliitiliselt ebamugav.",
+  "tags": [
+    "alkohol",
+    "sõltuvus",
+    "ennetus",
+    "tervisepoliitika",
+    "teenuste rahastamine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2-2017_veebi_link_Part19.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2017-kainema-ja-tervema-eesti-poole-2017-2",
+  "source_sha256": "27b11fe5a42ddb5990faa76960b6e1d373289c2e4d50c9fe691b0c4b6bb5ef12",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2017-kainema-ja-tervema-eesti-poole-2017-2",
+    "previous_source_path": "Sotsiaaltoo_2-2017_veebi_link_Part19.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2-2017_veebi_link_Part19.pdf",
+    "reference_stored_source_sha256": "c278769551add94973405a42cccb24a8ea55075783e442d8678f6a8de2401299",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf",
+      "source_sha256": "609af110244e684ccbb68aea9504f2490fce2852b1e7caa7bedacb621d661a8a",
+      "pdf_start_page": 63,
+      "pdf_end_page": 68,
+      "printed_page_range": "61-66",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 68,
+      "source_regions": [
+        {
+          "source_pdf_page": 63,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 64,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 65,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 66,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 67,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 68,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "61-66"
+    },
+    "server_page_range": "61-66"
+  }
+}

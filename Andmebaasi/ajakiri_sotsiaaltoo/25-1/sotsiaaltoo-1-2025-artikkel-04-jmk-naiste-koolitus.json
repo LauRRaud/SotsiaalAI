@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-1-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "johannes-mihkelsoni-keskus-naiste-koolitus-2025-1",
+  "title": "Johannes Mihkelsoni keskus ootab naisi tööturul hakkamasaamist hõlbustavale koolitusele",
+  "authors": [
+    "Kertu Valge",
+    "Liia Tinno"
+  ],
+  "section": "Kogemus",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "description": "Artikkel tutvustab projekti „Töötan ja elan õnnelikult“, mille eesmärk on toetada naiste enesekindlust ja valmisolekut tööturule sisenemiseks või naasmiseks. Kirjeldatakse Johannes Mihkelsoni keskuse koolituse sisu: tööotsimisoskused, eneseareng, psühholoogiline tugi, sotsiaalsete oskuste arendamine ning soolise võrdõiguslikkuse teadvustamine. Autorid analüüsivad takistusi, millega naised tööturul kokku puutuvad – sooline palgalõhe, hoolduskoormus, stereotüübid, vähenenud eneseusk – ning jagavad osalejate kogemusi ja tagasisidet. Rõhutatakse, et naiste majanduslik iseseisvus ja enesekindlus on oluline nii üksikisiku kui ka ühiskonna heaolu seisukohalt.",
+  "tags": [
+    "naiste võrdõiguslikkus",
+    "tööturg",
+    "koolitusprogramm",
+    "Johannes Mihkelsoni keskus",
+    "projekt Töötan ja elan õnnelikult",
+    "sooline palgalõhe",
+    "enesekindlus"
+  ],
+  "source_path": "Johannes Mihkelsoni keskus ootab naisi tööturul hakkamasaamist hõlbustavale koolitusele_1_2025.pdf",
+  "pageRange": "1–8",
+  "document_id": "sotsiaaltoo-1-2025-johannes-mihkelsoni-keskus-naiste-koolitus-2025-1",
+  "source_format": "pdf",
+  "source_sha256": "96c67b6b350c6ae41819094c7d964062e7a26306da1a06631de07c92b7aeed5a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2025-johannes-mihkelsoni-keskus-naiste-koolitus-2025-1",
+    "previous_source_path": "Johannes Mihkelsoni keskus ootab naisi tööturul hakkamasaamist hõlbustavale koolitusele_1_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "96c67b6b350c6ae41819094c7d964062e7a26306da1a06631de07c92b7aeed5a",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

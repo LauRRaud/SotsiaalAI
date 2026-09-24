@@ -1,0 +1,91 @@
+{
+  "docId": "sotsiaaltoo-3-2018",
+  "articleId": "jogeva-vald-sotsiaaltoo-2018",
+  "title": "Sotsiaaltöö ühinenud Jõgeva vallas",
+  "authors": [
+    "Aime Meltsas"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2018",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "27-30",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Jõgeva valla sotsiaalosakonna juhataja ülevaade sotsiaaltöö korraldusest pärast Jõgeva linna ning Palamuse, Jõgeva ja Torma valla ühinemist 24. oktoobril 2017. Uues vallas on 13 889 elanikku ja üle 1000 km² territooriumi; sotsiaalosakonnas töötab 28 inimest ning tegevus jaguneb aprillist kolme suunda: toetused, teenused ja lastekaitse. Kirjeldab nelja erineva töökorralduse ja suhtlustava ühitamist ning tõdeb, et vaieldi palju, kuid jõuti seisukohale, et kõige olulisem on inimene oma soovide ja vajadustega. Toob välja kitsama spetsialiseerumise kasu ametnike kompetentsile ja soovi jääda ka pärast reformi kodanikele lähedale.",
+  "tags": [
+    "haldusreform",
+    "Jõgeva vald",
+    "omavalitsuste ühinemine",
+    "sotsiaalosakonna töökorraldus",
+    "spetsialiseerumine",
+    "lastekaitse"
+  ],
+  "source_type": "file",
+  "source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part8.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2018-jogeva-vald-sotsiaaltoo-2018",
+  "source_sha256": "392f0109260ba6f61a3275137364f2f804b12222ec51df2617cc7e674bdd229f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2018-jogeva-vald-sotsiaaltoo-2018",
+    "previous_source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part8.txt",
+    "previous_source_original_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part8.pdf",
+    "reference_stored_source_sha256": "e3ff4353a496cbb90fab503c4b9f43a04f064e1fcde132f742751cf79aa30a2f",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\18-3\\155619680390_Sotsiaaltoo_nr3_2018_veebi_link.pdf",
+      "source_sha256": "45eac17c335ef472708d0eb485f916c201e5db46ac64163cc7aeeb1f47dd10a9",
+      "pdf_start_page": 29,
+      "pdf_end_page": 32,
+      "printed_page_range": "27-30",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 32,
+      "source_regions": [
+        {
+          "source_pdf_page": 29,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 30,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 31,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 32,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "27-30",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\18-3\\155619680390_Sotsiaaltoo_nr3_2018_veebi_link.pdf"
+    },
+    "server_page_range": "27-30"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "docId": "sotsiaaltoo-erinumber-2016-artikkel-19-kulliki-bode-koik-inimesed-vajavad-voimalusi-eneseteostuseks",
+  "articleId": "sotsiaaltoo-erinumber-2016-artikkel-19-kulliki-bode-koik-inimesed-vajavad-voimalusi-eneseteostuseks",
+  "title": "Külliki Bode: „Kõik inimesed vajavad võimalusi eneseteostuseks”",
+  "authors": [
+    "Rain Uusen"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "erinumber 2016",
+  "section": "Persoon",
+  "pageRange": "69-72",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu Külliki Bodest (44), Eesti Vaegkuuljate Liidu ja MTÜ THINK Eesti juhist, kes töötab töötukassas tööandjate nõustaja ja koolitajana. Tema eristus kannab kogu numbri puudekäsitlust: „Erivajadustega inimene ei pruugi olla puudega ja puudega inimene ei pruugi olla erivajadusega.\"",
+  "tags": [
+    "persoonilugu",
+    "erivajadus",
+    "kuulmispuue",
+    "töötukassa",
+    "tööandjad",
+    "eestkosteorganisatsioon"
+  ],
+  "source_type": "file",
+  "source_path": "2016_eri_artikkel_19_kulliki_bode_koik_inimesed_vajavad_voimalusi_enesete.pdf",
+  "added": "2026-08-18",
+  "fulltext_note": "Erinumber „Sotsiaaltöö ; erinumber 2016\" (DIGAR nlib-digar:390083), pühendatud heaolu arengukavale 2016–2023. Lisatud korpusesse 18.08.2026.",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-erinumber-2016-artikkel-19-kulliki-bode-koik-inimesed-vajavad-voimalusi-eneseteostuseks",
+  "source_sha256": "b4f99a0bd8570fcd3a81b64fdb9995b880805fde91c44a1584c3a95a65e276c2",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-erinumber-2016-artikkel-19-kulliki-bode-koik-inimesed-vajavad-voimalusi-eneseteostuseks",
+    "previous_source_path": "2016_eri_artikkel_19_kulliki_bode_koik_inimesed_vajavad_voimalusi_enesete.txt",
+    "previous_source_original_path": "2016_erinumber.pdf",
+    "reference_stored_source_sha256": "04a3dc8548cae04e216e2e16d54f27c11dac012c901b63cc7580ad97e583ec83",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2016_erinumber.pdf",
+      "source_sha256": "ae3bbf0a621beae80ae1e05a13206ffa00c6811806397ee8ac925f3762d93c70",
+      "pdf_start_page": 71,
+      "pdf_end_page": 74,
+      "printed_page_range": "69-72",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 74,
+      "source_regions": [
+        {
+          "source_pdf_page": 71,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 72,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 73,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 74,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "69-72"
+    },
+    "server_page_range": "69-72"
+  }
+}

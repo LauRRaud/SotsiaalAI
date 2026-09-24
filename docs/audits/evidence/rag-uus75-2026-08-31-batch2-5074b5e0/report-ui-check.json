@@ -1,0 +1,9 @@
+{
+  "checkedAt": "2026-08-31T15:39:10.852Z",
+  "questionCount": 5,
+  "reportHref": "/api/chat/conversations/conv-895ed4d1-d920-4a92-9eb1-fb5e320e3553/diagnostics?format=md&lang=et",
+  "downloadEventObserved": true,
+  "downloadedContentsRead": false,
+  "firstAnswerReferenceAfterFive": "message:cmthedz3n006ztzkmk5xvk7jj",
+  "firstAnswerReferenceMatches": true
+}

@@ -1,0 +1,120 @@
+{
+  "docId": "sotsiaaltoo-4-2016",
+  "articleId": "sotsiaaltoo-4-2016-artikkel-22-lapse-õiguste-elluviimine-asendushoolduses-valdk",
+  "title": "Lapse õiguste elluviimine asendushoolduses – valdkonna spetsialistide koolitus",
+  "authors": [
+    "Kiira Gornischeff",
+    "Maria Žuravljova",
+    "Julia Kovalenko"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2016",
+  "section": "Projekt/koolitus",
+  "pageRange": "108-114",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kiira Gornischeff, Maria Žuravljova ja Julia Kovalenko kirjeldavad projekti „Asendushooldusel olevate laste õiguste elluviimine” koolitusprogrammi, mida rakendatakse Eestis ja veel seitsmes riigis koostöös Euroopa Komisjoni ja Euroopa Nõukoguga. Eestis koolitati neljas grupis, sealhulgas ühes venekeelses, üle 80 spetsialisti; programmi maht on 16 akadeemilist tundi ja see lähtub lapse õiguste konventsiooni neljast juhtpõhimõttest. 2015. aasta lõpus oli Eestis asendushooldusel 2518 last, neist 1031 asenduskoduteenusel. Mõju hinnati ankeetküsitluste ja kahe fookusgrupi intervjuuga, milles osales 15 inimest.",
+  "tags": [
+    "koolitus",
+    "asendushooldus",
+    "lapse õigused",
+    "üro lapse õiguste konventsioon",
+    "lapse osalusõigus",
+    "mittediskrimineerimine"
+  ],
+  "source_type": "file",
+  "source_path": "2016_4_artikkel_22_lapse_oiguste_elluviimine_asendushoolduses_valdkonna.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-22-lapse-iguste-elluviimine-asendushoolduses-valdk",
+  "source_sha256": "bdc59bd2307789f0915ca6233ff8a5d99ac89ff2d25dcc96460106d8968e6795",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-22-lapse-iguste-elluviimine-asendushoolduses-valdk",
+    "previous_source_path": "2016_4_artikkel_22_lapse_oiguste_elluviimine_asendushoolduses_valdkonna.txt",
+    "previous_source_original_path": "4-2016.pdf",
+    "reference_stored_source_sha256": "543eb611b015efe9561eae7ccb2b2118b1d8159ae1d55ca8da9031efab5eef64",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf",
+      "source_sha256": "0f07da03ffde36588435e96f8dda0f52a8140fbf9cc4201bb95e85b594e03fc9",
+      "pdf_start_page": 110,
+      "pdf_end_page": 116,
+      "printed_page_range": "108-114",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 116,
+      "source_regions": [
+        {
+          "source_pdf_page": 110,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 111,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 112,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 113,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 114,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 115,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 116,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "108-114",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf"
+    },
+    "server_page_range": "108-114"
+  }
+}

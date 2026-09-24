@@ -1,0 +1,435 @@
+{
+  "release": "5074b5e03f9fa7708b6ad3db9f8bb9ca243c8d08",
+  "runtimeCode": "dba8e06d8cb82f23d9d9aaf100469c88eaea915d",
+  "buildId": "kDAqeRc59ock3wOuMJUDt",
+  "id": "U75-F04",
+  "question": "Milliseid Eesti ja Euroopa Liidu üksi elavate üle 65-aastaste osakaale 2017. aasta kohta vahendab 2019. aasta artikkel „Mitmepalgeline üksildus SHARE vanemaealiste uuringu andmetel”?",
+  "mode": "isolated",
+  "emptyConversationObserved": true,
+  "previousVisibleTestTurns": 0,
+  "startedAt": "2026-08-31T15:23:26.927Z",
+  "answerObservedAt": "2026-08-31T15:23:51.354Z",
+  "visibleAnswer": "Assistent:\n\nMa ei saa kõiki küsitud osi valitud allika põhjal piisavalt kindlalt kinnitada.\n\n18:23",
+  "sourceButtonCount": 0,
+  "visibleExplanation": "Miks süsteem nii otsustas?\n\nNeed on salvestatud otsuse sisendid ja tingimused, mitte automaatne algpõhjuse garantii. Allikaaastate vastuolu korral võrdle küsimuse perioodi ja artikli ilmumisaastat. Ajaloo arvud kirjeldavad selle päringu valikut, mitte vestluse kogupikkust.\n\nPlanneri valitud allikaaastad\n2017, 2019\nPlanneri valitud mõõtmisperioodi aastad\nÜhtegi ei salvestatud\nKuidas aastamainimisi tõlgendati\n2017: allika ilmumisaasta; 2019: allika ilmumisaasta\nOtsustava värava põhjus\nDokumendilukk kinnitati; selle värava tõrget ei esinenud.\nKandidaat enne lõppväravat\nsotsiaaltoo-2-2019-mitmepalgeline-uksildus-share-vanemaealiste-uuringu-andmetel-2019\nKandidaadi allikaaasta\n2019\nAllikatõendiga seotud arvulised faktid\n0 / 1 — kõiki küsitud arvulisi fakte ei õnnestunud allikatõendiga siduda\nFaktide sidumise põhjuskood\nrendered_evidence_mapping_incomplete\nSidumiseks leitud arvulisi tõendeid\n10\nPäringuga saabunud ajaloosõnumeid\n0\nOtsinguajalugu: sisend → valitud\n0 → 0\nMiks otsinguajalugu välja jäeti\nKüsimus nimetab konkreetse dokumendi; varasemate allikate mõju jäeti välja.; Iseseisev ajaperioodi küsimus ei kasuta varasemat otsinguajalugu.\nMudeliajalugu: saadaval → valitud\n0 → 0\nMudeliajaloo valiku põhjus\nKüsimus hinnati iseseisvaks; mudelile varasemat ajalugu ei lisatud.",
+  "diagnostics": {
+    "schema_version": "rag_diagnostics_v2",
+    "trace_id": "turn:cmthe1mjd0047tzkmhbg2j0gy:attempt:1",
+    "pairing_evidence": {
+      "turn_id": "cmthe1mjd0047tzkmhbg2j0gy",
+      "user_message_id": "cmthe1mjc0046tzkm58b11msw",
+      "attempt": 1
+    },
+    "technical_status": "BLOCKED",
+    "answer_correctness": "NOT_PROVEN",
+    "root_cause_status": "NOT_PROVEN",
+    "first_observed_failure": {
+      "id": "validation",
+      "status": "BLOCKED",
+      "code": "requested_fact_plan_incomplete",
+      "evidence_paths": [
+        "fact_validation"
+      ]
+    },
+    "limitations": [
+      "automatic_checks_are_not_answer_correctness",
+      "blocking_gate_is_not_necessarily_root_cause",
+      "model_draft_not_logged"
+    ],
+    "runtime_missing_fields": [
+      "build_id",
+      "release_sha",
+      "prompt_hash",
+      "index_generation"
+    ],
+    "runtime": {
+      "configured_model": "gpt-5.6-luna",
+      "history_message_count": 0
+    },
+    "stages": [
+      {
+        "id": "planning",
+        "status": "OBSERVED",
+        "code": "plan_recorded",
+        "evidence_paths": [
+          "query_plan"
+        ]
+      },
+      {
+        "id": "retrieval",
+        "status": "OBSERVED",
+        "code": "retrieval_recorded",
+        "evidence_paths": [
+          "retrieved_count",
+          "retrieved_source_ids",
+          "conversational_recovery"
+        ]
+      },
+      {
+        "id": "identity",
+        "status": "OBSERVED",
+        "code": "document_identity",
+        "evidence_paths": [
+          "document_identity"
+        ]
+      },
+      {
+        "id": "context",
+        "status": "OBSERVED",
+        "code": "rendered_context_identified",
+        "evidence_paths": [
+          "rendered_context_hash",
+          "model_context_source_ids"
+        ]
+      },
+      {
+        "id": "validation",
+        "status": "BLOCKED",
+        "code": "requested_fact_plan_incomplete",
+        "evidence_paths": [
+          "fact_validation"
+        ]
+      },
+      {
+        "id": "attribution",
+        "status": "OBSERVED",
+        "code": "source_attribution",
+        "evidence_paths": [
+          "attribution_decisions",
+          "displayed_source_ids"
+        ]
+      },
+      {
+        "id": "persistence",
+        "status": "OBSERVED",
+        "code": "completed",
+        "evidence_paths": [
+          "ChatTurn.status"
+        ]
+      }
+    ],
+    "evidence": {
+      "source": "assistant_message.metadata.rag_trace",
+      "present": true,
+      "trace_level": "retrieved_candidates",
+      "counts": {
+        "retrieved_count": 36,
+        "selected_context_count": 1,
+        "rendered_context_chars": 1761,
+        "selected_source_count": 1,
+        "answer_source_count": 0,
+        "displayed_source_count": 0
+      },
+      "context_hash": "a8105abb52733f3d5e49b258b1fee60ebd6d7e336133ed9be1e75c3b27c73a3e",
+      "sources": {
+        "retrieved_source_ids": [
+          "sotsiaaltoo_mitmepalgeline-uksildus-share-vanemaealiste-uuringu-andmetel-2019",
+          "sotsiaaltoo_kelle-poole-poordub-abi-saamiseks-eesti-100-aastane-2020-3",
+          "praxis_centar_vanemaealiste_ja_eakate_toimetuleku_uuring_2015",
+          "sotsiaaltoo_sotsiaaltoo-2-2016-artikkel-14-mida-r-givad-share-tulemused-eesti-nn-hallist-a",
+          "sotsiaaltoo_tulge-oppima-kogukonnatoo-vananevas-uhiskonnas-2023-2",
+          "sotsiaaltoo_allardti-heaoluteooria-2024-4",
+          "statistikaamet_puudega_inimeste_sotsiaalne_loimumine",
+          "sotsiaalministeerium_ligipaasetavuse_kulu_tulu_analuus_lopparuanne",
+          "sotsiaaltoo_seltsilised-annavad-sotsiaalhoolekande-teenustele-lisavaartust-2022-2",
+          "statistikaamet_vaesus_eestis",
+          "sotsiaaltoo_omavalitsused-peavad-rohkem-markama-eakate-sotsiaalseid-probleeme-2021-4",
+          "sotsiaaltoo_jututajad-aitavad-leevendada-uksildust-2021-1"
+        ],
+        "selected_context_source_ids": [
+          "sotsiaaltoo_mitmepalgeline-uksildus-share-vanemaealiste-uuringu-andmetel-2019"
+        ],
+        "model_context_source_ids": [
+          "sotsiaaltoo_mitmepalgeline-uksildus-share-vanemaealiste-uuringu-andmetel-2019"
+        ],
+        "validated_supporting_source_ids": [],
+        "claim_supported_source_ids": [],
+        "answer_source_ids": [],
+        "displayed_source_ids": []
+      },
+      "omissions": [
+        {
+          "path": "document_identity.reasons",
+          "reason": "redacted_or_invalid",
+          "omitted": 19
+        },
+        {
+          "path": "document_identity.reasons",
+          "reason": "upstream_item_limit",
+          "omitted": 7
+        },
+        {
+          "path": "rendered_context",
+          "reason": "evidence_shortened",
+          "source_id": "sotsiaaltoo_mitmepalgeline-uksildus-share-vanemaealiste-uuringu-andmetel-2019"
+        }
+      ],
+      "plan": {
+        "observed": true,
+        "mode": "specific_research_fact",
+        "selection_strategy": "document_identity_then_fact",
+        "history_reference": {
+          "explicit_source_anaphora": false,
+          "carry_previous_source_filter": false
+        },
+        "years": {
+          "observed": true,
+          "source_years": [
+            "2017",
+            "2019"
+          ],
+          "evidence_period_years": [],
+          "mentions_observed": true,
+          "mentions": [
+            {
+              "value": "2017",
+              "role": "document_source_year",
+              "method": "nearest_explicit_year_cue"
+            },
+            {
+              "value": "2019",
+              "role": "document_source_year",
+              "method": "forward_explicit_year_cue"
+            }
+          ],
+          "unselected_source_years": []
+        }
+      },
+      "history": {
+        "observed": true,
+        "request_raw_count": 0,
+        "normalized_client_count": 0,
+        "retrieval_input_count": 0,
+        "retrieval_selected_count": 0,
+        "model_available_count": 0,
+        "model_selected_count": 0,
+        "retrieval_input_origin": "client_payload",
+        "model_selection_reason": "self_contained",
+        "retrieval_exclusion_reasons": [
+          "explicit_current_document",
+          "self_contained_temporal"
+        ]
+      },
+      "identity": {
+        "observed": true,
+        "confidence": "high",
+        "selected_document_id": "sotsiaaltoo-2-2019-mitmepalgeline-uksildus-share-vanemaealiste-uuringu-andmetel-2019",
+        "matched": true,
+        "required": true,
+        "enabled": true,
+        "reasons": [
+          "exact_title_anchor"
+        ],
+        "reason_count": 27,
+        "reasons_omitted": 7,
+        "decision": {
+          "stage": "scoped_search_recheck",
+          "reason": "document_lock_confirmed",
+          "candidate_document_id": "sotsiaaltoo-2-2019-mitmepalgeline-uksildus-share-vanemaealiste-uuringu-andmetel-2019",
+          "locked_document_id": "sotsiaaltoo-2-2019-mitmepalgeline-uksildus-share-vanemaealiste-uuringu-andmetel-2019",
+          "candidate_confidence": "high",
+          "eligible": true,
+          "candidate_matched": true,
+          "selected_source_year": "2019",
+          "checks": {
+            "candidate_matches_locked_document": true
+          }
+        },
+        "candidates": [
+          {
+            "document_id": "sotsiaaltoo-2-2019-mitmepalgeline-uksildus-share-vanemaealiste-uuringu-andmetel-2019",
+            "score": 167,
+            "subject_match_count": 11,
+            "body_subject_match_count": 0,
+            "identity_matched": true,
+            "author_matched": false,
+            "source_compatible": true,
+            "source_year_compatible": true,
+            "resolved_source_year": "2019",
+            "source_year_matches": [
+              "2019"
+            ]
+          },
+          {
+            "document_id": "sotsiaaltoo-1-2021-jututajad-aitavad-leevendada-uksildust-2021-1",
+            "score": 18,
+            "subject_match_count": 5,
+            "body_subject_match_count": 0,
+            "identity_matched": true,
+            "author_matched": false,
+            "source_compatible": true,
+            "source_year_compatible": true,
+            "resolved_source_year": "2021",
+            "source_year_matches": []
+          },
+          {
+            "document_id": "sotsiaaltoo-3-2020-kelle-poole-poordub-abi-saamiseks-eesti-100-aastane-2020-3",
+            "score": 44,
+            "subject_match_count": 9,
+            "body_subject_match_count": 0,
+            "identity_matched": true,
+            "author_matched": false,
+            "source_compatible": true,
+            "source_year_compatible": true,
+            "resolved_source_year": "2020",
+            "source_year_matches": []
+          },
+          {
+            "document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-14-mida-r-givad-share-tulemused-eesti-nn-hallist-a",
+            "score": 37,
+            "subject_match_count": 6,
+            "body_subject_match_count": 0,
+            "identity_matched": true,
+            "author_matched": false,
+            "source_compatible": true,
+            "source_year_compatible": true,
+            "resolved_source_year": "2016",
+            "source_year_matches": []
+          },
+          {
+            "document_id": "sotsiaaltoo-4-2021-omavalitsused-peavad-rohkem-markama-eakate-sotsiaalseid-probleeme-2021-4",
+            "score": 18,
+            "subject_match_count": 5,
+            "body_subject_match_count": 0,
+            "identity_matched": true,
+            "author_matched": false,
+            "source_compatible": true,
+            "source_year_compatible": true,
+            "resolved_source_year": "2021",
+            "source_year_matches": []
+          }
+        ]
+      },
+      "metric_contract": {
+        "observed": true,
+        "enabled": false,
+        "complete": false,
+        "sanitizer_dropped_slot": false,
+        "requested_slot_count": 1,
+        "mapped_slot_count": 0,
+        "reason": "rendered_evidence_mapping_incomplete",
+        "mapping": {
+          "evidence_candidate_count": 10,
+          "evidence_fragment_count": 13,
+          "evidence_candidates_truncated": false,
+          "ambiguous": true
+        },
+        "slots": []
+      },
+      "validation": {
+        "observed": true,
+        "passed": false,
+        "enabled": true,
+        "buffered": true,
+        "document_identity_matched": true,
+        "document_identity_required": true,
+        "requested_metric_contract_checked": false,
+        "requested_qualitative_contract_checked": false,
+        "requested_fact_slot_contract_checked": false,
+        "reason": "requested_fact_plan_incomplete",
+        "version": "exact_numeric_fact_v6",
+        "selected_document_id": "sotsiaaltoo-2-2019-mitmepalgeline-uksildus-share-vanemaealiste-uuringu-andmetel-2019",
+        "requested_metric_slot_count": 0,
+        "requested_qualitative_slot_count": 0,
+        "validation_duration_ms": 5,
+        "requested_fact_missing_slot_indexes": [],
+        "requested_fact_answer_missing_slot_indexes": [],
+        "bindings": [],
+        "metric_bindings": [],
+        "relation_diagnostics": []
+      },
+      "claims": [],
+      "recovery": {
+        "observed": true,
+        "reason": "requested_fact_plan_incomplete",
+        "action": "state_evidence_limit",
+        "trigger": "fact_validation_failed",
+        "target": "none",
+        "reply_source": "deterministic_fallback",
+        "clarification_guard": "user_cannot_resolve_validation_failure",
+        "active": false,
+        "question_asked": false,
+        "external_knowledge_allowed": false,
+        "technical_status_allowed": false,
+        "model_call_count": 1,
+        "additional_model_call_count": 0,
+        "correction_hint_count": 0,
+        "missing_fields": []
+      },
+      "attribution": {
+        "observed": true,
+        "displayed_sources_subset_of_selected": true,
+        "displayed_sources_subset_of_answer": true,
+        "decisions": [
+          {
+            "source_id": "sotsiaaltoo_mitmepalgeline-uksildus-share-vanemaealiste-uuringu-andmetel-2019",
+            "decision": "hide",
+            "reason": "non_answer_source_suppression",
+            "source_type": "journal_article"
+          }
+        ]
+      },
+      "context": [
+        {
+          "source_id": "sotsiaaltoo_mitmepalgeline-uksildus-share-vanemaealiste-uuringu-andmetel-2019",
+          "rendered_body_hash": "d0dd7da112bf29d41de9c618b7c999466e3d70e2add809712bff9a8f9f54682d",
+          "original_body_hash": "be067d47dd5f3def1302b6ce6643aa16421cc67badec442799d994078adafaaa",
+          "rendered_evidence_hash": "a8105abb52733f3d5e49b258b1fee60ebd6d7e336133ed9be1e75c3b27c73a3e",
+          "rendered_evidence_chars": 1761,
+          "rendered_body_count": 2,
+          "original_body_count": 14,
+          "rendered_evidence_truncated": true
+        }
+      ],
+      "timings": {
+        "planner_ms": 80,
+        "query_planning_ms": 1,
+        "query_build_ms": 1,
+        "retrieval_wall_ms": 5284,
+        "multi_query_retrieval_ms": 11458,
+        "retrieval_parallel_sum_ms": 11458,
+        "embedding_sum_ms": 2964,
+        "embedding_ms": 2964,
+        "dense_sum_ms": 2269,
+        "dense_ms": 2269,
+        "registry_ms": 5,
+        "lexical_sum_ms": 2187,
+        "lexical_ms": 2187,
+        "lemma_fts_shadow_ms": 0,
+        "document_sibling_sum_ms": 518,
+        "service_fact_segment_sum_ms": 2314,
+        "document_identity_ms": 402,
+        "fact_segment_search_ms": 3401,
+        "context_render_ms": 21,
+        "model_ms": 2886,
+        "first_model_call_ms": 1,
+        "fact_validation_ms": 5,
+        "retrieval_context_total_ms": 6119
+      },
+      "projection_excludes": [
+        "raw_prompt_and_question",
+        "source_body_previews",
+        "model_draft",
+        "free_text_planner_terms",
+        "full_unbounded_runtime_trace"
+      ],
+      "insufficient_evidence": false,
+      "missing_sections": [],
+      "coverage": "LIMITED"
+    }
+  },
+  "reference": "message:cmthe1osq0049tzkm7v3myfnz",
+  "reportHref": "/api/chat/conversations/conv-389df8ea-2926-4f66-8b69-db3866709a23/diagnostics?format=md&lang=et",
+  "assessment": {
+    "result": "FAIL",
+    "reason": "Õige aktiivse allika olemasolul keelduti; Eesti 43,6% ja EL 32,5% vastus puudub.",
+    "criteria": {
+      "C1": "MISSING",
+      "C2": "MISSING",
+      "C3": "MISSING"
+    },
+    "firstObservedFailure": "requested_fact_plan_incomplete",
+    "rootCauseStatus": "UNDER_INVESTIGATION",
+    "sourcePanel": "NOT_AVAILABLE"
+  }
+}

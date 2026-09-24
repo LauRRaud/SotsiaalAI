@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2025",
+  "articleId": "dementsusega-inimestele-parima-abi-pakkumises-ollakse-poolel-teel-2025-3",
+  "title": "Dementsusega inimestele parima abi pakkumises ollakse poolel teel",
+  "authors": [
+    "Kadri Kuulpak"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2025",
+  "section": "Dementsushooldus",
+  "pageRange": "3-10",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Intervjuuartikkel käsitleb dementsusega inimestele pakutava abi arengut Eesti hooldekodudes ning toob välja peamised kitsaskohad, nagu järjekorrad, töötajate nappus ja sügava dementsusega inimeste teenuskohtade puudus. Eksperdid rõhutavad individuaalset lähenemist, lähedaste kaasamist, töötajate koolitamist ja inimese iseseisvuse hoidmist nii kaua kui võimalik.",
+  "tags": [
+    "dementsus",
+    "hooldekodu",
+    "dementsushooldus",
+    "iseseisvuse toetamine",
+    "lähedaste kaasamine",
+    "hooldustöötajate koolitus",
+    "teenuskohtade puudus",
+    "inimkeskne hooldus"
+  ],
+  "source_type": "file",
+  "source_path": "1web_sotsiaaltoo_3-2025.pdf",
+  "document_id": "sotsiaaltoo-3-2025-dementsusega-inimestele-parima-abi-pakkumises-ollakse-poolel-teel-2025-3",
+  "source_format": "pdf",
+  "source_sha256": "dabf62e39c11944f6c3b2424a35bee791490fb94b91c6f8ed4e9aba41252a040",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2025-dementsusega-inimestele-parima-abi-pakkumises-ollakse-poolel-teel-2025-3",
+    "previous_source_path": "1web_sotsiaaltoo_3-2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "dabf62e39c11944f6c3b2424a35bee791490fb94b91c6f8ed4e9aba41252a040",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

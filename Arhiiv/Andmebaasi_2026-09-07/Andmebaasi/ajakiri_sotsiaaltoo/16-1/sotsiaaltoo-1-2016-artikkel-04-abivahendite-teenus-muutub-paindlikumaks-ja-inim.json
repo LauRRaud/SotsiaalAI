@@ -1,0 +1,82 @@
+{
+  "docId": "sotsiaaltoo-1-2016",
+  "articleId": "sotsiaaltoo-1-2016-artikkel-04-abivahendite-teenus-muutub-paindlikumaks-ja-inim",
+  "title": "Abivahendite teenus muutub paindlikumaks ja inimesele kättesaadavamaks",
+  "authors": [
+    "Tiina Kalevik",
+    "Anneli Bender"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2016",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "9-11",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "2016. aastast korraldab abivahendite teenust maavalitsuste ja omavalitsuste asemel Sotsiaalkindlustusamet ning eelarve on üleriigiline: raha liigub inimesega kaasa ja abivahendi saab osta või üürida ükskõik milliselt ametiga lepingu sõlminud ettevõttelt. Enamikule abivahenditest on kehtestatud piirhinnad, mille ületamisel maksab inimene lisaks omaosalusele piirhinna ja tegeliku hinna vahe; minimaalne omaosalus on seitse eurot, erimenetlusega saab selle langetada 5%-ni hinnast. Erimenetluse otsus tehakse 30 kalendripäeva jooksul. Abivahendi vajaduse määravad pere- ja eriarstid, abiks on „Abivahendi teatmik”.",
+  "tags": [
+    "abivahendid",
+    "piirhind",
+    "omaosalus",
+    "erimenetlus",
+    "sotsiaalkindlustusamet",
+    "isikliku abivahendi kaart"
+  ],
+  "source_type": "file",
+  "source_path": "2016_1_artikkel_04_abivahendite_teenus_muutub_paindlikumaks_ja_inimesel.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-04-abivahendite-teenus-muutub-paindlikumaks-ja-inim",
+  "source_sha256": "d1766e44e189157ac0db207b1a67426d7b44419a3c4f7db2e2fe12cb8941714b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-04-abivahendite-teenus-muutub-paindlikumaks-ja-inim",
+    "previous_source_path": "2016_1_artikkel_04_abivahendite_teenus_muutub_paindlikumaks_ja_inimesel.txt",
+    "previous_source_original_path": "1-2016.pdf",
+    "reference_stored_source_sha256": "432a811fafd271b004280d97e8ff60d69bd44f0c36723fd38b4ec72a3d772eca",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf",
+      "source_sha256": "2c193295e54f58982562b509b6283e93aa58b1695464671e1768e24e90888a6c",
+      "pdf_start_page": 11,
+      "pdf_end_page": 13,
+      "printed_page_range": "9-11",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 13,
+      "source_regions": [
+        {
+          "source_pdf_page": 11,
+          "bounds": [
+            0,
+            204.299,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 12,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 13,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "9-11"
+    },
+    "server_page_range": "9-11"
+  }
+}

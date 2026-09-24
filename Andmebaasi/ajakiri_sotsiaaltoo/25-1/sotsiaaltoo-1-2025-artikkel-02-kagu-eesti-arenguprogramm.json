@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "kagu-eesti-arenguprogramm-hoolekandeteenused-2025-1",
+  "title": "Kagu-Eesti arenguprogramm innustas omavalitsusi arendama hoolekandeteenuseid",
+  "authors": [
+    "Lilia Raudheiding"
+  ],
+  "section": "Kohalik omavalitsus",
+  "pdf_start_page": 1,
+  "pdf_end_page": 11,
+  "description": "Artikkel annab ülevaate Kagu-Eesti toetusprogrammist, mis toetas Põlva, Valga ja Võru maakondade omavalitsusi hoolekandeteenuste strateegilisel arendamisel. Kirjeldatakse programmi eesmärke – sotsiaalhoolekande kvaliteedi ühtlustamine, koduteenuse ja muude toetavate teenuste kättesaadavuse parandamine – ning praktikaid, mida omavalitsused rakendasid. Autor käsitleb mentorluse, koolituste, andmepõhise planeerimise ja koostöö rolli ning toob näiteid teenuste ümberkujundamisest, piirkondlikust võrgustikutööst ja elanike vajadustest lähtuvast lähenemisest. Fookuses on õppetunnid, mida saavad kasutada ka teised piirkonnad, kus hoolekandeteenuste arendamine on alles käimas.",
+  "tags": [
+    "Kagu-Eesti arenguprogramm",
+    "hoolekandeteenused",
+    "koduteenus",
+    "kohalik omavalitsus",
+    "mentorlusprogramm",
+    "teenuse arendamine",
+    "andmepõhine planeerimine"
+  ],
+  "source_path": "Kagu-Eesti arenguprogramm innustas omavalitsusi arendama hoolekandeteenuseid_1_2025.pdf",
+  "pageRange": "1–11",
+  "document_id": "sotsiaaltoo-1-2025-kagu-eesti-arenguprogramm-hoolekandeteenused-2025-1",
+  "source_format": "pdf",
+  "source_sha256": "29695271af1566baf92499ebfa502dd95429e0a9c33812d17f066380459e7a31",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2025-kagu-eesti-arenguprogramm-hoolekandeteenused-2025-1",
+    "previous_source_path": "Kagu-Eesti arenguprogramm innustas omavalitsusi arendama hoolekandeteenuseid_1_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "29695271af1566baf92499ebfa502dd95429e0a9c33812d17f066380459e7a31",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

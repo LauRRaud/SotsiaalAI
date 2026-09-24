@@ -1,0 +1,77 @@
+{
+  "source": {
+    "source_id": "harno_kutseoppeasutuste_veebilehtede_ja_haridusinfoportaali_analuu",
+    "title": "Kutseõppeasutuste veebilehtede ja haridusinfoportaali analüüs",
+    "url": "https://harno.ee/sites/default/files/documents/2021-04/Kutse%C3%B5ppeasutuste%20veebilehtede%20ja%20haridusinfoportaali%20anal%C3%BC%C3%BCs.pdf",
+    "normalized_url": "https://harno.ee/sites/default/files/documents/2021-04/Kutseõppeasutuste veebilehtede ja haridusinfoportaali analüüs.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "HARNO",
+    "organization_id": "harno",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "Haridus- ja Noorteamet",
+      "uuring",
+      "raport",
+      "analüüs",
+      "haridus",
+      "kool",
+      "õpilase toetamine",
+      "tugimeetmed"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "HARNO / HEV / kooli tugimeetmed",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 385,
+      "order": 213
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Kutseõppeasutuste veebilehtede ja haridusinfoportaali analüüs"
+    ],
+    "collection_hints": [
+      "research_reports"
+    ],
+    "source_types_seen": [
+      "research_report"
+    ],
+    "resource_types_seen": [
+      "research_evidence"
+    ],
+    "publishers_seen": [
+      "HARNO"
+    ],
+    "organizations_seen": [
+      "harno"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "HARNO / HEV / kooli tugimeetmed",
+        "line": 385,
+        "order": 213
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://harno.ee/sites/default/files/documents/2021-04/Kutseõppeasutuste veebilehtede ja haridusinfoportaali analüüs.pdf"
+  },
+  "final_url": "https://harno.ee/sites/default/files/documents/2021-04/Kutse%C3%B5ppeasutuste%20veebilehtede%20ja%20haridusinfoportaali%20anal%C3%BC%C3%BCs.pdf",
+  "redirects": [],
+  "sha256": "1e3e08a5371ef135930c72bab2341bfbe2fa1c641a56c912772c7afc30c2388b",
+  "bytes": 314036,
+  "downloaded_at": "2026-08-14T08:00:45.230Z"
+}

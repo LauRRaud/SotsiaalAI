@@ -1,0 +1,2139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Tallinna Linnavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2021-10-07</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT IV</RTosa>
+				<avaldamineKuupaev>2021-10-15</avaldamineKuupaev>
+				<RTartikkel>19</RTartikkel>
+				<aktViide>415102021019</aktViide>
+			</avaldamismarge>
+			<joustumine>2022-01-01</joustumine>
+			<aktiNr>26</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-09-10</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>33</RTartikkel><aktViide>410092025033</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2025-09-13</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2021-10-13</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>410092025033</globaalID>
+		<metaandmedVersioon>29</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2025-09-09</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1052760</terviktekstiGrupiID>
+	</metaandmed>
+	<aktinimi>
+		<nimi>
+			<pealkiri>Sotsiaaltoetuste maksmise tingimused ja kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge>
+		<aktikuupaev>2021-12-16</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2021-12-23</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>423122021002</aktViide>
+		</avaldamismarge>
+		<joustumine>2022-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2022-12-15</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+			<RTartikkel>5</RTartikkel>
+			<aktViide>422122022005</aktViide>
+		</avaldamismarge>
+		<joustumine>2023-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2023-04-20</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2023-04-27</avaldamineKuupaev>
+			<RTartikkel>10</RTartikkel>
+			<aktViide>427042023010</aktViide>
+		</avaldamismarge>
+		<joustumine>2023-04-30</joustumine>
+		<tavatekst>, rakendatakse alates 01.04.2023</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2024-04-04</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2024-04-12</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>412042024002</aktViide>
+		</avaldamismarge>
+		<joustumine>2024-04-15</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2024-05-30</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>412062024002</aktViide>
+		</avaldamismarge>
+		<joustumine>2024-06-15</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2025-04-03</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>412042025001</aktViide>
+		</avaldamismarge>
+		<joustumine>2025-05-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2025-09-04</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2025-09-10</avaldamineKuupaev>
+			<RTartikkel>13</RTartikkel>
+			<aktViide>410092025013</aktViide>
+		</avaldamismarge>
+		<joustumine>2025-09-13</joustumine>
+	</muutmismarge>
+	<sisu>
+		<preambul>
+			<tavatekst>Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lg 1 p 5 ja sotsiaalhoolekande seaduse § 14 alusel ning kooskõlas Tallinna Linnavolikogu 7. oktoobri 2021 määrusega nr 24 „Sotsiaalhoolekandelise abi andmise kord“.</tavatekst>
+		</preambul>
+		<peatykk id="pt1">
+			<peatykkNr>1</peatykkNr>
+			<kuvatavNr><![CDATA[1. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Üldsätted</peatykkPealkiri>
+			<paragrahv id="para1">
+				<paragrahvNr>1</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 1.]]></kuvatavNr>
+				<paragrahvPealkiri>Määruse reguleerimisala</paragrahvPealkiri>
+				<loige id="para1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Määrusega sätestatakse sotsiaaltoetuste (edaspidi ka<i> toetus</i>) määramise ja maksmise kord. Sotsiaaltoetusi makstakse rahvastikuregistri andmetel Tallinna linna elanikele. Kui õigusaktides on sätestatud teisiti, siis makstakse toetust ka inimesele, kelle rahvastikuregistrisse kantud elukoht ei ole Tallinna linn.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaaltoetuste määrad kehtestab Tallinna Linnavalitsus.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para2">
+				<paragrahvNr>2</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 2.]]></kuvatavNr>
+				<paragrahvPealkiri>Kehtiva õiguse kohaldamine</paragrahvPealkiri>
+				<loige id="para2lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesolevas määruses ette nähtud toetuste määramisel ja maksmisel lähtutakse haldusmenetluse seadusest, sotsiaalseadustiku üldosa seadusest, sotsiaalhoolekande seadusest ja asjakohastest Tallinna linna õigusaktidest, arvestades määruses toodud erisusi.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Alusetult määratud ja makstud toetuste tagasinõudmisel lähtutakse sotsiaalseadustiku üldosa seaduses sätestatud korrast.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para3">
+				<paragrahvNr>3</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 3.]]></kuvatavNr>
+				<paragrahvPealkiri>Sotsiaaltoetuse määramine või määramisest keeldumine</paragrahvPealkiri>
+				<loige id="para3lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sissetulekust sõltumatu universaaltoetuse määramise otsust ei vormistata kirjalikult, kui toetuse saamise tingimused on täidetud ning toetus makstakse välja määruses sätestatud tähtajal.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2023-04-20</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2023-04-27</avaldamineKuupaev>
+							<RTartikkel>10</RTartikkel>
+							<aktViide>427042023010</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-04-30</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para3lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui sotsiaaltoetuse saamise tingimused ei ole täidetud, teeb Tallinna Perekonnaseisuameti juhataja või tema volitatud isik, Tallinna Haridusameti juhataja või tema volitatud isik, Tallinna Sotsiaal- ja Tervishoiuameti juhataja või tema volitatud isik või Tallinna Sotsiaal- ja Tervishoiuameti lapse heaolu spetsialist või linnaosa valitsuse sotsiaalhoolekande osakonna juhataja või tema volitatud isik toetuse määramisest keeldumise otsuse. Otsus tehakse kümne tööpäeva jooksul taotluse või nõutud lisadokumentide esitamise päevast või nende esitamiseks antud tähtpäevast või toetuse teise osa väljamaksmise tähtpäevast. Otsus tehakse taotlejale teatavaks taotluses märgitud viisil.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para4">
+				<paragrahvNr>4</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 4.]]></kuvatavNr>
+				<paragrahvPealkiri>Toetuste liigid</paragrahvPealkiri>
+				<loige id="para4lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaaltoetused jagunevad:</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2023-04-20</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2023-04-27</avaldamineKuupaev>
+							<RTartikkel>10</RTartikkel>
+							<aktViide>427042023010</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-04-30</joustumine>
+					</muutmismarge>
+					<alampunkt id="para4lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>linna eelarvest makstavateks sissetulekust sõltumatuteks universaaltoetusteks, mille eesmärk on väärtustada linnaelanikuks olemist;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2023-04-20</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2023-04-27</avaldamineKuupaev>
+								<RTartikkel>10</RTartikkel>
+								<aktViide>427042023010</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-04-30</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para4lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>linna eelarvest makstavateks sissetulekust sõltuvateks universaaltoetusteks, millega hüvitatakse täielikult või osaliselt toimetuleku soodustamiseks vajalikud kulud või toetatakse pere toimetulekut;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2023-04-20</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2023-04-27</avaldamineKuupaev>
+								<RTartikkel>10</RTartikkel>
+								<aktViide>427042023010</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-04-30</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para4lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>riiklikuks toimetulekutoetuseks, mille eesmärk on inimese iseseisvat toimetulekut soodustava ajutise abimeetmena leevendada abi vajava inimese ja/või perekonna materiaalset puudust, tagades minimaalsed vahendid esmavajaduste rahuldamiseks.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2023-04-20</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2023-04-27</avaldamineKuupaev>
+								<RTartikkel>10</RTartikkel>
+								<aktViide>427042023010</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-04-30</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para4lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sissetulekust sõltumatute universaaltoetuste liigid on:</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2023-04-20</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2023-04-27</avaldamineKuupaev>
+							<RTartikkel>10</RTartikkel>
+							<aktViide>427042023010</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-04-30</joustumine>
+					</muutmismarge>
+					<alampunkt id="para4lg2p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>sünnitoetus; </tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg2p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>õppeaasta alguse toetus;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2021-12-16</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2021-12-23</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>423122021002</aktViide>
+							</avaldamismarge>
+							<joustumine>2022-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para4lg2p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>hoolduspere toetused; </tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg2p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>asendushooldusteenusel oleva lapse toetus;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-03</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para4lg2p4b1">
+						<alampunktNr ylaIndeks="1">4</alampunktNr>
+						<kuvatavNr><![CDATA[4<sup>1</sup>)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>järelhooldusteenust saava inimese isiklike kulude toetus;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-03</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para4lg2p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>puudega lapse toetus; </tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg2p6">
+						<alampunktNr>6</alampunktNr>
+						<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+						<muutmismarge>
+							<tavatekst>kehtetu - </tavatekst>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para4lg2p7">
+						<alampunktNr>7</alampunktNr>
+						<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>juhtkoera pidamise toetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg2p8">
+						<alampunktNr>8</alampunktNr>
+						<kuvatavNr><![CDATA[8)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>pensionilisa; </tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg2p9">
+						<alampunktNr>9</alampunktNr>
+						<kuvatavNr><![CDATA[9)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>matusetoetus;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2021-12-16</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2021-12-23</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>423122021002</aktViide>
+							</avaldamismarge>
+							<joustumine>2022-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para4lg2p10">
+						<alampunktNr>10</alampunktNr>
+						<kuvatavNr><![CDATA[10)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>toetus esimese haiguspäeva hüvitamiseks.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2021-12-16</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2021-12-23</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>423122021002</aktViide>
+							</avaldamismarge>
+							<joustumine>2022-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para4lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sissetulekust sõltuvate universaaltoetuste liigid on:</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2023-04-20</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2023-04-27</avaldamineKuupaev>
+							<RTartikkel>10</RTartikkel>
+							<aktViide>427042023010</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-04-30</joustumine>
+					</muutmismarge>
+					<alampunkt id="para4lg3p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>sissetulekust sõltuv toetus toimetuleku tagamiseks;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2022-12-15</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para4lg3p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<muutmismarge>
+							<tavatekst>kehtetu - </tavatekst>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para4lg3p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<muutmismarge>
+							<tavatekst>kehtetu - </tavatekst>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para4lg3p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>eluruumi kohandamise kulu hüvitis;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2022-12-15</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para4lg3p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>hooldajatoetus.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2022-12-15</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="pt2">
+			<peatykkNr>2</peatykkNr>
+			<kuvatavNr><![CDATA[2. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Toetuste kirjeldused</peatykkPealkiri>
+			<jagu id="jg1">
+				<jaguNr>1</jaguNr>
+				<kuvatavNr><![CDATA[1. jagu]]></kuvatavNr>
+				<jaguPealkiri>Sissetulekust sõltumatud universaaltoetused</jaguPealkiri>
+				<muutmismarge>
+					<aktikuupaev>2023-04-20</aktikuupaev>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2023-04-27</avaldamineKuupaev>
+						<RTartikkel>10</RTartikkel>
+						<aktViide>427042023010</aktViide>
+					</avaldamismarge>
+					<joustumine>2023-04-30</joustumine>
+				</muutmismarge>
+				<paragrahv id="para5">
+					<paragrahvNr>5</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 5.]]></kuvatavNr>
+					<paragrahvPealkiri>Sünnitoetus</paragrahvPealkiri>
+					<loige id="para5lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Sünnitoetust on õigus saada lapsel, kelle rahvastikuregistrijärgne elukoht alates sünnist on olnud katkematult Tallinna linn ja kelle:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para5lg1p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>vähemalt ühe vanema rahvastikuregistrijärgne elukoht on Tallinna linn katkematult aasta enne lapse sündi, seejuures teise vanema rahvastikuregistrijärgne elukoht on Tallinna linn enne lapse sündi või</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para5lg1p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>üksikvanema rahvastikuregistrijärgne elukoht on Tallinna linn katkematult aasta enne lapse sündi.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para5lg1b1">
+						<loigeNr ylaIndeks="1">1</loigeNr>
+						<kuvatavNr><![CDATA[(1<sup>1</sup>)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesoleva paragrahvi lõike 1 punktides 1–2 sätestatud alustel on sünnitoetuse saamise õigus lapse vanemal, kui laps on sündinud surnult või sureb 70 päeva jooksul ja lapsel puudub rahvastikuregistrijärgne elukoht. Toetus makstakse välja ühes osas, rakendades käesoleva paragrahvi lõike 4 punktis 1 kehtestatud määra.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2022-12-15</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para5lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Taotluse võib esitada lapse seaduslik esindaja kuue kuu jooksul lapse sündimise päevast arvates. Sünnitoetuse taotlus esitatakse Tallinna Perekonnaseisuametile.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para5lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kui taotluse esitab eestkostja või lapsendaja:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para5lg3p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ei rakendata vanemale rahvastikuregistrijärgse elukoha kohta esitatud nõudeid;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para5lg3p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>võib taotluse esitada kuue kuu jooksul eestkoste seadmise või lapsendamise kohtumääruse jõustumisest tingimusel, et laps ei ole selle jõustumise ajal vanem kui üks aasta ja kuus kuud.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para5lg4">
+						<loigeNr>4</loigeNr>
+						<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Sünnitoetusele kehtestatakse kolm määra:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para5lg4p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ühe lapse sünni korral;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para5lg4p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>kaksikute sünni korral;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para5lg4p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>kolme või enama lapse sünni korral.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para5lg5">
+						<loigeNr>5</loigeNr>
+						<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Sünnitoetus makstakse välja järgmiselt:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para5lg5p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ühe lapse sünni korral 50% toetuse määrast pärast lapse sündi ja 50% toetuse määrast pärast lapse aastaseks saamist tingimusel, et laps ja tema hooldusõiguslikud vanemad või üksikvanem on rahvastikuregistri andmetel katkematult olnud Tallinna linna elanikud alates lapse sünnist kuni lapse aastaseks saamiseni;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para5lg5p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>kaksikute ja kolme või enama lapse sünni korral makstakse sünnitoetus ühes osas pärast laste sündi;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para5lg5p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>toetuse väljamakse tehakse 30 päeva jooksul taotluse esitamisest, kahes osas makstava toetuse korral makstakse toetuse teine osa 30 päeva jooksul pärast lapse aastaseks saamist.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para6">
+					<paragrahvNr>6</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 6.]]></kuvatavNr>
+					<paragrahvPealkiri>Õppeaasta alguse toetus</paragrahvPealkiri>
+					<muutmismarge>
+						<aktikuupaev>2021-12-16</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2021-12-23</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>423122021002</aktViide>
+						</avaldamismarge>
+						<joustumine>2022-01-01</joustumine>
+					</muutmismarge>
+					<loige id="para6lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Õppeaasta alguse toetust on kuni 19-aastaseks saamiseni õigus saada lapsel:</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2021-12-16</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2021-12-23</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>423122021002</aktViide>
+							</avaldamismarge>
+							<joustumine>2022-01-01</joustumine>
+						</muutmismarge>
+						<alampunkt id="para6lg1p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>kes alustab ja jätkab põhi- või keskharidust või kutseõppe tasemeõpet ja</tavatekst>
+							</sisuTekst>
+							<muutmismarge>
+								<aktikuupaev>2021-12-16</aktikuupaev>
+								<avaldamismarge>
+									<RTosa>RT IV</RTosa>
+									<avaldamineKuupaev>2021-12-23</avaldamineKuupaev>
+									<RTartikkel>2</RTartikkel>
+									<aktViide>423122021002</aktViide>
+								</avaldamismarge>
+								<joustumine>2022-01-01</joustumine>
+							</muutmismarge>
+						</alampunkt>
+						<alampunkt id="para6lg1p1b1">
+							<alampunktNr ylaIndeks="1">1</alampunktNr>
+							<kuvatavNr><![CDATA[1<sup>1</sup>)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>kelle rahvastikuregistrisse kantud elukoht on Tallinna linn katkematult vähemalt toetuse maksmise kalendriaasta 1. jaanuarist ja</tavatekst>
+							</sisuTekst>
+							<muutmismarge>
+								<aktikuupaev>2022-12-15</aktikuupaev>
+								<avaldamismarge>
+									<RTosa>RT IV</RTosa>
+									<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+									<RTartikkel>5</RTartikkel>
+									<aktViide>422122022005</aktViide>
+								</avaldamismarge>
+								<joustumine>2023-01-01</joustumine>
+							</muutmismarge>
+						</alampunkt>
+						<alampunkt id="para6lg1p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>kelle vähemalt ühe vanema rahvastikuregistrijärgne elukoht on Tallinna linn katkematult vähemalt toetuse maksmise kalendriaasta 1. jaanuarist.</tavatekst>
+							</sisuTekst>
+							<muutmismarge>
+								<aktikuupaev>2021-12-16</aktikuupaev>
+								<avaldamismarge>
+									<RTosa>RT IV</RTosa>
+									<avaldamineKuupaev>2021-12-23</avaldamineKuupaev>
+									<RTartikkel>2</RTartikkel>
+									<aktViide>423122021002</aktViide>
+								</avaldamismarge>
+								<joustumine>2022-01-01</joustumine>
+							</muutmismarge>
+						</alampunkt>
+						<alampunkt id="para6lg1p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							
+							<muutmismarge>
+								<tavatekst>kehtetu - </tavatekst>
+								
+								<avaldamismarge>
+									<RTosa>RT IV</RTosa>
+									<avaldamineKuupaev>2021-12-23</avaldamineKuupaev>
+									<RTartikkel>2</RTartikkel>
+									<aktViide>423122021002</aktViide>
+								</avaldamismarge>
+								<joustumine>2022-01-01</joustumine>
+							</muutmismarge>
+						</alampunkt>
+					</loige>
+					<loige id="para6lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Taotluse võib esitada vanem, kelle rahvastikuregistrijärgne elukoht on sama, mis toetuse saamise õigusega lapsel. Laiendatud teovõimega või 18-aastane laps peab esitama taotluse ise. Õppeaasta alguse toetuse taotlus esitatakse Tallinna Haridusametile.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2024-04-04</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2024-04-12</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>412042024002</aktViide>
+							</avaldamismarge>
+							<joustumine>2024-04-15</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para6lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kui vanema asemel esitab taotluse eestkostja, ei rakendata vanema rahvastikuregistrijärgse elukoha kohta esitatud nõudeid.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2021-12-16</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2021-12-23</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>423122021002</aktViide>
+							</avaldamismarge>
+							<joustumine>2022-01-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para6lg4">
+						<loigeNr>4</loigeNr>
+						<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Esmakordse taotluse võib esitada toetuse maksmise õiguse tekkimise aastal alates lapse kooli õpilaste nimekirja kinnitamisest kuni 30. novembrini. Toetus makstakse välja ühekordse maksena 30 päeva jooksul taotluse esitamisest.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2021-12-16</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2021-12-23</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>423122021002</aktViide>
+							</avaldamismarge>
+							<joustumine>2022-01-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para6lg5">
+						<loigeNr>5</loigeNr>
+						<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Toetust makstakse üks kord aastas pärast lapse kinnitamist kooli õpilaste nimekirja.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2021-12-16</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2021-12-23</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>423122021002</aktViide>
+							</avaldamismarge>
+							<joustumine>2022-01-01</joustumine>
+						</muutmismarge>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para7">
+					<paragrahvNr>7</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 7.]]></kuvatavNr>
+					<paragrahvPealkiri>Hoolduspere toetused</paragrahvPealkiri>
+					<loige id="para7lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hoolduspere toetusi on õigus saada inimesel, kes osutab hooldusperes asendushooldusteenust Tallinna linna tellimusel.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-03</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para7lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hoolduspere toetused on:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para7lg2p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>hooldusperes asendushooldusteenusel oleva lapse isiklike kulude toetus;</tavatekst>
+							</sisuTekst>
+							<muutmismarge>
+								<aktikuupaev>2025-04-03</aktikuupaev>
+								<avaldamismarge>
+									<RTosa>RT IV</RTosa>
+									<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+									<RTartikkel>1</RTartikkel>
+									<aktViide>412042025001</aktViide>
+								</avaldamismarge>
+								<joustumine>2025-05-01</joustumine>
+							</muutmismarge>
+						</alampunkt>
+						<alampunkt id="para7lg2p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>hoolduspere vanema toetus.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para7lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hoolduspere toetusi makstakse alates asendushooldusteenuse osutamise algusest üks kord kalendrikuus. Toetuse määrab Tallinna Sotsiaal- ja Tervishoiuameti lapse heaolu spetsialist eestkostja ülesandeid täites ilma taotluseta.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-03</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para8">
+					<paragrahvNr>8</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 8.]]></kuvatavNr>
+					<paragrahvPealkiri>Asendushooldusteenusel oleva lapse toetus</paragrahvPealkiri>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+					<loige id="para8lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Asendushooldusteenusel oleva lapse toetust on õigus saada vähemalt seitsmeaastasel lapsel, kellele osutatakse Tallinna linna tellimusel asendushooldusteenust:</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-03</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+						<alampunkt id="para8lg1p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>hooldusperes või</tavatekst>
+							</sisuTekst>
+							<muutmismarge>
+								<aktikuupaev>2025-04-03</aktikuupaev>
+								<avaldamismarge>
+									<RTosa>RT IV</RTosa>
+									<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+									<RTartikkel>1</RTartikkel>
+									<aktViide>412042025001</aktViide>
+								</avaldamismarge>
+								<joustumine>2025-05-01</joustumine>
+							</muutmismarge>
+						</alampunkt>
+						<alampunkt id="para8lg1p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>perekodus või asenduskodus.</tavatekst>
+							</sisuTekst>
+							<muutmismarge>
+								<aktikuupaev>2025-04-03</aktikuupaev>
+								<avaldamismarge>
+									<RTosa>RT IV</RTosa>
+									<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+									<RTartikkel>1</RTartikkel>
+									<aktViide>412042025001</aktViide>
+								</avaldamismarge>
+								<joustumine>2025-05-01</joustumine>
+							</muutmismarge>
+						</alampunkt>
+					</loige>
+					<loige id="para8lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Asendushooldusteenusel oleva lapse toetusele kehtestatakse kaks määra:</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-03</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+						<alampunkt id="para8lg2p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>7–12-aastasele (k.a);</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para8lg2p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>13-aastasele ja vanemale.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para8lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Asendushooldusteenusel oleva lapse toetust makstakse alates asendushooldusteenuse osutamise algusest või lapse seitsmeaastaseks saamisest üks kord kalendrikuus. Toetuse määrab Tallinna Sotsiaal- ja Tervishoiuameti lapse heaolu spetsialist<b> </b>eestkostja ülesandeid täites ilma taotluseta.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-03</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para8b1">
+					<paragrahvNr ylaIndeks="1">8</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 8<sup>1</sup>.]]></kuvatavNr>
+					<paragrahvPealkiri>Järelhooldusteenust saava inimese isiklike kulude toetus</paragrahvPealkiri>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+					<loige id="para8b1lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Järelhooldusteenust saava inimese isiklike kulude toetust on õigus saada inimesel, kes ei
+saa järelhooldusteenust teenuseosutajalt, vaid elab järelhoolduse raames enda valitud
+eluruumis.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-03</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para8b1lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Järelhooldusteenust saava inimese isiklike kulude toetust makstakse alates teenuse
+osutamise algusest üks kord kalendrikuus. Toetuse määrab linnaosa valitsus ilma taotluseta.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-03</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para9">
+					<paragrahvNr>9</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 9.]]></kuvatavNr>
+					<paragrahvPealkiri>Puudega lapse toetus</paragrahvPealkiri>
+					<loige id="para9lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Puudega lapse toetust on õigus saada kuni 16-aastasel lapsel:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para9lg1p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>kellel Sotsiaalkindlustusamet on tuvastanud puude ja</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para9lg1p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>kellel ei ole tuvastatud osalist või puuduvat töövõimet ja</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para9lg1p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>kelle puude andmed on kantud sotsiaalkaitse infosüsteemi ja</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para9lg1p4">
+							<alampunktNr>4</alampunktNr>
+							<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>kelle vähemalt ühe vanema rahvastikuregistrijärgne elukoht on Tallinna linn katkematult vähemalt toetuse taotlemise kalendriaastale eelnenud kalendriaasta 1. jaanuarist.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para9lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Taotluse võib esitada vanem, kelle rahvastikuregistrijärgne elukoht on sama, mis toetuse saamise õigusega lapsel. Puudega lapse toetuse taotlus esitatakse Tallinna Sotsiaal- ja Tervishoiuametile.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-03</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para9lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kui vanema asemel esitab taotluse eestkostja, ei rakendata vanema rahvastikuregistrijärgse elukoha kohta esitatud nõudeid.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para9lg4">
+						<loigeNr>4</loigeNr>
+						<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Puudega lapse toetust makstakse üks kord kalendriaastas lapse sünnikuul puude raskusastme tuvastamise otsuse kehtivuse ajal.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para9lg5">
+						<loigeNr>5</loigeNr>
+						<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Puudega lapse toetuse määramise aastal makstakse toetust taotleja sünnikuul tingimusel, et taotlus on esitatud hiljemalt selle kuu 15. kuupäeval. Kui taotlus esitatakse hiljem, makstakse toetus välja 30 päeva jooksul taotluse esitamisest.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para9lg6">
+						<loigeNr>6</loigeNr>
+						<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kui taotluse esitanud vanema rahvastikuregistrijärgne elukoht muutub, nii et see ei ole enam sama mis lapsel, jätkatakse puudega lapse toetuse maksmist juhul, kui seda taotleb lapse teine vanem, kelle rahvastikuregistrijärgne elukoht on Tallinnas ja sama, mis lapsel.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para10">
+					<paragrahvNr>10</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 10.]]></kuvatavNr>
+					<paragrahvPealkiri>Hooldajatoetus</paragrahvPealkiri>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+				</paragrahv>
+				<paragrahv id="para11">
+					<paragrahvNr>11</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 11.]]></kuvatavNr>
+					<paragrahvPealkiri>Juhtkoera pidamise toetus</paragrahvPealkiri>
+					<loige id="para11lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Juhtkoera pidamise toetust on õigus saada inimesel:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para11lg1p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>kellel Sotsiaalkindlustusamet on tuvastanud nägemisfunktsiooni häire tõttu raske või sügava puude ja</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para11lg1p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>kes kasutab igapäevaseks liikumiseks spetsiaalse väljaõppe saanud juhtkoera, kellega on läbinud kokkuõppe ja sooritanud sellekohase eksami, ja</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para11lg1p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>kelle kasutuses oleva juhtkoera andmed on kantud kohaliku omavalitsuse lemmikloomaregistrisse ja</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para11lg1p4">
+							<alampunktNr>4</alampunktNr>
+							<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>kelle kasutuses olev juhtkoer läbib iga aasta veterinaarkontrolli ning juhtkoerale on väljastatud tõend selle kohta, et ta on terve ja võimeline täitma juhtkoera ülesandeid.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para11lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Juhtkoera pidamise toetuse taotlemisel põhjendatakse toetuse vajadust ja esitatakse dokumendid, mis tõendavad toetuse saamise tingimustele vastamist. Taotluse esitamisega kohustub inimene teavitama linnaosa valitsust viivitamata sellest, kui ta loobub juhtkoera kasutamisest.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para11lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Juhtkoera pidamise toetust makstakse üks kord kvartalis.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para12">
+					<paragrahvNr>12</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 12.]]></kuvatavNr>
+					<paragrahvPealkiri>Pensionilisa</paragrahvPealkiri>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+					<loige id="para12lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Pensionilisa on õigus saada inimesel:</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2022-12-15</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+						<alampunkt id="para12lg1p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>kes on riikliku pensionikindlustuse seaduse alusel määratud vanadus-, töövõimetus- või rahvapensioni saaja või täisealine toitjakaotuspensioni saaja (18–24-aastane inimene, kes õpib gümnaasiumi või kutseõppeasutuse statsionaarses õppes, rakenduskõrgkoolis või ülikoolis täiskoormusel; lesk, kelle töövõime on vähenenud; vanaduspensioniealine lesk; vanem, kelle töövõime on vähenenud; vanaduspensioniealine vanem; mittetöötav lesk, kes ootab last) või vähemalt 17-aastane inimene, kellel on töövõimetoetuse seaduse alusel tuvastatud osaline või puuduv töövõime, ja</tavatekst>
+							</sisuTekst>
+							<muutmismarge>
+								<aktikuupaev>2022-12-15</aktikuupaev>
+								<avaldamismarge>
+									<RTosa>RT IV</RTosa>
+									<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+									<RTartikkel>5</RTartikkel>
+									<aktViide>422122022005</aktViide>
+								</avaldamismarge>
+								<joustumine>2023-01-01</joustumine>
+							</muutmismarge>
+						</alampunkt>
+						<alampunkt id="para12lg1p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>kelle pensioni või töövõime andmed on kantud sotsiaalkaitse infosüsteemi või töövõime hindamise ja töövõimetoetuse andmekogusse, ja</tavatekst>
+							</sisuTekst>
+							<muutmismarge>
+								<aktikuupaev>2022-12-15</aktikuupaev>
+								<avaldamismarge>
+									<RTosa>RT IV</RTosa>
+									<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+									<RTartikkel>5</RTartikkel>
+									<aktViide>422122022005</aktViide>
+								</avaldamismarge>
+								<joustumine>2023-01-01</joustumine>
+							</muutmismarge>
+						</alampunkt>
+						<alampunkt id="para12lg1p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>kelle elukohana on rahvastikuregistrisse kantud Tallinna linn katkematult vähemalt alates toetuse taotlemise kalendriaastale eelnenud kalendriaasta 1. jaanuarist.</tavatekst>
+							</sisuTekst>
+							<muutmismarge>
+								<aktikuupaev>2022-12-15</aktikuupaev>
+								<avaldamismarge>
+									<RTosa>RT IV</RTosa>
+									<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+									<RTartikkel>5</RTartikkel>
+									<aktViide>422122022005</aktViide>
+								</avaldamismarge>
+								<joustumine>2023-01-01</joustumine>
+							</muutmismarge>
+						</alampunkt>
+					</loige>
+					<loige id="para12lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Pensionilisa koosneb toetusest ja soodustustest.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2022-12-15</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para12lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Toetust makstakse üks kord aastas pensionilisa saaja sünnikuule eelneval kuul. Toetust makstakse alates käesoleva paragrahvi lõikes 1 nimetatud pensioni määramise või osalise või puuduva töövõime tuvastamise kalendriaastale järgnevast kalendriaastast.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2022-12-15</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para12lg4">
+						<loigeNr>4</loigeNr>
+						<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Esmakordse taotluse võib esitada toetuse taotlemise õiguse tekkimise aastal alates sünnikuust. Toetus makstakse välja 30 päeva jooksul taotluse esitamisest.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2022-12-15</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para12lg5">
+						<loigeNr>5</loigeNr>
+						<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Toetuse määramise aastal saab pensionilisa saaja kasutada soodustusi alates pensionilisa maksmise kalendrikuule järgnevast kalendrikuust. Soodustuste saamiseks annab inimene nõusoleku oma isikuandmete töötlemiseks.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2022-12-15</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para12lg6">
+						<loigeNr>6</loigeNr>
+						<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Pärast esmakordset taotlemist makstakse toetust pensionilisa saaja sünnikuule eelneval kuul automaatselt, kui inimene vastab jätkuvalt pensionilisa saamise tingimustele.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2022-12-15</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para12lg7">
+						<loigeNr>7</loigeNr>
+						<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Toetust ei maksta ja soodustusi ei anta inimesele, kelle väljaspool kodu osutatava ööpäevase üldhooldusteenuse eest tasutakse või on sel kalendriaastal tasutud Tallinna linna eelarvest.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2024-04-04</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2024-04-12</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>412042024002</aktViide>
+							</avaldamismarge>
+							<joustumine>2024-04-15</joustumine>
+						</muutmismarge>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para13">
+					<paragrahvNr>13</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 13.]]></kuvatavNr>
+					<paragrahvPealkiri>Matusetoetus</paragrahvPealkiri>
+					<loige id="para13lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Matusetoetust on õigus saada inimesel, kes korraldab matused lahkunule, kelle rahvastikuregistrijärgne elukoht surma registreerimisel oli Tallinna linn.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para13lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Erandkorras määratakse matusetoetus matuse korraldajale, kelle rahvastikuregistrijärgne elukoht on Tallinna linn ja kes korraldab sellise inimese matused, kellel puudus Eestis rahvastikuregistrijärgne elukoht või kelle matmise kulude katmiseks ei ole võimalik saada matusetoetust lahkunu elukohajärgsest kohaliku omavalitsuse üksusest selle üldkorra alusel.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2022-12-15</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para13lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Matusetoetuse taotluse võib esitada kuue kuu jooksul surmapäevast arvates.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para13lg4">
+						<loigeNr>4</loigeNr>
+						<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Taotluse esitamisega kinnitab taotleja, et katab matuse korraldamise kulud. Kui matusetoetuse taotleja ei ole lahkunu sugulane või tema rahvastikuregistrijärgne elukoht ei ole sama lahkunu viimase elukohaga, märgitakse taotluses taotleja seos lahkunuga. Sellisel juhul on linnaosa valitsusel õigus nõuda matuse korraldamise kulude kohta tõendeid.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para13lg5">
+						<loigeNr>5</loigeNr>
+						<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Matusetoetus makstakse 30 päeva jooksul taotluse või nõutud dokumendi esitamisest. Matusetoetust makstakse üks kord matuse kohta.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para13b1">
+					<paragrahvNr ylaIndeks="1">13</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 13<sup>1</sup>.]]></kuvatavNr>
+					<paragrahvPealkiri>Toetus esimese haiguspäeva hüvitamiseks</paragrahvPealkiri>
+					<muutmismarge>
+						<aktikuupaev>2021-12-16</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2021-12-23</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>423122021002</aktViide>
+						</avaldamismarge>
+						<joustumine>2022-01-01</joustumine>
+					</muutmismarge>
+					<loige id="para13b1lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Toetust esimese haiguspäeva hüvitamiseks on õigus saada füüsilisel isikul, kellele on ravikindlustuse seaduse alusel kirjutatud välja esmane haigusleht ajavahemikul 1. jaanuarist 31. maini 2022 haigestumise, tema suhtes kehtestatud karantiini või raseduse ajal haigestumise tõttu.</tavatekst>
+							</sisuTekst>
+					</loige>
+					<loige id="para13b1lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Taotlus esitatakse 40 kalendripäeva jooksul päevast, kui Eesti Haigekassa on pärast haiguslehe lõpetamist maksnud välja töövõimetushüvitise.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para13b1lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Toetus esimese haiguspäeva hüvitamiseks makstakse välja 30 kalendripäeva jooksul nõuetekohase taotluse esitamisest.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2021-12-16</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2021-12-23</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>423122021002</aktViide>
+							</avaldamismarge>
+							<joustumine>2022-01-01</joustumine>
+						</muutmismarge>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg2">
+				<jaguNr>2</jaguNr>
+				<kuvatavNr><![CDATA[2. jagu]]></kuvatavNr>
+				<jaguPealkiri>Sissetulekust sõltuvad universaaltoetused</jaguPealkiri>
+				<muutmismarge>
+					<aktikuupaev>2023-04-20</aktikuupaev>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2023-04-27</avaldamineKuupaev>
+						<RTartikkel>10</RTartikkel>
+						<aktViide>427042023010</aktViide>
+					</avaldamismarge>
+					<joustumine>2023-04-30</joustumine>
+				</muutmismarge>
+				<paragrahv id="para14">
+					<paragrahvNr>14</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 14.]]></kuvatavNr>
+					<paragrahvPealkiri>Sissetulekust sõltuv toetus toimetuleku tagamiseks</paragrahvPealkiri>
+					<muutmismarge>
+						<aktikuupaev>2022-12-15</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-01-01</joustumine>
+					</muutmismarge>
+					<loige id="para14lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Sissetulekust sõltuvat toetust toimetuleku tagamiseks (edaspidi <i>toetus</i>) määratakse ja makstakse sotsiaalhoolekandelise abi andmise korras sätestatud alustel.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2022-12-15</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para14lg1b1">
+						<loigeNr ylaIndeks="1">1</loigeNr>
+						<kuvatavNr><![CDATA[(1<sup>1</sup>)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Toetuse maksmisel käsitletakse
+perena inimesi, kes elavad koos ja majandavad ühiselt.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2023-04-20</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2023-04-27</avaldamineKuupaev>
+								<RTartikkel>10</RTartikkel>
+								<aktViide>427042023010</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-04-30</joustumine>
+							<tavatekst>, rakendatakse alates 01.04.2023</tavatekst>
+						</muutmismarge>
+					</loige>
+					<loige id="para14lg1b2">
+						<loigeNr ylaIndeks="2">1</loigeNr>
+						<kuvatavNr><![CDATA[(1<sup>2</sup>)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Toetuse arvestamisel võetakse
+inimese või pere sissetulekuna arvesse kogu eelmisel kuul laekunud
+netosissetulek.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2023-04-20</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2023-04-27</avaldamineKuupaev>
+								<RTartikkel>10</RTartikkel>
+								<aktViide>427042023010</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-04-30</joustumine>
+							<tavatekst>, rakendatakse alates 01.04.2023</tavatekst>
+						</muutmismarge>
+					</loige>
+					<loige id="para14lg1b3">
+						<loigeNr ylaIndeks="3">1</loigeNr>
+						<kuvatavNr><![CDATA[(1<sup>3</sup>)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Inimese või pere netosissetuleku hulka ei arvestata sotsiaalhoolekande seaduses
+toimetulekutoetuse arvestamise aluseid sätestavas üldnormis loetletud toetusi
+ja sissetulekuid.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2023-04-20</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2023-04-27</avaldamineKuupaev>
+								<RTartikkel>10</RTartikkel>
+								<aktViide>427042023010</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-04-30</joustumine>
+							<tavatekst>, rakendatakse alates 01.04.2023</tavatekst>
+						</muutmismarge>
+					</loige>
+					<loige id="para14lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Toetust makstakse majandusraskustesse sattunud inimeste ja perede toetamiseks. Toetust makstakse ennekõike inimese või pere tehtud põhjendatud kulude osaliseks või
+täielikuks hüvitamiseks. Põhjendatud kulud on ennekõike tervise säilitamise ja taastamise,
+abivahendite, erakorraliste juhtumite, lapse hariduse ning huvi- ja sporditegevusega seotud
+kulud.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-03</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para14lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Linnaosa valitsuse sotsiaalhoolekande osakonna
+juhatajal või tema volitatud
+ametnikul on sotsiaaltöötaja põhjendatud ettepanekul õigus:</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2024-05-30</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>412062024002</aktViide>
+							</avaldamismarge>
+							<joustumine>2024-06-15</joustumine>
+						</muutmismarge>
+						<alampunkt id="para14lg3p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>määrata toetus perele, kelle sissetulek on sotsiaalhoolekandelise
+abi andmise korras sätestatud tasu maksmise ülevõtmise põhimõtete alusel
+kindlaks määratust suurem;</tavatekst>
+							</sisuTekst>
+							<muutmismarge>
+								<aktikuupaev>2024-05-30</aktikuupaev>
+								<avaldamismarge>
+									<RTosa>RT IV</RTosa>
+									<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+									<RTartikkel>2</RTartikkel>
+									<aktViide>412062024002</aktViide>
+								</avaldamismarge>
+								<joustumine>2024-06-15</joustumine>
+							</muutmismarge>
+						</alampunkt>
+						<alampunkt id="para14lg3p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>määrata toetust konkreetse sotsiaaltoetuse maksimaalmäära ületavas summas;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para14lg3p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>määrata toetust ilma abi vajava inimese taotluseta, kuid võimaluse korral tema nõusolekul;</tavatekst>
+							</sisuTekst>
+							<muutmismarge>
+								<aktikuupaev>2024-05-30</aktikuupaev>
+								<avaldamismarge>
+									<RTosa>RT IV</RTosa>
+									<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+									<RTartikkel>2</RTartikkel>
+									<aktViide>412062024002</aktViide>
+								</avaldamismarge>
+								<joustumine>2024-06-15</joustumine>
+							</muutmismarge>
+						</alampunkt>
+						<alampunkt id="para14lg3p4">
+							<alampunktNr>4</alampunktNr>
+							<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>mitte
+arvestada inimese või pere sissetulekute hulka konkreetse kulu või kahju
+katmiseks saadud rahalist abi.</tavatekst>
+							</sisuTekst>
+							<muutmismarge>
+								<aktikuupaev>2024-05-30</aktikuupaev>
+								<avaldamismarge>
+									<RTosa>RT IV</RTosa>
+									<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+									<RTartikkel>2</RTartikkel>
+									<aktViide>412062024002</aktViide>
+								</avaldamismarge>
+								<joustumine>2024-06-15</joustumine>
+							</muutmismarge>
+						</alampunkt>
+					</loige>
+					<loige id="para14lg4">
+						<loigeNr>4</loigeNr>
+						<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Toetust on ennekõike võimalik taotleda ühel korral kalendrikuus dokumentaalselt tõendatavate kulude alusel, mille suurus on vähemalt kümme eurot taotluse kohta ja mis on tehtud taotluse esitamise kalendrikuul või sellele eelnenud kalendrikuul.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2024-05-30</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2024-06-12</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>412062024002</aktViide>
+							</avaldamismarge>
+							<joustumine>2024-06-15</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para14lg5">
+						<loigeNr>5</loigeNr>
+						<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+						
+						<muutmismarge>
+							<tavatekst>Kehtetu - </tavatekst>
+							
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para14lg6">
+						<loigeNr>6</loigeNr>
+						<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+						
+						<muutmismarge>
+							<tavatekst>Kehtetu - </tavatekst>
+							
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2022-12-22</avaldamineKuupaev>
+								<RTartikkel>5</RTartikkel>
+								<aktViide>422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-01-01</joustumine>
+						</muutmismarge>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para15">
+					<paragrahvNr>15</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 15.]]></kuvatavNr>
+					<paragrahvPealkiri>Eluruumi kohandamise kulu hüvitis</paragrahvPealkiri>
+					<loige id="para15lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Eluruumi kohandamise kulu hüvitamise eesmärk on soodustada puudega inimese iseseisvat toimetulekut ja leevendada või kõrvaldada puudest tingitud takistusi eluruumis liikumisel, enesega toimetulekul ning eluruumi sisenemisel ja sealt väljumisel.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para15lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Eluruumi kohandamise kulu hüvitise määramisel ja maksmisel lähtutakse sotsiaalhoolekandelise abi andmise korras sätestatud alustest. Lisaks peab puudega inimese kasutuses olev eluruum, mida soovitakse kohandada, asuma Tallinna linna haldusterritooriumil.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para15lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Eluruumi kohandamise kuluks loetakse eluruumi kohandamiseks vajaliku materjali ja ehitustööde kulu. Ehitustööde tegemiseks peab olema võetud vähemalt kaks võrreldavat kohandamiseks vajalike ehitustööde hinnapakkumist.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para15lg4">
+						<loigeNr>4</loigeNr>
+						<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Eluruumi kohandamise kuluks ei loeta tehniliste abivahendite ostmise ja paigaldamise kulu, kui tehnilised abivahendid on võimalik osta ja paigaldada sotsiaalhoolekande seaduse alusel kehtestatud tehniliste abivahendite taotlemise ja soodustingimustel eraldamise korra alusel.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para15lg5">
+						<loigeNr>5</loigeNr>
+						<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Eluruumi kohandamise kulu hüvitamist korraldab ja otsustab määruses sätestatud korras Tallinna Sotsiaal- ja Tervishoiuamet (edaspidi <i>amet</i>).</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para15lg6">
+						<loigeNr>6</loigeNr>
+						<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Enne eluruumi kohandamise alustamist kohustub abi saaja esitama eluruumi omaniku või kaasomandis või ühisomandis oleva eluruumi omanike kirjaliku nõusoleku eluruumi kohandamiseks.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para15lg7">
+						<loigeNr>7</loigeNr>
+						<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Eluruumi kohandamise kulu hüvitise maksmise otsustab amet haldusaktiga.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para15lg8">
+						<loigeNr>8</loigeNr>
+						<kuvatavNr><![CDATA[(8)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Eluruumi kohandamise kulu hüvitisega ei kaeta enne hüvitise maksmise otsustamist tehtud ehitustööde maksumust.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para15lg9">
+						<loigeNr>9</loigeNr>
+						<kuvatavNr><![CDATA[(9)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Eluruumi kohandamise hüvitist makstakse kord kolme kalendriaasta jooksul.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para15lg10">
+						<loigeNr>10</loigeNr>
+						<kuvatavNr><![CDATA[(10)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hüvitise väljamaksmise aluseks on esitatud kuludokumendid ja kirjalik kinnitus, et töö on tehtud otsuse aluseks olnud hinnapakkumiste alusel.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para15b1">
+					<paragrahvNr ylaIndeks="1">15</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 15<sup>1</sup>.]]></kuvatavNr>
+					<paragrahvPealkiri>Hooldajatoetus</paragrahvPealkiri>
+					<muutmismarge>
+						<aktikuupaev>2024-04-04</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2024-04-12</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>412042024002</aktViide>
+						</avaldamismarge>
+						<joustumine>2024-04-15</joustumine>
+					</muutmismarge>
+					<loige id="para15b1lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hooldajatoetust makstakse hooldajale (sh puudega lapse seaduslikule esindajale või last vahetult kasvatavale isikule), kes hooldab:</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2024-04-04</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2024-04-12</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>412042024002</aktViide>
+							</avaldamismarge>
+							<joustumine>2024-04-15</joustumine>
+						</muutmismarge>
+						<alampunkt id="para15b1lg1p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>last või täisealist inimest, kes vajab raske või sügava puude tõttu igapäevaelu toimingutes füüsilist kõrvalabi, juhendamist ja järelevalvet. Lapse hooldamisel makstakse hooldajatoetust juhul, kui laps vajab lisaks eelnimetatule ööpäevaringset abi püsivalt keerukates ravi- ja hooldustoimingutes;</tavatekst>
+							</sisuTekst>
+							<muutmismarge>
+								<aktikuupaev>2024-04-04</aktikuupaev>
+								<avaldamismarge>
+									<RTosa>RT IV</RTosa>
+									<avaldamineKuupaev>2024-04-12</avaldamineKuupaev>
+									<RTartikkel>2</RTartikkel>
+									<aktViide>412042024002</aktViide>
+								</avaldamismarge>
+								<joustumine>2024-04-15</joustumine>
+							</muutmismarge>
+						</alampunkt>
+						<alampunkt id="para15b1lg1p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>inimest, kellel on lühiajaline, kuni kuus kuud kestev erivajadusest põhjustatud hooldusvajadus.</tavatekst>
+							</sisuTekst>
+							<muutmismarge>
+								<aktikuupaev>2024-04-04</aktikuupaev>
+								<avaldamismarge>
+									<RTosa>RT IV</RTosa>
+									<avaldamineKuupaev>2024-04-12</avaldamineKuupaev>
+									<RTartikkel>2</RTartikkel>
+									<aktViide>412042024002</aktViide>
+								</avaldamismarge>
+								<joustumine>2024-04-15</joustumine>
+							</muutmismarge>
+						</alampunkt>
+					</loige>
+					<loige id="para15b1lg1b1">
+						<loigeNr ylaIndeks="1">1</loigeNr>
+						<kuvatavNr><![CDATA[(1<sup>1</sup>)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hooldajatoetus on igakuine sotsiaaltoetus käesoleva paragrahvi lõike 1 punktis 1 või 2 nimetatud hooldust vajava inimese perioodilise või alalise hooldamise eest. Seda makstakse juhul, kui hooldajal ei ole võimalik täiskoormusega osaleda tööhõives, kuna hooldatava abivajadust ei ole võimalik katta muu abimeetmega.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2024-04-04</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2024-04-12</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>412042024002</aktViide>
+							</avaldamismarge>
+							<joustumine>2024-04-15</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para15b1lg1b2">
+						<loigeNr ylaIndeks="2">1</loigeNr>
+						<kuvatavNr><![CDATA[(1<sup>2</sup>)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hooldusvajadus on inimese kõrvalabi, toetuse ja järelevalve vajadus. Hooldusvajaduse teeb sotsiaaltöötaja või lapse heaolu spetsialist kindlaks hooldatava elu- või viibimiskohas abivajaduse hindamisel, kasutades vajadusel arstiõppe läbinud isiku koostatud hinnangut.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2024-04-04</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2024-04-12</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>412042024002</aktViide>
+							</avaldamismarge>
+							<joustumine>2024-04-15</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para15b1lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hooldajatoetust ei maksta taotlejale, kes saab hooldatava lapsega seotud vanemahüvitist või kelle hooldatava puhul on võimalik hooldusvajadus katta teiste sotsiaal-, haridus- või meditsiiniteenustega.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-09-04</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-09-10</avaldamineKuupaev>
+								<RTartikkel>13</RTartikkel>
+								<aktViide>410092025013</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-09-13</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para15b1lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hooldajatoetust makstakse toetuse määramise otsuse tegemise kalendrikuule järgnevast kalendrikuust. Hooldajatoetuse viimane makse tehakse sellel kalendrikuul, kui lõpeb toetuse määramise haldusakti kehtivus.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2024-04-04</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2024-04-12</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>412042024002</aktViide>
+							</avaldamismarge>
+							<joustumine>2024-04-15</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para15b1lg4">
+						<loigeNr>4</loigeNr>
+						<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hooldajatoetuse saaja eest tasub Tallinna linn sotsiaalmaksu, kui hooldaja pensionikindlustus ja/või riiklik ravikindlustus ei ole tagatud muu hulgas põhjusel, et hooldaja:</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2024-04-04</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2024-04-12</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>412042024002</aktViide>
+							</avaldamismarge>
+							<joustumine>2024-04-15</joustumine>
+						</muutmismarge>
+						<alampunkt id="para15b1lg4p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ei tööta (töötamisena käsitatakse tulu teenimist töö- või teenistuslepingu, võlaõigusliku või tsiviilõigusliku lepingu alusel);</tavatekst>
+							</sisuTekst>
+							<muutmismarge>
+								<aktikuupaev>2024-04-04</aktikuupaev>
+								<avaldamismarge>
+									<RTosa>RT IV</RTosa>
+									<avaldamineKuupaev>2024-04-12</avaldamineKuupaev>
+									<RTartikkel>2</RTartikkel>
+									<aktViide>412042024002</aktViide>
+								</avaldamismarge>
+								<joustumine>2024-04-15</joustumine>
+							</muutmismarge>
+						</alampunkt>
+						<alampunkt id="para15b1lg4p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ei ole osalise või puuduva töövõimega inimene;</tavatekst>
+							</sisuTekst>
+							<muutmismarge>
+								<aktikuupaev>2024-04-04</aktikuupaev>
+								<avaldamismarge>
+									<RTosa>RT IV</RTosa>
+									<avaldamineKuupaev>2024-04-12</avaldamineKuupaev>
+									<RTartikkel>2</RTartikkel>
+									<aktViide>412042024002</aktViide>
+								</avaldamismarge>
+								<joustumine>2024-04-15</joustumine>
+							</muutmismarge>
+						</alampunkt>
+						<alampunkt id="para15b1lg4p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ei kuulu ega ole viimasel kuuel kuul kuulunud tegutseva ettevõtte juhtorganisse ega omanike ringi.</tavatekst>
+							</sisuTekst>
+							<muutmismarge>
+								<aktikuupaev>2025-04-03</aktikuupaev>
+								<avaldamismarge>
+									<RTosa>RT IV</RTosa>
+									<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+									<RTartikkel>1</RTartikkel>
+									<aktViide>412042025001</aktViide>
+								</avaldamismarge>
+								<joustumine>2025-05-01</joustumine>
+							</muutmismarge>
+						</alampunkt>
+					</loige>
+					<loige id="para15b1lg5">
+						<loigeNr>5</loigeNr>
+						<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hooldajatoetus määratakse hooldajale abi vajava inimese rahvastikuregistrisse kantud elukoha järgse linnaosa valitsuse või lapse hooldaja puhul Tallinna Sotsiaal- ja Tervishoiuameti lapse heaolu spetsialisti haldusaktiga, mis kehtib maksimaalselt kolm aastat või kuni hooldatavale määratud puude kehtivusaja lõpuni ja/või hooldaja ja/või hooldatava tähtajalise elamisloa lõpuni.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-03</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para16">
+					<paragrahvNr>16</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 16.]]></kuvatavNr>
+					<paragrahvPealkiri>Toimetulekutoetus</paragrahvPealkiri>
+					<loige id="para16lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Toimetulekutoetuse eesmärk on inimeste iseseisvat toimetulekut soodustava ajutise abimeetmena leevendada inimese ja perekonna materiaalset puudust, tagades minimaalsed vahendid esmavajaduste rahuldamiseks.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para16lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Toimetulekutoetus määratakse tegeliku elukoha järgse linnaosa valitsuse sotsiaalhoolekande osakonna juhataja või tema volitatud ametniku haldusaktiga või Tallinna Sotsiaal- ja Tervishoiuameti juhataja või tema volitatud ametniku haldusaktiga.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-03</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para16lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Toimetulekutoetuse andmist menetletakse sotsiaalhoolekande seaduses sätestatud korras.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para16b1">
+					<paragrahvNr ylaIndeks="1">16</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 16<sup>1</sup>.]]></kuvatavNr>
+					<paragrahvPealkiri>Rakendussätted</paragrahvPealkiri>
+					<muutmismarge>
+						<aktikuupaev>2025-04-03</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-05-01</joustumine>
+					</muutmismarge>
+					<loige id="para16b1lg1">
+						<sisuTekst>
+							<tavatekst>Kuni 1. maini 2025 kehtinud määruse redaktsiooni sätete alusel määratud hoolduspere toetuse, asendushooldusteenuse kasutaja toetuse, puudega lapse toetuse ja lapse hooldamisel makstava hooldajatoetuse saamise õigus kehtib kuni toetuse saamise õiguse äralangemiseni või toetuse määramise otsuses toodud tähtpäevani või uue otsuse tegemiseni.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2025-04-03</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT IV</RTosa>
+								<avaldamineKuupaev>2025-04-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-05-01</joustumine>
+						</muutmismarge>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para17">
+					<paragrahvNr>17</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 17.]]></kuvatavNr>
+					<paragrahvPealkiri>Määruse jõustumine</paragrahvPealkiri>
+					<loige id="para17lg1">
+						<sisuTekst>
+							<tavatekst>Käesolev määrus jõustub 1. jaanuaril 2022.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+		</peatykk>
+	</sisu>
+</oigusakt>

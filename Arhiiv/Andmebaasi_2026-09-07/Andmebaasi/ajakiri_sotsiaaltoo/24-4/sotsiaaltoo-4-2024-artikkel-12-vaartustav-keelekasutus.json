@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2024",
+  "issueLabel": "4/2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "vaartustav-keelekasutus-2024-4",
+  "title": "Sõna võim – väärtustav keelekasutus sotsiaalvaldkonna töös",
+  "authors": [
+    "Katrin Tsuiman"
+  ],
+  "section": "Eetika",
+  "pageRange": "75–79",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "source_path": "sotsiaaltoo_4_2024_web_Part14.pdf",
+  "description": "Artikkel kutsub sotsiaalvaldkonna töötajaid mõtestama keele ja sõnade mõju inimeste väärikusele, õigustele ja taastumisele. Lähtudes inimõigustel põhinevast sotsiaaltööst ja Eesti sotsiaalvaldkonna töötaja eetikakoodeksist käsitletakse lootust hoidvat ja võimestavat keelekasutust suhetes abivajajatega ning poliitika kujundamisel. Autor selgitab, kuidas sildistav, stigmatiseeriv ja patroniseeriv sõnakasutus võib süvendada ebavõrdsust ja võimutasakaalutust, samas kui inimesekeskne, tugevusi rõhutav ja traumateadlik keel toetab inimeste enesemääramisõigust ja osalust. Praktiliste näidete ja juhiste kaudu näidatakse, kuidas dokumentide, hindamisaktide ja igapäevase suhtluse sõnastus saab olla lootust hoidev ja väärikust säilitav.",
+  "tags": [
+    "eetika",
+    "keelekasutus",
+    "inimõigused",
+    "väärtustav suhtlus",
+    "taastumisele suunatud keel",
+    "stigmatiseerimine",
+    "dokumentide sõnastus"
+  ],
+  "document_id": "sotsiaaltoo-4-2024-vaartustav-keelekasutus-2024-4",
+  "source_format": "pdf",
+  "source_sha256": "349b52d7c4dd5678b2a11ac12d97401540c09af87470e16bf36a95f920065428",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2024-vaartustav-keelekasutus-2024-4",
+    "previous_source_path": "sotsiaaltoo_4_2024_web_Part14.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "349b52d7c4dd5678b2a11ac12d97401540c09af87470e16bf36a95f920065428",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

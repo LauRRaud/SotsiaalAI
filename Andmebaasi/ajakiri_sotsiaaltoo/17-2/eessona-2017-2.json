@@ -1,0 +1,63 @@
+{
+  "docId": "sotsiaaltoo-2-2017",
+  "articleId": "eessona-2017-2",
+  "title": "Eessõna",
+  "authors": [
+    "Indrek Rohtla"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2017",
+  "section": "Eessõna",
+  "pageRange": "2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "ESTA esimehe eessõna numbrile, mille keskmes on üheksa lugu sotsiaaltöö eriala vilistlastelt. Autor meenutab, et alustas sotsiaaltöö õpinguid 1997. aastal ja tõdeb, et ametinimetused on muutunud, kuid põhiväärtused samaks jäänud. Viitab hiljutisele OSKA raportile, mille järgi hulk lõpetajaid ei jõuagi erialasele tööle või vahetab hiljem elukutset, ning rõhutab, et motiveeritud inimesi aitavad valdkonnas hoida eeskätt head töö- ja palgatingimused.",
+  "tags": [
+    "eessõna",
+    "sotsiaaltööharidus",
+    "OSKA",
+    "erialavalik",
+    "palgatingimused"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2-2017_veebi_link_Part2.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2017-eessona-2017-2",
+  "source_sha256": "34ab53a917c3a4a0e4e2954a72a954988e837dbfd556bcb786324b56d686ed3e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2017-eessona-2017-2",
+    "previous_source_path": "Sotsiaaltoo_2-2017_veebi_link_Part2.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2-2017_veebi_link_Part2.pdf",
+    "reference_stored_source_sha256": "0a8c57c2027a35bea24739186b1a7f387ec1a253c103646d616e204001f06539",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf",
+      "source_sha256": "609af110244e684ccbb68aea9504f2490fce2852b1e7caa7bedacb621d661a8a",
+      "pdf_start_page": 4,
+      "pdf_end_page": 4,
+      "printed_page_range": "2-2",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 4,
+      "source_regions": [
+        {
+          "source_pdf_page": 4,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "2",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf"
+    },
+    "server_page_range": "2-2"
+  }
+}

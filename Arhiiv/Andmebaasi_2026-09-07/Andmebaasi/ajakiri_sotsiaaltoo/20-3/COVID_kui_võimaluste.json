@@ -1,0 +1,38 @@
+{
+  "docId": "sotsiaaltoo-3-2020",
+  "articleId": "covid-kui-voimaluste-aken-2020-3",
+  "title": "COVID kui võimaluste aken pikaajalise hoolduse reformile",
+  "authors": [],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2020",
+  "section": "Sotsiaalpoliitika",
+  "pageRange": "14-21",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "SOCIAL_WORKER",
+  "language": "et",
+  "description": "Analüüsitakse COVID-19 pandeemia mõju pikaajalise hoolduse süsteemile ning arutletakse, kuidas kriis paljastab rahastuse, korralduse ja vastutuse kitsaskohti ning loob akna pikaajalise hoolduse terviklikumaks reformimiseks.",
+  "tags": [
+    "COVID-19",
+    "pikaajaline hooldus",
+    "hooldussüsteemi reform",
+    "sotsiaalpoliitika",
+    "eakad",
+    "hoolduskoormus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2020_web_link_Part5.pdf",
+  "document_id": "sotsiaaltoo-3-2020-covid-kui-voimaluste-aken-2020-3",
+  "source_format": "pdf",
+  "source_sha256": "845dd159cf0d0a5909db4f4e1d232dc4b01251be486134f3817600b66105950d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2020-covid-kui-voimaluste-aken-2020-3",
+    "previous_source_path": "Sotsiaaltoo_3_2020_web_link_Part5.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "845dd159cf0d0a5909db4f4e1d232dc4b01251be486134f3817600b66105950d",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

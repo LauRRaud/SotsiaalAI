@@ -1,0 +1,82 @@
+{
+  "source": {
+    "source_id": "aki_isikuandmete_tootleja_uldjuhend",
+    "title": "Isikuandmete töötleja üldjuhend",
+    "url": "https://www.aki.ee/sites/default/files/dokumendid/isikuandmete_tootleja_uldjuhend.pdf",
+    "normalized_url": "https://www.aki.ee/sites/default/files/dokumendid/isikuandmete_tootleja_uldjuhend.pdf",
+    "source_format": "pdf",
+    "source_type": "official_guideline",
+    "resource_type": "method_guidance",
+    "publisher": "AKI",
+    "organization_id": "aki",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Andmekaitse Inspektsioon",
+      "andmekaitse",
+      "isikuandmed",
+      "GDPR",
+      "andmetöötlus",
+      "privaatsus",
+      "spetsialisti juhend",
+      "AKI"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "high",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_009",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+    "source_context": {
+      "heading_2": "AKI",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 197,
+      "order": 131
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "Isikuandmete töötleja üldjuhend"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "official_guideline"
+    ],
+    "resource_types_seen": [
+      "best_practice_guidance"
+    ],
+    "publishers_seen": [
+      "AKI"
+    ],
+    "organizations_seen": [
+      "aki"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "AKI",
+        "line": 197,
+        "order": 131
+      },
+      {
+        "heading_2": "AKI",
+        "line": 671,
+        "order": 338
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.aki.ee/sites/default/files/dokumendid/isikuandmete_tootleja_uldjuhend.pdf"
+  },
+  "final_url": "https://www.aki.ee/sites/default/files/dokumendid/isikuandmete_tootleja_uldjuhend.pdf",
+  "redirects": [],
+  "sha256": "bcd9bb1c8f591a265bb4d65e695343bf0f3f1c8e58787d0ae02898797c464296",
+  "bytes": 1291573,
+  "downloaded_at": "2026-08-14T08:00:34.549Z"
+}

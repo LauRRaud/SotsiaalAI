@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metaandmed>
+    <valjaandja>Tallinna Linnavolikogu</valjaandja>
+    <dokumentLiik>määrus</dokumentLiik>
+    <tekstiliik>terviktekst</tekstiliik>
+    <dokumentEtapp>avaldamine</dokumentEtapp>
+    <dokumentStaatus>avaldatud</dokumentStaatus>
+    <vastuvoetud>
+      <aktikuupaev>2021-12-16</aktikuupaev>
+      <avaldamismarge>
+        <RTosa>RT IV</RTosa>
+        <avaldamineKuupaev>2021-12-23</avaldamineKuupaev>
+        <RTartikkel>1</RTartikkel>
+        <aktViide>423122021001</aktViide>
+      </avaldamismarge>
+      <joustumine>2022-01-01</joustumine>
+      <aktiNr>32</aktiNr>
+    </vastuvoetud>
+    <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-02-26</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>38</RTartikkel><aktViide>426022025038</aktViide></avaldamismarge><kehtivus>
+      <kehtivuseAlgus>2025-03-01</kehtivuseAlgus>
+    </kehtivus>
+    <versioon>
+      <dokumentVersioon>1</dokumentVersioon>
+      <dokumentVersioonKuupaev>2021-12-20</dokumentVersioonKuupaev>
+    </versioon>
+    <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+    <globaalID>426022025038</globaalID>
+    <metaandmedVersioon>16</metaandmedVersioon>
+    <metaandmedVersioonKuupaev>2025-02-25</metaandmedVersioonKuupaev>
+    <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+    <terviktekstiGrupiID>1053107</terviktekstiGrupiID>
+  </metaandmed>
+  <aktinimi>
+    <nimi>
+      <pealkiri>Toimetulekutoetuse määramisel aluseks võetavate eluasemekulude piirmäärad</pealkiri>
+    </nimi>
+  </aktinimi>
+  <muutmismarge>
+    <aktikuupaev>2022-06-02</aktikuupaev>
+    <avaldamismarge>
+      <RTosa>RT IV</RTosa>
+      <avaldamineKuupaev>2022-06-11</avaldamineKuupaev>
+      <RTartikkel>2</RTartikkel>
+      <aktViide>411062022002</aktViide>
+    </avaldamismarge>
+    <joustumine>2022-07-01</joustumine>
+  </muutmismarge>
+  <muutmismarge>
+    <aktikuupaev>2022-10-20</aktikuupaev>
+    <avaldamismarge>
+      <RTosa>RT IV</RTosa>
+      <avaldamineKuupaev>2022-10-29</avaldamineKuupaev>
+      <RTartikkel>14</RTartikkel>
+      <aktViide>429102022014</aktViide>
+    </avaldamismarge>
+    <joustumine>2022-11-01</joustumine>
+  </muutmismarge>
+  <muutmismarge>
+    <aktikuupaev>2025-02-20</aktikuupaev>
+    <avaldamismarge>
+      <RTosa>RT IV</RTosa>
+      <avaldamineKuupaev>2025-02-26</avaldamineKuupaev>
+      <RTartikkel>37</RTartikkel>
+      <aktViide>426022025037</aktViide>
+    </avaldamismarge>
+    <joustumine>2025-03-01</joustumine>
+  </muutmismarge>
+  <sisu>
+    <preambul>
+      <tavatekst>Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lg 2 ja sotsiaalhoolekande seaduse § 133 lg 6 alusel.</tavatekst>
+    </preambul>
+    <paragrahv id="para1">
+      <paragrahvNr>1</paragrahvNr>
+      <kuvatavNr><![CDATA[§ 1.]]></kuvatavNr>
+      <paragrahvPealkiri>Eluasemekulude piirmäärad</paragrahvPealkiri>
+      <loige id="para1lg1">
+        <sisuTekst>
+          <tavatekst>Tallinna linnas elavatele inimestele toimetulekutoetuse määramisel aluseks võetavate eluasemekulude piirmäärad on järgmised:</tavatekst>
+        </sisuTekst>
+        <alampunkt id="para1lg1p1">
+          <alampunktNr>1</alampunktNr>
+          <kuvatavNr><![CDATA[1)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>üle 33 m<sup>2</sup> üldpinnaga eluruumi üür või eluaseme soetamiseks võetud laenu tagasimakse
+(sh laenu intressid ja kohustusliku eluasemekindlustuse makse) kuni 12,00 eurot eluruumi
+ruutmeetri kohta kuus, kuid mitte rohkem kui 600 eurot kuus, millele lisandub kuni 75,00 eurot perekonna viienda ja iga järgneva liikme kohta kuus;</tavatekst>
+          </sisuTekst>
+          <muutmismarge>
+            <aktikuupaev>2022-10-20</aktikuupaev>
+            <avaldamismarge>
+              <RTosa>RT IV</RTosa>
+              <avaldamineKuupaev>2022-10-29</avaldamineKuupaev>
+              <RTartikkel>14</RTartikkel>
+              <aktViide>429102022014</aktViide>
+            </avaldamismarge>
+            <joustumine>2022-11-01</joustumine>
+          </muutmismarge>
+        </alampunkt>
+        <alampunkt id="para1lg1p2">
+          <alampunktNr>2</alampunktNr>
+          <kuvatavNr><![CDATA[2)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>18–33 m<sup>2</sup> üldpinnaga eluruumi üür või eluaseme soetamiseks võetud laenu tagasimakse
+(sh laenu intressid ja kohustusliku eluasemekindlustuse makse) kuni 16,00 eurot eluruumi
+ruutmeetri kohta kuus;</tavatekst>
+          </sisuTekst>
+          <muutmismarge>
+            <aktikuupaev>2025-02-20</aktikuupaev>
+            <avaldamismarge>
+              <RTosa>RT IV</RTosa>
+              <avaldamineKuupaev>2025-02-26</avaldamineKuupaev>
+              <RTartikkel>37</RTartikkel>
+              <aktViide>426022025037</aktViide>
+            </avaldamismarge>
+            <joustumine>2025-03-01</joustumine>
+          </muutmismarge>
+        </alampunkt>
+        <alampunkt id="para1lg1p3">
+          <alampunktNr>3</alampunktNr>
+          <kuvatavNr><![CDATA[3)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>alla 18 m<sup>2</sup> üldpinnaga eluruumi üür või eluaseme soetamiseks võetud laenu tagasimakse
+(sh laenu intressid ja kohustusliku eluasemekindlustuse makse) kuni 22,00 eurot eluruumi
+ruutmeetri kohta kuus;</tavatekst>
+          </sisuTekst>
+          <muutmismarge>
+            <aktikuupaev>2025-02-20</aktikuupaev>
+            <avaldamismarge>
+              <RTosa>RT IV</RTosa>
+              <avaldamineKuupaev>2025-02-26</avaldamineKuupaev>
+              <RTartikkel>37</RTartikkel>
+              <aktViide>426022025037</aktViide>
+            </avaldamismarge>
+            <joustumine>2025-03-01</joustumine>
+          </muutmismarge>
+        </alampunkt>
+        <alampunkt id="para1lg1p4">
+          <alampunktNr>4</alampunktNr>
+          <kuvatavNr><![CDATA[4)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>korterelamu haldamise kulu, sealhulgas remondiga seotud kulu, kuni 3,00 eurot eluruumi ruutmeetri kohta kuus;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para1lg1p5">
+          <alampunktNr>5</alampunktNr>
+          <kuvatavNr><![CDATA[5)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>korterelamu renoveerimiseks võetud laenu tagasimakse kuni 3,00 eurot eluruumi ruutmeetri kohta kuus;</tavatekst>
+          </sisuTekst>
+          <muutmismarge>
+            <aktikuupaev>2025-02-20</aktikuupaev>
+            <avaldamismarge>
+              <RTosa>RT IV</RTosa>
+              <avaldamineKuupaev>2025-02-26</avaldamineKuupaev>
+              <RTartikkel>37</RTartikkel>
+              <aktViide>426022025037</aktViide>
+            </avaldamismarge>
+            <joustumine>2025-03-01</joustumine>
+          </muutmismarge>
+        </alampunkt>
+        <alampunkt id="para1lg1p6">
+          <alampunktNr>6</alampunktNr>
+          <kuvatavNr><![CDATA[6)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>veevarustuse ja reovee ärajuhtimise teenuste maksumus kuni 21,00 eurot ühe inimese kohta kuus;</tavatekst>
+          </sisuTekst>
+          <muutmismarge>
+            <aktikuupaev>2025-02-20</aktikuupaev>
+            <avaldamismarge>
+              <RTosa>RT IV</RTosa>
+              <avaldamineKuupaev>2025-02-26</avaldamineKuupaev>
+              <RTartikkel>37</RTartikkel>
+              <aktViide>426022025037</aktViide>
+            </avaldamismarge>
+            <joustumine>2025-03-01</joustumine>
+          </muutmismarge>
+        </alampunkt>
+        <alampunkt id="para1lg1p7">
+          <alampunktNr>7</alampunktNr>
+          <kuvatavNr><![CDATA[7)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>soojaveevarustuseks tarbitud soojusenergia maksumus kuni 29,00 eurot ühe inimese kohta kuus;</tavatekst>
+          </sisuTekst>
+          <muutmismarge>
+            <aktikuupaev>2025-02-20</aktikuupaev>
+            <avaldamismarge>
+              <RTosa>RT IV</RTosa>
+              <avaldamineKuupaev>2025-02-26</avaldamineKuupaev>
+              <RTartikkel>37</RTartikkel>
+              <aktViide>426022025037</aktViide>
+            </avaldamismarge>
+            <joustumine>2025-03-01</joustumine>
+          </muutmismarge>
+        </alampunkt>
+        <alampunkt id="para1lg1p8">
+          <alampunktNr>8</alampunktNr>
+          <kuvatavNr><![CDATA[8)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>kütteks tarbitud soojusenergia maksumus kaugkütte korral kuni 6,00 eurot eluruumi ruutmeetri kohta kuus;</tavatekst>
+          </sisuTekst>
+          <muutmismarge>
+            <aktikuupaev>2022-10-20</aktikuupaev>
+            <avaldamismarge>
+              <RTosa>RT IV</RTosa>
+              <avaldamineKuupaev>2022-10-29</avaldamineKuupaev>
+              <RTartikkel>14</RTartikkel>
+              <aktViide>429102022014</aktViide>
+            </avaldamismarge>
+            <joustumine>2022-11-01</joustumine>
+          </muutmismarge>
+        </alampunkt>
+        <alampunkt id="para1lg1p9">
+          <alampunktNr>9</alampunktNr>
+          <kuvatavNr><![CDATA[9)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>küttekulu kaugkütte puudumise korral kuni 10,00 eurot eluruumi ruutmeetri kohta kuus;</tavatekst>
+          </sisuTekst>
+          <muutmismarge>
+            <aktikuupaev>2025-02-20</aktikuupaev>
+            <avaldamismarge>
+              <RTosa>RT IV</RTosa>
+              <avaldamineKuupaev>2025-02-26</avaldamineKuupaev>
+              <RTartikkel>37</RTartikkel>
+              <aktViide>426022025037</aktViide>
+            </avaldamismarge>
+            <joustumine>2025-03-01</joustumine>
+          </muutmismarge>
+        </alampunkt>
+        <alampunkt id="para1lg1p10">
+          <alampunktNr>10</alampunktNr>
+          <kuvatavNr><![CDATA[10)]]></kuvatavNr>
+          <muutmismarge>
+            <tavatekst>kehtetu - </tavatekst>
+            <aktikuupaev>2025-02-20</aktikuupaev>
+            <avaldamismarge>
+              <RTosa>RT IV</RTosa>
+              <avaldamineKuupaev>2025-02-26</avaldamineKuupaev>
+              <RTartikkel>37</RTartikkel>
+              <aktViide>426022025037</aktViide>
+            </avaldamismarge>
+            <joustumine>2025-03-01</joustumine>
+          </muutmismarge>
+        </alampunkt>
+        <alampunkt id="para1lg1p11">
+          <alampunktNr>11</alampunktNr>
+          <kuvatavNr><![CDATA[11)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>elektrienergia, välja arvatud kütteks tarbitud elektrienergia tarbimisega seotud kulu kuni 80,00 eurot üksi elava inimese või perekonna esimese liikme kohta kuus, perekonna iga järgneva liikme kohta kuni 25,00 eurot kuus;</tavatekst>
+          </sisuTekst>
+          <muutmismarge>
+            <aktikuupaev>2025-02-20</aktikuupaev>
+            <avaldamismarge>
+              <RTosa>RT IV</RTosa>
+              <avaldamineKuupaev>2025-02-26</avaldamineKuupaev>
+              <RTartikkel>37</RTartikkel>
+              <aktViide>426022025037</aktViide>
+            </avaldamismarge>
+            <joustumine>2025-03-01</joustumine>
+          </muutmismarge>
+        </alampunkt>
+        <alampunkt id="para1lg1p12">
+          <alampunktNr>12</alampunktNr>
+          <kuvatavNr><![CDATA[12)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>majapidamisgaasi maksumus kuni 33,00 eurot üksi elava inimese või perekonna esimese liikme kohta kuus, perekonna iga järgmise liikme kohta kuni 16,00 eurot kuus;</tavatekst>
+          </sisuTekst>
+          <muutmismarge>
+            <aktikuupaev>2022-10-20</aktikuupaev>
+            <avaldamismarge>
+              <RTosa>RT IV</RTosa>
+              <avaldamineKuupaev>2022-10-29</avaldamineKuupaev>
+              <RTartikkel>14</RTartikkel>
+              <aktViide>429102022014</aktViide>
+            </avaldamismarge>
+            <joustumine>2022-11-01</joustumine>
+          </muutmismarge>
+        </alampunkt>
+        <alampunkt id="para1lg1p13">
+          <alampunktNr>13</alampunktNr>
+          <kuvatavNr><![CDATA[13)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>maamaksukulu kuni 2,25 eurot eluruumi ruutmeetri kohta kuus;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para1lg1p14">
+          <alampunktNr>14</alampunktNr>
+          <kuvatavNr><![CDATA[14)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>hoonekindlustuse kulu kuni 0,20 eurot eluruumi ruutmeetri kohta kuus;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para1lg1p15">
+          <alampunktNr>15</alampunktNr>
+          <kuvatavNr><![CDATA[15)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>tegelik olmejäätmete veotasu kuus.</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para2">
+      <paragrahvNr>2</paragrahvNr>
+      <kuvatavNr><![CDATA[§ 2.]]></kuvatavNr>
+      <paragrahvPealkiri>Määruse kehtetuks tunnistamine</paragrahvPealkiri>
+      <loige id="para2lg1">
+        <sisuTekst>
+          <tavatekst>[Käesolevast tekstist välja jäetud.]</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para3">
+      <paragrahvNr>3</paragrahvNr>
+      <kuvatavNr><![CDATA[§ 3.]]></kuvatavNr>
+      <paragrahvPealkiri>Määruse jõustumine</paragrahvPealkiri>
+      <loige id="para3lg1">
+        <sisuTekst>
+          <tavatekst>Määrus jõustub 1. jaanuaril 2022.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+  </sisu>
+</oigusakt>

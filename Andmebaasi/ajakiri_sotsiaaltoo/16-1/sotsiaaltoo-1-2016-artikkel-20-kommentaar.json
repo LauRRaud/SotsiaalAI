@@ -1,0 +1,65 @@
+{
+  "docId": "sotsiaaltoo-1-2016",
+  "articleId": "sotsiaaltoo-1-2016-artikkel-20-kommentaar",
+  "title": "Kommentaar",
+  "authors": [
+    "Taimi Tulva",
+    "Marju Medar"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2016",
+  "section": "Uurimus",
+  "pageRange": "69",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kommentaar teatab, et Tallinna Ülikool osaleb aastatel 2014–2016 Norra finantsmehhanismist toetatud projektis „Ühtse süsteemi ülesehitamine lähisuhtevägivalla tõkestamiseks Eestis”, mille algatas Eesti Avatud Ühiskonna Instituut ja mille partnerid on Tartu ja Tallinna ülikool, Politsei- ja Piirivalveamet ning Sisekaitseakadeemia. Projekti raames lisati 2014/2015. õppeaastal sotsiaaltöö magistriõppesse uus 4 EAP maht valikaine „Sooline vägivald ja ohvriabi”, mille programmi koostas professor Taimi Tulva. Kursuse läbis 41 sotsiaaltöö ja psühholoogia tudengit ning selle põhjal kaitsti 2015. aasta kevadel mitu magistriuurimust.",
+  "tags": [
+    "kommentaar",
+    "lähisuhtevägivald",
+    "sooline vägivald",
+    "ohvriabi",
+    "tallinna ülikool",
+    "õppekava"
+  ],
+  "source_type": "file",
+  "source_path": "2016_1_artikkel_20_kommentaar.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-20-kommentaar",
+  "source_sha256": "52047de1b3cfa6b77ff8de89bcb0b2e72bba8e216e5c7dff99f9201f6bca6e39",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-20-kommentaar",
+    "previous_source_path": "2016_1_artikkel_20_kommentaar.txt",
+    "previous_source_original_path": "1-2016.pdf",
+    "reference_stored_source_sha256": "f08db09df51110d235a71941510893b6ab0abaa06bbb197824bff5a254bc0014",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf",
+      "source_sha256": "2c193295e54f58982562b509b6283e93aa58b1695464671e1768e24e90888a6c",
+      "pdf_start_page": 71,
+      "pdf_end_page": 71,
+      "printed_page_range": "69-70",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 72,
+      "source_regions": [
+        {
+          "source_pdf_page": 71,
+          "bounds": [
+            0,
+            199.016,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "69",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf"
+    },
+    "server_page_range": "69-70"
+  }
+}

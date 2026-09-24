@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-pohja-sakala-vald",
+  "document_id": "kov-pohja-sakala-vald",
+  "municipality": "Põhja-Sakala vald",
+  "municipality_id": "pohja_sakala_vald",
+  "county": "Viljandimaa",
+  "checkedAt": "2026-04-29",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-pohja-sakala-vald",
+  "coverage": {
+    "services": 18,
+    "benefits": 12,
+    "resources": 12,
+    "contacts": 10,
+    "forms": 15,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "pohja_sakala_vald",
+    "source_register_file": "pohja-sakala-vald.sources.json",
+    "service_benefit_resource_items": 42,
+    "items_with_source_keys": 42,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 22,
+    "items_without_related_forms": 20,
+    "items_with_related_contacts": 14,
+    "items_without_related_contacts": 28,
+    "form_sources": 16,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "1 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Pakett kirjeldab Põhja-Sakala valla veebilehel avaldatud praktilist sotsiaalvaldkonna infot ning jätab õigusakti- ja RT-kihi eraldi.",
+    "KOV lehel esitatud väliste abikanalite puhul on talletatud ainult KOV lehel avaldatud info ja KOV leht on märgitud allikaks."
+  ],
+  "unresolvedIssues": [
+    "Mitme sotsiaaltoetuse kohta on KOV lehel avaldatud toetuse nimetus, summa või vorm, kuid detailne menetluskäik ja kõik tingimused ei ole praktilisel veebilehel täielikult lahti kirjutatud.",
+    "Sotsiaalosakonna kontaktide lehel on osad e-posti aadressid JavaScriptiga kaitstud; need säilitati kontaktikirjetes varjestatud sõnastusena, välja arvatud aadressid, mis olid samal KOV veebikihil mujal selgelt avaldatud.",
+    "SPOKU/e-taotluse otselingid on KOV lehel nimetatud, kuid välist iseteeninduskeskkonda ei kasutatud põhiallikana; vormi- ja e-taotlusseosed vajavad vajadusel käsitsi ülevaatust.",
+    "Täiendavate vajaduspõhiste sotsiaalteenuste kohta on KOV üldlehel ainult nimetus; konkreetne teenuse sisu ja tingimused tuleb juhtumipõhiselt sotsiaalosakonnast täpsustada.",
+    "Väliste teenusepakkujate ja riiklike abikanalite (nt HUGO.legal, Töötukassa, Ohvriabi, MEDI, Koduandur) sisu ei kontrollitud välislehtedelt; kirjed põhinevad üksnes Põhja-Sakala valla veebilehel avaldatud teabel."
+  ],
+  "municipality_name": "Põhja-Sakala vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "pohja-sakala-vald.sources.json",
+  "sourceCount": 47,
+  "counts": {
+    "services": 18,
+    "benefits": 12,
+    "resources": 12,
+    "contacts": 10,
+    "forms": 15,
+    "regulations": 0
+  },
+  "warnings": [
+    "1 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

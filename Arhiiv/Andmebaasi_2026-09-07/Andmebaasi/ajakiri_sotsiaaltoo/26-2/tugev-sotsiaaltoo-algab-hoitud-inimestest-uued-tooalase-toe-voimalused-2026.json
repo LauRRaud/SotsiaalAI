@@ -1,0 +1,50 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "tugev-sotsiaaltoo-algab-hoitud-inimestest-uued-tooalase-toe-voimalused-2026",
+  "title": "Tugev sotsiaaltöö algab hoitud inimestest. Uued tööalase toe võimalused",
+  "authors": [
+    "Sirli Soosaar"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Tööalane tugi",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade Eesti sotsiaaltöö assotsiatsiooni arendatavast sotsiaalvaldkonna töötajate tugisüsteemist, mida rahastab Šveitsi-Eesti koostööprogramm. Projekti käigus on välja töötatud kompetentsiraamistik, korraldatakse koolitusi ja õpitube ning arendatakse eetikakompassi ja tööheaolu toetavaid lahendusi.",
+  "tags": [
+    "tööalane tugi",
+    "tööheaolu",
+    "kompetentsiraamistik",
+    "ESTA",
+    "eetikakompass",
+    "professionaalne areng",
+    "koolitused",
+    "enesehoid",
+    "Šveitsi-Eesti koostööprogramm"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-06-08",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/tugev-sotsiaaltoo-algab-hoitud-inimestest-uued-tooalase-toe-voimalused",
+  "source_type": "web",
+  "source_path": "tugev-sotsiaaltoo-algab-hoitud-inimestest-uued-tooalase-toe-voimalused.html",
+  "lead": "Eesti sotsiaaltöö assotsiatsioon (ESTA) arendab Šveitsi-Eesti koostööprogrammi toel sotsiaalvaldkonna töötajate terviklikku toetust. Arendatakse kutsesüsteemi, koostatakse juhendmaterjale ja pakutakse uusi enesetäiendamise ning kogemuste vahetamise võimalusi. Paljud tegevused on juba edukalt tööle läinud, teised on peagi algamas.",
+  "document_id": "sotsiaaltoo-2-2026-tugev-sotsiaaltoo-algab-hoitud-inimestest-uued-tooalase-toe-voimalused-2026",
+  "source_format": "html",
+  "source_sha256": "d8a50a084c6f666be15e0a403fb2367339557a4614116bbaff66ed1cd3abe635",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-tugev-sotsiaaltoo-algab-hoitud-inimestest-uued-tooalase-toe-voimalused-2026",
+    "previous_source_path": "tugev-sotsiaaltoo-algab-hoitud-inimestest-uued-tooalase-toe-voimalused.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "55b5ca45730260f82a198d18dba719a47c69de2be172e98b6a8d53b127332b8b",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "78e9811efbca5cc3965d3b82d559ed91252ee430f649dd0ec5290229041662d1",
+    "observed_web_title": "Tugev sotsiaaltöö algab hoitud inimestest. Uued tööalase toe võimalused"
+  },
+  "retrieved_at": "2026-09-07T19:39:41.249727+00:00"
+}

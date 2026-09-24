@@ -1,0 +1,49 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026",
+  "title": "Uus e-kursus pakub tuge sotsiaalvaldkonna koolitajatele",
+  "authors": [
+    "Marina Vaino"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Erialane haridus",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tutvustus e-kursusest „Sissejuhatus täiskasvanute koolitamisse“, mis aitab sotsiaalvaldkonna koolitajatel omandada täiskasvanute koolitamise algteadmisi. Kursus toetab professionaalset arengut ja vastab täiskasvanute koolituse seaduse nõuetele ning on loodud Šveitsi-Eesti koostööprogrammi raames.",
+  "tags": [
+    "täiskasvanute koolitamine",
+    "e-kursus",
+    "erialane haridus",
+    "koolitajate pädevus",
+    "täienduskoolitus",
+    "õppedisain",
+    "Šveitsi-Eesti koostööprogramm",
+    "professionaalne areng"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-03-11",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/uus-e-kursus-sissejuhatus-taiskasvanute-koolitamisse-pakub-tuge",
+  "source_type": "web",
+  "source_path": "uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele.html",
+  "lead": "Detsembris 2025 sotsiaalkindlustusameti juhtimisel valminud praktiline e-kursus aitab koolitajatel kaasas käia kiiresti arenevate kompetentsusnõuetega. Kursuse toel saab arendada oma professionaalset mõtlemist ning kavandada koolitusi teadlikumalt ja süsteemsemalt, keskendudes õppija toetamisele ning enesearengule.",
+  "document_id": "sotsiaaltoo-2-2026-uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026",
+  "source_format": "html",
+  "source_sha256": "3c0ede90b292b42d17b51f2f89067e03e07c031ee01b3c5b90aaa8d13d619e90",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026",
+    "previous_source_path": "uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "656e3e590a93512c7984ef593ee4072d0e4d559a1716d6c5c1f9443cbdb39562",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "7a5534b9ba64d67af53be362a4d9dc4e54cbe0daf8a9701fbe085636ebe46543",
+    "observed_web_title": "Uus e-kursus „Sissejuhatus täiskasvanute koolitamisse“ pakub tuge sotsiaalvaldkonna koolitajatele"
+  },
+  "retrieved_at": "2026-09-07T19:39:41.894634+00:00"
+}

@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2022",
+  "articleId": "vanemahuvitiste-ja-lapsepuhkuste-uus-kord-2022-1",
+  "title": "Vanemahüvitiste ja lapsepuhkuste uus kord",
+  "authors": [
+    "Helen Maria Raadik"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2022",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "28-31",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalkindlustusameti eksperdi ülevaade 1. aprillil 2022 jõustunud vanemahüvitiste ja lapsepuhkuste korra muudatustest. Selgitatakse, kuidas uus süsteem muudab perede elu paindlikumaks: jagatav vanemahüvitis, võimalus võtta lapsepuhkust kuni lapse 14-aastaseks saamiseni, hüvitiste koondumine ühe asutuse alla ning muudatused emapuhkuse ja ema vanemahüvitise maksmises. Artikkel toob näiteid, kuidas erinevad peremudelid saavad uut korda kasutada, ning kirjeldab iseteeninduse rolli hüvitiste ja puhkuste planeerimisel.",
+  "tags": [
+    "vanemahüvitis",
+    "lapsepuhkus",
+    "perepoliitika",
+    "sotsiaalkindlustusamet",
+    "töö ja pereelu ühitamine",
+    "seadusemuudatused",
+    "iseteenindus"
+  ],
+  "source_type": "file",
+  "source_path": "2022_artikkel_7_vanemahuvitised.pdf",
+  "document_id": "sotsiaaltoo-1-2022-vanemahuvitiste-ja-lapsepuhkuste-uus-kord-2022-1",
+  "source_format": "pdf",
+  "source_sha256": "16f426ecadcac4f8c91a8f53417dcb23517cefd8aa3f20ddf909e9e15a10695e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2022-vanemahuvitiste-ja-lapsepuhkuste-uus-kord-2022-1",
+    "previous_source_path": "2022_artikkel_7_vanemahuvitised.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "16f426ecadcac4f8c91a8f53417dcb23517cefd8aa3f20ddf909e9e15a10695e",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

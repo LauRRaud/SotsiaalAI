@@ -1,0 +1,79 @@
+{
+  "source": {
+    "source_id": "epikoda_uro_puuetega_inimeste_oiguste_konventsioon_ja_fakultatiivpro",
+    "title": "ÜRO puuetega inimeste õiguste konventsioon ja fakultatiivprotokoll",
+    "url": "https://epikoda.ee/wp-content/uploads/2025/09/raamat_veeb.pdf",
+    "normalized_url": "https://epikoda.ee/wp-content/uploads/2025/09/raamat_veeb.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "EPIKoda",
+    "organization_id": "epikoda",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Eesti Puuetega Inimeste Koda",
+      "puue",
+      "puudega inimene",
+      "erivajadus",
+      "õigused",
+      "inimõigused",
+      "ÜRO puuetega inimeste õiguste konventsioon",
+      "infomaterjal",
+      "EPIKoda"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "EPIKoda",
+      "heading_4": null,
+      "line": 561,
+      "order": 289
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "ÜRO puuetega inimeste õiguste konventsioon ja fakultatiivprotokoll"
+    ],
+    "collection_hints": [
+      "organization_materials"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "EPIKoda"
+    ],
+    "organizations_seen": [
+      "epikoda"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "EPIKoda",
+        "line": 561,
+        "order": 289
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://epikoda.ee/wp-content/uploads/2025/09/raamat_veeb.pdf"
+  },
+  "final_url": "https://epikoda.ee/wp-content/uploads/2025/09/raamat_veeb.pdf",
+  "redirects": [],
+  "sha256": "99e3c82de465076708a65b6c31e74f051046023137a9f07c6a0c3c44bdd0a1eb",
+  "bytes": 1971175,
+  "downloaded_at": "2026-08-14T08:00:56.379Z"
+}

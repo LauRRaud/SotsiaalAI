@@ -1,0 +1,417 @@
+{
+  "measured_at": "2026-09-07T20:29:00.206647+00:00",
+  "server_commit": "9780dee9c68b0ea699b4a4cee2f8257bb84ce5dd",
+  "local_head_and_origin_main": "9780dee9c68b0ea699b4a4cee2f8257bb84ce5dd",
+  "service": {
+    "main_pid": 860047,
+    "active": "active",
+    "env_files": "/etc/sotsiaalai/frontend.env (ignore_errors=no)"
+  },
+  "configuration_file_values": {
+    "M4_PILOT_CONFIG": "/etc/sotsiaalai/m4-evidence-comparison-baseline-20260907-1.json",
+    "M4_PILOT_ENABLED": "1",
+    "OPENAI_API_KEY": "SET",
+    "OPENAI_MODEL": "gpt-5.6-luna",
+    "RAG_ALLOWED_MIME": "application/pdf,text/plain,text/markdown,application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "RAG_API_BASE": "http://127.0.0.1:8000",
+    "RAG_ATTRIBUTION_DECISIONS_ENABLED": "true",
+    "RAG_CONTEXT_GROUPS_MAX": "8",
+    "RAG_COST_MIRROR_SECRET": "SET",
+    "RAG_COST_MIRROR_URL": {
+      "scheme": "http",
+      "host": "127.0.0.1",
+      "port": 3000,
+      "credentials_present": false
+    },
+    "RAG_CTX_MAX_CHARS": "8500",
+    "RAG_DELETE_ON_DOCUMENT_DELETE": "true",
+    "RAG_DISPLAYED_SOURCES_ENFORCED": "true",
+    "RAG_GRAPH_CHANNEL_ENABLED": "1",
+    "RAG_GROUP_BODY_MAX_CHARS": "1500",
+    "RAG_INTERNAL_HOST": "http://127.0.0.1:8000",
+    "RAG_LEXICAL_SCAN_LIMIT": "8000",
+    "RAG_LEXICAL_SEARCH_ENABLED": "true",
+    "RAG_LEXICAL_TOP_K": "20",
+    "RAG_MAX_UPLOAD_MB": "25",
+    "RAG_MMR_LAMBDA": "0.60",
+    "RAG_SERVER_MAX_MB": "25",
+    "RAG_SERVICE_API_KEY": "SET",
+    "RAG_TIMEOUT_MS": "30000",
+    "RAG_TOP_K": "12",
+    "RAG_TRACE_V1_ENABLED": "true",
+    "RAG_V2_ADMIN_CONFIG": "/etc/sotsiaalai/rag-v2-knowledge-acceptance-20260907-1.json",
+    "RAG_V2_ADMIN_ENABLED": "1",
+    "RAG_V2_POSTGRES_URL": {
+      "scheme": "postgresql",
+      "host": "127.0.0.1",
+      "port": 55432,
+      "credentials_present": true
+    },
+    "RAG_V2_QDRANT_KEY": "SET",
+    "RAG_V2_QDRANT_URL": {
+      "scheme": "http",
+      "host": "127.0.0.1",
+      "port": 56333,
+      "credentials_present": false
+    }
+  },
+  "process_configuration": [
+    {
+      "pid": 860047,
+      "name": "npm run start",
+      "matches_file_for_observed_keys": true
+    },
+    {
+      "pid": 860071,
+      "name": "sh",
+      "matches_file_for_observed_keys": true
+    },
+    {
+      "pid": 860094,
+      "name": "node",
+      "matches_file_for_observed_keys": true
+    },
+    {
+      "pid": 860101,
+      "name": "next-server (v1",
+      "matches_file_for_observed_keys": true
+    }
+  ],
+  "configs": {
+    "M4_PILOT_CONFIG": {
+      "file": "/etc/sotsiaalai/m4-evidence-comparison-baseline-20260907-1.json",
+      "keys": [
+        "id",
+        "mode",
+        "status",
+        "tenant",
+        "users",
+        "usage",
+        "expiresAt",
+        "retentionHours",
+        "sourceHead",
+        "implementationHash",
+        "promptVersion",
+        "questionVersion",
+        "answerVersion",
+        "answerSchemaHash",
+        "documents",
+        "generationId",
+        "profileId",
+        "embedding",
+        "model",
+        "endpoint",
+        "accountProject",
+        "modelContract",
+        "reasoning",
+        "maxInputTokens",
+        "maxOutputTokens",
+        "timeoutMs",
+        "prices",
+        "budget",
+        "fixedPacketFile",
+        "fixedPacketHash",
+        "questionPolicy",
+        "comparison",
+        "authorizationBasis",
+        "approval"
+      ],
+      "safe_values": {
+        "id": "m4-evidence-comparison-baseline-20260907-1",
+        "tenant": "sotsiaalai-development",
+        "maxInputTokens": 64000,
+        "expiresAt": null,
+        "mode": "real",
+        "model": "gpt-5.6-luna",
+        "maxOutputTokens": 2048,
+        "generationId": "search_generation_386d51771eff1ece99cc354144ea589736a4c36c18101847dc57d6e3665d4e6e",
+        "embedding": {
+          "embedding_mode": "real",
+          "provider": "openai",
+          "model": "text-embedding-3-large",
+          "dimensions": 3072,
+          "distance": "Cosine",
+          "tokenizer": "js-tiktoken@1.0.21/cl100k_base",
+          "input_version": "title-section-text-v1",
+          "max_input_tokens": 8191,
+          "endpoint": "https://api.openai.com/v1/embeddings"
+        },
+        "budget": {
+          "attempts": 7,
+          "answerAttempts": 7,
+          "embeddingAttempts": 0,
+          "tokens": 462336,
+          "nanoUsd": 135000000
+        }
+      },
+      "document_count": 8,
+      "user_count": 1
+    },
+    "RAG_V2_ADMIN_CONFIG": {
+      "file": "/etc/sotsiaalai/rag-v2-knowledge-acceptance-20260907-1.json",
+      "keys": [
+        "enabled",
+        "id",
+        "tenant",
+        "subject",
+        "users",
+        "documentIds",
+        "storeRoot",
+        "workRoot",
+        "policyFile",
+        "connectionsFile",
+        "embeddingReuseDirs",
+        "priceFile",
+        "maxSpendUsd",
+        "maxApiAttempts",
+        "maxInputTokens",
+        "expiresAt",
+        "knowledgePreparation",
+        "maxFileBytes",
+        "maxMetadataBytes"
+      ],
+      "safe_values": {
+        "enabled": true,
+        "id": "knowledge-acceptance-20260907-1",
+        "tenant": "sotsiaalai-development",
+        "storeRoot": "/home/ubuntu/apps/sotsiaalai/tmp/rag-v2-multi-source/store",
+        "workRoot": "/home/ubuntu/apps/sotsiaalai/tmp/rag-v2-knowledge-acceptance-20260907-1/work",
+        "policyFile": "/home/ubuntu/apps/sotsiaalai/tmp/rag-v2-multi-source/real-9526a805-1/policy.json",
+        "connectionsFile": "/home/ubuntu/apps/sotsiaalai/tmp/rag-v2-admin-intake-server-20260907-1/connections.json",
+        "priceFile": "/home/ubuntu/apps/sotsiaalai/tmp/rag-v2-admin-intake-server-20260907-1/price.json",
+        "maxSpendUsd": "0",
+        "maxApiAttempts": 0,
+        "maxInputTokens": 0,
+        "expiresAt": "2026-09-08T00:00:00.000Z",
+        "maxFileBytes": 20971520,
+        "maxMetadataBytes": 1048576,
+        "embeddingReuseDirs": [
+          "/home/ubuntu/apps/sotsiaalai/tmp/rag-v2-m2-2/usage/pilot_e14470663fbf87b5ad1b1313e2f9945bf7e9afd96ec43a15c0dce380b95e2508",
+          "/home/ubuntu/apps/sotsiaalai/tmp/rag-v2-multi-source/real-9526a805-1/usage/pilot_2be546a0b998b304f89bb42d0a46d41efaf8bca48cafeba7e4a22c0a48687d40"
+        ],
+        "knowledgePreparation": {
+          "enabled": true,
+          "model": "gpt-5.6-luna",
+          "reasoning": "low",
+          "timeoutMs": 120000,
+          "maxOutputTokens": 6000,
+          "maxDocumentInputTokens": 40000,
+          "maxSpendUsd": "0.02",
+          "maxApiAttempts": 1,
+          "maxInputTokens": 40000,
+          "prices": {
+            "input": 250,
+            "output": 1200
+          }
+        }
+      },
+      "document_count": 8,
+      "user_count": 1
+    }
+  },
+  "legacy": {
+    "registry_root_type": "dict",
+    "registry_keys": [
+      "national-rt-130122025029",
+      "sotsiaaltoo-4-2017-aktuaalsed-teemad-saksamaa-sotsiaaltoos-2017",
+      "sotsiaaltoo-4-2017-anu-hall-persoon-2017",
+      "sotsiaaltoo-4-2017-eessona-2017",
+      "sotsiaaltoo-4-2017-hoolduskoormuse-vahendamine-2017"
+    ],
+    "records": 6089,
+    "collections": {
+      "national_regulations": 1,
+      "sotsiaaltoo_articles": 903,
+      "kov_legal": 78,
+      "organization_materials": 28,
+      "training_materials": 1,
+      "national_guidelines": 93,
+      "organizations": 1,
+      "kov_services": 4931,
+      "research_reports": 31,
+      "organization_guidelines": 15,
+      "policy_analyses": 7
+    },
+    "lexical_chunks": 49727,
+    "lexical_documents": 6073,
+    "service_active": false,
+    "port_8000_listening": false,
+    "stored_size": "3.6G"
+  },
+  "active": {
+    "id": "search_generation_cce615aba3a9fa3e5a6a0ab573dc655e660fcdb33eabc7918a18e6c6093ed4af",
+    "state": "ready",
+    "config": {
+      "id": "search_config_0bf8dbdab1db48d33bbdecc0d0dbc322c42eae889b65257e71535cd46582c4e8",
+      "lexical": "pg-simple-weighted-or-v1",
+      "ranking": "rrf-v1",
+      "embedding": {
+        "model": "text-embedding-3-large",
+        "distance": "Cosine",
+        "endpoint": "https://api.openai.com/v1/embeddings",
+        "provider": "openai",
+        "tokenizer": "js-tiktoken@1.0.21/cl100k_base",
+        "dimensions": 3072,
+        "input_version": "title-section-text-v1",
+        "embedding_mode": "real",
+        "max_input_tokens": 8191
+      },
+      "rrf_constant": 60
+    },
+    "collection": "ragv2_real_cc0fb5984cb3c7402d508a4f265891673d9cb1ec",
+    "expected_count": 69
+  },
+  "shape": {
+    "chunks": 69,
+    "rights": [
+      {
+        "usage": "development_only",
+        "access": "local_private"
+      }
+    ],
+    "documents": 8,
+    "dependencies": 1,
+    "knowledge_cards": 13,
+    "processing_configs": [
+      {
+        "parser": "pdfjs-dist@5.4.296",
+        "chunking": "section-lines-v1",
+        "maxPages": 250,
+        "timeoutMs": 30000,
+        "maxPdfItems": 100000,
+        "headingRatio": 1.5,
+        "maxFileBytes": 20971520,
+        "maxTextChars": 2000000,
+        "chunkMaxChars": 2200,
+        "normalization": "layout-v4-nul-safe",
+        "marginFraction": 0.045,
+        "maxExpandedChars": 20000000,
+        "maxMetadataBytes": 1048576,
+        "maxPdfItemsPerPage": 20000,
+        "embeddingInputVersion": "title-section-text-v1"
+      }
+    ],
+    "chunks_across_pages": 27,
+    "chunk_characters_avg": 1140,
+    "chunk_characters_max": 2199,
+    "chunk_characters_min": 10
+  },
+  "qdrant": {
+    "status": "green",
+    "points_count": 69,
+    "indexed_vectors_count": 0,
+    "segments_count": 2,
+    "vectors": {
+      "size": 3072,
+      "distance": "Cosine"
+    }
+  },
+  "pilot": {
+    "status": "bounded_owner_authorized_comparison",
+    "profileId": "vector-ranked-first-v1",
+    "generationId": "search_generation_386d51771eff1ece99cc354144ea589736a4c36c18101847dc57d6e3665d4e6e",
+    "sourceHead": "5b9d0a233cfce9b2368ec461240245ea7de4b24c",
+    "fixedPacketFile": "/etc/sotsiaalai/m4-evidence-comparison-packets-20260907.json",
+    "promptVersion": "m4-grounded-answer-3",
+    "questionVersion": "m4-explicit-previous-user-1",
+    "retentionHours": null,
+    "question_policy_mode": "locked",
+    "matches_active_generation": false
+  },
+  "legacy_stored_chunk_sizes": {
+    "national_regulations": {
+      "chunks": 612,
+      "min_characters": 128,
+      "max_characters": 3568,
+      "average_characters": 636
+    },
+    "sotsiaaltoo_articles": {
+      "chunks": 10265,
+      "min_characters": 9,
+      "max_characters": 2674,
+      "average_characters": 1368
+    },
+    "kov_legal": {
+      "chunks": 5012,
+      "min_characters": 121,
+      "max_characters": 2378,
+      "average_characters": 726
+    },
+    "national_guidelines": {
+      "chunks": 14054,
+      "min_characters": 174,
+      "max_characters": 1630,
+      "average_characters": 1130
+    },
+    "organizations": {
+      "chunks": 9,
+      "min_characters": 889,
+      "max_characters": 1298,
+      "average_characters": 1195
+    },
+    "kov_services": {
+      "chunks": 10441,
+      "min_characters": 208,
+      "max_characters": 3369,
+      "average_characters": 1130
+    },
+    "research_reports": {
+      "chunks": 6974,
+      "min_characters": 161,
+      "max_characters": 1842,
+      "average_characters": 1093
+    },
+    "organization_guidelines": {
+      "chunks": 623,
+      "min_characters": 188,
+      "max_characters": 1456,
+      "average_characters": 1030
+    },
+    "policy_analyses": {
+      "chunks": 428,
+      "min_characters": 210,
+      "max_characters": 1503,
+      "average_characters": 1040
+    },
+    "organization_materials": {
+      "chunks": 1309,
+      "min_characters": 190,
+      "max_characters": 1561,
+      "average_characters": 1009
+    }
+  },
+  "source_store_exists": true,
+  "reviewed_source_files": [
+    {
+      "file": "lib/rag-v2/contracts.js",
+      "sha256_lf": "b6d7846086110913016e0a781d0e68a7c7f82440b441a05eda8a65bb53a167d7",
+      "local_matches": true
+    },
+    {
+      "file": "lib/rag-v2/parser.js",
+      "sha256_lf": "755b2fbb41db10bb9e8a0f51255bb2eb7c6b77149a87a6104f92b35a6631723e",
+      "local_matches": true
+    },
+    {
+      "file": "lib/rag-v2/normalize.js",
+      "sha256_lf": "b0761ee38ad1414f0375ad7da299375eb095b5530e8b4f0b481bd610b4ef4d35",
+      "local_matches": true
+    },
+    {
+      "file": "lib/rag-v2/ingestion.js",
+      "sha256_lf": "e125996d538e0227cda23892015aa18fadc14362d211962e823d5f2f270d6b85",
+      "local_matches": true
+    },
+    {
+      "file": "lib/rag-v2/search/embedding.js",
+      "sha256_lf": "29a7086fac47895614f3ee53c4c4b0cbf6967afb0f362664e54751c969e31bce",
+      "local_matches": true
+    },
+    {
+      "file": "lib/rag-v2/admin/config.js",
+      "sha256_lf": "a6547d8c71974a1015a9c269f37c36f56825d7072eaf40522cb151bb897e9148",
+      "local_matches": true
+    }
+  ],
+  "validation_scope": "Read-only configuration, systemd/process state, public corpus aggregates and code review. No user conversations read; no API generation, embedding, ingest, deletion, deployment or ENV edit. Chat runtime was not exercised."
+}

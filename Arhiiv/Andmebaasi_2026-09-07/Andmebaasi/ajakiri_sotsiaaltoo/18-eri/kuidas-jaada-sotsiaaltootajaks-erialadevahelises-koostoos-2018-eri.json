@@ -1,0 +1,37 @@
+{
+  "docId": "sotsiaaltoo-eri-2018",
+  "articleId": "kuidas-jaada-sotsiaaltootajaks-erialadevahelises-koostoos-2018-eri",
+  "title": "Kuidas jääda sotsiaaltöötajaks erialadevahelises koostöös?",
+  "authors": [],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "juubeli erinumber",
+  "section": "Sotsiaaltöötaja erialade koostöös",
+  "pageRange": "59",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel koondab ajakirja Sotsiaaltöö juubeliüritusel jagatud mõtted selle kohta, kuidas säilitada sotsiaaltöö identiteet erialadevahelises koostöös. Esile tõstetakse võrdsust, koostööd, kliendikeskset suhtlust ja sotsiaaltöötaja rolli terviku hoidjana.",
+  "tags": [
+    "erialadevaheline koostöö",
+    "sotsiaaltöö identiteet",
+    "meeskonnatöö",
+    "kliendikesksus",
+    "professionaalne roll"
+  ],
+  "source_type": "file",
+  "source_path": "ST_eri_2018_web_link_Part16.pdf",
+  "document_id": "sotsiaaltoo-eri-2018-kuidas-jaada-sotsiaaltootajaks-erialadevahelises-koostoos-2018-eri",
+  "source_format": "pdf",
+  "source_sha256": "dc04ed9249a0973151a85fc3dbceab9f9d6e82b4d47d86d79f60b89a32eecdc2",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2018-kuidas-jaada-sotsiaaltootajaks-erialadevahelises-koostoos-2018-eri",
+    "previous_source_path": "ST_eri_2018_web_link_Part16.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "dc04ed9249a0973151a85fc3dbceab9f9d6e82b4d47d86d79f60b89a32eecdc2",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "eessona-2025-2",
+  "title": "Eessõna 2/2025",
+  "authors": [
+    "Karmen Joller"
+  ],
+  "section": "Eessõna",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "description": "Sotsiaalminister Karmen Joller avab numbri 2/2025 fookuse: sotsiaalvaldkonna ja tervishoiu tihedam koostöö, inimkeskne vaade ja süsteemsete probleemide lahendamine. Eessõnas tunnustab ta sotsiaalvaldkonna töötajaid ning rõhutab, et inimese terviklik toetamine eeldab valdkondade integratsiooni, bürokraatia vähendamist ja selgemaid kompetentsimudeleid. Samuti kõneleb ta koalitsioonileppes kavandatavatest sammudest, mis aitaksid parandada abini jõudmist ja taastada usaldust sotsiaal- ja pensionisüsteemi vastu.",
+  "tags": [
+    "eessõna",
+    "sotsiaalvaldkond",
+    "tervishoid",
+    "koostöö",
+    "inimkeskne teenus",
+    "poliitikakujundamine"
+  ],
+  "source_path": "Eessõna 2_2025 _ Tervise Arengu Instituut.pdf",
+  "pageRange": "1–3",
+  "document_id": "sotsiaaltoo-2-2025-eessona-2025-2",
+  "source_format": "pdf",
+  "source_sha256": "e6bfe256607375577c227682e1d3a9c195b13f5af27a8b5d3c5bd0abe1076a01",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2025-eessona-2025-2",
+    "previous_source_path": "Eessõna 2_2025 _ Tervise Arengu Instituut.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e6bfe256607375577c227682e1d3a9c195b13f5af27a8b5d3c5bd0abe1076a01",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

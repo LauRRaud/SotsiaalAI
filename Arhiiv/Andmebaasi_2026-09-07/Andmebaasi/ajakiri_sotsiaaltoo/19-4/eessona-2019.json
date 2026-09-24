@@ -1,0 +1,36 @@
+{
+  "docId": "sotsiaaltoo-4-2019",
+  "articleId": "eessona-2019",
+  "title": "Eessõna",
+  "authors": [
+    "Tanel Kiik"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2019",
+  "section": "Eessõna",
+  "pageRange": "2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Avaartikkel Sotsiaaltöö 4/2019 numbris, kus käsitletakse peamisi suundumusi ja valdkonna prioriteete.",
+  "tags": [
+    "eessõna",
+    "sotsiaalpoliitika"
+  ],
+  "source_type": "file",
+  "source_path": "ST4_2019_web_link_Part2.pdf",
+  "document_id": "sotsiaaltoo-4-2019-eessona-2019",
+  "source_format": "pdf",
+  "source_sha256": "0b0b21e38d44f92317b68a88ca0b32a2005fe2214dab801c5a3727e431da535b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2019-eessona-2019",
+    "previous_source_path": "ST4_2019_web_link_Part2.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "0b0b21e38d44f92317b68a88ca0b32a2005fe2214dab801c5a3727e431da535b",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

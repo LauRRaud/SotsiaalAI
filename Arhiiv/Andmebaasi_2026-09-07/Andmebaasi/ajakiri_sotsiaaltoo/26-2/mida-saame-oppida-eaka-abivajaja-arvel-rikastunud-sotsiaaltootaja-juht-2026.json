@@ -1,0 +1,50 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "mida-saame-oppida-eaka-abivajaja-arvel-rikastunud-sotsiaaltootaja-juht-2026",
+  "title": "Mida saame õppida eaka abivajaja arvel rikastunud sotsiaaltöötaja juhtumist?",
+  "authors": [
+    "Katrin Tsuiman"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Eetika",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Eetikaanalüüs juhtumist, kus sotsiaalvaldkonna töötaja sai eaka kliendi vara. Autor käsitleb professionaalsete piiride rikkumist ja usalduse kahjustamist ning toob välja organisatsioonilised ja süsteemsed meetmed, mis aitaksid sarnaseid juhtumeid ennetada.",
+  "tags": [
+    "eetika",
+    "professionaalsed piirid",
+    "huvide konflikt",
+    "usaldus",
+    "eakad",
+    "organisatsioonikultuur",
+    "supervisioon",
+    "väärkohtlemine",
+    "ennetamine"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-02-11",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/mida-saame-oppida-eaka-abivajaja-arvel-rikastunud-sotsiaaltootaja-juhtumist",
+  "source_type": "web",
+  "source_path": "mida-saame-oppida-eaka-abivajaja-arvel-rikastunud-sotsiaaltootaja-juhtumist.html",
+  "lead": "Sotsiaalvaldkonna iga tasandi töötajal on vastutus hoida elukutse mainet ja vältida tegusid, mis kahjustavad usaldust. Kui usaldus kaob, kannatab kogu süsteemi maine.",
+  "document_id": "sotsiaaltoo-2-2026-mida-saame-oppida-eaka-abivajaja-arvel-rikastunud-sotsiaaltootaja-juht-2026",
+  "source_format": "html",
+  "source_sha256": "94b135781c4836d4bd04e98b430f3fc29bd4f81a0705e859d43e62f0c6d23dc8",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-mida-saame-oppida-eaka-abivajaja-arvel-rikastunud-sotsiaaltootaja-juht-2026",
+    "previous_source_path": "mida-saame-oppida-eaka-abivajaja-arvel-rikastunud-sotsiaaltootaja-juhtumist.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e86aca0fe88ebf6f2857b9a9bb592aa6820ace151c4b57bee4c44da856f39a1b",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "5f61fcb94633d9c8364182068f8052b55b8dcb3985f4941ae63f0485862513a5",
+    "observed_web_title": "Mida saame õppida eaka abivajaja arvel rikastunud sotsiaaltöötaja juhtumist?"
+  },
+  "retrieved_at": "2026-09-07T19:39:38.029383+00:00"
+}

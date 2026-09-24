@@ -1,0 +1,118 @@
+{
+  "docId": "sotsiaaltoo-3-2018",
+  "articleId": "maasotsiaaltootajad-ametiidentiteet-2018",
+  "title": "Maasotsiaaltöötajad räägivad oma tööst ja endast selle töö tegijana",
+  "authors": [
+    "Terje Lihtsa"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2018",
+  "section": "Uurimus",
+  "pageRange": "50-56",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Magistritööl põhinev uurimus maasotsiaaltöötajate ametiidentiteedist, kirjutatud autori enda kogemusest lähtudes — ta oli enne haldusreformi Vastse-Kuuste valla ainus sotsiaaltöötaja. Nendib, et alles mõni aasta tagasi oli ligi 40% omavalitsustes tööl kõigest üks sotsiaaltööspetsialist, kuid pärast haldusreformi on ühe sotsiaaltöötajaga vallad Eestis möödanik, ja soovib nende töötajate arusaamad sotsiaaltöö ajaloo tarbeks jäädvustada. Uurimus tugineb kaheksale poolstruktureeritud intervjuule ja käsitleb väikese maaomavalitsuse sotsiaaltöö eripära: üksinda töötamist, klientidega hällist hauani tegelemist, ametikaaslaste igapäevase toe puudumist, topeltsuhteid oma kogukonnas ning koolituste erilist tähtsust erialakogukonda kuulumise tundena. Lõpetuseks hoiatab, et uutesse oludesse tuleks kaasa võtta maasotsiaaltöö väärtused — otsene suhtlemine inimestega ja abivajaja juurde koju minek, mitte ainult kabinetitöö.",
+  "tags": [
+    "ametiidentiteet",
+    "maasotsiaaltöö",
+    "haldusreform",
+    "topeltsuhted",
+    "erialane üksindus",
+    "kutsestandard",
+    "uurimus"
+  ],
+  "source_type": "file",
+  "source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part13.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2018-maasotsiaaltootajad-ametiidentiteet-2018",
+  "source_sha256": "a35414142b295326c6b4f48b4bac494f0467d75bdb8959018f5b55f990288373",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2018-maasotsiaaltootajad-ametiidentiteet-2018",
+    "previous_source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part13.txt",
+    "previous_source_original_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part13.pdf",
+    "reference_stored_source_sha256": "5907e36824e168c8fda526353039d3b567060644e7c1f98461dc3ac1fe7c6d29",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\18-3\\155619680390_Sotsiaaltoo_nr3_2018_veebi_link.pdf",
+      "source_sha256": "45eac17c335ef472708d0eb485f916c201e5db46ac64163cc7aeeb1f47dd10a9",
+      "pdf_start_page": 52,
+      "pdf_end_page": 58,
+      "printed_page_range": "50-56",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 58,
+      "source_regions": [
+        {
+          "source_pdf_page": 52,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 53,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 54,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 55,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 56,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 57,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 58,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "50-56"
+    },
+    "server_page_range": "50-56"
+  }
+}

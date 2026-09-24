@@ -1,0 +1,77 @@
+{
+  "source": {
+    "source_id": "sotsiaalkindlustusamet_evaluation_of_the_impact_of_the_marac_networking_model",
+    "title": "Evaluation of the impact of the MARAC networking model",
+    "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-09/Evaluation%20of%20the%20impact%20of%20the%20MARAC%20networking%20model.pdf",
+    "normalized_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-09/Evaluation of the impact of the MARAC networking model.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Sotsiaalkindlustusamet",
+    "organization_id": "sotsiaalkindlustusamet",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Sotsiaalkindlustusamet",
+      "ohvriabi",
+      "MARAC",
+      "riskihindamine",
+      "võrgustikutöö",
+      "infomaterjal",
+      "SKA"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "SKA",
+      "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+      "heading_4": null,
+      "line": 477,
+      "order": 254
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Evaluation of the impact of the MARAC networking model"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Sotsiaalkindlustusamet"
+    ],
+    "organizations_seen": [
+      "sotsiaalkindlustusamet"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "SKA",
+        "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+        "line": 477,
+        "order": 254
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-09/Evaluation of the impact of the MARAC networking model.pdf"
+  },
+  "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-09/Evaluation%20of%20the%20impact%20of%20the%20MARAC%20networking%20model.pdf",
+  "redirects": [],
+  "sha256": "56b0212bf9a9f9a3b5e9cf71594c6e4c8851d93ae86b64c4833061c992ea89d2",
+  "bytes": 9643163,
+  "downloaded_at": "2026-08-14T08:00:52.899Z"
+}

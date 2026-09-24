@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-1-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "vagivald-vanemaealiste-vastu-vajab-tahelepanu-2025-1",
+  "title": "Vägivald vanemaealiste vastu vajab tähelepanu",
+  "authors": [
+    "Anu Leps",
+    "Lenne Indov"
+  ],
+  "section": "Vägivalla ennetus",
+  "pdf_start_page": 1,
+  "pdf_end_page": 10,
+  "description": "Artikkel käsitleb vanemaealiste vastu suunatud vägivalla ja väärkohtlemise eri vorme: füüsiline, psühholoogiline ja seksuaalne vägivald, majanduslik ärakasutamine, hooletussejätmine ja manipulatsioon. Autorid analüüsivad riskitegureid, mis suurendavad vanemaealiste vägivallaohvriks sattumise ohtu – terviseprobleemid, sõltuvus hooldajast, sotsiaalne isolatsioon, info- ja digipädevuse puudujäägid – ning kirjeldavad nii lähedaste, hooldekodude töötajate kui ka kelmide ja petturite rolli. Tuuakse välja olemasolevad abivõimalused, sh ohvriabi, kriisiabi, sotsiaalteenused ja politsei sekkumine, ning rõhutatakse ennetustöö, teadlikkuse tõstmise ja ametkondadevahelise koostöö olulisust.",
+  "tags": [
+    "vanemaealised",
+    "vägivald",
+    "väärkohtlemine",
+    "ohvriabi",
+    "pettused",
+    "kriisiabi",
+    "sotsiaalteenused"
+  ],
+  "source_path": "Vägivald vanemaealiste vastu vajab tähelepanu_1_2025.pdf",
+  "pageRange": "1–10",
+  "document_id": "sotsiaaltoo-1-2025-vagivald-vanemaealiste-vastu-vajab-tahelepanu-2025-1",
+  "source_format": "pdf",
+  "source_sha256": "d7fa46f62e08d6222f74547c3d6f60c5cf08f4c20c40ed9e3764ce7f3f7464c0",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2025-vagivald-vanemaealiste-vastu-vajab-tahelepanu-2025-1",
+    "previous_source_path": "Vägivald vanemaealiste vastu vajab tähelepanu_1_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d7fa46f62e08d6222f74547c3d6f60c5cf08f4c20c40ed9e3764ce7f3f7464c0",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

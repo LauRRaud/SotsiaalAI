@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-3-2023",
+  "articleId": "klientide-vagivalda-tundnud-lastekaitsetootajate-kogemused-2023-3",
+  "title": "Klientide vägivalda tundnud lastekaitsetöötajate kogemused",
+  "authors": [
+    "Kirsi Vimpari"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2023",
+  "section": "Uurimus",
+  "pageRange": "75-81",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimus käsitleb Eesti lastekaitsetöötajate kokkupuuteid klientidest lähtuva vägivallaga ning selle mõju\ntöötajate heaolule ja töövõimele. Intervjuude põhjal selgub, et levinum on psühholoogiline vägivald, sh\nähvardamised, kuid esineb ka füüsilist agressiivsust ja reputatsiooniga ähvardamist. Artiklis analüüsitakse\nvägivallaga toimetuleku viise, juhtkonna ja kolleegide toe rolli ning seda, kuidas kogemus võib tuua kaasa nii\nstressi ja hirmu kui ka professionaalse kasvu. Tulemused viitavad vajadusele süsteemse toe, juhiste ja\nennetusmeetmete järele, et kaitsta lastekaitsetöötajate vaimset tervist ja töörõõmu.",
+  "tags": [
+    "lastekaitse",
+    "kliendi vägivald",
+    "töövägivald",
+    "vaimne tervis",
+    "tööheaolu",
+    "supervisioon",
+    "tööalane tugi"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2023_web_Part16.pdf",
+  "document_id": "sotsiaaltoo-3-2023-klientide-vagivalda-tundnud-lastekaitsetootajate-kogemused-2023-3",
+  "source_format": "pdf",
+  "source_sha256": "096564fcb54778b65139f1399348eefd08aa1cfd10a426da382af39ddb46f7af",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2023-klientide-vagivalda-tundnud-lastekaitsetootajate-kogemused-2023-3",
+    "previous_source_path": "Sotsiaaltoo_3_2023_web_Part16.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "096564fcb54778b65139f1399348eefd08aa1cfd10a426da382af39ddb46f7af",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

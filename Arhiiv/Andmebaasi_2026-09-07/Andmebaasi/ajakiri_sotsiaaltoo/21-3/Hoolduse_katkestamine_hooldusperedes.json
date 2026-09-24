@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-3-2021",
+  "articleId": "hoolduse-katkestamine-hooldusperedes-lastekaitsetootajate-ja-eksperdi-vaatenurk-2021-3",
+  "title": "Hoolduse katkestamine hooldusperedes – lastekaitsetöötajate ja eksperdi vaatenurk",
+  "authors": [
+    "Julia Dunets",
+    "Ingrid Sindi"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2021",
+  "section": "Uurimus",
+  "pageRange": "35-43",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Magistriuurimusel põhinev artikkel analüüsib hoolduse katkestamise juhtumeid hooldusperedes, vaadeldes neid lastekaitsetöötajate ja eksperdi pilgu läbi. Autorid uurivad, millised tegurid viivad selleni, et laps peab perest lahkuma – sh ettevalmistuse ja toe nappus, peresuhte pinged, lapse erivajadused, koostöö probleemid ning süsteemsed puudujäägid. Kirjeldatakse lastekaitsetöötajate rolli kriisi märkamisel, tugiisikute ja nõustamise pakkumisel ning otsuste tegemisel lapse edasise elukorralduse suhtes. Artikkel rõhutab vajadust paremate ettevalmistusprogrammide, järjepideva juhendamise ja peresõbralikumate teenuste järele, et vähendada hoolduse katkestamise riski ja tagada lastele stabiilsem kasvukeskkond.",
+  "tags": [
+    "hoolduspere",
+    "hoolduse katkestamine",
+    "asendushooldus",
+    "lastekaitsetöö",
+    "magistriuurimus",
+    "peretugevdus",
+    "tugiteenused",
+    "riskitegurid"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2021_web_link_Part10.pdf",
+  "document_id": "sotsiaaltoo-3-2021-hoolduse-katkestamine-hooldusperedes-lastekaitsetootajate-ja-eksperdi-vaatenurk-2021-3",
+  "source_format": "pdf",
+  "source_sha256": "dba75d59e2bfbb4c48f823ae6c05c5a772b96b6e4c34ae05a2d904c63afba1d2",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2021-hoolduse-katkestamine-hooldusperedes-lastekaitsetootajate-ja-eksperdi-vaatenurk-2021-3",
+    "previous_source_path": "Sotsiaaltoo_3_2021_web_link_Part10.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "dba75d59e2bfbb4c48f823ae6c05c5a772b96b6e4c34ae05a2d904c63afba1d2",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

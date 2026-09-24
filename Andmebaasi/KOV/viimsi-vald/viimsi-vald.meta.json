@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-viimsi-vald",
+  "document_id": "kov-viimsi-vald",
+  "municipality": "Viimsi vald",
+  "municipality_id": "viimsi_vald",
+  "county": "Harjumaa",
+  "checkedAt": "2026-04-29",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-viimsi-vald",
+  "coverage": {
+    "services": 19,
+    "benefits": 14,
+    "resources": 8,
+    "contacts": 13,
+    "forms": 5,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "viimsi_vald",
+    "source_register_file": "viimsi-vald.sources.json",
+    "service_benefit_resource_items": 41,
+    "items_with_source_keys": 41,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 17,
+    "items_without_related_forms": 24,
+    "items_with_related_contacts": 33,
+    "items_without_related_contacts": 8,
+    "form_sources": 0,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [],
+  "unresolvedIssues": [
+    "Viimsi valla veebilehel kuvatud e-posti aadressid olid korje käigus varjestatud kujul; paketti ei taastatud e-posti aadresse oletuse alusel.",
+    "Mõnel teenuse lehel on vastutav ametikoht märgitud täitmata; see on kajastatud kontaktina ametikoha, mitte isikunimena.",
+    "I klassi mineva lapse toetuse täpset summat ei olnud kontrollitud lehel avaldatud; summa on jäetud andmefailis nulliks.",
+    "Tähtpäevatoetuse täpne summa ja vanusepõhised tingimused vajavad vajadusel lisakontrolli valla jooksvalt avaldatud teavitustest.",
+    "Puudega isiku transporditoetuse ja tasuta sõidu õiguse detailtingimused olid avalikul lehel lühidalt esitatud; vajadusel kontrollida menetleja või iseteeninduse kaudu vormi täpseid välju.",
+    "Välised teenusepakkujad ja riiklikud veebid, millele Viimsi valla lehed suunavad, on käsitletud ainult Viimsi valla lehel avaldatud ulatuses, mitte eraldi välisallikatena."
+  ],
+  "municipality_name": "Viimsi vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "viimsi-vald.sources.json",
+  "sourceCount": 45,
+  "counts": {
+    "services": 19,
+    "benefits": 14,
+    "resources": 8,
+    "contacts": 13,
+    "forms": 5,
+    "regulations": 0
+  },
+  "warnings": [
+    "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

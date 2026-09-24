@@ -1,0 +1,27 @@
+{
+  "ingest": {
+    "ok": true,
+    "inserted": 5,
+    "docId": "sotsiaalkindlustusamet_rus",
+    "pageRange": "1–2",
+    "shortRef": "Кризисные центры помощи жертвам сексуального насилия (RUS). 2026. lk 1–2.",
+    "originalDocId": null,
+    "fileName": "Ohvriabi infovoldik SAK RUS+bleed3mm.pdf",
+    "collection": "sotsiaalai",
+    "pageStart": null,
+    "pageEnd": null
+  },
+  "verification": {
+    "doc_id": "sotsiaalkindlustusamet_rus",
+    "inserted": 5,
+    "chunks": 5,
+    "language": "ru",
+    "search_hits": 3,
+    "search_doc_ids": [
+      "sotsiaalkindlustusamet_rus",
+      "sotsiaalkindlustusamet_rus",
+      "sotsiaalkindlustusamet_rus"
+    ],
+    "query_sha256": "b095b43f4c02672e0203f21e7783614783e9490b55130e3d88cf23ed873a1bd8"
+  }
+}

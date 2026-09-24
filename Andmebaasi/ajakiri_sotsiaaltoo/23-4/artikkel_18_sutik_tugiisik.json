@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-4-2023",
+  "articleId": "sutik-tugiisik-uimasteid-tarvitava-inimese-toetamine-2023-4",
+  "title": "Tugiisik aitab kokku viia uimasteid tarvitava inimese ja tervishoiuteenused",
+  "authors": [
+    "Marin Vaher"
+  ],
+  "authors_fixed": "2026-08-15",
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2023",
+  "section": "Projekt",
+  "pageRange": "91-96",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artiklis jagatakse programmi SÜTIK tugiisikute kogemusi uimastisõltuvusega inimeste toetamisel.\nRõhutatakse vajadust siduda tervishoiu- ja sotsiaalvaldkonna teenuseid, et pakkuda inimestele järjepidevat,\nmotiveerivat ja toetavat abi. Kirjeldatakse tugiisiku rolli usalduse loomisel, teenustele suunamisel ning\ninimese igapäevaelu stabiliseerimisel. Lugu näitab, kuidas võrgustikutöö ja varajane sekkumine aitavad vähendada\nriske ja toetada taastumist.",
+  "tags": [
+    "SÜTIK",
+    "tugiisik",
+    "uimastisõltuvus",
+    "võrgustikutöö",
+    "tervishoiu ja sotsiaalvaldkonna koostöö"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2023_web_Part19.pdf",
+  "document_id": "sotsiaaltoo-4-2023-sutik-tugiisik-uimasteid-tarvitava-inimese-toetamine-2023-4",
+  "source_format": "pdf",
+  "source_sha256": "65135763b26a18e386fa117e0ef14a369f0101b5c155ac700fe2eecd7b261533",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2023-sutik-tugiisik-uimasteid-tarvitava-inimese-toetamine-2023-4",
+    "previous_source_path": "Sotsiaaltoo_4_2023_web_Part19.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "65135763b26a18e386fa117e0ef14a369f0101b5c155ac700fe2eecd7b261533",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

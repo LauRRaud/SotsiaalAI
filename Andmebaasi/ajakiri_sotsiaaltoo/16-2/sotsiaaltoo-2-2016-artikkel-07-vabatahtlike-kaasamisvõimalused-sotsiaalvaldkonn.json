@@ -1,0 +1,83 @@
+{
+  "docId": "sotsiaaltoo-2-2016",
+  "articleId": "sotsiaaltoo-2-2016-artikkel-07-vabatahtlike-kaasamisvõimalused-sotsiaalvaldkonn",
+  "title": "Vabatahtlike kaasamisvõimalused sotsiaalvaldkonnas",
+  "authors": [
+    "Eha Paas",
+    "Anu Viltrop"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2016",
+  "section": "Koostöö",
+  "pageRange": "20-22",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Liikumise Kodukant töötajad kirjeldavad vabatahtlike kaasamist sotsiaalvaldkonnas. Uuringu järgi tegutseb vabatahtlikuna 31% Eesti elanikest, kuid regulaarselt panustavaid püsivabatahtlikke on vaid 6% ning sotsiaalvaldkond jääb eelistustes tahapoole. Näidetena tuuakse Haapsalu Sotsiaalmaja, kus vabatahtlikud abistavad tegevustubades ja loevad vaegnägijatele raamatuid, ning 2013. aasta oktoobris loodud Läänemaa Naiste Tugikeskus, kus töötab kaheksa koostöölepingu sõlminud vabatahtlikku. Autorid teevad ettepaneku, et sotsiaalministeerium tegeleks valdkonnaga süsteemselt, eeskujuks siseministeeriumi abipolitsei ja vabatahtlike päästjate korraldus.",
+  "tags": [
+    "koostöö",
+    "vabatahtlik tegevus",
+    "kodanikuühendused",
+    "Haapsalu Sotsiaalmaja",
+    "naiste tugikeskus",
+    "töötukassa"
+  ],
+  "source_type": "file",
+  "source_path": "2016_2_artikkel_07_vabatahtlike_kaasamisvoimalused_sotsiaalvaldkonnas.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-07-vabatahtlike-kaasamisv-imalused-sotsiaalvaldkonn",
+  "source_sha256": "01a1bc09d50de477be44a25da1d5d682f75a796888f4f51d924cb88364c455f9",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-07-vabatahtlike-kaasamisv-imalused-sotsiaalvaldkonn",
+    "previous_source_path": "2016_2_artikkel_07_vabatahtlike_kaasamisvoimalused_sotsiaalvaldkonnas.txt",
+    "previous_source_original_path": "2-2016.pdf",
+    "reference_stored_source_sha256": "65761f06161b35559cb4b51c43e68090df712b750181aaade2ec8bd98ce739ba",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\2-2016.pdf",
+      "source_sha256": "cf45b61607b21a62a1003f99c97d65180c4fb4f591a874c983c4b63e5c804a36",
+      "pdf_start_page": 22,
+      "pdf_end_page": 24,
+      "printed_page_range": "20-23",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 25,
+      "source_regions": [
+        {
+          "source_pdf_page": 22,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 23,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 24,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "20-22",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2-2016.pdf"
+    },
+    "server_page_range": "20-23"
+  }
+}

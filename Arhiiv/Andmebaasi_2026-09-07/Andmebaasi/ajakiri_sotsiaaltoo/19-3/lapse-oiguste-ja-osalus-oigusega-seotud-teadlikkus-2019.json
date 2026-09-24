@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-3-2019",
+  "articleId": "lapse-oiguste-ja-osalus-oigusega-seotud-teadlikkus-2019",
+  "title": "Lapse õiguste ja osalusõigusega seotud teadlikkus, hoiakud ning kogemused laste ja täiskasvanute pilgu läbi",
+  "authors": [
+    "Andra Reinomägi"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2019",
+  "section": "Teadlikkus lapse õigustest",
+  "pageRange": "8-15",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade 2018. aasta lapse õiguste ja vanemluse uuringust: laste ja täiskasvanute teadlikkus lapse õigustest, hoiakud osalusõiguse suhtes ning laste tegelikud kaasarääkimise võimalused eri eluvaldkondades.",
+  "tags": [
+    "lapse õigused",
+    "osalusõigus",
+    "uuring",
+    "teadlikkus",
+    "Õiguskantsler"
+  ],
+  "source_type": "file",
+  "source_path": "ST3_2019_veeb_link_Part4.pdf",
+  "document_id": "sotsiaaltoo-3-2019-lapse-oiguste-ja-osalus-oigusega-seotud-teadlikkus-2019",
+  "source_format": "pdf",
+  "source_sha256": "a17a8f9d08c49513a9f35ec22dfd4a3410255a65a44b48bd66a102217fd7e205",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2019-lapse-oiguste-ja-osalus-oigusega-seotud-teadlikkus-2019",
+    "previous_source_path": "ST3_2019_veeb_link_Part4.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "a17a8f9d08c49513a9f35ec22dfd4a3410255a65a44b48bd66a102217fd7e205",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "docId": "sotsiaaltoo-1-2017",
+  "articleId": "sotsiaaltransport-2017-1",
+  "title": "Sotsiaaltransporditeenuse arendamisest",
+  "authors": [
+    "Kristiina Tuisk"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2017",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "16-18",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi nõunik Kristiina Tuisk teatab, et 2016. aasta suvel maakondlike arenduskeskuste tehtud küsitluses pidasid kõik maakonnad sotsiaaltransporti kõige olulisemaks arendusvaldkonnaks, ehkki miinimumnõuded kehtestati juba 2016. aasta jaanuaris. Ministeerium töötab välja üleriigilise täisteenuse mudeli koos IT-lahenduse ja ühtse operaatoriga; lähteülesanne pidi valmima 2017. aasta kevadel, sellele järgnevad pilootimine ja toetusmeede. Eesmärgiks seatakse elukohast sõltumatu ühesuguse sisu ja kvaliteediga teenus. Struktuurifondide raha kestab 2020. aastani, edasine jääb omavalitsuste eelarvete kanda.",
+  "tags": [
+    "sotsiaaltransport",
+    "sotsiaalministeerium",
+    "sotsiaalteenused",
+    "kohalik omavalitsus",
+    "teenuse kättesaadavus"
+  ],
+  "source_type": "file",
+  "source_path": "2017_1_Part6.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2017-sotsiaaltransport-2017-1",
+  "source_sha256": "7ef44bd3f7c08ff46a400567d65188b86aaa6ac9e9df3aff4c2c5c229f147766",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2017-sotsiaaltransport-2017-1",
+    "previous_source_path": "2017_1_Part6.txt",
+    "previous_source_original_path": "2017_1.pdf",
+    "reference_stored_source_sha256": "2d84191b6215d920d34480d6d1f310be1ea2c04b8c8c8fdd133e9921ca117b86",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf",
+      "source_sha256": "335f81467a555f12c55d0e8bf60122a178c5267567cf79607448a5d987629e50",
+      "pdf_start_page": 18,
+      "pdf_end_page": 20,
+      "printed_page_range": "16-18",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 20,
+      "source_regions": [
+        {
+          "source_pdf_page": 18,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 19,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 20,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        }
+      ],
+      "effective_printed_page_range": "16-18"
+    },
+    "server_page_range": "16-18"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-4-2021",
+  "articleId": "sotsiaaltoo-hadaolukorra-eetika-ja-digiteerimise-kolmnurgas-2021-4",
+  "title": "Sotsiaaltöö hädaolukorra, eetika ja digiteerimise kolmnurgas",
+  "authors": [
+    "Francesca D’Atri"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2021",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "43-48",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Itaalia sotsiaaltöö spetsialisti kogemusel põhinev artikkel analüüsib sotsiaaltööd COVID-19 pandeemia ajal, keskendudes hädaolukorra, eetika ja digiteerimise seostele. Kirjeldatakse, kuidas sotsiaaltöötajad pidid kiiresti kohandama oma praktikat, kasutades kaugintervjuusid, digiplatvorme ja võrgustikutööd, ning milliseid eetilisi dilemmasid see tekitas. Autor seob käsitluse rahvusvaheliste sotsiaaltöö definitsioonide, inimõiguste ja kohuseeetikaga ning arutleb digitaalse sotsiaaltöö võimaluste ja riskide, sh inimeste \"mehhaniseerimise\" ohu üle. Rõhutatakse vajadust säilitada inimlik lähedus ja professionaalsed väärtused ka ekraani vahendusel töötades.",
+  "tags": [
+    "COVID-19",
+    "digitaalne sotsiaaltöö",
+    "hädaolukord",
+    "sotsiaaltöö eetika",
+    "inimõigused",
+    "Itaalia kogemus",
+    "kaugintervjuu",
+    "digipädevus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2021_web_Part11.pdf",
+  "document_id": "sotsiaaltoo-4-2021-sotsiaaltoo-hadaolukorra-eetika-ja-digiteerimise-kolmnurgas-2021-4",
+  "source_format": "pdf",
+  "source_sha256": "6e51134d403eb250585423c093d5b91f9ce7bd0de8ef05061f7d9f6a82724990",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2021-sotsiaaltoo-hadaolukorra-eetika-ja-digiteerimise-kolmnurgas-2021-4",
+    "previous_source_path": "Sotsiaaltoo_4_2021_web_Part11.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "6e51134d403eb250585423c093d5b91f9ce7bd0de8ef05061f7d9f6a82724990",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

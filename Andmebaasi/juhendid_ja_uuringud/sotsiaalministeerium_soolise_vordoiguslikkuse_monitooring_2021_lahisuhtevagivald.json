@@ -1,0 +1,148 @@
+{
+  "source_path": "sotsiaalministeerium_soolise_vordoiguslikkuse_monitooring_2021_lahisuhtevagivald.pdf",
+  "source_format": "pdf",
+  "sha256": "60e78fe390a5175b0588041fbea632ac7936ea02fa23030f03c8315ce127dfe9",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/sotsiaalministeerium_soolise_vordoiguslikkuse_monitooring_2021_lahisuhtevagivald.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "sotsiaalministeerium_soolise_vordoiguslikkuse_monitooring_2021_lahisuhtevagivald",
+          "title": "Soolise võrdõiguslikkuse monitooring 2021: Lähisuhtevägivald",
+          "url": "https://www.sm.ee/sites/default/files/documents/2022-12/SVM21.%20L%C3%A4hisuhtev%C3%A4givald.pdf",
+          "normalized_url": "https://www.sm.ee/sites/default/files/documents/2022-12/SVM21. Lähisuhtevägivald.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "Sotsiaalministeerium",
+          "organization_id": "sotsiaalministeerium",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Sotsiaalministeerium",
+            "ohvriabi",
+            "lähisuhtevägivald",
+            "perevägivald",
+            "võrdne kohtlemine",
+            "diskrimineerimine",
+            "võrdõiguslikkus",
+            "õigused",
+            "inimõigused",
+            "uuring",
+            "raport",
+            "analüüs"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Sotsiaalministeerium",
+            "heading_3": "Ohvriabi, lähisuhtevägivald, inimkaubandus",
+            "heading_4": null,
+            "line": 537,
+            "order": 280
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Soolise võrdõiguslikkuse monitooring 2021: Lähisuhtevägivald"
+          ],
+          "collection_hints": [
+            "research_reports"
+          ],
+          "source_types_seen": [
+            "research_report"
+          ],
+          "resource_types_seen": [
+            "research_evidence"
+          ],
+          "publishers_seen": [
+            "Sotsiaalministeerium"
+          ],
+          "organizations_seen": [
+            "sotsiaalministeerium"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Sotsiaalministeerium",
+              "heading_3": "Ohvriabi, lähisuhtevägivald, inimkaubandus",
+              "line": 537,
+              "order": 280
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.sm.ee/sites/default/files/documents/2022-12/SVM21. Lähisuhtevägivald.pdf"
+        },
+        "final_url": "https://www.sm.ee/sites/default/files/documents/2022-12/SVM21.%20L%C3%A4hisuhtev%C3%A4givald.pdf",
+        "redirects": [],
+        "sha256": "60e78fe390a5175b0588041fbea632ac7936ea02fa23030f03c8315ce127dfe9",
+        "bytes": 172752,
+        "downloaded_at": "2026-08-14T08:00:54.843Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "sotsiaalministeerium_soolise_vordoiguslikkuse_monitooring_2021_lahisuhtevagivald",
+      "metadata": {
+        "createdAt": "2026-06-12T03:58:33.285234+00:00",
+        "type": "FILE",
+        "fileName": "SVM21. Lähisuhtevägivald.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:58:33.217074+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/40410aa93d42/SVM21. Lähisuhtevägivald.pdf",
+        "title": "Soolise võrdõiguslikkuse monitooring 2021: Lähisuhtevägivald",
+        "description": "Source master headings: Sotsiaalministeerium; Ohvriabi, lähisuhtevägivald, inimkaubandus",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2021,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "research_reports",
+        "source_id": "sotsiaalministeerium_soolise_vordoiguslikkuse_monitooring_2021_lahisuhtevagivald",
+        "document_id": "sotsiaalministeerium_soolise_vordoiguslikkuse_monitooring_2021_lahisuhtevagivald",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "8272d8da50d69312fc5abf2c7b67c7591dd3ec3d541f6425506a23843a213e53",
+        "url": "https://www.sm.ee/sites/default/files/documents/2022-12/SVM21.%20L%C3%A4hisuhtev%C3%A4givald.pdf",
+        "url_canonical": "https://www.sm.ee/sites/default/files/documents/2022-12/SVM21. Lähisuhtevägivald.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "sotsiaalministeerium_soolise_vordoiguslikkuse_monitooring_2021_lahisuhtevagivald",
+        "updatedAt": "2026-06-12T03:58:33.285257+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

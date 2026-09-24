@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-4-2022",
+  "articleId": "pagulane-taiesti-tavaline-inimene-erakordsetes-oludes-2022-4",
+  "title": "Pagulane – täiesti tavaline inimene erakordsetes oludes",
+  "authors": [
+    "Anu Viltrop"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2022",
+  "section": "Kogemus",
+  "pageRange": "23-27",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Eesti Pagulasabi kogemuslugu avab pagulastega töötamise tegelikkust Ukraina sõja taustal ning\ntoob lugejale lähemale mõtte, et pagulane on täiesti tavaline inimene erakordses olukorras. Autor\nkirjeldab kriisi esimest faasi, kus infosüsteemid ja vastuvõtumehhanismid alles kujunesid, ning\nräägib, kuidas Pagulasabi töötajad ja vabatahtlikud pakkusid esmalt elementaarset tuge – süüa,\nturvalist ruumi ja ära kuulamist – alles seejärel hakati otsima pikemaajalisi lahendusi. Artiklis\nrõhutatakse selge, usaldusväärse info rolli uues riigis toimetulekul ning seda, kuidas kuulujutud\nja sotsiaalmeedia võivad tekitada lisapingeid (näiteks väärarusaamad ukrainlaste viimisest teistesse\nriikidesse). Käsitletakse koostööd omavalitsustega, perevägivalla ja elukoha kaotusega seotud\nkeerukaid juhtumeid ning grupinõustamiste ja kogemusvahetuse mõju pagulaste võimestamisel.\nAutor kutsub praktikuid üles nägema iga pagulase taga individuaalset lugu, hoidma empaatilist\nja selgitavat hoiakut ning toetama inimeste sisemisi ressursse uues ühiskonnas kohanemisel.",
+  "tags": [
+    "pagulased",
+    "Ukraina",
+    "kohanemine",
+    "kriisiabi",
+    "Eesti Pagulasabi",
+    "grupinõustamine",
+    "kriisireageerimine",
+    "info ja õigused",
+    "kultuuridevaheline suhtlus"
+  ],
+  "source_type": "file",
+  "source_path": "2022_4_artikkel_6_pagulane.pdf",
+  "document_id": "sotsiaaltoo-4-2022-pagulane-taiesti-tavaline-inimene-erakordsetes-oludes-2022-4",
+  "source_format": "pdf",
+  "source_sha256": "2ac809f2a50b1cbf119298cc63a4ac23e897c1fd40272694b070d9e4632f1d95",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2022-pagulane-taiesti-tavaline-inimene-erakordsetes-oludes-2022-4",
+    "previous_source_path": "2022_4_artikkel_6_pagulane.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "2ac809f2a50b1cbf119298cc63a4ac23e897c1fd40272694b070d9e4632f1d95",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

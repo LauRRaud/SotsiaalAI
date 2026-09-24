@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-4-2025",
+  "articleId": "eessona-4-2025-2025-4",
+  "title": "Eessõna 4/2025",
+  "authors": [
+    "Kersti Suun-Deket"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2025",
+  "section": "Juhtkiri",
+  "pageRange": "1–2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Eessõna avab Sotsiaaltöö ajakirja 4/2025 numbri ning rõhutab ajakirja rolli sotsiaalvaldkonna teadmiste, kogemuste ja arutelude platvormina. Tekst käsitleb ka ajakirja liikumist sotsiaalkindlustusameti vastutusalasse ning tänab valdkonna panustajaid.",
+  "tags": [
+    "eessona",
+    "sotsiaalvaldkond",
+    "koostoo",
+    "teadmiste jagamine",
+    "sotsiaalkindlustusamet",
+    "erialane areng"
+  ],
+  "source_type": "file",
+  "source_path": "Eessõna4_2025.pdf",
+  "document_id": "sotsiaaltoo-4-2025-eessona-4-2025-2025-4",
+  "source_format": "pdf",
+  "source_sha256": "64e6ed3f3a86d7c7d09dfdb6492df46dd7526d306dbaafa64294a3a954210f0c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2025-eessona-4-2025-2025-4",
+    "previous_source_path": "Eessõna4_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "64e6ed3f3a86d7c7d09dfdb6492df46dd7526d306dbaafa64294a3a954210f0c",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

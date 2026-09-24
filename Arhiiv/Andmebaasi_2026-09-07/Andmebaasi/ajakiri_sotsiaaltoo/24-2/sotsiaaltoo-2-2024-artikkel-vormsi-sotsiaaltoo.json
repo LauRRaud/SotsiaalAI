@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-2-2024",
+  "articleId": "vormsil-on-sotsiaaltoo-kindlasti-kogukondlik-2024-2",
+  "title": "Vormsil on sotsiaaltöö kindlasti kogukondlik",
+  "authors": [
+    "Janika Viilma",
+    "Maris Jõgeva"
+  ],
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2024",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "43-46",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel Vormsi valla kogukonnapõhisest sotsiaaltööst.",
+  "tags": [
+    "Vormsi vald",
+    "kogukonnapõhine sotsiaaltöö",
+    "väike omavalitsus",
+    "KOV",
+    "saarekogukond",
+    "sotsiaalteenused",
+    "kogukonnatöö",
+    "toidupank",
+    "sotsiaaltransport"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2024_web_Part11.pdf",
+  "document_id": "sotsiaaltoo-2-2024-vormsil-on-sotsiaaltoo-kindlasti-kogukondlik-2024-2",
+  "source_format": "pdf",
+  "source_sha256": "042fa8af2a0238cb91ede1bc67f7241bd1fc06db3ecd0cde82b6b7164ab84ac7",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2024-vormsil-on-sotsiaaltoo-kindlasti-kogukondlik-2024-2",
+    "previous_source_path": "Sotsiaaltoo_2_2024_web_Part11.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "042fa8af2a0238cb91ede1bc67f7241bd1fc06db3ecd0cde82b6b7164ab84ac7",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

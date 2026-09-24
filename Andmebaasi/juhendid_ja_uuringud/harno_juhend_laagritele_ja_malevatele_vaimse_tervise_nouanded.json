@@ -1,0 +1,147 @@
+{
+  "source_path": "harno_juhend_laagritele_ja_malevatele_vaimse_tervise_nouanded.pdf",
+  "source_format": "pdf",
+  "sha256": "2bf0c28bbba80d2df3801caede24bcf4b1775ca5966ee31a2a511c95f5f1bc4a",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/harno_juhend_laagritele_ja_malevatele_vaimse_tervise_nouanded.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "harno_juhend_laagritele_ja_malevatele_vaimse_tervise_nouanded",
+          "title": "Juhend laagritele ja malevatele: vaimse tervise nõuanded",
+          "url": "https://harno.ee/sites/default/files/documents/2021-06/juhend%20laagritele%20jamalevatele-vaimse_tervise_nouanded_laagrid-malevad_14.06.2021.pdf",
+          "normalized_url": "https://harno.ee/sites/default/files/documents/2021-06/juhend laagritele jamalevatele-vaimse_tervise_nouanded_laagrid-malevad_14.06.2021.pdf",
+          "source_format": "pdf",
+          "source_type": "official_guideline",
+          "resource_type": "method_guidance",
+          "publisher": "HARNO",
+          "organization_id": "harno",
+          "collection_hint": "guidance_and_methods",
+          "evidence_role": "practice_guidance",
+          "topic_tags": [
+            "Haridus- ja Noorteamet",
+            "spetsialisti juhend",
+            "haridus",
+            "kool",
+            "õpilase toetamine",
+            "tugimeetmed",
+            "laager",
+            "malev",
+            "noorte vaimne tervis",
+            "vaimne tervis",
+            "psüühiline heaolu",
+            "nõustamine"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "high",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "HARNO / HEV / kooli tugimeetmed",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 381,
+            "order": 211
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Juhend laagritele ja malevatele: vaimse tervise nõuanded"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "official_guideline"
+          ],
+          "resource_types_seen": [
+            "best_practice_guidance"
+          ],
+          "publishers_seen": [
+            "HARNO"
+          ],
+          "organizations_seen": [
+            "harno"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "HARNO / HEV / kooli tugimeetmed",
+              "line": 381,
+              "order": 211
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://harno.ee/sites/default/files/documents/2021-06/juhend laagritele jamalevatele-vaimse_tervise_nouanded_laagrid-malevad_14.06.2021.pdf"
+        },
+        "final_url": "https://harno.ee/sites/default/files/documents/2021-06/juhend%20laagritele%20jamalevatele-vaimse_tervise_nouanded_laagrid-malevad_14.06.2021.pdf",
+        "redirects": [],
+        "sha256": "2bf0c28bbba80d2df3801caede24bcf4b1775ca5966ee31a2a511c95f5f1bc4a",
+        "bytes": 128780,
+        "downloaded_at": "2026-08-14T08:00:44.972Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "harno_juhend_laagritele_ja_malevatele_vaimse_tervise_nouanded",
+      "metadata": {
+        "createdAt": "2026-06-11T18:40:34.099083+00:00",
+        "type": "FILE",
+        "fileName": "juhend laagritele jamalevatele-vaimse_tervise_nouanded_laagrid-malevad_14.06.2021.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-11T18:40:34.037109+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/00fb6a44533d/juhend laagritele jamalevatele-vaimse_tervise_nouanded_laagrid-malevad_14.06.2021.pdf",
+        "title": "Juhend laagritele ja malevatele: vaimse tervise nõuanded",
+        "description": "Source master headings: HARNO / HEV / kooli tugimeetmed",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2021,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–2",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "harno_juhend_laagritele_ja_malevatele_vaimse_tervise_nouanded",
+        "document_id": "harno_juhend_laagritele_ja_malevatele_vaimse_tervise_nouanded",
+        "source_type": "official_guideline",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-11",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "0a403e2b38ca1a0ec8064d20a97ee89a1c80dae39dae60c4c108f461ce1df4ef",
+        "url": "https://harno.ee/sites/default/files/documents/2021-06/juhend%20laagritele%20jamalevatele-vaimse_tervise_nouanded_laagrid-malevad_14.06.2021.pdf",
+        "url_canonical": "https://harno.ee/sites/default/files/documents/2021-06/juhend laagritele jamalevatele-vaimse_tervise_nouanded_laagrid-malevad_14.06.2021.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "harno_juhend_laagritele_ja_malevatele_vaimse_tervise_nouanded",
+        "updatedAt": "2026-06-11T18:40:34.099106+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

@@ -1,0 +1,27 @@
+{
+  "ingest": {
+    "ok": true,
+    "inserted": 4,
+    "docId": "tarkvanem_tooleht_rahunemispaus",
+    "pageRange": "1–2",
+    "shortRef": "TÖÖLEHT: Rahunemispaus. 2022. lk 1–2.",
+    "originalDocId": null,
+    "fileName": "Tooleht_rahunemispaus.pdf",
+    "collection": "sotsiaalai",
+    "pageStart": null,
+    "pageEnd": null
+  },
+  "verification": {
+    "doc_id": "tarkvanem_tooleht_rahunemispaus",
+    "inserted": 4,
+    "chunks": 4,
+    "language": "et",
+    "search_hits": 3,
+    "search_doc_ids": [
+      "tarkvanem_tooleht_rahunemispaus",
+      "tarkvanem_tooleht_rahunemispaus",
+      "tarkvanem_tooleht_rahunemispaus"
+    ],
+    "query_sha256": "acb0022acfe9cc01c33c069d9fb85f070f5e11658dfa65473449e9fd17adf049"
+  }
+}

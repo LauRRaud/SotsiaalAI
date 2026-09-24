@@ -1,0 +1,3219 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-vormsi-vald",
+  "document_id": "kov-vormsi-vald",
+  "municipality": "Vormsi vald",
+  "municipality_id": "vormsi_vald",
+  "county": "Läänemaa",
+  "checkedAt": "2026-04-30",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "vormsi_vald_service_valtimatu_sotsiaalabi",
+      "canonical_item_id": "vormsi_vald:service:valtimatu_sotsiaalabi",
+      "itemType": "service",
+      "title": "Vältimatu sotsiaalabi",
+      "status": "active",
+      "summary": "Isikule, kes on sattunud sotsiaalselt abitusse olukorda elatusvahendite kaotuse või puudumise tõttu, tagatakse toit, riietus ja ajutine majutus. Vältimatut sotsiaalabi osutatakse seni, kuni inimene ei ole enam sotsiaalselt abitus olukorras. Teenust korraldab Vormsi vallavalitsus sotsiaaltöö- ja haridusspetsialisti kaudu.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Isikud, kes on sattunud sotsiaalselt abitusse olukorda.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "contact_social_department"
+        ],
+        "steps": "Pöördu Vormsi vallavalitsuse sotsiaaltöö- ja haridusspetsialisti poole. Abivajadust hinnatakse ja abi korraldatakse vastavalt olukorrale.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": "Tasuta",
+      "amount": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "service",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_service_valtimatu_sotsiaalabi",
+      "document_id": "vormsi_vald_service_valtimatu_sotsiaalabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "7c882413609b9c56c844f1297d425911dd6fc4d5bd0b1425f8377b562b57f7eb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_service_koduteenus",
+      "canonical_item_id": "vormsi_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus toetab täisealise inimese iseseisvat ja turvalist toimetulekut kodus. Vormsi vallas teeb koduteenust hooldustöötaja, kes aitab kütmise, toidu valmistamise, eluruumide koristamise ja pesu pesemise, toiduainete ja esmatarbevahendite ostmise ning arsti juures käimise või muu asjaajamisega.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Täisealised inimesed, kes vajavad terviseseisundi, tegevusvõime või elukeskkonna tõttu igapäevastes toimingutes kõrvalabi.",
+      "conditions": "Teenuse maht sõltub inimese abivajadusest ja kokkulepitud abistamise sagedusest.",
+      "application": {
+        "channels": [
+          "contact_social_department"
+        ],
+        "steps": "Pöördu Vormsi vallavalitsuse sotsiaaltöö- ja haridusspetsialisti poole. Üldjuhul on taotlus vormivaba, kuid kasutada saab sotsiaalteenuse taotluse näidisvormi.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": "2,5 eurot/tund",
+      "amount": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "service",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_service_koduteenus",
+      "document_id": "vormsi_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "608950f715a13d507fc7fb8664c7d50534856a85e9568bfa085e9d71d6b27e1f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "vormsi_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus aitab inimestel liikuda tööle, kooli või avalikke teenuseid kasutama olukorras, kus isikliku või ühistranspordi kasutamine ei ole võimalik. Teenuse tellimuse saab esitada suuliselt, sealhulgas telefoni teel.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Üldjuhul puudega või vanaduspensioniealised inimesed, kellel ei ole võimalik kasutada isiklikku või ühistransporti.",
+      "conditions": "Sõit Vormsi valla piires maksab 2,50 eurot ühe tellitud sõidu kohta sihtpunkti ja tagasi; mandrile sõites 0,25 eurot kilomeetri eest, lisandub sõiduki ja sõidu tellijate parvlaevapileti hind.",
+      "application": {
+        "channels": [
+          "contact_social_department"
+        ],
+        "steps": "Tellimus esitatakse suuliselt, sealhulgas telefoni teel, sotsiaaltöö- ja haridusspetsialistile.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": "2,50 eurot sõit Vormsi valla piires; 0,25 eurot/km mandrile",
+      "amount": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "service",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_service_sotsiaaltransporditeenus",
+      "document_id": "vormsi_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "f0ee2815ea4cd6ce3b351825d397c2ae0de0661f1df238e05bc2278c88aa63c8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_service_eluruumi_tagamise_teenus",
+      "canonical_item_id": "vormsi_vald:service:eluruumi_tagamise_teenus",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenus kindlustab eluruumi kasutamise võimaluse inimesele, kes ei suuda oma sotsiaalmajandusliku olukorra tõttu endale ja perele sobivat eluaset tagada. Eluruumi kasutamiseks sõlmitakse vallavalitsuse ja inimese vahel kirjalik üürileping.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Inimesed, kes ei suuda sotsiaalmajandusliku olukorra tõttu endale või perele sobivat eluaset tagada.",
+      "conditions": "Kalffi talu korterites nr 1, 2, 3 ja 4 on üür koos küttekuludega 3,45 eurot/m²; ajutisel sotsiaalpinnal majas nr 1 ja 2 on tasu koos duši ja pesupesemise võimalusega 25 eurot kuus.",
+      "application": {
+        "channels": [
+          "contact_social_department"
+        ],
+        "steps": "Pöördu sotsiaaltöö- ja haridusspetsialisti poole ning selgita eluruumi vajadust.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": "3,45 eurot/m² või 25 eurot kuus sõltuvalt eluruumist",
+      "amount": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "service",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_service_eluruumi_tagamise_teenus",
+      "document_id": "vormsi_vald_service_eluruumi_tagamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "c078137ca93b34a295f71944352b9257e25018700a823250864f26106e7a5169",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_service_uldhooldusteenus",
+      "canonical_item_id": "vormsi_vald:service:uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Teenuse eesmärk on turvalise keskkonna ja toimetuleku tagamine täisealisele inimesele, kes terviseseisundi, tegevusvõime või elukeskkonna tõttu ei suuda kodustes tingimustes ajutiselt või püsivalt iseseisvalt toime tulla. Sobiva hooldekodu valib inimene ise või aitab selle leidmisel sotsiaaltöö eest vastutav ametnik.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Täisealised inimesed, kes ei suuda kodustes tingimustes ajutiselt või püsivalt iseseisvalt toime tulla.",
+      "conditions": "Hooldekodus elades katab inimene ise majutuse, toitlustuse ja muud isiklike vajadustega seotud kulud. Vormsi vald hüvitab hooldusteenuse kulud kuni 600 euro ulatuses kuus.",
+      "application": {
+        "channels": [
+          "contact_social_department"
+        ],
+        "steps": "Pöördu sotsiaaltöö- ja haridusspetsialisti poole, kes aitab sobiva hooldekodu leidmisel ja teenuse korraldamisel.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": "Vormsi vald hüvitab hooldusteenuse kulud kuni 600 eurot kuus",
+      "amount": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "service",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_service_uldhooldusteenus",
+      "document_id": "vormsi_vald_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "4b24545f8d6947118f0d03aae65a617ce0583c6db1c69ea684d6da395ac3c119",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_service_tugiisikuteenus",
+      "canonical_item_id": "vormsi_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisik juhendab, motiveerib ja arendab inimese iseseisvust ning omavastutust olukorras, kus inimene vajab tuge sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu. Lapse tugiisik aitab last hooldada ja tagada turvalise ning toetava kasvukeskkonna.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Inimesed ja pered, kes vajavad tuge iseseisvuse, toimetuleku või lapse kasvatamise korraldamisel.",
+      "conditions": "Tugiisikuteenust osutatakse kodus või muudes vajadusest tulenevates kokkulepitud asukohtades. Vallavalitsus abistab tugiisiku leidmisel ja tasub teenuse eest kuni 700 tunni ulatuses aastas Vabariigi Valitsuse kinnitatud tunnitasu alammäära alusel.",
+      "application": {
+        "channels": [
+          "contact_social_department"
+        ],
+        "steps": "Pöördu sotsiaaltöö- ja haridusspetsialisti poole. Üldjuhul saab kasutada sotsiaalteenuse taotluse näidisvormi.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": "Kuni 700 tundi aastas riikliku tunnitasu alammäära alusel",
+      "amount": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "service",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_service_tugiisikuteenus",
+      "document_id": "vormsi_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "b2284f472d9a9814b678d6ae2041a97223899b04a1943becf1981c1d1e930ec5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "vormsi_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldus tähendab hooldaja määramist inimesele, kes vajab puude tõttu füüsilist kõrvalabi igapäevaelu tegevustes. Hooldaja abistab liikumisel, köögi- ja hügieenitoimingutes, riietumisel, majapidamistöödes ning muudes tegevustes, milleks on vajalik juhendamine või kõrvalabi.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Raske või sügava puudega täisealised inimesed, kes vajavad igapäevaelu toimingutes füüsilist kõrvalabi.",
+      "conditions": "Teenuse saajale on teenus tasuta. Hooldaja saab toetust raske puudega isiku hooldamise eest 80 eurot kuus ja sügava puudega isiku hooldamise eest 100 eurot kuus.",
+      "application": {
+        "channels": [
+          "contact_social_department"
+        ],
+        "steps": "Teenuse taotlemiseks esitatakse hooldaja määramise taotlus. Hooldaja määratakse hooldatava nõusolekul.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": null,
+      "amount": "Hooldajatoetus 80 eurot või 100 eurot kuus",
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "service",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_service_taisealise_isiku_hooldus",
+      "document_id": "vormsi_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "3e931626349e7012d933d97e8b0ea7ecd6ab1475bada15ed7f416802c1121b3d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "vormsi_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus aitab vähendada inimese seadusjärgsete hooldajate hoolduskoormust. Abistaja lähtub abistatava inimese erivajadusest ja tööjuhistest; puudega inimene peab olema võimeline oma asjaajamist korraldama ja isikliku abistaja tööd koordineerima.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Puudega inimesed, kes vajavad igapäevastes toimingutes isiklikku abistajat ja suudavad abistaja tööd juhendada.",
+      "conditions": "Isiklikuks abistajaks ei määrata inimest, kes elab teenuse saajaga samas eluruumis või on tema lähisugulane. Teenus on tasuline ning teenuse hind on Vabariigi Valitsuse kinnitatud tunnitasu alammäär.",
+      "application": {
+        "channels": [
+          "contact_social_department"
+        ],
+        "steps": "Vajadusel abistab vallavalitsus sobiva isikliku abistaja leidmisel.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": "Riikliku tunnitasu alammäär",
+      "amount": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "service",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_service_isikliku_abistaja_teenus",
+      "document_id": "vormsi_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "18c1a32d0c00f1fd2fdfe68ce6ada4ee03e31fe2af18a64c586f5397184a4b1a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_service_varjupaigateenus",
+      "canonical_item_id": "vormsi_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenusega tagatakse ööbimispaik inimesele, kes ei ole ise võimeline endale ööbimiskohta leidma. Teenuse saamist aitab korraldada vallavalitsus.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Isikud, kes ei ole ise võimelised endale ööbimiskohta leidma.",
+      "conditions": "Teenuse hind lähtub teenuseosutaja hinnakirjast ning arvestatakse teenuse saaja majanduslikke võimalusi.",
+      "application": {
+        "channels": [
+          "contact_social_department"
+        ],
+        "steps": "Pöördu sotsiaaltöö- ja haridusspetsialisti poole, kes aitab varjupaigateenuse korraldamisel.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": "Sõltub teenuseosutaja hinnakirjast",
+      "amount": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "service",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_service_varjupaigateenus",
+      "document_id": "vormsi_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "a522d613a2dbe5c9802b9154d71e0cab72bfa2af958a053b614ce56c9cb2dc9a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_service_turvakoduteenus",
+      "canonical_item_id": "vormsi_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenusega tagatakse abivajavale lapsele ajutine eluase, turvaline keskkond ja esmane abi ajaks, mil on vajalik tagada lapse turvalisus ja edasise elu korraldamine.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Abivajavad lapsed, kellele on vaja ajutist turvalist elukeskkonda ja esmast abi.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "contact_social_department"
+        ],
+        "steps": "Pöördu sotsiaaltöö- ja haridusspetsialisti poole või hädaolukorras hädaabinumbrile.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "service",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_service_turvakoduteenus",
+      "document_id": "vormsi_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "3c9077f71c56533c2167a96cfd315f27be1e667aec2b151ba73c252f5d914473",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_service_asendushooldusteenus",
+      "canonical_item_id": "vormsi_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenusega tagatakse vanemate hoolduseta lapsele heaolu ja õigused ning luuakse peresarnased elutingimused. Teenuse osutaja on hoolduspere, perekodu või asenduskodu.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Vanemate hoolduseta lapsed.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "contact_social_department"
+        ],
+        "steps": "Teenust korraldab vallavalitsus koostöös lapse ja teenuseosutajaga.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "service",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_service_asendushooldusteenus",
+      "document_id": "vormsi_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "79e81a5f29366f3b1ff0a894dc522bb82c710e8d9d1e38acfd2b3412eca695bc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "vormsi_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenust osutatakse juhtumiplaani alusel, tagades asendushoolduselt ja eestkostelt lahkuva inimese iseseisva toimetuleku ja õpingute jätkamise. Vallavalitsus tagab inimesele eluaseme ning vajaduspõhised tugiteenused ja toetused.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Asendushoolduselt või eestkostelt lahkuvad noored ja noored täiskasvanud.",
+      "conditions": "Teenuse rahastamisel arvestatakse inimese sissetulekut.",
+      "application": {
+        "channels": [
+          "contact_social_department"
+        ],
+        "steps": "Teenust korraldatakse juhtumiplaani alusel vallavalitsuse kaudu.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "service",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_service_jarelhooldusteenus",
+      "document_id": "vormsi_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "90f2ff5785f4259bfbca67914a44898813e4a27139f95e01b5b50776732323bf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "vormsi_vald:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenusega toetatakse last kasvatava inimese toimetulekut või töötamist ning vähendatakse lapse erivajadusest tulenevat hoolduskoormust. Teenust võimaldatakse kas lasteaiakoha asemel või kuni 18-aastasele lapsele, kellel on raske või sügav puue.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Lapsed ja erivajadusega lapsed kuni 18. eluaastani ning neid kasvatavad inimesed.",
+      "conditions": "Teenus on tasuline. Teenuse hind on Vabariigi Valitsuse kinnitatud tunnitasu alammäär; vallavalitsus võib hüvitada teenuse maksumuse osaliselt või täielikult, arvestades inimese abivajadust ja valla eelarvelisi võimalusi.",
+      "application": {
+        "channels": [
+          "contact_social_department"
+        ],
+        "steps": "Pöördu sotsiaaltöö- ja haridusspetsialisti poole.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": "Riikliku tunnitasu alammäär; võimalik osaline või täielik hüvitamine",
+      "amount": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "service",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_service_lapsehoiuteenus",
+      "document_id": "vormsi_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "a32612795873a6df51c3234c9842be42293b5750b553a10a1fd00fb34b4d8111",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_service_volanoustamisteenus",
+      "canonical_item_id": "vormsi_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenuse pakkuja toetab inimest võlausaldajaga läbirääkimiste pidamisel, uute nõuete rahuldamisel ja aitab vältida uute võlgnevuste tekkimist.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Isikud, kellel on võlgnevused või makseraskused.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "contact_social_department"
+        ],
+        "steps": "Pöördu sotsiaaltöö- ja haridusspetsialisti poole, kes aitab teenuse korraldamisel.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "service",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_service_volanoustamisteenus",
+      "document_id": "vormsi_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "64e47adb28c91a8687820962bd6d14a352b625332884a4a0acace523ee183949",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_service_vaimse_tervise_teenus",
+      "canonical_item_id": "vormsi_vald:service:vaimse_tervise_teenus",
+      "itemType": "service",
+      "title": "Vaimse tervise teenus",
+      "status": "active",
+      "summary": "Vaimse tervise teenuse eesmärk on toetada inimese psühhosotsiaalset heaolu ja vaimset tervist. Teenus võib hõlmata tegevus-, loov-, mängu- ja muud teaduspõhist teraapiat, sõltuvusnõustamist, psühholoogi nõustamist, perenõustamist, kriisiabi, laste leinalaagris osalemist, tugirühmi ja tugiprogramme ning muud vajaduspõhist nõustamist.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Vormsi valla elanikud, kellel on vaimse tervise, psühhosotsiaalse toe või kriisiabi vajadus.",
+      "conditions": "Teenus on Vormsi valla elanikule tasuta. Teenust rahastatakse riigieelarvelistest vahenditest.",
+      "application": {
+        "channels": [
+          "contact_social_department"
+        ],
+        "steps": "Pöördu sotsiaaltöö- ja haridusspetsialisti poole, kes hindab vajadust ja aitab sobiva teenuse korraldamisel.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": "Tasuta",
+      "amount": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "service",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_service_vaimse_tervise_teenus",
+      "document_id": "vormsi_vald_service_vaimse_tervise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "d4a686b14d96782f22b407f07eb266ec274ae3993e01b8d19b2c47a2b2029657",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_service_muud_vajaduspohised_teenused",
+      "canonical_item_id": "vormsi_vald:service:muud_vajaduspohised_teenused",
+      "itemType": "service",
+      "title": "Muud vajaduspõhised teenused",
+      "status": "active",
+      "summary": "Vormsi vald pakub vajaduspõhiselt praktilisi igapäevateenuseid, näiteks pesu pesemist, duši kasutamist ja söögi ostmise võimalust Vormsi Lasteaed-Põhikooli sööklast. Vallavalitsus võib teenuse maksumuse osaliselt või täielikult hüvitada.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Abivajavad elanikud, kellel on vajadus praktiliste igapäevateenuste või nende maksumuse hüvitamise järele.",
+      "conditions": "Pesu pesemine maksab 3 eurot masinatäis, duši kasutamine 1,5 eurot kord, päevasupp 1 euro portsjon ja päevapraad 3 eurot portsjon.",
+      "application": {
+        "channels": [
+          "contact_social_department"
+        ],
+        "steps": "Pöördu sotsiaaltöö- ja haridusspetsialisti poole.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "pricing": "Pesu 3 eurot, dušš 1,5 eurot, supp 1 euro, praad 3 eurot",
+      "amount": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "service",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_service_muud_vajaduspohised_teenused",
+      "document_id": "vormsi_vald_service_muud_vajaduspohised_teenused",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "ca0dbfe75288f343557883ac3e146b87903eadc3a15f5cd3d20abdcb81356b3b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_benefit_sunnitoetus",
+      "canonical_item_id": "vormsi_vald:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetust makstakse siis, kui vastsündinu registreeritakse Vormsi valla aadressile ja tema vanem on olnud Vormsi valla elanik vähemalt pool aastat. Toetuse määr on 500 eurot, millest 300 eurot makstakse lapse sünnil ja 200 eurot lapse aastaseks saamisel. Pere kolmanda ja enama lapse puhul on toetus 700 eurot, millest 400 eurot makstakse lapse sünnil ja 300 eurot lapse aastaseks saamisel; mitmike sünnil makstakse toetust iga vastsündinu kohta.",
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Vastsündinu vanem, kui laps registreeritakse Vormsi valla aadressile.",
+      "conditions": "Vanem on olnud Vormsi valla elanik vähemalt pool aastat.",
+      "application": {
+        "channels": [
+          "email",
+          "paper"
+        ],
+        "steps": "Lapsevanem esitab vallavalitsusele sünnitoetuse taotluse.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "amount": "500 eurot; pere kolmanda ja enama lapse puhul 700 eurot",
+      "pricing": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_sunnitoetus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "benefit",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_benefit_sunnitoetus",
+      "document_id": "vormsi_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "9461e2ac5e8bc97f7f41abb02b4ffc8f64dc119c99ef8a3f25d37b0338994209",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_benefit_esimesse_klassi_mineva_opilase_toetus",
+      "canonical_item_id": "vormsi_vald:benefit:esimesse_klassi_mineva_opilase_toetus",
+      "itemType": "benefit",
+      "title": "Esimesse klassi mineva õpilase toetus",
+      "status": "active",
+      "summary": "Toetust makstakse õpilasele, kelle elukoht rahvastikuregistris on Vormsi valla aadressil ja kes asub õppima Vormsi Lasteaed-Põhikooli esimesse klassi statsionaarses õppevormis. Toetuse määr on 200 eurot.",
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Esimesse klassi minev Vormsi valla laps.",
+      "conditions": "Õpilase elukoht on Vormsi valla aadressil ja laps asub õppima Vormsi Lasteaed-Põhikooli esimesse klassi statsionaarses õppevormis.",
+      "application": {
+        "channels": [
+          "email",
+          "paper"
+        ],
+        "steps": "Esita vallavalitsusele esimesse klassi mineva õpilase toetuse taotlus.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "amount": "200 eurot",
+      "pricing": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_esimese_klassi_toetus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "benefit",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_benefit_esimesse_klassi_mineva_opilase_toetus",
+      "document_id": "vormsi_vald_benefit_esimesse_klassi_mineva_opilase_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "33e50caec2283f77741978e05f75e2a85f10e9e09ebc5d7c5ddf4d2a4f5913dd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_benefit_uheksandat_klassi_lopetava_opilase_toetus",
+      "canonical_item_id": "vormsi_vald:benefit:uheksandat_klassi_lopetava_opilase_toetus",
+      "itemType": "benefit",
+      "title": "Üheksandat klassi lõpetava õpilase toetus",
+      "status": "active",
+      "summary": "Üheksandat klassi lõpetava õpilase toetus on ühekordne toetus lapse põhikooli lõpetamisega kaasnevate kulutuste osaliseks katmiseks. Toetust makstakse õpilasele, kelle elukoht on Vormsi valla aadressil ja kes lõpetab Vormsi Lasteaed-Põhikooli statsionaarses õppes. Toetuse määr on 200 eurot.",
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Vormsi Lasteaed-Põhikooli üheksanda klassi lõpetaja.",
+      "conditions": "Õpilase elukoht on Vormsi valla aadressil ja õpilane lõpetab Vormsi Lasteaed-Põhikooli statsionaarses õppes.",
+      "application": {
+        "channels": [
+          "email",
+          "paper"
+        ],
+        "steps": "Lapsevanem esitab vallavalitsusele taotluse.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "amount": "200 eurot",
+      "pricing": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_uheksanda_klassi_toetus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "benefit",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_benefit_uheksandat_klassi_lopetava_opilase_toetus",
+      "document_id": "vormsi_vald_benefit_uheksandat_klassi_lopetava_opilase_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "de3a0e621a46c9ffe978d0134e36c68a92747eb6785a3c52512366457e5a386c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_benefit_uld_voi_kutseharidust_omandava_opilase_toetus",
+      "canonical_item_id": "vormsi_vald:benefit:uld_voi_kutseharidust_omandava_opilase_toetus",
+      "itemType": "benefit",
+      "title": "Üld- või kutseharidust omandava õpilase toetus",
+      "status": "active",
+      "summary": "Toetus aitab katta mandril õppimisega seotud kulutusi. Seda makstakse Vormsi Lasteaed-Põhikooli lõpetanud noorele, kelle pere elab aastaringselt saarel ja kelle vanus ei ületa 19 eluaastat. Erandkorras võib toetust maksta ka siis, kui õpilane peab haridusliku erivajaduse või muu objektiivse põhjuse tõttu jätkama õpinguid väljaspool saart.",
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Vormsi kooli lõpetanud noor, kes jätkab üld- või kutsehariduse omandamist väljaspool saart.",
+      "conditions": "Pere elab aastaringselt saarel ja noore vanus ei ületa üldjuhul 19 eluaastat; erandkorras arvestatakse hariduslikku erivajadust või muud objektiivset põhjust.",
+      "application": {
+        "channels": [
+          "email",
+          "paper"
+        ],
+        "steps": "Lapsevanem esitab vallavalitsusele taotluse.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "amount": "100 eurot kuus 1. septembrist 31. maini",
+      "pricing": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_uld_kutsehariduse_toetus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "benefit",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_benefit_uld_voi_kutseharidust_omandava_opilase_toetus",
+      "document_id": "vormsi_vald_benefit_uld_voi_kutseharidust_omandava_opilase_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "3a0aacb3a40d4cc0e225fd5b41e9816bc881e90a4f32d6a5336a31cbbc0739b7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_benefit_lasteaia_osalustasu_toetus",
+      "canonical_item_id": "vormsi_vald:benefit:lasteaia_osalustasu_toetus",
+      "itemType": "benefit",
+      "title": "Lasteaia osalustasu toetus",
+      "status": "active",
+      "summary": "Kui ühest perest käib lasteaias kaks last, siis teise lapse osalustasu on 50% ühe lapse tasust. Kui ühest perest käib lasteaias kolm või enam last, on kolmas ja iga järgnev laps kohatasust vabastatud. Toetus arvestatakse lasteaia nimekirja alusel.",
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Pered, kus lasteaias käib kaks või enam last.",
+      "conditions": "Toetus arvestatakse lasteaia nimekirja alusel.",
+      "application": {
+        "channels": [
+          "email",
+          "paper"
+        ],
+        "steps": "KOV lehel ei ole selle toetuse juures eraldi taotluse esitamist kirjeldatud.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "amount": null,
+      "pricing": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "benefit",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_benefit_lasteaia_osalustasu_toetus",
+      "document_id": "vormsi_vald_benefit_lasteaia_osalustasu_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "8e2288749e33d9e27c6bd84e5910dc788c5a5d9dca178e587d8fe68a6afc5223",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_benefit_lasteaia_paevatoidu_toetus",
+      "canonical_item_id": "vormsi_vald:benefit:lasteaia_paevatoidu_toetus",
+      "itemType": "benefit",
+      "title": "Lasteaia päevatoidu toetus",
+      "status": "active",
+      "summary": "Lasteaia päevatoidu toetuse eesmärk on tagada täisväärtuslik toit igale lasteaialapsele. Toetust saavad taotleda Vormsi Lasteaed-Põhikoolis alusharidust omandavate laste vanemad, kui lapse elukoht on rahvastikuregistris Vormsi vallas. Toetust makstakse ulatuses, mis tagab taotlejale toimetulekupiiri; muudel juhtudel kehtestab toetuse määra vallavalitsus.",
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Vormsi Lasteaed-Põhikoolis alusharidust omandavate laste vanemad.",
+      "conditions": "Lapse elukoht on rahvastikuregistris Vormsi vald.",
+      "application": {
+        "channels": [
+          "email",
+          "paper"
+        ],
+        "steps": "Esita vallavalitsusele taotlus.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "amount": "Sissetulekust sõltuv; toimetulekupiiri tagav ulatus",
+      "pricing": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_sissetulekust_soltuva_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "benefit",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_benefit_lasteaia_paevatoidu_toetus",
+      "document_id": "vormsi_vald_benefit_lasteaia_paevatoidu_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "2a848e02c631a972a545b22b7c50ebb9675f16be87d4a6d9dc221d7ca5478cae",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_benefit_joulutoetus",
+      "canonical_item_id": "vormsi_vald:benefit:joulutoetus",
+      "itemType": "benefit",
+      "title": "Jõulutoetus",
+      "status": "active",
+      "summary": "Jõulutoetust makstakse iga aasta neljandas kvartalis üksikvanematele ja kolme või enama lapsega peredele. Toetuse määr on 50 eurot ja toetust saavate laste nimekirja kinnitab vallavalitsus.",
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Üksikvanemad ning kolme ja enama lapsega pered.",
+      "conditions": "Toetus makstakse neljandas kvartalis vallavalitsuse kinnitatud nimekirja alusel.",
+      "application": {
+        "channels": [
+          "email",
+          "paper"
+        ],
+        "steps": "KOV lehel ei ole selle toetuse juures eraldi blanketti nimetatud.",
+        "deadline": "IV kvartal",
+        "decisionTime": null
+      },
+      "amount": "50 eurot",
+      "pricing": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "benefit",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_benefit_joulutoetus",
+      "document_id": "vormsi_vald_benefit_joulutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "ca34d220c4063e22458d295955c93fa9c9475f2aed4b9d875117650fe058df4d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_benefit_juubelitoetus",
+      "canonical_item_id": "vormsi_vald:benefit:juubelitoetus",
+      "itemType": "benefit",
+      "title": "Juubelitoetus",
+      "status": "active",
+      "summary": "Alates 70. eluaastast makstakse juubelitoetust iga nulli või viiega lõppeva juubeli puhul. Alates 80. eluaastast makstakse sünnipäevatoetust igal sünnipäeval. Juubelitoetuse ja sünnipäevatoetuse väljamaksmist korraldab valla sotsiaaltöö eest vastutav isik.",
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Vormsi valla eakad elanikud.",
+      "conditions": "Juubelitoetust makstakse alates 70. eluaastast iga nulli või viiega lõppeva juubeli puhul; sünnipäevatoetust alates 80. eluaastast igal sünnipäeval.",
+      "application": {
+        "channels": [
+          "email",
+          "paper"
+        ],
+        "steps": "Väljamaksmist korraldab valla sotsiaaltöö eest vastutav isik.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "amount": "50 eurot juubelitoetus; 20 eurot sünnipäevatoetus alates 80. eluaastast",
+      "pricing": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "benefit",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_benefit_juubelitoetus",
+      "document_id": "vormsi_vald_benefit_juubelitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "cc9ccdc198dfcce878db312400594061433504c7fdc10a8a7e89e6bc44e257f6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_benefit_matusetoetus",
+      "canonical_item_id": "vormsi_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetust makstakse Vormsi valla elaniku surma korral matuse korraldajale. Erandkorras makstakse toetust matuse korraldajale, kelle rahvastikuregistrijärgne elukoht on Vormsi vallas ja kes taotleb toetust sellise inimese matuse kulude katmiseks, kellel puudus registrijärgne elukoht või kelle eest ei saa toetust teisest omavalitsusest.",
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Matuse korraldaja, kes korraldab Vormsi valla elaniku või erandjuhul elukohata isiku matust.",
+      "conditions": "Taotlus tuleb esitada kolme kuu jooksul alates inimese surma registreerimisest.",
+      "application": {
+        "channels": [
+          "email",
+          "paper"
+        ],
+        "steps": "Matuse korraldaja esitab vallavalitsusele matusetoetuse taotluse.",
+        "deadline": "3 kuud surma registreerimisest",
+        "decisionTime": null
+      },
+      "amount": "250 eurot",
+      "pricing": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_matusetoetus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "benefit",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_benefit_matusetoetus",
+      "document_id": "vormsi_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "acd6829e980c89dedd628fbf54d8558765ed233920ff154ae901b19a5eb32a10",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_benefit_puudega_lapse_hooldajatoetus",
+      "canonical_item_id": "vormsi_vald:benefit:puudega_lapse_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Puudega lapse hooldajatoetus",
+      "status": "active",
+      "summary": "Puudega lapse hooldajatoetust makstakse igakuiselt perekonna toimetuleku toetamiseks, kui perekonnas on vaja hooldada 3–18-aastast raske või sügava puudega last ja lapse hooldaja ei saa töötada lapse igapäevase hooldamise tõttu. Toetus määratakse kuni lapse puude kestuse viimase päevani, täisealiseks saamiseni või eestkoste või perehoolduslepingu lõpptähtajani.",
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "3–18-aastase raske või sügava puudega lapse hooldaja.",
+      "conditions": "Taotlusele lisatakse Sotsiaalkindlustusameti otsus lapse puude raskusastme kohta, rehabilitatsiooniplaan ja vajadusel eestkoste või hoolduspere dokument. Hooldaja peab teatama 10 tööpäeva jooksul asjaoludest, mis toovad kaasa hoolduse lõpetamise.",
+      "application": {
+        "channels": [
+          "email",
+          "paper"
+        ],
+        "steps": "Puudega lapse hooldaja esitab vallavalitsusele taotluse koos nõutud dokumentidega.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "amount": "100 eurot; osalise hooldusvajaduse korral 75% ja pideva hooldusvajaduse korral 100% määrast",
+      "pricing": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "benefit",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_benefit_puudega_lapse_hooldajatoetus",
+      "document_id": "vormsi_vald_benefit_puudega_lapse_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "81676c2fd703a8b08072174de1b9424bd86d2f39aa32431193c8c5cc4d6723e6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_benefit_peretoetus",
+      "canonical_item_id": "vormsi_vald:benefit:peretoetus",
+      "itemType": "benefit",
+      "title": "Peretoetus",
+      "status": "active",
+      "summary": "Peretoetus määratakse vajadusel üksikvanematele, mittetöötavatele pensionäridele, kolme- ja enamalapselistele peredele, puudega inimestele ja majanduslikult vähekindlustatud inimestele või peredele igapäevaelus toimetulemiseks. Toetust makstakse suuruses, mis tagab taotlejale toimetulekupiiri; muudel juhtudel kehtestab määra vallavalitsus.",
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Üksikvanemad, mittetöötavad pensionärid, kolme- ja enamalapselised pered, puudega inimesed ning majanduslikult vähekindlustatud inimesed või pered.",
+      "conditions": "Toetus määratakse vajaduse alusel ja makstakse vallavalitsuse korralduse alusel.",
+      "application": {
+        "channels": [
+          "email",
+          "paper"
+        ],
+        "steps": "Inimene esitab vallavalitsusele taotluse.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "amount": "Sõltub vajadusest; tagab toimetulekupiiri",
+      "pricing": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_sissetulekust_soltuva_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "benefit",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_benefit_peretoetus",
+      "document_id": "vormsi_vald_benefit_peretoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "e70cb337d7a4907ca3272a251812f644d5daf6f61f2e7e5df85d12d766b59c9c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_benefit_tervisetoetus",
+      "canonical_item_id": "vormsi_vald:benefit:tervisetoetus",
+      "itemType": "benefit",
+      "title": "Tervisetoetus",
+      "status": "active",
+      "summary": "Tervisetoetusega hüvitatakse tervise taastamiseks ja säilitamiseks tehtavate vajalike kulutuste osa. Toetust saab taotleda retseptiravimitele, prilliklaasidele, tehnilistele ja muudele abivahenditele, põetus- ja hooldusvahenditele ning muudele põhjendatud tervisega seotud ja erivajadusest tulenevatele kuludele.",
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Üksikvanemad, mittetöötavad pensionärid, kolme- ja enamalapselised pered, puudega inimesed ning majanduslikult vähekindlustatud inimesed või pered.",
+      "conditions": "Taotlusele tuleb lisada kuludokumendid. Taotlusi võetakse vastu kord kvartalis, kvartali viimase kuu esimeses pooles või kui kulutusi on tehtud vähemalt 50 euro ulatuses. Hüvitamisele kuulub kuni 50% abikõlblikest kuludest.",
+      "application": {
+        "channels": [
+          "email",
+          "paper"
+        ],
+        "steps": "Esita taotlus koos kuludokumentidega vallavalitsusele.",
+        "deadline": "Kord kvartalis või kui kulutusi on vähemalt 50 eurot",
+        "decisionTime": null
+      },
+      "amount": "150 eurot aastas; kuni 50% abikõlblikust kulust",
+      "pricing": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_sissetulekust_soltuva_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "benefit",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_benefit_tervisetoetus",
+      "document_id": "vormsi_vald_benefit_tervisetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "33b4cf9a0ccd48873ae6ad6c1f5b633e8056383f470bca781a284c46fa8808aa",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_benefit_erakorraliste_kulutuste_huvitamine",
+      "canonical_item_id": "vormsi_vald:benefit:erakorraliste_kulutuste_huvitamine",
+      "itemType": "benefit",
+      "title": "Erakorraliste kulutuste hüvitamine",
+      "status": "active",
+      "summary": "Erakorraliste kulutuste hüvitamine leevendab inimese või pere elu, tervist või toimetulekut ohustavat olukorda. Toetust saab taotleda õnnetusjuhtumi, tulekahju, varguse, haiguse või muu raske sündmuse korral ning vältimatu elukorralduse või eluasemega seotud kulu katmiseks.",
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Inimesed või pered, kelle elu, tervis või toimetulek on ootamatu kulu tõttu ohus.",
+      "conditions": "Taotlusele lisatakse võimalusel ametkondade tõendid taotluse põhjendatuse kohta. Toetus määratakse ulatuses, mis tagab kehtiva toimetulekupiiri ning makstakse kohe, kui ohus on inimese tervis ja elu või hilisem maksmine tooks kaasa lisakulu.",
+      "application": {
+        "channels": [
+          "email",
+          "paper"
+        ],
+        "steps": "Inimene või erandkorras kolmas isik esitab vallavalitsusele taotluse.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "amount": "Sõltub vajadusest; ulatus, mis tagab toimetulekupiiri",
+      "pricing": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "benefit",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_benefit_erakorraliste_kulutuste_huvitamine",
+      "document_id": "vormsi_vald_benefit_erakorraliste_kulutuste_huvitamine",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "53babf16c8929575b99d778df92c8506d0fcb419392cec5ee13dfa3db8563e37",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_benefit_taisealise_isiku_hooldaja_toetus",
+      "canonical_item_id": "vormsi_vald:benefit:taisealise_isiku_hooldaja_toetus",
+      "itemType": "benefit",
+      "title": "Täisealise isiku hooldaja toetus",
+      "status": "active",
+      "summary": "Täisealise isiku hoolduse teenus on teenuse saajale tasuta. Hooldaja määratakse hooldatava nõusolekul ning hooldajal on õigus hooldajatoetusele. Toetuse määr on 80 eurot kuus raske puudega inimese hooldamise korral ja 100 eurot kuus sügava puudega inimese hooldamise korral.",
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Raske või sügava puudega täisealise inimese hooldaja.",
+      "conditions": "Hooldaja määratakse hooldatava nõusolekul.",
+      "application": {
+        "channels": [
+          "email",
+          "paper"
+        ],
+        "steps": "Teenuse ja toetuse taotlemiseks esitatakse hooldaja määramise taotlus vallavalitsusele.",
+        "deadline": null,
+        "decisionTime": null
+      },
+      "amount": "80 eurot või 100 eurot kuus",
+      "pricing": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "vormsi_vald_form_sissetulekust_soltuva_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "benefit",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_benefit_taisealise_isiku_hooldaja_toetus",
+      "document_id": "vormsi_vald_benefit_taisealise_isiku_hooldaja_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "47c7f2b9149633908b2c387b7c50958de129100ec61464881d28994175839efa",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "vormsi_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on rahaline abi puuduses inimesele või perele, mis tagab minimaalsed vahendid igapäevaseks eluks. Toetust on õigus saada inimesel või perel, kelle kuu netosissetulek pärast eluasemekulude mahaarvamist on alla kehtestatud toimetulekupiiri. Toetust taotletakse kohalikust omavalitsusest.",
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Puuduses inimene või pere, kelle kuu netosissetulek pärast eluasemekulusid on alla toimetulekupiiri.",
+      "conditions": "2026. aastal on toimetulekupiir esimesele või ainsale pereliikmele 220 eurot, igale järgmisele täiskasvanule 176 eurot ja igale alaealisele lapsele 264 eurot. Taotleja esitab avalduse ning dokumendid sissetulekute, eluasemekulude, perekonnaliikmete, vara ja pangatehingute kohta.",
+      "application": {
+        "channels": [
+          "email",
+          "paper"
+        ],
+        "steps": "Esita taotlus kohaliku omavalitsuse sotsiaaltöötajale hiljemalt kuu viimaseks tööpäevaks.",
+        "deadline": "Iga kuu viimane tööpäev",
+        "decisionTime": null
+      },
+      "amount": "Sõltub sissetulekust, eluasemekuludest ja toimetulekupiirist",
+      "pricing": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "benefit",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_benefit_toimetulekutoetus",
+      "document_id": "vormsi_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "7d15c1c16e630ba19c0b9719077ad01f021d64890e66a40400a19a5bd26de27d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_benefit_vormsi_valla_uliopilasstipendium",
+      "canonical_item_id": "vormsi_vald:benefit:vormsi_valla_uliopilasstipendium",
+      "itemType": "benefit",
+      "title": "Vormsi valla üliõpilasstipendium",
+      "status": "active",
+      "summary": "Vormsi vald toetab kõrgkoolis õppivaid noori, kes on rahvastikuregistri järgi Vormsi valla elanikud ja lõpetanud Vormsi Lasteaed-Põhikooli. Põhistipendium makstakse hea õppeedukuse eest iga semestri kohta kuni ülikooli lõpetamiseni või üliõpilase 27-aastaseks saamiseni. Lisastipendium on kuni 320 eurot kursuse-, uurimis- või lõputöö eest, kui töö on seotud Vormsi valla arengu või arengukavaga.",
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Vormsi valla elanikud, kes on lõpetanud Vormsi kooli 7.–9. klassi ning õpivad kõrgkoolis.",
+      "conditions": "Üliõpilane ei viibi akadeemilisel puhkusel, eelmise semestri keskmine hinne on vähemalt 3,5 ja vanus ei ületa 27 aastat.",
+      "application": {
+        "channels": [
+          "email",
+          "paper"
+        ],
+        "steps": "Taotleda saab üks kord poolaastas.",
+        "deadline": "Üks kord poolaastas",
+        "decisionTime": null
+      },
+      "amount": "200 eurot või 400 eurot semestris; lisastipendium kuni 320 eurot",
+      "pricing": null,
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "benefit",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_benefit_vormsi_valla_uliopilasstipendium",
+      "document_id": "vormsi_vald_benefit_vormsi_valla_uliopilasstipendium",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "3bc49702d3e52547c21475725e017c79040e30d8b4be40bc01b24e67ae9fc864",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_contact_oivi_boyers",
+      "canonical_item_id": "vormsi_vald:contact:oivi_boyers",
+      "itemType": "contact",
+      "title": "Oivi Boyers",
+      "status": "active",
+      "summary": "Oivi Boyers on Vormsi vallavalitsuse sotsiaaltöö- ja haridusspetsialist. Tema poole pöördutakse sotsiaalteenuste ja sotsiaaltoetuste taotlemisel ning abivajaduse hindamisel.",
+      "sourceKeys": [
+        "contacts_page",
+        "social_overview"
+      ],
+      "name": "Oivi Boyers",
+      "role": "Sotsiaaltöö- ja haridusspetsialist",
+      "department": "Vormsi vallavalitsus",
+      "address": "Hullo, Vormsi vald, Läänemaa",
+      "relatedTo": [
+        "vormsi_vald_service_valtimatu_sotsiaalabi",
+        "vormsi_vald_service_koduteenus",
+        "vormsi_vald_service_sotsiaaltransporditeenus",
+        "vormsi_vald_service_eluruumi_tagamise_teenus",
+        "vormsi_vald_service_uldhooldusteenus",
+        "vormsi_vald_service_tugiisikuteenus",
+        "vormsi_vald_service_taisealise_isiku_hooldus",
+        "vormsi_vald_service_isikliku_abistaja_teenus",
+        "vormsi_vald_service_varjupaigateenus",
+        "vormsi_vald_service_turvakoduteenus",
+        "vormsi_vald_service_asendushooldusteenus",
+        "vormsi_vald_service_jarelhooldusteenus",
+        "vormsi_vald_service_lapsehoiuteenus",
+        "vormsi_vald_service_volanoustamisteenus",
+        "vormsi_vald_service_vaimse_tervise_teenus",
+        "vormsi_vald_service_muud_vajaduspohised_teenused",
+        "vormsi_vald_benefit_sunnitoetus",
+        "vormsi_vald_benefit_esimesse_klassi_mineva_opilase_toetus",
+        "vormsi_vald_benefit_uheksandat_klassi_lopetava_opilase_toetus",
+        "vormsi_vald_benefit_uld_voi_kutseharidust_omandava_opilase_toetus",
+        "vormsi_vald_benefit_lasteaia_osalustasu_toetus",
+        "vormsi_vald_benefit_lasteaia_paevatoidu_toetus",
+        "vormsi_vald_benefit_joulutoetus",
+        "vormsi_vald_benefit_juubelitoetus",
+        "vormsi_vald_benefit_matusetoetus",
+        "vormsi_vald_benefit_puudega_lapse_hooldajatoetus",
+        "vormsi_vald_benefit_peretoetus",
+        "vormsi_vald_benefit_tervisetoetus",
+        "vormsi_vald_benefit_erakorraliste_kulutuste_huvitamine",
+        "vormsi_vald_benefit_taisealise_isiku_hooldaja_toetus",
+        "vormsi_vald_benefit_toimetulekutoetus",
+        "vormsi_vald_benefit_vormsi_valla_uliopilasstipendium"
+      ],
+      "item_type": "contact",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "contacts_page",
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_contact_oivi_boyers",
+      "document_id": "vormsi_vald_contact_oivi_boyers",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "1e270363df5286d9fca40f4e974acace872c4a02d7b5e8aecc5cdbd77df53ffb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_contact_hooldustootaja",
+      "canonical_item_id": "vormsi_vald:contact:hooldustootaja",
+      "itemType": "contact",
+      "title": "Hooldustöötaja",
+      "status": "active",
+      "summary": "Vormsi vallavalitsuse kontaktilehel on avaldatud hooldustöötaja. Hooldustöötaja on seotud koduteenuse ja praktilise abiga kodus.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": null,
+      "role": "Hooldustöötaja (0,5)",
+      "department": "Vormsi vallavalitsus",
+      "address": null,
+      "relatedTo": [
+        "vormsi_vald_service_koduteenus"
+      ],
+      "item_type": "contact",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_contact_hooldustootaja",
+      "document_id": "vormsi_vald_contact_hooldustootaja",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "d59020d881d5311b12b9d3abe70077b029b6e0463116a8513ec9ffef6d4266da",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_contact_kairi_aavere",
+      "canonical_item_id": "vormsi_vald:contact:kairi_aavere",
+      "itemType": "contact",
+      "title": "Kairi Aavere",
+      "status": "active",
+      "summary": "Kairi Aavere on Vormsi valla noorte heaolu spetsialist. Kontakt on asjakohane noorte heaolu ja noorteinfo teemadel.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Kairi Aavere",
+      "role": "Noorte heaolu spetsialist (0,2)",
+      "department": "Vormsi vallavalitsus",
+      "address": null,
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_contact_kairi_aavere",
+      "document_id": "vormsi_vald_contact_kairi_aavere",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "003e5500a6062411c9b99704f6e96fe98fdb62dfc9874cca28f0e5ba633b86cf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_contact_erki_savisaar_kriisikontakt",
+      "canonical_item_id": "vormsi_vald:contact:erki_savisaar_kriisikontakt",
+      "itemType": "contact",
+      "title": "Erki Savisaar",
+      "status": "active",
+      "summary": "Erki Savisaar on Vormsi vallavanem ja valla kriisikontakt kriisiolukordades. KOV kriisileht nimetab ta valla kontaktiks kriisiolukorras.",
+      "sourceKeys": [
+        "contacts_page",
+        "crisis_page"
+      ],
+      "name": "Erki Savisaar",
+      "role": "Vallavanem; kriisikontakt",
+      "department": "Vormsi vallavalitsus",
+      "address": "Hullo, Vormsi vald, Läänemaa",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "contacts_page",
+        "crisis_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_contact_erki_savisaar_kriisikontakt",
+      "document_id": "vormsi_vald_contact_erki_savisaar_kriisikontakt",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "dc5d0988328578c81917798e1a1a328a1ffcabe5595c40f975d50a245b1f69c1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_resource_hairenuputeenus",
+      "canonical_item_id": "vormsi_vald:resource:hairenuputeenus",
+      "itemType": "resource",
+      "title": "Häirenuputeenus",
+      "status": "active",
+      "summary": "Vormsi vallavalitsus aitab häirenuputeenuse saamise korraldamisel. KOV veeb viitab teenusele välise teenusepakkuja kaudu; detailne teenusesisu ei ole KOV lehel lahti kirjutatud.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Eakad või abivajavad inimesed, kellel on vaja hädaolukorras kiiresti abi kutsuda.",
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_resource_hairenuputeenus",
+      "document_id": "vormsi_vald_resource_hairenuputeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "e040875d603b735a093af63a0d045b0a97fb7f71b1309742bfcd7d83c7cda7f8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_resource_perelepitus",
+      "canonical_item_id": "vormsi_vald:resource:perelepitus",
+      "itemType": "resource",
+      "title": "Perelepitus",
+      "status": "active",
+      "summary": "Vormsi vallavalitsus toetab peresid perelepituse vajaduse korral. KOV veeb viitab perelepitusele kui välisele abivõimalusele, mille kaudu saab aidata lahus elavaid vanemaid kokkulepete saavutamisel.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Pered ja vanemad, kes vajavad tuge kokkulepete sõlmimisel.",
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_resource_perelepitus",
+      "document_id": "vormsi_vald_resource_perelepitus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "7dcc3bbd58a77bddecee50e036643e82fcc122316a7f95f38955e3466a1807d6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_resource_leinanoustamine",
+      "canonical_item_id": "vormsi_vald:resource:leinanoustamine",
+      "itemType": "resource",
+      "title": "Leinanõustamine",
+      "status": "active",
+      "summary": "KOV veeb ütleb, et vallavalitsus toetab peresid leinanõustamise vajaduse korral. See on nõustamisressurss, mille täpne teenusepakkuja ei ole KOV lehel eraldi kirjeldatud.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Inimesed ja pered, kes vajavad tuge leina korral.",
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_resource_leinanoustamine",
+      "document_id": "vormsi_vald_resource_leinanoustamine",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "8cf75401b48730e848a3f75417574e1de18d713f965e6bc8dbfffad1a120b933",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_resource_toidupank_toiduabi",
+      "canonical_item_id": "vormsi_vald:resource:toidupank_toiduabi",
+      "itemType": "resource",
+      "title": "Toidupanga toiduabi",
+      "status": "active",
+      "summary": "Vormsi vallavalitsus jagab abivajajatele koostöös Toidupangaga toiduabi. KOV leht kirjeldab seda praktilise abivõimalusena, kuid ei ava jagamise korda detailsemalt.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Abivajavad elanikud, kellel on toiduabi vajadus.",
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_resource_toidupank_toiduabi",
+      "document_id": "vormsi_vald_resource_toidupank_toiduabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "91867917e755b30e54da2c714215af9016a11637a7bd23c66bfcd94de73015c9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_resource_parkimiskaart",
+      "canonical_item_id": "vormsi_vald:resource:parkimiskaart",
+      "itemType": "resource",
+      "title": "Liikumispuudega või pimedat inimest teenindava sõiduki parkimiskaart",
+      "status": "active",
+      "summary": "Vormsi vallavalitsus väljastab liikumispuudega või pimedat inimest teenindava sõiduki parkimiskaarti. KOV veeb viitab parkimiskaardile praktilise abivõimalusena.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Liikumispuudega või pimedad inimesed ja neid teenindavad sõidukid.",
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_resource_parkimiskaart",
+      "document_id": "vormsi_vald_resource_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "0ecdd0d554c78e04beadd6827eaf412d425cbb3097da27ba07cd8271932d7f75",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_resource_ohvriabi",
+      "canonical_item_id": "vormsi_vald:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "KOV veeb julgustab kuriteo, vägivalla või kriisijuhtumi korral pöörduma ohvriabi poole. Ohvriabi eesmärk on toetada ohvrite toimetulekut ja turvatunnet ning ennetada vägivalla kordumist.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Kuriteo, vägivalla või kriisi tõttu abi vajavad inimesed.",
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_resource_ohvriabi",
+      "document_id": "vormsi_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "0bf00c9bb9042461278c5c4a5822f82158727d67c1d2ca17fedc159411045860",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_resource_kuriteoohvri_huvitis",
+      "canonical_item_id": "vormsi_vald:resource:kuriteoohvri_huvitis",
+      "itemType": "resource",
+      "title": "Kuriteoohvri hüvitis",
+      "status": "active",
+      "summary": "KOV veeb selgitab, et kuriteo puhul on võimalik taotleda kuriteoohvri hüvitist. KOV leht nimetab seda ohvriabi kaudu seostatava abivõimalusena.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Kuriteo ohvrid, kellel võib olla õigus hüvitisele.",
+      "officialUrl": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_resource_kuriteoohvri_huvitis",
+      "document_id": "vormsi_vald_resource_kuriteoohvri_huvitis",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/elu-vormsil/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "c6bfcc93df8c518117f530b3b124668ca7ba1114d6a31d8a3a453feb0bc1c033",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_resource_kriisikontaktid",
+      "canonical_item_id": "vormsi_vald:resource:kriisikontaktid",
+      "itemType": "resource",
+      "title": "Kriisikontaktid",
+      "status": "active",
+      "summary": "Vormsi kriisileht koondab kriisiolukorra kontakte: valla kriisikontakt Erki Savisaar, hädaabinumber, riigiinfo Välisministeeriumi 24h infotelefon, Elektrilevi rikketelefon, mürgistusinfo, perearsti nõuandeliin ja naiste tugiliin.",
+      "sourceKeys": [
+        "crisis_page"
+      ],
+      "targetGroup": "Vormsi elanikud kriisi-, tervise- või turvariski olukorras.",
+      "officialUrl": "https://vormsi.ee/kriisideks-valmisolek/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "crisis_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_resource_kriisikontaktid",
+      "document_id": "vormsi_vald_resource_kriisikontaktid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/kriisideks-valmisolek/",
+      "content_hash": "dec3ef559a65bc45b496256eaa5dc6d4977225af32c94e55876dbc5518a92974",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_resource_kerksuskeskus_vormsi_koolimaja",
+      "canonical_item_id": "vormsi_vald:resource:kerksuskeskus_vormsi_koolimaja",
+      "itemType": "resource",
+      "title": "Kerksuskeskus: Vormsi Koolimaja",
+      "status": "active",
+      "summary": "Kriisi ajal saab Vormsi Koolimajast infot, nõu ja abi. Koolimaja toimib kogunemiskohana, pakub info jagamist, mobiilsete seadmete laadimist ja esmaabi.",
+      "sourceKeys": [
+        "crisis_page"
+      ],
+      "targetGroup": "Elanikud kriisi ajal.",
+      "officialUrl": "https://vormsi.ee/kriisideks-valmisolek/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "crisis_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_resource_kerksuskeskus_vormsi_koolimaja",
+      "document_id": "vormsi_vald_resource_kerksuskeskus_vormsi_koolimaja",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/kriisideks-valmisolek/",
+      "content_hash": "61584b9fa3140d12c52943ff909690883f26f47a2f4501557fb4b042e3cb830c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_resource_kerksuskeskus_vormsi_lasteaed",
+      "canonical_item_id": "vormsi_vald:resource:kerksuskeskus_vormsi_lasteaed",
+      "itemType": "resource",
+      "title": "Kerksuskeskus: Vormsi Lasteaed",
+      "status": "active",
+      "summary": "Kriisi ajal saab Vormsi Lasteaiast infot, nõu ja abi. Lasteaed toimib kogunemiskohana, pakub info jagamist, mobiilsete seadmete laadimist ja esmaabi.",
+      "sourceKeys": [
+        "crisis_page"
+      ],
+      "targetGroup": "Elanikud kriisi ajal.",
+      "officialUrl": "https://vormsi.ee/kriisideks-valmisolek/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "crisis_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_resource_kerksuskeskus_vormsi_lasteaed",
+      "document_id": "vormsi_vald_resource_kerksuskeskus_vormsi_lasteaed",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/kriisideks-valmisolek/",
+      "content_hash": "7aea0069fe95e49d72a55f261b4c666327d09bc97dd8f812657b167f1ed791e0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_resource_naiste_tugiliin",
+      "canonical_item_id": "vormsi_vald:resource:naiste_tugiliin",
+      "itemType": "resource",
+      "title": "Naiste tugiliin 1492",
+      "status": "active",
+      "summary": "Vormsi kriisileht nimetab naiste tugiliini 1492 anonüümse abivõimalusena lähisuhtevägivalla all kannatavatele naistele.",
+      "sourceKeys": [
+        "crisis_page"
+      ],
+      "targetGroup": "Lähisuhtevägivalla all kannatavad naised.",
+      "officialUrl": "https://vormsi.ee/kriisideks-valmisolek/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "crisis_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_resource_naiste_tugiliin",
+      "document_id": "vormsi_vald_resource_naiste_tugiliin",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/kriisideks-valmisolek/",
+      "content_hash": "8d130c2f63cfac37e206d2b8e927849da4fa4ce9b622d5ab2baced0e80aec4a8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_resource_murgistusinfo",
+      "canonical_item_id": "vormsi_vald:resource:murgistusinfo",
+      "itemType": "resource",
+      "title": "Mürgistusinfo 16662",
+      "status": "active",
+      "summary": "Vormsi kriisileht nimetab mürgistusinfo telefoni 16662. See on tervisealane kriisiressurss mürgistuse või mürgistuse kahtluse korral.",
+      "sourceKeys": [
+        "crisis_page"
+      ],
+      "targetGroup": "Mürgistuse või mürgistuse kahtluse korral abi vajavad inimesed.",
+      "officialUrl": "https://vormsi.ee/kriisideks-valmisolek/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "crisis_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_resource_murgistusinfo",
+      "document_id": "vormsi_vald_resource_murgistusinfo",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/kriisideks-valmisolek/",
+      "content_hash": "9e73c4d2f2241b6f7d7230e830402f6c35e10eab7f799bfdbe1674635448726f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_resource_perearsti_nouandeliin",
+      "canonical_item_id": "vormsi_vald:resource:perearsti_nouandeliin",
+      "itemType": "resource",
+      "title": "Perearsti nõuandeliin 1220",
+      "status": "active",
+      "summary": "Vormsi kriisileht nimetab perearsti nõuandeliini 1220 kui tervisealase nõu ressursi.",
+      "sourceKeys": [
+        "crisis_page"
+      ],
+      "targetGroup": "Inimesed, kes vajavad tervisenõu olukorras, kus perearst ei ole kohe kättesaadav.",
+      "officialUrl": "https://vormsi.ee/kriisideks-valmisolek/",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "crisis_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_resource_perearsti_nouandeliin",
+      "document_id": "vormsi_vald_resource_perearsti_nouandeliin",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vormsi.ee/kriisideks-valmisolek/",
+      "content_hash": "563c765d76a7812ce7bbcf30af9909c98ebcea9b00d2ebc4599eec7709391f2b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_form_sotsiaalteenuse_taotlus",
+      "canonical_item_id": "vormsi_vald:form:sotsiaalteenuse_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaalteenuse taotlus",
+      "status": "active",
+      "summary": "Üldine ODT-vorm sotsiaalteenuse taotlemiseks. Vormsi valla sotsiaalteenuste leht ütleb, et üldjuhul on taotluse esitamine vormivaba, kuid isikute abistamiseks on koostatud sotsiaalteenuse taotluse näidisvorm.",
+      "sourceKeys": [
+        "sotsiaalteenuse_taotlus_form"
+      ],
+      "format": "odt",
+      "submissionChannels": [
+        "email",
+        "paper"
+      ],
+      "relatedTo": [
+        "vormsi_vald_service_valtimatu_sotsiaalabi",
+        "vormsi_vald_service_koduteenus",
+        "vormsi_vald_service_sotsiaaltransporditeenus",
+        "vormsi_vald_service_eluruumi_tagamise_teenus",
+        "vormsi_vald_service_uldhooldusteenus",
+        "vormsi_vald_service_tugiisikuteenus",
+        "vormsi_vald_service_taisealise_isiku_hooldus",
+        "vormsi_vald_service_isikliku_abistaja_teenus",
+        "vormsi_vald_service_varjupaigateenus",
+        "vormsi_vald_service_turvakoduteenus",
+        "vormsi_vald_service_asendushooldusteenus",
+        "vormsi_vald_service_jarelhooldusteenus",
+        "vormsi_vald_service_lapsehoiuteenus",
+        "vormsi_vald_service_volanoustamisteenus",
+        "vormsi_vald_service_vaimse_tervise_teenus",
+        "vormsi_vald_service_muud_vajaduspohised_teenused"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "form",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaalteenuse_taotlus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_form_sotsiaalteenuse_taotlus",
+      "document_id": "vormsi_vald_form_sotsiaalteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "0147002f74b6ba95e3a3c10576e08a0e0b4b99129b4af1a5cead0fe58f23d46a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_form_sunnitoetus",
+      "canonical_item_id": "vormsi_vald:form:sunnitoetus",
+      "itemType": "form",
+      "title": "Avaldus sünnitoetuse taotlemiseks",
+      "status": "active",
+      "summary": "DOCX-vorm sünnitoetuse taotlemiseks. Vorm on seotud sünnitoetuse plokiga Vormsi valla sotsiaaltoetuste lehel.",
+      "sourceKeys": [
+        "sunnitoetus_form"
+      ],
+      "format": "docx",
+      "submissionChannels": [
+        "email",
+        "paper"
+      ],
+      "relatedTo": [
+        "vormsi_vald_benefit_sunnitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "form",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sunnitoetus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_form_sunnitoetus",
+      "document_id": "vormsi_vald_form_sunnitoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "488272e821bac4fff52193a3bc6640ae1e95dcf60ad65baf856d626647134e22",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_form_esimese_klassi_toetus",
+      "canonical_item_id": "vormsi_vald:form:esimese_klassi_toetus",
+      "itemType": "form",
+      "title": "Avaldus 1. klassi astumise toetuse taotlemiseks",
+      "status": "active",
+      "summary": "DOCX-vorm esimesse klassi mineva õpilase toetuse taotlemiseks.",
+      "sourceKeys": [
+        "esimese_klassi_toetus_form"
+      ],
+      "format": "docx",
+      "submissionChannels": [
+        "email",
+        "paper"
+      ],
+      "relatedTo": [
+        "vormsi_vald_benefit_esimesse_klassi_mineva_opilase_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "form",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "esimese_klassi_toetus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_form_esimese_klassi_toetus",
+      "document_id": "vormsi_vald_form_esimese_klassi_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "10330685c56463b32d0cc88c315ebf13a64c2800bcaeeba503df29a4a360fa19",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_form_uheksanda_klassi_toetus",
+      "canonical_item_id": "vormsi_vald:form:uheksanda_klassi_toetus",
+      "itemType": "form",
+      "title": "Avaldus 9. klassi lõpetamise toetuse taotlemiseks",
+      "status": "active",
+      "summary": "DOCX-vorm üheksandat klassi lõpetava õpilase toetuse taotlemiseks.",
+      "sourceKeys": [
+        "uheksanda_klassi_toetus_form"
+      ],
+      "format": "docx",
+      "submissionChannels": [
+        "email",
+        "paper"
+      ],
+      "relatedTo": [
+        "vormsi_vald_benefit_uheksandat_klassi_lopetava_opilase_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "form",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "uheksanda_klassi_toetus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_form_uheksanda_klassi_toetus",
+      "document_id": "vormsi_vald_form_uheksanda_klassi_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "a95b676aaf869a77c1ff16558628096cac3f0afca69e399e1833a4bc4f2adbe5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_form_uld_kutsehariduse_toetus",
+      "canonical_item_id": "vormsi_vald:form:uld_kutsehariduse_toetus",
+      "itemType": "form",
+      "title": "Avaldus üld- või kutseharidust omandava õpilase toetuse taotlemiseks",
+      "status": "active",
+      "summary": "DOCX-vorm üld- või kutseharidust omandava õpilase toetuse taotlemiseks.",
+      "sourceKeys": [
+        "uld_kutsehariduse_toetus_form"
+      ],
+      "format": "docx",
+      "submissionChannels": [
+        "email",
+        "paper"
+      ],
+      "relatedTo": [
+        "vormsi_vald_benefit_uld_voi_kutseharidust_omandava_opilase_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "form",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "uld_kutsehariduse_toetus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_form_uld_kutsehariduse_toetus",
+      "document_id": "vormsi_vald_form_uld_kutsehariduse_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "6c274d9913f187dd712a2ab15fd6ab7767ce07b8ca764bf0ceee7d073d4c20ad",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_form_matusetoetus",
+      "canonical_item_id": "vormsi_vald:form:matusetoetus",
+      "itemType": "form",
+      "title": "Avaldus matusetoetuse taotlemiseks",
+      "status": "active",
+      "summary": "DOCX-vorm matusetoetuse taotlemiseks. Vorm on seotud matusetoetuse plokiga Vormsi valla sotsiaaltoetuste lehel.",
+      "sourceKeys": [
+        "matusetoetus_form"
+      ],
+      "format": "docx",
+      "submissionChannels": [
+        "email",
+        "paper"
+      ],
+      "relatedTo": [
+        "vormsi_vald_benefit_matusetoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "form",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "matusetoetus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_form_matusetoetus",
+      "document_id": "vormsi_vald_form_matusetoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "4e04d15bc3e8e69811971ade5d08842f78efc98e21079d5ac2d4a34811bee83d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_form_sotsiaaltoetuse_taotlus",
+      "canonical_item_id": "vormsi_vald:form:sotsiaaltoetuse_taotlus",
+      "itemType": "form",
+      "title": "Avaldus sotsiaaltoetuse taotlemiseks",
+      "status": "active",
+      "summary": "DOCX-vorm sotsiaaltoetuse taotlemiseks. Vorm on KOV lehel otseselt seotud erakorraliste kulutuste hüvitamisega.",
+      "sourceKeys": [
+        "sotsiaaltoetuse_taotlus_form"
+      ],
+      "format": "docx",
+      "submissionChannels": [
+        "email",
+        "paper"
+      ],
+      "relatedTo": [
+        "vormsi_vald_benefit_erakorraliste_kulutuste_huvitamine"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "form",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sotsiaaltoetuse_taotlus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_form_sotsiaaltoetuse_taotlus",
+      "document_id": "vormsi_vald_form_sotsiaaltoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "3d3346dfba3e7d12eb1cf187df085d2d42fe2e46bca118d5c367995b2ce1d57e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vormsi_vald_form_sissetulekust_soltuva_toetuse_taotlus",
+      "canonical_item_id": "vormsi_vald:form:sissetulekust_soltuva_toetuse_taotlus",
+      "itemType": "form",
+      "title": "Sissetulekust sõltuva toetuse taotlus Lisa 2",
+      "status": "active",
+      "summary": "RTF-vorm sissetulekust sõltuvate toetuste taotlemiseks. KOV sotsiaaltoetuste lehel on see vorm seotud lasteaia päevatoidu toetuse, peretoetuse, tervisetoetuse ja täisealise isiku hooldaja toetusega.",
+      "sourceKeys": [
+        "sissetulekust_soltuva_toetuse_taotlus_form"
+      ],
+      "format": "rtf",
+      "submissionChannels": [
+        "email",
+        "paper"
+      ],
+      "relatedTo": [
+        "vormsi_vald_benefit_lasteaia_paevatoidu_toetus",
+        "vormsi_vald_benefit_peretoetus",
+        "vormsi_vald_benefit_tervisetoetus",
+        "vormsi_vald_benefit_taisealise_isiku_hooldaja_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "vormsi_vald_contact_oivi_boyers"
+      ],
+      "sections_present": [],
+      "item_type": "form",
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "county": "Läänemaa",
+      "source_keys": [
+        "sissetulekust_soltuva_toetuse_taotlus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vormsi_vald_form_sissetulekust_soltuva_toetuse_taotlus",
+      "document_id": "vormsi_vald_form_sissetulekust_soltuva_toetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "848dffae46e82e05ce1e505c44247fe20da025a402cf2597a189174eee2120d3",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Vormsi vald",
+  "checked_at": "2026-04-30",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

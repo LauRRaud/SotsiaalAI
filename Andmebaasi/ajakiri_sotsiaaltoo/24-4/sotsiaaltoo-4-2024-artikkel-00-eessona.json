@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-4-2024",
+  "issueLabel": "4/2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "eessona-2024-4",
+  "title": "Eessõna",
+  "authors": [
+    "Regina Lind"
+  ],
+  "section": "Eessõna",
+  "pageRange": "2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "source_path": "sotsiaaltoo_4_2024_web_Part2.pdf",
+  "description": "Eessõnas avatakse Sotsiaaltöö 4/2024 numbri põhifookused: kogukonnapõhine sotsiaaltöö, sotsiaaltöötajate heaolu, taastav lähenemine ja õpetajate toetamine täiskasvanute gümnaasiumides.",
+  "tags": [
+    "eessõna",
+    "kogukond",
+    "sotsiaaltöö",
+    "täiskasvanuharidus",
+    "taastav lähenemine"
+  ],
+  "document_id": "sotsiaaltoo-4-2024-eessona-2024-4",
+  "source_format": "pdf",
+  "source_sha256": "d8f95699b5c2f2b729ec3981a3e521c135cc684a4a7d22e26dcd85495fcf3a8d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2024-eessona-2024-4",
+    "previous_source_path": "sotsiaaltoo_4_2024_web_Part2.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d8f95699b5c2f2b729ec3981a3e521c135cc684a4a7d22e26dcd85495fcf3a8d",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

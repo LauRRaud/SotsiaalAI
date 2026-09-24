@@ -1,0 +1,89 @@
+{
+  "docId": "sotsiaaltoo-1-2017",
+  "articleId": "millest-juhindub-sotsiaaltootaja-2017-1",
+  "title": "Millest juhindub sotsiaaltöötaja oma praktikas",
+  "authors": [
+    "Airi Mitendorf"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2017",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "79-82",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Doktorant Airi Mitendorf väidab, et sotsiaaltöö on normatiivne professioon, mille otsuseid suunavad korraga seadused, kogukonna ootused, kutse-eetika, sotsiaaltöötaja enda habitus Bourdieu mõttes ja klientide väärtused, ning et need allikad on sageli vastuolus, ilma et praktikud seda teadvustaksid. Ta toetub Sarah Banksile ja IFSW 2014. aasta globaalsele definitsioonile ning leiab, et Eesti neoliberaalne, indiviidi vabadust rõhutav kultuurikontekst pingestab sotsiaaltöö kollektiivse vastutuse põhimõtet. Lahendusena pakub ta sotsiaaltöötaja süstemaatilist eneserefleksiooni.",
+  "tags": [
+    "sotsiaaltöö teooria",
+    "kutse-eetika",
+    "refleksioon",
+    "professioon",
+    "väärtused"
+  ],
+  "source_type": "file",
+  "source_path": "2017_1_Part19.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2017-millest-juhindub-sotsiaaltootaja-2017-1",
+  "source_sha256": "20f7fd6160fafb87cef48d37b0bfcd44d4b398143aadf513cef247b8e7ea6218",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2017-millest-juhindub-sotsiaaltootaja-2017-1",
+    "previous_source_path": "2017_1_Part19.txt",
+    "previous_source_original_path": "2017_1.pdf",
+    "reference_stored_source_sha256": "4ed9d8f4c2acba06d406be6ff571a6a1e21f812ee52b3197218b1f0ca9b50be3",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf",
+      "source_sha256": "335f81467a555f12c55d0e8bf60122a178c5267567cf79607448a5d987629e50",
+      "pdf_start_page": 81,
+      "pdf_end_page": 84,
+      "printed_page_range": "79-82",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 84,
+      "source_regions": [
+        {
+          "source_pdf_page": 81,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 82,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 83,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 84,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        }
+      ],
+      "effective_printed_page_range": "79-82"
+    },
+    "server_page_range": "79-82"
+  }
+}

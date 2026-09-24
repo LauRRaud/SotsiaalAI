@@ -1,0 +1,466 @@
+{
+  "release": "5074b5e03f9fa7708b6ad3db9f8bb9ca243c8d08",
+  "runtimeCode": "dba8e06d8cb82f23d9d9aaf100469c88eaea915d",
+  "buildId": "kDAqeRc59ock3wOuMJUDt",
+  "id": "U75-F08",
+  "question": "Milline on eluaseme ja rehabilitatsiooni järjekord kahes lähenemises, mida võrreldakse 2017. aasta artiklis „Trepist üles või alla. Eesti vajab tulemuslikumat kodutuse poliitikat”?",
+  "mode": "isolated",
+  "emptyConversationObserved": true,
+  "previousVisibleTestTurns": 0,
+  "startedAt": "2026-08-31T15:30:06.453Z",
+  "answerObservedAt": "2026-08-31T15:30:28.318Z",
+  "visibleAnswer": "Assistent:\nEluaseme rehabilitatsiooni järjekord kahes lähenemises: • Astmelise rehabilitatsiooni mudel – kõigepealt rehabilitatsioon ja järkjärguline liikumine iseseisvama eluaseme poole; püsiv eluase järgneb rehabilitatsioonietappidele. • Eluasemepõhine lähenemine – kõigepealt iseseisev ja püsiv eluase, seejärel või samal ajal rehabilitatsioon ning tugi tervise- ja sotsiaalprobleemidega toimetulekuks.\nVõrreldakse: 2017. aasta artiklis võrreldakse traditsioonilist astmelist mudelit eluasemepõhise kompleksse mudeliga. Põhierinevus seisneb selles, et esimeses peab inimene enne iseseisva eluaseme saamist läbima rehabilitatsiooni astmed, teises ei seata eluaseme saamist rehabilitatsiooni edukuse ega „valmisoleku” eeltingimuseks.\n18:30",
+  "visibleSources": "Vastuste allikad\nJüri Kõre, 2017. Trepist üles või alla. Eesti vajab tulemuslikumat kodutuse poliitikat. Sotsiaaltöö 1/2017 · lk 39–55 · Eelretsenseeritud artikkel\nTeata allika veast",
+  "visibleExplanation": "Miks süsteem nii otsustas?\n\nNeed on salvestatud otsuse sisendid ja tingimused, mitte automaatne algpõhjuse garantii. Allikaaastate vastuolu korral võrdle küsimuse perioodi ja artikli ilmumisaastat. Ajaloo arvud kirjeldavad selle päringu valikut, mitte vestluse kogupikkust.\n\nPlanneri valitud allikaaastad\n2017\nPlanneri valitud mõõtmisperioodi aastad\nÜhtegi ei salvestatud\nKuidas aastamainimisi tõlgendati\n2017: allika ilmumisaasta\nOtsustava värava põhjus\nDokumendilukk kinnitati; selle värava tõrget ei esinenud.\nKandidaat enne lõppväravat\nsotsiaaltoo-1-2017-kodutuse-poliitika-2017-1\nKandidaadi allikaaasta\n2017\nPäringuga saabunud ajaloosõnumeid\n0\nOtsinguajalugu: sisend → valitud\n0 → 0\nMiks otsinguajalugu välja jäeti\nKüsimus nimetab konkreetse dokumendi; varasemate allikate mõju jäeti välja.\nMudeliajalugu: saadaval → valitud\n0 → 0\nMudeliajaloo valiku põhjus\nKüsimus hinnati iseseisvaks; mudelile varasemat ajalugu ei lisatud.",
+  "diagnostics": {
+    "schema_version": "rag_diagnostics_v2",
+    "trace_id": "turn:cmthea5n0006ctzkm8nvjtpow:attempt:1",
+    "pairing_evidence": {
+      "turn_id": "cmthea5n0006ctzkm8nvjtpow",
+      "user_message_id": "cmthea5my006btzkm7fhhj1fq",
+      "attempt": 1
+    },
+    "technical_status": "NO_FAILURE_OBSERVED",
+    "answer_correctness": "NOT_PROVEN",
+    "root_cause_status": "NOT_PROVEN",
+    "first_observed_failure": null,
+    "limitations": [
+      "automatic_checks_are_not_answer_correctness",
+      "blocking_gate_is_not_necessarily_root_cause",
+      "model_draft_not_logged"
+    ],
+    "runtime_missing_fields": [
+      "build_id",
+      "release_sha",
+      "prompt_hash",
+      "index_generation"
+    ],
+    "runtime": {
+      "configured_model": "gpt-5.6-luna",
+      "history_message_count": 0
+    },
+    "stages": [
+      {
+        "id": "planning",
+        "status": "OBSERVED",
+        "code": "plan_recorded",
+        "evidence_paths": [
+          "query_plan"
+        ]
+      },
+      {
+        "id": "retrieval",
+        "status": "OBSERVED",
+        "code": "retrieval_recorded",
+        "evidence_paths": [
+          "retrieved_count",
+          "retrieved_source_ids",
+          "conversational_recovery"
+        ]
+      },
+      {
+        "id": "identity",
+        "status": "OBSERVED",
+        "code": "document_identity",
+        "evidence_paths": [
+          "document_identity"
+        ]
+      },
+      {
+        "id": "context",
+        "status": "OBSERVED",
+        "code": "rendered_context_identified",
+        "evidence_paths": [
+          "rendered_context_hash",
+          "model_context_source_ids"
+        ]
+      },
+      {
+        "id": "validation",
+        "status": "PASSED",
+        "code": "all_claims_in_one_rendered_source",
+        "evidence_paths": [
+          "fact_validation"
+        ]
+      },
+      {
+        "id": "attribution",
+        "status": "OBSERVED",
+        "code": "source_attribution",
+        "evidence_paths": [
+          "attribution_decisions",
+          "displayed_source_ids"
+        ]
+      },
+      {
+        "id": "persistence",
+        "status": "OBSERVED",
+        "code": "completed",
+        "evidence_paths": [
+          "ChatTurn.status"
+        ]
+      }
+    ],
+    "evidence": {
+      "source": "assistant_message.metadata.rag_trace",
+      "present": true,
+      "trace_level": "retrieved_candidates",
+      "counts": {
+        "retrieved_count": 47,
+        "selected_context_count": 1,
+        "rendered_context_chars": 12291,
+        "selected_source_count": 1,
+        "answer_source_count": 1,
+        "displayed_source_count": 1
+      },
+      "context_hash": "6ca16a57c461f083404f4e2a6be8aa45eefece2e86fb7a12529c017f13772de5",
+      "sources": {
+        "retrieved_source_ids": [
+          "sotsiaaltoo_kodutuse-poliitika-2017-1",
+          "sotsiaaltoo_maapiirkonna-elamufond-2017-1",
+          "sotsiaaltoo_suurte-erihooldekodude-umberkorraldamine-2017-2",
+          "sotsiaaltoo_kainema-ja-tervema-eesti-poole-2017-2",
+          "sotsiaaltoo_asendushooldus-iseseisvumine-2017-1",
+          "sotsiaaltoo_mahajaetud-maja-keskus-2017-1",
+          "sotsiaaltoo_miks-asendushooldust-muuta-2017-3",
+          "sotsiaaltoo_pikaajalise-hoolduse-praegused-probleemid-2017",
+          "sotsiaaltoo_pikaajalise-hoolduse-olukord-eestis-2017",
+          "sotsiaaltoo_kov-valjakutsed-teenused-2017-1"
+        ],
+        "selected_context_source_ids": [
+          "sotsiaaltoo_kodutuse-poliitika-2017-1"
+        ],
+        "model_context_source_ids": [
+          "sotsiaaltoo_kodutuse-poliitika-2017-1"
+        ],
+        "validated_supporting_source_ids": [
+          "sotsiaaltoo_kodutuse-poliitika-2017-1"
+        ],
+        "claim_supported_source_ids": [
+          "sotsiaaltoo_kodutuse-poliitika-2017-1"
+        ],
+        "answer_source_ids": [
+          "sotsiaaltoo_kodutuse-poliitika-2017-1"
+        ],
+        "displayed_source_ids": [
+          "sotsiaaltoo_kodutuse-poliitika-2017-1"
+        ]
+      },
+      "omissions": [
+        {
+          "path": "document_identity.reasons",
+          "reason": "redacted_or_invalid",
+          "omitted": 17
+        },
+        {
+          "path": "document_identity.reasons",
+          "reason": "upstream_item_limit",
+          "omitted": 3
+        },
+        {
+          "path": "rendered_context",
+          "reason": "evidence_shortened",
+          "source_id": "sotsiaaltoo_kodutuse-poliitika-2017-1"
+        }
+      ],
+      "plan": {
+        "observed": true,
+        "mode": "specific_research_fact",
+        "selection_strategy": "document_identity_then_fact",
+        "history_reference": {
+          "explicit_source_anaphora": false,
+          "carry_previous_source_filter": false
+        },
+        "years": {
+          "observed": true,
+          "source_years": [
+            "2017"
+          ],
+          "evidence_period_years": [],
+          "mentions_observed": true,
+          "mentions": [
+            {
+              "value": "2017",
+              "role": "document_source_year",
+              "method": "forward_explicit_year_cue"
+            }
+          ],
+          "unselected_source_years": []
+        }
+      },
+      "history": {
+        "observed": true,
+        "request_raw_count": 0,
+        "normalized_client_count": 0,
+        "retrieval_input_count": 0,
+        "retrieval_selected_count": 0,
+        "model_available_count": 0,
+        "model_selected_count": 0,
+        "retrieval_input_origin": "client_payload",
+        "model_selection_reason": "self_contained",
+        "retrieval_exclusion_reasons": [
+          "explicit_current_document"
+        ]
+      },
+      "identity": {
+        "observed": true,
+        "confidence": "high",
+        "selected_document_id": "sotsiaaltoo-1-2017-kodutuse-poliitika-2017-1",
+        "matched": true,
+        "required": true,
+        "enabled": true,
+        "reasons": [
+          "exact_title_anchor",
+          "current_turn_document_identity",
+          "decisive_exact_title_anchor"
+        ],
+        "reason_count": 23,
+        "reasons_omitted": 3,
+        "decision": {
+          "stage": "scoped_search_recheck",
+          "reason": "document_lock_confirmed",
+          "candidate_document_id": "sotsiaaltoo-1-2017-kodutuse-poliitika-2017-1",
+          "locked_document_id": "sotsiaaltoo-1-2017-kodutuse-poliitika-2017-1",
+          "candidate_confidence": "high",
+          "eligible": true,
+          "candidate_matched": true,
+          "selected_source_year": "2017",
+          "checks": {
+            "candidate_matches_locked_document": true
+          }
+        },
+        "candidates": [
+          {
+            "document_id": "sotsiaaltoo-1-2017-kodutuse-poliitika-2017-1",
+            "score": 149,
+            "subject_match_count": 10,
+            "body_subject_match_count": 0,
+            "identity_matched": true,
+            "author_matched": false,
+            "source_compatible": true,
+            "source_year_compatible": true,
+            "resolved_source_year": "2017",
+            "source_year_matches": [
+              "2017"
+            ]
+          },
+          {
+            "document_id": "sotsiaaltoo-3-2017-miks-asendushooldust-muuta-2017-3",
+            "score": 20,
+            "subject_match_count": 4,
+            "body_subject_match_count": 0,
+            "identity_matched": true,
+            "author_matched": false,
+            "source_compatible": true,
+            "source_year_compatible": true,
+            "resolved_source_year": "2017",
+            "source_year_matches": [
+              "2017"
+            ]
+          },
+          {
+            "document_id": "sotsiaaltoo-4-2017-pikaajalise-hoolduse-olukord-eestis-2017",
+            "score": 20,
+            "subject_match_count": 4,
+            "body_subject_match_count": 0,
+            "identity_matched": true,
+            "author_matched": false,
+            "source_compatible": true,
+            "source_year_compatible": true,
+            "resolved_source_year": "2017",
+            "source_year_matches": [
+              "2017"
+            ]
+          },
+          {
+            "document_id": "sotsiaaltoo-2-2017-kainema-ja-tervema-eesti-poole-2017-2",
+            "score": 16,
+            "subject_match_count": 2,
+            "body_subject_match_count": 0,
+            "identity_matched": true,
+            "author_matched": false,
+            "source_compatible": true,
+            "source_year_compatible": true,
+            "resolved_source_year": "2017",
+            "source_year_matches": [
+              "2017"
+            ]
+          },
+          {
+            "document_id": "sotsiaaltoo-1-2017-asendushooldus-iseseisvumine-2017-1",
+            "score": 24,
+            "subject_match_count": 5,
+            "body_subject_match_count": 0,
+            "identity_matched": true,
+            "author_matched": false,
+            "source_compatible": true,
+            "source_year_compatible": true,
+            "resolved_source_year": "2017",
+            "source_year_matches": [
+              "2017"
+            ]
+          }
+        ]
+      },
+      "metric_contract": {
+        "observed": false
+      },
+      "validation": {
+        "observed": true,
+        "passed": true,
+        "enabled": true,
+        "buffered": true,
+        "document_identity_matched": true,
+        "document_identity_required": true,
+        "requested_metric_contract_checked": false,
+        "requested_qualitative_contract_checked": true,
+        "requested_fact_slot_contract_checked": false,
+        "reason": "all_claims_in_one_rendered_source",
+        "version": "exact_numeric_fact_v6",
+        "selected_document_id": "sotsiaaltoo-1-2017-kodutuse-poliitika-2017-1",
+        "requested_metric_slot_count": 0,
+        "requested_qualitative_slot_count": 2,
+        "requested_fact_answer_unit_count": 7,
+        "validation_duration_ms": 243,
+        "requested_fact_missing_slot_indexes": [],
+        "requested_fact_answer_missing_slot_indexes": [],
+        "bindings": [
+          {
+            "slot_index": 1,
+            "unit_index": 3,
+            "matched_relation_term_count": 3,
+            "matched_evidence_anchor_count": 1,
+            "substantive_answer_token_count": 10,
+            "actions": []
+          },
+          {
+            "slot_index": 2,
+            "unit_index": 5,
+            "matched_relation_term_count": 1,
+            "matched_evidence_anchor_count": 1,
+            "substantive_answer_token_count": 9,
+            "actions": []
+          }
+        ],
+        "metric_bindings": [],
+        "relation_diagnostics": []
+      },
+      "claims": [
+        {
+          "claim_id": "claim_1",
+          "claim_hash": "e6399356",
+          "supporting_source_ids": [
+            "sotsiaaltoo_kodutuse-poliitika-2017-1"
+          ]
+        },
+        {
+          "claim_id": "claim_2",
+          "claim_hash": "e9f8fb0c",
+          "supporting_source_ids": [
+            "sotsiaaltoo_kodutuse-poliitika-2017-1"
+          ]
+        },
+        {
+          "claim_id": "claim_3",
+          "claim_hash": "cf279117",
+          "supporting_source_ids": [
+            "sotsiaaltoo_kodutuse-poliitika-2017-1"
+          ]
+        },
+        {
+          "claim_id": "claim_4",
+          "claim_hash": "3a4d75ba",
+          "supporting_source_ids": [
+            "sotsiaaltoo_kodutuse-poliitika-2017-1"
+          ]
+        },
+        {
+          "claim_id": "claim_5",
+          "claim_hash": "a40ca160",
+          "supporting_source_ids": [
+            "sotsiaaltoo_kodutuse-poliitika-2017-1"
+          ]
+        }
+      ],
+      "recovery": {
+        "observed": false,
+        "missing_fields": []
+      },
+      "attribution": {
+        "observed": true,
+        "displayed_sources_subset_of_selected": true,
+        "displayed_sources_subset_of_answer": true,
+        "decisions": [
+          {
+            "source_id": "sotsiaaltoo_kodutuse-poliitika-2017-1",
+            "decision": "display",
+            "reason": "fact_contract_validated",
+            "source_type": "journal_article"
+          }
+        ]
+      },
+      "context": [
+        {
+          "source_id": "sotsiaaltoo_kodutuse-poliitika-2017-1",
+          "rendered_body_hash": "cb6793a3081fb0fbbb19ca27bed2935c3ffe6460fcb5d4202669dcd57698bb1b",
+          "original_body_hash": "db30ef159af983c2d42b525f54c9c5f9a719a6c2a86b26e13b5192c9b05b562d",
+          "rendered_evidence_hash": "6ca16a57c461f083404f4e2a6be8aa45eefece2e86fb7a12529c017f13772de5",
+          "rendered_evidence_chars": 12291,
+          "rendered_body_count": 8,
+          "original_body_count": 19,
+          "rendered_evidence_truncated": true
+        }
+      ],
+      "timings": {
+        "planner_ms": 36,
+        "query_planning_ms": 1,
+        "query_build_ms": 1,
+        "retrieval_wall_ms": 4017,
+        "multi_query_retrieval_ms": 8466,
+        "retrieval_parallel_sum_ms": 8466,
+        "embedding_sum_ms": 1428,
+        "embedding_ms": 1428,
+        "dense_sum_ms": 1646,
+        "dense_ms": 1646,
+        "registry_ms": 0,
+        "lexical_sum_ms": 1577,
+        "lexical_ms": 1577,
+        "lemma_fts_shadow_ms": 0,
+        "document_sibling_sum_ms": 577,
+        "service_fact_segment_sum_ms": 2250,
+        "document_identity_ms": 28,
+        "fact_segment_search_ms": 2567,
+        "context_render_ms": 1,
+        "model_ms": 3478,
+        "first_model_call_ms": 1,
+        "fact_validation_ms": 243,
+        "retrieval_context_total_ms": 4609
+      },
+      "projection_excludes": [
+        "raw_prompt_and_question",
+        "source_body_previews",
+        "model_draft",
+        "free_text_planner_terms",
+        "full_unbounded_runtime_trace"
+      ],
+      "insufficient_evidence": false,
+      "missing_sections": [],
+      "coverage": "LIMITED"
+    }
+  },
+  "reference": "message:cmthea8jd006etzkmqa9y6tre",
+  "reportHref": "/api/chat/conversations/conv-daff5282-6a77-44ea-b295-77cc9ebbe15f/diagnostics?format=md&lang=et",
+  "assessment": {
+    "result": "PASS",
+    "reason": "Mõlemad lähenemised, nende järjekord ja rehabilitatsiooni säilimine õiged; õige allikapaneel avatud ning kõik allikakihid kattuvad.",
+    "criteria": {
+      "C1": "PASS",
+      "C2": "PASS"
+    },
+    "sourcePanel": "PASS",
+    "trace": "PASS",
+    "limitations": [
+      "Lisatud selgitused kinnitati aktiivse allika lõikudest 2, 3 ja 12. Valmisoleku eeltingimuse puudumine on allikast põhjendatud järeldus, mitte sõnasõnaline tsitaat."
+    ]
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "docId": "sotsiaaltoo-1-2017",
+  "articleId": "itaalia-sotsiaaltoo-2017-1",
+  "title": "Päevakajalised küsimused sotsiaaltöö praktikas ja sotsiaaltöö hariduses Itaalias",
+  "authors": [
+    "Alessandro Sicora"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2017",
+  "section": "Uued suunad Euroopas",
+  "pageRange": "85-88",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Itaalia Sotsiaaltöö Ühingu president Alessandro Sicora kirjeldab, et Itaalias sai sotsiaaltöö õigusliku tunnustuse alles 1993. aastal ning registreeritud sotsiaaltöötajaid oli 15.12.2015 seisuga 42 021 ehk 70 iga 100 000 elaniku kohta, samas kui arste on 604. Ligikaudu 90% neist on avalikud teenistujad ja 45,5% töötab kohalikus omavalitsuses. Sicora väidab, et 2008. aasta majanduskriis ning sellele järgnenud managerism ja teenuste üleandmine erasektorile nõrgestavad professiooni positsiooni ja suurendavad läbipõlemise ning bürokraatliku formalismi ohtu.",
+  "tags": [
+    "rahvusvaheline kogemus",
+    "Itaalia",
+    "sotsiaaltöö professioon",
+    "managerism",
+    "läbipõlemine",
+    "sotsiaaltööharidus"
+  ],
+  "source_type": "file",
+  "source_path": "2017_1_Part21.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2017-itaalia-sotsiaaltoo-2017-1",
+  "source_sha256": "b663b372ad6e85e6f3e1bda9769795efb914c18b26780eebb9e07c0bdafb425c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2017-itaalia-sotsiaaltoo-2017-1",
+    "previous_source_path": "2017_1_Part21.txt",
+    "previous_source_original_path": "2017_1.pdf",
+    "reference_stored_source_sha256": "597a8d4c39bb5739aace33b2426b1d1167a4979a17919cb9da4543212e6b5907",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf",
+      "source_sha256": "335f81467a555f12c55d0e8bf60122a178c5267567cf79607448a5d987629e50",
+      "pdf_start_page": 87,
+      "pdf_end_page": 90,
+      "printed_page_range": "85-88",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 90,
+      "source_regions": [
+        {
+          "source_pdf_page": 87,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 88,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 89,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 90,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        }
+      ],
+      "effective_printed_page_range": "85-88"
+    },
+    "server_page_range": "85-88"
+  }
+}

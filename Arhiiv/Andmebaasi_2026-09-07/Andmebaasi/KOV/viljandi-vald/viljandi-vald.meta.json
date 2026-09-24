@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-viljandi-vald",
+  "document_id": "kov-viljandi-vald",
+  "municipality": "Viljandi vald",
+  "municipality_id": "viljandi_vald",
+  "county": "Viljandimaa",
+  "checkedAt": "2026-04-29",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-viljandi-vald",
+  "coverage": {
+    "services": 12,
+    "benefits": 2,
+    "resources": 9,
+    "contacts": 12,
+    "forms": 8,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "viljandi_vald",
+    "source_register_file": "viljandi-vald.sources.json",
+    "service_benefit_resource_items": 23,
+    "items_with_source_keys": 23,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 7,
+    "items_without_related_forms": 16,
+    "items_with_related_contacts": 15,
+    "items_without_related_contacts": 8,
+    "form_sources": 0,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "7 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Parandatud kontrollversioon: algfailides olnud lühikesed URL-id asendati täisametlike KOV veebitee URL-idega ja lisati eraldi vormi-itemid nende teenuste juurde, mille lehtedel vormid olid selgelt nimetatud.",
+    "RT/legal allikad jäeti KOV veebipaketist välja; õigusaktide viited jäid ainult kaudseks märkuseks ja neid tuleb käsitleda eraldi RT kihis."
+  ],
+  "unresolvedIssues": [
+    "Kõiki KOV sotsiaalvaldkonna lehti ei ole veel täielikult detailtasemel normaliseeritud: vajavad eraldi kontrolli vähemalt võlanõustamisteenus, ühekordne sotsiaaltoetus, eluruumi kohandamine, matusetoetus, eluruumi tagamine, varjupaiga- ja turvakoduteenus, täiskasvanute tugiisikuteenus, vaimse tervise teenused ja Viljandi valla sotsiaalkeskus.",
+    "E-posti aadressid olid osas veebiväljavõtetes automaatselt varjestatud; aadressid on lisatud nähtava veebivaate järgi, kuid soovitatav on enne ingestimist kontaktide täpsus veel kord üle kontrollida.",
+    "Mitmete teenuste vormide otselingid pärinevad faililingi avamise katsest; need tuleb enne production-ingestimist brauseris või skriptiga HTTP tasemel kinnitada.",
+    "Toimetulekutoetuse, ühekordse sotsiaaltoetuse ja eluruumi kohandamise lehed vajavad täiendavat sisulist täitmist, kui eesmärk on täielik KOV pakett.",
+    "KOV lehel nimetatud väliseid ressursse (nt Sotsiaalkindlustusamet, Juristiabi, Palun Abi, EPIKoda) ei kontrollitud välislehtedelt; resource itemid põhinevad ainult KOV lehel avaldatud infol.",
+    "Päevakeskuste ürituste ajakava sisaldab kuupõhist infot 2026 kevadest; RAG vaates on sellest säilitatud ainult üldine teenuse kirjeldus, mitte kiiresti aeguv sündmuste kalender."
+  ],
+  "municipality_name": "Viljandi vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "viljandi-vald.sources.json",
+  "sourceCount": 32,
+  "counts": {
+    "services": 12,
+    "benefits": 2,
+    "resources": 9,
+    "contacts": 12,
+    "forms": 8,
+    "regulations": 0
+  },
+  "warnings": [
+    "7 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

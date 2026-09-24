@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-1-2024",
+  "articleId": "mis-on-olnud-ja-mis-ootab-ees-erihoolekandes-2024-1",
+  "title": "Mis on olnud ja mis ootab ees erihoolekandes",
+  "authors": [
+    "Elen Preimann"
+  ],
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2024",
+  "section": "Korraldus",
+  "pageRange": "10-14",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artiklis antakse ülevaade 2023. aasta peamistest väljakutsetest erihoolekandes, sh kohtumääruse alusel ööpäevaringsel teenusel viibivate inimeste teenuskohtade nappusest ja ootusest teenuste hinnatõusule olukorras, kus riigieelarve seda ei võimaldanud. Autor kirjeldab, kuidas otsiti lahendusi pikaajalise kaitstud töö projekti lõppemisel, töötamise toetamise teenuse laiendamisel ning uue päeva- ja nädalahoiu teenuse mudeli loomisel suure abi- ja toetusvajadusega psüühikahäirega inimestele. Käsitletakse teenuste rahastamise, kvaliteedinõuete, personali pädevuse ja ruumitingimuste küsimusi ning visandatakse 2024. aasta prioriteete jätkusuutliku erihoolekande tagamisel.",
+  "tags": [
+    "erihoolekanne",
+    "psüühikahäire",
+    "kohtumääruse alusel teenus",
+    "kaitstud töö",
+    "töötamise toetamise teenus",
+    "päeva- ja nädalahoid",
+    "teenuse rahastamine",
+    "teenuse kvaliteet",
+    "sotsiaalhoolekande seadus",
+    "sotsiaalministeerium"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_1_2024_web_Part4.pdf",
+  "document_id": "sotsiaaltoo-1-2024-mis-on-olnud-ja-mis-ootab-ees-erihoolekandes-2024-1",
+  "source_format": "pdf",
+  "source_sha256": "2d734b8183bfdb13fecc3281d0d0073d6abbda65b12da2ffff821a03f51e67cd",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2024-mis-on-olnud-ja-mis-ootab-ees-erihoolekandes-2024-1",
+    "previous_source_path": "Sotsiaaltoo_1_2024_web_Part4.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "2d734b8183bfdb13fecc3281d0d0073d6abbda65b12da2ffff821a03f51e67cd",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-loksa-linn",
+  "document_id": "kov-loksa-linn",
+  "municipality": "Loksa linn",
+  "municipality_id": "loksa_linn",
+  "county": "Harjumaa",
+  "checkedAt": "2026-04-29",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-loksa-linn",
+  "coverage": {
+    "services": 15,
+    "benefits": 14,
+    "resources": 14,
+    "contacts": 6,
+    "forms": 14,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "loksa_linn",
+    "source_register_file": "loksa-linn.sources.json",
+    "service_benefit_resource_items": 43,
+    "items_with_source_keys": 43,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 14,
+    "items_without_related_forms": 29,
+    "items_with_related_contacts": 43,
+    "items_without_related_contacts": 0,
+    "form_sources": 14,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "1 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Pakett põhineb Loksa linna ametlikel veebilehtedel, sealhulgas sotsiaalteenuste, sotsiaaltoetuste, blankettide, kontaktide ja ressursilehtede sisul.",
+    "KOV veebipakett ei sisalda RT/legal allikaid; õigusaktide lingid jäeti eraldi legal-kihile."
+  ],
+  "unresolvedIssues": [
+    "KOV veebileht varjestab mitu ametnike ja üldposti e-posti aadressi kujul **; neid ei taastatud oletuse põhjal.",
+    "Mitme sotsiaalteenuse tasu on KOV lehel kirjeldatud viitega linnavalitsuse kehtestatud hinnakirjale, kuid konkreetseid hindu teenuselehel ei avaldata.",
+    "Sotsiaalteenuste lehel on mitme teenuse taotlemise kord kirjeldatud üldiselt; eraldi teenusepõhiseid blankette nende teenuste kohta ei leitud vormide lehelt.",
+    "Blankettide lehel on PDF- ja RTF-versioonid; masinloetavasse paketti lisati avatud ametlikud PDF-lingid ning RTF-versioonid jäeti dubleerimata.",
+    "SPOKU iseteeninduskeskkond on KOV lehel viidatud väline e-teenus; allikaks on kasutatud KOV vormilehte ning e-teenuse link on kirjes eraldi eServiceUrl väljal.",
+    "KOV leht „Kasulikud lingid” sisaldab mitut välist ressurssi; nende sisu ei kontrollitud välislehtedelt ja allikana on kasutatud ainult KOV lehte."
+  ],
+  "municipality_name": "Loksa linn",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "loksa-linn.sources.json",
+  "sourceCount": 27,
+  "counts": {
+    "services": 15,
+    "benefits": 14,
+    "resources": 14,
+    "contacts": 6,
+    "forms": 14,
+    "regulations": 0
+  },
+  "warnings": [
+    "1 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

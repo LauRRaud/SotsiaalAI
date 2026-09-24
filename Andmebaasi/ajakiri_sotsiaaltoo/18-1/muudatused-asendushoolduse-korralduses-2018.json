@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-1-2018",
+  "articleId": "muudatused-asendushoolduse-korralduses-2018",
+  "title": "Muudatused asendushoolduse korralduses",
+  "authors": [
+    "Natalja Grusdam"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2018",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "17-18",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade 2018. aasta alguses jõustunud sotsiaalhoolekande seaduse muudatustest asendushoolduse valdkonnas: perepõhise asendushoolduse eelistamine, asendushooldusteenuse uued vormid, järelhoolduse arendamine, hooldusperede toetamine ja Sotsiaalkindlustusameti ning kohalike omavalitsuste rollide jaotus.",
+  "tags": [
+    "asendushooldus",
+    "hoolduspere",
+    "perekodu",
+    "asenduskodu",
+    "sotsiaalhoolekande seadus",
+    "lastekaitse",
+    "järelhooldus",
+    "KOV vastutus",
+    "toetusfond"
+  ],
+  "source_type": "file",
+  "source_path": "Part7_155619647682_ST1_2018_link.pdf",
+  "document_id": "sotsiaaltoo-1-2018-muudatused-asendushoolduse-korralduses-2018",
+  "source_format": "pdf",
+  "source_sha256": "926f15e830465c232ae601e106ba04b1030c2f745c301f5b4b45d2e897c17542",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2018-muudatused-asendushoolduse-korralduses-2018",
+    "previous_source_path": "Part7_155619647682_ST1_2018_link.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "926f15e830465c232ae601e106ba04b1030c2f745c301f5b4b45d2e897c17542",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

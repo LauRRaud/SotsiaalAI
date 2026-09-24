@@ -1,0 +1,94 @@
+{
+  "docId": "sotsiaaltoo-3-2018",
+  "articleId": "esus-esimene-tookoht-2018",
+  "title": "Mida ootab sotsiaaltöö tudeng oma esimeselt erialaselt töökohalt?",
+  "authors": [
+    "Liisa Rajamets",
+    "Karola-Sandra Kollom",
+    "Kelli Ilisson",
+    "Kaisa Karu"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2018",
+  "section": "Eesti Sotsiaaltöö Üliõpilaste Selts",
+  "pageRange": "85-88",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Eesti Sotsiaaltöö Üliõpilaste Seltsi liikmete ühisartikkel sellest, mida ootab sotsiaaltöö tudeng oma esimeselt erialaselt töökohalt. Neli tudengit kirjeldavad ootusi, hirme ja esimesi töökogemusi: kandideerimise ärevust, kartust jääda töökogemuse puudumise tõttu teiste varju, kahtlust, kas ollakse valmis nii suureks vastutuseks. Käsitleb ka küsimust, miks osa sotsiaaltöö õppijaid ei lähe erialasele tööle, ning nendib, et rohkem kui pooled seltsi liikmed juba teevad erialast tööd ja tööpuuduse üle nad ei kurda. Üks autoritest toob eraldi välja vene keele oskuse puudumise kui igapäevase takistuse, märkides, et abivajadus ei küsi rahvust.",
+  "tags": [
+    "sotsiaaltöö tudengid",
+    "erialane töökoht",
+    "ESÜS",
+    "kutsevalik",
+    "sotsiaaltöötaja palk",
+    "vene keele oskus"
+  ],
+  "source_type": "file",
+  "source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part19.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2018-esus-esimene-tookoht-2018",
+  "source_sha256": "29ec08dab09c8d564a4a458dcafe587c93bec1a1c76e10da2a81c2ca9280e321",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2018-esus-esimene-tookoht-2018",
+    "previous_source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part19.txt",
+    "previous_source_original_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part19.pdf",
+    "reference_stored_source_sha256": "157fa8e9dddd07c9cc2861972aed58cfec05f8def532154e8dc98ab8a5ddc306",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\18-3\\155619680390_Sotsiaaltoo_nr3_2018_veebi_link.pdf",
+      "source_sha256": "45eac17c335ef472708d0eb485f916c201e5db46ac64163cc7aeeb1f47dd10a9",
+      "pdf_start_page": 87,
+      "pdf_end_page": 90,
+      "printed_page_range": "85-88",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 90,
+      "source_regions": [
+        {
+          "source_pdf_page": 87,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 88,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 89,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 90,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "85-88",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\18-3\\155619680390_Sotsiaaltoo_nr3_2018_veebi_link.pdf"
+    },
+    "server_page_range": "85-88"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-4-2022",
+  "articleId": "kuidas-hinnata-abivajadust-ja-pakkuda-sotsiaalhoolekandelist-abi-2022-4",
+  "title": "Kuidas hinnata abivajadust ja pakkuda sotsiaalhoolekandelist abi?",
+  "authors": [
+    "Kärt Muller"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2022",
+  "section": "Õigus",
+  "pageRange": "40-44",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Õiguskantsleri kantselei praktikal põhinev artikkel käsitleb, kuidas peaks kohalik omavalitsus\nabivajaduse teadasaamisel ja abitaotluste menetlemisel toimima, et tagada inimeste põhiseaduslik\nõigus abi saada. Autor selgitab, millal ja kuidas tuleb abivajajaga ühendust võtta, mida tähendab\nabivajaduse terviklik hindamine ning kuidas arvestada inimese õigust hindamisest keelduda.\nArtiklis analüüsitakse, millal on põhjendatud kodukülastus ja millal see rikuks ebavajalikult\neraelu puutumatust, ning tuuakse näiteid olukordadest, kus omavalitsus on jätnud abivajaduse\npiisavalt välja selgitamata. Samuti selgitatakse inimese ärakuulamise, tema soovidega arvestamise\nning abikorralduse reaalse elluviidavuse kontrolli olulisust – näiteks eluruumi kohandamise või\neluasemeteenuse pakkumise juhtumites. Artikkel seob Riigikohtu praktika, SHS-i ja SÜS-i põhimõtted\nning õiguskantsleri seisukohad praktiliste juhistena, mis aitavad sotsiaaltöötajatel ja ametnikel\nlangetada proportsionaalseid, selgelt põhjendatud otsuseid ning vältida olukordi, kus inimene jääb\nabita vaid formaalsete või tõlgenduslike tõkete tõttu.",
+  "tags": [
+    "abivajaduse hindamine",
+    "sotsiaalhoolekanne",
+    "kohalik omavalitsus",
+    "Õiguskantsler",
+    "SHS",
+    "kodukülastus",
+    "menetlusõigus",
+    "inimväärikus",
+    "sotsiaalabi kättesaadavus"
+  ],
+  "source_type": "file",
+  "source_path": "2022_4_artikkel_9_abivajadus.pdf",
+  "document_id": "sotsiaaltoo-4-2022-kuidas-hinnata-abivajadust-ja-pakkuda-sotsiaalhoolekandelist-abi-2022-4",
+  "source_format": "pdf",
+  "source_sha256": "e6571b15efbd151e1c4184e91af42117ee0b83e1239007bbeae572e782c0fc91",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2022-kuidas-hinnata-abivajadust-ja-pakkuda-sotsiaalhoolekandelist-abi-2022-4",
+    "previous_source_path": "2022_4_artikkel_9_abivajadus.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e6571b15efbd151e1c4184e91af42117ee0b83e1239007bbeae572e782c0fc91",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "docId": "sotsiaaltoo-3-2016",
+  "articleId": "sotsiaaltoo-3-2016-artikkel-05-uimastisõltlaste-rehabilitatsioon-vanglasüsteemi",
+  "title": "Uimastisõltlaste rehabilitatsioon vanglasüsteemis",
+  "authors": [
+    "Tõnis Palgi"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2016",
+  "section": "Taasühiskonnastamine vanglas",
+  "pageRange": "17-20",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Palgi kirjeldab, et Eesti vanglates kannab karistust veidi alla 900 narkootikumisõltuvuse diagnoosiga kinnipeetava ehk ligikaudu 32% kõigist. Nad on koondatud Tartu vangla 176kohalisse sõltuvusrehabilitatsiooni üksusesse, kus toimib neljaastmeline motivatsioonipõhine süsteem ja 44kohaline aktiivse rehabilitatsiooni osakond. Sekkumiste alus on motiveeriv intervjueerimine, eluviisitreening ja programm „Jõud muutuda”. Kitsaskohtadena nimetab autor, et umbes 80% tööst käib vene keeles, üks psühholoog ja kaks sotsiaaltöötajat 176 kinnipeetava kohta on liiga vähe ning rehabilitatsioon jääb sageli formaalseks.",
+  "tags": [
+    "uimastisõltuvus",
+    "sõltuvusrehabilitatsioon",
+    "tartu vangla",
+    "motiveeriv intervjueerimine",
+    "asendusravi",
+    "vanglateenistus"
+  ],
+  "source_type": "file",
+  "source_path": "2016_3_artikkel_05_uimastisoltlaste_rehabilitatsioon_vanglasusteemis.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2016-sotsiaaltoo-3-2016-artikkel-05-uimastis-ltlaste-rehabilitatsioon-vanglas-steemi",
+  "source_sha256": "3af8bc7fef98c8173c7ea787f888dbc631c5622613402a0a0606b6307c689688",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2016-sotsiaaltoo-3-2016-artikkel-05-uimastis-ltlaste-rehabilitatsioon-vanglas-steemi",
+    "previous_source_path": "2016_3_artikkel_05_uimastisoltlaste_rehabilitatsioon_vanglasusteemis.txt",
+    "previous_source_original_path": "3-2016.pdf",
+    "reference_stored_source_sha256": "3aa866b20482e44bdf67200cc13b0989cfa9b509f17fe91c73be7cd443a24510",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\3-2016.pdf",
+      "source_sha256": "7a9be30ca3f1a959b3d48a3f12065bc9c37d0f618f6cbb71e681f6e83199aacc",
+      "pdf_start_page": 19,
+      "pdf_end_page": 22,
+      "printed_page_range": "17-20",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 22,
+      "source_regions": [
+        {
+          "source_pdf_page": 19,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 20,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 21,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 22,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            123.665
+          ]
+        }
+      ],
+      "effective_printed_page_range": "17-20"
+    },
+    "server_page_range": "17-20"
+  }
+}

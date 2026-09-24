@@ -1,0 +1,2327 @@
+{
+  "schemaVersion": "kov-sources-v2.5-sourcepackage",
+  "docId": "kov-kadrina-vald",
+  "document_id": "kov-kadrina-vald",
+  "municipality": "Kadrina vald",
+  "municipality_id": "kadrina_vald",
+  "county": "Lääne-Virumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "sources": [
+    {
+      "source_id": "home",
+      "title": "Kadrina valla avaleht",
+      "url": "https://kadrina.ee",
+      "url_canonical": "https://kadrina.ee",
+      "normalized_url": "https://kadrina.ee",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_resource_riigi_infotelefonid_kadrina_veebis"
+      ],
+      "document_id": "home",
+      "source_key": "home",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_resource_riigi_infotelefonid_kadrina_veebis"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "e59d1230af40df0a0635e8c74f4d8a5ea54b03eccf2598c1da3ea82bc56ccfba",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "home"
+    },
+    {
+      "source_id": "social_overview",
+      "title": "Perekond ja sotsiaalne heaolu menüüharu",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/elukoha-tagamine/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/elukoha-tagamine/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/elukoha-tagamine/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [],
+      "document_id": "social_overview",
+      "source_key": "social_overview",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "b64c67a289ec60da8717aec4e41c80454d8200f99c2a719a2da75675fd0ba7e6",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "social_overview"
+    },
+    {
+      "source_id": "contacts",
+      "title": "Üldkontaktid, teenistujad",
+      "url": "https://kadrina.ee/vald-uudised-ja-kontaktid/kontakt/kontaktid/",
+      "url_canonical": "https://kadrina.ee/vald-uudised-ja-kontaktid/kontakt/kontaktid/",
+      "normalized_url": "https://kadrina.ee/vald-uudised-ja-kontaktid/kontakt/kontaktid/",
+      "source_type": "contact_page",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_contact_kadrina_vallavalitsus_yldkontakt",
+        "kadrina_vald_contact_kaili_treisalt",
+        "kadrina_vald_contact_maria_mae",
+        "kadrina_vald_contact_marie_petrovits",
+        "kadrina_vald_contact_maryon_hinno",
+        "kadrina_vald_contact_merje_nogu",
+        "kadrina_vald_contact_merlin_rosar",
+        "kadrina_vald_contact_siiri_sammel"
+      ],
+      "document_id": "contacts",
+      "source_key": "contacts",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_contact_kadrina_vallavalitsus_yldkontakt",
+        "kadrina_vald_contact_kaili_treisalt",
+        "kadrina_vald_contact_maria_mae",
+        "kadrina_vald_contact_marie_petrovits",
+        "kadrina_vald_contact_maryon_hinno",
+        "kadrina_vald_contact_merje_nogu",
+        "kadrina_vald_contact_merlin_rosar",
+        "kadrina_vald_contact_siiri_sammel"
+      ],
+      "sections_present": [],
+      "content_hash": "88221e5ed7644126b687a8204a30f3e00a3aed4d8cdd40d97dfdd33dbe6cc340",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "contacts"
+    },
+    {
+      "source_id": "spoku_iseteenindus",
+      "title": "Kadrina valla iseteeninduskeskkond SPOKU",
+      "url": "https://piksel.ee/spoku/kadrina/index.php?module=207&op=0",
+      "url_canonical": "https://piksel.ee/spoku/kadrina/index.php?module=207&op=0",
+      "normalized_url": "https://piksel.ee/spoku/kadrina/index.php?module=207&op=0",
+      "source_type": "web_form",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina Vallavalitsus / SPOKU",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_benefit_esimesse_klassi_astuja_toetus",
+        "kadrina_vald_benefit_matusetoetus",
+        "kadrina_vald_benefit_sunnitoetus",
+        "kadrina_vald_contact_kadrina_vallavalitsus_yldkontakt",
+        "kadrina_vald_form_esimesse_klassi_astuja_toetus_spoku",
+        "kadrina_vald_form_matusetoetus_spoku",
+        "kadrina_vald_form_sunnitoetus_spoku"
+      ],
+      "document_id": "spoku_iseteenindus",
+      "source_key": "spoku_iseteenindus",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_form_esimesse_klassi_astuja_toetus_spoku",
+        "kadrina_vald_form_matusetoetus_spoku",
+        "kadrina_vald_form_sunnitoetus_spoku"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "c99b9625c26004e178ae22d6f48d202489b4c3ec05af0d018f6454423e28dfac",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "spoku_iseteenindus"
+    },
+    {
+      "source_id": "eluruumi_tagamine",
+      "title": "Eluruumi tagamine",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/elukoha-tagamine/eluruumi-tagamine/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/elukoha-tagamine/eluruumi-tagamine/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/elukoha-tagamine/eluruumi-tagamine/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_service_eluruumi_tagamine"
+      ],
+      "document_id": "eluruumi_tagamine",
+      "source_key": "eluruumi_tagamine",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_service_eluruumi_tagamine"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "6dedcb36b72c3566cfe6039d9f74c026d625bf33527fa900a96b4c82474e93da",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "eluruumi_tagamine"
+    },
+    {
+      "source_id": "turvakoduteenus",
+      "title": "Turvakoduteenus",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/elukoha-tagamine/turvakoduteenus/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/elukoha-tagamine/turvakoduteenus/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/elukoha-tagamine/turvakoduteenus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_resource_naiste_tugikeskus_ja_ohvriabi_viited",
+        "kadrina_vald_service_turvakoduteenus"
+      ],
+      "document_id": "turvakoduteenus",
+      "source_key": "turvakoduteenus",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_service_turvakoduteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "2ef106b2fa0d7dde1caf271e4c033fdb412f23134a5199343e852d0e44b73fbc",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "turvakoduteenus"
+    },
+    {
+      "source_id": "varjupaigateenus",
+      "title": "Varjupaigateenus",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/elukoha-tagamine/varjupaigateenus/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/elukoha-tagamine/varjupaigateenus/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/elukoha-tagamine/varjupaigateenus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_resource_lahim_varjupaik_rakvere_sotsiaalkeskus",
+        "kadrina_vald_service_varjupaigateenus"
+      ],
+      "document_id": "varjupaigateenus",
+      "source_key": "varjupaigateenus",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_resource_lahim_varjupaik_rakvere_sotsiaalkeskus",
+        "kadrina_vald_service_varjupaigateenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "e6ff4c3a9d3564682822975b4b0f5372134e0154b0222b1cbf71db78ec4dc44f",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "varjupaigateenus"
+    },
+    {
+      "source_id": "puudega_lapse_hooldamine",
+      "title": "Puudega lapse hooldamine",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/puudega-lapse-hooldamine/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/puudega-lapse-hooldamine/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/puudega-lapse-hooldamine/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_service_puudega_lapse_hooldamine"
+      ],
+      "document_id": "puudega_lapse_hooldamine",
+      "source_key": "puudega_lapse_hooldamine",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_service_puudega_lapse_hooldamine"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "a866b5e7f41f5cdb1cc382745098b62d2044161358a2e179e641a447c9e8968f",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "puudega_lapse_hooldamine"
+    },
+    {
+      "source_id": "isikliku_abistaja_teenus",
+      "title": "Isikliku abistaja teenus",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/isikliku-abistaja-teenus/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/isikliku-abistaja-teenus/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/isikliku-abistaja-teenus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_service_isikliku_abistaja_teenus"
+      ],
+      "document_id": "isikliku_abistaja_teenus",
+      "source_key": "isikliku_abistaja_teenus",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_service_isikliku_abistaja_teenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "0416a3fefa4a76f23f0af77c45acbb4b40ce77d3da15dfd6e3361a1a62405824",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "isikliku_abistaja_teenus"
+    },
+    {
+      "source_id": "sotsiaaltransporditeenus",
+      "title": "Sotsiaaltransporditeenus",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/sotsiaaltransporditeenus/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/sotsiaaltransporditeenus/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/sotsiaaltransporditeenus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_service_sotsiaaltransporditeenus"
+      ],
+      "document_id": "sotsiaaltransporditeenus",
+      "source_key": "sotsiaaltransporditeenus",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_service_sotsiaaltransporditeenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "76e16bea750e059974b1aedfe56f2506028b7d7cfa9e3a94df231421b4cff42f",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sotsiaaltransporditeenus"
+    },
+    {
+      "source_id": "koduteenus",
+      "title": "Koduteenus",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/toimetulek-kodus/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/toimetulek-kodus/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/toimetulek-kodus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_service_koduteenus"
+      ],
+      "document_id": "koduteenus",
+      "source_key": "koduteenus",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_service_koduteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "bb383090be1fabdd734ab229887b5963dd2208e3b858b2cbf30055aa43e90bf6",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "koduteenus"
+    },
+    {
+      "source_id": "tugiisikuteenus",
+      "title": "Tugiisikuteenus",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/tugiisikuteenus-2/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/tugiisikuteenus-2/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/tugiisikuteenus-2/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_service_tugiisikuteenus"
+      ],
+      "document_id": "tugiisikuteenus",
+      "source_key": "tugiisikuteenus",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_service_tugiisikuteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "70a6dce5a0684dcb5e64d3ac3b3413a9eacdd1aa53e3504fa3d6327063e8a911",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "tugiisikuteenus"
+    },
+    {
+      "source_id": "taisealise_hooldus",
+      "title": "Täisealise isiku hooldus",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/taisealise-isiku-hooldus/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/taisealise-isiku-hooldus/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/taisealise-isiku-hooldus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_service_taisealise_isiku_hooldus"
+      ],
+      "document_id": "taisealise_hooldus",
+      "source_key": "taisealise_hooldus",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_service_taisealise_isiku_hooldus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "40673691f15b028b877d10f4443f6b6a8d204430405e3933d2eadd26c621dd49",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "taisealise_hooldus"
+    },
+    {
+      "source_id": "lapsehoiuteenus",
+      "title": "Lapsehoiuteenus",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/lapsehoiuteenus/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/lapsehoiuteenus/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/lapsehoiuteenus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_service_lapsehoiuteenus"
+      ],
+      "document_id": "lapsehoiuteenus",
+      "source_key": "lapsehoiuteenus",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_service_lapsehoiuteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "c1c95d5ababf4a95ce050977a82a32e4727f679159b59d49e3e421ff3e965550",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "lapsehoiuteenus"
+    },
+    {
+      "source_id": "asendushooldusteenus",
+      "title": "Asendushooldusteenus",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/asendushooldusteenus/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/asendushooldusteenus/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/asendushooldusteenus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_service_asendushooldusteenus"
+      ],
+      "document_id": "asendushooldusteenus",
+      "source_key": "asendushooldusteenus",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_service_asendushooldusteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "b078d043548f60f7d04a6a8aa0d481c763fcb900621b37944809733cc658d0ce",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "asendushooldusteenus"
+    },
+    {
+      "source_id": "jarelhooldusteenus",
+      "title": "Järelhooldusteenus",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/jarelhooldusteenus/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/jarelhooldusteenus/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/jarelhooldusteenus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_service_jarelhooldusteenus"
+      ],
+      "document_id": "jarelhooldusteenus",
+      "source_key": "jarelhooldusteenus",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_service_jarelhooldusteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "37b4a406568f45045eb83200c20e5da10fb505b1db6cdaf8b41e8a5c7843c8d9",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "jarelhooldusteenus"
+    },
+    {
+      "source_id": "yldhooldusteenus",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vaarikas-vananemine/valjaspool-kodu-osutatav-uldhooldusteenus/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vaarikas-vananemine/valjaspool-kodu-osutatav-uldhooldusteenus/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vaarikas-vananemine/valjaspool-kodu-osutatav-uldhooldusteenus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus"
+      ],
+      "document_id": "yldhooldusteenus",
+      "source_key": "yldhooldusteenus",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "8f6a67739fcd654fee8607aa0ef37a00a2e677d4a91b4d025c1aa6e1993a9c4d",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "yldhooldusteenus"
+    },
+    {
+      "source_id": "valtimatu_sotsiaalabi",
+      "title": "Vältimatu sotsiaalabi teenus",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vajaduspohised-sotsiaalteenused-ja-toetused/valtimatu-sotsiaalabi-teenus/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vajaduspohised-sotsiaalteenused-ja-toetused/valtimatu-sotsiaalabi-teenus/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vajaduspohised-sotsiaalteenused-ja-toetused/valtimatu-sotsiaalabi-teenus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_service_valtimatu_sotsiaalabi_teenus"
+      ],
+      "document_id": "valtimatu_sotsiaalabi",
+      "source_key": "valtimatu_sotsiaalabi",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_service_valtimatu_sotsiaalabi_teenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "8f7880c767f70489f9aaae3ca707113732082566810f78fc3770f8b8ebd44be0",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "valtimatu_sotsiaalabi"
+    },
+    {
+      "source_id": "volanoustamisteenus",
+      "title": "Võlanõustamisteenus",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vajaduspohised-sotsiaalteenused-ja-toetused/volanoustamisteenus/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vajaduspohised-sotsiaalteenused-ja-toetused/volanoustamisteenus/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vajaduspohised-sotsiaalteenused-ja-toetused/volanoustamisteenus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_contact_siiri_sammel",
+        "kadrina_vald_service_volanoustamisteenus"
+      ],
+      "document_id": "volanoustamisteenus",
+      "source_key": "volanoustamisteenus",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_service_volanoustamisteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "4cfd8b6046a4e7571c90eecd9f7b3a2d109b74531486f006dcb83dd247a00b33",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "volanoustamisteenus"
+    },
+    {
+      "source_id": "muud_vajaduspohised_sotsiaalteenused",
+      "title": "Muud vajaduspõhised sotsiaalteenused",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vajaduspohised-sotsiaalteenused-ja-toetused/muud-vajaduspohised-sotsiaalteenused/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vajaduspohised-sotsiaalteenused-ja-toetused/muud-vajaduspohised-sotsiaalteenused/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vajaduspohised-sotsiaalteenused-ja-toetused/muud-vajaduspohised-sotsiaalteenused/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_contact_siiri_sammel",
+        "kadrina_vald_service_muud_vajaduspohised_sotsiaalteenused"
+      ],
+      "document_id": "muud_vajaduspohised_sotsiaalteenused",
+      "source_key": "muud_vajaduspohised_sotsiaalteenused",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_service_muud_vajaduspohised_sotsiaalteenused"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "05295f801865a58c9554a44aae1e14f59f993787741040100078b7a3957f87c2",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "muud_vajaduspohised_sotsiaalteenused"
+    },
+    {
+      "source_id": "toetus_raske_laps",
+      "title": "Toetus raske- ja sügava puudega lapsele",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/toetus-raske-ja-sugava-puudega-lapsele/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/toetus-raske-ja-sugava-puudega-lapsele/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/toetus-raske-ja-sugava-puudega-lapsele/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_benefit_raske_ja_sugava_puudega_lapse_toetus",
+        "kadrina_vald_contact_siiri_sammel"
+      ],
+      "document_id": "toetus_raske_laps",
+      "source_key": "toetus_raske_laps",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_benefit_raske_ja_sugava_puudega_lapse_toetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "6149e7c2a98c23a7221577f571f9c922c9588a55d131bc5b104f8e3bb1be67cb",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "toetus_raske_laps"
+    },
+    {
+      "source_id": "hooldajatoetus",
+      "title": "Hooldajatoetus",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/hooldaja-toetus/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/hooldaja-toetus/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/hooldaja-toetus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_benefit_hooldajatoetus",
+        "kadrina_vald_contact_siiri_sammel"
+      ],
+      "document_id": "hooldajatoetus",
+      "source_key": "hooldajatoetus",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_benefit_hooldajatoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "8bdc7743f74486bb8bfa725a06ee77a1be57590b5a2f44fba74da330c650fe37",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "hooldajatoetus"
+    },
+    {
+      "source_id": "eluruumi_kohandamine",
+      "title": "Puudega inimese eluruumi kohandamine",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/puudega-inimese-eluruumi-kohandamine/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/puudega-inimese-eluruumi-kohandamine/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/puudega-inimese-eluruumi-kohandamine/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_benefit_puudega_inimese_eluruumi_kohandamise_toetus"
+      ],
+      "document_id": "eluruumi_kohandamine",
+      "source_key": "eluruumi_kohandamine",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_benefit_puudega_inimese_eluruumi_kohandamise_toetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "913e52d703ee7c1117456319447894cec1b7866463426ba7cc214f2acb63ccb4",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "eluruumi_kohandamine"
+    },
+    {
+      "source_id": "esimese_klassi_toetus",
+      "title": "Esimesse klassi astuja toetus",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/esimesse-klassi-astuja-toetus/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/esimesse-klassi-astuja-toetus/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/esimesse-klassi-astuja-toetus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_benefit_esimesse_klassi_astuja_toetus",
+        "kadrina_vald_form_esimesse_klassi_astuja_toetus_spoku"
+      ],
+      "document_id": "esimese_klassi_toetus",
+      "source_key": "esimese_klassi_toetus",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_benefit_esimesse_klassi_astuja_toetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "375c383cee55a04fc595bbcf1adfbe52941231bed50cd0487478edfaa5fa3e3e",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "esimese_klassi_toetus"
+    },
+    {
+      "source_id": "joulutoetus",
+      "title": "Jõulutoetus",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/joulutoetus/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/joulutoetus/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/joulutoetus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_benefit_joulutoetus"
+      ],
+      "document_id": "joulutoetus",
+      "source_key": "joulutoetus",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_benefit_joulutoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "e1043aadbc370615386236a88fee655ddbf057557d787df723a808fde357268c",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "joulutoetus"
+    },
+    {
+      "source_id": "sunnitoetus",
+      "title": "Sünnitoetus",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/perekonnasundmused/sunnitoetus/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/perekonnasundmused/sunnitoetus/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/perekonnasundmused/sunnitoetus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_benefit_sunnitoetus",
+        "kadrina_vald_form_sunnitoetus_spoku"
+      ],
+      "document_id": "sunnitoetus",
+      "source_key": "sunnitoetus",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_benefit_sunnitoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "6e7d0cc4aa91344d1724b66f7c393381e756afba11e7764636dccd688c84ebb1",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sunnitoetus"
+    },
+    {
+      "source_id": "matusetoetus",
+      "title": "Matusetoetus",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/lahedase-surm/matusetoetus/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/lahedase-surm/matusetoetus/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/lahedase-surm/matusetoetus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_benefit_matusetoetus",
+        "kadrina_vald_form_matusetoetus_spoku"
+      ],
+      "document_id": "matusetoetus",
+      "source_key": "matusetoetus",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_benefit_matusetoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "81a8241a08eea55ea227e968b3f0a4a1c7ee2c28e95b98c12f645e5060f2a2b3",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "matusetoetus"
+    },
+    {
+      "source_id": "toimetulekutoetus",
+      "title": "Toimetulekutoetus",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vajaduspohised-sotsiaalteenused-ja-toetused/toimetulekutoetus/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vajaduspohised-sotsiaalteenused-ja-toetused/toimetulekutoetus/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vajaduspohised-sotsiaalteenused-ja-toetused/toimetulekutoetus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_benefit_toimetulekutoetus"
+      ],
+      "document_id": "toimetulekutoetus",
+      "source_key": "toimetulekutoetus",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_benefit_toimetulekutoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "d1be4bb5fa28064f4d664f534b41db1ffd57a1776b7604b5f85ca4897d775af6",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "toimetulekutoetus"
+    },
+    {
+      "source_id": "uhekordne_sotsiaaltoetus",
+      "title": "Ühekordne sotsiaaltoetus",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vajaduspohised-sotsiaalteenused-ja-toetused/uhekordne-sotsiaaltoetus/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vajaduspohised-sotsiaalteenused-ja-toetused/uhekordne-sotsiaaltoetus/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vajaduspohised-sotsiaalteenused-ja-toetused/uhekordne-sotsiaaltoetus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_benefit_uhekordne_sotsiaaltoetus"
+      ],
+      "document_id": "uhekordne_sotsiaaltoetus",
+      "source_key": "uhekordne_sotsiaaltoetus",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_benefit_uhekordne_sotsiaaltoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "65a99e75ee77e1b76668e36ed9d2e923072d895f89f278fa72226236d8215fcf",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "uhekordne_sotsiaaltoetus"
+    },
+    {
+      "source_id": "eestkoste",
+      "title": "Eestkoste",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/eestkoste/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/eestkoste/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/eestkoste/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_resource_eestkoste"
+      ],
+      "document_id": "eestkoste",
+      "source_key": "eestkoste",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_resource_eestkoste"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "8262f69d7a39df05a125487a5406c42485c017b0b63fc73f0b59ac7ab2d49fae",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "eestkoste"
+    },
+    {
+      "source_id": "parkimiskaart",
+      "title": "Puudega inimese sõiduki parkimiskaart",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/parkimiskaart/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/parkimiskaart/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/parkimiskaart/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_resource_puudega_inimese_soiduki_parkimiskaart"
+      ],
+      "document_id": "parkimiskaart",
+      "source_key": "parkimiskaart",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_resource_puudega_inimese_soiduki_parkimiskaart"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "8021bc981352017373b1a11d5686c929097e08c895bd757bd8554802c5a973d2",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "parkimiskaart"
+    },
+    {
+      "source_id": "teata_abivajajast",
+      "title": "Teata abivajajast",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/teata-abivajajast/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/teata-abivajajast/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/erivajadused-ja-igapaevaelu/teata-abivajajast/",
+      "source_type": "web_form",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_form_teata_abivajajast_veebivorm",
+        "kadrina_vald_resource_teata_abivajajast"
+      ],
+      "document_id": "teata_abivajajast",
+      "source_key": "teata_abivajajast",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_form_teata_abivajajast_veebivorm",
+        "kadrina_vald_resource_teata_abivajajast"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "2107e8e61a9d0478f5336140a175c2cd09c0680bdd5c9c17d77096b88eadfaad",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "teata_abivajajast"
+    },
+    {
+      "source_id": "abivajav_hadaohus_laps",
+      "title": "Abivajav ja hädaohus laps",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/abivajav-ja-hadaohus-laps/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/abivajav-ja-hadaohus-laps/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/abivajav-ja-hadaohus-laps/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_resource_abivajav_ja_hadaohus_laps"
+      ],
+      "document_id": "abivajav_hadaohus_laps",
+      "source_key": "abivajav_hadaohus_laps",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_resource_abivajav_ja_hadaohus_laps"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "9f934d59d5cbf59ac8df179dcede13210e55c7a2bbca6dda08685e6bfffd2654",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "abivajav_hadaohus_laps"
+    },
+    {
+      "source_id": "abivajav_laps_juhis_pdf",
+      "title": "Abivajavast ja hädaohus olevast lapsest teavitamise juhis (PDF)",
+      "url": "https://kadrina.ee/wp-content/uploads/2026/03/20260312_KK_Abivajavast_hadaohus_olevast_lapsest_teatamise_juhis.pdf",
+      "url_canonical": "https://kadrina.ee/wp-content/uploads/2026/03/20260312_KK_Abivajavast_hadaohus_olevast_lapsest_teatamise_juhis.pdf",
+      "normalized_url": "https://kadrina.ee/wp-content/uploads/2026/03/20260312_KK_Abivajavast_hadaohus_olevast_lapsest_teatamise_juhis.pdf",
+      "source_type": "kov_service_info",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_resource_abivajav_ja_hadaohus_laps"
+      ],
+      "document_id": "abivajav_laps_juhis_pdf",
+      "source_key": "abivajav_laps_juhis_pdf",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [],
+      "content_hash": "11c1819c479d83885fe6c5fe7cdf6aaf05c3c41dafd1de446c9adbd67209b264",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "abivajav_laps_juhis_pdf"
+    },
+    {
+      "source_id": "erivajadusega_laps",
+      "title": "Erivajadusega laps",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/erivajadusega-laps/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/erivajadusega-laps/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/erivajadusega-laps/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_resource_erivajadusega_laps"
+      ],
+      "document_id": "erivajadusega_laps",
+      "source_key": "erivajadusega_laps",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_resource_erivajadusega_laps"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "f73070d28a67c408f41904aace57b23f56faff99cde551a0f5a503ce642424a9",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "erivajadusega_laps"
+    },
+    {
+      "source_id": "lastekaitse",
+      "title": "Lastekaitse",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/lastekaitse/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/lastekaitse/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/lastekaitse/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_resource_lastekaitse"
+      ],
+      "document_id": "lastekaitse",
+      "source_key": "lastekaitse",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_resource_lastekaitse"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "af7e49987bb83e62c157ce1f94eac23d4397f47b52613458840f34ca41f9e4c2",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "lastekaitse"
+    },
+    {
+      "source_id": "lahisuhtevaegivald",
+      "title": "Lähisuhtevägivald perekonnas",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/lahisuhtevagivald-perekonnas/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/lahisuhtevagivald-perekonnas/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/lahisuhtevagivald-perekonnas/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_resource_lahisuhtevagivald_perekonnas",
+        "kadrina_vald_resource_naiste_tugikeskus_ja_ohvriabi_viited"
+      ],
+      "document_id": "lahisuhtevaegivald",
+      "source_key": "lahisuhtevaegivald",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_resource_lahisuhtevagivald_perekonnas",
+        "kadrina_vald_resource_naiste_tugikeskus_ja_ohvriabi_viited"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "84226512524477bb7a21eca9237f963386d62bc49128763553b00faa542472c5",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "lahisuhtevaegivald"
+    },
+    {
+      "source_id": "neet_noored",
+      "title": "NEET noored",
+      "url": "https://kadrina.ee/haridus-ja-noored/noored/neet-noored/",
+      "url_canonical": "https://kadrina.ee/haridus-ja-noored/noored/neet-noored/",
+      "normalized_url": "https://kadrina.ee/haridus-ja-noored/noored/neet-noored/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_contact_maria_mae",
+        "kadrina_vald_resource_neet_noored"
+      ],
+      "document_id": "neet_noored",
+      "source_key": "neet_noored",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_resource_neet_noored"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "faea60a787a92c8b043a6cb3ae01ddaec29b0104d29cd792306c6b77aac6859b",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "neet_noored"
+    },
+    {
+      "source_id": "vanemlikkus_paarisuhe",
+      "title": "Vanemlikkus ja paarisuhe",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/vanemlikkus-ja-paarisuhe/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/vanemlikkus-ja-paarisuhe/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/vanemlikkus-ja-paarisuhe/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_contact_kaili_treisalt",
+        "kadrina_vald_resource_vanemlikkus_ja_paarisuhe"
+      ],
+      "document_id": "vanemlikkus_paarisuhe",
+      "source_key": "vanemlikkus_paarisuhe",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_resource_vanemlikkus_ja_paarisuhe"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "429d588172b1e98485a15e10fc50595b89ec954134b146a268e3b91b13f33fb6",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "vanemlikkus_paarisuhe"
+    },
+    {
+      "source_id": "vajad_abi",
+      "title": "Vajad abi?",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/vajad-abi/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/vajad-abi/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/laste-ja-perede-heaolu/vajad-abi/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_resource_olulised_abikanalid_ja_tugiliinid"
+      ],
+      "document_id": "vajad_abi",
+      "source_key": "vajad_abi",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_resource_olulised_abikanalid_ja_tugiliinid"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "fdf517b49dbbc29a2c1a7666f49d23442e321b9fcfb468f220d2cdd27f109193",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "vajad_abi"
+    },
+    {
+      "source_id": "lapse_sund",
+      "title": "Lapse sünd",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/perekonnasundmused/lapse-sund/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/perekonnasundmused/lapse-sund/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/perekonnasundmused/lapse-sund/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_resource_lapse_sund"
+      ],
+      "document_id": "lapse_sund",
+      "source_key": "lapse_sund",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_resource_lapse_sund"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "05792c63e0385a66333de707c54ae239c867f42d6149b7d7a9d51531bbedd6e3",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "lapse_sund"
+    },
+    {
+      "source_id": "vaimse_tervise_toetamine",
+      "title": "Vaimse tervise toetamine",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/tervishoid/vaimse-tervise-toetamine/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/tervishoid/vaimse-tervise-toetamine/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/tervishoid/vaimse-tervise-toetamine/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_resource_vaimse_tervise_toetamine"
+      ],
+      "document_id": "vaimse_tervise_toetamine",
+      "source_key": "vaimse_tervise_toetamine",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_resource_vaimse_tervise_toetamine"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "342079bba06aff5f2d81e7d5d29baf3ed4c0d9786c4d31b018786ba82fe3e84a",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "vaimse_tervise_toetamine"
+    },
+    {
+      "source_id": "kadrina_paevakeskus",
+      "title": "Kadrina Päevakeskus",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vaarikas-vananemine/kadrina-paevakeskus/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vaarikas-vananemine/kadrina-paevakeskus/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vaarikas-vananemine/kadrina-paevakeskus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_contact_kadrina_paevakeskus",
+        "kadrina_vald_resource_kadrina_paevakeskus"
+      ],
+      "document_id": "kadrina_paevakeskus",
+      "source_key": "kadrina_paevakeskus",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_contact_kadrina_paevakeskus",
+        "kadrina_vald_resource_kadrina_paevakeskus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "ec5133f2c0557658206e955b58f7b0a7127f579e56830c00eaee01775ba5fe75",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "kadrina_paevakeskus"
+    },
+    {
+      "source_id": "toiduabi",
+      "title": "Toiduabi",
+      "url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vajaduspohised-sotsiaalteenused-ja-toetused/toiduabi/",
+      "url_canonical": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vajaduspohised-sotsiaalteenused-ja-toetused/toiduabi/",
+      "normalized_url": "https://kadrina.ee/perekond-ja-sotsiaalne-heaolu/vajaduspohised-sotsiaalteenused-ja-toetused/toiduabi/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_resource_toiduabi"
+      ],
+      "document_id": "toiduabi",
+      "source_key": "toiduabi",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_resource_toiduabi"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "986b3d8d51795f8c0acb1e67ce2f00a197dc70c5a11c34dd333c72237d1f5430",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "toiduabi"
+    },
+    {
+      "source_id": "sotsiaalteenuse_taotlus_pdf",
+      "title": "Sotsiaalteenuse taotlus (PDF)",
+      "url": "https://kadrina.ee/wp-content/uploads/2025/12/Lisa_5_Sotsiaalteenuse_taotlus.pdf",
+      "url_canonical": "https://kadrina.ee/wp-content/uploads/2025/12/Lisa_5_Sotsiaalteenuse_taotlus.pdf",
+      "normalized_url": "https://kadrina.ee/wp-content/uploads/2025/12/Lisa_5_Sotsiaalteenuse_taotlus.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "document_id": "sotsiaalteenuse_taotlus_pdf",
+      "source_key": "sotsiaalteenuse_taotlus_pdf",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "aec1807fa138e65c6761299aad0517d28190b64a34f44f12ad616f5bc8bd9b5b",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sotsiaalteenuse_taotlus_pdf"
+    },
+    {
+      "source_id": "sotsiaaltoetuse_taotlus_pdf",
+      "title": "Sotsiaaltoetuse taotlus (PDF)",
+      "url": "https://kadrina.ee/wp-content/uploads/2025/12/Lisa_1_Sotsiaaltoetuse_taotlus-2.pdf",
+      "url_canonical": "https://kadrina.ee/wp-content/uploads/2025/12/Lisa_1_Sotsiaaltoetuse_taotlus-2.pdf",
+      "normalized_url": "https://kadrina.ee/wp-content/uploads/2025/12/Lisa_1_Sotsiaaltoetuse_taotlus-2.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "document_id": "sotsiaaltoetuse_taotlus_pdf",
+      "source_key": "sotsiaaltoetuse_taotlus_pdf",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "75f6bfd4eb47dde224c1822609c89ae5376d002e12c26b480250aa4568a9959d",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sotsiaaltoetuse_taotlus_pdf"
+    },
+    {
+      "source_id": "hoolduse_hooldajatoetuse_taotlus_pdf",
+      "title": "Taotlus hoolduse seadmiseks, hooldaja ja hooldajatoetuse määramiseks (PDF)",
+      "url": "https://kadrina.ee/wp-content/uploads/2025/12/Lisa_3_Taotlus_hoolduse_seadmiseks_ja_hooldajatoetuse_maaramiseks.pdf",
+      "url_canonical": "https://kadrina.ee/wp-content/uploads/2025/12/Lisa_3_Taotlus_hoolduse_seadmiseks_ja_hooldajatoetuse_maaramiseks.pdf",
+      "normalized_url": "https://kadrina.ee/wp-content/uploads/2025/12/Lisa_3_Taotlus_hoolduse_seadmiseks_ja_hooldajatoetuse_maaramiseks.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_form_hoolduse_ja_hooldajatoetuse_taotlus"
+      ],
+      "document_id": "hoolduse_hooldajatoetuse_taotlus_pdf",
+      "source_key": "hoolduse_hooldajatoetuse_taotlus_pdf",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_form_hoolduse_ja_hooldajatoetuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "5a6fd82f289b0e0b8f9fcde1085491659bc34f53863681404c8256a82f351c04",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "hoolduse_hooldajatoetuse_taotlus_pdf"
+    },
+    {
+      "source_id": "parkimiskaardi_taotlus_pdf",
+      "title": "Puudega inimese sõiduki parkimiskaardi taotlus (PDF)",
+      "url": "https://kadrina.ee/wp-content/uploads/2025/12/parkimiskaardi_taotlus.pdf",
+      "url_canonical": "https://kadrina.ee/wp-content/uploads/2025/12/parkimiskaardi_taotlus.pdf",
+      "normalized_url": "https://kadrina.ee/wp-content/uploads/2025/12/parkimiskaardi_taotlus.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_form_parkimiskaardi_taotlus"
+      ],
+      "document_id": "parkimiskaardi_taotlus_pdf",
+      "source_key": "parkimiskaardi_taotlus_pdf",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_form_parkimiskaardi_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "c9f398c81d93551790f8b789524e992feaba472022b350ded5db479ddf2e1864",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "parkimiskaardi_taotlus_pdf"
+    },
+    {
+      "source_id": "eluruumi_kohandamise_taotlus_pdf",
+      "title": "Taotlus puudega inimese eluruumi kohanduseks (PDF)",
+      "url": "https://kadrina.ee/wp-content/uploads/2025/12/Lisa_4_Taotlus-puudega-isiku-eluruumi-kohanduseks.pdf",
+      "url_canonical": "https://kadrina.ee/wp-content/uploads/2025/12/Lisa_4_Taotlus-puudega-isiku-eluruumi-kohanduseks.pdf",
+      "normalized_url": "https://kadrina.ee/wp-content/uploads/2025/12/Lisa_4_Taotlus-puudega-isiku-eluruumi-kohanduseks.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_form_eluruumi_kohandamise_taotlus"
+      ],
+      "document_id": "eluruumi_kohandamise_taotlus_pdf",
+      "source_key": "eluruumi_kohandamise_taotlus_pdf",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_form_eluruumi_kohandamise_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "a753f1233f94919d4ba1f324079a9659bfcda93f10b3859f5f91b3190ca26f61",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "eluruumi_kohandamise_taotlus_pdf"
+    },
+    {
+      "source_id": "toimetulekutoetuse_taotlus_pdf",
+      "title": "Toimetulekutoetuse taotlus (PDF)",
+      "url": "https://kadrina.ee/wp-content/uploads/2025/12/toimetulekutoetuse_taotlus.pdf",
+      "url_canonical": "https://kadrina.ee/wp-content/uploads/2025/12/toimetulekutoetuse_taotlus.pdf",
+      "normalized_url": "https://kadrina.ee/wp-content/uploads/2025/12/toimetulekutoetuse_taotlus.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Kadrina vald",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "kadrina_vald_form_toimetulekutoetuse_taotlus"
+      ],
+      "document_id": "toimetulekutoetuse_taotlus_pdf",
+      "source_key": "toimetulekutoetuse_taotlus_pdf",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Kadrina vald",
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "kadrina_vald_form_toimetulekutoetuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "d17058ed6a661c5351e0930b0cc65bd33c4a9eae7fe001f8623885862ce0d1a6",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "toimetulekutoetuse_taotlus_pdf"
+    }
+  ],
+  "municipality_name": "Kadrina vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

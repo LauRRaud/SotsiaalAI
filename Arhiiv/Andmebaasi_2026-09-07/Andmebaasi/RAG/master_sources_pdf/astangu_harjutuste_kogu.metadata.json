@@ -1,0 +1,77 @@
+{
+  "source": {
+    "source_id": "astangu_harjutuste_kogu",
+    "title": "Harjutuste kogu",
+    "url": "https://www.astangu.ee/sites/default/files/media/Harjutuste%20kogu.pdf",
+    "normalized_url": "https://www.astangu.ee/sites/default/files/media/Harjutuste kogu.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "method_guidance",
+    "publisher": "Astangu",
+    "organization_id": "astangu",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Astangu Kutserehabilitatsiooni Keskus",
+      "praktiline töövahend",
+      "Astangu",
+      "harjutused",
+      "õppematerjal",
+      "kutsealane rehabilitatsioon"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "needs_review",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "Metadata konservatiivselt täpsustatud pealkirja ja registriinfo põhjal; PDF-i sisukord/täistekst vajaks vajadusel eraldi kontrolli.",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "Astangu",
+      "heading_4": null,
+      "line": 587,
+      "order": 301
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Harjutuste kogu"
+    ],
+    "collection_hints": [
+      "organization_materials"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Astangu"
+    ],
+    "organizations_seen": [
+      "astangu"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "Astangu",
+        "line": 587,
+        "order": 301
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.astangu.ee/sites/default/files/media/Harjutuste kogu.pdf",
+    "status_note": "upload rejected: Part exceeded maximum size (PDF too large; split or raise RAG upload limit) 2026-06-12"
+  },
+  "final_url": "https://www.astangu.ee/sites/default/files/media/Harjutuste%20kogu.pdf",
+  "redirects": [],
+  "sha256": "f1a163a70058234bffe61ab2947a02803bdbd9b470a5e211e2a01488685f0b81",
+  "bytes": 2718447,
+  "downloaded_at": "2026-08-14T08:00:57.165Z"
+}

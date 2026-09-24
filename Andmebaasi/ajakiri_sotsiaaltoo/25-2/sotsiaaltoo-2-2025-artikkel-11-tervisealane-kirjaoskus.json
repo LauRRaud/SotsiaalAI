@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "tervisealane-kirjaoskus-kuidas-jouda-tervise-vordsuseni-2025-2",
+  "title": "Tervisealane kirjaoskus – kuidas jõuda tervise võrdsuseni?",
+  "authors": [
+    "Kadi Lubi"
+  ],
+  "section": "Teoreetilised lähtekohad",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "description": "Teoreetiline artikkel, mis käsitleb tervisealast kirjaoskust kui võtit tervise ebavõrdsuse vähendamiseks. Autor selgitab, mida tähendab tervisealane kirjaoskus erinevatel tasanditel (funktsionaalne, interaktiivne ja kriitiline kirjaoskus), ning toob näiteid, kuidas madal kirjaoskus raskendab terviseteabe mõistmist, teenuste kasutamist ja otsuste tegemist. Analüüsitakse seoseid hariduse, sotsiaalmajandusliku staatuse, keeleoskuse ja tervisetulemite vahel ning pakutakse suundi, kuidas tervishoiu- ja sotsiaalvaldkonna spetsialistid saavad oma töös tervisealast kirjaoskust toetada – lihtkeel, visuaalid, dialoog ja kaasamine.",
+  "tags": [
+    "tervisealane kirjaoskus",
+    "tervise ebavõrdsus",
+    "terviseteadlikkus",
+    "lihtkeel",
+    "tervisekommunikatsioon",
+    "haridus",
+    "sotsiaalne õiglus"
+  ],
+  "source_path": "Tervisealane kirjaoskus – kuidas jõuda tervise võrdsuseni_2_2025.pdf",
+  "pageRange": "1–8",
+  "document_id": "sotsiaaltoo-2-2025-tervisealane-kirjaoskus-kuidas-jouda-tervise-vordsuseni-2025-2",
+  "source_format": "pdf",
+  "source_sha256": "ce58fb5795d2952336ee56eec250ec2664637a6909fde0c0d25ea8b3a33cd322",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2025-tervisealane-kirjaoskus-kuidas-jouda-tervise-vordsuseni-2025-2",
+    "previous_source_path": "Tervisealane kirjaoskus – kuidas jõuda tervise võrdsuseni_2_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ce58fb5795d2952336ee56eec250ec2664637a6909fde0c0d25ea8b3a33cd322",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "source_path": "tervisekassa_pikk_covid_patsiendijuhend.pdf",
+  "source_format": "pdf",
+  "sha256": "d4bd438db567b52361910dfe6d9059556338f55207ba6200da16ecc7529be1fe",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/tervisekassa_pikk_covid_patsiendijuhend.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "tervisekassa_pikk_covid_patsiendijuhend",
+          "title": "Pikk COVID patsiendijuhend",
+          "url": "https://tervisekassa.ee/sites/default/files/Pikk_Covid_patsiendijuhend_web.pdf",
+          "normalized_url": "https://tervisekassa.ee/sites/default/files/Pikk_Covid_patsiendijuhend_web.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "Tervisekassa",
+          "organization_id": "tervisekassa",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Tervisekassa",
+            "tervishoid",
+            "nakkushaigused",
+            "infektsioonikontroll",
+            "COVID-19",
+            "esmatasand",
+            "patsient",
+            "pikk COVID",
+            "post-COVID",
+            "infomaterjal"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "low",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_044",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "Tervisekassa",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 281,
+            "order": 166
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Pikk COVID patsiendijuhend"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "official_guideline"
+          ],
+          "resource_types_seen": [
+            "best_practice_guidance"
+          ],
+          "publishers_seen": [
+            "Tervisekassa"
+          ],
+          "organizations_seen": [
+            "tervisekassa"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Tervisekassa",
+              "line": 281,
+              "order": 166
+            },
+            {
+              "heading_2": "Tervisekassa",
+              "line": 755,
+              "order": 373
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://tervisekassa.ee/sites/default/files/Pikk_Covid_patsiendijuhend_web.pdf",
+          "priority_note": "covid-era guidance; deprioritized 2026-06-11 per owner decision"
+        },
+        "final_url": "https://tervisekassa.ee/sites/default/files/Pikk_Covid_patsiendijuhend_web.pdf",
+        "redirects": [],
+        "sha256": "d4bd438db567b52361910dfe6d9059556338f55207ba6200da16ecc7529be1fe",
+        "bytes": 648362,
+        "downloaded_at": "2026-08-14T08:00:37.000Z"
+      }
+    }
+  ],
+  "server_metadata": [],
+  "review_status": "metadata_conversion_pending"
+}

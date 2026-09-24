@@ -1,0 +1,152 @@
+{
+  "docId": "sotsiaaltoo-4-2016",
+  "articleId": "sotsiaaltoo-4-2016-artikkel-04-asenduskodulapse-identiteedi-kujunemise-toetamin",
+  "title": "Asenduskodulapse identiteedi kujunemise toetamine elulootöö meetodil",
+  "authors": [
+    "Ingrid Sindi",
+    "Judit Strömpl"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2016",
+  "section": "Eelretsenseeritud artiklid",
+  "pageRange": "21-30",
+  "pdf_start_page": 1,
+  "pdf_end_page": 10,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Eelretsenseeritud artikkel, milles Ingrid Sindi ja Judit Strömpl esitavad 15 kuud (jaanuar 2015 – märts 2016) kestnud etnograafilise uurimuse ühes Eesti asenduskodus. Teoreetiline osa seob lapse heaolu ja õiguse identiteedile: autorid osutavad, et lastekaitseseaduse § 5 loetelust on LÕKi artiklis 8 sätestatud õigus identiteedile välja jäänud, ning tuginevad Corsaro lapsepõlvesotsioloogiale, mille järgi laps ei ole sotsialiseerimise objekt, vaid sotsiaalne toimija. Metoodika lähtub elulootööst (Rose, Wrench ja Naylor, Willis ja Holland) ja Fay Martini otsekirjutamisest: laps jutustab oma elu sündmustest ja täiskasvanu kirjutab loo üles, laps saab teksti endale ja täiendab seda järgmistel kohtumistel. Osales kaheksa vabatahtlikult vastanud 13–18aastast noort, neli poissi ja neli tüdrukut; igaühega toimus kolm individuaalset kohtumist umbes kuu aja vahedega, lisaks ühine kanuumatk ja hinnanguid koguv grupivestlusring. Küsimustikuna kohandati 2011. aasta rahvaloenduse ankeeti. Viis tulemust: lapsed tahavad rääkida asenduskodueelsetest sündmustest; neil on üllatavalt palju positiivseid mälestusi bioloogilistest vanematest, ka hülgamist kogenutel; nad leiavad halvasti käitunud pereliikmetele asendajaid; eluloo jaoks info kogumine laiendab sugulaste ringi ja toob asenduskodu väliseid võrgustikuliikmeid; ning lapsed esitavad loo esmalt nii, nagu nad arvavad, et täiskasvanu ootab — asenduskodusse tuleku päeva lugu oli individuaalvestluses tavaline päev, grupivestluses hoopis teistsugune. Kokkuvõttes leiavad autorid, et asenduskoduteenuse kvaliteeti hinnatakse liiga palju formaalsete ja materiaalsete näitajate järgi, ning et mõiste „kaasamine” vajab Eesti erialases diskursuses arutelu — kaasamine peab tähendama tingimuste loomist lapse osalemiseks. Artiklil on ingliskeelne kokkuvõte.",
+  "tags": [
+    "eelretsenseeritud artikkel",
+    "asendushooldus",
+    "asenduskodu",
+    "elulootöö",
+    "otsekirjutamine",
+    "identiteet",
+    "lapse õigused",
+    "lapse osalus",
+    "lapse heaolu",
+    "etnograafiline uurimus",
+    "lapsepõlve sotsioloogia",
+    "päritolupere"
+  ],
+  "source_type": "file",
+  "source_path": "2016_4_artikkel_04_asenduskodulapse_identiteedi_kujunemise_toetamine_el.pdf",
+  "added": "2026-08-17",
+  "description_source": "ümber kirjutatud 2026-08-17 pärast A4 tekstiparandust",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-04-asenduskodulapse-identiteedi-kujunemise-toetamin",
+  "source_sha256": "a80ea18e85133e3462e8b8390ed71f5dd20bf7dc7a918b13c1572496a55072ea",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-04-asenduskodulapse-identiteedi-kujunemise-toetamin",
+    "previous_source_path": "2016_4_artikkel_04_asenduskodulapse_identiteedi_kujunemise_toetamine_el.txt",
+    "previous_source_original_path": "4-2016.pdf",
+    "reference_stored_source_sha256": "8c24092fd5f2a975b85799aa696f29e1ad7675c81f7de184fe3f54b51bd97649",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf",
+      "source_sha256": "0f07da03ffde36588435e96f8dda0f52a8140fbf9cc4201bb95e85b594e03fc9",
+      "pdf_start_page": 23,
+      "pdf_end_page": 32,
+      "printed_page_range": "21-31",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 33,
+      "source_regions": [
+        {
+          "source_pdf_page": 23,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 24,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 25,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 26,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 27,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 28,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 29,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 30,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 31,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 32,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "21-30"
+    },
+    "server_page_range": "21-31"
+  }
+}

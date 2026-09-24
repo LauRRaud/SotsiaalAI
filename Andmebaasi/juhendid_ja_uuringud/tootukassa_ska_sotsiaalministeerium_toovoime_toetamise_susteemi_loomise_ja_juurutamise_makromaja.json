@@ -1,0 +1,147 @@
+{
+  "source_path": "tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromaja.pdf",
+  "source_format": "pdf",
+  "sha256": "d98001bb5d49d314c557a6dfa4db6d489a3c29d24baea04d095eca4469dcbf66",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromaja.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromaja",
+          "title": "Töövõime toetamise süsteemi loomise ja juurutamise makromajandusliku mõju hindamine",
+          "url": "https://www.mkm.ee/sites/default/files/documents/2023-07/T%C3%B6%C3%B6v%C3%B5ime%20toetamise%20s%C3%BCsteemi%20loomise%20ja%20juurutamise%20makromajandusliku%20m%C3%B5ju%20hindamine%20l%C3%B5pparuanne%20%282%29.pdf",
+          "normalized_url": "https://www.mkm.ee/sites/default/files/documents/2023-07/Töövõime toetamise süsteemi loomise ja juurutamise makromajandusliku mõju hindamine lõpparuanne (2).pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "Töötukassa / SKA / Sotsiaalministeerium",
+          "organization_id": "tootukassa_ska_sotsiaalministeerium",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Töötukassa",
+            "töövõime",
+            "vähenenud töövõime",
+            "töötamine",
+            "tööturuteenused",
+            "abivajaduse hindamine",
+            "hindamisvahend",
+            "uuring",
+            "raport",
+            "analüüs",
+            "Sotsiaalministeerium",
+            "Sotsiaalkindlustusamet"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Töövõime / Töötukassa / SKA / STAR",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 359,
+            "order": 201
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Töövõime toetamise süsteemi loomise ja juurutamise makromajandusliku mõju hindamine"
+          ],
+          "collection_hints": [
+            "research_reports"
+          ],
+          "source_types_seen": [
+            "research_report"
+          ],
+          "resource_types_seen": [
+            "research_evidence"
+          ],
+          "publishers_seen": [
+            "Töötukassa / SKA / Sotsiaalministeerium"
+          ],
+          "organizations_seen": [
+            "tootukassa_ska_sotsiaalministeerium"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Töövõime / Töötukassa / SKA / STAR",
+              "line": 359,
+              "order": 201
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.mkm.ee/sites/default/files/documents/2023-07/Töövõime toetamise süsteemi loomise ja juurutamise makromajandusliku mõju hindamine lõpparuanne (2).pdf"
+        },
+        "final_url": "https://www.mkm.ee/sites/default/files/documents/2023-07/T%C3%B6%C3%B6v%C3%B5ime%20toetamise%20s%C3%BCsteemi%20loomise%20ja%20juurutamise%20makromajandusliku%20m%C3%B5ju%20hindamine%20l%C3%B5pparuanne%20%282%29.pdf",
+        "redirects": [],
+        "sha256": "d98001bb5d49d314c557a6dfa4db6d489a3c29d24baea04d095eca4469dcbf66",
+        "bytes": 8438466,
+        "downloaded_at": "2026-08-14T08:00:44.052Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromaja",
+      "metadata": {
+        "createdAt": "2026-06-12T04:19:13.048898+00:00",
+        "type": "FILE",
+        "fileName": "Töövõime toetamise süsteemi loomise ja juurutamise makromajandusliku mõju hindamine lõpparuanne (2).pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T04:19:12.986862+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/d97410001304/Töövõime toetamise süsteemi loomise ja juurutamise makromajandusliku mõju hindamine lõpparuanne (2).pdf",
+        "title": "Töövõime toetamise süsteemi loomise ja juurutamise makromajandusliku mõju hindamine",
+        "description": "Source master headings: Töövõime / Töötukassa / SKA / STAR",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2023,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–308",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "research_reports",
+        "source_id": "tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromaja",
+        "document_id": "tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromaja",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "6070d3def5247d7a36e41d73bfb37c0144aeba05393c23225b807db229c81671",
+        "url": "https://www.mkm.ee/sites/default/files/documents/2023-07/T%C3%B6%C3%B6v%C3%B5ime%20toetamise%20s%C3%BCsteemi%20loomise%20ja%20juurutamise%20makromajandusliku%20m%C3%B5ju%20hindamine%20l%C3%B5pparuanne%20%282%29.pdf",
+        "url_canonical": "https://www.mkm.ee/sites/default/files/documents/2023-07/Töövõime toetamise süsteemi loomise ja juurutamise makromajandusliku mõju hindamine lõpparuanne (2).pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromaja",
+        "updatedAt": "2026-06-12T04:19:13.048920+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

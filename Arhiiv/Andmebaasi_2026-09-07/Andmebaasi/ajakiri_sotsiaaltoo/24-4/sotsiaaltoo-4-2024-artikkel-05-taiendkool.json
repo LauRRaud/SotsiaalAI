@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-4-2024",
+  "issueLabel": "4/2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "taisksvanute-gumnaasium-2024-4",
+  "title": "Köielkõnd ja habras motivatsioon: täiskasvanud õppija ja sotsiaalpedagoogiline töö täiskasvanute gümnaasiumites",
+  "authors": [
+    "Triinu Jänes"
+  ],
+  "section": "Uurimus",
+  "pageRange": "33–39",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "source_path": "sotsiaaltoo_4_2024_web_Part7.pdf",
+  "description": "Artikkel kirjeldab täiskasvanute gümnaasiumite õppijate haavatavust, motivatsiooni kõikumist ja sotsiaalpedagoogilise toe rolli haridustee jätkumisel. Analüüsitakse õppijate vajadusi, riskitegureid ja toetavaid meetodeid.",
+  "tags": [
+    "täiskasvanuharidus",
+    "sotsiaalpedagoogika",
+    "uurimus",
+    "motivatsioon",
+    "haavatavad õppijad"
+  ],
+  "document_id": "sotsiaaltoo-4-2024-taisksvanute-gumnaasium-2024-4",
+  "source_format": "pdf",
+  "source_sha256": "43fc5905afbf4f945381b03ba4bd4df45f19df591a07a88001cfa03ed0673901",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2024-taisksvanute-gumnaasium-2024-4",
+    "previous_source_path": "sotsiaaltoo_4_2024_web_Part7.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "43fc5905afbf4f945381b03ba4bd4df45f19df591a07a88001cfa03ed0673901",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

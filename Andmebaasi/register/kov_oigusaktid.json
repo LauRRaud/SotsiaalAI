@@ -1,0 +1,3671 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "municipality_id": "jarva_vald",
+      "municipality_name": "Järva vald",
+      "source_path": "../oigusaktid/407042026033.xml",
+      "sha256": "c42b00fabb9cfc093fed36c9c0a7621d3359eeefd954da6766e224f7fb675f22",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Järva vald",
+        "municipality_id": "jarva_vald",
+        "slug": "jarva-vald",
+        "web_doc_id": "kov-jarva-vald",
+        "rt_doc_id": "kov-rt-jarva-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/404092025027?leiaKehtiv",
+        "act_reference": "404092025027",
+        "xml_file": "407042026033.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-jarva-vald",
+          "municipality_id": "jarva_vald",
+          "municipality_name": "Järva vald",
+          "slug": "jarva-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "404092025027",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/404092025027?leiaKehtiv",
+          "xml_file": "407042026033.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General regulation for social benefits and social services in Järva vald."
+      }
+    },
+    {
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "source_path": "../oigusaktid/419052023006.xml",
+      "sha256": "d130e8bc1ca1667a0d04658a7c3a33e7fdd04db2f72bc3697aa0b373f2438071",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Jõelähtme vald",
+        "municipality_id": "joelahtme_vald",
+        "slug": "joelahtme-vald",
+        "web_doc_id": "kov-joelahtme-vald",
+        "rt_doc_id": "kov-rt-joelahtme-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord Jõelähtme vallas",
+        "act_url": "https://www.riigiteataja.ee/akt/422012022004?leiaKehtiv",
+        "act_reference": "422012022004",
+        "xml_file": "419052023006.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-joelahtme-vald",
+          "municipality_id": "joelahtme_vald",
+          "municipality_name": "Jõelähtme vald",
+          "slug": "joelahtme-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "422012022004",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord Jõelähtme vallas",
+          "act_url": "https://www.riigiteataja.ee/akt/422012022004?leiaKehtiv",
+          "xml_file": "419052023006.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General regulation for social services and benefits in Jõelähtme vald."
+      }
+    },
+    {
+      "municipality_id": "jogeva_vald",
+      "municipality_name": "Jõgeva vald",
+      "source_path": "../oigusaktid/406112024020.xml",
+      "sha256": "1746365c21c6da0db5b7e2c0e109cb8fa4e5ee729fb0a80570e8fc87508abcc9",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Jõgeva vald",
+        "municipality_id": "jogeva_vald",
+        "slug": "jogeva-vald",
+        "web_doc_id": "kov-jogeva-vald",
+        "rt_doc_id": "kov-rt-jogeva-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord Jõgeva vallas",
+        "act_url": "https://www.riigiteataja.ee/akt/406112024020?leiaKehtiv",
+        "act_reference": "406112024020",
+        "xml_file": "406112024020.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-jogeva-vald",
+          "municipality_id": "jogeva_vald",
+          "municipality_name": "Jõgeva vald",
+          "slug": "jogeva-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "406112024020",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord Jõgeva vallas",
+          "act_url": "https://www.riigiteataja.ee/akt/406112024020?leiaKehtiv",
+          "xml_file": "406112024020.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "LOCAL_XML_FOUND",
+        "notes": "Local RT XML matched and generated metadata is ready. RT/legal layer stays separate from KOV web package."
+      }
+    },
+    {
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "source_path": "../oigusaktid/423012026003.xml",
+      "sha256": "8d9ed9fda7384004def73605d5b0ac6b3bf686c502a30a292cf2956782485c2f",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Haljala vald",
+        "municipality_id": "haljala_vald",
+        "slug": "haljala-vald",
+        "web_doc_id": "kov-haljala-vald",
+        "rt_doc_id": "kov-rt-haljala-vald",
+        "act_title": "Haljala valla sotsiaalhoolekandelise abi andmise tingimused ja kord",
+        "act_url": "https://www.riigiteataja.ee/akt/423012026003?leiaKehtiv",
+        "act_reference": "423012026003",
+        "xml_file": "423012026003.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-haljala-vald",
+          "municipality_id": "haljala_vald",
+          "municipality_name": "Haljala vald",
+          "slug": "haljala-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "423012026003",
+          "act_title": "Haljala valla sotsiaalhoolekandelise abi andmise tingimused ja kord",
+          "act_url": "https://www.riigiteataja.ee/akt/423012026003?leiaKehtiv",
+          "xml_file": "423012026003.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "LOCAL_XML_FOUND",
+        "notes": "Local RT XML matched and generated metadata is ready. RT/legal layer stays separate from KOV web package."
+      }
+    },
+    {
+      "municipality_id": "johvi_vald",
+      "municipality_name": "JĆµhvi vald",
+      "source_path": "../oigusaktid/423122025040.xml",
+      "sha256": "24b8b14f5d3201351304ca8ba79057e1a877bff68c713f80bda2dce2f08790fa",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "JĆµhvi vald",
+        "municipality_id": "johvi_vald",
+        "slug": "johvi-vald",
+        "web_doc_id": "kov-johvi-vald",
+        "rt_doc_id": "kov-rt-johvi-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord Jõhvi vallas",
+        "act_url": "https://www.riigiteataja.ee/akt/423122025040?leiaKehtiv",
+        "act_reference": "423122025040",
+        "xml_file": "423122025040.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-johvi-vald",
+          "municipality_id": "johvi_vald",
+          "municipality_name": "Jõhvi vald",
+          "slug": "johvi-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "423122025040",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord Jõhvi vallas",
+          "act_url": "https://www.riigiteataja.ee/akt/423122025040?leiaKehtiv",
+          "xml_file": "423122025040.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General regulation for social benefits and services in Jõhvi vald."
+      }
+    },
+    {
+      "municipality_id": "kadrina_vald",
+      "municipality_name": "Kadrina vald",
+      "source_path": "../oigusaktid/431122024038.xml",
+      "sha256": "a9261f428680af827e257699ac61530af8181959857081681eb804d33920e318",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Kadrina vald",
+        "municipality_id": "kadrina_vald",
+        "slug": "kadrina-vald",
+        "web_doc_id": "kov-kadrina-vald",
+        "rt_doc_id": "kov-rt-kadrina-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/406052021002?leiaKehtiv",
+        "act_reference": "406052021002",
+        "xml_file": "431122024038.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-kadrina-vald",
+          "municipality_id": "kadrina_vald",
+          "municipality_name": "Kadrina vald",
+          "slug": "kadrina-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "406052021002",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/406052021002?leiaKehtiv",
+          "xml_file": "431122024038.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General regulation for social welfare assistance in Kadrina vald."
+      }
+    },
+    {
+      "municipality_id": "kambja_vald",
+      "municipality_name": "Kambja vald",
+      "source_path": "../oigusaktid/428122024013.xml",
+      "sha256": "725e443d9844bbabc399e91f41e2b5cbc5df2962dc895c635ca46a25054ffe80",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Kambja vald",
+        "municipality_id": "kambja_vald",
+        "slug": "kambja-vald",
+        "web_doc_id": "kov-kambja-vald",
+        "rt_doc_id": "kov-rt-kambja-vald",
+        "act_title": "Kambja valla sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/428122024013?leiaKehtiv",
+        "act_reference": "428122024013",
+        "xml_file": "428122024013.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-kambja-vald",
+          "municipality_id": "kambja_vald",
+          "municipality_name": "Kambja vald",
+          "slug": "kambja-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "428122024013",
+          "act_title": "Kambja valla sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/428122024013?leiaKehtiv",
+          "xml_file": "428122024013.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Regulation effective 1 Jan 2025 governing application and receipt of social services and support in Kambja vald"
+      }
+    },
+    {
+      "municipality_id": "kanepi_vald",
+      "municipality_name": "Kanepi vald",
+      "source_path": "../oigusaktid/428102025016.xml",
+      "sha256": "79b47ee2e0a5d3b777e17249bb9fa8126596e4e00af037e8c195da8a44215971",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Kanepi vald",
+        "municipality_id": "kanepi_vald",
+        "slug": "kanepi-vald",
+        "web_doc_id": "kov-kanepi-vald",
+        "rt_doc_id": "kov-rt-kanepi-vald",
+        "act_title": "Kanepi valla sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/407022018007?leiaKehtiv",
+        "act_reference": "407022018007",
+        "xml_file": "428102025016.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-kanepi-vald",
+          "municipality_id": "kanepi_vald",
+          "municipality_name": "Kanepi vald",
+          "slug": "kanepi-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "407022018007",
+          "act_title": "Kanepi valla sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/407022018007?leiaKehtiv",
+          "xml_file": "428102025016.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Regulates the granting of social welfare assistance (services and supports) to residents of Kanepi using municipal and state funds"
+      }
+    },
+    {
+      "municipality_id": "kastre_vald",
+      "municipality_name": "Kastre vald",
+      "source_path": "../oigusaktid/424042026003.xml",
+      "sha256": "78e9a34d081454de69b58f1461529be5bad1f96c6075a0421b902e629958929e",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Kastre vald",
+        "municipality_id": "kastre_vald",
+        "slug": "kastre-vald",
+        "web_doc_id": "kov-kastre-vald",
+        "rt_doc_id": "kov-rt-kastre-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/424042026003?leiaKehtiv",
+        "act_reference": "424042026003",
+        "xml_file": "424042026003.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-kastre-vald",
+          "municipality_id": "kastre_vald",
+          "municipality_name": "Kastre vald",
+          "slug": "kastre-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "424042026003",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/424042026003?leiaKehtiv",
+          "xml_file": "424042026003.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT_CHECKED",
+        "notes": "Close match; regulation appears fragmented, and this is the best general match found."
+      }
+    },
+    {
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "source_path": "../oigusaktid/428122024131.xml",
+      "sha256": "d6c816f988d875e099c294abdd4c1059dd7a36ebdde1f03ee4ec7f04164a2aa1",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Kehtna vald",
+        "municipality_id": "kehtna_vald",
+        "slug": "kehtna-vald",
+        "web_doc_id": "kov-kehtna-vald",
+        "rt_doc_id": "kov-rt-kehtna-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise tingimused ja kord",
+        "act_url": "https://www.riigiteataja.ee/akt/428062023017?leiaKehtiv",
+        "act_reference": "428062023017",
+        "xml_file": "428122024131.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-kehtna-vald",
+          "municipality_id": "kehtna_vald",
+          "municipality_name": "Kehtna vald",
+          "slug": "kehtna-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "428062023017",
+          "act_title": "Sotsiaalhoolekandelise abi andmise tingimused ja kord",
+          "act_url": "https://www.riigiteataja.ee/akt/428062023017?leiaKehtiv",
+          "xml_file": "428122024131.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General social welfare regulation for Kehtna vald."
+      }
+    },
+    {
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "source_path": "../oigusaktid/429032025041.xml",
+      "sha256": "53806be79500a3bbb986c2744349896ef27dd69c4c4011d46ac6a19090347e3f",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Keila linn",
+        "municipality_id": "keila_linn",
+        "slug": "keila-linn",
+        "web_doc_id": "kov-keila-linn",
+        "rt_doc_id": "kov-rt-keila-linn",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord Keila linnas",
+        "act_url": "https://www.riigiteataja.ee/akt/429032025041?leiaKehtiv",
+        "act_reference": "429032025041",
+        "xml_file": "429032025041.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-keila-linn",
+          "municipality_id": "keila_linn",
+          "municipality_name": "Keila linn",
+          "slug": "keila-linn",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "429032025041",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord Keila linnas",
+          "act_url": "https://www.riigiteataja.ee/akt/429032025041?leiaKehtiv",
+          "xml_file": "429032025041.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General social welfare regulation for Keila city."
+      }
+    },
+    {
+      "municipality_id": "kihnu_vald",
+      "municipality_name": "Kihnu vald",
+      "source_path": "../oigusaktid/406022025035.xml",
+      "sha256": "74888155eb42a15a774f50a33234cd94cd4c6e1428591b45deabdcb7fe0ae8bd",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Kihnu vald",
+        "municipality_id": "kihnu_vald",
+        "slug": "kihnu-vald",
+        "web_doc_id": "kov-kihnu-vald",
+        "rt_doc_id": "kov-rt-kihnu-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise tingimused ja kord",
+        "act_url": "https://www.riigiteataja.ee/akt/406022025035?leiaKehtiv",
+        "act_reference": "406022025035",
+        "xml_file": "406022025035.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-kihnu-vald",
+          "municipality_id": "kihnu_vald",
+          "municipality_name": "Kihnu vald",
+          "slug": "kihnu-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "406022025035",
+          "act_title": "Sotsiaalhoolekandelise abi andmise tingimused ja kord",
+          "act_url": "https://www.riigiteataja.ee/akt/406022025035?leiaKehtiv",
+          "xml_file": "406022025035.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General regulation for social welfare assistance in Kihnu vald."
+      }
+    },
+    {
+      "municipality_id": "kiili_vald",
+      "municipality_name": "Kiili vald",
+      "source_path": "../oigusaktid/429052024010.xml",
+      "sha256": "24d26b87d9f672de5c2e57d871015a6dde42c58424de2d6fe4b59ad1767e8627",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Kiili vald",
+        "municipality_id": "kiili_vald",
+        "slug": "kiili-vald",
+        "web_doc_id": "kov-kiili-vald",
+        "rt_doc_id": "kov-rt-kiili-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord Kiili vallas",
+        "act_url": "https://www.riigiteataja.ee/akt/422102021005?leiaKehtiv",
+        "act_reference": "422102021005",
+        "xml_file": "429052024010.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-kiili-vald",
+          "municipality_id": "kiili_vald",
+          "municipality_name": "Kiili vald",
+          "slug": "kiili-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "422102021005",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord Kiili vallas",
+          "act_url": "https://www.riigiteataja.ee/akt/422102021005?leiaKehtiv",
+          "xml_file": "429052024010.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General regulation covering social services, benefits and financing in Kiili vald."
+      }
+    },
+    {
+      "municipality_id": "kohila_vald",
+      "municipality_name": "Kohila vald",
+      "source_path": "../oigusaktid/407012022005.xml",
+      "sha256": "a72553acdd668add92697fc6c6a319bb9f9702106dcb2af23390aa97d64f3ab7",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Kohila vald",
+        "municipality_id": "kohila_vald",
+        "slug": "kohila-vald",
+        "web_doc_id": "kov-kohila-vald",
+        "rt_doc_id": "kov-rt-kohila-vald",
+        "act_title": "Kohila valla poolt korraldatavate sotsiaalteenuste osutamise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/407012022005?leiaKehtiv",
+        "act_reference": "407012022005",
+        "xml_file": "407012022005.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-kohila-vald",
+          "municipality_id": "kohila_vald",
+          "municipality_name": "Kohila vald",
+          "slug": "kohila-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "407012022005",
+          "act_title": "Kohila valla poolt korraldatavate sotsiaalteenuste osutamise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/407012022005?leiaKehtiv",
+          "xml_file": "407012022005.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Verified RT current text; services regulation; valid as KOV RT/legal layer candidate."
+      }
+    },
+    {
+      "municipality_id": "kohtla_jarve_linn",
+      "municipality_name": "Kohtla-Järve linn",
+      "source_path": "../oigusaktid/412122024021.xml",
+      "sha256": "98ecb9c656c9106153dcbb58828754bcbfdb8554cf6c1c89f6f9a244fb30b67b",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Kohtla-Järve linn",
+        "municipality_id": "kohtla_jarve_linn",
+        "slug": "kohtla-jarve-linn",
+        "web_doc_id": "kov-kohtla-jarve-linn",
+        "rt_doc_id": "kov-rt-kohtla-jarve-linn",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/411122018001?leiaKehtiv",
+        "act_reference": "411122018001",
+        "xml_file": "412122024021.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-kohtla-jarve-linn",
+          "municipality_id": "kohtla_jarve_linn",
+          "municipality_name": "Kohtla-Järve linn",
+          "slug": "kohtla-jarve-linn",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "411122018001",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/411122018001?leiaKehtiv",
+          "xml_file": "412122024021.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General social welfare regulation for Kohtla-Järve city."
+      }
+    },
+    {
+      "municipality_id": "kose_vald",
+      "municipality_name": "Kose vald",
+      "source_path": "../oigusaktid/403042025042.xml",
+      "sha256": "a3d4582ecd83c3959cd93fdc84b54e8631bf4f95a6e848c20402cdca1611140d",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Kose vald",
+        "municipality_id": "kose_vald",
+        "slug": "kose-vald",
+        "web_doc_id": "kov-kose-vald",
+        "rt_doc_id": "kov-rt-kose-vald",
+        "act_title": "Kose valla sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/403042025042?leiaKehtiv",
+        "act_reference": "403042025042",
+        "xml_file": "403042025042.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-kose-vald",
+          "municipality_id": "kose_vald",
+          "municipality_name": "Kose vald",
+          "slug": "kose-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "403042025042",
+          "act_title": "Kose valla sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/403042025042?leiaKehtiv",
+          "xml_file": "403042025042.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Sets conditions and procedures for social welfare assistance and services in Kose, effective from 1 July 2025"
+      }
+    },
+    {
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "source_path": "../oigusaktid/406062023041.xml",
+      "sha256": "27ba451e2ccb36efe11c04091b02383eb7d9fc1e2fb9af04c98fdf7067aa9665",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Kuusalu vald",
+        "municipality_id": "kuusalu_vald",
+        "slug": "kuusalu-vald",
+        "web_doc_id": "kov-kuusalu-vald",
+        "rt_doc_id": "kov-rt-kuusalu-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord Kuusalu vallas",
+        "act_url": "https://www.riigiteataja.ee/akt/406062023041?leiaKehtiv",
+        "act_reference": "406062023041",
+        "xml_file": "406062023041.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-kuusalu-vald",
+          "municipality_id": "kuusalu_vald",
+          "municipality_name": "Kuusalu vald",
+          "slug": "kuusalu-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "406062023041",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord Kuusalu vallas",
+          "act_url": "https://www.riigiteataja.ee/akt/406062023041?leiaKehtiv",
+          "xml_file": "406062023041.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General regulation for social services and benefits in Kuusalu vald."
+      }
+    },
+    {
+      "municipality_id": "laane_harju_vald",
+      "municipality_name": "Lääne-Harju vald",
+      "source_path": "../oigusaktid/406022026039.xml",
+      "sha256": "910ed12f3c50ebd9d9a1aeaaa5b45f782d51d34cf646e1bb904d99905dc834c8",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Lääne-Harju vald",
+        "municipality_id": "laane_harju_vald",
+        "slug": "laane-harju-vald",
+        "web_doc_id": "kov-laane-harju-vald",
+        "rt_doc_id": "kov-rt-laane-harju-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord Lääne‑Harju vallas",
+        "act_url": "https://www.riigiteataja.ee/akt/401122020021?leiaKehtiv",
+        "act_reference": "401122020021",
+        "xml_file": "406022026039.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-laane-harju-vald",
+          "municipality_id": "laane_harju_vald",
+          "municipality_name": "Lääne-Harju vald",
+          "slug": "laane-harju-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "401122020021",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord Lääne‑Harju vallas",
+          "act_url": "https://www.riigiteataja.ee/akt/401122020021?leiaKehtiv",
+          "xml_file": "406022026039.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Regulation that governs social services and social support in Lääne‑Harju, describing application and determination processes"
+      }
+    },
+    {
+      "municipality_id": "laane_nigula_vald",
+      "municipality_name": "Lääne-Nigula vald",
+      "source_path": "../oigusaktid/417072025017.xml",
+      "sha256": "aaf26a9ffaf106c6f734ca11b78a7768a520761fbbb64521004388f08c4cd6c3",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Lääne-Nigula vald",
+        "municipality_id": "laane_nigula_vald",
+        "slug": "laane-nigula-vald",
+        "web_doc_id": "kov-laane-nigula-vald",
+        "rt_doc_id": "kov-rt-laane-nigula-vald",
+        "act_title": "Sotsiaalteenuste osutamise tingimused ja kord",
+        "act_url": "https://www.riigiteataja.ee/akt/423102018001?leiaKehtiv",
+        "act_reference": "423102018001",
+        "xml_file": "417072025017.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-laane-nigula-vald",
+          "municipality_id": "laane_nigula_vald",
+          "municipality_name": "Lääne-Nigula vald",
+          "slug": "laane-nigula-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "423102018001",
+          "act_title": "Sotsiaalteenuste osutamise tingimused ja kord",
+          "act_url": "https://www.riigiteataja.ee/akt/423102018001?leiaKehtiv",
+          "xml_file": "417072025017.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Verified RT current text; Lääne-Nigula Vallavolikogu; services regulation."
+      }
+    },
+    {
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "source_path": "../oigusaktid/416022022003.xml",
+      "sha256": "a7dbbb6da9efb4bbf933923d41f296bb9a124751fbc5cf3aad5ce624d98627e5",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Lääneranna vald",
+        "municipality_id": "laaneranna_vald",
+        "slug": "laaneranna-vald",
+        "web_doc_id": "kov-laaneranna-vald",
+        "rt_doc_id": "kov-rt-laaneranna-vald",
+        "act_title": "Lääneranna valla sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/403032018066?leiaKehtiv",
+        "act_reference": "403032018066",
+        "xml_file": "416022022003.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-laaneranna-vald",
+          "municipality_id": "laaneranna_vald",
+          "municipality_name": "Lääneranna vald",
+          "slug": "laaneranna-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "403032018066",
+          "act_title": "Lääneranna valla sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/403032018066?leiaKehtiv",
+          "xml_file": "416022022003.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General regulation for social services and benefits in Lääneranna vald."
+      }
+    },
+    {
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "source_path": "../oigusaktid/418032026007.xml",
+      "sha256": "d549611898b1d1aba83bf29a4a88840276581a5f6fbf0b53ebc79f8dbe403958",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Loksa linn",
+        "municipality_id": "loksa_linn",
+        "slug": "loksa-linn",
+        "web_doc_id": "kov-loksa-linn",
+        "rt_doc_id": "kov-rt-loksa-linn",
+        "act_title": "Sotsiaalteenuste osutamise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/418032026007?leiaKehtiv",
+        "act_reference": "418032026007",
+        "xml_file": "418032026007.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-loksa-linn",
+          "municipality_id": "loksa_linn",
+          "municipality_name": "Loksa linn",
+          "slug": "loksa-linn",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "418032026007",
+          "act_title": "Sotsiaalteenuste osutamise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/418032026007?leiaKehtiv",
+          "xml_file": "418032026007.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General regulation for social services in Loksa city."
+      }
+    },
+    {
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "source_path": "../oigusaktid/402062023117.xml",
+      "sha256": "30108f183f8d88cc9ff956bf487d3908703c690f64015234c23ab3b0d4b5d1ca",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Lüganuse vald",
+        "municipality_id": "luganuse_vald",
+        "slug": "luganuse-vald",
+        "web_doc_id": "kov-luganuse-vald",
+        "rt_doc_id": "kov-rt-luganuse-vald",
+        "act_title": "Sotsiaalhoolekande abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/402062023117?leiaKehtiv",
+        "act_reference": "402062023117",
+        "xml_file": "402062023117.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-luganuse-vald",
+          "municipality_id": "luganuse_vald",
+          "municipality_name": "Lüganuse vald",
+          "slug": "luganuse-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "402062023117",
+          "act_title": "Sotsiaalhoolekande abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/402062023117?leiaKehtiv",
+          "xml_file": "402062023117.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT_CHECKED",
+        "notes": "Best close match; title differs slightly but the act covers social services and social benefits."
+      }
+    },
+    {
+      "municipality_id": "luunja_vald",
+      "municipality_name": "Luunja vald",
+      "source_path": "../oigusaktid/407052021021.xml",
+      "sha256": "74bb76e6dddd37f66ef016eb8a28ade14f7fdaa38955676e446854dc74ddb06b",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Luunja vald",
+        "municipality_id": "luunja_vald",
+        "slug": "luunja-vald",
+        "web_doc_id": "kov-luunja-vald",
+        "rt_doc_id": "kov-rt-luunja-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/407052021021?leiaKehtiv",
+        "act_reference": "407052021021",
+        "xml_file": "407052021021.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-luunja-vald",
+          "municipality_id": "luunja_vald",
+          "municipality_name": "Luunja vald",
+          "slug": "luunja-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "407052021021",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/407052021021?leiaKehtiv",
+          "xml_file": "407052021021.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General regulation for social services and social benefits in Luunja vald."
+      }
+    },
+    {
+      "municipality_id": "maardu_linn",
+      "municipality_name": "Maardu linn",
+      "source_path": "../oigusaktid/405042025021.xml",
+      "sha256": "19c9dd12f1fcb2caa9592b1fa9d02b41cd67f8116a85a0bed4ad01e6ca679e12",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Maardu linn",
+        "municipality_id": "maardu_linn",
+        "slug": "maardu-linn",
+        "web_doc_id": "kov-maardu-linn",
+        "rt_doc_id": "kov-rt-maardu-linn",
+        "act_title": "Sotsiaalteenuste osutamise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/405042025021?leiaKehtiv",
+        "act_reference": "405042025021",
+        "xml_file": "405042025021.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-maardu-linn",
+          "municipality_id": "maardu_linn",
+          "municipality_name": "Maardu linn",
+          "slug": "maardu-linn",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "405042025021",
+          "act_title": "Sotsiaalteenuste osutamise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/405042025021?leiaKehtiv",
+          "xml_file": "405042025021.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General regulation for social services in Maardu city."
+      }
+    },
+    {
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "source_path": "../oigusaktid/429122022021.xml",
+      "sha256": "bbb2fc447155a2755f2edd2c0d98eac324157e20f47dc7584e25be204a00fb86",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Märjamaa vald",
+        "municipality_id": "marjamaa_vald",
+        "slug": "marjamaa-vald",
+        "web_doc_id": "kov-marjamaa-vald",
+        "rt_doc_id": "kov-rt-marjamaa-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord Märjamaa vallas",
+        "act_url": "https://www.riigiteataja.ee/akt/429122022021?leiaKehtiv",
+        "act_reference": "429122022021",
+        "xml_file": "429122022021.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-marjamaa-vald",
+          "municipality_id": "marjamaa_vald",
+          "municipality_name": "Märjamaa vald",
+          "slug": "marjamaa-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "429122022021",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord Märjamaa vallas",
+          "act_url": "https://www.riigiteataja.ee/akt/429122022021?leiaKehtiv",
+          "xml_file": "429122022021.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General social welfare regulation for Märjamaa governing social services and benefits"
+      }
+    },
+    {
+      "municipality_id": "muhu_vald",
+      "municipality_name": "Muhu vald",
+      "source_path": "../oigusaktid/425032026041.xml",
+      "sha256": "52aca3fe9af1cca238d15f1e0d864bb12392db0132f45d95372c47eaa18dbe3d",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Muhu vald",
+        "municipality_id": "muhu_vald",
+        "slug": "muhu-vald",
+        "web_doc_id": "kov-muhu-vald",
+        "rt_doc_id": "kov-rt-muhu-vald",
+        "act_title": "Muhu valla sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/423092025017?leiaKehtiv",
+        "act_reference": "423092025017",
+        "xml_file": "425032026041.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-muhu-vald",
+          "municipality_id": "muhu_vald",
+          "municipality_name": "Muhu vald",
+          "slug": "muhu-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "423092025017",
+          "act_title": "Muhu valla sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/423092025017?leiaKehtiv",
+          "xml_file": "425032026041.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General social welfare regulation for Muhu vald."
+      }
+    },
+    {
+      "municipality_id": "mulgi_vald",
+      "municipality_name": "Mulgi vald",
+      "source_path": "../oigusaktid/406032025001.xml",
+      "sha256": "563bc9f1d712eaad256ea78059a29fb51d94076c78c8d8fea0fdcbfeb1c13028",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Mulgi vald",
+        "municipality_id": "mulgi_vald",
+        "slug": "mulgi-vald",
+        "web_doc_id": "kov-mulgi-vald",
+        "rt_doc_id": "kov-rt-mulgi-vald",
+        "act_title": "Sotsiaalteenuste osutamise kord Mulgi vallas",
+        "act_url": "https://www.riigiteataja.ee/akt/406032025001?leiaKehtiv",
+        "act_reference": "406032025001",
+        "xml_file": "406032025001.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-mulgi-vald",
+          "municipality_id": "mulgi_vald",
+          "municipality_name": "Mulgi vald",
+          "slug": "mulgi-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "406032025001",
+          "act_title": "Sotsiaalteenuste osutamise kord Mulgi vallas",
+          "act_url": "https://www.riigiteataja.ee/akt/406032025001?leiaKehtiv",
+          "xml_file": "406032025001.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Verified RT current text; services regulation."
+      }
+    },
+    {
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "source_path": "../oigusaktid/403042025006.xml",
+      "sha256": "0017f49deb66627350b7daf2d94c5d64fb718c22615f88f6de9645ac66f6a5ae",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Mustvee vald",
+        "municipality_id": "mustvee_vald",
+        "slug": "mustvee-vald",
+        "web_doc_id": "kov-mustvee-vald",
+        "rt_doc_id": "kov-rt-mustvee-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord Mustvee vallas",
+        "act_url": "https://www.riigiteataja.ee/akt/403042025006?leiaKehtiv",
+        "act_reference": "403042025006",
+        "xml_file": "403042025006.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-mustvee-vald",
+          "municipality_id": "mustvee_vald",
+          "municipality_name": "Mustvee vald",
+          "slug": "mustvee-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "403042025006",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord Mustvee vallas",
+          "act_url": "https://www.riigiteataja.ee/akt/403042025006?leiaKehtiv",
+          "xml_file": "403042025006.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General regulation for social services and social benefits in Mustvee vald."
+      }
+    },
+    {
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "source_path": "../oigusaktid/431122019067.xml",
+      "sha256": "3545d4256306a062399a27a24bcd02b49846163d5ed11da61e4ee69eaedd3289",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Narva linn",
+        "municipality_id": "narva_linn",
+        "slug": "narva-linn",
+        "web_doc_id": "kov-narva-linn",
+        "rt_doc_id": "kov-rt-narva-linn",
+        "act_title": "Narva linna Sotsiaalabiameti põhimäärus",
+        "act_url": "https://www.riigiteataja.ee/akt/431122019067?leiaKehtiv",
+        "act_reference": "431122019067",
+        "xml_file": "431122019067.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-narva-linn",
+          "municipality_id": "narva_linn",
+          "municipality_name": "Narva linn",
+          "slug": "narva-linn",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "431122019067",
+          "act_title": "Narva linna Sotsiaalabiameti põhimäärus",
+          "act_url": "https://www.riigiteataja.ee/akt/431122019067?leiaKehtiv",
+          "xml_file": "431122019067.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "MANUAL_RT_MATCH",
+        "notes": "Narva RT regulation available for current corpus; no broader general social welfare regulation was found."
+      }
+    },
+    {
+      "municipality_id": "narva_joesuu_linn",
+      "municipality_name": "Narva-Jõesuu linn",
+      "source_path": "../oigusaktid/404022026032.xml",
+      "sha256": "62917d30e335fbe8a24075231eef9b653b783aa2fa25316ea42c2d60fac24729",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Narva-Jõesuu linn",
+        "municipality_id": "narva_joesuu_linn",
+        "slug": "narva-joesuu-linn",
+        "web_doc_id": "kov-narva-joesuu-linn",
+        "rt_doc_id": "kov-rt-narva-joesuu-linn",
+        "act_title": "Sotsiaaltoetuste maksmise ja sotsiaalhoolekandelise abi andmise kord Narva-Jõesuu linnas",
+        "act_url": "https://www.riigiteataja.ee/akt/404022026032?leiaKehtiv",
+        "act_reference": "404022026032",
+        "xml_file": "404022026032.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-narva-joesuu-linn",
+          "municipality_id": "narva_joesuu_linn",
+          "municipality_name": "Narva-Jõesuu linn",
+          "slug": "narva-joesuu-linn",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "404022026032",
+          "act_title": "Sotsiaaltoetuste maksmise ja sotsiaalhoolekandelise abi andmise kord Narva-Jõesuu linnas",
+          "act_url": "https://www.riigiteataja.ee/akt/404022026032?leiaKehtiv",
+          "xml_file": "404022026032.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Verified RT current text; combined social benefits and social welfare assistance regulation."
+      }
+    },
+    {
+      "municipality_id": "noo_vald",
+      "municipality_name": "Nõo vald",
+      "source_path": "../oigusaktid/406102021036.xml",
+      "sha256": "813387b75b36c5020aed1ecf4c2615579d6850ee2c2a4678f838c619bf669faf",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Nõo vald",
+        "municipality_id": "noo_vald",
+        "slug": "noo-vald",
+        "web_doc_id": "kov-noo-vald",
+        "rt_doc_id": "kov-rt-noo-vald",
+        "act_title": "Nõo valla sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/406102021036?leiaKehtiv",
+        "act_reference": "406102021036",
+        "xml_file": "406102021036.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-noo-vald",
+          "municipality_id": "noo_vald",
+          "municipality_name": "Nõo vald",
+          "slug": "noo-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "406102021036",
+          "act_title": "Nõo valla sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/406102021036?leiaKehtiv",
+          "xml_file": "406102021036.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Regulation detailing the description, funding and application procedures for social services and benefits provided by Nõo vald"
+      }
+    },
+    {
+      "municipality_id": "otepaa_vald",
+      "municipality_name": "Otepää vald",
+      "source_path": "../oigusaktid/418122021013.xml",
+      "sha256": "a2cd97f871a0662f1d0bcc7473bfe819c3aee1c7ba2e6aaf7d61b37aac2a4fce",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Otepää vald",
+        "municipality_id": "otepaa_vald",
+        "slug": "otepaa-vald",
+        "web_doc_id": "kov-otepaa-vald",
+        "rt_doc_id": "kov-rt-otepaa-vald",
+        "act_title": "Otepää valla sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/418122021013?leiaKehtiv",
+        "act_reference": "418122021013",
+        "xml_file": "418122021013.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-otepaa-vald",
+          "municipality_id": "otepaa_vald",
+          "municipality_name": "Otepää vald",
+          "slug": "otepaa-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "418122021013",
+          "act_title": "Otepää valla sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/418122021013?leiaKehtiv",
+          "xml_file": "418122021013.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Act governing the conditions and procedures for providing social support and services in Otepää vald"
+      }
+    },
+    {
+      "municipality_id": "paide_linn",
+      "municipality_name": "Paide linn",
+      "source_path": "../oigusaktid/431122025034.xml",
+      "sha256": "efc6bcfc25d76012805ea09d636cdfd15eefeaec66c9380590868a6c5a75eb05",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Paide linn",
+        "municipality_id": "paide_linn",
+        "slug": "paide-linn",
+        "web_doc_id": "kov-paide-linn",
+        "rt_doc_id": "kov-rt-paide-linn",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/431122025034?leiaKehtiv",
+        "act_reference": "431122025034",
+        "xml_file": "431122025034.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-paide-linn",
+          "municipality_id": "paide_linn",
+          "municipality_name": "Paide linn",
+          "slug": "paide-linn",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "431122025034",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/431122025034?leiaKehtiv",
+          "xml_file": "431122025034.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General regulation for social welfare assistance in Paide city."
+      }
+    },
+    {
+      "municipality_id": "parnu_linn",
+      "municipality_name": "Pärnu linn",
+      "source_path": "../oigusaktid/423112023018.xml",
+      "sha256": "0ebdb8f605b3c0011ab512227f3fc0432f8aaa67b931706f2111e6aae2f6e3a0",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Pärnu linn",
+        "municipality_id": "parnu_linn",
+        "slug": "parnu-linn",
+        "web_doc_id": "kov-parnu-linn",
+        "rt_doc_id": "kov-rt-parnu-linn",
+        "act_title": "Sotsiaalteenuste osutamise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/423112023018?leiaKehtiv",
+        "act_reference": "423112023018",
+        "xml_file": "423112023018.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-parnu-linn",
+          "municipality_id": "parnu_linn",
+          "municipality_name": "Pärnu linn",
+          "slug": "parnu-linn",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "423112023018",
+          "act_title": "Sotsiaalteenuste osutamise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/423112023018?leiaKehtiv",
+          "xml_file": "423112023018.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Verified RT current text; Pärnu Linnavolikogu; services regulation."
+      }
+    },
+    {
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "source_path": "../oigusaktid/411042018011.xml",
+      "sha256": "824d42d13bdeb216a7cac8e1cfbcd1691d27b834a1c18c1dcc2ff51e8fe937b5",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Peipsiääre vald",
+        "municipality_id": "peipsiaare_vald",
+        "slug": "peipsiaare-vald",
+        "web_doc_id": "kov-peipsiaare-vald",
+        "rt_doc_id": "kov-rt-peipsiaare-vald",
+        "act_title": "Peipsiääre valla sotsiaalteenuste osutamise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/411042018011?leiaKehtiv",
+        "act_reference": "411042018011",
+        "xml_file": "411042018011.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-peipsiaare-vald",
+          "municipality_id": "peipsiaare_vald",
+          "municipality_name": "Peipsiääre vald",
+          "slug": "peipsiaare-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "411042018011",
+          "act_title": "Peipsiääre valla sotsiaalteenuste osutamise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/411042018011?leiaKehtiv",
+          "xml_file": "411042018011.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Lists social services provided by Peipsiääre, including home service, general care, support person and others, and sets their conditions"
+      }
+    },
+    {
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "source_path": "../oigusaktid/405042018002.xml",
+      "sha256": "ff0f0562dce2c3b7806074ec4b2dab193235e22e53f26ed1e65380ca2c70a368",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Põhja-Pärnumaa vald",
+        "municipality_id": "pohja_parnumaa_vald",
+        "slug": "pohja-parnumaa-vald",
+        "web_doc_id": "kov-pohja-parnumaa-vald",
+        "rt_doc_id": "kov-rt-pohja-parnumaa-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/405042018002?leiaKehtiv",
+        "act_reference": "405042018002",
+        "xml_file": "405042018002.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-pohja-parnumaa-vald",
+          "municipality_id": "pohja_parnumaa_vald",
+          "municipality_name": "Põhja-Pärnumaa vald",
+          "slug": "pohja-parnumaa-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "405042018002",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/405042018002?leiaKehtiv",
+          "xml_file": "405042018002.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General social welfare regulation for Põhja-Pärnumaa vald."
+      }
+    },
+    {
+      "municipality_id": "pohja_sakala_vald",
+      "municipality_name": "Põhja-Sakala vald",
+      "source_path": "../oigusaktid/406062023011.xml",
+      "sha256": "353e53ca13a0e2283e1fc52d1fe5215e313f0398baf33f2fe330b7381c0e8ed5",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Põhja-Sakala vald",
+        "municipality_id": "pohja_sakala_vald",
+        "slug": "pohja-sakala-vald",
+        "web_doc_id": "kov-pohja-sakala-vald",
+        "rt_doc_id": "kov-rt-pohja-sakala-vald",
+        "act_title": "Sotsiaalhoolekandelise abi osutamise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/406062023011?leiaKehtiv",
+        "act_reference": "406062023011",
+        "xml_file": "406062023011.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-pohja-sakala-vald",
+          "municipality_id": "pohja_sakala_vald",
+          "municipality_name": "Põhja-Sakala vald",
+          "slug": "pohja-sakala-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "406062023011",
+          "act_title": "Sotsiaalhoolekandelise abi osutamise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/406062023011?leiaKehtiv",
+          "xml_file": "406062023011.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General regulation for social welfare assistance in Põhja-Sakala vald."
+      }
+    },
+    {
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "source_path": "../oigusaktid/421062023039.xml",
+      "sha256": "73af4e570b34e39b80036dc8bace7dfe95565a9929888fa40e67c2c718e95d9e",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Põltsamaa vald",
+        "municipality_id": "poltsamaa_vald",
+        "slug": "poltsamaa-vald",
+        "web_doc_id": "kov-poltsamaa-vald",
+        "rt_doc_id": "kov-rt-poltsamaa-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/421062023039?leiaKehtiv",
+        "act_reference": "421062023039",
+        "xml_file": "421062023039.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-poltsamaa-vald",
+          "municipality_id": "poltsamaa_vald",
+          "municipality_name": "Põltsamaa vald",
+          "slug": "poltsamaa-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "421062023039",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/421062023039?leiaKehtiv",
+          "xml_file": "421062023039.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General social welfare regulation for Põltsamaa vald."
+      }
+    },
+    {
+      "municipality_id": "polva_vald",
+      "municipality_name": "Põlva vald",
+      "source_path": "../oigusaktid/405042024007.xml",
+      "sha256": "c795f9616822aa6a1171b9ba66d81892aa9db881b23f37c272f3ea2641eabba9",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Põlva vald",
+        "municipality_id": "polva_vald",
+        "slug": "polva-vald",
+        "web_doc_id": "kov-polva-vald",
+        "rt_doc_id": "kov-rt-polva-vald",
+        "act_title": "Sotsiaaltoetuste määramise ja maksmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/405042024007?leiaKehtiv",
+        "act_reference": "405042024007",
+        "xml_file": "405042024007.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-polva-vald",
+          "municipality_id": "polva_vald",
+          "municipality_name": "Põlva vald",
+          "slug": "polva-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "405042024007",
+          "act_title": "Sotsiaaltoetuste määramise ja maksmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/405042024007?leiaKehtiv",
+          "xml_file": "405042024007.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Verified RT current text; benefits regulation. Services may need separate act if service-level legal coverage is required."
+      }
+    },
+    {
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "source_path": "../oigusaktid/417092025023.xml",
+      "sha256": "05a54ca9b1271b32a5635404ce1987d20962cc90fa9b19e5d230d525563080a5",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Raasiku vald",
+        "municipality_id": "raasiku_vald",
+        "slug": "raasiku-vald",
+        "web_doc_id": "kov-raasiku-vald",
+        "rt_doc_id": "kov-rt-raasiku-vald",
+        "act_title": "Raasiku valla sotsiaalhoolekandelise abi osutamise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/417092025023?leiaKehtiv",
+        "act_reference": "417092025023",
+        "xml_file": "417092025023.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-raasiku-vald",
+          "municipality_id": "raasiku_vald",
+          "municipality_name": "Raasiku vald",
+          "slug": "raasiku-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "417092025023",
+          "act_title": "Raasiku valla sotsiaalhoolekandelise abi osutamise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/417092025023?leiaKehtiv",
+          "xml_file": "417092025023.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT_CHECKED",
+        "notes": "Current general regulation uses a slightly different title than the standard wording."
+      }
+    },
+    {
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "source_path": "../oigusaktid/431082024012.xml",
+      "sha256": "ef1eda2c69038961b59d3e9034fcc04011d8f4dc4c715ef2bf6a0dd4c622ed44",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Rae vald",
+        "municipality_id": "rae_vald",
+        "slug": "rae-vald",
+        "web_doc_id": "kov-rae-vald",
+        "rt_doc_id": "kov-rt-rae-vald",
+        "act_title": "Rae valla sotsiaalteenuste osutamise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/431082024012?leiaKehtiv",
+        "act_reference": "431082024012",
+        "xml_file": "431082024012.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-rae-vald",
+          "municipality_id": "rae_vald",
+          "municipality_name": "Rae vald",
+          "slug": "rae-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "431082024012",
+          "act_title": "Rae valla sotsiaalteenuste osutamise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/431082024012?leiaKehtiv",
+          "xml_file": "431082024012.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Current act (as of 3 Sept 2024) establishing conditions and procedures for providing social services in Rae and listing specific services"
+      }
+    },
+    {
+      "municipality_id": "rakvere_linn",
+      "municipality_name": "Rakvere linn",
+      "source_path": "../oigusaktid/426032025019.xml",
+      "sha256": "8a5c81a210fd803f6d00285aa131bb0ae10e2b42ea32f3d362fb790fe1f82c00",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Rakvere linn",
+        "municipality_id": "rakvere_linn",
+        "slug": "rakvere-linn",
+        "web_doc_id": "kov-rakvere-linn",
+        "rt_doc_id": "kov-rt-rakvere-linn",
+        "act_title": "Rakvere linna sotsiaalteenused",
+        "act_url": "https://www.riigiteataja.ee/akt/426032025019?leiaKehtiv",
+        "act_reference": "426032025019",
+        "xml_file": "426032025019.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-rakvere-linn",
+          "municipality_id": "rakvere_linn",
+          "municipality_name": "Rakvere linn",
+          "slug": "rakvere-linn",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "426032025019",
+          "act_title": "Rakvere linna sotsiaalteenused",
+          "act_url": "https://www.riigiteataja.ee/akt/426032025019?leiaKehtiv",
+          "xml_file": "426032025019.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Act effective 29 Mar 2025 regulating the application, determination and financing of social services provided by Rakvere city"
+      }
+    },
+    {
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "source_path": "../oigusaktid/428042022001.xml",
+      "sha256": "dcfe628eddf0ac8bd6b6e7a4b6ccdf8c49aa3df5ce30327ee395ab4fabc2793e",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Rakvere vald",
+        "municipality_id": "rakvere_vald",
+        "slug": "rakvere-vald",
+        "web_doc_id": "kov-rakvere-vald",
+        "rt_doc_id": "kov-rt-rakvere-vald",
+        "act_title": "Rakvere valla sotsiaalhoolekandelise abi andmise tingimused ja kord",
+        "act_url": "https://www.riigiteataja.ee/akt/428042022001?leiaKehtiv",
+        "act_reference": "428042022001",
+        "xml_file": "428042022001.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-rakvere-vald",
+          "municipality_id": "rakvere_vald",
+          "municipality_name": "Rakvere vald",
+          "slug": "rakvere-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "428042022001",
+          "act_title": "Rakvere valla sotsiaalhoolekandelise abi andmise tingimused ja kord",
+          "act_url": "https://www.riigiteataja.ee/akt/428042022001?leiaKehtiv",
+          "xml_file": "428042022001.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General social welfare regulation for Rakvere vald."
+      }
+    },
+    {
+      "municipality_id": "rapina_vald",
+      "municipality_name": "Räpina vald",
+      "source_path": "../oigusaktid/429032018015.xml",
+      "sha256": "40d9ca2728ce1a29d5ad77c3c14f552d9cc56d31370610654023dd8698af49fb",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Räpina vald",
+        "municipality_id": "rapina_vald",
+        "slug": "rapina-vald",
+        "web_doc_id": "kov-rapina-vald",
+        "rt_doc_id": "kov-rt-rapina-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/429032018015?leiaKehtiv",
+        "act_reference": "429032018015",
+        "xml_file": "429032018015.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-rapina-vald",
+          "municipality_id": "rapina_vald",
+          "municipality_name": "Räpina vald",
+          "slug": "rapina-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "429032018015",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/429032018015?leiaKehtiv",
+          "xml_file": "429032018015.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General social welfare regulation for Räpina vald."
+      }
+    },
+    {
+      "municipality_id": "rapla_vald",
+      "municipality_name": "Rapla vald",
+      "source_path": "../oigusaktid/429122020017.xml",
+      "sha256": "d39a78f3ea08ef2fc728d815318ace52c7423860ae3697f237c7da2a7fed12ec",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Rapla vald",
+        "municipality_id": "rapla_vald",
+        "slug": "rapla-vald",
+        "web_doc_id": "kov-rapla-vald",
+        "rt_doc_id": "kov-rt-rapla-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/429122020017?leiaKehtiv",
+        "act_reference": "429122020017",
+        "xml_file": "429122020017.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-rapla-vald",
+          "municipality_id": "rapla_vald",
+          "municipality_name": "Rapla vald",
+          "slug": "rapla-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "429122020017",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/429122020017?leiaKehtiv",
+          "xml_file": "429122020017.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General social welfare regulation for Rapla vald."
+      }
+    },
+    {
+      "municipality_id": "rouge_vald",
+      "municipality_name": "Rõuge vald",
+      "source_path": "../oigusaktid/410032026002.xml",
+      "sha256": "350f9c1adaa6ed187c904495f6f621e56267ed4cf344ae0dd2557cb8381f5c56",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Rõuge vald",
+        "municipality_id": "rouge_vald",
+        "slug": "rouge-vald",
+        "web_doc_id": "kov-rouge-vald",
+        "rt_doc_id": "kov-rt-rouge-vald",
+        "act_title": "Sotsiaalhoolekandeabi andmise kord Rõuge vallas",
+        "act_url": "https://www.riigiteataja.ee/akt/410032026002?leiaKehtiv",
+        "act_reference": "410032026002",
+        "xml_file": "410032026002.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-rouge-vald",
+          "municipality_id": "rouge_vald",
+          "municipality_name": "Rõuge vald",
+          "slug": "rouge-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "410032026002",
+          "act_title": "Sotsiaalhoolekandeabi andmise kord Rõuge vallas",
+          "act_url": "https://www.riigiteataja.ee/akt/410032026002?leiaKehtiv",
+          "xml_file": "410032026002.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT_CHECKED",
+        "notes": "Close match; title differs slightly from the standard wording."
+      }
+    },
+    {
+      "municipality_id": "ruhnu_vald",
+      "municipality_name": "Ruhnu vald",
+      "source_path": "../oigusaktid/422032022006.xml",
+      "sha256": "cc2f2c9b245cd1af725aa5491db1711c26a73e82d04115c865d2c381a104881b",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Ruhnu vald",
+        "municipality_id": "ruhnu_vald",
+        "slug": "ruhnu-vald",
+        "web_doc_id": "kov-ruhnu-vald",
+        "rt_doc_id": "kov-rt-ruhnu-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise tingimused ja kord Ruhnu vallas",
+        "act_url": "https://www.riigiteataja.ee/akt/422032022006?leiaKehtiv",
+        "act_reference": "422032022006",
+        "xml_file": "422032022006.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-ruhnu-vald",
+          "municipality_id": "ruhnu_vald",
+          "municipality_name": "Ruhnu vald",
+          "slug": "ruhnu-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "422032022006",
+          "act_title": "Sotsiaalhoolekandelise abi andmise tingimused ja kord Ruhnu vallas",
+          "act_url": "https://www.riigiteataja.ee/akt/422032022006?leiaKehtiv",
+          "xml_file": "422032022006.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General social welfare regulation for Ruhnu vald."
+      }
+    },
+    {
+      "municipality_id": "saarde_vald",
+      "municipality_name": "Saarde vald",
+      "source_path": "../oigusaktid/425042025025.xml",
+      "sha256": "8a7500b4d802285618875e6db4cc4a95966f818cc881be2b6873746121ee182e",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Saarde vald",
+        "municipality_id": "saarde_vald",
+        "slug": "saarde-vald",
+        "web_doc_id": "kov-saarde-vald",
+        "rt_doc_id": "kov-rt-saarde-vald",
+        "act_title": "Sotsiaalteenuste osutamise tingimused ja kord",
+        "act_url": "https://www.riigiteataja.ee/akt/425042025025?leiaKehtiv",
+        "act_reference": "425042025025",
+        "xml_file": "425042025025.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-saarde-vald",
+          "municipality_id": "saarde_vald",
+          "municipality_name": "Saarde vald",
+          "slug": "saarde-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "425042025025",
+          "act_title": "Sotsiaalteenuste osutamise tingimused ja kord",
+          "act_url": "https://www.riigiteataja.ee/akt/425042025025?leiaKehtiv",
+          "xml_file": "425042025025.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General regulation for social welfare services in Saarde vald."
+      }
+    },
+    {
+      "municipality_id": "saaremaa_vald",
+      "municipality_name": "Saaremaa vald",
+      "source_path": "../oigusaktid/412092023017.xml",
+      "sha256": "2a73829dbae1b3d6e2e4619e33ef32435edb75d448537b8796fa7932c7df63e4",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Saaremaa vald",
+        "municipality_id": "saaremaa_vald",
+        "slug": "saaremaa-vald",
+        "web_doc_id": "kov-saaremaa-vald",
+        "rt_doc_id": "kov-rt-saaremaa-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord Saaremaa vallas",
+        "act_url": "https://www.riigiteataja.ee/akt/412092023017?leiaKehtiv",
+        "act_reference": "412092023017",
+        "xml_file": "412092023017.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-saaremaa-vald",
+          "municipality_id": "saaremaa_vald",
+          "municipality_name": "Saaremaa vald",
+          "slug": "saaremaa-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "412092023017",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord Saaremaa vallas",
+          "act_url": "https://www.riigiteataja.ee/akt/412092023017?leiaKehtiv",
+          "xml_file": "412092023017.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Regulation outlining the provision of social welfare assistance, including services and benefits, for residents of Saaremaa"
+      }
+    },
+    {
+      "municipality_id": "saku_vald",
+      "municipality_name": "Saku vald",
+      "source_path": "../oigusaktid/429082017013.xml",
+      "sha256": "9705cbbe8a30ce2435fcbdc16835f80ca11d679f207f7b6d8a3833168c2ec973",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Saku vald",
+        "municipality_id": "saku_vald",
+        "slug": "saku-vald",
+        "web_doc_id": "kov-saku-vald",
+        "rt_doc_id": "kov-rt-saku-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/429082017013?leiaKehtiv",
+        "act_reference": "429082017013",
+        "xml_file": "429082017013.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-saku-vald",
+          "municipality_id": "saku_vald",
+          "municipality_name": "Saku vald",
+          "slug": "saku-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "429082017013",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/429082017013?leiaKehtiv",
+          "xml_file": "429082017013.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General regulation for social services and benefits in Saku vald."
+      }
+    },
+    {
+      "municipality_id": "saue_vald",
+      "municipality_name": "Saue vald",
+      "source_path": "../oigusaktid/430042025039.xml",
+      "sha256": "602138202d0aec1a06bf3b839c9c71c4192641b42fc45de58ea99cbc71e4cc1b",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Saue vald",
+        "municipality_id": "saue_vald",
+        "slug": "saue-vald",
+        "web_doc_id": "kov-saue-vald",
+        "rt_doc_id": "kov-rt-saue-vald",
+        "act_title": "Saue valla sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/430042025039?leiaKehtiv",
+        "act_reference": "430042025039",
+        "xml_file": "430042025039.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-saue-vald",
+          "municipality_id": "saue_vald",
+          "municipality_name": "Saue vald",
+          "slug": "saue-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "430042025039",
+          "act_title": "Saue valla sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/430042025039?leiaKehtiv",
+          "xml_file": "430042025039.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Latest Saue regulation (effective 3 May 2025) covering social welfare assistance and services; replaces earlier versions"
+      }
+    },
+    {
+      "municipality_id": "setomaa_vald",
+      "municipality_name": "Setomaa vald",
+      "source_path": "../oigusaktid/411102025024.xml",
+      "sha256": "cc59bfede52a3d427cf66a6fe6751cb25b318c328e4426df6c875bbb146ecfa5",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Setomaa vald",
+        "municipality_id": "setomaa_vald",
+        "slug": "setomaa-vald",
+        "web_doc_id": "kov-setomaa-vald",
+        "rt_doc_id": "kov-rt-setomaa-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/411102025024?leiaKehtiv",
+        "act_reference": "411102025024",
+        "xml_file": "411102025024.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-setomaa-vald",
+          "municipality_id": "setomaa_vald",
+          "municipality_name": "Setomaa vald",
+          "slug": "setomaa-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "411102025024",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/411102025024?leiaKehtiv",
+          "xml_file": "411102025024.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General regulation for social services and social benefits in Setomaa vald."
+      }
+    },
+    {
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "source_path": "../oigusaktid/409052018051.xml",
+      "sha256": "57b6a6433093cc330fde3043b81981d7bfb5ecf6cf85ed312a298e94d362dae8",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Sillamäe linn",
+        "municipality_id": "sillamae_linn",
+        "slug": "sillamae-linn",
+        "web_doc_id": "kov-sillamae-linn",
+        "rt_doc_id": "kov-rt-sillamae-linn",
+        "act_title": "Sillamäe linna sotsiaalteenuste osutamise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/409052018051?leiaKehtiv",
+        "act_reference": "409052018051",
+        "xml_file": "409052018051.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-sillamae-linn",
+          "municipality_id": "sillamae_linn",
+          "municipality_name": "Sillamäe linn",
+          "slug": "sillamae-linn",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "409052018051",
+          "act_title": "Sillamäe linna sotsiaalteenuste osutamise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/409052018051?leiaKehtiv",
+          "xml_file": "409052018051.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Sets the procedure for providing social services to Sillamäe residents and those temporarily in the city"
+      }
+    },
+    {
+      "municipality_id": "tallinn",
+      "municipality_name": "Tallinn",
+      "source_path": "../oigusaktid/412042025007.xml",
+      "sha256": "4fe8b0b594705d246305a63b1ce343fd704c492070d6fed8cd166211024c071f",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Tallinn",
+        "municipality_id": "tallinn",
+        "slug": "tallinn",
+        "web_doc_id": "kov-tallinn",
+        "rt_doc_id": "kov-rt-tallinn",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/412042025007?leiaKehtiv",
+        "act_reference": "412042025007",
+        "xml_file": "412042025007.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-tallinn",
+          "municipality_id": "tallinn",
+          "municipality_name": "Tallinn",
+          "slug": "tallinn",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "412042025007",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/412042025007?leiaKehtiv",
+          "xml_file": "412042025007.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Tallinn RT XML is available and ready after the Tallinn KOV package was prepared."
+      }
+    },
+    {
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "source_path": "../oigusaktid/412062018006.xml",
+      "sha256": "beeba3c77b3ce656359a0ab88519d79b700136545f248ea6ad3a3b8f8b803914",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Tapa vald",
+        "municipality_id": "tapa_vald",
+        "slug": "tapa-vald",
+        "web_doc_id": "kov-tapa-vald",
+        "rt_doc_id": "kov-rt-tapa-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord Tapa vallas",
+        "act_url": "https://www.riigiteataja.ee/akt/412062018006?leiaKehtiv",
+        "act_reference": "412062018006",
+        "xml_file": "412062018006.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-tapa-vald",
+          "municipality_id": "tapa_vald",
+          "municipality_name": "Tapa vald",
+          "slug": "tapa-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "412062018006",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord Tapa vallas",
+          "act_url": "https://www.riigiteataja.ee/akt/412062018006?leiaKehtiv",
+          "xml_file": "412062018006.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General regulation for Tapa specifying how social support and services are applied for, determined and financed"
+      }
+    },
+    {
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "source_path": "../oigusaktid/425092025018.xml",
+      "sha256": "43ce24e1b157e82888c9fd9d9d056837d778e59aa611c8672d35c40193417282",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Tartu linn",
+        "municipality_id": "tartu_linn",
+        "slug": "tartu-linn",
+        "web_doc_id": "kov-tartu-linn",
+        "rt_doc_id": "kov-rt-tartu-linn",
+        "act_title": "Tartu linna sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/425092025018?leiaKehtiv",
+        "act_reference": "425092025018",
+        "xml_file": "425092025018.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-tartu-linn",
+          "municipality_id": "tartu_linn",
+          "municipality_name": "Tartu linn",
+          "slug": "tartu-linn",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "425092025018",
+          "act_title": "Tartu linna sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/425092025018?leiaKehtiv",
+          "xml_file": "425092025018.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General regulation for social welfare assistance in Tartu city."
+      }
+    },
+    {
+      "municipality_id": "tartu_vald",
+      "municipality_name": "Tartu vald",
+      "source_path": "../oigusaktid/403102019005.xml",
+      "sha256": "b2ae7cdc78b9533e3aacd32b97fa9ef2bd66c49be5a27fe4b088ba9e9f7103fd",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Tartu vald",
+        "municipality_id": "tartu_vald",
+        "slug": "tartu-vald",
+        "web_doc_id": "kov-tartu-vald",
+        "rt_doc_id": "kov-rt-tartu-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord Tartu vallas",
+        "act_url": "https://www.riigiteataja.ee/akt/403102019005?leiaKehtiv",
+        "act_reference": "403102019005",
+        "xml_file": "403102019005.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-tartu-vald",
+          "municipality_id": "tartu_vald",
+          "municipality_name": "Tartu vald",
+          "slug": "tartu-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "403102019005",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord Tartu vallas",
+          "act_url": "https://www.riigiteataja.ee/akt/403102019005?leiaKehtiv",
+          "xml_file": "403102019005.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General regulation describing social services and benefits in Tartu vald and procedures for application"
+      }
+    },
+    {
+      "municipality_id": "tori_vald",
+      "municipality_name": "Tori vald",
+      "source_path": "../oigusaktid/404052016003.xml",
+      "sha256": "aa1cae37e245c1629a85e02a45d430aa7f5b9bb7b7347aed36bff81d36839057",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Tori vald",
+        "municipality_id": "tori_vald",
+        "slug": "tori-vald",
+        "web_doc_id": "kov-tori-vald",
+        "rt_doc_id": "kov-rt-tori-vald",
+        "act_title": "Tori valla sotsiaalhoolekandelise abi andmise tingimused ja kord",
+        "act_url": "https://www.riigiteataja.ee/akt/404052016003?leiaKehtiv",
+        "act_reference": "404052016003",
+        "xml_file": "404052016003.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-tori-vald",
+          "municipality_id": "tori_vald",
+          "municipality_name": "Tori vald",
+          "slug": "tori-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "404052016003",
+          "act_title": "Tori valla sotsiaalhoolekandelise abi andmise tingimused ja kord",
+          "act_url": "https://www.riigiteataja.ee/akt/404052016003?leiaKehtiv",
+          "xml_file": "404052016003.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Sets the conditions and procedures for social support and services in Tori vald, including principles and eligibility"
+      }
+    },
+    {
+      "municipality_id": "torva_vald",
+      "municipality_name": "Tõrva vald",
+      "source_path": "../oigusaktid/402022024018.xml",
+      "sha256": "832bfa0032df13644e1fe69ba89d1d26d5fbd09169d39b1f87b7657f873ab848",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Tõrva vald",
+        "municipality_id": "torva_vald",
+        "slug": "torva-vald",
+        "web_doc_id": "kov-torva-vald",
+        "rt_doc_id": "kov-rt-torva-vald",
+        "act_title": "Tõrva valla sotsiaalhoolekandelise abi osutamise tingimused ja kord",
+        "act_url": "https://www.riigiteataja.ee/akt/402022024018?leiaKehtiv",
+        "act_reference": "402022024018",
+        "xml_file": "402022024018.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-torva-vald",
+          "municipality_id": "torva_vald",
+          "municipality_name": "Tõrva vald",
+          "slug": "torva-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "402022024018",
+          "act_title": "Tõrva valla sotsiaalhoolekandelise abi osutamise tingimused ja kord",
+          "act_url": "https://www.riigiteataja.ee/akt/402022024018?leiaKehtiv",
+          "xml_file": "402022024018.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Current act (effective 1 Mar 2024) that sets conditions and procedures for determining social benefits and organizing social services in Tõrva vald"
+      }
+    },
+    {
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "source_path": "../oigusaktid/404122020026.xml",
+      "sha256": "b825d290493843956556bc35df6f17d698ea4d6ce2e6421df1c1bffdffe3038a",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Türi vald",
+        "municipality_id": "turi_vald",
+        "slug": "turi-vald",
+        "web_doc_id": "kov-turi-vald",
+        "rt_doc_id": "kov-rt-turi-vald",
+        "act_title": "Türi valla sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/404122020026?leiaKehtiv",
+        "act_reference": "404122020026",
+        "xml_file": "404122020026.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-turi-vald",
+          "municipality_id": "turi_vald",
+          "municipality_name": "Türi vald",
+          "slug": "turi-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "404122020026",
+          "act_title": "Türi valla sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/404122020026?leiaKehtiv",
+          "xml_file": "404122020026.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Regulation sets out the social welfare tasks in Türi; establishes competence, types of assistance and paid social servicesview-source:"
+      }
+    },
+    {
+      "municipality_id": "vaike_maarja_vald",
+      "municipality_name": "Väike-Maarja vald",
+      "source_path": "../oigusaktid/406122024017.xml",
+      "sha256": "b68a894134ec18b0564c42e24a94be2d800f013de4f0f84439b5bba2032025a6",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Väike-Maarja vald",
+        "municipality_id": "vaike_maarja_vald",
+        "slug": "vaike-maarja-vald",
+        "web_doc_id": "kov-vaike-maarja-vald",
+        "rt_doc_id": "kov-rt-vaike-maarja-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/406122024017?leiaKehtiv",
+        "act_reference": "406122024017",
+        "xml_file": "406122024017.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-vaike-maarja-vald",
+          "municipality_id": "vaike_maarja_vald",
+          "municipality_name": "Väike-Maarja vald",
+          "slug": "vaike-maarja-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "406122024017",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/406122024017?leiaKehtiv",
+          "xml_file": "406122024017.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT_CHECKED",
+        "notes": "Latest accessible version found (2022) setting conditions for social services and benefits; newer redactions may exist but were inaccessible"
+      }
+    },
+    {
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "source_path": "../oigusaktid/401112019012.xml",
+      "sha256": "b2c49266a79d35f1d1ef0e09236ce07ede45dc592f110bbd3c3b2b4df9431006",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Valga vald",
+        "municipality_id": "valga_vald",
+        "slug": "valga-vald",
+        "web_doc_id": "kov-valga-vald",
+        "rt_doc_id": "kov-rt-valga-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/401112019012?leiaKehtiv",
+        "act_reference": "401112019012",
+        "xml_file": "401112019012.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-valga-vald",
+          "municipality_id": "valga_vald",
+          "municipality_name": "Valga vald",
+          "slug": "valga-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "401112019012",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/401112019012?leiaKehtiv",
+          "xml_file": "401112019012.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General social welfare regulation for Valga vald."
+      }
+    },
+    {
+      "municipality_id": "viimsi_vald",
+      "municipality_name": "Viimsi vald",
+      "source_path": "../oigusaktid/431052025006.xml",
+      "sha256": "09fa58039262fc0b55a83defbbbfdf4ca767ffe19e7caba8bd5b70ec7f71861d",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Viimsi vald",
+        "municipality_id": "viimsi_vald",
+        "slug": "viimsi-vald",
+        "web_doc_id": "kov-viimsi-vald",
+        "rt_doc_id": "kov-rt-viimsi-vald",
+        "act_title": "Viimsi valla sotsiaalteenuste osutamise tingimused ja kord",
+        "act_url": "https://www.riigiteataja.ee/akt/431032023006?leiaKehtiv",
+        "act_reference": "431032023006",
+        "xml_file": "431052025006.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-viimsi-vald",
+          "municipality_id": "viimsi_vald",
+          "municipality_name": "Viimsi vald",
+          "slug": "viimsi-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "431032023006",
+          "act_title": "Viimsi valla sotsiaalteenuste osutamise tingimused ja kord",
+          "act_url": "https://www.riigiteataja.ee/akt/431032023006?leiaKehtiv",
+          "xml_file": "431052025006.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Act sets the conditions and procedures for applying, determining and financing social services in Viimsi"
+      }
+    },
+    {
+      "municipality_id": "viljandi_linn",
+      "municipality_name": "Viljandi linn",
+      "source_path": "../oigusaktid/403052025002.xml",
+      "sha256": "c2aab2d7523ee6d311614fc6dd3fdef3039b14fd75f6f7dee779cf99af93b48c",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Viljandi linn",
+        "municipality_id": "viljandi_linn",
+        "slug": "viljandi-linn",
+        "web_doc_id": "kov-viljandi-linn",
+        "rt_doc_id": "kov-rt-viljandi-linn",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/403052025002?leiaKehtiv",
+        "act_reference": "403052025002",
+        "xml_file": "403052025002.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-viljandi-linn",
+          "municipality_id": "viljandi_linn",
+          "municipality_name": "Viljandi linn",
+          "slug": "viljandi-linn",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "403052025002",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/403052025002?leiaKehtiv",
+          "xml_file": "403052025002.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Verified RT current text; Viljandi Linnavolikogu; social welfare assistance regulation. Note: this is Viljandi linn, not Viljandi vald."
+      }
+    },
+    {
+      "municipality_id": "viljandi_vald",
+      "municipality_name": "Viljandi vald",
+      "source_path": "../oigusaktid/410042021014.xml",
+      "sha256": "109e4a0c242ee74a4af4a847a9cf887edef0bf848e90ad78523ff1e2f25e30c9",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Viljandi vald",
+        "municipality_id": "viljandi_vald",
+        "slug": "viljandi-vald",
+        "web_doc_id": "kov-viljandi-vald",
+        "rt_doc_id": "kov-rt-viljandi-vald",
+        "act_title": "Võlanõustamisteenuse ja teiste toetavate sotsiaalteenuste korraldamise ja osutamise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/410042021014?leiaKehtiv",
+        "act_reference": "410042021014",
+        "xml_file": "410042021014.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-viljandi-vald",
+          "municipality_id": "viljandi_vald",
+          "municipality_name": "Viljandi vald",
+          "slug": "viljandi-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "410042021014",
+          "act_title": "Võlanõustamisteenuse ja teiste toetavate sotsiaalteenuste korraldamise ja osutamise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/410042021014?leiaKehtiv",
+          "xml_file": "410042021014.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "MANUAL_RT_MATCH",
+        "notes": "Specific Viljandi vald social service regulation available for current corpus."
+      }
+    },
+    {
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "source_path": "../oigusaktid/410042018010.xml",
+      "sha256": "00386a3499a9353a53cfa375ac06e4b31b9ace81ad2d81e30231b518d9fc0676",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Vinni vald",
+        "municipality_id": "vinni_vald",
+        "slug": "vinni-vald",
+        "web_doc_id": "kov-vinni-vald",
+        "rt_doc_id": "kov-rt-vinni-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/410042018010?leiaKehtiv",
+        "act_reference": "410042018010",
+        "xml_file": "410042018010.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-vinni-vald",
+          "municipality_id": "vinni_vald",
+          "municipality_name": "Vinni vald",
+          "slug": "vinni-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "410042018010",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/410042018010?leiaKehtiv",
+          "xml_file": "410042018010.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General regulation for social welfare assistance in Vinni vald."
+      }
+    },
+    {
+      "municipality_id": "viru_nigula_vald",
+      "municipality_name": "Viru-Nigula vald",
+      "source_path": "../oigusaktid/405022022004.xml",
+      "sha256": "ac21b2fe98f9ceb8fe8a9cb328d013138daee376a245d4cca90d00cc507db95f",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Viru-Nigula vald",
+        "municipality_id": "viru_nigula_vald",
+        "slug": "viru-nigula-vald",
+        "web_doc_id": "kov-viru-nigula-vald",
+        "rt_doc_id": "kov-rt-viru-nigula-vald",
+        "act_title": "Viru‑Nigula valla sotsiaalhoolekandelise abi andmise tingimused ja kord",
+        "act_url": "https://www.riigiteataja.ee/akt/405022022004?leiaKehtiv",
+        "act_reference": "405022022004",
+        "xml_file": "405022022004.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-viru-nigula-vald",
+          "municipality_id": "viru_nigula_vald",
+          "municipality_name": "Viru-Nigula vald",
+          "slug": "viru-nigula-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "405022022004",
+          "act_title": "Viru‑Nigula valla sotsiaalhoolekandelise abi andmise tingimused ja kord",
+          "act_url": "https://www.riigiteataja.ee/akt/405022022004?leiaKehtiv",
+          "xml_file": "405022022004.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Sets the conditions and procedures for providing social welfare assistance in Viru‑Nigula, including rules for applying for and determining benefits and services"
+      }
+    },
+    {
+      "municipality_id": "vormsi_vald",
+      "municipality_name": "Vormsi vald",
+      "source_path": "../oigusaktid/403042024076.xml",
+      "sha256": "6e8eec86c8bcdbd37e3e5e800b3950576c06da39791a00fb098272e538374668",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Vormsi vald",
+        "municipality_id": "vormsi_vald",
+        "slug": "vormsi-vald",
+        "web_doc_id": "kov-vormsi-vald",
+        "rt_doc_id": "kov-rt-vormsi-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord Vormsi vallas",
+        "act_url": "https://www.riigiteataja.ee/akt/403042024076?leiaKehtiv",
+        "act_reference": "403042024076",
+        "xml_file": "403042024076.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-vormsi-vald",
+          "municipality_id": "vormsi_vald",
+          "municipality_name": "Vormsi vald",
+          "slug": "vormsi-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "403042024076",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord Vormsi vallas",
+          "act_url": "https://www.riigiteataja.ee/akt/403042024076?leiaKehtiv",
+          "xml_file": "403042024076.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General regulation for social services and social benefits in Vormsi vald."
+      }
+    },
+    {
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "source_path": "../oigusaktid/420112024006.xml",
+      "sha256": "a656dfe634b3d828fc5a7a1e77fe8d51f93fd28c34b14794e6f1c554b14e6221",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Võru linn",
+        "municipality_id": "voru_linn",
+        "slug": "voru-linn",
+        "web_doc_id": "kov-voru-linn",
+        "rt_doc_id": "kov-rt-voru-linn",
+        "act_title": "Võru linna sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/420112024006?leiaKehtiv",
+        "act_reference": "420112024006",
+        "xml_file": "420112024006.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-voru-linn",
+          "municipality_id": "voru_linn",
+          "municipality_name": "Võru linn",
+          "slug": "voru-linn",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "420112024006",
+          "act_title": "Võru linna sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/420112024006?leiaKehtiv",
+          "xml_file": "420112024006.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "Regulation governing social services and support in Võru city; defines application procedures and financing"
+      }
+    },
+    {
+      "municipality_id": "voru_vald",
+      "municipality_name": "Võru vald",
+      "source_path": "../oigusaktid/418112020001.xml",
+      "sha256": "6dbb5969bf88d9cc63e19523565b6567bea05e5bf09f956bc2b2390246bb7609",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Võru vald",
+        "municipality_id": "voru_vald",
+        "slug": "voru-vald",
+        "web_doc_id": "kov-voru-vald",
+        "rt_doc_id": "kov-rt-voru-vald",
+        "act_title": "Võru valla sotsiaalteenuste osutamise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/418112020001?leiaKehtiv",
+        "act_reference": "418112020001",
+        "xml_file": "418112020001.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-voru-vald",
+          "municipality_id": "voru_vald",
+          "municipality_name": "Võru vald",
+          "slug": "voru-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "418112020001",
+          "act_title": "Võru valla sotsiaalteenuste osutamise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/418112020001?leiaKehtiv",
+          "xml_file": "418112020001.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "FOUND_EXACT",
+        "notes": "General act describing the social services offered by Võru rural municipality and the conditions and procedures for requesting them"
+      }
+    },
+    {
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "source_path": "../oigusaktid/407032025024.xml",
+      "sha256": "0af253c715d02349356ff57225270cd21dc5473889d79cf06d9d4967290dc72f",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Alutaguse vald",
+        "municipality_id": "alutaguse_vald",
+        "slug": "alutaguse-vald",
+        "web_doc_id": "kov-alutaguse-vald",
+        "rt_doc_id": "kov-rt-alutaguse-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord Alutaguse vallas",
+        "act_url": "https://www.riigiteataja.ee/akt/407032025024?leiaKehtiv",
+        "act_reference": "407032025024",
+        "xml_file": "407032025024.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-alutaguse-vald",
+          "municipality_id": "alutaguse_vald",
+          "municipality_name": "Alutaguse vald",
+          "slug": "alutaguse-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "407032025024",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord Alutaguse vallas",
+          "act_url": "https://www.riigiteataja.ee/akt/407032025024?leiaKehtiv",
+          "xml_file": "407032025024.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "LOCAL_XML_FOUND",
+        "notes": "Local RT XML matched and generated metadata is ready. RT/legal layer stays separate from KOV web package."
+      }
+    },
+    {
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "source_path": "../oigusaktid/425032026040.xml",
+      "sha256": "abd2bcef322cbc8e6cd77fb7716ad74280a8ec0024ad6a67d79a69a1556c1237",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Anija vald",
+        "municipality_id": "anija_vald",
+        "slug": "anija-vald",
+        "web_doc_id": "kov-anija-vald",
+        "rt_doc_id": "kov-rt-anija-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/425032026040?leiaKehtiv",
+        "act_reference": "425032026040",
+        "xml_file": "425032026040.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-anija-vald",
+          "municipality_id": "anija_vald",
+          "municipality_name": "Anija vald",
+          "slug": "anija-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "425032026040",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/425032026040?leiaKehtiv",
+          "xml_file": "425032026040.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "LOCAL_XML_FOUND",
+        "notes": "Local RT XML matched and generated metadata is ready. RT/legal layer stays separate from KOV web package."
+      }
+    },
+    {
+      "municipality_id": "antsla_vald",
+      "municipality_name": "Antsla vald",
+      "source_path": "../oigusaktid/428062025051.xml",
+      "sha256": "e2cd16bcb6a9f816381fe876c70023658f4ba81d003b8f503f116e1a0da156df",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Antsla vald",
+        "municipality_id": "antsla_vald",
+        "slug": "antsla-vald",
+        "web_doc_id": "kov-antsla-vald",
+        "rt_doc_id": "kov-rt-antsla-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/428062025051?leiaKehtiv",
+        "act_reference": "428062025051",
+        "xml_file": "428062025051.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-antsla-vald",
+          "municipality_id": "antsla_vald",
+          "municipality_name": "Antsla vald",
+          "slug": "antsla-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "428062025051",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/428062025051?leiaKehtiv",
+          "xml_file": "428062025051.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "LOCAL_XML_FOUND",
+        "notes": "Local RT XML matched and generated metadata is ready. RT/legal layer stays separate from KOV web package."
+      }
+    },
+    {
+      "municipality_id": "elva_vald",
+      "municipality_name": "Elva vald",
+      "source_path": "../oigusaktid/426052023059.xml",
+      "sha256": "70be0bf0e857d076299ec3983cac67c5788d586c2736cddccc45af2c3ffea50b",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Elva vald",
+        "municipality_id": "elva_vald",
+        "slug": "elva-vald",
+        "web_doc_id": "kov-elva-vald",
+        "rt_doc_id": "kov-rt-elva-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord Elva vallas",
+        "act_url": "https://www.riigiteataja.ee/akt/426052023059?leiaKehtiv",
+        "act_reference": "426052023059",
+        "xml_file": "426052023059.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-elva-vald",
+          "municipality_id": "elva_vald",
+          "municipality_name": "Elva vald",
+          "slug": "elva-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "426052023059",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord Elva vallas",
+          "act_url": "https://www.riigiteataja.ee/akt/426052023059?leiaKehtiv",
+          "xml_file": "426052023059.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "LOCAL_XML_FOUND",
+        "notes": "Local RT XML matched and generated metadata is ready. RT/legal layer stays separate from KOV web package."
+      }
+    },
+    {
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "source_path": "../oigusaktid/403042025040.xml",
+      "sha256": "e31fd13e8ca0d38a6b72b8d6a0dc2b36976feb356ae1d43a781b83e4127562f0",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Häädemeeste vald",
+        "municipality_id": "haademeeste_vald",
+        "slug": "haademeeste-vald",
+        "web_doc_id": "kov-haademeeste-vald",
+        "rt_doc_id": "kov-rt-haademeeste-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/403042025040?leiaKehtiv",
+        "act_reference": "403042025040",
+        "xml_file": "403042025040.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-haademeeste-vald",
+          "municipality_id": "haademeeste_vald",
+          "municipality_name": "Häädemeeste vald",
+          "slug": "haademeeste-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "403042025040",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/403042025040?leiaKehtiv",
+          "xml_file": "403042025040.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "LOCAL_XML_FOUND",
+        "notes": "Local RT XML matched and generated metadata is ready. RT/legal layer stays separate from KOV web package."
+      }
+    },
+    {
+      "municipality_id": "haapsalu_linn",
+      "municipality_name": "Haapsalu linn",
+      "source_path": "../oigusaktid/405042025014.xml",
+      "sha256": "16b828fcef17f171a322720ed467086d046bba7cfdd481881e129f3b9fea1b6e",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Haapsalu linn",
+        "municipality_id": "haapsalu_linn",
+        "slug": "haapsalu-linn",
+        "web_doc_id": "kov-haapsalu-linn",
+        "rt_doc_id": "kov-rt-haapsalu-linn",
+        "act_title": "Sotsiaalteenuste osutamise üldine kord",
+        "act_url": "https://www.riigiteataja.ee/akt/405042025014?leiaKehtiv",
+        "act_reference": "405042025014",
+        "xml_file": "405042025014.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-haapsalu-linn",
+          "municipality_id": "haapsalu_linn",
+          "municipality_name": "Haapsalu linn",
+          "slug": "haapsalu-linn",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "405042025014",
+          "act_title": "Sotsiaalteenuste osutamise üldine kord",
+          "act_url": "https://www.riigiteataja.ee/akt/405042025014?leiaKehtiv",
+          "xml_file": "405042025014.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "LOCAL_XML_FOUND",
+        "notes": "Local RT XML matched and generated metadata is ready. RT/legal layer stays separate from KOV web package."
+      }
+    },
+    {
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "source_path": "../oigusaktid/404072025017.xml",
+      "sha256": "b28d9a6cddc5ed0349eed436a586e8b4381764c8bc0d00f1b6776cd6835114a7",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Harku vald",
+        "municipality_id": "harku_vald",
+        "slug": "harku-vald",
+        "web_doc_id": "kov-harku-vald",
+        "rt_doc_id": "kov-rt-harku-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/404072025017?leiaKehtiv",
+        "act_reference": "404072025017",
+        "xml_file": "404072025017.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-harku-vald",
+          "municipality_id": "harku_vald",
+          "municipality_name": "Harku vald",
+          "slug": "harku-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "404072025017",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/404072025017?leiaKehtiv",
+          "xml_file": "404072025017.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "LOCAL_XML_FOUND",
+        "notes": "Local RT XML matched and generated metadata is ready. RT/legal layer stays separate from KOV web package."
+      }
+    },
+    {
+      "municipality_id": "hiiumaa_vald",
+      "municipality_name": "Hiiumaa vald",
+      "source_path": "../oigusaktid/423052025002.xml",
+      "sha256": "5a3538855eef15606db1628a69c71dcf272afbef06bd79f3b5f41c45a3de764a",
+      "review_status": "validate_actual_xml_identity_and_version_before_ingest",
+      "legacy_metadata": {
+        "municipality_name": "Hiiumaa vald",
+        "municipality_id": "hiiumaa_vald",
+        "slug": "hiiumaa-vald",
+        "web_doc_id": "kov-hiiumaa-vald",
+        "rt_doc_id": "kov-rt-hiiumaa-vald",
+        "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+        "act_url": "https://www.riigiteataja.ee/akt/423052025002?leiaKehtiv",
+        "act_reference": "423052025002",
+        "xml_file": "423052025002.xml",
+        "xml_detection": {
+          "allowed_locations": [
+            "<kov-folder>/<act_reference>.xml",
+            "<kov-folder>/rt/<act_reference>.xml"
+          ],
+          "mode": "manifest_preferred_then_flat_or_rt_dir"
+        },
+        "generated_metadata": {
+          "docId": "kov-rt-hiiumaa-vald",
+          "municipality_id": "hiiumaa_vald",
+          "municipality_name": "Hiiumaa vald",
+          "slug": "hiiumaa-vald",
+          "collection_id": "kov_legal",
+          "source_type": "kov_regulation",
+          "source_format": "xml",
+          "jurisdiction_level": "MUNICIPALITY",
+          "legal_basis": true,
+          "act_reference": "423052025002",
+          "act_title": "Sotsiaalhoolekandelise abi andmise kord",
+          "act_url": "https://www.riigiteataja.ee/akt/423052025002?leiaKehtiv",
+          "xml_file": "423052025002.xml",
+          "source_status": "active",
+          "historical": false,
+          "is_current_version": true
+        },
+        "auto_ingest": true,
+        "ingest_status": "ingest_ready",
+        "original_status": "LOCAL_XML_FOUND",
+        "notes": "Local RT XML matched and generated metadata is ready. RT/legal layer stays separate from KOV web package."
+      }
+    }
+  ]
+}

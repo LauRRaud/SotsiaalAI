@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2020",
+  "articleId": "pilguheit-kohalikule-sotsiaaltoole-ja-sotsiaalpoliitikale-2020-2",
+  "title": "Pilguheit kohalikule sotsiaaltööle ja sotsiaalpoliitikale",
+  "authors": [
+    "Hans van Ewijk"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2020",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "46-50",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel analüüsib kohaliku tasandi sotsiaaltöö ja sotsiaalpoliitika seoseid, vastandades makro- ja mesotasandi vaateid. Fookuses on inimeste igapäevaelu, kogukondlikud suhted ning sotsiaaltöö roll süsteemide ja eluilma kokkupuutetsoonis.",
+  "tags": [
+    "sotsiaalpoliitika",
+    "kohalik tasand",
+    "mesotasand",
+    "kogukond",
+    "sotsiaaltöö teooria",
+    "Hans van Ewijk"
+  ],
+  "source_type": "file",
+  "source_path": "ST2_2020_web_link_Part15.pdf",
+  "document_id": "sotsiaaltoo-2-2020-pilguheit-kohalikule-sotsiaaltoole-ja-sotsiaalpoliitikale-2020-2",
+  "source_format": "pdf",
+  "source_sha256": "88dc612518d2b29871489a75f34b13b2a18d5a3e40878ff9f5c46ab7bcce8c9c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2020-pilguheit-kohalikule-sotsiaaltoole-ja-sotsiaalpoliitikale-2020-2",
+    "previous_source_path": "ST2_2020_web_link_Part15.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "88dc612518d2b29871489a75f34b13b2a18d5a3e40878ff9f5c46ab7bcce8c9c",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

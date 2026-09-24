@@ -1,0 +1,83 @@
+{
+  "docId": "sotsiaaltoo-1-2017",
+  "articleId": "uhinenud-kov-kogemus-2017-1",
+  "title": "Sotsiaaltöö korralduse kogemus ühinenud kohaliku omavalitsuse üksuses",
+  "authors": [
+    "Mikk Lõhmus",
+    "Varje Paaliste"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2017",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "7-9",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Lääne-Nigula valla vallavanem ja osakonnajuhataja esitavad 2013. aastal Ristist, Taeblast ja Orust moodustunud valla kolme aasta kogemuse: 4134 elaniku ja 509 km² kohta töötab neli sotsiaalvaldkonna ametnikku ning teeninduskeskused tuleb hajaasustuses komplekteerida alaliselt kohapeal töötava ametnikuga, sest 60–70% külastustest puudutab sotsiaaltööd. Kõik toetused ühtlustati ühinemiseelse kõrgeima taseme järgi ja sotsiaaltransport, koduteenus ning häirenuputeenus laienesid kogu vallale. Autorid tunnistavad, et arendus- ja kvaliteedijuht ning jurist on endiselt puudu.",
+  "tags": [
+    "sotsiaaltöö korraldus",
+    "haldusreform",
+    "Lääne-Nigula vald",
+    "teeninduskeskused",
+    "sotsiaaltoetused",
+    "praktikakogemus"
+  ],
+  "source_type": "file",
+  "source_path": "2017_1_Part3.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2017-uhinenud-kov-kogemus-2017-1",
+  "source_sha256": "510464fd0c1afb94714bd2e16aea260e568f3dfbe8e8d55ac3a1ceb952f29f42",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2017-uhinenud-kov-kogemus-2017-1",
+    "previous_source_path": "2017_1_Part3.txt",
+    "previous_source_original_path": "2017_1.pdf",
+    "reference_stored_source_sha256": "51fa6ff278d4b8b2b0f0e34d344284f465209fb65aee3bd6f46e9d9c331d24a3",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf",
+      "source_sha256": "335f81467a555f12c55d0e8bf60122a178c5267567cf79607448a5d987629e50",
+      "pdf_start_page": 9,
+      "pdf_end_page": 11,
+      "printed_page_range": "7-9",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 11,
+      "source_regions": [
+        {
+          "source_pdf_page": 9,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 10,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 11,
+          "bounds": [
+            0,
+            0,
+            496,
+            411.893
+          ]
+        }
+      ],
+      "effective_printed_page_range": "7-9",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf"
+    },
+    "server_page_range": "7-9"
+  }
+}

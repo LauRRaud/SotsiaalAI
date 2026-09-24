@@ -1,0 +1,49 @@
+{
+  "docId": "sotsiaaltoo-1-2026",
+  "articleId": "solidaarsuse-alused-ja-vormid-2026",
+  "title": "Solidaarsuse alused ja vormid",
+  "authors": [
+    "Lauri Leppik"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2026",
+  "section": "Teoreetilised lähtekohad",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaateartikkel solidaarsuse mõistest kui hägusmõistest, mille sisu muutub olenevalt ajastust, kultuurist ja olukorrast. Autor eristab solidaarsuse aluseid (evolutsiooniline, ratsionaalne valik, identiteet, emotsioonid, normid) ja vorme (altruism, vastastikune toetus, kollektiivne tegevus, institutsionaliseeritud solidaarsus) ning kirjeldab avaldumist mikrotasandist riikidevahelise tasandini. Käsitletakse solidaarsuse paradoksi: mida laiem on solidaarsuse ring, seda nõrgemaks see kipub muutuma.",
+  "tags": [
+    "solidaarsus",
+    "sotsiaalpoliitika teooria",
+    "Durkheim",
+    "altruism",
+    "kollektiivne tegevus",
+    "sotsiaalkindlustus",
+    "priiküütlus",
+    "sotsiaaltöö teooria"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-01-26",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/solidaarsuse-alused-ja-vormid",
+  "source_type": "web",
+  "source_path": "solidaarsuse-alused-ja-vormid.html",
+  "lead": "Solidaarsust iseloomustab mõisteline avatus. Solidaarsuse sisu võib muutuda, olenevalt ajastust, kultuurist või olukorrast.",
+  "document_id": "sotsiaaltoo-1-2026-solidaarsuse-alused-ja-vormid-2026",
+  "source_format": "html",
+  "source_sha256": "79050758e1ed2f59179fae925fe5e016befe8da0512d9d38c8f49ec8356ffcd3",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2026-solidaarsuse-alused-ja-vormid-2026",
+    "previous_source_path": "solidaarsuse-alused-ja-vormid.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "dc1fdb723e4f3d9a030a8f513972d08aca23f24a69f185a35349ea0d32fe1c2c",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "1fcbc098b48e3f58037e40e39896ca62c6fb0af9abf737fae3916564da1cb464",
+    "observed_web_title": "Solidaarsuse alused ja vormid"
+  },
+  "retrieved_at": "2026-09-07T19:39:35.360799+00:00"
+}

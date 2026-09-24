@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-1-2020",
+  "articleId": "qualityrights-who-algatus-2020-1",
+  "title": "QualityRights – WHO algatus inimõiguste edendamiseks",
+  "authors": [
+    "Katrin Tsuiman"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2020",
+  "section": "Rahvusvaheline vaade",
+  "pageRange": "82-85",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "WHO QualityRights algatuse tutvustus: eesmärk on tugevdada inimõigusi ja parandada vaimse tervise teenuseid. Artikkel selgitab põhimõtteid, hindamisraamistikke, koolitusprogramme ning rakendusvõimalusi Eesti kontekstis.",
+  "tags": [
+    "QualityRights",
+    "WHO",
+    "inimõigused",
+    "vaimse tervise teenused",
+    "rahvusvaheline praktika",
+    "kvaliteediraamistik"
+  ],
+  "source_type": "file",
+  "source_path": "ST1_2020_web_link_Part18.pdf",
+  "document_id": "sotsiaaltoo-1-2020-qualityrights-who-algatus-2020-1",
+  "source_format": "pdf",
+  "source_sha256": "255f9ed0a32395c01d11c7631a1a039a0c255531b8af41854f08a266207b2ef5",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2020-qualityrights-who-algatus-2020-1",
+    "previous_source_path": "ST1_2020_web_link_Part18.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "255f9ed0a32395c01d11c7631a1a039a0c255531b8af41854f08a266207b2ef5",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

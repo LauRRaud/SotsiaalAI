@@ -1,0 +1,147 @@
+{
+  "source_path": "lastekaitse_liit_mina_olen_enda_oma_juhendmaterjal_opetajale_ja_lapsevanemale.pdf",
+  "source_format": "pdf",
+  "sha256": "3407a555891615835cca88480b79f1aa8a255d97e3d5339108dfa72900c7cfb5",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/lastekaitse_liit_mina_olen_enda_oma_juhendmaterjal_opetajale_ja_lapsevanemale.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "lastekaitse_liit_mina_olen_enda_oma_juhendmaterjal_opetajale_ja_lapsevanemale",
+          "title": "“Mina olen enda oma” juhendmaterjal õpetajale ja lapsevanemale",
+          "url": "https://www.lastekaitseliit.ee/raamat/mina-olen-enda-oma/assets/download/juhendmaterial.pdf",
+          "normalized_url": "https://www.lastekaitseliit.ee/raamat/mina-olen-enda-oma/assets/download/juhendmaterial.pdf",
+          "source_format": "pdf",
+          "source_type": "official_guideline",
+          "resource_type": "method_guidance",
+          "publisher": "Lastekaitse Liit",
+          "organization_id": "lastekaitse_liit",
+          "collection_hint": "guidance_and_methods",
+          "evidence_role": "practice_guidance",
+          "topic_tags": [
+            "Lastekaitse Liit",
+            "lapsed ja pered",
+            "laps",
+            "lapsevanem",
+            "pere",
+            "vanemlus",
+            "haridus",
+            "kool",
+            "õpilase toetamine",
+            "tugimeetmed",
+            "spetsialisti juhend"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "high",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Partnerid",
+            "heading_3": "Lastekaitse Liit",
+            "heading_4": null,
+            "line": 597,
+            "order": 305
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "“Mina olen enda oma” juhendmaterjal õpetajale ja lapsevanemale"
+          ],
+          "collection_hints": [
+            "organization_guidelines"
+          ],
+          "source_types_seen": [
+            "official_guideline"
+          ],
+          "resource_types_seen": [
+            "best_practice_guidance"
+          ],
+          "publishers_seen": [
+            "Lastekaitse Liit"
+          ],
+          "organizations_seen": [
+            "lastekaitse_liit"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Partnerid",
+              "heading_3": "Lastekaitse Liit",
+              "line": 597,
+              "order": 305
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.lastekaitseliit.ee/raamat/mina-olen-enda-oma/assets/download/juhendmaterial.pdf"
+        },
+        "final_url": "https://www.lastekaitseliit.ee/raamat/mina-olen-enda-oma/assets/download/juhendmaterial.pdf",
+        "redirects": [],
+        "sha256": "3407a555891615835cca88480b79f1aa8a255d97e3d5339108dfa72900c7cfb5",
+        "bytes": 2123334,
+        "downloaded_at": "2026-08-14T08:00:57.660Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "lastekaitse_liit_mina_olen_enda_oma_juhendmaterjal_opetajale_ja_lapsevanemale",
+      "metadata": {
+        "createdAt": "2026-06-11T18:59:08.117245+00:00",
+        "type": "FILE",
+        "fileName": "juhendmaterial.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-11T18:59:08.057093+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/5ee0a0eba987/juhendmaterial.pdf",
+        "title": "“Mina olen enda oma” juhendmaterjal õpetajale ja lapsevanemale",
+        "description": "Source master headings: Partnerid; Lastekaitse Liit",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": null,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–26",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "organization_guidelines",
+        "source_id": "lastekaitse_liit_mina_olen_enda_oma_juhendmaterjal_opetajale_ja_lapsevanemale",
+        "document_id": "lastekaitse_liit_mina_olen_enda_oma_juhendmaterjal_opetajale_ja_lapsevanemale",
+        "source_type": "official_guideline",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-11",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "a6666e17a226f10ecab390b07a5171fa1518ac923dc9045cdc9d069ad3cf8d33",
+        "url": "https://www.lastekaitseliit.ee/raamat/mina-olen-enda-oma/assets/download/juhendmaterial.pdf",
+        "url_canonical": "https://www.lastekaitseliit.ee/raamat/mina-olen-enda-oma/assets/download/juhendmaterial.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "lastekaitse_liit_mina_olen_enda_oma_juhendmaterjal_opetajale_ja_lapsevanemale",
+        "updatedAt": "2026-06-11T18:59:08.117270+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

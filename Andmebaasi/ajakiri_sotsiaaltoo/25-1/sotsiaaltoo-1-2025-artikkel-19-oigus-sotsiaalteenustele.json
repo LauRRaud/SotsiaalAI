@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "oigus-saada-sotsiaalteenuseid-vordsetel-alustel-2025-1",
+  "title": "Õigus saada sotsiaalteenuseid võrdsetel alustel",
+  "authors": [
+    "Kärt Muller"
+  ],
+  "section": "Õigus",
+  "pdf_start_page": 1,
+  "pdf_end_page": 10,
+  "description": "Õiguskantsler Kärt Mulleri artikkel käsitleb inimeste õigust saada sotsiaalteenuseid võrdsetel alustel sõltumata elukohast. Analüüsitakse õiguskantsleri järelevalve käigus ilmnenud probleeme: teenuste suur erinevus omavalitsuste lõikes, selgete kriteeriumide puudumine, infosulg ning olukorrad, kus inimesed ei saa neile seadusega ette nähtud teenuseid. Toodud on näiteid koduteenuse, päevahoiu, erihoolekande ja muude teenuste kättesaadavuse kohta. Artikkel rõhutab kohalike omavalitsuste kohustust tagada põhiõiguste kaitse, riigi rolli tingimuste ja rahastuse loomisel ning vajadust ühtlustada sotsiaalteenuste miinimumstandardid.",
+  "tags": [
+    "sotsiaalteenused",
+    "õigused",
+    "võrdne kohtlemine",
+    "kohalik omavalitsus",
+    "sotsiaalhoolekanne",
+    "koduteenus",
+    "erihoolekanne"
+  ],
+  "source_path": "Õigus saada sotsiaalteenuseid võrdsetel alustel_1_2025.pdf",
+  "pageRange": "1–10",
+  "document_id": "sotsiaaltoo-1-2025-oigus-saada-sotsiaalteenuseid-vordsetel-alustel-2025-1",
+  "source_format": "pdf",
+  "source_sha256": "743dad14bee9966dff44de8f97cb6cc4cfe8e02d51ed49fd68fc820d8c8006cf",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2025-oigus-saada-sotsiaalteenuseid-vordsetel-alustel-2025-1",
+    "previous_source_path": "Õigus saada sotsiaalteenuseid võrdsetel alustel_1_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "743dad14bee9966dff44de8f97cb6cc4cfe8e02d51ed49fd68fc820d8c8006cf",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

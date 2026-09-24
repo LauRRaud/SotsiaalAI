@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "eesmark-on-parandada-tervishoiu-ja-sotsiaalvaldkonna-koostood-2025-2",
+  "title": "Eesmärk on parandada tervishoiu ja sotsiaalvaldkonna koostööd",
+  "authors": [
+    "Anneli Taal"
+  ],
+  "section": "Korraldus",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "description": "Analüütiline ülevaade sotsiaal- ja tervishoiusüsteemi lõimimise plaanidest Eestis. Artikkel kirjeldab praeguseid probleeme – killustatud teenused, erakorralise meditsiini liigne koormus, vältimatud hospitaliseerimised ja hooldekodude keskne pikaajaline hooldus – ning tutvustab rahvusvahelisi praktikaid. Autor selgitab integratsioonistrateegiat, maakondlike TERVIK-organisatsioonide ideed, valdkonnaülese teenuskoordinatsiooni ja tervisejuhi rolli ning planeeritavaid pilootprojekte aastateks 2025–2028.",
+  "tags": [
+    "tervishoiu ja sotsiaalhoolekande koostöö",
+    "integratsioonistrateegia",
+    "valdkonnaülene teenuskoordinatsioon",
+    "tervisejuht",
+    "maakondlik koostöö",
+    "pikaajaline hooldus"
+  ],
+  "source_path": "Eesmärk on parandada tervishoiu ja sotsiaalvaldkonna koostööd_2_2025.pdf",
+  "pageRange": "1–9",
+  "document_id": "sotsiaaltoo-2-2025-eesmark-on-parandada-tervishoiu-ja-sotsiaalvaldkonna-koostood-2025-2",
+  "source_format": "pdf",
+  "source_sha256": "486999810223534873bf7b2fb957f8c5629035595370e2a91c388e84f7765de4",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2025-eesmark-on-parandada-tervishoiu-ja-sotsiaalvaldkonna-koostood-2025-2",
+    "previous_source_path": "Eesmärk on parandada tervishoiu ja sotsiaalvaldkonna koostööd_2_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "486999810223534873bf7b2fb957f8c5629035595370e2a91c388e84f7765de4",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

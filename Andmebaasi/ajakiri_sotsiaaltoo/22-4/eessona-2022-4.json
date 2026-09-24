@@ -1,0 +1,37 @@
+{
+  "docId": "sotsiaaltoo-4-2022",
+  "articleId": "eessona-2022-4",
+  "title": "Eessõna",
+  "authors": [
+    "Peep Peterson"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2022",
+  "section": "Eessõna",
+  "pageRange": "2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tervise- ja tööministri eessõna hooldereformi vajadusest ja omavalitsuste rollist.",
+  "tags": [
+    "eessõna",
+    "hooldereform",
+    "sotsiaalpoliitika"
+  ],
+  "source_type": "file",
+  "source_path": "2022_4_artikkel_1_eessona.pdf",
+  "document_id": "sotsiaaltoo-4-2022-eessona-2022-4",
+  "source_format": "pdf",
+  "source_sha256": "3e4e6151fc970aab9743d538453303cf1b47a954a4c003391bcbd50d3e7ff93f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2022-eessona-2022-4",
+    "previous_source_path": "2022_4_artikkel_1_eessona.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "3e4e6151fc970aab9743d538453303cf1b47a954a4c003391bcbd50d3e7ff93f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

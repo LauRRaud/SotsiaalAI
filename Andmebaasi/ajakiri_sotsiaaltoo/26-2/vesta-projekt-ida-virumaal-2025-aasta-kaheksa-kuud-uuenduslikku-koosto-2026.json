@@ -1,0 +1,49 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "vesta-projekt-ida-virumaal-2025-aasta-kaheksa-kuud-uuenduslikku-koosto-2026",
+  "title": "VESTA projekt Ida-Virumaal: 2025. aasta kaheksa kuud uuenduslikku koostööd tervishoiu- ja sotsiaalvaldkonnas",
+  "authors": [
+    "Olga Pihlak"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Teenuste integratsioon",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab Ida-Virumaal rakendatavat VESTA projekti, mille eesmärk on tagada krooniliste haigustega inimestele järjepidev ravi ja sotsiaalne tugi. Tervisejuhid aitavad inimestel teenuste süsteemis orienteeruda ja koostavad individuaalseid heaoluplaane. Kaheksa kuuga suunati teenusele üle viiesaja inimese ning projekt vähendab haiglaravi vajadust ja toetab kodus toimetulekut.",
+  "tags": [
+    "teenuste integratsioon",
+    "tervisejuht",
+    "kroonilised haigused",
+    "Ida-Virumaa",
+    "sotsiaal- ja tervishoiu koostöö",
+    "heaoluplaan",
+    "koduses keskkonnas toimetulek",
+    "projekt"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-03-12",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/vesta-uuenduslik-tervishoiu-ning-sotsiaalvaldkonna-koostoomudel-ida-virumaal",
+  "source_type": "web",
+  "source_path": "vesta-projekt-ida-virumaal-2025-aasta-kaheksa-kuud-uuenduslikku-koostood-tervish.html",
+  "lead": "Sotsiaal- ja tervishoiuteenuste koordinatsiooni projekt VESTA on kaheksa kuu jooksul tõestanud elujõulisust ning vajalikkust Ida-Virumaal. Eesmärk on pakkuda inimestele järjepidevat ravi ja sotsiaalset tuge ning parandada tervishoiu ja sotsiaalvaldkonna koostööd.",
+  "document_id": "sotsiaaltoo-2-2026-vesta-projekt-ida-virumaal-2025-aasta-kaheksa-kuud-uuenduslikku-koosto-2026",
+  "source_format": "html",
+  "source_sha256": "4220a7db48a1a55455f3ee8381fc8dd278ee1d27e6b8b090c969d4778b0ba059",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-vesta-projekt-ida-virumaal-2025-aasta-kaheksa-kuud-uuenduslikku-koosto-2026",
+    "previous_source_path": "vesta-projekt-ida-virumaal-2025-aasta-kaheksa-kuud-uuenduslikku-koostood-tervish.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ffc4d413344da735816c27d2cdcd44a5ee74784d4f820e00dc8c16efe202e2f5",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "d6feb016871d4bf916933aebcf400b71f2f8d035951060ee3db8ada9491f30fb",
+    "observed_web_title": "VESTA – uuenduslik tervishoiu ning sotsiaalvaldkonna koostöömudel Ida-Virumaal"
+  },
+  "retrieved_at": "2026-09-07T19:39:42.409720+00:00"
+}

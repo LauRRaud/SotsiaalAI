@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-joelahtme-vald",
+  "document_id": "kov-joelahtme-vald",
+  "municipality": "Jõelähtme vald",
+  "municipality_id": "joelahtme_vald",
+  "county": "Harjumaa",
+  "checkedAt": "2026-04-29",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-joelahtme-vald",
+  "coverage": {
+    "services": 13,
+    "benefits": 15,
+    "resources": 9,
+    "contacts": 8,
+    "forms": 14,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "joelahtme_vald",
+    "source_register_file": "joelahtme-vald.sources.json",
+    "service_benefit_resource_items": 37,
+    "items_with_source_keys": 37,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 25,
+    "items_without_related_forms": 12,
+    "items_with_related_contacts": 23,
+    "items_without_related_contacts": 14,
+    "form_sources": 11,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "4 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Pakett on korrigeeritud nii, et vormide lehel eraldi nimetatud sotsiaalvaldkonna vormid on eraldi form itemitena ning KOV menüüs eraldi nimetatud sotsiaalteenused ja -toetused on eraldi normaliseeritud.",
+    "Jõelähtme koduleht suunab osa e-taotlusi SPOKU või ARNO keskkonda; e-vormide täpsed sisemised vormi URL-id ei olnud KOV lehel eraldi nähtavad."
+  ],
+  "unresolvedIssues": [
+    "Integreeritud hoolekandeteenuse leht kirjeldab projekti perioodi 01.01.2022–31.12.2023; teenuse praegune aktiivsus vajab KOVilt üle kontrollimist.",
+    "Kõigi sissetulekust sõltuvate toetuste jaoks ei ole eraldi detaillehti; need normaliseeriti KOV koondlehel avaldatud toetuse nimetuste ja tingimuste alusel.",
+    "Osa vormifailidest on RTF-vormingus ja nende seosed teenuste või toetustega põhinevad KOV vormide lehe vorminimetustel või teenuse/toetuse detaillehe otsesel vormiviitel.",
+    "Päevakeskuse enda välisel kodulehel olevaid täiendavaid andmeid ei kasutatud korje allikana; päevakeskuse roll kajastub KOV lehtede põhjal.",
+    "Väliste kriisi- ja tugiteenuste kontaktid kajastati ainult selles ulatuses, milles need olid KOV lehel avaldatud."
+  ],
+  "municipality_name": "Jõelähtme vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "joelahtme-vald.sources.json",
+  "sourceCount": 48,
+  "counts": {
+    "services": 13,
+    "benefits": 15,
+    "resources": 9,
+    "contacts": 8,
+    "forms": 14,
+    "regulations": 0
+  },
+  "warnings": [
+    "4 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

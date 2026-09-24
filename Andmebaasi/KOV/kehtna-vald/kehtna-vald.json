@@ -1,0 +1,4226 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-kehtna-vald",
+  "document_id": "kov-kehtna-vald",
+  "municipality": "Kehtna vald",
+  "municipality_id": "kehtna_vald",
+  "county": "Raplamaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "kehtna_vald_contact_kehtna_vallavalitsus",
+      "canonical_item_id": "kehtna_vald:contact:kehtna_vallavalitsus",
+      "itemType": "contact",
+      "title": "Kehtna Vallavalitsus",
+      "status": "active",
+      "summary": "Kehtna Vallavalitsuse üldkontakt sotsiaalvaldkonna dokumentide ja üldküsimuste esitamiseks. Vallamaja asub Pargi 2, Kehtna; veebilehel on avaldatud vastuvõtuajad ja üldtelefon.",
+      "sourceKeys": [
+        "forms_page",
+        "home"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "name": "Kehtna Vallavalitsus",
+      "role": "üldkontakt",
+      "department": "Kehtna Vallavalitsus",
+      "address": "Pargi 2, Kehtna 79001",
+      "item_type": "contact",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "forms_page",
+        "home"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_contact_kehtna_vallavalitsus",
+      "document_id": "kehtna_vald_contact_kehtna_vallavalitsus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "939e01b08fa8dc86e0864ba19c0c401c2d18db6f3c61003ae97538e4dd60d264",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_contact_rynaldo_puusep",
+      "canonical_item_id": "kehtna_vald:contact:rynaldo_puusep",
+      "itemType": "contact",
+      "title": "Rynaldo Puusep",
+      "status": "active",
+      "summary": "Haridus-, kultuuri- ja sotsiaalvaldkonna koordineerimise eest vastutav abivallavanem. Tema vastutusala hõlmab eelarvet, arengudokumente, valdkondade koostööd ja õigusaktide ettevalmistamist.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "name": "Rynaldo Puusep",
+      "role": "abivallavanem",
+      "department": "Haridus-, kultuuri- ja sotsiaalosakond",
+      "address": null,
+      "item_type": "contact",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_contact_rynaldo_puusep",
+      "document_id": "kehtna_vald_contact_rynaldo_puusep",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "1fa5d23714717f2da4461150ed6b0634d614077eb547ab9d5c71cb9ec7435f55",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_contact_ene_seinpalu",
+      "canonical_item_id": "kehtna_vald:contact:ene_seinpalu",
+      "itemType": "contact",
+      "title": "Ene Seinpalu",
+      "status": "active",
+      "summary": "Sotsiaaltööspetsialist, kelle vastutusalana on Kehtna valla kontaktilehel nimetatud toimetulekutoetus ja annetatud toiduabi. Kontakt on seotud sissetuleku- ja toimetulekuteemadega.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "name": "Ene Seinpalu",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Haridus-, kultuuri- ja sotsiaalosakond",
+      "address": null,
+      "item_type": "contact",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_contact_ene_seinpalu",
+      "document_id": "kehtna_vald_contact_ene_seinpalu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "9bcd05774871b32edc3754f40695deeaa2b5eb3c1702e368732772a1927f4643",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_contact_kristina_solman",
+      "canonical_item_id": "kehtna_vald:contact:kristina_solman",
+      "itemType": "contact",
+      "title": "Kristina Solman",
+      "status": "active",
+      "summary": "Sotsiaaltööspetsialist, kelle vastutusalana on kontaktilehel nimetatud üldhooldusteenus, sotsiaaleluruum, täisealise isiku eestkoste ja sotsiaalteenused. Tema poole suunatakse üldhoolduse, eluruumi ja üldiste sotsiaalteenuste küsimusi.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "name": "Kristina Solman",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Haridus-, kultuuri- ja sotsiaalosakond",
+      "address": null,
+      "item_type": "contact",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_contact_kristina_solman",
+      "document_id": "kehtna_vald_contact_kristina_solman",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "970b99f000ba6825cf3f118cef3691b62f28ed53a2c5039baeb8ce00edebf3ff",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_contact_ragne_rahe",
+      "canonical_item_id": "kehtna_vald:contact:ragne_rahe",
+      "itemType": "contact",
+      "title": "Ragne Rahe",
+      "status": "active",
+      "summary": "Sotsiaaltööspetsialist, kelle vastutusalana on kontaktilehel nimetatud koduteenus, sotsiaaltoetused, sotsiaaltransport ja puudega isikule hooldaja määramine. Tema poole saab pöörduda nende teenuste ja toetuste praktilistes küsimustes.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "name": "Ragne Rahe",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Haridus-, kultuuri- ja sotsiaalosakond",
+      "address": null,
+      "item_type": "contact",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_contact_ragne_rahe",
+      "document_id": "kehtna_vald_contact_ragne_rahe",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "3a1b1d71e0fa5eba3df6c11c04954efc6b7ad5594545d39248a1d0366b79a90d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_contact_ege_vonbret_tosin",
+      "canonical_item_id": "kehtna_vald:contact:ege_vonbret_tosin",
+      "itemType": "contact",
+      "title": "Ege Vonbret-Tosin",
+      "status": "active",
+      "summary": "Laste heaolu vanemspetsialist, kelle vastutusalana on nimetatud lastekaitse koordineerimine, asendushoolduse korraldamine, eestkostja ülesanded, sotsiaalteenuste arendamine ja juhtumitöö. Lastekaitse lehel on tema abivajavast lapsest teavitamiseks.",
+      "sourceKeys": [
+        "child_protection_page",
+        "contacts_page"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "name": "Ege Vonbret-Tosin",
+      "role": "laste heaolu vanemspetsialist",
+      "department": "Haridus-, kultuuri- ja sotsiaalosakond",
+      "address": null,
+      "item_type": "contact",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "child_protection_page",
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_contact_ege_vonbret_tosin",
+      "document_id": "kehtna_vald_contact_ege_vonbret_tosin",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "0eae099c92842aa4db74599aea03131ba1c031732518eb1a83bcd57ecf1d603a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_contact_kaie_nurmsalu",
+      "canonical_item_id": "kehtna_vald:contact:kaie_nurmsalu",
+      "itemType": "contact",
+      "title": "Kaie Nurmsalu",
+      "status": "active",
+      "summary": "Laste heaolu spetsialist, kelle kontakt on lastekaitse lehel esitatud abivajavast lapsest teavitamiseks. Tema ja on Kehtna valla lastekaitse lehel nähtavad.",
+      "sourceKeys": [
+        "child_protection_page",
+        "contacts_page"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "name": "Kaie Nurmsalu",
+      "role": "laste heaolu spetsialist",
+      "department": "Haridus-, kultuuri- ja sotsiaalosakond",
+      "address": null,
+      "item_type": "contact",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "child_protection_page",
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_contact_kaie_nurmsalu",
+      "document_id": "kehtna_vald_contact_kaie_nurmsalu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "ad2793d149f7fd6386c24f7353a9ee96a52715517b5c4ed5d535d62535f55e8f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_contact_liia_kirbuse",
+      "canonical_item_id": "kehtna_vald:contact:liia_kirbuse",
+      "itemType": "contact",
+      "title": "Liia Kirbuse",
+      "status": "active",
+      "summary": "Koduhooldustöötaja, kes on Kehtna valla ametnike kontaktide lehel nimetatud sotsiaalvaldkonna töötajana. Eraldi või ei ole kontaktilehel avaldatud.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "name": "Liia Kirbuse",
+      "role": "koduhooldustöötaja",
+      "department": "Haridus-, kultuuri- ja sotsiaalosakond",
+      "address": null,
+      "item_type": "contact",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_contact_liia_kirbuse",
+      "document_id": "kehtna_vald_contact_liia_kirbuse",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "8b282404712a32b19baa1cda4cc31e146bd3a8ff7a1203c69ce9b3b3eba59c66",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_contact_olga_ivanova",
+      "canonical_item_id": "kehtna_vald:contact:olga_ivanova",
+      "itemType": "contact",
+      "title": "Olga Ivanova",
+      "status": "active",
+      "summary": "Koduhooldustöötaja, kes on Kehtna valla ametnike kontaktide lehel nimetatud sotsiaalvaldkonna töötajana. Eraldi või ei ole kontaktilehel avaldatud.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "name": "Olga Ivanova",
+      "role": "koduhooldustöötaja",
+      "department": "Haridus-, kultuuri- ja sotsiaalosakond",
+      "address": null,
+      "item_type": "contact",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_contact_olga_ivanova",
+      "document_id": "kehtna_vald_contact_olga_ivanova",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "e1918a2f7a118ce3647a0d11c575bba05a72b14df521ec9c995524630c412b46",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_contact_rita_vaiksaar",
+      "canonical_item_id": "kehtna_vald:contact:rita_vaiksaar",
+      "itemType": "contact",
+      "title": "Rita Vaiksaar",
+      "status": "active",
+      "summary": "Koduhooldustöötaja, kes on Kehtna valla ametnike kontaktide lehel nimetatud sotsiaalvaldkonna töötajana. Eraldi või ei ole kontaktilehel avaldatud.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "name": "Rita Vaiksaar",
+      "role": "koduhooldustöötaja",
+      "department": "Haridus-, kultuuri- ja sotsiaalosakond",
+      "address": null,
+      "item_type": "contact",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_contact_rita_vaiksaar",
+      "document_id": "kehtna_vald_contact_rita_vaiksaar",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "51d80af36d12df7fa3fd8409fd4ac8227124419fa2785e92a752630cddc2ed4c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_contact_raini_lohk",
+      "canonical_item_id": "kehtna_vald:contact:raini_lohk",
+      "itemType": "contact",
+      "title": "Raini Lohk",
+      "status": "active",
+      "summary": "Sotsiaalhooldaja sotsiaaltranspordi valdkonnas. Kontaktilehel on isik nimetatud sotsiaalhooldajana, kuid eraldi telefoni või e-posti ei ole avaldatud.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "name": "Raini Lohk",
+      "role": "sotsiaalhooldaja (sotsiaaltransport)",
+      "department": "Haridus-, kultuuri- ja sotsiaalosakond",
+      "address": null,
+      "item_type": "contact",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_contact_raini_lohk",
+      "document_id": "kehtna_vald_contact_raini_lohk",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "67be3fed7bce190783647cb1f4d23f9ceded62da4fc05d31c26e55aa0640084a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_service_koduteenus",
+      "canonical_item_id": "kehtna_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Kehtna vald nimetab koduteenust vallas osutatava ja korraldatava sotsiaalteenusena. Teenuse jaoks on avaldatud eraldi avaldus koduteenuse saamiseks, kus taotleja märgib tervislikust seisundist või vanusest tingitud vajaduse. Detailne teenuse maht, sagedus ja tasu ei ole KOV veebis teenusekirjeldusena lahti kirjutatud.",
+      "sourceKeys": [
+        "form_koduteenuse_pdf",
+        "forms_page",
+        "social_services_page"
+      ],
+      "targetGroup": "Kehtna valla elanikud, kes vajavad tervise või vanuse tõttu kõrvalabi kodus toimetulekul.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "email",
+          "post",
+          "in_person",
+          "mailbox"
+        ],
+        "steps": [
+          "esita avaldus või pöördu sotsiaaltööspetsialisti poole"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Üldise asjaajamislehe järgi sõltub taotluse menetlemise aeg sisust; vastatakse viivitamata, kuid mitte hiljem kui 15 kalendripäeva jooksul registreerimisest.",
+      "pricing": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kehtna_vald_form_koduteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kehtna_vald_contact_ragne_rahe"
+      ],
+      "sections_present": [
+        "title_list",
+        "form"
+      ],
+      "unresolvedIssues": [
+        "Kehtna valla teenuste koondleht nimetab teenust, kuid ei avalda eraldi detaillehte täpse sihtrühma, tingimuste, mahu ega otsustamise aja kohta."
+      ],
+      "item_type": "service",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_koduteenuse_pdf",
+        "forms_page",
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_service_koduteenus",
+      "document_id": "kehtna_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "9e2405f1edf2c8740937849a452192f0ac61e876718f2f4c61050d25bbd6fc2e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "kehtna_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Kehtna vald nimetab sotsiaaltransporditeenust vallas osutatava ja korraldatava sotsiaalteenusena. Teenuste lehel on avaldatud transpordikulude hüvitamise hind terviseteenustele ja muudele sotsiaalteenustele ning sotsiaaltransporditeenuse kilomeetrihind. Täpne teenuse taotlemise kord ja sihtrühm ei ole eraldi detaillehel avaldatud.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": "Kehtna valla elanikud, kes vajavad sotsiaalteenuste või terviseteenuste kasutamiseks transporti.",
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": [],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "KOV lehe järgi alates 1.01.2025 on transpordikulude hüvitamise hind terviseteenustele ja muudele sotsiaalteenustele 0,2 eurot/km ning sotsiaaltransporditeenuse hind 0,3 eurot/km.",
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kehtna_vald_contact_ragne_rahe"
+      ],
+      "sections_present": [
+        "title_list"
+      ],
+      "unresolvedIssues": [
+        "Kehtna valla teenuste koondleht nimetab teenust, kuid ei avalda eraldi detaillehte täpse sihtrühma, tingimuste, mahu ega otsustamise aja kohta."
+      ],
+      "item_type": "service",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_service_sotsiaaltransporditeenus",
+      "document_id": "kehtna_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "668fab699da2070bcf1ca09d7f2c194f8942ef78aa69643c87a6dc1bffb467ec",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_service_eluruumi_tagamise_teenus",
+      "canonical_item_id": "kehtna_vald:service:eluruumi_tagamise_teenus",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Kehtna vald nimetab eluruumi tagamise teenust vallas osutatava ja korraldatava sotsiaalteenusena. Vormilehel on avaldatud eluruumi taotlemise ja eluruumi üürilepingu pikendamise avaldused. Teenuse täpseid tingimusi ja otsustamise etappe ei ole KOV teenuste lehel detailsemalt kirjeldatud.",
+      "sourceKeys": [
+        "form_eluruumi_taotlus_pdf",
+        "form_eluruumi_yyrilepingu_pikendamine_pdf",
+        "forms_page",
+        "social_services_page"
+      ],
+      "targetGroup": "Kehtna valla elanikud, kellel on vaja sotsiaalset abi eluruumi kasutamise võimaluse tagamisel.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "email",
+          "post",
+          "in_person",
+          "mailbox"
+        ],
+        "steps": [
+          "esita avaldus või pöördu sotsiaaltööspetsialisti poole"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Üldise asjaajamislehe järgi sõltub taotluse menetlemise aeg sisust; vastatakse viivitamata, kuid mitte hiljem kui 15 kalendripäeva jooksul registreerimisest.",
+      "pricing": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kehtna_vald_form_eluruumi_taotlus",
+        "kehtna_vald_form_eluruumi_yyrilepingu_pikendamine"
+      ],
+      "relatedContacts": [
+        "kehtna_vald_contact_kristina_solman"
+      ],
+      "sections_present": [
+        "title_list",
+        "form"
+      ],
+      "unresolvedIssues": [
+        "Kehtna valla teenuste koondleht nimetab teenust, kuid ei avalda eraldi detaillehte täpse sihtrühma, tingimuste, mahu ega otsustamise aja kohta."
+      ],
+      "item_type": "service",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_eluruumi_taotlus_pdf",
+        "form_eluruumi_yyrilepingu_pikendamine_pdf",
+        "forms_page",
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_service_eluruumi_tagamise_teenus",
+      "document_id": "kehtna_vald_service_eluruumi_tagamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "2157b815ce68a245b3baa9b17cffc34bc5a28e56eeb28b65ae41233040907b83",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "canonical_item_id": "kehtna_vald:service:valjaspool_kodu_osutatav_uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Kehtna vald nimetab väljaspool kodu osutatavat üldhooldusteenust vallas osutatava ja korraldatava sotsiaalteenusena. Teenuste lehel on avaldatud hooldereformiga seotud info, sealhulgas hoolduskulude piirmäär ühe teenusesaaja kohta kuus. Vormilehel on avaldatud avaldus üldhooldusteenusele suunamiseks ja teenuse eest tasumiseks.",
+      "sourceKeys": [
+        "form_uldhooldus_pdf",
+        "forms_page",
+        "social_services_page"
+      ],
+      "targetGroup": "Täisealised Kehtna valla elanikud, kellele on vaja hooldusasutuse teenust ja kelle teenuse eest tasumise võime vajab hindamist.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "email",
+          "post",
+          "in_person",
+          "mailbox"
+        ],
+        "steps": [
+          "esita avaldus või pöördu sotsiaaltööspetsialisti poole"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Üldise asjaajamislehe järgi sõltub taotluse menetlemise aeg sisust; vastatakse viivitamata, kuid mitte hiljem kui 15 kalendripäeva jooksul registreerimisest.",
+      "pricing": "Kehtna valla lehe järgi on üldhooldusteenuse vahetult teenust osutavate hooldustöötajate ja abihooldustöötajate tööjõu- ja koolituskulude tasumise piirmäär 600 eurot kuus ühe teenusesaaja kohta.",
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kehtna_vald_form_uldhooldusteenusele_suunamine_ja_tasumine"
+      ],
+      "relatedContacts": [
+        "kehtna_vald_contact_kristina_solman"
+      ],
+      "sections_present": [
+        "title_list",
+        "form"
+      ],
+      "unresolvedIssues": [
+        "Kehtna valla teenuste koondleht nimetab teenust, kuid ei avalda eraldi detaillehte täpse sihtrühma, tingimuste, mahu ega otsustamise aja kohta."
+      ],
+      "item_type": "service",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_uldhooldus_pdf",
+        "forms_page",
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "document_id": "kehtna_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "1962aedc7ce071c68ea599a5c61a54418f964c5c7c9ac9bd33d5f8fc3fb19848",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "kehtna_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Kehtna vald nimetab täisealise isiku hooldust vallas osutatava ja korraldatava sotsiaalteenusena. Vormilehel on avaldatud avaldus täisealisele puudega isikule hooldaja määramiseks. Teenuse sisulised tingimused ja hooldaja ülesannete määramise kord ei ole teenuste lehel eraldi välja toodud.",
+      "sourceKeys": [
+        "form_taisealise_puudega_hooldaja_maaramine_pdf",
+        "forms_page",
+        "social_services_page"
+      ],
+      "targetGroup": "Täisealised puudega isikud ja nende võimalikud hooldajad.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "email",
+          "post",
+          "in_person",
+          "mailbox"
+        ],
+        "steps": [
+          "esita avaldus või pöördu sotsiaaltööspetsialisti poole"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Üldise asjaajamislehe järgi sõltub taotluse menetlemise aeg sisust; vastatakse viivitamata, kuid mitte hiljem kui 15 kalendripäeva jooksul registreerimisest.",
+      "pricing": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kehtna_vald_form_taisealise_puudega_isiku_hooldaja_maaramine"
+      ],
+      "relatedContacts": [
+        "kehtna_vald_contact_kristina_solman",
+        "kehtna_vald_contact_ragne_rahe"
+      ],
+      "sections_present": [
+        "title_list",
+        "form"
+      ],
+      "unresolvedIssues": [
+        "Kehtna valla teenuste koondleht nimetab teenust, kuid ei avalda eraldi detaillehte täpse sihtrühma, tingimuste, mahu ega otsustamise aja kohta."
+      ],
+      "item_type": "service",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_taisealise_puudega_hooldaja_maaramine_pdf",
+        "forms_page",
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_service_taisealise_isiku_hooldus",
+      "document_id": "kehtna_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "36beafd26e580af0498da3f54c3cf0d9d77c200fcf02eb52482ffc0ce60e38f1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_service_tugiisikuteenus",
+      "canonical_item_id": "kehtna_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Kehtna vald nimetab tugiisikuteenust vallas osutatava ja korraldatava sotsiaalteenusena. Teenuste koondlehel ei ole avaldatud eraldi tugiisikuteenuse detailkirjeldust, taotlemise sammu ega teenuse mahtu. Vajaduse korral tuleb pöörduda sotsiaaltööspetsialisti või laste heaolu spetsialistide poole.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": null,
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": [],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kehtna_vald_contact_kristina_solman",
+        "kehtna_vald_contact_ege_vonbret_tosin",
+        "kehtna_vald_contact_kaie_nurmsalu"
+      ],
+      "sections_present": [
+        "title_list"
+      ],
+      "unresolvedIssues": [
+        "Kehtna valla teenuste koondleht nimetab teenust, kuid ei avalda eraldi detaillehte täpse sihtrühma, tingimuste, mahu ega otsustamise aja kohta."
+      ],
+      "item_type": "service",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_service_tugiisikuteenus",
+      "document_id": "kehtna_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "ab680c325ecd9d95191e16e3675778877c1bcb89e5ce79cfd1461cc65f4bf280",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "kehtna_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Kehtna vald nimetab isikliku abistaja teenust vallas osutatava ja korraldatava sotsiaalteenusena. Teenuste koondlehel ei ole avaldatud eraldi detailkirjeldust ega teenuse taotlemise vormi. Praktikas tuleb täpse vajaduse ja teenuse korraldamise osas pöörduda sotsiaaltööspetsialisti poole.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": null,
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": [],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kehtna_vald_contact_kristina_solman",
+        "kehtna_vald_contact_ragne_rahe"
+      ],
+      "sections_present": [
+        "title_list"
+      ],
+      "unresolvedIssues": [
+        "Kehtna valla teenuste koondleht nimetab teenust, kuid ei avalda eraldi detaillehte täpse sihtrühma, tingimuste, mahu ega otsustamise aja kohta."
+      ],
+      "item_type": "service",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_service_isikliku_abistaja_teenus",
+      "document_id": "kehtna_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "9c6faa92e4f5ae2fd544ca1856c546486bf26a175166a6832cdd2903ef67968d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_service_varjupaigateenus",
+      "canonical_item_id": "kehtna_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Kehtna vald nimetab varjupaigateenust vallas osutatava ja korraldatava sotsiaalteenusena. KOV veebis ei ole eraldi avaldatud varjupaigateenuse detaillehte, tingimusi ega teenuse osutaja kontaktandmeid. Teenuse vajaduse korral tuleb pöörduda vallavalitsuse sotsiaaltööspetsialistide poole.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": null,
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": [],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kehtna_vald_contact_kristina_solman"
+      ],
+      "sections_present": [
+        "title_list"
+      ],
+      "unresolvedIssues": [
+        "Kehtna valla teenuste koondleht nimetab teenust, kuid ei avalda eraldi detaillehte täpse sihtrühma, tingimuste, mahu ega otsustamise aja kohta."
+      ],
+      "item_type": "service",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_service_varjupaigateenus",
+      "document_id": "kehtna_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "937a00cc3aea799a30fe21b3bf3a2d438f06e894cb5ef1f7aa69a9075abf98b9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_service_turvakoduteenus",
+      "canonical_item_id": "kehtna_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Kehtna vald nimetab turvakoduteenust vallas osutatava ja korraldatava sotsiaalteenusena. KOV veebis ei ole eraldi avaldatud turvakoduteenuse detaillehte ega konkreetset teenusepakkujat. Laste ja peredega seotud kiire abi korral tuleb kasutada ka lastekaitse ja hädaabi kontakte.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": null,
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": [],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kehtna_vald_contact_ege_vonbret_tosin",
+        "kehtna_vald_contact_kaie_nurmsalu"
+      ],
+      "sections_present": [
+        "title_list"
+      ],
+      "unresolvedIssues": [
+        "Kehtna valla teenuste koondleht nimetab teenust, kuid ei avalda eraldi detaillehte täpse sihtrühma, tingimuste, mahu ega otsustamise aja kohta."
+      ],
+      "item_type": "service",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_service_turvakoduteenus",
+      "document_id": "kehtna_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "6d83f818009bcce99eb8e1cac0eac467b004a891e094b951f2ce3a14ce2caf76",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_service_volanoustamisteenus",
+      "canonical_item_id": "kehtna_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Kehtna vald nimetab võlanõustamisteenust vallas osutatava ja korraldatava sotsiaalteenusena. Teenuse koondlehel ei ole täpsustatud nõustaja nime, taotlemise vormi ega teenuse saamise tähtaegu. Täpse juhise saamiseks tuleb pöörduda sotsiaaltööspetsialisti poole.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": null,
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": [],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kehtna_vald_contact_kristina_solman"
+      ],
+      "sections_present": [
+        "title_list"
+      ],
+      "unresolvedIssues": [
+        "Kehtna valla teenuste koondleht nimetab teenust, kuid ei avalda eraldi detaillehte täpse sihtrühma, tingimuste, mahu ega otsustamise aja kohta."
+      ],
+      "item_type": "service",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_service_volanoustamisteenus",
+      "document_id": "kehtna_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "c6ea7638a0ab71f1acbdb246c83ecb573bc3786696f3d5ea9979168ebadeb881",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "kehtna_vald:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Kehtna vald nimetab lapsehoiuteenust vallas osutatava ja korraldatava sotsiaalteenusena. Teenuste koondlehel ei ole avaldatud detailseid tingimusi ega taotlemise juhiseid. Lastega seotud teenuse vajaduse korral tuleb pöörduda laste heaolu spetsialistide poole.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": "Lapsehoiuteenust vajavad lapsed ja pered Kehtna vallas.",
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": [],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kehtna_vald_contact_ege_vonbret_tosin",
+        "kehtna_vald_contact_kaie_nurmsalu"
+      ],
+      "sections_present": [
+        "title_list"
+      ],
+      "unresolvedIssues": [
+        "Kehtna valla teenuste koondleht nimetab teenust, kuid ei avalda eraldi detaillehte täpse sihtrühma, tingimuste, mahu ega otsustamise aja kohta."
+      ],
+      "item_type": "service",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_service_lapsehoiuteenus",
+      "document_id": "kehtna_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "5d62e845ec940791e25cd7ee212f1f4c3852822b5fe1771421ef710044921155",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_service_asendushooldusteenus",
+      "canonical_item_id": "kehtna_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Kehtna vald nimetab asendushooldusteenust vallas osutatava ja korraldatava sotsiaalteenusena. Kontaktilehel on laste heaolu vanemspetsialisti vastutusalana nimetatud asendushoolduse korraldamine. Teenuse detailne menetlus ja tingimused ei ole KOV veebis teenusekirjeldusena lahti kirjutatud.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": "Lapsed ja pered, kelle puhul on vaja korraldada asendushooldust.",
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": [],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kehtna_vald_contact_ege_vonbret_tosin"
+      ],
+      "sections_present": [
+        "title_list"
+      ],
+      "unresolvedIssues": [
+        "Kehtna valla teenuste koondleht nimetab teenust, kuid ei avalda eraldi detaillehte täpse sihtrühma, tingimuste, mahu ega otsustamise aja kohta."
+      ],
+      "item_type": "service",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_service_asendushooldusteenus",
+      "document_id": "kehtna_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "16027e670e90cc9bcf7353dd3d2ff1cb9edf976ab6782cefc0138986205ead23",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "kehtna_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Kehtna vald nimetab järelhooldusteenust vallas osutatava ja korraldatava sotsiaalteenusena. Teenuse kohta ei ole koondlehel eraldi kirjeldust, sihtrühma ega taotlemise juhist. Laste ja noorte heaoluga seotud järelhoolduse küsimustes tuleb pöörduda laste heaolu spetsialistide poole.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": null,
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": [],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kehtna_vald_contact_ege_vonbret_tosin",
+        "kehtna_vald_contact_kaie_nurmsalu"
+      ],
+      "sections_present": [
+        "title_list"
+      ],
+      "unresolvedIssues": [
+        "Kehtna valla teenuste koondleht nimetab teenust, kuid ei avalda eraldi detaillehte täpse sihtrühma, tingimuste, mahu ega otsustamise aja kohta."
+      ],
+      "item_type": "service",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_service_jarelhooldusteenus",
+      "document_id": "kehtna_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "73def066e9306b8446dcb03dea1a2a0146290dbc5097c45956647dae0f07a194",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_service_muud_vajaduspohised_sotsiaalteenused",
+      "canonical_item_id": "kehtna_vald:service:muud_vajaduspohised_sotsiaalteenused",
+      "itemType": "service",
+      "title": "Muud vajaduspõhised sotsiaalteenused",
+      "status": "active",
+      "summary": "Kehtna vald nimetab lisaks põhisotsiaalteenustele ka muid vajaduspõhiseid sotsiaalteenuseid. Koondlehel ei ole täpsustatud, milliseid muid teenuseid see hõlmab või millal neid määratakse. Taotlejal tuleb pöörduda sotsiaaltööspetsialisti poole, et hinnata tegelikku abivajadust.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": "Kehtna valla elanikud, kelle abivajadus ei sobitu mõne nimetatud teenuse alla.",
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": [],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kehtna_vald_contact_kristina_solman",
+        "kehtna_vald_contact_ragne_rahe"
+      ],
+      "sections_present": [
+        "title_list"
+      ],
+      "unresolvedIssues": [
+        "Kehtna valla teenuste koondleht nimetab teenust, kuid ei avalda eraldi detaillehte täpse sihtrühma, tingimuste, mahu ega otsustamise aja kohta."
+      ],
+      "item_type": "service",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_service_muud_vajaduspohised_sotsiaalteenused",
+      "document_id": "kehtna_vald_service_muud_vajaduspohised_sotsiaalteenused",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "fb93b40476c5d1ddcf6949b5f6e0c081e7a78fab54af810d8817209367752092",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_benefit_matusetoetus",
+      "canonical_item_id": "kehtna_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Kehtna valla elaniku surma korral makstakse matusetoetust matuse korraldajale. Lähedase kaotuse leht täpsustab, et toetus makstakse avalduse alusel ning avaldus tuleb esitada ühe kuu jooksul alates surma registreerimisest. Erandkorras võib toetus olla vältimatu abi vormis, kui elukoha kanne puudub nii taotlejal kui lahkunul.",
+      "sourceKeys": [
+        "death_page",
+        "form_matusetoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "targetGroup": "Matuse korraldaja, kui lahkunu oli Kehtna valla elanik; erandina vältimatu abi korral ka elukohakandeta juhtumid.",
+      "conditions": "Avaldus tuleb esitada ühe kuu jooksul surma registreerimisest.",
+      "application": {
+        "channels": [
+          "email",
+          "post",
+          "in_person",
+          "mailbox"
+        ],
+        "steps": [
+          "esita avaldus ja vajadusel kuludokumendid"
+        ],
+        "deadline": "üks kuu alates surma registreerimisest"
+      },
+      "decisionTime": "Üldise asjaajamislehe järgi sõltub taotluse menetlemise aeg sisust; vastatakse viivitamata, kuid mitte hiljem kui 15 kalendripäeva jooksul registreerimisest.",
+      "amount": "250 €",
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/elukoha-ja-peretoimingud/lahedase-kaotus-ja-matuse-korraldamine/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kehtna_vald_form_matusetoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kehtna_vald_contact_ragne_rahe",
+        "kehtna_vald_contact_kehtna_vallavalitsus"
+      ],
+      "sections_present": [
+        "description",
+        "amount",
+        "form"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "death_page",
+        "form_matusetoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_benefit_matusetoetus",
+      "document_id": "kehtna_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/elukoha-ja-peretoimingud/lahedase-kaotus-ja-matuse-korraldamine/",
+      "content_hash": "7eee7e3263d7e443f212b9ca774eeb2838ddcb16e3e20d3ffbd66d182db88bb3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_benefit_esmakordselt_kooli_mineva_lapse_toetus",
+      "canonical_item_id": "kehtna_vald:benefit:esmakordselt_kooli_mineva_lapse_toetus",
+      "itemType": "benefit",
+      "title": "Esmakordselt kooli mineva lapse toetus / ranitsatoetus",
+      "status": "active",
+      "summary": "Kehtna vald nimetab sissetulekust mittesõltuva toetusena esmakordselt kooli mineva lapse toetust. Vormilehel on sama toetuse taotlemiseks avaldatud ranitsatoetuse avaldus, mis tuleb esitada klassijuhatajale. Toetuse suurus on KOV lehel 150 eurot.",
+      "sourceKeys": [
+        "form_ranitsatoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "targetGroup": "Kehtna valla lapsed, kes lähevad esimest korda kooli, ning nende vanemad või eestkostjad.",
+      "conditions": "Vormi juures on märkus, et avaldus esitatakse klassijuhatajale.",
+      "application": {
+        "channels": [
+          "email",
+          "post",
+          "in_person",
+          "mailbox"
+        ],
+        "steps": [
+          "esita avaldus ja vajadusel kuludokumendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Üldise asjaajamislehe järgi sõltub taotluse menetlemise aeg sisust; vastatakse viivitamata, kuid mitte hiljem kui 15 kalendripäeva jooksul registreerimisest.",
+      "amount": "150 €",
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kehtna_vald_form_ranitsatoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kehtna_vald_contact_ragne_rahe"
+      ],
+      "sections_present": [
+        "description",
+        "amount",
+        "form"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_ranitsatoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_benefit_esmakordselt_kooli_mineva_lapse_toetus",
+      "document_id": "kehtna_vald_benefit_esmakordselt_kooli_mineva_lapse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "73264b22f8d1fc96413a75e29f54ce385058038ae1624959d69c039553d819c5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_benefit_synnitoetus",
+      "canonical_item_id": "kehtna_vald:benefit:synnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetust makstakse Kehtna vallas lapse sünni puhul. Lapse sündi käsitlev leht täpsustab, et toetuse suurus on 300 eurot, mitmikute sünni korral makstakse toetust iga vastsündinu kohta ning taotlus tuleb esitada hiljemalt kahe kuu jooksul pärast lapse sündi. Toetust ei määrata surnult sündinud lapse korral või juhul, kui laps on toetuse taotlejalt seaduses sätestatud alustel ära võetud.",
+      "sourceKeys": [
+        "birth_page",
+        "form_synnitoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "targetGroup": "Lapsevanem, kelle laps ja vanem on registreeritud Kehtna vallas.",
+      "conditions": "Sünnitoetust makstakse, kui lapse vanem ja elukoht on registreeritud Kehtna vallas; taotlus esitatakse kahe kuu jooksul pärast lapse sündi.",
+      "application": {
+        "channels": [
+          "email",
+          "post",
+          "in_person",
+          "mailbox"
+        ],
+        "steps": [
+          "esita avaldus ja vajadusel kuludokumendid"
+        ],
+        "deadline": "hiljemalt kahe kuu jooksul pärast lapse sündi"
+      },
+      "decisionTime": "Üldise asjaajamislehe järgi sõltub taotluse menetlemise aeg sisust; vastatakse viivitamata, kuid mitte hiljem kui 15 kalendripäeva jooksul registreerimisest.",
+      "amount": "300 €",
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/elukoha-ja-peretoimingud/lapse-sund/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kehtna_vald_form_synnitoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kehtna_vald_contact_ragne_rahe",
+        "kehtna_vald_contact_kehtna_vallavalitsus"
+      ],
+      "sections_present": [
+        "description",
+        "amount",
+        "form"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "birth_page",
+        "form_synnitoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_benefit_synnitoetus",
+      "document_id": "kehtna_vald_benefit_synnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/elukoha-ja-peretoimingud/lapse-sund/",
+      "content_hash": "c2b669aa44e05d79938c968bd0aa1c04b2c801e9d4f143bc487d0ed9e034f4ac",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_benefit_lasteaiatoidu_toetus",
+      "canonical_item_id": "kehtna_vald:benefit:lasteaiatoidu_toetus",
+      "itemType": "benefit",
+      "title": "Lasteaiatoidu toetus",
+      "status": "active",
+      "summary": "Kehtna vald nimetab sissetulekust sõltuvate sotsiaaltoetuste hulgas lasteaiatoidu toetust. Vormilehel on avaldatud eraldi avaldus lasteaia toidutoetuse taotlemiseks, mille järgi on toetuse sisuks lapsele või lastele 100% tasuta toidu võimaldamine lasteaias. Taotleja peab kirjeldama majanduslikku olukorda ja esitama pere sissetuleku andmed.",
+      "sourceKeys": [
+        "form_lasteaia_toidutoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "targetGroup": "Kehtna valla lasteaiapered, kellel on toimetulekuraskus ja kelle sissetulek jääb KOV veebis kirjeldatud piirmäärast allapoole.",
+      "conditions": "Sissetulekust sõltuvat toetust saab taotleda toimetulekuraskustes isik või pere, kelle elukoht on Kehtna vald ja kelle netosissetulek jääb KOV lehel kirjeldatud piirmäärast alla.",
+      "application": {
+        "channels": [
+          "email",
+          "post",
+          "in_person",
+          "mailbox"
+        ],
+        "steps": [
+          "esita avaldus ja vajadusel kuludokumendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Üldise asjaajamislehe järgi sõltub taotluse menetlemise aeg sisust; vastatakse viivitamata, kuid mitte hiljem kui 15 kalendripäeva jooksul registreerimisest.",
+      "amount": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kehtna_vald_form_lasteaia_toidutoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kehtna_vald_contact_ragne_rahe",
+        "kehtna_vald_contact_ene_seinpalu"
+      ],
+      "sections_present": [
+        "description",
+        "conditions",
+        "form"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_lasteaia_toidutoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_benefit_lasteaiatoidu_toetus",
+      "document_id": "kehtna_vald_benefit_lasteaiatoidu_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "f522623e2511878aa27cf1b563959cb06d09954a23cb56a4bd861ed351381861",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_benefit_koolitoidu_toetus",
+      "canonical_item_id": "kehtna_vald:benefit:koolitoidu_toetus",
+      "itemType": "benefit",
+      "title": "Koolitoidu toetus",
+      "status": "active",
+      "summary": "Koolitoidu toetus on Kehtna valla sissetulekust sõltuv sotsiaaltoetus, mida nimetatakse sotsiaaltoetuste lehel eraldi toetuse liigina. KOV leht ei avalda selle toetuse eraldi summat ega detailset taotlemise korda; toetust taotletakse sotsiaaltoetuse avaldusega ja vajadusel kuludokumentidega.",
+      "sourceKeys": [
+        "form_sotsiaaltoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "targetGroup": "Kehtna valla elanik või pere, kellel on toimetulekuraskus ja kelle sissetulek jääb KOV lehel kirjeldatud sissetulekupiirist allapoole.",
+      "conditions": "Sissetulekust sõltuvat toetust saab taotleda toimetulekuraskustes isik või pere, kelle elukoht rahvastikuregistri andmetel on Kehtna vald ning kelle netosissetulek jääb KOV lehel kirjeldatud piirmäärast alla.",
+      "application": {
+        "channels": [
+          "email",
+          "post",
+          "in_person",
+          "mailbox"
+        ],
+        "steps": [
+          "esita avaldus ja vajadusel kuludokumendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Üldise asjaajamislehe järgi sõltub taotluse menetlemise aeg sisust; vastatakse viivitamata, kuid mitte hiljem kui 15 kalendripäeva jooksul registreerimisest.",
+      "amount": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kehtna_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kehtna_vald_contact_ragne_rahe",
+        "kehtna_vald_contact_ene_seinpalu"
+      ],
+      "sections_present": [
+        "description",
+        "conditions",
+        "form"
+      ],
+      "unresolvedIssues": [
+        "KOV veeb ei avalda selle toetuse eraldi summat ega kõiki detailseid tingimusi."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_sotsiaaltoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_benefit_koolitoidu_toetus",
+      "document_id": "kehtna_vald_benefit_koolitoidu_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "b60c2a7ed595e16ebbb97f70572f4d7d06ce1f17c87e0b42ab4dee835d5440a0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_benefit_opilaskodu_kulude_kompenseerimise_toetus",
+      "canonical_item_id": "kehtna_vald:benefit:opilaskodu_kulude_kompenseerimise_toetus",
+      "itemType": "benefit",
+      "title": "Toetus õpilaskodu kulude kompenseerimiseks",
+      "status": "active",
+      "summary": "Kehtna vald nimetab sissetulekust sõltuvate sotsiaaltoetuste hulgas toetust õpilaskodu kulude kompenseerimiseks. Lehel ei ole eraldi summat ega tingimuste detailkirjeldust; taotlejal tuleb põhjendada vajadust ja esitada sotsiaaltoetuse avaldus.",
+      "sourceKeys": [
+        "form_sotsiaaltoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "targetGroup": "Kehtna valla elanik või pere, kellel on toimetulekuraskus ja kelle sissetulek jääb KOV lehel kirjeldatud sissetulekupiirist allapoole.",
+      "conditions": "Sissetulekust sõltuvat toetust saab taotleda toimetulekuraskustes isik või pere, kelle elukoht rahvastikuregistri andmetel on Kehtna vald ning kelle netosissetulek jääb KOV lehel kirjeldatud piirmäärast alla.",
+      "application": {
+        "channels": [
+          "email",
+          "post",
+          "in_person",
+          "mailbox"
+        ],
+        "steps": [
+          "esita avaldus ja vajadusel kuludokumendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Üldise asjaajamislehe järgi sõltub taotluse menetlemise aeg sisust; vastatakse viivitamata, kuid mitte hiljem kui 15 kalendripäeva jooksul registreerimisest.",
+      "amount": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kehtna_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kehtna_vald_contact_ragne_rahe",
+        "kehtna_vald_contact_ene_seinpalu"
+      ],
+      "sections_present": [
+        "description",
+        "conditions",
+        "form"
+      ],
+      "unresolvedIssues": [
+        "KOV veeb ei avalda selle toetuse eraldi summat ega kõiki detailseid tingimusi."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_sotsiaaltoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_benefit_opilaskodu_kulude_kompenseerimise_toetus",
+      "document_id": "kehtna_vald_benefit_opilaskodu_kulude_kompenseerimise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "f9d97b81ec6dee74f0cdc428ca5a208be2a3b60ee06787656d6ea7f93bba27ec",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_benefit_prilliklaaside_maksumuse_kompenseerimise_toetus",
+      "canonical_item_id": "kehtna_vald:benefit:prilliklaaside_maksumuse_kompenseerimise_toetus",
+      "itemType": "benefit",
+      "title": "Toetus prilliklaaside maksumuse kompenseerimiseks",
+      "status": "active",
+      "summary": "Kehtna vald nimetab sissetulekust sõltuvate sotsiaaltoetuste hulgas toetust prilliklaaside maksumuse kompenseerimiseks. Toetuse konkreetne summa ja hüvitamise piirmäär ei ole KOV veebis eraldi avaldatud; taotlemisel kasutatakse sotsiaaltoetuse avaldust.",
+      "sourceKeys": [
+        "form_sotsiaaltoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "targetGroup": "Kehtna valla elanik või pere, kellel on toimetulekuraskus ja kelle sissetulek jääb KOV lehel kirjeldatud sissetulekupiirist allapoole.",
+      "conditions": "Sissetulekust sõltuvat toetust saab taotleda toimetulekuraskustes isik või pere, kelle elukoht rahvastikuregistri andmetel on Kehtna vald ning kelle netosissetulek jääb KOV lehel kirjeldatud piirmäärast alla.",
+      "application": {
+        "channels": [
+          "email",
+          "post",
+          "in_person",
+          "mailbox"
+        ],
+        "steps": [
+          "esita avaldus ja vajadusel kuludokumendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Üldise asjaajamislehe järgi sõltub taotluse menetlemise aeg sisust; vastatakse viivitamata, kuid mitte hiljem kui 15 kalendripäeva jooksul registreerimisest.",
+      "amount": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kehtna_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kehtna_vald_contact_ragne_rahe",
+        "kehtna_vald_contact_ene_seinpalu"
+      ],
+      "sections_present": [
+        "description",
+        "conditions",
+        "form"
+      ],
+      "unresolvedIssues": [
+        "KOV veeb ei avalda selle toetuse eraldi summat ega kõiki detailseid tingimusi."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_sotsiaaltoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_benefit_prilliklaaside_maksumuse_kompenseerimise_toetus",
+      "document_id": "kehtna_vald_benefit_prilliklaaside_maksumuse_kompenseerimise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "06f569ebf16a81fa43884fde1dcc05ea23f4de11bec0df8f26c9193e094d41cd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_benefit_retseptiravimite_ja_abivahendite_kompenseerimise_toetus",
+      "canonical_item_id": "kehtna_vald:benefit:retseptiravimite_ja_abivahendite_kompenseerimise_toetus",
+      "itemType": "benefit",
+      "title": "Toetus retseptiravimite ja abivahendite kompenseerimiseks",
+      "status": "active",
+      "summary": "Kehtna vald nimetab sissetulekust sõltuvate sotsiaaltoetuste hulgas toetust retseptiravimite ja abivahendite kompenseerimiseks. Toetuse täpne piirmäär ja taotlemise detailne kord ei ole KOV veebis eraldi avaldatud; taotlemisel kasutatakse sotsiaaltoetuse avaldust ja kulutõendeid.",
+      "sourceKeys": [
+        "form_sotsiaaltoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "targetGroup": "Kehtna valla elanik või pere, kellel on toimetulekuraskus ja kelle sissetulek jääb KOV lehel kirjeldatud sissetulekupiirist allapoole.",
+      "conditions": "Sissetulekust sõltuvat toetust saab taotleda toimetulekuraskustes isik või pere, kelle elukoht rahvastikuregistri andmetel on Kehtna vald ning kelle netosissetulek jääb KOV lehel kirjeldatud piirmäärast alla.",
+      "application": {
+        "channels": [
+          "email",
+          "post",
+          "in_person",
+          "mailbox"
+        ],
+        "steps": [
+          "esita avaldus ja vajadusel kuludokumendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Üldise asjaajamislehe järgi sõltub taotluse menetlemise aeg sisust; vastatakse viivitamata, kuid mitte hiljem kui 15 kalendripäeva jooksul registreerimisest.",
+      "amount": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kehtna_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kehtna_vald_contact_ragne_rahe",
+        "kehtna_vald_contact_ene_seinpalu"
+      ],
+      "sections_present": [
+        "description",
+        "conditions",
+        "form"
+      ],
+      "unresolvedIssues": [
+        "KOV veeb ei avalda selle toetuse eraldi summat ega kõiki detailseid tingimusi."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_sotsiaaltoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_benefit_retseptiravimite_ja_abivahendite_kompenseerimise_toetus",
+      "document_id": "kehtna_vald_benefit_retseptiravimite_ja_abivahendite_kompenseerimise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "dee00b0159a067a79c354b55a46743800322f3686c3a49700c910e268771bda7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_benefit_haigla_visiidi_voodipaevatasu_ja_ravikulude_toetus",
+      "canonical_item_id": "kehtna_vald:benefit:haigla_visiidi_voodipaevatasu_ja_ravikulude_toetus",
+      "itemType": "benefit",
+      "title": "Toetus haigla visiidi- ja/või voodipäevatasu ning muude ravikulude kompenseerimiseks",
+      "status": "active",
+      "summary": "Kehtna vald nimetab sissetulekust sõltuvate sotsiaaltoetuste hulgas toetust haigla visiidi- ja/või voodipäevatasu ning muude ravikulude kompenseerimiseks. Veebilehel ei ole eraldi summat; taotleja peab esitama sotsiaaltoetuse avalduse ja kuludokumendid.",
+      "sourceKeys": [
+        "form_sotsiaaltoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "targetGroup": "Kehtna valla elanik või pere, kellel on toimetulekuraskus ja kelle sissetulek jääb KOV lehel kirjeldatud sissetulekupiirist allapoole.",
+      "conditions": "Sissetulekust sõltuvat toetust saab taotleda toimetulekuraskustes isik või pere, kelle elukoht rahvastikuregistri andmetel on Kehtna vald ning kelle netosissetulek jääb KOV lehel kirjeldatud piirmäärast alla.",
+      "application": {
+        "channels": [
+          "email",
+          "post",
+          "in_person",
+          "mailbox"
+        ],
+        "steps": [
+          "esita avaldus ja vajadusel kuludokumendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Üldise asjaajamislehe järgi sõltub taotluse menetlemise aeg sisust; vastatakse viivitamata, kuid mitte hiljem kui 15 kalendripäeva jooksul registreerimisest.",
+      "amount": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kehtna_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kehtna_vald_contact_ragne_rahe",
+        "kehtna_vald_contact_ene_seinpalu"
+      ],
+      "sections_present": [
+        "description",
+        "conditions",
+        "form"
+      ],
+      "unresolvedIssues": [
+        "KOV veeb ei avalda selle toetuse eraldi summat ega kõiki detailseid tingimusi."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_sotsiaaltoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_benefit_haigla_visiidi_voodipaevatasu_ja_ravikulude_toetus",
+      "document_id": "kehtna_vald_benefit_haigla_visiidi_voodipaevatasu_ja_ravikulude_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "9ceff65924d7793033bbd76a986d312724b666d76a6d90e0906b9cceeb79fd77",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_benefit_transpordikulude_toetus_terviseteenustele",
+      "canonical_item_id": "kehtna_vald:benefit:transpordikulude_toetus_terviseteenustele",
+      "itemType": "benefit",
+      "title": "Toetus transpordikulude kompenseerimiseks eriarstile või muudele terviseteenustele",
+      "status": "active",
+      "summary": "Kehtna vald nimetab sissetulekust sõltuvate sotsiaaltoetuste hulgas toetust transpordikulude kompenseerimiseks eriarstile või muudele terviseteenustele. Teenuste lehel on avaldatud, et alates 1.01.2025 on transpordikulude hüvitamise hind terviseteenustele ja muudele sotsiaalteenustele 0,2 eurot kilomeeter. Taotlemisel kasutatakse sotsiaaltoetuse avaldust.",
+      "sourceKeys": [
+        "form_sotsiaaltoetus_pdf",
+        "forms_page",
+        "social_benefits_page",
+        "social_services_page"
+      ],
+      "targetGroup": "Kehtna valla elanik või pere, kellel on toimetulekuraskus ja kelle sissetulek jääb KOV lehel kirjeldatud sissetulekupiirist allapoole.",
+      "conditions": "Sissetulekust sõltuvat toetust saab taotleda toimetulekuraskustes isik või pere, kelle elukoht rahvastikuregistri andmetel on Kehtna vald ning kelle netosissetulek jääb KOV lehel kirjeldatud piirmäärast alla.",
+      "application": {
+        "channels": [
+          "email",
+          "post",
+          "in_person",
+          "mailbox"
+        ],
+        "steps": [
+          "esita avaldus ja vajadusel kuludokumendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Üldise asjaajamislehe järgi sõltub taotluse menetlemise aeg sisust; vastatakse viivitamata, kuid mitte hiljem kui 15 kalendripäeva jooksul registreerimisest.",
+      "amount": "0,2 €/km hüvitamise hinnana terviseteenustele ja muudele sotsiaalteenustele",
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kehtna_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kehtna_vald_contact_ragne_rahe",
+        "kehtna_vald_contact_ene_seinpalu"
+      ],
+      "sections_present": [
+        "description",
+        "amount",
+        "form"
+      ],
+      "unresolvedIssues": [
+        "KOV veeb ei avalda selle toetuse eraldi summat ega kõiki detailseid tingimusi."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_sotsiaaltoetus_pdf",
+        "forms_page",
+        "social_benefits_page",
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_benefit_transpordikulude_toetus_terviseteenustele",
+      "document_id": "kehtna_vald_benefit_transpordikulude_toetus_terviseteenustele",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "b202cc6743380569f5145fdfe6a256d4c5285492ff394ed6beb51d7e4bd93811",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_benefit_erandkorras_uhhekordne_sotsiaaltoetus",
+      "canonical_item_id": "kehtna_vald:benefit:erandkorras_uhhekordne_sotsiaaltoetus",
+      "itemType": "benefit",
+      "title": "Erandkorras ühekordne sotsiaaltoetus",
+      "status": "active",
+      "summary": "Kehtna valla sotsiaaltoetuste leht kirjeldab, et sätestamata juhtudel erandkorras ühekordse sotsiaaltoetuse määramise aluseks on inimese või perekonna raskesse majanduslikku olukorda sattumine või muu erakorraline asjaolu. Toetuse konkreetne summa ja täpne menetlus sõltub juhtumist ning KOV veeb ei avalda eraldi piirmäära.",
+      "sourceKeys": [
+        "form_sotsiaaltoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "targetGroup": "Kehtna valla elanik või pere, kellel on toimetulekuraskus ja kelle sissetulek jääb KOV lehel kirjeldatud sissetulekupiirist allapoole.",
+      "conditions": "Sissetulekust sõltuvat toetust saab taotleda toimetulekuraskustes isik või pere, kelle elukoht rahvastikuregistri andmetel on Kehtna vald ning kelle netosissetulek jääb KOV lehel kirjeldatud piirmäärast alla.",
+      "application": {
+        "channels": [
+          "email",
+          "post",
+          "in_person",
+          "mailbox"
+        ],
+        "steps": [
+          "esita avaldus ja vajadusel kuludokumendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Üldise asjaajamislehe järgi sõltub taotluse menetlemise aeg sisust; vastatakse viivitamata, kuid mitte hiljem kui 15 kalendripäeva jooksul registreerimisest.",
+      "amount": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kehtna_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kehtna_vald_contact_ragne_rahe",
+        "kehtna_vald_contact_ene_seinpalu"
+      ],
+      "sections_present": [
+        "description",
+        "conditions",
+        "form"
+      ],
+      "unresolvedIssues": [
+        "KOV veeb ei avalda selle toetuse eraldi summat ega kõiki detailseid tingimusi."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_sotsiaaltoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_benefit_erandkorras_uhhekordne_sotsiaaltoetus",
+      "document_id": "kehtna_vald_benefit_erandkorras_uhhekordne_sotsiaaltoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "1cfb2b89bd093725497226a7662ea2b6a3aa60473f537d12f8901bbf409c5205",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "kehtna_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on ajutine abimeede puuduses inimeste ja perede materiaalse puuduse leevendamiseks. Kehtna valla leht kirjeldab, et toetuse arvestamise aluseks on leibkonna eelmise kuu netosissetulek, jooksval kuul tasumisele kuuluvad eluasemekulud ja toimetulekupiir. Veebilehel avaldatud toimetulekupiiri summad on märgitud 2022. aasta kohta, mistõttu tuleb summade ajakohasus kontrollida eraldi kehtivast riiklikust infost.",
+      "sourceKeys": [
+        "form_toimetulekutoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "targetGroup": "Abi vajavad isikud ja perekonnad, kelle sissetulek jääb alla toimetulekupiiri.",
+      "conditions": "Taotlemisel tuleb esitada andmed eelmise kuu netosissetuleku ja jooksval kuul tasumisele kuuluvate eluasemekulude kohta.",
+      "application": {
+        "channels": [
+          "email",
+          "post",
+          "in_person",
+          "mailbox"
+        ],
+        "steps": [
+          "esita avaldus ja vajadusel kuludokumendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Üldise asjaajamislehe järgi sõltub taotluse menetlemise aeg sisust; vastatakse viivitamata, kuid mitte hiljem kui 15 kalendripäeva jooksul registreerimisest.",
+      "amount": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kehtna_vald_form_toimetulekutoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kehtna_vald_contact_ene_seinpalu"
+      ],
+      "sections_present": [
+        "description",
+        "conditions",
+        "form"
+      ],
+      "unresolvedIssues": [
+        "KOV veebilehel on toimetulekupiirid avaldatud 2022. aasta kohta ja vajavad ajakohasuse kontrolli."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_toimetulekutoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_benefit_toimetulekutoetus",
+      "document_id": "kehtna_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaaltoetused/",
+      "content_hash": "6f83fbc8776bb35301af0fbbb70af4e9715033596b24a8c51640840a7392335e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_benefit_puudega_lapse_hooldajatoetus",
+      "canonical_item_id": "kehtna_vald:benefit:puudega_lapse_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Puudega lapse hooldajatoetus",
+      "status": "active",
+      "summary": "Kehtna valla blankettide lehel on eraldi avaldus puudega lapse hooldajatoetuse taotlemiseks. Vorm selgitab, et toetuse saaja peab teavitama sotsiaaltöötajat tööle asumisest ja muudest asjaoludest, mis mõjutavad hooldajatoetuse maksmist või suurust. Toetuse summa ja täpsed tingimused ei ole KOV veebilehel eraldi kirjeldatud.",
+      "sourceKeys": [
+        "form_puudega_lapse_hooldajatoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "targetGroup": "Puudega lapse hooldaja või seaduslik esindaja Kehtna vallas.",
+      "conditions": "Vormis on märgitud kohustus teavitada sotsiaaltöötajat 10 päeva jooksul tööle asumisest ja muudest toetust mõjutavatest asjaoludest.",
+      "application": {
+        "channels": [
+          "email",
+          "post",
+          "in_person",
+          "mailbox"
+        ],
+        "steps": [
+          "esita avaldus ja vajadusel kuludokumendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Üldise asjaajamislehe järgi sõltub taotluse menetlemise aeg sisust; vastatakse viivitamata, kuid mitte hiljem kui 15 kalendripäeva jooksul registreerimisest.",
+      "amount": null,
+      "officialUrl": "https://kehtna.ee/vald-uudised-ja-kontakt/asjaajamine/asjaajamisjuhised-blanketid-jm/",
+      "relatedTo": [],
+      "relatedForms": [
+        "kehtna_vald_form_puudega_lapse_hooldajatoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "kehtna_vald_contact_ragne_rahe",
+        "kehtna_vald_contact_ege_vonbret_tosin"
+      ],
+      "sections_present": [
+        "description",
+        "conditions",
+        "form"
+      ],
+      "unresolvedIssues": [
+        "KOV veeb ei avalda eraldi lehte puudega lapse hooldajatoetuse summa ja kõigi tingimuste kohta."
+      ],
+      "item_type": "benefit",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_puudega_lapse_hooldajatoetus_pdf",
+        "forms_page",
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_benefit_puudega_lapse_hooldajatoetus",
+      "document_id": "kehtna_vald_benefit_puudega_lapse_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/vald-uudised-ja-kontakt/asjaajamine/asjaajamisjuhised-blanketid-jm/",
+      "content_hash": "32608d5f0c7520ba408996e3e0c5e7899570168da2549c99a33f83c047733d4f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_resource_koduandur",
+      "canonical_item_id": "kehtna_vald:resource:koduandur",
+      "itemType": "resource",
+      "title": "Koduandur",
+      "status": "active",
+      "summary": "Koduandur on Kehtna valla sotsiaalteenuste lehel kirjeldatud nutikas turvaseade, mis jälgib inimese igapäevast liikumist kodus ja saadab häireteate määratud kontaktisikule, kui liikumine katkeb. KOV leht kirjeldab seda eakatele ja terviseprobleemidega inimestele suunatud turvalisuse ja iseseisva kodus elamise toena.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "name": "Koduandur",
+      "role": null,
+      "department": null,
+      "address": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_resource_koduandur",
+      "document_id": "kehtna_vald_resource_koduandur",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "35055a5122eccfe4cb397e4182cf56d9d6887312c3e6039cb85cb92935bad6f6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_resource_medi_hairenuputeenus",
+      "canonical_item_id": "kehtna_vald:resource:medi_hairenuputeenus",
+      "itemType": "resource",
+      "title": "Medi häirenuputeenus",
+      "status": "active",
+      "summary": "Medi häirenuputeenus on Kehtna valla sotsiaalteenuste lehel nimetatud abikanal eakatele ja liikumispuudega inimestele. Häirenupp võimaldab hädaolukorras ühe vajutusega ühendust võtta kõnekeskusega, kust vajadusel suunatakse abi lähedaselt, sotsiaaltöötajalt või kiirabilt.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "name": "Medi häirenuputeenus",
+      "role": null,
+      "department": null,
+      "address": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_resource_medi_hairenuputeenus",
+      "document_id": "kehtna_vald_resource_medi_hairenuputeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/sotsiaalteenused/",
+      "content_hash": "ebc6a5bdaabf7636d7f49a4735687bf62d97d05e5136a06a4d3420a3cd0bdaca",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_resource_ohvriabi",
+      "canonical_item_id": "kehtna_vald:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "Ohvriabi toetab inimesi, kes on kannatanud kuriteo, vägivalla või kriisijuhtumi tõttu. Kehtna valla ohvriabi leht kirjeldab nõustamist ja tuge, turvalisuse plaani, praktilist abi ning suunamist koostööpartnerite juurde.",
+      "sourceKeys": [
+        "social_services_page",
+        "victim_support_page"
+      ],
+      "name": "Ohvriabi",
+      "role": null,
+      "department": null,
+      "address": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/ohvriabi/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "social_services_page",
+        "victim_support_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_resource_ohvriabi",
+      "document_id": "kehtna_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/ohvriabi/",
+      "content_hash": "46cccf457998d74a21558bfc8847038203fa572ab281360b796650bc1cc8ec47",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_resource_lasteabi_telefon",
+      "canonical_item_id": "kehtna_vald:resource:lasteabi_telefon",
+      "itemType": "resource",
+      "title": "Lasteabi",
+      "status": "active",
+      "summary": "Lasteabi on Kehtna valla lastekaitse ja ohvriabi lehtedel nimetatud ööpäevaringne abikanal abivajavast lapsest teatamiseks või nõu küsimiseks. Kõne on KOV lehe järgi ööpäevaringne.",
+      "sourceKeys": [
+        "child_protection_page",
+        "children_useful_info_page",
+        "victim_support_page"
+      ],
+      "name": "Lasteabi",
+      "role": null,
+      "department": null,
+      "address": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/lastekaitse/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "child_protection_page",
+        "children_useful_info_page",
+        "victim_support_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_resource_lasteabi_telefon",
+      "document_id": "kehtna_vald_resource_lasteabi_telefon",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/lastekaitse/",
+      "content_hash": "936fc135be508296d14f29058c809ad5389276887da46ecaf9ab47337e45f441",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_resource_kadunud_laste_telefon",
+      "canonical_item_id": "kehtna_vald:resource:kadunud_laste_telefon",
+      "itemType": "resource",
+      "title": "Kadunud laste 116 000",
+      "status": "active",
+      "summary": "Kadunud laste telefonile saab Kehtna valla lastekaitse lehe järgi teada anda kadunud lastest. Nõustajad annavad esmased juhised, pakuvad esmast kriisinõustamist ning teenus töötab ööpäevaringselt ja tasuta.",
+      "sourceKeys": [
+        "child_protection_page"
+      ],
+      "name": "Kadunud laste 116 000",
+      "role": null,
+      "department": null,
+      "address": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/lastekaitse/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "child_protection_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_resource_kadunud_laste_telefon",
+      "document_id": "kehtna_vald_resource_kadunud_laste_telefon",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/lastekaitse/",
+      "content_hash": "590ce01d6e116444cd622fb881ae34085e640b7bdd7daec9857a99d24945a1da",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_resource_inimkaubanduse_nouandeliin",
+      "canonical_item_id": "kehtna_vald:resource:inimkaubanduse_nouandeliin",
+      "itemType": "resource",
+      "title": "Inimkaubanduse nõuandeliin",
+      "status": "active",
+      "summary": "Kehtna valla ohvriabi leht nimetab inimkaubanduse ennetamise ja ohvrite abistamise nõuandeliini praktilise abikanalina. Liin on avaldatud tööajaga E-R 8.30-17.00.",
+      "sourceKeys": [
+        "victim_support_page"
+      ],
+      "name": "Inimkaubanduse nõuandeliin",
+      "role": null,
+      "department": null,
+      "address": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/ohvriabi/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "victim_support_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_resource_inimkaubanduse_nouandeliin",
+      "document_id": "kehtna_vald_resource_inimkaubanduse_nouandeliin",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/ohvriabi/",
+      "content_hash": "f048a1719d6f97dd5b37c4fabf629a989080e1512d02c13d91573b5f059a4c79",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_resource_vagivallast_loobumise_tugiliin",
+      "canonical_item_id": "kehtna_vald:resource:vagivallast_loobumise_tugiliin",
+      "itemType": "resource",
+      "title": "Vägivallast loobumise tugiliin",
+      "status": "active",
+      "summary": "Kehtna valla ohvriabi leht nimetab vägivallast loobumise tugiliini praktilise abikanalina. Tugiliin on avaldatud tööajaga E-R 10.00-16.00.",
+      "sourceKeys": [
+        "victim_support_page"
+      ],
+      "name": "Vägivallast loobumise tugiliin",
+      "role": null,
+      "department": null,
+      "address": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/ohvriabi/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "victim_support_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_resource_vagivallast_loobumise_tugiliin",
+      "document_id": "kehtna_vald_resource_vagivallast_loobumise_tugiliin",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/ohvriabi/",
+      "content_hash": "77d218121a18c4fe2c4436a481a651f3a6422171e59288468f5cb99455d317b1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_resource_laste_vaimse_tervise_keskus",
+      "canonical_item_id": "kehtna_vald:resource:laste_vaimse_tervise_keskus",
+      "itemType": "resource",
+      "title": "Laste Vaimse Tervise Keskus",
+      "status": "active",
+      "summary": "Kehtna valla laste ja perede kasuliku teabe leht viitab Laste Vaimse Tervise Keskusele kui psühhiaatrilise ravi teenuste ressursile lastele sünnist kuni 18. eluaastani. Tegemist on KOV lehel nimetatud välise abikanaliga.",
+      "sourceKeys": [
+        "children_useful_info_page"
+      ],
+      "name": "Laste Vaimse Tervise Keskus",
+      "role": null,
+      "department": null,
+      "address": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/teata-abivajavast-lapsest/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "children_useful_info_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_resource_laste_vaimse_tervise_keskus",
+      "document_id": "kehtna_vald_resource_laste_vaimse_tervise_keskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/teata-abivajavast-lapsest/",
+      "content_hash": "409ea39b8a65397a317c3507ed3ea428f7ef3ed722e4585b3476ce09a2d094e9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_resource_eesti_lastekaitse_liit",
+      "canonical_item_id": "kehtna_vald:resource:eesti_lastekaitse_liit",
+      "itemType": "resource",
+      "title": "Eesti Lastekaitse Liit",
+      "status": "active",
+      "summary": "Kehtna valla kasuliku teabe leht viitab Eesti Lastekaitse Liidule kui laste ja perede heaolu teemalisele ressursile. KOV lehel on see esitatud abistava viitena.",
+      "sourceKeys": [
+        "children_useful_info_page"
+      ],
+      "name": "Eesti Lastekaitse Liit",
+      "role": null,
+      "department": null,
+      "address": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/teata-abivajavast-lapsest/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "children_useful_info_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_resource_eesti_lastekaitse_liit",
+      "document_id": "kehtna_vald_resource_eesti_lastekaitse_liit",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/teata-abivajavast-lapsest/",
+      "content_hash": "48143d43f9017647ea5f8a57c31d44b05488475be268e588ad7e167e34136a2c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_resource_targalt_internetis",
+      "canonical_item_id": "kehtna_vald:resource:targalt_internetis",
+      "itemType": "resource",
+      "title": "Targalt Internetis",
+      "status": "active",
+      "summary": "Kehtna valla kasuliku teabe leht viitab Targalt Internetis ressursile laste ja lapsevanemate targema internetikasutuse ning ebaseadusliku sisuga materjalide leviku piiramise teemal. Tegemist on KOV lehel nimetatud praktilise infokanaliga.",
+      "sourceKeys": [
+        "children_useful_info_page"
+      ],
+      "name": "Targalt Internetis",
+      "role": null,
+      "department": null,
+      "address": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/teata-abivajavast-lapsest/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "children_useful_info_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_resource_targalt_internetis",
+      "document_id": "kehtna_vald_resource_targalt_internetis",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/teata-abivajavast-lapsest/",
+      "content_hash": "af80bf3cd6ef4ccf408bd449859a279e4f1aa33d7f441dd4e0029ca63ae1ea75",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_resource_eesti_lastefond",
+      "canonical_item_id": "kehtna_vald:resource:eesti_lastefond",
+      "itemType": "resource",
+      "title": "SA Eesti Lastefond",
+      "status": "active",
+      "summary": "Kehtna valla laste ja perede kasuliku teabe leht viitab SA Eesti Lastefondile abistava ressursina. KOV leht ei kirjelda teenuse täpseid tingimusi, vaid annab viite välisele ressursile.",
+      "sourceKeys": [
+        "children_useful_info_page"
+      ],
+      "name": "SA Eesti Lastefond",
+      "role": null,
+      "department": null,
+      "address": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/teata-abivajavast-lapsest/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "children_useful_info_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_resource_eesti_lastefond",
+      "document_id": "kehtna_vald_resource_eesti_lastefond",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/teata-abivajavast-lapsest/",
+      "content_hash": "3e0132d4cb04d025f85213ff6f6c33c66a9776fefffa25c3d2e88ba9cf6b32e2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_resource_riiklik_perelepitusteenus",
+      "canonical_item_id": "kehtna_vald:resource:riiklik_perelepitusteenus",
+      "itemType": "resource",
+      "title": "Riiklik perelepitusteenus",
+      "status": "active",
+      "summary": "Kehtna valla kasuliku teabe leht nimetab riiklikku perelepitusteenust lahkuminevatele vanematele rahumeelse kokkuleppe saavutamiseks. Tegemist on KOV lehel nimetatud tugiteenuse suunamisega.",
+      "sourceKeys": [
+        "children_useful_info_page"
+      ],
+      "name": "Riiklik perelepitusteenus",
+      "role": null,
+      "department": null,
+      "address": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/teata-abivajavast-lapsest/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "children_useful_info_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_resource_riiklik_perelepitusteenus",
+      "document_id": "kehtna_vald_resource_riiklik_perelepitusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/teata-abivajavast-lapsest/",
+      "content_hash": "141db0a6e679ed68c6daefa5568793d29fcca5f48db90bc6ca9413df78b4efeb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_resource_peaasi",
+      "canonical_item_id": "kehtna_vald:resource:peaasi",
+      "itemType": "resource",
+      "title": "Peaasi.ee",
+      "status": "active",
+      "summary": "Kehtna valla kasuliku teabe leht nimetab Peaasi.ee ressursina, mis pakub tuge nii laste kui täiskasvanute vaimse tervise teemadel. KOV leht viitab sellele kui praktilisele vaimse tervise abikanalile.",
+      "sourceKeys": [
+        "children_useful_info_page"
+      ],
+      "name": "Peaasi.ee",
+      "role": null,
+      "department": null,
+      "address": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/teata-abivajavast-lapsest/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "children_useful_info_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_resource_peaasi",
+      "document_id": "kehtna_vald_resource_peaasi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/teata-abivajavast-lapsest/",
+      "content_hash": "6bac6d6c813605e031f1747d676eac697498f7b2ce1d5e1899a3b54a00508adc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_resource_seniorplus_kehtna_kalbu",
+      "canonical_item_id": "kehtna_vald:resource:seniorplus_kehtna_kalbu",
+      "itemType": "resource",
+      "title": "Kehtna (Kalbu) eakatekodu",
+      "status": "active",
+      "summary": "Kehtna valla hoolekandeasutuste lehe järgi pakub Kehtna (Kalbu) eakatekodu üldhooldusteenust keskmise ja kõrgema hooldusvajadusega klientidele. Leht ütleb, et vastu saab võtta ka dementsustunnustega kliente.",
+      "sourceKeys": [
+        "care_institutions_page"
+      ],
+      "name": "Kehtna (Kalbu) eakatekodu",
+      "role": null,
+      "department": null,
+      "address": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/hoolekandeasutused-kehtna-vallas/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "care_institutions_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_resource_seniorplus_kehtna_kalbu",
+      "document_id": "kehtna_vald_resource_seniorplus_kehtna_kalbu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/hoolekandeasutused-kehtna-vallas/",
+      "content_hash": "7e4a4048455da4ead745b1ff0c22102dd6b1f26780fd0c7d6eb1ae7a59df2e05",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_resource_seniorplus_jarvakandi",
+      "canonical_item_id": "kehtna_vald:resource:seniorplus_jarvakandi",
+      "itemType": "resource",
+      "title": "Järvakandi eakatekodu",
+      "status": "active",
+      "summary": "Kehtna valla hoolekandeasutuste lehe järgi pakub Järvakandi eakatekodu üldhooldusteenust keskmise ja kõrgema hooldusvajadusega klientidele. Leht ütleb, et vastu saab võtta ka dementsustunnustega kliente.",
+      "sourceKeys": [
+        "care_institutions_page"
+      ],
+      "name": "Järvakandi eakatekodu",
+      "role": null,
+      "department": null,
+      "address": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/hoolekandeasutused-kehtna-vallas/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "care_institutions_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_resource_seniorplus_jarvakandi",
+      "document_id": "kehtna_vald_resource_seniorplus_jarvakandi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/hoolekandeasutused-kehtna-vallas/",
+      "content_hash": "f52058162e2fbc4bca3e3bc58ac335572756fdae20c63f9e7eb0a9b6b1d51a6d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_resource_seniorplus_lokuta",
+      "canonical_item_id": "kehtna_vald:resource:seniorplus_lokuta",
+      "itemType": "resource",
+      "title": "Lokuta ühiskodu",
+      "status": "active",
+      "summary": "Kehtna valla hoolekandeasutuste lehe järgi pakub Lokuta ühiskodu hooldusteenust vähese hooldusvajadusega klientidele, kes tulevad enamasti igapäevaeluga toime, kuid vajavad vähesel määral kõrvalist abi.",
+      "sourceKeys": [
+        "care_institutions_page"
+      ],
+      "name": "Lokuta ühiskodu",
+      "role": null,
+      "department": null,
+      "address": null,
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/hoolekandeasutused-kehtna-vallas/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "care_institutions_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_resource_seniorplus_lokuta",
+      "document_id": "kehtna_vald_resource_seniorplus_lokuta",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalhoolekanne/hoolekandeasutused-kehtna-vallas/",
+      "content_hash": "374e274c632aba9286b3de9587d0531047478c93042bf204770dec524996f9a8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_resource_perearst_maret_tamme",
+      "canonical_item_id": "kehtna_vald:resource:perearst_maret_tamme",
+      "itemType": "resource",
+      "title": "Perearst Maret Tamme",
+      "status": "active",
+      "summary": "Kehtna valla perearstide lehel on avaldatud Maret Tamme perearstipraksise asukoht, registratuuritelefon ja vastuvõtuajad. Vastuvõtule tulekuks palutakse eelregistreeruda telefonil tööpäeviti kell 8-16.",
+      "sourceKeys": [
+        "family_doctors_page"
+      ],
+      "name": "Perearst Maret Tamme",
+      "role": null,
+      "department": null,
+      "address": "Kooli 5, 79001 Kehtna",
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/tervishoid/perearstid/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "family_doctors_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_resource_perearst_maret_tamme",
+      "document_id": "kehtna_vald_resource_perearst_maret_tamme",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/tervishoid/perearstid/",
+      "content_hash": "39318fabb6f4d389d713fafffdd7a2a6b87ac78df154f59c532eed6dc721bddf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_resource_perearst_karin_lega",
+      "canonical_item_id": "kehtna_vald:resource:perearst_karin_lega",
+      "itemType": "resource",
+      "title": "Perearst Karin Lega",
+      "status": "active",
+      "summary": "Kehtna valla perearstide lehel on avaldatud Karin Lega perearstipraksise asukoht, registratuuritelefon, kabineti avatud olek ja vastuvõtuajad. Vastuvõtule palutakse eelregistreeruda telefonil.",
+      "sourceKeys": [
+        "family_doctors_page"
+      ],
+      "name": "Perearst Karin Lega",
+      "role": null,
+      "department": null,
+      "address": "Vana-Asula 5, 79101 Järvakandi",
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/tervishoid/perearstid/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "family_doctors_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_resource_perearst_karin_lega",
+      "document_id": "kehtna_vald_resource_perearst_karin_lega",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/tervishoid/perearstid/",
+      "content_hash": "15ef1a262e27f586dbb9f2c993d567760b35ee0d81e800298843e82e72c14de4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_resource_jarvakandi_apteek",
+      "canonical_item_id": "kehtna_vald:resource:jarvakandi_apteek",
+      "itemType": "resource",
+      "title": "Järvakandi apteek (Benu haruapteek)",
+      "status": "active",
+      "summary": "Kehtna valla apteekide lehel on avaldatud Järvakandi apteegi aadress, ja lahtiolekuajad. Apteek on avatud teisipäeviti ja neljapäeviti kell 9-15.",
+      "sourceKeys": [
+        "pharmacies_page"
+      ],
+      "name": "Järvakandi apteek (Benu haruapteek)",
+      "role": null,
+      "department": null,
+      "address": "Vana-Asula 2, Järvakandi 79101",
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/tervishoid/apteegid/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "pharmacies_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_resource_jarvakandi_apteek",
+      "document_id": "kehtna_vald_resource_jarvakandi_apteek",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/tervishoid/apteegid/",
+      "content_hash": "e5b3f7a976c959766519f47517b2f3dfaf2475cba3f825b0f20380d561d6ef95",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_resource_kehtna_apteek",
+      "canonical_item_id": "kehtna_vald:resource:kehtna_apteek",
+      "itemType": "resource",
+      "title": "Kehtna apteek (Benu haruapteek)",
+      "status": "active",
+      "summary": "Kehtna valla apteekide lehel on avaldatud Kehtna apteegi aadress, ja lahtiolekuajad. Apteek asub Kooli 5 aadressil Kehtnas.",
+      "sourceKeys": [
+        "pharmacies_page"
+      ],
+      "name": "Kehtna apteek (Benu haruapteek)",
+      "role": null,
+      "department": null,
+      "address": "Kooli 5, Kehtna 79001",
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/tervishoid/apteegid/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "pharmacies_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_resource_kehtna_apteek",
+      "document_id": "kehtna_vald_resource_kehtna_apteek",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/tervishoid/apteegid/",
+      "content_hash": "dc977c47d136ded3a7619bb34bd786e19a86e0e406e185be08f464843509f8e3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_resource_lelle_apteek",
+      "canonical_item_id": "kehtna_vald:resource:lelle_apteek",
+      "itemType": "resource",
+      "title": "Lelle apteek (Benu haruapteek)",
+      "status": "active",
+      "summary": "Kehtna valla apteekide lehel on avaldatud Lelle apteegi aadress, ja lahtiolekuajad. Apteek on avatud esmaspäeviti, teisipäeviti ja neljapäeviti piiratud aegadel.",
+      "sourceKeys": [
+        "pharmacies_page"
+      ],
+      "name": "Lelle apteek (Benu haruapteek)",
+      "role": null,
+      "department": null,
+      "address": "Pärnu mnt 12-14, Lelle 79002",
+      "officialUrl": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/tervishoid/apteegid/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "pharmacies_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_resource_lelle_apteek",
+      "document_id": "kehtna_vald_resource_lelle_apteek",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/pere-sotsiaalabi-ja-tervishoid/tervishoid/apteegid/",
+      "content_hash": "c2e574d271e64bf5a3710e6400dbf1297a7825a67bdfa1ff4f355ca474d02d27",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_form_eluruumi_taotlus",
+      "canonical_item_id": "kehtna_vald:form:eluruumi_taotlus",
+      "itemType": "form",
+      "title": "Avaldus eluruumi taotlemiseks",
+      "status": "active",
+      "summary": "PDF-vorm eluruumi taotlemiseks Kehtna vallalt. Vormil esitatakse taotleja andmed, pereliikmete ja ülalpeetavate andmed ning taotlemise põhjus. Vorm on seotud eluruumi tagamise teenusega.",
+      "sourceKeys": [
+        "form_eluruumi_taotlus_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_eluruumi_taotlemiseks.pdf",
+      "submissionChannels": [
+        "email",
+        "post",
+        "in_person",
+        "mailbox"
+      ],
+      "relatedTo": [
+        "kehtna_vald_service_eluruumi_tagamise_teenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kehtna_vald_contact_kristina_solman"
+      ],
+      "sections_present": [
+        "applicant_data",
+        "signature",
+        "official_decision_section"
+      ],
+      "item_type": "form",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_eluruumi_taotlus_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_form_eluruumi_taotlus",
+      "document_id": "kehtna_vald_form_eluruumi_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_eluruumi_taotlemiseks.pdf",
+      "content_hash": "2ed8e7c677788c28659e77bb56bc5751a5ae93502ab1ba382f6853bc9e3c4fcd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_form_eluruumi_yyrilepingu_pikendamine",
+      "canonical_item_id": "kehtna_vald:form:eluruumi_yyrilepingu_pikendamine",
+      "itemType": "form",
+      "title": "Avaldus eluruumi üürilepingu pikendamiseks",
+      "status": "active",
+      "summary": "PDF-vorm Kehtna vallalt eluruumi üürilepingu pikendamise taotlemiseks. Vormil märgitakse taotleja andmed ja pikendamise põhjus. Vorm on seotud eluruumi tagamise teenusega.",
+      "sourceKeys": [
+        "form_eluruumi_yyrilepingu_pikendamine_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_eluruumi_yyrilepingu_pikendamiseks.pdf",
+      "submissionChannels": [
+        "email",
+        "post",
+        "in_person",
+        "mailbox"
+      ],
+      "relatedTo": [
+        "kehtna_vald_service_eluruumi_tagamise_teenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kehtna_vald_contact_kristina_solman"
+      ],
+      "sections_present": [
+        "applicant_data",
+        "signature",
+        "official_decision_section"
+      ],
+      "item_type": "form",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_eluruumi_yyrilepingu_pikendamine_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_form_eluruumi_yyrilepingu_pikendamine",
+      "document_id": "kehtna_vald_form_eluruumi_yyrilepingu_pikendamine",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_eluruumi_yyrilepingu_pikendamiseks.pdf",
+      "content_hash": "c36970091cf575b08a4395c0876e0a6abab2dcf4895c7c47f4814862e78e6c56",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_form_synnitoetuse_taotlus",
+      "canonical_item_id": "kehtna_vald:form:synnitoetuse_taotlus",
+      "itemType": "form",
+      "title": "Avaldus sünnitoetuse taotlemiseks",
+      "status": "active",
+      "summary": "PDF-vorm Kehtna valla sünnitoetuse taotlemiseks. Vormil märgitakse lapse ja vanemate andmed, pangakonto ning kinnitus, et sama lapse eest ei ole sünnitoetust teisest omavalitsusest saadud.",
+      "sourceKeys": [
+        "form_synnitoetus_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_synnitoetuse_taotlemiseks.pdf",
+      "submissionChannels": [
+        "email",
+        "post",
+        "in_person",
+        "mailbox"
+      ],
+      "relatedTo": [
+        "kehtna_vald_benefit_synnitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kehtna_vald_contact_ragne_rahe"
+      ],
+      "sections_present": [
+        "applicant_data",
+        "signature",
+        "official_decision_section"
+      ],
+      "item_type": "form",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_synnitoetus_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_form_synnitoetuse_taotlus",
+      "document_id": "kehtna_vald_form_synnitoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_synnitoetuse_taotlemiseks.pdf",
+      "content_hash": "84024a2a5f7ef7e8c05ec00b35e89e2759be78ce00a25af3c143c0eb25170b21",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_form_lasteaia_toidutoetuse_taotlus",
+      "canonical_item_id": "kehtna_vald:form:lasteaia_toidutoetuse_taotlus",
+      "itemType": "form",
+      "title": "Avaldus lasteaia toidutoetuse taotlemiseks",
+      "status": "active",
+      "summary": "PDF-vorm lasteaia toidutoetuse taotlemiseks. Vormil küsitakse laste, pere koosseisu, sissetuleku ja majandusliku olukorra andmeid ning selle eesmärk on võimaldada lapsele 100% tasuta toit.",
+      "sourceKeys": [
+        "form_lasteaia_toidutoetus_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_lasteaia_toidutoetuse_taotlemiseks2024.pdf",
+      "submissionChannels": [
+        "email",
+        "post",
+        "in_person",
+        "mailbox"
+      ],
+      "relatedTo": [
+        "kehtna_vald_benefit_lasteaiatoidu_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kehtna_vald_contact_ragne_rahe",
+        "kehtna_vald_contact_ene_seinpalu"
+      ],
+      "sections_present": [
+        "applicant_data",
+        "signature",
+        "official_decision_section"
+      ],
+      "item_type": "form",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_lasteaia_toidutoetus_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_form_lasteaia_toidutoetuse_taotlus",
+      "document_id": "kehtna_vald_form_lasteaia_toidutoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_lasteaia_toidutoetuse_taotlemiseks2024.pdf",
+      "content_hash": "3ed6d74a395920dcfd26ce8951c9757af2430a0e5de1370a1b017d502eb2bbd6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_form_ranitsatoetuse_taotlus",
+      "canonical_item_id": "kehtna_vald:form:ranitsatoetuse_taotlus",
+      "itemType": "form",
+      "title": "Avaldus ranitsatoetuse taotlemiseks",
+      "status": "active",
+      "summary": "PDF-vorm esmakordselt kooli mineva lapse toetuse ehk ranitsatoetuse taotlemiseks. Vormilehel on märkus, et avaldus esitatakse klassijuhatajale.",
+      "sourceKeys": [
+        "form_ranitsatoetus_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_ranitsatoetuse_taotlemiseks.pdf",
+      "submissionChannels": [
+        "email",
+        "post",
+        "in_person",
+        "mailbox"
+      ],
+      "relatedTo": [
+        "kehtna_vald_benefit_esmakordselt_kooli_mineva_lapse_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kehtna_vald_contact_ragne_rahe"
+      ],
+      "sections_present": [
+        "applicant_data",
+        "signature",
+        "official_decision_section"
+      ],
+      "item_type": "form",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_ranitsatoetus_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_form_ranitsatoetuse_taotlus",
+      "document_id": "kehtna_vald_form_ranitsatoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_ranitsatoetuse_taotlemiseks.pdf",
+      "content_hash": "02dc9fb5ce2072b3c3f3aae748b11c0ccf05bbc185d6f3337803457afd65ec5a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_form_puudega_lapse_hooldajatoetuse_taotlus",
+      "canonical_item_id": "kehtna_vald:form:puudega_lapse_hooldajatoetuse_taotlus",
+      "itemType": "form",
+      "title": "Avaldus puudega lapse hooldajatoetuse taotlemiseks",
+      "status": "active",
+      "summary": "PDF-vorm puudega lapse hooldajatoetuse taotlemiseks. Vorm sisaldab taotleja ja hooldatava andmeid ning kohustust teavitada sotsiaaltöötajat toetust mõjutavatest muutustest 10 päeva jooksul.",
+      "sourceKeys": [
+        "form_puudega_lapse_hooldajatoetus_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_puudega_lapse_hooldajatoetuse_taotlemiseks.pdf",
+      "submissionChannels": [
+        "email",
+        "post",
+        "in_person",
+        "mailbox"
+      ],
+      "relatedTo": [
+        "kehtna_vald_benefit_puudega_lapse_hooldajatoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kehtna_vald_contact_ragne_rahe",
+        "kehtna_vald_contact_ege_vonbret_tosin"
+      ],
+      "sections_present": [
+        "applicant_data",
+        "signature",
+        "official_decision_section"
+      ],
+      "item_type": "form",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_puudega_lapse_hooldajatoetus_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_form_puudega_lapse_hooldajatoetuse_taotlus",
+      "document_id": "kehtna_vald_form_puudega_lapse_hooldajatoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_puudega_lapse_hooldajatoetuse_taotlemiseks.pdf",
+      "content_hash": "91adc9932d8a2bbbead18230eab4cbf34bc35b00789446c745f7258997628f76",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_form_taisealise_puudega_isiku_hooldaja_maaramine",
+      "canonical_item_id": "kehtna_vald:form:taisealise_puudega_isiku_hooldaja_maaramine",
+      "itemType": "form",
+      "title": "Avaldus täisealisele puudega isikule hooldaja määramiseks",
+      "status": "active",
+      "summary": "PDF-vorm täisealisele puudega isikule hooldaja määramiseks. Vormil esitatakse hooldatava ja hooldaja andmed, puude raskusaste ning mõlema allkirjad.",
+      "sourceKeys": [
+        "form_taisealise_puudega_hooldaja_maaramine_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_taisealisele_puudega_isikule_hooldaja_maaramiseks.pdf",
+      "submissionChannels": [
+        "email",
+        "post",
+        "in_person",
+        "mailbox"
+      ],
+      "relatedTo": [
+        "kehtna_vald_service_taisealise_isiku_hooldus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kehtna_vald_contact_kristina_solman",
+        "kehtna_vald_contact_ragne_rahe"
+      ],
+      "sections_present": [
+        "applicant_data",
+        "signature",
+        "official_decision_section"
+      ],
+      "item_type": "form",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_taisealise_puudega_hooldaja_maaramine_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_form_taisealise_puudega_isiku_hooldaja_maaramine",
+      "document_id": "kehtna_vald_form_taisealise_puudega_isiku_hooldaja_maaramine",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_taisealisele_puudega_isikule_hooldaja_maaramiseks.pdf",
+      "content_hash": "526e807a34255f07ee267ae38bd379465eb75fc474d656769238e6adca4d6385",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_form_sotsiaaltoetuse_taotlus",
+      "canonical_item_id": "kehtna_vald:form:sotsiaaltoetuse_taotlus",
+      "itemType": "form",
+      "title": "Avaldus sotsiaaltoetuse saamiseks",
+      "status": "active",
+      "summary": "PDF-vorm sotsiaaltoetuse taotlemiseks. Vormil märgitakse toetuse liik ja taotlemise põhjendus, majandusliku olukorra kirjeldus, leibkonna suurus, sissetulek ning kulukviitungid.",
+      "sourceKeys": [
+        "form_sotsiaaltoetus_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_sotsiaaltoetuse_taotlemiseks.pdf",
+      "submissionChannels": [
+        "email",
+        "post",
+        "in_person",
+        "mailbox"
+      ],
+      "relatedTo": [
+        "kehtna_vald_benefit_koolitoidu_toetus",
+        "kehtna_vald_benefit_opilaskodu_kulude_kompenseerimise_toetus",
+        "kehtna_vald_benefit_prilliklaaside_maksumuse_kompenseerimise_toetus",
+        "kehtna_vald_benefit_retseptiravimite_ja_abivahendite_kompenseerimise_toetus",
+        "kehtna_vald_benefit_haigla_visiidi_voodipaevatasu_ja_ravikulude_toetus",
+        "kehtna_vald_benefit_transpordikulude_toetus_terviseteenustele",
+        "kehtna_vald_benefit_erandkorras_uhhekordne_sotsiaaltoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kehtna_vald_contact_ragne_rahe",
+        "kehtna_vald_contact_ene_seinpalu"
+      ],
+      "sections_present": [
+        "applicant_data",
+        "signature",
+        "official_decision_section"
+      ],
+      "item_type": "form",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_sotsiaaltoetus_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_form_sotsiaaltoetuse_taotlus",
+      "document_id": "kehtna_vald_form_sotsiaaltoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_sotsiaaltoetuse_taotlemiseks.pdf",
+      "content_hash": "feab3405b844f463a475866aefab7439e54263b79ad2e7e0d672810c8e334a4e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_form_toimetulekutoetuse_taotlus",
+      "canonical_item_id": "kehtna_vald:form:toimetulekutoetuse_taotlus",
+      "itemType": "form",
+      "title": "Avaldus toimetulekutoetuse taotlemiseks",
+      "status": "active",
+      "summary": "PDF-vorm toimetulekutoetuse taotlemiseks. Vormil esitatakse toetuse määramisel arvesse võetavate isikute andmed, tegelik elukoht ja eluruumi kasutamise õiguslik alus.",
+      "sourceKeys": [
+        "form_toimetulekutoetus_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_toimetulekutoetuse_taotlemiseks.pdf",
+      "submissionChannels": [
+        "email",
+        "post",
+        "in_person",
+        "mailbox"
+      ],
+      "relatedTo": [
+        "kehtna_vald_benefit_toimetulekutoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kehtna_vald_contact_ene_seinpalu"
+      ],
+      "sections_present": [
+        "applicant_data",
+        "signature",
+        "official_decision_section"
+      ],
+      "item_type": "form",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_toimetulekutoetus_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_form_toimetulekutoetuse_taotlus",
+      "document_id": "kehtna_vald_form_toimetulekutoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_toimetulekutoetuse_taotlemiseks.pdf",
+      "content_hash": "07d756f351a52dfe3b5dcf3a38ff46c8b5c361749d6ab55a819a1e54b44dffc9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_form_koduteenuse_taotlus",
+      "canonical_item_id": "kehtna_vald:form:koduteenuse_taotlus",
+      "itemType": "form",
+      "title": "Avaldus koduteenuse saamiseks",
+      "status": "active",
+      "summary": "PDF-vorm koduteenuse taotlemiseks. Vormil märgitakse taotleja andmed, koduteenuse vajaduse põhjus ning taotlejaga seotud isikud või pereliikmed.",
+      "sourceKeys": [
+        "form_koduteenuse_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_koduteenuse_saamiseks.pdf",
+      "submissionChannels": [
+        "email",
+        "post",
+        "in_person",
+        "mailbox"
+      ],
+      "relatedTo": [
+        "kehtna_vald_service_koduteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kehtna_vald_contact_ragne_rahe"
+      ],
+      "sections_present": [
+        "applicant_data",
+        "signature",
+        "official_decision_section"
+      ],
+      "item_type": "form",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_koduteenuse_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_form_koduteenuse_taotlus",
+      "document_id": "kehtna_vald_form_koduteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_koduteenuse_saamiseks.pdf",
+      "content_hash": "82a35578c7b9bc621102774d6650b89e3f3d156271ebb9c8e6f5c8ab3d22e660",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_form_uldhooldusteenusele_suunamine_ja_tasumine",
+      "canonical_item_id": "kehtna_vald:form:uldhooldusteenusele_suunamine_ja_tasumine",
+      "itemType": "form",
+      "title": "Avaldus üldhooldusteenusele suunamiseks ja teenuse eest tasumiseks",
+      "status": "active",
+      "summary": "PDF-vorm üldhooldusteenusele suunamise ja teenuse eest tasumise taotlemiseks. Vormil esitatakse hooldust vajava isiku andmed, sissetulekud, ülalpidajate andmed ning omaosaluse tasumise võimekuse selgitus.",
+      "sourceKeys": [
+        "form_uldhooldus_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_yldhooldusteenusele_suunamiseks_ja_teenuse_eest_tasumiseks.pdf",
+      "submissionChannels": [
+        "email",
+        "post",
+        "in_person",
+        "mailbox"
+      ],
+      "relatedTo": [
+        "kehtna_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kehtna_vald_contact_kristina_solman"
+      ],
+      "sections_present": [
+        "applicant_data",
+        "signature",
+        "official_decision_section"
+      ],
+      "item_type": "form",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_uldhooldus_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_form_uldhooldusteenusele_suunamine_ja_tasumine",
+      "document_id": "kehtna_vald_form_uldhooldusteenusele_suunamine_ja_tasumine",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_yldhooldusteenusele_suunamiseks_ja_teenuse_eest_tasumiseks.pdf",
+      "content_hash": "015d37f9dbec29c126b74ad03d3e0dd8e22667ef70f7499d18dc2e627c33055c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "kehtna_vald_form_matusetoetuse_taotlus",
+      "canonical_item_id": "kehtna_vald:form:matusetoetuse_taotlus",
+      "itemType": "form",
+      "title": "Avaldus matusetoetuse taotlemiseks",
+      "status": "active",
+      "summary": "PDF-vorm Kehtna valla matusetoetuse taotlemiseks. Vormil esitatakse taotleja andmed, pangakonto ning lahkunu andmed.",
+      "sourceKeys": [
+        "form_matusetoetus_pdf",
+        "forms_page"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_matusetoetuse_taotlemiseks.pdf",
+      "submissionChannels": [
+        "email",
+        "post",
+        "in_person",
+        "mailbox"
+      ],
+      "relatedTo": [
+        "kehtna_vald_benefit_matusetoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "kehtna_vald_contact_ragne_rahe"
+      ],
+      "sections_present": [
+        "applicant_data",
+        "signature",
+        "official_decision_section"
+      ],
+      "item_type": "form",
+      "municipality_id": "kehtna_vald",
+      "municipality_name": "Kehtna vald",
+      "county": "Raplamaa",
+      "source_keys": [
+        "form_matusetoetus_pdf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "kehtna_vald_form_matusetoetuse_taotlus",
+      "document_id": "kehtna_vald_form_matusetoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://kehtna.ee/wp-content/uploads/2025/02/AVALDUS_matusetoetuse_taotlemiseks.pdf",
+      "content_hash": "a6557df22ba7dff8c81052f69964afe6e3488653aada6252573b948bcd4f6c60",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Kehtna vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

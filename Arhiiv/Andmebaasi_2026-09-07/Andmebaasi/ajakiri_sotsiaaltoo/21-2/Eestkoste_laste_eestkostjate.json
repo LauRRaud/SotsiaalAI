@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2021",
+  "articleId": "eestkoste-laste-eestkostjate-narratiivides-2021-2",
+  "title": "Eestkoste laste eestkostjate narratiivides",
+  "authors": [
+    "Nadežda Leosk"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2021",
+  "section": "Uurimus",
+  "pageRange": "67-73",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Magistritööl põhinev uurimus, mis keskendub laste füüsilisest isikust eestkostjate lugudele. Autor analüüsib kümne eestkostja narratiive, et mõista, kuidas nad tõlgendavad eestkoste rolli, vastutust ja suhteid teiste asjaosalistega. Välja joonistuvad peamised motiivid, miks inimesed otsustavad lapsele eestkostjaks hakata – kohusetunne ja perekondlik side, ühiskondliku missiooni tajumine ning soov olla lapsevanem. Uurimus toob esile eestkosteperede kogetud ebavõrdsuse, stigmatiseeriva hoiaku spetsialistide poole pöördumisel ning ebajärjekindla toe ja järelevalve süsteemi. Samuti rõhutatakse vajadust parema ettevalmistuse, ühtsema hindamise ja järjepideva kontaktivõrgustiku järele, et toetada nii eestkosteperesid kui ka nendes kasvavaid lapsi.",
+  "tags": [
+    "eestkoste",
+    "eestkostepered",
+    "asendushooldus",
+    "perepõhine asendushooldus",
+    "narratiivuurimus",
+    "laste heaolu",
+    "tugiteenused",
+    "järelevalve"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2021_web_link_Part15.pdf",
+  "document_id": "sotsiaaltoo-2-2021-eestkoste-laste-eestkostjate-narratiivides-2021-2",
+  "source_format": "pdf",
+  "source_sha256": "d2792428c7086552dde7040e2fdb7fdcbc91a56a68631becdf388b4070b9e522",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2021-eestkoste-laste-eestkostjate-narratiivides-2021-2",
+    "previous_source_path": "Sotsiaaltoo_2_2021_web_link_Part15.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d2792428c7086552dde7040e2fdb7fdcbc91a56a68631becdf388b4070b9e522",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

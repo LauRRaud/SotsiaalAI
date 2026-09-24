@@ -1,0 +1,140 @@
+{
+  "source_path": "tootukassa_ska_sotsiaalministeerium_star_strateegia_2026_2030.pdf",
+  "source_format": "pdf",
+  "sha256": "ad5a86fdcd8d6cc28e5e09122fe5d3bbf8332b2d97923fa8d72580555c20bdd8",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/tootukassa_ska_sotsiaalministeerium_star_strateegia_2026_2030.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "tootukassa_ska_sotsiaalministeerium_star_strateegia_2026_2030",
+          "title": "STAR strateegia 2026–2030",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-03/Lisa%201_Sotsiaalteenuste%20ja%20-toetuste%20andmeregistri%20strateegia%20aastateks%202026-2030.pdf",
+          "normalized_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-03/Lisa 1_Sotsiaalteenuste ja -toetuste andmeregistri strateegia aastateks 2026-2030.pdf",
+          "source_format": "pdf",
+          "source_type": "policy_analysis",
+          "resource_type": "policy_context",
+          "publisher": "Töötukassa / SKA / Sotsiaalministeerium",
+          "organization_id": "tootukassa_ska_sotsiaalministeerium",
+          "collection_hint": "policy_and_strategy",
+          "evidence_role": "policy_context",
+          "topic_tags": [
+            "Töötukassa",
+            "strateegia",
+            "poliitika planeerimine",
+            "Sotsiaalministeerium",
+            "Sotsiaalkindlustusamet"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Töövõime / Töötukassa / SKA / STAR",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 351,
+            "order": 197
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "STAR strateegia 2026–2030"
+          ],
+          "collection_hints": [
+            "policy_analyses"
+          ],
+          "source_types_seen": [
+            "policy_analysis"
+          ],
+          "resource_types_seen": [
+            "policy_context"
+          ],
+          "publishers_seen": [
+            "Töötukassa / SKA / Sotsiaalministeerium"
+          ],
+          "organizations_seen": [
+            "tootukassa_ska_sotsiaalministeerium"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Töövõime / Töötukassa / SKA / STAR",
+              "line": 351,
+              "order": 197
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-03/Lisa 1_Sotsiaalteenuste ja -toetuste andmeregistri strateegia aastateks 2026-2030.pdf"
+        },
+        "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-03/Lisa%201_Sotsiaalteenuste%20ja%20-toetuste%20andmeregistri%20strateegia%20aastateks%202026-2030.pdf",
+        "redirects": [],
+        "sha256": "ad5a86fdcd8d6cc28e5e09122fe5d3bbf8332b2d97923fa8d72580555c20bdd8",
+        "bytes": 1700378,
+        "downloaded_at": "2026-08-14T08:00:43.387Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "tootukassa_ska_sotsiaalministeerium_star_strateegia_2026_2030",
+      "metadata": {
+        "createdAt": "2026-06-12T03:44:04.240915+00:00",
+        "type": "FILE",
+        "fileName": "Lisa 1_Sotsiaalteenuste ja -toetuste andmeregistri strateegia aastateks 2026-2030.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:44:04.173534+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/f4b267103d3a/Lisa 1_Sotsiaalteenuste ja -toetuste andmeregistri strateegia aastateks 2026-2030.pdf",
+        "title": "STAR strateegia 2026–2030",
+        "description": "Source master headings: Töövõime / Töötukassa / SKA / STAR",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2026,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–31",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "policy_analyses",
+        "source_id": "tootukassa_ska_sotsiaalministeerium_star_strateegia_2026_2030",
+        "document_id": "tootukassa_ska_sotsiaalministeerium_star_strateegia_2026_2030",
+        "source_type": "policy_analysis",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "0b3a13329b97913d085e5b558a99e01080ea07de9ac70fba4a932140a8b77fb3",
+        "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-03/Lisa%201_Sotsiaalteenuste%20ja%20-toetuste%20andmeregistri%20strateegia%20aastateks%202026-2030.pdf",
+        "url_canonical": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-03/Lisa 1_Sotsiaalteenuste ja -toetuste andmeregistri strateegia aastateks 2026-2030.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "tootukassa_ska_sotsiaalministeerium_star_strateegia_2026_2030",
+        "updatedAt": "2026-06-12T03:44:04.240939+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

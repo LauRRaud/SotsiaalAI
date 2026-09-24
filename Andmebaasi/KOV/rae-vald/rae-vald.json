@@ -1,0 +1,4508 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-rae-vald",
+  "document_id": "kov-rae-vald",
+  "municipality": "Rae vald",
+  "municipality_id": "rae_vald",
+  "county": "Harjumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "rae_vald_contact_general_rae_vallavalitsus",
+      "canonical_item_id": "rae_vald:contact:general_rae_vallavalitsus",
+      "itemType": "contact",
+      "title": "Rae Vallavalitsus",
+      "status": "active",
+      "summary": "Rae Vallavalitsuse üldkontakt sotsiaalvaldkonna pöördumiste esmaseks suunamiseks. Aadress on Aruküla tee 9, Jüri.",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "name": "Rae Vallavalitsus",
+      "role": "Üldkontakt",
+      "department": null,
+      "address": "Aruküla tee 9, Jüri alevik 75301",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_contact_general_rae_vallavalitsus",
+      "document_id": "rae_vald_contact_general_rae_vallavalitsus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "8aa01a67a0dd8c30cd03aa01dcf706692efa8d774006ca4e2466792aa149e9ca",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_contact_natalja_grusdam",
+      "canonical_item_id": "rae_vald:contact:natalja_grusdam",
+      "itemType": "contact",
+      "title": "Natalja Grusdam",
+      "status": "active",
+      "summary": "Natalja Grusdam juhib sotsiaal- ja kogukonna ametit ning planeerib ja korraldab valla sotsiaalküsimusi.",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "name": "Natalja Grusdam",
+      "role": "Sotsiaal- ja kogukonna ameti juhataja",
+      "department": "Sotsiaal- ja kogukonna amet",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_contact_natalja_grusdam",
+      "document_id": "rae_vald_contact_natalja_grusdam",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "1b38de7d8b294b33a3397b68086cf4c7a2145029cc8985f337419df180ea43fa",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_contact_liina_liibert",
+      "canonical_item_id": "rae_vald:contact:liina_liibert",
+      "itemType": "contact",
+      "title": "Liina Liibert",
+      "status": "active",
+      "summary": "Liina Liibert tegeleb sotsiaalhoolekande eelarve, õigusaktide eelnõude, arengu- ja tegevuskavade ning sotsiaalvaldkonna projektidega.",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "name": "Liina Liibert",
+      "role": "Sotsiaalhoolekande peaspetsialist",
+      "department": "Sotsiaal- ja kogukonna amet",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_contact_liina_liibert",
+      "document_id": "rae_vald_contact_liina_liibert",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "c18b524dd9ecca9726379ae28f8cfaba296f74b4f0b0237819ed232973fee810",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_contact_ylle_parmas",
+      "canonical_item_id": "rae_vald:contact:ylle_parmas",
+      "itemType": "contact",
+      "title": "Ülle Parmas",
+      "status": "active",
+      "summary": "Ülle Parmas nõustab ja informeerib valla inimesi sotsiaalkaitse küsimustes, menetleb sotsiaaltoetuste ja -teenuste taotlusi ning tegeleb Tallinna Ühistranspordi soodustuse tõenditega.",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "name": "Ülle Parmas",
+      "role": "Sotsiaalhoolekande spetsialist",
+      "department": "Sotsiaal- ja kogukonna amet",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_contact_ylle_parmas",
+      "document_id": "rae_vald_contact_ylle_parmas",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "f02cee7562c0db6b880769aa9bfd22edad27db9ddae8949508001553963a00f5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_contact_kadi_pytsepp",
+      "canonical_item_id": "rae_vald:contact:kadi_pytsepp",
+      "itemType": "contact",
+      "title": "Kadi Pütsepp",
+      "status": "active",
+      "summary": "Kadi Pütsepp koordineerib erivajadustega lastega seotud teenuseid ning nõustab puuetega inimesi sotsiaalhoolekande küsimustes.",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "name": "Kadi Pütsepp",
+      "role": "Erivajadustega inimeste spetsialist",
+      "department": "Sotsiaal- ja kogukonna amet",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_contact_kadi_pytsepp",
+      "document_id": "rae_vald_contact_kadi_pytsepp",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "8da4253d54001caaf838d7546fc2ac159f3766592b4fd4969e120765cd877b35",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_contact_katarina_kimsen",
+      "canonical_item_id": "rae_vald:contact:katarina_kimsen",
+      "itemType": "contact",
+      "title": "Katarina Kimsen",
+      "status": "active",
+      "summary": "Katarina Kimsen koordineerib erivajadustega täisealiste inimeste teenuseid, väljastab puudega isiku parkimiskaarte ja menetleb täiskasvanute hooldajatoetuse taotlusi.",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "name": "Katarina Kimsen",
+      "role": "Erivajadustega inimeste spetsialist",
+      "department": "Sotsiaal- ja kogukonna amet",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_contact_katarina_kimsen",
+      "document_id": "rae_vald_contact_katarina_kimsen",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "7872437b4fbf90d1ea7b26e7fc67e0ab988835e8aeaca24931deb97de0f9fedc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_contact_helen_molder",
+      "canonical_item_id": "rae_vald:contact:helen_molder",
+      "itemType": "contact",
+      "title": "Helen Mölder",
+      "status": "active",
+      "summary": "Helen Mölder tegeleb vanemate hooldusõiguse, eestkoste, hoolduspere leidmise, perede nõustamise ja lapsesse puutuvate vaidlustega.",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "name": "Helen Mölder",
+      "role": "Laste ja perede heaolu spetsialist",
+      "department": "Sotsiaal- ja kogukonna amet",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_contact_helen_molder",
+      "document_id": "rae_vald_contact_helen_molder",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "aa15daecaed7b7934acd7c20d2bd2183ee06cd59cd16662d8aab9f18ec1ca95f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_contact_catriin_kolbak",
+      "canonical_item_id": "rae_vald:contact:catriin_kolbak",
+      "itemType": "contact",
+      "title": "Catriin Kolbak",
+      "status": "active",
+      "summary": "Catriin Kolbak tegeleb vanemate hooldusõiguse, eestkoste, hoolduspere leidmise, perede nõustamise ja lapsesse puutuvate vaidlustega.",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "name": "Catriin Kolbak",
+      "role": "Laste ja perede heaolu spetsialist",
+      "department": "Sotsiaal- ja kogukonna amet",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_contact_catriin_kolbak",
+      "document_id": "rae_vald_contact_catriin_kolbak",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "7b496a4bfdd2f961e9f6217f66aa53c3f953d8cbccb6fc0c3593349ee44a9702",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_contact_gris_tammiksaar",
+      "canonical_item_id": "rae_vald:contact:gris_tammiksaar",
+      "itemType": "contact",
+      "title": "Gris Tammiksaar",
+      "status": "active",
+      "summary": "Gris Tammiksaar tegeleb lastekaitse valdkonnas vanemliku hoolitsuseta laste, eestkoste, hoolduspere ja perede nõustamise teemadega.",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "name": "Gris Tammiksaar",
+      "role": "Laste ja perede heaolu spetsialist",
+      "department": "Sotsiaal- ja kogukonna amet",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_contact_gris_tammiksaar",
+      "document_id": "rae_vald_contact_gris_tammiksaar",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "0fe01ccd2c36e547d3fffcb3674c5f143346897a8223ace3cb8b957ecb4ab38f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_contact_elle_veelmaa",
+      "canonical_item_id": "rae_vald:contact:elle_veelmaa",
+      "itemType": "contact",
+      "title": "Elle Veelmaa",
+      "status": "active",
+      "summary": "Elle Veelmaa tegeleb vanemliku hoolitsuseta laste elu korraldamise, eestkoste, hoolduspere leidmise, perede nõustamise ja lapsega seotud vaidlustega.",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "name": "Elle Veelmaa",
+      "role": "Laste ja perede heaolu spetsialist",
+      "department": "Sotsiaal- ja kogukonna amet",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_contact_elle_veelmaa",
+      "document_id": "rae_vald_contact_elle_veelmaa",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "bbc182a926f7d9e567b5fd8025c1703b479077a8e63136837130fd2a0175ec04",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_contact_kai_sinisalu",
+      "canonical_item_id": "rae_vald:contact:kai_sinisalu",
+      "itemType": "contact",
+      "title": "Kai Sinisalu",
+      "status": "active",
+      "summary": "Kai Sinisalu tegeleb vanemate hooldusõiguse, vanemliku hoolitsuseta laste elu korraldamise, eestkoste ja hoolduspere teemadega ning koordineerib valla lastekaitsealaseid juhtumeid.",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "name": "Kai Sinisalu",
+      "role": "Laste ja perede heaolu spetsialist",
+      "department": "Sotsiaal- ja kogukonna amet",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_contact_kai_sinisalu",
+      "document_id": "rae_vald_contact_kai_sinisalu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "0139422095959a2a04b39e9178c58bbbf74f9f836fdaf55d86643b0988fbc1a7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_contact_diana_praam",
+      "canonical_item_id": "rae_vald:contact:diana_praam",
+      "itemType": "contact",
+      "title": "Diana Prääm",
+      "status": "active",
+      "summary": "Diana Prääm toetab noori nende tööalase konkurentsivõime parandamisel ning tööle või haridussüsteemi liikumisel.",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "name": "Diana Prääm",
+      "role": "Noorte heaolu spetsialist",
+      "department": "Haridus ja noored",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_contact_diana_praam",
+      "document_id": "rae_vald_contact_diana_praam",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "fb434d541ea22c8327ba9f451b6716e420638c681dc262c4cd784dd19b80eb7c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "rae_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenuse eesmärk on võimaldada puudega või liikumistakistusega inimesele sõiduki kasutamise võimalus tervisega või asjaajamisega seotud toimingute tegemiseks. Teenus on mõeldud arsti vastuvõtule, rehabilitatsioonile, haiglasse, hädavajalikule asjaajamisele, tööle või õppesse sõitmiseks.",
+      "sourceKeys": [
+        "sotsiaaltransport_page"
+      ],
+      "targetGroup": "Rae valla elanikud, kes sügava või raske liikumis-, nägemis-, vaimu- või liitpuude tõttu ei saa kõrvalabita kasutada ühistransporti või isiklikku sõidukit.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "Osaliselt tasuline"
+      },
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/sotsiaaltransporditeenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "rae_vald_form_sotsiaalteenuse_taotlus",
+        "rae_vald_form_sotsiaalteenuse_e_taotlus"
+      ],
+      "relatedContacts": [
+        "rae_vald_contact_liina_liibert",
+        "rae_vald_contact_ylle_parmas"
+      ],
+      "item_type": "service",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltransport_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_service_sotsiaaltransporditeenus",
+      "document_id": "rae_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/sotsiaaltransporditeenus",
+      "content_hash": "f5929d76df4e06d3e9e32321e8fe906cfd0753ae3c2a0ab06a34df355fce0763",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_service_tugiisikuteenus",
+      "canonical_item_id": "rae_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus toetab iseseisvat toimetulekut olukordades, kus inimene vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu juhendamist ja motiveerimist. Lapse puhul toetab tugiisik koostöös last kasvatava isikuga lapse arengut ning võib vajaduse korral teha puudega lapse hooldustoiminguid.",
+      "sourceKeys": [
+        "tugiisikuteenus_page"
+      ],
+      "targetGroup": "Lapsed ja täiskasvanud, kes vajavad kõrvalabi oma kohustuste täitmisel ja õiguste teostamisel.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "Osaliselt tasuline"
+      },
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/tugiisikuteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "rae_vald_form_sotsiaalteenuse_taotlus",
+        "rae_vald_form_sotsiaalteenuse_e_taotlus",
+        "rae_vald_form_lapse_sotsiaalteenuse_e_taotlus"
+      ],
+      "relatedContacts": [
+        "rae_vald_contact_kadi_pytsepp"
+      ],
+      "item_type": "service",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "tugiisikuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_service_tugiisikuteenus",
+      "document_id": "rae_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/tugiisikuteenus",
+      "content_hash": "fa33a9ef86b4ddf60bf7038a763dd43ff6f3775e08c2fc97e02c67a4f1d3d946",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_service_volanoustamisteenus",
+      "canonical_item_id": "rae_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab võlaprobleemidega inimesel hinnata oma varalist olukorda, pidada läbirääkimisi võlausaldajatega, korraldada nõuete rahuldamist ja ennetada edasisi võlgnevusi. Teenus on suunatud majandusliku toimetuleku parandamisele.",
+      "sourceKeys": [
+        "volanoustamisteenus_page"
+      ],
+      "targetGroup": "Võlgadega või võlgade tekkimise riskis olevad inimesed.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "Tasuta"
+      },
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/volanoustamisteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "rae_vald_form_sotsiaalteenuse_taotlus",
+        "rae_vald_form_sotsiaalteenuse_e_taotlus"
+      ],
+      "relatedContacts": [
+        "rae_vald_contact_kadi_pytsepp"
+      ],
+      "item_type": "service",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "volanoustamisteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_service_volanoustamisteenus",
+      "document_id": "rae_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/volanoustamisteenus",
+      "content_hash": "287ab95254b1cf746547ec44a5973a049bce663a1c62e89d6ce29456fec125fb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_service_valtimatu_sotsiaalabi",
+      "canonical_item_id": "rae_vald:service:valtimatu_sotsiaalabi",
+      "itemType": "service",
+      "title": "Vältimatu sotsiaalabi teenus",
+      "status": "active",
+      "summary": "Vältimatu sotsiaalabi teenus tagab esmase abi toidu, riiete ja ajutise peavarju osas inimesele või perele, kes on sattunud elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitusse olukorda. Abi vormi otsustab vallavalitsus ja abi osutatakse seni, kuni inimene ei ole enam sotsiaalselt abitu.",
+      "sourceKeys": [
+        "valtimatu_sotsiaalabi_service_page"
+      ],
+      "targetGroup": "Rae valla elanikud, Rae vallas viibivad abivajajad, teadmata elukohaga inimesed ja välismaalased, kes vajavad ajutiselt vältimatut abi.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "Tasuta"
+      },
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/valtimatu-sotsiaalabi-teenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "rae_vald_form_sotsiaalteenuse_taotlus",
+        "rae_vald_form_sotsiaalteenuse_e_taotlus"
+      ],
+      "relatedContacts": [
+        "rae_vald_contact_ylle_parmas"
+      ],
+      "item_type": "service",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "valtimatu_sotsiaalabi_service_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_service_valtimatu_sotsiaalabi",
+      "document_id": "rae_vald_service_valtimatu_sotsiaalabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/valtimatu-sotsiaalabi-teenus",
+      "content_hash": "f5699ebdcc90a08c26da4db8fee6b364450023bc2313d41962f5dee28e3a2d1c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_service_koduteenus",
+      "canonical_item_id": "rae_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenuse eesmärk on tagada täisealise isiku iseseisev ja turvaline toimetulek kodustes tingimustes. Kõrvalabi võib hõlmata toiduainete, ravimite ja esmatarbekaupade koju toomist, kütte ja veega varustamist, olmejäätmete väljaviimist, asjaajamisel abistamist ning muid vajadusi, mis tulenevad terviseseisundist või keskkonnast.",
+      "sourceKeys": [
+        "koduteenus_page"
+      ],
+      "targetGroup": "Täisealised, kes üldjuhul saavad koduses keskkonnas hakkama, kuid vajavad iseseisvaks toimetulekuks kõrvalabi.",
+      "conditions": "Teenust ei osutata isikule, kellele on määratud hooldaja.",
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "Osaliselt tasuline"
+      },
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/koduteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "rae_vald_form_sotsiaalteenuse_taotlus",
+        "rae_vald_form_sotsiaalteenuse_e_taotlus"
+      ],
+      "relatedContacts": [
+        "rae_vald_contact_katarina_kimsen"
+      ],
+      "item_type": "service",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "koduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_service_koduteenus",
+      "document_id": "rae_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/koduteenus",
+      "content_hash": "198aecb8f9d2fa8177f01e55ba946fb36802e01e24177fe2f555b73a56d29a56",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_service_uldhooldusteenus",
+      "canonical_item_id": "rae_vald:service:uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatav üldhooldusteenus on täisealise isiku abistamine ja hooldamine hooldekodus. Teenusele võib suunata eakaid ja puudega inimesi, kes ei suuda kodustes tingimustes iseseisvalt toime tulla ning kelle toimetulekut ei ole võimalik tagada mõne muu teenusega.",
+      "sourceKeys": [
+        "uldhooldusteenus_page"
+      ],
+      "targetGroup": "Eakad ja puudega inimesed, kelle abivajadust ei saa tagada kodus.",
+      "conditions": "Teenusele ei suunata nakkushaigusi põdevaid või enda või teiste suhtes ohtliku psüühika- või käitumishäirega inimesi.",
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "Tasuline"
+      },
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/valjaspool-kodu-osutatav-uldhooldusteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "rae_vald_form_uldhoolduse_taotlus",
+        "rae_vald_form_uldhoolduse_e_taotlus"
+      ],
+      "relatedContacts": [
+        "rae_vald_contact_katarina_kimsen"
+      ],
+      "item_type": "service",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "uldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_service_uldhooldusteenus",
+      "document_id": "rae_vald_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/valjaspool-kodu-osutatav-uldhooldusteenus",
+      "content_hash": "cc41f6149352bf26d4e2ac5d292f33fa7484f08db2ba6fd7bde79cff072dc077",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_service_turvakoduteenus",
+      "canonical_item_id": "rae_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenuse eesmärk on tagada ajutine eluase, turvaline keskkond ja esmane abi lapsele, kelle elu, tervis või areng on ohus, ning täisealisele isikule, kes vajab turvalist keskkonda edasise elu korraldamiseks.",
+      "sourceKeys": [
+        "turvakoduteenus_page"
+      ],
+      "targetGroup": "Lapsed ja täisealised, kes vajavad ajutiselt turvalist elukohta ja esmast abi.",
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/turvakoduteenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "rae_vald_contact_natalja_grusdam"
+      ],
+      "item_type": "service",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "turvakoduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_service_turvakoduteenus",
+      "document_id": "rae_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/turvakoduteenus",
+      "content_hash": "a6434d05aefd4655a6d19bbf3cdb883c1dc582334bf8ae097b2e5de04174c533",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_service_varjupaigateenus",
+      "canonical_item_id": "rae_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenuse eesmärk on ajutise ööbimiskoha võimaluse kindlustamine täisealisele isikule, kes ei ole endale võimeline ööbimiskohta leidma. Ajutises ööbimiskohas peab olema tagatud voodikoht, pesemisvõimalus ja turvaline keskkond.",
+      "sourceKeys": [
+        "varjupaigateenus_page"
+      ],
+      "targetGroup": "Täisealised, kellel puudub ajutine ööbimiskoht.",
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/varjupaigateenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "varjupaigateenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_service_varjupaigateenus",
+      "document_id": "rae_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/varjupaigateenus",
+      "content_hash": "1e7b858ca39208ff39d9acfb930a5796ac460b368da2554e2c4b4ce77288ba22",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_service_eluruumi_tagamine",
+      "canonical_item_id": "rae_vald:service:eluruumi_tagamine",
+      "itemType": "service",
+      "title": "Eluruumi tagamine",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenuse eesmärk on luua eluruumi kasutamise võimalus inimesele, kes ei ole ise võimeline eluaset tagama või ei saa senises eluruumis oma elu ja tervist ohtu seadmata iseseisvalt hakkama. Teenus võib hõlmata vallale kuuluva eluruumi kasutusse andmist või puudega isiku koduse keskkonna kohandamist.",
+      "sourceKeys": [
+        "eluruumi_tagamine_page"
+      ],
+      "targetGroup": "Inimesed, kellel puudub sobiv eluruum, ning puudega inimesed, kelle kodu vajab kohandamist.",
+      "conditions": "Eluruumi kasutusse andmiseks sõlmitakse kirjalik üürileping ning üürnik tasub üüri ja kõrvalkulud.",
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "Üürnik tasub üüri ja kõrvalkulud"
+      },
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/eluruumi-tagamine",
+      "relatedTo": [],
+      "relatedForms": [
+        "rae_vald_form_munitsipaaleluruumi_e_taotlus"
+      ],
+      "relatedContacts": [
+        "rae_vald_contact_katarina_kimsen"
+      ],
+      "item_type": "service",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eluruumi_tagamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_service_eluruumi_tagamine",
+      "document_id": "rae_vald_service_eluruumi_tagamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/eluruumi-tagamine",
+      "content_hash": "115fc42917ad9acbc83d20a8d37731761fe52cae83e4fe581be056e45ef8e581",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_service_asendushooldusteenus",
+      "canonical_item_id": "rae_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus tagab lapse heaolu ja õigused, võimaldab lapsele peresarnased elutingimused, loob turvalise ja arenguks sobiva elukeskkonna ning valmistab lapse ette võimetekohaseks toimetulekuks täisealisena. Teenust osutatakse hooldusperes, perekodus või asenduskodus ning seda võib osutada ka lühiajaliselt vanema nõusolekul.",
+      "sourceKeys": [
+        "asendushooldusteenus_page"
+      ],
+      "targetGroup": "Lapsed, kelle vanem on surnud, kelle vanema hooldusõigus on peatatud, piiratud või ära võetud või kes on vanemast eraldatud.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/asendushooldusteenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "rae_vald_contact_kai_sinisalu"
+      ],
+      "item_type": "service",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "asendushooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_service_asendushooldusteenus",
+      "document_id": "rae_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/asendushooldusteenus",
+      "content_hash": "9a8c9821b893d88d74b3590b3c2e6b59c610ed7c056fab9a1345eea2c0081224",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "rae_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus on täisealise puudega inimese füüsiline abistamine igapäevaelu tegevustes. Abistaja aitab liikumisel, söömisel, toidu valmistamisel, riietumisel, hügieeni- ja majapidamistoimingutes, kuid teenuse saaja peab suutma ise oma elukorralduse üle otsustada ja abistajat juhendada.",
+      "sourceKeys": [
+        "isikliku_abistaja_page"
+      ],
+      "targetGroup": "Täisealised puudega inimesed, kes vajavad füüsilist kõrvalabi igapäevaelu tegevustes.",
+      "conditions": "Teenuse saaja peab suutma võtta vastu oma elukorraldust puudutavaid otsuseid ja juhendada teenuseosutajat.",
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "Osaliselt tasuline"
+      },
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/erivajadused-ja-igapaevaelu/isikliku-abistaja-teenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "rae_vald_form_sotsiaalteenuse_taotlus",
+        "rae_vald_form_sotsiaalteenuse_e_taotlus"
+      ],
+      "relatedContacts": [
+        "rae_vald_contact_liina_liibert",
+        "rae_vald_contact_ylle_parmas"
+      ],
+      "item_type": "service",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "isikliku_abistaja_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_service_isikliku_abistaja_teenus",
+      "document_id": "rae_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/erivajadused-ja-igapaevaelu/isikliku-abistaja-teenus",
+      "content_hash": "6089bb1a9da1587263afa68c79d3df714c95ebea8986821474145aafb845179a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_service_taisealise_isiku_hoolduse_seadmine",
+      "canonical_item_id": "rae_vald:service:taisealise_isiku_hoolduse_seadmine",
+      "itemType": "service",
+      "title": "Täisealise isiku hoolduse seadmine",
+      "status": "active",
+      "summary": "Hooldus seatakse suure abivajadusega, raske või sügava puudega täisealisele isikule, kes vaimse või kehalise puude tõttu vajab abi oma õiguste teostamiseks ja kohustuste täitmiseks. Hoolduse seadmisel määratakse kindlaks hooldaja ülesanded ning hooldus seatakse siis, kui inimese toimetulekut ei ole võimalik tagada muude teenustega.",
+      "sourceKeys": [
+        "taisealise_hooldus_page"
+      ],
+      "targetGroup": "Suure abivajadusega, raske või sügava puudega täisealised inimesed.",
+      "conditions": "Nii hooldaja kui ka hooldatava rahvastikuregistrijärgne elukoht peab asuma Rae vallas.",
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/erivajadused-ja-igapaevaelu/taisealise-isiku-hoolduse-seadmine-ja",
+      "relatedTo": [],
+      "relatedForms": [
+        "rae_vald_form_sotsiaalteenuse_taotlus",
+        "rae_vald_form_sotsiaalteenuse_e_taotlus"
+      ],
+      "relatedContacts": [
+        "rae_vald_contact_katarina_kimsen"
+      ],
+      "item_type": "service",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "taisealise_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_service_taisealise_isiku_hoolduse_seadmine",
+      "document_id": "rae_vald_service_taisealise_isiku_hoolduse_seadmine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/erivajadused-ja-igapaevaelu/taisealise-isiku-hoolduse-seadmine-ja",
+      "content_hash": "a63194622405c0a4729531c41cba57ab9f3d0c58dcbd78b9da357bb838680ccb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_service_kogukonnapsuhholoogi_teenus",
+      "canonical_item_id": "rae_vald:service:kogukonnapsuhholoogi_teenus",
+      "itemType": "service",
+      "title": "Vaimse tervise nõustamine ja kogukonnapsühholoogid",
+      "status": "active",
+      "summary": "Rae vallas pakutakse kogukonnapsühholoogide ja psühhoterapeudi nõustamist elanikele, kes vajavad tuge ärevuse, stressi, suhteprobleemide, lapse murede, leina, läbipõlemise või kohanemisraskuste korral. Nõustamine toimub veebis või kohapeal Jüri tervisekeskuses ja Rae sotsiaalkeskuses ning seansi hind on alates 1.04.2026 20 eurot.",
+      "sourceKeys": [
+        "vaimne_tervis_page"
+      ],
+      "targetGroup": "Rae valla elanikud, kes vajavad vaimse tervise tuge.",
+      "conditions": "Nõustamiseks on vajalik eelregistreerimine. Vallavalitsusel on õigus põhjendatud otsusega inimene täielikult või osaliselt teenuse eest tasumisest vabastada.",
+      "application": {
+        "channels": [
+          "web_registration"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "20 eurot seanss alates 01.04.2026"
+      },
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/tervis/vaimne-tervis",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "vaimne_tervis_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_service_kogukonnapsuhholoogi_teenus",
+      "document_id": "rae_vald_service_kogukonnapsuhholoogi_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/tervis/vaimne-tervis",
+      "content_hash": "ac84ce153f4407d3191a50595095d6a8640de160a8547fa434f3b069f60e3166",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_service_psuhholoogi_noustamisteenus",
+      "canonical_item_id": "rae_vald:service:psuhholoogi_noustamisteenus",
+      "itemType": "service",
+      "title": "Psühholoogi nõustamisteenus",
+      "status": "active",
+      "summary": "Psühholoogi nõustamisteenus on vajaduspõhine täiendav sotsiaalteenus, mida vald võib osutada isiku abivajadusest ja eelarve võimalustest lähtudes.",
+      "sourceKeys": [
+        "muud_taiendavad_teenused_page"
+      ],
+      "targetGroup": "Abivajajad, kellele teenus on abivajaduse hindamise alusel sobiv.",
+      "conditions": "Teenuse pakkumine sõltub abivajadusest ja valla rahaliste vahendite olemasolust.",
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/muud-taiendavad-sotsiaalteenused",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "rae_vald_contact_liina_liibert"
+      ],
+      "item_type": "service",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "muud_taiendavad_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_service_psuhholoogi_noustamisteenus",
+      "document_id": "rae_vald_service_psuhholoogi_noustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/muud-taiendavad-sotsiaalteenused",
+      "content_hash": "8890d305c935110df62ff79773804c5ff4e0e378e2965997471bc9cc19257b01",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_service_eripedagoogi_noustamisteenus",
+      "canonical_item_id": "rae_vald:service:eripedagoogi_noustamisteenus",
+      "itemType": "service",
+      "title": "Eripedagoogi nõustamisteenus",
+      "status": "active",
+      "summary": "Eripedagoogi nõustamisteenus on vajaduspõhine täiendav sotsiaalteenus, mida vald võib osutada abivajaduse hindamise alusel.",
+      "sourceKeys": [
+        "muud_taiendavad_teenused_page"
+      ],
+      "targetGroup": "Abivajajad, kellele teenus on abivajaduse hindamise alusel sobiv.",
+      "conditions": "Teenuse pakkumine sõltub abivajadusest ja valla rahaliste vahendite olemasolust.",
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/muud-taiendavad-sotsiaalteenused",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "rae_vald_contact_liina_liibert"
+      ],
+      "item_type": "service",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "muud_taiendavad_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_service_eripedagoogi_noustamisteenus",
+      "document_id": "rae_vald_service_eripedagoogi_noustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/muud-taiendavad-sotsiaalteenused",
+      "content_hash": "9d0dfb3058208bf88f246e77ba9268bb395d3c4259108ed489ae9f844c3cd989",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_service_logopeedi_teenus",
+      "canonical_item_id": "rae_vald:service:logopeedi_teenus",
+      "itemType": "service",
+      "title": "Logopeedi teenus",
+      "status": "active",
+      "summary": "Logopeedi teenus on üks valla nimetatud täiendavatest sotsiaalteenustest, mida saab vajaduspõhiselt kasutada abivajaduse hindamise tulemusel.",
+      "sourceKeys": [
+        "muud_taiendavad_teenused_page"
+      ],
+      "targetGroup": "Abivajajad, kellele teenus on abivajaduse hindamise alusel sobiv.",
+      "conditions": "Teenuse pakkumine sõltub abivajadusest ja valla rahaliste vahendite olemasolust.",
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/muud-taiendavad-sotsiaalteenused",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "rae_vald_contact_liina_liibert"
+      ],
+      "item_type": "service",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "muud_taiendavad_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_service_logopeedi_teenus",
+      "document_id": "rae_vald_service_logopeedi_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/muud-taiendavad-sotsiaalteenused",
+      "content_hash": "4a844820e7d862e459b8c54fd4ca24c14bcdbf86f1887d3af1e6123665504b04",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_service_kriisiabi",
+      "canonical_item_id": "rae_vald:service:kriisiabi",
+      "itemType": "service",
+      "title": "Kriisiabi, sh laste leinalaagris osalemine",
+      "status": "active",
+      "summary": "Kriisiabi on vajaduspõhine täiendav sotsiaalteenus, mis võib hõlmata ka laste leinalaagris osalemise toetamist.",
+      "sourceKeys": [
+        "muud_taiendavad_teenused_page"
+      ],
+      "targetGroup": "Abivajajad, kellele teenus on abivajaduse hindamise alusel sobiv.",
+      "conditions": "Teenuse pakkumine sõltub abivajadusest ja valla rahaliste vahendite olemasolust.",
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/muud-taiendavad-sotsiaalteenused",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "rae_vald_contact_liina_liibert"
+      ],
+      "item_type": "service",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "muud_taiendavad_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_service_kriisiabi",
+      "document_id": "rae_vald_service_kriisiabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/muud-taiendavad-sotsiaalteenused",
+      "content_hash": "e9f617b930512a95efb134871b58cb686c621cf951e8c917c973586522af2b6c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_service_tugiruhmad_ja_tugiprogrammid",
+      "canonical_item_id": "rae_vald:service:tugiruhmad_ja_tugiprogrammid",
+      "itemType": "service",
+      "title": "Tugirühmades ja tugiprogrammides osalemine",
+      "status": "active",
+      "summary": "Vald võib toetada abivajaja osalemist tugirühmades ja tugiprogrammides, kui see vastab inimese abivajadusele ja valla võimalustele.",
+      "sourceKeys": [
+        "muud_taiendavad_teenused_page"
+      ],
+      "targetGroup": "Abivajajad, kellele teenus on abivajaduse hindamise alusel sobiv.",
+      "conditions": "Teenuse pakkumine sõltub abivajadusest ja valla rahaliste vahendite olemasolust.",
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/muud-taiendavad-sotsiaalteenused",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "rae_vald_contact_liina_liibert"
+      ],
+      "item_type": "service",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "muud_taiendavad_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_service_tugiruhmad_ja_tugiprogrammid",
+      "document_id": "rae_vald_service_tugiruhmad_ja_tugiprogrammid",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/muud-taiendavad-sotsiaalteenused",
+      "content_hash": "7fae364d84c876fab04ab7b6af0d89135f693f677036d4bf7a02c327833db836",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_service_rehabilitatsiooniteenusel_osalemine",
+      "canonical_item_id": "rae_vald:service:rehabilitatsiooniteenusel_osalemine",
+      "itemType": "service",
+      "title": "Rehabilitatsiooniteenusel osalemine",
+      "status": "active",
+      "summary": "Rehabilitatsiooniteenusel osalemist nimetatakse Rae valla täiendava sotsiaalteenusena, mida saab võimaldada abivajaduse ja rahaliste vahendite olemasolu korral.",
+      "sourceKeys": [
+        "muud_taiendavad_teenused_page"
+      ],
+      "targetGroup": "Abivajajad, kellele teenus on abivajaduse hindamise alusel sobiv.",
+      "conditions": "Teenuse pakkumine sõltub abivajadusest ja valla rahaliste vahendite olemasolust.",
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/muud-taiendavad-sotsiaalteenused",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "rae_vald_contact_liina_liibert"
+      ],
+      "item_type": "service",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "muud_taiendavad_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_service_rehabilitatsiooniteenusel_osalemine",
+      "document_id": "rae_vald_service_rehabilitatsiooniteenusel_osalemine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/muud-taiendavad-sotsiaalteenused",
+      "content_hash": "b80082d367ca95ad65e9f801f8190c7c5caa0fd9a8e6c26f2812b96542e98a42",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_service_soltuvusravi",
+      "canonical_item_id": "rae_vald:service:soltuvusravi",
+      "itemType": "service",
+      "title": "Sõltuvusravi",
+      "status": "active",
+      "summary": "Sõltuvusravi on Rae valla nimetatud täiendav vajaduspõhine sotsiaalteenus, mille võimaldamine sõltub inimese vajadusest ja valla rahalistest võimalustest.",
+      "sourceKeys": [
+        "muud_taiendavad_teenused_page"
+      ],
+      "targetGroup": "Abivajajad, kellele teenus on abivajaduse hindamise alusel sobiv.",
+      "conditions": "Teenuse pakkumine sõltub abivajadusest ja valla rahaliste vahendite olemasolust.",
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/muud-taiendavad-sotsiaalteenused",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "rae_vald_contact_liina_liibert"
+      ],
+      "item_type": "service",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "muud_taiendavad_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_service_soltuvusravi",
+      "document_id": "rae_vald_service_soltuvusravi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/muud-taiendavad-sotsiaalteenused",
+      "content_hash": "9f815a500f094e2b6aebe4a82d2f4dff8a8bec8e97fa1cbef0e04fc086a6cd6e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_service_erihoolekandeteenus",
+      "canonical_item_id": "rae_vald:service:erihoolekandeteenus",
+      "itemType": "service",
+      "title": "Erihoolekandeteenus",
+      "status": "active",
+      "summary": "Erihoolekandeteenust nimetab Rae vald täiendava sotsiaalteenusena, mille saamiseks hinnatakse inimese abi- ja hooldusvajadust.",
+      "sourceKeys": [
+        "muud_taiendavad_teenused_page"
+      ],
+      "targetGroup": "Abivajajad, kellele teenus on abivajaduse hindamise alusel sobiv.",
+      "conditions": "Teenuse pakkumine sõltub abivajadusest ja valla rahaliste vahendite olemasolust.",
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/muud-taiendavad-sotsiaalteenused",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "rae_vald_contact_liina_liibert"
+      ],
+      "item_type": "service",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "muud_taiendavad_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_service_erihoolekandeteenus",
+      "document_id": "rae_vald_service_erihoolekandeteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/muud-taiendavad-sotsiaalteenused",
+      "content_hash": "9ebef909eeadd9b202119a16845e34611f3c23250a57019c418b6351fcdf9b89",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_service_viipekeele_tolketeenus",
+      "canonical_item_id": "rae_vald:service:viipekeele_tolketeenus",
+      "itemType": "service",
+      "title": "Viipekeele tõlketeenus",
+      "status": "active",
+      "summary": "Viipekeele tõlketeenus on täiendav sotsiaalteenus, mida vald võib võimaldada abivajaduse hindamise tulemusel.",
+      "sourceKeys": [
+        "muud_taiendavad_teenused_page"
+      ],
+      "targetGroup": "Abivajajad, kellele teenus on abivajaduse hindamise alusel sobiv.",
+      "conditions": "Teenuse pakkumine sõltub abivajadusest ja valla rahaliste vahendite olemasolust.",
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/muud-taiendavad-sotsiaalteenused",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "rae_vald_contact_liina_liibert"
+      ],
+      "item_type": "service",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "muud_taiendavad_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_service_viipekeele_tolketeenus",
+      "document_id": "rae_vald_service_viipekeele_tolketeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/muud-taiendavad-sotsiaalteenused",
+      "content_hash": "0d609de5a3317561ee34aae89ecf1a705749f439be25d1fd79eecac9c64eb0c8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_service_omasteta_surnu_matmise_korraldamine",
+      "canonical_item_id": "rae_vald:service:omasteta_surnu_matmise_korraldamine",
+      "itemType": "service",
+      "title": "Omasteta surnud isiku matmise korraldamine",
+      "status": "active",
+      "summary": "Omasteta surnud isiku matmise korraldamist nimetatakse Rae valla täiendava sotsiaalteenusena, mida osutatakse vajaduse ja eelarve võimaluste alusel.",
+      "sourceKeys": [
+        "muud_taiendavad_teenused_page"
+      ],
+      "targetGroup": "Abivajajad, kellele teenus on abivajaduse hindamise alusel sobiv.",
+      "conditions": "Teenuse pakkumine sõltub abivajadusest ja valla rahaliste vahendite olemasolust.",
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/muud-taiendavad-sotsiaalteenused",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "rae_vald_contact_liina_liibert"
+      ],
+      "item_type": "service",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "muud_taiendavad_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_service_omasteta_surnu_matmise_korraldamine",
+      "document_id": "rae_vald_service_omasteta_surnu_matmise_korraldamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/muud-taiendavad-sotsiaalteenused",
+      "content_hash": "7e47756bba9e097c39dbab2b88c18ede56a9203c18c2d89d7638671f106e395a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_resource_toiduabi",
+      "canonical_item_id": "rae_vald:resource:toiduabi",
+      "itemType": "resource",
+      "title": "Toiduabi",
+      "status": "active",
+      "summary": "Toiduabi kaudu laetakse kord kvartalis toiduabikaardile 30 eurot inimese kohta neile, kes said vastaval perioodil toimetulekutoetust või kohaliku omavalitsuse toetust. Ühe perekonna kohta väljastatakse üks kaart ning toidukaardiga ei saa osta alkoholi, tubaka- ja lototooteid ega kinkekaarte.",
+      "sourceKeys": [
+        "toiduabi_page"
+      ],
+      "targetGroup": "Toimetulekutoetust või KOV toetust saanud inimesed ja pered.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "automatic"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/toiduabi",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "rae_vald_contact_liina_liibert",
+        "rae_vald_contact_ylle_parmas"
+      ],
+      "item_type": "resource",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "toiduabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_resource_toiduabi",
+      "document_id": "rae_vald_resource_toiduabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaalteenused/toiduabi",
+      "content_hash": "24b122d2f42e5977cb2e32ac6176b903a34976581591e45a813db45496a7ae67",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_resource_abivajav_laps",
+      "canonical_item_id": "rae_vald:resource:abivajav_laps",
+      "itemType": "resource",
+      "title": "Abivajav laps",
+      "status": "active",
+      "summary": "Abivajav laps on laps, kelle heaolu on ohustatud või kelle puhul on tekkinud kahtlus väärkohtlemise, hooletusse jätmise või muu õigusi rikkuva olukorra suhtes. Abivajavast lapsest tuleb viivitamata teatada kohalikule omavalitsusele või lasteabitelefonile; hädaohus lapse puhul tuleb helistada.",
+      "sourceKeys": [
+        "abivajav_laps_page"
+      ],
+      "targetGroup": "Abivajavad ja hädaohus lapsed.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "phone",
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/hadaohus-ja-abivajav-laps",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "rae_vald_contact_kai_sinisalu"
+      ],
+      "item_type": "resource",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "abivajav_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_resource_abivajav_laps",
+      "document_id": "rae_vald_resource_abivajav_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/hadaohus-ja-abivajav-laps",
+      "content_hash": "37fa132655b48f00fbd0c6f8ffecc0cf2c2d54464fc60bdbaa358f93bdc81251",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_resource_perelepitus",
+      "canonical_item_id": "rae_vald:resource:perelepitus",
+      "itemType": "resource",
+      "title": "Perelepitus",
+      "status": "active",
+      "summary": "Perelepitus aitab lahku minevatel või lahku läinud lapsevanematel jõuda lapse huvidest lähtuvate kokkulepeteni ja lahendada erimeelsusi kohtuväliselt. Riiklik perelepitusteenus on lapsevanemale tasuta ja seda taotletakse Sotsiaalkindlustusametis.",
+      "sourceKeys": [
+        "perelepitus_page"
+      ],
+      "targetGroup": "Lahku minevad või lahus elavad lapsevanemad.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "external_application"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/perelepitus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "rae_vald_contact_kai_sinisalu"
+      ],
+      "item_type": "resource",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "perelepitus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_resource_perelepitus",
+      "document_id": "rae_vald_resource_perelepitus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/perelepitus",
+      "content_hash": "95d0051f4917260a870108964389a1e570df5663a06b5f79aa6cacc7d8597c90",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_resource_lastekaitse",
+      "canonical_item_id": "rae_vald:resource:lastekaitse",
+      "itemType": "resource",
+      "title": "Lastekaitse Rae vallas",
+      "status": "active",
+      "summary": "Lastekaitse valdkonna eesmärk on lapse õiguste ja heaolu tagamine. KOV ülesannetena on nimetatud sotsiaalnõustamist, vanemliku hoolitsuseta laste hoolduse korraldamist, eestkostja ülesandeid, vanematevaheliste vaidluste lahendamise toetamist, laste varaliste õiguste kaitset, lastele sotsiaalteenuste korraldamist ja lastega perede toetuste menetlemist.",
+      "sourceKeys": [
+        "lastekaitse_page"
+      ],
+      "targetGroup": "Lapsed ja pered, kes vajavad lastekaitse tuge.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/lastekaitse",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "rae_vald_contact_helen_molder",
+        "rae_vald_contact_catriin_kolbak",
+        "rae_vald_contact_gris_tammiksaar",
+        "rae_vald_contact_elle_veelmaa",
+        "rae_vald_contact_kai_sinisalu"
+      ],
+      "item_type": "resource",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_resource_lastekaitse",
+      "document_id": "rae_vald_resource_lastekaitse",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/lastekaitse",
+      "content_hash": "ad9697e41ad73cf17f5959c6839a6e3341bb10537154867bb86fec644c56e4fa",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_resource_rae_sotsiaalkeskus",
+      "canonical_item_id": "rae_vald:resource:rae_sotsiaalkeskus",
+      "itemType": "resource",
+      "title": "Rae Sotsiaalkeskus",
+      "status": "active",
+      "summary": "Rae Sotsiaalkeskus on KOV veebis väärika vananemise plokis nimetatud hoolekande- ja tugikeskus. KOV leht viitab keskusele kui praktilisele ressursile, kuid täpsemat teavet tuleb kontrollida keskuse enda infokanalist.",
+      "sourceKeys": [
+        "home",
+        "social_menu_home"
+      ],
+      "targetGroup": "Eakad ja sotsiaalhoolekande teenuseid vajavad inimesed.",
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": null,
+        "deadline": null
+      },
+      "officialUrl": "https://rae.ee/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "home",
+        "social_menu_home"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_resource_rae_sotsiaalkeskus",
+      "document_id": "rae_vald_resource_rae_sotsiaalkeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/",
+      "content_hash": "200749e972e11968630d7086b260d4c3c0c697f706459838cf0010346b3b9cd0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_resource_tervishoiuteenuste_osutajad",
+      "canonical_item_id": "rae_vald:resource:tervishoiuteenuste_osutajad",
+      "itemType": "resource",
+      "title": "Tervishoiuteenuste osutajad Rae vallas",
+      "status": "active",
+      "summary": "Lehel on esitatud praktilised tervishoiu kontaktid ja juhised: kiirabi hädaabinumber, perearsti nõuandetelefon 1220 ning info perearsti leidmiseks riigiportaalist või Tervisekassa kliendiinfost. Leht koondab Rae valla perearstide, hambaarstide ja apteekide info.",
+      "sourceKeys": [
+        "tervishoiuteenuste_page"
+      ],
+      "targetGroup": "Rae valla elanikud, kes vajavad tervishoiu kontakte.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "phone",
+          "web"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/tervis/tervishoiuteenuste-osutajad",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "tervishoiuteenuste_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_resource_tervishoiuteenuste_osutajad",
+      "document_id": "rae_vald_resource_tervishoiuteenuste_osutajad",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/tervis/tervishoiuteenuste-osutajad",
+      "content_hash": "c046767ab2597a5af888a2dc3e4cca43d04dbca7e4379149e97f463c99227cb8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_resource_ohvriabi_info",
+      "canonical_item_id": "rae_vald:resource:ohvriabi_info",
+      "itemType": "resource",
+      "title": "Ohvriabi info",
+      "status": "active",
+      "summary": "Rae valla kodulehel avaldatud ohvriabi infomaterjal koondab ohvriabi ja kriisiabi kontaktid. Materjal nimetab ohvriabi kriisitelefoni, välismaalt helistamise numbri, lasteabi telefoni, inimkaubanduse ennetamise ja ohvrite abistamise nõuandeliini ning vägivallast loobumise tugiliini",
+      "sourceKeys": [
+        "ohvriabi_pdf"
+      ],
+      "targetGroup": "Kuriteo, vägivalla või kriisijuhtumi tõttu abi vajavad inimesed.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "phone",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "officialUrl": "https://rae.ee/sites/default/files/documents/2025-11/Ohvriabi%20info%202025.pdf",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "ohvriabi_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_resource_ohvriabi_info",
+      "document_id": "rae_vald_resource_ohvriabi_info",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/sites/default/files/documents/2025-11/Ohvriabi%20info%202025.pdf",
+      "content_hash": "0645234e5516587749eb134528dc87bd33e7c44d70a69c82709e57c637aa958b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_resource_noortegarantii_tugisusteem",
+      "canonical_item_id": "rae_vald:resource:noortegarantii_tugisusteem",
+      "itemType": "resource",
+      "title": "Noortegarantii tugisüsteem",
+      "status": "active",
+      "summary": "Noortegarantii tugisüsteem toetab 13–29-aastaseid noori, kes ei õpi ega tööta või kellel on risk sellisesse olukorda sattuda. Rae, Saue ja Viimsi valdade ühisprojekt pakub personaalset nõustamist ning tuge haridusteele naasmisel või tööturule sisenemisel.",
+      "sourceKeys": [
+        "noortegarantii_page"
+      ],
+      "targetGroup": "13–29-aastased noored, kes ei õpi ega tööta või on riskis.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "officialUrl": "https://rae.ee/haridus-ja-noored/noored/noortegarantii-tugisusteem",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "rae_vald_contact_diana_praam"
+      ],
+      "item_type": "resource",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "noortegarantii_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_resource_noortegarantii_tugisusteem",
+      "document_id": "rae_vald_resource_noortegarantii_tugisusteem",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/haridus-ja-noored/noored/noortegarantii-tugisusteem",
+      "content_hash": "72af97dc914da84bb07b90557f0b4170dca9605e16f2a85c7a32cd1ee4909eb8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_benefit_synnitoetus",
+      "canonical_item_id": "rae_vald:benefit:synnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus on 400 eurot lapse sünni puhul. Taotlust saab esitada kuue kuu jooksul pärast lapse sündi; mõlemad vanemad peavad olema rahvastikuregistri andmetel Rae valla elanikud vähemalt kolm kuud enne lapse sündi. Lisaks antakse beebipakk ja sünnijärgselt Rae valda registreeritud lastele hõbelusikas.",
+      "sourceKeys": [
+        "laste_perede_toetused_page"
+      ],
+      "targetGroup": "Lapsevanemad, kellel on sündinud laps.",
+      "conditions": "Mõlemad vanemad peavad olema Rae valla elanikud vähemalt kolm kuud enne lapse sündi.",
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": "6 kuu jooksul pärast lapse sündi"
+      },
+      "decisionTime": null,
+      "amount": "400 eurot",
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/toetused-lastele-ja-peredele",
+      "relatedTo": [],
+      "relatedForms": [
+        "rae_vald_form_synnitoetuse_taotlus",
+        "rae_vald_form_synnitoetuse_e_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "laste_perede_toetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_benefit_synnitoetus",
+      "document_id": "rae_vald_benefit_synnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/toetused-lastele-ja-peredele",
+      "content_hash": "fa3e23a7a8112eeaee114b271f521f5530c679031bd0d76b19b0cbc5f0e74623",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_benefit_vahekindlustatud_pere_lapse_koolitoetus",
+      "canonical_item_id": "rae_vald:benefit:vahekindlustatud_pere_lapse_koolitoetus",
+      "itemType": "benefit",
+      "title": "Vähekindlustatud pere lapse koolitoetus",
+      "status": "active",
+      "summary": "Koolitoetus on 150 eurot vähekindlustatud pere lapse õppevahendite, koolitarvete, kooliriiete või koolis käimisega seotud põhjendatud kulude katteks. Taotleda võivad lapsevanem, eestkostja või hooldaja ning samuti klassijuhataja, sotsiaaltöötaja või lastekaitsetöötaja.",
+      "sourceKeys": [
+        "laste_perede_toetused_page"
+      ],
+      "targetGroup": "Vähekindlustatud perede lapsed, sh õpilaskodus, kutsekoolis või statsionaarses üldhariduskoolis õppivad noored.",
+      "conditions": "Lapsevanema, eestkostja või hooldaja taotlusele tuleb lisada pere sissetulekut tõendavad dokumendid.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "150 eurot",
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/toetused-lastele-ja-peredele",
+      "relatedTo": [],
+      "relatedForms": [
+        "rae_vald_form_uhekordse_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "rae_vald_contact_natalja_grusdam"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "laste_perede_toetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_benefit_vahekindlustatud_pere_lapse_koolitoetus",
+      "document_id": "rae_vald_benefit_vahekindlustatud_pere_lapse_koolitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/toetused-lastele-ja-peredele",
+      "content_hash": "ed1efa2e8fdf72d4a29c31988e8d0592082ede19dbc337a1f10a64a4108320c6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_benefit_asendushoolduse_lapse_tahtpaeva_toetus",
+      "canonical_item_id": "rae_vald:benefit:asendushoolduse_lapse_tahtpaeva_toetus",
+      "itemType": "benefit",
+      "title": "Asendushooldusteenusel oleva lapse või noore sünnipäeva-, jõulu-, koolilõpu- ja elluastumise toetus",
+      "status": "active",
+      "summary": "Toetus on ette nähtud valla eestkostel ja asenduskodus elava lapse või noore toimetuleku parandamiseks. Sünnipäevatoetus on 50 eurot, jõulutoetus 100 eurot, koolilõputoetus 50 eurot ja asenduskodust elluastumise toetus 320 eurot. Taotluse esitab tavaliselt lastekaitsetöötaja; elluastumise toetust võib taotleda ka iseseisvasse ellu astuv noor.",
+      "sourceKeys": [
+        "laste_perede_toetused_page"
+      ],
+      "targetGroup": "Valla eestkostel või asenduskodus elavad lapsed ja noored.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Sünnipäev 50 eurot; jõulud 100 eurot; koolilõpp 50 eurot; elluastumine 320 eurot",
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/toetused-lastele-ja-peredele",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "rae_vald_contact_natalja_grusdam",
+        "rae_vald_contact_kai_sinisalu"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "laste_perede_toetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_benefit_asendushoolduse_lapse_tahtpaeva_toetus",
+      "document_id": "rae_vald_benefit_asendushoolduse_lapse_tahtpaeva_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/toetused-lastele-ja-peredele",
+      "content_hash": "4e088aaa07bbdf7b8c6a6cae21bb8bb5f9e923617cea485a4b0a23b1753e885c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_benefit_emadepaeva_toetus",
+      "canonical_item_id": "rae_vald:benefit:emadepaeva_toetus",
+      "itemType": "benefit",
+      "title": "Suurpere, eestkostepere ja puudega lapse vanema emadepäeva toetus",
+      "status": "active",
+      "summary": "Emadepäeva toetus on 100 eurot perele, kus kasvab vähemalt neli alaealist last, eestkostjale, kes kasvatab vanemliku hoolitsuseta last, või perele, kus kasvab puudega laps. Kui peres kasvab vähemalt neli alaealist last ja nende hulgas on puudega või vanemliku hoolitsuseta laps, makstakse toetus kahekordses piirmääras.",
+      "sourceKeys": [
+        "laste_perede_toetused_page"
+      ],
+      "targetGroup": "Suurpered, eestkostepered ja puudega lapsega pered.",
+      "conditions": "Mõlemad vanemad peavad olema rahvastikuregistri andmetel Rae valla elanikud.",
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": "Taotlus 15. märtsist 15. aprillini; hilisemaid taotlusi vastu ei võeta."
+      },
+      "decisionTime": null,
+      "amount": "100 eurot; teatud juhtudel kahekordne piirmäär",
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/toetused-lastele-ja-peredele",
+      "relatedTo": [],
+      "relatedForms": [
+        "rae_vald_form_emadepaeva_toetuse_vorm",
+        "rae_vald_form_emadepaeva_toetuse_e_taotlus"
+      ],
+      "relatedContacts": [
+        "rae_vald_contact_liina_liibert",
+        "rae_vald_contact_ylle_parmas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "laste_perede_toetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_benefit_emadepaeva_toetus",
+      "document_id": "rae_vald_benefit_emadepaeva_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/toetused-lastele-ja-peredele",
+      "content_hash": "2e91bf8f0372a8cfc8d2b9adfcb9ec7558faeab18082d59489aa19f0c006ed5e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_benefit_joulutoetus",
+      "canonical_item_id": "rae_vald:benefit:joulutoetus",
+      "itemType": "benefit",
+      "title": "Suurpere, eestkostepere ja puudega lapse vanema jõulutoetus",
+      "status": "active",
+      "summary": "Jõulutoetus on 100 eurot perele, kus kasvab vähemalt neli alaealist last, eestkostjale või puudega lapse vanemale. Teatud tingimustel makstakse toetus kahekordses piirmääras. Toetus makstakse välja detsembrikuus.",
+      "sourceKeys": [
+        "laste_perede_toetused_page"
+      ],
+      "targetGroup": "Suurpered, eestkostepered ja puudega lapsega pered.",
+      "conditions": "Mõlemad vanemad peavad olema rahvastikuregistri andmetel Rae valla elanikud.",
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": "Taotlus 1. novembrist 1. detsembrini; hilisemaid taotlusi vastu ei võeta."
+      },
+      "decisionTime": null,
+      "amount": "100 eurot; teatud juhtudel kahekordne piirmäär",
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/toetused-lastele-ja-peredele",
+      "relatedTo": [],
+      "relatedForms": [
+        "rae_vald_form_joulutoetuse_vorm",
+        "rae_vald_form_joulutoetuse_e_taotlus"
+      ],
+      "relatedContacts": [
+        "rae_vald_contact_natalja_grusdam",
+        "rae_vald_contact_liina_liibert",
+        "rae_vald_contact_ylle_parmas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "laste_perede_toetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_benefit_joulutoetus",
+      "document_id": "rae_vald_benefit_joulutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/toetused-lastele-ja-peredele",
+      "content_hash": "4d3a57d2f3d1c0403e45d2f99a60ca494a104f2be6250052bbcea89eb55a9983",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_benefit_vanemliku_hoolitsuseta_lapse_toetus",
+      "canonical_item_id": "rae_vald:benefit:vanemliku_hoolitsuseta_lapse_toetus",
+      "itemType": "benefit",
+      "title": "Vanemliku hoolitsuseta jäänud lapse ülalpidamis- ja koolituskulude toetus",
+      "status": "active",
+      "summary": "Toetus on ette nähtud vanemliku hoolitsuseta jäänud lapse ülalpidamis- ja koolituskulude katmiseks. Taotluse võib esitada eestkostja või lastekaitsetöötaja ning toetus makstakse õppeasutuse poolt esitatud arve alusel.",
+      "sourceKeys": [
+        "laste_perede_toetused_page"
+      ],
+      "targetGroup": "Vanemliku hoolitsuseta jäänud lapsed.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "contact_social_worker",
+          "in_person"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": null,
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/toetused-lastele-ja-peredele",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "rae_vald_contact_natalja_grusdam",
+        "rae_vald_contact_kai_sinisalu"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "laste_perede_toetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_benefit_vanemliku_hoolitsuseta_lapse_toetus",
+      "document_id": "rae_vald_benefit_vanemliku_hoolitsuseta_lapse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/toetused-lastele-ja-peredele",
+      "content_hash": "58877fdbeb9c6faf0886e987d0c58e7c598aed673f7f69fb1d26337d88ae0688",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_benefit_puudega_lapse_prillitoetus",
+      "canonical_item_id": "rae_vald:benefit:puudega_lapse_prillitoetus",
+      "itemType": "benefit",
+      "title": "Puudega lapse prillitoetus",
+      "status": "active",
+      "summary": "Puudega lapse prillitoetus on ette nähtud prillide soetamise kulude osaliseks katmiseks. Taotlusele tuleb lisada prillide retsept ning maksedokument lapse nimega; taotlejaks võib olla puudega lapse vanem, kes on enne taotlemist olnud vähemalt aasta Rae valla elanik.",
+      "sourceKeys": [
+        "laste_perede_toetused_page"
+      ],
+      "targetGroup": "Puudega lapsed ja nende vanemad.",
+      "conditions": "Taotleja peab olema rahvastikuregistri järgi Rae valla elanik vähemalt ühe aasta ning lisama retsepti ja maksedokumendi.",
+      "application": {
+        "channels": [
+          "self_service"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": null,
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/toetused-lastele-ja-peredele",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "rae_vald_contact_natalja_grusdam",
+        "rae_vald_contact_liina_liibert",
+        "rae_vald_contact_ylle_parmas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "laste_perede_toetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_benefit_puudega_lapse_prillitoetus",
+      "document_id": "rae_vald_benefit_puudega_lapse_prillitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/laste-ja-perede-heaolu/toetused-lastele-ja-peredele",
+      "content_hash": "3b0ad6604863f36fa7767ae0242b92a026e728199e1fa8743c12f90f118826ca",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "rae_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on riigi rahaline abi puuduses inimestele ja seda maksab kohalik omavalitsus. Toetust makstakse siis, kui muud vaesuse ja puuduse leevendamise abinõud on ebapiisavad; taotlus esitatakse jooksva kuu eest hiljemalt kuu viimaseks tööpäevaks.",
+      "sourceKeys": [
+        "toimetulekutoetus_page"
+      ],
+      "targetGroup": "Puuduses inimesed ja pered, kelle tegelik elukoht on Rae valla haldusterritooriumil.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": "Jooksva kuu eest hiljemalt kuu viimane tööpäev"
+      },
+      "decisionTime": null,
+      "amount": null,
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaaltoetused/toimetulekutoetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "rae_vald_form_toimetulekutoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "rae_vald_contact_liina_liibert",
+        "rae_vald_contact_ylle_parmas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_benefit_toimetulekutoetus",
+      "document_id": "rae_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaaltoetused/toimetulekutoetus",
+      "content_hash": "7bb2a146590a560ff17c3e232d99f4cd681a72a29ef31478439aa1ce4acdb457",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_benefit_invatehnilise_abivahendi_toetus",
+      "canonical_item_id": "rae_vald:benefit:invatehnilise_abivahendi_toetus",
+      "itemType": "benefit",
+      "title": "Invatehnilise abivahendi toetus",
+      "status": "active",
+      "summary": "Toetus on ette nähtud meditsiiniliselt põhjendatud invatehnilise abivahendi soetamise või rentimise kulude osaliseks katmiseks. Toetuse suurus on kuni 50% kulust ning seda makstakse üks kord aastas samal aastal tehtud kulude katmiseks.",
+      "sourceKeys": [
+        "invatehnilise_abivahendi_toetus_page"
+      ],
+      "targetGroup": "Abivahendi soetanud või rentinud inimene.",
+      "conditions": "Taotleja peab enne toetuse taotlemist olema rahvastikuregistri järgi olnud Rae valla elanik vähemalt ühe aasta ning lisama nimelise maksedokumendi.",
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Kuni 50% kulust",
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaaltoetused/invatehnilise-abivahendi-toetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "rae_vald_form_uhekordse_toetuse_taotlus",
+        "rae_vald_form_uhekordse_sotsiaaltoetuse_e_taotlus"
+      ],
+      "relatedContacts": [
+        "rae_vald_contact_liina_liibert",
+        "rae_vald_contact_ylle_parmas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "invatehnilise_abivahendi_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_benefit_invatehnilise_abivahendi_toetus",
+      "document_id": "rae_vald_benefit_invatehnilise_abivahendi_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaaltoetused/invatehnilise-abivahendi-toetus",
+      "content_hash": "d1a05a5b6b395fdf9db69c66c9388bca290c82fd9c5903ed85a9024fa189b3c0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_benefit_ravikindlustuseta_isiku_ravikulude_toetus",
+      "canonical_item_id": "rae_vald:benefit:ravikindlustuseta_isiku_ravikulude_toetus",
+      "itemType": "benefit",
+      "title": "Ravikindlustuseta isiku ravikulude toetus",
+      "status": "active",
+      "summary": "Toetus on ette nähtud ravikindlustuseta inimese esmase uuringu kulude katmiseks, kui see on vajalik töövõimetuspensioni taotlemiseks. Vallavalitsus võib anda raviasutusele garantiikirja ja toetus makstakse välja uuringu eest esitatud arve alusel.",
+      "sourceKeys": [
+        "ravikindlustuseta_toetus_page"
+      ],
+      "targetGroup": "Ravikindlustuseta isikud, kellel on vaja töövõime või töövõimetuspensioniga seotud esmaseid uuringuid.",
+      "conditions": "Taotlusele tuleb lisada arsti väljastatud tõend uuringute vajalikkuse kohta.",
+      "application": {
+        "channels": [
+          "contact_social_worker",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": null,
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaaltoetused/ravikindlustuseta-isiku-ravikulude-toetus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "rae_vald_contact_liina_liibert",
+        "rae_vald_contact_ylle_parmas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "ravikindlustuseta_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_benefit_ravikindlustuseta_isiku_ravikulude_toetus",
+      "document_id": "rae_vald_benefit_ravikindlustuseta_isiku_ravikulude_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaaltoetused/ravikindlustuseta-isiku-ravikulude-toetus",
+      "content_hash": "62540f7a7d766af89f2f22086aca1abbe6dc88e8486fee58185331f1ce1f8f77",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_benefit_vabanenud_isiku_uhekordne_toetus",
+      "canonical_item_id": "rae_vald:benefit:vabanenud_isiku_uhekordne_toetus",
+      "itemType": "benefit",
+      "title": "Kinnipidamisasutusest vabanenud isiku ühekordne toetus",
+      "status": "active",
+      "summary": "Toetus on ette nähtud kinnipidamiskohast vabanenud inimese esmase toimetuleku tagamiseks. Toetuse suurus on 50 eurot ja taotlusele tuleb lisada vabastamistõendi koopia.",
+      "sourceKeys": [
+        "vabanenud_isiku_toetus_page"
+      ],
+      "targetGroup": "Kinnipidamiskohast vabanenud inimene, kelle elukoht enne kinnipidamist oli Rae vald või kelle pereliikmed elavad Rae vallas ja kelle juurde isik elama asub.",
+      "conditions": "Taotlusele tuleb lisada vabastamistõendi koopia.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "50 eurot",
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaaltoetused/kinnipidamisasutusest-vabanenud-isiku-uhekordne-toetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "rae_vald_form_uhekordse_toetuse_taotlus",
+        "rae_vald_form_uhekordse_sotsiaaltoetuse_e_taotlus"
+      ],
+      "relatedContacts": [
+        "rae_vald_contact_liina_liibert",
+        "rae_vald_contact_ylle_parmas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "vabanenud_isiku_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_benefit_vabanenud_isiku_uhekordne_toetus",
+      "document_id": "rae_vald_benefit_vabanenud_isiku_uhekordne_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaaltoetused/kinnipidamisasutusest-vabanenud-isiku-uhekordne-toetus",
+      "content_hash": "52c54cbb804878b3286f303ac67ad8a07376de4195f02fbcbb83fc0a64e54359",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_benefit_valtimatu_sotsiaalabi_toetus",
+      "canonical_item_id": "rae_vald:benefit:valtimatu_sotsiaalabi_toetus",
+      "itemType": "benefit",
+      "title": "Vältimatu sotsiaalabi toetus",
+      "status": "active",
+      "summary": "Vältimatu sotsiaalabi toetus on ette nähtud hädavajaliku sotsiaalhoolekandelise abi osutamiseks toidu, riiete ja ajutise peavarju osas. Abi osutamise viisi otsustab vallavalitsus ning abi antakse seni, kuni inimene ei ole enam sotsiaalselt abitus olukorras.",
+      "sourceKeys": [
+        "valtimatu_sotsiaalabi_toetus_page"
+      ],
+      "targetGroup": "Isikud ja pered, kes vajavad vältimatut abi, sh Rae vallas viibivad inimesed, kelle elukoht ei asu Rae vallas.",
+      "conditions": "Kui abi vajaja viibib Rae vallas, kuid tema elukoht on mujal, tuleb abi kooskõlastada tema elukohajärgse omavalitsusega.",
+      "application": {
+        "channels": [
+          "contact_social_worker",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": null,
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaaltoetused/valtimatu-sotsiaalabi-toetus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "rae_vald_contact_liina_liibert"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "valtimatu_sotsiaalabi_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_benefit_valtimatu_sotsiaalabi_toetus",
+      "document_id": "rae_vald_benefit_valtimatu_sotsiaalabi_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaaltoetused/valtimatu-sotsiaalabi-toetus",
+      "content_hash": "6d6e192e3ac70cea6fce0fd67f778f544b7bdaba7e6b810f62bfbef6ba80ca8b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_benefit_muu_toimetulekut_soodustav_toetus",
+      "canonical_item_id": "rae_vald:benefit:muu_toimetulekut_soodustav_toetus",
+      "itemType": "benefit",
+      "title": "Muu toimetulekut soodustav toetus",
+      "status": "active",
+      "summary": "Muu toimetulekut soodustav toetus on ette nähtud inimesele või perele ootamatu raske majandusliku olukorraga toimetulekuks või vähekindlustatud inimesele või perele muude põhjendatud kulutuste hüvitamiseks. Vallavalitsusel on õigus määrata erandkorras toetusi või esitada materjalid volikogule otsustamiseks.",
+      "sourceKeys": [
+        "muu_toimetulek_toetus_page"
+      ],
+      "targetGroup": "Inimesed ja pered, kellel on ootamatu raske majanduslik olukord või põhjendatud lisakulutused.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "in_person"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": null,
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaaltoetused/muu-toimetulekut-soodustav-toetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "rae_vald_form_uhekordse_toetuse_taotlus",
+        "rae_vald_form_uhekordse_sotsiaaltoetuse_e_taotlus"
+      ],
+      "relatedContacts": [
+        "rae_vald_contact_liina_liibert",
+        "rae_vald_contact_ylle_parmas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "muu_toimetulek_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_benefit_muu_toimetulekut_soodustav_toetus",
+      "document_id": "rae_vald_benefit_muu_toimetulekut_soodustav_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaaltoetused/muu-toimetulekut-soodustav-toetus",
+      "content_hash": "9039bf696c75d1c90b83c6ff62a837af8ab14b2112e5abea3902ea64cc90f24c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_benefit_dokumenditoetus",
+      "canonical_item_id": "rae_vald:benefit:dokumenditoetus",
+      "itemType": "benefit",
+      "title": "Dokumenditoetus",
+      "status": "active",
+      "summary": "Dokumenditoetus on ette nähtud isikutunnistuse ja elamisloa riigilõivu tasumiseks inimesele, kellel puudub või on lõppenud elamisluba ja ID-kaart on kehtetu. Taotlusele tuleb lisada maksedokumendid.",
+      "sourceKeys": [
+        "dokumenditoetus_page"
+      ],
+      "targetGroup": "Isikud, kelle ID-kaart on kehtetu või kellel puudub või on lõppenud elamisluba.",
+      "conditions": "Taotlusele tuleb lisada maksedokumendid ning taotlusvormil valida toetuseliik „muu toetus“.",
+      "application": {
+        "channels": [
+          "in_person"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": null,
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaaltoetused/dokumenditoetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "rae_vald_form_uhekordse_toetuse_taotlus",
+        "rae_vald_form_uhekordse_sotsiaaltoetuse_e_taotlus"
+      ],
+      "relatedContacts": [
+        "rae_vald_contact_ylle_parmas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "dokumenditoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_benefit_dokumenditoetus",
+      "document_id": "rae_vald_benefit_dokumenditoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/sotsiaaltoetused/dokumenditoetus",
+      "content_hash": "c7b3c5c948b3431b2f8329be9c50e81b6ee2c2d7099726e8e39bb8a8447ff1b9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_benefit_erivajadusega_inimese_kuttekulude_toetus",
+      "canonical_item_id": "rae_vald:benefit:erivajadusega_inimese_kuttekulude_toetus",
+      "itemType": "benefit",
+      "title": "Erivajadusega inimese küttekulude toetus",
+      "status": "active",
+      "summary": "Toetus on ette nähtud puudega inimesele küttekulude osaliseks kompenseerimiseks. Toetuse suurus on 150 eurot aastas ja seda makstakse üks kord aastas kulu tõendava maksedokumendi alusel.",
+      "sourceKeys": [
+        "kuttekulude_toetus_page"
+      ],
+      "targetGroup": "Puudega inimesed.",
+      "conditions": "Taotlusele tuleb lisada kulu tõendav maksedokument.",
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "150 eurot aastas",
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/erivajadused-ja-igapaevaelu/erivajadusega-inimese-kuttekulude-toetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "rae_vald_form_uhekordse_toetuse_taotlus",
+        "rae_vald_form_uhekordse_sotsiaaltoetuse_e_taotlus"
+      ],
+      "relatedContacts": [
+        "rae_vald_contact_liina_liibert",
+        "rae_vald_contact_ylle_parmas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "kuttekulude_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_benefit_erivajadusega_inimese_kuttekulude_toetus",
+      "document_id": "rae_vald_benefit_erivajadusega_inimese_kuttekulude_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/erivajadused-ja-igapaevaelu/erivajadusega-inimese-kuttekulude-toetus",
+      "content_hash": "ace1929c3429635f54d6b2a63b9ab2d75206207bcc56aa9361cc781ea5167ae0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "canonical_item_id": "rae_vald:benefit:taisealise_isiku_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Täisealise isiku hooldajatoetus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldajatoetus on seotud suure abivajadusega, raske või sügava puudega täisealise isiku hoolduse seadmisega. KOV lehel kirjeldatakse hoolduse seadmise tingimusi ning märgitakse, et erivajadustega täisealiste spetsialist menetleb täiskasvanute hooldajatoetuse taotlusi.",
+      "sourceKeys": [
+        "social_contacts",
+        "taisealise_hooldus_page"
+      ],
+      "targetGroup": "Hooldajad, kes hooldavad suure abivajadusega raske või sügava puudega täisealist inimest.",
+      "conditions": "Nii hooldaja kui ka hooldatava rahvastikuregistrijärgne elukoht peab asuma Rae vallas.",
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": null,
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/erivajadused-ja-igapaevaelu/taisealise-isiku-hoolduse-seadmine-ja",
+      "relatedTo": [],
+      "relatedForms": [
+        "rae_vald_form_sotsiaalteenuse_taotlus",
+        "rae_vald_form_sotsiaalteenuse_e_taotlus"
+      ],
+      "relatedContacts": [
+        "rae_vald_contact_katarina_kimsen"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts",
+        "taisealise_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "document_id": "rae_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/erivajadused-ja-igapaevaelu/taisealise-isiku-hoolduse-seadmine-ja",
+      "content_hash": "6e30b9cbf7dd86064af68c8bf61fb6cd606c0f09785b0442688244ea60fbaae5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_benefit_pensionari_prillitoetus",
+      "canonical_item_id": "rae_vald:benefit:pensionari_prillitoetus",
+      "itemType": "benefit",
+      "title": "Pensionäri prillitoetus",
+      "status": "active",
+      "summary": "Pensionäri prillitoetus on ette nähtud prillide soetamise kulude osaliseks katmiseks. Toetuse suurus on 100 eurot ning taotlusele tuleb lisada prillide retsept ja nimeline maksedokument.",
+      "sourceKeys": [
+        "pensionari_prillitoetus_page"
+      ],
+      "targetGroup": "Pensionärid.",
+      "conditions": "Taotleja peab enne taotluse esitamist olema Rae valla elanik vähemalt ühe aasta.",
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "100 eurot",
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/vaarikas-vananemine/pensionari-prillitoetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "rae_vald_form_uhekordse_toetuse_taotlus",
+        "rae_vald_form_uhekordse_sotsiaaltoetuse_e_taotlus"
+      ],
+      "relatedContacts": [
+        "rae_vald_contact_liina_liibert",
+        "rae_vald_contact_ylle_parmas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "pensionari_prillitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_benefit_pensionari_prillitoetus",
+      "document_id": "rae_vald_benefit_pensionari_prillitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/vaarikas-vananemine/pensionari-prillitoetus",
+      "content_hash": "c473b289f9fe89ecf285c9c1d76578bbb7ee06f84efd11f99549072ff51094a2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_benefit_eaka_tahtpaevatoetus",
+      "canonical_item_id": "rae_vald:benefit:eaka_tahtpaevatoetus",
+      "itemType": "benefit",
+      "title": "Eaka tähtpäevatoetus",
+      "status": "active",
+      "summary": "Eaka tähtpäevatoetus on ette nähtud Rae valla elanikule alates 80. sünnipäevast. Esmakordsel toetuse saamisel tuleb esitada vabas vormis taotlus kontoandmetega; edaspidi algatab vallavalitsus menetluse ise.",
+      "sourceKeys": [
+        "eaka_tahtpaevatoetus_page"
+      ],
+      "targetGroup": "Rae valla elanikud alates 80. sünnipäevast.",
+      "conditions": "Esmakordsel saamisel tuleb esitada vabas vormis taotlus kontoandmetega.",
+      "application": {
+        "channels": [
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "50 eurot",
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/vaarikas-vananemine/eaka-tahtpaevatoetus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "rae_vald_contact_liina_liibert",
+        "rae_vald_contact_ylle_parmas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eaka_tahtpaevatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_benefit_eaka_tahtpaevatoetus",
+      "document_id": "rae_vald_benefit_eaka_tahtpaevatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/vaarikas-vananemine/eaka-tahtpaevatoetus",
+      "content_hash": "5f0a7c31f9db4f080d39c635521f4d988639f86fc92e4406fd3f3e34fac0c5a5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_benefit_matusetoetus",
+      "canonical_item_id": "rae_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on ühekordne sissetulekust mittesõltuv toetus valla elaniku matusekulude osaliseks katmiseks. Toetust võib taotleda inimene, kes korraldab matuse, kui surnud isik oli rahvastikuregistri andmetel Rae valla elanik.",
+      "sourceKeys": [
+        "matusetoetus_page"
+      ],
+      "targetGroup": "Matuse korraldaja, kui surnud inimene oli Rae valla elanik.",
+      "conditions": "Surnud isik peab olema rahvastikuregistri andmetel olnud Rae valla elanik.",
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "350 eurot",
+      "officialUrl": "https://rae.ee/pere-sotsiaal-ja-tervis/lahedase-kaotus/matusetoetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "rae_vald_form_matusetoetuse_vorm",
+        "rae_vald_form_matusetoetuse_e_taotlus"
+      ],
+      "relatedContacts": [
+        "rae_vald_contact_natalja_grusdam",
+        "rae_vald_contact_liina_liibert",
+        "rae_vald_contact_ylle_parmas"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "matusetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_benefit_matusetoetus",
+      "document_id": "rae_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/pere-sotsiaal-ja-tervis/lahedase-kaotus/matusetoetus",
+      "content_hash": "a3ad72f32184918fd35bed87385fef9d93bc9f272c13c74eb91678153b089f0f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_form_sotsiaalteenuse_taotlus",
+      "canonical_item_id": "rae_vald:form:sotsiaalteenuse_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaalteenuse taotlus",
+      "status": "active",
+      "summary": "Blankett sotsiaalteenuse taotlemiseks. Lehtedel viidatakse sellele tugiisikuteenuse, isikliku abistaja teenuse, täisealise isiku hoolduse ning teiste sotsiaalteenuste taotlemisel.",
+      "sourceKeys": [
+        "sotsiaalteenuse_taotlus_file"
+      ],
+      "name": "Sotsiaalteenuse taotlus",
+      "format": "docx",
+      "officialUrl": "https://rae.ee/sites/default/files/documents/2025-05/Sotsiaalteenuse%20taotluse%20blankett%20%281%29%20conv.docx",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "sections_present": [
+        "application_form"
+      ],
+      "relatedTo": [
+        "rae_vald_service_tugiisikuteenus",
+        "rae_vald_service_volanoustamisteenus",
+        "rae_vald_service_valtimatu_sotsiaalabi",
+        "rae_vald_service_koduteenus",
+        "rae_vald_service_isikliku_abistaja_teenus",
+        "rae_vald_service_taisealise_isiku_hoolduse_seadmine"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenuse_taotlus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_form_sotsiaalteenuse_taotlus",
+      "document_id": "rae_vald_form_sotsiaalteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/sites/default/files/documents/2025-05/Sotsiaalteenuse%20taotluse%20blankett%20%281%29%20conv.docx",
+      "content_hash": "bc332862a41811b53fc3ad693da696fabaca8532377c7a824df13ae3a712c625",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_form_uldhoolduse_taotlus",
+      "canonical_item_id": "rae_vald:form:uldhoolduse_taotlus",
+      "itemType": "form",
+      "title": "Üldhoolduse taotlus",
+      "status": "active",
+      "summary": "Blankett väljaspool kodu osutatava üldhooldusteenuse taotlemiseks.",
+      "sourceKeys": [
+        "uldhoolduse_taotlus_file"
+      ],
+      "name": "Üldhoolduse taotlus",
+      "format": "docx",
+      "officialUrl": "https://rae.ee/sites/default/files/documents/2025-05/%C3%9Cldhoolduse%20taotlus%20conv.docx",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "sections_present": [
+        "application_form"
+      ],
+      "relatedTo": [
+        "rae_vald_service_uldhooldusteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "uldhoolduse_taotlus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_form_uldhoolduse_taotlus",
+      "document_id": "rae_vald_form_uldhoolduse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/sites/default/files/documents/2025-05/%C3%9Cldhoolduse%20taotlus%20conv.docx",
+      "content_hash": "bbea1d0ff94ec8fde60fffcbe7d357236a094df19d5a723c4ae34437a71af25b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_form_toimetulekutoetuse_avaldus",
+      "canonical_item_id": "rae_vald:form:toimetulekutoetuse_avaldus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse taotlemise avaldus",
+      "status": "active",
+      "summary": "Blankett riikliku toimetulekutoetuse taotlemiseks.",
+      "sourceKeys": [
+        "toimetulekutoetuse_avaldus_file"
+      ],
+      "name": "Toimetulekutoetuse taotlemise avaldus",
+      "format": "docx",
+      "officialUrl": "https://rae.ee/sites/default/files/documents/2025-11/Toimetulekutoetuse%20taotlemise%20avaldus%20.docx",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "sections_present": [
+        "application_form"
+      ],
+      "relatedTo": [
+        "rae_vald_benefit_toimetulekutoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "toimetulekutoetuse_avaldus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_form_toimetulekutoetuse_avaldus",
+      "document_id": "rae_vald_form_toimetulekutoetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/sites/default/files/documents/2025-11/Toimetulekutoetuse%20taotlemise%20avaldus%20.docx",
+      "content_hash": "0e441b880e4d4ca7c70f57b0f7fbf23ba69f53b50310ed2baa9606196a85c479",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_form_uhekordse_toetuse_taotlus",
+      "canonical_item_id": "rae_vald:form:uhekordse_toetuse_taotlus",
+      "itemType": "form",
+      "title": "Ühekordse toetuse taotluse blankett",
+      "status": "active",
+      "summary": "Blankett ühekordsete sotsiaaltoetuste taotlemiseks. Seda kasutatakse mitme toetuse, sh küttekulude, prillitoetuse, invatehnilise abivahendi, dokumendi- ja muu toimetulekutoetuse puhul.",
+      "sourceKeys": [
+        "uhekordse_toetuse_taotlus_file"
+      ],
+      "name": "Ühekordse toetuse taotluse blankett",
+      "format": "docx",
+      "officialUrl": "https://rae.ee/sites/default/files/documents/2025-04/%C3%9Chekordse%20toetuse%20taotluse%20blankett%20%20conv.docx",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "sections_present": [
+        "application_form"
+      ],
+      "relatedTo": [
+        "rae_vald_benefit_vahekindlustatud_pere_lapse_koolitoetus",
+        "rae_vald_benefit_invatehnilise_abivahendi_toetus",
+        "rae_vald_benefit_vabanenud_isiku_uhekordne_toetus",
+        "rae_vald_benefit_muu_toimetulekut_soodustav_toetus",
+        "rae_vald_benefit_dokumenditoetus",
+        "rae_vald_benefit_erivajadusega_inimese_kuttekulude_toetus",
+        "rae_vald_benefit_pensionari_prillitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "uhekordse_toetuse_taotlus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_form_uhekordse_toetuse_taotlus",
+      "document_id": "rae_vald_form_uhekordse_toetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/sites/default/files/documents/2025-04/%C3%9Chekordse%20toetuse%20taotluse%20blankett%20%20conv.docx",
+      "content_hash": "75cde25c4a33d69109d819101a2f97725c97f76d5aab76fe7ea805f1b36c680c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_form_synnitoetuse_taotlus",
+      "canonical_item_id": "rae_vald:form:synnitoetuse_taotlus",
+      "itemType": "form",
+      "title": "Sünnitoetuse taotlus",
+      "status": "active",
+      "summary": "Blankett Rae valla sünnitoetuse taotlemiseks.",
+      "sourceKeys": [
+        "synnitoetuse_taotlus_file"
+      ],
+      "name": "Sünnitoetuse taotlus",
+      "format": "docx",
+      "officialUrl": "https://rae.ee/sites/default/files/documents/2025-05/s%C3%BCnnitoetus%20conv.docx",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "sections_present": [
+        "application_form"
+      ],
+      "relatedTo": [
+        "rae_vald_benefit_synnitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "synnitoetuse_taotlus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_form_synnitoetuse_taotlus",
+      "document_id": "rae_vald_form_synnitoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/sites/default/files/documents/2025-05/s%C3%BCnnitoetus%20conv.docx",
+      "content_hash": "e2e3a7e4b4abfc515761a0e3e9d56a08106d7c70663715ef4159e2ad10e74fdc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_form_emadepaeva_toetuse_vorm",
+      "canonical_item_id": "rae_vald:form:emadepaeva_toetuse_vorm",
+      "itemType": "form",
+      "title": "Emadepäeva toetuse vorm",
+      "status": "active",
+      "summary": "Blankett suurpere, eestkostepere ja puudega lapse vanema emadepäeva toetuse taotlemiseks.",
+      "sourceKeys": [
+        "emadepaeva_toetuse_vorm_file"
+      ],
+      "name": "Emadepäeva toetuse vorm",
+      "format": "docx",
+      "officialUrl": "https://rae.ee/sites/default/files/documents/2025-04/Emadep%C3%A4eva%20toetuse%20vorm%20.docx",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "sections_present": [
+        "application_form"
+      ],
+      "relatedTo": [
+        "rae_vald_benefit_emadepaeva_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "emadepaeva_toetuse_vorm_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_form_emadepaeva_toetuse_vorm",
+      "document_id": "rae_vald_form_emadepaeva_toetuse_vorm",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/sites/default/files/documents/2025-04/Emadep%C3%A4eva%20toetuse%20vorm%20.docx",
+      "content_hash": "e33bac312e120fbb0575951d2ff350d9627158b913dd740d9d2224534fbc6e94",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_form_joulutoetuse_vorm",
+      "canonical_item_id": "rae_vald:form:joulutoetuse_vorm",
+      "itemType": "form",
+      "title": "Jõulutoetuse blankett",
+      "status": "active",
+      "summary": "Blankett suurpere, eestkostepere ja puudega lapse vanema jõulutoetuse taotlemiseks.",
+      "sourceKeys": [
+        "joulutoetuse_vorm_file"
+      ],
+      "name": "Jõulutoetuse blankett",
+      "format": "docx",
+      "officialUrl": "https://rae.ee/sites/default/files/documents/2025-04/J%C3%B5ulutoetuse%20blankett%20conv.docx",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "sections_present": [
+        "application_form"
+      ],
+      "relatedTo": [
+        "rae_vald_benefit_joulutoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "joulutoetuse_vorm_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_form_joulutoetuse_vorm",
+      "document_id": "rae_vald_form_joulutoetuse_vorm",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/sites/default/files/documents/2025-04/J%C3%B5ulutoetuse%20blankett%20conv.docx",
+      "content_hash": "ed85b978873c74c302e9f81ed0afef2642197ef4736adb894f1a1a1d583804a7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_form_matusetoetuse_vorm",
+      "canonical_item_id": "rae_vald:form:matusetoetuse_vorm",
+      "itemType": "form",
+      "title": "Matusetoetuse blankett",
+      "status": "active",
+      "summary": "Blankett matusetoetuse taotlemiseks.",
+      "sourceKeys": [
+        "matusetoetuse_vorm_file"
+      ],
+      "name": "Matusetoetuse blankett",
+      "format": "docx",
+      "officialUrl": "https://rae.ee/sites/default/files/documents/2025-04/Matusetoetuse%20blankett%20conv.docx",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "sections_present": [
+        "application_form"
+      ],
+      "relatedTo": [
+        "rae_vald_benefit_matusetoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "matusetoetuse_vorm_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_form_matusetoetuse_vorm",
+      "document_id": "rae_vald_form_matusetoetuse_vorm",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://rae.ee/sites/default/files/documents/2025-04/Matusetoetuse%20blankett%20conv.docx",
+      "content_hash": "61e6926e4fd3830770d8b34ef71ffcf541d4cc899248746832bd5ac102d893cf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_form_synnitoetuse_e_taotlus",
+      "canonical_item_id": "rae_vald:form:synnitoetuse_e_taotlus",
+      "itemType": "form",
+      "title": "Sünnitoetuse e-taotlus",
+      "status": "active",
+      "summary": "E-teenus ametlikus Rae valla iseteeninduse loetelus: Sünnitoetuse e-taotlus.",
+      "sourceKeys": [
+        "eteenused_page"
+      ],
+      "name": "Sünnitoetuse e-taotlus",
+      "format": "web_form",
+      "officialUrl": "https://piksel.ee/spoku/rae/synnitoetus",
+      "submissionChannels": [
+        "self_service"
+      ],
+      "sections_present": [
+        "application_form"
+      ],
+      "relatedTo": [
+        "rae_vald_benefit_synnitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "externalUrl": "https://piksel.ee/spoku/rae/synnitoetus",
+      "item_type": "form",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_form_synnitoetuse_e_taotlus",
+      "document_id": "rae_vald_form_synnitoetuse_e_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://piksel.ee/spoku/rae/synnitoetus",
+      "content_hash": "a24330feabf92050a0db4d1f4846b711739e447314786396b3fd8d58e000026a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_form_uhekordse_sotsiaaltoetuse_e_taotlus",
+      "canonical_item_id": "rae_vald:form:uhekordse_sotsiaaltoetuse_e_taotlus",
+      "itemType": "form",
+      "title": "Ühekordse sotsiaaltoetuse e-taotlus",
+      "status": "active",
+      "summary": "E-teenus ametlikus Rae valla iseteeninduse loetelus: Ühekordse sotsiaaltoetuse e-taotlus.",
+      "sourceKeys": [
+        "eteenused_page"
+      ],
+      "name": "Ühekordse sotsiaaltoetuse e-taotlus",
+      "format": "web_form",
+      "officialUrl": "https://piksel.ee/spoku/rae/sotsiaaltoetus/ylevaade?toetus=2379",
+      "submissionChannels": [
+        "self_service"
+      ],
+      "sections_present": [
+        "application_form"
+      ],
+      "relatedTo": [
+        "rae_vald_benefit_vahekindlustatud_pere_lapse_koolitoetus",
+        "rae_vald_benefit_invatehnilise_abivahendi_toetus",
+        "rae_vald_benefit_vabanenud_isiku_uhekordne_toetus",
+        "rae_vald_benefit_muu_toimetulekut_soodustav_toetus",
+        "rae_vald_benefit_dokumenditoetus",
+        "rae_vald_benefit_erivajadusega_inimese_kuttekulude_toetus",
+        "rae_vald_benefit_pensionari_prillitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "externalUrl": "https://piksel.ee/spoku/rae/sotsiaaltoetus/ylevaade?toetus=2379",
+      "item_type": "form",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_form_uhekordse_sotsiaaltoetuse_e_taotlus",
+      "document_id": "rae_vald_form_uhekordse_sotsiaaltoetuse_e_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://piksel.ee/spoku/rae/sotsiaaltoetus/ylevaade?toetus=2379",
+      "content_hash": "23d41b2e58e9a9051e7ed6512e2135e9d74f77edd40981fd45cc76f2c7f93317",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_form_matusetoetuse_e_taotlus",
+      "canonical_item_id": "rae_vald:form:matusetoetuse_e_taotlus",
+      "itemType": "form",
+      "title": "Matusetoetuse e-taotlus",
+      "status": "active",
+      "summary": "E-teenus ametlikus Rae valla iseteeninduse loetelus: Matusetoetuse e-taotlus.",
+      "sourceKeys": [
+        "eteenused_page"
+      ],
+      "name": "Matusetoetuse e-taotlus",
+      "format": "web_form",
+      "officialUrl": "https://piksel.ee/spoku/rae/matusetoetus",
+      "submissionChannels": [
+        "self_service"
+      ],
+      "sections_present": [
+        "application_form"
+      ],
+      "relatedTo": [
+        "rae_vald_benefit_matusetoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "externalUrl": "https://piksel.ee/spoku/rae/matusetoetus",
+      "item_type": "form",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_form_matusetoetuse_e_taotlus",
+      "document_id": "rae_vald_form_matusetoetuse_e_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://piksel.ee/spoku/rae/matusetoetus",
+      "content_hash": "9d8725fb59b005192ccd2b3b04570c8c605b94fe228c0d87a42f719cadf9dd99",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_form_lapse_sotsiaalteenuse_e_taotlus",
+      "canonical_item_id": "rae_vald:form:lapse_sotsiaalteenuse_e_taotlus",
+      "itemType": "form",
+      "title": "Lapse sotsiaalteenuse e-taotlus",
+      "status": "active",
+      "summary": "E-teenus ametlikus Rae valla iseteeninduse loetelus: Lapse sotsiaalteenuse e-taotlus.",
+      "sourceKeys": [
+        "eteenused_page"
+      ],
+      "name": "Lapse sotsiaalteenuse e-taotlus",
+      "format": "web_form",
+      "officialUrl": "https://piksel.ee/spoku/rae/lapsesots",
+      "submissionChannels": [
+        "self_service"
+      ],
+      "sections_present": [
+        "application_form"
+      ],
+      "relatedTo": [
+        "rae_vald_service_tugiisikuteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "externalUrl": "https://piksel.ee/spoku/rae/lapsesots",
+      "item_type": "form",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_form_lapse_sotsiaalteenuse_e_taotlus",
+      "document_id": "rae_vald_form_lapse_sotsiaalteenuse_e_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://piksel.ee/spoku/rae/lapsesots",
+      "content_hash": "d49ca80d6c1046bd0ed1698d71b5b46e53d13de9aa7befc8f7cb185f9d78ea66",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_form_sotsiaalteenuse_e_taotlus",
+      "canonical_item_id": "rae_vald:form:sotsiaalteenuse_e_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaalteenuse e-taotlus",
+      "status": "active",
+      "summary": "E-teenus ametlikus Rae valla iseteeninduse loetelus: Sotsiaalteenuse e-taotlus.",
+      "sourceKeys": [
+        "eteenused_page"
+      ],
+      "name": "Sotsiaalteenuse e-taotlus",
+      "format": "web_form",
+      "officialUrl": "https://piksel.ee/spoku/rae/sotsiaalteenus",
+      "submissionChannels": [
+        "self_service"
+      ],
+      "sections_present": [
+        "application_form"
+      ],
+      "relatedTo": [
+        "rae_vald_service_sotsiaaltransporditeenus",
+        "rae_vald_service_tugiisikuteenus",
+        "rae_vald_service_volanoustamisteenus",
+        "rae_vald_service_valtimatu_sotsiaalabi",
+        "rae_vald_service_koduteenus",
+        "rae_vald_service_isikliku_abistaja_teenus",
+        "rae_vald_service_taisealise_isiku_hoolduse_seadmine"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "externalUrl": "https://piksel.ee/spoku/rae/sotsiaalteenus",
+      "item_type": "form",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_form_sotsiaalteenuse_e_taotlus",
+      "document_id": "rae_vald_form_sotsiaalteenuse_e_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://piksel.ee/spoku/rae/sotsiaalteenus",
+      "content_hash": "a169e8d4669e155a40be7ee3d1edba01286e788a2846a06c8858d95c7651b6b2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_form_uldhoolduse_e_taotlus",
+      "canonical_item_id": "rae_vald:form:uldhoolduse_e_taotlus",
+      "itemType": "form",
+      "title": "Väljaspool kodu osutatava üldhooldusteenuse e-taotlus",
+      "status": "active",
+      "summary": "E-teenus ametlikus Rae valla iseteeninduse loetelus: Väljaspool kodu osutatava üldhooldusteenuse e-taotlus.",
+      "sourceKeys": [
+        "eteenused_page"
+      ],
+      "name": "Väljaspool kodu osutatava üldhooldusteenuse e-taotlus",
+      "format": "web_form",
+      "officialUrl": "https://piksel.ee/spoku/rae/yldhooldus",
+      "submissionChannels": [
+        "self_service"
+      ],
+      "sections_present": [
+        "application_form"
+      ],
+      "relatedTo": [
+        "rae_vald_service_uldhooldusteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "externalUrl": "https://piksel.ee/spoku/rae/yldhooldus",
+      "item_type": "form",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_form_uldhoolduse_e_taotlus",
+      "document_id": "rae_vald_form_uldhoolduse_e_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://piksel.ee/spoku/rae/yldhooldus",
+      "content_hash": "e913a15589b42225e9d67e0ab039b61d4844b42c4cf39012024cf2ca0554eed0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_form_munitsipaaleluruumi_e_taotlus",
+      "canonical_item_id": "rae_vald:form:munitsipaaleluruumi_e_taotlus",
+      "itemType": "form",
+      "title": "Munitsipaaleluruumi üürimise e-taotlus",
+      "status": "active",
+      "summary": "E-teenus ametlikus Rae valla iseteeninduse loetelus: Munitsipaaleluruumi üürimise e-taotlus.",
+      "sourceKeys": [
+        "eteenused_page"
+      ],
+      "name": "Munitsipaaleluruumi üürimise e-taotlus",
+      "format": "web_form",
+      "officialUrl": "https://piksel.ee/spoku/rae/munitsipaalruum",
+      "submissionChannels": [
+        "self_service"
+      ],
+      "sections_present": [
+        "application_form"
+      ],
+      "relatedTo": [
+        "rae_vald_service_eluruumi_tagamine"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "externalUrl": "https://piksel.ee/spoku/rae/munitsipaalruum",
+      "item_type": "form",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_form_munitsipaaleluruumi_e_taotlus",
+      "document_id": "rae_vald_form_munitsipaaleluruumi_e_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://piksel.ee/spoku/rae/munitsipaalruum",
+      "content_hash": "696d7d743dad5f36a232e6e2e204d19f6156a2ed0a9fd3862c70cd29ec0d7b2a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_form_emadepaeva_toetuse_e_taotlus",
+      "canonical_item_id": "rae_vald:form:emadepaeva_toetuse_e_taotlus",
+      "itemType": "form",
+      "title": "Emadepäeva toetuse e-taotlus",
+      "status": "active",
+      "summary": "E-teenus ametlikus Rae valla iseteeninduse loetelus: Emadepäeva toetuse e-taotlus.",
+      "sourceKeys": [
+        "eteenused_page"
+      ],
+      "name": "Emadepäeva toetuse e-taotlus",
+      "format": "web_form",
+      "officialUrl": "https://piksel.ee/spoku/rae/emad/ylevaade?asutus=3496&toetus=2354",
+      "submissionChannels": [
+        "self_service"
+      ],
+      "sections_present": [
+        "application_form"
+      ],
+      "relatedTo": [
+        "rae_vald_benefit_emadepaeva_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "externalUrl": "https://piksel.ee/spoku/rae/emad/ylevaade?asutus=3496&toetus=2354",
+      "item_type": "form",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_form_emadepaeva_toetuse_e_taotlus",
+      "document_id": "rae_vald_form_emadepaeva_toetuse_e_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://piksel.ee/spoku/rae/emad/ylevaade?asutus=3496&toetus=2354",
+      "content_hash": "f3e3f096cdf79f4bb9d6e7a3a16d6068710268dab8c53aba388f2027c9a05818",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rae_vald_form_joulutoetuse_e_taotlus",
+      "canonical_item_id": "rae_vald:form:joulutoetuse_e_taotlus",
+      "itemType": "form",
+      "title": "Jõulutoetuse e-taotlus",
+      "status": "active",
+      "summary": "E-teenus ametlikus Rae valla iseteeninduse loetelus: Jõulutoetuse e-taotlus.",
+      "sourceKeys": [
+        "eteenused_page"
+      ],
+      "name": "Jõulutoetuse e-taotlus",
+      "format": "web_form",
+      "officialUrl": "https://piksel.ee/spoku/rae/joulud/",
+      "submissionChannels": [
+        "self_service"
+      ],
+      "sections_present": [
+        "application_form"
+      ],
+      "relatedTo": [
+        "rae_vald_benefit_joulutoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "externalUrl": "https://piksel.ee/spoku/rae/joulud/",
+      "item_type": "form",
+      "municipality_id": "rae_vald",
+      "municipality_name": "Rae vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rae_vald_form_joulutoetuse_e_taotlus",
+      "document_id": "rae_vald_form_joulutoetuse_e_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://piksel.ee/spoku/rae/joulud/",
+      "content_hash": "fc419063553281bc97fbc178fc163b4fde3c41e12510559f837cd1921de80f33",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Rae vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

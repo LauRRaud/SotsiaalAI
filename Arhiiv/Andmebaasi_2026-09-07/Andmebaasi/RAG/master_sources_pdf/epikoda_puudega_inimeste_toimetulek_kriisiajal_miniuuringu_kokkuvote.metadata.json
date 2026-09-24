@@ -1,0 +1,80 @@
+{
+  "source": {
+    "source_id": "epikoda_puudega_inimeste_toimetulek_kriisiajal_miniuuringu_kokkuvote",
+    "title": "Puudega inimeste toimetulek kriisiajal – miniuuringu kokkuvõte",
+    "url": "https://epikoda.ee/wp-content/uploads/2025/09/epikoja-miniuuringu-kokkuvote-september-2020.pdf",
+    "normalized_url": "https://epikoda.ee/wp-content/uploads/2025/09/epikoja-miniuuringu-kokkuvote-september-2020.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "EPIKoda",
+    "organization_id": "epikoda",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "Eesti Puuetega Inimeste Koda",
+      "puue",
+      "puudega inimene",
+      "erivajadus",
+      "kriisivalmidus",
+      "riskijuhtimine",
+      "uuring",
+      "raport",
+      "analüüs",
+      "EPIKoda"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "EPIKoda",
+      "heading_4": null,
+      "line": 571,
+      "order": 294
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Puudega inimeste toimetulek kriisiajal – miniuuringu kokkuvõte"
+    ],
+    "collection_hints": [
+      "research_reports"
+    ],
+    "source_types_seen": [
+      "research_report"
+    ],
+    "resource_types_seen": [
+      "research_evidence"
+    ],
+    "publishers_seen": [
+      "EPIKoda"
+    ],
+    "organizations_seen": [
+      "epikoda"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "EPIKoda",
+        "line": 571,
+        "order": 294
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://epikoda.ee/wp-content/uploads/2025/09/epikoja-miniuuringu-kokkuvote-september-2020.pdf"
+  },
+  "final_url": "https://epikoda.ee/wp-content/uploads/2025/09/epikoja-miniuuringu-kokkuvote-september-2020.pdf",
+  "redirects": [],
+  "sha256": "dd3bd44e9051fede91114ee64b4d7510f71ea3b0c3a3bd0e2ede8809c2df48ab",
+  "bytes": 484838,
+  "downloaded_at": "2026-08-14T08:00:56.396Z"
+}

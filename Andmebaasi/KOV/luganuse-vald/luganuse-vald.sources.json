@@ -1,0 +1,1150 @@
+{
+  "schemaVersion": "kov-sources-v2.5-sourcepackage",
+  "docId": "kov-luganuse-vald",
+  "document_id": "kov-luganuse-vald",
+  "municipality": "Lüganuse vald",
+  "municipality_id": "luganuse_vald",
+  "county": "Ida-Virumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "sources": [
+    {
+      "source_id": "home",
+      "title": "Lüganuse valla avaleht",
+      "url": "https://www.lyganuse.ee/",
+      "url_canonical": "https://www.lyganuse.ee/",
+      "normalized_url": "https://www.lyganuse.ee/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "overview",
+        "navigation"
+      ],
+      "document_id": "home",
+      "source_key": "home",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "429397e990ae2a4568215563078ef6648d10aa04e1c44b058e58ea73c065247d",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "home"
+    },
+    {
+      "source_id": "social_overview_contacts",
+      "title": "Sotsiaal ja tervishoid – ametnikud ja menüüharu",
+      "url": "https://www.lyganuse.ee/ametnikud",
+      "url_canonical": "https://www.lyganuse.ee/ametnikud",
+      "normalized_url": "https://www.lyganuse.ee/ametnikud",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "navigation",
+        "contacts"
+      ],
+      "document_id": "social_overview_contacts",
+      "source_key": "social_overview_contacts",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "luganuse_vald_contact_anne_kalamae",
+        "luganuse_vald_contact_anne_rembel",
+        "luganuse_vald_contact_eda_tarno",
+        "luganuse_vald_contact_eve_uuekula",
+        "luganuse_vald_contact_evely_kajala",
+        "luganuse_vald_contact_karmen_loite",
+        "luganuse_vald_contact_lii_pikas",
+        "luganuse_vald_contact_merle_poll",
+        "luganuse_vald_contact_vallavalitsus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "365af3ec7258f1c2e401a4df9eac0767fe117d1bd8524d8b1fa02c1f668a7e1b",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "social_overview_contacts"
+    },
+    {
+      "source_id": "services_page",
+      "title": "Sotsiaalteenused",
+      "url": "https://www.lyganuse.ee/sotsiaalteenused",
+      "url_canonical": "https://www.lyganuse.ee/sotsiaalteenused",
+      "normalized_url": "https://www.lyganuse.ee/sotsiaalteenused",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "services",
+        "forms"
+      ],
+      "document_id": "services_page",
+      "source_key": "services_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "luganuse_vald_service_asendushooldusteenus",
+        "luganuse_vald_service_eluruumi_tagamise_teenus",
+        "luganuse_vald_service_isikliku_abistaja_teenus",
+        "luganuse_vald_service_jarelhooldusteenus",
+        "luganuse_vald_service_koduteenus",
+        "luganuse_vald_service_leinanoustamine",
+        "luganuse_vald_service_parkimiskaart",
+        "luganuse_vald_service_perenoustamine",
+        "luganuse_vald_service_psuhholoogiline_noustamine",
+        "luganuse_vald_service_raske_voi_sugava_puudega_lapse_lapsehoiuteenus",
+        "luganuse_vald_service_sotsiaaltransporditeenus",
+        "luganuse_vald_service_taisealise_isiku_hooldus",
+        "luganuse_vald_service_tugiisikuteenus",
+        "luganuse_vald_service_turvakoduteenus",
+        "luganuse_vald_service_uldhooldusteenus_valjaspool_kodu",
+        "luganuse_vald_service_valtimatu_sotsiaalabi",
+        "luganuse_vald_service_varjupaigateenus",
+        "luganuse_vald_service_volanoustamisteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "77facac488736dd6ef17d15072055c52b3c4a7eb248f70546985013af4811fee",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "services_page"
+    },
+    {
+      "source_id": "benefits_page",
+      "title": "Sotsiaaltoetused",
+      "url": "https://www.lyganuse.ee/sotsiaaltoetused",
+      "url_canonical": "https://www.lyganuse.ee/sotsiaaltoetused",
+      "normalized_url": "https://www.lyganuse.ee/sotsiaaltoetused",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "benefits",
+        "forms"
+      ],
+      "document_id": "benefits_page",
+      "source_key": "benefits_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "luganuse_vald_benefit_eakate_sunnipaevatoetus",
+        "luganuse_vald_benefit_erakorraline_toetus",
+        "luganuse_vald_benefit_kooli_lopetamise_toetus",
+        "luganuse_vald_benefit_kooli_ranitsatoetus",
+        "luganuse_vald_benefit_koolitoetus_vahekindlustatud_peredele",
+        "luganuse_vald_benefit_kuttetoetus_vahekindlustatud_isikutele",
+        "luganuse_vald_benefit_laste_laagris_osalemise_toetus",
+        "luganuse_vald_benefit_matusetoetus",
+        "luganuse_vald_benefit_puudega_lapse_hooldajatoetus",
+        "luganuse_vald_benefit_sunnitoetus",
+        "luganuse_vald_benefit_taisealise_puudega_isiku_hooldajatoetus",
+        "luganuse_vald_benefit_tervisetoetus_vahekindlustatud_isikutele",
+        "luganuse_vald_benefit_toiduraha_toetus",
+        "luganuse_vald_benefit_toimetulekutoetus",
+        "luganuse_vald_benefit_toimetulekutoetuse_taiendav_sotsiaaltoetus",
+        "luganuse_vald_benefit_tsernobili_katastroofis_osalenu_toetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "43e11d64fc6c24acbfd1404e33ada2fca28f1c80ad1a4528abdc8ed995da612a",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "benefits_page"
+    },
+    {
+      "source_id": "forms_page",
+      "title": "Taotluste vormid",
+      "url": "https://www.lyganuse.ee/asjaajamisjuhised-ja-blanketid",
+      "url_canonical": "https://www.lyganuse.ee/asjaajamisjuhised-ja-blanketid",
+      "normalized_url": "https://www.lyganuse.ee/asjaajamisjuhised-ja-blanketid",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "forms"
+      ],
+      "document_id": "forms_page",
+      "source_key": "forms_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "8155c076fe7fa4cc48d0de0e9639d5c21a056d936139da23d042c99821df6881",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "forms_page"
+    },
+    {
+      "source_id": "paevakeskused_page",
+      "title": "Päevakeskused",
+      "url": "https://www.lyganuse.ee/paevakeskused",
+      "url_canonical": "https://www.lyganuse.ee/paevakeskused",
+      "normalized_url": "https://www.lyganuse.ee/paevakeskused",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resources"
+      ],
+      "document_id": "paevakeskused_page",
+      "source_key": "paevakeskused_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "luganuse_vald_resource_kivioli_paevakeskus",
+        "luganuse_vald_resource_luganuse_paevakeskus",
+        "luganuse_vald_resource_maidla_paevakeskus",
+        "luganuse_vald_resource_purtse_paevakeskus",
+        "luganuse_vald_resource_pyssi_paevakeskus",
+        "luganuse_vald_resource_sonda_paevakeskus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "81aa0e6f75cd95edcd051248becc0bf56ad59332fa680d3069d69df9ccb23d4e",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "paevakeskused_page"
+    },
+    {
+      "source_id": "hoolekandeasutused_page",
+      "title": "Hoolekandeasutused",
+      "url": "https://www.lyganuse.ee/hoolekandeasutused",
+      "url_canonical": "https://www.lyganuse.ee/hoolekandeasutused",
+      "normalized_url": "https://www.lyganuse.ee/hoolekandeasutused",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resources"
+      ],
+      "document_id": "hoolekandeasutused_page",
+      "source_key": "hoolekandeasutused_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "luganuse_vald_resource_kivioli_tervisekeskus",
+        "luganuse_vald_resource_vahtra_hooldemaja"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "8dd9442fe79f6a39859ec52cc1abbf1c3f7d56425ce506061964046074ef5fd0",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "hoolekandeasutused_page"
+    },
+    {
+      "source_id": "ohvriabi_page",
+      "title": "Ohvriabi",
+      "url": "https://www.lyganuse.ee/ohvriabi",
+      "url_canonical": "https://www.lyganuse.ee/ohvriabi",
+      "normalized_url": "https://www.lyganuse.ee/ohvriabi",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resources"
+      ],
+      "document_id": "ohvriabi_page",
+      "source_key": "ohvriabi_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "luganuse_vald_resource_ohvriabi_ida_piirkond",
+        "luganuse_vald_resource_ohvriabi_kriisitelefon"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "491bca7f32f5afb74f03c82b163193cfef8638ce0c8db180093d8387b089e537",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "ohvriabi_page"
+    },
+    {
+      "source_id": "riiklik_perelepitus_page",
+      "title": "Riiklik perelepitus",
+      "url": "https://www.lyganuse.ee/riiklik-perelepitus",
+      "url_canonical": "https://www.lyganuse.ee/riiklik-perelepitus",
+      "normalized_url": "https://www.lyganuse.ee/riiklik-perelepitus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resources"
+      ],
+      "document_id": "riiklik_perelepitus_page",
+      "source_key": "riiklik_perelepitus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "luganuse_vald_resource_riiklik_perelepitus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "4c8b9a8748e6c229525cd5a55fff547619649324037fc383d01f3bd10153eb67",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "riiklik_perelepitus_page"
+    },
+    {
+      "source_id": "lastekaitse_page",
+      "title": "Lastekaitse",
+      "url": "https://www.lyganuse.ee/lastekaitse",
+      "url_canonical": "https://www.lyganuse.ee/lastekaitse",
+      "normalized_url": "https://www.lyganuse.ee/lastekaitse",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resources",
+        "contacts"
+      ],
+      "document_id": "lastekaitse_page",
+      "source_key": "lastekaitse_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "luganuse_vald_resource_lasteabi_"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "6d96bb3b9b626d66347baf6a92e42dc8a8b1edf0fecd9099c3106c4f54d6a54e",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "lastekaitse_page"
+    },
+    {
+      "source_id": "ska_vastuvott_page",
+      "title": "Sotsiaalkindlustusameti töötajate vastuvõtt",
+      "url": "https://www.lyganuse.ee/sotsiaalkindlustusameti-vastuvott",
+      "url_canonical": "https://www.lyganuse.ee/sotsiaalkindlustusameti-vastuvott",
+      "normalized_url": "https://www.lyganuse.ee/sotsiaalkindlustusameti-vastuvott",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resources"
+      ],
+      "document_id": "ska_vastuvott_page",
+      "source_key": "ska_vastuvott_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "luganuse_vald_resource_sotsiaalkindlustusameti_vastuvott"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "9bf783d2a36247e3e6d7388df8718c2e1a521df258162392c34263f4e46429bf",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "ska_vastuvott_page"
+    },
+    {
+      "source_id": "eakate_noukogu_page",
+      "title": "Eakate nõukogu",
+      "url": "https://www.lyganuse.ee/eakate-noukogu",
+      "url_canonical": "https://www.lyganuse.ee/eakate-noukogu",
+      "normalized_url": "https://www.lyganuse.ee/eakate-noukogu",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resources"
+      ],
+      "document_id": "eakate_noukogu_page",
+      "source_key": "eakate_noukogu_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "luganuse_vald_resource_eakate_noukogu"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "1d7bbf11df09b3599cfc9a3f2e9e846938627c01e54999beb5b809467f4380a2",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "eakate_noukogu_page"
+    },
+    {
+      "source_id": "sotsiaalteenuse_avalduse_vorm_doc",
+      "title": "Sotsiaalteenuse avalduse vorm",
+      "url": "https://www.lyganuse.ee/documents/18275789//sotsiaalteenuse%2Bavalduse%2Bvorm.doc/0d32685d-826d-4e11-a652-541696cfefc2",
+      "url_canonical": "https://www.lyganuse.ee/documents/18275789//sotsiaalteenuse%2Bavalduse%2Bvorm.doc/0d32685d-826d-4e11-a652-541696cfefc2",
+      "normalized_url": "https://www.lyganuse.ee/documents/18275789//sotsiaalteenuse%2Bavalduse%2Bvorm.doc/0d32685d-826d-4e11-a652-541696cfefc2",
+      "source_type": "application_form",
+      "source_format": "doc",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active_binary_unparsed",
+      "used_for": [
+        "forms",
+        "services"
+      ],
+      "document_id": "sotsiaalteenuse_avalduse_vorm_doc",
+      "source_key": "sotsiaalteenuse_avalduse_vorm_doc",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "luganuse_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "a69d974d2785bdf35d88f154af01009a7a763f6960e4d9da21f6e5fe46075127",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sotsiaalteenuse_avalduse_vorm_doc"
+    },
+    {
+      "source_id": "parkimiskaardi_avaldus_doc",
+      "title": "Parkimiskaardi avaldus",
+      "url": "https://www.lyganuse.ee/documents/18275789//parkimiskaardi%2Bavaldus.doc/319a34ca-c84b-4d4f-9a1b-52525800f8c0",
+      "url_canonical": "https://www.lyganuse.ee/documents/18275789//parkimiskaardi%2Bavaldus.doc/319a34ca-c84b-4d4f-9a1b-52525800f8c0",
+      "normalized_url": "https://www.lyganuse.ee/documents/18275789//parkimiskaardi%2Bavaldus.doc/319a34ca-c84b-4d4f-9a1b-52525800f8c0",
+      "source_type": "application_form",
+      "source_format": "doc",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active_binary_unparsed",
+      "used_for": [
+        "forms",
+        "services"
+      ],
+      "document_id": "parkimiskaardi_avaldus_doc",
+      "source_key": "parkimiskaardi_avaldus_doc",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "luganuse_vald_form_parkimiskaardi_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "36f38c6d8862a08944df340ce4e3c9ad5494a89de174de776ca872cc69aa2bba",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "parkimiskaardi_avaldus_doc"
+    },
+    {
+      "source_id": "toimetulekutoetuse_avaldus_pdf",
+      "title": "Toimetulekutoetuse avaldus",
+      "url": "https://www.lyganuse.ee/documents/18275789//Toimetulekutoetuse%2BAVALDUS.pdf/d934c547-82ce-4d1f-966f-22d672b5eeec",
+      "url_canonical": "https://www.lyganuse.ee/documents/18275789//Toimetulekutoetuse%2BAVALDUS.pdf/d934c547-82ce-4d1f-966f-22d672b5eeec",
+      "normalized_url": "https://www.lyganuse.ee/documents/18275789//Toimetulekutoetuse%2BAVALDUS.pdf/d934c547-82ce-4d1f-966f-22d672b5eeec",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "forms",
+        "benefits"
+      ],
+      "document_id": "toimetulekutoetuse_avaldus_pdf",
+      "source_key": "toimetulekutoetuse_avaldus_pdf",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "luganuse_vald_form_toimetulekutoetuse_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "94657360a7e8df1c5aefb377da1bcc89a2114dc473b778aa4edb28d67c5a5c0a",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "toimetulekutoetuse_avaldus_pdf"
+    },
+    {
+      "source_id": "sunnitoetuse_avaldus_doc",
+      "title": "Sünnitoetuse avalduse vorm",
+      "url": "https://www.lyganuse.ee/documents/18275789//S%C3%BCnnitoetuse%2Bavalduse%2Bvorm.doc/6d94d609-bd7b-4ec8-91a3-1254914ea622",
+      "url_canonical": "https://www.lyganuse.ee/documents/18275789//S%C3%BCnnitoetuse%2Bavalduse%2Bvorm.doc/6d94d609-bd7b-4ec8-91a3-1254914ea622",
+      "normalized_url": "https://www.lyganuse.ee/documents/18275789//S%C3%BCnnitoetuse%2Bavalduse%2Bvorm.doc/6d94d609-bd7b-4ec8-91a3-1254914ea622",
+      "source_type": "application_form",
+      "source_format": "doc",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active_binary_unparsed",
+      "used_for": [
+        "forms",
+        "benefits"
+      ],
+      "document_id": "sunnitoetuse_avaldus_doc",
+      "source_key": "sunnitoetuse_avaldus_doc",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "luganuse_vald_form_sunnitoetuse_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "341952079d23ff2bb9add028f604eeeaafc66e12e931cae50a750050c71edda6",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sunnitoetuse_avaldus_doc"
+    },
+    {
+      "source_id": "matusetoetuse_avaldus_doc",
+      "title": "Matusetoetuse avalduse vorm",
+      "url": "https://www.lyganuse.ee/documents/18275789//Matusetoetuse%2Bavalduse%2Bvorm.doc/15d32de3-5620-493c-a0b4-f5b404a2d03f",
+      "url_canonical": "https://www.lyganuse.ee/documents/18275789//Matusetoetuse%2Bavalduse%2Bvorm.doc/15d32de3-5620-493c-a0b4-f5b404a2d03f",
+      "normalized_url": "https://www.lyganuse.ee/documents/18275789//Matusetoetuse%2Bavalduse%2Bvorm.doc/15d32de3-5620-493c-a0b4-f5b404a2d03f",
+      "source_type": "application_form",
+      "source_format": "doc",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active_binary_unparsed",
+      "used_for": [
+        "forms",
+        "benefits"
+      ],
+      "document_id": "matusetoetuse_avaldus_doc",
+      "source_key": "matusetoetuse_avaldus_doc",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "luganuse_vald_form_matusetoetuse_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "18ed6d5982c8b04f985a17168884e66335da7b8071306a59a1eca170617cb125",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "matusetoetuse_avaldus_doc"
+    },
+    {
+      "source_id": "ranitsatoetuse_avaldus_doc",
+      "title": "Ranitsatoetuse avalduse vorm",
+      "url": "https://www.lyganuse.ee/documents/18275789//Ranitsatoetuse%2Bavalduse%2Bvorm.doc/9da35791-8e39-47b9-ae03-ab08e99e158a",
+      "url_canonical": "https://www.lyganuse.ee/documents/18275789//Ranitsatoetuse%2Bavalduse%2Bvorm.doc/9da35791-8e39-47b9-ae03-ab08e99e158a",
+      "normalized_url": "https://www.lyganuse.ee/documents/18275789//Ranitsatoetuse%2Bavalduse%2Bvorm.doc/9da35791-8e39-47b9-ae03-ab08e99e158a",
+      "source_type": "application_form",
+      "source_format": "doc",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active_binary_unparsed",
+      "used_for": [
+        "forms",
+        "benefits"
+      ],
+      "document_id": "ranitsatoetuse_avaldus_doc",
+      "source_key": "ranitsatoetuse_avaldus_doc",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "luganuse_vald_form_ranitsatoetuse_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "97c57cec70e5e970d9a4fe1c951d275aeb22346b259052b4cc789911d795c976",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "ranitsatoetuse_avaldus_doc"
+    },
+    {
+      "source_id": "koolilopetamise_toetuse_avaldus_doc",
+      "title": "Koolilõpetamise toetuse avalduse vorm",
+      "url": "https://www.lyganuse.ee/documents/18275789//Koolil%C3%B5petamise%2Btoetuse%2Bavalduse%2Bvorm.doc/4482a359-f406-4ba4-a496-37b84cdc13ad",
+      "url_canonical": "https://www.lyganuse.ee/documents/18275789//Koolil%C3%B5petamise%2Btoetuse%2Bavalduse%2Bvorm.doc/4482a359-f406-4ba4-a496-37b84cdc13ad",
+      "normalized_url": "https://www.lyganuse.ee/documents/18275789//Koolil%C3%B5petamise%2Btoetuse%2Bavalduse%2Bvorm.doc/4482a359-f406-4ba4-a496-37b84cdc13ad",
+      "source_type": "application_form",
+      "source_format": "doc",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active_binary_unparsed",
+      "used_for": [
+        "forms",
+        "benefits"
+      ],
+      "document_id": "koolilopetamise_toetuse_avaldus_doc",
+      "source_key": "koolilopetamise_toetuse_avaldus_doc",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "luganuse_vald_form_kooli_lopetamise_toetuse_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "1de31129785ca116c4decb4a5109862c67e454b178f4640934df7f7ffbaad886",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "koolilopetamise_toetuse_avaldus_doc"
+    },
+    {
+      "source_id": "hooldajatoetuse_avaldus_doc",
+      "title": "Hooldajatoetuse avalduse vorm",
+      "url": "https://www.lyganuse.ee/documents/18275789//hooldajatoetuse%2Bavalduse%2Bvorm.doc/4d737546-fabc-4f87-b00f-90eeb0901f9d",
+      "url_canonical": "https://www.lyganuse.ee/documents/18275789//hooldajatoetuse%2Bavalduse%2Bvorm.doc/4d737546-fabc-4f87-b00f-90eeb0901f9d",
+      "normalized_url": "https://www.lyganuse.ee/documents/18275789//hooldajatoetuse%2Bavalduse%2Bvorm.doc/4d737546-fabc-4f87-b00f-90eeb0901f9d",
+      "source_type": "application_form",
+      "source_format": "doc",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active_binary_unparsed",
+      "used_for": [
+        "forms",
+        "benefits"
+      ],
+      "document_id": "hooldajatoetuse_avaldus_doc",
+      "source_key": "hooldajatoetuse_avaldus_doc",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "luganuse_vald_form_hooldajatoetuse_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "b8a5a9723b3c1c277acd731c1870cd5c76f5dc92e9d944a4035ac062d8846924",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "hooldajatoetuse_avaldus_doc"
+    },
+    {
+      "source_id": "sotsiaaltoetuse_lisa_doc",
+      "title": "Sotsiaaltoetuse avalduse lisa",
+      "url": "https://www.lyganuse.ee/documents/18275789//Sotsiaaltoetuse%2Blisa.doc/aa6b07e1-3527-4d45-be50-572e29a2ca07",
+      "url_canonical": "https://www.lyganuse.ee/documents/18275789//Sotsiaaltoetuse%2Blisa.doc/aa6b07e1-3527-4d45-be50-572e29a2ca07",
+      "normalized_url": "https://www.lyganuse.ee/documents/18275789//Sotsiaaltoetuse%2Blisa.doc/aa6b07e1-3527-4d45-be50-572e29a2ca07",
+      "source_type": "application_form",
+      "source_format": "doc",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active_binary_unparsed",
+      "used_for": [
+        "forms",
+        "benefits"
+      ],
+      "document_id": "sotsiaaltoetuse_lisa_doc",
+      "source_key": "sotsiaaltoetuse_lisa_doc",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "luganuse_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "5195be00184aaba600acb8e0a6ee03288963293a46248e1d72612efd8f0ff2e3",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sotsiaaltoetuse_lisa_doc"
+    },
+    {
+      "source_id": "huvihariduse_taotluse_vorm_docx",
+      "title": "Laste ja noorte huvihariduse ja huvitegevuse toetuse taotluse vorm",
+      "url": "https://www.lyganuse.ee/documents/18275789//Laste%2Bja%2Bnoorte%2Bhuvihariduse%2Bja%2Bhuvitegevuse%2Btaotluse%2Bvorm.docx/8a489b1f-00a1-43ec-becc-a6ffda13e501",
+      "url_canonical": "https://www.lyganuse.ee/documents/18275789//Laste%2Bja%2Bnoorte%2Bhuvihariduse%2Bja%2Bhuvitegevuse%2Btaotluse%2Bvorm.docx/8a489b1f-00a1-43ec-becc-a6ffda13e501",
+      "normalized_url": "https://www.lyganuse.ee/documents/18275789//Laste%2Bja%2Bnoorte%2Bhuvihariduse%2Bja%2Bhuvitegevuse%2Btaotluse%2Bvorm.docx/8a489b1f-00a1-43ec-becc-a6ffda13e501",
+      "source_type": "application_form",
+      "source_format": "docx",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active_binary_unparsed",
+      "used_for": [
+        "forms"
+      ],
+      "document_id": "huvihariduse_taotluse_vorm_docx",
+      "source_key": "huvihariduse_taotluse_vorm_docx",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "luganuse_vald_form_huvihariduse_huvitegevuse_toetuse_taotlus"
+      ],
+      "sections_present": [],
+      "content_hash": "25184572b26866eb0c44dcc12208945e41ec21f461d680115f102220b85e484b",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "huvihariduse_taotluse_vorm_docx"
+    },
+    {
+      "source_id": "lasteaia_osalustasu_vabastuse_taotlus_docx",
+      "title": "Koolieelse lasteasutuse osalustasu soodustuse ja vabastuse taotluse vorm",
+      "url": "https://www.lyganuse.ee/documents/18275789//L%C3%BCganuse%2Bvalla%2Bkoolieelses%2Bmunitsipaallasteasutuses%2Bosalustasu%2Bmaksmise%2Bsoodustuse%2Bja%2Bvabastuse%2Btaotluse%2Bvorm.docx/5ce9cdc3-0447-4c3d-b469-27fc9540c20a",
+      "url_canonical": "https://www.lyganuse.ee/documents/18275789//L%C3%BCganuse%2Bvalla%2Bkoolieelses%2Bmunitsipaallasteasutuses%2Bosalustasu%2Bmaksmise%2Bsoodustuse%2Bja%2Bvabastuse%2Btaotluse%2Bvorm.docx/5ce9cdc3-0447-4c3d-b469-27fc9540c20a",
+      "normalized_url": "https://www.lyganuse.ee/documents/18275789//L%C3%BCganuse%2Bvalla%2Bkoolieelses%2Bmunitsipaallasteasutuses%2Bosalustasu%2Bmaksmise%2Bsoodustuse%2Bja%2Bvabastuse%2Btaotluse%2Bvorm.docx/5ce9cdc3-0447-4c3d-b469-27fc9540c20a",
+      "source_type": "application_form",
+      "source_format": "docx",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active_binary_unparsed",
+      "used_for": [
+        "forms"
+      ],
+      "document_id": "lasteaia_osalustasu_vabastuse_taotlus_docx",
+      "source_key": "lasteaia_osalustasu_vabastuse_taotlus_docx",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "luganuse_vald_form_lasteaia_osalustasu_soodustuse_taotlus"
+      ],
+      "sections_present": [],
+      "content_hash": "9356181f95896d71aa58242c1db132784bf6c7c71fa750291557b1dccadd174c",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "lasteaia_osalustasu_vabastuse_taotlus_docx"
+    },
+    {
+      "source_id": "opilase_transpordi_huvitise_taotlus_pdf",
+      "title": "Õpilase transpordi sõidukulude hüvitamise taotlus",
+      "url": "https://www.lyganuse.ee/documents/18275789//%C3%95pilase%2Btransport%2B%C3%BCldhariduskooli.pdf/3d08f867-83b7-4900-a122-71975b28780f",
+      "url_canonical": "https://www.lyganuse.ee/documents/18275789//%C3%95pilase%2Btransport%2B%C3%BCldhariduskooli.pdf/3d08f867-83b7-4900-a122-71975b28780f",
+      "normalized_url": "https://www.lyganuse.ee/documents/18275789//%C3%95pilase%2Btransport%2B%C3%BCldhariduskooli.pdf/3d08f867-83b7-4900-a122-71975b28780f",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "forms"
+      ],
+      "document_id": "opilase_transpordi_huvitise_taotlus_pdf",
+      "source_key": "opilase_transpordi_huvitise_taotlus_pdf",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Lüganuse vald",
+      "municipality_id": "luganuse_vald",
+      "municipality_name": "Lüganuse vald",
+      "county": "Ida-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "luganuse_vald_form_opilase_transpordi_huvitise_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "898b055b637db9051d0fb58036bc801ceefe6d969554cdea7b64a9de8c59bee4",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "opilase_transpordi_huvitise_taotlus_pdf"
+    }
+  ],
+  "municipality_name": "Lüganuse vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

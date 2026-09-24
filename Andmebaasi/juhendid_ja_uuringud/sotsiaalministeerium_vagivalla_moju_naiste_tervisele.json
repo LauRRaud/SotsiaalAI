@@ -1,0 +1,143 @@
+{
+  "source_path": "sotsiaalministeerium_vagivalla_moju_naiste_tervisele.pdf",
+  "source_format": "pdf",
+  "sha256": "9e1759d62699d05b5a871da02d9cc074eaa81db86b964b88f9ecbce9fc0bc7ab",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/sotsiaalministeerium_vagivalla_moju_naiste_tervisele.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "sotsiaalministeerium_vagivalla_moju_naiste_tervisele",
+          "title": "Vägivalla mõju naiste tervisele",
+          "url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/meedikute_kysitlus_1_.pdf",
+          "normalized_url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/meedikute_kysitlus_1_.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "Sotsiaalministeerium",
+          "organization_id": "sotsiaalministeerium",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Sotsiaalministeerium",
+            "vägivald",
+            "ohvriabi",
+            "naiste tervis",
+            "uuring",
+            "raport",
+            "analüüs"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Sotsiaalministeerium",
+            "heading_3": "Vanemad, aga endiselt kasulikud taustauuringud",
+            "heading_4": null,
+            "line": 551,
+            "order": 286
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Vägivalla mõju naiste tervisele"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Sotsiaalministeerium"
+          ],
+          "organizations_seen": [
+            "sotsiaalministeerium"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Sotsiaalministeerium",
+              "heading_3": "Vanemad, aga endiselt kasulikud taustauuringud",
+              "line": 551,
+              "order": 286
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/meedikute_kysitlus_1_.pdf"
+        },
+        "final_url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/meedikute_kysitlus_1_.pdf",
+        "redirects": [],
+        "sha256": "9e1759d62699d05b5a871da02d9cc074eaa81db86b964b88f9ecbce9fc0bc7ab",
+        "bytes": 650861,
+        "downloaded_at": "2026-08-14T08:00:55.729Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "sotsiaalministeerium_vagivalla_moju_naiste_tervisele",
+      "metadata": {
+        "createdAt": "2026-06-12T03:58:47.154203+00:00",
+        "type": "FILE",
+        "fileName": "meedikute_kysitlus_1_.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:58:47.085379+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/31a1a89ae23c/meedikute_kysitlus_1_.pdf",
+        "title": "Vägivalla mõju naiste tervisele",
+        "description": "Source master headings: Sotsiaalministeerium; Vanemad, aga endiselt kasulikud taustauuringud",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": null,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–11",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "sotsiaalministeerium_vagivalla_moju_naiste_tervisele",
+        "document_id": "sotsiaalministeerium_vagivalla_moju_naiste_tervisele",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "a140db95a0e45dedc0d0c524f8ac356c3f88cf4ddc1c5528de65593fc1a62e18",
+        "url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/meedikute_kysitlus_1_.pdf",
+        "url_canonical": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/meedikute_kysitlus_1_.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "sotsiaalministeerium_vagivalla_moju_naiste_tervisele",
+        "updatedAt": "2026-06-12T03:58:47.154226+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

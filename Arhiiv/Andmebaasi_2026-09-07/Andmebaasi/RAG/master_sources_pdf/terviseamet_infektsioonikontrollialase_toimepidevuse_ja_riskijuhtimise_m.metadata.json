@@ -1,0 +1,82 @@
+{
+  "source": {
+    "source_id": "terviseamet_infektsioonikontrollialase_toimepidevuse_ja_riskijuhtimise_m",
+    "title": "Infektsioonikontrollialase toimepidevuse ja riskijuhtimise metoodika",
+    "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/infektsioonikontrollialase_toimepidevuse_ja_riskijuhtimise_metoodika.pdf",
+    "normalized_url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/infektsioonikontrollialase_toimepidevuse_ja_riskijuhtimise_metoodika.pdf",
+    "source_format": "pdf",
+    "source_type": "official_guideline",
+    "resource_type": "method_guidance",
+    "publisher": "Terviseamet",
+    "organization_id": "terviseamet",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Terviseamet",
+      "kriisivalmidus",
+      "riskijuhtimine",
+      "tervishoid",
+      "nakkushaigused",
+      "infektsioonikontroll",
+      "spetsialisti juhend"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "low",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_050",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+    "source_context": {
+      "heading_2": "Terviseamet",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 295,
+      "order": 172
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "Infektsioonikontrollialase toimepidevuse ja riskijuhtimise metoodika"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "official_guideline"
+    ],
+    "resource_types_seen": [
+      "method_guidance"
+    ],
+    "publishers_seen": [
+      "Terviseamet"
+    ],
+    "organizations_seen": [
+      "terviseamet"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Terviseamet",
+        "line": 295,
+        "order": 172
+      },
+      {
+        "heading_2": "Terviseamet",
+        "line": 769,
+        "order": 379
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/infektsioonikontrollialase_toimepidevuse_ja_riskijuhtimise_metoodika.pdf",
+    "priority_note": "covid-era guidance; deprioritized 2026-06-11 per owner decision"
+  },
+  "final_url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/infektsioonikontrollialase_toimepidevuse_ja_riskijuhtimise_metoodika.pdf",
+  "redirects": [],
+  "sha256": "cf3380f744a50665d2aeca150c27843cd23ab364f5a30aebeb9d25660ef03646",
+  "bytes": 683617,
+  "downloaded_at": "2026-08-14T08:00:37.507Z"
+}

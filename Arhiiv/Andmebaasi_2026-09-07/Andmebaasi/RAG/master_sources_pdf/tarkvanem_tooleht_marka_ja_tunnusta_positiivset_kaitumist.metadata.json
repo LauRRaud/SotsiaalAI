@@ -1,0 +1,76 @@
+{
+  "source": {
+    "source_id": "tarkvanem_tooleht_marka_ja_tunnusta_positiivset_kaitumist",
+    "title": "TÖÖLEHT: Märka ja tunnusta positiivset käitumist",
+    "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_marka_ja_tunnusta_positiivset_kaitumist.pdf",
+    "normalized_url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_marka_ja_tunnusta_positiivset_kaitumist.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "method_guidance",
+    "publisher": "Tarkvanem",
+    "organization_id": "tarkvanem",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Tarkvanem",
+      "praktiline töövahend",
+      "tööleht",
+      "lapse kasvatamine",
+      "positiivne käitumine",
+      "tunnustamine"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "Tarkvanem",
+      "heading_4": null,
+      "line": 645,
+      "order": 327
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "TÖÖLEHT: Märka ja tunnusta positiivset käitumist"
+    ],
+    "collection_hints": [
+      "organization_guidelines"
+    ],
+    "source_types_seen": [
+      "official_guideline"
+    ],
+    "resource_types_seen": [
+      "method_guidance"
+    ],
+    "publishers_seen": [
+      "Tarkvanem"
+    ],
+    "organizations_seen": [
+      "tarkvanem"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "Tarkvanem",
+        "line": 645,
+        "order": 327
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_marka_ja_tunnusta_positiivset_kaitumist.pdf"
+  },
+  "final_url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_marka_ja_tunnusta_positiivset_kaitumist.pdf",
+  "redirects": [],
+  "sha256": "61bc3ecead69d22bbc40b739d0297bf06ab2da1d224fae2efb382ddee131f0a4",
+  "bytes": 115474,
+  "downloaded_at": "2026-08-14T08:00:59.119Z"
+}

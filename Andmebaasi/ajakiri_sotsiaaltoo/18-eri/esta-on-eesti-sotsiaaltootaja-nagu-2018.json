@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-eri-2018",
+  "articleId": "esta-on-eesti-sotsiaaltootaja-nagu-2018",
+  "title": "ESTA on Eesti sotsiaaltöötaja nägu",
+  "authors": [
+    "Indrek Rohtla"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö (juubeli erinumber)",
+  "issueLabel": "Eri/2018",
+  "section": "Sotsiaaltöötaja huvid ja kaitse",
+  "pageRange": "68-72",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade Eesti Sotsiaaltöö Assotsiatsiooni (ESTA) kujunemisest, eesmärkidest, tegevusest ja rollist sotsiaaltöötajate huvide kaitsel ja kutse andmisel.",
+  "tags": [
+    "ESTA",
+    "sotsiaaltöötajate huvikaitse",
+    "erialaliit",
+    "kutse andmine",
+    "professionaalse kogukonna areng"
+  ],
+  "source_type": "file",
+  "source_path": "ST_eri_2018_web_link_Part19.pdf",
+  "document_id": "sotsiaaltoo-eri-2018-esta-on-eesti-sotsiaaltootaja-nagu-2018",
+  "source_format": "pdf",
+  "source_sha256": "48d1277a82522488e97113fe89bdf16769ccd07e7d866b8f1d4f6e970a20edfb",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2018-esta-on-eesti-sotsiaaltootaja-nagu-2018",
+    "previous_source_path": "ST_eri_2018_web_link_Part19.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "48d1277a82522488e97113fe89bdf16769ccd07e7d866b8f1d4f6e970a20edfb",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

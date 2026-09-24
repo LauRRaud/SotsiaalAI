@@ -1,0 +1,45 @@
+{
+  "docId": "sotsiaaltoo-3-2022",
+  "articleId": "kommentaar-iste-kohila-kogemus-2022-3",
+  "title": "Kommentaar",
+  "authors": [
+    "Merilin Niilop",
+    "Piret Pent-Miiling",
+    "Kaili Käesel-Maastik"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2022",
+  "section": "Projekt",
+  "pageRange": "17",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kommentaaris jagavad MTÜ Kohila Turvakeskus ja MTÜ Masaan kogemusi ISTE projektis...",
+  "tags": [
+    "kommentaar",
+    "ISTE",
+    "erihoolekanne",
+    "Kohila vald",
+    "baastoetus",
+    "lisatoetus",
+    "tegevusjuhendamine",
+    "võrgustikutöö",
+    "kogukonnapõhised teenused"
+  ],
+  "source_type": "file",
+  "source_path": "2022_3_artikkel_5_kommentaar.pdf",
+  "document_id": "sotsiaaltoo-3-2022-kommentaar-iste-kohila-kogemus-2022-3",
+  "source_format": "pdf",
+  "source_sha256": "2ce3e1bcccf847d8454ed7859ae00eb13a11f0a65658c97f5985c4f8269f8f61",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2022-kommentaar-iste-kohila-kogemus-2022-3",
+    "previous_source_path": "2022_3_artikkel_5_kommentaar.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "2ce3e1bcccf847d8454ed7859ae00eb13a11f0a65658c97f5985c4f8269f8f61",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

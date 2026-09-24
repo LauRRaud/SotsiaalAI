@@ -1,0 +1,142 @@
+{
+  "source_path": "praxis_centar_vanemaealiste_ja_eakate_toimetuleku_uuring_2015.pdf",
+  "source_format": "pdf",
+  "sha256": "e60408f0270e1a43e8ed890685d781ab28acf1db6fe60f56f0fb56a251085d8e",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/praxis_centar_vanemaealiste_ja_eakate_toimetuleku_uuring_2015.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "praxis_centar_vanemaealiste_ja_eakate_toimetuleku_uuring_2015",
+          "title": "Vanemaealiste ja eakate toimetuleku uuring 2015",
+          "url": "https://www.praxis.ee/uploads/2016/03/VEU2015-l%C3%B5pparuanne_TNSEmorSAPraxis_07122015.pdf",
+          "normalized_url": "https://www.praxis.ee/uploads/2016/03/VEU2015-lõpparuanne_TNSEmorSAPraxis_07122015.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "Praxis / CentAR",
+          "organization_id": "praxis_centar",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Praxis",
+            "eakas",
+            "vanemaealine",
+            "toimetulek",
+            "uuring",
+            "raport",
+            "analüüs"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Praxis / CentAR / poliitikauuringud",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 439,
+            "order": 237
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Vanemaealiste ja eakate toimetuleku uuring 2015"
+          ],
+          "collection_hints": [
+            "research_reports"
+          ],
+          "source_types_seen": [
+            "research_report"
+          ],
+          "resource_types_seen": [
+            "research_evidence"
+          ],
+          "publishers_seen": [
+            "Praxis / CentAR"
+          ],
+          "organizations_seen": [
+            "praxis_centar"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Praxis / CentAR / poliitikauuringud",
+              "line": 439,
+              "order": 237
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.praxis.ee/uploads/2016/03/VEU2015-lõpparuanne_TNSEmorSAPraxis_07122015.pdf"
+        },
+        "final_url": "https://www.praxis.ee/uploads/2016/03/VEU2015-l%C3%B5pparuanne_TNSEmorSAPraxis_07122015.pdf",
+        "redirects": [],
+        "sha256": "e60408f0270e1a43e8ed890685d781ab28acf1db6fe60f56f0fb56a251085d8e",
+        "bytes": 5678876,
+        "downloaded_at": "2026-08-14T08:00:48.153Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "praxis_centar_vanemaealiste_ja_eakate_toimetuleku_uuring_2015",
+      "metadata": {
+        "createdAt": "2026-06-12T03:46:44.504254+00:00",
+        "type": "FILE",
+        "fileName": "VEU2015-lõpparuanne_TNSEmorSAPraxis_07122015.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:46:44.435306+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/ae669fd82c4c/VEU2015-lõpparuanne_TNSEmorSAPraxis_07122015.pdf",
+        "title": "Vanemaealiste ja eakate toimetuleku uuring 2015",
+        "description": "Source master headings: Praxis / CentAR / poliitikauuringud",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2015,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–198",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "research_reports",
+        "source_id": "praxis_centar_vanemaealiste_ja_eakate_toimetuleku_uuring_2015",
+        "document_id": "praxis_centar_vanemaealiste_ja_eakate_toimetuleku_uuring_2015",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "fed103858c063eed813a43346fefc501202def7ebc5edec4bd2bc4eff0b24775",
+        "url": "https://www.praxis.ee/uploads/2016/03/VEU2015-l%C3%B5pparuanne_TNSEmorSAPraxis_07122015.pdf",
+        "url_canonical": "https://www.praxis.ee/uploads/2016/03/VEU2015-lõpparuanne_TNSEmorSAPraxis_07122015.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "praxis_centar_vanemaealiste_ja_eakate_toimetuleku_uuring_2015",
+        "updatedAt": "2026-06-12T03:46:44.504277+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

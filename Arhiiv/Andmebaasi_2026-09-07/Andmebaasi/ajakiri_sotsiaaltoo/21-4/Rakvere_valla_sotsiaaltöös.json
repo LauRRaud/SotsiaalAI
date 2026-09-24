@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2021",
+  "articleId": "rakvere-valla-sotsiaaltoos-luuakse-uusi-voimalusi-2021-4",
+  "title": "Rakvere valla sotsiaaltöös luuakse uusi võimalusi",
+  "authors": [
+    "Anneli Saaber"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2021",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "23-26",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Rakvere valla sotsiaalnõuniku artikkel kirjeldab, kuidas on viimastel aastatel arendatud valla sotsiaalteenuseid, taristut ja töötajate tuge. Tutvustatakse sotsiaalkaitse ennetustööspetsialisti ametikoha loomist, mille eesmärk on riske ennetada ja jõuda abivajajateni varakult, enne kui probleemid süvenevad. Kirjeldatakse koostööd psühholoogilise nõustamise teenuse pakkujaga, rühmateraapiat eri sihtrühmadele ning kogukonna kaasamist. Artikkel rõhutab väikese omavalitsuse eeliseid – lühikesi suhtlusvahemaid, usalduslikke suhteid ja kiiret reageerimist – ning näitab, kuidas süsteemne ennetustöö ja meeskonnatöö loovad valla elanikele uusi võimalusi toimetulekuks.",
+  "tags": [
+    "Rakvere vald",
+    "kohalik omavalitsus",
+    "ennetustöö",
+    "sotsiaalkaitse ennetustööspetsialist",
+    "psühholoogiline nõustamine",
+    "kogukonnatöö",
+    "sotsiaalteenuste arendamine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2021_web_Part7.pdf",
+  "document_id": "sotsiaaltoo-4-2021-rakvere-valla-sotsiaaltoos-luuakse-uusi-voimalusi-2021-4",
+  "source_format": "pdf",
+  "source_sha256": "b5a76207f7f287792cab60cf3e426d1774ebc0adb240c19efc126e334cb85e9b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2021-rakvere-valla-sotsiaaltoos-luuakse-uusi-voimalusi-2021-4",
+    "previous_source_path": "Sotsiaaltoo_4_2021_web_Part7.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b5a76207f7f287792cab60cf3e426d1774ebc0adb240c19efc126e334cb85e9b",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

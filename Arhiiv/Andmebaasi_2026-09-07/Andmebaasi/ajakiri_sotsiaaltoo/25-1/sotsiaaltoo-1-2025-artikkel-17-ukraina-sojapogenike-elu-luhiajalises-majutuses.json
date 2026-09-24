@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "ukraina-sojapogenike-elu-eesti-luhiajalistes-majutustes-2025-1",
+  "title": "Ukraina sõjapõgenike elu Eesti lühiajalistes majutustes",
+  "authors": [
+    "Johanna Kai Kaasik"
+  ],
+  "section": "Uurimus",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "description": "Uurimusest lähtuv artikkel, mis keskendub Ukraina sõjapõgenike igapäevaelule Eesti lühiajalistes majutuskohtades. Kirjeldatakse tingimusi majutusasutustes, juurdepääsu teabele, sotsiaal- ja tervishoiuteenustele, tööle ja haridusele, samuti kogukonnasuhete ja turvatunde kujunemist. Autor analüüsib, kuidas korralduslikud otsused, bürokraatia ja ressursipiirangud mõjutavad põgenike toimetulekut ning milliseid lahendusi leiti koostöös kohalike omavalitsuste, vabatahtlike ja kodanikuühendustega. Tuuakse esile ka pagulaste endi algatused ja toimetuleku strateegiad.",
+  "tags": [
+    "Ukraina põgenikud",
+    "lühiajaline majutus",
+    "rände kriis",
+    "toimetulek",
+    "sotsiaalteenused",
+    "elamistingimused",
+    "kogukondlik tugi"
+  ],
+  "source_path": "Ukraina sõjapõgenike elu Eesti lühiajalistes majutustes_1_2021.pdf",
+  "pageRange": "1–8",
+  "document_id": "sotsiaaltoo-1-2025-ukraina-sojapogenike-elu-eesti-luhiajalistes-majutustes-2025-1",
+  "source_format": "pdf",
+  "source_sha256": "c5bc1401678983d423eb70cacf78fbd381666c0efccdca6d6b5f898c78da5870",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2025-ukraina-sojapogenike-elu-eesti-luhiajalistes-majutustes-2025-1",
+    "previous_source_path": "Ukraina sõjapõgenike elu Eesti lühiajalistes majutustes_1_2021.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "c5bc1401678983d423eb70cacf78fbd381666c0efccdca6d6b5f898c78da5870",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2022",
+  "articleId": "oppejoud-alison-mcinnes-maailma-sotsiaaltootajatel-on-palju-uhiseid-probleeme-2022-4",
+  "title": "Õppejõud Alison McInnes: maailma sotsiaaltöötajatel on palju ühiseid probleeme",
+  "authors": [
+    "Regina Lind"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2022",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "56-61",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Intervjuus räägib Suurbritannia sotsiaaltöö õppejõud Alison McInnes sotsiaaltöö ajaloost ja arengust,\nrõhutades laiapõhjalise baasõppe vajalikkust ning valdkondadevahelist koostööd. Ta kirjeldab sotsiaaltöötajate\nigapäevast survet, alarahastatud teenuseid ja kärbete mõju, aga ka professionaalse enesehoiu ning erialase\nühisorganiseerumise tähtsust. Intervjuu avab ka toiduga kindlustamatuse teema ja näitab, kuidas globaalne\nkriis mõjutab haavatavaid rühmi eri riikides sarnasel moel.",
+  "tags": [
+    "sotsiaaltöö haridus",
+    "Ühendkuningriik",
+    "Alison McInnes",
+    "toiduga kindlustamatus",
+    "sotsiaaltöötaja roll",
+    "valdkondadevaheline koostöö",
+    "töökoormus ja enesehoid"
+  ],
+  "source_type": "file",
+  "source_path": "2022_4_artikkel_12_alison_mcinnes.pdf",
+  "document_id": "sotsiaaltoo-4-2022-oppejoud-alison-mcinnes-maailma-sotsiaaltootajatel-on-palju-uhiseid-probleeme-2022-4",
+  "source_format": "pdf",
+  "source_sha256": "a46602e7e0dc4ab67baa6ff81b24ab5604c1228a189d4a4d19ac93bcda467c5a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2022-oppejoud-alison-mcinnes-maailma-sotsiaaltootajatel-on-palju-uhiseid-probleeme-2022-4",
+    "previous_source_path": "2022_4_artikkel_12_alison_mcinnes.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "a46602e7e0dc4ab67baa6ff81b24ab5604c1228a189d4a4d19ac93bcda467c5a",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

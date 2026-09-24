@@ -1,0 +1,89 @@
+{
+  "docId": "sotsiaaltoo-3-2017",
+  "articleId": "hospiits-2017-3",
+  "title": "Hanna-Stiina Heinmets, Jelena Leibur, Anu Varep: Hospiits on koht surmani elamiseks, mitte suremiseks",
+  "authors": [
+    "Regina Lind"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2017",
+  "section": "Vestlusring",
+  "pageRange": "58-61",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Vestlusring kolme spetsialistiga — Hanna-Stiina Heinmetsa, arsti ja haiglajuhi Jelena Leiburi ning sotsiaaltöötaja Anu Varepiga — sellest, kuidas toetada inimest tema elu viimses järgus. Keskne sõnum: hospiits ei ole asutus, vaid filosoofia, mida saab rakendada ükskõik kus — osakonnas, asutuses või kodus; see ei ole koht suremiseks, vaid koht, kus toetatakse elamist kuni surmani. Rõhutatakse, et surija ei tohiks üksi jääda.",
+  "tags": [
+    "hospiits",
+    "elulõpuhooldus",
+    "palliatiivne ravi",
+    "väärikus",
+    "vestlusring"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part16.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2017-hospiits-2017-3",
+  "source_sha256": "b65c79314fa46e25c1899e7e6c0ba7a75dae06ac8df9a0e2acb41cb16d75dcbe",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2017-hospiits-2017-3",
+    "previous_source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part16.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part16.pdf",
+    "reference_stored_source_sha256": "a485165905fdaa86d1238b91ac7bbf1f912d82dbfa56161eec00bea68fdf85b8",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf",
+      "source_sha256": "3f27c22982b22a396dace8a957798cc21d3240489c7ce4d92802bf1a94bde7a8",
+      "pdf_start_page": 60,
+      "pdf_end_page": 63,
+      "printed_page_range": "58-61",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 63,
+      "source_regions": [
+        {
+          "source_pdf_page": 60,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 61,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 62,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 63,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "58-61"
+    },
+    "server_page_range": "58-61"
+  }
+}

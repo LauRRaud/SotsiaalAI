@@ -1,0 +1,75 @@
+{
+  "source": {
+    "source_id": "paasteamet_enesekontrolli_tuleohutusaruanne",
+    "title": "Enesekontrolli tuleohutusaruanne",
+    "url": "https://www.rescue.ee/files/2018-10/1539949760_-.pdf",
+    "normalized_url": "https://www.rescue.ee/files/2018-10/1539949760_-.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Päästeamet",
+    "organization_id": "paasteamet",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Päästeamet",
+      "tuleohutus",
+      "pääste",
+      "evakuatsioon",
+      "kriisivalmidus",
+      "infomaterjal"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 411,
+      "order": 225
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Enesekontrolli tuleohutusaruanne"
+    ],
+    "collection_hints": [
+      "research_reports"
+    ],
+    "source_types_seen": [
+      "research_report"
+    ],
+    "resource_types_seen": [
+      "research_evidence"
+    ],
+    "publishers_seen": [
+      "Päästeamet"
+    ],
+    "organizations_seen": [
+      "paasteamet"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+        "line": 411,
+        "order": 225
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.rescue.ee/files/2018-10/1539949760_-.pdf"
+  },
+  "final_url": "https://www.rescue.ee/files/2018-10/1539949760_-.pdf",
+  "redirects": [],
+  "sha256": "77c161e0b044f9f8fd33a56ce55e08b448303a4d2326947a0e87bbf905f51c30",
+  "bytes": 1609404,
+  "downloaded_at": "2026-08-14T08:00:46.769Z"
+}

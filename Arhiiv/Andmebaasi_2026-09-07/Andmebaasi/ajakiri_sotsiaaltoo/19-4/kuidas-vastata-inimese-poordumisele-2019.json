@@ -1,0 +1,38 @@
+{
+  "docId": "sotsiaaltoo-4-2019",
+  "articleId": "kuidas-vastata-inimese-poordumisele-2019",
+  "title": "Kuidas vastata inimese pöördumisele",
+  "authors": [
+    "Kristel Lekko"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2019",
+  "section": "Õigus",
+  "pageRange": "39-41",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb inimese pöördumistele vastamise põhimõtteid ja haldusmenetluse nõudeid.",
+  "tags": [
+    "haldusmenetlus",
+    "pöördumised",
+    "õigus"
+  ],
+  "source_type": "file",
+  "source_path": "ST4_2019_web_link_Part11.pdf",
+  "mapping_fixed": "20260814-161821",
+  "document_id": "sotsiaaltoo-4-2019-kuidas-vastata-inimese-poordumisele-2019",
+  "source_format": "pdf",
+  "source_sha256": "f95b38f4c48a20eea858a9b28a6bcd8ae8032b820de5394acd325f528ffa0caa",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2019-kuidas-vastata-inimese-poordumisele-2019",
+    "previous_source_path": "ST4_2019_web_link_Part11.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "f95b38f4c48a20eea858a9b28a6bcd8ae8032b820de5394acd325f528ffa0caa",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

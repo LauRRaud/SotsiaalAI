@@ -1,0 +1,142 @@
+{
+  "source_path": "praxis_centar_ska_ja_kovid_loppraport.pdf",
+  "source_format": "pdf",
+  "sha256": "4a34f1560bbc52d2ff38051d4b0c3de4b9e774acf0ad50ee11a1e981e4479e62",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/praxis_centar_ska_ja_kovid_loppraport.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "praxis_centar_ska_ja_kovid_loppraport",
+          "title": "SKA ja KOVid – lõppraport",
+          "url": "https://centar.ee/pdf/ee/2023_SKA%20ja%20KOVid_Loppraport_avaldamiseks.pdf",
+          "normalized_url": "https://centar.ee/pdf/ee/2023_SKA ja KOVid_Loppraport_avaldamiseks.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "Praxis / CentAR",
+          "organization_id": "praxis_centar",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Praxis",
+            "kohalik omavalitsus",
+            "KOV",
+            "uuring",
+            "raport",
+            "analüüs",
+            "Sotsiaalkindlustusamet"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Praxis / CentAR / poliitikauuringud",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 447,
+            "order": 241
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "SKA ja KOVid – lõppraport"
+          ],
+          "collection_hints": [
+            "research_reports"
+          ],
+          "source_types_seen": [
+            "research_report"
+          ],
+          "resource_types_seen": [
+            "research_evidence"
+          ],
+          "publishers_seen": [
+            "Praxis / CentAR"
+          ],
+          "organizations_seen": [
+            "praxis_centar"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Praxis / CentAR / poliitikauuringud",
+              "line": 447,
+              "order": 241
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://centar.ee/pdf/ee/2023_SKA ja KOVid_Loppraport_avaldamiseks.pdf"
+        },
+        "final_url": "https://centar.ee/pdf/ee/2023_SKA%20ja%20KOVid_Loppraport_avaldamiseks.pdf",
+        "redirects": [],
+        "sha256": "4a34f1560bbc52d2ff38051d4b0c3de4b9e774acf0ad50ee11a1e981e4479e62",
+        "bytes": 552413,
+        "downloaded_at": "2026-08-14T08:00:48.451Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "praxis_centar_ska_ja_kovid_loppraport",
+      "metadata": {
+        "createdAt": "2026-06-12T03:47:05.430868+00:00",
+        "type": "FILE",
+        "fileName": "2023_SKA ja KOVid_Loppraport_avaldamiseks.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:47:05.360571+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/6de5eeb8ad1b/2023_SKA ja KOVid_Loppraport_avaldamiseks.pdf",
+        "title": "SKA ja KOVid – lõppraport",
+        "description": "Source master headings: Praxis / CentAR / poliitikauuringud",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": null,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–20",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "research_reports",
+        "source_id": "praxis_centar_ska_ja_kovid_loppraport",
+        "document_id": "praxis_centar_ska_ja_kovid_loppraport",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "9b36664a765da009a0aa7782a36867035be109d6edae0fbbb7fa9acdebfbd37c",
+        "url": "https://centar.ee/pdf/ee/2023_SKA%20ja%20KOVid_Loppraport_avaldamiseks.pdf",
+        "url_canonical": "https://centar.ee/pdf/ee/2023_SKA ja KOVid_Loppraport_avaldamiseks.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "praxis_centar_ska_ja_kovid_loppraport",
+        "updatedAt": "2026-06-12T03:47:05.430892+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

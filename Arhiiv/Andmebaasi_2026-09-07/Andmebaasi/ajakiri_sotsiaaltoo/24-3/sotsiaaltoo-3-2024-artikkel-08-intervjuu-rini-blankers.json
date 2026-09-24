@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2024",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "hoolekanne-peab-olema-asjatundlik-ja-osavotlik-intervjuu-rini-blankersiga-2024-3",
+  "title": "Hoolekanne peab olema asjatundlik ja osavõtlik. Intervjuu Rini Blankersiga",
+  "authors": [
+    "Regina Lind"
+  ],
+  "section": "Intervjuu",
+  "pageRange": "44-50",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "description": "Intervjuu Hollandi käitumiseksperdi Rini Blankersiga käsitleb dementsusega inimeste hooldust ja keerulise käitumise ennetamist ning leevendamist. Juttu on erinevatest dementsuse vormidest, kliendi eluloo ja somaatiliste probleemide arvestamisest, füüsilise ja sotsiaalse keskkonna mõjust, organisatsioonikultuurist ning hooldustöötajate toetamisest. Eraldi tähelepanu pööratakse pesemisega seotud raskustele ja praktilistele lahendustele.",
+  "tags": [
+    "dementsus",
+    "hoolekanne",
+    "käitumisprobleemid",
+    "Rini Blankers",
+    "Holland",
+    "hooldustöötajate koolitus",
+    "organisatsioonikultuur",
+    "pesemistoimingud"
+  ],
+  "source_path": "sotsiaaltoo_3_2024_web_Part10.pdf",
+  "document_id": "sotsiaaltoo-3-2024-hoolekanne-peab-olema-asjatundlik-ja-osavotlik-intervjuu-rini-blankersiga-2024-3",
+  "source_format": "pdf",
+  "source_sha256": "2e2905e73658c588076dacc5e63aee8a70182318c59d6cb24a35e626565503dc",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2024-hoolekanne-peab-olema-asjatundlik-ja-osavotlik-intervjuu-rini-blankersiga-2024-3",
+    "previous_source_path": "sotsiaaltoo_3_2024_web_Part10.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "2e2905e73658c588076dacc5e63aee8a70182318c59d6cb24a35e626565503dc",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

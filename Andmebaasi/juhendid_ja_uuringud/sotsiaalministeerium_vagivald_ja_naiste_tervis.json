@@ -1,0 +1,143 @@
+{
+  "source_path": "sotsiaalministeerium_vagivald_ja_naiste_tervis.pdf",
+  "source_format": "pdf",
+  "sha256": "9daf55037c0f098e02c152246936d92b54849b1098cd9964d18b6c37cce02d51",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/sotsiaalministeerium_vagivald_ja_naiste_tervis.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "sotsiaalministeerium_vagivald_ja_naiste_tervis",
+          "title": "Vägivald ja naiste tervis",
+          "url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/vagivald_ja_naiste_tervis_1_.pdf",
+          "normalized_url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/vagivald_ja_naiste_tervis_1_.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "Sotsiaalministeerium",
+          "organization_id": "sotsiaalministeerium",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Sotsiaalministeerium",
+            "ohvriabi",
+            "uuring",
+            "raport",
+            "analüüs",
+            "vägivald",
+            "naiste tervis"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Sotsiaalministeerium",
+            "heading_3": "Vanemad, aga endiselt kasulikud taustauuringud",
+            "heading_4": null,
+            "line": 549,
+            "order": 285
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Vägivald ja naiste tervis"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Sotsiaalministeerium"
+          ],
+          "organizations_seen": [
+            "sotsiaalministeerium"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Sotsiaalministeerium",
+              "heading_3": "Vanemad, aga endiselt kasulikud taustauuringud",
+              "line": 549,
+              "order": 285
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/vagivald_ja_naiste_tervis_1_.pdf"
+        },
+        "final_url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/vagivald_ja_naiste_tervis_1_.pdf",
+        "redirects": [],
+        "sha256": "9daf55037c0f098e02c152246936d92b54849b1098cd9964d18b6c37cce02d51",
+        "bytes": 726864,
+        "downloaded_at": "2026-08-14T08:00:55.433Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "sotsiaalministeerium_vagivald_ja_naiste_tervis",
+      "metadata": {
+        "createdAt": "2026-06-12T03:58:45.538279+00:00",
+        "type": "FILE",
+        "fileName": "vagivald_ja_naiste_tervis_1_.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:58:45.470426+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/803e410e83e2/vagivald_ja_naiste_tervis_1_.pdf",
+        "title": "Vägivald ja naiste tervis",
+        "description": "Source master headings: Sotsiaalministeerium; Vanemad, aga endiselt kasulikud taustauuringud",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": null,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–17",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "sotsiaalministeerium_vagivald_ja_naiste_tervis",
+        "document_id": "sotsiaalministeerium_vagivald_ja_naiste_tervis",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "369c9ff25203b4ec47e044c893f44add94b3e1c14035fe7f52b765c68fa8b5e3",
+        "url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/vagivald_ja_naiste_tervis_1_.pdf",
+        "url_canonical": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/vagivald_ja_naiste_tervis_1_.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "sotsiaalministeerium_vagivald_ja_naiste_tervis",
+        "updatedAt": "2026-06-12T03:58:45.538301+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

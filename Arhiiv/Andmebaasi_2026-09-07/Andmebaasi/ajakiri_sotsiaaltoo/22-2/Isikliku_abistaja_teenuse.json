@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2022",
+  "articleId": "isikliku-abistaja-teenuse-reguleerimine-kohaliku-omavalitsuse-oigusaktides-2022-2",
+  "title": "Isikliku abistaja teenuse reguleerimine kohaliku omavalitsuse õigusaktides",
+  "authors": [
+    "Evelin Hillep"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2022",
+  "section": "Õigus",
+  "pageRange": "56-60",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel annab ülevaate sotsiaalkindlustusameti KOV nõustamistalituse analüüsist, kus uuriti, kuidas on isikliku abistaja teenus reguleeritud kohalike omavalitsuste määrustes. Selgitatakse volikogu pädevust ja seadusest tulenevaid nõudeid, teenuse eesmärki ning sisu, samuti seda, millised kitsendused (nt nõue konkreetse puude või registrikande olemasoluks, teenuse mahu ülemmäärad) on seadusega vastuolus ja võivad teenuse kättesaadavust põhjendamatult piirata. Autor rõhutab, et teenuse tingimused peavad lähtuma inimese tegelikust abivajadusest, mitte puude raskusastmest või majanduslikust olukorrast, ning toob välja soovitused KOV-dele korra ajakohastamiseks.",
+  "tags": [
+    "isikliku abistaja teenus",
+    "sotsiaalhoolekande seadus",
+    "kohalik omavalitsus",
+    "õigusaktid",
+    "teenuse kättesaadavus",
+    "puudega inimesed",
+    "õigusselgus"
+  ],
+  "source_type": "file",
+  "source_path": "2022_2_artikkel_11_isikliku_abistaja_teenus.pdf",
+  "document_id": "sotsiaaltoo-2-2022-isikliku-abistaja-teenuse-reguleerimine-kohaliku-omavalitsuse-oigusaktides-2022-2",
+  "source_format": "pdf",
+  "source_sha256": "3475ed74567aa6f7f012285cd17699bca84c84e5952260eefbe0c5f51608e56f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2022-isikliku-abistaja-teenuse-reguleerimine-kohaliku-omavalitsuse-oigusaktides-2022-2",
+    "previous_source_path": "2022_2_artikkel_11_isikliku_abistaja_teenus.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "3475ed74567aa6f7f012285cd17699bca84c84e5952260eefbe0c5f51608e56f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

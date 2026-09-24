@@ -1,0 +1,49 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "turvalisuse-margid-tallinnas-muutus-mis-ei-mahu-ainult-uhte-aastasse-2026",
+  "title": "„Turvalisuse märgid“ Tallinnas: muutus, mis ei mahu ainult ühte aastasse",
+  "authors": [
+    "Kertu Kesküla"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Metoodika",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kogemuslugu mudeli „Turvalisuse märgid“ rakendamisest Tallinna lastekaitsesüsteemis, kus juurutamine toimus samal ajal lastekaitse reformiga ja nõudis spetsialistidelt mõtteviisi muutmist. Edukaks rakendamiseks osutusid kriitiliseks juhtide toetus, pidev õppimine ja refleksioonivõimalused.",
+  "tags": [
+    "Turvalisuse märgid",
+    "lastekaitse",
+    "Tallinn",
+    "metoodika rakendamine",
+    "lastekaitse reform",
+    "meeskonnatöö",
+    "reflektiivne praktika",
+    "juhtimine"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-04-14",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/turvalisuse-margid-tallinnas-muutus-mis-ei-mahu-ainult-uhte-aastasse",
+  "source_type": "web",
+  "source_path": "turvalisuse-margid-tallinnas-muutus-mis-ei-mahu-ainult-uhte-aastasse.html",
+  "lead": "„Mida rohkem õpin „Turvalisuse märke“ tundma, seda rohkem saan aru, et see on meeskonnatöö!“ Sellise mõtte tõi välja üks lapse heaolu spetsialist töötoa lõpuringis. See lause võtab tabavalt kokku nii mudeli olemuse kui ka rakendamise kogemuse Tallinnas viimase aasta jooksul.",
+  "document_id": "sotsiaaltoo-2-2026-turvalisuse-margid-tallinnas-muutus-mis-ei-mahu-ainult-uhte-aastasse-2026",
+  "source_format": "html",
+  "source_sha256": "f46be7893f0152495cc6dd868d51b87b7e1d7c3e2f537c37245739a2b32a7dc4",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-turvalisuse-margid-tallinnas-muutus-mis-ei-mahu-ainult-uhte-aastasse-2026",
+    "previous_source_path": "turvalisuse-margid-tallinnas-muutus-mis-ei-mahu-ainult-uhte-aastasse.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "45dd7661904b54be177d74a05191c6bcbf01d2d1837c658873b60eadd395d72d",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "60a85dbb2a6c357af4b19e00afd699c3e37cf1edac28c14931650f0cb4f887d0",
+    "observed_web_title": "„Turvalisuse märgid“ Tallinnas: muutus, mis ei mahu ainult ühte aastasse"
+  },
+  "retrieved_at": "2026-09-07T19:39:41.445639+00:00"
+}

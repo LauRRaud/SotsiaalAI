@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2020",
+  "articleId": "asendushooldusperes-elava-lapse-identiteedioigus-2020-2",
+  "title": "Asendushooldusperes elava lapse identiteediõigus",
+  "authors": [
+    "Ingrid Sindi"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2020",
+  "section": "Õigus",
+  "pageRange": "34-38",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel arutleb asendushooldusperes kasvava lapse identiteediõiguse sisu ja tähenduse üle ning seob selle lapse õiguste ja kodanikuksoleku käsitlusega. Fookuses on lapse õigus säilitada oma nimi, päritolu, perekondlikud suhted ja muud identiteedi olulised elemendid.",
+  "tags": [
+    "asendushooldus",
+    "identiteediõigus",
+    "lapse õigused",
+    "perekondlikud suhted",
+    "kodanikuksolek",
+    "õigus"
+  ],
+  "source_type": "file",
+  "source_path": "ST2_2020_web_link_Part12.pdf",
+  "document_id": "sotsiaaltoo-2-2020-asendushooldusperes-elava-lapse-identiteedioigus-2020-2",
+  "source_format": "pdf",
+  "source_sha256": "13fff4acf9fc56183a782c2871089388d7dfe7fb10830af416956258796dbd22",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2020-asendushooldusperes-elava-lapse-identiteedioigus-2020-2",
+    "previous_source_path": "ST2_2020_web_link_Part12.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "13fff4acf9fc56183a782c2871089388d7dfe7fb10830af416956258796dbd22",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

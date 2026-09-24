@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-2-2022",
+  "articleId": "marju-selja-malestuseks-2022-2",
+  "title": "Marju Selja mälestuseks",
+  "authors": [
+    "Judit Strömpl",
+    "Jüri Kõre",
+    "Regina Lind"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2022",
+  "section": "In memoriam",
+  "pageRange": "93-96",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Mälestuslugu Tartu Ülikooli sotsiaaltöö õppejõust ja ajakirja Sotsiaaltöö kolleegiumi liikmest Marju Seljast (1951–2022). Autorid meenutavad Marju kui pühendunud ja nõudlikku õpetajat, kolleegi ja kriitilist sõpra, kes väärtustas sisukat dialoogi, teaduspõhist mõtlemist ja sotsiaaltöö teooria arendamist. Kirjeldatakse tema rolli sotsiaaltöö hariduse ja erialaajakirja kujundamisel, tegevust erialatekstide tõlkijana ning panust sotsiaaltöö ajaloo ja eetika populariseerimisel. Loo keskmes on ka Marju inimlik soojus, huumorimeel ja side Lahemaa maakoduga, mis tegi temast paljudele olulise kaasteelise ja eestkõneleja.",
+  "tags": [
+    "In memoriam",
+    "Marju Selg",
+    "sotsiaaltöö haridus",
+    "sotsiaaltöö ajalugu",
+    "erialaajakirjad",
+    "eetika",
+    "õppejõud",
+    "professionaalne identiteet"
+  ],
+  "source_type": "file",
+  "source_path": "2022_2_artikkel_16_in_memoriam_marju_selja_95_98.pdf",
+  "document_id": "sotsiaaltoo-2-2022-marju-selja-malestuseks-2022-2",
+  "source_format": "pdf",
+  "source_sha256": "1f4ea508a8eeafa551cd1d0d6380bc4e31775278ba9cedcefcd3b52798010dab",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2022-marju-selja-malestuseks-2022-2",
+    "previous_source_path": "2022_2_artikkel_16_in_memoriam_marju_selja_95_98.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "1f4ea508a8eeafa551cd1d0d6380bc4e31775278ba9cedcefcd3b52798010dab",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

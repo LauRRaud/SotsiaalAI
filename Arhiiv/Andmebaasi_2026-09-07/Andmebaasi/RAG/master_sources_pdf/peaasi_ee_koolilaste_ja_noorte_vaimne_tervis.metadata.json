@@ -1,0 +1,16 @@
+{
+  "source": {
+    "source_id": "peaasi_ee_koolilaste_ja_noorte_vaimne_tervis",
+    "title": "Koolilaste ja noorte vaimne tervis",
+    "url": "https://peaasi.ee/wp-content/uploads/2014/11/Laste-vaimne-tervis-koolis.pdf",
+    "source_url": "https://peaasi.ee/wp-content/uploads/2014/11/Laste-vaimne-tervis-koolis.pdf",
+    "source_format": "pdf",
+    "ingest_status": "ingest_candidate",
+    "recommended_pipeline": "knowledge_doc_pipeline"
+  },
+  "final_url": "https://peaasi.ee/wp-content/uploads/2014/11/Laste-vaimne-tervis-koolis.pdf",
+  "local_origin": "consolidated_existing_file",
+  "recorded_at": "2026-08-14T09:25:00.000Z",
+  "bytes": 443383,
+  "sha256": "9fc1e42ef514df9036bef7ca14c97c766ca7720d512cb86e922fad94a6fc5667"
+}

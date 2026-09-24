@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-2-2019",
+  "articleId": "kuidas-naabritega-hasti-labi-saada-2019-2",
+  "title": "Kuidas naabritega hästi läbi saada?",
+  "authors": [
+    "Ave Lillemäe"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2019",
+  "section": "Kogemus",
+  "pageRange": "58-65",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "AS Hoolekandeteenused kogemus psüühilise erivajadusega inimestele kogukonda kodude rajamisel, naabrite teavitamisel ja vastuseisu ennetamisel.",
+  "tags": [
+    "erihoolekanne",
+    "kogukonnas elamine",
+    "naabrid",
+    "teavitamine",
+    "psüühiline erivajadus",
+    "deinstitutsionaliseerimine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part8.pdf",
+  "source_url": "https://www.tai.ee/sites/default/files/2022-01/160855568440_Sotsiaaltoo_nr2_2019_veeb_link.pdf",
+  "mapping_status": "VERIFIED",
+  "mapping_checked": "2026-08-14",
+  "mapping_note": "Pealkiri, autor(id) ja kohalik täistekst kontrollitud artikli enda ning väljaandja ametliku allika järgi.",
+  "document_id": "sotsiaaltoo-2-2019-kuidas-naabritega-hasti-labi-saada-2019-2",
+  "source_format": "pdf",
+  "source_sha256": "2d69177db6e1584295b6ed878d9341bfef803de0f650de3b4320e1ecfaaf0a65",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2019-kuidas-naabritega-hasti-labi-saada-2019-2",
+    "previous_source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part8.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "2d69177db6e1584295b6ed878d9341bfef803de0f650de3b4320e1ecfaaf0a65",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

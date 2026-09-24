@@ -1,0 +1,141 @@
+{
+  "source_path": "epikoda_teekond_erilise_lapse_korval.pdf",
+  "source_format": "pdf",
+  "sha256": "b68defe06c878647094a4a3f417301edacf0e8e27ea64daefe36c2ec27551ba6",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/epikoda_teekond_erilise_lapse_korval.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "epikoda_teekond_erilise_lapse_korval",
+          "title": "Teekond erilise lapse kõrval",
+          "url": "https://epikoda.ee/wp-content/uploads/2025/09/epik_kasiraamat_2019-est-koos-low.pdf",
+          "normalized_url": "https://epikoda.ee/wp-content/uploads/2025/09/epik_kasiraamat_2019-est-koos-low.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "EPIKoda",
+          "organization_id": "epikoda",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Eesti Puuetega Inimeste Koda",
+            "lapsed ja pered",
+            "laps",
+            "infomaterjal",
+            "EPIKoda"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Partnerid",
+            "heading_3": "EPIKoda",
+            "heading_4": null,
+            "line": 563,
+            "order": 290
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Teekond erilise lapse kõrval"
+          ],
+          "collection_hints": [
+            "organization_materials"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "EPIKoda"
+          ],
+          "organizations_seen": [
+            "epikoda"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Partnerid",
+              "heading_3": "EPIKoda",
+              "line": 563,
+              "order": 290
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://epikoda.ee/wp-content/uploads/2025/09/epik_kasiraamat_2019-est-koos-low.pdf"
+        },
+        "final_url": "https://epikoda.ee/wp-content/uploads/2025/09/epik_kasiraamat_2019-est-koos-low.pdf",
+        "redirects": [],
+        "sha256": "b68defe06c878647094a4a3f417301edacf0e8e27ea64daefe36c2ec27551ba6",
+        "bytes": 4312621,
+        "downloaded_at": "2026-08-14T08:00:56.094Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "epikoda_teekond_erilise_lapse_korval",
+      "metadata": {
+        "createdAt": "2026-06-12T03:59:02.837946+00:00",
+        "type": "FILE",
+        "fileName": "epik_kasiraamat_2019-est-koos-low.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:59:02.763216+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/acd11f0fbbd3/epik_kasiraamat_2019-est-koos-low.pdf",
+        "title": "Teekond erilise lapse kõrval",
+        "description": "Source master headings: Partnerid; EPIKoda",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2025,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–120",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "organization_materials",
+        "source_id": "epikoda_teekond_erilise_lapse_korval",
+        "document_id": "epikoda_teekond_erilise_lapse_korval",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "5af9e41af1bc8bfafa65e4416d9e9ceee77baed707d6c4f908e0660eb98d8053",
+        "url": "https://epikoda.ee/wp-content/uploads/2025/09/epik_kasiraamat_2019-est-koos-low.pdf",
+        "url_canonical": "https://epikoda.ee/wp-content/uploads/2025/09/epik_kasiraamat_2019-est-koos-low.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "epikoda_teekond_erilise_lapse_korval",
+        "updatedAt": "2026-06-12T03:59:02.837970+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

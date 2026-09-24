@@ -1,0 +1,2539 @@
+{
+  "schemaVersion": "kov-sources-v2.5-sourcepackage",
+  "docId": "kov-peipsiaare-vald",
+  "document_id": "kov-peipsiaare-vald",
+  "municipality": "Peipsiääre vald",
+  "municipality_id": "peipsiaare_vald",
+  "county": "Tartumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "sources": [
+    {
+      "source_id": "home",
+      "title": "Peipsiääre vald – ametlik veebileht",
+      "url": "https://peipsivald.ee/",
+      "url_canonical": "https://peipsivald.ee/",
+      "normalized_url": "https://peipsivald.ee/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_contact_vallavalitsus",
+        "peipsiaare_vald_resource_eakate_bussiringid"
+      ],
+      "document_id": "home",
+      "source_key": "home",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "57b9078bf3adf4d55d157eb1cd498cb70f124800017695e823eb0cd3595c4e81",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "home"
+    },
+    {
+      "source_id": "social_contacts",
+      "title": "Sotsiaalosakonna kontaktid – Peipsiääre vald",
+      "url": "https://peipsivald.ee/sotsiaalosakonna-kontaktid",
+      "url_canonical": "https://peipsivald.ee/sotsiaalosakonna-kontaktid",
+      "normalized_url": "https://peipsivald.ee/sotsiaalosakonna-kontaktid",
+      "source_type": "contact_page",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_contact_triin_vaino",
+        "peipsiaare_vald_contact_viktoria_tougjas",
+        "peipsiaare_vald_contact_olga_solovjova",
+        "peipsiaare_vald_contact_relika_laan",
+        "peipsiaare_vald_contact_helina_vester",
+        "peipsiaare_vald_contact_elise_tollimae",
+        "peipsiaare_vald_contact_marina_reinsalu",
+        "peipsiaare_vald_contact_svetlana_puss",
+        "peipsiaare_vald_contact_natalja_sorgina",
+        "peipsiaare_vald_contact_elle_koort",
+        "peipsiaare_vald_contact_silvi_vaiknemets",
+        "peipsiaare_vald_contact_ene_toom",
+        "peipsiaare_vald_contact_elvi_randlahe",
+        "peipsiaare_vald_service_koduteenus",
+        "peipsiaare_vald_service_sotsiaaltransporditeenus"
+      ],
+      "document_id": "social_contacts",
+      "source_key": "social_contacts",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [],
+      "content_hash": "f7567f06aa1069a7165823587c56780b07b289674360b1793d3f8ea01ab8234b",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "social_contacts"
+    },
+    {
+      "source_id": "laps_pere_overview",
+      "title": "Laps ja pere – teenused ja toetused",
+      "url": "https://peipsivald.ee/teenused/pere-elukoht",
+      "url_canonical": "https://peipsivald.ee/teenused/pere-elukoht",
+      "normalized_url": "https://peipsivald.ee/teenused/pere-elukoht",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_sunnitoetus",
+        "peipsiaare_vald_service_tugiisikuteenus"
+      ],
+      "document_id": "laps_pere_overview",
+      "source_key": "laps_pere_overview",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "bbc6c885375185141b02a3fc83586107369954d7981db53aebc358b445244169",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "laps_pere_overview"
+    },
+    {
+      "source_id": "eakale_erivajadusega_overview",
+      "title": "Eakale ja erivajadusega inimesele – teenused ja toetused",
+      "url": "https://peipsivald.ee/teenused/eakale-ja-erivajadusega-inimesele",
+      "url_canonical": "https://peipsivald.ee/teenused/eakale-ja-erivajadusega-inimesele",
+      "normalized_url": "https://peipsivald.ee/teenused/eakale-ja-erivajadusega-inimesele",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_service_tugiisikuteenus"
+      ],
+      "document_id": "eakale_erivajadusega_overview",
+      "source_key": "eakale_erivajadusega_overview",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "f6dfd95c9855a628547e8445109c979f8fb0ceb0a74d17daeb9b0bf4b897ba6e",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "eakale_erivajadusega_overview"
+    },
+    {
+      "source_id": "toimetulek_overview",
+      "title": "Toimetulekuraskusega inimesele – teenused ja toetused",
+      "url": "https://peipsivald.ee/teenused/sotsiaalabi",
+      "url_canonical": "https://peipsivald.ee/teenused/sotsiaalabi",
+      "normalized_url": "https://peipsivald.ee/teenused/sotsiaalabi",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [],
+      "document_id": "toimetulek_overview",
+      "source_key": "toimetulek_overview",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "9345a2e316317391717ce65ea2329bd0e59fba9dd2350054649cbe9f4080abb5",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "toimetulek_overview"
+    },
+    {
+      "source_id": "sunnitoetus_page",
+      "title": "Sünnitoetus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/sunnitoetus",
+      "url_canonical": "https://peipsivald.ee/sunnitoetus",
+      "normalized_url": "https://peipsivald.ee/sunnitoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_sunnitoetus"
+      ],
+      "document_id": "sunnitoetus_page",
+      "source_key": "sunnitoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_benefit_sunnitoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "0b918629fc45d826dfd1e1e92c17500cc002bc15b0fb1ebd03c84cc4a0d2cf5e",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sunnitoetus_page"
+    },
+    {
+      "source_id": "koolimineku_toetus_page",
+      "title": "Esmakordselt kooli mineva lapse toetus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/esmakordselt-kooli-mineva-lapse-toetus",
+      "url_canonical": "https://peipsivald.ee/esmakordselt-kooli-mineva-lapse-toetus",
+      "normalized_url": "https://peipsivald.ee/esmakordselt-kooli-mineva-lapse-toetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_esmakordselt_kooli_mineva_lapse_toetus",
+        "peipsiaare_vald_form_esmakordselt_kooli_mineva_lapse_toetus_doc"
+      ],
+      "document_id": "koolimineku_toetus_page",
+      "source_key": "koolimineku_toetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_benefit_esmakordselt_kooli_mineva_lapse_toetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "900640880dac708588d790f66ea2de218183570b024c051ee1eec8aaeb245ecc",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "koolimineku_toetus_page"
+    },
+    {
+      "source_id": "laste_ravimite_toetus_page",
+      "title": "Laste ravimite ja abivahendite toetus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/laste-ravimite-ja-abivahendite-toetus",
+      "url_canonical": "https://peipsivald.ee/toiming/laste-ravimite-ja-abivahendite-toetus",
+      "normalized_url": "https://peipsivald.ee/toiming/laste-ravimite-ja-abivahendite-toetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_laste_ravimite_ja_abivahendite_toetus",
+        "peipsiaare_vald_form_laste_ravimite_ja_abivahendite_toetus_doc"
+      ],
+      "document_id": "laste_ravimite_toetus_page",
+      "source_key": "laste_ravimite_toetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_benefit_laste_ravimite_ja_abivahendite_toetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "e70a237f489b800209ec8376feab7b028f04259b04aad4f9d5b263bd8697bd97",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "laste_ravimite_toetus_page"
+    },
+    {
+      "source_id": "laste_noortelaagri_toetus_page",
+      "title": "Laste- ja noortelaagri toetus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/laste-ja-noortelaagri-toetus",
+      "url_canonical": "https://peipsivald.ee/toiming/laste-ja-noortelaagri-toetus",
+      "normalized_url": "https://peipsivald.ee/toiming/laste-ja-noortelaagri-toetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_laste_ja_noortelaagri_toetus",
+        "peipsiaare_vald_form_laste_ja_noortelaagri_toetus_doc"
+      ],
+      "document_id": "laste_noortelaagri_toetus_page",
+      "source_key": "laste_noortelaagri_toetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_benefit_laste_ja_noortelaagri_toetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "1a357f15cc3566a294eed84528816e080d05e9045d4001ef87a6be7bc8b00cd0",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "laste_noortelaagri_toetus_page"
+    },
+    {
+      "source_id": "perekonnas_hooldamisel_toetus_page",
+      "title": "Perekonnas hooldamisel oleva lapse toetus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/perekonnas-hooldamisel-oleva-lapse-toetus",
+      "url_canonical": "https://peipsivald.ee/toiming/perekonnas-hooldamisel-oleva-lapse-toetus",
+      "normalized_url": "https://peipsivald.ee/toiming/perekonnas-hooldamisel-oleva-lapse-toetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_perekonnas_hooldamisel_oleva_lapse_toetus",
+        "peipsiaare_vald_form_perekonnas_hooldamisel_oleva_lapse_toetus_doc"
+      ],
+      "document_id": "perekonnas_hooldamisel_toetus_page",
+      "source_key": "perekonnas_hooldamisel_toetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_benefit_perekonnas_hooldamisel_oleva_lapse_toetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "ad1668ed5c115f75d71bc75aba9aa1bbfa372685f87b7df219520488d594a153",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "perekonnas_hooldamisel_toetus_page"
+    },
+    {
+      "source_id": "toitlustustoetus_page",
+      "title": "Toitlustustoetus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/toitlustustoetus",
+      "url_canonical": "https://peipsivald.ee/toiming/toitlustustoetus",
+      "normalized_url": "https://peipsivald.ee/toiming/toitlustustoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_toitlustustoetus",
+        "peipsiaare_vald_form_toitlustustoetus_doc"
+      ],
+      "document_id": "toitlustustoetus_page",
+      "source_key": "toitlustustoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_benefit_toitlustustoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "84c286a1fbe15f4b471371367669a943c8f4cc75ee7c6192ab7e0cbeb2ba16db",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "toitlustustoetus_page"
+    },
+    {
+      "source_id": "lapsehoiuteenus_page",
+      "title": "Lapsehoiuteenus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/lapsehoiuteenus",
+      "url_canonical": "https://peipsivald.ee/toiming/lapsehoiuteenus",
+      "normalized_url": "https://peipsivald.ee/toiming/lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_service_lapsehoiuteenus"
+      ],
+      "document_id": "lapsehoiuteenus_page",
+      "source_key": "lapsehoiuteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_service_lapsehoiuteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "4c29bcbbfeec0c9eb80ebae3897cad66a3de35a1bab61b3fdfbc8b96957501e4",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "lapsehoiuteenus_page"
+    },
+    {
+      "source_id": "asendushooldusteenus_page",
+      "title": "Asendushooldusteenus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/asendushooldusteenus",
+      "url_canonical": "https://peipsivald.ee/toiming/asendushooldusteenus",
+      "normalized_url": "https://peipsivald.ee/toiming/asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_service_asendushooldusteenus"
+      ],
+      "document_id": "asendushooldusteenus_page",
+      "source_key": "asendushooldusteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_service_asendushooldusteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "8ed14bb372cf19e19d368100a8d3b7873f822b66c92b50a1ab005fb5aa8765b2",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "asendushooldusteenus_page"
+    },
+    {
+      "source_id": "tugiisikuteenus_page",
+      "title": "Tugiisikuteenus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/tugiisikuteenus",
+      "url_canonical": "https://peipsivald.ee/toiming/tugiisikuteenus",
+      "normalized_url": "https://peipsivald.ee/toiming/tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_service_tugiisikuteenus"
+      ],
+      "document_id": "tugiisikuteenus_page",
+      "source_key": "tugiisikuteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_service_tugiisikuteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "fa6b327f78c05bd2e2b7d875bfd86dae3b063717a57074a3d604c258e6c49154",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "tugiisikuteenus_page"
+    },
+    {
+      "source_id": "taiendavad_sotsiaalteenused_page",
+      "title": "Täiendavad sotsiaalteenused – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/taiendavad-sotsiaalteenused",
+      "url_canonical": "https://peipsivald.ee/toiming/taiendavad-sotsiaalteenused",
+      "normalized_url": "https://peipsivald.ee/toiming/taiendavad-sotsiaalteenused",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_service_taiendavad_sotsiaalteenused"
+      ],
+      "document_id": "taiendavad_sotsiaalteenused_page",
+      "source_key": "taiendavad_sotsiaalteenused_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_service_taiendavad_sotsiaalteenused"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "7f370b301f5ad80d7e1ef16a79e425d434d7bc069c37efd4040027cc4a7a7bdc",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "taiendavad_sotsiaalteenused_page"
+    },
+    {
+      "source_id": "perelepitus_page",
+      "title": "Perelepitus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/perelepitus",
+      "url_canonical": "https://peipsivald.ee/toiming/perelepitus",
+      "normalized_url": "https://peipsivald.ee/toiming/perelepitus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_resource_perelepitus"
+      ],
+      "document_id": "perelepitus_page",
+      "source_key": "perelepitus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_resource_perelepitus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "caae99c669d30b1d69526dde64cd8628006e681b88b1ab05e201206254470ffd",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "perelepitus_page"
+    },
+    {
+      "source_id": "ohvriabi_page",
+      "title": "Ohvriabi – Peipsiääre vald",
+      "url": "https://peipsivald.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/ohvriabi",
+      "url_canonical": "https://peipsivald.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/ohvriabi",
+      "normalized_url": "https://peipsivald.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/ohvriabi",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_resource_ohvriabi"
+      ],
+      "document_id": "ohvriabi_page",
+      "source_key": "ohvriabi_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_resource_ohvriabi"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "4527b9625cae2de5546593ae9e62fc2c8182ca54daa5aedaa3f494f7d3bcdb2b",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "ohvriabi_page"
+    },
+    {
+      "source_id": "koduteenus_page",
+      "title": "Koduteenus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/koduteenus",
+      "url_canonical": "https://peipsivald.ee/koduteenus",
+      "normalized_url": "https://peipsivald.ee/koduteenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_service_koduteenus",
+        "peipsiaare_vald_form_koduteenus_docx"
+      ],
+      "document_id": "koduteenus_page",
+      "source_key": "koduteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_service_koduteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "907b7937aadf82d7a765f630f23d834ece804bcb1955ca4b397dc3084a68e308",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "koduteenus_page"
+    },
+    {
+      "source_id": "uldhooldusteenus_page",
+      "title": "Üldhooldusteenus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/uldhooldusteenus",
+      "url_canonical": "https://peipsivald.ee/uldhooldusteenus",
+      "normalized_url": "https://peipsivald.ee/uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_service_uldhooldusteenus",
+        "peipsiaare_vald_form_uldhooldusteenus_pdf",
+        "peipsiaare_vald_form_uldhooldusteenus_docx"
+      ],
+      "document_id": "uldhooldusteenus_page",
+      "source_key": "uldhooldusteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_service_uldhooldusteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "9f91172361b4b251108f86a716be4f30a091acf0e60c28363ceaacb9ae18ac52",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "uldhooldusteenus_page"
+    },
+    {
+      "source_id": "hooldajatoetus_page",
+      "title": "Hooldajatoetus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/hooldajatoetus",
+      "url_canonical": "https://peipsivald.ee/hooldajatoetus",
+      "normalized_url": "https://peipsivald.ee/hooldajatoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_hooldajatoetus",
+        "peipsiaare_vald_form_hooldajatoetus_docx"
+      ],
+      "document_id": "hooldajatoetus_page",
+      "source_key": "hooldajatoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_benefit_hooldajatoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "5c3699424567423a5fe68d0dc19cc480070dbf5d9fa3f2d0a15f818a28d69853",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "hooldajatoetus_page"
+    },
+    {
+      "source_id": "isikliku_abistaja_page",
+      "title": "Isikliku abistaja teenus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/isikliku-abistaja-teenus",
+      "url_canonical": "https://peipsivald.ee/toiming/isikliku-abistaja-teenus",
+      "normalized_url": "https://peipsivald.ee/toiming/isikliku-abistaja-teenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_service_isikliku_abistaja_teenus"
+      ],
+      "document_id": "isikliku_abistaja_page",
+      "source_key": "isikliku_abistaja_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_service_isikliku_abistaja_teenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "2353da11279a5a531c36856e7c15fc2be0d56db1b35df36ca057d12c4609bf9c",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "isikliku_abistaja_page"
+    },
+    {
+      "source_id": "taisealise_isiku_hooldus_page",
+      "title": "Täisealise isiku hooldus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/taisealise-isiku-hooldus",
+      "url_canonical": "https://peipsivald.ee/toiming/taisealise-isiku-hooldus",
+      "normalized_url": "https://peipsivald.ee/toiming/taisealise-isiku-hooldus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_service_taisealise_isiku_hooldus"
+      ],
+      "document_id": "taisealise_isiku_hooldus_page",
+      "source_key": "taisealise_isiku_hooldus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_service_taisealise_isiku_hooldus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "0e61cb0f15d1354d13f8b76852a9624327640dfa7ae8f492e8e196c61d68b0e0",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "taisealise_isiku_hooldus_page"
+    },
+    {
+      "source_id": "sotsiaaltransport_page",
+      "title": "Sotsiaaltransporditeenus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/sotsiaaltransporditeenus",
+      "url_canonical": "https://peipsivald.ee/toiming/sotsiaaltransporditeenus",
+      "normalized_url": "https://peipsivald.ee/toiming/sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_service_sotsiaaltransporditeenus"
+      ],
+      "document_id": "sotsiaaltransport_page",
+      "source_key": "sotsiaaltransport_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_service_sotsiaaltransporditeenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "eca0b168c8a039b4b4df3cb0f0230c6b4fb3ffc39c4f2b89f93315dfa1400e4f",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sotsiaaltransport_page"
+    },
+    {
+      "source_id": "puudega_igakvartaalne_toetus_page",
+      "title": "Puudega inimese igakvartaalne toetus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/puudega-inimese-igakvartaalne-toetus",
+      "url_canonical": "https://peipsivald.ee/toiming/puudega-inimese-igakvartaalne-toetus",
+      "normalized_url": "https://peipsivald.ee/toiming/puudega-inimese-igakvartaalne-toetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_puudega_inimese_igakvartaalne_toetus",
+        "peipsiaare_vald_form_puudega_inimese_igakvartaalne_toetus_doc"
+      ],
+      "document_id": "puudega_igakvartaalne_toetus_page",
+      "source_key": "puudega_igakvartaalne_toetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_benefit_puudega_inimese_igakvartaalne_toetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "acd7a9ceb66434c8f907596e7820610b3bca732a053bfb933f40c302e128f033",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "puudega_igakvartaalne_toetus_page"
+    },
+    {
+      "source_id": "taisealiste_ravimite_toetus_page",
+      "title": "Täisealiste ravimite ja abivahendite toetus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/taisealiste-ravimite-ja-abivahendite-toetus",
+      "url_canonical": "https://peipsivald.ee/toiming/taisealiste-ravimite-ja-abivahendite-toetus",
+      "normalized_url": "https://peipsivald.ee/toiming/taisealiste-ravimite-ja-abivahendite-toetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_taisealiste_ravimite_ja_abivahendite_toetus",
+        "peipsiaare_vald_form_taisealiste_ravimite_ja_abivahendite_toetus_doc"
+      ],
+      "document_id": "taisealiste_ravimite_toetus_page",
+      "source_key": "taisealiste_ravimite_toetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_benefit_taisealiste_ravimite_ja_abivahendite_toetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "c5342d89a20797cbc2e3f1fd71351055dd09dbdad2bf04d9cb4dcfc10bbd6dff",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "taisealiste_ravimite_toetus_page"
+    },
+    {
+      "source_id": "parkimiskaart_page",
+      "title": "Puudega inimest teenindava sõiduki parkimiskaart – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/puudega-inimest-teenindava-soiduki-parkimiskaart",
+      "url_canonical": "https://peipsivald.ee/toiming/puudega-inimest-teenindava-soiduki-parkimiskaart",
+      "normalized_url": "https://peipsivald.ee/toiming/puudega-inimest-teenindava-soiduki-parkimiskaart",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_resource_puudega_inimese_parkimiskaart",
+        "peipsiaare_vald_form_parkimiskaart_doc"
+      ],
+      "document_id": "parkimiskaart_page",
+      "source_key": "parkimiskaart_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_resource_puudega_inimese_parkimiskaart"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "832418bc6ca60985f2ec158769ba76a2d83cd274181d5b4926051c14ac54ad9f",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "parkimiskaart_page"
+    },
+    {
+      "source_id": "eakate_juubeli_toetus_page",
+      "title": "Eakate juubeli- ja sünnipäevatoetus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/eakate-juubeli-ja-sunnipaevatoetus",
+      "url_canonical": "https://peipsivald.ee/toiming/eakate-juubeli-ja-sunnipaevatoetus",
+      "normalized_url": "https://peipsivald.ee/toiming/eakate-juubeli-ja-sunnipaevatoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_eakate_juubeli_ja_sunnipaevatoetus"
+      ],
+      "document_id": "eakate_juubeli_toetus_page",
+      "source_key": "eakate_juubeli_toetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_benefit_eakate_juubeli_ja_sunnipaevatoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "5a0b0b0f15045f7794cc52a5f5aa83bb36a6d3afebdb3ffc18ec961568193b6a",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "eakate_juubeli_toetus_page"
+    },
+    {
+      "source_id": "matusetoetus_page",
+      "title": "Matusetoetus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/matusetoetus",
+      "url_canonical": "https://peipsivald.ee/toiming/matusetoetus",
+      "normalized_url": "https://peipsivald.ee/toiming/matusetoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_matusetoetus",
+        "peipsiaare_vald_form_matusetoetus_doc"
+      ],
+      "document_id": "matusetoetus_page",
+      "source_key": "matusetoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_benefit_matusetoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "c9c4728e4239489ce5bd8f2bb62b21e14b911ff6e779d839001d3bf6e640a02b",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "matusetoetus_page"
+    },
+    {
+      "source_id": "eakate_bussiringid_page",
+      "title": "Eakate bussiringid – Peipsiääre vald",
+      "url": "https://peipsivald.ee/eakate-bussiringid",
+      "url_canonical": "https://peipsivald.ee/eakate-bussiringid",
+      "normalized_url": "https://peipsivald.ee/eakate-bussiringid",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_resource_eakate_bussiringid"
+      ],
+      "document_id": "eakate_bussiringid_page",
+      "source_key": "eakate_bussiringid_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_resource_eakate_bussiringid"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "ffbb6917254a39122c247a9fd4e32195c1a96780930722494f19eedb63320b2f",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "eakate_bussiringid_page"
+    },
+    {
+      "source_id": "sotsiaaltoetus_page",
+      "title": "Sotsiaaltoetus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/sotsiaaltoetus",
+      "url_canonical": "https://peipsivald.ee/toiming/sotsiaaltoetus",
+      "normalized_url": "https://peipsivald.ee/toiming/sotsiaaltoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_sotsiaaltoetus",
+        "peipsiaare_vald_form_sotsiaaltoetuse_taotlus_doc"
+      ],
+      "document_id": "sotsiaaltoetus_page",
+      "source_key": "sotsiaaltoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_benefit_sotsiaaltoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "211110dc8e8f9331a33fb93fdf00b9257e95f23fec182ede2684e8cc48fa83aa",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sotsiaaltoetus_page"
+    },
+    {
+      "source_id": "toimetulekutoetus_page",
+      "title": "Toimetulekutoetus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/toimetulekutoetus",
+      "url_canonical": "https://peipsivald.ee/toiming/toimetulekutoetus",
+      "normalized_url": "https://peipsivald.ee/toiming/toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_toimetulekutoetus",
+        "peipsiaare_vald_form_toimetulekutoetus_xls"
+      ],
+      "document_id": "toimetulekutoetus_page",
+      "source_key": "toimetulekutoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_benefit_toimetulekutoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "eb28f9e5892784012783ca9d9dd034685f277f8e5c918d0105dd3983016af941",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "toimetulekutoetus_page"
+    },
+    {
+      "source_id": "volanoustamine_page",
+      "title": "Võlanõustamisteenus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/volanoustamisteenus",
+      "url_canonical": "https://peipsivald.ee/toiming/volanoustamisteenus",
+      "normalized_url": "https://peipsivald.ee/toiming/volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_service_volanoustamisteenus"
+      ],
+      "document_id": "volanoustamine_page",
+      "source_key": "volanoustamine_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_service_volanoustamisteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "c0316825e464eee3b3412394e469f4033de6be5791b5551ed84419cb36f41d9e",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "volanoustamine_page"
+    },
+    {
+      "source_id": "eluruumi_kohandamise_toetus_page",
+      "title": "Eluruumi kohandamise toetus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/eluruumi-kohandamise-toetus",
+      "url_canonical": "https://peipsivald.ee/toiming/eluruumi-kohandamise-toetus",
+      "normalized_url": "https://peipsivald.ee/toiming/eluruumi-kohandamise-toetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_eluruumi_kohandamise_toetus"
+      ],
+      "document_id": "eluruumi_kohandamise_toetus_page",
+      "source_key": "eluruumi_kohandamise_toetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_benefit_eluruumi_kohandamise_toetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "d429d1f8ce377518365db9ea89f58596d47cd50b1471a9f31d84a87b44e6402b",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "eluruumi_kohandamise_toetus_page"
+    },
+    {
+      "source_id": "kuttetoetus_page",
+      "title": "Küttetoetus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/kuttetoetus",
+      "url_canonical": "https://peipsivald.ee/toiming/kuttetoetus",
+      "normalized_url": "https://peipsivald.ee/toiming/kuttetoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_kuttetoetus",
+        "peipsiaare_vald_form_kuttetoetus_doc"
+      ],
+      "document_id": "kuttetoetus_page",
+      "source_key": "kuttetoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_benefit_kuttetoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "10952968a9e2326d719bcf914278a4908ce35b8a1af84582aacff7730aed97e6",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "kuttetoetus_page"
+    },
+    {
+      "source_id": "valtimatu_sotsiaalabi_page",
+      "title": "Vältimatu sotsiaalabi – Peipsiääre vald",
+      "url": "https://peipsivald.ee/valtimatu-sotsiaalabi",
+      "url_canonical": "https://peipsivald.ee/valtimatu-sotsiaalabi",
+      "normalized_url": "https://peipsivald.ee/valtimatu-sotsiaalabi",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_service_valtimatu_sotsiaalabi"
+      ],
+      "document_id": "valtimatu_sotsiaalabi_page",
+      "source_key": "valtimatu_sotsiaalabi_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_service_valtimatu_sotsiaalabi"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "2a74c4a437b6e8f401bb0a92c6c068a67cac1c384c7aec4bdc1bfc8b021686f5",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "valtimatu_sotsiaalabi_page"
+    },
+    {
+      "source_id": "jarelhooldusteenus_page",
+      "title": "Järelhooldusteenus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/jarelhooldusteenus",
+      "url_canonical": "https://peipsivald.ee/toiming/jarelhooldusteenus",
+      "normalized_url": "https://peipsivald.ee/toiming/jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_service_jarelhooldusteenus"
+      ],
+      "document_id": "jarelhooldusteenus_page",
+      "source_key": "jarelhooldusteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_service_jarelhooldusteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "4ac681833c59f9c8962a3ddd11ee94443b5b88f9183c10e14c5244df88584ada",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "jarelhooldusteenus_page"
+    },
+    {
+      "source_id": "eluruumi_tagamine_page",
+      "title": "Eluruumi tagamine – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/eluruumi-tagamine",
+      "url_canonical": "https://peipsivald.ee/toiming/eluruumi-tagamine",
+      "normalized_url": "https://peipsivald.ee/toiming/eluruumi-tagamine",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_service_eluruumi_tagamine"
+      ],
+      "document_id": "eluruumi_tagamine_page",
+      "source_key": "eluruumi_tagamine_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_service_eluruumi_tagamine"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "eeb0f2f8d30098f77aba8525a3bdc9bea979705fe615f9368ee3d929d087b978",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "eluruumi_tagamine_page"
+    },
+    {
+      "source_id": "varjupaigateenus_page",
+      "title": "Varjupaigateenus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/varjupaigateenus",
+      "url_canonical": "https://peipsivald.ee/toiming/varjupaigateenus",
+      "normalized_url": "https://peipsivald.ee/toiming/varjupaigateenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_service_varjupaigateenus"
+      ],
+      "document_id": "varjupaigateenus_page",
+      "source_key": "varjupaigateenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_service_varjupaigateenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "99c3978523254eab1fa4ad1a28d2311ebdc9bc9b3cafd06da409665dffd199ee",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "varjupaigateenus_page"
+    },
+    {
+      "source_id": "turvakoduteenus_page",
+      "title": "Turvakoduteenus – Peipsiääre vald",
+      "url": "https://peipsivald.ee/toiming/turvakoduteenus",
+      "url_canonical": "https://peipsivald.ee/toiming/turvakoduteenus",
+      "normalized_url": "https://peipsivald.ee/toiming/turvakoduteenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_service_turvakoduteenus"
+      ],
+      "document_id": "turvakoduteenus_page",
+      "source_key": "turvakoduteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_service_turvakoduteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "539b20a39043bbb49828e39f05e3fe56ab3395b0097ff6c2126f4f3d139306c0",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "turvakoduteenus_page"
+    },
+    {
+      "source_id": "koolimineku_toetus_doc",
+      "title": "Esmakordselt kooli mineva lapse toetus.doc",
+      "url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Esmakordselt%20kooli%20mineva%20lapse%20toetus.doc",
+      "url_canonical": "https://peipsivald.ee/sites/default/files/documents/2025-05/Esmakordselt%20kooli%20mineva%20lapse%20toetus.doc",
+      "normalized_url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Esmakordselt%20kooli%20mineva%20lapse%20toetus.doc",
+      "source_type": "application_form",
+      "source_format": "doc",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_esmakordselt_kooli_mineva_lapse_toetus",
+        "peipsiaare_vald_form_esmakordselt_kooli_mineva_lapse_toetus_doc"
+      ],
+      "document_id": "koolimineku_toetus_doc",
+      "source_key": "koolimineku_toetus_doc",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_form_esmakordselt_kooli_mineva_lapse_toetus_doc"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "e152c279d0f56c390124f9d4caebbd14424db8690296a3ec6b9cd8b281933025",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "koolimineku_toetus_doc"
+    },
+    {
+      "source_id": "laste_ravimite_abivahendite_toetus_doc",
+      "title": "Laste ravimite ja abivahendite toetus.doc",
+      "url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Laste%20ravimite%20ja%20abivahendite%20toetus.doc",
+      "url_canonical": "https://peipsivald.ee/sites/default/files/documents/2025-05/Laste%20ravimite%20ja%20abivahendite%20toetus.doc",
+      "normalized_url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Laste%20ravimite%20ja%20abivahendite%20toetus.doc",
+      "source_type": "application_form",
+      "source_format": "doc",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_laste_ravimite_ja_abivahendite_toetus",
+        "peipsiaare_vald_form_laste_ravimite_ja_abivahendite_toetus_doc"
+      ],
+      "document_id": "laste_ravimite_abivahendite_toetus_doc",
+      "source_key": "laste_ravimite_abivahendite_toetus_doc",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_form_laste_ravimite_ja_abivahendite_toetus_doc"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "9efe076db65d6a6948e2743693edb6b058155ef63bb0aa0c6f539b6467277ece",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "laste_ravimite_abivahendite_toetus_doc"
+    },
+    {
+      "source_id": "laste_noortelaagri_toetus_doc",
+      "title": "Laste- ja noortelaagri toetus.doc",
+      "url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Laste-%20ja%20noortelaagri%20toetus.doc",
+      "url_canonical": "https://peipsivald.ee/sites/default/files/documents/2025-05/Laste-%20ja%20noortelaagri%20toetus.doc",
+      "normalized_url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Laste-%20ja%20noortelaagri%20toetus.doc",
+      "source_type": "application_form",
+      "source_format": "doc",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_laste_ja_noortelaagri_toetus",
+        "peipsiaare_vald_form_laste_ja_noortelaagri_toetus_doc"
+      ],
+      "document_id": "laste_noortelaagri_toetus_doc",
+      "source_key": "laste_noortelaagri_toetus_doc",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_form_laste_ja_noortelaagri_toetus_doc"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "7c746ef5c9845f54c956374d76daee504a242e6c4563c2afd04bd1ab4f9c4a4c",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "laste_noortelaagri_toetus_doc"
+    },
+    {
+      "source_id": "perekonnas_hooldamisel_lapse_toetus_doc",
+      "title": "Perekonnas hooldamisel oleva lapse toetus.doc",
+      "url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Perekonnas%20hooldamisel%20oleva%20lapse%20toetus.doc",
+      "url_canonical": "https://peipsivald.ee/sites/default/files/documents/2025-05/Perekonnas%20hooldamisel%20oleva%20lapse%20toetus.doc",
+      "normalized_url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Perekonnas%20hooldamisel%20oleva%20lapse%20toetus.doc",
+      "source_type": "application_form",
+      "source_format": "doc",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_perekonnas_hooldamisel_oleva_lapse_toetus",
+        "peipsiaare_vald_form_perekonnas_hooldamisel_oleva_lapse_toetus_doc"
+      ],
+      "document_id": "perekonnas_hooldamisel_lapse_toetus_doc",
+      "source_key": "perekonnas_hooldamisel_lapse_toetus_doc",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_form_perekonnas_hooldamisel_oleva_lapse_toetus_doc"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "02428e271193ce97d44bf97eb324c3198e1f7f587974982594a309bc9a3b0959",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "perekonnas_hooldamisel_lapse_toetus_doc"
+    },
+    {
+      "source_id": "toitlustustoetus_doc",
+      "title": "Toitlustustoetus.doc",
+      "url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Toitlustustoetus.doc",
+      "url_canonical": "https://peipsivald.ee/sites/default/files/documents/2025-05/Toitlustustoetus.doc",
+      "normalized_url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Toitlustustoetus.doc",
+      "source_type": "application_form",
+      "source_format": "doc",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_toitlustustoetus",
+        "peipsiaare_vald_form_toitlustustoetus_doc"
+      ],
+      "document_id": "toitlustustoetus_doc",
+      "source_key": "toitlustustoetus_doc",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_form_toitlustustoetus_doc"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "a12e69b04fc37221185bb1b35ccc46488cde01409837de1022d1629f9e597f00",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "toitlustustoetus_doc"
+    },
+    {
+      "source_id": "koduteenus_docx",
+      "title": "Koduteenus.docx",
+      "url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Koduteenus.docx",
+      "url_canonical": "https://peipsivald.ee/sites/default/files/documents/2025-05/Koduteenus.docx",
+      "normalized_url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Koduteenus.docx",
+      "source_type": "application_form",
+      "source_format": "docx",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_service_koduteenus",
+        "peipsiaare_vald_form_koduteenus_docx"
+      ],
+      "document_id": "koduteenus_docx",
+      "source_key": "koduteenus_docx",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_form_koduteenus_docx"
+      ],
+      "sections_present": [],
+      "content_hash": "34711212984b6026e23c97877731c7c0063574229e5f4ed93299786c72992956",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "koduteenus_docx"
+    },
+    {
+      "source_id": "uldhooldusteenus_pdf",
+      "title": "Üldhooldusteenus.pdf",
+      "url": "https://peipsivald.ee/sites/default/files/documents/2025-05/%C3%9Cldhooldusteenus.pdf",
+      "url_canonical": "https://peipsivald.ee/sites/default/files/documents/2025-05/%C3%9Cldhooldusteenus.pdf",
+      "normalized_url": "https://peipsivald.ee/sites/default/files/documents/2025-05/%C3%9Cldhooldusteenus.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_service_uldhooldusteenus",
+        "peipsiaare_vald_form_uldhooldusteenus_pdf"
+      ],
+      "document_id": "uldhooldusteenus_pdf",
+      "source_key": "uldhooldusteenus_pdf",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_form_uldhooldusteenus_pdf"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "b574e53ac06614f8218a81919e640efc8ada5be9050cffc1a9ec13c4f63b171c",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "uldhooldusteenus_pdf"
+    },
+    {
+      "source_id": "uldhooldusteenus_docx",
+      "title": "Üldhooldusteenus.docx",
+      "url": "https://peipsivald.ee/sites/default/files/documents/2025-05/%C3%9Cldhooldusteenus.docx",
+      "url_canonical": "https://peipsivald.ee/sites/default/files/documents/2025-05/%C3%9Cldhooldusteenus.docx",
+      "normalized_url": "https://peipsivald.ee/sites/default/files/documents/2025-05/%C3%9Cldhooldusteenus.docx",
+      "source_type": "application_form",
+      "source_format": "docx",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_service_uldhooldusteenus",
+        "peipsiaare_vald_form_uldhooldusteenus_docx"
+      ],
+      "document_id": "uldhooldusteenus_docx",
+      "source_key": "uldhooldusteenus_docx",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_form_uldhooldusteenus_docx"
+      ],
+      "sections_present": [],
+      "content_hash": "ba22c50b4d78174f8f01c5fb15d72f4b006ea63fa3fb10f008065adb8209fa70",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "uldhooldusteenus_docx"
+    },
+    {
+      "source_id": "hooldajatoetus_docx",
+      "title": "Hooldajatoetus.docx",
+      "url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Hooldajatoetus.docx",
+      "url_canonical": "https://peipsivald.ee/sites/default/files/documents/2025-05/Hooldajatoetus.docx",
+      "normalized_url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Hooldajatoetus.docx",
+      "source_type": "application_form",
+      "source_format": "docx",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_hooldajatoetus",
+        "peipsiaare_vald_form_hooldajatoetus_docx"
+      ],
+      "document_id": "hooldajatoetus_docx",
+      "source_key": "hooldajatoetus_docx",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_form_hooldajatoetus_docx"
+      ],
+      "sections_present": [],
+      "content_hash": "e1ff11ad38caaf572389ec41c3a640341a8c98c3fd3ed695d4a566b13e26cc5b",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "hooldajatoetus_docx"
+    },
+    {
+      "source_id": "puudega_igakvartaalne_toetus_doc",
+      "title": "Puudega inimese igakvartaalne toetus.doc",
+      "url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Puudega%20inimese%20igakvartaalne%20toetus.doc",
+      "url_canonical": "https://peipsivald.ee/sites/default/files/documents/2025-05/Puudega%20inimese%20igakvartaalne%20toetus.doc",
+      "normalized_url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Puudega%20inimese%20igakvartaalne%20toetus.doc",
+      "source_type": "application_form",
+      "source_format": "doc",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_puudega_inimese_igakvartaalne_toetus",
+        "peipsiaare_vald_form_puudega_inimese_igakvartaalne_toetus_doc"
+      ],
+      "document_id": "puudega_igakvartaalne_toetus_doc",
+      "source_key": "puudega_igakvartaalne_toetus_doc",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_form_puudega_inimese_igakvartaalne_toetus_doc"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "1892b04df689827a2499eaa9f42fa172e4d28b483587aace3002fdd7633e1c5d",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "puudega_igakvartaalne_toetus_doc"
+    },
+    {
+      "source_id": "taisealiste_ravimite_abivahendite_toetus_doc",
+      "title": "Täisealiste ravimite ja abivahendite toetus.doc",
+      "url": "https://peipsivald.ee/sites/default/files/documents/2025-05/T%C3%A4isealiste%20ravimite%20ja%20abivahendite%20toetus.doc",
+      "url_canonical": "https://peipsivald.ee/sites/default/files/documents/2025-05/T%C3%A4isealiste%20ravimite%20ja%20abivahendite%20toetus.doc",
+      "normalized_url": "https://peipsivald.ee/sites/default/files/documents/2025-05/T%C3%A4isealiste%20ravimite%20ja%20abivahendite%20toetus.doc",
+      "source_type": "application_form",
+      "source_format": "doc",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_taisealiste_ravimite_ja_abivahendite_toetus",
+        "peipsiaare_vald_form_taisealiste_ravimite_ja_abivahendite_toetus_doc"
+      ],
+      "document_id": "taisealiste_ravimite_abivahendite_toetus_doc",
+      "source_key": "taisealiste_ravimite_abivahendite_toetus_doc",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_form_taisealiste_ravimite_ja_abivahendite_toetus_doc"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "9e1cdaf4d6b284cc94a9237b0618dc95fbdfc2acc39e67edab7cb4be7549fffb",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "taisealiste_ravimite_abivahendite_toetus_doc"
+    },
+    {
+      "source_id": "parkimiskaart_doc",
+      "title": "Puudega inimest teenindava sõiduki parkimiskaart.doc",
+      "url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Puudega%20inimest%20teenindava%20s%C3%B5iduki%20parkimiskaart.doc",
+      "url_canonical": "https://peipsivald.ee/sites/default/files/documents/2025-05/Puudega%20inimest%20teenindava%20s%C3%B5iduki%20parkimiskaart.doc",
+      "normalized_url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Puudega%20inimest%20teenindava%20s%C3%B5iduki%20parkimiskaart.doc",
+      "source_type": "application_form",
+      "source_format": "doc",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_resource_puudega_inimese_parkimiskaart",
+        "peipsiaare_vald_form_parkimiskaart_doc"
+      ],
+      "document_id": "parkimiskaart_doc",
+      "source_key": "parkimiskaart_doc",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_form_parkimiskaart_doc"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "1d253b9a8a1033a37c134411fe801fde46cecf376dacb397598f385933e60135",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "parkimiskaart_doc"
+    },
+    {
+      "source_id": "matusetoetus_doc",
+      "title": "Matusetoetus.doc",
+      "url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Matusetoetus.doc",
+      "url_canonical": "https://peipsivald.ee/sites/default/files/documents/2025-05/Matusetoetus.doc",
+      "normalized_url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Matusetoetus.doc",
+      "source_type": "application_form",
+      "source_format": "doc",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_matusetoetus",
+        "peipsiaare_vald_form_matusetoetus_doc"
+      ],
+      "document_id": "matusetoetus_doc",
+      "source_key": "matusetoetus_doc",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_form_matusetoetus_doc"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "4a699bb91d6f9cd40cf9c2dca055ee8e1e44c28063a8a1446693404215383bdc",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "matusetoetus_doc"
+    },
+    {
+      "source_id": "sotsiaaltoetuse_taotlus_doc",
+      "title": "Sotsiaaltoetuse taotlus.doc",
+      "url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Sotsiaaltoetuse%20taotlus.doc",
+      "url_canonical": "https://peipsivald.ee/sites/default/files/documents/2025-05/Sotsiaaltoetuse%20taotlus.doc",
+      "normalized_url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Sotsiaaltoetuse%20taotlus.doc",
+      "source_type": "application_form",
+      "source_format": "doc",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_sotsiaaltoetus",
+        "peipsiaare_vald_form_sotsiaaltoetuse_taotlus_doc"
+      ],
+      "document_id": "sotsiaaltoetuse_taotlus_doc",
+      "source_key": "sotsiaaltoetuse_taotlus_doc",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_form_sotsiaaltoetuse_taotlus_doc"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "ddcffb81ac8f2a97778248598c5c53f3a438fa35611234693fb955654be391e4",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sotsiaaltoetuse_taotlus_doc"
+    },
+    {
+      "source_id": "toimetulekutoetus_xls",
+      "title": "Toimetulekutoetus.xls",
+      "url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Toimetulekutoetus.xls",
+      "url_canonical": "https://peipsivald.ee/sites/default/files/documents/2025-05/Toimetulekutoetus.xls",
+      "normalized_url": "https://peipsivald.ee/sites/default/files/documents/2025-05/Toimetulekutoetus.xls",
+      "source_type": "kov_service_info",
+      "source_format": "xls",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_toimetulekutoetus",
+        "peipsiaare_vald_form_toimetulekutoetus_xls"
+      ],
+      "document_id": "toimetulekutoetus_xls",
+      "source_key": "toimetulekutoetus_xls",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_form_toimetulekutoetus_xls"
+      ],
+      "sections_present": [],
+      "content_hash": "9bce2bfcd074d8a57fd5d8fdbf04b5bdb9f17540f012c4bcfbab75962f762eb3",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "toimetulekutoetus_xls"
+    },
+    {
+      "source_id": "kuttetoetus_doc",
+      "title": "Küttetoetus.doc",
+      "url": "https://peipsivald.ee/sites/default/files/documents/2025-05/k%C3%BCttetoetus.doc",
+      "url_canonical": "https://peipsivald.ee/sites/default/files/documents/2025-05/k%C3%BCttetoetus.doc",
+      "normalized_url": "https://peipsivald.ee/sites/default/files/documents/2025-05/k%C3%BCttetoetus.doc",
+      "source_type": "application_form",
+      "source_format": "doc",
+      "collection_id": "kov_services",
+      "authority": "municipality",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "peipsiaare_vald_benefit_kuttetoetus",
+        "peipsiaare_vald_form_kuttetoetus_doc"
+      ],
+      "document_id": "kuttetoetus_doc",
+      "source_key": "kuttetoetus_doc",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Peipsiääre vald",
+      "municipality_id": "peipsiaare_vald",
+      "municipality_name": "Peipsiääre vald",
+      "county": "Tartumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "peipsiaare_vald_form_kuttetoetus_doc"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "d12f415d58decc952b30d73cccd646bde9c688a0e85d006bf023f17f2c36aee1",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "kuttetoetus_doc"
+    }
+  ],
+  "municipality_name": "Peipsiääre vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

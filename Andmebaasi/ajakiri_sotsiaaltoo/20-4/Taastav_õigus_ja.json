@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-4-2020",
+  "articleId": "taastav-oigus-ja-lahisuhtevagivald-2020-4",
+  "title": "Taastav õigus ja lähisuhtevägivald",
+  "authors": [
+    "Ian D. Marder",
+    "Callie Zinsmeyer"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2020",
+  "section": "Taastav õigus",
+  "pageRange": "31-38",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel analüüsib taastava õiguse rakendamise võimalusi ja piire lähisuhtevägivalla juhtumites. Autorid tutvustavad rahvusvahelist uurimistööd ja erinevaid mudeleid, toovad välja peamised poolt- ja vastuargumendid ning arutlevad, millistel tingimustel on ohvrite ja vägivallatsejate vaheline dialoog turvaline ja mõistlik. Rõhutatakse ohvri jõustamist, vabatahtlikkuse ja turvalisuse tagamist, samuti spetsialistide põhjaliku väljaõppe ja valdkondadeülese koostöö vajadust.",
+  "tags": [
+    "taastav õigus",
+    "lähisuhtevägivald",
+    "ohvri õigused",
+    "turvalisus",
+    "kriminaalõigus",
+    "sekkumismudelid",
+    "rahvusvaheline kogemus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2020_web_link_Part8.pdf",
+  "document_id": "sotsiaaltoo-4-2020-taastav-oigus-ja-lahisuhtevagivald-2020-4",
+  "source_format": "pdf",
+  "source_sha256": "77a3da9ae40348ce4070b60874e555c9ee99d03572878efc4239bdfe8ad6fa70",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2020-taastav-oigus-ja-lahisuhtevagivald-2020-4",
+    "previous_source_path": "Sotsiaaltoo_4_2020_web_link_Part8.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "77a3da9ae40348ce4070b60874e555c9ee99d03572878efc4239bdfe8ad6fa70",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2022",
+  "articleId": "seltsilised-annavad-sotsiaalhoolekande-teenustele-lisavaartust-2022-2",
+  "title": "Seltsilised annavad sotsiaalhoolekande teenustele lisaväärtust",
+  "authors": [
+    "Krista Pegolainen-Saar",
+    "Karin Talalaev"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2022",
+  "section": "Korraldus",
+  "pageRange": "23-27",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel kirjeldab vabatahtlike seltsiliste rolli sotsiaalhoolekandes ja projekti, mille eesmärk on kujundada seltsiliste tugitegevus sotsiaalteenuste loomulikuks osaks. Selgitatakse, kuidas vabatahtlikud toetavad eakaid, erivajadustega täiskasvanuid ning sõjapõgenikke, pakkudes suhtlust, praktilist abi ja turvalist kogukonnatunnet. Käsitletakse koostööd kohalike omavalitsuste ja hoolekandeasutustega, koordinaatorite võrgustiku ülesehitust ning väljakutseid, sh sõidukulude hüvitamist ja tegevuse püsivuse tagamist pärast projekti lõppu.",
+  "tags": [
+    "vabatahtlikud seltsilised",
+    "sotsiaalteenused",
+    "eakad",
+    "erivajadusega inimesed",
+    "sõjapõgenikud",
+    "kogukonnatöö",
+    "hoolekandesüsteem"
+  ],
+  "source_type": "file",
+  "source_path": "2022_2_artikkel_5_seltsilised.pdf",
+  "document_id": "sotsiaaltoo-2-2022-seltsilised-annavad-sotsiaalhoolekande-teenustele-lisavaartust-2022-2",
+  "source_format": "pdf",
+  "source_sha256": "82f737129685445a12893ef32efc926184f09f16f9a79b312ca8b01a0602117d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2022-seltsilised-annavad-sotsiaalhoolekande-teenustele-lisavaartust-2022-2",
+    "previous_source_path": "2022_2_artikkel_5_seltsilised.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "82f737129685445a12893ef32efc926184f09f16f9a79b312ca8b01a0602117d",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

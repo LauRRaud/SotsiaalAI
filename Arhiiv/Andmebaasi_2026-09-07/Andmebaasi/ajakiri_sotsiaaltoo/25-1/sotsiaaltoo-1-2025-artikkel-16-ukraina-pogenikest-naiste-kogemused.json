@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-1-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "ukraina-pogenikest-naiste-kogemused-kuidas-toetada-eestis-taisvaartusliku-elu-ulesehitamist-2025-1",
+  "title": "Ukraina põgenikest naiste kogemused – kuidas toetada Eestis täisväärtusliku elu ülesehitamist?",
+  "authors": [
+    "Elisabeth Kendrali",
+    "Mari-Liis Sepper"
+  ],
+  "section": "Uurimus",
+  "pdf_start_page": 1,
+  "pdf_end_page": 14,
+  "description": "Uurimus Ukraina sõjapõgenikest naiste kogemustest Eestis. Artikkel tugineb naistega läbiviidud intervjuudele ja küsitlustele, analüüsides nende teekonda Eestisse, esimesi kogemusi vastuvõtusüsteemiga, keeleõpet, tööturule sisenemist, eluaseme ja laste hariduse korraldamist ning vaimse tervisega seotud väljakutseid. Autorid toovad esile süsteemsed tõrked, õiguste teostamise takistused ja diskrimineerimise ilmingud, aga ka toetavad praktikad ja kogukondliku abi vormid. Esitatakse soovitusi poliitikakujundajatele ja praktikutele, kuidas paremini toetada pagulasnaiste iseseisvat toimetulekut ja osalemist ühiskonnaelus.",
+  "tags": [
+    "Ukraina põgenikud",
+    "naised",
+    "rände kogemus",
+    "pagulaspoliitika",
+    "lõimumine",
+    "tööturg",
+    "eluasemeprobleemid",
+    "vaimne tervis"
+  ],
+  "source_path": "Ukraina põgenikest naiste kogemused – kuidas toetada Eestis täisväärtusliku elu ülesehitamist_1_2025.pdf",
+  "pageRange": "1–14",
+  "document_id": "sotsiaaltoo-1-2025-ukraina-pogenikest-naiste-kogemused-kuidas-toetada-eestis-taisvaartusliku-elu-ulesehitamist-2025-1",
+  "source_format": "pdf",
+  "source_sha256": "c85be4f7be820ff7c1949c49c5a071ca966a64e61dbd4ffb73fda4ca0999fbda",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2025-ukraina-pogenikest-naiste-kogemused-kuidas-toetada-eestis-taisvaartusliku-elu-ulesehitamist-2025-1",
+    "previous_source_path": "Ukraina põgenikest naiste kogemused – kuidas toetada Eestis täisväärtusliku elu ülesehitamist_1_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "c85be4f7be820ff7c1949c49c5a071ca966a64e61dbd4ffb73fda4ca0999fbda",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

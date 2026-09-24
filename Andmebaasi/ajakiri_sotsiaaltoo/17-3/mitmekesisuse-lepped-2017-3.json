@@ -1,0 +1,82 @@
+{
+  "docId": "sotsiaaltoo-3-2017",
+  "articleId": "mitmekesisuse-lepped-2017-3",
+  "title": "Mitmekesisusest ja novembris Eestis toimuvast mitmekesisuse lepete foorumist",
+  "authors": [
+    "Hannaliisa Uusma",
+    "Agni Aav"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2017",
+  "section": "Sotsiaalpoliitika",
+  "pageRange": "24-26",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi võrdsuspoliitikate osakonna artikkel mitmekesisusest ja novembris Eestis toimuvast mitmekesisuse lepete foorumist. Selgitab mitmekesisuse mõistet väärtuspõhise hoiakuna ning tõdeb, et kui USA-s ja Lääne-Euroopas hakati mitmekesisust teadlikumalt väärtustama 1960. aastatel, siis nõukogude- ja postnõukogude ühiskondades, sh Eestis, on see oskus siiani uudne teema.",
+  "tags": [
+    "mitmekesisus",
+    "võrdne kohtlemine",
+    "võrdsuspoliitika",
+    "inimõigused",
+    "hoiakud"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part8.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2017-mitmekesisuse-lepped-2017-3",
+  "source_sha256": "07fb6f35e428902866738aae8bd46343e3e1d3c1a7d9f7a01b9caff3c24c83c3",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2017-mitmekesisuse-lepped-2017-3",
+    "previous_source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part8.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part8.pdf",
+    "reference_stored_source_sha256": "17aaff7b9eb418d4c096ec1fb29079b51d6838a51afbffeb94f51df4ecac0f28",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf",
+      "source_sha256": "3f27c22982b22a396dace8a957798cc21d3240489c7ce4d92802bf1a94bde7a8",
+      "pdf_start_page": 26,
+      "pdf_end_page": 28,
+      "printed_page_range": "24-26",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 28,
+      "source_regions": [
+        {
+          "source_pdf_page": 26,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 27,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 28,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "24-26",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf"
+    },
+    "server_page_range": "24-26"
+  }
+}

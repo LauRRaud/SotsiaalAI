@@ -1,0 +1,81 @@
+{
+  "docId": "sotsiaaltoo-1-2016",
+  "articleId": "sotsiaaltoo-1-2016-artikkel-07-töövõimetoetuse-maksmise-tingimused",
+  "title": "Töövõimetoetuse maksmise tingimused",
+  "authors": [
+    "Kai Sipp"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2016",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "17-19",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Töötukassa töövõimetoetuse osakonna juhataja selgitab töövõimetoetuse seaduse rakendamist alates 1. juulist 2016. Toetust saab 16aastane kuni vanaduspensioniealine inimene, kellel töötukassa on tuvastanud osalise või puuduva töövõime; osalise töövõimega inimene peab täitma vähemalt üht aktiivsusnõuet – töötama, otsima tööd, õppima, kasvatama alla kolmeaastast last, hooldama puudega pereliiget või muud loetletut. Päevamäär on 11,25 eurot: osalise töövõime korral makstakse 57% (ligi 192 eurot kuus), puuduva korral 100% (ligi 337 eurot kuus). Toetust vähendatakse, kui eelmise kuu sissetulek ületab 1012,5 eurot.",
+  "tags": [
+    "töövõimetoetus",
+    "töövõimetoetuse seadus",
+    "aktiivsusnõuded",
+    "eesti töötukassa",
+    "päevamäär",
+    "osaline töövõime"
+  ],
+  "source_type": "file",
+  "source_path": "2016_1_artikkel_07_toovoimetoetuse_maksmise_tingimused.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-07-t-v-imetoetuse-maksmise-tingimused",
+  "source_sha256": "2f2ae515782fe293483b5780190d29970c93f3b2330589f8bab256e25d7893b3",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-07-t-v-imetoetuse-maksmise-tingimused",
+    "previous_source_path": "2016_1_artikkel_07_toovoimetoetuse_maksmise_tingimused.txt",
+    "previous_source_original_path": "1-2016.pdf",
+    "reference_stored_source_sha256": "ac3d7828558d0c04722008835fc025586d55ef881dd1ac0d3a926f65f2594b27",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf",
+      "source_sha256": "2c193295e54f58982562b509b6283e93aa58b1695464671e1768e24e90888a6c",
+      "pdf_start_page": 19,
+      "pdf_end_page": 21,
+      "printed_page_range": "17-20",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 22,
+      "source_regions": [
+        {
+          "source_pdf_page": 19,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 20,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 21,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "17-19"
+    },
+    "server_page_range": "17-20"
+  }
+}

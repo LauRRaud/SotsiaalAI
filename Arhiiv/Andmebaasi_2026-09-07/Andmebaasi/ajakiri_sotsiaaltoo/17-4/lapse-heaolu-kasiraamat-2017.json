@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-4-2017",
+  "articleId": "lapse-heaolu-hindamise-kasiraamatust-2017",
+  "title": "Lapse heaolu hindamise käsiraamatust",
+  "authors": [
+    "Kadi Lauri"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2017",
+  "section": "Sotsiaaltöö meetodid",
+  "pageRange": "71-76",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tutvustus lapse heaolu hindamise käsiraamatust, BBIC-raamistikust ja selle põhimõtetest, lapse arengut ja vajadusi, vanemlike oskuste ning pere, kogukonna ja teenuste mõju hindamisest ning hindamistulemuste sidumisest STAR-andmeregistri ja juhtumitööga.",
+  "tags": [
+    "lapse heaolu hindamine",
+    "BBIC raamistik",
+    "lastekaitse",
+    "riskitegurid ja kaitsetegurid",
+    "STAR andmeregister",
+    "juhtumikorraldus"
+  ],
+  "source_type": "file",
+  "source_path": "Lapse heaolu hindamise käsiraamatust.pdf",
+  "document_id": "sotsiaaltoo-4-2017-lapse-heaolu-hindamise-kasiraamatust-2017",
+  "source_format": "pdf",
+  "source_sha256": "c81f88acd7b0ef51be5ddfb178de7313b9ac9b58df3f3242697e5c6c99bbc378",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2017-lapse-heaolu-hindamise-kasiraamatust-2017",
+    "previous_source_path": "Lapse heaolu hindamise käsiraamatust.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "c81f88acd7b0ef51be5ddfb178de7313b9ac9b58df3f3242697e5c6c99bbc378",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

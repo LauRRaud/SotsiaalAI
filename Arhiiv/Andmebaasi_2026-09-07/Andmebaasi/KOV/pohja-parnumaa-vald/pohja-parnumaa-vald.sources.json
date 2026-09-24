@@ -1,0 +1,1330 @@
+{
+  "schemaVersion": "kov-sources-v2.5-sourcepackage",
+  "docId": "kov-pohja-parnumaa-vald",
+  "document_id": "kov-pohja-parnumaa-vald",
+  "municipality": "Põhja-Pärnumaa vald",
+  "municipality_id": "pohja_parnumaa_vald",
+  "county": "Pärnumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "sources": [
+    {
+      "source_id": "home",
+      "title": "Põhja-Pärnumaa valla ametlik koduleht",
+      "url": "https://www.pparnumaa.ee/",
+      "url_canonical": "https://www.pparnumaa.ee/",
+      "normalized_url": "https://www.pparnumaa.ee/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "avaleht",
+        "navigeerimine"
+      ],
+      "document_id": "home",
+      "source_key": "home",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "c46abeaf6ae1c115479175ff06e5ac5334069ae3cfbfadae6d3f89a8aee6334c",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "home"
+    },
+    {
+      "source_id": "social_menu_home",
+      "title": "Pere, sotsiaal ja tervishoid menüüharu avalehel",
+      "url": "https://www.pparnumaa.ee/",
+      "url_canonical": "https://www.pparnumaa.ee/",
+      "normalized_url": "https://www.pparnumaa.ee/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "sotsiaalvaldkonna menüüstruktuur"
+      ],
+      "document_id": "social_menu_home",
+      "source_key": "social_menu_home",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "b0c3ad9a79b38763f9ec512fae20e508e6f8303298f718c62e01761162037716",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "social_menu_home"
+    },
+    {
+      "source_id": "eakad_services",
+      "title": "Teenused eakatele ja erivajadusega inimestele",
+      "url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/teenused",
+      "url_canonical": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/teenused",
+      "normalized_url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/teenused",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "täiskasvanute ja eakate sotsiaalteenused"
+      ],
+      "document_id": "eakad_services",
+      "source_key": "eakad_services",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_resource_abivahendid",
+        "pohja_parnumaa_vald_resource_hairenuputeenus",
+        "pohja_parnumaa_vald_resource_koduanduri_teenus",
+        "pohja_parnumaa_vald_resource_tasuta_oigusabi_erivajadusega_inimesele",
+        "pohja_parnumaa_vald_service_intervallhoiuteenus",
+        "pohja_parnumaa_vald_service_isikliku_abistaja_teenus",
+        "pohja_parnumaa_vald_service_koduteenus",
+        "pohja_parnumaa_vald_service_psuhholoogiline_noustamine",
+        "pohja_parnumaa_vald_service_sotsiaaltransporditeenus",
+        "pohja_parnumaa_vald_service_taisealise_isiku_hooldus",
+        "pohja_parnumaa_vald_service_tugiisikuteenus_taiskasvanule",
+        "pohja_parnumaa_vald_service_uldhooldusteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "c04e7debe8121f30af6a78262c18598f7496e4f7a4bf80579f12953d199b9272",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "eakad_services"
+    },
+    {
+      "source_id": "children_services",
+      "title": "Teenused lastele ja peredele",
+      "url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/teenused",
+      "url_canonical": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/teenused",
+      "normalized_url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/teenused",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "laste ja perede sotsiaalteenused"
+      ],
+      "document_id": "children_services",
+      "source_key": "children_services",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_service_asendushooldusteenus",
+        "pohja_parnumaa_vald_service_jarelhooldusteenus",
+        "pohja_parnumaa_vald_service_lapsehoiuteenus",
+        "pohja_parnumaa_vald_service_perelepitusteenus",
+        "pohja_parnumaa_vald_service_peretugevdusteenus",
+        "pohja_parnumaa_vald_service_tugiisikuteenus_lapsele_voi_vanemale",
+        "pohja_parnumaa_vald_service_turvakoduteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "accee9086f806c0146e70e0a6b8a5b73d3e6597e5b1c9dfd712f38eff93a9634",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "children_services"
+    },
+    {
+      "source_id": "toimetulek_services",
+      "title": "Sotsiaalteenused toimetulekuraskustes inimestele",
+      "url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskustega-inimesed/teenused",
+      "url_canonical": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskustega-inimesed/teenused",
+      "normalized_url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskustega-inimesed/teenused",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "toimetulekuraskustes inimeste teenused"
+      ],
+      "document_id": "toimetulek_services",
+      "source_key": "toimetulek_services",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_resource_ev_consult_ou",
+        "pohja_parnumaa_vald_resource_mtu_pesapuu",
+        "pohja_parnumaa_vald_resource_mtu_toomaja",
+        "pohja_parnumaa_vald_resource_sotsiaalne_kaasatus_mtu",
+        "pohja_parnumaa_vald_service_eluruumi_tagamine",
+        "pohja_parnumaa_vald_service_mtu_toomaja_teenus",
+        "pohja_parnumaa_vald_service_varjupaigateenus",
+        "pohja_parnumaa_vald_service_volanoustamisteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "44fa202e90dfc0eb90aea893fe46411d2d8facb50529b7f84b8a333db04d7940",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "toimetulek_services"
+    },
+    {
+      "source_id": "toimetulek_benefits",
+      "title": "Toetused toimetulekuraskustes inimestele",
+      "url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskustega-inimesed/toetused",
+      "url_canonical": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskustega-inimesed/toetused",
+      "normalized_url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskustega-inimesed/toetused",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "sissetulekust sõltuv sotsiaaltoetus"
+      ],
+      "document_id": "toimetulek_benefits",
+      "source_key": "toimetulek_benefits",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_benefit_sissetulekust_soltuv_sotsiaaltoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "bd61cefc3de47271dbd9254608cf8a47a6e6992a2643a621bfea24ffe12c84bc",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "toimetulek_benefits"
+    },
+    {
+      "source_id": "eakad_benefits",
+      "title": "Toetused eakatele ja erivajadusega inimestele",
+      "url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/toetused",
+      "url_canonical": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/toetused",
+      "normalized_url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/toetused",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "hooldajatoetus",
+        "juhtkoera ülalpidamistoetus"
+      ],
+      "document_id": "eakad_benefits",
+      "source_key": "eakad_benefits",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_benefit_hooldajatoetus_taisealise_isiku_hooldajale",
+        "pohja_parnumaa_vald_benefit_juhtkoera_ulalpidamistoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "24582243c9a4047b678c89d810dea2becec5ef899ecda511a6bda881f71426ce",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "eakad_benefits"
+    },
+    {
+      "source_id": "children_benefits",
+      "title": "Toetused lastega peredele",
+      "url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/toetused",
+      "url_canonical": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/toetused",
+      "normalized_url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/toetused",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "lastega perede toetused"
+      ],
+      "document_id": "children_benefits",
+      "source_key": "children_benefits",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_benefit_esimesse_klassi_astuja_toetus",
+        "pohja_parnumaa_vald_benefit_lapse_sunnitoetus",
+        "pohja_parnumaa_vald_benefit_lasteaia_toitlustustasu_vabastus",
+        "pohja_parnumaa_vald_benefit_puudega_lapse_hooldajatoetus",
+        "pohja_parnumaa_vald_benefit_sissetulekust_soltuv_toetus_lastega_peredele"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "5ac1a50ad409dbf27c2b026c9dfa703585454936e4caf8eaf5e0b28771c0b52e",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "children_benefits"
+    },
+    {
+      "source_id": "riiklik_toimetulekutoetus_page",
+      "title": "Riiklik toimetulekutoetus",
+      "url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskustega-inimesed/riiklik-toimetulekutoetus",
+      "url_canonical": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskustega-inimesed/riiklik-toimetulekutoetus",
+      "normalized_url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskustega-inimesed/riiklik-toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "toimetulekutoetuse praktiline taotlemise info"
+      ],
+      "document_id": "riiklik_toimetulekutoetus_page",
+      "source_key": "riiklik_toimetulekutoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_benefit_riiklik_toimetulekutoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "f51b3081aa3dd4b5a487ce7c49a042241d35d18d83fb7f6d011ec1b4f8232b3b",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "riiklik_toimetulekutoetus_page"
+    },
+    {
+      "source_id": "matusetoetus_page",
+      "title": "Matusetoetus",
+      "url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/lahedase-kaotus/matusetoetus",
+      "url_canonical": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/lahedase-kaotus/matusetoetus",
+      "normalized_url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/lahedase-kaotus/matusetoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "matusetoetus"
+      ],
+      "document_id": "matusetoetus_page",
+      "source_key": "matusetoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_benefit_matusetoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "49976273b73f0cc18b7016630446ef9e23e408ba02adde2c444b5ed82b4d09f4",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "matusetoetus_page"
+    },
+    {
+      "source_id": "toidupank_page",
+      "title": "Toidupank",
+      "url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskustega-inimesed/toidupank",
+      "url_canonical": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskustega-inimesed/toidupank",
+      "normalized_url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskustega-inimesed/toidupank",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "toiduabi ressurss"
+      ],
+      "document_id": "toidupank_page",
+      "source_key": "toidupank_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_resource_parnu_toidupank"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "581d31d84df4166a621279b26edeaa288f1192cd53bc979b5091270e3ef28955",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "toidupank_page"
+    },
+    {
+      "source_id": "valtimatu_abi_page",
+      "title": "Vältimatu sotsiaalabi",
+      "url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskustega-inimesed/valtimatu-abi",
+      "url_canonical": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskustega-inimesed/valtimatu-abi",
+      "normalized_url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskustega-inimesed/valtimatu-abi",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "vältimatu sotsiaalabi"
+      ],
+      "document_id": "valtimatu_abi_page",
+      "source_key": "valtimatu_abi_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_service_valtimatu_sotsiaalabi"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "beddc22db3f2f60d3e24edc2207923a4fc7ba3f6ee29c6e4c89b00cf0e4fa140",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "valtimatu_abi_page"
+    },
+    {
+      "source_id": "hoolekandeasutused_page",
+      "title": "Hoolekandeasutused",
+      "url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused",
+      "url_canonical": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused",
+      "normalized_url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "hooldekodud",
+        "sotsiaalkeskus"
+      ],
+      "document_id": "hoolekandeasutused_page",
+      "source_key": "hoolekandeasutused_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_resource_as_hoolekandeteenused_vandra_kodu",
+        "pohja_parnumaa_vald_resource_halinga_turvakodu",
+        "pohja_parnumaa_vald_resource_kaelase_kodu",
+        "pohja_parnumaa_vald_resource_parnu_jaagupi_oenduskodu",
+        "pohja_parnumaa_vald_resource_pohja_parnumaa_sotsiaalkeskus",
+        "pohja_parnumaa_vald_resource_tootsi_hooldekodu",
+        "pohja_parnumaa_vald_resource_vandra_alevi_hoolekandekeskus",
+        "pohja_parnumaa_vald_resource_vandra_oenduskodu"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "c1651505c60fae36a91dd3d34eac827d79be8dbbec5f4bffd0c34d844c5b3918",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "hoolekandeasutused_page"
+    },
+    {
+      "source_id": "parkimiskaart_page",
+      "title": "Puudega inimese sõiduki parkimiskaart",
+      "url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/puudega-inimese-soiduki-parkimiskaart",
+      "url_canonical": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/puudega-inimese-soiduki-parkimiskaart",
+      "normalized_url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/puudega-inimese-soiduki-parkimiskaart",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "parkimiskaardi taotlemine"
+      ],
+      "document_id": "parkimiskaart_page",
+      "source_key": "parkimiskaart_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_resource_parkimiskaart"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "6527a1ad35a771769d1ef55e097eb707aa940b9b10a155ad9ce51691a3d95753",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "parkimiskaart_page"
+    },
+    {
+      "source_id": "eestkoste_page",
+      "title": "Eestkoste",
+      "url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/eestkoste",
+      "url_canonical": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/eestkoste",
+      "normalized_url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/eestkoste",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "eestkoste info"
+      ],
+      "document_id": "eestkoste_page",
+      "source_key": "eestkoste_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_resource_eestkoste"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "70b9dedea43addfda0fe0e60a781d29436d0b8e98de0e33f75167c7c7d27b5e1",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "eestkoste_page"
+    },
+    {
+      "source_id": "lahisuhtevagivald_ohvriabi_page",
+      "title": "Lähisuhtevägivald ja ohvriabi",
+      "url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lahisuhtevagivald-ja-ohvriabi",
+      "url_canonical": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lahisuhtevagivald-ja-ohvriabi",
+      "normalized_url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lahisuhtevagivald-ja-ohvriabi",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "ohvriabi",
+        "kriisiabi",
+        "lähisuhtevägivald"
+      ],
+      "document_id": "lahisuhtevagivald_ohvriabi_page",
+      "source_key": "lahisuhtevagivald_ohvriabi_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_resource_lahisuhtevagivald_ja_ohvriabi"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "1f04e4e1ad1d89f95b03deebc7031c9cf63f1d357b19a8b9246a2608f1b6b49d",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "lahisuhtevagivald_ohvriabi_page"
+    },
+    {
+      "source_id": "abivajav_laps_page",
+      "title": "Abivajav laps",
+      "url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/abivajav-laps",
+      "url_canonical": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/abivajav-laps",
+      "normalized_url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/abivajav-laps",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "abivajav laps",
+        "lasteabi"
+      ],
+      "document_id": "abivajav_laps_page",
+      "source_key": "abivajav_laps_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_resource_abivajav_laps_ja_lasteabi"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "35238428dda34ea50d17f8e53e76b3d87e809a1a867b6369e7808dc1a1d65c9c",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "abivajav_laps_page"
+    },
+    {
+      "source_id": "ngts_noortegarantii_page",
+      "title": "NGTS Noortegarantii",
+      "url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/ngts-noortegarantii",
+      "url_canonical": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/ngts-noortegarantii",
+      "normalized_url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/ngts-noortegarantii",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "noortegarantii tugisüsteem"
+      ],
+      "document_id": "ngts_noortegarantii_page",
+      "source_key": "ngts_noortegarantii_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_resource_ngts_noortegarantii"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "99c33293c8ec7736157a3d0230ba26dd64f06b79482376b69386a63ccc19a042",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "ngts_noortegarantii_page"
+    },
+    {
+      "source_id": "vaimne_tervis_page",
+      "title": "Vaimne tervis",
+      "url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/tervis/vaimne-tervis",
+      "url_canonical": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/tervis/vaimne-tervis",
+      "normalized_url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/tervis/vaimne-tervis",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "vaimse tervise info ja teenuste rahastamine"
+      ],
+      "document_id": "vaimne_tervis_page",
+      "source_key": "vaimne_tervis_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_resource_vaimse_tervise_abi_info"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "6c75ac98846e0cb84de728ce14d90d526689c03801532c142c98f5c27eb563a0",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "vaimne_tervis_page"
+    },
+    {
+      "source_id": "social_contacts",
+      "title": "Sotsiaalosakonna teenistujad",
+      "url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/kontakt/teenistujad",
+      "url_canonical": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/kontakt/teenistujad",
+      "normalized_url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/kontakt/teenistujad",
+      "source_type": "contact_page",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "sotsiaalvaldkonna kontaktid"
+      ],
+      "document_id": "social_contacts",
+      "source_key": "social_contacts",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_contact_anastassia_seppa",
+        "pohja_parnumaa_vald_contact_anu_oismets",
+        "pohja_parnumaa_vald_contact_diana_audru",
+        "pohja_parnumaa_vald_contact_eret_pank",
+        "pohja_parnumaa_vald_contact_kersti_tilk",
+        "pohja_parnumaa_vald_contact_kerttu_kaia_kesler",
+        "pohja_parnumaa_vald_contact_krista_lindmae",
+        "pohja_parnumaa_vald_contact_liina_maesepp",
+        "pohja_parnumaa_vald_contact_maris_heldja_parn",
+        "pohja_parnumaa_vald_contact_tarvi_tasane"
+      ],
+      "sections_present": [],
+      "content_hash": "b534fba1d7f55345b07692426424a3324f5e14cc03c0ad1c86e88fc765e816d5",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "social_contacts"
+    },
+    {
+      "source_id": "forms_page",
+      "title": "Sotsiaalvaldkonna blanketid",
+      "url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/blanketid-ja-valdkondlikud-oigusaktid/sotsiaalvaldkonna-blanketid",
+      "url_canonical": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/blanketid-ja-valdkondlikud-oigusaktid/sotsiaalvaldkonna-blanketid",
+      "normalized_url": "https://www.pparnumaa.ee/pere-sotsiaal-ja-tervishoid/blanketid-ja-valdkondlikud-oigusaktid/sotsiaalvaldkonna-blanketid",
+      "source_type": "application_form",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "vormide koondleht"
+      ],
+      "document_id": "forms_page",
+      "source_key": "forms_page",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "b0ce11bd57df0e053debbfc9dad06097443b3227deb4a967576ffce62825387b",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "forms_page"
+    },
+    {
+      "source_id": "form_sotsiaalhoolekandelise_abi",
+      "title": "Sotsiaalhoolekandelise abi taotlus",
+      "url": "https://www.pparnumaa.ee/sites/default/files/documents/2026-02/Sotsiaalhoolekandelise%20abi%20taotlus.pdf",
+      "url_canonical": "https://www.pparnumaa.ee/sites/default/files/documents/2026-02/Sotsiaalhoolekandelise%20abi%20taotlus.pdf",
+      "normalized_url": "https://www.pparnumaa.ee/sites/default/files/documents/2026-02/Sotsiaalhoolekandelise%20abi%20taotlus.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "sotsiaalteenuste taotlusvorm"
+      ],
+      "document_id": "form_sotsiaalhoolekandelise_abi",
+      "source_key": "form_sotsiaalhoolekandelise_abi",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_form_sotsiaalhoolekandelise_abi_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "fe128d1136dc8b669b067e6a8bf6cf0b30c571bf551370c6cfbee4c17abd3d10",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_sotsiaalhoolekandelise_abi"
+    },
+    {
+      "source_id": "form_sissetulekust_soltuv",
+      "title": "Sissetulekust sõltuvate sotsiaaltoetuste taotlus",
+      "url": "https://www.pparnumaa.ee/sites/default/files/documents/2026-02/Sissetulekust%20s%C3%B5ltuvate%20sotsiaaltoetuste%20taotlus.pdf",
+      "url_canonical": "https://www.pparnumaa.ee/sites/default/files/documents/2026-02/Sissetulekust%20s%C3%B5ltuvate%20sotsiaaltoetuste%20taotlus.pdf",
+      "normalized_url": "https://www.pparnumaa.ee/sites/default/files/documents/2026-02/Sissetulekust%20s%C3%B5ltuvate%20sotsiaaltoetuste%20taotlus.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "sissetulekust sõltuva sotsiaaltoetuse vorm"
+      ],
+      "document_id": "form_sissetulekust_soltuv",
+      "source_key": "form_sissetulekust_soltuv",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_form_sissetulekust_soltuvate_sotsiaaltoetuste_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "4dc8b59d81a3fd6bc533412018e66a786d0cff123c85a4924ecc5c5ca7395383",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_sissetulekust_soltuv"
+    },
+    {
+      "source_id": "form_sissetulekust_mittesoltuv",
+      "title": "Sissetulekust mittesõltuva sotsiaaltoetuse taotlus",
+      "url": "https://www.pparnumaa.ee/sites/default/files/documents/2026-04/Sissetulekust_mittesoltuv.pdf",
+      "url_canonical": "https://www.pparnumaa.ee/sites/default/files/documents/2026-04/Sissetulekust_mittesoltuv.pdf",
+      "normalized_url": "https://www.pparnumaa.ee/sites/default/files/documents/2026-04/Sissetulekust_mittesoltuv.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "sünnitoetus",
+        "matusetoetus"
+      ],
+      "document_id": "form_sissetulekust_mittesoltuv",
+      "source_key": "form_sissetulekust_mittesoltuv",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_form_sissetulekust_mittesoltuva_sotsiaaltoetuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "e66a889f3efc75ccaa3743369741871640d8f593742b76c27db8d223f0854494",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_sissetulekust_mittesoltuv"
+    },
+    {
+      "source_id": "form_hoolduse_hooldajatoetus",
+      "title": "Hoolduse seadmise ja hooldajatoetuse taotlus",
+      "url": "https://www.pparnumaa.ee/sites/default/files/documents/2026-02/Hoolduse%20seadmise%20ja%20hooldajatoetuse%20taotlus.pdf",
+      "url_canonical": "https://www.pparnumaa.ee/sites/default/files/documents/2026-02/Hoolduse%20seadmise%20ja%20hooldajatoetuse%20taotlus.pdf",
+      "normalized_url": "https://www.pparnumaa.ee/sites/default/files/documents/2026-02/Hoolduse%20seadmise%20ja%20hooldajatoetuse%20taotlus.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "hooldus",
+        "hooldajatoetus"
+      ],
+      "document_id": "form_hoolduse_hooldajatoetus",
+      "source_key": "form_hoolduse_hooldajatoetus",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_form_hoolduse_seadmise_ja_hooldajatoetuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "7583b3160b5ab3d36da619412311b8c4169aaad01e5669efcba11e2bed24084d",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_hoolduse_hooldajatoetus"
+    },
+    {
+      "source_id": "form_toimetulekutoetus",
+      "title": "Toimetulekutoetuse taotlus",
+      "url": "https://www.pparnumaa.ee/sites/default/files/documents/2026-02/Toimetulekutoetuse%20taotlus.pdf",
+      "url_canonical": "https://www.pparnumaa.ee/sites/default/files/documents/2026-02/Toimetulekutoetuse%20taotlus.pdf",
+      "normalized_url": "https://www.pparnumaa.ee/sites/default/files/documents/2026-02/Toimetulekutoetuse%20taotlus.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "toimetulekutoetus"
+      ],
+      "document_id": "form_toimetulekutoetus",
+      "source_key": "form_toimetulekutoetus",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_form_toimetulekutoetuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "50d7befb528dc0949a9b68e1fa9c8566b0938492ff366a61516d69d0e50e6ffc",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_toimetulekutoetus"
+    },
+    {
+      "source_id": "form_toitlustamise_vabastus",
+      "title": "Toitlustamise eest tasumisest vabastamise taotlus",
+      "url": "https://www.pparnumaa.ee/sites/default/files/documents/2026-02/Toitlustamise%20eest%20tasumisest%20vabastamise%20taotlus.pdf",
+      "url_canonical": "https://www.pparnumaa.ee/sites/default/files/documents/2026-02/Toitlustamise%20eest%20tasumisest%20vabastamise%20taotlus.pdf",
+      "normalized_url": "https://www.pparnumaa.ee/sites/default/files/documents/2026-02/Toitlustamise%20eest%20tasumisest%20vabastamise%20taotlus.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "toitlustustasu vabastus"
+      ],
+      "document_id": "form_toitlustamise_vabastus",
+      "source_key": "form_toitlustamise_vabastus",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_form_toitlustamise_eest_tasumisest_vabastamise_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "cf1285ddb1d162ad34a025aadea6de3a41db0b8b4fb16e54773e850e46e6f3ef",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_toitlustamise_vabastus"
+    },
+    {
+      "source_id": "form_esimese_klassi_toetus",
+      "title": "Esimesse klassi astuja toetuse taotlus",
+      "url": "https://www.pparnumaa.ee/sites/default/files/documents/2026-01/Esimesse%20klassi%20astuja%20toetuse%20taotlus.docx",
+      "url_canonical": "https://www.pparnumaa.ee/sites/default/files/documents/2026-01/Esimesse%20klassi%20astuja%20toetuse%20taotlus.docx",
+      "normalized_url": "https://www.pparnumaa.ee/sites/default/files/documents/2026-01/Esimesse%20klassi%20astuja%20toetuse%20taotlus.docx",
+      "source_type": "application_form",
+      "source_format": "docx",
+      "collection_id": "kov_services",
+      "authority": "Põhja-Pärnumaa Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "esimesse klassi astuja toetus"
+      ],
+      "document_id": "form_esimese_klassi_toetus",
+      "source_key": "form_esimese_klassi_toetus",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Põhja-Pärnumaa vald",
+      "municipality_id": "pohja_parnumaa_vald",
+      "municipality_name": "Põhja-Pärnumaa vald",
+      "county": "Pärnumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "pohja_parnumaa_vald_form_esimesse_klassi_astuja_toetuse_taotlus"
+      ],
+      "sections_present": [],
+      "content_hash": "aac63a3371b3aa958c2944b9a715c0b66f8820b0aedeeef8f673d2fd134fd513",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_esimese_klassi_toetus"
+    }
+  ],
+  "municipality_name": "Põhja-Pärnumaa vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

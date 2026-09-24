@@ -1,0 +1,2139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="e0288df8-a9f0-478f-a63e-b426d7521bd0" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Saaremaa Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2019-04-26</aktikuupaev>
+			<avaldamismarge>
+				<RTosa id="bc1ec767-9cb6-4e44-9ae3-31ab591cc17f">RT IV</RTosa>
+				<avaldamineKuupaev id="1f4d0198-d992-49bc-b12e-c95789d15806">2019-05-14</avaldamineKuupaev>
+				<RTartikkel id="098540b9-b49b-4ed5-9150-db412a287fd3">6</RTartikkel>
+				<aktViide id="50343dc6-ed77-4ec6-bf36-786f77d10ef5">414052019006</aktViide>
+			</avaldamismarge>
+			<joustumine>2019-05-17</joustumine>
+			<aktiNr>7</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2023-09-12</avaldamineKuupaev><RTaasta>2023</RTaasta><RTartikkel>17</RTartikkel><aktViide>412092023017</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2023-09-15</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2023-09-08</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>412092023017</globaalID>
+		<metaandmedVersioon>16</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2023-09-11</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1046985</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2019-05-08</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Margit Kaldre</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>6</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2019-05-13</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>11</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2023-04-10</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="393a4246-713e-4367-9a7e-b28f26dbfdea">
+		<nimi id="a0131544-4a1c-48fe-9846-cdf73d077b83">
+			<pealkiri id="1a24f9e3-49c1-45ee-91fe-cf56f80fdab4">Sotsiaalhoolekandelise abi andmise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="223a5b2d-3aab-4a70-b47d-02629014e699">
+		<aktikuupaev id="8a06b806-3159-411d-9484-57a6e4ada803">2023-03-30</aktikuupaev>
+		<avaldamismarge id="bc191111-79d2-455b-8588-d8b2221694db">
+			<RTosa id="589f8f39-0e16-4a50-a1c7-8f92a733c96b">RT IV</RTosa>
+			<avaldamineKuupaev id="1eb40a58-9f69-495a-afd6-6d7f0ebf31d9">2023-04-11</avaldamineKuupaev>
+			<RTartikkel id="7f803fda-6900-4d0c-be07-1424ff9228a5">6</RTartikkel>
+			<aktViide id="9898dfe8-aa19-4b34-91aa-682f554ce561">411042023006</aktViide>
+		</avaldamismarge>
+		<joustumine id="ac55286a-57b7-43c6-88c8-7c0d7521cf77">2023-04-14</joustumine>
+	</muutmismarge>
+	<muutmismarge id="a7c7f846-e3f8-419d-b007-c0f38af2b512">
+		<aktikuupaev id="11ea1a0e-0868-45c0-8b8c-69d90d94cf67">2023-08-31</aktikuupaev>
+		<avaldamismarge id="3f77bb31-4747-498e-ade4-9683125e0070">
+			<RTosa id="e97bd730-d9da-4fab-803a-6daf45fc34d9">RT IV</RTosa>
+			<avaldamineKuupaev id="9cc4897b-3306-4bbc-9b07-1ee7f81054f8">2023-09-12</avaldamineKuupaev>
+			<RTartikkel id="f18be0d5-bed4-431e-92a8-2342eb085623">2</RTartikkel>
+			<aktViide id="f2f0ea4c-bdde-42c3-91aa-54c51bff5b41">412092023002</aktViide>
+		</avaldamismarge>
+		<joustumine id="6d309ba0-0996-4c1f-8904-37e944c7c2c5">2023-09-15</joustumine>
+	</muutmismarge>
+	<sisu id="b3a4d492-d268-4f83-ab06-75d80e7d2021">
+		<preambul id="d76201e4-4183-44cf-b25a-fd39e67c3b91">
+			<tavatekst id="9d87b148-01ed-4783-ab6c-e572a77b719b">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5, § 22 lõike 2 ning sotsiaalhoolekande seaduse § 14 lõike 1 ja 2 alusel.</tavatekst>
+		</preambul>
+		<peatykk id="d717743d-9687-475e-a05d-0c7e473c2a56">
+			<peatykkNr id="7d14b564-5baf-4c0c-a317-ec6ab38391ac">1</peatykkNr>
+			<kuvatavNr id="a8c5f6c7-eb22-4927-b61b-6d440b84727c"><![CDATA[1. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="9afc66ec-fdf1-4407-ae70-9ebf9c0183d4">ÜLDSÄTTED</peatykkPealkiri>
+			<paragrahv id="para1">
+				<paragrahvNr id="617275eb-f473-40de-b5b3-d9d5fc48d939">1</paragrahvNr>
+				<kuvatavNr id="e031807d-2b93-4cdc-ada4-29d9b3cad913"><![CDATA[§ 1. ]]></kuvatavNr>
+				<paragrahvPealkiri id="6e082acb-5918-4c0e-a5e9-1e6a1e2c3e89">Reguleerimisala</paragrahvPealkiri>
+				<loige id="para1lg1">
+					<loigeNr id="d3a5f694-bdff-4c72-97b5-86417eed3a5f">1</loigeNr>
+					<kuvatavNr id="444a5f86-813e-42a6-b2ff-fc8506ea8b07"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="5656b3ce-e92a-437a-9a71-1af2d828b4b7">
+						<tavatekst id="6a2da33f-bbed-4279-80e3-a8aacf6abff4">Määrusega sätestatakse Saaremaa valla (edaspidi <i>vald</i>) elanikele ja vältimatu sotsiaalabi korras isikutele, kes ajutiselt viibivad valla territooriumil, valla ja riigi eelarve vahenditest osutatava sotsiaalhoolekandelise abi (edaspidi <i>abi</i>) taotlemise tingimused ja kord ning rahastamine.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para1lg2">
+					<loigeNr id="d7221b2a-2250-497d-996f-75b64f2ad26a">2</loigeNr>
+					<kuvatavNr id="ee85abab-24fd-457e-8685-9dae35f69348"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="4817cab5-4476-426f-a717-e185defcf27d">
+						<tavatekst id="12936ae3-e86f-439a-88b2-403b68a064d2">Abi on valla poolt korraldatav sotsiaalteenus (edaspidi <i>teenus</i>) ja makstav sotsiaaltoetus (edaspidi <i>toetus</i>).</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para1lg3">
+					<loigeNr id="82b8d3ae-eb8e-4300-81d0-81f33dc1547d">3</loigeNr>
+					<kuvatavNr id="df0e2b34-abd6-4d23-abd0-94ebab684fda"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="9aa7009a-567c-4b62-91da-8eb036dc0106">
+						<tavatekst id="eee46936-1dc7-4d0f-a5d3-ffd6ad8ca934">Käesolevas korras reguleerimata küsimustes rakendatakse sotsiaalseadustiku üldosa seaduse või sotsiaalhoolekande seaduse sätteid.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="eb42f057-88e3-4910-b219-797c81c6463d">
+			<peatykkNr id="8eac1f67-5eff-4113-bb0d-0571ddc92179">2</peatykkNr>
+			<kuvatavNr id="8dc4bb7e-ad73-4660-b231-8e079970d024"><![CDATA[2. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="9a8b124d-3a84-4d01-af2a-df95c59195e8">SOTSIAALHOOLEKANDELISE ABI KORRALDAMISE PÄDEVUS JA ÜLDISED PÕHIMÕTTED</peatykkPealkiri>
+			<paragrahv id="para2">
+				<paragrahvNr id="97a14535-1e0a-4c90-b080-b12269a0c6d9">2</paragrahvNr>
+				<kuvatavNr id="929f39e0-115b-4e4a-adb7-a3e0af3e396e"><![CDATA[§ 2. ]]></kuvatavNr>
+				<paragrahvPealkiri id="50446dc1-754b-47e1-896d-5da1fdb02018">Abi andmise kord</paragrahvPealkiri>
+				<loige id="para2lg1">
+					<loigeNr id="f303fc4b-ef19-4b68-bc17-54ca777565d3">1</loigeNr>
+					<kuvatavNr id="aeba55fe-c36e-4277-bd23-8966f8c559fb"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="a20dd0b7-3076-43ac-91a0-7971581b2afc">
+						<tavatekst id="8391890c-ff9d-4d69-afa5-67c6884ed3ab">Saaremaa Vallavalitsus (edaspidi <i>vallavalitsus</i>) osutab abi üldjuhul taotluse alusel või abivajaduse ilmnemisel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2lg2">
+					<loigeNr id="a320fd28-f06f-4a6f-a955-e3c12ea287e5">2</loigeNr>
+					<kuvatavNr id="fe78765c-5669-4fe6-a7b6-6470a1a69e6c"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="5a94bc70-7b95-43a0-b2d3-049b49120bbe">
+						<tavatekst id="ca77145a-30bb-4a5f-86c7-e9dd66785416">Abivajadusest teada saamisel selgitatakse välja abi andmise vajadus ja ulatus. Vajadusel abistatakse isikut taotluse esitamisel või toimingu tegemisel, kui isiku abistamata jätmise korral jääksid tema õigused kaitseta.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2lg3">
+					<loigeNr id="58d22b33-5816-4364-9822-675113a3a2a1">3</loigeNr>
+					<kuvatavNr id="f86a0b9a-6015-4ea0-99cb-08d8fda441ca"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="003ed5bc-4db3-474d-adec-4c05835a1a2e">
+						<tavatekst id="7deeccf7-16fd-4063-b84b-d885bc396dbe">Abivajaduse tuvastamisel selgitab vastutav ametnik välja isikule sobivaima abi, mis toetab abivajaja iseseisvat toimetulekut ning suutlikkust korraldada iseseisvalt oma elu.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2lg4">
+					<loigeNr id="8c4c42fd-3888-41e3-82c4-ad800d00e45c">4</loigeNr>
+					<kuvatavNr id="86be5ec2-0d65-44fa-8f2a-f2e31650bfd2"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="fa9121eb-da9c-4e8a-b04b-a81dcbdf9c8a">
+						<tavatekst id="484dd061-37c9-4beb-bf85-6ae4ba9749aa">Abi osutatakse hinnatud abivajadusest lähtuvalt ja abivajava isiku nõusolekul.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2lg5">
+					<loigeNr id="3cc33b46-087a-441e-97a2-923d8e23e9af">5</loigeNr>
+					<kuvatavNr id="7aa3d21b-0e80-425d-ba78-01a86a72d072"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="2d78ce15-13b8-4e9e-9e3b-caacfe6f16b7">
+						<tavatekst id="8a6a1084-ef6a-4ee1-bd33-35215bdc64fe">Vallavalitsus moodustab abi paremaks korraldamiseks ja abi andmise üle otsustamiseks alalise sotsiaalkomisjoni (edaspidi <i>komisjon</i>). </tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para3">
+				<paragrahvNr id="51ca1aef-e7e0-432b-829c-57bd77709749">3</paragrahvNr>
+				<kuvatavNr id="adda5ae1-d1ca-4231-8409-820b54219631"><![CDATA[§ 3. ]]></kuvatavNr>
+				<paragrahvPealkiri id="6926c20d-d52b-4ca3-9f51-9f24446e6dea">Abi taotlemine</paragrahvPealkiri>
+				<loige id="para3lg1">
+					<loigeNr id="54d2c60d-faf3-4d8c-b8c8-6bcdb96d01b2">1</loigeNr>
+					<kuvatavNr id="aa183f49-f376-405c-b489-5f76dc5cd6e1"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="bdc931b8-5fbd-4564-b569-bb7df38bb182">
+						<tavatekst id="76afb7cd-319d-4649-8b50-12c24d194398">Abi saamiseks esitatakse üldjuhul kirjalik taotlus vallavalitsusele.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg2">
+					<loigeNr id="8ff92079-3e3d-44c6-8706-1497000f61a3">2</loigeNr>
+					<kuvatavNr id="3c8a3658-eed2-4441-bbce-e8eb715abf8e"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="dc3ad993-6623-416e-b4eb-af3efba538f9">
+						<tavatekst id="993ec2c1-f8a5-4c34-9c42-448aea5bee2c">Taotluses märgitakse abi vajava isiku nimi, isikukood, elukoht, kontaktandmed, sotsiaalne seisund, teenuse või toetuse taotlemise põhjus ja taotluse esitamise kuupäev ning taotleja allkiri. Lähtuvalt abi liigist on vastutaval ametnikul õigus nõuda asja otsustamiseks vajalike dokumentide esitamist.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg3">
+					<loigeNr id="1d2faac8-b69c-4dc1-8c18-b207ec7291ca">3</loigeNr>
+					<kuvatavNr id="78fd5fc9-4e86-4ebc-8864-2f96d94afa3e"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="cec761ad-4ff6-488c-8ceb-d76be91008be">
+						<tavatekst id="0747ba88-839b-424d-8265-8b6a61ea3864">Taotluse menetlemisel on vastutaval ametnikul õigus nõuda taotlejalt sissetulekut tõendavaid dokumente, sealhulgas väljavõtteid taotleja ja tema perekonnaliikmete pangakontodest, vara kasutamise lepinguid ja muid otsustamiseks vajalikke lisaandmeid ja dokumente, sealhulgas kulutusi põhjendavaid dokumente, teha kodukülastusi, saada andmeid teistelt füüsilistelt ja juriidilistelt isikutelt.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg4">
+					<loigeNr id="1ae9264c-3774-45d6-b038-fe60b5a0ca59">4</loigeNr>
+					<kuvatavNr id="912c3e3f-6585-45df-9be3-f2ec2e083ecd"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="1e257506-088d-40e7-97d0-5ceafa62ea0a">
+						<tavatekst id="100c3cbb-d5d9-491a-a486-5558547bcf2e">Sissetulekute hulka arvatakse eelmise kolme kuu keskmine netotulu, väljaarvatud riigi- ja vallaeelarvelistest vahenditest makstavad ühekordsed toetused ja puudega inimese sotsiaaltoetus.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg5">
+					<loigeNr id="b2097243-5db7-4246-96aa-097a779217bb">5</loigeNr>
+					<kuvatavNr id="7c0f82d0-a3ba-426e-97e9-973bed712f3d"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="0398cd1d-cffd-47a9-8326-45454c39a7df">
+						<tavatekst id="8a504130-2294-4130-9ac7-0cb9ef034f5b">Sissetulekute korral, mida on makstud taotlejale või tema perekonnaliikmetele mitmeks kuuks ette või tagantjärele, võetakse hüvitise arvestamisel aluseks taotlemisele eelnenud kuue kuu keskmine netotulu.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg6">
+					<loigeNr id="05c92a64-e2fd-41fb-9373-124f684369e9">6</loigeNr>
+					<kuvatavNr id="31c36159-b2e4-44c1-8803-f932aefcf8a5"><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst id="5692f862-f014-428c-80a9-4b95e8bcd3d9">
+						<tavatekst id="cdb0ab09-a0de-4584-b8ad-c1532ae13667">Puuduste esinemisel või ebapiisavate andmete korral annab ametiasutus taotlejale aja puuduste kõrvaldamiseks või täiendavate andmete esitamiseks. Võimalusel kogub ametiasutus andmeid andmekogude kaudu ise.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para4">
+				<paragrahvNr id="d17d24fa-c066-43c0-9dd1-8c4ef1c2f32d">4</paragrahvNr>
+				<kuvatavNr id="01fcc1ae-d542-4603-a8f2-635f55e84760"><![CDATA[§ 4. ]]></kuvatavNr>
+				<paragrahvPealkiri id="74c8151d-d0f9-4c35-896a-d2f7adfca42d">Abi määramine</paragrahvPealkiri>
+				<loige id="para4lg1">
+					<loigeNr id="500df79e-79ab-4b78-bb54-027ec5aa45cf">1</loigeNr>
+					<kuvatavNr id="3ac425f5-7687-4d9f-8c68-d2096f3dbace"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="51d593a4-882c-4020-a89d-eaf58e9d6a3c">
+						<tavatekst id="7da38bee-2bea-4466-af46-1665fbde36ca">Abi määramisel võetakse vajadusel arvesse abivajava isiku ja tema perekonnaliikmete sissetulekuid, üldist majanduslikku olukorda, taotluse põhjendatust ja tulemuslikkust olukorra leevendamisel, abivajava isiku enda panust toimetuleku tagamisel ning teisi olemasolevaid võimalusi olukorra lahendamiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg2">
+					<loigeNr id="05aab1de-ef18-4fa4-890f-c152d7895f47">2</loigeNr>
+					<kuvatavNr id="6803f223-3235-49c6-8a8b-87ab0cfd0c10"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="17c9f298-0195-4e43-99c8-74ad03f28a9f">
+						<tavatekst id="c1056899-72b4-49c4-b547-61bd7affe010">Toetuste määrad kehtestab Saaremaa Vallavolikogu.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg3">
+					<loigeNr id="76ca58d1-767d-4d8a-a1fb-a40fc5e288f7">3</loigeNr>
+					<kuvatavNr id="60a507e0-891c-4fdd-a32d-fc71292b6994"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="89872252-ff14-4860-b988-4ec880af2b0d">
+						<tavatekst id="1e2e835d-9d47-44bc-befd-bd2789c3b87c">Abi andmine otsustatakse kümne tööpäeva jooksul nõuetekohase taotluse esitamisest või muu hüvitisele õiguse tekkimise aluseks oleva sündmuse toimumisest, asjaolu saabumisest või tingimuse täitmisest arvates alates, kui muude õigusaktidega ei ole sätestatud teistsugust tähtaega.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg4">
+					<loigeNr id="be8e841d-d78a-4a5b-9121-ac141f0ce64a">4</loigeNr>
+					<kuvatavNr id="e2741d0d-8ea8-4afa-81e7-14c3a1038ed5"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="4545d886-2631-4ad4-bbbb-5c4053f7a5f6">
+						<tavatekst id="5ce80a41-3298-40f7-99ea-4688039a056d">Abi andmise määramise eest vastutav ametnik võib suunata abi määramise otsustamise komisjonile.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg5">
+					<loigeNr id="2b45eb3b-c054-4b27-bca8-9a408cde0431">5</loigeNr>
+					<kuvatavNr id="e72a81b2-bd6c-4174-9180-512fc5a8f7d6"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="4f8696ff-e07e-4794-b4ba-19bc79245f3f">
+						<tavatekst id="fb32b8bc-9f71-4968-8711-3cb0517b697a">Komisjon võib erandkorras määrata abi käesolevas määruses ettenägemata juhtudel ja suuruses.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg6">
+					<loigeNr id="ca57fe34-f87e-4800-9181-cf3d47097920">6</loigeNr>
+					<kuvatavNr id="44e8465b-7f93-4025-b3f9-fd5239151fcd"><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst id="3ac1a0b0-e219-4bd1-956d-b01c7b714706">
+						<tavatekst id="b19bd03d-3bef-4ada-8010-5eb603c72a71">Vallavalitsus võib delegeerida teenuste osutamise sotsiaalhoolekande seaduses esitatud nõuetele vastavale juriidilisele või füüsilisele isikule või teise kohaliku omavalitsuse üksuse ametiasutusele.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg7">
+					<loigeNr id="a4c41c53-f794-4bc0-8d27-a9c96e43e40a">7</loigeNr>
+					<kuvatavNr id="d08faa92-4f18-46bc-bc24-c9b1e19d94a5"><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst id="d21eff2e-4726-4115-b617-195812b7b22e">
+						<tavatekst id="a5d89996-4d19-4d20-9563-c3a340af621f">Teenust osutatakse haldusakti või -lepingu alusel.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para5">
+				<paragrahvNr id="12bba73f-2894-4706-9aca-ebe5e9f7ffaf">5</paragrahvNr>
+				<kuvatavNr id="f15d9dad-999b-42ac-8742-199015217f0d"><![CDATA[§ 5. ]]></kuvatavNr>
+				<paragrahvPealkiri id="0623b5f0-897c-4107-b246-f90e1ced3520">Abi määramisest keeldumine</paragrahvPealkiri>
+				<loige id="para5lg1">
+					<loigeNr id="ebee84d1-00d1-462c-81e4-95cfde735033"/>
+					<kuvatavNr id="65e6645e-dfc2-4f80-ba1e-bf3ca70c1a2c"/>
+					<sisuTekst id="0ab9ab95-1e55-41d9-b63c-3c7bb7e72f44">
+						<tavatekst id="3baecbae-25db-40e7-90e1-73d789951ade">Abi määramisest võib keelduda juhul, kui esineb vähemalt üks järgmistest asjaoludest:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para5lg1p1">
+						<alampunktNr id="18a10731-388c-4856-84c8-52ac65002a36">1</alampunktNr>
+						<kuvatavNr id="6300609d-ec34-41c1-9a0b-d320eb700b7e"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="9637c855-5f6b-41e9-a3a1-8b6946396eea">
+							<tavatekst id="1173dc66-2ea3-47bf-923b-1782e4e6d786">taotleja on esitanud valeandmeid, jätnud nõutud lisadokumendid tähtajaks esitamata või keeldub muul viisil abi määramiseks vajalikust koostööst;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p2">
+						<alampunktNr id="1a0c0b33-a231-4f97-8475-a64624e7373d">2</alampunktNr>
+						<kuvatavNr id="ac4bc64e-6722-493e-b426-27d9530b20e8"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="99344e02-6b56-4fda-a8c4-5f683fdbb3b9">
+							<tavatekst id="a6d65d62-b62f-4ae2-acfe-defe7bdf3467">abivajava isiku ja tema seadusjärgsete ülalpidajate sissetulekud on piisavad, et tagada abivajava isiku abi eest tasumise.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p3">
+						<alampunktNr id="8391a978-c114-4d43-a6b8-c041f3d636f6">3</alampunktNr>
+						<kuvatavNr id="6659605e-4938-4fd1-9d74-ca87571aa348"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="8a55fee8-c30d-497d-9526-26c06b3e4de3">
+							<tavatekst id="8367c3b2-4b84-4567-9726-9c02ca4fe990">abivajava isiku või tema pereliikmete kasutuses või omandis olevad vallas- ja kinnisasjad tagavad temale või tema pereliikmetele toimetulekuks piisavad elatusvahendid;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p4">
+						<alampunktNr id="8715c48f-4704-454c-890b-4c4b94134d7d">4</alampunktNr>
+						<kuvatavNr id="0dcb97e8-b7a9-4912-913d-548c33a07380"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="72ec1c2d-1441-4691-b40f-c2a11246e352">
+							<tavatekst id="9d3d4bd2-b8ab-4e11-9f40-b65e808e3c53">tööealine isik, kes ei tööta ega õpi, on mõjuva põhjuseta keeldunud osalemast tööturuteenuses või vallavalitsuse korraldatavas iseseisvale toimetulekule suunatud teenuses;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p5">
+						<alampunktNr id="3dd64ee3-27bb-4e8b-bc80-494b0085a1dd">5</alampunktNr>
+						<kuvatavNr id="1ccca6c7-1c3f-4394-b554-7004f173e75a"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="93466a1a-70f8-49b6-ba8d-3bcd201ba056">
+							<tavatekst id="ee84b6f3-a6e5-43a2-8573-fd6b37d49eec">abivajav isik on eelnevalt määratud sotsiaalabi kasutanud mittesihipäraselt;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p6">
+						<alampunktNr id="6e33a37e-d7e2-4c37-8c94-950a84898593">6</alampunktNr>
+						<kuvatavNr id="e7c1f248-5537-46ec-8c1c-ffe8e5998736"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="e4ad3842-b422-48dc-b203-20a981441328">
+							<tavatekst id="9a2d2df3-ff6e-41ad-a46f-09865db7ad31">abivajaduse katavad muud riiklikud või kohaliku omavalitsuse toetused/teenused või muu abi.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para6">
+				<paragrahvNr id="a3d2a093-5d15-46a7-9060-e3bd656e58c7">6</paragrahvNr>
+				<kuvatavNr id="79f6a90e-fd0d-47f4-8336-a2a1d6584b4e"><![CDATA[§ 6. ]]></kuvatavNr>
+				<paragrahvPealkiri id="382fa9f3-72ea-4436-b52a-727e34de0f64">Abi rahastamine</paragrahvPealkiri>
+				<loige id="para6lg1">
+					<loigeNr id="22754668-24ed-4554-a550-e01e312fe9c8">1</loigeNr>
+					<kuvatavNr id="e7f0e0e4-951b-4361-9a16-075463eb1513"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="d7d1c65c-e32d-4809-9661-b52927e9f28b">
+						<tavatekst id="32c9fd1c-c35e-4a48-8ae9-33cad6f56ca6">Abi osutamise eest võib võtta tasu.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg2">
+					<loigeNr id="035c40c8-626f-47a5-8f0a-f80d36f30ffd">2</loigeNr>
+					<kuvatavNr id="769ead1e-df5a-4ba5-955b-451da9e42dea"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="7d5f9445-cb36-47ef-ae13-a000438c76d6">
+						<tavatekst id="ce5703f6-11bd-4597-bcae-2c60217e8d8f">Vallavalitsuse ja vallavalitsuse hallatavate asutuste osutatavate teenuste hinnad kehtestab vallavalitsus oma korraldusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg3">
+					<loigeNr id="cf3bf1f9-d50b-4f38-907d-6cc42ef43423">3</loigeNr>
+					<kuvatavNr id="a0d3eb3d-f7af-4b01-9de9-e9d4c194edef"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="f3d723ae-3f55-498f-9a2a-755659021889">
+						<tavatekst id="9966cfa6-159f-4e2d-b1e7-39c3755519a2">Teenuse saajalt võetava tasu suurus oleneb teenuse mahust, teenuse maksumusest ning teenust saava isiku ja tema perekonna majanduslikust olukorrast.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="369d911a-faf4-4b09-ab85-b44af9568bde">
+			<peatykkNr id="6240721e-4ea1-4e8e-bdf1-33d1aa5b892e">3</peatykkNr>
+			<kuvatavNr id="cca32464-456b-47b3-9d1c-cf1bd10a706c"><![CDATA[3. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="45725fa0-e602-402e-9bd4-12c7ed584be0">TEENUSED</peatykkPealkiri>
+			<jagu id="3fb73087-8431-4587-8184-1b2cc307f769">
+				<jaguNr id="038d42a1-d018-40dd-b586-800050748cb8">1</jaguNr>
+				<kuvatavNr id="9ce8eaec-172a-4d89-a24f-a7651208abbe"><![CDATA[1. jagu]]></kuvatavNr>
+				<jaguPealkiri id="7addb0df-da8a-402f-af94-6445d095be71">Üldsätted</jaguPealkiri>
+				<paragrahv id="para7">
+					<paragrahvNr id="809342c2-f4ec-402c-8180-912e4b11bb6f">7</paragrahvNr>
+					<kuvatavNr id="963f36c3-2ca4-43fc-b5ac-567d10eafdbe"><![CDATA[§ 7. ]]></kuvatavNr>
+					<paragrahvPealkiri id="bbfd3346-cf1b-49ab-b83f-874092cda591">Teenused</paragrahvPealkiri>
+					<loige id="para7lg1">
+						<loigeNr id="22180bf8-5f5d-44f9-b7f8-55f4648ce237"/>
+						<kuvatavNr id="5399dfad-6139-42c9-b225-83c54ef49134"/>
+						<sisuTekst id="438d4717-802a-4f8a-9173-df0abcf4d2df">
+							<tavatekst id="23280aeb-543c-4a99-aed6-62a3e10061ce">Valla poolt korraldatavad sotsiaalteenused:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para7lg1p1">
+							<alampunktNr id="beb1dbe2-e175-418d-85c0-a681f77d6afb">1</alampunktNr>
+							<kuvatavNr id="13a82711-c081-4b88-9405-ee3e7bdd31dd"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="506f939f-70a7-4e16-bba6-3a049f530b1b">
+								<tavatekst id="5c88bf21-8660-44b5-a240-f1d6f36fbc07">koduteenus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p2">
+							<alampunktNr id="c9c438a7-e815-4c48-8494-633b135a3303">2</alampunktNr>
+							<kuvatavNr id="9cc1b56f-4367-4e3d-8a3e-bad16671f9c7"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="6549fa45-3e64-4609-85b8-9a61b19b1184">
+								<tavatekst id="e56636f8-a075-4c3a-badc-53b40b4de26b">väljaspool kodu osutatav üldhooldusteenus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p3">
+							<alampunktNr id="4cd611c6-2e26-4e16-a7e9-bda1faa19353">3</alampunktNr>
+							<kuvatavNr id="548fa226-d887-4d20-b0ff-962e8683025b"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="3e58201f-580a-4c39-9993-64a4820de6d7">
+								<tavatekst id="efaaf9b0-fa42-4e25-920b-85345529ca6e">tugiisikuteenus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p4">
+							<alampunktNr id="b0917dcd-b87d-4661-b934-adc8a67d235a">4</alampunktNr>
+							<kuvatavNr id="0874421e-5faa-43ee-9e8c-e50f27651b78"><![CDATA[4) ]]></kuvatavNr>
+							<sisuTekst id="ec1d4ca9-4a3d-426c-9c98-c86bbe901c1b">
+								<tavatekst id="a3fffe88-ee25-4216-bc46-18eeb1d0532f">isiku hooldus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p5">
+							<alampunktNr id="6696826b-4f1f-4154-a077-3c4a000796dd">5</alampunktNr>
+							<kuvatavNr id="bb4e7cbb-0695-48d3-9424-89fa649ea8cb"><![CDATA[5) ]]></kuvatavNr>
+							<sisuTekst id="9ea9ecd6-ef11-43da-86ae-d858a7543f14">
+								<tavatekst id="dfb60a1f-17bc-4cf8-8d98-525a8b5dffb7">isikliku abistaja teenus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p6">
+							<alampunktNr id="f7cac300-5137-4673-ba43-f200c2b5e203">6</alampunktNr>
+							<kuvatavNr id="b06838c7-2822-414f-a504-268d551b492e"><![CDATA[6) ]]></kuvatavNr>
+							<sisuTekst id="58613a1b-a5be-4d5e-ae66-b0a441cc4939">
+								<tavatekst id="8531c837-5488-457a-b5eb-b3cd154a19bd">varjupaigateenus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p7">
+							<alampunktNr id="8834c297-6e90-42e8-ad5e-7eb5b07d6a1a">7</alampunktNr>
+							<kuvatavNr id="b31bd6f4-2313-432f-9c7e-2b7b4cc8175a"><![CDATA[7) ]]></kuvatavNr>
+							<sisuTekst id="60da95d0-7ca0-491c-9859-6822b8177eb1">
+								<tavatekst id="786e77bf-ce59-4b9a-b773-0b1fec3be9e9">turvakoduteenus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p8">
+							<alampunktNr id="3f67f5ff-4d88-4f91-a85a-ecbf356d3bb2">8</alampunktNr>
+							<kuvatavNr id="24fec5a3-06e7-4836-b3f1-9a89d431ca99"><![CDATA[8) ]]></kuvatavNr>
+							<sisuTekst id="6faf62f6-6cff-4fb1-a065-c97ce23c9d39">
+								<tavatekst id="d44d7c2c-956c-4ab5-99ab-595b60fdaaef">sotsiaaltransporditeenus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p9">
+							<alampunktNr id="3ec7aa59-6214-4a2b-a945-489681c34281">9</alampunktNr>
+							<kuvatavNr id="58033896-7882-4b06-bc58-53c55e994f45"><![CDATA[9) ]]></kuvatavNr>
+							<sisuTekst id="56aa4c39-3517-46a7-85dd-1ef3c97826fc">
+								<tavatekst id="2fa9e914-1633-49d2-860a-65b5d333fb55">eluruumi tagamine;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p10">
+							<alampunktNr id="a703fa60-3db0-4d63-83ca-2f1f31e2709f">10</alampunktNr>
+							<kuvatavNr id="94adb95a-d237-4cf6-af4e-4033bbc43bd7"><![CDATA[10) ]]></kuvatavNr>
+							<sisuTekst id="d40046c0-d9b1-4525-9313-8aba6f6b28d5">
+								<tavatekst id="4aeb2189-97b7-443b-b746-a84d1d5ec92f">võlanõustamine;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p11">
+							<alampunktNr id="5cb2ae29-d156-4729-8814-97beb1adae00">11</alampunktNr>
+							<kuvatavNr id="80f17778-2e6a-44a7-8533-946bd7272c41"><![CDATA[11) ]]></kuvatavNr>
+							<sisuTekst id="4db36736-4b87-44ae-95ed-0fc4430c900a">
+								<tavatekst id="d11684d2-1c22-42df-bce1-7320273f918d">lapsehoiuteenus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p12">
+							<alampunktNr id="9c8f6738-a2ca-49c3-85bd-f51d12759eb4">12</alampunktNr>
+							<kuvatavNr id="6d81144e-f17a-4614-9d5c-82f1c12a96b6"><![CDATA[12) ]]></kuvatavNr>
+							<sisuTekst id="1fcac9c8-8e98-4493-b629-750d134be6ad">
+								<tavatekst id="526bc746-03d5-4a52-b418-2f01e37eb973">asendushooldusteenus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p13">
+							<alampunktNr id="27ebc669-ee29-41f8-b5be-84af5125d6f7">13</alampunktNr>
+							<kuvatavNr id="d8890555-d8ba-4b18-872d-96c1e5fd9963"><![CDATA[13) ]]></kuvatavNr>
+							<sisuTekst id="95d5b992-bda6-4577-9c38-ba1c073d21f2">
+								<tavatekst id="f3037868-058c-44dc-bbe9-24996dd9fd83">järelhooldusteenus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p14">
+							<alampunktNr id="8ce632bc-a217-459a-bc3c-ad38d4a31014">14</alampunktNr>
+							<kuvatavNr id="c0f77126-7acc-43b0-baab-28bea6e65556"><![CDATA[14) ]]></kuvatavNr>
+							<sisuTekst id="61ca4ec2-f131-4ec0-be72-e29fd4d79977">
+								<tavatekst id="827e28c2-4083-46bd-8275-5cc78e662fe0">iseseisvat toimetulekut soodustav sotsiaalteenus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p15">
+							<alampunktNr id="2927bcec-84a6-4b71-8c51-04ecea770f6c">15</alampunktNr>
+							<kuvatavNr id="9d2328b9-f4a4-43e5-b559-f8e765e65318"><![CDATA[15) ]]></kuvatavNr>
+							<sisuTekst id="562ea652-76c4-4999-85ad-fa5d0ba7c079">
+								<tavatekst id="a9595fe2-ff4a-480b-9aef-b50fbb65c782">viipekeele tõlketeenus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p16">
+							<alampunktNr id="ffdea30a-d470-42ea-a739-93a1803ec317">16</alampunktNr>
+							<kuvatavNr id="ec2fd039-9c31-4375-b317-8e8916e47540"><![CDATA[16) ]]></kuvatavNr>
+							<sisuTekst id="b61c5805-670f-4781-9099-ec70d449ea0a">
+								<tavatekst id="5ac6de0a-0ae9-43f4-b97a-83cdce40d14b">kuulmisnõustamisteenus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p17">
+							<alampunktNr id="eee1897e-68a2-4d87-9fef-ac600e501b33">17</alampunktNr>
+							<kuvatavNr id="14673648-5220-44ad-af38-351f1faefe09"><![CDATA[17) ]]></kuvatavNr>
+							<sisuTekst id="fd6be761-eccf-4d9d-ac24-7df12b2a5690">
+								<tavatekst id="b5f5a051-bf2f-4ccd-bed6-4bb087b33575">perelepitusteenus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p18">
+							<alampunktNr id="46fc46bd-9567-483c-9c81-468143e63746">18</alampunktNr>
+							<kuvatavNr id="d5aec4ba-225e-478d-ad99-9c3d16526419"><![CDATA[18) ]]></kuvatavNr>
+							<sisuTekst id="d8bf007c-69fb-4b2d-baea-dce78eb8a09a">
+								<tavatekst id="ccd3610c-e465-44b0-92be-b832ddbfbf3d">nõustamis- ja teraapiateenus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p19">
+							<alampunktNr id="986d0912-dee1-42e4-91f9-246f829e2648">19</alampunktNr>
+							<kuvatavNr id="7a8486d4-63dc-40ae-a3d5-f0fd3f90f1c7"><![CDATA[19) ]]></kuvatavNr>
+							<sisuTekst id="01d802ce-d6f1-4523-adea-a8ee929f4db4">
+								<tavatekst id="36813bac-26dd-4783-a9e8-57a79a75ef53">vältimatu sotsiaalabi teenus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p20">
+							<alampunktNr id="f6918d06-2862-41f7-b87a-4f20f68f5499">20</alampunktNr>
+							<kuvatavNr id="892052d4-4535-4584-b1c8-4195dc27a04d"><![CDATA[20) ]]></kuvatavNr>
+							<sisuTekst id="20be71ca-e381-492d-b386-07798f7a78d5">
+								<tavatekst id="d9c13614-9f40-4f47-92c2-f5b39923eb85">toidupangateenus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p21">
+							<alampunktNr id="cc802e1c-8ead-4b91-8d8a-67bf59aa8749">21</alampunktNr>
+							<kuvatavNr id="03f7182e-f23c-4deb-aec9-c1eb02c3937e"><![CDATA[21) ]]></kuvatavNr>
+							<sisuTekst id="0ba44d70-3540-4f47-9b11-06f23dac2c39">
+								<tavatekst id="0c2fa3ce-a402-4b82-926c-3bab01be3ce4">väljaspool kodu osutatav intervallhooldusteenus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p22">
+							<alampunktNr id="f20e2411-14f2-4db6-b07b-1e11bd0cb8d3">22</alampunktNr>
+							<kuvatavNr id="42b06dd6-6516-4f4a-8556-e7b998d8c4ec"><![CDATA[22) ]]></kuvatavNr>
+							<sisuTekst id="abbb58a0-3daf-4738-89ac-882cc41a1819">
+								<tavatekst id="3abaf1ae-037d-429b-b23d-67d42bcd7223">väljaspool kodu osutatav päevahoiuteenus.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="5ab641cb-67a4-4fdd-8580-398fcede50ba">
+				<jaguNr id="ba7bc962-6725-41ed-98b2-89657352bb03">2</jaguNr>
+				<kuvatavNr id="a50eef3f-4170-4d89-a748-1886cb8506a1"><![CDATA[2. jagu]]></kuvatavNr>
+				<jaguPealkiri id="e4e4e04d-5e48-4256-b5ee-1947440b36aa">Koduteenus</jaguPealkiri>
+				<paragrahv id="para8">
+					<paragrahvNr id="1e9900e2-45a6-4d0c-9f3f-197bdf28a031">8</paragrahvNr>
+					<kuvatavNr id="e14d208b-6f42-49ea-ba10-0e89c6c4b55c"><![CDATA[§ 8. ]]></kuvatavNr>
+					<paragrahvPealkiri id="3eef165e-1d19-43ba-81af-6ad06a79b622">Koduteenuse eesmärk</paragrahvPealkiri>
+					<loige id="para8lg1">
+						<loigeNr id="d33ca0c6-39fe-4715-a0ac-cbec427939c4">1</loigeNr>
+						<kuvatavNr id="0b7fd98c-0f17-4e8c-bb7b-f5e676059ad7"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="fc450ddb-32a1-4ffb-a3e3-e23765b544c0">
+							<tavatekst id="d2b578e4-f7a6-4dd5-b61c-94e3b5d67834">Koduteenuse eesmärk on iseseisva ja turvalise toimetuleku tagamine kodustes tingimustes, säilitades ja parandades isiku elukvaliteeti.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para8lg2">
+						<loigeNr id="ecc343aa-12bf-4c84-afb7-ea3066330248">2</loigeNr>
+						<kuvatavNr id="7cc8fb60-b154-4481-a560-78d8f5b877e6"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="522fa301-62c1-41a6-8580-824f994034d2">
+							<tavatekst id="6ebf05d8-1ff2-46b9-8fce-116cd600a6c5">Koduteenuse osutamisel abistatakse isikut toimingutes, mida isik terviseseisundist, tegevusvõimest või elukeskkonnast tulenevatel põhjustel ei suuda sooritada kõrvalabita, kuid mis on vajalikud kodustes tingimustes elamiseks, nagu kütmine, toiduvalmistamine, eluruumi ja riiete korrastamine ning väljaspool eluruumi toiduainete ja majapidamistarvete ostmine ja muu asjaajamine.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para9">
+					<paragrahvNr id="c2650a9d-336e-4268-aa08-6a1ad6881a94">9</paragrahvNr>
+					<kuvatavNr id="e46476b9-72e0-44e8-bb36-074f43632768"><![CDATA[§ 9. ]]></kuvatavNr>
+					<paragrahvPealkiri id="7f897d6f-062b-4c89-84a1-ae860c7fcb37">Koduteenust saama õigustatud isik</paragrahvPealkiri>
+					<loige id="para9lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="8ecb947c-52ef-47f4-a1d8-17acb3606b69">
+						<tavatekst id="76dac144-aa13-4503-ba3c-04d3e5e155b7">Koduteenust on õigus saada täisealisel isikul, kes vajab kodustes tingimustes elamiseks kõrvalabi käesoleva määruse § 8 lõikes 2 nimetatud toimingutes.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para10">
+					<paragrahvNr id="5e10b82c-a1b1-499a-8ba2-415a4b87ff34">10</paragrahvNr>
+					<kuvatavNr id="6441ecac-3fa1-4da9-8464-cca2b0ccee79"><![CDATA[§ 10. ]]></kuvatavNr>
+					<paragrahvPealkiri id="e5cf1351-7b73-40b5-baf7-336d853ba826">Koduteenuse määramine</paragrahvPealkiri>
+					<loige id="para10lg1">
+						<loigeNr id="8463493b-ed7c-4ad3-a879-c1611a5637a0">1</loigeNr>
+						<kuvatavNr id="8734c871-a360-4855-83da-4d4654792964"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="2949c143-08cc-45d1-af35-4dda34a84af8">
+							<tavatekst id="d7def32e-cada-42d2-902f-35b41a7159b7">Koduteenuse määramise otsustab vastutav ametnik.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para10lg2">
+						<loigeNr id="5d75f1b8-db27-4544-b5c7-27da1d1fb992">2</loigeNr>
+						<kuvatavNr id="b0d2be0e-102b-477f-a339-0e9ac4e7622a"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="fdf3bc1b-102b-4a58-9938-1b9a452daee4">
+							<tavatekst id="292f18fe-0e38-47c4-8dcc-296e0229abb9">Koduteenuse määramise otsuses märgitakse teenuse osutaja, kõrvalabi tegevuste loetelu, maht ja osutamise tähtaeg.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="1863e37b-a70a-43c0-9394-ea6bc33d199e">
+				<jaguNr id="aa1797d6-4271-4dac-a147-71fafa5f1921">3</jaguNr>
+				<kuvatavNr id="3974d638-6422-4ca9-8685-e80164423e56"><![CDATA[3. jagu]]></kuvatavNr>
+				<jaguPealkiri id="bc0f197c-bc3c-4dbf-8da1-e9388f60ef07">Väljaspool kodu osutatav üldhooldusteenus</jaguPealkiri>
+				<paragrahv id="para11">
+					<paragrahvNr id="da7d272c-8242-4c49-8d4a-b8c05b85ba3f">11</paragrahvNr>
+					<kuvatavNr id="93267038-bb93-474f-8aca-a871d1a5db6d"><![CDATA[§ 11. ]]></kuvatavNr>
+					<paragrahvPealkiri id="e42a6c1a-18f2-4012-8188-d6186ff1a809">Väljaspool kodu osutatava üldhooldusteenuse eesmärk</paragrahvPealkiri>
+					<loige id="para11lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="99156672-8ea6-48b2-ba7c-9723b3c39ce7">
+						<tavatekst id="50a9cf9c-7b43-4a0e-99c4-507bfab719b1">Väljaspool kodu osutatava üldhooldusteenuse eesmärk on turvalise keskkonna ja toimetuleku tagamine täisealisele isikule, kes terviseseisundist, tegevusvõimest või elukeskkonnast tulenevatel põhjustel ei suuda kodustes tingimustes ajutiselt või püsivalt iseseisvalt toime tulla.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para12">
+					<paragrahvNr id="05d7fbc6-a6ef-4b5a-8bbf-09dc51d7cf11">12</paragrahvNr>
+					<kuvatavNr id="94287ee9-3ea3-4f21-8d63-5c16dee6f145"><![CDATA[§ 12. ]]></kuvatavNr>
+					<paragrahvPealkiri id="b9721579-5c7e-4ea1-9592-efc18a85e253">Väljaspool kodu osutatavat üldhooldusteenust saama õigustatud isik</paragrahvPealkiri>
+					<loige id="para12lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="8ea997ee-c75e-45b8-8e6f-f7fdd20cc6ff">
+						<tavatekst id="1aab8938-2a9d-4293-b5ab-c3befbe5607a">Väljaspool kodu osutatavat üldhooldusteenust on õigus saada isikul, kellel on ööpäevaringse hooldamise ja kõrvalabi vajadus ning kelle hoolduse korraldamine teiste sotsiaalteenuste või muu abi osutamisega kodustes tingimustes ei ole võimalik.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para13">
+					<paragrahvNr id="c7360770-fc17-49d5-9aad-9eee91c9a560">13</paragrahvNr>
+					<kuvatavNr id="a4199bec-0fcb-4ab0-a4ff-0857dde77396"><![CDATA[§ 13. ]]></kuvatavNr>
+					<paragrahvPealkiri id="0f40b728-4cdf-4885-b829-f859ca042fe9">Väljaspool kodu osutatavale üldhooldusteenusele määramine</paragrahvPealkiri>
+					<loige id="para13lg1">
+						<loigeNr id="6f695867-c6a5-451a-95d4-f7d809c12a63">1</loigeNr>
+						<kuvatavNr id="75f18e12-49e2-49ea-8b4a-ad7991890d93"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="aeed499f-d1b7-4867-813e-a5f081eaa1ec">
+							<tavatekst id="daf23ba3-161b-4f21-b157-cc179d17081d">Väljaspool kodu osutatava üldhooldusteenuse määramise otsustab komisjon. </tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para13lg2">
+						<loigeNr id="47935a1d-e5e4-41fa-b2cd-d15bfabf1928">2</loigeNr>
+						<kuvatavNr id="baf98465-6f4d-413a-994c-cd791b466a0b"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="c1e0de4a-d042-4f79-a687-46e03a1bf930">
+							<tavatekst id="ab3ff420-07b0-476a-a27f-659e95b9c37c">Väljaspool kodu osutatava üldhooldusteenuse määramise otsuses märgitakse kõrvalabi vajadus, teenuse osutamise tähtaeg ja teenuse eest tasumise põhimõtted.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="6a13afbf-eca5-4d37-93d1-851f446f4d24">
+							<avaldamismarge id="fe6ea26d-331b-4495-a1ac-698e52f0c234">
+								<RTosa id="0181fe9e-c750-49ff-b202-4830a4634f63">RT IV</RTosa>
+								<avaldamineKuupaev id="3bd0487d-41f9-46ff-9d61-b75bf490372b">2023-04-11</avaldamineKuupaev>
+								<RTartikkel id="28914786-6f05-4c4c-ab73-eae3a2ba9de3">6</RTartikkel>
+								<aktViide id="2f98de66-26e5-4570-a3f6-9fa885f1cb87">411042023006</aktViide>
+							</avaldamismarge>
+							<joustumine id="e8959e34-9ca2-4dc7-bd53-002933f46350">2023-04-14</joustumine>
+						</muutmismarge>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para14">
+					<paragrahvNr id="3a9fa28f-c3fd-478f-adf2-572e3c2d4eab">14</paragrahvNr>
+					<kuvatavNr id="c2b98d99-6bd3-46cd-8f65-6f6df69c590b"><![CDATA[§ 14. ]]></kuvatavNr>
+					<paragrahvPealkiri id="4b950111-1ec1-44ee-95a5-62e0f671ceea">Väljaspool kodu osutatava üldhooldusteenuse eest tasumine</paragrahvPealkiri>
+					<loige id="para14lg1">
+						<loigeNr id="ee5f68b0-d929-4f1c-9d10-bf6f71579235">1</loigeNr>
+						<kuvatavNr id="7a770b02-2196-4588-b6d9-44d19f88574c"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="82fc9a15-f968-4ad5-8cae-a99ccdb64cbc">
+							<tavatekst id="5f7b8652-be28-447d-bdf4-6b66f244f10c">Isiku taotluse alusel tasutakse valla eelarvest väljaspool kodu osutatava üldhooldusteenuse maksumuse osa, mis jääb katmata isiku enda ja tema seadusjärgsete ülalpidajate maksesuutmatuse tõttu.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para14lg2">
+						<loigeNr id="488a251a-c03b-4682-bf47-7f5ce12f3b2d">2</loigeNr>
+						<kuvatavNr id="39010377-10c9-417b-9853-b58521b9a9ee"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="efc17c79-dc4b-405e-9a4f-0fac1fd6dd95">
+							<tavatekst id="8cc7915a-2135-4ffb-8a8c-c71bd43143f4">Tasu maksmise kohustuse üle võtmise otsustab vallavalitsus oma korraldusega, tuginedes komisjoni otsusele.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="6bab3d44-0ebd-4075-8cbb-d8103ef68bd8">
+				<jaguNr id="4cdb2c3c-2f2f-425b-9972-a108fdfce064">4</jaguNr>
+				<kuvatavNr id="61e1d93a-2f79-4418-8af1-7f4f622eb94a"><![CDATA[4. jagu]]></kuvatavNr>
+				<jaguPealkiri id="73106305-c10f-42c0-840a-a60f4ff70cac">Tugiisikuteenus</jaguPealkiri>
+				<paragrahv id="para15">
+					<paragrahvNr id="887d2679-da72-47a6-91ce-d5331045d238">15</paragrahvNr>
+					<kuvatavNr id="80bf7a62-dbb1-4a41-aded-ae102aa66156"><![CDATA[§ 15. ]]></kuvatavNr>
+					<paragrahvPealkiri id="3b571474-1c10-4612-a6d7-36ea5774f628">Tugiisikuteenuse eesmärk</paragrahvPealkiri>
+					<loige id="para15lg1">
+						<loigeNr id="dca2cc96-bc2e-4092-853c-49d11ce860ee">1</loigeNr>
+						<kuvatavNr id="e5ec971b-34d6-41c6-be88-3cd5c5e1dffe"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="57b4e550-f28f-4f7f-a18e-fd149bb5be2c">
+							<tavatekst id="fc0340f0-4f55-4fa1-a7b8-ed3f8f353c31">Tugiisikuteenuse eesmärk on iseseisva toimetuleku toetamine olukordades, kus isik vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu oma kohustuste täitmisel ja õiguste teostamisel olulisel määral kõrvalabi. Kõrvalabi seisneb juhendamises, motiveerimises ning isiku suurema iseseisvuse ja omavastutuse võime arendamises. </tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para15lg2">
+						<loigeNr id="686ee3aa-3aa3-4a19-aa88-9cc6aa0b41d8">2</loigeNr>
+						<kuvatavNr id="badc460c-a6c2-4a36-b409-0add81c1ff37"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="0ed3100d-bf80-4641-a32b-f36648174b5d">
+							<tavatekst id="b8183c88-8e43-4882-90c6-c1f4cb1a1aff">Last kasvatavale isikule tugiisikuteenuse osutamisel on täiendav eesmärk lapse hooldamise ning turvalise ja toetava kasvukeskkonna tagamine.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para15lg3">
+						<loigeNr id="0a87f15b-899b-4e5d-a9bc-f260acffd95d">3</loigeNr>
+						<kuvatavNr id="ce05cf0c-dc1a-4e30-987a-e7b65f2f8b9f"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="10c8d6c0-01ca-4f93-b5b7-f87dfe246689">
+							<tavatekst id="06d50c19-cb17-43f6-9a95-b0dfe52df139">Lapsele tugiisikuteenuse osutamise eesmärk on koostöös last kasvatava isikuga lapse arengu toetamine, sealhulgas vajaduse korral puudega lapse puhul hooldustoimingute sooritamine. Tugiisik abistab last arendavates tegevustes, juhendab ja motiveerib igapäevaelus toime tulema, abistab suhtlemisel perekonnaliikmetega või väljaspool kodu.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para16">
+					<paragrahvNr id="31999722-17b9-4807-b957-a285096619d4">16</paragrahvNr>
+					<kuvatavNr id="787d0787-a75a-4cb7-9766-31dfb881af99"><![CDATA[§ 16. ]]></kuvatavNr>
+					<paragrahvPealkiri id="fe7e01e6-31ab-44e9-a12e-59efb15c4018">Tugiisikuteenust saama õigustatud isik</paragrahvPealkiri>
+					<loige id="para16lg1">
+						<loigeNr id="b1be9e9b-f895-457e-9480-2eae8ebdb740"/>
+						<kuvatavNr id="42e791e8-2ced-44b1-b379-d434d30c41c7"/>
+						<sisuTekst id="a336ec54-9c17-4823-a452-d9056999bf61">
+							<tavatekst id="1031b15a-92b8-4025-b302-a2e3f72200b2">Tugiisikuteenust on õigus saada:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para16lg1p1">
+							<alampunktNr id="90dd2aec-d199-479c-bc59-833274638a94">1</alampunktNr>
+							<kuvatavNr id="3c0eaa3a-6888-4a79-88c5-7e280bb06a76"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="f9e1ca45-4da3-43e6-a564-ed7b788dbc93">
+								<tavatekst id="0bb26b2b-48dc-4403-bed8-49052cd6a560">lapsel, kes vajab abi psüühika- või käitumishäire tõttu;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para16lg1p2">
+							<alampunktNr id="0e6fdee8-a624-428f-b317-3fb171e1c3a2">2</alampunktNr>
+							<kuvatavNr id="72510b9d-d7c5-4eb8-b6e6-188a2107d217"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="441f744a-0630-4476-a259-6f1553731a8b">
+								<tavatekst id="94eda6b3-a3da-43e1-809a-f57d6e2224c0">last kasvatav isik, kes vajab abi lapse eest hoolitsemisel ning lapsele turvalise ja toetava kasvukeskkonna loomisel;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para16lg1p3">
+							<alampunktNr id="f754da9d-4f70-42d5-b1d2-8aebf3421fbc">3</alampunktNr>
+							<kuvatavNr id="f8c38ea0-bf4b-4e9f-945e-75e09cf1a98a"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="95f4b2fb-479c-4c18-884f-3f4429ffbc54">
+								<tavatekst id="5f8fdcbb-156a-4ed6-92c3-8df4c0ccdcb0">isik, kes vajab abi ning juhendamist igapäevastel olme- ja majapidamisküsimuste lahendamisel.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para17">
+					<paragrahvNr id="e8d4e5ff-3520-4e0e-8d6d-c9a37b119116">17</paragrahvNr>
+					<kuvatavNr id="d80cf031-e525-42fe-af47-96a522a50fa8"><![CDATA[§ 17. ]]></kuvatavNr>
+					<paragrahvPealkiri id="ed433c75-b3c3-414d-a14b-9313430ceadb">Tugiisikuteenuse määramine</paragrahvPealkiri>
+					<loige id="para17lg1">
+						<loigeNr id="f397b71f-935d-49fb-84f0-20f1e14f6084">1</loigeNr>
+						<kuvatavNr id="2d5b0901-bace-4167-92db-bbed10aa6aaa"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="5429839a-2cd5-4f8a-aa6c-972bd86b7108">
+							<tavatekst id="2f5d1937-3542-416d-8198-477a8e1eacd3">Tugiisikuteenuse määramise otsustab komisjon.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para17lg2">
+						<loigeNr id="ce4b072a-14b6-421d-9cfd-86063bb54e4c">2</loigeNr>
+						<kuvatavNr id="4d03231b-9399-4ba0-97d1-5375bafaa023"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="4b3b9881-6e6c-46f1-846d-780b56875787">
+							<tavatekst id="eb013295-aadb-4111-86c6-47358df3e9d2">Tugiisikuteenuse määramise otsuses märgitakse lisaks sotsiaalhoolekande seaduse § 24 lõikes 3 toodule teenuse osutaja, eesmärk, teenuse maht ja teenuse osutamise tähtaeg.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="8dd16cd6-deac-43e8-ba26-b2c1dee3a780">
+				<jaguNr id="d0fbe6e5-5681-411c-ac7c-e5cd218e656d">5</jaguNr>
+				<kuvatavNr id="b39cb4aa-f6f4-43aa-a7a6-54d9dc57d8c3"><![CDATA[5. jagu]]></kuvatavNr>
+				<jaguPealkiri id="d53e3e39-5011-4fb5-90a6-b51d6b7fa952">Isiku hooldus</jaguPealkiri>
+				<paragrahv id="para18">
+					<paragrahvNr id="a240919a-92a8-46d9-ab34-29696d43e294">18</paragrahvNr>
+					<kuvatavNr id="9e91fe4b-fae6-4e54-a766-c7f54bfc4699"><![CDATA[§ 18. ]]></kuvatavNr>
+					<paragrahvPealkiri id="bed7a691-3e69-4235-8566-d06ee69b777e">Isiku hooldus</paragrahvPealkiri>
+					<loige id="para18lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="200e1a7d-9a99-4e04-a979-090f48308b9d">
+						<tavatekst id="c01eaf80-ca7e-4b40-b7f2-4ea1aca12036">Isiku hoolduse eesmärk on tagada isiku igapäevane toimetulek kodustes tingimustes.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para19">
+					<paragrahvNr id="6a8d1bb7-4fdc-49e0-9521-2da6ee1e40b7">19</paragrahvNr>
+					<kuvatavNr id="6b27e9ff-a6e7-48e3-808f-bddefe1c143d"><![CDATA[§ 19. ]]></kuvatavNr>
+					<paragrahvPealkiri id="4800249e-e07c-48f4-842b-1faa2ff566f4">Isiku hooldust saama õigustatud isik</paragrahvPealkiri>
+					<loige id="para19lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="fa2fd16f-934e-4f41-9892-dc99a95ac873">
+						<tavatekst id="b74a8d21-7a24-488c-acac-d09f1a2705dc">Hooldus seatakse hooldusvajadusega isikule (edaspidi <i>hooldatav</i>), kes vajab oma füüsilise või psüühilise erivajaduse tõttu kõrvalabi, juhendamist ja järelevalvet ning kellele on määratud puue.<reavahetus/>
+						</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para20">
+					<paragrahvNr id="c69dfe20-4dd7-4db1-a7d8-5517adfe83c5">20</paragrahvNr>
+					<kuvatavNr id="d4ef8e25-7a9d-43dd-82b6-287e7fef49ad"><![CDATA[§ 20. ]]></kuvatavNr>
+					<paragrahvPealkiri id="600280f7-2437-423e-a736-dc45bc2fb96c">Isiku hoolduse määramine</paragrahvPealkiri>
+					<loige id="para20lg1">
+						<loigeNr id="bb9b5106-1bf0-4f29-aeb0-e411c87a108f">1</loigeNr>
+						<kuvatavNr id="a72a4a3d-f038-4d32-b561-bb84fd3287c7"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="a92e10ca-6478-41dd-85ad-1e7151e407c9">
+							<tavatekst id="82d1a6ec-eb76-492b-bde6-cfe54e73fe17">Hooldajaks määratakse isik, kes ei saa hooldamise tõttu töötada. </tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para20lg2">
+						<loigeNr id="fddb866c-6f2f-45d8-85d2-460b557ae496">2</loigeNr>
+						<kuvatavNr id="e9647364-7ea3-4dfe-90ab-37de12941af6"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="ff053f22-3c3a-4861-b952-616583e72326">
+							<tavatekst id="eb93a259-53fe-49f0-82c1-8507d025646a">Hooldajaks ei määrata üldjuhul isikut, kellel endal on raske või sügav puue.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para20lg3">
+						<loigeNr id="ca83a9d4-a1cd-4ec7-a2ff-20c14b396924">3</loigeNr>
+						<kuvatavNr id="5b086330-a02a-4393-9fb3-2367ceae24c3"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="e6655627-1b47-4589-9961-95464dd46608">
+							<tavatekst id="159ca14a-de61-4efd-b835-1cb49abdfc47">Hooldus seatakse ja hooldaja määratakse hooldatava ja hooldaja nõusolekul.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para20lg4">
+						<loigeNr id="a2902108-8017-4f1f-93da-caa0179e2c30">4</loigeNr>
+						<kuvatavNr id="8b48638f-9363-4005-9dd7-353421fdb899"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="2b5a65e9-4f83-4c90-9d43-0047f444202a">
+							<tavatekst id="9609bfd5-75aa-4a2a-a094-b46b979092c1">Hoolduse seadmise ja hooldaja määramise otsustab komisjon.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para20lg5">
+						<loigeNr id="26bb6111-80df-4032-89b4-cd9d66b40e2d">5</loigeNr>
+						<kuvatavNr id="4d17e179-1929-4ab7-82e2-8eee6a72a945"><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst id="58373f72-e60a-4da7-ad8b-25d4486139d1">
+							<tavatekst id="62fefd02-7264-40df-926d-97ba9bc0cae3">Isiku hoolduse määramise otsuses märgitakse hooldaja, teenuse eesmärk, hooldaja ülesanded ja teenuse osutamise tähtaeg.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="14d6231d-5e20-4af8-9ee3-be9b4a2cd111">
+				<jaguNr id="5eee08b2-aeb8-4da6-9364-14ad4d86a447">6</jaguNr>
+				<kuvatavNr id="80072a45-23c4-46e7-9c6b-065cee039ade"><![CDATA[6. jagu]]></kuvatavNr>
+				<jaguPealkiri id="86fb4bdd-0208-4ee4-9330-b5c50c7476ce">Isikliku abistaja teenus</jaguPealkiri>
+				<paragrahv id="para21">
+					<paragrahvNr id="1c705a38-a4dc-4612-ab0c-00a1fc8c27df">21</paragrahvNr>
+					<kuvatavNr id="23e2d2ec-6a2e-4ec1-ba07-4858753a2e7b"><![CDATA[§ 21. ]]></kuvatavNr>
+					<paragrahvPealkiri id="9645b516-f185-4903-8578-e01fb8df9584">Isikliku abistaja teenus</paragrahvPealkiri>
+					<loige id="para21lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="69150e32-ce41-4f9f-9732-43e4bc1de6f9">
+						<tavatekst id="37fbfb24-39b7-40eb-9423-c0d4edaf4fdf">Isikliku abistaja teenuse eesmärk on suurendada isiku iseseisvat toimetulekut ja osalemist kõigis eluvaldkondades, vähendades teenust saava isiku seadusjärgsete ülalpidajate hoolduskoormust.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para22">
+					<paragrahvNr id="24c7e3eb-a852-41c7-8c4d-e9478da8e588">22</paragrahvNr>
+					<kuvatavNr id="c7d1acff-d6c2-4e42-977a-44049caf5060"><![CDATA[§ 22. ]]></kuvatavNr>
+					<paragrahvPealkiri id="b6cfb635-6845-420e-a43e-ca82cd74584a">Isikliku abistaja teenust saama õigustatud isik</paragrahvPealkiri>
+					<loige id="para22lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="eeecbb17-1439-4e63-bcb8-d8847cc2389c">
+						<tavatekst id="15dff9d5-faf5-4fde-bf3a-c2d958e579bf">Isikliku abistaja teenust on õigus saada täisealisel isikul, kes puude tõttu vajab füüsilist kõrvalabi igapäevaelutegevustes.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para23">
+					<paragrahvNr id="6170d0fc-f3a1-4e22-a1f7-16ef24121ef6">23</paragrahvNr>
+					<kuvatavNr id="82efbb25-65e6-49b7-9c01-614c81550cb9"><![CDATA[§ 23. ]]></kuvatavNr>
+					<paragrahvPealkiri id="01442bc5-dfdc-433b-9584-23ae1e842b27">Isikliku abistaja teenuse määramine</paragrahvPealkiri>
+					<loige id="para23lg1">
+						<loigeNr id="6ce19b95-a8b0-40df-93e7-b86fec1ed25d">1</loigeNr>
+						<kuvatavNr id="ff72ee21-e1e2-4b86-9f09-56ab261676f2"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="fdad883d-f8bc-4f66-9372-904d50f7839a">
+							<tavatekst id="44906f6c-0de7-45c1-b39a-5f77d21611b6">Isikliku abistaja teenuse määramise otsustab komisjon.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para23lg2">
+						<loigeNr id="be4a412c-8bb6-4fd4-a8eb-ccbada701a71">2</loigeNr>
+						<kuvatavNr id="0f14af09-741c-41f5-aa41-fc526e401410"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="0cbd0ae4-db1f-48e3-8aaf-247de55fadf7">
+							<tavatekst id="4565af9f-ef2f-4bb9-9ede-8e69ed3c3a4f">Isikliku abistaja teenuse määramise otsuses märgitakse lisaks sotsiaalhoolekande seaduse § 28 lõikes 2 toodule teenuse osutaja, maht ja teenuse osutamise tähtaeg.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="0da8cb77-97b3-4d35-a169-642d0ca8df47">
+				<jaguNr id="6da490dd-cc20-4dcf-ab62-abdd678c4bb8">7</jaguNr>
+				<kuvatavNr id="76492c3e-40b6-4fa6-8e5d-d8b4deadf77f"><![CDATA[7. jagu]]></kuvatavNr>
+				<jaguPealkiri id="75597bda-35d3-4f79-8090-e79ff5c4220f">Varjupaigateenus</jaguPealkiri>
+				<paragrahv id="para24">
+					<paragrahvNr id="3e7516be-559f-49d3-8c8c-438bc74707ce">24</paragrahvNr>
+					<kuvatavNr id="00817673-dd80-41ce-99ee-31fcbbc2bab5"><![CDATA[§ 24. ]]></kuvatavNr>
+					<paragrahvPealkiri id="c71257ec-c4e9-43db-b8c5-2cbb71a1cb2d">Varjupaigateenus</paragrahvPealkiri>
+					<loige id="para24lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="e8636da6-dbb3-489c-88cf-d54fe216a472">
+						<tavatekst id="a8a5475b-7c37-4520-bfc9-985acef1f9f0"> Varjupaigateenuse eesmärk on isikule ajutise ööbimiskoha võimaluse kindlustamine. </tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para25">
+					<paragrahvNr id="f4fe2b09-b98e-416d-b767-6e99956531ba">25</paragrahvNr>
+					<kuvatavNr id="37c3933a-f8cd-4877-8383-0ad06615cc7f"><![CDATA[§ 25. ]]></kuvatavNr>
+					<paragrahvPealkiri id="14eda494-c4b1-427b-9a6f-9d4b547251f1">Varjupaigateenust saama õigustatud isik</paragrahvPealkiri>
+					<loige id="para25lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="254d5797-f984-49d5-8fc0-d7606d65462f">
+						<tavatekst id="eae2ec48-908a-44a5-ac0a-457a69337b94">Varjupaigateenust on õigus saada isikul, kes on täisealine ja kes ei ole võimeline endale ööbimiskohta tagama.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para26">
+					<paragrahvNr id="9f727681-5e6e-4a76-8893-7a41c0bd1ac9">26</paragrahvNr>
+					<kuvatavNr id="32e08815-c4c0-48fb-8a91-aa3f1d543b8b"><![CDATA[§ 26. ]]></kuvatavNr>
+					<paragrahvPealkiri id="f0a871fb-ecb7-4eb2-9feb-a437b0ca4a91">Varjupaigateenusele määramine</paragrahvPealkiri>
+					<loige id="para26lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="6b7b454d-7e33-481b-bfd7-edeb59845052">
+						<tavatekst id="3fe9867e-a170-4c4c-a7bc-c74b9397a9a8">Teenuse saamiseks ei ole vaja esitada käesoleva määruse paragrahv 3 lõikes 1 nimetatud taotlust. Õigustatud isikul on õigus pöörduda otse vallavalitsuse lepingulise teenusepakkuja poole.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="e676db84-02e3-431b-a4e6-28c36c5cce3d">
+				<jaguNr id="9cd61bef-253c-4d0c-bc7c-c128795c7245">8</jaguNr>
+				<kuvatavNr id="27c6e94e-8705-4ef1-9f86-d39f7779009d"><![CDATA[8. jagu]]></kuvatavNr>
+				<jaguPealkiri id="ff09e11a-7765-49a6-8a8f-1125a4be4c05">Turvakoduteenus</jaguPealkiri>
+				<paragrahv id="para27">
+					<paragrahvNr id="ee664705-9b22-4eee-8214-21e69b361010">27</paragrahvNr>
+					<kuvatavNr id="3d0be646-4018-4e06-969d-e14ea1317c2c"><![CDATA[§ 27. ]]></kuvatavNr>
+					<paragrahvPealkiri id="148e3648-bf86-4a13-9e67-3313690e66f5">Turvakoduteenus</paragrahvPealkiri>
+					<loige id="para27lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="c2aecf63-34cd-4b7c-93e4-5c3275b81a65">
+						<tavatekst id="ad1d9330-728d-4bad-8fbb-875bf6cae989">Turvakoduteenuse eesmärk on tagada abivajajale ajutine eluase, turvaline keskkond ja esmane abi. Vajadusel tagatakse kriisiabi isiku psüühilise tasakaalu ja igapäevase tegevusvõime taastamiseks ning isiku hooldamine ja arendamine.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para28">
+					<paragrahvNr id="35b4404b-cca3-4bd7-b0db-e2feda89efbb">28</paragrahvNr>
+					<kuvatavNr id="68da0b3a-8f82-489c-bd7d-7bbc78dae33e"><![CDATA[§ 28. ]]></kuvatavNr>
+					<paragrahvPealkiri id="6fb092d8-969b-4225-84b0-26e5eb511fd7">Turvakoduteenust saama õigustatud isik</paragrahvPealkiri>
+					<loige id="para28lg1">
+						<loigeNr id="1cae865f-2849-4e8b-95bb-a909b9a52e24"/>
+						<kuvatavNr id="f8681eaa-27e0-41f4-bcd8-27f234cf5b2f"/>
+						<sisuTekst id="89c530da-8da3-413d-9544-aa0e515d81d5">
+							<tavatekst id="5527f9d5-8e73-49d3-a19a-4abf0b733264">Turvakoduteenust on õigus saada:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para28lg1p1">
+							<alampunktNr id="162ed4a8-a5e9-4c3c-94e2-edbfef4272fa">1</alampunktNr>
+							<kuvatavNr id="3a8ac306-b814-4939-ad73-b907f46fa035"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="60a708f8-ecbf-4ced-9c3c-5d83e5d4bfac">
+								<tavatekst id="71218f3b-197b-463b-a937-212a1adbfd27">lapsel, kes vajab abi tema hooldamises esinevate puuduste tõttu, mis ohustavad tema elu, tervist või arengut;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para28lg1p2">
+							<alampunktNr id="e1fe3417-b3bd-4033-88fc-1553bdb83462">2</alampunktNr>
+							<kuvatavNr id="f812772c-a0f5-4e52-bbba-8a6bc4f08b6d"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="24847a9d-3c20-407b-9223-2ff3a9bef928">
+								<tavatekst id="5a3850c1-f8bc-4ff1-bd04-2bff73c0b7d8">täisealisel isikul, kes vajab turvalist keskkonda.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para29">
+					<paragrahvNr id="e16527b1-7e21-414b-bedd-477a88e99268">29</paragrahvNr>
+					<kuvatavNr id="ee0c6e24-8a86-49a3-a7e5-83e6f5aa2d6d"><![CDATA[§ 29. ]]></kuvatavNr>
+					<paragrahvPealkiri id="4eef3691-6757-4ec0-8eb5-5f3fbf458a48">Turvakoduteenusele määramine</paragrahvPealkiri>
+					<loige id="para29lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="80eaa032-5e79-446d-b0e1-c33f4be90003">
+						<tavatekst id="87556e34-24fb-4154-90f8-842700c30241">Teenuse saamiseks ei ole vaja esitada käesoleva määruse paragrahv 3 lõikes 1 nimetatud taotlust. Õigustatud isikul on õigus pöörduda otse vallavalitsuse lepingulise teenusepakkuja poole.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="4c2bd2bb-a48d-482e-b540-08c68d5c5743">
+				<jaguNr id="3f287132-868d-4e16-b762-391cf11f98cc">9</jaguNr>
+				<kuvatavNr id="7c9dfead-6f2f-48e2-abfe-ecd4b62d91c1"><![CDATA[9. jagu]]></kuvatavNr>
+				<jaguPealkiri id="25bc313c-a996-4d2e-8f59-b176ebaf0837">Sotsiaaltransporditeenus</jaguPealkiri>
+				<paragrahv id="para30">
+					<paragrahvNr id="7291f4ed-0e27-4bf7-8e0d-7ed800f8ea17">30</paragrahvNr>
+					<kuvatavNr id="170773d1-608e-485f-afb3-658c4acf98c0"><![CDATA[§ 30. ]]></kuvatavNr>
+					<paragrahvPealkiri id="559a6b5f-6218-4843-b47f-c3d32d11639d">Sotsiaaltransporditeenus</paragrahvPealkiri>
+					<loige id="para30lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="0b9f8407-4d8f-4646-987a-fc5d35a1d1b7">
+						<tavatekst id="1f451677-276b-4fa2-8275-ee134cf10473">Sotsiaaltransporditeenuse eesmärk on võimaldada teenust vajaval isikul kasutada tema vajadustele vastavat transpordivahendit tööle või õppeasutusse sõitmiseks, avalike teenuste kasutamiseks või muudeks igapäevaeluks vajalike toimingute teostamiseks.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para31">
+					<paragrahvNr id="10317e20-717e-4ef5-9f13-15723c0e67bf">31</paragrahvNr>
+					<kuvatavNr id="78371a4e-04c1-492f-9525-cfb4faf10849"><![CDATA[§ 31. ]]></kuvatavNr>
+					<paragrahvPealkiri id="48395d25-64a2-486c-8fab-15fd5cda9915">Sotsiaaltransporditeenust saama õigustatud isik</paragrahvPealkiri>
+					<loige id="para31lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="fe28df3c-98a4-4d8e-b9de-fa34517da012">
+						<tavatekst id="6c733358-d924-4dda-bdd0-71781a3ae6ed"> Sotsiaaltransporditeenust on õigus saada isikul, kellel füüsilisest või psüühilisest erivajadusest tulenevalt esineb takistus isikliku või ühissõiduki kasutamisel.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para32">
+					<paragrahvNr id="e837c51b-8d9c-4f73-bd5f-8769bb29ca1e">32</paragrahvNr>
+					<kuvatavNr id="4d9b6922-9db2-42cd-90bf-334404b6a4a6"><![CDATA[§ 32. ]]></kuvatavNr>
+					<paragrahvPealkiri id="46f0b865-1b0f-4d85-a83b-7b5a1687edc9">Sotsiaaltransporditeenuse määramine</paragrahvPealkiri>
+					<loige id="para32lg1">
+						<loigeNr id="8c9c6451-35d4-4046-8f94-fafa72bc8e89">1</loigeNr>
+						<kuvatavNr id="d5925614-8ef3-4628-b0c1-9032c1da83d5"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="d5e6f8ce-a2ba-4629-a3ff-a5507a0aafa6">
+							<tavatekst id="06eed1e7-e336-4c21-960d-6b25ee29d41d">Sotsiaaltransporditeenuse määramise otsustab vastutav ametnik.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para32lg2">
+						<loigeNr id="f925e4e6-754b-4aff-b861-3985ee7d168b">2</loigeNr>
+						<kuvatavNr id="331bf503-1edd-40ae-ad64-6691bcc10e59"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="2b5b6fde-e064-4928-8ef7-7823ec64a046">
+							<tavatekst id="128b24d2-5ffa-4099-ba69-c3a4a2a2db6d">Sotsiaaltransporditeenuse määramise otsuses märgitakse teenuse eesmärk, maht ning teenuse osutamise tähtaeg ja teenuse osutaja.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="a59c5647-89bd-4654-ab13-450d4bc592f6">
+				<jaguNr id="361e30fb-78b2-4c02-9845-c0b0f5520364">10</jaguNr>
+				<kuvatavNr id="ece76e1f-3fdd-48c2-a650-dee9e00aa149"><![CDATA[10. jagu]]></kuvatavNr>
+				<jaguPealkiri id="69d0bf82-5ec0-4fd0-b58f-b29cc2fd17a3">Eluruumi tagamine</jaguPealkiri>
+				<paragrahv id="para33">
+					<paragrahvNr id="b0737d45-641a-4d72-bf37-40e342967f4f">33</paragrahvNr>
+					<kuvatavNr id="1f44b1f9-f2d5-4e31-91f5-be7e4e851c27"><![CDATA[§ 33. ]]></kuvatavNr>
+					<paragrahvPealkiri id="6e3bd704-8602-41f4-b08d-34802ebde649">Eluruumi tagamine</paragrahvPealkiri>
+					<loige id="para33lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="b50f8db5-5b3b-45c2-a194-8c6faf719c10">
+						<tavatekst id="6bdcbe51-89e0-4c05-a182-8ad7e84b856b">Eluruumi tagamise eesmärk on isikule eluruumi kasutamise võimaluse kindlustamine.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para34">
+					<paragrahvNr id="8ad2bedb-b628-45de-9d5c-951d769bf494">34</paragrahvNr>
+					<kuvatavNr id="632826b6-1e4a-4ea4-9802-40d20a974ffb"><![CDATA[§ 34. ]]></kuvatavNr>
+					<paragrahvPealkiri id="913c6c3f-2c07-49e6-b287-c17f60cc952d">Õigustatud isik</paragrahvPealkiri>
+					<loige id="para34lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="4fb1e639-50f1-4793-9be4-f5d017088a38">
+						<tavatekst id="d207fd72-b991-4308-bf68-cbea40f47813">Eluruumi tagamise teenust on õigus saada isikul, kes ei ole sotsiaalmajanduslikust olukorrast tulenevalt võimeline enda ja oma perekonna vajadustele vastavat eluruumi tagama.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para35">
+					<paragrahvNr id="a934b9c8-2816-4696-a264-f31e4836cc65">35</paragrahvNr>
+					<kuvatavNr id="d70d3ac4-de98-4b44-954d-b51b566f4667"><![CDATA[§ 35. ]]></kuvatavNr>
+					<paragrahvPealkiri id="ab0abaa9-b917-4d65-a3f7-ed7ce072c8ad">Eluruumi määramine</paragrahvPealkiri>
+					<loige id="para35lg1">
+						<loigeNr id="3f258b8e-5259-4e73-b41b-fb24c0313dd3">1</loigeNr>
+						<kuvatavNr id="1edba8fc-6b70-436c-8ec7-7e427e2f64d0"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="45d50c56-6136-4135-9bd0-894efbcac399">
+							<tavatekst id="d3f4648b-61fc-4b87-8efe-6b7a4549867a">Eluruumi tagamise otsustab komisjon. Vallavara valitsemist reguleerivas määruses sätestatud juhtudel kinnitab komisjoni otsuse vallavalitsus oma korraldusega.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para35lg2">
+						<loigeNr id="9baf1f47-45b3-4413-ad23-067a21cb8648">2</loigeNr>
+						<kuvatavNr id="ed8e80be-af6d-49f9-af15-c963af1e5a80"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="73f1d676-2609-4816-9b1d-f46547a9720e">
+							<tavatekst id="72eb936b-1013-48a4-8e6c-f15156eb759f">Eluruumi tagamise otsuses märgitakse teenuse osutamise tähtaeg ja teenuse eest tasumise põhimõtted.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="6e314726-eb82-4802-95fa-7040f42b6eff">
+				<jaguNr id="5a815e5d-fe55-4c68-9c29-4440b99811cf">11</jaguNr>
+				<kuvatavNr id="09c07304-f8a2-44a1-8d5a-eb6e9b49cc7f"><![CDATA[11. jagu]]></kuvatavNr>
+				<jaguPealkiri id="de5e4d44-6786-401c-8dee-c088d7a19a6f">Võlanõustamisteenus</jaguPealkiri>
+				<paragrahv id="para36">
+					<paragrahvNr id="60ca268f-1756-4bd0-b7b4-1c3a77640923">36</paragrahvNr>
+					<kuvatavNr id="23b9b167-f18c-4d9a-b47b-c1461800fdbf"><![CDATA[§ 36. ]]></kuvatavNr>
+					<paragrahvPealkiri id="eb59a31d-b086-4dcf-b57e-3785e451d473">Võlanõustamisteenus</paragrahvPealkiri>
+					<loige id="para36lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="5cbb6252-e3c4-4a61-921e-3948376a0f3d">
+						<tavatekst id="04642a9c-ee60-4b23-9fbc-c893da11b432">Võlanõustamisteenuse eesmärk on abistada isikut tema varalise olukorra kindlakstegemisel, võlausaldajaga läbirääkimiste pidamisel ja nõuete rahuldamisel, vältida uute võlgnevuste tekkimist toimetulekuvõime parandamise kaudu ning lahendada muid võlgnevusega seotud probleeme.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para37">
+					<paragrahvNr id="468bdc08-3d26-4555-b9f9-24bf64c8d4f1">37</paragrahvNr>
+					<kuvatavNr id="c81c1727-663a-470b-a6d8-c1076e151aff"><![CDATA[§ 37. ]]></kuvatavNr>
+					<paragrahvPealkiri id="183ff20b-e848-4f33-af7e-dfff41e60a55">Võlanõustamisteenust saama õigustatud isik</paragrahvPealkiri>
+					<loige id="para37lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="43b55034-177b-4747-95c6-915a23ee5b88">
+						<tavatekst id="92c7b975-7bb5-4cec-a708-9dda8353e3b3">Võlanõustamisteenust on õigus saada isikul, kellel on majanduslikud toimetulekuprobleemid, võlgnevused või oht võlgnevuste tekkimiseks ning kes ei ole võimelised iseseisvalt tekkinud või tekkivaid rahalisi kohustusi täitma.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para38">
+					<paragrahvNr id="5285b3f9-8208-427b-83ba-d21f8f5d72e0">38</paragrahvNr>
+					<kuvatavNr id="d44300d8-5497-4184-ade7-d00d01679f95"><![CDATA[§ 38. ]]></kuvatavNr>
+					<paragrahvPealkiri id="428e7a69-6f92-461f-bef4-4275fe3b8edd">Võlanõustamisteenusele määramine</paragrahvPealkiri>
+					<loige id="para38lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="392e9a1e-f768-4d43-bb79-3548193be2f5">
+						<tavatekst id="50f969f5-959f-4406-a9b5-f5c8f7692eb4">Teenuse saamiseks ei ole vaja esitada käesoleva määruse paragrahv 3 lõikes 1 nimetatud taotlust. Õigustatud isik pöördub teenuse saamiseks vallavalitsusse.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="c6ceb831-9314-4076-8694-80b7be518f1c">
+				<jaguNr id="57be7dd0-8c93-4cc7-a7da-fc5f3255cd9a">12</jaguNr>
+				<kuvatavNr id="9d0c75df-b187-4a53-831d-f3bb75964a80"><![CDATA[12. jagu]]></kuvatavNr>
+				<jaguPealkiri id="40d99583-46bc-4087-9659-9e48c45e1c23">Lapsehoiuteenus</jaguPealkiri>
+				<paragrahv id="para39">
+					<paragrahvNr id="3d0e318e-ac33-466e-a0fb-be63253e6b4d">39</paragrahvNr>
+					<kuvatavNr id="b36fa7eb-0820-4ea9-a489-53e9510e800c"><![CDATA[§ 39. ]]></kuvatavNr>
+					<paragrahvPealkiri id="6df2f9bd-70b3-454f-813c-1f7eb96e4308">Lapsehoiuteenus</paragrahvPealkiri>
+					<loige id="para39lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="5e01785c-8297-4ef9-b106-a9a03cdc7a9d">
+						<tavatekst id="7ae81583-fb8a-44b5-956b-727047b0a709">Lapsehoiuteenuse eesmärk on toetada last kasvatava isiku toimetulekut või töötamist või vähendada lapse erivajadusest tulenevat hoolduskoormust.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para40">
+					<paragrahvNr id="54a14e8a-f180-47b8-8c81-098fcfa3a104">40</paragrahvNr>
+					<kuvatavNr id="eb801c93-1357-4904-ad53-60ae3332bd26"><![CDATA[§ 40. ]]></kuvatavNr>
+					<paragrahvPealkiri id="bc009d49-d765-4d07-a735-8fd460c837df">Lapsehoiuteenust saama õigustatud isik</paragrahvPealkiri>
+					<loige id="para40lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="e9bc321b-6987-4661-ac47-d468c64e2b19">
+						<tavatekst id="47cb83e7-0c93-4fc7-8268-730ab34087cc">Lapsehoiuteenust on õigust saada lapsel kuni selle kalendriaasta lõpuni, kui laps saab 18-aastaseks ja kelle elukoht on valla territooriumil.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para41">
+					<paragrahvNr id="58a6cddb-e3cc-4356-abcf-29344ea980cd">41</paragrahvNr>
+					<kuvatavNr id="1a6b1581-32d8-4d30-9d61-bb6d55e39967"><![CDATA[§ 41. ]]></kuvatavNr>
+					<paragrahvPealkiri id="73ad093d-2095-45cb-bbb7-07dd6ce90069">Lapsehoiuteenuse määramine</paragrahvPealkiri>
+					<loige id="para41lg1">
+						<loigeNr id="62be1784-f609-4122-8843-160437da530c">1</loigeNr>
+						<kuvatavNr id="3c167465-625d-4691-8e2a-58b98e658a5f"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="58bf7084-cc22-43a2-a396-49bcdb94f376">
+							<tavatekst id="f6f678c7-bee7-4fa0-a88e-1d91be555ba8">Lapsehoiuteenuse määramise otsustab komisjon.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para41lg2">
+						<loigeNr id="2b20c7cf-0f4a-4233-8208-89753b259f46">2</loigeNr>
+						<kuvatavNr id="61b84490-5a3e-4fae-ba4d-74fff99b4abd"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="e670f7a4-0a78-4489-921e-c9e0a7feee8b">
+							<tavatekst id="a7c53f11-14d2-47e1-a8ed-98eb1bb0699d">Lapsehoiuteenuse määramise otsuses märgitakse teenuse maht ning teenuse osutamise tähtaeg ja teenuse osutaja.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="797467f3-9864-4626-b74f-7d3bacf6fccc">
+				<jaguNr id="dc4dc632-e4cf-4ab3-8ad1-c0ea33ab494b">13</jaguNr>
+				<kuvatavNr id="f269e9cb-38c5-4319-8734-a15e6b4ce0a2"><![CDATA[13. jagu]]></kuvatavNr>
+				<jaguPealkiri id="5738c387-1f43-45c2-bb03-ec2f9f8fd344">Asendushooldusteenus</jaguPealkiri>
+				<paragrahv id="para42">
+					<paragrahvNr id="a966966f-a46c-4127-923b-e526bc9ebd10">42</paragrahvNr>
+					<kuvatavNr id="aee54284-234a-4dfc-bc98-593da7d3717b"><![CDATA[§ 42. ]]></kuvatavNr>
+					<paragrahvPealkiri id="71c625ce-5428-4491-8bb0-42ee95799781">Asendushooldusteenus</paragrahvPealkiri>
+					<loige id="para42lg1">
+						<loigeNr id="23552e8f-31a9-4efd-b8ab-38c8dd82f853">1</loigeNr>
+						<kuvatavNr id="f7e9aa75-9a02-4eb5-8a0e-74ca2c37f814"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="9adb0283-d89c-4181-9bb7-986e3d08019a">
+							<tavatekst id="3c5eb011-739b-4c60-8eeb-67a50e92eded">Asendushooldusteenuse eesmärk on pika- või lühiajaliselt lapse heaolu ja õiguste tagamine, lapsele tema põhivajaduste rahuldamiseks peresarnaste elutingimuste võimaldamine, lapsele turvalise ja arenguks soodsa elukeskkonna loomine ning lapse ettevalmistamine võimetekohaseks toimetulekuks täisealisena.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para42lg2">
+						<loigeNr id="cc23f709-c5dc-47d4-a356-0cd47df51c7e">2</loigeNr>
+						<kuvatavNr id="98f1d27a-78c2-43cf-aff9-217fd0f869c9"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="d92c4384-e561-4335-a164-61070cc978cb">
+							<tavatekst id="707a42c8-5fcf-4e60-8329-3006ed8f787b">Asendushooldusteenust osutatakse:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para42lg2p1">
+							<alampunktNr id="dbf90d58-d94c-4260-96c1-e1b37cfa687f">1</alampunktNr>
+							<kuvatavNr id="58426040-8c65-4333-b852-86f6edc64bbb"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="fe9f2b38-ee24-4f4b-bb40-67f004408ec1">
+								<tavatekst id="0df26839-08bb-4704-b6b1-bb83665ef86c">pikaajalise ööpäevaringse teenusena;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para42lg2p2">
+							<alampunktNr id="40b5e428-8f1d-41da-95c6-7fd9c27af5f8">2</alampunktNr>
+							<kuvatavNr id="6deb9006-07aa-47e8-929d-22fecc7c1c7b"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="96f87581-d7b7-40a3-9e5f-1399b5b3b235">
+								<tavatekst id="8c7c3b39-e3bd-431c-bc6d-9b7eff75d043">lühiajaliselt lapse hooldusõigusliku vanema või füüsilisest isikust eestkostja nõusolekul katkematult kuni 90 päeva;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para42lg2p3">
+							<alampunktNr id="a717d173-8854-419e-97d4-5969303ab880">3</alampunktNr>
+							<kuvatavNr id="ae6b382e-79d9-4998-a53d-4aaaf9a4af3a"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="b4c9c2d4-acb0-4dff-998e-a9b182bfc162">
+								<tavatekst id="c5ed1d6a-3f19-4230-af0e-3739f34d9885">lühiajaliselt lapse hooldusõigusliku vanema või füüsilisest isikust eestkostja nõusolekul periooditi.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para42lg3">
+						<loigeNr id="5fea0457-0e0d-4b6c-9b40-90bf64bc8616">3</loigeNr>
+						<kuvatavNr id="0e346f09-0c97-4063-86d1-3df525bb9374"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="3ded702b-845b-4126-a30b-43d31ad57f98">
+							<tavatekst id="338aa2ca-320a-41c0-ae68-e8c2fba33029">Asendushooldusteenust osutatakse hooldusperes, perekodus või asenduskodus.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para43">
+					<paragrahvNr id="03a5e341-634d-4c63-870a-5886cd3c4bf9">43</paragrahvNr>
+					<kuvatavNr id="f5ca07fb-024b-491e-8031-6d6bb6d3d493"><![CDATA[§ 43. ]]></kuvatavNr>
+					<paragrahvPealkiri id="0fcda3c1-a096-4026-9e55-8cdb7a3379d4">Asendushooldusteenust saama õigustatud isik</paragrahvPealkiri>
+					<loige id="para43lg1">
+						<loigeNr id="2cfae6da-1294-429e-805a-e416eb0863b0">1</loigeNr>
+						<kuvatavNr id="355bc1be-2112-44fe-a97f-b72cd458d868"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="8dc3a66c-6e70-4159-8708-05f0d160746c">
+							<tavatekst id="69c137ec-84f8-4c63-92a3-21bbdfeb8d75">Paragrahvi 42 lõikes 1 nimetatud asendushooldusteenust on õigus saada lapsel kuni 18-aastaseks saamiseni järgmistel juhtudel:</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="a8057a9b-100d-4932-9c72-b33a928023b2">
+							<avaldamismarge id="84a91ec5-0437-493d-b927-917f8b0b98c0">
+								<RTosa id="83ba0148-9cb5-4d6d-8774-3845913ff706">RT IV</RTosa>
+								<avaldamineKuupaev id="10a8f83c-5d29-4b8f-9a42-4b8be3183898">2023-04-11</avaldamineKuupaev>
+								<RTartikkel id="aba7453c-fa64-4d39-b763-f10401c523c0">6</RTartikkel>
+								<aktViide id="ab78250f-743c-48b0-97b9-5f1ab5a663d1">411042023006</aktViide>
+							</avaldamismarge>
+							<joustumine id="c218403f-3067-4e4c-b6ca-aabba7d179b8">2023-04-14</joustumine>
+						</muutmismarge>
+						<alampunkt id="para43lg1p1">
+							<alampunktNr id="a83ccec8-f86e-4b4e-b0bb-2c41ae80b858">1</alampunktNr>
+							<kuvatavNr id="a6f4f4ee-7ab9-4496-b654-4ad4ef9d5740"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="5b9109ee-88b9-42c4-a3cc-fd5a45228e9a">
+								<tavatekst id="3f242bf4-5ed0-48ed-99bf-f1c9dcfe776c">lapsevanem on surnud;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para43lg1p2">
+							<alampunktNr id="b4b9554d-072c-4052-8508-89631622fa80">2</alampunktNr>
+							<kuvatavNr id="f4239336-1e9b-4bd6-92bd-4e6f93af6eea"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="ca579dcc-4ac0-431d-be2a-b200e438f5a4">
+								<tavatekst id="0f4c4e2e-1d30-454a-973c-a34805b4eb9a">lapsevanemale on tema piiratud teovõime tõttu määratud eestkostja;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para43lg1p3">
+							<alampunktNr id="c6d5b108-8fcf-4b36-834f-9e533f1668e6">3</alampunktNr>
+							<kuvatavNr id="397fcea1-7c7d-418a-ad10-f1b51b1d378f"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="726cb0b9-b4b7-4383-b759-22642c479ad9">
+								<tavatekst id="97027e22-bcdf-4f2b-af69-67bdadbef7a8">vanema hooldusõigus lapse suhtes on peatatud, seda on piiratud või see on täielikult ära võetud;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para43lg1p4">
+							<alampunktNr id="07d1ef78-2214-4215-9096-501ee608d2c8">4</alampunktNr>
+							<kuvatavNr id="93393f8a-783b-4052-beb2-81d5f4316086"><![CDATA[4) ]]></kuvatavNr>
+							<sisuTekst id="7c80846b-0944-45f2-8f8b-35e51c74e27d">
+								<tavatekst id="21c91dd5-e383-4a70-8645-1b774c8a1cf0">laps on vanemast eraldatud.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para43lg2">
+						<loigeNr id="2e9a9aa3-122c-4bb3-b0a8-a31bb0f04bc0">2</loigeNr>
+						<kuvatavNr id="42297661-04ad-4c6d-b2ac-7d6016968590"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="22b8b5c2-de41-4f60-afbf-64b68cb8493e">
+							<tavatekst id="c9fb15b3-1ae3-434f-b9c9-861ed9fbfcb9">Kui käesoleva paragrahvi lõikes 1 nimetatud laps on enne 18-aastaseks saamist asunud õppima ja jätkab õppimist statsionaarses õppes või tervislikel näidustustel muus õppevormis põhikoolis, gümnaasiumis või kutseõppe tasemeõppes, siis on laps õigustatud asendushooldusteenust saama:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para43lg2p1">
+							<alampunktNr id="26e83973-9a2c-488b-8140-92253731699e">1</alampunktNr>
+							<kuvatavNr id="4b59f43b-d8af-40a0-8901-404c633257fb"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="0090a8eb-8ec5-4598-8b25-c0c7faf9e923">
+								<tavatekst id="cf9e69ca-e17d-4b73-a33d-0ec803212379">hariduse omandamise korral kuni järgmise õppeaasta alguseni, kuid mitte kauem kui järgmise õppeaasta alguseni sel aastal, kui laps sai 19-aastaseks;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para43lg2p2">
+							<alampunktNr id="a0f2d3dc-9eba-4030-8980-6f0025badb5b">2</alampunktNr>
+							<kuvatavNr id="c4a454ab-af66-4cf7-a1bf-8dcba13ac910"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="1b9462de-3508-4f37-a389-ae213328b38d">
+								<tavatekst id="22e36e56-3ba9-4b5b-b112-e980f83dd462">õpingute katkestamiseni, kuid mitte kauem kui lapse 19-aastaseks saamiseni, või</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para43lg2p3">
+							<alampunktNr id="0e0be037-d1ba-4176-aa2b-1f7926d09110">3</alampunktNr>
+							<kuvatavNr id="3c5305f0-3ef7-4f6f-aa75-b083c9fc4679"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="5087bb8f-a984-40f2-9705-cf6596328064">
+								<tavatekst id="4d16eb1b-52e0-4334-82c6-bd2b78eb51d8">lapse 19-aastaseks saamise korral kuni järgmise õppeaasta alguseni.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para43lg3">
+						<loigeNr id="7baf274f-5ba5-486f-b26b-e8964534ec57">3</loigeNr>
+						<kuvatavNr id="32b0dba0-7bf2-40bf-a955-23d21e6ed931"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="ec04d7cb-fce3-4f15-b25b-7fe66db88e43">
+							<tavatekst id="a5b54dba-e212-4b87-90cc-cfa2cc593259">Käesoleva määruse § 35 lõige 1 punktis 2 ja 3 nimetatud asendushooldusteenust on õigus saada lapsel kuni 18-aastaseks saamiseni juhul kui lapse hooldusõiguslik vanem või füüsilisest isikust eestkostja on andnud nõusoleku, et asendushooldusteenust osutatakse kuni 90 päeva või periooditi.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para44">
+					<paragrahvNr id="f0ee27e2-d510-4e2f-8cbb-9f60009ff921">44</paragrahvNr>
+					<kuvatavNr id="7a3d772a-993a-4d6c-984f-de49cb50b024"><![CDATA[§ 44. ]]></kuvatavNr>
+					<paragrahvPealkiri id="3d616c42-9067-4b6a-9b30-785919412d8e">Asendushooldusteenuse määramine</paragrahvPealkiri>
+					<loige id="para44lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="f40f53d7-0475-4c38-82e9-6f4168cf5d6e">
+						<tavatekst id="a8325af7-89dc-4609-9a56-58cd0aff7a9f"> Asendushooldusteenusele suunatakse komisjoni otsusega.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="62239e6a-f645-484e-9b51-4bacccc61e36">
+				<jaguNr id="c9ee360d-00c5-4c9a-9051-41dad8fbc30a">14</jaguNr>
+				<kuvatavNr id="c5cc2ce9-4603-4a8c-bafa-9d7b2a65e16e"><![CDATA[14. jagu]]></kuvatavNr>
+				<jaguPealkiri id="90366aa5-32d9-4e53-be02-33354b99d229">Järelhooldusteenus</jaguPealkiri>
+				<paragrahv id="para45">
+					<paragrahvNr id="cac2a235-fc56-46fa-b92d-e6af3f2cb1bd">45</paragrahvNr>
+					<kuvatavNr id="574077b0-9207-4239-bc38-a7a3fc936591"><![CDATA[§ 45. ]]></kuvatavNr>
+					<paragrahvPealkiri id="789ffafe-c3c0-40a3-8501-89dbfead07db">Järelhooldusteenus</paragrahvPealkiri>
+					<loige id="para45lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="96812065-35e8-4aa1-a4d2-519e48ea072d">
+						<tavatekst id="311b7dfc-210f-4730-8048-1a9c12556564">Järelhooldusteenuse eesmärk on asendushoolduselt ja eestkostelt lahkuva isiku iseseisva toimetuleku ja õpingute jätkamise toetamine.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para46">
+					<paragrahvNr id="38cbd3e6-1998-4c12-ae6f-abeae8491b3b">46</paragrahvNr>
+					<kuvatavNr id="c549ae5d-907e-45bc-b22c-e68582a81fb8"><![CDATA[§ 46. ]]></kuvatavNr>
+					<paragrahvPealkiri id="4ecdcbd4-afd6-4aae-b50a-b3f575f46b76">Järelhooldusteenust saama õigustatud isik</paragrahvPealkiri>
+					<loige id="para46lg1">
+						<loigeNr id="70215402-234a-4dff-b00b-3363ef41b413">1</loigeNr>
+						<kuvatavNr id="5281089d-5eb6-4d83-823b-10056c9b6d7e"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="8406663d-3781-4443-982f-6a3501f7aab3">
+							<tavatekst id="6a717edc-8ae6-4787-a604-eeba0f6a0793">Järelhooldusteenust on õigustatud saama § 45 alusel asendushooldusel viibiv täisealine isik, kes pärast põhi-, kesk-, kutse- või kõrghariduse omandamist jätkab järgmisel õppeaastal õppimist kutseõppe tasemeõppes, rakenduskõrgharidusõppes, ülikooli bakalaureuse- või magistriõppes või bakalaureuse- ja magistriõppe integreeritud õppes:</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="278eb6a4-a3c1-40d6-8efc-6b72e4e49220">
+							<avaldamismarge id="ba721414-e943-4c2b-831e-6b26a4c2d26f">
+								<RTosa id="016ba570-8075-4612-bb62-7dc8fcc587eb">RT IV</RTosa>
+								<avaldamineKuupaev id="ab47c5a3-f863-4c93-90d3-818f0cb90dcb">2023-04-11</avaldamineKuupaev>
+								<RTartikkel id="4c7a464c-db46-4ec7-83eb-44d1b2eb1321">6</RTartikkel>
+								<aktViide id="acd74a8d-a9a0-4471-836e-3a5bb0e95db6">411042023006</aktViide>
+							</avaldamismarge>
+							<joustumine id="14a3eb0a-5446-46d8-a182-48b6b53474c2">2023-04-14</joustumine>
+						</muutmismarge>
+						<alampunkt id="para46lg1p1">
+							<alampunktNr id="7e1c3a14-bbb1-4b1a-bd52-9c7aa7ea4e57">1</alampunktNr>
+							<kuvatavNr id="4a043f3c-94b9-4f03-a95d-e78288967423"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="a9411e8d-fff2-454d-a5a0-0a6a35e78283">
+								<tavatekst id="a4acbfe3-1e72-429a-ade3-5573b9d1c48b">esmase õppekavajärgse nominaalse õppeaja lõpuni, kuid mitte kauem kui isiku 25-aastaseks saamiseni;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para46lg1p2">
+							<alampunktNr id="f46fff8b-f4b5-4215-b695-cff63f317630">2</alampunktNr>
+							<kuvatavNr id="1828f27b-040b-4f25-84a9-5b5791f848b3"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="a58c0e7d-a116-430b-89cf-c257e25f02ea">
+								<tavatekst id="d080a97a-2ef9-4148-b0b7-e7b06737d096">õpingute katkestamiseni, kuid mitte kauem kui isiku 25-aastaseks saamiseni, või</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para46lg1p3">
+							<alampunktNr id="9da2726a-3385-4989-8df9-51e60088ea42">3</alampunktNr>
+							<kuvatavNr id="2b6ae143-506c-4feb-b09f-6e604cd99855"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="02fb9fa7-f1f2-4db9-864c-4f06b149cf0d">
+								<tavatekst id="2920b73f-3273-4cfe-b7e0-a4bc84a3f9a5">isiku 25-aastaseks saamiseni.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para46lg2">
+						<loigeNr id="8ebdd57c-f30f-4785-94f0-1d84a9714646">2</loigeNr>
+						<kuvatavNr id="361e5e90-979c-40fe-aaf7-3bb5de7cde3b"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="d107426a-96cc-43cb-8848-ae28faeb000f">
+							<tavatekst id="0a9b9959-08be-4937-ac3b-e48879e9dc2a">Kohaliku omavalitsuse üksus võib tagada järelhooldusteenuse isikule, kes:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para46lg2p1">
+							<alampunktNr id="ad103531-712b-47c4-9a71-292b5eea2804">1</alampunktNr>
+							<kuvatavNr id="bf235ed1-a0d5-4784-ab59-7dec861ad7f3"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="ffb31c05-1d03-402f-bcb5-ec7b714fd93b">
+								<tavatekst id="33f97db0-6bc6-4cf3-b1b0-3d478c5d023a"> on kuni 21-aastane ega õpi ning kes kuni täisealiseks saamiseni viibis asendushooldusel või eestkostel;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para46lg2p2">
+							<alampunktNr id="2d2c3cd9-92b6-438c-badf-1286b3fcde7b">2</alampunktNr>
+							<kuvatavNr id="eea81013-3f2f-42e8-84da-060a710b3193"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="86cadb0b-ea39-4855-ab66-fd97236abf30">
+								<tavatekst id="45e4781c-9db5-4f30-adcd-80ba04c891b0"> on kuni 25-aastane ja õpib ning kes kuni täisealiseks saamiseni viibis eestkostel ja pärast põhi-, kesk-, kutse- või kõrghariduse omandamist jätkas järgmisel õppeaastal õppimist kutseõppe tasemeõppes, rakenduskõrgharidusõppes, ülikooli bakalaureuse- või magistriõppes või bakalaureuse- ja magistriõppe integreeritud õppes.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para47">
+					<paragrahvNr id="1177fb92-f034-4e63-9346-d695aae7efda">47</paragrahvNr>
+					<kuvatavNr id="e5e22fe0-a7fc-4d04-82b3-d53927412902"><![CDATA[§ 47. ]]></kuvatavNr>
+					<paragrahvPealkiri id="f421ea96-9594-4337-b856-c90e0811e04f">Järelhooldusteenuse määramine</paragrahvPealkiri>
+					<loige id="para47lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="c344c728-b61e-489d-a8c8-9ad1c3e71e0b">
+						<tavatekst id="f0bdf8bf-5c17-4cc2-98bf-384c9bd97ace">Järelhooldusteenusele suunatakse komisjoni otsusega.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="b2760d11-8dfa-4ea6-a28d-cea54f32d2fe">
+				<jaguNr id="436981f1-ec16-47d3-a5a6-ca9adef57f99">15</jaguNr>
+				<kuvatavNr id="f0df3e46-1542-4fe6-a872-8ab68535c28b"><![CDATA[15. jagu]]></kuvatavNr>
+				<jaguPealkiri id="2c29438b-d2b7-40b6-a08f-4cd9f58573e4">Iseseisvat toimetulekut soodustav sotsiaalteenus</jaguPealkiri>
+				<paragrahv id="para48">
+					<paragrahvNr id="6056ff71-4213-4698-a824-9bf26d6e4044">48</paragrahvNr>
+					<kuvatavNr id="549ae49b-8d26-48da-9308-106f2d5dcb08"><![CDATA[§ 48. ]]></kuvatavNr>
+					<paragrahvPealkiri id="f0bdf807-4d42-454e-8e4a-9a0516af194c">Iseseisvat toimetulekut soodustav sotsiaalteenus</paragrahvPealkiri>
+					<loige id="para48lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="8ffd854d-75b5-4b65-8e9c-dbe495efd0e5">
+						<tavatekst id="92db977c-2613-4cff-b3f2-91d1381e181f">Iseseisvat toimetulekut soodustav sotsiaalteenuse eesmärk on aidata taastada isiku iseseisvat toimetulekut ja aidata isik tagasi tööjõuturule.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para49">
+					<paragrahvNr id="421b0015-cf83-4dcf-8edc-461044f9fd05">49</paragrahvNr>
+					<kuvatavNr id="daaf1991-9142-4b3d-8b9e-26258f1ee682"><![CDATA[§ 49. ]]></kuvatavNr>
+					<paragrahvPealkiri id="f05dfd77-63c2-493f-b423-381b9689fd39">Iseseisvat toimetulekut soodustavat sotsiaalteenust saama õigustatud isik</paragrahvPealkiri>
+					<loige id="para49lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="8b979e61-12ab-406e-9c75-6dd6967dc0a9">
+						<tavatekst id="9a8714da-0ce0-40d6-b800-f10965e22bf8">Iseseisvat toimetulekut soodustavat sotsiaalteenust on õigus saada isikul, kes on toimetulekutoetust taotlev töövõimeline 18-aastane kuni vanaduspensioniealine isik, kes ei tööta ega õpi.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para50">
+					<paragrahvNr id="730f54fe-5545-4380-9155-707a91cd8673">50</paragrahvNr>
+					<kuvatavNr id="e1532f74-f46a-4b58-8246-0cd853398cf1"><![CDATA[§ 50. ]]></kuvatavNr>
+					<paragrahvPealkiri id="e205df38-fbca-4793-a763-da22ac94c5e9">Iseseisvat toimetulekut soodustava sotsiaalteenuse määramine</paragrahvPealkiri>
+					<loige id="para50lg1">
+						<loigeNr id="fdf735b6-b7c1-41a7-b8bb-7103042b30d7">1</loigeNr>
+						<kuvatavNr id="9096b46c-6590-49fa-8472-5e750593d734"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="84e2073b-3b74-442c-9854-6f5ca5da74b8">
+							<tavatekst id="a1f7c296-112a-4f59-9c06-1f0736f47bf5">Teenuse saamiseks ei ole vaja esitada käesoleva määruse paragrahv 3 lõikes 1 nimetatud taotlust.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para50lg2">
+						<loigeNr id="f57d1108-c3b3-4b77-877f-147e9809ae9a">2</loigeNr>
+						<kuvatavNr id="3bf4ebbe-f010-4573-9b7a-eb150d44b40d"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="6fc9a7ac-fe5a-4832-8a77-2f95836efa89">
+							<tavatekst id="003df2c3-fa24-4a3e-a0de-1bf0602f0114"> Iseseisvat toimetulekut soodustavale sotsiaalteenusele määramise otsustab vastutav ametnik.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para50lg3">
+						<loigeNr id="11ea3df7-b366-438e-afb0-ad89d90bfac8">3</loigeNr>
+						<kuvatavNr id="e65b9c2d-f2b5-4ae9-b44b-6c27d941d7c0"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="4ae388f0-1a0c-4a31-b11f-b220602f42e2">
+							<tavatekst id="344f336d-82d2-4795-8bc4-64abbc41239d">Iseseisvat toimetulekut soodustavale sotsiaalteenusele suunamise otsuses märgitakse teenuse sisu, maht ja teenuse osutamise tähtaeg.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="e4160a66-4672-4d80-826b-09e41cba10aa">
+				<jaguNr id="a45ac080-e214-44b2-aefd-579b14a73ad4">16</jaguNr>
+				<kuvatavNr id="969832c0-6ea5-44f9-aa23-66f9862f623d"><![CDATA[16. jagu]]></kuvatavNr>
+				<jaguPealkiri id="f1434131-be4b-4c59-a0be-5809496f92aa">Viipekeele tõlketeenus</jaguPealkiri>
+				<paragrahv id="para51">
+					<paragrahvNr id="7d77e82b-fa7c-4d65-9441-98f2c218e9d4">51</paragrahvNr>
+					<kuvatavNr id="5a4ae98e-eb3f-40fd-a171-30eb1b0f4d4f"><![CDATA[§ 51. ]]></kuvatavNr>
+					<paragrahvPealkiri id="de1cb8bf-e3d7-4719-a9de-909f6d08527b">Viipekeele tõlketeenus</paragrahvPealkiri>
+					<loige id="para51lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="cd59d9ce-8b44-4423-9ba9-7edf9d164497">
+						<tavatekst id="594f93a9-cd6e-4c2b-81f8-654bc2a14c46">Viipekeele tõlketeenuse eesmärk on kuuljatega võrdse ligipääsu tagamine igapäevaeluks vajalikule asjaajamisele ja/või avalike teenuste tarbimisele.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para52">
+					<paragrahvNr id="babe6a09-6833-4d5a-8152-1558a7634ee1">52</paragrahvNr>
+					<kuvatavNr id="541e812d-093b-44f2-a08a-3ac1acabb655"><![CDATA[§ 52. ]]></kuvatavNr>
+					<paragrahvPealkiri id="049acbe2-3450-48a3-b38a-a6cdd566d2a2">Viipekeele tõlketeenust saama õigustatud isik</paragrahvPealkiri>
+					<loige id="para52lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="25b8719a-e4d5-4018-b2e2-a6fd84bbd33e">
+						<tavatekst id="47426270-94b7-4b46-aee1-c3e81288f138">Viipekeele tõlketeenust on õigus saada isikul, kes on kuulmispuudega ning kelle emakeeleks on viipekeel.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para53">
+					<paragrahvNr id="c4c6bac4-46e5-4666-9401-d1221140a2de">53</paragrahvNr>
+					<kuvatavNr id="e9286fe3-4d2c-4c3f-a9ff-4ccb4cafbe4d"><![CDATA[§ 53. ]]></kuvatavNr>
+					<paragrahvPealkiri id="b5ba527a-10d8-4577-b728-f98f62efa045">Viipekeele tõlketeenuse määramine </paragrahvPealkiri>
+					<loige id="para53lg1">
+						<loigeNr id="94b9e71c-68f0-47ba-9771-2741a39d2f23">1</loigeNr>
+						<kuvatavNr id="36627a0a-ea12-45ba-b8fd-26abe69a9631"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="21d3202f-158d-4e80-a968-fca7f4eeb1a6">
+							<tavatekst id="b3015f55-2de8-4d69-97a6-b70fe6e577c0">Viipekeele tõlketeenuse määramise otsustab vastutav ametnik.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para53lg2">
+						<loigeNr id="6187ff33-3199-4ffe-aa81-a6ea3a1e74f1">2</loigeNr>
+						<kuvatavNr id="14dfb54d-0238-4071-811f-c89b0eeb8c27"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="10268b78-8f38-4c76-b964-53713d4c8e5c">
+							<tavatekst id="b42fbeb5-9b21-4b0f-8a09-3b869789e5e6">Viipekeele tõlketeenuse määramise otsuses märgitakse teenuse maht ja osutamise tähtaeg.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="8ae37fce-0fa3-4bf8-b117-4d34ab7e4d84">
+				<jaguNr id="25877775-438b-4213-8b84-207492440e61">17</jaguNr>
+				<kuvatavNr id="ca0b6b8b-e417-4869-bc1f-291c4a5930de"><![CDATA[17. jagu]]></kuvatavNr>
+				<jaguPealkiri id="12382418-e53f-4f42-8388-461a2a2a96a2">Kuulmisnõustamisteenus</jaguPealkiri>
+				<paragrahv id="para54">
+					<paragrahvNr id="afd28500-bfc7-4e90-9901-eeb79cd41a42">54</paragrahvNr>
+					<kuvatavNr id="d4c7a365-7c8a-4877-b256-86c75faf97eb"><![CDATA[§ 54. ]]></kuvatavNr>
+					<paragrahvPealkiri id="8c2e656c-ba67-48d3-bcbd-397e481f0925">Kuulmisnõustamisteenus</paragrahvPealkiri>
+					<loige id="para54lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="28060919-b2c4-4ff4-8730-814b3b6abad3">
+						<tavatekst id="30b512cd-3dac-46b3-bca2-89810b6ddf74">Kuulmisnõustamisteenuse eesmärk on tagada nõustamine kuulmisabivahendite kasutamise ja hooldamisega ning kuulmisabi ja kuulmisrehabilitatsiooniga seotud küsimustes.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para55">
+					<paragrahvNr id="8074f0c1-199d-489c-a93a-87f67fafe7cb">55</paragrahvNr>
+					<kuvatavNr id="499c9b4f-0c5a-40bd-86ad-0236f34cc188"><![CDATA[§ 55. ]]></kuvatavNr>
+					<paragrahvPealkiri id="ff073454-07c7-45fd-8270-90b9ec818b67">Kuulmisnõustamisteenust saama õigustatud isik</paragrahvPealkiri>
+					<loige id="para55lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="fe722f8b-7c12-4164-a7d0-20fef934dd1b">
+						<tavatekst id="c92b9b62-2658-4489-8d55-67296e3cc75f">Kuulmisnõustamisteenust on õigus saada isikul, kellel on kuulmislangus ja tema pereliikmetel.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para56">
+					<paragrahvNr id="6a9865c9-1b53-4a7c-908e-16c5da47db9a">56</paragrahvNr>
+					<kuvatavNr id="aa33f279-0652-48b9-8c19-958f554ced71"><![CDATA[§ 56. ]]></kuvatavNr>
+					<paragrahvPealkiri id="88614f73-5e90-4daa-b9e9-43b9a925d2ac">Kuulmisnõustamisteenuse määramine</paragrahvPealkiri>
+					<loige id="para56lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="6d25c1a4-a9a7-45a7-ac7b-f174ee58f3cf">
+						<tavatekst id="577517f9-02d0-4bd1-870f-100069e32ca9">Teenuse saamiseks ei ole vaja esitada käesoleva määruse paragrahv 3 lõikes 1 nimetatud taotlust. Õigustatud isikul on õigus pöörduda otse vallavalitsuse lepingulise teenusepakkuja poole.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="822587be-dccb-40a3-be64-f351973602cb">
+				<jaguNr id="d1a559fb-b365-47cb-969f-6f9efbce7325">18</jaguNr>
+				<kuvatavNr id="38490c30-a168-4b50-91dd-97737e4099e9"><![CDATA[18. jagu]]></kuvatavNr>
+				<jaguPealkiri id="f7340889-ea85-4c75-80ab-340aac617ac6">Perelepitusteenus</jaguPealkiri>
+				<paragrahv id="para57">
+					<paragrahvNr id="870551c4-a9e0-4801-9611-aa6029ab36a7">57</paragrahvNr>
+					<kuvatavNr id="cb49877e-7594-41e2-ae4c-b24ae742883d"><![CDATA[§ 57. ]]></kuvatavNr>
+					<paragrahvPealkiri id="f3923047-f20a-404a-9111-0f0f65fbc102">Perelepitusteenus</paragrahvPealkiri>
+					<loige id="para57lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="bbf85189-7209-4544-b740-7e2485dd46e9">
+						<tavatekst id="b187fb39-0c87-456d-a34e-8330b64836f4">Perelepitusteenuse eesmärk on vanemate vaheliste konfliktide lahendamisele kaasaaitamine nende lapse elukorraldust puudutavates küsimustes, samuti lapse huvisid arvestavate kokkulepete sõlmimine lapsevanemate vahel.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para58">
+					<paragrahvNr id="ed7c4012-6f0a-4a45-9ea9-09baef46d270">58</paragrahvNr>
+					<kuvatavNr id="aac730fc-974e-4fcc-98b6-837ba393e1c9"><![CDATA[§ 58. ]]></kuvatavNr>
+					<paragrahvPealkiri id="8201016b-1c41-44a0-acc5-d7701d49e7e5">Perelepitusteenust saama õigustatud isik</paragrahvPealkiri>
+					<loige id="para58lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="f283c28d-ae08-46fd-866c-901b1f227936">
+						<tavatekst id="7a3eb6a0-9f70-475b-8786-c761a09b67b3">Lapsevanemad, kes vajavad abi oma lapse elukorralduslikes küsimuste kokkuleppe saavutamiseks.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para59">
+					<paragrahvNr id="f6ebe938-198d-4975-ab91-4b79171ad100">59</paragrahvNr>
+					<kuvatavNr id="17869e29-7ae4-4155-bad5-5706631b4239"><![CDATA[§ 59. ]]></kuvatavNr>
+					<paragrahvPealkiri id="15fbddcb-eac9-43c7-b7f0-71d6b31de3d4">Perelepitusteenuse määramine</paragrahvPealkiri>
+					<loige id="para59lg1">
+						<loigeNr id="3585169b-1c32-4627-a8dd-65d182291aea">1</loigeNr>
+						<kuvatavNr id="fa430eed-bbf4-41e0-94aa-8bd1897e1ea5"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="8e42ef53-5ebc-4ec9-a00a-f9b48e85a535">
+							<tavatekst id="7a57279b-6db2-4f88-adf0-b842fc4f0e0f">Perelepitusteenuse määramise otsustab vastutav ametnik.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para59lg2">
+						<loigeNr id="52152c31-9481-4a29-a7b1-c243da5ba59f">2</loigeNr>
+						<kuvatavNr id="3514cc55-f4e4-465e-aed7-e6b1db283db5"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="edbd58dc-592d-47e4-aa1e-399de901fd97">
+							<tavatekst id="9e026492-ed88-4b70-a8ab-8e26871d5cd7">Perelepitusteenuse määramise otsuses märgitakse teenuse maht ning teenuse osutamise tähtaeg ja teenuse eest tasumise põhimõtted.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="72485235-0a61-486c-b9bb-9531028c6307">
+				<jaguNr id="06313620-0ef4-4a6c-ad93-2712f4c240a5">19</jaguNr>
+				<kuvatavNr id="c8ca9369-9417-4d45-b49c-43ea8418ded1"><![CDATA[19. jagu]]></kuvatavNr>
+				<jaguPealkiri id="fc4fd703-9680-4b73-8822-a90b2bd0d417">Nõustamis- ja teraapiateenus</jaguPealkiri>
+				<paragrahv id="para60">
+					<paragrahvNr id="adfc20c9-e1f1-48cf-b8a7-9d4b06858af4">60</paragrahvNr>
+					<kuvatavNr id="13b60a86-53f1-4c16-ac95-d724252fb291"><![CDATA[§ 60. ]]></kuvatavNr>
+					<paragrahvPealkiri id="67adb9fa-3fba-417f-b090-28327ce15959">Nõustamis- ja teraapiateenus</paragrahvPealkiri>
+					<loige id="para60lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="dab8d8ec-ec1e-4d66-be4e-03a503c7a871">
+						<tavatekst id="ddb3a6d6-e437-43d1-9388-7d149f560433">Nõustamis- ja teraapiateenuse eesmärk on toetada lapse arengut ja pere toimetulekut.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para61">
+					<paragrahvNr id="1c1491e4-5d0f-4796-bb0c-5b364ac5efb0">61</paragrahvNr>
+					<kuvatavNr id="70e872e9-8fce-48fa-8631-b5517cdcc54a"><![CDATA[§ 61. ]]></kuvatavNr>
+					<paragrahvPealkiri id="d34ae078-1071-4e95-97e6-cebd998b4be1">Nõustamis- ja teraapiateenust saama õigustatud isik</paragrahvPealkiri>
+					<loige id="para61lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="7c86a1e1-f6ce-4ece-bbba-413ab52b3869">
+						<tavatekst id="1da6aafc-144a-43ca-b3b3-30ea6852deef">Nõustamis- ja teraapiateenust on õigus saada isikul ja perel. </tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para62">
+					<paragrahvNr id="3d75d7ff-0fb1-4b5f-87f3-6b92965f43a7">62</paragrahvNr>
+					<kuvatavNr id="087ddc12-d349-453d-8d7f-e44489b97090"><![CDATA[§ 62. ]]></kuvatavNr>
+					<paragrahvPealkiri id="4890abc4-4cb3-44f0-b8b1-227cec63788a">Nõustamis- ja teraapiateenuse määramine</paragrahvPealkiri>
+					<loige id="para62lg1">
+						<loigeNr id="6fc8f9ef-cb6a-439e-affd-e954f0f6e9b5">1</loigeNr>
+						<kuvatavNr id="70748b54-7af2-4276-9759-5e20c0a908be"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="ee5461cf-7ba3-4688-a4b7-f353a0ee1ea3">
+							<tavatekst id="a56fcd1c-29fe-4d49-9045-3708d513449e">Nõustamis- ja teraapiateenuse määramise otsustab vastutav ametnik.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para62lg2">
+						<loigeNr id="a020c262-b0d0-4cbd-8add-606b194e0cd0">2</loigeNr>
+						<kuvatavNr id="574905cb-62bc-412f-abe6-245101ca3aa1"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="98943e18-254a-4c1a-83ba-3daa26625ea1">
+							<tavatekst id="4d925f01-6a4d-4dde-9776-5c15c72677c6">Nõustamis- ja teraapiateenuse määramise otsuses märgitakse teenuse eesmärk, teenuse maht ja teenuse eest tasumise põhimõtted.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="c2b35576-830b-425a-b73f-f84aa573fbd7">
+				<jaguNr id="bfaa6bb6-b41e-4689-96f7-cbc263a63194">20</jaguNr>
+				<kuvatavNr id="d9085ca3-dac7-4157-bade-e3090a533c2f"><![CDATA[20. jagu]]></kuvatavNr>
+				<jaguPealkiri id="3b6993c7-6f41-4577-b449-f05666fda62a">Vältimatu sotsiaalabi teenus</jaguPealkiri>
+				<paragrahv id="para63">
+					<paragrahvNr id="246586d0-eefb-4705-9f16-d16c501dd4e6">63</paragrahvNr>
+					<kuvatavNr id="1e902a25-c0a1-4807-82e4-2787c5b2eb9c"><![CDATA[§ 63. ]]></kuvatavNr>
+					<paragrahvPealkiri id="b260691c-3d90-4b71-bfac-2aee6998571d">Vältimatu sotsiaalabi teenus</paragrahvPealkiri>
+					<loige id="para63lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="daab2d43-2542-4c84-ad53-004f1023d52b">
+						<tavatekst id="194ff087-187c-44d8-91dd-704e1f2a6883">Vältimatu sotsiaalabi teenuse eesmärk on toiduabi ja/või riideabi kättesaadavaks tegemine.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para64">
+					<paragrahvNr id="10db2bc8-645f-4e3b-b3f4-701391de23ed">64</paragrahvNr>
+					<kuvatavNr id="5b210441-e536-4808-a864-7114448abaa1"><![CDATA[§ 64. ]]></kuvatavNr>
+					<paragrahvPealkiri id="b38ec1ad-a3d2-4c5e-b165-43ee15f8fdd2">Vältimatut sotsiaalabi teenust saama õigustatud isik</paragrahvPealkiri>
+					<loige id="para64lg1">
+						<loigeNr id="4334bcce-857d-4776-8894-7ac29c0a876c">1</loigeNr>
+						<kuvatavNr id="ab265511-0ae2-4509-8228-16cd40061972"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="fddbc02e-315f-4372-923e-cc6a873bdd83">
+							<tavatekst id="9e56f8f1-1dec-4562-b6d0-17a38a1d9a91">Vältimatut sotsiaalabi teenust on õigus saada isikul, kes vajab kiireloomulist abi ning kes abi vajaduse hetkel viibib valla territooriumil.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para64lg2">
+						<loigeNr id="f988730f-d4ee-4434-bde7-edd19fb0489f">2</loigeNr>
+						<kuvatavNr id="7c5fa56f-6f53-416f-8554-c7f6ae218434"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="7480431f-f766-432d-b8d1-c8db52910892">
+							<tavatekst id="d1a18d64-2109-4d80-aab8-552adaa017bd">Teenust on õigus saada seni, kuni õigustatud isik ei ole enam elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitus olukorras.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para65">
+					<paragrahvNr id="bb8f0543-846d-4d8e-b041-64ff7d784ae6">65</paragrahvNr>
+					<kuvatavNr id="98bb5613-fa4e-47b1-9723-86030e1b21ac"><![CDATA[§ 65. ]]></kuvatavNr>
+					<paragrahvPealkiri id="3f27d683-b6d8-4419-b9ba-ba7a42e689d5">Vältimatu sotsiaalabi teenuse määramine</paragrahvPealkiri>
+					<loige id="para65lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="9b60e9a8-1825-4363-83c2-82255c4969b8">
+						<tavatekst id="4f8bab47-276e-46a2-8959-b5a1699c8646">Vältimatu sotsiaalabi teenuse määramise otsustab vastutav ametnik.<reavahetus/>
+						</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="257c3deb-f1ee-4e21-bd14-6421e3f9b0e2">
+				<jaguNr id="a4a6c66c-330a-4faf-a0c7-8293125b5641">21</jaguNr>
+				<kuvatavNr id="ac6e3fe5-a11e-40fa-abd6-6ad7978ccde0"><![CDATA[21. jagu]]></kuvatavNr>
+				<jaguPealkiri id="60c0c2dc-8245-415c-adba-ec56bab5a07b">Toidupangateenus</jaguPealkiri>
+				<paragrahv id="para66">
+					<paragrahvNr id="5b855c92-cdcf-4951-8816-11a1d0c22546">66</paragrahvNr>
+					<kuvatavNr id="20975683-4818-459c-8d88-9095befde7ed"><![CDATA[§ 66. ]]></kuvatavNr>
+					<paragrahvPealkiri id="bbd47a34-5f1e-4b66-904c-409c98a8c5db">Toidupangateenus</paragrahvPealkiri>
+					<loige id="para66lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="82d99858-3f09-485e-8f65-4747b7104d2f">
+						<tavatekst id="26acfa2e-5292-45cd-8e0f-08abc388ca52">Toidupangateenuse eesmärk on tagada isiku ja/või pere toiduainetega varustatus.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para67">
+					<paragrahvNr id="2eb02b0b-12c8-46cf-ac7b-8e31c91d8f37">67</paragrahvNr>
+					<kuvatavNr id="d8694eb9-afcc-4b03-b1b0-36ff0f86e6f9"><![CDATA[§ 67. ]]></kuvatavNr>
+					<paragrahvPealkiri id="25938e6f-384d-41a7-8d43-db93ba857062">Toidupangateenust saama õigustatud isik</paragrahvPealkiri>
+					<loige id="para67lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="4b87e143-d8be-43de-8b48-30392a8d46f6">
+						<tavatekst id="9e6f8cba-df91-4dfe-a8c7-320c29f783b7">Toidupangateenust on õigus saada isikul ja/või perel, kellele on määratud jooksval kuul riiklik toimetulekutoetus või erandkorras isikule ja/või perele, kes on toimetulekuraskustes.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para68">
+					<paragrahvNr id="9085e651-ae26-4c08-93bc-9260d75b8e55">68</paragrahvNr>
+					<kuvatavNr id="221527ab-5bf6-4558-b794-1debfc654161"><![CDATA[§ 68. ]]></kuvatavNr>
+					<paragrahvPealkiri id="7529bd5b-aa7b-48b6-8863-74661c8fb447">Toidupangateenusele määramine</paragrahvPealkiri>
+					<loige id="para68lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="6f3a9cf6-6549-4f62-84c1-9f3c66c70c17">
+						<tavatekst id="1ee45e7b-8fa2-4ad3-b301-81bc4cd0afcc">Toidupangateenuse määramise otsustab vastutav ametnik.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="4d338e64-bcbe-4fee-ac85-72c7de7f4ba9">
+				<jaguNr id="bc842a3f-ba08-461c-bd83-7b7107708464">22</jaguNr>
+				<kuvatavNr id="34b6a2ef-6b8c-4e92-b746-2a51a36554e2"><![CDATA[22. jagu]]></kuvatavNr>
+				<jaguPealkiri id="a8f9e134-cd8b-4afb-9017-6afbe5ef7236">Väljaspool kodu osutatav intervallhooldusteenus</jaguPealkiri>
+				<paragrahv id="para69">
+					<paragrahvNr id="fd731276-4032-4b0d-a093-7f501119fbb6">69</paragrahvNr>
+					<kuvatavNr id="8a5d023a-a55b-4825-850d-f788e60d67b1"><![CDATA[§ 69. ]]></kuvatavNr>
+					<paragrahvPealkiri id="2d5f0971-fbe9-4575-b80f-c60272ca436a">Väljaspool kodu osutatav intervallhooldusteenus</paragrahvPealkiri>
+					<loige id="para69lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="fcbe7783-261b-43e3-a957-8f7947e1fe57">
+						<tavatekst id="a03e5da6-0dfc-42c9-939b-5b4a8d17e1a0">Väljaspool kodu osutatava intervallhooldusteenuse eesmärk on turvalise keskkonna ja toimetuleku tagamine täisealisele isikule, kes terviseseisundist, tegevusvõimest või elukeskkonnast tulenevatel põhjustel ei suuda kodustes tingimustes ajutiselt toime tulla ning vajab seetõttu ööpäevaringset lühiajalist tuge.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para70">
+					<paragrahvNr id="30b984a4-317c-47f9-af8b-feb0c11dd6ee">70</paragrahvNr>
+					<kuvatavNr id="bbd83f67-bf17-41ba-a442-f20207b8fb1e"><![CDATA[§ 70. ]]></kuvatavNr>
+					<paragrahvPealkiri id="130ceb1e-e59f-49e5-8f27-1bd2d09230dc">Väljaspool kodu osutatavat intervallhooldusteenust saama õigustatud isik</paragrahvPealkiri>
+					<loige id="para70lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="762e69c5-6318-4fd3-b441-32f8c7421926">
+						<tavatekst id="ce93f014-3402-4389-90c2-c64367ef1937">Väljaspool kodu osutatavat intervallhooldusteenust on õigus saada isikul, kellel on ööpäevaringse hooldamise ja kõrvalabi vajadus ning kelle hoolduse korraldamine teiste sotsiaalteenuste või muu abi osutamisega kodustes tingimustes ei ole võimalik.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para71">
+					<paragrahvNr id="9e3d14ea-2a55-46ad-a1b9-ca3e6356873a">71</paragrahvNr>
+					<kuvatavNr id="098b8772-4982-4945-9f92-927c24b2332d"><![CDATA[§ 71. ]]></kuvatavNr>
+					<paragrahvPealkiri id="b992c255-baf6-4987-9ab4-47561107bfe0">Väljaspool kodu osutatavale intervallhooldusteenusele määramine</paragrahvPealkiri>
+					<loige id="para71lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="2982f3bd-0a51-4a73-8090-e52102185269">
+						<tavatekst id="6076d538-e615-434c-bf49-031bef8e5f92">Teenuse saamiseks ei ole vaja esitada käesoleva määruse paragrahv 3 lõikes 1 nimetatud taotlust. Õigustatud isikul on õigus pöörduda otse teenusepakkuja poole.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="241117b5-fd35-4bf8-a8d5-3578f1f12d8b">
+				<jaguNr id="d97b279f-7868-4dd7-8216-d7fedb5a8b76">23</jaguNr>
+				<kuvatavNr id="679edb1f-a047-4077-a959-c8836062cea3"><![CDATA[23. jagu]]></kuvatavNr>
+				<jaguPealkiri id="216ac6d4-27a1-47c5-89c5-bd59e6d801d5">Väljaspool kodu osutatav päevahoiuteenus</jaguPealkiri>
+				<paragrahv id="para72">
+					<paragrahvNr id="9a31ede3-e067-4a5b-bd64-39b8474ff419">72</paragrahvNr>
+					<kuvatavNr id="31d13ca9-dc02-437c-aa67-b812b60bea61"><![CDATA[§ 72. ]]></kuvatavNr>
+					<paragrahvPealkiri id="060bf091-00b7-4509-a756-0cb115514490">Väljaspool kodu osutatav päevahoiuteenus</paragrahvPealkiri>
+					<loige id="para72lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="3f06327d-f810-433e-8bf7-7eb02e0d0329">
+						<tavatekst id="da9bd07e-6b1a-48d4-8d7b-c250092147db">Väljaspool kodu osutatava päevahoiuteenuse eesmärk on turvalise keskkonna ja toimetuleku tagamine täisealisele isikule, kes terviseseisundist, tegevusvõimest või elukeskkonnast tulenevatel põhjustel vajab ajutist päevast tuge.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para73">
+					<paragrahvNr id="9053fbfe-4d14-45c7-a819-a55e37d8d024">73</paragrahvNr>
+					<kuvatavNr id="c08a9bb1-f765-40e6-8fb1-1dfb461a3357"><![CDATA[§ 73. ]]></kuvatavNr>
+					<paragrahvPealkiri id="8e720e2c-fef8-4d35-a3b4-b617a6084a4e">Väljaspool kodu osutatavat päevahoiuteenust saama õigustatud isik</paragrahvPealkiri>
+					<loige id="para73lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="009303fa-a940-4567-ab92-8aa60ec7dab5">
+						<tavatekst id="9709b543-5960-4434-9809-c8d13c804b06">Väljaspool kodu osutatavat päevahoiuteenust on õigus saada isikul, kellel on päevane hooldamise ja kõrvalabi vajadus ning kelle hoolduse korraldamine teiste sotsiaalteenuste või muu abi osutamisega kodustes tingimustes ei ole võimalik.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para74">
+					<paragrahvNr id="6cf03fe6-5812-4161-8305-2c4ffc48e7be">74</paragrahvNr>
+					<kuvatavNr id="eec3ae59-8e07-4b26-9e00-684fd75d5518"><![CDATA[§ 74. ]]></kuvatavNr>
+					<paragrahvPealkiri id="1dfd01c6-bcfe-4a4c-bc27-46f1ef24e38c">Väljaspool kodu osutatavale päevahoiuteenuse määramine</paragrahvPealkiri>
+					<loige id="para74lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst id="a42a6feb-3ee3-4a76-9520-77fb25f593ba">
+						<tavatekst id="de6fd281-f0e6-4c1a-96d1-939c8a06503c">Teenuse saamiseks ei ole vaja esitada käesoleva määruse paragrahv 3 lõikes 1 nimetatud taotlust. Õigustatud isikul on õigus pöörduda otse teenusepakkuja poole.</tavatekst>
+					</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+		</peatykk>
+		<peatykk id="c5555efa-d7ac-424d-b725-1e3007e72fad">
+			<peatykkNr id="28e09ae5-1cc4-42c8-b849-a70434b7eced">4</peatykkNr>
+			<kuvatavNr id="bdfc66d9-2b9b-43a0-9a00-0d26e5973696"><![CDATA[4. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="2cb00849-2314-41bb-8892-2d4a1eabb354">TOETUSED</peatykkPealkiri>
+			<jagu id="d5624df8-8f9d-4ef4-ac98-4ff35592c1c4">
+				<jaguNr id="1e18caa2-1522-4308-99e4-9b0b9a050dc3">1</jaguNr>
+				<kuvatavNr id="24aeba6c-f14f-4011-bfb5-a478a15268e9"><![CDATA[1. jagu]]></kuvatavNr>
+				<jaguPealkiri id="c4a35bfb-bb69-42e2-8e40-a9364e22cb46">Üldsätted</jaguPealkiri>
+				<paragrahv id="para75">
+					<paragrahvNr id="f4e57dc9-3ce7-4d4f-964a-40129465ac82">75</paragrahvNr>
+					<kuvatavNr id="5f69eeb5-8cd5-4ae2-8828-a3ee88f40159"><![CDATA[§ 75. ]]></kuvatavNr>
+					<paragrahvPealkiri id="1ec77b03-941e-436a-8600-c65556426906">Toetuste liigid</paragrahvPealkiri>
+					<loige id="para75lg1">
+						<loigeNr id="4a3a81d9-6372-42c2-bc1f-b2295c2c1c0c"/>
+						<kuvatavNr id="aeee5edd-33aa-4196-bde3-29ba6fcd438c"/>
+						<sisuTekst id="cb0ee620-7958-4e94-af8f-f821acb7d26a">
+							<tavatekst id="75927073-939c-4539-8d2f-e301f0f11611">Valla eelarvest makstavad toetused on:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para75lg1p1">
+							<alampunktNr id="ef67fdd2-39c2-4b3d-bb30-7058d6cac6ff">1</alampunktNr>
+							<kuvatavNr id="d1acf9d6-cf9e-4c06-8f9a-0d74ae8938c8"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="c679d32b-bb94-485e-815a-08522932769d">
+								<tavatekst id="aca1eea7-2067-4178-bdaf-8532d1514e00">sünnitoetus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para75lg1p2">
+							<alampunktNr id="e7bff311-b333-4210-b4d7-34b27f65fc87">2</alampunktNr>
+							<kuvatavNr id="0c94d737-e0e3-4769-ab53-f7d2eba90fc8"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="8e9598c5-0bec-4ee8-afd1-60363867e68a">
+								<tavatekst id="698b903d-58da-480a-a5b8-fba1d2c5a870">matusetoetus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para75lg1p3">
+							<alampunktNr id="5ba17b23-a6ad-4279-80fb-0a9a2310f295">3</alampunktNr>
+							<kuvatavNr id="4551f81f-e09a-499f-bf4a-f5d43d3218b1"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="994839ad-3cc0-458c-b015-4b08d8b0f68f">
+								<tavatekst id="0c5318ee-d70d-414a-824c-cd2c5bbf5387">toimetulekutoetus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para75lg1p4">
+							<alampunktNr id="1fda65ba-bbbc-4113-8849-1319ffd523e9">4</alampunktNr>
+							<kuvatavNr id="148cbf99-82e0-4b27-b00a-6e16acd93610"><![CDATA[4) ]]></kuvatavNr>
+							<sisuTekst id="ca8545d9-1ea6-4559-9bfe-46498a1ceef7">
+								<tavatekst id="487ac3da-7a44-4d33-a77f-b498334e182d">hooldajatoetus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para75lg1p5">
+							<alampunktNr id="62dab31a-9063-427b-8709-9c13474a2853">5</alampunktNr>
+							<kuvatavNr id="f5b6ab74-c78e-4c9f-b9b9-299dafa5a9be"><![CDATA[5) ]]></kuvatavNr>
+							<sisuTekst id="02f32476-46d1-4e61-a634-0001db58b382">
+								<tavatekst id="4a43e22a-3157-4c7c-b053-0d82f34cbd08">sissetulekust sõltuv sotsiaaltoetus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para75lg1p6">
+							<alampunktNr id="874a2998-fd8f-4193-8475-7780213065cb">6</alampunktNr>
+							<kuvatavNr id="d6e87e6f-42dd-43ca-a7ce-fab393d5329b"><![CDATA[6) ]]></kuvatavNr>
+							<sisuTekst id="0c3bfb1b-c2d0-4983-b0cb-bfa4100dcce6">
+								<tavatekst id="954da433-09ea-45ae-b7b8-e244a35de375">erakorraline toetus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para75lg1p7">
+							<alampunktNr id="3d17bb89-7d3e-4d7b-920a-5ce03adb3858">7</alampunktNr>
+							<kuvatavNr id="f73f6684-06cf-48d2-b752-701a1a428f3e"><![CDATA[7) ]]></kuvatavNr>
+							<sisuTekst id="b2c66c30-6535-4cf8-87be-0223271d7ee7">
+								<tavatekst id="5d5d29e5-d9d2-4195-a2bc-6152d5c1a0ba">raske ja sügava puudega laste erivajadusest tingitud toetus.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="6fd7b827-f3f9-4400-8a1a-5c63511bf73d">
+				<jaguNr id="e4f006d7-6af2-457f-adff-2f90319d94ce">2</jaguNr>
+				<kuvatavNr id="d6cfc7af-e33b-42cd-8601-18087c551312"><![CDATA[2. jagu]]></kuvatavNr>
+				<jaguPealkiri id="7978a7ec-75a9-4db2-9069-59baeb1afb6c">Toetused</jaguPealkiri>
+				<paragrahv id="para76">
+					<paragrahvNr id="92bc4644-e201-4f0f-b0a9-da055e135818">76</paragrahvNr>
+					<kuvatavNr id="a26b6273-95c8-467e-adf0-e7bad58643d6"><![CDATA[§ 76. ]]></kuvatavNr>
+					<paragrahvPealkiri id="b5a58f38-0eba-427c-a018-6a8bfa14f1f8">Sünnitoetus</paragrahvPealkiri>
+					<loige id="para76lg1">
+						<loigeNr id="703defda-7730-459d-8be3-bef5cf433aa5">1</loigeNr>
+						<kuvatavNr id="e5051cd0-0d74-4a68-b494-324e1d22fb59"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="34f48bbd-63a7-48c9-a666-2ddae53d55e3">
+							<tavatekst id="e5a9e12d-4096-493b-89b0-1008776adbe1">Sünnitoetust on õigus taotleda lapsevanemal, kelle elukoht, mille aadressiandmed on kantud rahvastikuregistrisse, on vähemalt kuue kuu jooksul vahetult enne lapse sündi asunud vallas ning tingimusel, et alates hiljemalt kümnendast tööpäevast lapse sünni registreerimisest arvates on lapse elukoht, mille aadressiandmed on kantud rahvastikuregistrisse, olnud vallas.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="caf2b11d-28d2-4fe1-9779-795b9f665e8f">
+							<avaldamismarge id="436b992c-78c8-4216-8c33-90379c1510da">
+								<RTosa id="122b49a1-dc10-4557-a85a-ff2ce6c0f0a5">RT IV</RTosa>
+								<avaldamineKuupaev id="ab234ae9-d856-46ea-9564-6da4b3458b8e">2023-09-12</avaldamineKuupaev>
+								<RTartikkel id="429bd7c2-ea3c-45f5-aa14-0ff7cad61649">2</RTartikkel>
+								<aktViide id="8ffb5f08-8916-438a-acc7-2a2e614e9dc4">412092023002</aktViide>
+							</avaldamismarge>
+							<joustumine id="474766de-2d75-4256-a7fc-6146a357fc90">2023-09-15</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para76lg1b1">
+						<loigeNr id="aef16d46-a6c6-4af8-bdc7-a7619f2425ea" ylaIndeks="1">1</loigeNr>
+						<kuvatavNr id="dda55f1d-596e-48ed-91f1-65a01a5a3a4b"><![CDATA[(1<sup>1</sup>)]]></kuvatavNr>
+						<sisuTekst id="e32c1409-b71a-405c-9bd7-2a2b24faf6e0">
+							<tavatekst id="2ae9f721-dde6-4c52-afa6-db30886a08b6">Sünnitoetust ei maksta, kui sünnitoetust on makstud mõnes teises kohaliku omavalitsuse üksuses.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="9ea7c8a6-b973-40cb-9e22-7d6028406049">
+							<avaldamismarge id="4eba7b7d-1e94-46a7-a345-6d36714899ee">
+								<RTosa id="24b121e1-2e73-4c88-8bb2-fcc65d30a390">RT IV</RTosa>
+								<avaldamineKuupaev id="843fae25-c285-42b6-9c82-1ca2062f3857">2023-09-12</avaldamineKuupaev>
+								<RTartikkel id="9bfd3fcf-88da-4838-98e9-5a864dfc9b9c">2</RTartikkel>
+								<aktViide id="2a709e62-837b-4fb9-954e-e531f2a2205b">412092023002</aktViide>
+							</avaldamismarge>
+							<joustumine id="41b8da76-309c-40fa-818b-72368dca7f5e">2023-09-15</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para76lg2">
+						<loigeNr id="eb268b4e-9bee-4b06-a58b-33db7bde172f">2</loigeNr>
+						<kuvatavNr id="45bc677a-4b26-4682-ac9f-a07614d1132f"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="5a17a39a-f282-492b-b82f-d8d2cada5f6f">
+							<tavatekst id="527bcf91-bf68-4dd3-8113-2352df618447">Toetus makstakse eestkostjale, kui lapsel on määratud kohtuotsuse alusel eestkostja.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para76lg3">
+						<loigeNr id="ca516c24-6dd0-487c-9172-b36cb0db624b">3</loigeNr>
+						<kuvatavNr id="adbb0c73-2eb3-433b-ada1-9d4d6fbbafdc"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="afc20fc9-27f2-48de-8d44-9d23c394e54c">
+							<tavatekst id="6f1089d7-b59e-42be-9db3-dd4a0e0ab30c">Toetus makstakse iga vastsündinud lapse kohta.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para76lg4">
+						<loigeNr id="3cb8ec62-092d-4bfe-a0bb-5a502e87e8ff">4</loigeNr>
+						<kuvatavNr id="dfed343f-63b7-4c9d-93ae-3266f5441711"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="380a8f68-6f6d-413c-a845-f48739c631d7">
+							<tavatekst id="cc184034-d16f-41f7-a981-673b75f0562c">Toetust ei maksta, kui laps sünnib surnult.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para76lg5">
+						<loigeNr id="6bbed0aa-9bb7-4745-a11b-223c925c0fa1">5</loigeNr>
+						<kuvatavNr id="aa06f04d-b6b2-4cfd-8289-76e9a34b9d4c"><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst id="284daedf-4b7b-4dfe-9665-18a4f4217ca1">
+							<tavatekst id="088e077c-5559-479a-a201-6a4476bd9d8d">Toetust makstakse õigustatud isikule kuni kolm kuud peale lapse sündi.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para76lg6">
+						<loigeNr id="b867ba77-eefd-437b-a4b8-87f3ec7724a2">6</loigeNr>
+						<kuvatavNr id="54a71aec-f79f-451b-8b83-c234852903f7"><![CDATA[(6)]]></kuvatavNr>
+						<sisuTekst id="41ae5bdf-3764-4a04-93c8-73701b3744f3">
+							<tavatekst id="7d13260a-a62d-4525-8707-b352b30bd085">Toetuse määramise otsustab vastutav ametnik.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para77">
+					<paragrahvNr id="689daaf3-88d8-43be-accf-b250bdf51ef2">77</paragrahvNr>
+					<kuvatavNr id="a07d32af-b60f-435a-9274-370507518028"><![CDATA[§ 77. ]]></kuvatavNr>
+					<paragrahvPealkiri id="6e1460a3-299b-4fcd-a144-cab294fdc74b">Matusetoetus</paragrahvPealkiri>
+					<loige id="para77lg1">
+						<loigeNr id="0817ffe6-8c9e-47b6-8307-0311ffa8793f">1</loigeNr>
+						<kuvatavNr id="b3ef97ba-c6f5-4982-9969-d2a4c648fc48"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="fddd1fac-cb5b-4d25-846e-15a8c26602d3">
+							<tavatekst id="6ec1dd76-153e-41a8-96d0-cca0225f8ee3">Matusetoetust on võimalik taotleda matuse korraldajal matuse korraldamise kulude osaliseks hüvitamiseks surmatõendi alusel kuni kolm kuud peale isiku surma.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para77lg2">
+						<loigeNr id="e3b227e5-3998-41cd-a85f-e1932c2b2800">2</loigeNr>
+						<kuvatavNr id="8e9b2d2a-216e-49e0-ab77-5bb6526e8a24"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="9333ee45-9f33-4524-be90-211303d16521">
+							<tavatekst id="14f280f8-5464-4774-85f8-afffc65c01a4">Üldjuhul makstakse toetust rahvastikuregistrijärgse Saaremaa valla elaniku surma korral matuse korraldajale. </tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para77lg3">
+						<loigeNr id="306f87e5-318b-4a23-b53c-219af3db18b8">3</loigeNr>
+						<kuvatavNr id="2cc0c03f-e8e1-4f89-8946-ae3571d32887"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="6bb1049d-f54a-422e-960f-6db721938079">
+							<tavatekst id="6a1071fc-f0f2-4834-9acd-0727ec123c6b">Erandkorras makstakse toetust rahvastikuregistrijärgse Saaremaa valla elanikule, kes korraldab matused isikule, kellel puudus rahvastikuregistrijärgne elukoht või kelle matuse kulude hüvitamiseks ei olnud võimalik saada toetust lahkunud isiku elukohajärgsest kohaliku omavalitsuse üksusest.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para77lg4">
+						<loigeNr id="556931e1-e197-45d9-bedd-23daa3c613a0">4</loigeNr>
+						<kuvatavNr id="774ba1af-1976-428f-8f50-7c6768d8ae5e"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="2c8772cf-f965-46fa-945e-eaff4cd9c08d">
+							<tavatekst id="7f7e7a5e-ecda-4041-adaf-fe3e2bbb3c54">Toetuse määramise otsustab vastutav ametnik.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para78">
+					<paragrahvNr id="dee6891e-95b2-42a1-9e2d-ab455633e1ea">78</paragrahvNr>
+					<kuvatavNr id="6a5bfd9f-8624-4ed9-a6bc-c592d4f1f88a"><![CDATA[§ 78. ]]></kuvatavNr>
+					<paragrahvPealkiri id="756e3cf4-cded-4ebf-8d64-2f2b1e34ea53">Toimetulekutoetus</paragrahvPealkiri>
+					<loige id="para78lg1">
+						<loigeNr id="51ee6ae3-34c4-471c-b400-ed63392cd3e9">1</loigeNr>
+						<kuvatavNr id="820644cf-32a8-45c3-b1fe-282d728a3114"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="89c315b7-0386-4ba0-ac6d-bce7ddaeca3a">
+							<tavatekst id="ec9a3a61-6c60-43fa-bf92-95bfdb59bc62">Toimetulekutoetus määratakse ja makstakse üksi elavale isikule või perekonnale sotsiaalhoolekande seadusega kehtestatud ulatuses, tingimustel ja korras.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para78lg2">
+						<loigeNr id="4c6fc065-4114-4102-8eb8-6453e1282269">2</loigeNr>
+						<kuvatavNr id="84047c33-35ea-460c-b72a-ae588e5ca96f"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="2c75bfa9-151f-47bf-abd6-662199da0362">
+							<tavatekst id="0b07e491-afc4-48a9-a122-d8e074d8082e">Toetuse määramise otsustab vastutav ametnik.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para79">
+					<paragrahvNr id="bcbcad65-7649-4143-8261-3fb03c41d193">79</paragrahvNr>
+					<kuvatavNr id="89cf56e8-f24a-44e0-8e64-8b4aa5a6a99a"><![CDATA[§ 79. ]]></kuvatavNr>
+					<paragrahvPealkiri id="ed2d3da4-547c-4ff9-89a4-f9d9a7154877">Hooldajatoetus</paragrahvPealkiri>
+					<loige id="para79lg1">
+						<loigeNr id="ae865050-a3a9-4aa0-a259-e244d702fbdd">1</loigeNr>
+						<kuvatavNr id="fa35fa16-065b-452a-8a9e-6d3c49fe62a3"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="33eb464c-16b0-48e4-b8a1-da6c79fefde6">
+							<tavatekst id="50d088c2-dd55-4beb-a9cb-52e872d32d43">Toetus määratakse raske ja sügava puudega isiku hooldajale, kes on määratud hooldajaks käesoleva määruse paragrahv 20 alusel. </tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para79lg2">
+						<loigeNr id="99be1b6a-8225-4dbb-a85c-6cdbffe46116">2</loigeNr>
+						<kuvatavNr id="c8ca6dc4-37ea-404e-a779-e9da39c095d2"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="d05c3068-9a56-4e24-a2d7-c439ad7cdc6f">
+							<tavatekst id="b61371a3-dc53-4fde-aac2-dc31c383499f">Toetuse määramise otsustab vastutav ametnik. </tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para80">
+					<paragrahvNr id="711938ce-f033-40e8-94f1-975aeddc9648">80</paragrahvNr>
+					<kuvatavNr id="2af28bdf-726e-4b06-bf3f-d9640d447057"><![CDATA[§ 80. ]]></kuvatavNr>
+					<paragrahvPealkiri id="5989254f-3d89-44bb-a818-498b7c80029d">Sissetulekust sõltuv sotsiaaltoetus</paragrahvPealkiri>
+					<loige id="para80lg1">
+						<loigeNr id="21541b86-08ce-44da-b572-2a86bbc50c17">1</loigeNr>
+						<kuvatavNr id="11364a99-20bb-4c10-ba2e-7a367900df39"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="6cd435f7-9a76-47c5-a849-e016f4fc0310">
+							<tavatekst id="7168892d-50c9-48de-b357-7309242632c1">Toetust makstakse isiku toimetuleku tagamiseks.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para80lg2">
+						<loigeNr id="37735f0a-2ce4-4834-b152-aae954a165ea">2</loigeNr>
+						<kuvatavNr id="379ac0a7-446e-46dc-80e3-9e1e774c592b"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="46237283-b5b0-4507-831b-69637c4315ff">
+							<tavatekst id="433bdb11-8b4c-4d5b-8508-fe913de7f626">Toetust on õigustatud saama isik, kelle eelmise kolme kuu keskmine netosissetulek peale kolme kuu eluaseme kulude, ülalpidamiskohustuse täitmiseks makstud elatise ja eluasemelaenu kulude maha arvestamist on väiksem kui riiklik kehtestatud kahekordne toimetulekupiir pereliikme kohta. Eluasemekuludeks loetakse sotsiaalhoolekande seaduse § 133 lõigetes 5 loetletud kulud.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para80lg3">
+						<loigeNr id="94876d76-bb11-414b-87dd-5ef5b5446f98">3</loigeNr>
+						<kuvatavNr id="40b5025d-2590-4507-b7cf-b8045b09ccbd"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="e5f28790-a4f4-4098-8196-206918be4cab">
+							<tavatekst id="f5333953-a9e8-423c-8a72-38e4fb28951b">Toetust on õigus taotleda kolme kuu jooksul pärast nende kulutuste tegemist, milleks toetust taotletakse, või pärast sündmust, mille korral toetust makstakse.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para80lg4">
+						<loigeNr id="00dfce42-a1bb-4f6b-906d-2c8fb548987d">4</loigeNr>
+						<kuvatavNr id="203c7669-3226-40fd-a62c-b3de7806df2e"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="49cc382a-822f-4a67-8d4f-42b8beb24af5">
+							<tavatekst id="2f6d8bd4-3554-492d-8355-f8dc0d0bb803">Toetuse taotlemisel on vaja esitada kuludokumendid, milleks toetust taotletakse.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para80lg5">
+						<loigeNr id="3967e4b3-f489-4bcd-9ea6-9a42747189eb">5</loigeNr>
+						<kuvatavNr id="e0e59727-ab1a-4ce1-85af-72170c1444ba"><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst id="811bc91a-516e-445a-a589-0d10c10240b1">
+							<tavatekst id="c706e106-062a-49e3-a022-ef68c50756ec">Toetuse maksimaalne piirmäär on aastas kahekordne toimetulekupiir pereliikme kohta. Puudest tingitud lisakulud hüvitatakse juhul, kui kulud ravimitele ja abivahenditele ühes kuus on suuremad puuetega inimeste riiklikust sotsiaaltoetusest.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para80lg6">
+						<loigeNr id="8b0829aa-b1d4-4e03-a6fd-6dcb8293b40f">6</loigeNr>
+						<kuvatavNr id="fbc18eb1-c012-4f3e-bcae-019fe2bcce91"><![CDATA[(6)]]></kuvatavNr>
+						<sisuTekst id="9149c5c3-ca10-4c9e-b99a-721c888fd3f8">
+							<tavatekst id="1ed2b2c9-062c-40f5-8257-6f66077e75dd">Toetuse määramise otsustab vastutav ametnik.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para81">
+					<paragrahvNr id="056d8323-aa23-4e78-9975-7396f755c83e">81</paragrahvNr>
+					<kuvatavNr id="7c6a86d6-99f5-4731-aa7f-5d66f7ed010d"><![CDATA[§ 81. ]]></kuvatavNr>
+					<paragrahvPealkiri id="2c8dd0bc-de8e-4c9b-a72e-268261cd4219">Erakorraline toetus</paragrahvPealkiri>
+					<loige id="para81lg1">
+						<loigeNr id="c2438811-d0fd-4692-9530-748cab7b4ace">1</loigeNr>
+						<kuvatavNr id="238ea7a4-9420-46e0-93a0-420a2cc4432a"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="ba981917-935d-4451-ab35-12b3ac050309">
+							<tavatekst id="873bad54-0737-4545-9bb2-7af5f486343f">Toetust on õigus taotleda õnnetusjuhtumi korral raskesse majanduslikku olukorda sattunud isiku või perekonna konkreetse olukorra leevendamiseks.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para81lg2">
+						<loigeNr id="90407939-628c-43c7-8758-7f92cbc0d9da">2</loigeNr>
+						<kuvatavNr id="1e9b349f-452b-4d26-a9ce-44dc882efb9b"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="d15cabcd-58cf-45be-9071-359c7a447ebf">
+							<tavatekst id="2a0da1e5-a1c4-4348-9271-54e357013774">Toetuse määramise otsustab komisjon.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para82">
+					<paragrahvNr id="10945253-f8b4-4952-b1c6-ce772c7eb63b">82</paragrahvNr>
+					<kuvatavNr id="045c67e2-b3fe-4b64-a6dd-61d947e64dc7"><![CDATA[§ 82. ]]></kuvatavNr>
+					<paragrahvPealkiri id="f3800e8e-fffd-44dd-b4ca-841ca9c9ca1c">Raske ja sügava puudega laste erivajadusest tingitud toetus</paragrahvPealkiri>
+					<loige id="para82lg1">
+						<loigeNr id="f6f51772-f392-4136-b972-97a0870eea11">1</loigeNr>
+						<kuvatavNr id="d2c594b8-858b-4d78-b169-7b94a2c517f5"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="b61a546d-90f7-40da-8c18-fcf3f3d0567b">
+							<tavatekst id="6865e1cb-74d8-4cc6-966f-95cfd448a308"> Toetust on õigus taotleda raske või sügava puudega lapse vanemal lapse puudest tingitud konkreetse olukorra leevendamiseks ja abivahendite ning lapse erivajadusest tingitud muude kulude hüvitamiseks.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para82lg2">
+						<loigeNr id="00930ba6-e892-46af-b295-6b177daaecf5">2</loigeNr>
+						<kuvatavNr id="a2e47af6-77e5-46f9-a90e-d4a681158507"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="0b1deaca-70bd-4daa-a048-954b437a958c">
+							<tavatekst id="96403464-a3af-4d96-8f24-9a106c117f69">Toetuse määramise aluseks on lapse juhtumiplaanis märgitud toetusvajadus. Toetuse määramise otsustab komisjon.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+		</peatykk>
+		<peatykk id="0ce451f4-3d02-42db-bd4f-6cc0aef05f29">
+			<peatykkNr id="d1e2953f-4cae-452f-ba9f-1dbee0b95b72">5</peatykkNr>
+			<kuvatavNr id="44136e2e-7738-4caf-919e-69e945d8754f"><![CDATA[5. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="24316e1e-89b9-459f-ae94-035ead28864d">JÄRELEVALVE</peatykkPealkiri>
+			<paragrahv id="para83">
+				<paragrahvNr id="70fa8816-0bd2-4ace-87cb-0f8fe6682bca">83</paragrahvNr>
+				<kuvatavNr id="674c4d5d-c5d6-4be9-a331-454f970c1da4"><![CDATA[§ 83. ]]></kuvatavNr>
+				<paragrahvPealkiri id="9640a146-0059-4cfe-baf9-99d5da489dd6">Järelevalve ja arvestuse pidamine</paragrahvPealkiri>
+				<loige id="para83lg1">
+					<loigeNr id="00b863b4-fe37-4d51-af7f-be63865bbcdb">1</loigeNr>
+					<kuvatavNr id="50a58726-227b-41db-85d7-0f3d13c4107c"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="f30dc2a8-3980-4727-b07f-cb6a3016808d">
+						<tavatekst id="c0480685-f778-4e5e-a183-dce39f84ffac">Järelevalvet teenuste osutamise üle teostab vallavalitsus.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para83lg2">
+					<loigeNr id="15a63e54-d8f2-436b-833d-b927401302e5">2</loigeNr>
+					<kuvatavNr id="4712f284-e7fb-4f33-8eb0-abe7f3f1cf46"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="4c5f5069-a8f0-4629-bffb-876892fdedd5">
+						<tavatekst id="7a06a9ea-b845-4814-8a4d-eabf53877f4b">Teenuste korraldamise ja teenuse osutamise üle arvestuse pidamise eest vastutab vallavalitsuse sotsiaalvaldkonna eest vastutav struktuuriüksus.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="06376f78-ded0-4710-b0ae-93c1fb5c83a9">
+			<peatykkNr id="e5ad31b3-28a3-4f25-ac4c-1b68cd95c3e4">6</peatykkNr>
+			<kuvatavNr id="942034b6-9f1c-4cb7-855f-a988c20cc1d7"><![CDATA[6. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="c14970ed-b94a-45ec-bfce-bb371fc83fc6">RAKENDUSSÄTTED</peatykkPealkiri>
+			<paragrahv id="para84">
+				<paragrahvNr id="a731023f-a84b-47ca-a96b-51badb3e9321">84</paragrahvNr>
+				<kuvatavNr id="cc4ff724-572c-4f7d-b2ed-c6fbd9057f26"><![CDATA[§ 84. ]]></kuvatavNr>
+				<paragrahvPealkiri id="a00d1c0b-9267-4af2-97c2-d6ca821ab741">Määruste kehtetutuks tunnistamine</paragrahvPealkiri>
+				<loige id="para84lg1">
+					<loigeNr id="7c38b777-b33f-4902-94f0-6b47acf70fa3"/>
+					<kuvatavNr id="f14b761e-aed7-4aed-a715-81fd9c08566d"/>
+					<sisuTekst id="5702a57a-996b-4b23-8fd7-655d42f4b4bd">
+						<tavatekst id="63bebccb-5cd9-47f7-94fc-ec1c829a24ce">[Käesolevast tekstist välja jäetud.]</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para85">
+				<paragrahvNr id="163aa331-cf2e-4256-8eae-a78e0cd4a07b">85</paragrahvNr>
+				<kuvatavNr id="58bb5acc-41f4-441f-a604-6fa75d437462"><![CDATA[§ 85. ]]></kuvatavNr>
+				<paragrahvPealkiri id="6fa06a90-c8e6-48cd-82b6-0aa2d585faa0">Määruse rakendamine</paragrahvPealkiri>
+				<loige id="para85lg1">
+					<sisuTekst id="8c76d586-6e57-4eb5-b76b-86940d0379fb">
+						<tavatekst id="d7ad86f9-3aba-4315-b82e-4ec86a430fc1">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist ning rakendatakse tagasiulatuvalt 1. maist 2019.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+	</sisu>
+</oigusakt>

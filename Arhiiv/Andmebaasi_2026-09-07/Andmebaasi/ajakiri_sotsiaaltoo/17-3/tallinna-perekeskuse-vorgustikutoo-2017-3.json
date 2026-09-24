@@ -1,0 +1,89 @@
+{
+  "docId": "sotsiaaltoo-3-2017",
+  "articleId": "tallinna-perekeskuse-vorgustikutoo-2017-3",
+  "title": "Võrgustikutööst Tallinna Perekeskuse pereteenistuses",
+  "authors": [
+    "Talvi Karbe"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2017",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "54-57",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Magistritööl põhinev ülevaade võrgustikutööst Tallinna Perekeskuse pereteenistuses. Autor kogus kogemuse peretöötajana aastatel 2007–2011 ja keskendus magistritöös lapsevanemate ja sotsiaaltöötajate võrgustiku koostöökogemustele. Tõdeb, et kuigi meetod on Eestis kasutusel olnud üle kahe aastakümne, esitab selle rakendamine pidevalt uusi väljakutseid, ning et võrgustikus orienteerumine võib peredele olla keeruline.",
+  "tags": [
+    "võrgustikutöö",
+    "peretöö",
+    "juhtumikorraldus",
+    "lastekaitse",
+    "Tallinn"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part15.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2017-tallinna-perekeskuse-vorgustikutoo-2017-3",
+  "source_sha256": "41f9ef62f81cb6d6cc5242feb1e53798438bd2f01ace93c6cc16e3c1391d29cf",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2017-tallinna-perekeskuse-vorgustikutoo-2017-3",
+    "previous_source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part15.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part15.pdf",
+    "reference_stored_source_sha256": "c88c595665f0b3771537a06f910dbba7740eeb1dd440fd85e349c56373d2eead",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf",
+      "source_sha256": "3f27c22982b22a396dace8a957798cc21d3240489c7ce4d92802bf1a94bde7a8",
+      "pdf_start_page": 56,
+      "pdf_end_page": 59,
+      "printed_page_range": "54-57",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 59,
+      "source_regions": [
+        {
+          "source_pdf_page": 56,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 57,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 58,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 59,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "54-57"
+    },
+    "server_page_range": "54-57"
+  }
+}

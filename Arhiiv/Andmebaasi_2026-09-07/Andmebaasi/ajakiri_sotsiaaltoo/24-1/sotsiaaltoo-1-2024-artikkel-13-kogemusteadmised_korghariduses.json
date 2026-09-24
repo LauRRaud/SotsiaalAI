@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-1-2024",
+  "articleId": "kogemusteadmised-sotsiaaltoo-korghariduses-2024-1",
+  "title": "Kogemusteadmised sotsiaaltöö kõrghariduses",
+  "authors": [
+    "Dagmar Narusson"
+  ],
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2024",
+  "section": "Erialane haridus",
+  "pageRange": "67-72",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artiklis vaadeldakse, kuidas kogemusteadmisi integreeritakse sotsiaaltöö kõrgharidusse ja milliseid muutusi see õppetöös kaasa toob. Analüüsitakse kogemusekspertide rolli õppetöös, nende kaasamise võimalusi ning väljakutseid akadeemiliste ja kogemuspõhiste teadmiste tasakaalustamisel. Rõhutatakse personaalse taastumise mõtteviisi, turvalise õpikeskkonna loomist ja refleksiooni olulisust, et kogemustest kujuneksid struktureeritud kogemusteadmised.",
+  "tags": [
+    "kogemusteadmised",
+    "kõrgharidus",
+    "kogemuseksperdid",
+    "personaalse taastumise mõtteviis",
+    "õppekavad",
+    "vaimse tervise raskused",
+    "didaktika",
+    "refleksioon"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_1_2024_web_Part13.pdf",
+  "document_id": "sotsiaaltoo-1-2024-kogemusteadmised-sotsiaaltoo-korghariduses-2024-1",
+  "source_format": "pdf",
+  "source_sha256": "214c61e63a8bf8bed6ff1ba9f6f9aecf4d51a2e5c0f68e605226bd6dc85d2753",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2024-kogemusteadmised-sotsiaaltoo-korghariduses-2024-1",
+    "previous_source_path": "Sotsiaaltoo_1_2024_web_Part13.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "214c61e63a8bf8bed6ff1ba9f6f9aecf4d51a2e5c0f68e605226bd6dc85d2753",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

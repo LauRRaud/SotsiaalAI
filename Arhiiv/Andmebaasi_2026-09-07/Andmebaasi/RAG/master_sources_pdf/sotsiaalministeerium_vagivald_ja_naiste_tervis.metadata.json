@@ -1,0 +1,77 @@
+{
+  "source": {
+    "source_id": "sotsiaalministeerium_vagivald_ja_naiste_tervis",
+    "title": "Vägivald ja naiste tervis",
+    "url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/vagivald_ja_naiste_tervis_1_.pdf",
+    "normalized_url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/vagivald_ja_naiste_tervis_1_.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "Sotsiaalministeerium",
+    "organization_id": "sotsiaalministeerium",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "Sotsiaalministeerium",
+      "ohvriabi",
+      "uuring",
+      "raport",
+      "analüüs",
+      "vägivald",
+      "naiste tervis"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Sotsiaalministeerium",
+      "heading_3": "Vanemad, aga endiselt kasulikud taustauuringud",
+      "heading_4": null,
+      "line": 549,
+      "order": 285
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Vägivald ja naiste tervis"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Sotsiaalministeerium"
+    ],
+    "organizations_seen": [
+      "sotsiaalministeerium"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Sotsiaalministeerium",
+        "heading_3": "Vanemad, aga endiselt kasulikud taustauuringud",
+        "line": 549,
+        "order": 285
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/vagivald_ja_naiste_tervis_1_.pdf"
+  },
+  "final_url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/vagivald_ja_naiste_tervis_1_.pdf",
+  "redirects": [],
+  "sha256": "9daf55037c0f098e02c152246936d92b54849b1098cd9964d18b6c37cce02d51",
+  "bytes": 726864,
+  "downloaded_at": "2026-08-14T08:00:55.433Z"
+}

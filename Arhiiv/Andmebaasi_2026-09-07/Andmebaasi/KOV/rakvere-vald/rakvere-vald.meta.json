@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-rakvere-vald",
+  "document_id": "kov-rakvere-vald",
+  "municipality": "Rakvere vald",
+  "municipality_id": "rakvere_vald",
+  "county": "Lääne-Virumaa",
+  "checkedAt": "2026-04-29",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-rakvere-vald",
+  "coverage": {
+    "services": 14,
+    "benefits": 12,
+    "resources": 9,
+    "contacts": 10,
+    "forms": 17,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "rakvere_vald",
+    "source_register_file": "rakvere-vald.sources.json",
+    "service_benefit_resource_items": 35,
+    "items_with_source_keys": 35,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 20,
+    "items_without_related_forms": 15,
+    "items_with_related_contacts": 32,
+    "items_without_related_contacts": 3,
+    "form_sources": 15,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "4 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Korje põhines Rakvere valla ametlikul veebilehel ning selle ametlikel alamlehtedel.",
+    "RT ja õigusaktide detailne kontroll on teadlikult eraldi kihis."
+  ],
+  "unresolvedIssues": [
+    "Mõne RTF-vormi sisu ei olnud veebitööriistaga tekstina loetav; seosed põhinevad Rakvere valla ametliku blanketilehe loetelul ja detaillehtede vormiviidetel.",
+    "Iseteeninduse vormide otselink viib SPOKU taotluste üldloendisse; konkreetse e-taotluse täitmiseks on vajalik sisselogimine.",
+    "Mõne toetuse täpne menetluskäik ei ole detaillehel avaldatud; üldine otsustamise tähtaeg sotsiaaltoetuste taotlemise lehel on 10 tööpäeva.",
+    "Varjupaiga- ja turvakoduteenuse lehed ei avalda konkreetset teenuseosutaja aadressi ega hinnakirja.",
+    "Asendus- ja järelhooldusteenuse leht viitab lisainfo saamiseks välisele riigiasutuse veebilehele; välist lehte ei kasutatud põhiallikana.",
+    "Perearstikeskuse ja apteekide andmed on kaasatud Rakvere valla sotsiaal- ja tervishoiuharu praktilise ressursina, kuid väliste teenusepakkujate veebilehti ei kontrollitud."
+  ],
+  "municipality_name": "Rakvere vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "rakvere-vald.sources.json",
+  "sourceCount": 51,
+  "counts": {
+    "services": 14,
+    "benefits": 12,
+    "resources": 9,
+    "contacts": 10,
+    "forms": 17,
+    "regulations": 0
+  },
+  "warnings": [
+    "4 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "docId": "sotsiaaltoo-2-2017",
+  "articleId": "suunab-tahelepanu-lahendustele-2017-2",
+  "title": "Sotsiaaltöötaja suunab tähelepanu lahendustele ja võimalustele",
+  "authors": [
+    "Gerly Kättmann"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2017",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "20-21",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaaltöö bakalaureuse (cum laude) lugu, kes õppis varem koorijuhtimist Eesti Muusika- ja Teatriakadeemias ja tuli sotsiaaltöösse soovist inimesena areneda. On töötanud tegevusjuhendajana Valkla Kodus ja MTÜs Heaolu ja Taastumise Kool. Näide korpuses korduvast mustrist, kus sotsiaaltöösse jõutakse teiselt erialalt.",
+  "tags": [
+    "erialavalik",
+    "tegevusjuhendaja",
+    "erihoolekanne",
+    "Heaolu ja Taastumise Kool"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2-2017_veebi_link_Part9.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2017-suunab-tahelepanu-lahendustele-2017-2",
+  "source_sha256": "a2eb34912c0f2f5c912f561867d1933132364d9edece4fd37215d5539cd11e6e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2017-suunab-tahelepanu-lahendustele-2017-2",
+    "previous_source_path": "Sotsiaaltoo_2-2017_veebi_link_Part9.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2-2017_veebi_link_Part9.pdf",
+    "reference_stored_source_sha256": "6819a5c5547061e023b742ceaa6149ed5fd1ac92faca2f497a46e3e0c3004109",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf",
+      "source_sha256": "609af110244e684ccbb68aea9504f2490fce2852b1e7caa7bedacb621d661a8a",
+      "pdf_start_page": 22,
+      "pdf_end_page": 23,
+      "printed_page_range": "20-21",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 23,
+      "source_regions": [
+        {
+          "source_pdf_page": 22,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 23,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "20-21",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf"
+    },
+    "server_page_range": "20-21"
+  }
+}

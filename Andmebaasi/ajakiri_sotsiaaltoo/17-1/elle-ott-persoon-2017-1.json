@@ -1,0 +1,91 @@
+{
+  "docId": "sotsiaaltoo-1-2017",
+  "articleId": "elle-ott-persoon-2017-1",
+  "title": "Veerandsada aastat südamega töötamist. Aarike hooldekeskuse juhataja Elle Ott",
+  "authors": [
+    "Rain Uusen"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2017",
+  "section": "Persoon",
+  "pageRange": "19-22",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu 67-aastasest Elle Otist, kes on 25 aastat juhtinud SA Aarike Hooldekeskust Kambja vallas: kolm maja, 55 klienti ja 18 töötajat, nende seas üheksa hooldustöötajat. Ott räägib hoolekande inimlikustamisest, personali koolitamisest ja plaanist jääda 2019. aastal pensionile, soovides enne seda maja lifti ja 20-kohalist juurdeehitust dementsussündroomiga klientidele. Ta leiab, et riik on keskendunud erihoolekande reformile ja jätnud üldhooldekodud tagaplaanile, ning ütleb, et Kambja vallale haldusreformi vaja ei ole.",
+  "tags": [
+    "persoonilugu",
+    "hooldekodu",
+    "eakad",
+    "hoolekanne",
+    "haldusreform",
+    "hooldustöötajad"
+  ],
+  "source_type": "file",
+  "source_path": "2017_1_Part7.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2017-elle-ott-persoon-2017-1",
+  "source_sha256": "431f1f6739dc54def7e97dd61e480740fe8864c439cdc14e44c27d73dfa79761",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2017-elle-ott-persoon-2017-1",
+    "previous_source_path": "2017_1_Part7.txt",
+    "previous_source_original_path": "2017_1.pdf",
+    "reference_stored_source_sha256": "ae056cc051f0bf3c925d7b15bbeceb00492c7779fafe910f13365954c3f32ce0",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf",
+      "source_sha256": "335f81467a555f12c55d0e8bf60122a178c5267567cf79607448a5d987629e50",
+      "pdf_start_page": 21,
+      "pdf_end_page": 24,
+      "printed_page_range": "19-22",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 24,
+      "source_regions": [
+        {
+          "source_pdf_page": 21,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 22,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 23,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 24,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        }
+      ],
+      "effective_printed_page_range": "19-22",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf"
+    },
+    "server_page_range": "19-22"
+  }
+}

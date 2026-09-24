@@ -1,0 +1,27 @@
+{
+  "ingest": {
+    "ok": true,
+    "inserted": 5,
+    "docId": "sotsiaalkindlustusamet_sexual_assault_crisis_centre_eng",
+    "pageRange": "1–2",
+    "shortRef": "Sexual Assault Crisis Centre (ENG). 2026. lk 1–2.",
+    "originalDocId": null,
+    "fileName": "Ohvriabi_infovoldik_SAK_ENG+bleed3mm.pdf",
+    "collection": "sotsiaalai",
+    "pageStart": null,
+    "pageEnd": null
+  },
+  "verification": {
+    "doc_id": "sotsiaalkindlustusamet_sexual_assault_crisis_centre_eng",
+    "inserted": 5,
+    "chunks": 5,
+    "language": "en",
+    "search_hits": 3,
+    "search_doc_ids": [
+      "sotsiaalkindlustusamet_sexual_assault_crisis_centre_eng",
+      "sotsiaalkindlustusamet_sexual_assault_crisis_centre_eng",
+      "sotsiaalkindlustusamet_sexual_assault_crisis_centre_eng"
+    ],
+    "query_sha256": "0c45d7d95a5a584b748e89648fca07f29d88790366d6deee33ace3a80010a2fd"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-3-2019",
+  "articleId": "enamikul-eesti-lastest-laheb-hasti-2019",
+  "title": "Enamikul Eesti lastest läheb hästi",
+  "authors": [
+    "Ülle Madise"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2019",
+  "section": "Eessõna",
+  "pageRange": "2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Õiguskantsleri eessõna laste õigustele pühendatud numbrile, rõhutades iga lapse väärtust, vajadust armastuse, turvatunde ja hea hariduse järele ning probleemkohti laste tugiteenuste kättesaadavuses.",
+  "tags": [
+    "laste õigused",
+    "eessõna",
+    "õiguskantsler",
+    "haridus",
+    "laste heaolu"
+  ],
+  "source_type": "file",
+  "source_path": "ST3_2019_veeb_link_Part2.pdf",
+  "document_id": "sotsiaaltoo-3-2019-enamikul-eesti-lastest-laheb-hasti-2019",
+  "source_format": "pdf",
+  "source_sha256": "c86ceffbd8cc2b70f374e1fe537d102747559cd288e2399b8ed4b0481d3e7898",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2019-enamikul-eesti-lastest-laheb-hasti-2019",
+    "previous_source_path": "ST3_2019_veeb_link_Part2.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "c86ceffbd8cc2b70f374e1fe537d102747559cd288e2399b8ed4b0481d3e7898",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

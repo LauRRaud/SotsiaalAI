@@ -1,0 +1,51 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "toevajadusega-noore-teekond-tooturule-astangu-kutserehabilitatsiooni-k-2026",
+  "title": "Toevajadusega noore teekond tööturule Astangu kutserehabilitatsiooni keskuse näitel",
+  "authors": [
+    "Kert Valdaru",
+    "Veronika Kaska"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Tugi ja teenused",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb toevajadusega noorte toetamist haridusteel ja tööturule jõudmisel Astangu kutserehabilitatsiooni keskuse näitel. Kirjeldatakse tervikliku tugisüsteemi rolli tugispetsialistidest mitmekesiste õppekavade ja karjäärinõustamiseni. Osutatakse kutsekoolide rahastamise ja tugispetsialistide puuduse probleemidele ning tuuakse võrdluseks Soome praktikat.",
+  "tags": [
+    "toevajadusega noored",
+    "kutserehabilitatsioon",
+    "Astangu",
+    "kutseharidus",
+    "tööturule siirdumine",
+    "karjäärinõustamine",
+    "tugispetsialistid",
+    "hariduspoliitika",
+    "erivajadus"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-04-01",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/toevajadusega-noore-teekond-tooturule-astangu-kutserehabilitatsiooni-keskuse",
+  "source_type": "web",
+  "source_path": "toevajadusega-noore-teekond-tooturule-astangu-kutserehabilitatsiooni-keskuse-nai.html",
+  "lead": "Selleks et toevajadusega noor suudaks edukalt läbida üleminekud ühest eluetapist teise – põhikoolist kutsekooli või gümnaasiumisse ning koolist tööellu –, vajame ka Eestis terviklikku tugimeetmete süsteemi. Astangu keskuse kogemus näitab, et õigeaegne ja vajadusi arvestav tugi aitab noortel õpingud läbida ning olla tööturul edukad.",
+  "document_id": "sotsiaaltoo-2-2026-toevajadusega-noore-teekond-tooturule-astangu-kutserehabilitatsiooni-k-2026",
+  "source_format": "html",
+  "source_sha256": "837a066967aa42c2659880e0e6a4cd2e7b1fa9db99f3dc063000b1390fe41889",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-toevajadusega-noore-teekond-tooturule-astangu-kutserehabilitatsiooni-k-2026",
+    "previous_source_path": "toevajadusega-noore-teekond-tooturule-astangu-kutserehabilitatsiooni-keskuse-nai.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "1002be19a2a990ae93658991fffddf89cc362bddd97704e45d26cc36e2635a53",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "0a75f9ee8533a4f6f3e796ad65a6525a9a7ac06e19b49cde5d3abfa1f8344e4b",
+    "observed_web_title": "Toevajadusega noore teekond tööturule Astangu kutserehabilitatsiooni keskuse näitel"
+  },
+  "retrieved_at": "2026-09-07T19:39:40.724560+00:00"
+}

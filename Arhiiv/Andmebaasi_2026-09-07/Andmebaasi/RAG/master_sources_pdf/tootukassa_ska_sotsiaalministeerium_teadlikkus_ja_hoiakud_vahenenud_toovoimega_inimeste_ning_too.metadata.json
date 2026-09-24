@@ -1,0 +1,77 @@
+{
+  "source": {
+    "source_id": "tootukassa_ska_sotsiaalministeerium_teadlikkus_ja_hoiakud_vahenenud_toovoimega_inimeste_ning_too",
+    "title": "Teadlikkus ja hoiakud vähenenud töövõimega inimeste ning töövõimereformi teemal",
+    "url": "https://mkm.ee/sites/default/files/documents/2023-07/2017_tvr_koondraport.pdf",
+    "normalized_url": "https://mkm.ee/sites/default/files/documents/2023-07/2017_tvr_koondraport.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Töötukassa / SKA / Sotsiaalministeerium",
+    "organization_id": "tootukassa_ska_sotsiaalministeerium",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Töötukassa",
+      "töövõime",
+      "vähenenud töövõime",
+      "töötamine",
+      "tööturuteenused",
+      "infomaterjal",
+      "Sotsiaalministeerium",
+      "Sotsiaalkindlustusamet"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Töövõime / Töötukassa / SKA / STAR",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 363,
+      "order": 203
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Teadlikkus ja hoiakud vähenenud töövõimega inimeste ning töövõimereformi teemal"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Töötukassa / SKA / Sotsiaalministeerium"
+    ],
+    "organizations_seen": [
+      "tootukassa_ska_sotsiaalministeerium"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Töövõime / Töötukassa / SKA / STAR",
+        "line": 363,
+        "order": 203
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://mkm.ee/sites/default/files/documents/2023-07/2017_tvr_koondraport.pdf"
+  },
+  "final_url": "https://mkm.ee/sites/default/files/documents/2023-07/2017_tvr_koondraport.pdf",
+  "redirects": [],
+  "sha256": "cb92e400cdf0f88699fd5e6df3d3f4451012eca5b90a503f1193c83adb8a4dc3",
+  "bytes": 6851264,
+  "downloaded_at": "2026-08-14T08:00:44.730Z"
+}

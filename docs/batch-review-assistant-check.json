@@ -1,0 +1,1568 @@
+{
+  "schema_version": "sotsiaalai/assistant-batch-review-followup-1",
+  "review_date": "2026-09-05",
+  "reviewer": {
+    "name": "ChatGPT",
+    "role": "assistant"
+  },
+  "review_kind": "retrospective_source_based_followup_not_human_approval",
+  "bindings": {
+    "rubric_sha256": "266f2abc39662a4f580ca3407513231a1cf0d5d53189604039a8250c4fba3e35",
+    "source_payload_sha256": "485f65a73b7ee12d3a466f30bdf3b32fab4c8ed89a534c76d9e97afe35004fce",
+    "questions_sha256": "498421b2e5b884645e03ec2f7b0d749662ea4e1e2c982f6590139577907fb9e6",
+    "v1_anchors_sha256": "e818ac1b33e25fc622651a7bea80cfda70cf1af9e5f9bb5267765b7aa0b508e9",
+    "corpus_snapshot_sha256": "a78ea0c39ccea0dd342ed0a40ca02e24485bf7ce8acffaf2a813e45ca30e4ccc"
+  },
+  "scope": {
+    "input_artifacts": 4,
+    "context_decisions_considered": 68,
+    "ready_context_decisions_supported": 61,
+    "corpus_decisions_considered": 13,
+    "deduplicated_context_chunks_read": 58,
+    "complete_source_pdfs_rerendered": false,
+    "full_69_chunk_canonical_snapshot_independently_audited": false,
+    "all_68_context_ids_content_hashes_and_displayed_text_compared_to_previous_review_export": true,
+    "server_or_repository_inspected_in_this_turn": false,
+    "formal_decisions_modified": false,
+    "independent_human_review": false,
+    "corpus_negative_scope": "Two absence decisions are supported within the documented eight-document snapshot. All four EKA chunks and all six Tehnopol chunks are visible and read; exact local-service price/deadline is absent from the displayed material and unspecified municipality cannot be resolved. The full 69-chunk underlying snapshot is not supplied/audited in this check."
+  },
+  "file_checks": [
+    {
+      "path": "batch-review.md",
+      "bytes": 22987,
+      "computed_sha256": "6334b34bd18b39311dda1ee655f3002b3dc7cf41a9033a0c39b2de296f487efc",
+      "matches_manifest": true
+    },
+    {
+      "path": "batch-review-evidence.html",
+      "bytes": 783066,
+      "computed_sha256": "f6ca527db3d14b5d49d8a8235cd5ffc35b8be12fa58eabd7d7704df4cce37729",
+      "matches_manifest": true
+    },
+    {
+      "path": "batch-review-proposal.json",
+      "bytes": 64069,
+      "computed_sha256": "10741380c31479cd1c02d537d120098ca5858fa01bcdabfa3b12fa5e7f863cdc",
+      "matches_manifest": true
+    }
+  ],
+  "rubric_hash_matches": true,
+  "context_content_hash_matches": 68,
+  "context_id_matches": 68,
+  "context_display_comparison_errors": [],
+  "positive_requirements_mapping_disagreements": [],
+  "source_presence_check_note": "Exact evidence-set presence corroborates, but does not replace, semantic assessment.",
+  "recommendation": {
+    "support_ready_context_labels": [
+      "K01",
+      "K02",
+      "K03",
+      "K04",
+      "K05",
+      "K06",
+      "K07",
+      "K08",
+      "K09",
+      "K10",
+      "K11",
+      "K12",
+      "K14",
+      "K15",
+      "K16",
+      "K17",
+      "K18",
+      "K19",
+      "K20",
+      "K22",
+      "K23",
+      "K25",
+      "K26",
+      "K27",
+      "K28",
+      "K29",
+      "K30",
+      "K31",
+      "K32",
+      "K33",
+      "K34",
+      "K35",
+      "K36",
+      "K37",
+      "K38",
+      "K39",
+      "K40",
+      "K43",
+      "K44",
+      "K46",
+      "K47",
+      "K48",
+      "K49",
+      "K50",
+      "K51",
+      "K52",
+      "K53",
+      "K54",
+      "K55",
+      "K56",
+      "K57",
+      "K58",
+      "K59",
+      "K60",
+      "K61",
+      "K62",
+      "K63",
+      "K64",
+      "K65",
+      "K66",
+      "K68"
+    ],
+    "support_corpus_families_in_documented_scope": [
+      "decision-boundary",
+      "data-minimization-egress",
+      "incident-response",
+      "privacy-processing-basics",
+      "ethics-peer-discussion",
+      "worker-violence-rate",
+      "care-ethics-selfcare",
+      "wellbeing-funding",
+      "wellbeing-two-source-roles",
+      "hospital-discharge-continuity",
+      "worker-safety-author",
+      "wellbeing-project-state",
+      "current-home-service-cost"
+    ],
+    "leave_unresolved_contexts": [
+      "K13",
+      "K21",
+      "K24",
+      "K41",
+      "K42",
+      "K45",
+      "K67"
+    ],
+    "new_semantic_exceptions": [],
+    "contradictions_in_ready_contexts": "none_detected_by_assistant_relative_to_approved_requirements",
+    "owner_approval_not_inferred_from_file_upload": true
+  },
+  "missing_reason_field_in_proposal": [
+    "K22",
+    "K47",
+    "K50",
+    "K65"
+  ],
+  "reason_suggestions": {
+    "K22": "Kontekstis on EKA enda teenusedisaini ja kasutajavaate rolli kirjeldus, kuid puudub küsimuses nõutud Tehnopoli elluviijate allikakoht. EKA elluviijate loetelu ei asenda eksplitsiitset Tehnopoli allikanõuet. Nõuded: absent/full; koond partial.",
+    "K47": "Kontekstis on EKA enda teenusedisaini ja kasutajavaate rolli kirjeldus, kuid puudub küsimuses nõutud Tehnopoli elluviijate allikakoht. EKA elluviijate loetelu ei asenda eksplitsiitset Tehnopoli allikanõuet. Nõuded: absent/full; koond partial.",
+    "K50": "Kontekstis on EKA enda teenusedisaini ja kasutajavaate rolli kirjeldus, kuid puudub küsimuses nõutud Tehnopoli elluviijate allikakoht. EKA elluviijate loetelu ei asenda eksplitsiitset Tehnopoli allikanõuet. Nõuded: absent/full; koond partial.",
+    "K65": "Tehnopoli lk 1 algtekst nimetab programmi elluviijad; EKA enda põhitekst kirjeldab teenusedisaini ja kasutajavaate rolli. Mõlemad küsimuses nõutud allikad ja rollid on olemas. Nõuded: full/full; koond full."
+  },
+  "batch_context_counts": {
+    "absent": 12,
+    "full": 41,
+    "partial": 8,
+    "needs_review": 7
+  },
+  "forecast_row_counts_after_owner_acceptance_including_previously_accepted_rows": {
+    "full": 50,
+    "absent": 13,
+    "partial": 14,
+    "needs_review": 7
+  },
+  "forecast_is_not_formal_regrade": true,
+  "requirement_presence_checks": [
+    {
+      "label": "K01",
+      "family": "decision-boundary",
+      "req": "decision-scope",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K01",
+      "family": "decision-boundary",
+      "req": "substantive-human-control",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K02",
+      "family": "worker-violence-rate",
+      "req": "rate-population-event",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K03",
+      "family": "current-home-service-cost",
+      "req": "local-cost",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K03",
+      "family": "current-home-service-cost",
+      "req": "local-time",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K04",
+      "family": "wellbeing-funding",
+      "req": "first-stage-terms",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "first-stage-complete"
+      ]
+    },
+    {
+      "label": "K04",
+      "family": "wellbeing-funding",
+      "req": "second-stage-terms",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "second-stage-complete"
+      ]
+    },
+    {
+      "label": "K05",
+      "family": "current-home-service-cost",
+      "req": "local-cost",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K05",
+      "family": "current-home-service-cost",
+      "req": "local-time",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K06",
+      "family": "hospital-discharge-continuity",
+      "req": "whole-patient-path",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "stroke-and-path"
+      ]
+    },
+    {
+      "label": "K06",
+      "family": "hospital-discharge-continuity",
+      "req": "cooperation-continuity",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "cooperation-and-consequence"
+      ]
+    },
+    {
+      "label": "K07",
+      "family": "wellbeing-funding",
+      "req": "first-stage-terms",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "first-stage-complete"
+      ]
+    },
+    {
+      "label": "K07",
+      "family": "wellbeing-funding",
+      "req": "second-stage-terms",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "second-stage-complete"
+      ]
+    },
+    {
+      "label": "K08",
+      "family": "incident-response",
+      "req": "stop",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "stop-both"
+      ]
+    },
+    {
+      "label": "K08",
+      "family": "incident-response",
+      "req": "notify",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "channel-and-roles"
+      ]
+    },
+    {
+      "label": "K08",
+      "family": "incident-response",
+      "req": "minimum-record",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "record-fields"
+      ]
+    },
+    {
+      "label": "K09",
+      "family": "data-minimization-egress",
+      "req": "detail-necessity",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "every-detail",
+        "data-types-only"
+      ]
+    },
+    {
+      "label": "K09",
+      "family": "data-minimization-egress",
+      "req": "transfer-permission",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "document-right-and-limits",
+        "general-law-contract"
+      ]
+    },
+    {
+      "label": "K10",
+      "family": "worker-violence-rate",
+      "req": "rate-population-event",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "population-and-rate-and-event"
+      ]
+    },
+    {
+      "label": "K11",
+      "family": "wellbeing-project-state",
+      "req": "funded-count",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K11",
+      "family": "wellbeing-project-state",
+      "req": "problem-groups",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K11",
+      "family": "wellbeing-project-state",
+      "req": "measured-results",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K12",
+      "family": "data-minimization-egress",
+      "req": "detail-necessity",
+      "proposed": "partial",
+      "mapped": "partial",
+      "sets": [
+        "data-types-only"
+      ]
+    },
+    {
+      "label": "K12",
+      "family": "data-minimization-egress",
+      "req": "transfer-permission",
+      "proposed": "partial",
+      "mapped": "partial",
+      "sets": [
+        "general-law-contract"
+      ]
+    },
+    {
+      "label": "K13",
+      "family": "ethics-peer-discussion",
+      "req": "clarity-through-discussion",
+      "proposed": "needs_review",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K13",
+      "family": "ethics-peer-discussion",
+      "req": "not-alone",
+      "proposed": "needs_review",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K14",
+      "family": "incident-response",
+      "req": "stop",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "stop-both"
+      ]
+    },
+    {
+      "label": "K14",
+      "family": "incident-response",
+      "req": "notify",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "channel-and-roles"
+      ]
+    },
+    {
+      "label": "K14",
+      "family": "incident-response",
+      "req": "minimum-record",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "record-fields"
+      ]
+    },
+    {
+      "label": "K15",
+      "family": "hospital-discharge-continuity",
+      "req": "whole-patient-path",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "stroke-and-path"
+      ]
+    },
+    {
+      "label": "K15",
+      "family": "hospital-discharge-continuity",
+      "req": "cooperation-continuity",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "cooperation-and-consequence"
+      ]
+    },
+    {
+      "label": "K16",
+      "family": "worker-violence-rate",
+      "req": "rate-population-event",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "population-and-rate-and-event"
+      ]
+    },
+    {
+      "label": "K17",
+      "family": "care-ethics-selfcare",
+      "req": "ethical-care",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "values-dilemmas-dignity"
+      ]
+    },
+    {
+      "label": "K17",
+      "family": "care-ethics-selfcare",
+      "req": "selfcare-team",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "selfcare-with-team"
+      ]
+    },
+    {
+      "label": "K18",
+      "family": "decision-boundary",
+      "req": "decision-scope",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "scope-with-list"
+      ]
+    },
+    {
+      "label": "K18",
+      "family": "decision-boundary",
+      "req": "substantive-human-control",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "anchoring-and-assessment"
+      ]
+    },
+    {
+      "label": "K19",
+      "family": "privacy-processing-basics",
+      "req": "why-how-what",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "complete-processing-question"
+      ]
+    },
+    {
+      "label": "K20",
+      "family": "worker-safety-author",
+      "req": "article-author",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "metadata-author",
+        "page1-author"
+      ]
+    },
+    {
+      "label": "K21",
+      "family": "incident-response",
+      "req": "stop",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K21",
+      "family": "incident-response",
+      "req": "notify",
+      "proposed": "needs_review",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K21",
+      "family": "incident-response",
+      "req": "minimum-record",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K22",
+      "family": "wellbeing-two-source-roles",
+      "req": "tehnopol-implementers",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K22",
+      "family": "wellbeing-two-source-roles",
+      "req": "eka-role",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "eka-page3"
+      ]
+    },
+    {
+      "label": "K23",
+      "family": "current-home-service-cost",
+      "req": "local-cost",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K23",
+      "family": "current-home-service-cost",
+      "req": "local-time",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K24",
+      "family": "human-relationship-support",
+      "req": "human-relationship",
+      "proposed": "needs_review",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K24",
+      "family": "human-relationship-support",
+      "req": "general-development",
+      "proposed": "needs_review",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K25",
+      "family": "decision-boundary",
+      "req": "decision-scope",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "scope-with-list"
+      ]
+    },
+    {
+      "label": "K25",
+      "family": "decision-boundary",
+      "req": "substantive-human-control",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "anchoring-and-assessment"
+      ]
+    },
+    {
+      "label": "K26",
+      "family": "privacy-processing-basics",
+      "req": "why-how-what",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "complete-processing-question"
+      ]
+    },
+    {
+      "label": "K27",
+      "family": "wellbeing-project-state",
+      "req": "funded-count",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "funded-not-applied",
+        "funded-total-only"
+      ]
+    },
+    {
+      "label": "K27",
+      "family": "wellbeing-project-state",
+      "req": "problem-groups",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "four-groups",
+        "some-groups"
+      ]
+    },
+    {
+      "label": "K27",
+      "family": "wellbeing-project-state",
+      "req": "measured-results",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K28",
+      "family": "worker-violence-rate",
+      "req": "rate-population-event",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "population-and-rate-and-event"
+      ]
+    },
+    {
+      "label": "K29",
+      "family": "wellbeing-funding",
+      "req": "first-stage-terms",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K29",
+      "family": "wellbeing-funding",
+      "req": "second-stage-terms",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K30",
+      "family": "decision-boundary",
+      "req": "decision-scope",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "scope-with-list"
+      ]
+    },
+    {
+      "label": "K30",
+      "family": "decision-boundary",
+      "req": "substantive-human-control",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "anchoring-and-assessment"
+      ]
+    },
+    {
+      "label": "K31",
+      "family": "wellbeing-funding",
+      "req": "first-stage-terms",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "first-stage-complete"
+      ]
+    },
+    {
+      "label": "K31",
+      "family": "wellbeing-funding",
+      "req": "second-stage-terms",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "second-stage-complete"
+      ]
+    },
+    {
+      "label": "K32",
+      "family": "decision-boundary",
+      "req": "decision-scope",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "scope-with-list"
+      ]
+    },
+    {
+      "label": "K32",
+      "family": "decision-boundary",
+      "req": "substantive-human-control",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "anchoring-and-assessment"
+      ]
+    },
+    {
+      "label": "K33",
+      "family": "worker-safety-author",
+      "req": "article-author",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "metadata-author",
+        "page1-author"
+      ]
+    },
+    {
+      "label": "K34",
+      "family": "decision-boundary",
+      "req": "decision-scope",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "scope-with-list"
+      ]
+    },
+    {
+      "label": "K34",
+      "family": "decision-boundary",
+      "req": "substantive-human-control",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "anchoring-and-assessment"
+      ]
+    },
+    {
+      "label": "K35",
+      "family": "worker-violence-rate",
+      "req": "rate-population-event",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "population-and-rate-and-event"
+      ]
+    },
+    {
+      "label": "K36",
+      "family": "worker-violence-rate",
+      "req": "rate-population-event",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "population-and-rate-and-event"
+      ]
+    },
+    {
+      "label": "K37",
+      "family": "hospital-discharge-continuity",
+      "req": "whole-patient-path",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "stroke-and-path"
+      ]
+    },
+    {
+      "label": "K37",
+      "family": "hospital-discharge-continuity",
+      "req": "cooperation-continuity",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "cooperation-and-consequence"
+      ]
+    },
+    {
+      "label": "K38",
+      "family": "wellbeing-funding",
+      "req": "first-stage-terms",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K38",
+      "family": "wellbeing-funding",
+      "req": "second-stage-terms",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K39",
+      "family": "decision-boundary",
+      "req": "decision-scope",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "scope-with-list"
+      ]
+    },
+    {
+      "label": "K39",
+      "family": "decision-boundary",
+      "req": "substantive-human-control",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "anchoring-and-assessment"
+      ]
+    },
+    {
+      "label": "K40",
+      "family": "worker-violence-rate",
+      "req": "rate-population-event",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "population-and-rate-and-event"
+      ]
+    },
+    {
+      "label": "K41",
+      "family": "incident-response",
+      "req": "stop",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K41",
+      "family": "incident-response",
+      "req": "notify",
+      "proposed": "needs_review",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K41",
+      "family": "incident-response",
+      "req": "minimum-record",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K42",
+      "family": "ethics-peer-discussion",
+      "req": "clarity-through-discussion",
+      "proposed": "needs_review",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K42",
+      "family": "ethics-peer-discussion",
+      "req": "not-alone",
+      "proposed": "needs_review",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K43",
+      "family": "decision-boundary",
+      "req": "decision-scope",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "scope-with-list"
+      ]
+    },
+    {
+      "label": "K43",
+      "family": "decision-boundary",
+      "req": "substantive-human-control",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "anchoring-and-assessment"
+      ]
+    },
+    {
+      "label": "K44",
+      "family": "decision-boundary",
+      "req": "decision-scope",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "scope-with-list"
+      ]
+    },
+    {
+      "label": "K44",
+      "family": "decision-boundary",
+      "req": "substantive-human-control",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "anchoring-and-assessment"
+      ]
+    },
+    {
+      "label": "K45",
+      "family": "data-minimization-egress",
+      "req": "detail-necessity",
+      "proposed": "needs_review",
+      "mapped": "partial",
+      "sets": [
+        "data-types-only"
+      ]
+    },
+    {
+      "label": "K45",
+      "family": "data-minimization-egress",
+      "req": "transfer-permission",
+      "proposed": "partial",
+      "mapped": "partial",
+      "sets": [
+        "general-law-contract"
+      ]
+    },
+    {
+      "label": "K46",
+      "family": "data-minimization-egress",
+      "req": "detail-necessity",
+      "proposed": "partial",
+      "mapped": "partial",
+      "sets": [
+        "data-types-only"
+      ]
+    },
+    {
+      "label": "K46",
+      "family": "data-minimization-egress",
+      "req": "transfer-permission",
+      "proposed": "partial",
+      "mapped": "partial",
+      "sets": [
+        "general-law-contract"
+      ]
+    },
+    {
+      "label": "K47",
+      "family": "wellbeing-two-source-roles",
+      "req": "tehnopol-implementers",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K47",
+      "family": "wellbeing-two-source-roles",
+      "req": "eka-role",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "eka-page3",
+        "eka-page8"
+      ]
+    },
+    {
+      "label": "K48",
+      "family": "worker-safety-author",
+      "req": "article-author",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "metadata-author",
+        "page1-author"
+      ]
+    },
+    {
+      "label": "K49",
+      "family": "care-ethics-selfcare",
+      "req": "ethical-care",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "values-dilemmas-dignity"
+      ]
+    },
+    {
+      "label": "K49",
+      "family": "care-ethics-selfcare",
+      "req": "selfcare-team",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "selfcare-with-team"
+      ]
+    },
+    {
+      "label": "K50",
+      "family": "wellbeing-two-source-roles",
+      "req": "tehnopol-implementers",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K50",
+      "family": "wellbeing-two-source-roles",
+      "req": "eka-role",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "eka-page3"
+      ]
+    },
+    {
+      "label": "K51",
+      "family": "hospital-discharge-continuity",
+      "req": "whole-patient-path",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "stroke-and-path"
+      ]
+    },
+    {
+      "label": "K51",
+      "family": "hospital-discharge-continuity",
+      "req": "cooperation-continuity",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "cooperation-and-consequence"
+      ]
+    },
+    {
+      "label": "K52",
+      "family": "privacy-processing-basics",
+      "req": "why-how-what",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "complete-processing-question"
+      ]
+    },
+    {
+      "label": "K53",
+      "family": "care-ethics-selfcare",
+      "req": "ethical-care",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "values-dilemmas-dignity"
+      ]
+    },
+    {
+      "label": "K53",
+      "family": "care-ethics-selfcare",
+      "req": "selfcare-team",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "selfcare-with-team"
+      ]
+    },
+    {
+      "label": "K54",
+      "family": "current-home-service-cost",
+      "req": "local-cost",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K54",
+      "family": "current-home-service-cost",
+      "req": "local-time",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K55",
+      "family": "wellbeing-funding",
+      "req": "first-stage-terms",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K55",
+      "family": "wellbeing-funding",
+      "req": "second-stage-terms",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K56",
+      "family": "worker-violence-rate",
+      "req": "rate-population-event",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K57",
+      "family": "wellbeing-project-state",
+      "req": "funded-count",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "funded-not-applied",
+        "funded-total-only"
+      ]
+    },
+    {
+      "label": "K57",
+      "family": "wellbeing-project-state",
+      "req": "problem-groups",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "four-groups",
+        "some-groups"
+      ]
+    },
+    {
+      "label": "K57",
+      "family": "wellbeing-project-state",
+      "req": "measured-results",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K58",
+      "family": "wellbeing-funding",
+      "req": "first-stage-terms",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K58",
+      "family": "wellbeing-funding",
+      "req": "second-stage-terms",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K59",
+      "family": "worker-violence-rate",
+      "req": "rate-population-event",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "population-and-rate-and-event"
+      ]
+    },
+    {
+      "label": "K60",
+      "family": "worker-safety-author",
+      "req": "article-author",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "metadata-author",
+        "page1-author"
+      ]
+    },
+    {
+      "label": "K61",
+      "family": "decision-boundary",
+      "req": "decision-scope",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "scope-with-list"
+      ]
+    },
+    {
+      "label": "K61",
+      "family": "decision-boundary",
+      "req": "substantive-human-control",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "anchoring-and-assessment"
+      ]
+    },
+    {
+      "label": "K62",
+      "family": "care-ethics-selfcare",
+      "req": "ethical-care",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "values-dilemmas-dignity"
+      ]
+    },
+    {
+      "label": "K62",
+      "family": "care-ethics-selfcare",
+      "req": "selfcare-team",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "selfcare-with-team"
+      ]
+    },
+    {
+      "label": "K63",
+      "family": "worker-violence-rate",
+      "req": "rate-population-event",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "population-and-rate-and-event"
+      ]
+    },
+    {
+      "label": "K64",
+      "family": "worker-violence-rate",
+      "req": "rate-population-event",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "population-and-rate-and-event"
+      ]
+    },
+    {
+      "label": "K65",
+      "family": "wellbeing-two-source-roles",
+      "req": "tehnopol-implementers",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "tehnopol-only"
+      ]
+    },
+    {
+      "label": "K65",
+      "family": "wellbeing-two-source-roles",
+      "req": "eka-role",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "eka-page3"
+      ]
+    },
+    {
+      "label": "K66",
+      "family": "ethics-peer-discussion",
+      "req": "clarity-through-discussion",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "discussion-clarity"
+      ]
+    },
+    {
+      "label": "K66",
+      "family": "ethics-peer-discussion",
+      "req": "not-alone",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "ethics-not-alone"
+      ]
+    },
+    {
+      "label": "K67",
+      "family": "ethics-peer-discussion",
+      "req": "clarity-through-discussion",
+      "proposed": "needs_review",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K67",
+      "family": "ethics-peer-discussion",
+      "req": "not-alone",
+      "proposed": "needs_review",
+      "mapped": "no_mapped_support",
+      "sets": []
+    },
+    {
+      "label": "K68",
+      "family": "wellbeing-project-state",
+      "req": "funded-count",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "funded-not-applied",
+        "funded-total-only"
+      ]
+    },
+    {
+      "label": "K68",
+      "family": "wellbeing-project-state",
+      "req": "problem-groups",
+      "proposed": "full",
+      "mapped": "full",
+      "sets": [
+        "four-groups",
+        "some-groups"
+      ]
+    },
+    {
+      "label": "K68",
+      "family": "wellbeing-project-state",
+      "req": "measured-results",
+      "proposed": "absent",
+      "mapped": "no_mapped_support",
+      "sets": []
+    }
+  ],
+  "corpus_positive_presence_checks": [
+    {
+      "family": "decision-boundary",
+      "requirement": "decision-scope",
+      "proposed": "full",
+      "full_sets_in_supplied_text": [
+        "scope-with-list"
+      ]
+    },
+    {
+      "family": "decision-boundary",
+      "requirement": "substantive-human-control",
+      "proposed": "full",
+      "full_sets_in_supplied_text": [
+        "anchoring-and-assessment"
+      ]
+    },
+    {
+      "family": "data-minimization-egress",
+      "requirement": "detail-necessity",
+      "proposed": "full",
+      "full_sets_in_supplied_text": [
+        "every-detail"
+      ]
+    },
+    {
+      "family": "data-minimization-egress",
+      "requirement": "transfer-permission",
+      "proposed": "full",
+      "full_sets_in_supplied_text": [
+        "document-right-and-limits"
+      ]
+    },
+    {
+      "family": "incident-response",
+      "requirement": "stop",
+      "proposed": "full",
+      "full_sets_in_supplied_text": [
+        "stop-both"
+      ]
+    },
+    {
+      "family": "incident-response",
+      "requirement": "notify",
+      "proposed": "full",
+      "full_sets_in_supplied_text": [
+        "channel-and-roles"
+      ]
+    },
+    {
+      "family": "incident-response",
+      "requirement": "minimum-record",
+      "proposed": "full",
+      "full_sets_in_supplied_text": [
+        "record-fields"
+      ]
+    },
+    {
+      "family": "privacy-processing-basics",
+      "requirement": "why-how-what",
+      "proposed": "full",
+      "full_sets_in_supplied_text": [
+        "complete-processing-question"
+      ]
+    },
+    {
+      "family": "ethics-peer-discussion",
+      "requirement": "clarity-through-discussion",
+      "proposed": "full",
+      "full_sets_in_supplied_text": [
+        "discussion-clarity"
+      ]
+    },
+    {
+      "family": "ethics-peer-discussion",
+      "requirement": "not-alone",
+      "proposed": "full",
+      "full_sets_in_supplied_text": [
+        "ethics-not-alone"
+      ]
+    },
+    {
+      "family": "worker-violence-rate",
+      "requirement": "rate-population-event",
+      "proposed": "full",
+      "full_sets_in_supplied_text": [
+        "population-and-rate-and-event"
+      ]
+    },
+    {
+      "family": "care-ethics-selfcare",
+      "requirement": "ethical-care",
+      "proposed": "full",
+      "full_sets_in_supplied_text": [
+        "values-dilemmas-dignity"
+      ]
+    },
+    {
+      "family": "care-ethics-selfcare",
+      "requirement": "selfcare-team",
+      "proposed": "full",
+      "full_sets_in_supplied_text": [
+        "selfcare-with-team"
+      ]
+    },
+    {
+      "family": "wellbeing-funding",
+      "requirement": "first-stage-terms",
+      "proposed": "full",
+      "full_sets_in_supplied_text": [
+        "first-stage-complete"
+      ]
+    },
+    {
+      "family": "wellbeing-funding",
+      "requirement": "second-stage-terms",
+      "proposed": "full",
+      "full_sets_in_supplied_text": [
+        "second-stage-complete"
+      ]
+    },
+    {
+      "family": "wellbeing-two-source-roles",
+      "requirement": "tehnopol-implementers",
+      "proposed": "full",
+      "full_sets_in_supplied_text": [
+        "tehnopol-only"
+      ]
+    },
+    {
+      "family": "wellbeing-two-source-roles",
+      "requirement": "eka-role",
+      "proposed": "full",
+      "full_sets_in_supplied_text": [
+        "eka-page3",
+        "eka-page8"
+      ]
+    },
+    {
+      "family": "hospital-discharge-continuity",
+      "requirement": "whole-patient-path",
+      "proposed": "full",
+      "full_sets_in_supplied_text": [
+        "stroke-and-path"
+      ]
+    },
+    {
+      "family": "hospital-discharge-continuity",
+      "requirement": "cooperation-continuity",
+      "proposed": "full",
+      "full_sets_in_supplied_text": [
+        "cooperation-and-consequence"
+      ]
+    },
+    {
+      "family": "worker-safety-author",
+      "requirement": "article-author",
+      "proposed": "full",
+      "full_sets_in_supplied_text": [
+        "metadata-author",
+        "page1-author"
+      ]
+    },
+    {
+      "family": "wellbeing-project-state",
+      "requirement": "funded-count",
+      "proposed": "full",
+      "full_sets_in_supplied_text": [
+        "funded-not-applied",
+        "funded-total-only"
+      ]
+    },
+    {
+      "family": "wellbeing-project-state",
+      "requirement": "problem-groups",
+      "proposed": "full",
+      "full_sets_in_supplied_text": [
+        "four-groups"
+      ]
+    },
+    {
+      "family": "wellbeing-project-state",
+      "requirement": "measured-results",
+      "proposed": "absent",
+      "full_sets_in_supplied_text": []
+    },
+    {
+      "family": "current-home-service-cost",
+      "requirement": "local-cost",
+      "proposed": "absent",
+      "full_sets_in_supplied_text": []
+    },
+    {
+      "family": "current-home-service-cost",
+      "requirement": "local-time",
+      "proposed": "absent",
+      "full_sets_in_supplied_text": []
+    }
+  ],
+  "notes": [
+    "No new rubric or ranking change is requested by this follow-up.",
+    "Preserve input artifacts unchanged; put missing rationale into the final approval receipt or a separately versioned supplement.",
+    "Do not import this assistant opinion as an owner/human_reviewer decision.",
+    "Seven unresolved contexts stay unresolved, including their formal contradiction-review fields.",
+    "Missing source support is not itself a general runtime refusal decision."
+  ]
+}

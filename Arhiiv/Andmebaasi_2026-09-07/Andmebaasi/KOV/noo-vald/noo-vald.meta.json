@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-noo-vald",
+  "document_id": "kov-noo-vald",
+  "municipality": "Nõo vald",
+  "municipality_id": "noo_vald",
+  "county": "Tartumaa",
+  "checkedAt": "2026-04-29",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-noo-vald",
+  "coverage": {
+    "services": 17,
+    "benefits": 15,
+    "resources": 9,
+    "contacts": 6,
+    "forms": 15,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "noo_vald",
+    "source_register_file": "noo-vald.sources.json",
+    "service_benefit_resource_items": 41,
+    "items_with_source_keys": 41,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 15,
+    "items_without_related_forms": 26,
+    "items_with_related_contacts": 28,
+    "items_without_related_contacts": 13,
+    "form_sources": 11,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "4 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Pakett sisaldab Nõo uue veebiplatvormi lehti ning Nõo ametliku vana KOVTP veebikihi lehti, sest osa sotsiaalteenuste ja blankettide infot on avaldatud endiselt nvv.ee vanas struktuuris.",
+    "RT ja õigusaktide lingid jäeti veebipaketist välja; õigusliku aluse kontroll kuulub eraldi RT/legal kihti."
+  ],
+  "unresolvedIssues": [
+    "Isikliku abistaja teenuse, järelhooldusteenuse, pesupesemisteenuse ja täiendavate vajaduspõhiste teenuste detaillehed olid automaatkorjes osaliselt kättesaamatud; kirjed on loodud KOV veebis eraldi nimetatud teenuste põhjal, kuid praktilised tingimused vajavad käsitsi kontrolli.",
+    "Osa sotsiaalteenuste ja vormide infot paiknes Nõo ametliku vana veebikihi lehtedel; vajab KOV-i poolset kinnitust, kas need failid on 2026. aasta seisuga lõplikult ajakohased.",
+    "Sotsiaalosakonna hooldustöötajate e-postina on ametlikul lehel avaldatud sotsiaalosakonna juhataja eraldi isiklikku e-posti ei ole lehel avaldatud.",
+    "Mõne vormifaili sisu ei olnud automaatkorjes avatud, kuid otsene ametlik faililink saadi KOV ametliku vormilehelt või teenuse detaillehelt.",
+    "Kriisiabi, represseeritute maamaksu toetus, lastega perede toetus, majandusliku olukorra leevendamise toetus ja küttetoetus on KOV lehel summana nimetatud, kuid detailne menetluskäik ei olnud samas veebiplokis avaldatud.",
+    "E-teenuste leht kinnitab e-taotluste olemasolu, kuid kõiki iseteeninduse otselinke ei eraldatud kindlalt eraldi vormiitemiteks."
+  ],
+  "municipality_name": "Nõo vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "noo-vald.sources.json",
+  "sourceCount": 49,
+  "counts": {
+    "services": 17,
+    "benefits": 15,
+    "resources": 9,
+    "contacts": 6,
+    "forms": 15,
+    "regulations": 0
+  },
+  "warnings": [
+    "4 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

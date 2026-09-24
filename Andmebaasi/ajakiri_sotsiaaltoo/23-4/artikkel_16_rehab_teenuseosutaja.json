@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-4-2023",
+  "articleId": "rehabilitatsiooniteenus-teenuseosutaja-pilguga-2023-4",
+  "title": "Rehabilitatsiooniteenus teenuseosutaja pilguga",
+  "authors": [
+    "Liina Lokko"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2023",
+  "section": "Kogemus",
+  "pageRange": "80-86",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb rehabilitatsiooniteenuse korraldust ja väljakutseid teenuseosutaja vaatenurgast.\nAutor kirjeldab keerukaid klientide vajadusi, meeskonnatöö ja võrgustiku olulisust ning varasemate\nkäsitluste muutumist. Analüüsitakse, kuidas teenus saab toetada lapse, täiskasvanu või pere arengut,\nning rõhutatakse vajadust süsteemsuse, järjepidevuse ja paindlikkuse järele. Lugu avab ka taastumise\ntoetamise põhimõtteid ning spetsialistide rolli kliendi elukvaliteedi parandamisel.",
+  "tags": [
+    "rehabilitatsioon",
+    "teenuseosutaja",
+    "võrgustikutöö",
+    "klienditöö",
+    "kogemuslugu"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2023_web_Part17.pdf",
+  "document_id": "sotsiaaltoo-4-2023-rehabilitatsiooniteenus-teenuseosutaja-pilguga-2023-4",
+  "source_format": "pdf",
+  "source_sha256": "269b0e23ab34ce70d0863d0600462042d49cba2f3fb0a784e31a5fd0956369c0",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2023-rehabilitatsiooniteenus-teenuseosutaja-pilguga-2023-4",
+    "previous_source_path": "Sotsiaaltoo_4_2023_web_Part17.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "269b0e23ab34ce70d0863d0600462042d49cba2f3fb0a784e31a5fd0956369c0",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

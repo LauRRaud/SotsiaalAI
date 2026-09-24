@@ -1,0 +1,84 @@
+{
+  "source": {
+    "source_id": "sotsiaalkindlustusamet_marac_i_mudeli_juhend_kov_lastekaitsele",
+    "title": "MARAC-i mudeli juhend KOV lastekaitsele",
+    "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-01/MARAC%20mudeli%20juhend%20KOV%20lastekaitsele.pdf",
+    "normalized_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-01/MARAC mudeli juhend KOV lastekaitsele.pdf",
+    "source_format": "pdf",
+    "source_type": "official_guideline",
+    "resource_type": "method_guidance",
+    "publisher": "Sotsiaalkindlustusamet",
+    "organization_id": "sotsiaalkindlustusamet",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Sotsiaalkindlustusamet",
+      "lapsed ja pered",
+      "laps",
+      "lastekaitse",
+      "lapse heaolu",
+      "abivajav laps",
+      "ohvriabi",
+      "MARAC",
+      "riskihindamine",
+      "võrgustikutöö",
+      "kohalik omavalitsus",
+      "KOV",
+      "spetsialisti juhend",
+      "SKA"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "high",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "SKA",
+      "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+      "heading_4": null,
+      "line": 479,
+      "order": 255
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "MARAC-i mudeli juhend KOV lastekaitsele"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "official_guideline"
+    ],
+    "resource_types_seen": [
+      "best_practice_guidance"
+    ],
+    "publishers_seen": [
+      "Sotsiaalkindlustusamet"
+    ],
+    "organizations_seen": [
+      "sotsiaalkindlustusamet"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "SKA",
+        "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+        "line": 479,
+        "order": 255
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-01/MARAC mudeli juhend KOV lastekaitsele.pdf"
+  },
+  "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-01/MARAC%20mudeli%20juhend%20KOV%20lastekaitsele.pdf",
+  "redirects": [],
+  "sha256": "1962a99d4a97ed3f8b67977901bb509e8ec97dbf75b9e7e201aea62ee129bd6f",
+  "bytes": 870992,
+  "downloaded_at": "2026-08-14T08:00:51.316Z"
+}

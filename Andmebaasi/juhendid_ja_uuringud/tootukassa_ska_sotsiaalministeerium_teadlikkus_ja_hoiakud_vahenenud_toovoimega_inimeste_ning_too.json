@@ -1,0 +1,143 @@
+{
+  "source_path": "tootukassa_ska_sotsiaalministeerium_teadlikkus_ja_hoiakud_vahenenud_toovoimega_inimeste_ning_too.pdf",
+  "source_format": "pdf",
+  "sha256": "cb92e400cdf0f88699fd5e6df3d3f4451012eca5b90a503f1193c83adb8a4dc3",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/tootukassa_ska_sotsiaalministeerium_teadlikkus_ja_hoiakud_vahenenud_toovoimega_inimeste_ning_too.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "tootukassa_ska_sotsiaalministeerium_teadlikkus_ja_hoiakud_vahenenud_toovoimega_inimeste_ning_too",
+          "title": "Teadlikkus ja hoiakud vähenenud töövõimega inimeste ning töövõimereformi teemal",
+          "url": "https://mkm.ee/sites/default/files/documents/2023-07/2017_tvr_koondraport.pdf",
+          "normalized_url": "https://mkm.ee/sites/default/files/documents/2023-07/2017_tvr_koondraport.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "Töötukassa / SKA / Sotsiaalministeerium",
+          "organization_id": "tootukassa_ska_sotsiaalministeerium",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Töötukassa",
+            "töövõime",
+            "vähenenud töövõime",
+            "töötamine",
+            "tööturuteenused",
+            "infomaterjal",
+            "Sotsiaalministeerium",
+            "Sotsiaalkindlustusamet"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Töövõime / Töötukassa / SKA / STAR",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 363,
+            "order": 203
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Teadlikkus ja hoiakud vähenenud töövõimega inimeste ning töövõimereformi teemal"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Töötukassa / SKA / Sotsiaalministeerium"
+          ],
+          "organizations_seen": [
+            "tootukassa_ska_sotsiaalministeerium"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Töövõime / Töötukassa / SKA / STAR",
+              "line": 363,
+              "order": 203
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://mkm.ee/sites/default/files/documents/2023-07/2017_tvr_koondraport.pdf"
+        },
+        "final_url": "https://mkm.ee/sites/default/files/documents/2023-07/2017_tvr_koondraport.pdf",
+        "redirects": [],
+        "sha256": "cb92e400cdf0f88699fd5e6df3d3f4451012eca5b90a503f1193c83adb8a4dc3",
+        "bytes": 6851264,
+        "downloaded_at": "2026-08-14T08:00:44.730Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "tootukassa_ska_sotsiaalministeerium_teadlikkus_ja_hoiakud_vahenenud_toovoimega_inimeste_ning_too",
+      "metadata": {
+        "createdAt": "2026-06-12T03:44:33.613845+00:00",
+        "type": "FILE",
+        "fileName": "2017_tvr_koondraport.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:44:33.545798+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/aea9ede7734e/2017_tvr_koondraport.pdf",
+        "title": "Teadlikkus ja hoiakud vähenenud töövõimega inimeste ning töövõimereformi teemal",
+        "description": "Source master headings: Töövõime / Töötukassa / SKA / STAR",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2023,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–130",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "tootukassa_ska_sotsiaalministeerium_teadlikkus_ja_hoiakud_vahenenud_toovoimega_inimeste_ning_too",
+        "document_id": "tootukassa_ska_sotsiaalministeerium_teadlikkus_ja_hoiakud_vahenenud_toovoimega_inimeste_ning_too",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "d9d41f8e93c7cf66c69b57f524eba3012a68d315d778fe36705fac855e29153a",
+        "url": "https://mkm.ee/sites/default/files/documents/2023-07/2017_tvr_koondraport.pdf",
+        "url_canonical": "https://mkm.ee/sites/default/files/documents/2023-07/2017_tvr_koondraport.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "tootukassa_ska_sotsiaalministeerium_teadlikkus_ja_hoiakud_vahenenud_toovoimega_inimeste_ning_too",
+        "updatedAt": "2026-06-12T03:44:33.613869+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-3-2025",
+  "articleId": "haapsalus-on-koduteenus-palju-arenenud-ja-vajab-palju-veel-arendamist-2025-3",
+  "title": "Haapsalus on koduteenus palju arenenud ja vajab palju veel arendamist",
+  "authors": [
+    "Annaliisa Täht"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2025",
+  "section": "Koduteenus",
+  "pageRange": "11-15",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel annab ülevaate Haapsalu koduteenuse arengust, rõhutades digilahenduste, häirenuppude ja andurite rolli teenuse korraldamisel. Samuti käsitletakse teenuse laiendamist õhtustele aegadele, tegevusterapeudi kaasamist ning hooldustöötajate töö emotsionaalseid ja korralduslikke väljakutseid.",
+  "tags": [
+    "koduteenus",
+    "Haapsalu",
+    "digilahendused",
+    "häirenupp",
+    "andurid",
+    "tegevusterapeut",
+    "hooldustöötajad"
+  ],
+  "source_type": "file",
+  "source_path": "2web_sotsiaaltoo_3-2025.pdf",
+  "document_id": "sotsiaaltoo-3-2025-haapsalus-on-koduteenus-palju-arenenud-ja-vajab-palju-veel-arendamist-2025-3",
+  "source_format": "pdf",
+  "source_sha256": "3081f3286907aa1cc56ab3799fc4e7e10019585a499b51fd19a4b0315e55bb8d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2025-haapsalus-on-koduteenus-palju-arenenud-ja-vajab-palju-veel-arendamist-2025-3",
+    "previous_source_path": "2web_sotsiaaltoo_3-2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "3081f3286907aa1cc56ab3799fc4e7e10019585a499b51fd19a4b0315e55bb8d",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

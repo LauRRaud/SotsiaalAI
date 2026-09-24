@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-3-2020",
+  "articleId": "noorte-osaluse-ja-koostoo-toetamise-kogemused-tallinna-noorsootoos-2020-3",
+  "title": "Noorte osaluse ja koostöö toetamise kogemused Tallinna noorsootöös",
+  "authors": [
+    "Jaan Aps",
+    "Aune Lillemets",
+    "Carmen Akkermann"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2020",
+  "section": "Teenuste integratsioon",
+  "pageRange": "60-63",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel võtab kokku Tallinna Lasnamäe, Mustamäe ja Põhja-Tallinna noorsootöö arendamise programmiga seotud kogemused. Kirjeldatakse uusi tegevussunde tõrjutusriskis noortele, eneseteostuse võimaluste loomist, noorte kaasamist ja mõjuanalüüsi tulemusi ning näidatakse, kuidas võrgustikupõhine koostöö koolide, noortekeskuste ja teiste partnerite vahel parandas noorte osalusvõimalusi.",
+  "tags": [
+    "noorsootöö",
+    "noorte osalus",
+    "tõrjutusriskis noored",
+    "Tallinn",
+    "võrgustikutöö",
+    "mõjuanalüüs",
+    "noorte kaasamine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2020_web_link_Part14.pdf",
+  "mapping_fixed": "20260814-161821",
+  "document_id": "sotsiaaltoo-3-2020-noorte-osaluse-ja-koostoo-toetamise-kogemused-tallinna-noorsootoos-2020-3",
+  "source_format": "pdf",
+  "source_sha256": "853de1548f42dd7b35014a93d743f8ebdaf97b2315424dde47452c6afaa1b278",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2020-noorte-osaluse-ja-koostoo-toetamise-kogemused-tallinna-noorsootoos-2020-3",
+    "previous_source_path": "Sotsiaaltoo_3_2020_web_link_Part14.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "853de1548f42dd7b35014a93d743f8ebdaf97b2315424dde47452c6afaa1b278",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

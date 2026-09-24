@@ -1,0 +1,71 @@
+{
+  "docId": "sotsiaaltoo-erinumber-2016",
+  "articleId": "sotsiaaltoo-erinumber-2016-artikkel-16-omastehooldus-kui-eesti-hoolekandesusteemi-vundament",
+  "title": "Omastehooldus kui Eesti hoolekandesüsteemi vundament",
+  "authors": [
+    "Ivar Paimre"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "erinumber 2016",
+  "section": "Omastehooldus",
+  "pageRange": "57-58",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "MTÜ Eesti Omastehooldus juhatuse liige väidab, et omastehooldus on Eesti hoolekandesüsteemi vundament, sest sotsiaalkaitse aluspõhimõte on isiku ja perekonna omavastutus. Heaolu arengukava nimetab kasvavat hoolduskoormust uue sotsiaalse riskina, aga esmane vastutus jääb perele.",
+  "tags": [
+    "omastehooldus",
+    "hoolduskoormus",
+    "omavastutus",
+    "hoolekandesüsteem"
+  ],
+  "source_type": "file",
+  "source_path": "2016_eri_artikkel_16_omastehooldus_kui_eesti_hoolekandesusteemi_vundament.pdf",
+  "added": "2026-08-18",
+  "fulltext_note": "Erinumber „Sotsiaaltöö ; erinumber 2016\" (DIGAR nlib-digar:390083), pühendatud heaolu arengukavale 2016–2023. Lisatud korpusesse 18.08.2026.",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-16-omastehooldus-kui-eesti-hoolekandesusteemi-vundament",
+  "source_sha256": "acc44968574efa5cdce002d8cad4b4ed0a8059e522a6191ad5f7d7907c1ead50",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-16-omastehooldus-kui-eesti-hoolekandesusteemi-vundament",
+    "previous_source_path": "2016_eri_artikkel_16_omastehooldus_kui_eesti_hoolekandesusteemi_vundament.txt",
+    "previous_source_original_path": "2016_erinumber.pdf",
+    "reference_stored_source_sha256": "7992579b835be532c63126eb28c0b81c3c20b3ed82afd05b80fcd517078986cb",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2016_erinumber.pdf",
+      "source_sha256": "ae3bbf0a621beae80ae1e05a13206ffa00c6811806397ee8ac925f3762d93c70",
+      "pdf_start_page": 59,
+      "pdf_end_page": 60,
+      "printed_page_range": "57-58",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 60,
+      "source_regions": [
+        {
+          "source_pdf_page": 59,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 60,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "57-58"
+    },
+    "server_page_range": "57-58"
+  }
+}

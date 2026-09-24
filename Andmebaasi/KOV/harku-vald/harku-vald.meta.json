@@ -1,0 +1,73 @@
+{
+  "id": "harku-vald",
+  "municipality": "Harku vald",
+  "county": "Harjumaa",
+  "checkedAt": "2026-04-11",
+  "status": "ingest_ready",
+  "coverage": {
+    "services": 16,
+    "benefits": 20,
+    "resources": 5,
+    "contacts": 10,
+    "forms": 13,
+    "regulations": 0
+  },
+  "notes": [],
+  "unresolvedIssues": [
+    "2026. aasta jõulutoetuse määrasid, tähtaega ja uut taotlusvormi ei olnud kontrollimise ajal Harku valla lehel veel avaldatud; lehel oli endiselt 2025. aasta info.",
+    "Puudega isiku transporditoetuse leht kirjeldab sihtrühma, tingimusi ja taotlemist, kuid ei avalda toetuse konkreetset rahalist määra.",
+    "Teenused erivajadusega inimesele leht nimetab blanketti „Hoolduse seadmise ja hooldaja määramise taotlus“, kuid kontrolli käigus ei õnnestunud selle otselinki usaldusväärselt avada; seotud plokis õnnestus kontrollida hoolduse jätkamise blanketti ja hooldajatoetuse blanketid.",
+    "Tugiisikuteenuse, asendushooldusteenuse ja järelhooldusteenuse lehed kirjeldavad teenuste sisu ja kontakte, kuid ei kirjelda detailset menetluskäiku ega eraldi blankette samas detailsuses nagu mõne teise teenuse puhul.",
+    "Viipekeele tõlketeenuse leht nimetab teenuse eesmärgi ja teenuseosutaja (Viipekeeletõlkide OÜ), kuid ei kirjelda Harku valla veebis detailselt praktilist taotlemise korda."
+  ],
+  "schemaVersion": "v2.5-sourcepackage",
+  "municipality_id": "harku_vald",
+  "municipality_name": "Harku vald",
+  "checked_at": "2026-04-11",
+  "lastMetadataUpgradeAt": "2026-04-28",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "collection_id": "kov_services",
+  "jurisdiction_level": "MUNICIPALITY",
+  "sourceRegisterFile": "harku-vald.sources.json",
+  "sourceCount": 44,
+  "counts": {
+    "services": 16,
+    "benefits": 20,
+    "resources": 5,
+    "contacts": 10,
+    "forms": 13,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "harku_vald",
+    "source_register_file": "harku-vald.sources.json",
+    "service_benefit_resource_items": 41,
+    "items_with_source_keys": 64,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 23,
+    "items_without_related_forms": 18,
+    "items_with_related_contacts": 38,
+    "items_without_related_contacts": 3,
+    "service_benefit_resource_items_with_legal_source": 0,
+    "form_sources": 13,
+    "contact_sources": 11,
+    "regulation_sources": 0,
+    "warnings": [
+      "18 service/benefit/resource itemit ei viita eraldi vormile; ära märgi forms sektsiooni present ilma tegeliku vormiallikata.",
+      "3 service/benefit/resource itemit ei viita eraldi kontaktile; kontakt võib tulla ainult kontakti allikast või kontaktilehelt."
+    ]
+  },
+  "warnings": [
+    "18 service/benefit/resource itemit ei viita eraldi vormile; ära märgi forms sektsiooni present ilma tegeliku vormiallikata.",
+    "3 service/benefit/resource itemit ei viita eraldi kontaktile; kontakt võib tulla ainult kontakti allikast või kontaktilehelt."
+  ],
+  "tags": [
+    "harku-vald",
+    "kov",
+    "sotsiaalteenused"
+  ]
+}

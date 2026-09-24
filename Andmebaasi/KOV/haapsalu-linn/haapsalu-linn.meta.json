@@ -1,0 +1,66 @@
+{
+  "id": "haapsalu-linn",
+  "municipality": "Haapsalu linn",
+  "county": "Läänemaa",
+  "checkedAt": "2026-04-11",
+  "status": "ingest_ready",
+  "coverage": {
+    "services": 14,
+    "benefits": 20,
+    "resources": 17,
+    "contacts": 14,
+    "forms": 10,
+    "regulations": 0
+  },
+  "notes": [],
+  "unresolvedIssues": [
+    "Haapsalu Linnavalitsuse kontaktileht nimetab lastekaitse spetsialistina Aire Kivi, kuid lastekaitse lehe otsingutulemus kuvab nime Kätriin Paenurm. Kontaktiplokkides kasutati kontaktilehel avaldatud andmeid ning vastuolu jäeti siia ausalt kirja.",
+    "Häirenuppu ja koduandurit kirjeldab Haapsalu põhiveeb veel teenusena, mille käivitamist kavandatakse, samal ajal kui Haapsalu Sotsiaalmaja ametlikul alamlehel on teenus juba tasulise kasutusvõimalusena üleval. Paketis on kasutatud mõlema ametliku lehe infot, kuid staatus võib vajada hiljem ülevaatamist.",
+    "Tegevustoetuse kohta on ametlikul veebil olemas blankett ja nimetatud toetuse pealkiri, kuid detailseid tingimusi, summasid ja menetluskorda samal veebikihil lahti ei kirjutata.",
+    "Eeskirjade ja blankettide lehel on eraldi kirjeldatud lasteaia toiduraha ja osalustasu toetuse taotlemist, kuid sama faili nimi on laiemalt 'Toiduraha, osalustasu ja õppemaks'. Seetõttu jäi toetuse ja blanketipealkirja täpne ulatus osaliselt ebaselgeks.",
+    "Meeste Koda Haapsalu Kuuri detailleht ei olnud töö käigus stabiilselt avatav; paketis säilitati teenuste koondlehel kinnitatud olemasolu, kuid detailkirjeldus jäi napp.",
+    "Mitmel KOV lehel on e-posti aadressid kuvatud varjestatud kujul ({ätt} või **). Kontaktides on säilitatud need nii, nagu ametlikel lehtedel oli võimalik usaldusväärselt tuvastada."
+  ],
+  "schemaVersion": "v2.5-sourcepackage",
+  "municipality_id": "haapsalu_linn",
+  "municipality_name": "Haapsalu linn",
+  "checked_at": "2026-04-11",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "collection_id": "kov_services",
+  "jurisdiction_level": "MUNICIPALITY",
+  "sourceRegisterFile": "haapsalu-linn.sources.json",
+  "sourceCount": 55,
+  "counts": {
+    "services": 14,
+    "benefits": 20,
+    "resources": 17,
+    "contacts": 14,
+    "forms": 10,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "haapsalu_linn",
+    "source_register_file": "haapsalu-linn.sources.json",
+    "service_benefit_resource_items": 51,
+    "items_with_source_keys": 51,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 9,
+    "items_without_related_forms": 42,
+    "items_with_related_contacts": 12,
+    "items_without_related_contacts": 39,
+    "form_sources": 10,
+    "contact_sources": 2,
+    "regulation_sources": 0,
+    "warnings": [
+      "12 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "warnings": [
+    "12 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "docId": "sotsiaaltoo-erinumber-2016",
+  "articleId": "sotsiaaltoo-erinumber-2016-artikkel-12-ligipaasetavusega-taieliku-kaasatuse-saavutamine",
+  "title": "Ligipääsetavusega täieliku kaasatuse saavutamine",
+  "authors": [
+    "Heidi Koolmeister"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "erinumber 2016",
+  "section": "Elukeskkond ja teenused",
+  "pageRange": "43-45",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi hoolekande osakonna nõunik käsitleb ligipääsetavust puude sotsiaalse mudeli kaudu: ühiskond loob puuet, disainides ümbritseva puudeta inimeste vajaduste järgi. Kirjeldab ligipääsetavuse töid koostöös Eesti Disainikeskuse ja Ehitusettevõtjate Liiduga.",
+  "tags": [
+    "ligipääsetavus",
+    "puue",
+    "sotsiaalne mudel",
+    "kaasatus",
+    "universaaldisain"
+  ],
+  "source_type": "file",
+  "source_path": "2016_eri_artikkel_12_ligipaasetavusega_taieliku_kaasatuse_saavutamine.pdf",
+  "added": "2026-08-18",
+  "fulltext_note": "Erinumber „Sotsiaaltöö ; erinumber 2016\" (DIGAR nlib-digar:390083), pühendatud heaolu arengukavale 2016–2023. Lisatud korpusesse 18.08.2026.",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-12-ligipaasetavusega-taieliku-kaasatuse-saavutamine",
+  "source_sha256": "a4f4afd771f58af4ad9ee82566278792f8d9515a7f2588feb70cb9e46f783ebc",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-12-ligipaasetavusega-taieliku-kaasatuse-saavutamine",
+    "previous_source_path": "2016_eri_artikkel_12_ligipaasetavusega_taieliku_kaasatuse_saavutamine.txt",
+    "previous_source_original_path": "2016_erinumber.pdf",
+    "reference_stored_source_sha256": "28ce00d711ee69250a49d6f02f4e71a05da1670086a39efd0c82e24c4d139401",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\2016_erinumber.pdf",
+      "source_sha256": "ae3bbf0a621beae80ae1e05a13206ffa00c6811806397ee8ac925f3762d93c70",
+      "pdf_start_page": 45,
+      "pdf_end_page": 47,
+      "printed_page_range": "43-45",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 47,
+      "source_regions": [
+        {
+          "source_pdf_page": 45,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 46,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 47,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "43-45",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2016_erinumber.pdf"
+    },
+    "server_page_range": "43-45"
+  }
+}

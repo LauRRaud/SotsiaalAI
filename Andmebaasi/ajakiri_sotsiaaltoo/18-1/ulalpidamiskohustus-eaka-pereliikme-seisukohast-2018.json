@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-1-2018",
+  "articleId": "ulalpidamiskohustus-eaka-pereliikme-seisukohast-2018",
+  "title": "Ülalpidamiskohustus eaka pereliikme seisukohast",
+  "authors": [
+    "Katrin Orav"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2018",
+  "section": "Õigus",
+  "pageRange": "43-47",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel selgitab ülalpidamiskohustuse sisu eaka inimese hooldamise vaates: kes on seaduse järgi kohustatud ülalpidamist andma, kuidas hinnata ülalpidajate ja eaka enda võimekust ning millal ja kuidas rakendub kohaliku omavalitsuse kohustus tagada vajalikud sotsiaalteenused.",
+  "tags": [
+    "ülalpidamiskohustus",
+    "perekonnaseadus",
+    "eakad",
+    "omastehooldus",
+    "sotsiaalteenuste rahastamine",
+    "KOV kohustused",
+    "põhiõigused",
+    "juhendmaterjalid omavalitsustele",
+    "hoolduskulude katmine"
+  ],
+  "source_type": "file",
+  "source_path": "Part12_155619647682_ST1_2018_link.pdf",
+  "document_id": "sotsiaaltoo-1-2018-ulalpidamiskohustus-eaka-pereliikme-seisukohast-2018",
+  "source_format": "pdf",
+  "source_sha256": "fa3c56ed507f96423eaab90ea87707892e39fe398d4ce84794be420b89c7d7d3",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2018-ulalpidamiskohustus-eaka-pereliikme-seisukohast-2018",
+    "previous_source_path": "Part12_155619647682_ST1_2018_link.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "fa3c56ed507f96423eaab90ea87707892e39fe398d4ce84794be420b89c7d7d3",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

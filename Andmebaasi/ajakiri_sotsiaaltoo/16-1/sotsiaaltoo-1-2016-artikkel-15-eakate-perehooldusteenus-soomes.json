@@ -1,0 +1,84 @@
+{
+  "docId": "sotsiaaltoo-1-2016",
+  "articleId": "sotsiaaltoo-1-2016-artikkel-15-eakate-perehooldusteenus-soomes",
+  "title": "Eakate perehooldusteenus Soomes",
+  "authors": [
+    "Kadri Plato",
+    "Marianne Hermann"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2016",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "45-47",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalkindlustusameti juhtumikorraldaja ja MTÜ Eesti Omastehooldus liige annavad ülevaate ligi 20liikmelise grupi õppereisist Soome Põhja-Karjalasse Kitee linna, kus tutvuti eakate perehooldusteenusega. Soome perehooldusseaduse (263/2015) järgi võib ühe erialase koolituse läbinud hooldaja kohta olla 1–4 eakat, kahe hooldaja korral 5–7; omavalitsus sõlmib hooldajaga käsunduslepingu ning maksab töötasu ja nn stardikapitali. Teenus maksab ligi 80 eurot päevas, mis on umbes kaks korda odavam hooldekodu päevahinnast. Enamik hooldatavaid on 75–90aastased. Autorid leiavad, et Eestis saaks perehooldusega alustada projektide toel.",
+  "tags": [
+    "perehooldus",
+    "eakad",
+    "soome",
+    "hooldusteenused",
+    "õppereis",
+    "omastehooldus"
+  ],
+  "source_type": "file",
+  "source_path": "2016_1_artikkel_15_eakate_perehooldusteenus_soomes.pdf",
+  "added": "2026-08-17",
+  "fulltext_note": "Tekst korrastatud 17.08.2026 (pdftotext oli artikli piiri valesti lõiganud).",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-15-eakate-perehooldusteenus-soomes",
+  "source_sha256": "3c24bb4d5035b74ba3f2d5432392a89aeacfb39f99fe963f0f6415e365a882dd",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-15-eakate-perehooldusteenus-soomes",
+    "previous_source_path": "2016_1_artikkel_15_eakate_perehooldusteenus_soomes.txt",
+    "previous_source_original_path": "1-2016.pdf",
+    "reference_stored_source_sha256": "f5d746fa2442955fdfc1f881e683c904038d5d3bece88cd58dc18c04402e2620",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf",
+      "source_sha256": "2c193295e54f58982562b509b6283e93aa58b1695464671e1768e24e90888a6c",
+      "pdf_start_page": 47,
+      "pdf_end_page": 49,
+      "printed_page_range": "45-48",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 50,
+      "source_regions": [
+        {
+          "source_pdf_page": 47,
+          "bounds": [
+            0,
+            136.29,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 48,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 49,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "45-47",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf"
+    },
+    "server_page_range": "45-48"
+  }
+}

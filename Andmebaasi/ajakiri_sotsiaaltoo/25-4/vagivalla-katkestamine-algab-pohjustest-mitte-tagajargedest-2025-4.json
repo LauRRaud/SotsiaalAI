@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2025",
+  "articleId": "vagivalla-katkestamine-algab-pohjustest-mitte-tagajargedest-2025-4",
+  "title": "Vägivalla katkestamine algab põhjustest, mitte tagajärgedest",
+  "authors": [
+    "Signe Uustal"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2025",
+  "section": "Vägivalla ennetus",
+  "pageRange": "1–5",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb vägivalla ennetamist ja vägivalla toimepanijatega töötamise vajadust, rõhutades varajast sekkumist, ohvri turvalisust ja tõenduspõhiseid programme. Fookuses on Eesti süsteemi kitsaskohad ning moodulitest koosneva, psühholoogilist-terapeutilist tööd sisaldava sekkumissüsteemi vajadus.",
+  "tags": [
+    "vägivald",
+    "lähisuhtevägivald",
+    "ennetamine",
+    "toimepanijad",
+    "psühholoogiline sekkumine",
+    "ohvri turvalisus",
+    "programmid"
+  ],
+  "source_type": "file",
+  "source_path": "Vägivalla katkestamine algab põhjustest, mitte tagajärgedest.pdf",
+  "document_id": "sotsiaaltoo-4-2025-vagivalla-katkestamine-algab-pohjustest-mitte-tagajargedest-2025-4",
+  "source_format": "pdf",
+  "source_sha256": "ed04b9db5bf2bba3d0f74de8ceeeedc2ef84f1a4c16fba1de9ccd4ce55bc044d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2025-vagivalla-katkestamine-algab-pohjustest-mitte-tagajargedest-2025-4",
+    "previous_source_path": "Vägivalla katkestamine algab põhjustest, mitte tagajärgedest.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ed04b9db5bf2bba3d0f74de8ceeeedc2ef84f1a4c16fba1de9ccd4ce55bc044d",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

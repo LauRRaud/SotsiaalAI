@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-1-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "eessona-2025-1",
+  "title": "Eessõna",
+  "authors": [
+    "Reeli Sirotkina"
+  ],
+  "section": "Eessõna",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "description": "Eessõnas avab sotsiaaltöö uurija Reeli Sirotkina numbri 1/2025 fookuse: solidaarsusele, ebavõrdsuse leevendamisele ja sotsiaalse jätkusuutlikkuse küsimustele suunatud sotsiaaltöö. Autor seob tänased väljakutsed – vaesuse, ebavõrdsuse, ebastabiilse tööturu ja globaalsete kriiside mõjud – sotsiaaltöö ajaloolise rolliga ning küsib, milliseid suundi valisime 1990. aastatel ja mida neist on tänases Eestis vaja ümber mõtestada. Samuti tutvustab ta numbri olulisemaid teemasid: vanuseline diskrimineerimine, piirkondlik ebavõrdsus, võrdõiguslikkus tööturul, Ukraina sõjapõgenike toetamine ja solidaarsusel põhinev heaoluühiskond.",
+  "tags": [
+    "eessõna",
+    "solidaarsus",
+    "ebavõrdsus",
+    "sotsiaalne jätkusuutlikkus",
+    "sotsiaaltöö roll",
+    "heaoluriik"
+  ],
+  "source_path": "Eessõna 1_2025 _ Tervise Arengu Instituut.pdf",
+  "pageRange": "1–2",
+  "document_id": "sotsiaaltoo-1-2025-eessona-2025-1",
+  "source_format": "pdf",
+  "source_sha256": "9d6e53972246ac05313dc22977ec535a7a423666625ff3302560acff48dc8b66",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2025-eessona-2025-1",
+    "previous_source_path": "Eessõna 1_2025 _ Tervise Arengu Instituut.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "9d6e53972246ac05313dc22977ec535a7a423666625ff3302560acff48dc8b66",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

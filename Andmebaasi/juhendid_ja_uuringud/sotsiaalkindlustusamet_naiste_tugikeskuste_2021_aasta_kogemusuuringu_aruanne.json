@@ -1,0 +1,144 @@
+{
+  "source_path": "sotsiaalkindlustusamet_naiste_tugikeskuste_2021_aasta_kogemusuuringu_aruanne.pdf",
+  "source_format": "pdf",
+  "sha256": "4fc2677131fd4d9e625dd6a53877d696dfc43478efe2f479a2afe23af22ef58c",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/sotsiaalkindlustusamet_naiste_tugikeskuste_2021_aasta_kogemusuuringu_aruanne.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "sotsiaalkindlustusamet_naiste_tugikeskuste_2021_aasta_kogemusuuringu_aruanne",
+          "title": "Naiste tugikeskuste 2021. aasta kogemusuuringu aruanne",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2022-10/ntk_2021_kogemusuuringu_aruanne.pdf",
+          "normalized_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2022-10/ntk_2021_kogemusuuringu_aruanne.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "Sotsiaalkindlustusamet",
+          "organization_id": "sotsiaalkindlustusamet",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Sotsiaalkindlustusamet",
+            "ohvriabi",
+            "naiste tugikeskus",
+            "teenuse kvaliteet",
+            "uuring",
+            "raport",
+            "analüüs",
+            "SKA"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "SKA",
+            "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+            "heading_4": null,
+            "line": 461,
+            "order": 246
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Naiste tugikeskuste 2021. aasta kogemusuuringu aruanne"
+          ],
+          "collection_hints": [
+            "research_reports"
+          ],
+          "source_types_seen": [
+            "research_report"
+          ],
+          "resource_types_seen": [
+            "research_evidence"
+          ],
+          "publishers_seen": [
+            "Sotsiaalkindlustusamet"
+          ],
+          "organizations_seen": [
+            "sotsiaalkindlustusamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "SKA",
+              "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+              "line": 461,
+              "order": 246
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2022-10/ntk_2021_kogemusuuringu_aruanne.pdf"
+        },
+        "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2022-10/ntk_2021_kogemusuuringu_aruanne.pdf",
+        "redirects": [],
+        "sha256": "4fc2677131fd4d9e625dd6a53877d696dfc43478efe2f479a2afe23af22ef58c",
+        "bytes": 1081127,
+        "downloaded_at": "2026-08-14T08:00:49.210Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "sotsiaalkindlustusamet_naiste_tugikeskuste_2021_aasta_kogemusuuringu_aruanne",
+      "metadata": {
+        "createdAt": "2026-06-12T03:47:21.922295+00:00",
+        "type": "FILE",
+        "fileName": "ntk_2021_kogemusuuringu_aruanne.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:47:21.854559+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/d33a34792187/ntk_2021_kogemusuuringu_aruanne.pdf",
+        "title": "Naiste tugikeskuste 2021. aasta kogemusuuringu aruanne",
+        "description": "Source master headings: SKA; Ohvriabi, MARAC, naiste tugikeskused",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2021,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–79",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "research_reports",
+        "source_id": "sotsiaalkindlustusamet_naiste_tugikeskuste_2021_aasta_kogemusuuringu_aruanne",
+        "document_id": "sotsiaalkindlustusamet_naiste_tugikeskuste_2021_aasta_kogemusuuringu_aruanne",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "04f6c302ca7f5861f76f755552dacd412cecf81d2330187725b21d2495249032",
+        "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2022-10/ntk_2021_kogemusuuringu_aruanne.pdf",
+        "url_canonical": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2022-10/ntk_2021_kogemusuuringu_aruanne.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "sotsiaalkindlustusamet_naiste_tugikeskuste_2021_aasta_kogemusuuringu_aruanne",
+        "updatedAt": "2026-06-12T03:47:21.922319+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

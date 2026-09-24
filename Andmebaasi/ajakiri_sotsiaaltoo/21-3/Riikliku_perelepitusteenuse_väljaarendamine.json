@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-3-2021",
+  "articleId": "riikliku-perelepitusteenuse-valjaarendamine-2021-3",
+  "title": "Riikliku perelepitusteenuse väljaarendamine",
+  "authors": [
+    "Ann Lind-Liiberg",
+    "Rea Uudeküll"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2021",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "8-12",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalkindlustusameti perelepituse teenusejuhi ja projektijuhi artikkel tutvustab Norra ja EMP rahastusel ellu viidavat riikliku perelepitussüsteemi rakendamise projekti. Kirjeldatakse teenuse korraldusmudeli väljatöötamist, rahvusvaheliste kogemuste (nt Norra, Soome, Suurbritannia) analüüsi, lahku läinud lapsevanemate uuringut ning riikliku perelepitajate koolitusprogrammi loomist. Samuti kirjeldatakse teenuse piloteerimist koos kohalike omavalitsustega, supervisioonisüsteemi kujundamist, IT-lahendusi (STAR ja iseteenindus) ning perelepitusseaduse eelnõu põhimõtteid. Artikkel rõhutab lapse huvide esikohale seadmist, vanemate koostöö arendamist ja perelepituse kättesaadavuse suurendamist kui olulisi samme laste heaolu tagamisel.",
+  "tags": [
+    "perelepitus",
+    "riiklik teenus",
+    "Sotsiaalkindlustusamet",
+    "lahutavad vanemad",
+    "lapse huvid",
+    "koolitusprogramm",
+    "perelepitusseadus",
+    "Norra ja EMP toetus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2021_web_link_Part4.pdf",
+  "document_id": "sotsiaaltoo-3-2021-riikliku-perelepitusteenuse-valjaarendamine-2021-3",
+  "source_format": "pdf",
+  "source_sha256": "8b4cb42d3d5abe58289f03529a01fba4763d3a14c52b638d5ff8a36de7becf3d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2021-riikliku-perelepitusteenuse-valjaarendamine-2021-3",
+    "previous_source_path": "Sotsiaaltoo_3_2021_web_link_Part4.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "8b4cb42d3d5abe58289f03529a01fba4763d3a14c52b638d5ff8a36de7becf3d",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

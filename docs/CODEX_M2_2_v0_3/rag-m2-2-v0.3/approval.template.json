@@ -1,0 +1,32 @@
+{
+  "schema_version": "rag-v2/pilot-approval-proposal-1",
+  "state": "draft_not_authorized",
+  "material_egress_approved": false,
+  "spend_cap_approved": false,
+  "approved_by": null,
+  "approved_at": null,
+  "approval_basis": null,
+  "referenced_source_plan_id": "pilot_plan_d1099e3796e88e9cbec22ae3f61e75e17cd3270106def0e4f0b8d0ae4b35afc8",
+  "egress_manifest_sha256": null,
+  "tenant": "sotsiaalai-development",
+  "provider": "openai",
+  "endpoint": "https://api.openai.com/v1/embeddings",
+  "model": "text-embedding-3-large",
+  "dimensions": 3072,
+  "files": [
+    {
+      "document_id": "document_a360b102f9ca757e85023f68a1b0c87606f9a1f2c059e0e5743665b0b2e4274b",
+      "version_id": "version_912705546e9bee33095a27ab924e5023c6368b7f59435aa97e79163255a62635",
+      "pdf_sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+      "metadata_sha256": "d090594afae2c24541ab71ed63a86d013c999ab519606597d145395023eccd5a"
+    }
+  ],
+  "max_api_attempts": 25,
+  "max_total_input_tokens": 12420,
+  "retries": 0,
+  "generation_calls": 0,
+  "currency": "USD",
+  "approved_spend_cap": null,
+  "proposed_spend_cap": 0.05,
+  "note": "Unapproved schema proposal. Bind to the actual verified egress manifest and record only an explicit owner authorization. Do not set approvals true automatically."
+}

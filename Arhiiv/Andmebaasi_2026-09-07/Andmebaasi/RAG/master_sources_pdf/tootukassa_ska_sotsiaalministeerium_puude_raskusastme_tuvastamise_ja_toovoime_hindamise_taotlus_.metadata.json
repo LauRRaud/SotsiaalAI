@@ -1,0 +1,86 @@
+{
+  "source": {
+    "source_id": "tootukassa_ska_sotsiaalministeerium_puude_raskusastme_tuvastamise_ja_toovoime_hindamise_taotlus_",
+    "title": "Puude raskusastme tuvastamise ja töövõime hindamise taotlus – tööealine",
+    "url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-07/toovoime_hindamine_ja_puude_raskusastme_tuvastamise_taotlus.pdf",
+    "normalized_url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-07/toovoime_hindamine_ja_puude_raskusastme_tuvastamise_taotlus.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Töötukassa / SKA / Sotsiaalministeerium",
+    "organization_id": "tootukassa_ska_sotsiaalministeerium",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Töötukassa",
+      "puue",
+      "puudega inimene",
+      "erivajadus",
+      "puude raskusaste",
+      "puude tuvastamine",
+      "abivajaduse hindamine",
+      "töövõime",
+      "vähenenud töövõime",
+      "töötamine",
+      "tööturuteenused",
+      "infomaterjal",
+      "Sotsiaalministeerium",
+      "Sotsiaalkindlustusamet",
+      "tööealine inimene",
+      "tugi tööealisele",
+      "sotsiaalne tugi"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Töövõime / Töötukassa / SKA / STAR",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 345,
+      "order": 194
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Puude raskusastme tuvastamise ja töövõime hindamise taotlus – tööealine"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Töötukassa / SKA / Sotsiaalministeerium"
+    ],
+    "organizations_seen": [
+      "tootukassa_ska_sotsiaalministeerium"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Töövõime / Töötukassa / SKA / STAR",
+        "line": 345,
+        "order": 194
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-07/toovoime_hindamine_ja_puude_raskusastme_tuvastamise_taotlus.pdf"
+  },
+  "final_url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-07/toovoime_hindamine_ja_puude_raskusastme_tuvastamise_taotlus.pdf",
+  "redirects": [],
+  "sha256": "127c63cf9363996b0a7d98ec5ecc596e541a0a977e2a55e055e98e06017b207e",
+  "bytes": 498125,
+  "downloaded_at": "2026-08-14T08:00:40.708Z"
+}

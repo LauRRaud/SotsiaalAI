@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2020",
+  "articleId": "psuhhosotsiaalne-kriisiabi-eriolukorras-2020-2",
+  "title": "Psühhosotsiaalne kriisiabi eriolukorras",
+  "authors": [
+    "Helen Alton"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2020",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "19-24",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel selgitab psühhosotsiaalse kriisiabi sisu, eesmärke ja korraldust Eestis eriolukorra tingimustes. Fookuses on inimeste toimetuleku toetamine, eesliinitöötajate abistamine ja vajaduspõhise kriisiabi süsteemne ülesehitus.",
+  "tags": [
+    "psühhosotsiaalne kriisiabi",
+    "eriolukord",
+    "vaimne tervis",
+    "ohvriabi",
+    "kriisijuhtimine",
+    "COVID-19"
+  ],
+  "source_type": "file",
+  "source_path": "ST2_2020_web_link_Part9.pdf",
+  "document_id": "sotsiaaltoo-2-2020-psuhhosotsiaalne-kriisiabi-eriolukorras-2020-2",
+  "source_format": "pdf",
+  "source_sha256": "822082a7b8cdeb9d4f672e0e5b3957fc60d454ffd124fdce7a31816cec298cd4",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2020-psuhhosotsiaalne-kriisiabi-eriolukorras-2020-2",
+    "previous_source_path": "ST2_2020_web_link_Part9.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "822082a7b8cdeb9d4f672e0e5b3957fc60d454ffd124fdce7a31816cec298cd4",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

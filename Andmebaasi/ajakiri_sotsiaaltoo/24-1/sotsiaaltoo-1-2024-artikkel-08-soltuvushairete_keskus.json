@@ -1,0 +1,37 @@
+{
+  "docId": "sotsiaaltoo-1-2024",
+  "articleId": "too-soltuvushairete-keskuses-tahendab-kuulamist-moistmist-ja-motiveerimist-2024-1",
+  "title": "Töö sõltuvushäirete keskuses tähendab kuulamist, mõistmist ja motiveerimist",
+  "authors": [
+    "Eerika Luukas"
+  ],
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2024",
+  "section": "Kogemus",
+  "pageRange": "42-47",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kogemuslugu kirjeldab tööd sõltuvushäirete keskuses, rõhutades motiveeriva intervjueerimise ja võrgustikutöö tähtsust patsiendi taastumisteekonnal.",
+  "tags": [
+    "sõltuvushäire",
+    "kogemus",
+    "motiveeriv intervjueerimine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_1_2024_web_Part9.pdf",
+  "document_id": "sotsiaaltoo-1-2024-too-soltuvushairete-keskuses-tahendab-kuulamist-moistmist-ja-motiveerimist-2024-1",
+  "source_format": "pdf",
+  "source_sha256": "a0b0e3e022aba72b54b56bffb9a3b208b47531f090206be0e8db9ed2365a979d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2024-too-soltuvushairete-keskuses-tahendab-kuulamist-moistmist-ja-motiveerimist-2024-1",
+    "previous_source_path": "Sotsiaaltoo_1_2024_web_Part9.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "a0b0e3e022aba72b54b56bffb9a3b208b47531f090206be0e8db9ed2365a979d",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

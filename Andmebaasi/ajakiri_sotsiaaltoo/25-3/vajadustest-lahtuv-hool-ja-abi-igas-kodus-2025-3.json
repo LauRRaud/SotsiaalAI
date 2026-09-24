@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2025",
+  "articleId": "vajadustest-lahtuv-hool-ja-abi-igas-kodus-2025-3",
+  "title": "Vajadustest lähtuv hool ja abi igas kodus",
+  "authors": [
+    "Annika Sõna"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2025",
+  "section": "Koduteenuse innovatsioon",
+  "pageRange": "20-24",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab Tartu päevakeskuse Kalda koduteenuse uusi lahendusi, nagu partnerihalduri ja telefonitöötaja teenus, heaolumeister, rikšasõidud ning trepironijateenus. Lisaks näidatakse, kuidas tavapärane koduteenus ja täiendavad tugiteenused aitavad eakatel turvaliselt kodus elada.",
+  "tags": [
+    "koduteenus",
+    "Tartu",
+    "päevakeskus Kalda",
+    "heaolumeister",
+    "telefonitugi",
+    "rikša",
+    "trepironija",
+    "eakad"
+  ],
+  "source_type": "file",
+  "source_path": "4web_sotsiaaltoo_3-2025.pdf",
+  "document_id": "sotsiaaltoo-3-2025-vajadustest-lahtuv-hool-ja-abi-igas-kodus-2025-3",
+  "source_format": "pdf",
+  "source_sha256": "1cb5f703c7cdf3d297f14b5a0057fba9026882122096851c342624ede4fed9ce",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2025-vajadustest-lahtuv-hool-ja-abi-igas-kodus-2025-3",
+    "previous_source_path": "4web_sotsiaaltoo_3-2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "1cb5f703c7cdf3d297f14b5a0057fba9026882122096851c342624ede4fed9ce",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

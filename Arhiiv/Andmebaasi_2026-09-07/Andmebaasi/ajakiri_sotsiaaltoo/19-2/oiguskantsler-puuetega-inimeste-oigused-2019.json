@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2019",
+  "articleId": "oiguskantsleri-ametkonna-tegevus-puuetega-inimeste-oiguste-konventsiooni-rakendamisel-2019",
+  "title": "Õiguskantsleri ametkonna tegevusest puuetega inimeste õiguste konventsiooni rakendamisel",
+  "authors": [
+    "Juta Saarevet"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2019",
+  "section": "Õigus",
+  "pageRange": "25-29",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel selgitab õiguskantsleri uue rolli sisu puuetega inimeste õiguste konventsiooni rakendamise edendaja ja järelevaatajana ning annab ülevaate varasematest olulisematest juhtumitest ja väljakutsetest.",
+  "tags": [
+    "puuetega inimeste õigused",
+    "Õiguskantsler",
+    "ÜRO konventsioon",
+    "võrdne kohtlemine",
+    "ligipääsetavus",
+    "õiguskaitse"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part7.pdf",
+  "document_id": "sotsiaaltoo-2-2019-oiguskantsleri-ametkonna-tegevus-puuetega-inimeste-oiguste-konventsiooni-rakendamisel-2019",
+  "source_format": "pdf",
+  "source_sha256": "108ddf9f9ca3c99ec90eb4ee4acdda647a8f282f79dbfb3d77882fa368965c20",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2019-oiguskantsleri-ametkonna-tegevus-puuetega-inimeste-oiguste-konventsiooni-rakendamisel-2019",
+    "previous_source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part7.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "108ddf9f9ca3c99ec90eb4ee4acdda647a8f282f79dbfb3d77882fa368965c20",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

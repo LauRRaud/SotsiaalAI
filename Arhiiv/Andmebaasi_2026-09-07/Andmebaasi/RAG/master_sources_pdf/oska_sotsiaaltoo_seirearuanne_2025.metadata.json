@@ -1,0 +1,82 @@
+{
+  "source": {
+    "source_id": "oska_sotsiaaltoo_seirearuanne_2025",
+    "title": "Sotsiaaltöö seirearuanne 2025",
+    "url": "https://uuringud.oska.kutsekoda.ee/assets/pdf/Sotsiaaltoo-SEIREARUANNE-2025.pdf",
+    "normalized_url": "https://uuringud.oska.kutsekoda.ee/assets/pdf/Sotsiaaltoo-SEIREARUANNE-2025.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "OSKA",
+    "organization_id": "oska",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "OSKA",
+      "sotsiaaltöö",
+      "tööjõuvajadus",
+      "oskused",
+      "valdkonnauuring",
+      "uuring",
+      "raport",
+      "analüüs"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_024",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+    "source_context": {
+      "heading_2": "OSKA",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 233,
+      "order": 146
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "Sotsiaaltöö seirearuanne 2025"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "OSKA"
+    ],
+    "organizations_seen": [
+      "oska"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "OSKA",
+        "line": 233,
+        "order": 146
+      },
+      {
+        "heading_2": "OSKA",
+        "line": 707,
+        "order": 353
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://uuringud.oska.kutsekoda.ee/assets/pdf/Sotsiaaltoo-SEIREARUANNE-2025.pdf"
+  },
+  "final_url": "https://uuringud.oska.kutsekoda.ee/assets/pdf/Sotsiaaltoo-SEIREARUANNE-2025.pdf",
+  "redirects": [],
+  "sha256": "5e0c325dacd284b4cbf0159347ea01870c6486ee49ff63770866c95de311f39b",
+  "bytes": 1688296,
+  "downloaded_at": "2026-08-14T08:00:36.662Z"
+}

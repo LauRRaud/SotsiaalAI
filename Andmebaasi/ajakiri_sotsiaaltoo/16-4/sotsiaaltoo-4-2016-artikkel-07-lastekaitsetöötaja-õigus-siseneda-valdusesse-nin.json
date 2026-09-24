@@ -1,0 +1,82 @@
+{
+  "docId": "sotsiaaltoo-4-2016",
+  "articleId": "sotsiaaltoo-4-2016-artikkel-07-lastekaitsetöötaja-õigus-siseneda-valdusesse-nin",
+  "title": "Lastekaitsetöötaja õigus siseneda valdusesse ning kasutada selleks politsei abi",
+  "authors": [
+    "Kristi Paron"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2016",
+  "section": "Lapse õigused",
+  "pageRange": "41-43",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Õiguskantsleri kantselei nõunik Kristi Paron selgitab, et 1. jaanuaril 2016 jõustunud lastekaitseseadus annab koosmõjus korrakaitseseadusega lastekaitsetöötajale õiguse siseneda ohukahtluse korral valdusesse. Ta eristab valdaja nõusolekul tehtavat kodukülastust ja korrakaitseseaduse § 50 mõttes valdusesse sisenemist ning rõhutab proportsionaalsuse, otstarbekuse ja inimväärikuse põhimõtteid. Kuna vahetu sunni pädevust lastekaitsetöötajal ei ole, saab ta kaasata politsei ametiabi korras, kuid seda tuleb iga üksikjuhtumi puhul eraldi kaaluda – rutiinne kontrollreid ei ole piisav alus.",
+  "tags": [
+    "lapse õigused",
+    "lastekaitseseadus",
+    "korrakaitseseadus",
+    "valdusesse sisenemine",
+    "ohukahtlus",
+    "politsei ametiabi"
+  ],
+  "source_type": "file",
+  "source_path": "2016_4_artikkel_07_lastekaitsetootaja_oigus_siseneda_valdusesse_ning_ka.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-07-lastekaitset-taja-igus-siseneda-valdusesse-nin",
+  "source_sha256": "d7a05a8cb31d97d4a16f69ed761ee17f1ad69442847c286d8f0632dd5bab6005",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-07-lastekaitset-taja-igus-siseneda-valdusesse-nin",
+    "previous_source_path": "2016_4_artikkel_07_lastekaitsetootaja_oigus_siseneda_valdusesse_ning_ka.txt",
+    "previous_source_original_path": "4-2016.pdf",
+    "reference_stored_source_sha256": "256859736980eb002e26facff26e55c3490efbebbfae6f2cebe700a5bca8f033",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf",
+      "source_sha256": "0f07da03ffde36588435e96f8dda0f52a8140fbf9cc4201bb95e85b594e03fc9",
+      "pdf_start_page": 43,
+      "pdf_end_page": 45,
+      "printed_page_range": "41-44",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 46,
+      "source_regions": [
+        {
+          "source_pdf_page": 43,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 44,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 45,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "41-43",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf"
+    },
+    "server_page_range": "41-44"
+  }
+}

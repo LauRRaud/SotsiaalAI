@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2022",
+  "articleId": "keskkond-on-inimese-pohivajadus-2022-2",
+  "title": "Keskkond on inimese põhivajadus",
+  "authors": [
+    "Kairiin Nuudi"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2022",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "37-40",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu Aasta tegevusjuhendaja 2020 Lauris Geurdenist, tema tööst Maarja külas ja arusaamast, et keskkond on inimese põhivajadus. Artikkel käsitleb sügava ja raske vaimupuudega ning autismispektrihäirega inimeste toetamise praktilisi meetodeid, kohalolu ja väikeste sammude märkamise tähtsust ning seksuaalkasvatuse ja enesemääramise toetamise teemat. Lisaks tutvustatakse permakultuuri ja Gaia hariduse ideid ning CARe metoodika seoseid jätkusuutliku, inimest ja keskkonda väärtustava sotsiaaltööga.",
+  "tags": [
+    "tegevusjuhendaja",
+    "intellektipuue",
+    "autismispektrihäire",
+    "seksuaalkasvatus",
+    "permakultuur",
+    "CARe metoodika",
+    "kogukonnaelamine"
+  ],
+  "source_type": "file",
+  "source_path": "2022_2_artikkel_7_Kairiin Nuudi.pdf",
+  "document_id": "sotsiaaltoo-2-2022-keskkond-on-inimese-pohivajadus-2022-2",
+  "source_format": "pdf",
+  "source_sha256": "039afe20d135eb971b94cfe50fc73f9e401370d7986022de4cf47209b9fc0791",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2022-keskkond-on-inimese-pohivajadus-2022-2",
+    "previous_source_path": "2022_2_artikkel_7_Kairiin Nuudi.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "039afe20d135eb971b94cfe50fc73f9e401370d7986022de4cf47209b9fc0791",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

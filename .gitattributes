@@ -8,5 +8,13 @@
 tests/fixtures/expected/*.json text eol=lf
 tests/fixtures/expected/*.md text eol=lf
 
+# Source corpora and archives retain original bytes for recorded source hashes.
+Andmebaasi/** -text -whitespace
+Arhiiv/** -text -whitespace
+*.pdf binary
+*.fbx binary
+*.docx binary
+*.zip binary
+
 # Windows scripts
 *.{ps1,bat,cmd} text eol=crlf

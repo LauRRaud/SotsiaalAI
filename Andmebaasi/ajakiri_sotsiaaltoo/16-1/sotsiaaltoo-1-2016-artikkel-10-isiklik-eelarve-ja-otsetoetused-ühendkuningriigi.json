@@ -1,0 +1,119 @@
+{
+  "docId": "sotsiaaltoo-1-2016",
+  "articleId": "sotsiaaltoo-1-2016-artikkel-10-isiklik-eelarve-ja-otsetoetused-ühendkuningriigi",
+  "title": "Isiklik eelarve ja otsetoetused Ühendkuningriigis ja Soomes",
+  "authors": [
+    "Zsolt Bugarszki"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2016",
+  "section": "Deinstitutsionaliseerimine",
+  "pageRange": "26-32",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tallinna Ülikooli lektor tutvustab isikliku eelarve ja otsetoetuste kasutamist Ühendkuningriigis ja Soomes. Briti mudelis võeti isiklikud eelarved kasutusele 1996. aastal ning otsetoetuste eelkäija oli aastatel 1988–2015 tegutsenud Iseseisva Elu Fond. 2013. aasta uuringu Third National Personal Budget Survey järgi ütles vähemalt kaks kolmandikku vastanutest, et isiklik eelarve muutis nende elu paremaks, negatiivset mõju nimetas alla 5%. Soomes katsetati aastatel 2010–2013 projekti „Tean ise, mida tahan” kahes omavalitsuses, kummastki osales 15–20 puudega inimest. Autor peab Eesti isikliku abistaja teenust selle süsteemi sissejuhatavaks faasiks.",
+  "tags": [
+    "isiklik eelarve",
+    "otsetoetused",
+    "isiklik abistaja",
+    "deinstitutsionaliseerimine",
+    "ühendkuningriik",
+    "soome",
+    "iseseisev elu"
+  ],
+  "source_type": "file",
+  "source_path": "2016_1_artikkel_10_isiklik_eelarve_ja_otsetoetused_uhendkuningriigis_ja.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-10-isiklik-eelarve-ja-otsetoetused-hendkuningriigi",
+  "source_sha256": "e8ddbeb311e3622bf86f8b1db4a3062e5265229826f2275575784a4c737f5f42",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-10-isiklik-eelarve-ja-otsetoetused-hendkuningriigi",
+    "previous_source_path": "2016_1_artikkel_10_isiklik_eelarve_ja_otsetoetused_uhendkuningriigis_ja.txt",
+    "previous_source_original_path": "1-2016.pdf",
+    "reference_stored_source_sha256": "f0f521cde384281b4690a4463937c5c67449ec8f78f216a6d656c115875e51dd",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf",
+      "source_sha256": "2c193295e54f58982562b509b6283e93aa58b1695464671e1768e24e90888a6c",
+      "pdf_start_page": 28,
+      "pdf_end_page": 34,
+      "printed_page_range": "26-32",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 34,
+      "source_regions": [
+        {
+          "source_pdf_page": 28,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 29,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 30,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 31,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 32,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 33,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 34,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            138.258
+          ]
+        }
+      ],
+      "effective_printed_page_range": "26-32",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf"
+    },
+    "server_page_range": "26-32"
+  }
+}

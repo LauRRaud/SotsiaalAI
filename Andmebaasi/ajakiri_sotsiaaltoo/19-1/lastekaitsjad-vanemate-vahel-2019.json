@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-1-2019",
+  "articleId": "lastekaitsjad-ja-omavahel-sodivad-vanemad-2019",
+  "title": "Lastekaitsjad jäävad tihti omavahel sõdivate vanemate vahele",
+  "authors": [
+    "Anne-Ly Sumre"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2019",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "61-63",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Saue valla kogemuslugu, mis avab lastekaitsetöötajate rolli ja pingevälja olukorras, kus vanemad on omavahel konfliktis ning laste huvid võivad jääda vanemate tülide varju.",
+  "tags": [
+    "lastekaitse",
+    "vanemate konflikt",
+    "hooldusõigus",
+    "kohalik omavalitsus",
+    "Saue vald",
+    "laste huvid"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part15.pdf",
+  "document_id": "sotsiaaltoo-1-2019-lastekaitsjad-ja-omavahel-sodivad-vanemad-2019",
+  "source_format": "pdf",
+  "source_sha256": "06f06d960f8319ff32b3cb046713a5e40e8a55acb7b2744a81bed7352409fe3b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2019-lastekaitsjad-ja-omavahel-sodivad-vanemad-2019",
+    "previous_source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part15.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "06f06d960f8319ff32b3cb046713a5e40e8a55acb7b2744a81bed7352409fe3b",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

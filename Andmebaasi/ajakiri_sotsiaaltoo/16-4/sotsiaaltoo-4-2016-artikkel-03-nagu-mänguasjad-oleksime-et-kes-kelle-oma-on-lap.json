@@ -1,0 +1,173 @@
+{
+  "docId": "sotsiaaltoo-4-2016",
+  "articleId": "sotsiaaltoo-4-2016-artikkel-03-nagu-mänguasjad-oleksime-et-kes-kelle-oma-on-lap",
+  "title": "„Nagu mänguasjad oleksime, et kes kelle oma on” – lapsed räägivad asenduskodus elamisest",
+  "authors": [
+    "Merle Linno",
+    "Eliise Salla"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2016",
+  "section": "Eelretsenseeritud artiklid",
+  "pageRange": "8-20",
+  "pdf_start_page": 1,
+  "pdf_end_page": 13,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Merle Linno ja Eliise Salla esitavad Tartu Ülikoolis 2016. aastal kaitstud magistritööl põhineva uurimuse, kus poolstruktureeritud intervjuude ja keskkonnakaardi abil küsitleti viit 8–17aastast last ühest peremajade süsteemile üle läinud asenduskodust. Temaatiline analüüs näitab, et ükski laps ei kasutanud sõna „asenduskodu”, vaid „lastekodu” ja „rühm”, juhtkonda nimetati peamajaks; alles on usalduskasvataja süsteem, jäik päevakava ja lukustatud külmkapid. Autorid järeldavad Goffmani totaalse institutsiooni käsitlusele toetudes, et institutsionaalse kultuuri märgid on säilinud.",
+  "tags": [
+    "eelretsenseeritud artikkel",
+    "asenduskodu",
+    "deinstitutsionaliseerimine",
+    "institutsionaalne kultuur",
+    "laste osalus",
+    "kvalitatiivne uurimus"
+  ],
+  "source_type": "file",
+  "source_path": "2016_4_artikkel_03_nagu_manguasjad_oleksime_et_kes_kelle_oma_on_lapsed.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-03-nagu-m-nguasjad-oleksime-et-kes-kelle-oma-on-lap",
+  "source_sha256": "6fbac66d928931e4756587ac0f67049064d28a7042a8c93174e992dcdf63eeb9",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-03-nagu-m-nguasjad-oleksime-et-kes-kelle-oma-on-lap",
+    "previous_source_path": "2016_4_artikkel_03_nagu_manguasjad_oleksime_et_kes_kelle_oma_on_lapsed.txt",
+    "previous_source_original_path": "4-2016.pdf",
+    "reference_stored_source_sha256": "f1d17c8f6649916702237569610ca1c4696de84acb2e2e756793eb769704040c",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf",
+      "source_sha256": "0f07da03ffde36588435e96f8dda0f52a8140fbf9cc4201bb95e85b594e03fc9",
+      "pdf_start_page": 10,
+      "pdf_end_page": 22,
+      "printed_page_range": "8-21",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 23,
+      "source_regions": [
+        {
+          "source_pdf_page": 10,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 11,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 12,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 13,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 14,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 15,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 16,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 17,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 18,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 19,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 20,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 21,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 22,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "8-20",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf"
+    },
+    "server_page_range": "8-21"
+  }
+}

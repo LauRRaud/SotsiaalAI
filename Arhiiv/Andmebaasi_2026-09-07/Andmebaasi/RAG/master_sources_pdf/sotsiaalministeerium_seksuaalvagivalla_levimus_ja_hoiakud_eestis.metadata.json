@@ -1,0 +1,76 @@
+{
+  "source": {
+    "source_id": "sotsiaalministeerium_seksuaalvagivalla_levimus_ja_hoiakud_eestis",
+    "title": "Seksuaalvägivalla levimus ja hoiakud Eestis",
+    "url": "https://www.sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Norra_toetused/Koduse_ja_soopohise_vagivalla_vahendamise_programm/sv_levimus_ja_hoiakud_eestis.pdf",
+    "normalized_url": "https://www.sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Norra_toetused/Koduse_ja_soopohise_vagivalla_vahendamise_programm/sv_levimus_ja_hoiakud_eestis.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Sotsiaalministeerium",
+    "organization_id": "sotsiaalministeerium",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Sotsiaalministeerium",
+      "ohvriabi",
+      "seksuaalvägivald",
+      "seksuaalne ahistamine",
+      "infomaterjal",
+      "vägivald"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Sotsiaalministeerium",
+      "heading_3": "Vanemad, aga endiselt kasulikud taustauuringud",
+      "heading_4": null,
+      "line": 555,
+      "order": 288
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Seksuaalvägivalla levimus ja hoiakud Eestis"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Sotsiaalministeerium"
+    ],
+    "organizations_seen": [
+      "sotsiaalministeerium"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Sotsiaalministeerium",
+        "heading_3": "Vanemad, aga endiselt kasulikud taustauuringud",
+        "line": 555,
+        "order": 288
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Norra_toetused/Koduse_ja_soopohise_vagivalla_vahendamise_programm/sv_levimus_ja_hoiakud_eestis.pdf"
+  },
+  "final_url": "https://www.sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Norra_toetused/Koduse_ja_soopohise_vagivalla_vahendamise_programm/sv_levimus_ja_hoiakud_eestis.pdf",
+  "redirects": [],
+  "sha256": "ba330936f1c71b89d293e44462c5080984717cfd1af66ba4e6ed5d3918921555",
+  "bytes": 1957495,
+  "downloaded_at": "2026-08-14T08:00:55.937Z"
+}

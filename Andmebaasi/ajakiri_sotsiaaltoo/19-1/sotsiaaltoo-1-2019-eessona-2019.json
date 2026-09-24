@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2019",
+  "articleId": "sotsiaaltoo-keerukus-ja-kvaliteet-2019",
+  "title": "Sotsiaaltöö keerukus ja kvaliteet muutuvas maailmas",
+  "authors": [
+    "Airi Mitendorf"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2019",
+  "section": "Eessõna",
+  "pageRange": "2-2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Eessõna, mis arutleb sotsiaaltöö keerukuse, neoliberalistliku efektiivsusepõhise mõtteviisi ja eriala väärtuste vahelise pinge üle ning rõhutab vajadust tagada sotsiaaltöötajatele tingimused sisuliseks, inimesekeskseks tööks.",
+  "tags": [
+    "eessõna",
+    "sotsiaaltöö väärtused",
+    "neoliberalism",
+    "kvaliteet",
+    "töötingimused",
+    "erialaorganisatsioonid",
+    "professionaalne areng"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part2.pdf",
+  "document_id": "sotsiaaltoo-1-2019-sotsiaaltoo-keerukus-ja-kvaliteet-2019",
+  "source_format": "pdf",
+  "source_sha256": "e708601595d54fc83d70d5e69904670ad1a7c2e4543e2cf18a8ed62cbe43d925",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2019-sotsiaaltoo-keerukus-ja-kvaliteet-2019",
+    "previous_source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part2.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e708601595d54fc83d70d5e69904670ad1a7c2e4543e2cf18a8ed62cbe43d925",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

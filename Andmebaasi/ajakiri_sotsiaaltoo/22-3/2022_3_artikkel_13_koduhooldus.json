@@ -1,0 +1,48 @@
+{
+  "docId": "sotsiaaltoo-3-2022",
+  "articleId": "koduhooldus-lahendus-riigile-elanikule-ja-tooturule-2022-3",
+  "title": "Koduhooldus – lahendus riigile, elanikule ja tööturule",
+  "authors": [
+    "Ave Kütt"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2022",
+  "section": "KOGEMUS",
+  "pageRange": "46-51",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artiklis tutvustatakse ettevõtte Estkeer koduhooldusteenuse kogemust ja rolli pikaajalise hoolduse süsteemis. \nAutor kirjeldab isikukeskset lähenemist, kus hoolduskorraldus kujundatakse paindlikult inimese ja tema lähedaste vajadustest lähtudes, \nkombineerides isikuhooldust, igapäevaelu toetavaid tegevusi ja kodu kohandamist. \nArutletakse koduhoolduse mõju üle omastehooldajate koormuse vähendamisel, tööellu naasmise võimaldamisel ning teenuse kulutõhususe üle võrreldes asutushooldusega. \nSamuti käsitletakse koostööd kohalike omavalitsustega, rahastamise praktikaid ja koduhoolduse arendamise väljakutseid.",
+  "tags": [
+    "koduhooldus",
+    "pikaajaline hooldus",
+    "omastehooldus",
+    "isikukeskne teenus",
+    "teenuse korraldus",
+    "KOV koostöö",
+    "hoolduskulud",
+    "eakad",
+    "erivajadustega lapsed",
+    "töö ja hoolduskoormus"
+  ],
+  "source_type": "file",
+  "source_path": "2022_3_artikkel_13_koduhooldus.pdf",
+  "authors_vana": [
+    "Heidi Vaino"
+  ],
+  "authors_parandatud": "2026-08-17, A5 pöördsuuna kontroll, kinnitatud lähte-PDF-i autorirea vastu",
+  "document_id": "sotsiaaltoo-3-2022-koduhooldus-lahendus-riigile-elanikule-ja-tooturule-2022-3",
+  "source_format": "pdf",
+  "source_sha256": "7593eef5fb19793672ca77a73b13e3ba067bfb6d119cde6e5fc370e54c402c89",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2022-koduhooldus-lahendus-riigile-elanikule-ja-tooturule-2022-3",
+    "previous_source_path": "2022_3_artikkel_13_koduhooldus.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "7593eef5fb19793672ca77a73b13e3ba067bfb6d119cde6e5fc370e54c402c89",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

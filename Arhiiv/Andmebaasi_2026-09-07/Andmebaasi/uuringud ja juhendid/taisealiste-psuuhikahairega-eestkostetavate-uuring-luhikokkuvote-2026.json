@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "knowledge-doc-v1",
+  "docId": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-luhikokkuvote-2026",
+  "canonical_source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-luhikokkuvote-2026",
+  "title": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu lühikokkuvõte",
+  "description": "EPIKoja Tallinna Sotsiaal- ja Tervishoiuameti tellimusel läbi viidud psüühikahäirega inimeste ja eestkostetavate uuringu lühikokkuvõte: peamised kitsaskohad (teenuste killustatus, juhtumikorralduse ebajärjepidevus, piiratud psühhiaatrilise abi kättesaadavus, asendatud otsustamise mudel eestkostes) ja peamised ettepanekud Tallinna linnale.",
+  "publisher": "Eesti Puuetega Inimeste Koda",
+  "source_organization": "Eesti Puuetega Inimeste Koda",
+  "commissioned_by": "Tallinna Sotsiaal- ja Tervishoiuamet",
+  "publisher_type": "advocacy_organization",
+  "authority_level": "national_advocacy_organization_research",
+  "authors": ["Kristi Rekand", "Kristi Kähär", "Tauno Asuja"],
+  "contributors": [],
+  "year": 2026,
+  "publication_date": null,
+  "checked_at": "2026-06-11",
+  "language": "et",
+  "document_kind": "research_report",
+  "resource_type": "research_evidence",
+  "source_type": "research_report",
+  "source_origin_type": "file",
+  "source_format": "pdf",
+  "collection_id": "research_reports",
+  "jurisdiction_level": "NATIONAL",
+  "country": "EE",
+  "sector": "social",
+  "domain": "mental_health_and_guardianship",
+  "audience": "BOTH",
+  "audiences": ["SOCIAL_WORKER", "CLIENT"],
+  "evidence_role": "research_evidence",
+  "allowed_claim_types": [
+    "research_finding",
+    "needs_assessment",
+    "policy_recommendation",
+    "background"
+  ],
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "topics": [
+    "psüühikahäirega inimesed",
+    "eestkoste",
+    "eestkostetavad",
+    "sotsiaalteenused",
+    "juhtumikorraldus",
+    "inimkeskne lähenemine",
+    "Tallinn",
+    "vaimne tervis"
+  ],
+  "target_groups": [
+    "psüühikahäirega täisealised",
+    "eestkostetavad",
+    "eestkostjad",
+    "lähedased",
+    "sotsiaaltöötajad"
+  ],
+  "related_doc_ids": ["epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026"],
+  "source_path": "Taisealiste-psuuhikahairega-inimeste-sh-eestkostetavate-uuringu-luhikokkuvote-2026-1.pdf",
+  "source_url": null,
+  "source_status": "active",
+  "historical": false,
+  "copyright_status": "restricted_citation_summary_only",
+  "display_full_text": false,
+  "allow_excerpts": "short_only",
+  "ingest": {
+    "chunking_strategy": "section_aware",
+    "preserve_page_numbers": true,
+    "preserve_heading_path": true,
+    "display_full_text": false,
+    "allow_short_excerpts": true
+  },
+  "quality": {
+    "metadata_complete": true,
+    "section_index_complete": true,
+    "ocr_required": false,
+    "needs_manual_review": false
+  },
+  "sectionIndex": [
+    {
+      "section_id": "luhikokkuvote",
+      "title": "Kokkuvõte",
+      "page_start": 1,
+      "page_end": 3,
+      "section_type": "summary",
+      "evidence_role": "research_evidence",
+      "allowed_claim_types": ["research_finding", "needs_assessment", "policy_recommendation", "background"],
+      "disallowed_claim_types": ["legal_entitlement", "benefit_amount", "municipal_service_availability", "application_deadline", "medical_diagnosis_or_treatment"],
+      "topic_tags": ["uuringu kokkuvõte", "kitsaskohad", "ettepanekud Tallinna linnale"]
+    }
+  ]
+}

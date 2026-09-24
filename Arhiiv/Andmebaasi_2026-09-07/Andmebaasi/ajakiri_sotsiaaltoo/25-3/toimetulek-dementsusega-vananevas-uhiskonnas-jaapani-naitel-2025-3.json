@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2025",
+  "articleId": "toimetulek-dementsusega-vananevas-uhiskonnas-jaapani-naitel-2025-3",
+  "title": "Toimetulek dementsusega vananevas ühiskonnas Jaapani näitel",
+  "authors": [
+    "Janika Bachmann"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2025",
+  "section": "Dementsuspoliitika",
+  "pageRange": "58-64",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Teaduskirjandusele tuginev ülevaade käsitleb Jaapani dementsuspoliitikat vananevas ühiskonnas, sealhulgas riiklikke strateegiaid, kogukondlikku tuge, spetsialistide ettevalmistust ja perekondade toetamist. Artikkel toob esile nii Jaapani innovaatilised lahendused kui ka jätkuvad probleemid, näiteks hooldajate nappuse ja perede suure hoolduskoormuse.",
+  "tags": [
+    "dementsus",
+    "Jaapan",
+    "vananev ühiskond",
+    "kogukondlik hooldus",
+    "perekondade toetus",
+    "dementsuspoliitika",
+    "rahvusvaheline praktika",
+    "tehnoloogilised lahendused"
+  ],
+  "source_type": "file",
+  "source_path": "10web_sotsiaaltoo_3-2025.pdf",
+  "document_id": "sotsiaaltoo-3-2025-toimetulek-dementsusega-vananevas-uhiskonnas-jaapani-naitel-2025-3",
+  "source_format": "pdf",
+  "source_sha256": "9751b2bd417714549d5015e6e95b4a39c56427b30d3fa51f0410515b34a23d2e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2025-toimetulek-dementsusega-vananevas-uhiskonnas-jaapani-naitel-2025-3",
+    "previous_source_path": "10web_sotsiaaltoo_3-2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "9751b2bd417714549d5015e6e95b4a39c56427b30d3fa51f0410515b34a23d2e",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

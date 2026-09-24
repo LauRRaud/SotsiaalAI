@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-eri-2018",
+  "articleId": "vaeste-hoolekandest-sotsiaalhoolekandeks-2018",
+  "title": "Vaeste hoolekandest sotsiaalhoolekandeks",
+  "authors": [
+    "Jüri Kõre"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö (juubeli erinumber)",
+  "issueLabel": "Eri/2018",
+  "section": "Ajalugu",
+  "pageRange": "42-49",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Analüüs Eesti sotsiaalkaitse ja sotsiaalhoolekande kujunemisest viimase veerandsajandi jooksul, kirjeldades üleminekut vaeste hoolekandest kaasaegsele sotsiaalhoolekandesüsteemile ning poliitikavalikute, institutsioonide ja rahastamise mõjusid.",
+  "tags": [
+    "sotsiaalhoolekande ajalugu",
+    "sotsiaalkaitse süsteem",
+    "Eesti sotsiaalpoliitika",
+    "vaeste hoolekanne",
+    "hoolekande reformid",
+    "sotsiaalkindlustus"
+  ],
+  "source_type": "file",
+  "source_path": "ST_eri_2018_web_link_Part13.pdf",
+  "document_id": "sotsiaaltoo-eri-2018-vaeste-hoolekandest-sotsiaalhoolekandeks-2018",
+  "source_format": "pdf",
+  "source_sha256": "c0e62fccc60f4b22123bbb5cbf39f64eefc4efc5a104d7f702ab77ce0e9c0768",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2018-vaeste-hoolekandest-sotsiaalhoolekandeks-2018",
+    "previous_source_path": "ST_eri_2018_web_link_Part13.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "c0e62fccc60f4b22123bbb5cbf39f64eefc4efc5a104d7f702ab77ce0e9c0768",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

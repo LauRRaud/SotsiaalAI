@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-3-2023",
+  "articleId": "pohja-parnumaa-volanoustamiskogemus-2023-3",
+  "title": "Põhja-Pärnumaa võlanõustamiskogemus",
+  "authors": [
+    "Anneli Kaljur"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2023",
+  "section": "Sotsiaalteenus",
+  "pageRange": "54-55",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Põhja-Pärnumaa vallavalitsuse kogemuslugu kirjeldab, kuidas on võlanõustamisteenus üles ehitatud ja\nkorraldatud koostöös MTÜ-ga Pesapuu. Autor kirjeldab valla elanike vajadusi, tüüpilisi võlaprobleeme ja seda,\nkuidas inimesed teenusele jõuavad – nii sotsiaaltöötajate suunamisel kui ka ise abi otsides. Rõhutatakse\nregulaarselt toimuvat koostööd teenusepakkujaga, info jagamist, ennetusfookust ning seda, et võlanõustamine\naitab inimestel mõista oma rahalist seisu, seada realistlikke eesmärke ja vältida uute võlgade tekkimist.\nLugu juhib tähelepanu ka vajadusele tagada teenuse jätkusuutlik rahastus ning võlanõustamise hea kättesaadavus\nmaapiirkonnas.",
+  "tags": [
+    "Põhja-Pärnumaa vald",
+    "võlanõustamine",
+    "MTÜ Pesapuu",
+    "sotsiaalteenus",
+    "rahandusnõustamine",
+    "ennetav töö"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2023_web_Part13.pdf",
+  "document_id": "sotsiaaltoo-3-2023-pohja-parnumaa-volanoustamiskogemus-2023-3",
+  "source_format": "pdf",
+  "source_sha256": "a947ee11a1ceca67aef56f5d2796ebde000bf2ea1a930225c572f4ec0fc7fce0",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2023-pohja-parnumaa-volanoustamiskogemus-2023-3",
+    "previous_source_path": "Sotsiaaltoo_3_2023_web_Part13.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "a947ee11a1ceca67aef56f5d2796ebde000bf2ea1a930225c572f4ec0fc7fce0",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

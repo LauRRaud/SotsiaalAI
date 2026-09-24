@@ -1,0 +1,89 @@
+{
+  "source_path": "sotsiaalkindlustusamet_ua.pdf",
+  "source_format": "pdf",
+  "sha256": "e9979fb82e71647a9ea1f51971236121b3f38413773b2f8c82fa56c7bb8944a1",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/sotsiaalkindlustusamet_ua.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "sotsiaalkindlustusamet_ua",
+          "title": "Кризові центри допомоги жертвам сексуального насильства (UA)",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi%20infovoldik%20SAK%20UA%2Bbleed3mm.pdf",
+          "normalized_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi infovoldik SAK UA+bleed3mm.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "Sotsiaalkindlustusamet",
+          "organization_id": "sotsiaalkindlustusamet",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Sotsiaalkindlustusamet",
+            "infomaterjal",
+            "SKA",
+            "seksuaalvägivald",
+            "seksuaalvägivalla kriisiabikeskus",
+            "ohvriabi"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "needs_review",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "SKA",
+            "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+            "heading_4": null,
+            "line": 487,
+            "order": 259
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Кризові центри допомоги жертвам сексуального насильства (UA)"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Sotsiaalkindlustusamet"
+          ],
+          "organizations_seen": [
+            "sotsiaalkindlustusamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "SKA",
+              "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+              "line": 487,
+              "order": 259
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi infovoldik SAK UA+bleed3mm.pdf",
+          "status_note": "0 chunks (scanned brochure, no text layer; needs OCR) 2026-06-12"
+        },
+        "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi%20infovoldik%20SAK%20UA%2Bbleed3mm.pdf",
+        "redirects": [],
+        "sha256": "e9979fb82e71647a9ea1f51971236121b3f38413773b2f8c82fa56c7bb8944a1",
+        "bytes": 1152035,
+        "downloaded_at": "2026-08-14T08:00:51.823Z"
+      }
+    }
+  ],
+  "server_metadata": [],
+  "review_status": "metadata_conversion_pending"
+}

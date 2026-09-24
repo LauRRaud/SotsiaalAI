@@ -1,0 +1,128 @@
+{
+  "docId": "sotsiaaltoo-1-2016",
+  "articleId": "sotsiaaltoo-1-2016-artikkel-18-euroopa-integratsioonipoliitikate-peegeldus-immi",
+  "title": "Euroopa integratsioonipoliitikate peegeldus immigrandi taustaga noorte täiskasvanute elulugudes",
+  "authors": [
+    "Judit Strömpl"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2016",
+  "section": "Uurimus",
+  "pageRange": "56-63",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tartu Ülikooli uurija tutvustab projekti EUMARGINS (2009–2011) tulemusi, milles võrreldi seitsme riigi – Itaalia, Hispaania, Prantsusmaa, Suurbritannia, Norra, Rootsi ja Eesti – integratsioonipoliitikat 250 osalejaga tehtud eluloointervjuude põhjal. Charlotta, Marci, Damini, Haile, Isabelle’i, Ramazi ja Xenia lugude kaudu näidatakse, kuidas Lõuna-Euroopa nõrk toetussüsteem, Prantsuse assimileerimispoliitika ja Põhjamaade kaasav haridus kujundavad kuuluvustunnet. Eesti kohta osutatakse, et eesti keelt mitteoskavate laste suunamine vene õppekeelega kooli taastoodab elanikkonna jagunemist. Autor järeldab, et sunniviisiline integratsioon on määratud läbikukkumisele.",
+  "tags": [
+    "uurimus",
+    "integratsioonipoliitika",
+    "sisseränne",
+    "eumargins",
+    "eluloointervjuu",
+    "tõrjutus",
+    "pagulased"
+  ],
+  "source_type": "file",
+  "source_path": "2016_1_artikkel_18_euroopa_integratsioonipoliitikate_peegeldus_immigran.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-18-euroopa-integratsioonipoliitikate-peegeldus-immi",
+  "source_sha256": "8970223298f467b032484a53a6c3a141e62aa7163f4b7eca77c764a8603cdb66",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-18-euroopa-integratsioonipoliitikate-peegeldus-immi",
+    "previous_source_path": "2016_1_artikkel_18_euroopa_integratsioonipoliitikate_peegeldus_immigran.txt",
+    "previous_source_original_path": "1-2016.pdf",
+    "reference_stored_source_sha256": "fbd8662d338c83d7e8bf7b371b2976b1a9f268e0730a36316aea4ba3882a2c7e",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf",
+      "source_sha256": "2c193295e54f58982562b509b6283e93aa58b1695464671e1768e24e90888a6c",
+      "pdf_start_page": 58,
+      "pdf_end_page": 65,
+      "printed_page_range": "56-63",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 65,
+      "source_regions": [
+        {
+          "source_pdf_page": 58,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 59,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 60,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 61,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 62,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 63,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 64,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 65,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            178.34
+          ]
+        }
+      ],
+      "effective_printed_page_range": "56-63",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf"
+    },
+    "server_page_range": "56-63"
+  }
+}

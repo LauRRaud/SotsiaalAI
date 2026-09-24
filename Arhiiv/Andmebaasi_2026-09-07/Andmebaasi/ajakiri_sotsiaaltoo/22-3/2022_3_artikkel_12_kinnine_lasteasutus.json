@@ -1,0 +1,45 @@
+{
+  "docId": "sotsiaaltoo-3-2022",
+  "articleId": "kinnise-lasteasutuse-teenus-hiiumaa-sotsiaalkeskuse-noortekodus-2022-3",
+  "title": "Kinnise lasteasutuse teenus Hiiumaa sotsiaalkeskuse noortekodus",
+  "authors": [
+    "Eve Voogla",
+    "Enelis Linnas"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2022",
+  "section": "KOGEMUS",
+  "pageRange": "41-45",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kogemuslugu Hiiumaa sotsiaalkeskuse noortekodu kinnise lasteasutuse teenuse (KLAT) korraldusest ja sisust. \nArtiklis kirjeldatakse miljööteraapilistel ja traumast taastumise põhimõtetel põhinevat tööd suure abivajaduse ja riskikäitumisega noortega, \nkeskendudes turvalise igapäevase elukeskkonna loomisele, hariduse jätkamisele, noorte osalemisele otsustes ning samm-sammulisele vastutuse ja liikumisvabaduse kasvatamisele. \nOlulisel kohal on koostöö perede ja võrgustikuga, noorte haridustee toetamine ning üleminek elule pärast teenuselt lahkumist. \nArtiklis rõhutatakse usku noortesse, järjepideva võrgustikutöö ja kogukonnatoe vajalikkust, et ennetada korduvat teenusele sattumist ja võimaldada muutust ka ilma vabadust liigselt piiramatta.",
+  "tags": [
+    "kinnine lasteasutus",
+    "KLAT",
+    "noortekodu",
+    "Hiiumaa",
+    "miljööteraapia",
+    "traumast taastumine",
+    "noorsootöö",
+    "võrgustikutöö",
+    "vaimne tervis",
+    "pere ja lähedaste tugi"
+  ],
+  "source_type": "file",
+  "source_path": "2022_3_artikkel_12_kinnine_lasteasutus.pdf",
+  "document_id": "sotsiaaltoo-3-2022-kinnise-lasteasutuse-teenus-hiiumaa-sotsiaalkeskuse-noortekodus-2022-3",
+  "source_format": "pdf",
+  "source_sha256": "9913fe0681bd2dbe38e4a08d055cbbf805d0b34d396dded48e8ff08deddd4fbb",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2022-kinnise-lasteasutuse-teenus-hiiumaa-sotsiaalkeskuse-noortekodus-2022-3",
+    "previous_source_path": "2022_3_artikkel_12_kinnine_lasteasutus.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "9913fe0681bd2dbe38e4a08d055cbbf805d0b34d396dded48e8ff08deddd4fbb",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

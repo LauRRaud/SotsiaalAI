@@ -1,0 +1,99 @@
+{
+  "docId": "sotsiaaltoo-1-2017",
+  "articleId": "head-praktikad-kaasatus-2017-1",
+  "title": "Head praktikad toetavad sotsiaalset kaasatust ja kestlikke kogukondi",
+  "authors": [
+    "Dagmar Narusson"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2017",
+  "section": "Kogukonnatöö",
+  "pageRange": "23-27",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tartu Ülikooli lektor Dagmar Narusson kirjeldab Läänemere piirkonna ökokogukondi käsitlevat SIBREC-projekti, kus osaleb seitse organisatsiooni viiest riigist, ja sellega seotud magistrikursust, kus kuus Eesti ja kuus välistudengit uurisid 2016. aastal nelja kogukonda: Maarja Küla, Hobukooli Park, Kaunase Kodu ja Emajõe Õppekeskus. Ta väidab, et psüühikahäire, intellektipuude või käitumisprobleemidega inimeste kaasamise lahendusi tuleb otsida argielust ja olemasolevast kogukonnast, mitte üksnes institutsioonidest, ning toob näiteid aiandusest, hobukoolist ja Rootsi sisserändajate projektidest.",
+  "tags": [
+    "kogukonnatöö",
+    "sotsiaalne kaasatus",
+    "SIBREC",
+    "ökokogukonnad",
+    "erivajadus",
+    "sotsiaaltööharidus"
+  ],
+  "source_type": "file",
+  "source_path": "2017_1_Part8.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2017-head-praktikad-kaasatus-2017-1",
+  "source_sha256": "b8ce8e8ee9253298cbf9cf71ae327e5b401c35eb54686f9d74f0746b872ab884",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2017-head-praktikad-kaasatus-2017-1",
+    "previous_source_path": "2017_1_Part8.txt",
+    "previous_source_original_path": "2017_1.pdf",
+    "reference_stored_source_sha256": "f466bfdc448ce2afc900784aec1d6a4106860e4632b7cd1e8a4cb15fc8088b59",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf",
+      "source_sha256": "335f81467a555f12c55d0e8bf60122a178c5267567cf79607448a5d987629e50",
+      "pdf_start_page": 25,
+      "pdf_end_page": 29,
+      "printed_page_range": "23-27",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 29,
+      "source_regions": [
+        {
+          "source_pdf_page": 25,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 26,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 27,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 28,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 29,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        }
+      ],
+      "effective_printed_page_range": "23-27"
+    },
+    "server_page_range": "23-27"
+  }
+}

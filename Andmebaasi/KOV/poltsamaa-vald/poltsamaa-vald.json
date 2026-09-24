@@ -1,0 +1,4344 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-poltsamaa-vald",
+  "document_id": "kov-poltsamaa-vald",
+  "municipality": "Põltsamaa vald",
+  "municipality_id": "poltsamaa_vald",
+  "county": "Jõgevamaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "poltsamaa_vald_contact_sotsiaalosakond",
+      "canonical_item_id": "poltsamaa_vald:contact:sotsiaalosakond",
+      "itemType": "contact",
+      "title": "Põltsamaa Vallavalitsuse sotsiaalosakond",
+      "name": "Põltsamaa Vallavalitsuse sotsiaalosakond",
+      "role": "sotsiaalosakonna üldkontakt",
+      "department": "Sotsiaalosakond",
+      "address": "Lossi tn 9, Põltsamaa linn 48104; Puurmani teenuskeskus Tallinna mnt 1",
+      "status": "active",
+      "summary": "Sotsiaalosakonna üldkontakt ja vastuvõtukoht sotsiaalteenuste ja -toetuste taotlemiseks. Põltsamaal toimub vastuvõtt teisipäeviti ja neljapäeviti 9.00-12.00 ning 13.00-16.00; Puurmanis teisipäeviti 9.00-12.00 ja 13.00-16.00.",
+      "sourceKeys": [
+        "contact_page",
+        "social_overview"
+      ],
+      "item_type": "contact",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "contact_page",
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_contact_sotsiaalosakond",
+      "document_id": "poltsamaa_vald_contact_sotsiaalosakond",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "fd007c58888747b8a1e65d0bd45cb49731b76301378e514d31344d0dbadc15a3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_contact_urve_luhamets",
+      "canonical_item_id": "poltsamaa_vald:contact:urve_luhamets",
+      "itemType": "contact",
+      "title": "Urve Luhamets",
+      "name": "Urve Luhamets",
+      "role": "sotsiaalosakonna juhataja",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "status": "active",
+      "summary": "Sotsiaalosakonna juhataja, kelle vastuvõtt toimub eelneval kokkuleppel.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_contact_urve_luhamets",
+      "document_id": "poltsamaa_vald_contact_urve_luhamets",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "36576e2e2d2119e6a5028315eb8b79d560d2b6f55080ecc1a3fa135240855e32",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_contact_anna_maria_kazakov",
+      "canonical_item_id": "poltsamaa_vald:contact:anna_maria_kazakov",
+      "itemType": "contact",
+      "title": "Anna-Maria Kazakov",
+      "name": "Anna-Maria Kazakov",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "status": "active",
+      "summary": "Sotsiaaltööspetsialist toetuste ja teenuste valdkonnas Põltsamaa valla piirkonnas, sealhulgas üldhooldusteenuse korraldus.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_contact_anna_maria_kazakov",
+      "document_id": "poltsamaa_vald_contact_anna_maria_kazakov",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "a2a8e5d3d72cad56a3dbd9f452026a74539d4d6d2ba9f9f44ce6d09854f2ed52",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_contact_anu_kuusk",
+      "canonical_item_id": "poltsamaa_vald:contact:anu_kuusk",
+      "itemType": "contact",
+      "title": "Anu Kuusk",
+      "name": "Anu Kuusk",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "status": "active",
+      "summary": "Sotsiaaltööspetsialist toetuste ja teenuste valdkonnas ning üldhooldusteenuse korralduses.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_contact_anu_kuusk",
+      "document_id": "poltsamaa_vald_contact_anu_kuusk",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "fd19faa9bf8eb10599f94ed3145e4a52a2da94d4a90d048cfe24ac1f11dd61dd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_contact_mirjam_humal",
+      "canonical_item_id": "poltsamaa_vald:contact:mirjam_humal",
+      "itemType": "contact",
+      "title": "Mirjam Humal",
+      "name": "Mirjam Humal",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "status": "active",
+      "summary": "Sotsiaaltööspetsialist toetuste ja teenuste valdkonnas Põltsamaa linna piirkonnas ning üldhooldusteenuse korralduses.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_contact_mirjam_humal",
+      "document_id": "poltsamaa_vald_contact_mirjam_humal",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "56a7cdb6118d298b0ecf045fa83464dbf6c68e1f781ace3e1d7026cce67e8942",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_contact_kristel_kumm",
+      "canonical_item_id": "poltsamaa_vald:contact:kristel_kumm",
+      "itemType": "contact",
+      "title": "Kristel Kumm",
+      "name": "Kristel Kumm",
+      "role": "eestkostespetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "status": "active",
+      "summary": "Eestkostespetsialist täiskasvanute eestkoste valdkonnas.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_contact_kristel_kumm",
+      "document_id": "poltsamaa_vald_contact_kristel_kumm",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "2b937bbf2e3631fc3d7c14cde5162a1dd8c0a19834d7d29cd80be6136a9619e6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_contact_kristel_oim",
+      "canonical_item_id": "poltsamaa_vald:contact:kristel_oim",
+      "itemType": "contact",
+      "title": "Kristel Õim",
+      "name": "Kristel Õim",
+      "role": "eestkostespetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "status": "active",
+      "summary": "Eestkostespetsialist täiskasvanute eestkoste valdkonnas.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_contact_kristel_oim",
+      "document_id": "poltsamaa_vald_contact_kristel_oim",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "c8fb235db7a67ed917e3c9c3e5e57b4e85133e30d061a576843a7ad9593a92fa",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_contact_katlin_kruus",
+      "canonical_item_id": "poltsamaa_vald:contact:katlin_kruus",
+      "itemType": "contact",
+      "title": "Kätlin Kruus",
+      "name": "Kätlin Kruus",
+      "role": "lapse ja pere heaolu spetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "status": "active",
+      "summary": "Lapse ja pere heaolu spetsialist Põltsamaa valla piirkonnas; lastekaitse valdkond.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_contact_katlin_kruus",
+      "document_id": "poltsamaa_vald_contact_katlin_kruus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "1373e50481d753f8a235e4d43aaea57712b8df6148c9ac319c2da9490af18e7a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_contact_eveli_allik",
+      "canonical_item_id": "poltsamaa_vald:contact:eveli_allik",
+      "itemType": "contact",
+      "title": "Eveli Allik",
+      "name": "Eveli Allik",
+      "role": "lapse ja pere heaolu spetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "status": "active",
+      "summary": "Lapse ja pere heaolu spetsialist Pajusi ja Puurmani piirkonnas; lastekaitse ja laste eestkoste valdkond.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_contact_eveli_allik",
+      "document_id": "poltsamaa_vald_contact_eveli_allik",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "a1e942bcee5ba3f05ccb10bb3cab81f88af044daf2c8f2f720ff71c8ec5ad493",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_contact_helbe_karukapp",
+      "canonical_item_id": "poltsamaa_vald:contact:helbe_karukapp",
+      "itemType": "contact",
+      "title": "Helbe Karukäpp",
+      "name": "Helbe Karukäpp",
+      "role": "juhtumikorraldaja-projektijuht",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "status": "active",
+      "summary": "Sotsiaalosakonna juhtumikorraldaja-projektijuht.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_contact_helbe_karukapp",
+      "document_id": "poltsamaa_vald_contact_helbe_karukapp",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "f396160fb403535481d9876285403ef308b3b17c3cc53aea00c860ec5fc7f7af",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_form_sotsiaalhoolekandelise_abi_taotlus",
+      "canonical_item_id": "poltsamaa_vald:form:sotsiaalhoolekandelise_abi_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaalhoolekandelise abi taotlus / taotlus teenuste saamiseks",
+      "status": "active",
+      "format": "docx",
+      "submissionChannels": [
+        "digitaalne e-postiga",
+        "paberil vallavalitsuse kantseleisse"
+      ],
+      "summary": "Üldine sotsiaalhoolekandelise abi taotlusvorm, mida KOV teenuselehed kasutavad sotsiaalteenuste taotlemiseks. Vorm esitatakse digiallkirjastatuna e-postiga või paberil vallavalitsuse kantseleisse.",
+      "officialUrl": "https://www.poltsamaa.ee/documents/17492237//UUS+TAOTLUS+SOTSIAALHOOLEKANDELISE+ABI+SAAMISEKS.docx/567ad23d-7e0d-4e03-8677-dc6d85d74f7c",
+      "sourceKeys": [
+        "sotsiaalhoolekandelise_abi_taotlus_file"
+      ],
+      "relatedTo": [
+        "poltsamaa_vald_service_koduteenus",
+        "poltsamaa_vald_service_uldhooldusteenus",
+        "poltsamaa_vald_service_tugiisikuteenus",
+        "poltsamaa_vald_service_isikliku_abistaja_teenus",
+        "poltsamaa_vald_service_varjupaigateenus",
+        "poltsamaa_vald_service_turvakoduteenus",
+        "poltsamaa_vald_service_sotsiaaltransporditeenus",
+        "poltsamaa_vald_service_eluruumi_tagamise_teenus",
+        "poltsamaa_vald_service_puudega_isiku_eluruumi_kohandamine",
+        "poltsamaa_vald_service_volanoustamisteenus",
+        "poltsamaa_vald_service_lapsehoiuteenus",
+        "poltsamaa_vald_service_jarelhooldusteenus",
+        "poltsamaa_vald_service_viipekeele_tolketeenus",
+        "poltsamaa_vald_service_paevakeskuse_teenus",
+        "poltsamaa_vald_service_toiduabi_andmine",
+        "poltsamaa_vald_service_perelepitusteenus",
+        "poltsamaa_vald_service_saunateenus",
+        "poltsamaa_vald_service_pesupesemisteenus",
+        "poltsamaa_vald_service_toetav_pereteenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "sotsiaalhoolekandelise_abi_taotlus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_form_sotsiaalhoolekandelise_abi_taotlus",
+      "document_id": "poltsamaa_vald_form_sotsiaalhoolekandelise_abi_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/documents/17492237//UUS+TAOTLUS+SOTSIAALHOOLEKANDELISE+ABI+SAAMISEKS.docx/567ad23d-7e0d-4e03-8677-dc6d85d74f7c",
+      "content_hash": "2a45da8a520eb64c77ed52bd7b18bf63bb4d9f2c610e75c88f497ca2232ed302",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_form_hoolduse_seadmine_hooldajatoetus",
+      "canonical_item_id": "poltsamaa_vald:form:hoolduse_seadmine_hooldajatoetus",
+      "itemType": "form",
+      "title": "Taotlus hoolduse seadmiseks ja hooldajatoetuse maksmiseks",
+      "status": "active",
+      "format": "rtf/docx",
+      "submissionChannels": [
+        "digitaalne e-postiga",
+        "paberil vallavalitsuse kantseleisse"
+      ],
+      "summary": "Vorm täisealise isiku hoolduse seadmiseks ja hooldajatoetuse taotlemiseks. Vorm on nimetatud KOV vormide lehel ning täisealise isiku hoolduse ja hooldajatoetuse lehtedel.",
+      "officialUrl": null,
+      "sourceKeys": [
+        "forms_page",
+        "hooldajatoetus_page",
+        "taisealise_isiku_hooldus_page"
+      ],
+      "relatedTo": [
+        "poltsamaa_vald_service_taisealise_isiku_hooldus",
+        "poltsamaa_vald_benefit_hooldajatoetus"
+      ],
+      "unresolvedIssues": [
+        "Vorm on KOV lehel nimetatud, kuid paketti ei lisatud kontrollitud otsest faili-URL-i."
+      ],
+      "item_type": "form",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page",
+        "hooldajatoetus_page",
+        "taisealise_isiku_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_form_hoolduse_seadmine_hooldajatoetus",
+      "document_id": "poltsamaa_vald_form_hoolduse_seadmine_hooldajatoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "23669782d6e89200cafa74601b67066a3fcaaab780e1e0a5acf7ffb37ccc5351",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_form_sissetulekust_soltuva_toetuse_taotlus",
+      "canonical_item_id": "poltsamaa_vald:form:sissetulekust_soltuva_toetuse_taotlus",
+      "itemType": "form",
+      "title": "Taotlus sissetulekust sõltuva toetuse saamiseks",
+      "status": "active",
+      "format": "rtf",
+      "submissionChannels": [
+        "digitaalne e-postiga",
+        "paberil vallavalitsuse kantseleisse"
+      ],
+      "summary": "Üldvorm sissetulekust sõltuvate sotsiaaltoetuste taotlemiseks. KOV sotsiaaltoetuste leht loetleb sissetulekust sõltuvate toetustena tervisetoetuse, lasteaia ja lastehoiu kohatasu toetuse, koolitoetuse, täiendava sotsiaaltoetuse, erakorralise toetuse, hoolekandeseadme toetuse ja vältimatu sotsiaalabi toetuse.",
+      "officialUrl": null,
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "relatedTo": [
+        "poltsamaa_vald_benefit_lasteaia_lastehoiu_kohatasu_toetus",
+        "poltsamaa_vald_benefit_koolitoetus",
+        "poltsamaa_vald_benefit_taiendav_sotsiaaltoetus",
+        "poltsamaa_vald_benefit_erakorraline_toetus",
+        "poltsamaa_vald_benefit_valtimatu_sotsiaalabi_toetus",
+        "poltsamaa_vald_benefit_tervisetoetus",
+        "poltsamaa_vald_benefit_hoolekandeseadme_toetus"
+      ],
+      "unresolvedIssues": [
+        "Vormilehel on vorm nimetatud, kuid otsest faili-URL-i ei kinnitatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_form_sissetulekust_soltuva_toetuse_taotlus",
+      "document_id": "poltsamaa_vald_form_sissetulekust_soltuva_toetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "137f88f43b6fbb6726477343ea9f150cca2b4dfb8a8d6ce8805516bd88dc238b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_form_sissetulekust_soltumatu_toetuse_taotlus",
+      "canonical_item_id": "poltsamaa_vald:form:sissetulekust_soltumatu_toetuse_taotlus",
+      "itemType": "form",
+      "title": "Taotlus sissetulekust sõltumatu toetuse saamiseks",
+      "status": "active",
+      "format": "rtf",
+      "submissionChannels": [
+        "digitaalne e-postiga",
+        "paberil vallavalitsuse kantseleisse"
+      ],
+      "summary": "Üldvorm sissetulekust sõltumatute toetuste taotlemiseks. Vormilehel on see eraldi taotlusena nimetatud.",
+      "officialUrl": null,
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "relatedTo": [
+        "poltsamaa_vald_benefit_laste_prillitoetus",
+        "poltsamaa_vald_benefit_asendushoolduselt_elluastuja_toetus"
+      ],
+      "unresolvedIssues": [
+        "Vormilehel on vorm nimetatud, kuid otsest faili-URL-i ei kinnitatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_form_sissetulekust_soltumatu_toetuse_taotlus",
+      "document_id": "poltsamaa_vald_form_sissetulekust_soltumatu_toetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "c929b0a853eb23fd220d00d919df1478a495746a4c2c77f3c216fb319b7260e3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_form_sunnitoetus_taotlus",
+      "canonical_item_id": "poltsamaa_vald:form:sunnitoetus_taotlus",
+      "itemType": "form",
+      "title": "Taotlus sünnitoetuse saamiseks",
+      "status": "active",
+      "format": "not_published",
+      "submissionChannels": [
+        "digitaalne e-postiga",
+        "paberil vallavalitsuse kantseleisse"
+      ],
+      "summary": "Sünnitoetuse taotlus on nimetatud KOV vormide lehel ja sünnitoetuse detaillehel; e-taotlused on eraldi SPOKU keskkonnas I ja II osa jaoks.",
+      "officialUrl": null,
+      "sourceKeys": [
+        "forms_page",
+        "sunnitoetus_page"
+      ],
+      "relatedTo": [
+        "poltsamaa_vald_benefit_sunnitoetus"
+      ],
+      "unresolvedIssues": [
+        "Sünnitoetuse faili otsest URL-i ei kinnitatud; KOV leht viitab vormile ja SPOKU e-taotlustele."
+      ],
+      "item_type": "form",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page",
+        "sunnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_form_sunnitoetus_taotlus",
+      "document_id": "poltsamaa_vald_form_sunnitoetus_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "64b0622ae9f7f96af0aed091335ef81e20eb509f96237b2f39bb6914540b7c76",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_form_matusetoetus_taotlus",
+      "canonical_item_id": "poltsamaa_vald:form:matusetoetus_taotlus",
+      "itemType": "form",
+      "title": "Taotlus matusetoetuse saamiseks",
+      "status": "active",
+      "format": "not_published",
+      "submissionChannels": [
+        "digitaalne e-postiga",
+        "paberil vallavalitsuse kantseleisse"
+      ],
+      "summary": "Matusetoetuse taotlus on nimetatud vormide lehel ja matusetoetuse detaillehel. Taotlus esitatakse kolme kuu jooksul surmapäevast arvates.",
+      "officialUrl": null,
+      "sourceKeys": [
+        "forms_page",
+        "matusetoetus_page"
+      ],
+      "relatedTo": [
+        "poltsamaa_vald_benefit_matusetoetus"
+      ],
+      "unresolvedIssues": [
+        "Matusetoetuse vormi otsest faili-URL-i ei kinnitatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page",
+        "matusetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_form_matusetoetus_taotlus",
+      "document_id": "poltsamaa_vald_form_matusetoetus_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "766b07a7bb02018c423c3a936453adfb730878fb5db889b6f67c89d18f3960c7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_form_kooli_alustamise_toetuse_taotlus",
+      "canonical_item_id": "poltsamaa_vald:form:kooli_alustamise_toetuse_taotlus",
+      "itemType": "form",
+      "title": "Kooli alustamise toetuse taotlus",
+      "status": "active",
+      "format": "not_published",
+      "submissionChannels": [
+        "digitaalne e-postiga",
+        "paberil vallavalitsuse kantseleisse"
+      ],
+      "summary": "Kooli alustamise toetuse ehk ranitsatoetuse taotlus on nimetatud KOV vormide lehel ja toetuse detaillehel.",
+      "officialUrl": null,
+      "sourceKeys": [
+        "forms_page",
+        "kooli_alustamise_toetus_page"
+      ],
+      "relatedTo": [
+        "poltsamaa_vald_benefit_kooli_alustamise_toetus"
+      ],
+      "unresolvedIssues": [
+        "Kooli alustamise toetuse vormi otsest faili-URL-i ei kinnitatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page",
+        "kooli_alustamise_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_form_kooli_alustamise_toetuse_taotlus",
+      "document_id": "poltsamaa_vald_form_kooli_alustamise_toetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "3f7c78cc4531a334f2992081c60e268e10d36fcdc92f476245751b9a01ce8857",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_form_toimetulekutoetuse_taotlus",
+      "canonical_item_id": "poltsamaa_vald:form:toimetulekutoetuse_taotlus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse taotlus",
+      "status": "active",
+      "format": "not_published",
+      "submissionChannels": [
+        "digitaalne e-postiga",
+        "paberil vallavalitsuse kantseleisse"
+      ],
+      "summary": "Toimetulekutoetuse lehel nimetatud taotlusvorm, millele lisatakse sissetulekuid, vara ja eluasemekulusid tõendavad dokumendid.",
+      "officialUrl": null,
+      "sourceKeys": [
+        "toimetulekutoetus_page"
+      ],
+      "relatedTo": [
+        "poltsamaa_vald_benefit_toimetulekutoetus"
+      ],
+      "unresolvedIssues": [
+        "Toimetulekutoetuse taotluse otsest faili-URL-i ei kinnitatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_form_toimetulekutoetuse_taotlus",
+      "document_id": "poltsamaa_vald_form_toimetulekutoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "bd14b3b4d4f074fe36dcb413beaaa0f6627afd8a5619a3b906516ac7049ff32c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_form_lasteaia_lastehoiu_kohatasu_toetus_taotlus",
+      "canonical_item_id": "poltsamaa_vald:form:lasteaia_lastehoiu_kohatasu_toetus_taotlus",
+      "itemType": "form",
+      "title": "Taotlus lasteaia ja lastehoiu kohatasu toetuse saamiseks",
+      "status": "active",
+      "format": "not_published",
+      "submissionChannels": [
+        "digitaalne e-postiga",
+        "paberil vallavalitsuse kantseleisse"
+      ],
+      "summary": "Lasteaia ja lastehoiu kohatasu toetuse detaillehel nimetatud taotlusvorm.",
+      "officialUrl": null,
+      "sourceKeys": [
+        "lasteaia_lastehoiu_kohatasu_page"
+      ],
+      "relatedTo": [
+        "poltsamaa_vald_benefit_lasteaia_lastehoiu_kohatasu_toetus"
+      ],
+      "unresolvedIssues": [
+        "Vormi otsest faili-URL-i ei kinnitatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "lasteaia_lastehoiu_kohatasu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_form_lasteaia_lastehoiu_kohatasu_toetus_taotlus",
+      "document_id": "poltsamaa_vald_form_lasteaia_lastehoiu_kohatasu_toetus_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "f55f9ab5c8cab8b75630ff0743a1e51f49c47e850871bb747d21a4e433d2a5de",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_form_koolitoetus_taotlus",
+      "canonical_item_id": "poltsamaa_vald:form:koolitoetus_taotlus",
+      "itemType": "form",
+      "title": "Taotlus koolitoetuse saamiseks",
+      "status": "active",
+      "format": "not_published",
+      "submissionChannels": [
+        "digitaalne e-postiga",
+        "paberil vallavalitsuse kantseleisse"
+      ],
+      "summary": "Koolitoetuse detaillehel nimetatud taotlusvorm vähekindlustatud pere koolikulude katmise toetuse taotlemiseks.",
+      "officialUrl": null,
+      "sourceKeys": [
+        "koolitoetus_page"
+      ],
+      "relatedTo": [
+        "poltsamaa_vald_benefit_koolitoetus"
+      ],
+      "unresolvedIssues": [
+        "Vormi otsest faili-URL-i ei kinnitatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "koolitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_form_koolitoetus_taotlus",
+      "document_id": "poltsamaa_vald_form_koolitoetus_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "cf69d82ecfe0f603d75168624dbb1c1a6968147f2fb90abcfda761b2e0842c63",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_form_laste_prillitoetus_taotlus",
+      "canonical_item_id": "poltsamaa_vald:form:laste_prillitoetus_taotlus",
+      "itemType": "form",
+      "title": "Taotlus laste prillitoetuse saamiseks",
+      "status": "active",
+      "format": "not_published",
+      "submissionChannels": [
+        "digitaalne e-postiga",
+        "paberil vallavalitsuse kantseleisse"
+      ],
+      "summary": "Laste prillitoetuse detaillehel nimetatud taotlusvorm, mille juurde lisatakse prillide ostu tõendav kuludokument.",
+      "officialUrl": null,
+      "sourceKeys": [
+        "laste_prillitoetus_page"
+      ],
+      "relatedTo": [
+        "poltsamaa_vald_benefit_laste_prillitoetus"
+      ],
+      "unresolvedIssues": [
+        "Vormi otsest faili-URL-i ei kinnitatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "laste_prillitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_form_laste_prillitoetus_taotlus",
+      "document_id": "poltsamaa_vald_form_laste_prillitoetus_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "b17b40348d97a6e8af6faba9a0f369c52edf240ef2ae19c39dfa6f1c72c88731",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_form_asendushoolduselt_elluastuja_toetus_taotlus",
+      "canonical_item_id": "poltsamaa_vald:form:asendushoolduselt_elluastuja_toetus_taotlus",
+      "itemType": "form",
+      "title": "Taotlus asendushoolduselt elluastuja toetuse saamiseks",
+      "status": "active",
+      "format": "not_published",
+      "submissionChannels": [
+        "digitaalne e-postiga",
+        "paberil vallavalitsuse kantseleisse"
+      ],
+      "summary": "Asendushoolduselt elluastuja toetuse detaillehel nimetatud taotlusvorm.",
+      "officialUrl": null,
+      "sourceKeys": [
+        "asendushoolduselt_elluastuja_toetus_page"
+      ],
+      "relatedTo": [
+        "poltsamaa_vald_benefit_asendushoolduselt_elluastuja_toetus"
+      ],
+      "unresolvedIssues": [
+        "Vormi otsest faili-URL-i ei kinnitatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "asendushoolduselt_elluastuja_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_form_asendushoolduselt_elluastuja_toetus_taotlus",
+      "document_id": "poltsamaa_vald_form_asendushoolduselt_elluastuja_toetus_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "71af41fe6647d14aa03e6f8b92f6b8bbc635fbd10f99e68225764dad1a680eba",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_form_erakorralise_toetuse_taotlus",
+      "canonical_item_id": "poltsamaa_vald:form:erakorralise_toetuse_taotlus",
+      "itemType": "form",
+      "title": "Taotlus erakorralise toetuse saamiseks",
+      "status": "active",
+      "format": "not_published",
+      "submissionChannels": [
+        "digitaalne e-postiga",
+        "paberil vallavalitsuse kantseleisse"
+      ],
+      "summary": "Erakorralise toetuse detaillehel nimetatud taotlusvorm. Taotlusele lisatakse kriisiolukorda tõendavad dokumendid.",
+      "officialUrl": null,
+      "sourceKeys": [
+        "erakorraline_toetus_page"
+      ],
+      "relatedTo": [
+        "poltsamaa_vald_benefit_erakorraline_toetus"
+      ],
+      "unresolvedIssues": [
+        "Vormi otsest faili-URL-i ei kinnitatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "erakorraline_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_form_erakorralise_toetuse_taotlus",
+      "document_id": "poltsamaa_vald_form_erakorralise_toetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "23b782f536e68d3ea5816c379ba0ed7687baeb712fa741c3ff043f24c763af05",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_form_valtimatu_sotsiaalabi_toetus_taotlus",
+      "canonical_item_id": "poltsamaa_vald:form:valtimatu_sotsiaalabi_toetus_taotlus",
+      "itemType": "form",
+      "title": "Taotlus vältimatu sotsiaalabi toetuse saamiseks",
+      "status": "active",
+      "format": "not_published",
+      "submissionChannels": [
+        "digitaalne e-postiga",
+        "paberil vallavalitsuse kantseleisse"
+      ],
+      "summary": "Vältimatu sotsiaalabi toetuse detaillehel nimetatud taotlusvorm sotsiaalsest abitust olukorrast väljumiseks vajalike kulude märkimiseks.",
+      "officialUrl": null,
+      "sourceKeys": [
+        "valtimatu_sotsiaalabi_toetus_page"
+      ],
+      "relatedTo": [
+        "poltsamaa_vald_benefit_valtimatu_sotsiaalabi_toetus"
+      ],
+      "unresolvedIssues": [
+        "Vormi otsest faili-URL-i ei kinnitatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "valtimatu_sotsiaalabi_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_form_valtimatu_sotsiaalabi_toetus_taotlus",
+      "document_id": "poltsamaa_vald_form_valtimatu_sotsiaalabi_toetus_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "49be30a19b9b6e3321a9abfd18b260b7dd44519dba90ddd0a9a1ccb081a3b65b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_form_tervisetoetus_taotlus",
+      "canonical_item_id": "poltsamaa_vald:form:tervisetoetus_taotlus",
+      "itemType": "form",
+      "title": "Taotlus tervisetoetuse saamiseks",
+      "status": "active",
+      "format": "not_published",
+      "submissionChannels": [
+        "digitaalne e-postiga",
+        "paberil vallavalitsuse kantseleisse"
+      ],
+      "summary": "Tervisetoetuse detaillehel nimetatud taotlusvorm ravi- või abivahendi kulu hüvitamiseks.",
+      "officialUrl": null,
+      "sourceKeys": [
+        "tervisetoetus_page"
+      ],
+      "relatedTo": [
+        "poltsamaa_vald_benefit_tervisetoetus"
+      ],
+      "unresolvedIssues": [
+        "Vormi otsest faili-URL-i ei kinnitatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "tervisetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_form_tervisetoetus_taotlus",
+      "document_id": "poltsamaa_vald_form_tervisetoetus_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "2b53eade07f9295969acab678b62254dc54a6c40f9a4127e05015002a828dc5a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_form_hoolekandeseadme_toetus_taotlus",
+      "canonical_item_id": "poltsamaa_vald:form:hoolekandeseadme_toetus_taotlus",
+      "itemType": "form",
+      "title": "Taotlus hoolekandeseadme toetuse saamiseks",
+      "status": "active",
+      "format": "not_published",
+      "submissionChannels": [
+        "digitaalne e-postiga",
+        "paberil vallavalitsuse kantseleisse"
+      ],
+      "summary": "Hoolekandeseadme toetuse lehel nimetatud üldine toetuse taotlusvorm häirenupu, koduanduri või muu valveseadme paigaldamise või püsikulu katmiseks.",
+      "officialUrl": null,
+      "sourceKeys": [
+        "hoolekandeseadme_toetus_page"
+      ],
+      "relatedTo": [
+        "poltsamaa_vald_benefit_hoolekandeseadme_toetus"
+      ],
+      "unresolvedIssues": [
+        "Vormi otsest faili-URL-i ei kinnitatud."
+      ],
+      "item_type": "form",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "hoolekandeseadme_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_form_hoolekandeseadme_toetus_taotlus",
+      "document_id": "poltsamaa_vald_form_hoolekandeseadme_toetus_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "585b6eb238e13d2aa6562cdc85c17e0047fd84fc8a02234303f0be403d99d950",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_service_koduteenus",
+      "canonical_item_id": "poltsamaa_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus toetab täisealise isiku iseseisvat ja turvalist toimetulekut kodustes tingimustes. Abi võib hõlmata toidu ja ravimite koju toomist, söögivalmistamist, vee ja küttevaru korraldamist, koristamist, hügieenitoiminguid ning emotsionaalset tuge. Teenus on tasuline ja aitab vältida või edasi lükata hooldekodusse paigutamist.",
+      "targetGroup": "Täisealised isikud, kes terviseseisundi või tegevusvõime tõttu vajavad kodus kõrvalabi.",
+      "conditions": "Teenust ei osutata isikule, kellele on seatud täisealise isiku hooldus.",
+      "application": {
+        "channels": [
+          "SPOKU iseteenindus",
+          "paber-/digitaalne taotlus sotsiaalosakonnale"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU keskkonnas või täida sotsiaalhoolekandelise abi taotluse vorm ja esita see vallavalitsusele."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenuse eest makstakse vastavalt kehtivale hinnakirjale.",
+      "officialUrl": "https://www.poltsamaa.ee/koduteenus",
+      "relatedForms": [
+        "poltsamaa_vald_form_sotsiaalhoolekandelise_abi_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "koduteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "koduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_service_koduteenus",
+      "document_id": "poltsamaa_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/koduteenus",
+      "content_hash": "9f4efd1d1266ea7014a34a0088b60a2c5cadaf2895fe71539c4f335c3d0ef816",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_service_uldhooldusteenus",
+      "canonical_item_id": "poltsamaa_vald:service:uldhooldusteenus",
+      "itemType": "service",
+      "title": "Üldhooldusteenus",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatav üldhooldusteenus tagab täisealisele inimesele turvalise elukeskkonna ja ööpäevaringse abi, kui ta ei suuda kodus iseseisvalt toime tulla. Teenus hõlmab majutust, toitlustust ja hoolduskulusid ning on tasuline. Vallal on õigus katta hoolduskulu piirmäära ulatuses.",
+      "targetGroup": "Täisealised isikud, kes vajavad ööpäevaringset kõrvalabi ja kelle toimetulekut ei saa kodus tagada.",
+      "conditions": "Taotlejal peab olema hooldusvajadus, mida ei saa katta teiste sotsiaalteenuste või abiga.",
+      "application": {
+        "channels": [
+          "SPOKU iseteenindus",
+          "paber-/digitaalne taotlus sotsiaalosakonnale"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU keskkonnas või täida vorm ja esita see vallavalitsusele koos sissetuleku- ja varade andmetega."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenuse saaja tasub majutus- ja toitlustuskulud; vald võib katta hoolduskulu piirmäära ulatuses.",
+      "officialUrl": "https://www.poltsamaa.ee/uldhooldusteenus",
+      "relatedForms": [
+        "poltsamaa_vald_form_sotsiaalhoolekandelise_abi_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "uldhooldusteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "uldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_service_uldhooldusteenus",
+      "document_id": "poltsamaa_vald_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/uldhooldusteenus",
+      "content_hash": "19afa503d383f5f3793197295e8dc54f0cfbdaa70262be43f011f7d83da6bf63",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_service_tugiisikuteenus",
+      "canonical_item_id": "poltsamaa_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus toetab isikut või peret, kes vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu juhendamist, motiveerimist ja praktilist tuge. Teenus aitab õppida igapäevaeluoskusi, suhelda ametiasutustega ning tugevdada toimetulekut. Teenus on ennetava iseloomuga ja üldjuhul tasuta.",
+      "targetGroup": "Täisealised isikud või pered, sh lastega pered, kes vajavad toimetuleku parandamiseks kõrvalabi.",
+      "conditions": "Tugiisikuks ei määrata üldjuhul teenuse vajaja pereliiget; abivajadust hindab sotsiaalosakond.",
+      "application": {
+        "channels": [
+          "SPOKU iseteenindus",
+          "paber-/digitaalne taotlus sotsiaalosakonnale"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU keskkonnas või täida sotsiaalhoolekandelise abi taotluse vorm ja esita see vallavalitsusele."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Tugiisikuteenust osutatakse üldjuhul tasuta.",
+      "officialUrl": "https://www.poltsamaa.ee/tugiisikuteenus",
+      "relatedForms": [
+        "poltsamaa_vald_form_sotsiaalhoolekandelise_abi_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal",
+        "poltsamaa_vald_contact_katlin_kruus",
+        "poltsamaa_vald_contact_eveli_allik"
+      ],
+      "sourceKeys": [
+        "tugiisik_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "tugiisik_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_service_tugiisikuteenus",
+      "document_id": "poltsamaa_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/tugiisikuteenus",
+      "content_hash": "dfbc6148b613607d790a2b0956d9153878cae685ac6909ee5067e6baca05e3e0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "poltsamaa_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hoolduse eesmärk on korraldada hooldus täisealisele inimesele, kes vaimse või kehalise puude tõttu vajab abi oma õiguste teostamiseks ja kohustuste täitmiseks. Hoolduse seadmisel hinnatakse hooldusvajadust ning määratakse hooldaja ülesanded. Hooldus ja hooldaja määratakse haldusaktiga.",
+      "targetGroup": "Täisealised isikud, kes vaimse või kehalise puude tõttu vajavad hooldajat.",
+      "conditions": "Üldjuhul ei määrata hooldajaks isikut, kellel endal on sügav või raske puue.",
+      "application": {
+        "channels": [
+          "paber-/digitaalne taotlus sotsiaalosakonnale"
+        ],
+        "steps": [
+          "Täida hoolduse seadmiseks ja hooldajatoetuse maksmiseks mõeldud taotluse vorm ning esita see e-postiga või paberil vallavalitsusele."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://www.poltsamaa.ee/taisealise-isiku-hooldus",
+      "relatedForms": [
+        "poltsamaa_vald_form_hoolduse_seadmine_hooldajatoetus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "taisealise_isiku_hooldus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "taisealise_isiku_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_service_taisealise_isiku_hooldus",
+      "document_id": "poltsamaa_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/taisealise-isiku-hooldus",
+      "content_hash": "be5c106ab4a20281259cf783593c08b087403ca192fb03c94963f277a68cb8b1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "poltsamaa_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus suurendab puude tõttu füüsilist kõrvalabi vajava täisealise inimese iseseisvat toimetulekut ja osalemist erinevates eluvaldkondades. Isiklik abistaja lähtub teenuse saaja juhistest ning aitab tegevustes, milleks inimene kõrvalabi vajab. Teenus on puudega inimesele tasuta.",
+      "targetGroup": "Puude tõttu füüsilist kõrvalabi vajavad täisealised isikud.",
+      "conditions": "Teenuse saaja peab suutma abistajat juhendada; isiklikuks abistajaks ei määrata lähedast sugulast ega samas eluruumis elavat isikut.",
+      "application": {
+        "channels": [
+          "SPOKU iseteenindus",
+          "paber-/digitaalne taotlus"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU keskkonnas või põhjendatud taotlus sotsiaalosakonnale; taotluses märgi vajaduse põhjus, puude raskusaste, vajalikud tegevused ja võimaliku abistaja andmed."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenust osutatakse puudega isikule tasuta.",
+      "officialUrl": "https://www.poltsamaa.ee/isikliku-abistaja-teenus",
+      "relatedForms": [
+        "poltsamaa_vald_form_sotsiaalhoolekandelise_abi_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "isikliku_abistaja_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "isikliku_abistaja_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_service_isikliku_abistaja_teenus",
+      "document_id": "poltsamaa_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/isikliku-abistaja-teenus",
+      "content_hash": "745aa2628f641ace38f462e3c698209e025b51696ea2bdf8baad1ecde138127f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_service_varjupaigateenus",
+      "canonical_item_id": "poltsamaa_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus tagab täisealisele inimesele ajutise turvalise ööbimiskoha, talveperioodil ka päevase viibimise võimaluse ning hügieeni eest hoolitsemise. Teenust osutatakse elukoha kasutamise võimaluseta isikutele ja vältimatu abi raames ööbimist vajavatele inimestele. Teenus on ajutine abimeede ja tasuline.",
+      "targetGroup": "Täisealised isikud, kellel puudub elukoha kasutamise võimalus või kes vajavad vältimatult ööbimiskohta.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "SPOKU iseteenindus",
+          "paber-/digitaalne taotlus"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU keskkonnas või põhjendatud taotlus sotsiaalosakonnale."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Tasu suuruse kehtestab teenuse osutaja; isik osaleb võimaluse korral teenuse eest tasumisel.",
+      "officialUrl": "https://www.poltsamaa.ee/varjupaigateenus",
+      "relatedForms": [
+        "poltsamaa_vald_form_sotsiaalhoolekandelise_abi_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "varjupaigateenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "varjupaigateenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_service_varjupaigateenus",
+      "document_id": "poltsamaa_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/varjupaigateenus",
+      "content_hash": "7b0f23bac6d6cf754e2f7ed17348629f5e4f03e45f66d0767b48bd26df59bce3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_service_turvakoduteenus",
+      "canonical_item_id": "poltsamaa_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenus pakub ajutist eluaset, turvalist keskkonda ja esmast abi lapsele või täisealisele inimesele, kes vajab kaitset ja kriisiabi. Esmase abi eesmärk on taastada inimese psüühiline tasakaal ja igapäevaelu tegevusvõime. Vajaduse ilmnemisel korraldab ametiasutus teenuse ka taotlust esitamata.",
+      "targetGroup": "Lapsed, kelle elu, tervis või areng on ohus, ning täisealised, kes vajavad turvalist keskkonda.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "SPOKU iseteenindus",
+          "paber-/digitaalne taotlus",
+          "ametiasutuse algatus kriisiolukorras"
+        ],
+        "steps": [
+          "Teenust võib taotleda SPOKU kaudu või põhjendatud taotlusega; vajaduse ilmnemisel korraldab ametiasutus teenuse ka taotluseta."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Turvakoduteenus on abivajajale tasuta.",
+      "officialUrl": "https://www.poltsamaa.ee/turvakoduteenus",
+      "relatedForms": [
+        "poltsamaa_vald_form_sotsiaalhoolekandelise_abi_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_katlin_kruus",
+        "poltsamaa_vald_contact_eveli_allik",
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "turvakoduteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "turvakoduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_service_turvakoduteenus",
+      "document_id": "poltsamaa_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/turvakoduteenus",
+      "content_hash": "d8bc68be84e3298d910966b425cef9b631048c682250a957677f11bfea0e8839",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "poltsamaa_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus võimaldab puudega või funktsioonihäirega inimesel kasutada vajadustele vastavat sõidukit tööle, õppeasutusse või avalike teenuste juurde sõitmiseks. Teenust osutatakse üldjuhul Põltsamaa vallale kuuluva sõidukiga ette tellimisel. Kui on vaja eritransporti, korraldab sotsiaaltöötaja vajadusele vastava lahenduse.",
+      "targetGroup": "Puudega isikud või isikud, kelle funktsioonihäire takistab isikliku või ühissõiduki kasutamist.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "SPOKU iseteenindus",
+          "paber-/digitaalne taotlus"
+        ],
+        "steps": [
+          "Esita taotlus vähemalt kolm tööpäeva enne teenuse vajadust; taotluses märgi teenuse vajaduse aeg ja sihtkoht või marsruut."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "Sotsiaaltöötaja hindab abivajadust ja teavitab avaldajat otsusest.",
+      "pricing": "Põltsamaa Vallavalitsuse elektriautoga 0,20 eurot kilomeeter ja teiste sõidukitega 0,30 eurot kilomeeter; välise teenuseosutaja korral kehtib tema hind.",
+      "officialUrl": "https://www.poltsamaa.ee/sotsiaaltransporditeenus",
+      "relatedForms": [
+        "poltsamaa_vald_form_sotsiaalhoolekandelise_abi_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "sotsiaaltransporditeenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "sotsiaaltransporditeenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_service_sotsiaaltransporditeenus",
+      "document_id": "poltsamaa_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/sotsiaaltransporditeenus",
+      "content_hash": "6944960032efb11b56faced10a762fab3c61e35800908d2d4ba3fbdba9960209",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_service_eluruumi_tagamise_teenus",
+      "canonical_item_id": "poltsamaa_vald:service:eluruumi_tagamise_teenus",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenus kindlustab eluruumi kasutamise võimaluse inimesele, kes ei suuda sotsiaalmajandusliku olukorra tõttu tagada endale ja perele sobivat eluruumi või kellel on puudest tingitud raskusi oma eluruumis liikumisel ja toimetulekul. Teenus võib hõlmata ka puudega inimese eluruumi kohandamist. Teenus on tasuline.",
+      "targetGroup": "Isikud või pered, kes ei suuda ise sobivat eluruumi tagada, ning puudega inimesed, kelle kodu vajab kohandamist.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "SPOKU iseteenindus",
+          "paber-/digitaalne taotlus"
+        ],
+        "steps": [
+          "Esita põhjendatud taotlus sotsiaalosakonnale või SPOKU keskkonnas; sotsiaalosakond hindab vajadust ja korteri sobivust."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenuse tasu suuruse kehtestab vallavalitsus; eluruumi kasutamiseks sõlmitakse üürileping üldjuhul üheks aastaks.",
+      "officialUrl": "https://www.poltsamaa.ee/eluruumi-tagamise-teenus",
+      "relatedForms": [
+        "poltsamaa_vald_form_sotsiaalhoolekandelise_abi_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "eluruumi_tagamise_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "eluruumi_tagamise_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_service_eluruumi_tagamise_teenus",
+      "document_id": "poltsamaa_vald_service_eluruumi_tagamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/eluruumi-tagamise-teenus",
+      "content_hash": "f825c35f2e9ff390a74425655b3fc7549d9b7f64fa286a704b035dacd2b509eb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_service_puudega_isiku_eluruumi_kohandamine",
+      "canonical_item_id": "poltsamaa_vald:service:puudega_isiku_eluruumi_kohandamine",
+      "itemType": "service",
+      "title": "Puudega isiku eluruumi kohandamine",
+      "status": "active",
+      "summary": "Teenuse eesmärk on vähendada puudest tingitud raskusi eluruumi sisenemisel ja eluruumis liikumisel ning soodustada puudega inimese iseseisvat toimetulekut koduses keskkonnas. Teenuse sihtrühm on raske või sügava puudega inimesed. Teenuse vajaduse otsustab sotsiaalosakond haldusaktiga.",
+      "targetGroup": "Raske või sügava puudega isikud.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "SPOKU iseteenindus",
+          "paber-/digitaalne taotlus"
+        ],
+        "steps": [
+          "Esita sotsiaalosakonnale põhjendatud taotlus eluruumi kohandamise vajaduse kohta."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://www.poltsamaa.ee/puudega-isiku-eluruumi-kohandamine",
+      "relatedForms": [
+        "poltsamaa_vald_form_sotsiaalhoolekandelise_abi_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "puudega_eluruumi_kohandamine_page",
+        "vajaduspohised_teenused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "puudega_eluruumi_kohandamine_page",
+        "vajaduspohised_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_service_puudega_isiku_eluruumi_kohandamine",
+      "document_id": "poltsamaa_vald_service_puudega_isiku_eluruumi_kohandamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/puudega-isiku-eluruumi-kohandamine",
+      "content_hash": "2ad9860e457ed262bb1821442c986249cb7ed23454644620bc899ddc6871c6d1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_service_volanoustamisteenus",
+      "canonical_item_id": "poltsamaa_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab inimesel teha kindlaks varaline olukord, pidada läbirääkimisi võlausaldajatega, rahuldada nõudeid ja vältida uute võlgnevuste tekkimist. Teenus sisaldab võlgniku nõustamist, juhendamist ja võlgnevustega seotud praktiliste probleemide lahendamist. Teenus on inimesele tasuta.",
+      "targetGroup": "Võlgnevustega või võlgnevuse riskiga inimesed.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "paber-/digitaalne taotlus sotsiaalosakonnale"
+        ],
+        "steps": [
+          "Esita sotsiaalosakonnale vastav taotlus; vormi saab saata digiallkirjastatuna või tuua paberil vallavalitsusse."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenust osutatakse tasuta ja teenuse eest tasub Põltsamaa vald.",
+      "officialUrl": "https://www.poltsamaa.ee/volanoustamisteenus",
+      "relatedForms": [
+        "poltsamaa_vald_form_sotsiaalhoolekandelise_abi_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "volanoustamisteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "volanoustamisteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_service_volanoustamisteenus",
+      "document_id": "poltsamaa_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/volanoustamisteenus",
+      "content_hash": "c8c3d89fe4c9a85cd6228da91342ed47978d3f8fd873ef5d7adb715708a409ac",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "poltsamaa_vald:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenus toetab last kasvatava inimese toimetulekut või töötamist ning vähendab lapse erivajadusest tulenevat hoolduskoormust. Teenust on õigus saada perel, kus on erivajadusega laps. Teenus on tasuline ning teenuse hinna kehtestab teenuse osutaja.",
+      "targetGroup": "Pered, kus kasvab erivajadusega laps.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "SPOKU iseteenindus",
+          "paber-/digitaalne taotlus"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU keskkonnas või põhjendatud taotlus sotsiaalosakonnale; lapsehoiuteenus määratakse haldusaktiga."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Lapsehoiuteenuse eest tasub last kasvatav isik üldjuhul lasteasutuse kohamaksu vanema poolt tasumisele kuuluva osa ulatuses.",
+      "officialUrl": "https://www.poltsamaa.ee/lapsehoiuteenus",
+      "relatedForms": [
+        "poltsamaa_vald_form_sotsiaalhoolekandelise_abi_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_katlin_kruus",
+        "poltsamaa_vald_contact_eveli_allik"
+      ],
+      "sourceKeys": [
+        "lapsehoiuteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "lapsehoiuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_service_lapsehoiuteenus",
+      "document_id": "poltsamaa_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/lapsehoiuteenus",
+      "content_hash": "98f7fda702cc41223715e912bf1241fe539fc5b818b341efbc59c289b0504e70",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_service_asendushooldusteenus",
+      "canonical_item_id": "poltsamaa_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenuse eesmärk on tagada lapse heaolu ja õigused ning võimaldada peresarnased elutingimused, turvaline kasvukeskkond ja ettevalmistus iseseisvaks toimetulekuks täisealisena. Teenuse osutaja võib olla hoolduspere, perekodu või asenduskodu. Teenus määratakse üldjuhul lastekaitsespetsialisti ettepanekul.",
+      "targetGroup": "Lapsed, kelle vanem on surnud, kelle vanemale on määratud eestkostja, kelle hooldusõigus on peatatud, piiratud või ära võetud või kes on vanemast eraldatud.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "lastekaitsespetsialisti ettepanek",
+          "sotsiaalosakonna haldusakt"
+        ],
+        "steps": [
+          "Asendushooldusteenuse määramise ettepaneku teeb üldjuhul lastekaitsespetsialist; teenus määratakse sotsiaalosakonna juhataja haldusaktiga."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenuse hind sõltub teenuse osutajast.",
+      "officialUrl": "https://www.poltsamaa.ee/asendushooldusteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_katlin_kruus",
+        "poltsamaa_vald_contact_eveli_allik"
+      ],
+      "sourceKeys": [
+        "asendushooldusteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "asendushooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_service_asendushooldusteenus",
+      "document_id": "poltsamaa_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/asendushooldusteenus",
+      "content_hash": "a043d87288319bfc8631ad24d44e52ce77091c1bce89a51d686090a94e9ea28f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "poltsamaa_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus toetab asendushoolduselt ja eestkostelt lahkuva inimese iseseisvat toimetulekut ja õpingute jätkamist. Teenust osutatakse juhtumiplaani alusel ning selle kaudu tagatakse elukoht ja vajaduspõhised tugiteenused või toetused. Teenus on tasuline.",
+      "targetGroup": "Asendushoolduselt või eestkostelt lahkuvad noored, kes õpivad või vajavad iseseisvaks toimetulekuks tuge.",
+      "conditions": "Teenust tagatakse õpingute jätkamise korral kuni esmase nominaalse õppeaja lõpuni või kuni 25-aastaseks saamiseni; teatud juhtudel kuni 21-aastasele noorele.",
+      "application": {
+        "channels": [
+          "SPOKU iseteenindus",
+          "paber-/digitaalne taotlus"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU keskkonnas või põhjendatud taotlus sotsiaalosakonnale."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenuse hind sõltub teenuse osutajast.",
+      "officialUrl": "https://www.poltsamaa.ee/jarelhooldusteenus",
+      "relatedForms": [
+        "poltsamaa_vald_form_sotsiaalhoolekandelise_abi_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_katlin_kruus",
+        "poltsamaa_vald_contact_eveli_allik"
+      ],
+      "sourceKeys": [
+        "jarelhooldusteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "jarelhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_service_jarelhooldusteenus",
+      "document_id": "poltsamaa_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/jarelhooldusteenus",
+      "content_hash": "f7e220f70ea226a6b0b2447a1318206c9e6ed35146317de4fdccc6888fc43694",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_service_parkimiskaardi_valjastamine",
+      "canonical_item_id": "poltsamaa_vald:service:parkimiskaardi_valjastamine",
+      "itemType": "service",
+      "title": "Puudega isiku sõiduki parkimiskaardi väljastamine",
+      "status": "active",
+      "summary": "Parkimiskaardi väljastamine aitab puudega või ajutise liikumisfunktsiooni kõrvalekaldega inimesel liikuda ja parkida liiklusseaduses sätestatud korras. Kaart väljastatakse tasuta ning see kehtib puude raskusastme kehtivuse ajal kuni viis aastat; ajutise kõrvalekalde puhul kuni kuus kuud.",
+      "targetGroup": "Inimesed, kellel on liikumisfunktsiooni või nägemisfunktsiooni kõrvalekalle või ajutine liikumis- või nägemisfunktsiooni kõrvalekalle.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "paber-/digitaalne taotlus sotsiaalosakonnale"
+        ],
+        "steps": [
+          "Esita dokumendifoto ning vajadusel arsti teatis liikumis- või nägemisfunktsiooni kõrvalekalde kohta."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Parkimiskaart väljastatakse tasuta.",
+      "officialUrl": "https://www.poltsamaa.ee/parkimiskaardi-valjastamine",
+      "relatedForms": [],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "parkimiskaardi_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "parkimiskaardi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_service_parkimiskaardi_valjastamine",
+      "document_id": "poltsamaa_vald_service_parkimiskaardi_valjastamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/parkimiskaardi-valjastamine",
+      "content_hash": "826157543ed414bec23b4241a0686df3d059d281d17eca848e5ae4bad620f734",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_service_valtimatu_sotsiaalabi",
+      "canonical_item_id": "poltsamaa_vald:service:valtimatu_sotsiaalabi",
+      "itemType": "service",
+      "title": "Vältimatu sotsiaalabi",
+      "status": "active",
+      "summary": "Vältimatu sotsiaalabi on kiire abi olukorras, kus inimene vajab abi elatusvahendite kaotuse või puudumise tõttu. KOV sotsiaalteenuste üldlehe järgi osutatakse vältimatut sotsiaalabi kõigile teenust ja abi vajavatele isikutele, mitte ainult Põltsamaa valla registrijärgsetele elanikele. Rahalist vormi käsitleb eraldi vältimatu sotsiaalabi toetuse kirje.",
+      "targetGroup": "Kõik teenust ja abi vajavad isikud, sh Põltsamaa vallas viibivad abivajajad.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "pöördumine sotsiaalosakonda",
+          "sotsiaaltöötaja algatus"
+        ],
+        "steps": [
+          "Pöördu kiire abivajaduse korral sotsiaalosakonna poole; sotsiaalosakond selgitab välja abivajaduse ja sobiva abi."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://www.poltsamaa.ee/sotsiaalteenused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_sotsiaalosakond",
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "social_services_overview"
+      ],
+      "item_type": "service",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_service_valtimatu_sotsiaalabi",
+      "document_id": "poltsamaa_vald_service_valtimatu_sotsiaalabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/sotsiaalteenused",
+      "content_hash": "e43fab21b26249919a11aa9644adbb3db913cdb72f9e351bd4f5f8d11a842f1d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_service_viipekeele_tolketeenus",
+      "canonical_item_id": "poltsamaa_vald:service:viipekeele_tolketeenus",
+      "itemType": "service",
+      "title": "Viipekeele tõlketeenus",
+      "status": "active",
+      "summary": "Viipekeele tõlketeenus aitab kuulmispuudega inimesel osaleda ühiskonnas võrdväärselt teistega ning tagab parema toimetuleku suhtlusolukordades. Teenuse vajaduse ja tasu kompenseerimise ulatuse otsustab sotsiaalosakonna juhataja haldusaktiga.",
+      "targetGroup": "Kuulmispuudega inimesed.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "SPOKU iseteenindus",
+          "põhjendatud taotlus sotsiaalosakonnale"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU keskkonnas või põhjendatud taotlus sotsiaalosakonnale; teenuse vajaduse ja võimaliku kompenseerimise otsustab sotsiaalosakond."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://www.poltsamaa.ee/muu-vajaduspohine-teenus",
+      "relatedForms": [
+        "poltsamaa_vald_form_sotsiaalhoolekandelise_abi_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "vajaduspohised_teenused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "vajaduspohised_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_service_viipekeele_tolketeenus",
+      "document_id": "poltsamaa_vald_service_viipekeele_tolketeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/muu-vajaduspohine-teenus",
+      "content_hash": "49a1263afe00351a3ecada2bf23656fa7787a119a7762e455beb9a2b6a2810c0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_service_paevakeskuse_teenus",
+      "canonical_item_id": "poltsamaa_vald:service:paevakeskuse_teenus",
+      "itemType": "service",
+      "title": "Päevakeskuse teenus",
+      "status": "active",
+      "summary": "Päevakeskuse teenus toetab eakate ja puudega inimeste toimetulekut, säilitab sotsiaalset aktiivsust ning võimaldab huvitegevust. Teenust osutatakse Põltsamaa Valla Päevakeskuses Adaveres.",
+      "targetGroup": "Eakad ja puuetega inimesed.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "SPOKU iseteenindus",
+          "põhjendatud taotlus sotsiaalosakonnale"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU keskkonnas või põhjendatud taotlus sotsiaalosakonnale; teenuse vajaduse ja võimaliku kompenseerimise otsustab sotsiaalosakond."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenus on tasuline.",
+      "officialUrl": "https://www.poltsamaa.ee/muu-vajaduspohine-teenus",
+      "relatedForms": [
+        "poltsamaa_vald_form_sotsiaalhoolekandelise_abi_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "vajaduspohised_teenused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "vajaduspohised_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_service_paevakeskuse_teenus",
+      "document_id": "poltsamaa_vald_service_paevakeskuse_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/muu-vajaduspohine-teenus",
+      "content_hash": "b5bdd9836e2dcbae715d7327f0405a3cb92bc0d31d754b110ea8fcaac03eb8aa",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_service_toiduabi_andmine",
+      "canonical_item_id": "poltsamaa_vald:service:toiduabi_andmine",
+      "itemType": "service",
+      "title": "Toiduabi andmine",
+      "status": "active",
+      "summary": "Toiduabi andmise eesmärk on varustada toimetulekuraskustes inimesi ja peresid toiduainetega. Abi saamiseks tuleb pöörduda sotsiaalosakonda ning vajadust hindavad sotsiaalosakonna ametnikud.",
+      "targetGroup": "Toimetulekuraskustes isikud ja pered.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "SPOKU iseteenindus",
+          "põhjendatud taotlus sotsiaalosakonnale"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU keskkonnas või põhjendatud taotlus sotsiaalosakonnale; teenuse vajaduse ja võimaliku kompenseerimise otsustab sotsiaalosakond."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://www.poltsamaa.ee/muu-vajaduspohine-teenus",
+      "relatedForms": [
+        "poltsamaa_vald_form_sotsiaalhoolekandelise_abi_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "vajaduspohised_teenused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "vajaduspohised_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_service_toiduabi_andmine",
+      "document_id": "poltsamaa_vald_service_toiduabi_andmine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/muu-vajaduspohine-teenus",
+      "content_hash": "695c0ffc3b86efb6c05578c8fd36f95c79b7cafbdaf4d3d46a6387c8ab133415",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_service_perelepitusteenus",
+      "canonical_item_id": "poltsamaa_vald:service:perelepitusteenus",
+      "itemType": "service",
+      "title": "Perelepitusteenus",
+      "status": "active",
+      "summary": "Perelepitusteenus aitab lahku minevatel või lahus elavatel vanematel sõlmida kohtuvälise kokkuleppe alla 18-aastase lapsega seotud õiguste ja kohustuste kohta. Teenus keskendub lapse huvidele ja kokkulepete täitmise toetamisele.",
+      "targetGroup": "Alla 18-aastase lapse vanemad, kes lõpetavad kooselu või elavad lahus.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "SPOKU iseteenindus",
+          "põhjendatud taotlus sotsiaalosakonnale"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU keskkonnas või põhjendatud taotlus sotsiaalosakonnale; teenuse vajaduse ja võimaliku kompenseerimise otsustab sotsiaalosakond."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://www.poltsamaa.ee/muu-vajaduspohine-teenus",
+      "relatedForms": [
+        "poltsamaa_vald_form_sotsiaalhoolekandelise_abi_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_katlin_kruus",
+        "poltsamaa_vald_contact_eveli_allik"
+      ],
+      "sourceKeys": [
+        "vajaduspohised_teenused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "vajaduspohised_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_service_perelepitusteenus",
+      "document_id": "poltsamaa_vald_service_perelepitusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/muu-vajaduspohine-teenus",
+      "content_hash": "bbc11fffdaf694a44d32d72d5c9a8e2ffa0450b6b794751db8d630a2112b02fb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_service_saunateenus",
+      "canonical_item_id": "poltsamaa_vald:service:saunateenus",
+      "itemType": "service",
+      "title": "Saunateenus",
+      "status": "active",
+      "summary": "Saunateenuse eesmärk on toetada eakate ja puudega inimeste toimetulekut. Teenust osutatakse Põltsamaa päevakeskuses Lossi 47 ning selle kasutamiseks tuleb pöörduda teenuseosutaja poole.",
+      "targetGroup": "Eakad ja puuetega inimesed.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "SPOKU iseteenindus",
+          "põhjendatud taotlus sotsiaalosakonnale"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU keskkonnas või põhjendatud taotlus sotsiaalosakonnale; teenuse vajaduse ja võimaliku kompenseerimise otsustab sotsiaalosakond."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Saunateenus on tasuline; hinna kehtestab vallavalitsus.",
+      "officialUrl": "https://www.poltsamaa.ee/muu-vajaduspohine-teenus",
+      "relatedForms": [
+        "poltsamaa_vald_form_sotsiaalhoolekandelise_abi_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "vajaduspohised_teenused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "vajaduspohised_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_service_saunateenus",
+      "document_id": "poltsamaa_vald_service_saunateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/muu-vajaduspohine-teenus",
+      "content_hash": "4c5f758d299c7bf8d8312767778c0b51ff5b6e59892fc5f624272a80d1fef72a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_service_pesupesemisteenus",
+      "canonical_item_id": "poltsamaa_vald:service:pesupesemisteenus",
+      "itemType": "service",
+      "title": "Pesupesemisteenus",
+      "status": "active",
+      "summary": "Pesupesemisteenus toetab eakate ja puudega inimeste toimetulekut. Teenust osutatakse Põltsamaa päevakeskuses Lossi 47 ja Põltsamaa Valla Päevakeskuses Pargi 2, Adavere alevikus.",
+      "targetGroup": "Eakad ja puuetega inimesed.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "SPOKU iseteenindus",
+          "põhjendatud taotlus sotsiaalosakonnale"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU keskkonnas või põhjendatud taotlus sotsiaalosakonnale; teenuse vajaduse ja võimaliku kompenseerimise otsustab sotsiaalosakond."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Pesupesemisteenus on tasuline; hinna kehtestab vallavalitsus.",
+      "officialUrl": "https://www.poltsamaa.ee/muu-vajaduspohine-teenus",
+      "relatedForms": [
+        "poltsamaa_vald_form_sotsiaalhoolekandelise_abi_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "vajaduspohised_teenused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "vajaduspohised_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_service_pesupesemisteenus",
+      "document_id": "poltsamaa_vald_service_pesupesemisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/muu-vajaduspohine-teenus",
+      "content_hash": "1b7175856758389f0ffbee154f5e5a9b1a338ee1e8ac0df9b42ad539e1872d87",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_service_toetav_pereteenus",
+      "canonical_item_id": "poltsamaa_vald:service:toetav_pereteenus",
+      "itemType": "service",
+      "title": "Toetav pereteenus",
+      "status": "active",
+      "summary": "Toetav pereteenus nõustab lastega peresid, kes ei suuda vähenenud toimetulekuvõime tõttu tagada lapse põhivajadusi ja arengut toetavat kasvukeskkonda. Teenus toetab vanemlikke oskusi, pere stabiilsust, igapäevast toimetulekut, asjaajamist ja vajalike teenuste taotlemist. Teenuse tegevused määratakse abivajaduse hindamise alusel.",
+      "targetGroup": "Lastega pered või last kasvatavad täisealised, kes vajavad kõrvalabi vanemlike oskuste ja toimetuleku parandamiseks.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "SPOKU iseteenindus",
+          "põhjendatud taotlus sotsiaalosakonnale"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU keskkonnas või põhjendatud taotlus sotsiaalosakonnale; teenuse vajaduse ja võimaliku kompenseerimise otsustab sotsiaalosakond."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenuse saajale tasuta.",
+      "officialUrl": "https://www.poltsamaa.ee/muu-vajaduspohine-teenus",
+      "relatedForms": [
+        "poltsamaa_vald_form_sotsiaalhoolekandelise_abi_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_katlin_kruus",
+        "poltsamaa_vald_contact_eveli_allik"
+      ],
+      "sourceKeys": [
+        "vajaduspohised_teenused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "vajaduspohised_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_service_toetav_pereteenus",
+      "document_id": "poltsamaa_vald_service_toetav_pereteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/muu-vajaduspohine-teenus",
+      "content_hash": "76b462d8b0f6ff72b0a900cc60427ab0f23a850b88fc82b368c845584af43d4f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_benefit_sunnitoetus",
+      "canonical_item_id": "poltsamaa_vald:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus on valla eelarvest lapse kasvatamisega kaasnevate kulutuste katmiseks makstav toetus. Toetus makstakse kahes osas: 500 eurot pärast lapse sünni registreerimist ja 500 eurot pärast lapse kaheaastaseks saamist. Mitmike puhul makstakse toetust iga vastsündinu kohta.",
+      "targetGroup": "Põltsamaa vallas elavad vanemad või üksikvanem, kelle laps registreeritakse Põltsamaa valda.",
+      "conditions": "Esimese osa saamiseks peavad mõlema vanema või üksikvanema elukohad olema Põltsamaa vallas vähemalt kuus kuud enne lapse sündi; teise osa saamiseks peab lapse ja vanemate elukoht olema Põltsamaa vallas kuni lapse 2-aastaseks saamiseni.",
+      "application": {
+        "channels": [
+          "SPOKU iseteenindus",
+          "paber-/digitaalne taotlus"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU keskkonnas sünnitoetuse I või II osa vormil või täida taotluse vorm ja esita vallavalitsusele."
+        ],
+        "deadline": "Taotlus tuleb esitada kuue kuu jooksul toetuse saamise õiguse tekkimisest."
+      },
+      "decisionTime": null,
+      "amount": "500 eurot pärast lapse sünni registreerimist ja 500 eurot pärast lapse kaheaastaseks saamist.",
+      "officialUrl": "https://www.poltsamaa.ee/sunnitoetus",
+      "relatedForms": [
+        "poltsamaa_vald_form_sunnitoetus_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "sunnitoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "sunnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_benefit_sunnitoetus",
+      "document_id": "poltsamaa_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/sunnitoetus",
+      "content_hash": "9a1b52fddaf97dd581fa062cee3a32016e8dfa43fb7e03c2b3ec0f0531268bb1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_benefit_lasteaia_lastehoiu_kohatasu_toetus",
+      "canonical_item_id": "poltsamaa_vald:benefit:lasteaia_lastehoiu_kohatasu_toetus",
+      "itemType": "benefit",
+      "title": "Lasteaia ja lastehoiu kohatasu toetus",
+      "status": "active",
+      "summary": "Toetust makstakse vähekindlustatud perele lastehoiu või munitsipaal- või eralasteaia kohatasu kompenseerimiseks. Toetuse suurus sõltub pere abivajadusest. Taotluses tuleb märkida lapse nimi ja lasteasutus.",
+      "targetGroup": "Vähekindlustatud pered, kes vajavad abi lastehoiu või lasteaia kohatasu tasumisel.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "paber-/digitaalne taotlus"
+        ],
+        "steps": [
+          "Täida taotluse vorm ja esita see e-postiga või paberil vallavalitsusele."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Suurus sõltub abivajadusest.",
+      "officialUrl": "https://www.poltsamaa.ee/lasteaia-ja-lastehoiu-kohatasu-toetus",
+      "relatedForms": [
+        "poltsamaa_vald_form_lasteaia_lastehoiu_kohatasu_toetus_taotlus",
+        "poltsamaa_vald_form_sissetulekust_soltuva_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "lasteaia_lastehoiu_kohatasu_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "lasteaia_lastehoiu_kohatasu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_benefit_lasteaia_lastehoiu_kohatasu_toetus",
+      "document_id": "poltsamaa_vald_benefit_lasteaia_lastehoiu_kohatasu_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/lasteaia-ja-lastehoiu-kohatasu-toetus",
+      "content_hash": "ee89a99eb74b11791080196e8a6eda752354e612cc50f52ab137e5c2bbc9227f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_benefit_kooli_alustamise_toetus",
+      "canonical_item_id": "poltsamaa_vald:benefit:kooli_alustamise_toetus",
+      "itemType": "benefit",
+      "title": "Kooli alustamise toetus",
+      "status": "active",
+      "summary": "Kooli alustamise toetus ehk ranitsatoetus on 1. klassi mineva lapse perele makstav toetus. Toetuse suurus on 200 eurot ning seda saab taotleda juhul, kui laps ja vähemalt üks vanem on rahvastikuregistri järgi Põltsamaa valla elanikud. Erandina võib laps õppida väljaspool Põltsamaa valda, kui seda tingib erivajadus või lähim kool.",
+      "targetGroup": "Põltsamaa valla elanikust 1. klassi astuva lapse pere.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "SPOKU iseteenindus",
+          "paber-/digitaalne taotlus"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU keskkonnas või taotluse vormiga vallavalitsusele; menetlemine algab pärast koolide nimekirjade kinnitamist."
+        ],
+        "deadline": "Taotlus tuleb esitada õppeaasta algusest kolme kuu jooksul."
+      },
+      "decisionTime": null,
+      "amount": "200 eurot.",
+      "officialUrl": "https://www.poltsamaa.ee/kooli-alustamise-toetus",
+      "relatedForms": [
+        "poltsamaa_vald_form_kooli_alustamise_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "kooli_alustamise_toetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "kooli_alustamise_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_benefit_kooli_alustamise_toetus",
+      "document_id": "poltsamaa_vald_benefit_kooli_alustamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/kooli-alustamise-toetus",
+      "content_hash": "268d2910f1977d93600b6be309dd5655cc712546da17a5f2abf9bf8f10af3c42",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_benefit_koolitoetus",
+      "canonical_item_id": "poltsamaa_vald:benefit:koolitoetus",
+      "itemType": "benefit",
+      "title": "Koolitoetus",
+      "status": "active",
+      "summary": "Koolitoetus on vähekindlustatud perele laste koolitamisega seotud kulude katmiseks makstav toetus. Toetusega saab katta õpilaskodu üüri, koolitarvete, riiete, jalanõude, koolilõuna, huvihariduse ja muude koolikulude osa. Toetuse suurus sõltub abivajadusest.",
+      "targetGroup": "Vähekindlustatud pered, kelle laps on Põltsamaa valla elanik ja vajab abi koolikulude katmisel.",
+      "conditions": "Toetust saab kuni lapse 18-aastaseks saamiseni; üldhariduskoolis või kutsekoolis õppivale 19-aastaseks saavale lapsele õppeaasta lõpuni.",
+      "application": {
+        "channels": [
+          "paber-/digitaalne taotlus"
+        ],
+        "steps": [
+          "Täida taotluse vorm ja esita see e-postiga või paberil vallavalitsusele."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Suurus sõltub abivajadusest.",
+      "officialUrl": "https://www.poltsamaa.ee/koolitoetus",
+      "relatedForms": [
+        "poltsamaa_vald_form_koolitoetus_taotlus",
+        "poltsamaa_vald_form_sissetulekust_soltuva_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "koolitoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "koolitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_benefit_koolitoetus",
+      "document_id": "poltsamaa_vald_benefit_koolitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/koolitoetus",
+      "content_hash": "24370b119b22c1bca3a30ebae1e5c62806336eb2361a7881a3427b13e253a0e5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_benefit_laste_prillitoetus",
+      "canonical_item_id": "poltsamaa_vald:benefit:laste_prillitoetus",
+      "itemType": "benefit",
+      "title": "Laste prillitoetus",
+      "status": "active",
+      "summary": "Laste prillitoetust makstakse lapsele ostetud prilliklaaside maksumuse kompenseerimiseks üldjuhul mitte sagedamini kui kord aastas. Taotlusele lisatakse prillide ostmist tõendav kuludokument.",
+      "targetGroup": "Kuni 18-aastased Põltsamaa valla elanikust lapsed; üldharidus- või kutsekoolis õppiva 19-aastaseks saava lapse puhul jooksva õppeaasta lõpuni.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "SPOKU iseteenindus",
+          "paber-/digitaalne taotlus"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU keskkonnas või vormiga vallavalitsusele ning lisa prillide ostu tõendav kuludokument."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": null,
+      "officialUrl": "https://www.poltsamaa.ee/laste-prillitoetus",
+      "relatedForms": [
+        "poltsamaa_vald_form_laste_prillitoetus_taotlus",
+        "poltsamaa_vald_form_sissetulekust_soltumatu_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "laste_prillitoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "laste_prillitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_benefit_laste_prillitoetus",
+      "document_id": "poltsamaa_vald_benefit_laste_prillitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/laste-prillitoetus",
+      "content_hash": "9d628d8f2c97b136cc8c55fe0bcd33f65999ae5a6ac31af29db30048eabaf390",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_benefit_asendushoolduselt_elluastuja_toetus",
+      "canonical_item_id": "poltsamaa_vald:benefit:asendushoolduselt_elluastuja_toetus",
+      "itemType": "benefit",
+      "title": "Asendushoolduselt elluastuja toetus",
+      "status": "active",
+      "summary": "Asendushoolduselt elluastuja toetus on ühekordne toetus asendus- või järelhoolduselt elluastujale põhivajaduste rahuldamiseks, näiteks eluruumi üürimiseks, ostmiseks või sisustamiseks. Toetus määratakse taotluse või lastekaitsespetsialisti ettepaneku alusel.",
+      "targetGroup": "Asendushoolduselt või järelhoolduselt iseseisvasse ellu astuvad noored.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "paber-/digitaalne taotlus",
+          "lastekaitsespetsialisti ettepanek"
+        ],
+        "steps": [
+          "Esita taotlus või pöördu lastekaitsespetsialisti poole."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "600 eurot.",
+      "officialUrl": "https://www.poltsamaa.ee/asenduskodust-elluastuja-toetus",
+      "relatedForms": [
+        "poltsamaa_vald_form_asendushoolduselt_elluastuja_toetus_taotlus",
+        "poltsamaa_vald_form_sissetulekust_soltumatu_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_katlin_kruus",
+        "poltsamaa_vald_contact_eveli_allik"
+      ],
+      "sourceKeys": [
+        "asendushoolduselt_elluastuja_toetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "asendushoolduselt_elluastuja_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_benefit_asendushoolduselt_elluastuja_toetus",
+      "document_id": "poltsamaa_vald_benefit_asendushoolduselt_elluastuja_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/asenduskodust-elluastuja-toetus",
+      "content_hash": "ad88aaf3d415a97aa33586a3e101caf5f8f02b93e5922010efe1b1a9eef5f814",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_benefit_hooldajatoetus",
+      "canonical_item_id": "poltsamaa_vald:benefit:hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus",
+      "status": "active",
+      "summary": "Hooldajatoetus on igakuine toetus inimesele, kes hooldab suure hooldus- ja abivajadusega last või täisealist inimest. Toetus jaguneb lapse pideva või osalise hooldamise ning täisealise sügava või raske puude või suure hooldusvajaduse alusel.",
+      "targetGroup": "Hooldajad, kes hooldavad suure hooldus- ja abivajadusega last või täisealist isikut.",
+      "conditions": "Puudega lapse hooldajatoetust ei määrata muu hulgas töötavale isikule, vanemahüvitise, töötutoetuse või töötuskindlustushüvitise saajale ning juhul, kui lapse hooldus on tagatud teiste teenustega.",
+      "application": {
+        "channels": [
+          "paber-/digitaalne taotlus"
+        ],
+        "steps": [
+          "Täida hoolduse seadmiseks ja hooldajatoetuse maksmiseks mõeldud taotluse vorm ning esita see vallavalitsusele."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Lapse pidev hooldamine 100 eurot kuus; lapse osaline hooldamine 75 eurot kuus; täisealise sügava puudega või suure hooldusvajadusega isiku pidev hooldamine 40 eurot kuus; täisealise raske puudega või muul põhjusel suure hooldusvajadusega isiku osaline hooldamine 20 eurot kuus.",
+      "officialUrl": "https://www.poltsamaa.ee/hooldajatoetus",
+      "relatedForms": [
+        "poltsamaa_vald_form_hoolduse_seadmine_hooldajatoetus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal",
+        "poltsamaa_vald_contact_katlin_kruus",
+        "poltsamaa_vald_contact_eveli_allik"
+      ],
+      "sourceKeys": [
+        "hooldajatoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "hooldajatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_benefit_hooldajatoetus",
+      "document_id": "poltsamaa_vald_benefit_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/hooldajatoetus",
+      "content_hash": "10b452706d92351e601e2d2b66874a68dc861b95fcc09f08fcd8a4bcf90ec205",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "poltsamaa_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on ajutine abimeede, mis aitab leevendada inimese või pere materiaalset puudust ning tagada minimaalsed vahendid esmavajadusteks. Toetus sõltub leibkonna netosissetulekust, eluasemekuludest ja kehtivast toimetulekupiirist. Otsus tehakse viie tööpäeva jooksul pärast kõigi dokumentide esitamist.",
+      "targetGroup": "Üksi elavad isikud või pered, kelle sissetulek pärast eluasemekulude mahaarvamist jääb alla toimetulekupiiri.",
+      "conditions": "Taotlusele tuleb lisada sissetulekuid, vara ja eluasemekulusid tõendavad dokumendid.",
+      "application": {
+        "channels": [
+          "vastuvõtt sotsiaalosakonnas",
+          "Puurmani teenuskeskus",
+          "kirjalik taotlus"
+        ],
+        "steps": [
+          "Esita taotlus koos lisadokumentidega Põltsamaa Vallavalitsuse sotsiaalosakonda või Puurmani teenuskeskusesse."
+        ],
+        "deadline": "Avaldusi võetakse vastu kalendrikuu viimase tööpäeva vastuvõtu aja lõpuni."
+      },
+      "decisionTime": "Otsus tehakse viie tööpäeva jooksul pärast kõigi dokumentide esitamist.",
+      "amount": "Suurus arvutatakse valemiga TT = (eluasemekulud + toimetulekupiir) - sissetulek; lehel on toodud toimetulekupiiri arvestus 220 eurot esimesele liikmele, 264 eurot lapsele ja 176 eurot igale järgmisele täisealisele liikmele.",
+      "officialUrl": "https://www.poltsamaa.ee/toimetulekutoetus",
+      "relatedForms": [
+        "poltsamaa_vald_form_toimetulekutoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "toimetulekutoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_benefit_toimetulekutoetus",
+      "document_id": "poltsamaa_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/toimetulekutoetus",
+      "content_hash": "fc3b98c010fdd0c098234e939694f36e9f373f4c24fa98f82e247d449cac2b4f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_benefit_taiendav_sotsiaaltoetus",
+      "canonical_item_id": "poltsamaa_vald:benefit:taiendav_sotsiaaltoetus",
+      "itemType": "benefit",
+      "title": "Täiendav sotsiaaltoetus",
+      "status": "active",
+      "summary": "Täiendav sotsiaaltoetus on vähekindlustatud isikule või perele toimetuleku tagamiseks makstav toetus. Seda saab kasutada eluasemekuludeks, esmatarbevahenditeks, laste- ja noortelaagrite osalustasu osaliseks kompenseerimiseks, toimetulekut toetavate teenuste kompenseerimiseks, eluruumi sanitaarse olukorra parandamiseks või ettenägematutel asjaoludel.",
+      "targetGroup": "Vähekindlustatud isikud ja pered.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "paber-/digitaalne taotlus"
+        ],
+        "steps": [
+          "Esita taotlus koos kulu tegemist tõendava dokumendiga."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Suurus sõltub abivajadusest.",
+      "officialUrl": "https://www.poltsamaa.ee/taiendav-sotsiaaltoetus",
+      "relatedForms": [
+        "poltsamaa_vald_form_sissetulekust_soltuva_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "taiendav_sotsiaaltoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "taiendav_sotsiaaltoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_benefit_taiendav_sotsiaaltoetus",
+      "document_id": "poltsamaa_vald_benefit_taiendav_sotsiaaltoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/taiendav-sotsiaaltoetus",
+      "content_hash": "fbd2819b6a82348a55cc61b50ecbf5ef64ffdf92c8e392a0bbadf431efd3e7e4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_benefit_erakorraline_toetus",
+      "canonical_item_id": "poltsamaa_vald:benefit:erakorraline_toetus",
+      "itemType": "benefit",
+      "title": "Erakorraline toetus",
+      "status": "active",
+      "summary": "Erakorraline toetus on mitteperioodiline abi ajutisse raskesse majanduslikku olukorda sattunud inimesele. Seda kasutatakse õnnetusjuhtumi, tulekahju, kuriteo, pereliikme äkilise haigestumise või ootamatu surma tõttu tekkinud hädavajalike sotsiaalsete ja majanduslike kulude katmiseks.",
+      "targetGroup": "Inimesed, kes on ajutiselt sattunud raskesse majanduslikku olukorda kriisiolukorra tõttu.",
+      "conditions": "Taotlusele lisatakse vastava ametkonna tõend kriisiolukorra põhjendatuse kohta ning võimalusel kuludokumendid.",
+      "application": {
+        "channels": [
+          "paber-/digitaalne taotlus"
+        ],
+        "steps": [
+          "Täida taotluse vorm ja lisa kriisiolukorda tõendavad dokumendid; esita vorm e-postiga või paberil vallavalitsusele."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Suurus sõltub abivajadusest.",
+      "officialUrl": "https://www.poltsamaa.ee/erakorraline-toetus",
+      "relatedForms": [
+        "poltsamaa_vald_form_erakorralise_toetuse_taotlus",
+        "poltsamaa_vald_form_sissetulekust_soltuva_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "erakorraline_toetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "erakorraline_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_benefit_erakorraline_toetus",
+      "document_id": "poltsamaa_vald_benefit_erakorraline_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/erakorraline-toetus",
+      "content_hash": "8dcf2607d2091cc82b583c0cb3ac20ba9e0100d57594b4657a8a19a9647cd40c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_benefit_valtimatu_sotsiaalabi_toetus",
+      "canonical_item_id": "poltsamaa_vald:benefit:valtimatu_sotsiaalabi_toetus",
+      "itemType": "benefit",
+      "title": "Vältimatu sotsiaalabi toetus",
+      "status": "active",
+      "summary": "Vältimatu sotsiaalabi toetus on elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitusse olukorda sattunud inimesele makstav toetus toidu, riietuse, hädavajalike ravimite ja ajutise majutamise kuludeks. Toetus makstakse tegelike kulude ulatuses, kuni inimene ei ole enam sotsiaalselt abitus olukorras.",
+      "targetGroup": "Põltsamaa vallas elavad või viibivad isikud, kellel puuduvad elatusvahendid; sh inimesed, kelle elukohta ei saa kindlaks määrata, kinnipidamiskohast vabanenud isikud ja ajutiselt vallas viibivad välismaalased.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "taotleja pöördumine",
+          "sotsiaaltöötaja algatus",
+          "paber-/digitaalne taotlus"
+        ],
+        "steps": [
+          "Taotluse võib esitada abivajaja ise või sotsiaaltöötaja; koostöös abivajajaga hinnatakse vajalikud kulud ja märgitakse need avaldusse."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Tegelike vältimatute kulude ulatuses; suurus sõltub abivajadusest.",
+      "officialUrl": "https://www.poltsamaa.ee/valtimatu-sotsiaalabi-toetus",
+      "relatedForms": [
+        "poltsamaa_vald_form_valtimatu_sotsiaalabi_toetus_taotlus",
+        "poltsamaa_vald_form_sissetulekust_soltuva_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "valtimatu_sotsiaalabi_toetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "valtimatu_sotsiaalabi_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_benefit_valtimatu_sotsiaalabi_toetus",
+      "document_id": "poltsamaa_vald_benefit_valtimatu_sotsiaalabi_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/valtimatu-sotsiaalabi-toetus",
+      "content_hash": "005e2fd08070feec312db38217b9f191aaaac370cd871ad60d4da63b57e484a7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_benefit_tervisetoetus",
+      "canonical_item_id": "poltsamaa_vald:benefit:tervisetoetus",
+      "itemType": "benefit",
+      "title": "Tervisetoetus",
+      "status": "active",
+      "summary": "Tervisetoetus on vähekindlustatud inimesele terviserikkest, kroonilisest haigusest, puudest või muust tervislikust seisundist tuleneva erivajaduse kulu katmiseks makstav toetus. Seda saab kasutada näiteks prilliklaaside, proteeside, abivahendite omaosaluse, haigla omaosalusarve, eriarsti sõidu, põetus- ja hooldusvahendite ning muude tervisega seotud kulude katmiseks.",
+      "targetGroup": "Vähekindlustatud isikud, kellel on terviserikke, kroonilise haiguse, puude või muu tervisliku seisundi tõttu erivajaduse kulu.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "paber-/digitaalne taotlus"
+        ],
+        "steps": [
+          "Esita taotlus koos ravi- või abivahendi kulu tõendava dokumendiga."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Suurus sõltub abivajadusest; täiskasvanute prilliklaaside kulu hüvitatakse kord kahe aasta jooksul.",
+      "officialUrl": "https://www.poltsamaa.ee/tervisetoetus",
+      "relatedForms": [
+        "poltsamaa_vald_form_tervisetoetus_taotlus",
+        "poltsamaa_vald_form_sissetulekust_soltuva_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "tervisetoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "tervisetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_benefit_tervisetoetus",
+      "document_id": "poltsamaa_vald_benefit_tervisetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/tervisetoetus",
+      "content_hash": "d9a5e1e6a39e8f379baaa4c01a922fe8cae3ce237dac2ab8ca6644537475c2f0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_benefit_hoolekandeseadme_toetus",
+      "canonical_item_id": "poltsamaa_vald:benefit:hoolekandeseadme_toetus",
+      "itemType": "benefit",
+      "title": "Hoolekandeseadme toetus",
+      "status": "active",
+      "summary": "Hoolekandeseadme toetust makstakse eluruumi paigaldatavate valveseadmete, näiteks häirenupu või koduanduri, paigaldamiseks või teenuse püsikulude katmiseks. Toetus on mõeldud üksi elavale inimesele, kelle tervislik seisund eeldab võimalust kiiresti abi kutsuda.",
+      "targetGroup": "Üksi elavad inimesed, kelle tervislik seisund eeldab kohese abi kutsumise võimalust.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "paber-/digitaalne taotlus"
+        ],
+        "steps": [
+          "Täida toetuse taotlusvorm ja esita see e-postiga või paberil vallavalitsusele."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Suurus sõltub abivajadusest.",
+      "officialUrl": "https://www.poltsamaa.ee/hairenuputeenuse-toetus",
+      "relatedForms": [
+        "poltsamaa_vald_form_hoolekandeseadme_toetus_taotlus",
+        "poltsamaa_vald_form_sissetulekust_soltuva_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "hoolekandeseadme_toetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "hoolekandeseadme_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_benefit_hoolekandeseadme_toetus",
+      "document_id": "poltsamaa_vald_benefit_hoolekandeseadme_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/hairenuputeenuse-toetus",
+      "content_hash": "6d7d8a2b8b8824ea809debc6add999680d17ad9696a519568d9ae953db2f96d5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_benefit_matusetoetus",
+      "canonical_item_id": "poltsamaa_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on ühekordne toetus matuse korraldamisega kaasnevate kulude katmiseks. Toetust makstakse matuse korraldamisega seotud füüsilisele isikule, kui surnu viimane rahvastikuregistrijärgne elukoht oli Põltsamaa vald. Mitme matusekorraldaja korral lepivad kulusid kandnud inimesed kokku, kes toetust taotleb.",
+      "targetGroup": "Matusekulude kandja, kui surnu viimane elukoht oli Põltsamaa vald.",
+      "conditions": "Toetust ei maksta isiku surnuks tunnistamise korral ega siis, kui kõik matuse korraldamise kulud on riigieelarvest täies ulatuses hüvitatud.",
+      "application": {
+        "channels": [
+          "SPOKU iseteenindus",
+          "paber-/digitaalne taotlus"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU keskkonnas või vormiga vallavalitsusele."
+        ],
+        "deadline": "Taotlus tuleb esitada kolme kuu jooksul surmapäevast arvates."
+      },
+      "decisionTime": null,
+      "amount": "250 eurot.",
+      "officialUrl": "https://www.poltsamaa.ee/matusetoetus",
+      "relatedForms": [
+        "poltsamaa_vald_form_matusetoetus_taotlus"
+      ],
+      "relatedContacts": [
+        "poltsamaa_vald_contact_anna_maria_kazakov",
+        "poltsamaa_vald_contact_anu_kuusk",
+        "poltsamaa_vald_contact_mirjam_humal"
+      ],
+      "sourceKeys": [
+        "matusetoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "matusetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_benefit_matusetoetus",
+      "document_id": "poltsamaa_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/matusetoetus",
+      "content_hash": "ebf2378a10e1718fbdffb22b1ccb4534ab1290310ccfe357f46f3aeed5ed87a2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_resource_sotsiaalosakonna_vastuvott",
+      "canonical_item_id": "poltsamaa_vald:resource:sotsiaalosakonna_vastuvott",
+      "itemType": "resource",
+      "title": "Sotsiaalosakonna vastuvõtuajad",
+      "status": "active",
+      "summary": "Põltsamaa Vallavalitsuse sotsiaalosakond võtab vastu Põltsamaal Lossi tn 9 teisipäeviti ja neljapäeviti kell 9.00-12.00 ja 13.00-16.00 ning Puurmanis Tallinna mnt 1 teisipäeviti kell 9.00-12.00 ja 13.00-16.00. Üldkontakt on ja.",
+      "address": "Lossi tn 9, Põltsamaa linn 48104; Tallinna mnt 1, Puurmani alevik",
+      "officialUrl": "https://www.poltsamaa.ee/sotsiaal",
+      "relatedTo": [],
+      "sourceKeys": [
+        "social_overview"
+      ],
+      "item_type": "resource",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_resource_sotsiaalosakonna_vastuvott",
+      "document_id": "poltsamaa_vald_resource_sotsiaalosakonna_vastuvott",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/sotsiaal",
+      "content_hash": "a18776409793a1553104da93454126ae08e7bf5f92bbea17b8f897f725cd5bf5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_resource_poltsamaa_valla_paevakeskus",
+      "canonical_item_id": "poltsamaa_vald:resource:poltsamaa_valla_paevakeskus",
+      "itemType": "resource",
+      "title": "Põltsamaa Valla Päevakeskus",
+      "status": "active",
+      "summary": "Põltsamaa Valla Päevakeskus pakub sotsiaalteenuseid ja tegevusi erinevatele sihtrühmadele, sealhulgas eakatele ja puudega inimestele. Päevakeskuse juhataja on Heiki Rosin; teenusteks on keskus avatud E-N 8.00-16.00 ja R 8.00-15.00. Põltsamaa päevakeskuse aadress on Lossi tn 47 ning Adavere päevakeskus tegutseb Pargi 2 aadressil.",
+      "address": "Lossi tn 47, Põltsamaa linn; Pargi 2, Adavere alevik",
+      "officialUrl": "https://www.poltsamaa.ee/paevakeskus",
+      "relatedTo": [],
+      "sourceKeys": [
+        "paevakeskus_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "paevakeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_resource_poltsamaa_valla_paevakeskus",
+      "document_id": "poltsamaa_vald_resource_poltsamaa_valla_paevakeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/paevakeskus",
+      "content_hash": "46c81078a03da58527ae26dfc37a315f608e09aedded2aafe7b1da0aa66dd928",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_resource_paevakeskus_poltsamaal",
+      "canonical_item_id": "poltsamaa_vald:resource:paevakeskus_poltsamaal",
+      "itemType": "resource",
+      "title": "Päevakeskus Põltsamaal",
+      "status": "active",
+      "summary": "Põltsamaa päevakeskuses tegutseb perenaisena Lenna Kaeramaa ja perenaise abina Eve Rummel. Huvitegevuse ruumid on avatud E-N 9.00-16.00 ja R 9.00-15.00; saun ja pesumaja on avatud kindlatel aegadel.",
+      "address": "Lossi tn 47, Põltsamaa linn",
+      "officialUrl": "https://www.poltsamaa.ee/paevakeskus",
+      "relatedTo": [],
+      "sourceKeys": [
+        "paevakeskus_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "paevakeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_resource_paevakeskus_poltsamaal",
+      "document_id": "poltsamaa_vald_resource_paevakeskus_poltsamaal",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/paevakeskus",
+      "content_hash": "6a48f91ee0a82138f7c9d7e63cce4ed98193c089baa959279a6e90b305bf58cc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_resource_poltsamaa_perepesa",
+      "canonical_item_id": "poltsamaa_vald:resource:poltsamaa_perepesa",
+      "itemType": "resource",
+      "title": "Põltsamaa Perepesa",
+      "status": "active",
+      "summary": "Põltsamaa Perepesa on beebide ja väikelastega peredele mõeldud kooskäimise koht ja vanemahariduskeskus. Seal pakutakse mängutuba, perekooli, vanemlus- ja paarisuhtekoolitusi, kõne ja arengu toetust, vestlusringe, psühholoogilist nõustamist, pere- ja paarinõustamist ning lühiajalist tasulist lapsehoiuteenust. Enamik teenuseid on Põltsamaa valla peredele tasuta.",
+      "address": "Lossi tn 47, Põltsamaa",
+      "officialUrl": "https://www.poltsamaa.ee/perepesa",
+      "relatedTo": [],
+      "sourceKeys": [
+        "perepesa_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "perepesa_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_resource_poltsamaa_perepesa",
+      "document_id": "poltsamaa_vald_resource_poltsamaa_perepesa",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/perepesa",
+      "content_hash": "9b9700edbb01903e373a3f4ae771e02dce0ae0c1373a165e7446bfe6d17bc54d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_resource_poltsamaa_tervis",
+      "canonical_item_id": "poltsamaa_vald:resource:poltsamaa_tervis",
+      "itemType": "resource",
+      "title": "SA Põltsamaa Tervis",
+      "status": "active",
+      "summary": "Hoolekandeasutuste lehel on SA Põltsamaa Tervis märgitud Lossi 49 aadressiga asutusena; lisainfo kodulehe kaudu. Lehel on nimetatud ja õendusjuht Janika Kivimägi telefoniga.",
+      "address": "Lossi 49, Põltsamaa linn, 48104 Jõgevamaa",
+      "officialUrl": "https://www.poltsamaa.ee/hoolekandeasutused",
+      "relatedTo": [],
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_resource_poltsamaa_tervis",
+      "document_id": "poltsamaa_vald_resource_poltsamaa_tervis",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/hoolekandeasutused",
+      "content_hash": "4b6f9cb04b1ca655de9ee862dc963da713af347b06dd33757b3fbf14c4c0ad2c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_resource_sopruse_kodu",
+      "canonical_item_id": "poltsamaa_vald:resource:sopruse_kodu",
+      "itemType": "resource",
+      "title": "Sõpruse Kodu – üldhooldekodu",
+      "status": "active",
+      "summary": "Sõpruse Kodu on Põltsamaa linnas asuv üldhooldekodu, mis pakub ööpäevaringset hooldusteenust. KOV lehel on märgitud aadress Jõgeva mnt 30 ja 30/1, 555 22 556 ning.",
+      "address": "Jõgeva mnt 30 ja Jõgeva mnt 30/1, Põltsamaa linn, 48104 Jõgevamaa",
+      "officialUrl": "https://www.poltsamaa.ee/hoolekandeasutused",
+      "relatedTo": [],
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_resource_sopruse_kodu",
+      "document_id": "poltsamaa_vald_resource_sopruse_kodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/hoolekandeasutused",
+      "content_hash": "b9e8af0b3fbaa843eaa17a46d8bc4abd7daf0e0849b2eb142cd994c8a2a5c32a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_resource_louna_eesti_hooldekeskus_poltsamaa_kodu",
+      "canonical_item_id": "poltsamaa_vald:resource:louna_eesti_hooldekeskus_poltsamaa_kodu",
+      "itemType": "resource",
+      "title": "Lõuna-Eesti Hooldekeskus Põltsamaa Kodu",
+      "status": "active",
+      "summary": "Lõuna-Eesti Hooldekeskuse Põltsamaa Kodu asub Viljandi mnt 2B. KOV lehel on toodud meditsiiniosakonna kontaktid ning juhataja Marge Tammesalu kontakt.",
+      "address": "Viljandi mnt 2B, Põltsamaa linn, 48103 Jõgevamaa",
+      "officialUrl": "https://www.poltsamaa.ee/hoolekandeasutused",
+      "relatedTo": [],
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_resource_louna_eesti_hooldekeskus_poltsamaa_kodu",
+      "document_id": "poltsamaa_vald_resource_louna_eesti_hooldekeskus_poltsamaa_kodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/hoolekandeasutused",
+      "content_hash": "20d2aa4363c145133a5693e6518d5eb24dbcfbe278755e298037934fab0364d8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_resource_lustivere_hooldekodu",
+      "canonical_item_id": "poltsamaa_vald:resource:lustivere_hooldekodu",
+      "itemType": "resource",
+      "title": "Lustivere Hooldekodu",
+      "status": "active",
+      "summary": "Lustivere Hooldekodu pakub ööpäevaringset hooldusteenust Lustivere külas. KOV lehel on märgitud hoolduse ning juhataja Hille Uus kontaktid.",
+      "address": "Lustivere küla, Põltsamaa vald, 48032 Jõgevamaa",
+      "officialUrl": "https://www.poltsamaa.ee/hoolekandeasutused",
+      "relatedTo": [],
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_resource_lustivere_hooldekodu",
+      "document_id": "poltsamaa_vald_resource_lustivere_hooldekodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/hoolekandeasutused",
+      "content_hash": "b736b8d7a26e33d289f61bfef317b0befb01c0cf98c548cb0a2ed4b01ecaca51",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_resource_heleni_pansionaat",
+      "canonical_item_id": "poltsamaa_vald:resource:heleni_pansionaat",
+      "itemType": "resource",
+      "title": "Heleni Pansionaat",
+      "status": "active",
+      "summary": "Heleni Pansionaat pakub ööpäevaringset üldhooldusteenust. KOV lehel on aadress Pajusi mnt 12, Põltsamaa linn, kontaktisik Kristi Lüüde ning.",
+      "address": "Pajusi mnt 12, Põltsamaa linn, 48106 Jõgevamaa",
+      "officialUrl": "https://www.poltsamaa.ee/hoolekandeasutused",
+      "relatedTo": [],
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_resource_heleni_pansionaat",
+      "document_id": "poltsamaa_vald_resource_heleni_pansionaat",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/hoolekandeasutused",
+      "content_hash": "e5bd9e6c90f8d1892205286cd5a535cc25542e34620dc09eb8e596bec4a6a289",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_resource_medi_hairenuputeenus",
+      "canonical_item_id": "poltsamaa_vald:resource:medi_hairenuputeenus",
+      "itemType": "resource",
+      "title": "MEDI häirenuputeenus",
+      "status": "active",
+      "summary": "KOV lehel tutvustatakse MEDI häirenuputeenust kui eakatele ja liikumispuudega inimestele mõeldud abivahendit hädaolukorras abi kutsumiseks. Häirenupp käivitab hoolekandetelefoni kõne MEDI kõnekeskusesse ning operaator selgitab abivajaduse. KOV lehel on toodud MEDI nõuandeliin ja.",
+      "address": null,
+      "officialUrl": "https://www.poltsamaa.ee/medi",
+      "relatedTo": [],
+      "sourceKeys": [
+        "medi_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "medi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_resource_medi_hairenuputeenus",
+      "document_id": "poltsamaa_vald_resource_medi_hairenuputeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/medi",
+      "content_hash": "c46c469868d33cb0226c1c5c6b0bdc2bb6d76ee9f5808ca02e5f5702162fb782",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_resource_koduandur",
+      "canonical_item_id": "poltsamaa_vald:resource:koduandur",
+      "itemType": "resource",
+      "title": "Koduandur",
+      "status": "active",
+      "summary": "KOV lehel kirjeldatakse koduandurit kui abivahendit üksi elavate eakate, vähenenud toimetulekuvõimega ja puudega inimeste turvalisuse jälgimiseks. Andurid edastavad teateid liikumise, ukse avamise, temperatuuri, suitsu või süsihappegaasi kohta ega filmi ega pildista. Lisainfo kontaktina on lehel Tarmo.",
+      "address": null,
+      "officialUrl": "https://www.poltsamaa.ee/koduandur",
+      "relatedTo": [],
+      "sourceKeys": [
+        "koduandur_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "koduandur_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_resource_koduandur",
+      "document_id": "poltsamaa_vald_resource_koduandur",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/koduandur",
+      "content_hash": "8d036281106e697bf418fe5c57dc8e3421f35d3d5b47f1e8b731871d4d29276b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_resource_vaimse_tervise_abi_ja_kriisiliinid",
+      "canonical_item_id": "poltsamaa_vald:resource:vaimse_tervise_abi_ja_kriisiliinid",
+      "itemType": "resource",
+      "title": "Vaimse tervise abi ja kriisiliinid",
+      "status": "active",
+      "summary": "KOV vaimse tervise abi lehel on kirjas Põltsamaa Perepesas pakutav nõustamine ja üleriigilised abikanalid. Lehel on nimetatud kriisitelefon, hädaabinumber, ohvriabi, vaimse tervise nõustamine, lasteabi, e-nõustamine, Eluliin, hingehoid 116 123 ja perearsti nõuandetelefon 1220.",
+      "address": null,
+      "officialUrl": "https://www.poltsamaa.ee/vaimse-tervise-abi",
+      "relatedTo": [],
+      "sourceKeys": [
+        "vaimse_tervise_abi_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "vaimse_tervise_abi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_resource_vaimse_tervise_abi_ja_kriisiliinid",
+      "document_id": "poltsamaa_vald_resource_vaimse_tervise_abi_ja_kriisiliinid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/vaimse-tervise-abi",
+      "content_hash": "95cf4692f8567c5bd3c2f77a9a59001c31d70bf1feda624ac1afcb13bc5ee7ac",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_resource_ohvriabi",
+      "canonical_item_id": "poltsamaa_vald:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "Ohvriabi lehel on kirjas, et Jõgevamaa ohvriabitöötaja Rita Kaasik võtab vastu ka Põltsamaa politseimajas aadressil Pargi 1, kohtumine tuleb eelnevalt kokku leppida. Ohvriabi pakub tasuta nõustamist, emotsionaalset tuge ja infot abi saamise võimaluste kohta vägivalla, õnnetusjuhtumi või halva kohtlemise korral.",
+      "address": "Pargi 1, Põltsamaa politseimaja",
+      "officialUrl": "https://www.poltsamaa.ee/ohvriabi",
+      "relatedTo": [],
+      "sourceKeys": [
+        "ohvriabi_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "ohvriabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_resource_ohvriabi",
+      "document_id": "poltsamaa_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/ohvriabi",
+      "content_hash": "698c5772a47e1bd48bf66136fea5cc1904d05fccd5c3c29793b822d7e75bcbdf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_resource_soltuvusprobleemide_abi",
+      "canonical_item_id": "poltsamaa_vald:resource:soltuvusprobleemide_abi",
+      "itemType": "resource",
+      "title": "Sõltuvusprobleemide abi",
+      "status": "active",
+      "summary": "Sõltuvusprobleemide lehel on KOV koondanud infot alkoholiprobleemide ravi, uimastisõltuvuse rehabilitatsiooni, MTÜ Lootuse Küla ning hasartmängu- ja digisõltuvuse nõustamise kohta. Lehel nimetatud teenused on välised ressursid, mida KOV kirjeldab infoallikana.",
+      "address": null,
+      "officialUrl": "https://www.poltsamaa.ee/soltuvusprobleemid",
+      "relatedTo": [],
+      "sourceKeys": [
+        "soltuvusprobleemid_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "soltuvusprobleemid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_resource_soltuvusprobleemide_abi",
+      "document_id": "poltsamaa_vald_resource_soltuvusprobleemide_abi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/soltuvusprobleemid",
+      "content_hash": "81350c0bf3ee47c827e196d0d3beb0ca97ca1a420a838c648c34f94e2b504150",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_resource_abivajav_laps_ja_lasteabi",
+      "canonical_item_id": "poltsamaa_vald:resource:abivajav_laps_ja_lasteabi",
+      "itemType": "resource",
+      "title": "Abivajav laps ja lasteabi",
+      "status": "active",
+      "summary": "Abivajava lapse leht selgitab, et abivajav laps on laps, kelle heaolu on ohustatud või kelle puhul on kahtlus väärkohtlemise, hooletusse jätmise või muu lapse õigusi rikkuva olukorra kohta. Abivajavast lapsest tuleb viivitamata teatada kohalikule omavalitsusele või ööpäevaringsele lasteabitelefonile.",
+      "address": null,
+      "officialUrl": "https://www.poltsamaa.ee/abivajav-laps",
+      "relatedTo": [],
+      "sourceKeys": [
+        "abivajav_laps_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "abivajav_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_resource_abivajav_laps_ja_lasteabi",
+      "document_id": "poltsamaa_vald_resource_abivajav_laps_ja_lasteabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/abivajav-laps",
+      "content_hash": "fc9f59715fddc513cbf826edba58b64ebe3c4a2daab17708d952241ad9d25ab9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "poltsamaa_vald_resource_lastekaitse_uldinfo",
+      "canonical_item_id": "poltsamaa_vald:resource:lastekaitse_uldinfo",
+      "itemType": "resource",
+      "title": "Lastekaitse üldinfo",
+      "status": "active",
+      "summary": "Lastekaitse üldteabe leht sisaldab infot laste ja perede abistamise kohta, sh puudega laste peredele tugiisiku- ja lapsehoiuteenuse korraldamise ning hooldajatoetuse määramise kohta. Leht annab praktilist taustainfot lapse üksinda koju jätmise ja lapse parimatest huvidest lähtumise kohta.",
+      "address": null,
+      "officialUrl": "https://www.poltsamaa.ee/uldteave",
+      "relatedTo": [
+        "poltsamaa_vald_contact_katlin_kruus",
+        "poltsamaa_vald_contact_eveli_allik"
+      ],
+      "sourceKeys": [
+        "lastekaitse_uldteave_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "poltsamaa_vald",
+      "municipality_name": "Põltsamaa vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "lastekaitse_uldteave_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "poltsamaa_vald_resource_lastekaitse_uldinfo",
+      "document_id": "poltsamaa_vald_resource_lastekaitse_uldinfo",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.poltsamaa.ee/uldteave",
+      "content_hash": "2d0a8b3609f803518861dbdd1ca98abe0f9668cc2b526aab4ff68530062664e6",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Põltsamaa vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

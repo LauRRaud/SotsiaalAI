@@ -1,0 +1,99 @@
+{
+  "docId": "sotsiaaltoo-eri-2022",
+  "articleId": "anne-tiko-intervjuu-2022-eri",
+  "title": "Anne Tiko: „Õpetades tulevasi sotsiaaltöötajaid õppisin ise väga palju”",
+  "authors": [
+    "Kadri Kuulpak"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö (erinumber)",
+  "issueLabel": "Eri/2022",
+  "section": "30 aastat õpetamist",
+  "pageRange": "28-32",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Intervjuu Anne Tikoga, sotsiaaltöö eriala ühe ülesehitajaga, kes õpetas Tallinna Ülikoolis psühhosotsiaalse töö ja eriala eetika aineid ning juhendas arvukaid lõputöid. Ta rõhutab, et sotsiaalala töötajal ei piisa pelgalt koolis õpetatud oskustest ja teadmistest — olulisim on eetika ja suhtumine klienti — ning et arengupsühholoogia aitab ära tunda inimeste vajadusi arengu eri etappidel.",
+  "tags": [
+    "sotsiaaltööharidus",
+    "eetika",
+    "psühhosotsiaalne töö",
+    "arengupsühholoogia",
+    "intervjuu"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo-ERINUMBER_2022_Part4.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-eri-2022-anne-tiko-intervjuu-2022-eri",
+  "source_sha256": "834d769e330e5c338c28a19e106c4a720efa11c5456972c68d0f699f7e917d16",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2022-anne-tiko-intervjuu-2022-eri",
+    "previous_source_path": "Sotsiaaltoo-ERINUMBER_2022_Part4.txt",
+    "previous_source_original_path": "Sotsiaaltoo-ERINUMBER_2022_Part4.pdf",
+    "reference_stored_source_sha256": "97e31a38b70ccb66e209aa852aad7fb76cd34343310e9cbc957ad8c681a5e366",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo-ERINUMBER_2022.pdf",
+      "source_sha256": "807b48240fe049838a94b8cffd3e1b388f778591bddb0ad5cb542d3cd6ff73b1",
+      "pdf_start_page": 30,
+      "pdf_end_page": 34,
+      "printed_page_range": "28-32",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 34,
+      "source_regions": [
+        {
+          "source_pdf_page": 30,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 31,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 32,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 33,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 34,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "28-32",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo-ERINUMBER_2022.pdf"
+    },
+    "server_page_range": "28-32"
+  }
+}

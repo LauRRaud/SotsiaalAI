@@ -1,0 +1,40 @@
+{
+  "docId": "motisklusi-sotsiaaltoost-2016",
+  "articleId": "normatiivse-professionaliseerumise-valjakutsed-2016",
+  "title": "Normatiivse professionaliseerumise väljakutsed",
+  "authors": [
+    "Hans van Ewijk"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "MÕTISKLUSI",
+  "section": "Peegeldusi Euroopast",
+  "pageRange": "15-16",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb normatiivset professionaliseerumist kui lähenemist, mis seob hea töö eetilise, teostusliku ja esteetilise mõõtme. Fookuses on professionaalse kvaliteedi arendamine, reflektiivsus, meisterlikkus ning organisatsiooni ja sotsiaalpoliitika roll tingimuste loomisel, et spetsialist saaks töötada hästi ja peenetundeliselt.",
+  "tags": [
+    "normatiivne professionaliseerumine",
+    "hea töö",
+    "eetika",
+    "meisterlikkus",
+    "reflektiivne praktika",
+    "sotsiaalpoliitika"
+  ],
+  "source_type": "file",
+  "source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part7.pdf",
+  "document_id": "motisklusi-sotsiaaltoost-2016-normatiivse-professionaliseerumise-valjakutsed-2016",
+  "source_format": "pdf",
+  "source_sha256": "5655d18b99cb46bbad23a259257401611f117d885bac25e085bfcf892414c05b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "motisklusi-sotsiaaltoost-2016-normatiivse-professionaliseerumise-valjakutsed-2016",
+    "previous_source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part7.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "5655d18b99cb46bbad23a259257401611f117d885bac25e085bfcf892414c05b",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

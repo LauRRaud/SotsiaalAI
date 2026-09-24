@@ -1,0 +1,143 @@
+{
+  "source_path": "sotsiaalministeerium_inimkaubanduse_ennetamine_metodoloogia_tooks_noortega.pdf",
+  "source_format": "pdf",
+  "sha256": "3323aae21484e15cc96d18657fba66ba23abe959ae9a97bca219f890447aaa22",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/sotsiaalministeerium_inimkaubanduse_ennetamine_metodoloogia_tooks_noortega.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "sotsiaalministeerium_inimkaubanduse_ennetamine_metodoloogia_tooks_noortega",
+          "title": "Inimkaubanduse ennetamine: metodoloogia tööks noortega",
+          "url": "https://sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Sooline_vordoiguslikkus/Inimkaubandus_ja_prostitusioon/inimkaubanduse_ennetamine_metodoloogia_tooks_noortega.pdf",
+          "normalized_url": "https://sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Sooline_vordoiguslikkus/Inimkaubandus_ja_prostitusioon/inimkaubanduse_ennetamine_metodoloogia_tooks_noortega.pdf",
+          "source_format": "pdf",
+          "source_type": "official_guideline",
+          "resource_type": "method_guidance",
+          "publisher": "Sotsiaalministeerium",
+          "organization_id": "sotsiaalministeerium",
+          "collection_hint": "guidance_and_methods",
+          "evidence_role": "practice_guidance",
+          "topic_tags": [
+            "Sotsiaalministeerium",
+            "lapsed ja pered",
+            "noor",
+            "ohvriabi",
+            "inimkaubandus",
+            "praktiline töövahend",
+            "spetsialisti juhend"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "high",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Sotsiaalministeerium",
+            "heading_3": "Ohvriabi, lähisuhtevägivald, inimkaubandus",
+            "heading_4": null,
+            "line": 539,
+            "order": 281
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Inimkaubanduse ennetamine: metodoloogia tööks noortega"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Sotsiaalministeerium"
+          ],
+          "organizations_seen": [
+            "sotsiaalministeerium"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Sotsiaalministeerium",
+              "heading_3": "Ohvriabi, lähisuhtevägivald, inimkaubandus",
+              "line": 539,
+              "order": 281
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Sooline_vordoiguslikkus/Inimkaubandus_ja_prostitusioon/inimkaubanduse_ennetamine_metodoloogia_tooks_noortega.pdf"
+        },
+        "final_url": "https://sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Sooline_vordoiguslikkus/Inimkaubandus_ja_prostitusioon/inimkaubanduse_ennetamine_metodoloogia_tooks_noortega.pdf",
+        "redirects": [],
+        "sha256": "3323aae21484e15cc96d18657fba66ba23abe959ae9a97bca219f890447aaa22",
+        "bytes": 4111252,
+        "downloaded_at": "2026-08-14T08:00:55.405Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "sotsiaalministeerium_inimkaubanduse_ennetamine_metodoloogia_tooks_noortega",
+      "metadata": {
+        "createdAt": "2026-06-11T18:58:53.618201+00:00",
+        "type": "FILE",
+        "fileName": "inimkaubanduse_ennetamine_metodoloogia_tooks_noortega.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-11T18:58:53.555554+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/1f1a48d47d19/inimkaubanduse_ennetamine_metodoloogia_tooks_noortega.pdf",
+        "title": "Inimkaubanduse ennetamine: metodoloogia tööks noortega",
+        "description": "Source master headings: Sotsiaalministeerium; Ohvriabi, lähisuhtevägivald, inimkaubandus",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": null,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–156",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "sotsiaalministeerium_inimkaubanduse_ennetamine_metodoloogia_tooks_noortega",
+        "document_id": "sotsiaalministeerium_inimkaubanduse_ennetamine_metodoloogia_tooks_noortega",
+        "source_type": "official_guideline",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-11",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "4987e5c3be270f1ac6a03227d404af6865239a24058e395a1ca62eac75547b79",
+        "url": "https://sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Sooline_vordoiguslikkus/Inimkaubandus_ja_prostitusioon/inimkaubanduse_ennetamine_metodoloogia_tooks_noortega.pdf",
+        "url_canonical": "https://sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Sooline_vordoiguslikkus/Inimkaubandus_ja_prostitusioon/inimkaubanduse_ennetamine_metodoloogia_tooks_noortega.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "sotsiaalministeerium_inimkaubanduse_ennetamine_metodoloogia_tooks_noortega",
+        "updatedAt": "2026-06-11T18:58:53.618224+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

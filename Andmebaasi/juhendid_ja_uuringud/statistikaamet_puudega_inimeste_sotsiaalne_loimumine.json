@@ -1,0 +1,150 @@
+{
+  "source_path": "statistikaamet_puudega_inimeste_sotsiaalne_loimumine.pdf",
+  "source_format": "pdf",
+  "sha256": "c29898ae72e0ec0b71675e106b9e5860fb3d63cb94c09d5ac3bb2c10bc3621c9",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/statistikaamet_puudega_inimeste_sotsiaalne_loimumine.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "statistikaamet_puudega_inimeste_sotsiaalne_loimumine",
+          "title": "Puudega inimeste sotsiaalne lõimumine",
+          "url": "https://www.stat.ee/sites/default/files/2020-07/Puudega_inimeste_sotsiaalne_loimumine.pdf",
+          "normalized_url": "https://www.stat.ee/sites/default/files/2020-07/Puudega_inimeste_sotsiaalne_loimumine.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "Statistikaamet",
+          "organization_id": "statistikaamet",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Statistikaamet",
+            "puue",
+            "puudega inimene",
+            "erivajadus",
+            "statistika",
+            "sotsiaalnäitajad",
+            "sotsiaalne lõimumine",
+            "uuring",
+            "raport",
+            "analüüs"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_019",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "Statistikaamet",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 221,
+            "order": 141
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Puudega inimeste sotsiaalne lõimumine"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Statistikaamet"
+          ],
+          "organizations_seen": [
+            "statistikaamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Statistikaamet",
+              "line": 221,
+              "order": 141
+            },
+            {
+              "heading_2": "Statistikaamet",
+              "line": 695,
+              "order": 348
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.stat.ee/sites/default/files/2020-07/Puudega_inimeste_sotsiaalne_loimumine.pdf"
+        },
+        "final_url": "https://www.stat.ee/sites/default/files/2020-07/Puudega_inimeste_sotsiaalne_loimumine.pdf",
+        "redirects": [],
+        "sha256": "c29898ae72e0ec0b71675e106b9e5860fb3d63cb94c09d5ac3bb2c10bc3621c9",
+        "bytes": 2533958,
+        "downloaded_at": "2026-08-14T08:00:36.176Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "statistikaamet_puudega_inimeste_sotsiaalne_loimumine",
+      "metadata": {
+        "createdAt": "2026-06-12T03:37:40.058957+00:00",
+        "type": "FILE",
+        "fileName": "Puudega_inimeste_sotsiaalne_loimumine.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:37:39.983376+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/0e608bb49091/Puudega_inimeste_sotsiaalne_loimumine.pdf",
+        "title": "Puudega inimeste sotsiaalne lõimumine",
+        "description": "Duplikaadid ühendatud: 1 lisakirjet. Source master headings: Statistikaamet",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2020,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–181",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "statistikaamet_puudega_inimeste_sotsiaalne_loimumine",
+        "document_id": "statistikaamet_puudega_inimeste_sotsiaalne_loimumine",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "c72616076e83206ad6446ff1db282e70983c410e3a1b6fa1f354854693c43787",
+        "url": "https://www.stat.ee/sites/default/files/2020-07/Puudega_inimeste_sotsiaalne_loimumine.pdf",
+        "url_canonical": "https://www.stat.ee/sites/default/files/2020-07/Puudega_inimeste_sotsiaalne_loimumine.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "statistikaamet_puudega_inimeste_sotsiaalne_loimumine",
+        "updatedAt": "2026-06-12T03:37:40.058984+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

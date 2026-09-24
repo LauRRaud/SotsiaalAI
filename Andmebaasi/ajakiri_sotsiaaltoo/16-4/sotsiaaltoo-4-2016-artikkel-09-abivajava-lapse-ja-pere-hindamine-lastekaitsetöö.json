@@ -1,0 +1,120 @@
+{
+  "docId": "sotsiaaltoo-4-2016",
+  "articleId": "sotsiaaltoo-4-2016-artikkel-09-abivajava-lapse-ja-pere-hindamine-lastekaitsetöö",
+  "title": "Abivajava lapse ja pere hindamine lastekaitsetöös: Harjumaa lastekaitsetöötajate mõtteid ja arvamusi kliendi kaasamisest",
+  "authors": [
+    "Egle Välba",
+    "Karmen Toros",
+    "Anne Tiko"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2016",
+  "section": "Uurimus",
+  "pageRange": "49-55",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Egle Välba, Karmen Toros ja Anne Tiko esitavad hasartmängumaksu nõukogu rahastatud uuringu esmased tulemused: 27. juunist 28. septembrini 2016 tehti 26 poolstruktureeritud intervjuud Harjumaa ja Tallinna lastekaitsetöötajaga, kelle keskmine vanus oli 44 aastat ja keskmine tööaeg 11,3 aastat. Kaasamist raskendava tegurina nimetati eelkõige lastekaitse negatiivset kuvandit lapse äravõtjana, samuti suurt töökoormust, ajapuudust, ühtse hindamisinstrumendi puudumist ja teenuste vähesust. Kõige suuremaks peeti lapse intervjueerimise koolituse vajadust.",
+  "tags": [
+    "uurimus",
+    "lastekaitsetöötaja",
+    "abivajaduse hindamine",
+    "kliendi kaasamine",
+    "harjumaa",
+    "usaldussuhe"
+  ],
+  "source_type": "file",
+  "source_path": "2016_4_artikkel_09_abivajava_lapse_ja_pere_hindamine_lastekaitsetoos_ha.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-09-abivajava-lapse-ja-pere-hindamine-lastekaitset",
+  "source_sha256": "655e1f360d9cc5cd533c7a25fbe865f800e1132769830b22b6342c4063374650",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-09-abivajava-lapse-ja-pere-hindamine-lastekaitset",
+    "previous_source_path": "2016_4_artikkel_09_abivajava_lapse_ja_pere_hindamine_lastekaitsetoos_ha.txt",
+    "previous_source_original_path": "4-2016.pdf",
+    "reference_stored_source_sha256": "55d46867ee116f782563bbd77f594d6c7313360b4a4b1ff8f67d83384cd51103",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf",
+      "source_sha256": "0f07da03ffde36588435e96f8dda0f52a8140fbf9cc4201bb95e85b594e03fc9",
+      "pdf_start_page": 51,
+      "pdf_end_page": 57,
+      "printed_page_range": "49-56",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 58,
+      "source_regions": [
+        {
+          "source_pdf_page": 51,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 52,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 53,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 54,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 55,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 56,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 57,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "49-55",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf"
+    },
+    "server_page_range": "49-56"
+  }
+}

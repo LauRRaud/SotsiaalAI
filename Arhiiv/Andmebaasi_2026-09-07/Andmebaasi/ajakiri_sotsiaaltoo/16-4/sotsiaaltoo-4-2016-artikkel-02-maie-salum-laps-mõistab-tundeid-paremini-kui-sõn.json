@@ -1,0 +1,100 @@
+{
+  "docId": "sotsiaaltoo-4-2016",
+  "articleId": "sotsiaaltoo-4-2016-artikkel-02-maie-salum-laps-mõistab-tundeid-paremini-kui-sõn",
+  "title": "Maie Salum: „Laps mõistab tundeid paremini kui sõnu”",
+  "authors": [
+    "Rain Uusen"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2016",
+  "section": "Persoon",
+  "pageRange": "3-7",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Rain Uuseni persoonilugu psühholoogist Maie Salumist, kes on 20 aastat töötanud nõustaja, kasuperede koolitaja ja pereuuringute läbiviijana ning on MTÜ Oma Pere perenõustaja. Salum selgitab, et 1. jaanuarist 2017 võtab riigisisese lapsendamise ja pereuuringud maavalitsustelt üle Sotsiaalkindlustusamet. Ta kirjeldab ligi neli kuud kestvat PRIDE-koolitust üheksa teemaga, kuus kuni seitse tundi kestvaid perevestlusi ning leiab, et Eesti tugisüsteemid on Põhjamaadega võrreldes nõrgad ja pärast lapsendamist peret enam ei jälgita.",
+  "tags": [
+    "persoonilugu",
+    "lapsendamine",
+    "pereuuring",
+    "pride-koolitus",
+    "sotsiaalkindlustusamet",
+    "kasupere"
+  ],
+  "source_type": "file",
+  "source_path": "2016_4_artikkel_02_maie_salum_laps_moistab_tundeid_paremini_kui_sonu.pdf",
+  "added": "2026-08-17",
+  "fulltext_note": "Tekst korrastatud 17.08.2026 (pdftotext oli artikli piiri valesti lõiganud).",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-02-maie-salum-laps-m-istab-tundeid-paremini-kui-s-n",
+  "source_sha256": "13faa4106e7a8ffdc00a298c86c9e3a1a7c6ce5a9053fb28f6474747be8b3698",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-02-maie-salum-laps-m-istab-tundeid-paremini-kui-s-n",
+    "previous_source_path": "2016_4_artikkel_02_maie_salum_laps_moistab_tundeid_paremini_kui_sonu.txt",
+    "previous_source_original_path": "4-2016.pdf",
+    "reference_stored_source_sha256": "0e12129aa1b6ced07912dfc4fc69e2b2ea5299664f83f86e7d9f458368d25057",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf",
+      "source_sha256": "0f07da03ffde36588435e96f8dda0f52a8140fbf9cc4201bb95e85b594e03fc9",
+      "pdf_start_page": 5,
+      "pdf_end_page": 9,
+      "printed_page_range": "3-8",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 10,
+      "source_regions": [
+        {
+          "source_pdf_page": 5,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 6,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 7,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 8,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 9,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "3-7"
+    },
+    "server_page_range": "3-8"
+  }
+}

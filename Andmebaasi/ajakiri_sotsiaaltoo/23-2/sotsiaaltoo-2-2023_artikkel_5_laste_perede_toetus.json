@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2023",
+  "articleId": "kuidas-plaanitakse-toetada-laste-ja-perede-heaolu-2023-2",
+  "title": "Kuidas plaanitakse toetada laste ja perede heaolu?",
+  "authors": [
+    "Maarja Kärson"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2023",
+  "section": "Sotsiaalpoliitika",
+  "pageRange": "15-16",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel võtab kokku, millised tegevussuunad on „Heaolu arengukavas 2023–2030“ laste ja perede heaolu toetamiseks.\nKirjeldatakse meetmeid sündimuse toetamiseks, peresõbraliku keskkonna loomiseks, lastekaitsekorralduse uuendamiseks\nning erivajadustega laste tugisüsteemi arendamiseks. Fookuses on ka väärkoheldud laste abistamise teekond, suure\nhooldus- ja abivajadusega laste perede toetamine ning perepõhise asendushoolduse tugevdamine, sh kutseliste\nhooldusperede süsteemi loomine ja asendushoolduselt ellu astuvate noorte jätkutoe süsteem.",
+  "tags": [
+    "laste ja perede heaolu",
+    "Heaolu arengukava",
+    "lastekaitse",
+    "erivajadusega lapsed",
+    "asendushooldus",
+    "ohvriabi",
+    "traumateadlikkus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2023_web_par_Part6.pdf",
+  "document_id": "sotsiaaltoo-2-2023-kuidas-plaanitakse-toetada-laste-ja-perede-heaolu-2023-2",
+  "source_format": "pdf",
+  "source_sha256": "1c6f62e297af1af02607d42bc9df476fe9253509fe80d13d2fcd1517636643fb",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2023-kuidas-plaanitakse-toetada-laste-ja-perede-heaolu-2023-2",
+    "previous_source_path": "Sotsiaaltoo_2_2023_web_par_Part6.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "1c6f62e297af1af02607d42bc9df476fe9253509fe80d13d2fcd1517636643fb",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2024",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "kiusamise-levimus-eesti-noorte-seas-ja-sellega-seotud-tegurid-2024-2",
+  "title": "Kiusamise levimus Eesti noorte seas ja sellega seotud tegurid",
+  "authors": [
+    "Jaanika Piksööt"
+  ],
+  "section": "Uurimus",
+  "pageRange": "76-82",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "description": "Uurimus, mis põhineb rahvusvahelise kooliõpilaste tervisekäitumise uuringu (HBSC) andmetel ja analüüsib kooli- ja küberkiusamise levimust Eesti 11–15-aastaste seas ning sellega seotud tegureid. Artikkel käsitleb ajatrende, võrdleb olukorda teiste riikidega ning seostab kiusamiskogemust noorte tervise, eluga rahulolu, pere- ja koolikeskkonna ning vaimse heaoluga.",
+  "tags": [
+    "koolikiusamine",
+    "küberkiusamine",
+    "noored",
+    "HBSC",
+    "vaimne tervis",
+    "koolikeskkond",
+    "riskikäitumine",
+    "Tervise Arengu Instituut"
+  ],
+  "source_path": "Sotsiaaltoo_2_2024_web_Part17.pdf",
+  "document_id": "sotsiaaltoo-2-2024-kiusamise-levimus-eesti-noorte-seas-ja-sellega-seotud-tegurid-2024-2",
+  "source_format": "pdf",
+  "source_sha256": "111b6fff1a187319454643f8f80afa85584ba83831a6abb577fcc512d4f47837",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2024-kiusamise-levimus-eesti-noorte-seas-ja-sellega-seotud-tegurid-2024-2",
+    "previous_source_path": "Sotsiaaltoo_2_2024_web_Part17.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "111b6fff1a187319454643f8f80afa85584ba83831a6abb577fcc512d4f47837",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

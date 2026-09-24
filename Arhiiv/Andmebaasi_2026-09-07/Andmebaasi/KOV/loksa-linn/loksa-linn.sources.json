@@ -1,0 +1,1269 @@
+{
+  "schemaVersion": "kov-sources-v2.5-sourcepackage",
+  "docId": "kov-loksa-linn",
+  "document_id": "kov-loksa-linn",
+  "municipality": "Loksa linn",
+  "municipality_id": "loksa_linn",
+  "county": "Harjumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "sources": [
+    {
+      "source_id": "home",
+      "title": "Loksa linn – avaleht",
+      "url": "https://loksalinn.ee/",
+      "url_canonical": "https://loksalinn.ee/",
+      "normalized_url": "https://loksalinn.ee/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "navigation_start",
+        "social_menu_structure"
+      ],
+      "document_id": "home",
+      "source_key": "home",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "470832e67e2e666a5ddf67bd7af48563a2e43fe81c736ef151c06cc1b8b66c09",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "home"
+    },
+    {
+      "source_id": "social_services_page",
+      "title": "Sotsiaalteenused – Loksa linn",
+      "url": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "url_canonical": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "normalized_url": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "services",
+        "service_descriptions"
+      ],
+      "document_id": "social_services_page",
+      "source_key": "social_services_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_resource_riigi_infotelefonid",
+        "loksa_linn_service_asendushooldusteenus",
+        "loksa_linn_service_eluruumi_tagamine",
+        "loksa_linn_service_isikliku_abistaja_teenus",
+        "loksa_linn_service_jarelhooldusteenus",
+        "loksa_linn_service_koduteenus",
+        "loksa_linn_service_lapsehoiuteenus",
+        "loksa_linn_service_sotsiaaltransporditeenus",
+        "loksa_linn_service_taisealise_isiku_hooldus",
+        "loksa_linn_service_tugiisikuteenus",
+        "loksa_linn_service_turvakoduteenus",
+        "loksa_linn_service_vaimse_tervise_teenus",
+        "loksa_linn_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+        "loksa_linn_service_valtimatu_sotsiaalabi",
+        "loksa_linn_service_varjupaigateenus",
+        "loksa_linn_service_volanoustamisteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "df6813117c0e0c592cdc121fa8de936da31caa9dd8dd2a393811a8355588ab16",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "social_services_page"
+    },
+    {
+      "source_id": "benefits_page",
+      "title": "Sotsiaaltoetused – Loksa linn",
+      "url": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "url_canonical": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "normalized_url": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "benefits",
+        "benefit_descriptions"
+      ],
+      "document_id": "benefits_page",
+      "source_key": "benefits_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_benefit_elluastumistoetus",
+        "loksa_linn_benefit_huvihariduse_ja_huvitegevuse_toetus",
+        "loksa_linn_benefit_juubelitoetus",
+        "loksa_linn_benefit_kohatasu_toetus",
+        "loksa_linn_benefit_matusetoetus",
+        "loksa_linn_benefit_pensionitoetus",
+        "loksa_linn_benefit_puudega_lapse_hooldajatoetus",
+        "loksa_linn_benefit_ranitsatoetus",
+        "loksa_linn_benefit_raske_voi_sugava_puudega_lapse_abistamise_toetus",
+        "loksa_linn_benefit_sunnitoetus",
+        "loksa_linn_benefit_taiendav_sotsiaaltoetus",
+        "loksa_linn_benefit_toidutoetus",
+        "loksa_linn_benefit_toimetulekutoetus",
+        "loksa_linn_benefit_uhekordne_toetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "9290c18dbc56b173b5e7ea3b780b90085dc132b7322135051d43be627e620765",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "benefits_page"
+    },
+    {
+      "source_id": "forms_page",
+      "title": "Blanketid – Loksa linn",
+      "url": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/blanketid/",
+      "url_canonical": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/blanketid/",
+      "normalized_url": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/blanketid/",
+      "source_type": "application_form",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "forms_list",
+        "submission_channels"
+      ],
+      "document_id": "forms_page",
+      "source_key": "forms_page",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_form_spoku_iseteenindus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "da2b42631509471dc61b9403fb4806ffd10dc81ca7e735c86a619b23060bda70",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "forms_page"
+    },
+    {
+      "source_id": "contact_page",
+      "title": "Kontakt – Loksa linn",
+      "url": "https://loksalinn.ee/linn-uudised-ja-kontakt/kontakt-ja-teated/kontakt/",
+      "url_canonical": "https://loksalinn.ee/linn-uudised-ja-kontakt/kontakt-ja-teated/kontakt/",
+      "normalized_url": "https://loksalinn.ee/linn-uudised-ja-kontakt/kontakt-ja-teated/kontakt/",
+      "source_type": "contact_page",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "contacts"
+      ],
+      "document_id": "contact_page",
+      "source_key": "contact_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_contact_anne_klettenberg",
+        "loksa_linn_contact_hilleri_treisalt",
+        "loksa_linn_contact_irina_karotam",
+        "loksa_linn_contact_kerlin_miklas",
+        "loksa_linn_contact_loksa_linnavalitsus"
+      ],
+      "sections_present": [],
+      "content_hash": "f577e13926c0a9b9007c751c53ef4dc7b0e7033baf49ff2373b10aa190922625",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "contact_page"
+    },
+    {
+      "source_id": "noortegarantii_page",
+      "title": "Noortegarantii tugisüsteem – Loksa linn",
+      "url": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/noortegarantii-tugisusteem/",
+      "url_canonical": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/noortegarantii-tugisusteem/",
+      "normalized_url": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/noortegarantii-tugisusteem/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resource",
+        "contact"
+      ],
+      "document_id": "noortegarantii_page",
+      "source_key": "noortegarantii_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_resource_noortegarantii_tugisusteem"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "760d689790976eedadcefe9387cedcfc5654cdb5a14e4c5c3c9b3c839d5b3857",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "noortegarantii_page"
+    },
+    {
+      "source_id": "abivahendi_parkimiskaart_page",
+      "title": "Abivahendi kaart, parkimiskaart – Loksa linn",
+      "url": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/abivahendi-kaart-parkimiskaart/",
+      "url_canonical": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/abivahendi-kaart-parkimiskaart/",
+      "normalized_url": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/abivahendi-kaart-parkimiskaart/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resource"
+      ],
+      "document_id": "abivahendi_parkimiskaart_page",
+      "source_key": "abivahendi_parkimiskaart_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_resource_isiklik_abivahendi_kaart",
+        "loksa_linn_resource_puudega_inimese_soiduki_parkimiskaart"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "546fe18178107dda1515c164c9c7fe916ce1968cb8890b6eca5e93f002c1407a",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "abivahendi_parkimiskaart_page"
+    },
+    {
+      "source_id": "matuseinfo_page",
+      "title": "Matuseinfo – Loksa linn",
+      "url": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/matuseinfo/",
+      "url_canonical": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/matuseinfo/",
+      "normalized_url": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/matuseinfo/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resource",
+        "contact"
+      ],
+      "document_id": "matuseinfo_page",
+      "source_key": "matuseinfo_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_contact_eivolt_genergard",
+        "loksa_linn_resource_matuseinfo"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "51259ebc89056ba9661b1b41e9a9aebfa68eb049f1d07eb58d7cf670d71ae926",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "matuseinfo_page"
+    },
+    {
+      "source_id": "kasulikud_lingid_page",
+      "title": "Kasulikud lingid – Loksa linn",
+      "url": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/kasulikud-lingid/",
+      "url_canonical": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/kasulikud-lingid/",
+      "normalized_url": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/kasulikud-lingid/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resource"
+      ],
+      "document_id": "kasulikud_lingid_page",
+      "source_key": "kasulikud_lingid_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_resource_kasulikud_lingid"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "81ce81e823f8840f6cbe3353cca5679b97b5405a9b18cd8af803e066920b33d4",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "kasulikud_lingid_page"
+    },
+    {
+      "source_id": "lastekaitse_page",
+      "title": "Lastekaitse – Loksa linn",
+      "url": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse/",
+      "url_canonical": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse/",
+      "normalized_url": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/lastekaitse/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resource",
+        "contact"
+      ],
+      "document_id": "lastekaitse_page",
+      "source_key": "lastekaitse_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_resource_lasteabi_telefon",
+        "loksa_linn_resource_lastekaitse_info"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "f69d5f025d1caf7d3c0b2c7927556ac535d8c84edd218a21b2816badab766f27",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "lastekaitse_page"
+    },
+    {
+      "source_id": "perelepitus_page",
+      "title": "Perelepitus – Loksa linn",
+      "url": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/perelepitus/",
+      "url_canonical": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/perelepitus/",
+      "normalized_url": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/perelepitus/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resource"
+      ],
+      "document_id": "perelepitus_page",
+      "source_key": "perelepitus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_resource_perelepitus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "83de7a389eb74a4e337c8a5f21fb7248fc4c04d7fc995b559e945c6dc04be78e",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "perelepitus_page"
+    },
+    {
+      "source_id": "hoolekandeasutused_page",
+      "title": "Hoolekandeaasutused – Loksa linn",
+      "url": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/tervishoid-ja-hoolekanne/hoolekandeaasutused/",
+      "url_canonical": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/tervishoid-ja-hoolekanne/hoolekandeaasutused/",
+      "normalized_url": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/tervishoid-ja-hoolekanne/hoolekandeaasutused/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resource"
+      ],
+      "document_id": "hoolekandeasutused_page",
+      "source_key": "hoolekandeasutused_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_resource_loksa_eakate_kodu_posti_29",
+        "loksa_linn_resource_loksa_eakate_kodu_tallinna_26"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "b013f70730ad3c85374442de291f0a08ee2ca99d7c1c2804288e0870a54668b3",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "hoolekandeasutused_page"
+    },
+    {
+      "source_id": "abivajav_inimene_page",
+      "title": "Kuidas aidata abivajavat inimest – Loksa linn",
+      "url": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/tervishoid-ja-hoolekanne/kuidas-aidata-abivajavat-inimest/",
+      "url_canonical": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/tervishoid-ja-hoolekanne/kuidas-aidata-abivajavat-inimest/",
+      "normalized_url": "https://loksalinn.ee/pere-sotsiaal-ja-tervishoid/tervishoid-ja-hoolekanne/kuidas-aidata-abivajavat-inimest/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resource"
+      ],
+      "document_id": "abivajav_inimene_page",
+      "source_key": "abivajav_inimene_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_resource_medi_hairenuputeenus",
+        "loksa_linn_resource_ohvriabi"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "cae1ae87e0ae2b20e9ceac59c83cc6caf70c4a4896f751e800e53f8ea7efa8c8",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "abivajav_inimene_page"
+    },
+    {
+      "source_id": "kriisivalmidus_page",
+      "title": "Kriisideks valmisolek – Loksa linn",
+      "url": "https://loksalinn.ee/linn-uudised-ja-kontakt/korrakaitse-ja-turvalisus/kriisideks-valmisolek/",
+      "url_canonical": "https://loksalinn.ee/linn-uudised-ja-kontakt/korrakaitse-ja-turvalisus/kriisideks-valmisolek/",
+      "normalized_url": "https://loksalinn.ee/linn-uudised-ja-kontakt/korrakaitse-ja-turvalisus/kriisideks-valmisolek/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resource"
+      ],
+      "document_id": "kriisivalmidus_page",
+      "source_key": "kriisivalmidus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_resource_kriisivalmiduse_kontaktid"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "c1d7331a7483d2e7a6c076b126b26d4faee891d3edc32626cc690a897e065109",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "kriisivalmidus_page"
+    },
+    {
+      "source_id": "form_uhekordse_toetuse_taotlus_file",
+      "title": "Ühekordse toetuse taotlus (PDF)",
+      "url": "https://loksalinn.ee/wp-content/uploads/2025/02/yhekordse_toetuse_taotlus.pdf",
+      "url_canonical": "https://loksalinn.ee/wp-content/uploads/2025/02/yhekordse_toetuse_taotlus.pdf",
+      "normalized_url": "https://loksalinn.ee/wp-content/uploads/2025/02/yhekordse_toetuse_taotlus.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "form_uhekordse_toetuse_taotlus_file",
+      "source_key": "form_uhekordse_toetuse_taotlus_file",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_form_uhekordse_toetuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "5747eaac6a212040d7aaf9976beb84db41afc6422999b78cefb8cbf9c714a4cb",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_uhekordse_toetuse_taotlus_file"
+    },
+    {
+      "source_id": "form_toimetulekutoetuse_taotlus_file",
+      "title": "Toimetulekutoetuse taotlus (PDF)",
+      "url": "https://loksalinn.ee/wp-content/uploads/2025/02/Lisa-1-toimetulek.pdf",
+      "url_canonical": "https://loksalinn.ee/wp-content/uploads/2025/02/Lisa-1-toimetulek.pdf",
+      "normalized_url": "https://loksalinn.ee/wp-content/uploads/2025/02/Lisa-1-toimetulek.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "form_toimetulekutoetuse_taotlus_file",
+      "source_key": "form_toimetulekutoetuse_taotlus_file",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_form_toimetulekutoetuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "24a82cb5cc63cb9c1f321800794831c47689c9dca0a397b9939fc131c8a47d4d",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_toimetulekutoetuse_taotlus_file"
+    },
+    {
+      "source_id": "form_toimetulekutoetuse_esemete_loetelu_file",
+      "title": "Toimetulekutoetuse esemete loetelu (PDF)",
+      "url": "https://loksalinn.ee/wp-content/uploads/2025/02/Lisa-2-toimetulek.pdf",
+      "url_canonical": "https://loksalinn.ee/wp-content/uploads/2025/02/Lisa-2-toimetulek.pdf",
+      "normalized_url": "https://loksalinn.ee/wp-content/uploads/2025/02/Lisa-2-toimetulek.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "form_toimetulekutoetuse_esemete_loetelu_file",
+      "source_key": "form_toimetulekutoetuse_esemete_loetelu_file",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_form_toimetulekutoetuse_esemete_loetelu"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "9c867e71c5288fc7f4d9f9c6558186cdc6af716810499956da8f59c7890deac8",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_toimetulekutoetuse_esemete_loetelu_file"
+    },
+    {
+      "source_id": "form_huvihariduse_taotlus_file",
+      "title": "Huvihariduse ja huvitegevuse toetuse taotlus (PDF)",
+      "url": "https://loksalinn.ee/wp-content/uploads/2025/02/huvihariduse_ja_huvitegevuse_toetuse_taotlus.pdf",
+      "url_canonical": "https://loksalinn.ee/wp-content/uploads/2025/02/huvihariduse_ja_huvitegevuse_toetuse_taotlus.pdf",
+      "normalized_url": "https://loksalinn.ee/wp-content/uploads/2025/02/huvihariduse_ja_huvitegevuse_toetuse_taotlus.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "form_huvihariduse_taotlus_file",
+      "source_key": "form_huvihariduse_taotlus_file",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_form_huvihariduse_ja_huvitegevuse_toetuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "561440609697a8297cc6763541ca076d7068972e38d3ff6bffb75faead24d462",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_huvihariduse_taotlus_file"
+    },
+    {
+      "source_id": "form_raske_puude_abi_taotlus_file",
+      "title": "Raske või sügava puudega lapse abistamise toetuse taotlus (PDF)",
+      "url": "https://loksalinn.ee/wp-content/uploads/2025/02/puudega_lapse_abistamise_toetuse_taotlus.pdf",
+      "url_canonical": "https://loksalinn.ee/wp-content/uploads/2025/02/puudega_lapse_abistamise_toetuse_taotlus.pdf",
+      "normalized_url": "https://loksalinn.ee/wp-content/uploads/2025/02/puudega_lapse_abistamise_toetuse_taotlus.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "form_raske_puude_abi_taotlus_file",
+      "source_key": "form_raske_puude_abi_taotlus_file",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_form_raske_voi_sugava_puudega_lapse_abistamise_toetuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "7ee471d36e4d1107fb54f38ff19d79092b7794c98facbbad369a45b906e5a4ac",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_raske_puude_abi_taotlus_file"
+    },
+    {
+      "source_id": "form_toidu_kohatasu_taotlus_file",
+      "title": "Toidu- ja kohatasu toetuse taotlus (PDF)",
+      "url": "https://loksalinn.ee/wp-content/uploads/2025/02/Lisa-6_toidu-ja-kohatasu-toetus.pdf",
+      "url_canonical": "https://loksalinn.ee/wp-content/uploads/2025/02/Lisa-6_toidu-ja-kohatasu-toetus.pdf",
+      "normalized_url": "https://loksalinn.ee/wp-content/uploads/2025/02/Lisa-6_toidu-ja-kohatasu-toetus.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "form_toidu_kohatasu_taotlus_file",
+      "source_key": "form_toidu_kohatasu_taotlus_file",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_form_toidu_ja_kohatasu_toetuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "ffe25551d6e24413776c4e58d5fea37ea9ed68ec2de7a428cc6be0e0736d0176",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_toidu_kohatasu_taotlus_file"
+    },
+    {
+      "source_id": "form_sunnitoetuse_taotlus_file",
+      "title": "Sünnitoetuse taotlus (PDF)",
+      "url": "https://loksalinn.ee/wp-content/uploads/2025/02/Lisa-9-sunnitoetus.pdf",
+      "url_canonical": "https://loksalinn.ee/wp-content/uploads/2025/02/Lisa-9-sunnitoetus.pdf",
+      "normalized_url": "https://loksalinn.ee/wp-content/uploads/2025/02/Lisa-9-sunnitoetus.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "form_sunnitoetuse_taotlus_file",
+      "source_key": "form_sunnitoetuse_taotlus_file",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_form_sunnitoetuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "37d9c316b5b760e1f7b2eb985039214f966c2c0a9bdc05228efba086a43c1387",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_sunnitoetuse_taotlus_file"
+    },
+    {
+      "source_id": "form_matusetoetuse_taotlus_file",
+      "title": "Matusetoetuse taotlus (PDF)",
+      "url": "https://loksalinn.ee/wp-content/uploads/2025/02/matusetoetuse_taotlus-2021.pdf",
+      "url_canonical": "https://loksalinn.ee/wp-content/uploads/2025/02/matusetoetuse_taotlus-2021.pdf",
+      "normalized_url": "https://loksalinn.ee/wp-content/uploads/2025/02/matusetoetuse_taotlus-2021.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "form_matusetoetuse_taotlus_file",
+      "source_key": "form_matusetoetuse_taotlus_file",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_form_matusetoetuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "bfe9f5967a2d4d57d68b16b0837f6c9281fb558daf8764540fb449a51112fe06",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_matusetoetuse_taotlus_file"
+    },
+    {
+      "source_id": "form_elluastumistoetuse_taotlus_file",
+      "title": "Elluastumistoetuse taotlus (PDF)",
+      "url": "https://loksalinn.ee/wp-content/uploads/2025/02/elluastumistoetuse_taotlus_taidetav_pdf.pdf",
+      "url_canonical": "https://loksalinn.ee/wp-content/uploads/2025/02/elluastumistoetuse_taotlus_taidetav_pdf.pdf",
+      "normalized_url": "https://loksalinn.ee/wp-content/uploads/2025/02/elluastumistoetuse_taotlus_taidetav_pdf.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "form_elluastumistoetuse_taotlus_file",
+      "source_key": "form_elluastumistoetuse_taotlus_file",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_form_elluastumistoetuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "ebc35e3f0b6d5206a907d452331e5a5910875df34e9ae5dc817201f7aed8a9ef",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_elluastumistoetuse_taotlus_file"
+    },
+    {
+      "source_id": "form_puudega_lapse_hooldajatoetuse_taotlus_file",
+      "title": "Puudega lapse hooldajatoetuse taotlus (PDF)",
+      "url": "https://loksalinn.ee/wp-content/uploads/2025/02/puudega_lapse_hooldajatoetuse_taotlus.pdf",
+      "url_canonical": "https://loksalinn.ee/wp-content/uploads/2025/02/puudega_lapse_hooldajatoetuse_taotlus.pdf",
+      "normalized_url": "https://loksalinn.ee/wp-content/uploads/2025/02/puudega_lapse_hooldajatoetuse_taotlus.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "form_puudega_lapse_hooldajatoetuse_taotlus_file",
+      "source_key": "form_puudega_lapse_hooldajatoetuse_taotlus_file",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_form_puudega_lapse_hooldajatoetuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "f62de816218134639f61185a8bd31ddbefd0be5a11a5d7b81b61ea2d59a1abe9",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_puudega_lapse_hooldajatoetuse_taotlus_file"
+    },
+    {
+      "source_id": "form_juubelitoetuse_taotlus_file",
+      "title": "Juubelitoetuse taotlus (PDF)",
+      "url": "https://loksalinn.ee/wp-content/uploads/2025/02/juubelitoetuse_taotlus.pdf",
+      "url_canonical": "https://loksalinn.ee/wp-content/uploads/2025/02/juubelitoetuse_taotlus.pdf",
+      "normalized_url": "https://loksalinn.ee/wp-content/uploads/2025/02/juubelitoetuse_taotlus.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "form_juubelitoetuse_taotlus_file",
+      "source_key": "form_juubelitoetuse_taotlus_file",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_form_juubelitoetuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "ceaad35c86b5f1a310b68ccf1e2173b581cf0e69e0dca349f67b0cdc18d4d8db",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_juubelitoetuse_taotlus_file"
+    },
+    {
+      "source_id": "form_pensionitoetuse_taotlus_file",
+      "title": "Pensionitoetuse taotlus (PDF)",
+      "url": "https://loksalinn.ee/wp-content/uploads/2025/02/pensionitoetuse_taotlus-1.pdf",
+      "url_canonical": "https://loksalinn.ee/wp-content/uploads/2025/02/pensionitoetuse_taotlus-1.pdf",
+      "normalized_url": "https://loksalinn.ee/wp-content/uploads/2025/02/pensionitoetuse_taotlus-1.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "form_pensionitoetuse_taotlus_file",
+      "source_key": "form_pensionitoetuse_taotlus_file",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_form_pensionitoetuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "70d21d83f68acbc908ca787b94556214cdcc9e220341248fe2b64bfd41aba73b",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_pensionitoetuse_taotlus_file"
+    },
+    {
+      "source_id": "form_ranitsatoetuse_taotlus_file",
+      "title": "Ranitsatoetuse taotlus (PDF)",
+      "url": "https://loksalinn.ee/wp-content/uploads/2025/02/ranitsatoetuse_taotluse_vorm.pdf",
+      "url_canonical": "https://loksalinn.ee/wp-content/uploads/2025/02/ranitsatoetuse_taotluse_vorm.pdf",
+      "normalized_url": "https://loksalinn.ee/wp-content/uploads/2025/02/ranitsatoetuse_taotluse_vorm.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Loksa Linnavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "form_ranitsatoetuse_taotlus_file",
+      "source_key": "form_ranitsatoetuse_taotlus_file",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Loksa linn",
+      "municipality_id": "loksa_linn",
+      "municipality_name": "Loksa linn",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "loksa_linn_form_ranitsatoetuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "77696da909e9301b76e4f474a52690a2c200ed13334058d0b9af13f0454a273d",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_ranitsatoetuse_taotlus_file"
+    }
+  ],
+  "municipality_name": "Loksa linn",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

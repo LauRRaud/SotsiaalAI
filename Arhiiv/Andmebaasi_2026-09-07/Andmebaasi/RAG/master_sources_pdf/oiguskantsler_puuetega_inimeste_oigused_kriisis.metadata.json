@@ -1,0 +1,83 @@
+{
+  "source": {
+    "source_id": "oiguskantsler_puuetega_inimeste_oigused_kriisis",
+    "title": "Puuetega inimeste õigused kriisis",
+    "url": "https://www.oiguskantsler.ee/sites/default/files/2024-11/Puuetega%20inimeste%20%C3%B5igused%20kriisis.pdf",
+    "normalized_url": "https://www.oiguskantsler.ee/sites/default/files/2024-11/Puuetega inimeste õigused kriisis.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Õiguskantsler",
+    "organization_id": "oiguskantsler",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Õiguskantsler",
+      "puue",
+      "puudega inimene",
+      "erivajadus",
+      "kriisivalmidus",
+      "riskijuhtimine",
+      "õigused",
+      "inimõigused",
+      "infomaterjal"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_005",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+    "source_context": {
+      "heading_2": "Õiguskantsler",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 187,
+      "order": 127
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "Puuetega inimeste õigused kriisis"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Õiguskantsler"
+    ],
+    "organizations_seen": [
+      "oiguskantsler"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Õiguskantsler",
+        "line": 187,
+        "order": 127
+      },
+      {
+        "heading_2": "Õiguskantsler",
+        "line": 661,
+        "order": 334
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.oiguskantsler.ee/sites/default/files/2024-11/Puuetega inimeste õigused kriisis.pdf"
+  },
+  "final_url": "https://www.oiguskantsler.ee/sites/default/files/2024-11/Puuetega%20inimeste%20%C3%B5igused%20kriisis.pdf",
+  "redirects": [],
+  "sha256": "25db27fb739c7f8ee241ca72ba26d5208fe8963b544fdd523f29d1e54e28be7e",
+  "bytes": 423584,
+  "downloaded_at": "2026-08-14T08:00:33.999Z"
+}

@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2020",
+  "articleId": "konfliktivahendus-taastav-nouupidamine-ja-vabatahtlike-too-2020-4",
+  "title": "Konfliktivahendus, taastav nõupidamine ja vabatahtlike töö",
+  "authors": [
+    "Annegrete Johanson"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2020",
+  "section": "Taastav õigus",
+  "pageRange": "19-24",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel kirjeldab sotsiaalkindlustusameti juures toimuvat konfliktivahenduse ja taastava nõupidamise teenust, kus konflikte lahendavad koolitatud vabatahtlikud. Selgitatakse taastava õiguse põhimõtteid, vahenduse ja nõupidamise ülesehitust, vabatahtlike rolli ning jagatakse esimesi kogemusi noorte, perede ja kogukondadega tehtud tööst.",
+  "tags": [
+    "taastav õigus",
+    "konfliktivahendus",
+    "taastav nõupidamine",
+    "vabatahtlikud",
+    "sotsiaalkindlustusamet",
+    "noored",
+    "kogukonnatöö"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2020_web_link_Part6.pdf",
+  "document_id": "sotsiaaltoo-4-2020-konfliktivahendus-taastav-nouupidamine-ja-vabatahtlike-too-2020-4",
+  "source_format": "pdf",
+  "source_sha256": "92122bfa52e47f74a5eaa5f7b53c6114ca466718bcebd07c0f82ac466abbbe3e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2020-konfliktivahendus-taastav-nouupidamine-ja-vabatahtlike-too-2020-4",
+    "previous_source_path": "Sotsiaaltoo_4_2020_web_link_Part6.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "92122bfa52e47f74a5eaa5f7b53c6114ca466718bcebd07c0f82ac466abbbe3e",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

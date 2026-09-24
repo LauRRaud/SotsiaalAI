@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2022",
+  "articleId": "eessona-2022-1",
+  "title": "Eessõna",
+  "authors": [
+    "Merike Sisask"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2022",
+  "section": "Eessõna",
+  "pageRange": "2-2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ajakirjanumbri avatekst, kus Tallinna Ülikooli sotsiaaltervishoiu professor Merike Sisask arutleb sotsiaaltervishoiu ja vaimse tervise seoste üle COVID-19 pandeemia, sotsiaalse isolatsiooni ja üksildustunde taustal. Eessõnas rõhutatakse kogukonna, hooliva riigi ja usalduslike suhete olulisust kriisidega toimetulekul ning meenutatakse varasemaid raskeid aegu, et anda lootust ja rõhutada üheshoidmise väärtust.",
+  "tags": [
+    "eessõna",
+    "sotsiaaltervishoid",
+    "vaimne tervis",
+    "COVID-19",
+    "üksildus",
+    "kogukonnatunne",
+    "kriisiga toimetulek"
+  ],
+  "source_type": "file",
+  "source_path": "2022_artikkel_1_eessona.pdf",
+  "document_id": "sotsiaaltoo-1-2022-eessona-2022-1",
+  "source_format": "pdf",
+  "source_sha256": "e0a65ae46232fab4317992468df152f02026eb2a20a57828e6304ccee634e8c3",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2022-eessona-2022-1",
+    "previous_source_path": "2022_artikkel_1_eessona.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e0a65ae46232fab4317992468df152f02026eb2a20a57828e6304ccee634e8c3",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

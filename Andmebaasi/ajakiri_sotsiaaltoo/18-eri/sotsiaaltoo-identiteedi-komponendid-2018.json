@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-eri-2018",
+  "articleId": "sotsiaaltoo-identiteedi-komponendid-2018",
+  "title": "Sotsiaaltöö identiteedi põhilised komponendid",
+  "authors": [
+    "Judit Strömpl"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö (juubeli erinumber)",
+  "issueLabel": "Eri/2018",
+  "section": "Sotsiaaltöötaja erialad koostöös",
+  "pageRange": "60-64",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Teoreetiline käsitlus sotsiaaltöö identiteedi põhikomponentidest, tuues esile väärtused, teadmised, oskused, rollid ja suhted siduserialadega ning arutledes identiteedi muutumise ja stabiilsuse üle.",
+  "tags": [
+    "sotsiaaltöö identiteet",
+    "erialane professionaalsus",
+    "rollid ja ootused",
+    "sotsiaaltöö teooria",
+    "siduserialad",
+    "erialane eneseteadvus"
+  ],
+  "source_type": "file",
+  "source_path": "ST_eri_2018_web_link_Part17.pdf",
+  "document_id": "sotsiaaltoo-eri-2018-sotsiaaltoo-identiteedi-komponendid-2018",
+  "source_format": "pdf",
+  "source_sha256": "571e73bc810634c1ea9e8e2dfa9faf33a3607ec0df9a7a97622d5290d22a2921",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2018-sotsiaaltoo-identiteedi-komponendid-2018",
+    "previous_source_path": "ST_eri_2018_web_link_Part17.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "571e73bc810634c1ea9e8e2dfa9faf33a3607ec0df9a7a97622d5290d22a2921",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

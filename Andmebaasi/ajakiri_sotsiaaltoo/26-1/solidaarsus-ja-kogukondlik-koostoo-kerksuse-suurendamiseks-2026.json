@@ -1,0 +1,51 @@
+{
+  "docId": "sotsiaaltoo-1-2026",
+  "articleId": "solidaarsus-ja-kogukondlik-koostoo-kerksuse-suurendamiseks-2026",
+  "title": "Solidaarsus ja kogukondlik koostöö kerksuse suurendamiseks",
+  "authors": [
+    "Kristi Aav",
+    "Ida Joao-Hussar",
+    "Tiia-Triin Truusa"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2026",
+  "section": "Kriisivalmidus sotsiaaltöös",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb solidaarsust nii väärtuse kui ka praktilise vahendina, mis toetab ühiskonna kriisivalmidust. Tutvustatakse sotsiaalse kapitali teoreetilist raamistikku, analüüsitakse takistusi solidaarsuse kujunemisel ning esitatakse näiteid edukast praktikast, nagu kriisikoolitused, kogukondlikud kriisiplaanid ja kerksuskeskused.",
+  "tags": [
+    "solidaarsus",
+    "kriisivalmidus",
+    "kerksus",
+    "kogukond",
+    "sotsiaalne kapital",
+    "usaldus",
+    "kriisiplaneerimine",
+    "kodanikualgatus"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-02-19",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/solidaarsus-ja-kogukondlik-koostoo-kerksuse-suurendamiseks",
+  "source_type": "web",
+  "source_path": "solidaarsus-ja-kogukondlik-koostoo-kerksuse-suurendamiseks.html",
+  "lead": "Solidaarsus on väärtus ja praktiline vahend, mis aitab ühiskonnal kriiside korral paremini vastu pidada. Kriisikoolitused, kogukondlikud kriisiplaanid, kerksuskeskused ja kogukonna ressurssidel põhineva käsitluse mudeli alusel tegutsemine aitavad inimestel üksteist tundma õppida, usaldada ja koos tegutseda.",
+  "document_id": "sotsiaaltoo-1-2026-solidaarsus-ja-kogukondlik-koostoo-kerksuse-suurendamiseks-2026",
+  "source_format": "html",
+  "source_sha256": "c36b9b70ee1414be939bf209756b5eae543ca37af3a1d9c7f54009799bf6888d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2026-solidaarsus-ja-kogukondlik-koostoo-kerksuse-suurendamiseks-2026",
+    "previous_source_path": "solidaarsus-ja-kogukondlik-koostoo-kerksuse-suurendamiseks.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "3e7f28ccc81708a5e22e6ce828d0035f269da4d2108e6861e54704ffb28f4126",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "97ffe52ec7c371399d1675522fb74d066f94a18c38ffaa4ce468515f8b4bfb36",
+    "observed_web_title": "Solidaarsus ja kogukondlik koostöö kerksuse suurendamiseks"
+  },
+  "retrieved_at": "2026-09-07T19:39:34.161348+00:00"
+}

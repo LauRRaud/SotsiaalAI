@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-3-2020",
+  "articleId": "vaino-maasalu-puuan-olla-eeskujuks-kogukonnas-ja-oma-lastele-2020-3",
+  "title": "Väino Maasalu: „Püüan olla eeskujuks kogukonnas ja oma lastele”",
+  "authors": [
+    "Kadri Kuulpak"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2020",
+  "section": "Persoon",
+  "pageRange": "3-8",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Intervjuus räägib Kohila valla sotsiaalnõunik Väino Maasalu sotsiaaltöötaja rollist väikeses kogukonnas, eriala väärtustamisest ja töö käigus saadud õppetundidest. Juttu tuleb ka eakate hooldusest, dementsusega seotud muredest, ennetusest ning sellest, kuidas hoida kliendiga usalduslikku, kuid professionaalset suhet.",
+  "tags": [
+    "sotsiaaltöötaja",
+    "kogukonnatöö",
+    "Kohila vald",
+    "intervjuu",
+    "eakad",
+    "kohalik omavalitsus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2020_web_link_Part3.pdf",
+  "document_id": "sotsiaaltoo-3-2020-vaino-maasalu-puuan-olla-eeskujuks-kogukonnas-ja-oma-lastele-2020-3",
+  "source_format": "pdf",
+  "source_sha256": "c65ce376e9eb23c9fd0531e1ae064fbdbbbd898fd927666aa183216f907b0ddf",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2020-vaino-maasalu-puuan-olla-eeskujuks-kogukonnas-ja-oma-lastele-2020-3",
+    "previous_source_path": "Sotsiaaltoo_3_2020_web_link_Part3.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "c65ce376e9eb23c9fd0531e1ae064fbdbbbd898fd927666aa183216f907b0ddf",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

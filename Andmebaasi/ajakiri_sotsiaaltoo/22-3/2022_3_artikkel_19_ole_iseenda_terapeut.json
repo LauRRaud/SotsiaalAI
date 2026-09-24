@@ -1,0 +1,45 @@
+{
+  "docId": "sotsiaaltoo-3-2022",
+  "articleId": "ole-iseenda-terapeut-koos-meelespeaga-2022-3",
+  "title": "Ole iseenda terapeut!",
+  "authors": [
+    "Valter Parve"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2022",
+  "section": "MÕTISKLUS",
+  "pageRange": "93-97",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Mõtisklus käsitleb sotsiaalvaldkonna töötajate enesehoidu, vaimse tervise hoidmist ja elurõõmu säilitamist pingelise töö keskel. Põhiloole järgneb samas PDF-is praktiline meelespea, mis koondab lühidalt igapäevaseid enesehoiu võtteid ja läbipõlemise ennetamise soovitusi.",
+  "tags": [
+    "enesehoid",
+    "läbipõlemise ennetamine",
+    "vaimne tervis",
+    "sotsiaaltöötaja heaolu",
+    "supervisioonita eneseabi",
+    "loodus ja aiatöö",
+    "huumor",
+    "laulmine",
+    "loominguline eneseväljendus",
+    "elurõõm",
+    "meelespea"
+  ],
+  "source_type": "file",
+  "source_path": "2022_3_artikkel_19_ole_iseenda_terapeut.pdf",
+  "document_id": "sotsiaaltoo-3-2022-ole-iseenda-terapeut-koos-meelespeaga-2022-3",
+  "source_format": "pdf",
+  "source_sha256": "50e8ab805a2443760663fe89319b5785bcbaac28d21d766b81de880e85f89350",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2022-ole-iseenda-terapeut-koos-meelespeaga-2022-3",
+    "previous_source_path": "2022_3_artikkel_19_ole_iseenda_terapeut.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "50e8ab805a2443760663fe89319b5785bcbaac28d21d766b81de880e85f89350",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

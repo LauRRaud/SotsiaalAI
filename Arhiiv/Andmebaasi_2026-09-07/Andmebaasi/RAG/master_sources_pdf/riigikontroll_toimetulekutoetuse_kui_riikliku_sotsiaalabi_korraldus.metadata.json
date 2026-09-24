@@ -1,0 +1,83 @@
+{
+  "source": {
+    "source_id": "riigikontroll_toimetulekutoetuse_kui_riikliku_sotsiaalabi_korraldus",
+    "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+    "url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/16215_RKTR_3559_2-1.4_2299_002-2.pdf",
+    "normalized_url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/16215_RKTR_3559_2-1.4_2299_002-2.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "Riigikontroll",
+    "organization_id": "riigikontroll",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "Riigikontroll",
+      "toimetulekutoetus",
+      "sotsiaalabi",
+      "audit",
+      "avaliku sektori kontroll",
+      "riigi teenused",
+      "uuring",
+      "raport",
+      "analüüs"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_062",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+    "source_context": {
+      "heading_2": "Riigikontroll",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 321,
+      "order": 184
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Riigikontroll"
+    ],
+    "organizations_seen": [
+      "riigikontroll"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Riigikontroll",
+        "line": 321,
+        "order": 184
+      },
+      {
+        "heading_2": "Riigikontroll",
+        "line": 795,
+        "order": 391
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/16215_RKTR_3559_2-1.4_2299_002-2.pdf"
+  },
+  "final_url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/16215_RKTR_3559_2-1.4_2299_002-2.pdf",
+  "redirects": [],
+  "sha256": "1cf6747a41ad9b0d39a61f275ca2693ce1a597e82c45e9c42844575ffdbb4d8d",
+  "bytes": 617401,
+  "downloaded_at": "2026-08-14T08:00:39.280Z"
+}

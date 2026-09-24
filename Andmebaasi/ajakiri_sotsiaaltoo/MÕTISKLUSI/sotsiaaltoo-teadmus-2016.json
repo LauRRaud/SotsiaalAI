@@ -1,0 +1,41 @@
+{
+  "docId": "motisklusi-sotsiaaltoost-2016",
+  "articleId": "sotsiaaltoo-teadmus-2016",
+  "title": "Sotsiaaltöö teadmus",
+  "authors": [
+    "Hans van Ewijk"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "MÕTISKLUSI",
+  "section": "Peegeldusi Euroopast",
+  "pageRange": "12-14",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel avab sotsiaaltöö teadmuse tuuma sotsiaalse mudeli kaudu ning kirjeldab seitset akent, mille kaudu mõtestada sotsiaaltöö tegevusvaldkonda, teooriaid, uurimust, eetikat, metodoloogiat, poliitikaid ja professionaliseerumist. Rõhutatakse sotsiaaltöö oma teooriat ning eri teadmiste lõimimist terviklikuks professionaalseks raamistikuks.",
+  "tags": [
+    "sotsiaaltöö teooria",
+    "sotsiaalne mudel",
+    "teadmus",
+    "metodoloogia",
+    "eetika",
+    "professionaliseerumine"
+  ],
+  "source_type": "file",
+  "source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part6.pdf",
+  "mapping_fixed": "2026-08-14",
+  "document_id": "motisklusi-sotsiaaltoost-2016-sotsiaaltoo-teadmus-2016",
+  "source_format": "pdf",
+  "source_sha256": "4c54a334323e505f623fe97ffb2f81a2d5e56cc27621ea6f6f7d161f2239cef7",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "motisklusi-sotsiaaltoost-2016-sotsiaaltoo-teadmus-2016",
+    "previous_source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part6.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "4c54a334323e505f623fe97ffb2f81a2d5e56cc27621ea6f6f7d161f2239cef7",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

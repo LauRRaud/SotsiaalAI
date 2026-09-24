@@ -1,0 +1,4289 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-valga-vald",
+  "document_id": "kov-valga-vald",
+  "municipality": "Valga vald",
+  "municipality_id": "valga_vald",
+  "county": "Valgamaa",
+  "checkedAt": "2026-05-01",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "valga_vald_contact_valga_vallavalitsus",
+      "canonical_item_id": "valga_vald:contact:valga_vallavalitsus",
+      "itemType": "contact",
+      "title": "Valga Vallavalitsuse üldkontakt",
+      "status": "active",
+      "summary": "Valga Vallavalitsuse üldkontakt on ametlik kontaktpunkt, mille kaudu saab pöörduda ka sotsiaalvaldkonna esmase info küsimiseks. Veebis on avaldatud varjestatud ja aadress Puiestee 8, Valga.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "officialUrl": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "name": "Valga Vallavalitsus",
+      "role": "üldkontakt",
+      "department": "Valga Vallavalitsus",
+      "address": "Puiestee 8, Valga 68203",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_contact_valga_vallavalitsus",
+      "document_id": "valga_vald_contact_valga_vallavalitsus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "content_hash": "063ec3b94496ea68c9061e84588443cb5b08322d80f5b1567e098b8b82a0f9e9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_contact_ulla_kimmel",
+      "canonical_item_id": "valga_vald:contact:ulla_kimmel",
+      "itemType": "contact",
+      "title": "Ülla Kimmel",
+      "status": "active",
+      "summary": "Ülla Kimmel on Valga Vallavalitsuse sotsiaaltöö teenistuse juhataja. Kontaktilehel on avaldatud varjestatud ja vastuvõtt etteregistreerimisega kokkuleppel; sotsiaaltöö teenistus asub Kungla tänav 12, Valga.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "officialUrl": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "name": "Ülla Kimmel",
+      "role": "sotsiaaltöö teenistuse juhataja",
+      "department": "Sotsiaaltöö teenistus",
+      "address": "Kungla tänav 12, Valga",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_contact_ulla_kimmel",
+      "document_id": "valga_vald_contact_ulla_kimmel",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "content_hash": "27cee044c778572c35d6c0a47ef9c00822aa5922d1cc271346271909a4457218",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_contact_aila_rajasalu",
+      "canonical_item_id": "valga_vald:contact:aila_rajasalu",
+      "itemType": "contact",
+      "title": "Aila Rajasalu",
+      "status": "active",
+      "summary": "Aila Rajasalu on sotsiaalteenuste projekti- ja arendusjuht. Kontaktilehel on ta nimetatud ka koduteenuse küsimuste kontaktina; avaldatud on varjestatud ja aadress Kungla 12, Valga linn.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "officialUrl": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "name": "Aila Rajasalu",
+      "role": "sotsiaalteenuste projekti- ja arendusjuht",
+      "department": "Sotsiaaltöö teenistus",
+      "address": "Kungla 12, Valga linn",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_contact_aila_rajasalu",
+      "document_id": "valga_vald_contact_aila_rajasalu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "content_hash": "3933ccbe58069b6d77bcdd8bbfc91bf4e64125d4a874943903ccbdbf2d15be12",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_contact_mare_roosipuu",
+      "canonical_item_id": "valga_vald:contact:mare_roosipuu",
+      "itemType": "contact",
+      "title": "Mare Roosipuu",
+      "status": "active",
+      "summary": "Mare Roosipuu on puuetega inimeste spetsialist. Valga valla teenuste lehed seovad tema kontakti puuetega inimeste, varjupaigateenuse suunamise, sotsiaaleluruumi ja sotsiaaltranspordi küsimustega.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "officialUrl": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "name": "Mare Roosipuu",
+      "role": "puuetega inimeste spetsialist",
+      "department": "Sotsiaaltöö teenistus",
+      "address": "Kungla tänav 12, Valga",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_contact_mare_roosipuu",
+      "document_id": "valga_vald_contact_mare_roosipuu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "content_hash": "c9cd11ccde697db8b74efce0df52549b700937a57c977a350ab7e3ae8c84735d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_contact_anne_kalme",
+      "canonical_item_id": "valga_vald:contact:anne_kalme",
+      "itemType": "contact",
+      "title": "Anne Kalme",
+      "status": "active",
+      "summary": "Anne Kalme on eestkostespetsialist sotsiaaltöö teenistuses. Kontakt on oluline eestkoste ja hoolduskorralduse küsimustes, kui inimene vajab sotsiaalvaldkonna ametniku nõustamist.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "officialUrl": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "name": "Anne Kalme",
+      "role": "eestkostespetsialist",
+      "department": "Sotsiaaltöö teenistus",
+      "address": "Kungla tänav 12, Valga",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_contact_anne_kalme",
+      "document_id": "valga_vald_contact_anne_kalme",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "content_hash": "8783a328a4ddd0f593519f29f0d5074c58b773e7324dca8684020b88eda0ae65",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_contact_sirje_puusepp",
+      "canonical_item_id": "valga_vald:contact:sirje_puusepp",
+      "itemType": "contact",
+      "title": "Sirje Puusepp",
+      "status": "active",
+      "summary": "Sirje Puusepp on sotsiaaltöö juhtivspetsialist. Kontaktilehel on tema sihtrühm määratletud Valga vallas perekonnanime esitähtede järgi ning ta on seotud ka sotsiaalvaldkonna MTÜ-de tegevustoetuse menetlusega.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "officialUrl": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "name": "Sirje Puusepp",
+      "role": "sotsiaaltöö juhtivspetsialist",
+      "department": "Sotsiaaltöö teenistus",
+      "address": "Kungla tänav 12, Valga",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_contact_sirje_puusepp",
+      "document_id": "valga_vald_contact_sirje_puusepp",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "content_hash": "3d9829c5c528f7490daa109bc5c5a8539e8c92acdaa3266715aa630de756df9e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_contact_marika_drenkhan",
+      "canonical_item_id": "valga_vald:contact:marika_drenkhan",
+      "itemType": "contact",
+      "title": "Marika Drenkhan",
+      "status": "active",
+      "summary": "Marika Drenkhan on sotsiaaltööspetsialist. Kontaktilehel on tema sihtrühm määratletud Valga vallas perekonnanime esitähtede järgi.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "officialUrl": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "name": "Marika Drenkhan",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaaltöö teenistus",
+      "address": "Kungla tänav 12, Valga",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_contact_marika_drenkhan",
+      "document_id": "valga_vald_contact_marika_drenkhan",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "content_hash": "a4193356d474ea3de5fc6ff4008f5dfda19afccd823c04f88e971a1a0dc77222",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_contact_onneke_hermaste",
+      "canonical_item_id": "valga_vald:contact:onneke_hermaste",
+      "itemType": "contact",
+      "title": "Õnneke Hermaste",
+      "status": "active",
+      "summary": "Õnneke Hermaste on sotsiaaltööspetsialist. Kontaktilehel on tema tööpiirkonnana märgitud Valga ja Karula teeninduspiirkond perekonnanime esitähtede täpsustusega.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "officialUrl": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "name": "Õnneke Hermaste",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaaltöö teenistus",
+      "address": "Karula teeninduskeskus ja Kungla tn 12, Valga linn",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_contact_onneke_hermaste",
+      "document_id": "valga_vald_contact_onneke_hermaste",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "content_hash": "a982358b90c52c58e0ba3f557f3bd2e74cb9c5b78d063c850205dcec324fd409",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_contact_evi_veerme",
+      "canonical_item_id": "valga_vald:contact:evi_veerme",
+      "itemType": "contact",
+      "title": "Evi Veerme",
+      "status": "active",
+      "summary": "Evi Veerme on sotsiaaltööspetsialist. Kontaktilehel on tema tööpiirkonnana märgitud Valga ja Taheva teeninduspiirkond perekonnanime esitähtede täpsustusega.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "officialUrl": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "name": "Evi Veerme",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaaltöö teenistus",
+      "address": "Valga ja Taheva teeninduskeskus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_contact_evi_veerme",
+      "document_id": "valga_vald_contact_evi_veerme",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "content_hash": "744ed9465687fd4f89aaca6685cd20e1f716274d90ad9a55776de3b894316504",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_contact_anu_tamm",
+      "canonical_item_id": "valga_vald:contact:anu_tamm",
+      "itemType": "contact",
+      "title": "Anu Tamm",
+      "status": "active",
+      "summary": "Anu Tamm on sotsiaaltööspetsialist. Kontaktilehel on tema tööpiirkonnana märgitud Valga, Tsirguliina ja Õru teeninduspiirkond perekonnanime esitähtede täpsustusega.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "officialUrl": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "name": "Anu Tamm",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaaltöö teenistus",
+      "address": "Tõlliste ja Õru teeninduskeskus; Kungla tn 12, Valga",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_contact_anu_tamm",
+      "document_id": "valga_vald_contact_anu_tamm",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "content_hash": "e0b9a3e44d4ecb51dbef671d10a43b2fccbc54e9040808d3ce7684366f776a54",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_contact_jaana_kala",
+      "canonical_item_id": "valga_vald:contact:jaana_kala",
+      "itemType": "contact",
+      "title": "Jaana Kala",
+      "status": "active",
+      "summary": "Jaana Kala on lastekaitse juhtivspetsialist. Laps ja pere teenuste leht seob tema kontakti asendushooldus-, järelhooldus- ja tugiisikuteenuse korraldamisega ning erivajadustega lapse hooldajatoetusega.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "officialUrl": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "name": "Jaana Kala",
+      "role": "lastekaitse juhtivspetsialist",
+      "department": "Sotsiaaltöö teenistus",
+      "address": "Kungla tn 12, Valga",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_contact_jaana_kala",
+      "document_id": "valga_vald_contact_jaana_kala",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "content_hash": "bc33a220dfc91855e946c07de06baaa02b92fd22f5cfa12cd976df197fbcda2e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_contact_kati_kikkas",
+      "canonical_item_id": "valga_vald:contact:kati_kikkas",
+      "itemType": "contact",
+      "title": "Kati Kikkas",
+      "status": "active",
+      "summary": "Kati Kikkas on lastekaitse spetsialist. Kontaktilehel on avaldatud varjestatud ja vastuvõtuajad Valga vallavalitsuse kontaktide all.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "officialUrl": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "name": "Kati Kikkas",
+      "role": "lastekaitse spetsialist",
+      "department": "Sotsiaaltöö teenistus",
+      "address": "Kungla tn 12, Valga",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_contact_kati_kikkas",
+      "document_id": "valga_vald_contact_kati_kikkas",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "content_hash": "fd84143ddbe2b1939e76b592c314469125c3aba0492051ad1162161cc07e9851",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_contact_maire_baumverk",
+      "canonical_item_id": "valga_vald:contact:maire_baumverk",
+      "itemType": "contact",
+      "title": "Maire Baumverk",
+      "status": "active",
+      "summary": "Maire Baumverk on lastekaitse spetsialist. Kontaktilehel on märgitud Tõlliste ja Õru teeninduskeskusega seotud vastuvõtud.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "officialUrl": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "name": "Maire Baumverk",
+      "role": "lastekaitse spetsialist",
+      "department": "Sotsiaaltöö teenistus",
+      "address": "Tõlliste ja Õru teeninduskeskus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_contact_maire_baumverk",
+      "document_id": "valga_vald_contact_maire_baumverk",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "content_hash": "aff838d12d6c051a25b99c0dfb44d07957a4e24c8e06661628b2948f3d3d5b83",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_contact_ilona_hommik",
+      "canonical_item_id": "valga_vald:contact:ilona_hommik",
+      "itemType": "contact",
+      "title": "Ilona Hommik",
+      "status": "active",
+      "summary": "Ilona Hommik on lastekaitse spetsialist. Kontaktilehel on avaldatud varjestatud ning vastuvõtt kokkuleppel või Valga vastuvõtuaegadel.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "officialUrl": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "name": "Ilona Hommik",
+      "role": "lastekaitse spetsialist",
+      "department": "Sotsiaaltöö teenistus",
+      "address": "Kungla tn 12, Valga",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_contact_ilona_hommik",
+      "document_id": "valga_vald_contact_ilona_hommik",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "content_hash": "5e98658254d0c22b386c3c93a1ed6b6a1305556fcab102c1e0245e174150b3c1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_contact_karin_kangsepp",
+      "canonical_item_id": "valga_vald:contact:karin_kangsepp",
+      "itemType": "contact",
+      "title": "Karin Kängsepp",
+      "status": "active",
+      "summary": "Karin Kängsepp on lastekaitse spetsialist. Kontaktilehel on avaldatud varjestatud ja Valga vastuvõtuajad.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "officialUrl": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "name": "Karin Kängsepp",
+      "role": "lastekaitse spetsialist",
+      "department": "Sotsiaaltöö teenistus",
+      "address": "Kungla tn 12, Valga",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_contact_karin_kangsepp",
+      "document_id": "valga_vald_contact_karin_kangsepp",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "content_hash": "2319541a24a1e10aaf422870ffbaebb60f92d2d643d0a5082b95c24050a5ea9f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_contact_garolin_kolbasov",
+      "canonical_item_id": "valga_vald:contact:garolin_kolbasov",
+      "itemType": "contact",
+      "title": "Garolin Kolbasov",
+      "status": "active",
+      "summary": "Garolin Kolbasov on noorte heaoluspetsialist. Valga valla tugiteenuste ja kontaktide vaates on noorte heaoluspetsialistid seotud noortegarantii tugisüsteemi ja noorte heaolu küsimustega.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "officialUrl": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "name": "Garolin Kolbasov",
+      "role": "noorte heaoluspetsialist",
+      "department": "Sotsiaaltöö teenistus",
+      "address": "Kungla 12, Valga linn",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_contact_garolin_kolbasov",
+      "document_id": "valga_vald_contact_garolin_kolbasov",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "content_hash": "5f9e5fda1e94e2a33ba32c84786d354c460098458aac5e1e3200a050397180fb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_contact_sirly_solo",
+      "canonical_item_id": "valga_vald:contact:sirly_solo",
+      "itemType": "contact",
+      "title": "Sirly Solo",
+      "status": "active",
+      "summary": "Sirly Solo on noorte heaoluspetsialist. Kontaktilehel on avaldatud varjestatud ja vastuvõtt kokkuleppel.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "officialUrl": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "name": "Sirly Solo",
+      "role": "noorte heaoluspetsialist",
+      "department": "Sotsiaaltöö teenistus",
+      "address": "Kungla 12, Valga linn",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_contact_sirly_solo",
+      "document_id": "valga_vald_contact_sirly_solo",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "content_hash": "c27677078f0a2a9ab3ae6eb3799873ad27ace80dce9790db1814ea6b765bd3ac",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_contact_kadri_kallas",
+      "canonical_item_id": "valga_vald:contact:kadri_kallas",
+      "itemType": "contact",
+      "title": "Kadri Kallas",
+      "status": "active",
+      "summary": "Kadri Kallas on noorte heaoluspetsialist. Kontaktilehel on avaldatud varjestatud ja vastuvõtt kokkuleppel.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "officialUrl": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "name": "Kadri Kallas",
+      "role": "noorte heaoluspetsialist",
+      "department": "Sotsiaaltöö teenistus",
+      "address": "Kungla 12, Valga linn",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_contact_kadri_kallas",
+      "document_id": "valga_vald_contact_kadri_kallas",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "content_hash": "71877afc827150b708b499836da5cbcd3ad5f0bc5585f8962dde335f20029780",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_contact_eve_ilisson",
+      "canonical_item_id": "valga_vald:contact:eve_ilisson",
+      "itemType": "contact",
+      "title": "Eve Ilisson",
+      "status": "active",
+      "summary": "Eve Ilisson on ISTE-juhtumikorraldaja. Kontaktilehel on avaldatud ja varjestatud ning vastuvõtt toimub eelneval kokkuleppel.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "officialUrl": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "name": "Eve Ilisson",
+      "role": "ISTE-juhtumikorraldaja",
+      "department": "Sotsiaaltöö teenistus",
+      "address": "Kungla 12, Valga linn",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_contact_eve_ilisson",
+      "document_id": "valga_vald_contact_eve_ilisson",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/vald-uudised-ja-kontakt/uudised-ja-kontakt/kontakt/",
+      "content_hash": "5b575cac495a287d6666d56a7ccaa009fe67182cbd3defd027c7b71e1cc7275d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_contact_sirje_sillamagi_tamm",
+      "canonical_item_id": "valga_vald:contact:sirje_sillamagi_tamm",
+      "itemType": "contact",
+      "title": "Sirje Sillamägi-Tamm",
+      "status": "active",
+      "summary": "Sirje Sillamägi-Tamm on Valga maakonna ohvriabi töötaja. Valga valla ohvriabi leht avaldab tema telefoni, varjestatud e-posti ja aadressi Kagu politseijaoskonnas.",
+      "sourceKeys": [
+        "ohvriabi"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/ohvriabi/",
+      "name": "Sirje Sillamägi-Tamm",
+      "role": "Valga maakonna ohvriabi töötaja",
+      "department": "Ohvriabi",
+      "address": "Puiestee 4, Valga linn (Kagu politseijaoskond)",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "ohvriabi"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_contact_sirje_sillamagi_tamm",
+      "document_id": "valga_vald_contact_sirje_sillamagi_tamm",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/ohvriabi/",
+      "content_hash": "15abbf670d0a1ecb0291b48c662ca49cb0041175a2bb683cece189eb51b07612",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_form_hooldaja_taotlus_hooldaja",
+      "canonical_item_id": "valga_vald:form:hooldaja_taotlus_hooldaja",
+      "itemType": "form",
+      "title": "Hooldaja määramise taotlus – hooldaja",
+      "status": "active",
+      "summary": "Hooldaja määramise ja hooldajatoetuse taotlemise vorm hooldaja poolt. Valga valla teenuste leht ütleb, et hooldaja ja hooldatav peavad esitama vormikohased taotlused ning taotluse saab esitada sotsiaaltöö teenistuses.",
+      "sourceKeys": [
+        "hooldaja_taotlus_hooldaja_docx",
+        "toimetulekuraskus_teenused"
+      ],
+      "officialUrl": "https://valga.ee/wp-content/uploads/2025/09/Hooldaja-maaramise-taotlus-HOOLDAJA.docx",
+      "format": "docx",
+      "submissionChannels": [
+        "Valga Vallavalitsuse sotsiaaltöö teenistus"
+      ],
+      "relatedTo": [
+        "valga_vald_service_hooldaja_maaramine",
+        "valga_vald_benefit_hooldajatoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "hooldaja_taotlus_hooldaja_docx",
+        "toimetulekuraskus_teenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_form_hooldaja_taotlus_hooldaja",
+      "document_id": "valga_vald_form_hooldaja_taotlus_hooldaja",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/wp-content/uploads/2025/09/Hooldaja-maaramise-taotlus-HOOLDAJA.docx",
+      "content_hash": "07300a16dbda3e8208dc09e05a00a6f2fe31453c68d5ccc40afd4d23ccbf9340",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_form_hooldaja_taotlus_hooldatav",
+      "canonical_item_id": "valga_vald:form:hooldaja_taotlus_hooldatav",
+      "itemType": "form",
+      "title": "Hooldaja määramise taotlus – hooldatav",
+      "status": "active",
+      "summary": "Hooldaja määramise ja hooldajatoetuse taotlemise vorm hooldatava poolt. Valga valla teenuste leht seob vormi hooldaja määramise ning hooldajatoetuse taotlemisega.",
+      "sourceKeys": [
+        "hooldaja_taotlus_hooldatav_docx",
+        "toimetulekuraskus_teenused"
+      ],
+      "officialUrl": "https://valga.ee/wp-content/uploads/2025/09/Hooldaja-maaramise-taotlus-HOOLDATAV.docx",
+      "format": "docx",
+      "submissionChannels": [
+        "Valga Vallavalitsuse sotsiaaltöö teenistus"
+      ],
+      "relatedTo": [
+        "valga_vald_service_hooldaja_maaramine",
+        "valga_vald_benefit_hooldajatoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "hooldaja_taotlus_hooldatav_docx",
+        "toimetulekuraskus_teenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_form_hooldaja_taotlus_hooldatav",
+      "document_id": "valga_vald_form_hooldaja_taotlus_hooldatav",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/wp-content/uploads/2025/09/Hooldaja-maaramise-taotlus-HOOLDATAV.docx",
+      "content_hash": "feda2b10b12581666f81e89968d1a6f795ef4a9b00b740e868b9b7c4b2fcfabd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_form_hoolduskulude_toetuse_taotlus",
+      "canonical_item_id": "valga_vald:form:hoolduskulude_toetuse_taotlus",
+      "itemType": "form",
+      "title": "Hoolduskulude toetuse taotlus",
+      "status": "active",
+      "summary": "Hoolduskulude toetuse vormikohane taotlus. Valga valla teenuste leht ütleb, et taotlust saab täita Valga Vallavalitsuses ning Karula, Taheva, Tõlliste ja Õru teeninduskeskustes.",
+      "sourceKeys": [
+        "hoolduskulude_toetuse_taotlus_docx",
+        "toimetulekuraskus_teenused"
+      ],
+      "officialUrl": "https://valga.ee/wp-content/uploads/2025/09/Hoolduskulude-toetuse-taotlus.docx",
+      "format": "docx",
+      "submissionChannels": [
+        "Valga Vallavalitsus",
+        "Karula teeninduskeskus",
+        "Taheva teeninduskeskus",
+        "Tõlliste teeninduskeskus",
+        "Õru teeninduskeskus"
+      ],
+      "relatedTo": [
+        "valga_vald_benefit_hoolduskulude_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "hoolduskulude_toetuse_taotlus_docx",
+        "toimetulekuraskus_teenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_form_hoolduskulude_toetuse_taotlus",
+      "document_id": "valga_vald_form_hoolduskulude_toetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/wp-content/uploads/2025/09/Hoolduskulude-toetuse-taotlus.docx",
+      "content_hash": "39cd444373c076f3f76e9d147fde27d1f80b423c3e51867bf9c458bcd18ab68d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_form_hooldereform_taotluse_vorm",
+      "canonical_item_id": "valga_vald:form:hooldereform_taotluse_vorm",
+      "itemType": "form",
+      "title": "Taotluse vorm hooldereformi ja üldhooldusteenuse kulude katmiseks",
+      "status": "active",
+      "summary": "Taotluse vorm väljaspool kodu osutatava üldhooldusteenuse ja hooldereformi kulude katmise menetluseks. Valga valla teenuste leht ütleb, et pärast taotluse esitamist hindab sotsiaaltöö spetsialist hooldusvajadust ja otsus tehakse kümne tööpäeva jooksul.",
+      "sourceKeys": [
+        "eakad_erivajadus_teenused",
+        "hooldereform_taotluse_vorm_docx",
+        "toimetulekuraskus_teenused"
+      ],
+      "officialUrl": "https://valga.ee/wp-content/uploads/2025/09/Taotluse-vorm-hooldereform.docx",
+      "format": "docx",
+      "submissionChannels": [
+        "Valga Vallavalitsuse sotsiaaltöö teenistus"
+      ],
+      "relatedTo": [
+        "valga_vald_service_uldhooldusteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "eakad_erivajadus_teenused",
+        "hooldereform_taotluse_vorm_docx",
+        "toimetulekuraskus_teenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_form_hooldereform_taotluse_vorm",
+      "document_id": "valga_vald_form_hooldereform_taotluse_vorm",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/wp-content/uploads/2025/09/Taotluse-vorm-hooldereform.docx",
+      "content_hash": "fb88acd0cd93ad5673bc60a3fe87da71e3d5b1c2394589b2b6aa20b210264010",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_form_sotsiaaleluruumi_taotlus",
+      "canonical_item_id": "valga_vald:form:sotsiaaleluruumi_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaaleluruumi taotlus",
+      "status": "active",
+      "summary": "Sotsiaaleluruumi taotlus, millele Valga valla teenuste leht viitab eluruumi tagamise teenuse juures. Taotlust saab esitada Valga Vallavalitsuse sotsiaaltöö teenistuses.",
+      "sourceKeys": [
+        "sotsiaaleluruumi_taotlus_rtf",
+        "toimetulekuraskus_teenused"
+      ],
+      "officialUrl": "https://valga.ee/wp-content/uploads/2025/09/Sotsiaaleluruumi-taotlus.rtf",
+      "format": "rtf",
+      "submissionChannels": [
+        "Valga Vallavalitsuse sotsiaaltöö teenistus"
+      ],
+      "relatedTo": [
+        "valga_vald_service_eluruumi_tagamine"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "sotsiaaleluruumi_taotlus_rtf",
+        "toimetulekuraskus_teenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_form_sotsiaaleluruumi_taotlus",
+      "document_id": "valga_vald_form_sotsiaaleluruumi_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/wp-content/uploads/2025/09/Sotsiaaleluruumi-taotlus.rtf",
+      "content_hash": "adef4434eb5cc9bf99c828583468cdfa82ea404c11b9225fdede9940dd85da06",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_form_sund_ranits_koolitoetus_avaldus",
+      "canonical_item_id": "valga_vald:form:sund_ranits_koolitoetus_avaldus",
+      "itemType": "form",
+      "title": "Avaldus sünnitoetuse, ranitsatoetuse ja kolme- või enamalapselise pere koolitoetuse jaoks",
+      "status": "active",
+      "summary": "Avaldus, mida Valga valla toetuste leht seob sünnitoetuse, ranitsatoetuse ja kolme- või enamalapselise pere koolitoetusega. Avalduse saab täita kohapeal, saata posti teel või elektrooniliselt.",
+      "sourceKeys": [
+        "laps_ja_pere_teenused_toetused",
+        "sissetulekust_mittesoltuvad_toetused",
+        "sund_ranits_koolitoetus_avaldus_rtf"
+      ],
+      "officialUrl": "https://valga.ee/wp-content/uploads/2025/09/Avaldus-sund-ranits-ja-3-kooliskaivat-last-1.rtf",
+      "format": "rtf",
+      "submissionChannels": [
+        "kohapeal",
+        "post",
+        "elektrooniliselt"
+      ],
+      "relatedTo": [
+        "valga_vald_benefit_sunnitoetus",
+        "valga_vald_benefit_ranitsatoetus",
+        "valga_vald_benefit_kolme_lapse_koolitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "laps_ja_pere_teenused_toetused",
+        "sissetulekust_mittesoltuvad_toetused",
+        "sund_ranits_koolitoetus_avaldus_rtf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_form_sund_ranits_koolitoetus_avaldus",
+      "document_id": "valga_vald_form_sund_ranits_koolitoetus_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/wp-content/uploads/2025/09/Avaldus-sund-ranits-ja-3-kooliskaivat-last-1.rtf",
+      "content_hash": "15b1eed237d525f68e164e9ee89a2a714c062751a2bf9e786c448c1c59e680e0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_form_matusetoetuse_avaldus",
+      "canonical_item_id": "valga_vald:form:matusetoetuse_avaldus",
+      "itemType": "form",
+      "title": "Matusetoetuse avaldus",
+      "status": "active",
+      "summary": "Matusetoetuse avaldus. Valga valla sissetulekust mittesõltuvate toetuste leht ütleb, et matusetoetuse saamiseks tuleb sotsiaaltööteenistusele esitada avaldus koos vajalike andmetega; dokumendid võib saata digitaalselt allkirjastatuna e-posti teel või paberkandjal posti teel.",
+      "sourceKeys": [
+        "matusetoetuse_avaldus_rtf",
+        "sissetulekust_mittesoltuvad_toetused"
+      ],
+      "officialUrl": "https://valga.ee/wp-content/uploads/2025/09/Matusetoetuse-avaldus.rtf",
+      "format": "rtf",
+      "submissionChannels": [
+        "digitaalselt allkirjastatuna e-posti teel",
+        "paberkandjal posti teel"
+      ],
+      "relatedTo": [
+        "valga_vald_benefit_matusetoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "matusetoetuse_avaldus_rtf",
+        "sissetulekust_mittesoltuvad_toetused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_form_matusetoetuse_avaldus",
+      "document_id": "valga_vald_form_matusetoetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/wp-content/uploads/2025/09/Matusetoetuse-avaldus.rtf",
+      "content_hash": "3c5d6c98135ca7b31ac3a564fc546b2d3bc3a966dffa53adef496fc9682b991b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_form_taiendava_sotsiaaltoetuse_taotlus",
+      "canonical_item_id": "valga_vald:form:taiendava_sotsiaaltoetuse_taotlus",
+      "itemType": "form",
+      "title": "Täiendava sotsiaaltoetuse taotlus",
+      "status": "active",
+      "summary": "Täiendava sotsiaaltoetuse taotlus. Valga valla täiendava sotsiaaltoetuse leht ütleb, et taotluse võib üldjuhul esitada kord kvartalis ja hüvitatavate kulutuste korral, mis ületavad 10 eurot; samal lehel on ka e-taotluse viide.",
+      "sourceKeys": [
+        "taiendav_sotsiaaltoetus",
+        "taiendava_sotsiaaltoetuse_taotlus"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/toetused/taiendav-sotsiaaltoetus/",
+      "format": "web_form",
+      "submissionChannels": [
+        "Valga Vallavalitsus",
+        "e-taotlus Valga valla lehe kaudu"
+      ],
+      "relatedTo": [
+        "valga_vald_benefit_taiendav_sotsiaaltoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "taiendav_sotsiaaltoetus",
+        "taiendava_sotsiaaltoetuse_taotlus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_form_taiendava_sotsiaaltoetuse_taotlus",
+      "document_id": "valga_vald_form_taiendava_sotsiaaltoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/toetused/taiendav-sotsiaaltoetus/",
+      "content_hash": "4c2727fd407cff08afada747032e2ba35373afd96886bbbd1c268db8248d2127",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_form_sunnitoetuse_e_taotlus",
+      "canonical_item_id": "valga_vald:form:sunnitoetuse_e_taotlus",
+      "itemType": "form",
+      "title": "Sünnitoetuse e-taotlus",
+      "status": "active",
+      "summary": "Valga valla laps ja pere leht suunab sünnitoetuse taotlemiseks SPOKU e-taotlusele. E-taotluse otselink on väline teenuskeskkond, mille olemasolu kinnitab Valga valla ametlik leht.",
+      "sourceKeys": [
+        "laps_ja_pere_teenused_toetused"
+      ],
+      "officialUrl": "https://piksel.ee/spoku/valga/index.php?asutus=-1&module=205&op=2&toetus=350",
+      "format": "web_form",
+      "submissionChannels": [
+        "SPOKU e-taotlus"
+      ],
+      "relatedTo": [
+        "valga_vald_benefit_sunnitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "laps_ja_pere_teenused_toetused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_form_sunnitoetuse_e_taotlus",
+      "document_id": "valga_vald_form_sunnitoetuse_e_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://piksel.ee/spoku/valga/index.php?asutus=-1&module=205&op=2&toetus=350",
+      "content_hash": "bc26d0e766b50c5f3027ac85ffd1ad47e39936df9393bc1359b6a333cbad2a5d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_form_ranitsatoetuse_e_taotlus",
+      "canonical_item_id": "valga_vald:form:ranitsatoetuse_e_taotlus",
+      "itemType": "form",
+      "title": "Ranitsatoetuse e-taotlus",
+      "status": "active",
+      "summary": "Valga valla leht suunab ranitsatoetuse taotlemiseks SPOKU e-taotlusele. E-taotluse otselink on väline teenuskeskkond, mille olemasolu kinnitab Valga valla ametlik leht.",
+      "sourceKeys": [
+        "laps_ja_pere_teenused_toetused",
+        "sissetulekust_mittesoltuvad_toetused"
+      ],
+      "officialUrl": "https://piksel.ee/spoku/valga/index.php?asutus=-1&module=205&op=2&toetus=352",
+      "format": "web_form",
+      "submissionChannels": [
+        "SPOKU e-taotlus"
+      ],
+      "relatedTo": [
+        "valga_vald_benefit_ranitsatoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "laps_ja_pere_teenused_toetused",
+        "sissetulekust_mittesoltuvad_toetused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_form_ranitsatoetuse_e_taotlus",
+      "document_id": "valga_vald_form_ranitsatoetuse_e_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://piksel.ee/spoku/valga/index.php?asutus=-1&module=205&op=2&toetus=352",
+      "content_hash": "259e519e3ed6c0308c02edb20737150c63ead0a1c31c2c0e630342c0f67c9ac7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_form_kolme_lapse_koolitoetuse_e_taotlus",
+      "canonical_item_id": "valga_vald:form:kolme_lapse_koolitoetuse_e_taotlus",
+      "itemType": "form",
+      "title": "Kolme- ja enamalapselise pere koolitoetuse e-taotlus",
+      "status": "active",
+      "summary": "Valga valla leht suunab kolme- ja enamalapselise pere koolitoetuse taotlemiseks SPOKU e-taotlusele. E-taotluse otselink on väline teenuskeskkond, mille olemasolu kinnitab Valga valla ametlik leht.",
+      "sourceKeys": [
+        "laps_ja_pere_teenused_toetused",
+        "sissetulekust_mittesoltuvad_toetused"
+      ],
+      "officialUrl": "https://piksel.ee/spoku/valga/index.php?asutus=-1&module=205&op=2&toetus=353",
+      "format": "web_form",
+      "submissionChannels": [
+        "SPOKU e-taotlus"
+      ],
+      "relatedTo": [
+        "valga_vald_benefit_kolme_lapse_koolitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "laps_ja_pere_teenused_toetused",
+        "sissetulekust_mittesoltuvad_toetused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_form_kolme_lapse_koolitoetuse_e_taotlus",
+      "document_id": "valga_vald_form_kolme_lapse_koolitoetuse_e_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://piksel.ee/spoku/valga/index.php?asutus=-1&module=205&op=2&toetus=353",
+      "content_hash": "a35dda3480256a28e3e269f88e4da0f9b46195cad4cb693c2e9a7ba996b74a89",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_form_matusetoetuse_e_taotlus",
+      "canonical_item_id": "valga_vald:form:matusetoetuse_e_taotlus",
+      "itemType": "form",
+      "title": "Matusetoetuse e-taotlus",
+      "status": "active",
+      "summary": "Valga valla sissetulekust mittesõltuvate toetuste leht suunab matusetoetuse taotlemiseks SPOKU e-taotlusele. E-taotluse otselink on väline teenuskeskkond, mille olemasolu kinnitab Valga valla ametlik leht.",
+      "sourceKeys": [
+        "sissetulekust_mittesoltuvad_toetused"
+      ],
+      "officialUrl": "https://piksel.ee/spoku/valga/index.php?asutus=-1&module=205&op=2&toetus=354",
+      "format": "web_form",
+      "submissionChannels": [
+        "SPOKU e-taotlus"
+      ],
+      "relatedTo": [
+        "valga_vald_benefit_matusetoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "sissetulekust_mittesoltuvad_toetused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_form_matusetoetuse_e_taotlus",
+      "document_id": "valga_vald_form_matusetoetuse_e_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://piksel.ee/spoku/valga/index.php?asutus=-1&module=205&op=2&toetus=354",
+      "content_hash": "0121190cf66f7ccc1a15a9264ec76071d51567dc76ef343aad1d8a920d22b042",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_form_mtu_tegevustoetuse_aruandevorm",
+      "canonical_item_id": "valga_vald:form:mtu_tegevustoetuse_aruandevorm",
+      "itemType": "form",
+      "title": "Sotsiaalvaldkonna MTÜ-de tegevustoetuse aruandevorm",
+      "status": "active",
+      "summary": "Aruandevorm sotsiaalvaldkonna MTÜ-de tegevustoetuse kasutamise aruande esitamiseks. Valga valla leht ütleb, et 2025. aasta tegevustoetuse kasutamise aruanne tuleb esitada hiljemalt 31.01.2026 e-posti teel.",
+      "sourceKeys": [
+        "mtu_aruandevorm_rtf",
+        "mtu_tegevustoetus"
+      ],
+      "officialUrl": "https://valga.ee/wp-content/uploads/2025/09/Sotsiaalvaldkonna-MTUde-teg.toetuse-aruandevorm.rtf",
+      "format": "rtf",
+      "submissionChannels": [
+        ""
+      ],
+      "relatedTo": [
+        "valga_vald_benefit_mtu_tegevustoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "mtu_aruandevorm_rtf",
+        "mtu_tegevustoetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_form_mtu_tegevustoetuse_aruandevorm",
+      "document_id": "valga_vald_form_mtu_tegevustoetuse_aruandevorm",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/wp-content/uploads/2025/09/Sotsiaalvaldkonna-MTUde-teg.toetuse-aruandevorm.rtf",
+      "content_hash": "51f0a988b54f252049a045d32ab40eacb39547f5ac0483dd7e3ecd23031e3226",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_service_varjupaigateenus",
+      "canonical_item_id": "valga_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus kindlustab ajutise ööbimiskoha täisealisele isikule, kes ei ole võimeline endale ööbimiskohta leidma. Teenus toimub Valga Vallavalitsuse hallatavas Valga Aktiviseerimiskeskuses ning tagatud on voodikoht, pesemisvõimalus ja turvaline keskkond.",
+      "sourceKeys": [
+        "toimetulekuraskus_teenused",
+        "valga_aktiviseerimiskeskus"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "targetGroup": "Täisealine isik, kes vajab ajutist ööbimiskohta",
+      "conditions": "Teenuse saaja on rahvastikuregistri järgi Valga linna elanik; teiste omavalitsuste elanikele osutatakse varjupaigateenust vältimatu abi korras.",
+      "application": {
+        "channels": [
+          "otse teenuseosutaja poole",
+          "sotsiaaltöö teenistus"
+        ],
+        "steps": [
+          "Teenuse vajaja võib pöörduda otse Valga Aktiviseerimiskeskuse poole; järgneva kolme tööpäeva jooksul tuleb pöörduda vallavalitsuse sotsiaaltöö teenistuse ametniku juurde abivajaduse hindamiseks."
+        ],
+        "deadline": "kolme tööpäeva jooksul pärast teenuse kasutamist pöörduda sotsiaaltöö teenistusse"
+      },
+      "decisionTime": null,
+      "pricing": "Teiste omavalitsuste elanikele esitatakse arve teenuseosutaja hinnakirja järgi.",
+      "relatedTo": [
+        "valga_vald_resource_valga_aktiviseerimiskeskus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "valga_vald_contact_mare_roosipuu"
+      ],
+      "item_type": "service",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "toimetulekuraskus_teenused",
+        "valga_aktiviseerimiskeskus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_service_varjupaigateenus",
+      "document_id": "valga_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "content_hash": "6d9e2bfcbc61ce5eef0be2d3485476cdfaaa952c4c4d9f62752099ded9fb8186",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_service_tugiisikuteenus",
+      "canonical_item_id": "valga_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus toetab, motiveerib, juhendab ja arendab iseseisvaks toimetulekuks täisealist või last olukordades, kus inimene vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu olulisel määral kõrvalabi. Tugiisik ei osuta füüsilist kõrvalabi; teenuse eesmärgid ja tegevused otsustab vallavalitsuse sotsiaaltöö teenistuse ametnik.",
+      "sourceKeys": [
+        "laps_ja_pere_teenused_toetused",
+        "toimetulekuraskus_teenused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "targetGroup": "Täisealised ja lapsed, kes vajavad olulist kõrvalabi kohustuste täitmisel ja õiguste teostamisel",
+      "conditions": "Kõrvalabi vajaduse määr hinnatakse ja täpsustatakse iga isiku puhul eraldi.",
+      "application": {
+        "channels": [
+          "sotsiaaltöötaja",
+          "Valga Vallavalitsus",
+          "Karula, Taheva, Tõlliste ja Õru teeninduskeskused"
+        ],
+        "steps": [
+          "Teenuse saamiseks tuleb pöörduda sotsiaaltöötaja poole; ettepaneku võib teha ka haridus- või meditsiinivaldkonna töötaja."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "valga_vald_contact_jaana_kala"
+      ],
+      "item_type": "service",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "laps_ja_pere_teenused_toetused",
+        "toimetulekuraskus_teenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_service_tugiisikuteenus",
+      "document_id": "valga_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "content_hash": "967be7d337201026a1860e6f8e2708bda3b9427881a598a1eec609f6ba12ab60",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_service_toimetulekuope",
+      "canonical_item_id": "valga_vald:service:toimetulekuope",
+      "itemType": "service",
+      "title": "Toimetulekuõpe",
+      "status": "active",
+      "summary": "Toimetulekuõppe eesmärk on soodustada pikaajalise töötu iseseisvat toimetulekut. Teenus sisaldab majapidamise, pere-eelarve, säästva eluviisi, isikliku hügieeni ja lihtsamate töövõtete õpetamist ning tööharjumuse kinnistamist.",
+      "sourceKeys": [
+        "toimetulekuraskus_teenused",
+        "valga_aktiviseerimiskeskus"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "targetGroup": "Pikaajaline töötu ja toimetulekuraskustes inimene",
+      "conditions": "Valga valla leht kirjeldab pikaajalist töötut kui isikut, kes on töötuna olnud kauem kui üheksa kuud.",
+      "application": {
+        "channels": [
+          "vallavalitsuse ametnik",
+          "sotsiaaltöö spetsialist"
+        ],
+        "steps": [
+          "Isiku suunab teenusele vallavalitsuse ametnik; osalemine toimub viiel järjestikusel tööpäeval kuus kell 9.00–14.00 või individuaalse tegevuskava alusel."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [
+        "valga_vald_resource_valga_aktiviseerimiskeskus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "valga_vald_contact_sirje_puusepp"
+      ],
+      "item_type": "service",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "toimetulekuraskus_teenused",
+        "valga_aktiviseerimiskeskus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_service_toimetulekuope",
+      "document_id": "valga_vald_service_toimetulekuope",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "content_hash": "3809063f0eaf92ef79ce03b14473109b43cc3b2cbe38192bdb487bb1c7ef8c72",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_service_volanoustamisteenus",
+      "canonical_item_id": "valga_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab inimest tema varalise olukorra kindlakstegemisel, võlausaldajatega läbirääkimisel, nõuete rahuldamisel ja uute võlgnevuste vältimisel. Sotsiaalametnik selgitab juhtumikorralduse käigus kliendi abivajaduse ja aitab leida sobiva teenuseosutaja.",
+      "sourceKeys": [
+        "toimetulekuraskus_teenused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "targetGroup": "Võlgades või finantsraskustes inimene",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "sotsiaalametnik",
+          "sotsiaaltöö teenistus"
+        ],
+        "steps": [
+          "Pöörduda sotsiaalametniku poole, kes selgitab abivajaduse ja aitab leida sobiva teenuseosutaja."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "toimetulekuraskus_teenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_service_volanoustamisteenus",
+      "document_id": "valga_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "content_hash": "3bed58e02e3f112c7ed46cfbe3551ba16e8c2bd63730a372f364d43531fcb7c8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_service_eluruumi_tagamine",
+      "canonical_item_id": "valga_vald:service:eluruumi_tagamine",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus ehk sotsiaaleluruum",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenusega kindlustatakse sobiva eluruumi kasutamise võimalus inimesele, kes ei ole võimeline endale ja oma perele eluruumi ise tagama. Sotsiaaleluruum antakse üürile tähtajalise üürilepinguga sotsiaalkorteri või majutuspinnana Valga valla hallatavate asutuste sotsiaalmajutusüksustes.",
+      "sourceKeys": [
+        "toimetulekuraskus_teenused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "targetGroup": "Inimene või pere, kes ei suuda endale sobivat eluruumi tagada",
+      "conditions": "Eluruumi üürile andmise, üürilepingu pikkuse ja muud eluruumi tagamise viisid otsustab sotsiaaltöö teenistuse ametnik või vallavalitsuse sotsiaalkomisjon; isik tasub üüri ja kõrvalkulud.",
+      "application": {
+        "channels": [
+          "Valga Vallavalitsuse sotsiaaltöö teenistus"
+        ],
+        "steps": [
+          "Esitada sotsiaaleluruumi taotlus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Üür ja kõrvalkulud; üüri suuruse kinnitab vallavalitsus.",
+      "relatedTo": [],
+      "relatedForms": [
+        "valga_vald_form_sotsiaaleluruumi_taotlus"
+      ],
+      "relatedContacts": [
+        "valga_vald_contact_mare_roosipuu",
+        "valga_vald_contact_evi_veerme",
+        "valga_vald_contact_onneke_hermaste",
+        "valga_vald_contact_anu_tamm"
+      ],
+      "item_type": "service",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "toimetulekuraskus_teenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_service_eluruumi_tagamine",
+      "document_id": "valga_vald_service_eluruumi_tagamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "content_hash": "f581f1559955bc9faffbdc315e5905bccec051e1fe8487ab78402c52ee09afe2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_service_hooldaja_maaramine",
+      "canonical_item_id": "valga_vald:service:hooldaja_maaramine",
+      "itemType": "service",
+      "title": "Hooldaja määramine ja täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Igapäevases elus kõrvalabi vajavale isikule määratakse tema soovi korral hooldaja, kui hooldamist ei ole võimalik korraldada teiste sotsiaalhoolekandeliste meetmetega. Hoolduse seadmise aluseks on abivajava toimetuleku, kõrvalabi vajaduse ja ressursside hindamine; hoolduse seab vallavalitsuse sotsiaaltöö teenistuse ametnik kuni kolmeks aastaks.",
+      "sourceKeys": [
+        "erivajadustega_inimeste_toetused",
+        "toimetulekuraskus_teenused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "targetGroup": "Kõrvalabi vajav täisealine inimene ja tema hooldajaks asuda sooviv isik",
+      "conditions": "Hooldajaks võib olla täisealine sugulane, hõimlane, sõber või naaber; hoolduse seadmine eeldab abivajaduse hindamist.",
+      "application": {
+        "channels": [
+          "Valga Vallavalitsuse sotsiaaltöö teenistus"
+        ],
+        "steps": [
+          "Hooldaja ja hooldatav esitavad vormikohased taotlused; abivajadust hinnatakse vastuvõtul või kodus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "valga_vald_form_hooldaja_taotlus_hooldaja",
+        "valga_vald_form_hooldaja_taotlus_hooldatav"
+      ],
+      "relatedContacts": [
+        "valga_vald_contact_mare_roosipuu",
+        "valga_vald_contact_jaana_kala"
+      ],
+      "item_type": "service",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "erivajadustega_inimeste_toetused",
+        "toimetulekuraskus_teenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_service_hooldaja_maaramine",
+      "document_id": "valga_vald_service_hooldaja_maaramine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "content_hash": "52c0db213554d34c4ff2b8b8ec54acefcd61056be81677a443b795fa84cb14e3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_service_koduteenus",
+      "canonical_item_id": "valga_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus abistab eakat või puudega inimest, kes terviseseisundi, tegevusvõime või elukeskkonna tõttu ei suuda kodus iseseisvalt toime tulla. Abi võib hõlmata toidu ja muu esmavajaliku kojutoomist, väljaspool kodu toimingutel abistamist, avalike ja sotsiaalteenuste korraldamist, majapidamistöid, isikliku hügieeni toiminguid ja muid kokkulepitud töid.",
+      "sourceKeys": [
+        "toimetulekuraskus_teenused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "targetGroup": "Eakas või puudega inimene, kes vajab kodus kõrvalabi",
+      "conditions": "Teenuse osutamise, sisu ja mahu otsustab abivajaduse hindamise järel sotsiaaltöö teenistuse ametnik.",
+      "application": {
+        "channels": [
+          "Valga Vallavalitsus",
+          "Karula, Taheva, Tõlliste ja Õru teeninduskeskused"
+        ],
+        "steps": [
+          "Esitada vabas vormis põhjendatud taotlus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "currency": "EUR",
+        "value": 24,
+        "unit": "kuu"
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "valga_vald_contact_aila_rajasalu"
+      ],
+      "item_type": "service",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "toimetulekuraskus_teenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_service_koduteenus",
+      "document_id": "valga_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "content_hash": "1f01ac6cc6b8c5b686824c4323d100c2dd92616cffe1b19175f00685bcc1fb43",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_service_uldhooldusteenus",
+      "canonical_item_id": "valga_vald:service:uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatav üldhooldusteenus on hooldekodus osutatav hooldus täisealisele inimesele, kes terviseseisundi, tegevusvõime või elukeskkonna tõttu ei tule kodus toime. Hooldustoimingud ja toetavad teenused määratakse hooldekodus koostatud hooldusplaaniga ning Valga vald katab hoolduskulud kehtestatud piirmäära ulatuses.",
+      "sourceKeys": [
+        "eakad_erivajadus_teenused",
+        "toimetulekuraskus_teenused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/teenused/",
+      "targetGroup": "Täisealine inimene, kes vajab ajutiselt või püsivalt ööpäevaringset hooldust hooldekodus",
+      "conditions": "Valga Vallavalitsuse poolt hoolduskulude tasumist on õigus saada abivajajal, kelle rahvastikuregistrijärgne elukoht on Valga vald.",
+      "application": {
+        "channels": [
+          "Valga Vallavalitsuse sotsiaaltöö teenistus"
+        ],
+        "steps": [
+          "Esitada taotlus; sotsiaaltöö spetsialist hindab inimese hooldusvajaduse."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva",
+      "pricing": {
+        "hoolduskulude_piirmaar": "620 eurot",
+        "omaosalus": "üldjuhul 90% igakuisest regulaarsest sissetulekust; inimese omaosaluseks jäävad majutus-, toitlustus- ja muud isiklike vajadustega seotud kulud"
+      },
+      "relatedTo": [],
+      "relatedForms": [
+        "valga_vald_form_hooldereform_taotluse_vorm"
+      ],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "eakad_erivajadus_teenused",
+        "toimetulekuraskus_teenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_service_uldhooldusteenus",
+      "document_id": "valga_vald_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/teenused/",
+      "content_hash": "46401b094a54a71534a75827f5cabd023f51c98303ae4ecdfebe25c9958b3b9f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "valga_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenuse eesmärk on vähendada teenust saava inimese seadusjärgse hooldaja hoolduskoormust. Teenusega abistatakse puudega täisealist inimest toimingutes, milleks ta vajab füüsilist kõrvalabi, näiteks söömine, toidu valmistamine, riietumine, hügieenitoimingud, majapidamistööd ja liikumine.",
+      "sourceKeys": [
+        "toimetulekuraskus_teenused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "targetGroup": "Puudega täisealine inimene, kes vajab füüsilist kõrvalabi",
+      "conditions": "Teenuse osutamise, sisu ja mahu tundides nädalas otsustab abivajaduse hindamise järel sotsiaaltöö teenistuse ametnik.",
+      "application": {
+        "channels": [
+          "Valga Vallavalitsus",
+          "Karula, Taheva, Tõlliste ja Õru teeninduskeskused"
+        ],
+        "steps": [
+          "Esitada avaldus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "currency": "EUR",
+        "value": 1,
+        "unit": "teenuse osutamise tund"
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "valga_vald_contact_mare_roosipuu"
+      ],
+      "item_type": "service",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "toimetulekuraskus_teenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_service_isikliku_abistaja_teenus",
+      "document_id": "valga_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "content_hash": "1d935010cf0f08922f9185426b1c867e5abbfb050ec92ecdacfc1100b125c8e3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "valga_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus võimaldab puudega inimesele, kelle puue takistab isikliku või ühissõiduki kasutamist, kohase sõiduki kasutamist tööle või õppeasutusse sõitmiseks, avalike teenuste kasutamiseks ja igapäevaseks toimetulekuks hädavajalike sõitude tegemiseks. Teenuse kasutaja tasub omaosaluse.",
+      "sourceKeys": [
+        "sotsiaaltranspordi_tasu_pdf",
+        "toimetulekuraskus_teenused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "targetGroup": "Puudega inimene, kelle puue takistab isikliku või ühissõiduki kasutamist",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "Valga Vallavalitsus",
+          "Karula, Taheva, Tõlliste ja Õru teeninduskeskused"
+        ],
+        "steps": [
+          "Täita taotlus; taotluses tuleb näidata teenuse vajaduse aeg, sihtkoht ja sõidu põhjus; tellimus loetakse kokkulepituks, kui vallavalitsuse esindaja on teenuse osutamise aja taotlejale teatanud."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "Valga linn": "10 eurot sõidu või väljakutse kohta",
+        "väljaspool Valga linna": "0,35 eurot/km + alustamistasu 4 eurot",
+        "ootetund": "4 eurot",
+        "trepironija": "3 eurot ühe korruse kohta",
+        "raamtransport": "0,90 eurot/km + korruse hind 3 eurot",
+        "hoone sees liikumise abistamine": "10 eurot"
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "valga_vald_contact_mare_roosipuu"
+      ],
+      "item_type": "service",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "sotsiaaltranspordi_tasu_pdf",
+        "toimetulekuraskus_teenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_service_sotsiaaltransporditeenus",
+      "document_id": "valga_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "content_hash": "7f64e6398079f1b4d0d638bc79662373e3ddc20b1f2bfc8be0da9f22dfdd7d1c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_service_lapsehoiuteenus_puudega_lapsele",
+      "canonical_item_id": "valga_vald:service:lapsehoiuteenus_puudega_lapsele",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus raske või sügava puudega lapsele",
+      "status": "active",
+      "summary": "Lapsehoiuteenuse eesmärk on toetada raske või sügava puudega last kasvatava isiku toimetulekut ja töötamist ning vähendada lapse erivajadusest perekonnale langevat hoolduskoormust. Teenust võimaldatakse kuni 18-aastasele raske või sügava puudega lapsele Valga Perekeskus Kurepesas või suunatakse laps teise juriidilise isiku korraldatavale teenusele.",
+      "sourceKeys": [
+        "toimetulekuraskus_teenused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "targetGroup": "Kuni 18-aastane raske või sügava puudega laps ja tema pere",
+      "conditions": "Abivajaduse hindab lastekaitse spetsialist; abivajaduse korral tasub teenuse eest kohalik omavalitsus, välja arvatud lapse toitlustus.",
+      "application": {
+        "channels": [
+          "Valga Vallavalitsus",
+          "Karula ja Taheva ning Tõlliste ja Õru lastekaitse spetsialistid"
+        ],
+        "steps": [
+          "Lapsehoiuteenuse taotlemiseks tuleb esitada vormikohane taotlus ja pöörduda nõustamiseks sotsiaaltöö teenistuse lastekaitsespetsialistide poole."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenuse kasutaja tasub lapse toitlustamise omaosaluse.",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "valga_vald_contact_jaana_kala",
+        "valga_vald_contact_kati_kikkas",
+        "valga_vald_contact_maire_baumverk",
+        "valga_vald_contact_ilona_hommik",
+        "valga_vald_contact_karin_kangsepp"
+      ],
+      "item_type": "service",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "toimetulekuraskus_teenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_service_lapsehoiuteenus_puudega_lapsele",
+      "document_id": "valga_vald_service_lapsehoiuteenus_puudega_lapsele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "content_hash": "46e6ded2f598027d0567766ac610863a78ff1e4673f49b285b1e3f58ead05e15",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_service_asendushooldusteenus",
+      "canonical_item_id": "valga_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus tagab lapse heaolu ja õiguste kaitse olukorras, kus laps vajab hooldust väljaspool oma sünniperet. Teenuse korraldamise eesmärk on pakkuda lapsele turvalist, peresarnast elukeskkonda ja valmistada teda ette iseseisvaks eluks.",
+      "sourceKeys": [
+        "laps_ja_pere_teenused_toetused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/teenused-ja-toetused/",
+      "targetGroup": "Laps, kelle heaolu ja õiguste tagamiseks on vaja asendushooldust",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "lastekaitse spetsialist"
+        ],
+        "steps": [
+          "Pöörduda Valga valla lastekaitse spetsialisti poole, kes hindab lapse abivajadust ja korraldab teenusele suunamist."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "valga_vald_contact_jaana_kala"
+      ],
+      "item_type": "service",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "laps_ja_pere_teenused_toetused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_service_asendushooldusteenus",
+      "document_id": "valga_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/teenused-ja-toetused/",
+      "content_hash": "7d3da3b1f6e9e7b0991062fbae56545887981ac270f9c8f83197c46e10076327",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "valga_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus toetab asendushoolduselt või eestkostelt lahkuva noore iseseisvat toimetulekut, õpingute jätkamist ja igapäevaelu korraldamist. Valga valla leht seob teenuse korraldamise sotsiaaltöö teenistuse ja lastekaitse spetsialistidega.",
+      "sourceKeys": [
+        "laps_ja_pere_teenused_toetused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/teenused-ja-toetused/",
+      "targetGroup": "Asendushoolduselt või eestkostelt lahkuv noor",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "lastekaitse spetsialist"
+        ],
+        "steps": [
+          "Pöörduda Valga valla lastekaitse spetsialisti poole."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "valga_vald_contact_jaana_kala"
+      ],
+      "item_type": "service",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "laps_ja_pere_teenused_toetused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_service_jarelhooldusteenus",
+      "document_id": "valga_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/teenused-ja-toetused/",
+      "content_hash": "9b2b95eb0b9a361a735d44f08e17d3abd36b31523748efaed8ec5976b1b46fa1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_service_vaimse_tervise_teenused",
+      "canonical_item_id": "valga_vald:service:vaimse_tervise_teenused",
+      "itemType": "service",
+      "title": "Vaimse tervise teenused",
+      "status": "active",
+      "summary": "Valga valla vaimse tervise teenused toetavad psühhosotsiaalset heaolu nõustamise ja teraapiaga. Soodustingimustel on võimalik saada individuaalset psühholoogilist nõustamist, perenõustamist ja mänguteraapiat kuni kaheksa 45-minutilise teenustunni ulatuses ühes eelarveaastas.",
+      "sourceKeys": [
+        "laps_ja_pere_teenused_toetused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/teenused-ja-toetused/",
+      "targetGroup": "Inimesed ja pered, kes vajavad psühholoogilist või peresuhetega seotud nõustamist",
+      "conditions": "Teenuse vajadust ja suunamist hindab Valga valla sotsiaaltöötaja; vastuvõtuaja lepib inimene pärast suunamist teenuseosutajaga ise kokku.",
+      "application": {
+        "channels": [
+          "sotsiaaltöö teenistus",
+          "teenuseosutajaga kokkulepe"
+        ],
+        "steps": [
+          "Pöörduda sotsiaaltöö teenistusse; suunamise järel leppida teenuseosutajaga vastuvõtuaeg kokku."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Kuni 8 teenustundi eelarveaastas soodustingimustel",
+      "relatedTo": [
+        "valga_vald_resource_vaimse_tervise_teenusepakkujad"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "service",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "laps_ja_pere_teenused_toetused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_service_vaimse_tervise_teenused",
+      "document_id": "valga_vald_service_vaimse_tervise_teenused",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/teenused-ja-toetused/",
+      "content_hash": "3e379724ca8555d007cc23851c7f9549e03a78cb55b6d04aae9e0df76f8ce419",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_service_parkimiskaart",
+      "canonical_item_id": "valga_vald:service:parkimiskaart",
+      "itemType": "service",
+      "title": "Parkimiskaart erivajadusega isikule",
+      "status": "active",
+      "summary": "Parkimiskaart on mõeldud liikumis- või nägemispuudega inimesele, et lihtsustada parkimist ja peatumist invakohtadel. Kaart väljastatakse puude kehtivusaja lõpuni, kuid mitte kauemaks kui viieks aastaks; ajutise liikumispiirangu korral väljastatakse kaart kuni kuueks kuuks.",
+      "sourceKeys": [
+        "parkimiskaart"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/parkimiskaart/",
+      "targetGroup": "Mõõduka, raske või sügava liikumis- või nägemispuudega inimene või ajutise liikumispiiranguga inimene",
+      "conditions": "Vajalik on puude või ajutise liikumispiirangu tõendamine.",
+      "application": {
+        "channels": [
+          "sotsiaaltöö teenistus"
+        ],
+        "steps": [
+          "Esitada taotlus ja vajalik tõend või dokument."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "valga_vald_contact_mare_roosipuu"
+      ],
+      "item_type": "service",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "parkimiskaart"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_service_parkimiskaart",
+      "document_id": "valga_vald_service_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/parkimiskaart/",
+      "content_hash": "27c01b3f1f560d7d7a8267736d8de454fd1c8c358de9607879ac7f748900f7f3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_benefit_sunnitoetus",
+      "canonical_item_id": "valga_vald:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus on Valga valla sissetulekust mittesõltuv toetus lapse sünni puhul. Toetuse kogusuurus on 430 eurot ja see makstakse välja kolmes osas: 230 eurot pärast sündi, 100 eurot lapse 1 aasta ja 6 kuu vanuseks saamisel ning 100 eurot lapse 3-aastaseks saamisel.",
+      "sourceKeys": [
+        "laps_ja_pere_teenused_toetused",
+        "sissetulekust_mittesoltuvad_toetused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/teenused-ja-toetused/",
+      "targetGroup": "Valga valla elanikuks registreeritud lapsevanem ja Valga valda registreeritud laps",
+      "conditions": "Toetust saab taotleda üks vanematest, kelle elukoht on Valga vallas; lapse esimene elukoht sünnijärgselt peab olema Valga vald ning teise ja kolmanda osa saamiseks peab lapse ja ühe vanema elukoht olema katkematult Valga vallas.",
+      "application": {
+        "channels": [
+          "kohapeal",
+          "post",
+          "elektrooniliselt",
+          "SPOKU e-taotlus"
+        ],
+        "steps": [
+          "Esitada avaldus; iga osa saamiseks tuleb teha eraldi taotlus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "currency": "EUR",
+        "value": 430,
+        "parts": [
+          "230 eurot lapse sünni järel",
+          "100 eurot lapse 1 aasta ja 6 kuu vanuseks saamisel",
+          "100 eurot lapse 3-aastaseks saamisel"
+        ]
+      },
+      "relatedTo": [],
+      "relatedForms": [
+        "valga_vald_form_sund_ranits_koolitoetus_avaldus",
+        "valga_vald_form_sunnitoetuse_e_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "laps_ja_pere_teenused_toetused",
+        "sissetulekust_mittesoltuvad_toetused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_benefit_sunnitoetus",
+      "document_id": "valga_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/teenused-ja-toetused/",
+      "content_hash": "778601b9130b17d2f49866a0125dc11628f9257d893bdd2cf1dce30daa2664fd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_benefit_ranitsatoetus",
+      "canonical_item_id": "valga_vald:benefit:ranitsatoetus",
+      "itemType": "benefit",
+      "title": "Ranitsatoetus",
+      "status": "active",
+      "summary": "Ranitsatoetus on ühekordne toetus lapse esimesse klassi õppima asumisel. Toetuse suurus on 160 eurot ja see on mõeldud esimese klassi mineva lapse vanemate koolikulude abistamiseks.",
+      "sourceKeys": [
+        "laps_ja_pere_teenused_toetused",
+        "sissetulekust_mittesoltuvad_toetused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/teenused-ja-toetused/",
+      "targetGroup": "Esimesse klassi õppima asuv laps ja tema Valga valla elanikust vanem",
+      "conditions": "Toetust taotleva lapsevanema ja õppima asuva lapse elukoht peab olema Valga vald; ametnikud saavad taotlusega tegeleda pärast EHIS-e kannet.",
+      "application": {
+        "channels": [
+          "kohapeal",
+          "post",
+          "elektrooniliselt",
+          "SPOKU e-taotlus"
+        ],
+        "steps": [
+          "Esitada avaldus; välisriigis õppimise korral esitada tõend lapse õppima asumise kohta."
+        ],
+        "deadline": "soovituslikult alates 10. septembrist"
+      },
+      "decisionTime": null,
+      "amount": {
+        "currency": "EUR",
+        "value": 160
+      },
+      "relatedTo": [],
+      "relatedForms": [
+        "valga_vald_form_sund_ranits_koolitoetus_avaldus",
+        "valga_vald_form_ranitsatoetuse_e_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "laps_ja_pere_teenused_toetused",
+        "sissetulekust_mittesoltuvad_toetused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_benefit_ranitsatoetus",
+      "document_id": "valga_vald_benefit_ranitsatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/teenused-ja-toetused/",
+      "content_hash": "7df9301cfeb4429f26835ff806573ebb436f0af8b67014d09654adfc07235092",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_benefit_kolme_lapse_koolitoetus",
+      "canonical_item_id": "valga_vald:benefit:kolme_lapse_koolitoetus",
+      "itemType": "benefit",
+      "title": "Kolme- ja enamalapselise pere koolitoetus",
+      "status": "active",
+      "summary": "Kolme- ja enamalapselise pere koolitoetus on iga-aastane toetus perele, kus kolm või enam kuni 19-aastast last õpivad päevases õppes või põhihariduse omandamisel kaugõppes. Toetuse suurus on 130 eurot kalendriaasta kohta.",
+      "sourceKeys": [
+        "laps_ja_pere_teenused_toetused",
+        "sissetulekust_mittesoltuvad_toetused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/teenused-ja-toetused/",
+      "targetGroup": "Pere, kus on vähemalt kolm kuni 19-aastast õppivat last",
+      "conditions": "Toetust saab taotleda üks Valga valla elanikuks registreeritud lapsevanem ning laste elukoht peab olema Valga vald; välismaal õppivate laste kohta tuleb esitada tõend.",
+      "application": {
+        "channels": [
+          "kohapeal",
+          "post",
+          "elektrooniliselt",
+          "SPOKU e-taotlus"
+        ],
+        "steps": [
+          "Esitada avaldus koos vajalike andmete ja vajadusel koolitõenditega."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "currency": "EUR",
+        "value": 130,
+        "unit": "kalendriaasta"
+      },
+      "relatedTo": [],
+      "relatedForms": [
+        "valga_vald_form_sund_ranits_koolitoetus_avaldus",
+        "valga_vald_form_kolme_lapse_koolitoetuse_e_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "laps_ja_pere_teenused_toetused",
+        "sissetulekust_mittesoltuvad_toetused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_benefit_kolme_lapse_koolitoetus",
+      "document_id": "valga_vald_benefit_kolme_lapse_koolitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/teenused-ja-toetused/",
+      "content_hash": "88a22425cc067b483e563130f5253031bf983608ef92c02428f4a4391f58bbf4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_benefit_matusetoetus",
+      "canonical_item_id": "valga_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on Valga valla sissetulekust mittesõltuv toetus Valga vallas elanud isiku matmise kuludeks inimesele, kes võttis matmise kulud enda kanda. Toetuse suurus on 250 eurot.",
+      "sourceKeys": [
+        "sissetulekust_mittesoltuvad_toetused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/toetused/sissetulekust-mittesoltuvad-toetused/",
+      "targetGroup": "Isik, kes kannab Valga vallas elanud inimese matusekulud",
+      "conditions": "Surnu elukoht peab surmakuupäeva seisuga olema registreeritud Valga valla elanike registris.",
+      "application": {
+        "channels": [
+          "sotsiaaltööteenistus",
+          "digitaalselt allkirjastatud",
+          "paberkandjal post",
+          "SPOKU e-taotlus"
+        ],
+        "steps": [
+          "Esitada avaldus koos vajalike andmetega."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "currency": "EUR",
+        "value": 250
+      },
+      "relatedTo": [],
+      "relatedForms": [
+        "valga_vald_form_matusetoetuse_avaldus",
+        "valga_vald_form_matusetoetuse_e_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "sissetulekust_mittesoltuvad_toetused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_benefit_matusetoetus",
+      "document_id": "valga_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/toetused/sissetulekust-mittesoltuvad-toetused/",
+      "content_hash": "f5266ec929288dea81ddfdbbc56c3cfde72652adb41e9afacb734c305765e696",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_benefit_taiendav_sotsiaaltoetus",
+      "canonical_item_id": "valga_vald:benefit:taiendav_sotsiaaltoetus",
+      "itemType": "benefit",
+      "title": "Täiendav sotsiaaltoetus",
+      "status": "active",
+      "summary": "Täiendava sotsiaaltoetuse eesmärk on materiaalses puuduses olevale isikule või perele osaliselt hüvitada tavapärasest suuremad esmavajalikud kulutused, kui muid hüvitisi ei ole või nendest ei piisa. Materiaalse puuduse piirina on Valga valla lehel nimetatud alla 350 euro esimese või ainsa pereliikme kohta ja alla 150 euro iga järgneva pereliikme kohta kolme viimase kuu keskmisena.",
+      "sourceKeys": [
+        "taiendav_sotsiaaltoetus",
+        "taiendava_sotsiaaltoetuse_taotlus",
+        "toimetulekuraskus_toetused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/toetused/taiendav-sotsiaaltoetus/",
+      "targetGroup": "Materiaalses puuduses olev isik või perekond",
+      "conditions": "Sissetulekute arvestamisel loetakse kõik sissetulekud, välja arvatud toimetulekutoetus; abivajaduse hindamisel võidakse arvestada ka muid olulisi väljaminekuid.",
+      "application": {
+        "channels": [
+          "Valga Vallavalitsuse sotsiaaltöö teenistus",
+          "e-taotlus Valga valla lehe kaudu"
+        ],
+        "steps": [
+          "Esitada taotlus koos hüvitatavaid kulusid tõendavate dokumentidega."
+        ],
+        "deadline": "üldjuhul kord kvartalis; lasteaiatasu hüvitise taotlus üks kord kalendriaastas 25. augustiks"
+      },
+      "decisionTime": "10 tööpäeva",
+      "amount": {
+        "piirmaarad": [
+          "küttematerjal kuni 100 eurot aastas pere kohta",
+          "lapse koolivälise huvitegevuse kulud kuni 25 eurot lapse kohta kuus",
+          "lasteaiatasu kuni 50 eurot kuus",
+          "lapse ühistranspordikulud kooli ja huviringi sõidul kuni 50 eurot kuus",
+          "ravi- ja hoolduskulud kuni 50 eurot kvartalis",
+          "invaabivahendi, sh prillide üürimine või ost kuni 100 eurot aastas",
+          "isikut tõendavate dokumentide riigilõivud kuni 30 eurot"
+        ]
+      },
+      "relatedTo": [],
+      "relatedForms": [
+        "valga_vald_form_taiendava_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "taiendav_sotsiaaltoetus",
+        "taiendava_sotsiaaltoetuse_taotlus",
+        "toimetulekuraskus_toetused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_benefit_taiendav_sotsiaaltoetus",
+      "document_id": "valga_vald_benefit_taiendav_sotsiaaltoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/toetused/taiendav-sotsiaaltoetus/",
+      "content_hash": "9f1c5ac16c4770ed968a8706e16ea75f073b98573aa1b2b04b4b6b92bb1c6060",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_benefit_erakorraline_toetus",
+      "canonical_item_id": "valga_vald:benefit:erakorraline_toetus",
+      "itemType": "benefit",
+      "title": "Erakorraline toetus õnnetusjuhtumi või ootamatute kulude korral",
+      "status": "active",
+      "summary": "Valga valla toetuste koondlehel on täiendava sotsiaaltoetuse alaliigina nimetatud erakorraline toetus õnnetusjuhtumi või ootamatute kulutuste korral, näiteks loodusõnnetus, tulekahju, vargus või muu sarnane olukord. Tegemist on juhtumipõhiselt hinnatava abiga materiaalse puuduse või ootamatu kulu korral.",
+      "sourceKeys": [
+        "toimetulekuraskus_toetused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/toetused/",
+      "targetGroup": "Inimene või pere, kellel on õnnetusjuhtumi või ootamatu kulutuse tõttu tekkinud abivajadus",
+      "conditions": "Toetuse vajadust hinnatakse juhtumipõhiselt ning see on seotud täiendava sotsiaaltoetuse raamiga.",
+      "application": {
+        "channels": [
+          "Valga Vallavalitsuse sotsiaaltöö teenistus"
+        ],
+        "steps": [
+          "Esitada täiendava sotsiaaltoetuse taotlus ja asjaolusid tõendavad dokumendid."
+        ],
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva täiendava sotsiaaltoetuse menetluses",
+      "amount": null,
+      "relatedTo": [
+        "valga_vald_benefit_taiendav_sotsiaaltoetus"
+      ],
+      "relatedForms": [
+        "valga_vald_form_taiendava_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "toimetulekuraskus_toetused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_benefit_erakorraline_toetus",
+      "document_id": "valga_vald_benefit_erakorraline_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/toetused/",
+      "content_hash": "b9323e285fdcac638acaf109c09f54afd1dc6819aede19df1af77cb35e136d84",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_benefit_riiklik_toimetulekutoetus",
+      "canonical_item_id": "valga_vald:benefit:riiklik_toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Riiklik toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on ajutine abimeede, millega leevendatakse abivajava inimese või pere materiaalset puudust ja tagatakse minimaalsed vahendid esmavajaduste rahuldamiseks. Valga valla leht kajastab 2026. aasta toimetulekupiire: 220 eurot esimesele liikmele, 264 eurot alaealisele lapsele ja 176 eurot igale järgmisele täisealisele liikmele kuus.",
+      "sourceKeys": [
+        "riiklik_toimetulekutoetus"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/toetused/riiklik-toimetulekutoetus/",
+      "targetGroup": "Üksi elav inimene või perekond, kelle kuu netosissetulek pärast eluasemekulude mahaarvamist jääb alla toimetulekupiiri",
+      "conditions": "Arvestatakse samas eluruumis elavaid ühise majapidamisega perekonnaliikmeid ja eluasemekulusid.",
+      "application": {
+        "channels": [
+          "Valga valla sotsiaaltöö teenistus",
+          "riiklik taotlemiskord"
+        ],
+        "steps": [
+          "Esitada toimetulekutoetuse taotlus koos nõutud andmetega."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "currency": "EUR",
+        "toimetulekupiir_2026": {
+          "esimene_liige": 220,
+          "alaealine_laps": 264,
+          "järgmine_täisealine": 176
+        }
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "benefit",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "riiklik_toimetulekutoetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_benefit_riiklik_toimetulekutoetus",
+      "document_id": "valga_vald_benefit_riiklik_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/toetused/riiklik-toimetulekutoetus/",
+      "content_hash": "ab21d29aeeb388f349d0d84e58b11bae649493d3a3dbf3dc8102e8d75ab2d9fa",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_benefit_hooldajatoetus",
+      "canonical_item_id": "valga_vald:benefit:hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus",
+      "status": "active",
+      "summary": "Hooldajatoetust saab taotleda inimene, kes tagab kõrvalabi vajavale isikule tema erivajadustele vastava hoolduse ja on määratud selle isiku hooldajaks Valga Vallavalitsuse korraldusega. Alates 01.01.2020 maksab Valga vald täisealise isiku hooldajale 50 eurot kuus ja lapse hooldajale 75 eurot kuus; ulatusliku hooldusvajaduse korral võib sotsiaalkomisjon määrata suurema toetuse.",
+      "sourceKeys": [
+        "erivajadustega_inimeste_toetused",
+        "toimetulekuraskus_teenused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "targetGroup": "Hooldaja, kes hooldab Valga Vallavalitsuse korraldusega hooldajaks määratud kõrvalabi vajavat inimest",
+      "conditions": "Hooldajatoetus määratakse taotluse esitamisele järgnevast kuust hoolduse tähtaja lõpuni ning maksmine ei pikene automaatselt.",
+      "application": {
+        "channels": [
+          "Valga Vallavalitsuse sotsiaaltöö teenistus"
+        ],
+        "steps": [
+          "Hooldaja ja hooldatav esitavad vormikohased taotlused."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "currency": "EUR",
+        "täisealise_isiku_hooldaja": 50,
+        "lapse_hooldaja": 75,
+        "unit": "kuu"
+      },
+      "relatedTo": [
+        "valga_vald_service_hooldaja_maaramine"
+      ],
+      "relatedForms": [
+        "valga_vald_form_hooldaja_taotlus_hooldaja",
+        "valga_vald_form_hooldaja_taotlus_hooldatav"
+      ],
+      "relatedContacts": [
+        "valga_vald_contact_mare_roosipuu",
+        "valga_vald_contact_jaana_kala"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "erivajadustega_inimeste_toetused",
+        "toimetulekuraskus_teenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_benefit_hooldajatoetus",
+      "document_id": "valga_vald_benefit_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "content_hash": "9beef0b5e0bc31ae42591073cb82072007fe7b51ba77a967520b04142062290f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_benefit_hoolduskulude_toetus",
+      "canonical_item_id": "valga_vald:benefit:hoolduskulude_toetus",
+      "itemType": "benefit",
+      "title": "Hoolduskulude toetus",
+      "status": "active",
+      "summary": "Hoolduskulude toetus on igakuine toetus suurema kõrvalabi vajadusega inimesele, kellele ei ole määratud hooldajat ja kelle toimetulekut ei saa tagada muude sotsiaalteenustega. Alates 01.01.2020 määratakse toetus kuni üheks aastaks summas 25 eurot kuus.",
+      "sourceKeys": [
+        "toimetulekuraskus_teenused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "targetGroup": "Suurema kõrvalabi vajadusega inimene, kellele ei ole määratud hooldajat",
+      "conditions": "Abivajaduse kindlakstegemise järel peab selguma, et inimese toimetulekut ei saa korraldada teiste hoolekandeliste meetmetega.",
+      "application": {
+        "channels": [
+          "Valga Vallavalitsus",
+          "Karula, Taheva, Tõlliste ja Õru teeninduskeskused"
+        ],
+        "steps": [
+          "Esitada vormikohane hoolduskulude toetuse taotlus."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "currency": "EUR",
+        "value": 25,
+        "unit": "kuu",
+        "duration": "kuni 1 aasta"
+      },
+      "relatedTo": [],
+      "relatedForms": [
+        "valga_vald_form_hoolduskulude_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "valga_vald_contact_mare_roosipuu"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "toimetulekuraskus_teenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_benefit_hoolduskulude_toetus",
+      "document_id": "valga_vald_benefit_hoolduskulude_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "content_hash": "8c8719a158d7df8e7f37ee91b6a4dc44442fa8bd95721dc26e5b1a8d2e1f4969",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_benefit_mtu_tegevustoetus",
+      "canonical_item_id": "valga_vald:benefit:mtu_tegevustoetus",
+      "itemType": "benefit",
+      "title": "Sotsiaalvaldkonna MTÜ-de tegevustoetus",
+      "status": "active",
+      "summary": "Valga vald maksab sotsiaalteenuseid osutavatele või sotsiaalvaldkonna sihtrühmi esindavatele mittetulundusühingutele tegevustoetust. Toetus on ette nähtud hoonete majandamiskulude ja personalikulude katmiseks selles osas, mida ei rahastata teistest allikatest, ürituste ja kampaaniate korraldamiseks ning muude sotsiaalkomisjoni aktsepteeritud kulude katmiseks.",
+      "sourceKeys": [
+        "mtu_tegevustoetus"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/kogukonnatugi/mtu-de-tegevustoetus/",
+      "targetGroup": "Sotsiaalteenuseid osutavad või sotsiaalvaldkonna sihtrühmi esindavad mittetulundusühingud",
+      "conditions": "Sobiv tegevus või esindamisõigus peab olema mittetulundusühingu põhikirjaline tegevus.",
+      "application": {
+        "channels": [
+          "vallavalitsus",
+          "SPOKU taotlusperioodil"
+        ],
+        "steps": [
+          "Esitada taotlus koos eelarve ja toetuse vajalikkuse põhjendusega."
+        ],
+        "deadline": "1. detsember; 2025. aasta kasutamise aruanne hiljemalt 31.01.2026"
+      },
+      "decisionTime": "Hiljemalt ühe kuu jooksul arvates vallaeelarve vastuvõtmisest",
+      "amount": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "valga_vald_form_mtu_tegevustoetuse_aruandevorm"
+      ],
+      "relatedContacts": [
+        "valga_vald_contact_sirje_puusepp"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "mtu_tegevustoetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_benefit_mtu_tegevustoetus",
+      "document_id": "valga_vald_benefit_mtu_tegevustoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/kogukonnatugi/mtu-de-tegevustoetus/",
+      "content_hash": "15af9976a917f3e0e30edb64ae7be4dc19a9cde3b3206429eeb089039b7f9f26",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_resource_valga_aktiviseerimiskeskus",
+      "canonical_item_id": "valga_vald:resource:valga_aktiviseerimiskeskus",
+      "itemType": "resource",
+      "title": "Valga Aktiviseerimiskeskus",
+      "status": "active",
+      "summary": "Valga Aktiviseerimiskeskus on Valga valla hallatav asutus aadressil Piiri 19, Valga linn. Keskus pakub täiskasvanute varjupaigateenust, eluaseme tagamise teenust sotsiaaltöö teenistuse otsuse alusel ja toimetulekuõppe korraldust.",
+      "sourceKeys": [
+        "hoolekandeasutused",
+        "valga_aktiviseerimiskeskus"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/valga-aktiviseerimiskeskus/",
+      "targetGroup": null,
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "address": "Piiri 19, Valga linn",
+      "item_type": "resource",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "hoolekandeasutused",
+        "valga_aktiviseerimiskeskus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_resource_valga_aktiviseerimiskeskus",
+      "document_id": "valga_vald_resource_valga_aktiviseerimiskeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/valga-aktiviseerimiskeskus/",
+      "content_hash": "2d25c801901ecbbe7dfe55707fe2448df5791af51684bec0b6af78897b53a778",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_resource_valgamaa_naiste_tugikeskus",
+      "canonical_item_id": "valga_vald:resource:valgamaa_naiste_tugikeskus",
+      "itemType": "resource",
+      "title": "Valgamaa Naiste Tugikeskus",
+      "status": "active",
+      "summary": "Valga valla varjupaigateenuse leht ütleb, et vägivalda kogenud naistele pakub ajutist majutust, psühholoogilist nõustamist ja õigusabi Valgamaa Naiste Tugikeskus. Valla lehel on avaldatud ja varjestatud.",
+      "sourceKeys": [
+        "toimetulekuraskus_teenused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "targetGroup": "Vägivalda kogenud naised",
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "toimetulekuraskus_teenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_resource_valgamaa_naiste_tugikeskus",
+      "document_id": "valga_vald_resource_valgamaa_naiste_tugikeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "content_hash": "4d48627c51392554f9fe4e8dddbea9d547172a66d5106c709c68ecbd280386ee",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_resource_tasuta_oigusabi",
+      "canonical_item_id": "valga_vald:resource:tasuta_oigusabi",
+      "itemType": "resource",
+      "title": "Tasuta õigusabi",
+      "status": "active",
+      "summary": "Valga valla teenuste leht viitab tasuta õigusabile, mida HUGO.legal koostöös Justiitsministeeriumiga pakub maakonnakeskustes kohapeal ning e-posti või videosilla vahendusel. Valla lehel on kirjas, et nõustamise aeg tuleb eelnevalt registreerida veebis või telefonil 6.",
+      "sourceKeys": [
+        "toimetulekuraskus_teenused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "targetGroup": "Õigusnõu vajavad inimesed",
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "toimetulekuraskus_teenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_resource_tasuta_oigusabi",
+      "document_id": "valga_vald_resource_tasuta_oigusabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/teenused/",
+      "content_hash": "3e3d5f6255ea647f302ad3986e0cd8afdc0eeda0b228dabaa140ed03954d2fc5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_resource_toiduabi",
+      "canonical_item_id": "valga_vald:resource:toiduabi",
+      "itemType": "resource",
+      "title": "Toiduabi",
+      "status": "active",
+      "summary": "Toiduabi on toimetulekuraskustes inimestele suunatud abi, mis jaguneb riiklikult ostetud toiduabiks ja annetatud toiduabiks. Toidukaart on seotud varasema toimetulekutoetuse või sissetulekust sõltuva sotsiaaltoetuse saamisega ning annetatud toiduabi jagab Valgas Valga Toidupank.",
+      "sourceKeys": [
+        "toiduabi"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/toiduabi/",
+      "targetGroup": "Majanduslikult raskes olukorras inimesed ja leibkonnad",
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": {
+        "toidukaart": "36 eurot abisaaja kohta kvartalis alates 1.07.2025"
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "toiduabi"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_resource_toiduabi",
+      "document_id": "valga_vald_resource_toiduabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/toimetulekuraskusega-inimesed/toiduabi/",
+      "content_hash": "12e34537fdbeb16146747f81d7dd1b837e2c6d4dc820ded004ba227a1abeabd9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_resource_valga_toidupank",
+      "canonical_item_id": "valga_vald:resource:valga_toidupank",
+      "itemType": "resource",
+      "title": "SA Eesti-Hollandi Heategevusfondi Valga Toidupank",
+      "status": "active",
+      "summary": "Valga valla hoolekandeasutuste leht nimetab Valga Toidupanka teenusepakkujana aadressil Kuperjanovi 105, Valga linn. Toiduabi leht ütleb, et annetatud toiduabi jagab Valgas Valga Toidupank.",
+      "sourceKeys": [
+        "hoolekandeasutused",
+        "toiduabi"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "targetGroup": "Toiduabi vajavad inimesed",
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "address": "Kuperjanovi 105, Valga linn",
+      "item_type": "resource",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "hoolekandeasutused",
+        "toiduabi"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_resource_valga_toidupank",
+      "document_id": "valga_vald_resource_valga_toidupank",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "content_hash": "fdbd3b50a1208d09c3a5c6c519c1bfc1c7360c4aab9f3f1762a5b5fc154b7a88",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_resource_ohvriabi",
+      "canonical_item_id": "valga_vald:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "Ohvriabi on tasuta avalik sotsiaalteenus, mille eesmärk on säilitada või parandada ohvri toimetulekuvõimet. Valga valla ohvriabi leht nimetab 24/7 ohvriabi kriisitelefoni, lasteabitelefoni, hädaabinumbri ning Valga maakonna ohvriabi töötaja kontakti.",
+      "sourceKeys": [
+        "ohvriabi"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/ohvriabi/",
+      "targetGroup": "Vägivalla, hooletuse, halva kohtlemise, kuriteo või muu kahju ohvrid ja nende lähedased",
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "valga_vald_contact_sirje_sillamagi_tamm"
+      ],
+      "item_type": "resource",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "ohvriabi"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_resource_ohvriabi",
+      "document_id": "valga_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/ohvriabi/",
+      "content_hash": "d32538218cd78b81dfc3cae8cf4d64a7b3bd0598f8492d3ebce3481500de7ccd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_resource_ngts",
+      "canonical_item_id": "valga_vald:resource:ngts",
+      "itemType": "resource",
+      "title": "Noortegarantii tugisüsteem (NGTS)",
+      "status": "active",
+      "summary": "Noortegarantii tugisüsteem toetab 13–29-aastasi noori, kes on eemale jäämas või jäänud tööturult või hariduse omandamisest. Valga valla tugiteenuste leht suunab noori noorte heaoluspetsialistide poole.",
+      "sourceKeys": [
+        "tugiteenused_noortele"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/tugiteenused-noortele/",
+      "targetGroup": "13–29-aastased noored, kes ei õpi, ei tööta või vajavad tuge haridusse või tööturule naasmisel",
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "valga_vald_contact_garolin_kolbasov",
+        "valga_vald_contact_sirly_solo",
+        "valga_vald_contact_kadri_kallas"
+      ],
+      "item_type": "resource",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "tugiteenused_noortele"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_resource_ngts",
+      "document_id": "valga_vald_resource_ngts",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/tugiteenused-noortele/",
+      "content_hash": "479d053eefb41c2a2aa532463f69ae5296e7fd3e737e93181fbeef26f8e47209",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_resource_iste",
+      "canonical_item_id": "valga_vald:resource:iste",
+      "itemType": "resource",
+      "title": "Isikukeskse erihoolekande teenusmudel (ISTE)",
+      "status": "active",
+      "summary": "ISTE ehk isikukeskse erihoolekande teenusmudeli projekt on Valga vallas rakendatav 2025–2026 perioodi teenusmudel, millega eraldati vallale 50 teenuskohta. Teenusmudel võimaldab kujundada abivajava inimese vajadustest lähtuvat personaalset teenust rehabilitatsiooni-, erihoolekande- ja muude sotsiaalteenuste tegevustest.",
+      "sourceKeys": [
+        "iste"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/isikukeskse-erihoolekande-teenusmudel-iste/",
+      "targetGroup": "Vähemalt 18-aastased raske, sügava või püsiva kuluga psüühilise erivajadusega inimesed ja teatud jätkuteenuse noored",
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "valga_vald_contact_eve_ilisson"
+      ],
+      "item_type": "resource",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "iste"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_resource_iste",
+      "document_id": "valga_vald_resource_iste",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/isikukeskse-erihoolekande-teenusmudel-iste/",
+      "content_hash": "293f7e246ecf04be6edb4115c4dc488902fe3a26188fc14fa87c926f367d9ac2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_resource_vaimse_tervise_teenusepakkujad",
+      "canonical_item_id": "valga_vald:resource:vaimse_tervise_teenusepakkujad",
+      "itemType": "resource",
+      "title": "Valga valla vaimse tervise teenusepakkujad",
+      "status": "active",
+      "summary": "Valga valla laps ja pere teenuste leht nimetab vaimse tervise teenusepakkujatena Päikeseringi Seltsi, Apraksis OÜ, Eneseareng MTÜ ja Hingehiis OÜ. Teenusepakkujad pakuvad psühholoogilist nõustamist, perenõustamist või mänguteraapiat ning vastuvõtuaja lepib inimene pärast suunamist teenuseosutajaga ise kokku.",
+      "sourceKeys": [
+        "laps_ja_pere_teenused_toetused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/teenused-ja-toetused/",
+      "targetGroup": "Vaimse tervise teenusele suunatud inimesed ja pered",
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "laps_ja_pere_teenused_toetused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_resource_vaimse_tervise_teenusepakkujad",
+      "document_id": "valga_vald_resource_vaimse_tervise_teenusepakkujad",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/laps-ja-pere/teenused-ja-toetused/",
+      "content_hash": "ea7bd82559d5b7c00c21a55f12f4cde9c1ef1eddf52e29321d0eeedf0779fe14",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_resource_karula_hooldemaja",
+      "canonical_item_id": "valga_vald:resource:karula_hooldemaja",
+      "itemType": "resource",
+      "title": "Karula Hooldemaja",
+      "status": "active",
+      "summary": "Karula Hooldemaja on hoolekandeasutus aadressil Kirikumõisa tee 6, Lüllemäe küla. Valga valla leht nimetab teenuseks ööpäevaringse üldhooldusteenuse ning avaldab 2026. aasta kohamaksumuseks 1350 eurot kuus, millest hooldustöötajate kulud on 753 eurot.",
+      "sourceKeys": [
+        "hoolekandeasutused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "targetGroup": "Hoolekande-, üldhooldus-, erihoolekande-, rehabilitatsiooni- või ISTE teenuseid vajavad inimesed",
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": "1350 eurot kuus alates 01.01.2026",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "address": "Kirikumõisa tee 6, Lüllemäe küla",
+      "item_type": "resource",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "hoolekandeasutused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_resource_karula_hooldemaja",
+      "document_id": "valga_vald_resource_karula_hooldemaja",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "content_hash": "21cc977acc06e1d5bb69f10366e50c81eb15d54ab6e100c389fa231c4a447cda",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_resource_as_valga_haigla",
+      "canonical_item_id": "valga_vald:resource:as_valga_haigla",
+      "itemType": "resource",
+      "title": "AS Valga Haigla",
+      "status": "active",
+      "summary": "AS Valga Haigla hoolekande osakond on Valga valla hoolekandeasutuste lehel nimetatud teenusepakkujana. Teenustena on märgitud ööpäevaringne üldhooldusteenus, erihoolekandeteenused ja tervishoiuteenused.",
+      "sourceKeys": [
+        "hoolekandeasutused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "targetGroup": "Hoolekande-, üldhooldus-, erihoolekande-, rehabilitatsiooni- või ISTE teenuseid vajavad inimesed",
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "address": "Peetri 2, Valga linn",
+      "item_type": "resource",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "hoolekandeasutused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_resource_as_valga_haigla",
+      "document_id": "valga_vald_resource_as_valga_haigla",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "content_hash": "426e9f56701ac41d293a3685780aea47800a8b751eabeebff6f48e8cbeb86534",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_resource_sa_taheva_sanatoorium",
+      "canonical_item_id": "valga_vald:resource:sa_taheva_sanatoorium",
+      "itemType": "resource",
+      "title": "SA Taheva Sanatoorium",
+      "status": "active",
+      "summary": "SA Taheva Sanatoorium on Valga valla hoolekandeasutuste lehel nimetatud üldhooldekoduna, mis tegutseb kahel aadressil. Teenustena on märgitud ööpäevaringne üldhooldusteenus ja erihoolekandeteenused.",
+      "sourceKeys": [
+        "hoolekandeasutused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "targetGroup": "Hoolekande-, üldhooldus-, erihoolekande-, rehabilitatsiooni- või ISTE teenuseid vajavad inimesed",
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "address": "Sanatooriumi 7, Tsirgumäe küla; Kalliküla, Hargla küla",
+      "item_type": "resource",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "hoolekandeasutused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_resource_sa_taheva_sanatoorium",
+      "document_id": "valga_vald_resource_sa_taheva_sanatoorium",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "content_hash": "1994cb164bee61e2765eb42dd9ae8f4fa40a6fbb86e2aa60b92e497acabfddbb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_resource_mtu_paju_pansionaadid",
+      "canonical_item_id": "valga_vald:resource:mtu_paju_pansionaadid",
+      "itemType": "resource",
+      "title": "MTÜ Paju Pansionaadid",
+      "status": "active",
+      "summary": "MTÜ Paju Pansionaadid on hoolekandeasutus Paju külas. Valga valla leht nimetab teenustena ööpäevaringse üldhooldusteenuse ja erihoolekandeteenused.",
+      "sourceKeys": [
+        "hoolekandeasutused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "targetGroup": "Hoolekande-, üldhooldus-, erihoolekande-, rehabilitatsiooni- või ISTE teenuseid vajavad inimesed",
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "address": "Paju mõis, Paju küla",
+      "item_type": "resource",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "hoolekandeasutused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_resource_mtu_paju_pansionaadid",
+      "document_id": "valga_vald_resource_mtu_paju_pansionaadid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "content_hash": "33f7577541f546c7061749a65d2bb56a81aa0477e7525063d6ebdeff2b40f18e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_resource_mtu_valga_abikeskus",
+      "canonical_item_id": "valga_vald:resource:mtu_valga_abikeskus",
+      "itemType": "resource",
+      "title": "MTÜ Valga Abikeskus",
+      "status": "active",
+      "summary": "MTÜ Valga Abikeskus on Valga valla hoolekandeasutuste lehel nimetatud asutus. Teenustena on märgitud erihoolekandeteenused, ISTE teenusmudeli rakendamine ja kinnise lasteasutuse teenus.",
+      "sourceKeys": [
+        "hoolekandeasutused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "targetGroup": "Hoolekande-, üldhooldus-, erihoolekande-, rehabilitatsiooni- või ISTE teenuseid vajavad inimesed",
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "address": "Lembitu 12, Valga linn",
+      "item_type": "resource",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "hoolekandeasutused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_resource_mtu_valga_abikeskus",
+      "document_id": "valga_vald_resource_mtu_valga_abikeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "content_hash": "b752a17a566f58295154ee9f901120e3cba4540df85b8b7a651085d7f59f0f68",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_resource_mtu_valgamaa_tugikeskus",
+      "canonical_item_id": "valga_vald:resource:mtu_valgamaa_tugikeskus",
+      "itemType": "resource",
+      "title": "MTÜ Valgamaa Tugikeskus",
+      "status": "active",
+      "summary": "MTÜ Valgamaa Tugikeskus on Valga valla hoolekandeasutuste lehel nimetatud erihoolekandeteenuste pakkujana. Asutuse kontaktandmed on avaldatud valla ametlikul lehel.",
+      "sourceKeys": [
+        "hoolekandeasutused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "targetGroup": "Hoolekande-, üldhooldus-, erihoolekande-, rehabilitatsiooni- või ISTE teenuseid vajavad inimesed",
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "address": "Pargi 12, Valga linn",
+      "item_type": "resource",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "hoolekandeasutused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_resource_mtu_valgamaa_tugikeskus",
+      "document_id": "valga_vald_resource_mtu_valgamaa_tugikeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "content_hash": "d96f7ef5a138ccc07b140b68dcde6b90f7ef9890b7eb36510afb10df95c23f18",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_resource_as_hoolekandeteenused_valga_jaama_kodu",
+      "canonical_item_id": "valga_vald:resource:as_hoolekandeteenused_valga_jaama_kodu",
+      "itemType": "resource",
+      "title": "AS Hoolekandeteenused – Valga Jaama kodu",
+      "status": "active",
+      "summary": "Valga Jaama kodu on Valga valla hoolekandeasutuste lehel nimetatud AS Hoolekandeteenused üksusena. Teenustena on märgitud erihoolekandeteenused.",
+      "sourceKeys": [
+        "hoolekandeasutused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "targetGroup": "Hoolekande-, üldhooldus-, erihoolekande-, rehabilitatsiooni- või ISTE teenuseid vajavad inimesed",
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "address": "Jaama pst 5, Valga linn",
+      "item_type": "resource",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "hoolekandeasutused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_resource_as_hoolekandeteenused_valga_jaama_kodu",
+      "document_id": "valga_vald_resource_as_hoolekandeteenused_valga_jaama_kodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "content_hash": "7eb35aa8b6f2dbd0b762d93a46ae3828d909bdc06b0993e189419089350fbb44",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_resource_mtu_paikeseringi_selts",
+      "canonical_item_id": "valga_vald:resource:mtu_paikeseringi_selts",
+      "itemType": "resource",
+      "title": "MTÜ Päikeseringi Selts",
+      "status": "active",
+      "summary": "MTÜ Päikeseringi Selts on Valga valla hoolekandeasutuste lehel nimetatud tugiisikuteenuse, erihoolekandeteenuste ja ISTE teenusmudeli rakendamise pakkujana. Sama asutus on nimetatud ka vaimse tervise teenusepakkujana psühholoogilise nõustamise puhul.",
+      "sourceKeys": [
+        "hoolekandeasutused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "targetGroup": "Hoolekande-, üldhooldus-, erihoolekande-, rehabilitatsiooni- või ISTE teenuseid vajavad inimesed",
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "address": "Kungla 12, Valga linn",
+      "item_type": "resource",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "hoolekandeasutused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_resource_mtu_paikeseringi_selts",
+      "document_id": "valga_vald_resource_mtu_paikeseringi_selts",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "content_hash": "ef9dccf9623466f9b4ad51f84604fd3bcca2e005e2e0615f9908f5394f8960fe",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_resource_ou_akersoni",
+      "canonical_item_id": "valga_vald:resource:ou_akersoni",
+      "itemType": "resource",
+      "title": "OÜ Akersoni",
+      "status": "active",
+      "summary": "OÜ Akersoni on Valga valla hoolekandeasutuste lehel nimetatud rehabilitatsiooniteenuste ja erihoolekandeteenuste pakkujana.",
+      "sourceKeys": [
+        "hoolekandeasutused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "targetGroup": "Hoolekande-, üldhooldus-, erihoolekande-, rehabilitatsiooni- või ISTE teenuseid vajavad inimesed",
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "address": "Kesk tn 18, Valga linn",
+      "item_type": "resource",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "hoolekandeasutused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_resource_ou_akersoni",
+      "document_id": "valga_vald_resource_ou_akersoni",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "content_hash": "59176848aa4765f0ae8d46e862a85eb8361b4858990ba9c71c1f47a17c10624d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_resource_ou_tarbatu_tervisepark",
+      "canonical_item_id": "valga_vald:resource:ou_tarbatu_tervisepark",
+      "itemType": "resource",
+      "title": "OÜ Tarbatu Tervisepark",
+      "status": "active",
+      "summary": "OÜ Tarbatu Tervisepark on Valga valla hoolekandeasutuste lehel nimetatud rehabilitatsiooniteenuste, erihoolekandeteenuste ja ISTE teenusmudeli rakendamise pakkujana.",
+      "sourceKeys": [
+        "hoolekandeasutused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "targetGroup": "Hoolekande-, üldhooldus-, erihoolekande-, rehabilitatsiooni- või ISTE teenuseid vajavad inimesed",
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "address": "Kungla 10, Valga linn",
+      "item_type": "resource",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "hoolekandeasutused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_resource_ou_tarbatu_tervisepark",
+      "document_id": "valga_vald_resource_ou_tarbatu_tervisepark",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "content_hash": "21f248db0e109c83375f400481ad0ac21516d02069392a5be52d1f5359458d55",
+      "evidence_allowed": true
+    },
+    {
+      "id": "valga_vald_resource_mtu_masaan",
+      "canonical_item_id": "valga_vald:resource:mtu_masaan",
+      "itemType": "resource",
+      "title": "MTÜ Masaan",
+      "status": "active",
+      "summary": "MTÜ Masaan on Valga valla hoolekandeasutuste lehel nimetatud ISTE teenusmudeli rakendamise pakkujana. Lehel on nimetatud ISTE koordinaator Margit Śestakov ja avaldatud ning varjestatud.",
+      "sourceKeys": [
+        "hoolekandeasutused"
+      ],
+      "officialUrl": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "targetGroup": "Hoolekande-, üldhooldus-, erihoolekande-, rehabilitatsiooni- või ISTE teenuseid vajavad inimesed",
+      "conditions": null,
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "address": null,
+      "item_type": "resource",
+      "municipality_id": "valga_vald",
+      "municipality_name": "Valga vald",
+      "county": "Valgamaa",
+      "source_keys": [
+        "hoolekandeasutused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "valga_vald_resource_mtu_masaan",
+      "document_id": "valga_vald_resource_mtu_masaan",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-05-01",
+      "last_checked": "2026-05-01",
+      "retrieved_at": "2026-05-01",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://valga.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/hoolekandeasutused/",
+      "content_hash": "30d571eeb3b6b4999011b5e509471f83ef691aba7200933ddd5db7868f89217e",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Valga vald",
+  "checked_at": "2026-05-01",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

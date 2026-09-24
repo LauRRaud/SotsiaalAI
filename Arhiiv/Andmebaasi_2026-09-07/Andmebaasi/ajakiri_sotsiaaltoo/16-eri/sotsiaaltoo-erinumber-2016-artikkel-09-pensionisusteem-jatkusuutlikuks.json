@@ -1,0 +1,89 @@
+{
+  "docId": "sotsiaaltoo-erinumber-2016",
+  "articleId": "sotsiaaltoo-erinumber-2016-artikkel-09-pensionisusteem-jatkusuutlikuks",
+  "title": "Pensionisüsteem jätkusuutlikuks",
+  "authors": [
+    "Kristiina Selgis"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "erinumber 2016",
+  "section": "Majanduslik toimetulek",
+  "pageRange": "29-32",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi pensionipoliitika juht käsitleb pensionisüsteemi jätkusuutlikkust: 1,3 miljonilises Eestis makstakse pensioni üle 400 000 inimesele, mistõttu pensionikulud moodustavad riigieelarvest märkimisväärse osa. Küsimus on korraga piisavuses ja rahalises kestlikkuses.",
+  "tags": [
+    "pension",
+    "majanduslik toimetulek",
+    "sotsiaalkaitse",
+    "jätkusuutlikkus"
+  ],
+  "source_type": "file",
+  "source_path": "2016_eri_artikkel_09_pensionisusteem_jatkusuutlikuks.pdf",
+  "added": "2026-08-18",
+  "fulltext_note": "Erinumber „Sotsiaaltöö ; erinumber 2016\" (DIGAR nlib-digar:390083), pühendatud heaolu arengukavale 2016–2023. Lisatud korpusesse 18.08.2026.",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-09-pensionisusteem-jatkusuutlikuks",
+  "source_sha256": "18243ba1104b3c79c30659fc5ff109678432b2174ac357b9b371142401c11a64",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-09-pensionisusteem-jatkusuutlikuks",
+    "previous_source_path": "2016_eri_artikkel_09_pensionisusteem_jatkusuutlikuks.txt",
+    "previous_source_original_path": "2016_erinumber.pdf",
+    "reference_stored_source_sha256": "273799a5911d1dae2d1c3a80ee0fb7155ed3df2982b6de655e8c060c308c64d2",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2016_erinumber.pdf",
+      "source_sha256": "ae3bbf0a621beae80ae1e05a13206ffa00c6811806397ee8ac925f3762d93c70",
+      "pdf_start_page": 31,
+      "pdf_end_page": 34,
+      "printed_page_range": "29-32",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 34,
+      "source_regions": [
+        {
+          "source_pdf_page": 31,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 32,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 33,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 34,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "29-32"
+    },
+    "server_page_range": "29-32"
+  }
+}

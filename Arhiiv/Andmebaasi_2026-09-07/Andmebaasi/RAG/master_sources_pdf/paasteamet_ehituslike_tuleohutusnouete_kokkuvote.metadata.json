@@ -1,0 +1,77 @@
+{
+  "source": {
+    "source_id": "paasteamet_ehituslike_tuleohutusnouete_kokkuvote",
+    "title": "Ehituslike tuleohutusnõuete kokkuvõte",
+    "url": "https://www.rescue.ee/files/2020-09/est-rgb.pdf",
+    "normalized_url": "https://www.rescue.ee/files/2020-09/est-rgb.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "Päästeamet",
+    "organization_id": "paasteamet",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "Päästeamet",
+      "tuleohutus",
+      "pääste",
+      "evakuatsioon",
+      "kriisivalmidus",
+      "uuring",
+      "raport",
+      "analüüs"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 407,
+      "order": 223
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Ehituslike tuleohutusnõuete kokkuvõte"
+    ],
+    "collection_hints": [
+      "research_reports"
+    ],
+    "source_types_seen": [
+      "research_report"
+    ],
+    "resource_types_seen": [
+      "research_evidence"
+    ],
+    "publishers_seen": [
+      "Päästeamet"
+    ],
+    "organizations_seen": [
+      "paasteamet"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+        "line": 407,
+        "order": 223
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.rescue.ee/files/2020-09/est-rgb.pdf"
+  },
+  "final_url": "https://www.rescue.ee/files/2020-09/est-rgb.pdf",
+  "redirects": [],
+  "sha256": "231d778a92d010e41d6cdc9af935931e72dee8ccc12af9dc3e8d9726d408f2ab",
+  "bytes": 6588568,
+  "downloaded_at": "2026-08-14T08:00:46.640Z"
+}

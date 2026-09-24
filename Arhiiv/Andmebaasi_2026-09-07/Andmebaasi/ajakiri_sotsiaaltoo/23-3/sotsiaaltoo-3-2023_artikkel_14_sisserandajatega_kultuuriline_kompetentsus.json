@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2023",
+  "articleId": "sisserandajatega-tootamisel-on-abiks-kultuuriline-kompetentsus-2023-3",
+  "title": "Sisserändajatega töötamisel on abiks kultuuriline kompetentsus",
+  "authors": [
+    "Janne Savimaa"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2023",
+  "section": "Uurimus",
+  "pageRange": "67-74",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimus põhineb Tallinna Ülikoolis kaitstud magistritööl, kus vaadeldakse sisserändajate ja rändeteemaliste\nkoolitajate vaateid sotsiaaltöötaja kultuurilisele kompetentsusele. Autor käsitleb rändekogemust, identiteedi\nkujunemist ja kohanemisprotsessi ning seda, kuidas kultuuriline pädevus aitab sotsiaaltöötajal mõista kliendi\nolukorda, vähendada stereotüüpe ja toetada vaimset tervist. Artiklis eristatakse kultuuriteadlikkust,\nkultuuritundlikkust ja kultuurilist vastutulelikkust ning avatakse, kuidas need väljenduvad praktilises töös\nsisserändajatega. Kirjeldatakse intervjueeritud koolitajate ja sisserändajate kogemusi ning tuuakse välja\nsoovitused sotsiaaltöötajate koolitamiseks ja organisatsioonide arendamiseks nii, et mitmekultuuriliste\nkogukondadega töötamine oleks teadlikum, refleksiivsem ja inimõiguspõhisem.",
+  "tags": [
+    "kultuuriline kompetentsus",
+    "sisserändajad",
+    "ränne",
+    "kohanemine",
+    "vaimne tervis",
+    "identiteet",
+    "sotsiaaltöö",
+    "koolitus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2023_web_Part15.pdf",
+  "document_id": "sotsiaaltoo-3-2023-sisserandajatega-tootamisel-on-abiks-kultuuriline-kompetentsus-2023-3",
+  "source_format": "pdf",
+  "source_sha256": "9a765e478cd64410bb8977beba702bad8348d4d46252a70112add1b08279527b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2023-sisserandajatega-tootamisel-on-abiks-kultuuriline-kompetentsus-2023-3",
+    "previous_source_path": "Sotsiaaltoo_3_2023_web_Part15.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "9a765e478cd64410bb8977beba702bad8348d4d46252a70112add1b08279527b",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "docId": "sotsiaaltoo-1-2016",
+  "articleId": "sotsiaaltoo-1-2016-artikkel-14-omastehooldaja-asendusteenus-tallinnas",
+  "title": "Omastehooldaja asendusteenus Tallinnas",
+  "authors": [
+    "Jaanika Luus"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2016",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "43-45",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Koduhoolduskeskuse Certis juhataja kirjeldab Tallinnas 2015. aastal abilinnapea Merike Martinsoni eestvedamisel alustatud omastehooldaja asendusteenust, mis tugineb linnavolikogu 26. augusti 2010 määrusele nr 42. Teenust osutatakse abivajaja kodus kõigil nädalapäevadel kella 7–22, kuni 15 tundi kuus, ja kulud kannab linn. Üheksa kuuga kasutas teenust 2428 tunni ulatuses 52 omastehooldajat, nende seas 23 töötavat inimest, 11 mittetöötavat eakat ja 18 mittetöötavat tööealist; keskmine vajadus oli kolm tundi nädalas. Põhirõhk on isikuabil, esile on kerkinud hooldusabi ja dementsussündroomiga inimeste hoolduse vajadus.",
+  "tags": [
+    "omastehooldus",
+    "asendusteenus",
+    "hoolduskoormus",
+    "koduhooldus",
+    "dementsus",
+    "tallinn"
+  ],
+  "source_type": "file",
+  "source_path": "2016_1_artikkel_14_omastehooldaja_asendusteenus_tallinnas.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-14-omastehooldaja-asendusteenus-tallinnas",
+  "source_sha256": "85d467fdcacb698183ff7bdafd2c4f15cb242a602d525537b1012c0acb0b6fce",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-14-omastehooldaja-asendusteenus-tallinnas",
+    "previous_source_path": "2016_1_artikkel_14_omastehooldaja_asendusteenus_tallinnas.txt",
+    "previous_source_original_path": "1-2016.pdf",
+    "reference_stored_source_sha256": "c45dd87dde262f94ff6eb4b065239307a55979f5d655e38ac25159e1c19226cd",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf",
+      "source_sha256": "2c193295e54f58982562b509b6283e93aa58b1695464671e1768e24e90888a6c",
+      "pdf_start_page": 45,
+      "pdf_end_page": 47,
+      "printed_page_range": "43-45",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 47,
+      "source_regions": [
+        {
+          "source_pdf_page": 45,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 46,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 47,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            136.29
+          ]
+        }
+      ],
+      "effective_printed_page_range": "43-45",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf"
+    },
+    "server_page_range": "43-45"
+  }
+}

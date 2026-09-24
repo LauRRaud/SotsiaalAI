@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2023",
+  "articleId": "kadrina-sotsiaaltoos-on-voetud-suund-ennetusele-2023-3",
+  "title": "Kadrina sotsiaaltöös on võetud suund ennetusele",
+  "authors": [
+    "Siiri Sammel"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2023",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "32-36",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kadrina valla sotsiaalosakonna juhataja kirjeldab, kuidas väikeses, kuid ühtse kogukonnatundega vallas\non seatud fookusesse ennetav sotsiaaltöö ja vajaduspõhised teenused. Räägitakse koduteenuse korraldusest,\navahooldajate rollist, koostööst naabervaldade ja partneritega ning sellest, kuidas rahvastiku vananemine ja\nhajaasustus kujundavad teenusevajadust. Artiklis käsitletakse ka lastekaitsetööd, NEET-noorte toetamise\nprojekte, vaimse tervise teenuste arendamist, psühholoogi ja logopeedi töökorraldust ning kogukonna\nkaasamist arutelude ja koolituste kaudu. Eesmärk on toetada toimetulekut nii, et pered ja eakad saaksid\nvõimalikult kaua oma kodus hakkama ning abi jõuaks õigel ajal.",
+  "tags": [
+    "Kadrina vald",
+    "ennetav sotsiaaltöö",
+    "koduteenus",
+    "avahooldus",
+    "lastekaitse",
+    "NEET-noored",
+    "vaimse tervise teenused",
+    "kogukonna kaasamine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2023_web_Part8.pdf",
+  "document_id": "sotsiaaltoo-3-2023-kadrina-sotsiaaltoos-on-voetud-suund-ennetusele-2023-3",
+  "source_format": "pdf",
+  "source_sha256": "b632622dc11f058395a36abc53f29bc2bef02617cf3e44a6013f9540db79f4a4",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2023-kadrina-sotsiaaltoos-on-voetud-suund-ennetusele-2023-3",
+    "previous_source_path": "Sotsiaaltoo_3_2023_web_Part8.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b632622dc11f058395a36abc53f29bc2bef02617cf3e44a6013f9540db79f4a4",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

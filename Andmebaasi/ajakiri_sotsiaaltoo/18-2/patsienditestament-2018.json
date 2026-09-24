@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2018",
+  "articleId": "patsienditestament-aitab-arvestada-ravisoove-2018",
+  "title": "Patsienditestament aitab arvestada inimese ravialaste soovidega",
+  "authors": [
+    "Aigi Kivioja"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2018",
+  "section": "Õigus",
+  "pageRange": "50-54",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel selgitab patsienditestamendi õiguslikku olemust, vorminõudeid ja rolli olukordades, kus inimene ei saa enam ise ravialaseid otsuseid teha, rõhutades ennetavat planeerimist ja lähedaste kaasamist.",
+  "tags": [
+    "patsienditestament",
+    "tervishoiuõigus",
+    "ravisoovid",
+    "otsusevõime",
+    "inimväärikus",
+    "eakate õigused",
+    "perekonna roll"
+  ],
+  "source_type": "file",
+  "source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part14.pdf",
+  "document_id": "sotsiaaltoo-2-2018-patsienditestament-aitab-arvestada-ravisoove-2018",
+  "source_format": "pdf",
+  "source_sha256": "6a79bf76e90c8296b40cc0ae3d9b8620312329337eb0a955a4adb93e4b2c6c43",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2018-patsienditestament-aitab-arvestada-ravisoove-2018",
+    "previous_source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part14.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "6a79bf76e90c8296b40cc0ae3d9b8620312329337eb0a955a4adb93e4b2c6c43",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

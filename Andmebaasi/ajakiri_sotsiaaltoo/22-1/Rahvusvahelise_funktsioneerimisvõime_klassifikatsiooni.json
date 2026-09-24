@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2022",
+  "articleId": "rahvusvahelise-funktsioneerimisvoime-klassifikatsiooni-kasutamine-tooalases-rehabilitatsioonis-2022-1",
+  "title": "Rahvusvahelise funktsioneerimisvõime klassifikatsiooni kasutamine tööalases rehabilitatsioonis",
+  "authors": [
+    "Karin Hanga"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2022",
+  "section": "Metoodika",
+  "pageRange": "38-44",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Töötukassa arendusprojektil põhinev artikkel selgitab, kuidas Rahvusvahelise funktsioneerimisvõime, vaeguse ja tervise klassifikatsiooni (RFK, ICF) rakendamine aitab tööalases rehabilitatsioonis paremini mõista inimese terviseseisundi mõju igapäevaelule ja töövõimele. Autor kirjeldab, kuidas RFK abil sõnastada eesmärke, hinnata muutusi funktsioneerimises, struktureerida meeskonnatööd ning suurendada rehabilitatsiooniteenuse läbipaistvust ja kvaliteeti. Tuuakse näiteid RFK komponentide kasutamisest praktikas ning arutletakse andmete kogumise ja dokumenteerimise väljakutsete üle.",
+  "tags": [
+    "RFK",
+    "ICF",
+    "tööalane rehabilitatsioon",
+    "Töötukassa",
+    "funktsioneerimisvõime",
+    "töövõime hindamine",
+    "rehabilitatsioonimeetodid"
+  ],
+  "source_type": "file",
+  "source_path": "2022_artikkel_9_rfk_toealane_rehabilitatsioon.pdf",
+  "document_id": "sotsiaaltoo-1-2022-rahvusvahelise-funktsioneerimisvoime-klassifikatsiooni-kasutamine-tooalases-rehabilitatsioonis-2022-1",
+  "source_format": "pdf",
+  "source_sha256": "6587eab29012e8a862c476a9fac981ffb9cc287148aa13a671faf23af6cf504a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2022-rahvusvahelise-funktsioneerimisvoime-klassifikatsiooni-kasutamine-tooalases-rehabilitatsioonis-2022-1",
+    "previous_source_path": "2022_artikkel_9_rfk_toealane_rehabilitatsioon.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "6587eab29012e8a862c476a9fac981ffb9cc287148aa13a671faf23af6cf504a",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

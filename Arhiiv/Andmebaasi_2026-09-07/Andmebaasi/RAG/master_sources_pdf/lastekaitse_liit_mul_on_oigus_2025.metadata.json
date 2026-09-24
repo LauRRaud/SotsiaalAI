@@ -1,0 +1,77 @@
+{
+  "source": {
+    "source_id": "lastekaitse_liit_mul_on_oigus_2025",
+    "title": "Mul on õigus 2025",
+    "url": "https://www.lastekaitseliit.ee/wp-content/uploads/2025/01/Mul-on-oigus-2025.pdf",
+    "normalized_url": "https://www.lastekaitseliit.ee/wp-content/uploads/2025/01/Mul-on-oigus-2025.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Lastekaitse Liit",
+    "organization_id": "lastekaitse_liit",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Lastekaitse Liit",
+      "õigused",
+      "inimõigused",
+      "infomaterjal",
+      "lapse õigused",
+      "lapsed ja pered",
+      "õiguste selgitamine"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "Lastekaitse Liit",
+      "heading_4": null,
+      "line": 595,
+      "order": 304
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Mul on õigus 2025"
+    ],
+    "collection_hints": [
+      "organization_materials"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Lastekaitse Liit"
+    ],
+    "organizations_seen": [
+      "lastekaitse_liit"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "Lastekaitse Liit",
+        "line": 595,
+        "order": 304
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.lastekaitseliit.ee/wp-content/uploads/2025/01/Mul-on-oigus-2025.pdf"
+  },
+  "final_url": "https://www.lastekaitseliit.ee/wp-content/uploads/2025/01/Mul-on-oigus-2025.pdf",
+  "redirects": [],
+  "sha256": "1a62155db4ccad2952c581c88e1f0968d0ad4f9795982993a09b3d2e8db8f985",
+  "bytes": 2260808,
+  "downloaded_at": "2026-08-14T08:00:57.788Z"
+}

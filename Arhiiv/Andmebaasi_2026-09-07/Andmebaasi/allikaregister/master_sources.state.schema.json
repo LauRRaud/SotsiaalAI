@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sotsiaal.ai/schemas/master-sources-state-v1.json",
+  "title": "SotsiaalAI master source P8.0 inventory snapshot",
+  "description": "Generated, environment-specific P8.0 inventory snapshot. This is not the canonical source registry or a scheduler runtime state contract.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "state_schema_version",
+    "registry_sha256",
+    "updated_at",
+    "inventory_input",
+    "registry_entry_count",
+    "url_contracts",
+    "status_counts",
+    "summary",
+    "anomaly_counts",
+    "limitations",
+    "sources"
+  ],
+  "properties": {
+    "state_schema_version": {
+      "const": "master-sources-state-v1"
+    },
+    "registry_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "inventory_input": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["type", "identifier", "registry_binding", "document_count"],
+      "properties": {
+        "type": {
+          "enum": ["rag_dump", "rag_service_read_only"]
+        },
+        "identifier": {
+          "type": "object"
+        },
+        "registry_binding": {
+          "enum": ["matched", "not_provided"]
+        },
+        "document_count": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "registry_entry_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "url_contracts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["registry_identity", "network_url"],
+      "properties": {
+        "registry_identity": {
+          "const": "registry_identity_v1"
+        },
+        "network_url": {
+          "const": "network_url_v1"
+        }
+      }
+    },
+    "status_counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "covered_ok",
+        "covered_by_other_pipeline",
+        "needs_content_check",
+        "needs_adoption",
+        "incomplete",
+        "stale_match",
+        "redirected",
+        "duplicate_content",
+        "missing",
+        "invalid_url"
+      ],
+      "properties": {
+        "covered_ok": { "$ref": "#/$defs/count" },
+        "covered_by_other_pipeline": { "$ref": "#/$defs/count" },
+        "needs_content_check": { "$ref": "#/$defs/count" },
+        "needs_adoption": { "$ref": "#/$defs/count" },
+        "incomplete": { "$ref": "#/$defs/count" },
+        "stale_match": { "$ref": "#/$defs/count" },
+        "redirected": { "$ref": "#/$defs/count" },
+        "duplicate_content": { "$ref": "#/$defs/count" },
+        "missing": { "$ref": "#/$defs/count" },
+        "invalid_url": { "$ref": "#/$defs/count" }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "registry_entries",
+        "rag_documents",
+        "url_matches",
+        "alternative_url_matches",
+        "proven_same_rag_document",
+        "needs_adoption",
+        "incomplete_or_unknown_freshness",
+        "unknown_freshness_evidence",
+        "missing",
+        "proven_ready"
+      ],
+      "properties": {
+        "registry_entries": { "$ref": "#/$defs/count" },
+        "rag_documents": { "$ref": "#/$defs/count" },
+        "url_matches": { "$ref": "#/$defs/count" },
+        "alternative_url_matches": { "$ref": "#/$defs/count" },
+        "proven_same_rag_document": { "$ref": "#/$defs/count" },
+        "needs_adoption": { "$ref": "#/$defs/count" },
+        "incomplete_or_unknown_freshness": { "$ref": "#/$defs/count" },
+        "unknown_freshness_evidence": { "$ref": "#/$defs/count" },
+        "missing": { "$ref": "#/$defs/count" },
+        "proven_ready": { "$ref": "#/$defs/count" }
+      }
+    },
+    "anomaly_counts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sources": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/sourceState"
+      }
+    }
+  },
+  "$defs": {
+    "count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "sourceState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "match_status",
+        "registry_identity_url",
+        "network_canonical_url",
+        "network_comparison_key",
+        "anomalies",
+        "evidence"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "match_status": {
+          "enum": [
+            "covered_ok",
+            "covered_by_other_pipeline",
+            "needs_content_check",
+            "needs_adoption",
+            "incomplete",
+            "stale_match",
+            "redirected",
+            "duplicate_content",
+            "missing",
+            "invalid_url"
+          ]
+        },
+        "registry_identity_url": {
+          "type": ["string", "null"]
+        },
+        "network_canonical_url": {
+          "type": ["string", "null"]
+        },
+        "network_comparison_key": {
+          "type": ["string", "null"]
+        },
+        "anomalies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": true,
+          "required": [
+            "matched_by",
+            "matched_document_ids",
+            "url_match",
+            "source_identity_match",
+            "title_hints",
+            "documents"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "source_path": "terviseamet_kokkuvote_2022_aasta_kohta_haridus_ja_sotsiaalasutuste_tervi.pdf",
+  "source_format": "pdf",
+  "sha256": "cfb555e888000293983356a093181710e09387e8c155b50de308e5a107303280",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/terviseamet_kokkuvote_2022_aasta_kohta_haridus_ja_sotsiaalasutuste_tervi.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "terviseamet_kokkuvote_2022_aasta_kohta_haridus_ja_sotsiaalasutuste_tervi",
+          "title": "Kokkuvõte 2022. aasta kohta: haridus- ja sotsiaalasutuste tervisekaitse järelevalve",
+          "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-06/2022.%20a%20kokkuv%C3%B5te_haridus_sotsiaal_.pdf",
+          "normalized_url": "https://www.terviseamet.ee/sites/default/files/documents/2024-06/2022. a kokkuvõte_haridus_sotsiaal_.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "Terviseamet",
+          "organization_id": "terviseamet",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Terviseamet",
+            "uuring",
+            "raport",
+            "analüüs",
+            "tervisekaitse",
+            "järelevalve",
+            "haridusasutus",
+            "sotsiaalasutus"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_054",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "Terviseamet",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 303,
+            "order": 176
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Kokkuvõte 2022. aasta kohta: haridus- ja sotsiaalasutuste tervisekaitse järelevalve"
+          ],
+          "collection_hints": [
+            "research_reports"
+          ],
+          "source_types_seen": [
+            "research_report"
+          ],
+          "resource_types_seen": [
+            "research_evidence"
+          ],
+          "publishers_seen": [
+            "Terviseamet"
+          ],
+          "organizations_seen": [
+            "terviseamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Terviseamet",
+              "line": 303,
+              "order": 176
+            },
+            {
+              "heading_2": "Terviseamet",
+              "line": 777,
+              "order": 383
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.terviseamet.ee/sites/default/files/documents/2024-06/2022. a kokkuvõte_haridus_sotsiaal_.pdf"
+        },
+        "final_url": "https://www.terviseamet.ee/sites/default/files/documents/2024-06/2022.%20a%20kokkuv%C3%B5te_haridus_sotsiaal_.pdf",
+        "redirects": [],
+        "sha256": "cfb555e888000293983356a093181710e09387e8c155b50de308e5a107303280",
+        "bytes": 118523,
+        "downloaded_at": "2026-08-14T08:00:37.788Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "terviseamet_kokkuvote_2022_aasta_kohta_haridus_ja_sotsiaalasutuste_tervi",
+      "metadata": {
+        "createdAt": "2026-06-12T03:43:23.792869+00:00",
+        "type": "FILE",
+        "fileName": "2022. a kokkuvõte_haridus_sotsiaal_.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:43:23.727578+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/26441813977f/2022. a kokkuvõte_haridus_sotsiaal_.pdf",
+        "title": "Kokkuvõte 2022. aasta kohta: haridus- ja sotsiaalasutuste tervisekaitse järelevalve",
+        "description": "Duplikaadid ühendatud: 1 lisakirjet. Source master headings: Terviseamet",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2022,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–4",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "research_reports",
+        "source_id": "terviseamet_kokkuvote_2022_aasta_kohta_haridus_ja_sotsiaalasutuste_tervi",
+        "document_id": "terviseamet_kokkuvote_2022_aasta_kohta_haridus_ja_sotsiaalasutuste_tervi",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "d974d82eeb2825256e831aa66f3f52909a0114549a7b51dd23cae52506015382",
+        "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-06/2022.%20a%20kokkuv%C3%B5te_haridus_sotsiaal_.pdf",
+        "url_canonical": "https://www.terviseamet.ee/sites/default/files/documents/2024-06/2022. a kokkuvõte_haridus_sotsiaal_.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "terviseamet_kokkuvote_2022_aasta_kohta_haridus_ja_sotsiaalasutuste_tervi",
+        "updatedAt": "2026-06-12T03:43:23.792892+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

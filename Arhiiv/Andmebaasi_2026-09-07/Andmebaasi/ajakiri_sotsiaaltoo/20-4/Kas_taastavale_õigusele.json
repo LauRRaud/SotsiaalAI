@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2020",
+  "articleId": "kas-taastavale-oigusele-on-kohta-kui-seksuaalne-kuritarvitamine-toimub-perekonnas-2020-4",
+  "title": "Kas taastavale õigusele on kohta, kui seksuaalne kuritarvitamine toimub perekonnas?",
+  "authors": [
+    "Marie Keenan"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2020",
+  "section": "Taastav õigus",
+  "pageRange": "39-46",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Rahvusvaheliselt tunnustatud teadlane ja praktik Marie Keenan käsitleb taastava õiguse rolli perekonnas toime pandud seksuaalkuritarvitamise korral. Artikkel selgitab, miks kriminaalõigus ei vasta sageli ohvrite vajadustele, ning kirjeldab, millistel tingimustel saab taastavat õigust turvaliselt kasutada. Läbi konkreetse juhtumi näidatakse, kuidas ohvrite, õigusrikkuja ja pereliikmete vajadusi on võimalik integreerida, keskendudes vastutuse võtmisele, kahju teadvustamisele ja peresuhete tervendamisele.",
+  "tags": [
+    "taastav õigus",
+    "seksuaalne kuritarvitamine",
+    "perekond",
+    "ohvrite toetamine",
+    "traumateadlik lähenemine",
+    "kriminaalõigus",
+    "pereteraapia"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2020_web_link_Part9.pdf",
+  "document_id": "sotsiaaltoo-4-2020-kas-taastavale-oigusele-on-kohta-kui-seksuaalne-kuritarvitamine-toimub-perekonnas-2020-4",
+  "source_format": "pdf",
+  "source_sha256": "b00d7efc8ced4b9d601573d474871b1fd23a051bbefac831f56dd070897a6ba5",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2020-kas-taastavale-oigusele-on-kohta-kui-seksuaalne-kuritarvitamine-toimub-perekonnas-2020-4",
+    "previous_source_path": "Sotsiaaltoo_4_2020_web_link_Part9.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b00d7efc8ced4b9d601573d474871b1fd23a051bbefac831f56dd070897a6ba5",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

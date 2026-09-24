@@ -1,0 +1,146 @@
+{
+  "source_path": "tarkvanem_sunnitusjargne_depressioon.pdf",
+  "source_format": "pdf",
+  "sha256": "0fdb50283bb0b819912df32c4dddf68e9fe82dbf5bb01d89ebab7f060e184e5b",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/tarkvanem_sunnitusjargne_depressioon.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "tarkvanem_sunnitusjargne_depressioon",
+          "title": "Sünnitusjärgne depressioon",
+          "url": "https://tarkvanem.ee/wp-content/uploads/2023/01/Sunnitusjargne_depressioon_Gerli_Rand_voldik_99x210_veebi.pdf",
+          "normalized_url": "https://tarkvanem.ee/wp-content/uploads/2023/01/Sunnitusjargne_depressioon_Gerli_Rand_voldik_99x210_veebi.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "Tarkvanem",
+          "organization_id": "tarkvanem",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Tarkvanem",
+            "tervishoid",
+            "esmatasand",
+            "patsient",
+            "depressioon",
+            "suitsiidirisk",
+            "vaimne tervis",
+            "psüühiline heaolu",
+            "nõustamine",
+            "infomaterjal"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Partnerid",
+            "heading_3": "Tarkvanem",
+            "heading_4": null,
+            "line": 639,
+            "order": 324
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Sünnitusjärgne depressioon"
+          ],
+          "collection_hints": [
+            "organization_materials"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Tarkvanem"
+          ],
+          "organizations_seen": [
+            "tarkvanem"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Partnerid",
+              "heading_3": "Tarkvanem",
+              "line": 639,
+              "order": 324
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://tarkvanem.ee/wp-content/uploads/2023/01/Sunnitusjargne_depressioon_Gerli_Rand_voldik_99x210_veebi.pdf"
+        },
+        "final_url": "https://tarkvanem.ee/wp-content/uploads/2023/01/Sunnitusjargne_depressioon_Gerli_Rand_voldik_99x210_veebi.pdf",
+        "redirects": [],
+        "sha256": "0fdb50283bb0b819912df32c4dddf68e9fe82dbf5bb01d89ebab7f060e184e5b",
+        "bytes": 208710,
+        "downloaded_at": "2026-08-14T08:00:59.061Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "tarkvanem_sunnitusjargne_depressioon",
+      "metadata": {
+        "createdAt": "2026-06-12T03:59:58.368627+00:00",
+        "type": "FILE",
+        "fileName": "Sunnitusjargne_depressioon_Gerli_Rand_voldik_99x210_veebi.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:59:58.297913+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/f4b93554507f/Sunnitusjargne_depressioon_Gerli_Rand_voldik_99x210_veebi.pdf",
+        "title": "Sünnitusjärgne depressioon",
+        "description": "Source master headings: Partnerid; Tarkvanem",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2023,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–6",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "organization_materials",
+        "source_id": "tarkvanem_sunnitusjargne_depressioon",
+        "document_id": "tarkvanem_sunnitusjargne_depressioon",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "8e582dc75f2d84f8ab73435060db86c2466bcf6e84876959bfdb778c549ee540",
+        "url": "https://tarkvanem.ee/wp-content/uploads/2023/01/Sunnitusjargne_depressioon_Gerli_Rand_voldik_99x210_veebi.pdf",
+        "url_canonical": "https://tarkvanem.ee/wp-content/uploads/2023/01/Sunnitusjargne_depressioon_Gerli_Rand_voldik_99x210_veebi.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "tarkvanem_sunnitusjargne_depressioon",
+        "updatedAt": "2026-06-12T03:59:58.368649+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

@@ -1,0 +1,75 @@
+{
+  "source": {
+    "source_id": "astangu_hindamisvahendi_kasiraamat",
+    "title": "Hindamisvahendi käsiraamat",
+    "url": "https://www.astangu.ee/sites/default/files/media/Hindamisvahendi%20k%C3%A4siraamat.pdf",
+    "normalized_url": "https://www.astangu.ee/sites/default/files/media/Hindamisvahendi käsiraamat.pdf",
+    "source_format": "pdf",
+    "source_type": "official_guideline",
+    "resource_type": "method_guidance",
+    "publisher": "Astangu",
+    "organization_id": "astangu",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Astangu Kutserehabilitatsiooni Keskus",
+      "abivajaduse hindamine",
+      "hindamisvahend",
+      "spetsialisti juhend",
+      "Astangu"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "high",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "Astangu",
+      "heading_4": null,
+      "line": 585,
+      "order": 300
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Hindamisvahendi käsiraamat"
+    ],
+    "collection_hints": [
+      "organization_guidelines"
+    ],
+    "source_types_seen": [
+      "official_guideline"
+    ],
+    "resource_types_seen": [
+      "method_guidance"
+    ],
+    "publishers_seen": [
+      "Astangu"
+    ],
+    "organizations_seen": [
+      "astangu"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "Astangu",
+        "line": 585,
+        "order": 300
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.astangu.ee/sites/default/files/media/Hindamisvahendi käsiraamat.pdf"
+  },
+  "final_url": "https://www.astangu.ee/sites/default/files/media/Hindamisvahendi%20k%C3%A4siraamat.pdf",
+  "redirects": [],
+  "sha256": "ea73380b77bf909a74cad63d3051bd7ffb90c4ccb054305991004b4645f218de",
+  "bytes": 3621477,
+  "downloaded_at": "2026-08-14T08:00:57.069Z"
+}

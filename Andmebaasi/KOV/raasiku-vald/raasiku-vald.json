@@ -1,0 +1,2916 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-raasiku-vald",
+  "document_id": "kov-raasiku-vald",
+  "municipality": "Raasiku vald",
+  "municipality_id": "raasiku_vald",
+  "county": "Harjumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "raasiku_vald_service_eluruumi_tagamise_teenus",
+      "canonical_item_id": "raasiku_vald:service:eluruumi_tagamise_teenus",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Teenuse eesmärk on anda eluruumi kasutamise võimalus inimesele, kes ei ole sotsiaalmajanduslikust olukorrast tulenevalt võimeline endale sobivat eluruumi tagama. Teenus võib sisaldada sotsiaaleluruumi kasutusse andmist, sotsiaalmajutust, nõustamist, juhendamist ja tuge asjaajamisel.",
+      "sourceKeys": [
+        "eluruumi_tagamise_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/eluruumi-tagamise-teenus",
+      "targetGroup": "Inimesed, kes ei suuda endale sobivat eluruumi tagada.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [
+        "raasiku_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "raasiku_vald_contact_karin_mollits"
+      ],
+      "pricing": null,
+      "item_type": "service",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eluruumi_tagamise_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_service_eluruumi_tagamise_teenus",
+      "document_id": "raasiku_vald_service_eluruumi_tagamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/eluruumi-tagamise-teenus",
+      "content_hash": "bf1c46d1f8d59146ace5dcd18a072898b87bc3b4018a719428fc3d84c1a491e0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_service_turvakoduteenus",
+      "canonical_item_id": "raasiku_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenuse eesmärk on tagada lapsele või täisealisele inimesele ajutine eluase, turvaline keskkond ja esmane abi. Esmane abi võib hõlmata kriisiabi, nõustamist, hooldamist ja arendamist vastavalt inimese vanusele ning vajadusele.",
+      "sourceKeys": [
+        "turvakoduteenus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/turvakoduteenus",
+      "targetGroup": "Lapsed ja täisealised inimesed, kes vajavad turvalist ajutist keskkonda.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "raasiku_vald_contact_karin_mollits"
+      ],
+      "pricing": {
+        "amount": "Tasuta"
+      },
+      "item_type": "service",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "turvakoduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_service_turvakoduteenus",
+      "document_id": "raasiku_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/turvakoduteenus",
+      "content_hash": "f4d27a2665a0d2e6185e7444fa0ad22f5ac4d620dbbbbd07c57f85cee162efff",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_service_varjupaigateenus",
+      "canonical_item_id": "raasiku_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus kindlustab ajutise ööbimiskoha täisealisele inimesele, kes ei ole võimeline endale ööbimiskohta leidma. Teenus sisaldab voodikohta, pesemisvõimalust ja turvalist keskkonda; ööbimine toimub varjupaiga ruumides ning päevasel ajal saab olla päevakeskuse ruumides.",
+      "sourceKeys": [
+        "varjupaigateenus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/varjupaigateenus",
+      "targetGroup": "Täisealised inimesed, kellel puudub ajutiselt ööbimiskoht.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "raasiku_vald_contact_karin_mollits"
+      ],
+      "pricing": {
+        "amount": "Tasuta"
+      },
+      "item_type": "service",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "varjupaigateenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_service_varjupaigateenus",
+      "document_id": "raasiku_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/varjupaigateenus",
+      "content_hash": "fc2ade102ebb90746749a495fdea27f494292278f2392e58f39ec60d1c367c37",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_service_valtimatu_sotsiaalabi",
+      "canonical_item_id": "raasiku_vald:service:valtimatu_sotsiaalabi",
+      "itemType": "service",
+      "title": "Vältimatu sotsiaalabi",
+      "status": "active",
+      "summary": "Vältimatu sotsiaalabi on kohene abi inimesele, kes on elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitus olukorras. Abi võib hõlmata toitu, riideid, ajutist majutust ja kriisinõustamist ning seda osutatakse seni, kuni inimene ei ole enam sotsiaalselt abitus olukorras.",
+      "sourceKeys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "officialUrl": "https://raasiku.ee/valtimatu-sotsiaalabi",
+      "targetGroup": "Raasiku valla territooriumil abi vajavad inimesed.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [
+        "raasiku_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "raasiku_vald_contact_karin_mollits"
+      ],
+      "pricing": {
+        "amount": "Tasuta"
+      },
+      "item_type": "service",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_service_valtimatu_sotsiaalabi",
+      "document_id": "raasiku_vald_service_valtimatu_sotsiaalabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/valtimatu-sotsiaalabi",
+      "content_hash": "a17f399638ab3d43de360ae52114ce7a8ab864c53299b95b824b6ebd4ba592b4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_service_volanoustamisteenus",
+      "canonical_item_id": "raasiku_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab inimesel oma varalist olukorda kindlaks teha, pidada läbirääkimisi võlausaldajatega, rahuldada nõudeid ja vältida uusi võlgnevusi. Teenuse käigus koostatakse tegevuskava ning teenuse maht sõltub sellest plaanist.",
+      "sourceKeys": [
+        "volanoustamisteenus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/volanoustamisteenus",
+      "targetGroup": "Inimesed, kellel on võlgnevused või võlaprobleemide risk.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "raasiku_vald_contact_karin_mollits"
+      ],
+      "pricing": {
+        "amount": "Tasuta"
+      },
+      "item_type": "service",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "volanoustamisteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_service_volanoustamisteenus",
+      "document_id": "raasiku_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/volanoustamisteenus",
+      "content_hash": "1d9ded5dad578a20a61e12493977c6cd7486598cc2aab59460b220c531fe227d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "raasiku_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus võimaldab puudest, terviseseisundist või liikumistakistusest tulenevalt kasutada vajadustele vastavat transpordivahendit tööle või avalike teenuste kasutamiseks sõitmisel. Taotleja peab teenuse vajadusest ette teatama ning põhjendama, miks ta ei saa kasutada isiklikku või ühistransporti.",
+      "sourceKeys": [
+        "sotsiaaltransporditeenus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/sotsiaaltransporditeenus",
+      "targetGroup": "Inimesed, kelle erivajadus takistab isikliku või ühistranspordi kasutamist.",
+      "conditions": "Teenuse soovist tuleb üldjuhul teatada vähemalt kaks tööpäeva ette.",
+      "application": {
+        "channels": [
+          "phone",
+          "email",
+          "in_person"
+        ],
+        "steps": [
+          "Teata teenuse vajadusest sotsiaaltöötajale vähemalt kaks tööpäeva ette.",
+          "Esita isikuandmed, sõidu aeg ja sihtkoht ning põhjendus.",
+          "Sotsiaalosakond hindab õigust teenusele ja teeb otsuse."
+        ],
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "raasiku_vald_contact_maarika_grau"
+      ],
+      "pricing": {
+        "amount": "Osaliselt tasuline"
+      },
+      "item_type": "service",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltransporditeenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_service_sotsiaaltransporditeenus",
+      "document_id": "raasiku_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/sotsiaaltransporditeenus",
+      "content_hash": "d40c97d5a2358e0b784d76c50dd774c20a5256afb3c50f06c9a7c488ca94e202",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "raasiku_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus suurendab täisealise erivajadusega inimese iseseisvust ja ühiskonnaelus osalemist ning vähendab pereliikmete hoolduskoormust. Teenus seisneb inimese füüsilises abistamises igapäevategevustes.",
+      "sourceKeys": [
+        "isikliku_abistaja_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/isikliku-abistaja-teenus",
+      "targetGroup": "Täisealised erivajadusega inimesed, kes vajavad füüsilist abi igapäevaelus.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [
+        "raasiku_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "raasiku_vald_contact_maarika_grau"
+      ],
+      "pricing": {
+        "amount": "Osaliselt tasuline"
+      },
+      "item_type": "service",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "isikliku_abistaja_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_service_isikliku_abistaja_teenus",
+      "document_id": "raasiku_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/isikliku-abistaja-teenus",
+      "content_hash": "fcc0ada2958115d7615189b2f34eaa4175192d1fb3ff6adf046361abab2f92b2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_service_koduteenus",
+      "canonical_item_id": "raasiku_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus toetab täisealise inimese iseseisvat ja turvalist toimetulekut kodustes tingimustes. Teenus võib hõlmata koduabi, näiteks toiduainete ja ravimite toomist, asjaajamisel abistamist, kütte ja vee korraldamist ning isikuabiteenust, sh enesehooldusega seotud toimingutes füüsilist abistamist.",
+      "sourceKeys": [
+        "koduteenus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/koduteenus-0",
+      "targetGroup": "Täisealised inimesed, kelle iseseisev toimetulek kodus vajab kõrvalabi.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [
+        "raasiku_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "raasiku_vald_contact_maarika_grau"
+      ],
+      "pricing": {
+        "amount": "Osaliselt tasuline"
+      },
+      "item_type": "service",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "koduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_service_koduteenus",
+      "document_id": "raasiku_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/koduteenus-0",
+      "content_hash": "899502b69857438f088a7fd1f0c7a3a1e88ff1f8c660cbb280dab58fd860224e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_service_uldhooldusteenus",
+      "canonical_item_id": "raasiku_vald:service:uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav ööpäevaringne üldhooldusteenus",
+      "status": "active",
+      "summary": "Üldhooldusteenus tagab turvalise keskkonna ja toimetuleku täisealisele inimesele, kes terviseseisundi, tegevusvõime või elukeskkonna tõttu ei tule kodus iseseisvalt toime ning kelle vajadust ei kata teised teenused või muu abi. Enne teenusele suunamist hindab sotsiaaltöötaja abivajadust.",
+      "sourceKeys": [
+        "uldhooldusteenus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/valjaspool-kodu-osutatav-oopaevaringne-uldhooldusteenus",
+      "targetGroup": "Täisealised inimesed, kes vajavad ööpäevaringset hooldust väljaspool kodu.",
+      "conditions": "Teenuse hinna määrab teenuseosutaja; Raasiku valla tasutava hoolduskulu piirmäär on avaldatud lehel 650 eurot.",
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [
+        "raasiku_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "raasiku_vald_contact_maarika_grau"
+      ],
+      "pricing": {
+        "amount": "Tasuline; valla hoolduskulu piirmäär 650 eurot"
+      },
+      "item_type": "service",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "uldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_service_uldhooldusteenus",
+      "document_id": "raasiku_vald_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/valjaspool-kodu-osutatav-oopaevaringne-uldhooldusteenus",
+      "content_hash": "38c148304d930595e42d004dd641a425afd8feea7a8a1114a82697d1383cb66f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_service_paevahoiuteenus_taisealisele",
+      "canonical_item_id": "raasiku_vald:service:paevahoiuteenus_taisealisele",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav päevahoiuteenus täisealisele",
+      "status": "active",
+      "summary": "Päevahoiuteenus on ajutine hooldus väljaspool kodu täisealisele inimesele, kelle igapäevaelu toimingute ja enesehoolduse vajadust ei kata kodukeskkonna kohandamine ega koduteenus. Teenus võib olla vajalik ka lähedase hoolduskoormuse vähendamiseks.",
+      "sourceKeys": [
+        "paevahoiuteenus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/valjaspool-kodu-osutatav-paevahoiuteenus-taisealisele",
+      "targetGroup": "Täisealised inimesed, kellel on ajutine abi- ja hooldusvajadus.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "raasiku_vald_contact_maarika_grau"
+      ],
+      "pricing": {
+        "amount": "Osaliselt tasuline"
+      },
+      "item_type": "service",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "paevahoiuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_service_paevahoiuteenus_taisealisele",
+      "document_id": "raasiku_vald_service_paevahoiuteenus_taisealisele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/valjaspool-kodu-osutatav-paevahoiuteenus-taisealisele",
+      "content_hash": "75a27c31deadeb948fc4f8a01d95cad963c81c99c17bc98406f095040188483c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_service_tugiisikuteenus",
+      "canonical_item_id": "raasiku_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus toetab last või täisealist inimest iseseisva toimetuleku saavutamisel, juhendades, motiveerides ja arendades igapäevaeluks vajalikke oskusi. Lapse puhul toetatakse lapse arengut koostöös teda kasvatava isikuga; täisealise puhul toetatakse kohustuste täitmist ja õiguste teostamist.",
+      "sourceKeys": [
+        "tugiisikuteenus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/tugiisikuteenus",
+      "targetGroup": "Lapsed ja täisealised inimesed, kes vajavad juhendamist ja kõrvalabi.",
+      "conditions": "Lapse tugiisikuteenuse puhul peavad vanemad või üksikvanem olema Raasiku valla elanikud ning laps peab elama Raasiku vallas.",
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "raasiku_vald_contact_anna_karula",
+        "raasiku_vald_contact_maarika_grau"
+      ],
+      "pricing": {
+        "amount": "Osaliselt tasuline"
+      },
+      "item_type": "service",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "tugiisikuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_service_tugiisikuteenus",
+      "document_id": "raasiku_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/tugiisikuteenus",
+      "content_hash": "595c39c88da26b958277085b60b345db255fc3b226875d01fb29fda36df81e34",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "raasiku_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hoolduse eesmärk on toetada inimest, kes vaimse või kehalise erivajaduse tõttu vajab abi oma õiguste teostamisel ja kohustuste täitmisel. Teenuse vajadus hinnatakse ning ametnik määrab hooldaja ülesanded ja hooldaja isiku.",
+      "sourceKeys": [
+        "taisealise_hooldus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/taisealise-isiku-hooldus",
+      "targetGroup": "Täisealised inimesed, kes vajavad hooldajat õiguste ja kohustuste teostamisel.",
+      "conditions": "Üldjuhul ei määrata hooldajaks inimest, kellel on seadusjärgne ülalpidamiskohustus või kelle enda erivajadus takistab hooldamist.",
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "raasiku_vald_contact_karin_mollits"
+      ],
+      "pricing": null,
+      "item_type": "service",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "taisealise_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_service_taisealise_isiku_hooldus",
+      "document_id": "raasiku_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/taisealise-isiku-hooldus",
+      "content_hash": "e4163258f0e4af2319f07e16a3c133b7f4ba0a9585157e3f00859e0df021369e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_service_viipekeele_tolketeenus",
+      "canonical_item_id": "raasiku_vald:service:viipekeele_tolketeenus",
+      "itemType": "service",
+      "title": "Viipekeele tõlketeenus",
+      "status": "active",
+      "summary": "Viipekeele tõlketeenus tagab kuulmispuudega inimesele, kes kasutab suhtlemiseks viipekeelt, tõlke kodus ning vajalikes ameti- ja teenindusasutustes asjaajamise ajal.",
+      "sourceKeys": [
+        "viipekeele_tolketeenus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/viipekeele-tolketeenus",
+      "targetGroup": "Kuulmispuudega inimesed, kes kasutavad viipekeelt.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "raasiku_vald_contact_karin_mollits"
+      ],
+      "pricing": {
+        "amount": "Osaliselt tasuline"
+      },
+      "item_type": "service",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "viipekeele_tolketeenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_service_viipekeele_tolketeenus",
+      "document_id": "raasiku_vald_service_viipekeele_tolketeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/viipekeele-tolketeenus",
+      "content_hash": "2266e7f82ed8923e106374daf0e9f65a03745be54867fe0e6f14c24fec1e9fbb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_service_vaimse_tervise_teenus",
+      "canonical_item_id": "raasiku_vald:service:vaimse_tervise_teenus",
+      "itemType": "service",
+      "title": "Vaimse tervise teenus",
+      "status": "active",
+      "summary": "Vaimse tervise teenuse eesmärk on parandada vaimse tervise abi kättesaadavust, ennetada probleemide süvenemist ning toetada igapäevast toimetulekut. Teenuste hulka võivad kuuluda psühholoogiline nõustamine, laste ja noorte nõustamine, leina-, hingehoiu- ja kriisinõustamine, pereteraapia, kogemusnõustamine, loovteraapia ja grupiteraapia.",
+      "sourceKeys": [
+        "vaimse_tervise_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/vaimse-tervise-teenus",
+      "targetGroup": "Lapsed, noored ja täiskasvanud, kes vajavad vaimse tervise tuge.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "raasiku_vald_contact_karin_mollits"
+      ],
+      "pricing": {
+        "amount": "Osaliselt tasuline"
+      },
+      "item_type": "service",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "vaimse_tervise_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_service_vaimse_tervise_teenus",
+      "document_id": "raasiku_vald_service_vaimse_tervise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/vaimse-tervise-teenus",
+      "content_hash": "fa1d3ee8b0d049361c30315c659268ec2937dd53394cb97fb791e918b6b556a4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_service_asendushooldusteenus",
+      "canonical_item_id": "raasiku_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus tagab lapse heaolu ja õiguste kaitse ning võimaldab turvalise, arengut toetava ja peresarnase elukeskkonna juhul, kui laps ei saa kasvada oma sünniperekonnas. Teenust osutatakse hooldusperes, perekodus või asenduskodus ning see võib olla pikaajaline või lühiajaline kuni 90 päeva.",
+      "sourceKeys": [
+        "asendus_jarelhooldus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/asendus-ja-jarelhooldusteenus",
+      "targetGroup": "Lapsed, kelle vanem ei saa last hooldada või kelle hooldusõigus on peatatud, piiratud või ära võetud.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "contact_lastekaitse"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "raasiku_vald_contact_anu_nolve"
+      ],
+      "pricing": null,
+      "item_type": "service",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "asendus_jarelhooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_service_asendushooldusteenus",
+      "document_id": "raasiku_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/asendus-ja-jarelhooldusteenus",
+      "content_hash": "77bb31d3fea0b5f8d353b96d3cf1ec5b91a1441cd1840f9a3188bd3e854af75d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "raasiku_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus toetab asendushoolduselt või eestkostelt lahkuva noore iseseisvat toimetulekut ja õpingute jätkamist. Teenus korraldatakse juhtumiplaani alusel ning võib hõlmata eluaset, tugiteenuseid ja vajaduspõhiseid toetusi.",
+      "sourceKeys": [
+        "asendus_jarelhooldus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/asendus-ja-jarelhooldusteenus",
+      "targetGroup": "Asendushoolduselt või eestkostelt lahkuvad noored.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "contact_lastekaitse"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "raasiku_vald_contact_anu_nolve"
+      ],
+      "pricing": null,
+      "item_type": "service",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "asendus_jarelhooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_service_jarelhooldusteenus",
+      "document_id": "raasiku_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/asendus-ja-jarelhooldusteenus",
+      "content_hash": "28f78776600b01596b7eafe3fc5ce0649c1b5a5f1bd999ce17d7d785d31f843c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_service_lapsehoiuteenus_suure_hooldus_ja_abivajadusega_lapsele",
+      "canonical_item_id": "raasiku_vald:service:lapsehoiuteenus_suure_hooldus_ja_abivajadusega_lapsele",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus suure hooldus- ja abivajadusega lapsele",
+      "status": "active",
+      "summary": "Lapsehoiuteenuse eesmärk on toetada suure hooldus- ja abivajadusega last kasvatava isiku toimetulekut või töötamist ning vähendada lapse erivajadusest tulenevat hoolduskoormust. Teenuse osutaja tagab lapse hooldamise, arendamise ja turvalisuse.",
+      "sourceKeys": [
+        "lapsehoiuteenus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/lapsehoiuteenus-suure-hooldus-ja-abjvajadusega-lapsele",
+      "targetGroup": "Suure hooldus- ja abivajadusega lapsed alates 1,5 eluaastast kuni lapsetoetuse õiguse lõppemiseni.",
+      "conditions": "Lapse mõlemad vanemad või üksikvanem peavad elama ja olema rahvastikuregistris Raasiku vallas.",
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "raasiku_vald_contact_anna_karula"
+      ],
+      "pricing": {
+        "amount": "Osaliselt tasuline"
+      },
+      "item_type": "service",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lapsehoiuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_service_lapsehoiuteenus_suure_hooldus_ja_abivajadusega_lapsele",
+      "document_id": "raasiku_vald_service_lapsehoiuteenus_suure_hooldus_ja_abivajadusega_lapsele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/lapsehoiuteenus-suure-hooldus-ja-abjvajadusega-lapsele",
+      "content_hash": "8eaff6b8097496159acd4df08cc172f7a510fe8a134fa55a64faba16dd80ff5b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_benefit_suurenenud_hooldusvajadusega_lapse_hooldajatoetus",
+      "canonical_item_id": "raasiku_vald:benefit:suurenenud_hooldusvajadusega_lapse_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Suurenenud hooldus- ja abivajadusega lapse hooldajatoetus",
+      "status": "active",
+      "summary": "Hooldajatoetus on igakuine toetus kuni 18-aastase suurenenud hooldusvajadusega erivajadusega lapse hooldamise eest lapsevanemale, eestkostjale või perehoolduslepingu alusel last hooldavale isikule, kes ei saa töötada lapse hooldamise tõttu. Toetuse eesmärk on tagada lapse igapäevane kõrvalabi ja osaliselt hüvitada hooldamise tõttu saamata jäänud sissetulek ning sotsiaalkindlustus.",
+      "sourceKeys": [
+        "suurenenud_hooldus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/suurenenud-hooldus-ja-abivajadusega-lapse-hooldus",
+      "targetGroup": "Kuni 18-aastase suurenenud hooldusvajadusega erivajadusega lapse hooldaja.",
+      "conditions": "Toetus määratakse ühele hooldajale kuni kaheks aastaks ja üldjuhul ei määrata, kui hooldamine on tagatud teiste teenustega.",
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "raasiku_vald_contact_karin_mollits"
+      ],
+      "amount": null,
+      "item_type": "benefit",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "suurenenud_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_benefit_suurenenud_hooldusvajadusega_lapse_hooldajatoetus",
+      "document_id": "raasiku_vald_benefit_suurenenud_hooldusvajadusega_lapse_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/suurenenud-hooldus-ja-abivajadusega-lapse-hooldus",
+      "content_hash": "44d0b2f42fedf6b6e494c624b94a9b1f48d5eb30a405aa872a1837aa317297b3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "canonical_item_id": "raasiku_vald:benefit:taisealise_isiku_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Täisealise isiku hooldajatoetus",
+      "status": "active",
+      "summary": "Täisealise isiku hoolduse seadmisega seotud hooldajatoetus võib olla vajalik siis, kui täisealine inimene vajab vaimse või kehalise erivajaduse tõttu abi õiguste teostamisel ja kohustuste täitmisel. Toetus määratakse hoolduse seadmise alusel üldjuhul taotlusele järgnevast kuust kuni kaheks aastaks.",
+      "sourceKeys": [
+        "taisealise_hooldus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/taisealise-isiku-hooldus",
+      "targetGroup": "Täisealise abivajaja hooldajaks määratud inimene.",
+      "conditions": "Hooldusvajadus hinnatakse ning hooldaja ja tema ülesanded määrab vallavalitsuse ametnik.",
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "raasiku_vald_contact_karin_mollits"
+      ],
+      "amount": null,
+      "item_type": "benefit",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "taisealise_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "document_id": "raasiku_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/taisealise-isiku-hooldus",
+      "content_hash": "fc4ccfbd88720be8ea103c150a84cd2f730c2aa552a2061e704f2acad7fef6f7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "raasiku_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on riiklik ajutine abi materiaalse puuduse leevendamiseks ja minimaalseks toimetulekuks. Raasiku Vallavalitsus määrab ja maksab toetust sotsiaalhoolekande seaduses sätestatud ulatuses ning eluruumi kulude piirmäärad on kehtestatud vallas.",
+      "sourceKeys": [
+        "toimetulekutoetus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toimetulekutoetus",
+      "targetGroup": "Inimesed ja pered, kelle sissetulek ei kata vältimatuid kulusid.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [
+        "raasiku_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "raasiku_vald_contact_karin_mollits"
+      ],
+      "amount": null,
+      "item_type": "benefit",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_benefit_toimetulekutoetus",
+      "document_id": "raasiku_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toimetulekutoetus",
+      "content_hash": "896c6ad7e9dffd8a0ead460000ad8de854a71bcc17a8d1cce8ed14be9a54553e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_benefit_tervisetoetus",
+      "canonical_item_id": "raasiku_vald:benefit:tervisetoetus",
+      "itemType": "benefit",
+      "title": "Tervisetoetus",
+      "status": "active",
+      "summary": "Tervisetoetus aitab katta tervisega seotud kulutusi, sealhulgas abivahendi ostu või renti, retseptiravimeid, ravi- ja tervishoiuteenuseid ning muid abivajadusest tingitud kulusid. Lehel on avaldatud hüvitamise piirmäärad prillide, tehniliste abivahendite ja rehabilitatsiooniteenuse omaosaluse kohta.",
+      "sourceKeys": [
+        "tervisetoetus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/tervisetoetus",
+      "targetGroup": "Raasiku valla elanikud, kellel tekivad põhjendatud tervisekulud.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [
+        "raasiku_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "raasiku_vald_contact_karin_mollits"
+      ],
+      "amount": null,
+      "item_type": "benefit",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "tervisetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_benefit_tervisetoetus",
+      "document_id": "raasiku_vald_benefit_tervisetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/tervisetoetus",
+      "content_hash": "cc4f3e387665ae75aa16ed1cc6ab89825bc30698cfdbf879de987b257ab4b084",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_benefit_lastega_perede_toetus",
+      "canonical_item_id": "raasiku_vald:benefit:lastega_perede_toetus",
+      "itemType": "benefit",
+      "title": "Lastega perede toetus",
+      "status": "active",
+      "summary": "Lastega perede toetus on ühekordne või perioodiline abi laste kasvatamisega seotud kulutuste katmiseks, kui pere on ajutiselt raskes majanduslikus olukorras. Toetusega võib katta koolitarbeid, riideid, jalanõusid, huvitegevuse kulusid, lasteaiatasu ja muid põhjendatud lapsega seotud kulusid.",
+      "sourceKeys": [
+        "lastega_perede_toetus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/lastega-perede-toetus",
+      "targetGroup": "Ajutistes majanduslikes raskustes lastega pered.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [
+        "raasiku_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "raasiku_vald_contact_karin_mollits"
+      ],
+      "amount": null,
+      "item_type": "benefit",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lastega_perede_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_benefit_lastega_perede_toetus",
+      "document_id": "raasiku_vald_benefit_lastega_perede_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/lastega-perede-toetus",
+      "content_hash": "2310071208b00aed288789a210431e82e7b96600c4ae208f4b1e712a1df8627a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_benefit_erakorraline_toetus",
+      "canonical_item_id": "raasiku_vald:benefit:erakorraline_toetus",
+      "itemType": "benefit",
+      "title": "Erakorraline toetus",
+      "status": "active",
+      "summary": "Erakorraline toetus on mõeldud õnnetusjuhtumi, tulekahju, varguse, haigestumise, lähedase kaotuse või muu ootamatu sündmuse tõttu tekkinud erakorralise rahalise väljamineku leevendamiseks. Toetust saab taotleda Raasiku vallas elav inimene ning avaldus tuleb esitada üldjuhul ühe kuu jooksul pärast kulu tekkimist.",
+      "sourceKeys": [
+        "erakorraline_toetus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/erakorraline-toetus",
+      "targetGroup": "Raasiku valla elanikud, kellel on ootamatu ja põhjendatud erakorraline kulu.",
+      "conditions": "Taotlus tuleb esitada üldjuhul ühe kuu jooksul pärast erakorralise sündmusega seotud kulu tekkimist.",
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [
+        "raasiku_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "raasiku_vald_contact_karin_mollits"
+      ],
+      "amount": null,
+      "item_type": "benefit",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "erakorraline_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_benefit_erakorraline_toetus",
+      "document_id": "raasiku_vald_benefit_erakorraline_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/erakorraline-toetus",
+      "content_hash": "e6e2ce4b80f5b99ef670e30b8bd3e04306e1e404527de7d2fe434a06c769acb0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_benefit_eluruumi_kohandamise_toetus",
+      "canonical_item_id": "raasiku_vald:benefit:eluruumi_kohandamise_toetus",
+      "itemType": "benefit",
+      "title": "Eluruumi kohandamise toetus",
+      "status": "active",
+      "summary": "Eluruumi kohandamise toetus toetab liikumispuudega või progresseeruva liikumisvõime kaotusega inimese elukeskkonna kohandamist puudest tingitud takistuste vähendamiseks ja turvalisuse suurendamiseks. Toetust saab üldjuhul taotleda kord kolme kalendriaasta jooksul.",
+      "sourceKeys": [
+        "eluruumi_kohandamise_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/eluruumi-kohandamise-toetus",
+      "targetGroup": "Puudega inimesed, kelle kodu vajab liikumis- või tegevusvõime toetamiseks kohandamist.",
+      "conditions": "Eluruum peab olema taotleja või temaga koos elava pereliikme omandis ja taotleja alaline elukoht Raasiku vallas.",
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [
+        "raasiku_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "raasiku_vald_contact_karin_mollits"
+      ],
+      "amount": null,
+      "item_type": "benefit",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eluruumi_kohandamise_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_benefit_eluruumi_kohandamise_toetus",
+      "document_id": "raasiku_vald_benefit_eluruumi_kohandamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/eluruumi-kohandamise-toetus",
+      "content_hash": "e9594fe6c4001101dd242eb241ee681f73aa0e8ff31d97823e71452a31493723",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_benefit_synnitoetus",
+      "canonical_item_id": "raasiku_vald:benefit:synnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus aitab katta lapse sünniga seotud kulusid. Toetust saab taotleda lapse vanem, eestkostja või lapsendaja, kui mõlemad vanemad, üksikvanem või eestkostja on rahvastikuregistri järgi Raasiku valla elanikud eelmise aasta 31. detsembri seisuga. Mitmikute sünni korral makstakse toetust iga lapse kohta.",
+      "sourceKeys": [
+        "synnitoetus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/sunnitoetus",
+      "targetGroup": "Lapsevanemad, eestkostjad või lapsendajad lapse sünni korral.",
+      "conditions": "Avaldus tuleb esitada kolme kuu jooksul pärast lapse sündi.",
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person"
+        ],
+        "steps": null,
+        "deadline": "Kolme kuu jooksul lapse sünnist"
+      },
+      "relatedTo": [],
+      "relatedForms": [
+        "raasiku_vald_form_synnitoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "raasiku_vald_contact_raasiku_vallavalitsus"
+      ],
+      "amount": null,
+      "item_type": "benefit",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "synnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_benefit_synnitoetus",
+      "document_id": "raasiku_vald_benefit_synnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/sunnitoetus",
+      "content_hash": "fa1e3b5ca895c61dfe05c8de85cddc996db370536b6915e71c68f70017bf8287",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_benefit_matusetoetus",
+      "canonical_item_id": "raasiku_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetust makstakse inimese matusekulude osaliseks katmiseks, kui lahkunu elukoht oli surma registreerimisel rahvastikuregistri järgi Raasiku vald. Toetust võib taotleda abikaasa, sugulane, hõimlane või muu matusekulud katnud isik.",
+      "sourceKeys": [
+        "matusetoetus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/matusetoetuse-taotlemine",
+      "targetGroup": "Matusekulud kandnud isik, kui lahkunu registrijärgne elukoht oli Raasiku vald.",
+      "conditions": "Avaldus tuleb esitada kolme kuu jooksul pärast surma registreerimist.",
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person"
+        ],
+        "steps": null,
+        "deadline": "Kolme kuu jooksul pärast surma registreerimist"
+      },
+      "relatedTo": [],
+      "relatedForms": [
+        "raasiku_vald_form_matusetoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "raasiku_vald_contact_raasiku_vallavalitsus"
+      ],
+      "amount": null,
+      "item_type": "benefit",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "matusetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_benefit_matusetoetus",
+      "document_id": "raasiku_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/matusetoetuse-taotlemine",
+      "content_hash": "94db02bc2572fb008f6e013153e99922f62d6b1f8781a941cf4473d7d10cae47",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_benefit_hooldusperetoetus",
+      "canonical_item_id": "raasiku_vald:benefit:hooldusperetoetus",
+      "itemType": "benefit",
+      "title": "Hooldusperetoetus",
+      "status": "active",
+      "summary": "Hooldusperetoetus katab hooldusperes viibiva lapse hooldus-, ülalpidamis- ja isiklikke kulusid. Toetust makstakse hoolduspere vanemale, kellega vallavalitsus on sõlminud lapse hooldamise lepingu; vajadusel võib toetust suurendada lapse tegelikust vajadusest lähtudes.",
+      "sourceKeys": [
+        "hooldusperetoetus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/hooldusperetoetus",
+      "targetGroup": "Hoolduspere vanem, kes hooldab Raasiku vallaga seotud last.",
+      "conditions": "Lapse registrijärgne elukoht peab olema Raasiku vald; hoolduspere vanem ei pea ise olema Raasiku valla elanik.",
+      "application": {
+        "channels": [
+          "contact_social_worker"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "raasiku_vald_contact_karin_mollits"
+      ],
+      "amount": null,
+      "item_type": "benefit",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "hooldusperetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_benefit_hooldusperetoetus",
+      "document_id": "raasiku_vald_benefit_hooldusperetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/hooldusperetoetus",
+      "content_hash": "e5649d53888a62fba8bdbe708c5fa3a94603c78233321aa594b9f8298fd3e4ae",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_benefit_tahtpaevatoetus",
+      "canonical_item_id": "raasiku_vald:benefit:tahtpaevatoetus",
+      "itemType": "benefit",
+      "title": "Tähtpäevatoetus",
+      "status": "active",
+      "summary": "Tähtpäevatoetus hõlmab jõulutoetust lasterikastele, eestkoste- ja hooldusperedele ning puudega lapse peredele, samuti eakate sünnipäevatoetust. Jõulutoetuse suurus on lehel avaldatud 70 eurot pere kohta ning eaka sünnipäevatoetus 50 eurot.",
+      "sourceKeys": [
+        "tahtpaevatoetus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/tahtpaevatoetus",
+      "targetGroup": "Lasterikkad pered, eestkoste- ja hoolduspered, puudega lapse pered ning tähtpäeva tähistavad eakad.",
+      "conditions": "Jõulutoetuse taotlus esitatakse 1.–30. novembrini; eaka sünnipäevatoetuseks eraldi taotlust ei esitata.",
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email",
+          "automatic"
+        ],
+        "steps": null,
+        "deadline": "Jõulutoetuse taotlus 1.–30. novembrini"
+      },
+      "relatedTo": [],
+      "relatedForms": [
+        "raasiku_vald_form_tahtpaevatoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "raasiku_vald_contact_karin_mollits"
+      ],
+      "amount": "Jõulutoetus 70 eurot pere kohta; eaka sünnipäevatoetus 50 eurot",
+      "item_type": "benefit",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "tahtpaevatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_benefit_tahtpaevatoetus",
+      "document_id": "raasiku_vald_benefit_tahtpaevatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/tahtpaevatoetus",
+      "content_hash": "25bf5b75d275114a1ab88fc122f233ca043795dc2bb4faaad4fd463c73fe8a36",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_benefit_esimese_klassi_toetus",
+      "canonical_item_id": "raasiku_vald:benefit:esimese_klassi_toetus",
+      "itemType": "benefit",
+      "title": "Esimesse klassi mineva lapse toetus",
+      "status": "active",
+      "summary": "Toetus aitab katta lapse põhihariduse alustamisega seotud kulusid. Taotlusele tuleb vajadusel lisada koolitõend, kui laps õpib väljaspool Raasiku valda, ning taotlus tuleb esitada 30. septembriks.",
+      "sourceKeys": [
+        "esimese_klassi_toetus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/esimesse-klassi-mineva-lapse-toetus",
+      "targetGroup": "Raasiku valla laps, kes alustab esimest klassi.",
+      "conditions": "Kui laps läheb väljaspool valda asuvasse kooli, tuleb esitada kooli tõend.",
+      "application": {
+        "channels": [
+          "self_service",
+          "in_person",
+          "email"
+        ],
+        "steps": null,
+        "deadline": "30. september"
+      },
+      "relatedTo": [],
+      "relatedForms": [
+        "raasiku_vald_form_esimese_klassi_toetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "raasiku_vald_contact_raasiku_vallavalitsus"
+      ],
+      "amount": null,
+      "item_type": "benefit",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "esimese_klassi_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_benefit_esimese_klassi_toetus",
+      "document_id": "raasiku_vald_benefit_esimese_klassi_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/esimesse-klassi-mineva-lapse-toetus",
+      "content_hash": "88c24ab2795170b4e58b7c6aa69b300c62518bc9028b20436eb8c72a25445922",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_resource_parkimiskaart",
+      "canonical_item_id": "raasiku_vald:resource:parkimiskaart",
+      "itemType": "resource",
+      "title": "Puudega inimese sõiduki parkimiskaart",
+      "status": "active",
+      "summary": "Puudega inimese sõiduki parkimiskaart väljastatakse inimesele, mitte sõidukile. Kaart annab õiguse kasutada puudega inimese parkimiskohale ette nähtud parkimissoodustusi ning selle saamiseks tuleb esitada isikut tõendav dokument, puude tuvastamise otsus ja foto.",
+      "sourceKeys": [
+        "parkimiskaart_page"
+      ],
+      "officialUrl": "https://raasiku.ee/toiming/puudega-inimese-soiduki-parkimiskaart",
+      "targetGroup": "Liikumis- või nägemispuudega inimesed ning nende esindajad.",
+      "conditions": "Kaart väljastatakse tasuta kuni puude lõpptähtajani, kuid mitte kauemaks kui viieks aastaks; ajutise puude korral kuni kuueks kuuks.",
+      "application": {
+        "channels": [],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "raasiku_vald_contact_karin_mollits"
+      ],
+      "item_type": "resource",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "parkimiskaart_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_resource_parkimiskaart",
+      "document_id": "raasiku_vald_resource_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/toiming/puudega-inimese-soiduki-parkimiskaart",
+      "content_hash": "29fbece1a275aca84d69a2eae2c4ce098adc65ef0129821152b68f47e1c11410",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_resource_lastekaitse",
+      "canonical_item_id": "raasiku_vald:resource:lastekaitse",
+      "itemType": "resource",
+      "title": "Lastekaitse",
+      "status": "active",
+      "summary": "Lastekaitse eesmärk on lapse õiguste ja heaolu igakülgne tagamine. Leht kirjeldab lapse huvidest lähtumist, abivajavast lapsest teatamise kohustust, lasteabi võimalust, perelepitust ning Lastemaja teenust.",
+      "sourceKeys": [
+        "lastekaitse_page"
+      ],
+      "officialUrl": "https://raasiku.ee/pere-sotsiaalabi-ja-tervishoid/abi-lapsele-ja-perele/lastekaitse",
+      "targetGroup": "Lapsed, lapsevanemad ja lastega töötavad inimesed.",
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "raasiku_vald_contact_anu_nolve"
+      ],
+      "item_type": "resource",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_resource_lastekaitse",
+      "document_id": "raasiku_vald_resource_lastekaitse",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/pere-sotsiaalabi-ja-tervishoid/abi-lapsele-ja-perele/lastekaitse",
+      "content_hash": "5eaf31273ccd7062f271d81f7320ec241ca6a3f57bb9b58fbc5adf5662dafaa2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_resource_hadaohus_ja_abivajav_laps",
+      "canonical_item_id": "raasiku_vald:resource:hadaohus_ja_abivajav_laps",
+      "itemType": "resource",
+      "title": "Hädaohus ja abivajav laps",
+      "status": "active",
+      "summary": "Leht selgitab, millal laps on abivajav või hädaohus ning rõhutab iga inimese kohustust lapse abivajadusest teatada. Abivajavast lapsest saab teatada Raasiku Vallavalitsusele või lasteabitelefonil; vahetu ohu korral tuleb helistada numbrile.",
+      "sourceKeys": [
+        "abivajav_laps_page"
+      ],
+      "officialUrl": "https://raasiku.ee/pere-sotsiaalabi-ja-tervishoid/abi-lapsele-ja-perele/hadaohus-ja-abivajav-laps",
+      "targetGroup": "Lapsed, kelle heaolu või tervis on ohus.",
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "raasiku_vald_contact_anu_nolve"
+      ],
+      "item_type": "resource",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "abivajav_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_resource_hadaohus_ja_abivajav_laps",
+      "document_id": "raasiku_vald_resource_hadaohus_ja_abivajav_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/pere-sotsiaalabi-ja-tervishoid/abi-lapsele-ja-perele/hadaohus-ja-abivajav-laps",
+      "content_hash": "a13baf41b27fffbcc7c6184c9b0f97e8e4833837a809b50d624338db0337f8a9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_resource_erivajadusega_laps",
+      "canonical_item_id": "raasiku_vald:resource:erivajadusega_laps",
+      "itemType": "resource",
+      "title": "Erivajadusega laps",
+      "status": "active",
+      "summary": "Leht selgitab, et erivajadusega laps on laps, kelle võimed, terviseseisund või muu eripära vajab tavapärasest erinevat tuge. Kui lapsel tuvastatakse puue, jõuab info kohaliku omavalitsuse lastekaitsespetsialistini, kes annab perele esmast nõustamist ja infot toetuste ning teenuste kohta.",
+      "sourceKeys": [
+        "erivajadusega_laps_page"
+      ],
+      "officialUrl": "https://raasiku.ee/pere-sotsiaalabi-ja-tervishoid/abi-lapsele-ja-perele/erivajadusega-laps",
+      "targetGroup": "Erivajadusega lapsed ja nende pered.",
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "raasiku_vald_contact_anu_nolve"
+      ],
+      "item_type": "resource",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "erivajadusega_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_resource_erivajadusega_laps",
+      "document_id": "raasiku_vald_resource_erivajadusega_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/pere-sotsiaalabi-ja-tervishoid/abi-lapsele-ja-perele/erivajadusega-laps",
+      "content_hash": "f870c92143ef4f599a3ea6a00d8c208138598fbe9cd93c87c3ad3b8b8fc22bf5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_resource_perekeskus_mannikabi",
+      "canonical_item_id": "raasiku_vald:resource:perekeskus_mannikabi",
+      "itemType": "resource",
+      "title": "Perekeskus Männikäbi",
+      "status": "active",
+      "summary": "Perekeskus Männikäbi on kogukondlik koht, kus pakutakse lastega peredele kooskäimise võimalust, vanemate vestlusringe, eakohaseid tegevusi kodustele lastele ning perepäevi ja koolitusi. Keskuse eesmärk on toetada perede ja laste elukvaliteeti ning kogukonnas osalemist.",
+      "sourceKeys": [
+        "perekeskus_page"
+      ],
+      "officialUrl": "https://raasiku.ee/pere-sotsiaalabi-ja-tervishoid/abi-lapsele-ja-perele/perekeskus-mannikabi",
+      "targetGroup": "Lastega pered ja kogukond.",
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "perekeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_resource_perekeskus_mannikabi",
+      "document_id": "raasiku_vald_resource_perekeskus_mannikabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/pere-sotsiaalabi-ja-tervishoid/abi-lapsele-ja-perele/perekeskus-mannikabi",
+      "content_hash": "69c611d36ca8ed8301928b390ae37996e4ca649bef5ba4d117866949776bc2d1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_resource_ohvriabi",
+      "canonical_item_id": "raasiku_vald:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi info",
+      "status": "active",
+      "summary": "Ohvriabisse saab pöörduda, kui inimene ise või tema lähedane on kannatanud kuriteo, vägivalla või kriisijuhtumi tõttu. Leht suunab Palunabi.ee ja Sotsiaalkindlustusameti ohvriabi infole.",
+      "sourceKeys": [
+        "ohvriabi_page"
+      ],
+      "officialUrl": "https://raasiku.ee/pere-sotsiaalabi-ja-tervishoid/ohvriabi/ohvriabi-info",
+      "targetGroup": "Kuriteo, vägivalla või kriisijuhtumi ohvrid ja nende lähedased.",
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "ohvriabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_resource_ohvriabi",
+      "document_id": "raasiku_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/pere-sotsiaalabi-ja-tervishoid/ohvriabi/ohvriabi-info",
+      "content_hash": "9422d63fd7590828296dc15acdd766097ae3a49cb2d89e0c0d6038bd21e7addf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_resource_muud_abivoimalused",
+      "canonical_item_id": "raasiku_vald:resource:muud_abivoimalused",
+      "itemType": "resource",
+      "title": "Muud abivõimalused ja tugiliinid",
+      "status": "active",
+      "summary": "KOV leht koondab abikanalid, sh hädaabinumber, ohvriabi kriisitelefon, lasteabitelefon, perearsti nõuandetelefon 1220, hingehoiutelefon 116 123, Eluliini naiste tugikeskus ja emotsionaalse toe telefonid ning kriisiinfo.",
+      "sourceKeys": [
+        "muud_abivoimalused_page"
+      ],
+      "officialUrl": "https://raasiku.ee/pere-sotsiaalabi-ja-tervishoid/tervishoid/muud-abivoimalused",
+      "targetGroup": "Inimesed, kes vajavad kiiret nõustamist või kriisiabi.",
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "muud_abivoimalused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_resource_muud_abivoimalused",
+      "document_id": "raasiku_vald_resource_muud_abivoimalused",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/pere-sotsiaalabi-ja-tervishoid/tervishoid/muud-abivoimalused",
+      "content_hash": "08cb76d1076a152b203ee98d196e67906226f79dee79e73502ddfaa6676608aa",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_resource_isikukeskne_erihoolekande_teenusmudel",
+      "canonical_item_id": "raasiku_vald:resource:isikukeskne_erihoolekande_teenusmudel",
+      "itemType": "resource",
+      "title": "Isikukeskse erihoolekande teenusmudel 2025–2026",
+      "status": "active",
+      "summary": "Raasiku vald osaleb pilootprojektis, mille eesmärk on katsetada psüühilise erivajadusega inimeste toetamisel teenuskomponentidel põhinevat lähenemist. Sihtgrupp on raske, sügava või püsiva kuluga psüühilise erivajadusega inimesed; teenusmudel kestab 01.01.2025–31.12.2026.",
+      "sourceKeys": [
+        "projektid_page"
+      ],
+      "officialUrl": "https://raasiku.ee/projektid",
+      "targetGroup": "Täisealised psüühilise erivajadusega inimesed, kes vajavad igapäevaelu toetavaid teenuseid.",
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "raasiku_vald_contact_anna_karula",
+        "raasiku_vald_contact_karin_mollits"
+      ],
+      "item_type": "resource",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "projektid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_resource_isikukeskne_erihoolekande_teenusmudel",
+      "document_id": "raasiku_vald_resource_isikukeskne_erihoolekande_teenusmudel",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/projektid",
+      "content_hash": "10d34145b241bfe9c5118a8f785be981e74731d4d600e9b894bab8005aa62b8a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_resource_abi_ja_infotelefonid",
+      "canonical_item_id": "raasiku_vald:resource:abi_ja_infotelefonid",
+      "itemType": "resource",
+      "title": "Abi- ja infotelefonid",
+      "status": "active",
+      "summary": "Raasiku vald avaldab riigi ja valla abi- ja infotelefonid ning vallavalitsuse üldkontaktid. Sotsiaalvaldkonna kasutuses on vallavalitsuse üldnumber, kriisi- ja ohuteavituse kanalid ning kiire abi numbrid.",
+      "sourceKeys": [
+        "abi_infotelefonid_page"
+      ],
+      "officialUrl": "https://raasiku.ee/vald-uudised-kontaktandmed/kontaktid-info/abi-ja-infotelefonid",
+      "targetGroup": "Elanikud, kes vajavad ametlikku abi- või infokontakti.",
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": null,
+        "deadline": null
+      },
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "raasiku_vald_contact_raasiku_vallavalitsus"
+      ],
+      "item_type": "resource",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "abi_infotelefonid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_resource_abi_ja_infotelefonid",
+      "document_id": "raasiku_vald_resource_abi_ja_infotelefonid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/vald-uudised-kontaktandmed/kontaktid-info/abi-ja-infotelefonid",
+      "content_hash": "c1f385672acefd916a50f587acbbbf8d34a5258ea3953304dd55593b880c7284",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_contact_raasiku_vallavalitsus",
+      "canonical_item_id": "raasiku_vald:contact:raasiku_vallavalitsus",
+      "itemType": "contact",
+      "title": "Raasiku Vallavalitsus",
+      "status": "active",
+      "summary": "Raasiku Vallavalitsuse üldkontakt sotsiaalvaldkonna pöördumiste, taotluste ja ametnikega ühenduse võtmiseks.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "name": "Raasiku Vallavalitsus",
+      "role": "Üldkontakt",
+      "department": "Raasiku Vallavalitsus",
+      "address": "Tallinna mnt 24, Aruküla alevik, 75201, Harju maakond",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_contact_raasiku_vallavalitsus",
+      "document_id": "raasiku_vald_contact_raasiku_vallavalitsus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "9bddd5aacbbeb2d892d63f4499bd183a1f69c0cae9c65756cd354c0c67aecdd3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_contact_tauno_pruli",
+      "canonical_item_id": "raasiku_vald:contact:tauno_pruli",
+      "itemType": "contact",
+      "title": "Tauno Pruli",
+      "status": "active",
+      "summary": "Tauno Pruli juhib haridus- ja sotsiaalosakonda ning koordineerib valdkonna korraldust.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "name": "Tauno Pruli",
+      "role": "Haridus- ja sotsiaalosakonna juhataja",
+      "department": "Haridus- ja sotsiaalosakond",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_contact_tauno_pruli",
+      "document_id": "raasiku_vald_contact_tauno_pruli",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "f215d1fc4fea502b4c157bfa3951c755b7bee182cdb1e44cba32692d68fa03ff",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_contact_anu_nolve",
+      "canonical_item_id": "raasiku_vald:contact:anu_nolve",
+      "itemType": "contact",
+      "title": "Anu Nõlve",
+      "status": "active",
+      "summary": "Anu Nõlve tegeleb lastekaitse, lapse heaolu, abivajava lapse, asendus- ja järelhooldusteenuse ning lapsega seotud juhtumitega.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "name": "Anu Nõlve",
+      "role": "Lastekaitsespetsialist",
+      "department": "Haridus- ja sotsiaalosakond",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_contact_anu_nolve",
+      "document_id": "raasiku_vald_contact_anu_nolve",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "d096b9e0931d561a384b5601537189ce42f1e1d7a9bc1161d881429011db6297",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_contact_karin_mollits",
+      "canonical_item_id": "raasiku_vald:contact:karin_mollits",
+      "itemType": "contact",
+      "title": "Karin Möllits",
+      "status": "active",
+      "summary": "Karin Möllits nõustab ja menetleb toimetuleku, sotsiaalabi, toetuste, kriisiabi, varjupaiga ja võlanõustamisega seotud pöördumisi.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "name": "Karin Möllits",
+      "role": "Sotsiaaltööspetsialist",
+      "department": "Haridus- ja sotsiaalosakond",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_contact_karin_mollits",
+      "document_id": "raasiku_vald_contact_karin_mollits",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "e07f94b14322db3c2528a376ec2b2ba72002b54a9570a655e56d6834ee52866e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_contact_anna_karula",
+      "canonical_item_id": "raasiku_vald:contact:anna_karula",
+      "itemType": "contact",
+      "title": "Anna Karula",
+      "status": "active",
+      "summary": "Anna Karula nõustab erivajadustega inimesi ja peresid ning tegeleb lapsehoiuteenuse ja tugiisikuteenuse küsimustega.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "name": "Anna Karula",
+      "role": "Erivajadustega inimeste spetsialist",
+      "department": "Haridus- ja sotsiaalosakond",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_contact_anna_karula",
+      "document_id": "raasiku_vald_contact_anna_karula",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "a05460824a74f8e071dfbd2e930c85f9d75ea5be65e57465f2c9881b382d91fe",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_contact_maarika_grau",
+      "canonical_item_id": "raasiku_vald:contact:maarika_grau",
+      "itemType": "contact",
+      "title": "Maarika Grau",
+      "status": "active",
+      "summary": "Maarika Grau tegeleb hooldus- ja sotsiaalteenustega, sh koduteenus, sotsiaaltransport, isiklik abistaja ja üldhooldusteenus.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "name": "Maarika Grau",
+      "role": "Hooldus- ja sotsiaaltöö spetsialist",
+      "department": "Haridus- ja sotsiaalosakond",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_contact_maarika_grau",
+      "document_id": "raasiku_vald_contact_maarika_grau",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "3ca010acfa8aa5b8bbaea7c70b38ac3a6dec49c007c6bdc48ff631ae6a34238c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_contact_helen_palberg",
+      "canonical_item_id": "raasiku_vald:contact:helen_palberg",
+      "itemType": "contact",
+      "title": "Helen Palberg",
+      "status": "active",
+      "summary": "Helen Palberg tegeleb perede ja ennetustöö valdkonnaga ning toetab laste ja perede heaolu teemasid.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "name": "Helen Palberg",
+      "role": "Perede ja ennetustöö spetsialist",
+      "department": "Haridus- ja sotsiaalosakond",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_contact_helen_palberg",
+      "document_id": "raasiku_vald_contact_helen_palberg",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "db23f93425950f28518c815859096c283f6ab944a59cc5f79eb6103015f08a80",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_contact_aide_lember",
+      "canonical_item_id": "raasiku_vald:contact:aide_lember",
+      "itemType": "contact",
+      "title": "Aide Lember",
+      "status": "active",
+      "summary": "Aide Lember on noorte heaolu spetsialist ning tegeleb noortega seotud toetavate tegevustega.",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "name": "Aide Lember",
+      "role": "Noorte heaolu spetsialist",
+      "department": "Haridus- ja sotsiaalosakond",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_contact_aide_lember",
+      "document_id": "raasiku_vald_contact_aide_lember",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "f82c09a39af28f459608bf7a3661716090944e90ad835109cd097b8a437b4a70",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_form_sotsiaalteenuse_taotlus",
+      "canonical_item_id": "raasiku_vald:form:sotsiaalteenuse_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaalteenuse taotlemise avaldus",
+      "status": "active",
+      "summary": "Avaldus, mida kasutatakse sotsiaalteenuste taotlemiseks. Vorm esitatakse vallamajas paberkandjal või saadetakse digiallkirjastatult e‑postiga.",
+      "sourceKeys": [
+        "sotsiaalteenuse_avaldus_file"
+      ],
+      "officialUrl": "https://raasiku.ee/sites/default/files/documents/2025-11/Sotsiaalteenuse%20taotlemise%20avaldus.doc",
+      "format": "doc",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "name": "Sotsiaalteenuse taotlemise avaldus",
+      "relatedTo": [
+        "raasiku_vald_service_eluruumi_tagamise_teenus",
+        "raasiku_vald_service_valtimatu_sotsiaalabi",
+        "raasiku_vald_service_isikliku_abistaja_teenus",
+        "raasiku_vald_service_koduteenus",
+        "raasiku_vald_service_uldhooldusteenus",
+        "raasiku_vald_service_taisealise_isiku_hooldus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "application_form"
+      ],
+      "item_type": "form",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenuse_avaldus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_form_sotsiaalteenuse_taotlus",
+      "document_id": "raasiku_vald_form_sotsiaalteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/sites/default/files/documents/2025-11/Sotsiaalteenuse%20taotlemise%20avaldus.doc",
+      "content_hash": "ded0b041da5cd327c8e182920c9731ee52bb751b5694da995225cdef5631ed9d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_form_sotsiaaltoetuse_taotlus",
+      "canonical_item_id": "raasiku_vald:form:sotsiaaltoetuse_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaaltoetuse taotlemise avaldus",
+      "status": "active",
+      "summary": "Avaldus, mida kasutatakse vajaduspõhiste sotsiaaltoetuste taotlemiseks. Vorm esitatakse vallamajas või saadetakse digiallkirjastatult e‑postiga.",
+      "sourceKeys": [
+        "sotsiaaltoetuse_avaldus_file"
+      ],
+      "officialUrl": "https://raasiku.ee/sites/default/files/documents/2025-11/Sotsiaaltoetuse%20taotlemise%20avaldus_1.doc",
+      "format": "doc",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "name": "Sotsiaaltoetuse taotlemise avaldus",
+      "relatedTo": [
+        "raasiku_vald_benefit_toimetulekutoetus",
+        "raasiku_vald_benefit_tervisetoetus",
+        "raasiku_vald_benefit_lastega_perede_toetus",
+        "raasiku_vald_benefit_erakorraline_toetus",
+        "raasiku_vald_benefit_eluruumi_kohandamise_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "application_form"
+      ],
+      "item_type": "form",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetuse_avaldus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_form_sotsiaaltoetuse_taotlus",
+      "document_id": "raasiku_vald_form_sotsiaaltoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/sites/default/files/documents/2025-11/Sotsiaaltoetuse%20taotlemise%20avaldus_1.doc",
+      "content_hash": "7749a630bbf3100f8cbf5c056cb6c37d1ccad6f95c9b15f41a89cfe34b1e4a05",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_form_synnitoetuse_avaldus",
+      "canonical_item_id": "raasiku_vald:form:synnitoetuse_avaldus",
+      "itemType": "form",
+      "title": "Avaldus sünnitoetuse taotlemiseks",
+      "status": "active",
+      "summary": "Sünnitoetuse taotlemise vorm, mis tuleb esitada kolme kuu jooksul pärast lapse sündi.",
+      "sourceKeys": [
+        "synnitoetuse_avaldus_file"
+      ],
+      "officialUrl": "https://raasiku.ee/sites/default/files/documents/2025-10/Avaldus%20s%C3%BCnnitoetuse%20taotlemiseks.rtf",
+      "format": "rtf",
+      "submissionChannels": [
+        "in_person"
+      ],
+      "name": "Avaldus sünnitoetuse taotlemiseks",
+      "relatedTo": [
+        "raasiku_vald_benefit_synnitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "application_form"
+      ],
+      "item_type": "form",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "synnitoetuse_avaldus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_form_synnitoetuse_avaldus",
+      "document_id": "raasiku_vald_form_synnitoetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/sites/default/files/documents/2025-10/Avaldus%20s%C3%BCnnitoetuse%20taotlemiseks.rtf",
+      "content_hash": "4565ea666a311948c848f58dc5dbbb5f4c667eb8fce50f7965f1f432f7358c8a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_form_matusetoetuse_avaldus",
+      "canonical_item_id": "raasiku_vald:form:matusetoetuse_avaldus",
+      "itemType": "form",
+      "title": "Avaldus matusetoetuse taotlemiseks",
+      "status": "active",
+      "summary": "Matusetoetuse taotlemise vorm, mis tuleb esitada kolme kuu jooksul pärast surma registreerimist.",
+      "sourceKeys": [
+        "matusetoetuse_avaldus_file"
+      ],
+      "officialUrl": "https://raasiku.ee/sites/default/files/documents/2025-10/Avaldus%20matusetoetuse%20taotlemiseks.rtf",
+      "format": "rtf",
+      "submissionChannels": [
+        "in_person"
+      ],
+      "name": "Avaldus matusetoetuse taotlemiseks",
+      "relatedTo": [
+        "raasiku_vald_benefit_matusetoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "application_form"
+      ],
+      "item_type": "form",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "matusetoetuse_avaldus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_form_matusetoetuse_avaldus",
+      "document_id": "raasiku_vald_form_matusetoetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/sites/default/files/documents/2025-10/Avaldus%20matusetoetuse%20taotlemiseks.rtf",
+      "content_hash": "8d044ae7cd964c83369853276394b19b5b87cafd689c2eebd4b5ab4dec1c5fa6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_form_esimese_klassi_toetuse_avaldus",
+      "canonical_item_id": "raasiku_vald:form:esimese_klassi_toetuse_avaldus",
+      "itemType": "form",
+      "title": "Avaldus esimesse klassi mineva lapse toetuse taotlemiseks",
+      "status": "active",
+      "summary": "Esimesse klassi mineva lapse toetuse taotlemise vorm, mille esitamise tähtaeg on 30. september.",
+      "sourceKeys": [
+        "esimese_klassi_toetus_avaldus_file"
+      ],
+      "officialUrl": "https://raasiku.ee/sites/default/files/documents/2025-11/Avaldus%20esimesse%20klassi%20mineva%20lapse%20toetuse%20taotlemiseks.rtf",
+      "format": "rtf",
+      "submissionChannels": [
+        "in_person"
+      ],
+      "name": "Avaldus esimesse klassi mineva lapse toetuse taotlemiseks",
+      "relatedTo": [
+        "raasiku_vald_benefit_esimese_klassi_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "application_form"
+      ],
+      "item_type": "form",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "esimese_klassi_toetus_avaldus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_form_esimese_klassi_toetuse_avaldus",
+      "document_id": "raasiku_vald_form_esimese_klassi_toetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/sites/default/files/documents/2025-11/Avaldus%20esimesse%20klassi%20mineva%20lapse%20toetuse%20taotlemiseks.rtf",
+      "content_hash": "588787cab917ca1ac1ecbe699ae40136b5275487cf67422c90190e93ab964e19",
+      "evidence_allowed": true
+    },
+    {
+      "id": "raasiku_vald_form_tahtpaevatoetuse_avaldus",
+      "canonical_item_id": "raasiku_vald:form:tahtpaevatoetuse_avaldus",
+      "itemType": "form",
+      "title": "Avaldus tähtpäevatoetuse taotlemiseks",
+      "status": "active",
+      "summary": "Tähtpäevatoetuse taotlemise vorm jõulutoetuse või muu taotluspõhise tähtpäevatoetuse jaoks.",
+      "sourceKeys": [
+        "tahtpaevatoetuse_avaldus_file"
+      ],
+      "officialUrl": "https://raasiku.ee/sites/default/files/documents/2025-11/Avaldus%20t%C3%A4htp%C3%A4evatoetuse%20taotlemiseks.rtf",
+      "format": "rtf",
+      "submissionChannels": [
+        "in_person"
+      ],
+      "name": "Avaldus tähtpäevatoetuse taotlemiseks",
+      "relatedTo": [
+        "raasiku_vald_benefit_tahtpaevatoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "application_form"
+      ],
+      "item_type": "form",
+      "municipality_id": "raasiku_vald",
+      "municipality_name": "Raasiku vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "tahtpaevatoetuse_avaldus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "raasiku_vald_form_tahtpaevatoetuse_avaldus",
+      "document_id": "raasiku_vald_form_tahtpaevatoetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://raasiku.ee/sites/default/files/documents/2025-11/Avaldus%20t%C3%A4htp%C3%A4evatoetuse%20taotlemiseks.rtf",
+      "content_hash": "fda4b2aa58c3b77f5a395666b86845b52af5dac10510446f9ffdecebc89632fa",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Raasiku vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

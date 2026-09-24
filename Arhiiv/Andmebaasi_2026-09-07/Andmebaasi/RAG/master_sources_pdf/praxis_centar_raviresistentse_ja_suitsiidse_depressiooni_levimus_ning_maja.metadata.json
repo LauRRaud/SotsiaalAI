@@ -1,0 +1,79 @@
+{
+  "source": {
+    "source_id": "praxis_centar_raviresistentse_ja_suitsiidse_depressiooni_levimus_ning_maja",
+    "title": "Raviresistentse ja suitsiidse depressiooni levimus ning majanduslik mõju",
+    "url": "https://centar.ee/pdf/ee/2021_Raviresistentse_ja_suitsiidse_depressiooni_levimus_ja_majanduslik_moju.pdf",
+    "normalized_url": "https://centar.ee/pdf/ee/2021_Raviresistentse_ja_suitsiidse_depressiooni_levimus_ja_majanduslik_moju.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Praxis / CentAR",
+    "organization_id": "praxis_centar",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Praxis",
+      "tervishoid",
+      "esmatasand",
+      "patsient",
+      "depressioon",
+      "suitsiidirisk",
+      "vaimne tervis",
+      "psüühiline heaolu",
+      "nõustamine",
+      "infomaterjal"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Praxis / CentAR / poliitikauuringud",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 453,
+      "order": 244
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Raviresistentse ja suitsiidse depressiooni levimus ning majanduslik mõju"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Praxis / CentAR"
+    ],
+    "organizations_seen": [
+      "praxis_centar"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Praxis / CentAR / poliitikauuringud",
+        "line": 453,
+        "order": 244
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://centar.ee/pdf/ee/2021_Raviresistentse_ja_suitsiidse_depressiooni_levimus_ja_majanduslik_moju.pdf"
+  },
+  "final_url": "https://centar.ee/pdf/ee/2021_Raviresistentse_ja_suitsiidse_depressiooni_levimus_ja_majanduslik_moju.pdf",
+  "redirects": [],
+  "sha256": "b254252e066678677ac8fe05d847c57b59f5d3aac7132ec22bdaae7b596e3d17",
+  "bytes": 7201839,
+  "downloaded_at": "2026-08-14T08:00:49.229Z"
+}

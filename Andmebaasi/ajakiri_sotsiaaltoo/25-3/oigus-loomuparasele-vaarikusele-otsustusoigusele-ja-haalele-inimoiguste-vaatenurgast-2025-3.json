@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-3-2025",
+  "articleId": "oigus-loomuparasele-vaarikusele-otsustusoigusele-ja-haalele-inimoiguste-vaatenurgast-2025-3",
+  "title": "Õigus loomupärasele väärikusele, otsustusõigusele ja „häälele“ inimõiguste vaatenurgast",
+  "authors": [
+    "Kristi Rekand"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2025",
+  "section": "Inimõigused",
+  "pageRange": "25-31",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel analüüsib puuetega inimeste õigusi, teovõimet ja eestkoste korraldust inimõiguste vaatenurgast, lähtudes ÜRO puuetega inimeste õiguste konventsioonist. Autor argumenteerib toetatud otsustamise mudeli kasuks ning kriitiliselt hindab praktikaid, mis võivad piirata inimese autonoomiat ja häält.",
+  "tags": [
+    "inimõigused",
+    "eestkoste",
+    "teovõime",
+    "otsustusõigus",
+    "puuetega inimesed",
+    "toetatud otsustamine",
+    "väärikus"
+  ],
+  "source_type": "file",
+  "source_path": "5web_sotsiaaltoo_3-2025.pdf",
+  "document_id": "sotsiaaltoo-3-2025-oigus-loomuparasele-vaarikusele-otsustusoigusele-ja-haalele-inimoiguste-vaatenurgast-2025-3",
+  "source_format": "pdf",
+  "source_sha256": "f681cfaba25894555b44e09e91a8b3bf83a3a69ea7677a8a19442ab56f56e4d5",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2025-oigus-loomuparasele-vaarikusele-otsustusoigusele-ja-haalele-inimoiguste-vaatenurgast-2025-3",
+    "previous_source_path": "5web_sotsiaaltoo_3-2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "f681cfaba25894555b44e09e91a8b3bf83a3a69ea7677a8a19442ab56f56e4d5",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

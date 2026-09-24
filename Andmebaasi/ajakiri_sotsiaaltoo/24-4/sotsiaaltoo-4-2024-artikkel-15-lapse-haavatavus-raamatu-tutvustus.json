@@ -1,0 +1,45 @@
+{
+  "docId": "sotsiaaltoo-4-2024",
+  "issueLabel": "4/2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "lapse-haavatavusel-on-suhete-nagu-2024-4",
+  "title": "Lapse haavatavusel on suhete nägu",
+  "authors": [
+    "Dagmar Kutsar"
+  ],
+  "section": "Raamatu tutvustus",
+  "pageRange": "94–96",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "source_path": "sotsiaaltoo_4_2024_web_Part171.pdf",
+  "description": "Raamatu „Child Vulnerability and Vulnerable Subjectivity“ („Lapse haavatavus ja haavatav subjektiivsus“) tutvustus. Dagmar Kutsar annab ülevaate Eesti teadusagentuuri rahastatud samanimelise projekti põhijäreldustest ja rõhutab, et lapse haavatavus on suhtekeskne nähtus, mis avaldub suhetes erinevates elukeskkondades – kodus, koolis, tervishoius, asendushoolduses ja digikeskkonnas. Raamatus käsitletakse laste tunnetatud haavatavust, sitkust ja heaolu kujundavaid tegureid, laste osalusega uurimiste eetikat ja metodoloogiat, pere- ja koolisuhete, digihaavatavuse, õigussüsteemi, trauma ja elulootöö teemasid ning üleilmsete kriiside – koroonapandeemia ja Ukraina sõja – mõju laste heaolule. Autor tõstab esile laste häälte kuulamise ja teaduspõhise poliitikakujunduse tähtsust ning vajadust liikuda reageerivast lähenemisest ennetava ja proaktiivse suunas.",
+  "tags": [
+    "lapse haavatavus",
+    "laste heaolu",
+    "heaoluteadus",
+    "lapse õigused",
+    "perekond",
+    "koolikeskkond",
+    "digihaavatavus",
+    "traumateadlikkus",
+    "poliitikakujundamine",
+    "koroonapandeemia",
+    "Ukraina sõda"
+  ],
+  "document_id": "sotsiaaltoo-4-2024-lapse-haavatavusel-on-suhete-nagu-2024-4",
+  "source_format": "pdf",
+  "source_sha256": "04696001e3b3c9afe0b2c9e1b2f6e18ef1eadcf92fca40ccd329961ad2a337ff",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2024-lapse-haavatavusel-on-suhete-nagu-2024-4",
+    "previous_source_path": "sotsiaaltoo_4_2024_web_Part171.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "04696001e3b3c9afe0b2c9e1b2f6e18ef1eadcf92fca40ccd329961ad2a337ff",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

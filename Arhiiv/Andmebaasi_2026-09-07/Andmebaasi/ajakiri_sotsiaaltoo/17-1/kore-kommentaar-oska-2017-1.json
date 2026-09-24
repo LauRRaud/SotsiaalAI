@@ -1,0 +1,108 @@
+{
+  "docId": "sotsiaaltoo-1-2017",
+  "articleId": "kore-kommentaar-oska-2017-1",
+  "title": "Sotsiaaltöö professioon, tööjõu vajadus ja ressurss",
+  "authors": [
+    "Jüri Kõre"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2017",
+  "section": "Kommentaar",
+  "pageRange": "71-76",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Jüri Kõre vaidlustab OSKA raporti kaks järeldust. Esiteks hindab raport tema sõnul sotsiaaltöö haridusega inimeste tööturupotentsiaali liiga kitsalt, arvestades vaid sotsiaaltöötaja ja nõustaja ametikohti, kuigi seda pädevust kasutatakse ka avalikus halduses ja personalitöös. Teiseks vaidleb ta vastu prognoosile, et haldusreform vähendab sotsiaaltöö juhtide arvu, viidates Mariliis Raidma 2016. aasta magistritööle, mille järgi on varem ühinenud omavalitsustes valdavalt 4–6-liikmelised üksused. Kõre väidab, et põhiprobleem pole raha, vaid lühike karjääriredel.",
+  "tags": [
+    "kommentaar",
+    "OSKA",
+    "tööjõuvajadus",
+    "sotsiaaltöö professioon",
+    "haldusreform",
+    "karjäär"
+  ],
+  "source_type": "file",
+  "source_path": "2017_1_Part16.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2017-kore-kommentaar-oska-2017-1",
+  "source_sha256": "756a10a31d262d9fc9df12518661a7c45cd9c633074ac7131833f38f47610d30",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2017-kore-kommentaar-oska-2017-1",
+    "previous_source_path": "2017_1_Part16.txt",
+    "previous_source_original_path": "2017_1.pdf",
+    "reference_stored_source_sha256": "0086891b27db2f5518b28dcd92d25bf9a996da38543758614cd33135fb89531c",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf",
+      "source_sha256": "335f81467a555f12c55d0e8bf60122a178c5267567cf79607448a5d987629e50",
+      "pdf_start_page": 73,
+      "pdf_end_page": 78,
+      "printed_page_range": "71-76",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 78,
+      "source_regions": [
+        {
+          "source_pdf_page": 73,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 74,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 75,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 76,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 77,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 78,
+          "bounds": [
+            0,
+            0,
+            496,
+            169.676
+          ]
+        }
+      ],
+      "effective_printed_page_range": "71-76"
+    },
+    "server_page_range": "71-76"
+  }
+}

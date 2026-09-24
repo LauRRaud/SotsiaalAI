@@ -1,0 +1,4281 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-narva-linn",
+  "document_id": "kov-narva-linn",
+  "municipality": "Narva linn",
+  "municipality_id": "narva_linn",
+  "county": "Ida-Virumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "narva_linn_contact_sotsiaalabiamet",
+      "canonical_item_id": "narva_linn:contact:sotsiaalabiamet",
+      "itemType": "contact",
+      "title": "Narva Linna Sotsiaalabiamet",
+      "status": "active",
+      "summary": "Narva Linna Sotsiaalabiamet on Narva linna ametiasutus, mis korraldab sotsiaalhoolekande ja sotsiaaltoetustega seotud pöördumisi. KOV lehtede järgi toimub mitmete teenuste ja toetuste taotlemine Sotsiaalabiameti kaudu. Üldiste teenuste detaillehtedel kasutatakse pöördumiskohana Malmi tn 5a asuvaid osakondi ning e-posti.",
+      "sourceKeys": [
+        "child_protection_department",
+        "health_social_department",
+        "social_aid_department"
+      ],
+      "name": "Narva Linna Sotsiaalabiamet",
+      "role": "sotsiaalvaldkonna ametiasutus",
+      "department": "Narva Linna Sotsiaalabiamet",
+      "address": "Malmi tn 5a, Narva linn",
+      "officialUrl": "https://www.narva.ee/narva-linna-sotsiaalabiamet",
+      "item_type": "contact",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "child_protection_department",
+        "health_social_department",
+        "social_aid_department"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_contact_sotsiaalabiamet",
+      "document_id": "narva_linn_contact_sotsiaalabiamet",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/narva-linna-sotsiaalabiamet",
+      "content_hash": "b9a2ae0882428e1ff98773a7901c281af456c45c7cb7f7d1f5fe2d19433b06f6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_contact_tervise_ja_sotsiaalosakond",
+      "canonical_item_id": "narva_linn:contact:tervise_ja_sotsiaalosakond",
+      "itemType": "contact",
+      "title": "Tervise- ja sotsiaalosakond",
+      "status": "active",
+      "summary": "Tervise- ja sotsiaalosakond teenindab Narva linna eakaid, puudega inimesi ja madala sissetulekuga abivajajaid. Osakonna juures taotletakse täisealiste sotsiaalteenuseid, hoolduse seadmist, toimetulekutoetust ning mitmeid täiskasvanutele suunatud toetusi. Vastuvõtuajad on esmaspäeviti 9.00–12.00 ja kolmapäeviti 13.00–16.00.",
+      "sourceKeys": [
+        "health_social_department"
+      ],
+      "name": "Tervise- ja sotsiaalosakond",
+      "role": "osakond",
+      "department": "Narva Linna Sotsiaalabiamet",
+      "address": "Malmi tn 5a, Narva linn",
+      "officialUrl": "https://www.narva.ee/tervise-ja-sotsiaalosakond",
+      "item_type": "contact",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "health_social_department"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_contact_tervise_ja_sotsiaalosakond",
+      "document_id": "narva_linn_contact_tervise_ja_sotsiaalosakond",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/tervise-ja-sotsiaalosakond",
+      "content_hash": "f0e5395431541c9496a749515447b434d062f2d315985620fa966c8460c9d467",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_contact_lastekaitseosakond",
+      "canonical_item_id": "narva_linn:contact:lastekaitseosakond",
+      "itemType": "contact",
+      "title": "Lastekaitseosakond",
+      "status": "active",
+      "summary": "Lastekaitseosakond korraldab abivajavatele lastele vajalikku abi, nõustab laste elu korraldamise küsimustes ning menetleb laste ja perede sotsiaalteenuseid ja toetusi. Osakond tegeleb ka puuetega lastele suunatud teenuste ja toetuste määramisega ning laste parkimiskaartide väljastamisega. Vastuvõtuajad on esmaspäeviti 9.00–12.00 ja kolmapäeviti 13.00–16.00.",
+      "sourceKeys": [
+        "child_protection_department"
+      ],
+      "name": "Lastekaitseosakond",
+      "role": "osakond",
+      "department": "Narva Linna Sotsiaalabiamet",
+      "address": "Malmi tn 5a, Narva linn",
+      "officialUrl": "https://www.narva.ee/lastekaitseosakond",
+      "item_type": "contact",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "child_protection_department"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_contact_lastekaitseosakond",
+      "document_id": "narva_linn_contact_lastekaitseosakond",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/lastekaitseosakond",
+      "content_hash": "10d7e4b93808e98bfd3484558a922947df50f5968266cf68fa37b47e23286f41",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_contact_linnavalitsus_uld",
+      "canonical_item_id": "narva_linn:contact:linnavalitsus_uld",
+      "itemType": "contact",
+      "title": "Narva Linnavalitsuse üldkontakt",
+      "status": "active",
+      "summary": "Narva Linnavalitsuse üldkontakt on KOV veebilehe jaluses esitatud avalik kontakt. Seda kasutatakse üldiste päringute, suunamiste ja KOV ametliku suhtluse jaoks, kui konkreetne sotsiaalvaldkonna teenuse kontakt ei ole teenuse juures eraldi nimetatud.",
+      "sourceKeys": [
+        "home",
+        "social_benefits_overview",
+        "social_services_overview"
+      ],
+      "name": "Narva Linnavalitsus",
+      "role": "üldkontakt",
+      "address": "Peetri plats 5, Narva 20308",
+      "officialUrl": "https://www.narva.ee",
+      "item_type": "contact",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "home",
+        "social_benefits_overview",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_contact_linnavalitsus_uld",
+      "document_id": "narva_linn_contact_linnavalitsus_uld",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee",
+      "content_hash": "1126de9932d032ef1944c992d2ad6e90581c0908042fb6a5cd4b45823f060f74",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_form_hooldusasutusse_paigutamise_avaldus",
+      "canonical_item_id": "narva_linn:form:hooldusasutusse_paigutamise_avaldus",
+      "itemType": "form",
+      "title": "Hooldusasutusse paigutamise avaldus",
+      "status": "active",
+      "summary": "Hooldusasutusse paigutamise avaldus on Narva linna ametlikul vormide lehel nimetatud sotsiaalvaldkonna taotlus või avaldus. Vorm on mõeldud vastava teenuse või toetuse taotlemiseks ning esitatakse Sotsiaalabiametile või teenuse detaillehel nimetatud osakonnale.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "PDF/DOC/DOK",
+      "submissionChannels": [
+        "paber",
+        "",
+        "digitaalselt allkirjastatud dokument"
+      ],
+      "relatedTo": [
+        "narva_linn_service_uldhooldusteenus"
+      ],
+      "officialUrl": "https://www.narva.ee/blanketid-ja-vormid",
+      "sections_present": [
+        "taotleja andmed",
+        "hooldust vajava isiku andmed"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_form_hooldusasutusse_paigutamise_avaldus",
+      "document_id": "narva_linn_form_hooldusasutusse_paigutamise_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/blanketid-ja-vormid",
+      "content_hash": "6dee08eef98d8b61b9204afd97e41bb5c4473eb169b71fefe0d4456f3145099f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_form_taisealise_isiku_hoolduse_taotlus",
+      "canonical_item_id": "narva_linn:form:taisealise_isiku_hoolduse_taotlus",
+      "itemType": "form",
+      "title": "Täisealise isiku hoolduse taotlus",
+      "status": "active",
+      "summary": "Täisealise isiku hoolduse taotlus on Narva linna ametlikul vormide lehel nimetatud sotsiaalvaldkonna taotlus või avaldus. Vorm on mõeldud vastava teenuse või toetuse taotlemiseks ning esitatakse Sotsiaalabiametile või teenuse detaillehel nimetatud osakonnale.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "PDF/DOC/DOK",
+      "submissionChannels": [
+        "paber",
+        "",
+        "digitaalselt allkirjastatud dokument"
+      ],
+      "relatedTo": [
+        "narva_linn_service_taisealise_isiku_hooldus"
+      ],
+      "officialUrl": "https://www.narva.ee/blanketid-ja-vormid",
+      "sections_present": [
+        "hooldust vajava isiku andmed",
+        "hooldaja nõusolek"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_form_taisealise_isiku_hoolduse_taotlus",
+      "document_id": "narva_linn_form_taisealise_isiku_hoolduse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/blanketid-ja-vormid",
+      "content_hash": "127a3eebbb8c1ec5e723cc89ff35dc7680e4f9fb4fd43849f1d4b915da4af473",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_form_tugiisiku_teenuse_taotlus",
+      "canonical_item_id": "narva_linn:form:tugiisiku_teenuse_taotlus",
+      "itemType": "form",
+      "title": "Tugiisiku teenuse taotlus",
+      "status": "active",
+      "summary": "Tugiisiku teenuse taotlus on Narva linna ametlikul vormide lehel nimetatud sotsiaalvaldkonna taotlus või avaldus. Vorm on mõeldud vastava teenuse või toetuse taotlemiseks ning esitatakse Sotsiaalabiametile või teenuse detaillehel nimetatud osakonnale.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "PDF/DOC/DOK",
+      "submissionChannels": [
+        "paber",
+        "",
+        "digitaalselt allkirjastatud dokument"
+      ],
+      "relatedTo": [
+        "narva_linn_service_tugiisikuteenus",
+        "narva_linn_service_lapse_tugiisikuteenus"
+      ],
+      "officialUrl": "https://www.narva.ee/blanketid-ja-vormid",
+      "sections_present": [
+        "teenuse vajaduse põhjendus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_form_tugiisiku_teenuse_taotlus",
+      "document_id": "narva_linn_form_tugiisiku_teenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/blanketid-ja-vormid",
+      "content_hash": "c9dd2c1045df27bb296f4de415823369b928ea684fdfe29e071bcf8173d23b9e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_form_invatranspordi_taotlus",
+      "canonical_item_id": "narva_linn:form:invatranspordi_taotlus",
+      "itemType": "form",
+      "title": "Invatranspordi taotlus",
+      "status": "active",
+      "summary": "Invatranspordi taotlus on Narva linna ametlikul vormide lehel nimetatud sotsiaalvaldkonna taotlus või avaldus. Vorm on mõeldud vastava teenuse või toetuse taotlemiseks ning esitatakse Sotsiaalabiametile või teenuse detaillehel nimetatud osakonnale.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "PDF/DOC/DOK",
+      "submissionChannels": [
+        "paber",
+        "",
+        "digitaalselt allkirjastatud dokument"
+      ],
+      "relatedTo": [
+        "narva_linn_service_hev_invatransporditeenus"
+      ],
+      "officialUrl": "https://www.narva.ee/blanketid-ja-vormid",
+      "sections_present": [
+        "õpilase andmed",
+        "transpordi vajadus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_form_invatranspordi_taotlus",
+      "document_id": "narva_linn_form_invatranspordi_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/blanketid-ja-vormid",
+      "content_hash": "fa40c7d44267db0ae1b38828a3396413b26ab1e59ff1035b2ac6c2b8326f0ab1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_form_lapsehoiuteenuse_taotlus",
+      "canonical_item_id": "narva_linn:form:lapsehoiuteenuse_taotlus",
+      "itemType": "form",
+      "title": "Lapsehoiuteenuse taotlus",
+      "status": "active",
+      "summary": "Lapsehoiuteenuse taotlus on Narva linna ametlikul vormide lehel nimetatud sotsiaalvaldkonna taotlus või avaldus. Vorm on mõeldud vastava teenuse või toetuse taotlemiseks ning esitatakse Sotsiaalabiametile või teenuse detaillehel nimetatud osakonnale.",
+      "sourceKeys": [
+        "forms_page",
+        "lapsehoiuteenus_page"
+      ],
+      "format": "PDF/DOC/DOK",
+      "submissionChannels": [
+        "paber",
+        "",
+        "digitaalselt allkirjastatud dokument"
+      ],
+      "relatedTo": [
+        "narva_linn_service_lapsehoiuteenus"
+      ],
+      "officialUrl": "https://www.narva.ee/blanketid-ja-vormid",
+      "sections_present": [
+        "lapse andmed",
+        "puude info",
+        "teenuse vajadus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "forms_page",
+        "lapsehoiuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_form_lapsehoiuteenuse_taotlus",
+      "document_id": "narva_linn_form_lapsehoiuteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/blanketid-ja-vormid",
+      "content_hash": "2c145a3f1af03f8a7f4f186174b8e86542c52b2fa19f9e19b3d2d55233e2c18c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_form_volanoustamisteenuse_taotlus",
+      "canonical_item_id": "narva_linn:form:volanoustamisteenuse_taotlus",
+      "itemType": "form",
+      "title": "Võlanõustamisteenuse taotlus",
+      "status": "active",
+      "summary": "Võlanõustamisteenuse taotlus on Narva linna ametlikul vormide lehel nimetatud sotsiaalvaldkonna taotlus või avaldus. Vorm on mõeldud vastava teenuse või toetuse taotlemiseks ning esitatakse Sotsiaalabiametile või teenuse detaillehel nimetatud osakonnale.",
+      "sourceKeys": [
+        "forms_page",
+        "volanoustamisteenus_page"
+      ],
+      "format": "PDF/DOC/DOK",
+      "submissionChannels": [
+        "paber",
+        "",
+        "digitaalselt allkirjastatud dokument"
+      ],
+      "relatedTo": [
+        "narva_linn_service_volanoustamisteenus"
+      ],
+      "officialUrl": "https://www.narva.ee/blanketid-ja-vormid",
+      "sections_present": [
+        "taotleja andmed",
+        "võlgnevuse kirjeldus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "forms_page",
+        "volanoustamisteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_form_volanoustamisteenuse_taotlus",
+      "document_id": "narva_linn_form_volanoustamisteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/blanketid-ja-vormid",
+      "content_hash": "48f01e7b28895b73ab0607152fed99f799a34fcc4743fa1ce6e468f547ffda2f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_form_toimetulekutoetuse_avaldus",
+      "canonical_item_id": "narva_linn:form:toimetulekutoetuse_avaldus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse avaldus",
+      "status": "active",
+      "summary": "Toimetulekutoetuse avaldus on Narva linna ametlikul vormide lehel nimetatud sotsiaalvaldkonna taotlus või avaldus. Vorm on mõeldud vastava teenuse või toetuse taotlemiseks ning esitatakse Sotsiaalabiametile või teenuse detaillehel nimetatud osakonnale.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "PDF/DOC/DOK",
+      "submissionChannels": [
+        "paber",
+        "",
+        "digitaalselt allkirjastatud dokument"
+      ],
+      "relatedTo": [
+        "narva_linn_benefit_toimetulekutoetus"
+      ],
+      "officialUrl": "https://www.narva.ee/blanketid-ja-vormid",
+      "sections_present": [
+        "perekonnaliikmed",
+        "sissetulekud",
+        "eluasemekulud"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_form_toimetulekutoetuse_avaldus",
+      "document_id": "narva_linn_form_toimetulekutoetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/blanketid-ja-vormid",
+      "content_hash": "bbf91b66c4b4713e222e893b62a4736b660374b32a67fb772da0ade730e67864",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_form_sunnitoetuse_taotlus",
+      "canonical_item_id": "narva_linn:form:sunnitoetuse_taotlus",
+      "itemType": "form",
+      "title": "Sünnitoetuse taotlus",
+      "status": "active",
+      "summary": "Sünnitoetuse taotlus on Narva linna ametlikul vormide lehel nimetatud sotsiaalvaldkonna taotlus või avaldus. Vorm on mõeldud vastava teenuse või toetuse taotlemiseks ning esitatakse Sotsiaalabiametile või teenuse detaillehel nimetatud osakonnale.",
+      "sourceKeys": [
+        "forms_page",
+        "sunnitoetus_page"
+      ],
+      "format": "PDF/DOC/DOK",
+      "submissionChannels": [
+        "paber",
+        "",
+        "digitaalselt allkirjastatud dokument"
+      ],
+      "relatedTo": [
+        "narva_linn_benefit_sunnitoetus"
+      ],
+      "officialUrl": "https://www.narva.ee/blanketid-ja-vormid",
+      "sections_present": [
+        "taotleja andmed",
+        "lapse andmed",
+        "arvelduskonto"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "forms_page",
+        "sunnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_form_sunnitoetuse_taotlus",
+      "document_id": "narva_linn_form_sunnitoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/blanketid-ja-vormid",
+      "content_hash": "17886d5171aa918df3bf37b1e11cbfc3ad6ba1ce56a712544f718d98c2ae7cca",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_form_esmakordselt_kooli_mineva_lapse_toetusetaotlus",
+      "canonical_item_id": "narva_linn:form:esmakordselt_kooli_mineva_lapse_toetusetaotlus",
+      "itemType": "form",
+      "title": "Esmakordselt kooli mineva lapse toetuse taotlus",
+      "status": "active",
+      "summary": "Esmakordselt kooli mineva lapse toetuse taotlus on Narva linna ametlikul vormide lehel nimetatud sotsiaalvaldkonna taotlus või avaldus. Vorm on mõeldud vastava teenuse või toetuse taotlemiseks ning esitatakse Sotsiaalabiametile või teenuse detaillehel nimetatud osakonnale.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "PDF/DOC/DOK",
+      "submissionChannels": [
+        "paber",
+        "",
+        "digitaalselt allkirjastatud dokument"
+      ],
+      "relatedTo": [
+        "narva_linn_benefit_esmakordselt_kooli_mineva_lapse_toetus"
+      ],
+      "officialUrl": "https://www.narva.ee/blanketid-ja-vormid",
+      "sections_present": [
+        "lapse andmed",
+        "pere andmed"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_form_esmakordselt_kooli_mineva_lapse_toetusetaotlus",
+      "document_id": "narva_linn_form_esmakordselt_kooli_mineva_lapse_toetusetaotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/blanketid-ja-vormid",
+      "content_hash": "2be2b6b3f1cc70e779edc82c819f2243344e737a119bd643bae3585d84aea2b8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_form_koolimineku_toetuse_taotlus",
+      "canonical_item_id": "narva_linn:form:koolimineku_toetuse_taotlus",
+      "itemType": "form",
+      "title": "Koolimineku toetuse taotlus",
+      "status": "active",
+      "summary": "Koolimineku toetuse taotlus on Narva linna ametlikul vormide lehel nimetatud sotsiaalvaldkonna taotlus või avaldus. Vorm on mõeldud vastava teenuse või toetuse taotlemiseks ning esitatakse Sotsiaalabiametile või teenuse detaillehel nimetatud osakonnale.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "PDF/DOC/DOK",
+      "submissionChannels": [
+        "paber",
+        "",
+        "digitaalselt allkirjastatud dokument"
+      ],
+      "relatedTo": [
+        "narva_linn_benefit_koolimineku_toetus"
+      ],
+      "officialUrl": "https://www.narva.ee/blanketid-ja-vormid",
+      "sections_present": [
+        "lapse andmed",
+        "pere sotsiaalne olukord"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_form_koolimineku_toetuse_taotlus",
+      "document_id": "narva_linn_form_koolimineku_toetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/blanketid-ja-vormid",
+      "content_hash": "73b5cf13bf39458678c8c9bc4dcbced3dbdc911a97a64a6aee397bce4f61d7ad",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_form_koolitoetuse_taotlus",
+      "canonical_item_id": "narva_linn:form:koolitoetuse_taotlus",
+      "itemType": "form",
+      "title": "Koolitoetuse taotlus",
+      "status": "active",
+      "summary": "Koolitoetuse taotlus on Narva linna ametlikul vormide lehel nimetatud sotsiaalvaldkonna taotlus või avaldus. Vorm on mõeldud vastava teenuse või toetuse taotlemiseks ning esitatakse Sotsiaalabiametile või teenuse detaillehel nimetatud osakonnale.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "PDF/DOC/DOK",
+      "submissionChannels": [
+        "paber",
+        "",
+        "digitaalselt allkirjastatud dokument"
+      ],
+      "relatedTo": [
+        "narva_linn_benefit_koolitoetus"
+      ],
+      "officialUrl": "https://www.narva.ee/blanketid-ja-vormid",
+      "sections_present": [
+        "lapse andmed",
+        "õppeasutus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_form_koolitoetuse_taotlus",
+      "document_id": "narva_linn_form_koolitoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/blanketid-ja-vormid",
+      "content_hash": "61b4cb483583a75db488fa1e5557c4311a82d2a8173ab2906371149a2dbdb502",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_form_puuetega_lapse_hooldajatoetuse_taotlus",
+      "canonical_item_id": "narva_linn:form:puuetega_lapse_hooldajatoetuse_taotlus",
+      "itemType": "form",
+      "title": "Puuetega lapse hooldajale hooldajatoetuse taotlus",
+      "status": "active",
+      "summary": "Puuetega lapse hooldajale hooldajatoetuse taotlus on Narva linna ametlikul vormide lehel nimetatud sotsiaalvaldkonna taotlus või avaldus. Vorm on mõeldud vastava teenuse või toetuse taotlemiseks ning esitatakse Sotsiaalabiametile või teenuse detaillehel nimetatud osakonnale.",
+      "sourceKeys": [
+        "forms_page",
+        "puuetega_lapse_hooldajatoetus_page"
+      ],
+      "format": "PDF/DOC/DOK",
+      "submissionChannels": [
+        "paber",
+        "",
+        "digitaalselt allkirjastatud dokument"
+      ],
+      "relatedTo": [
+        "narva_linn_benefit_puuetega_lapse_hooldajatoetus"
+      ],
+      "officialUrl": "https://www.narva.ee/blanketid-ja-vormid",
+      "sections_present": [
+        "hooldaja andmed",
+        "lapse puude info"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "forms_page",
+        "puuetega_lapse_hooldajatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_form_puuetega_lapse_hooldajatoetuse_taotlus",
+      "document_id": "narva_linn_form_puuetega_lapse_hooldajatoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/blanketid-ja-vormid",
+      "content_hash": "87718a72353e1bb8ddd86c08c99cfda0ba34b50768d2643307e4bfe9ff4127cc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_form_puudega_laste_ravimitoetuse_taotlus",
+      "canonical_item_id": "narva_linn:form:puudega_laste_ravimitoetuse_taotlus",
+      "itemType": "form",
+      "title": "Puudega laste ravimitoetuse taotlus",
+      "status": "active",
+      "summary": "Puudega laste ravimitoetuse taotlus on Narva linna ametlikul vormide lehel nimetatud sotsiaalvaldkonna taotlus või avaldus. Vorm on mõeldud vastava teenuse või toetuse taotlemiseks ning esitatakse Sotsiaalabiametile või teenuse detaillehel nimetatud osakonnale.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "PDF/DOC/DOK",
+      "submissionChannels": [
+        "paber",
+        "",
+        "digitaalselt allkirjastatud dokument"
+      ],
+      "relatedTo": [
+        "narva_linn_benefit_puudega_laste_ravimitoetus"
+      ],
+      "officialUrl": "https://www.narva.ee/blanketid-ja-vormid",
+      "sections_present": [
+        "lapse andmed",
+        "ravimikulud"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_form_puudega_laste_ravimitoetuse_taotlus",
+      "document_id": "narva_linn_form_puudega_laste_ravimitoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/blanketid-ja-vormid",
+      "content_hash": "78c0de07ccb81ea4931ad8ee3df95c97e0b1d96d894c8e1943788a8f7d019ed4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_form_laste_suvepuhkuse_toetuse_taotlus",
+      "canonical_item_id": "narva_linn:form:laste_suvepuhkuse_toetuse_taotlus",
+      "itemType": "form",
+      "title": "Laste suvepuhkuse toetuse taotlus",
+      "status": "active",
+      "summary": "Laste suvepuhkuse toetuse taotlus on Narva linna ametlikul vormide lehel nimetatud sotsiaalvaldkonna taotlus või avaldus. Vorm on mõeldud vastava teenuse või toetuse taotlemiseks ning esitatakse Sotsiaalabiametile või teenuse detaillehel nimetatud osakonnale.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "PDF/DOC/DOK",
+      "submissionChannels": [
+        "paber",
+        "",
+        "digitaalselt allkirjastatud dokument"
+      ],
+      "relatedTo": [
+        "narva_linn_benefit_laste_suvepuhkuse_toetus"
+      ],
+      "officialUrl": "https://www.narva.ee/blanketid-ja-vormid",
+      "sections_present": [
+        "lapse andmed",
+        "pere andmed"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_form_laste_suvepuhkuse_toetuse_taotlus",
+      "document_id": "narva_linn_form_laste_suvepuhkuse_toetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/blanketid-ja-vormid",
+      "content_hash": "8bc64f00da066764ecc4fb90c5ea06a42f6f09c2d4f3d8717a000d3a0df699e9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_form_elluastumistoetuse_taotlus",
+      "canonical_item_id": "narva_linn:form:elluastumistoetuse_taotlus",
+      "itemType": "form",
+      "title": "Elluastumistoetuse taotlus",
+      "status": "active",
+      "summary": "Elluastumistoetuse taotlus on Narva linna ametlikul vormide lehel nimetatud sotsiaalvaldkonna taotlus või avaldus. Vorm on mõeldud vastava teenuse või toetuse taotlemiseks ning esitatakse Sotsiaalabiametile või teenuse detaillehel nimetatud osakonnale.",
+      "sourceKeys": [
+        "elluastumistoetus_page",
+        "forms_page"
+      ],
+      "format": "PDF/DOC/DOK",
+      "submissionChannels": [
+        "paber",
+        "",
+        "digitaalselt allkirjastatud dokument"
+      ],
+      "relatedTo": [
+        "narva_linn_benefit_elluastumistoetus"
+      ],
+      "officialUrl": "https://www.narva.ee/blanketid-ja-vormid",
+      "sections_present": [
+        "taotleja andmed",
+        "iseseisvasse ellu asumise info"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "elluastumistoetus_page",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_form_elluastumistoetuse_taotlus",
+      "document_id": "narva_linn_form_elluastumistoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/blanketid-ja-vormid",
+      "content_hash": "b38b341f0ffe5177e9968eadaafc40c9551cc92d67248b25e6a2dec47bce46aa",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_form_hev_transporditoetuse_taotlus",
+      "canonical_item_id": "narva_linn:form:hev_transporditoetuse_taotlus",
+      "itemType": "form",
+      "title": "Haridusliku erivajadusega õpilase transporditoetuse taotlus",
+      "status": "active",
+      "summary": "Haridusliku erivajadusega õpilase transporditoetuse taotlus on Narva linna ametlikul vormide lehel nimetatud sotsiaalvaldkonna taotlus või avaldus. Vorm on mõeldud vastava teenuse või toetuse taotlemiseks ning esitatakse Sotsiaalabiametile või teenuse detaillehel nimetatud osakonnale.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "PDF/DOC/DOK",
+      "submissionChannels": [
+        "paber",
+        "",
+        "digitaalselt allkirjastatud dokument"
+      ],
+      "relatedTo": [
+        "narva_linn_benefit_hev_transporditoetus"
+      ],
+      "officialUrl": "https://www.narva.ee/blanketid-ja-vormid",
+      "sections_present": [
+        "õpilase andmed",
+        "transpordikulud"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_form_hev_transporditoetuse_taotlus",
+      "document_id": "narva_linn_form_hev_transporditoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/blanketid-ja-vormid",
+      "content_hash": "f50dab09f0d6a60419f7dcaaa935c588858143d8e30ab7bc2f5a002be80bdace",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_form_transporditoetuse_taotlus",
+      "canonical_item_id": "narva_linn:form:transporditoetuse_taotlus",
+      "itemType": "form",
+      "title": "Transporditoetuse taotlus",
+      "status": "active",
+      "summary": "Transporditoetuse taotlus on Narva linna ametlikul vormide lehel nimetatud sotsiaalvaldkonna taotlus või avaldus. Vorm on mõeldud vastava teenuse või toetuse taotlemiseks ning esitatakse Sotsiaalabiametile või teenuse detaillehel nimetatud osakonnale.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "PDF/DOC/DOK",
+      "submissionChannels": [
+        "paber",
+        "",
+        "digitaalselt allkirjastatud dokument"
+      ],
+      "relatedTo": [
+        "narva_linn_benefit_transporditoetus",
+        "narva_linn_service_sotsiaaltransporditeenus"
+      ],
+      "officialUrl": "https://www.narva.ee/blanketid-ja-vormid",
+      "sections_present": [
+        "taotleja andmed",
+        "transpordikulud"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_form_transporditoetuse_taotlus",
+      "document_id": "narva_linn_form_transporditoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/blanketid-ja-vormid",
+      "content_hash": "3bd96b08fc87a10a97acd48cc17acda8065a6cea5b153e29cb59434355b2db32",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_form_hooldajatoetuse_taotlus",
+      "canonical_item_id": "narva_linn:form:hooldajatoetuse_taotlus",
+      "itemType": "form",
+      "title": "Hooldajatoetuse taotlus",
+      "status": "active",
+      "summary": "Hooldajatoetuse taotlus on Narva linna ametlikul vormide lehel nimetatud sotsiaalvaldkonna taotlus või avaldus. Vorm on mõeldud vastava teenuse või toetuse taotlemiseks ning esitatakse Sotsiaalabiametile või teenuse detaillehel nimetatud osakonnale.",
+      "sourceKeys": [
+        "forms_page",
+        "hooldajatoetus_page"
+      ],
+      "format": "PDF/DOC/DOK",
+      "submissionChannels": [
+        "paber",
+        "",
+        "digitaalselt allkirjastatud dokument"
+      ],
+      "relatedTo": [
+        "narva_linn_benefit_hooldajatoetus"
+      ],
+      "officialUrl": "https://www.narva.ee/blanketid-ja-vormid",
+      "sections_present": [
+        "hooldaja andmed",
+        "hooldatava andmed"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "forms_page",
+        "hooldajatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_form_hooldajatoetuse_taotlus",
+      "document_id": "narva_linn_form_hooldajatoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/blanketid-ja-vormid",
+      "content_hash": "03795db8e528122a9e5ec68e0afea658ab205dae666b9019e3801b65a470f6b8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_form_proteesitoetuse_taotlus",
+      "canonical_item_id": "narva_linn:form:proteesitoetuse_taotlus",
+      "itemType": "form",
+      "title": "Proteesitoetuse taotlus",
+      "status": "active",
+      "summary": "Proteesitoetuse taotlus on Narva linna ametlikul vormide lehel nimetatud sotsiaalvaldkonna taotlus või avaldus. Vorm on mõeldud vastava teenuse või toetuse taotlemiseks ning esitatakse Sotsiaalabiametile või teenuse detaillehel nimetatud osakonnale.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "PDF/DOC/DOK",
+      "submissionChannels": [
+        "paber",
+        "",
+        "digitaalselt allkirjastatud dokument"
+      ],
+      "relatedTo": [
+        "narva_linn_benefit_proteesitoetus"
+      ],
+      "officialUrl": "https://www.narva.ee/blanketid-ja-vormid",
+      "sections_present": [
+        "taotleja andmed",
+        "kulu tõendavad dokumendid"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_form_proteesitoetuse_taotlus",
+      "document_id": "narva_linn_form_proteesitoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/blanketid-ja-vormid",
+      "content_hash": "163967c72009d306ca909ec3e63916aee2aef83d6cb3579a7ebae47d635f4723",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_form_linnatoetuse_taotlus",
+      "canonical_item_id": "narva_linn:form:linnatoetuse_taotlus",
+      "itemType": "form",
+      "title": "Linnatoetuse taotlus",
+      "status": "active",
+      "summary": "Linnatoetuse taotlus on Narva linna ametlikul vormide lehel nimetatud sotsiaalvaldkonna taotlus või avaldus. Vorm on mõeldud vastava teenuse või toetuse taotlemiseks ning esitatakse Sotsiaalabiametile või teenuse detaillehel nimetatud osakonnale.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "PDF/DOC/DOK",
+      "submissionChannels": [
+        "paber",
+        "",
+        "digitaalselt allkirjastatud dokument"
+      ],
+      "relatedTo": [
+        "narva_linn_benefit_linnatoetus"
+      ],
+      "officialUrl": "https://www.narva.ee/blanketid-ja-vormid",
+      "sections_present": [
+        "taotleja andmed",
+        "pensioni või töövõime andmed"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_form_linnatoetuse_taotlus",
+      "document_id": "narva_linn_form_linnatoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/blanketid-ja-vormid",
+      "content_hash": "6d61f228e9a9e990adff6fba7a2efd10b1b0662fd0aa261250e994f2570405eb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_form_erakorralise_toetuse_taotlus",
+      "canonical_item_id": "narva_linn:form:erakorralise_toetuse_taotlus",
+      "itemType": "form",
+      "title": "Erakorralise toetuse taotlus",
+      "status": "active",
+      "summary": "Erakorralise toetuse taotlus on Narva linna ametlikul vormide lehel nimetatud sotsiaalvaldkonna taotlus või avaldus. Vorm on mõeldud vastava teenuse või toetuse taotlemiseks ning esitatakse Sotsiaalabiametile või teenuse detaillehel nimetatud osakonnale.",
+      "sourceKeys": [
+        "erakorraline_toetus_page",
+        "forms_page"
+      ],
+      "format": "PDF/DOC/DOK",
+      "submissionChannels": [
+        "paber",
+        "",
+        "digitaalselt allkirjastatud dokument"
+      ],
+      "relatedTo": [
+        "narva_linn_benefit_erakorraline_toetus"
+      ],
+      "officialUrl": "https://www.narva.ee/blanketid-ja-vormid",
+      "sections_present": [
+        "olukorra kirjeldus",
+        "kulu tõendavad dokumendid"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "erakorraline_toetus_page",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_form_erakorralise_toetuse_taotlus",
+      "document_id": "narva_linn_form_erakorralise_toetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/blanketid-ja-vormid",
+      "content_hash": "52aae35861895102595276bf82a9a97172faca3edd131b22b2c612c74ad77425",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_form_matusetoetuse_taotlus",
+      "canonical_item_id": "narva_linn:form:matusetoetuse_taotlus",
+      "itemType": "form",
+      "title": "Matusetoetuse taotlus",
+      "status": "active",
+      "summary": "Matusetoetuse taotlus on Narva linna ametlikul vormide lehel nimetatud sotsiaalvaldkonna taotlus või avaldus. Vorm on mõeldud vastava teenuse või toetuse taotlemiseks ning esitatakse Sotsiaalabiametile või teenuse detaillehel nimetatud osakonnale.",
+      "sourceKeys": [
+        "forms_page",
+        "matusetoetus_page"
+      ],
+      "format": "PDF/DOC/DOK",
+      "submissionChannels": [
+        "paber",
+        "",
+        "digitaalselt allkirjastatud dokument"
+      ],
+      "relatedTo": [
+        "narva_linn_benefit_matusetoetus"
+      ],
+      "officialUrl": "https://www.narva.ee/blanketid-ja-vormid",
+      "sections_present": [
+        "matusekorraldaja andmed",
+        "lahkunu andmed"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "forms_page",
+        "matusetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_form_matusetoetuse_taotlus",
+      "document_id": "narva_linn_form_matusetoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/blanketid-ja-vormid",
+      "content_hash": "41ebff138b3af6f3ae452fea2462fc7cc38c7217e7762728ddaeaee2ad8d95e7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_service_koduteenus",
+      "canonical_item_id": "narva_linn:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus on Narva linna korraldatav sotsiaalteenus täisealisele inimesele, kelle rahvastikuregistrijärgne ja tegelik elukoht on Narva linnas ning kes vajab kodustes tingimustes kõrvalabi. Teenus aitab säilitada iseseisvat ja turvalist toimetulekut kodus, sh kütmisel, toidu valmistamisel, eluruumi ja riiete korrastamisel, ostude tegemisel ja asjaajamisel. Teenuse saamiseks esitatakse taotlus Narva Linna Sotsiaalabiametile ning ametnik hindab abivajadust. Otsus tehakse kümne tööpäeva jooksul pärast nõuetekohase taotluse saamist.",
+      "sourceKeys": [
+        "koduteenus_page",
+        "social_services_overview"
+      ],
+      "targetGroup": "Täisealine Narva linna elanik, kes ei tule kodustes toimingutes kõrvalabita toime.",
+      "conditions": "Taotleja elukoht peab olema rahvastikuregistri järgi ja tegelikult Narva linnas. Teenuse vajadus tuvastatakse Sotsiaalabiameti hindamisega.",
+      "application": {
+        "channels": [
+          "kirjalik taotlus",
+          ""
+        ],
+        "steps": [
+          "Esita taotlus Narva Linna Sotsiaalabiametile.",
+          "Sotsiaalabiameti ametnik hindab abivajadust, vajadusel kodukülastusel.",
+          "Sotsiaalabiamet otsustab teenuse osutamise või sellest keeldumise kümne tööpäeva jooksul."
+        ],
+        "deadline": null
+      },
+      "pricing": {
+        "description": "Teenust rahastatakse linnaeelarvest ja teenuse saaja omaosalusest; omaosalus sõltub teenuse mahust, maksumusest ja majanduslikust olukorrast. Toimetulekutoetuse saaja või isik, kelle sissetulek jääb pärast eluasemekulusid alla poole kuupalga alammäärast, on tasust vabastatud."
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/koduteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "narva_linn_contact_tervise_ja_sotsiaalosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "service",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "koduteenus_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_service_koduteenus",
+      "document_id": "narva_linn_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/koduteenus",
+      "content_hash": "e8f6f6eb0706891435b0c6296258d431a58c435a67a2dd3e68810cc58e90a815",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_service_uldhooldusteenus",
+      "canonical_item_id": "narva_linn:service:uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatav üldhooldusteenus on ööpäevaringne hooldusteenus täisealisele inimesele, kes ei suuda terviseseisundi, tegevusvõime või elukeskkonna tõttu ajutiselt või püsivalt kodus iseseisvalt toime tulla. Teenus tagab hooldusvajadusele vastavad hooldustoimingud, majutuse, toitlustuse ja toetavad tegevused. Narva linn osaleb hoolduskulude katmisel ning alates 1. juulist 2023 jagunevad hooldekodu kulud teenuse saaja ja kohaliku omavalitsuse vahel. Teenuse taotlemiseks tuleb pöörduda Narva Linna Sotsiaalabiameti tervise- ja sotsiaalosakonda.",
+      "sourceKeys": [
+        "social_services_overview",
+        "uldhooldusteenus_page"
+      ],
+      "targetGroup": "Täisealine isik, kes vajab ööpäevaringset hooldust väljaspool kodu.",
+      "conditions": "Teenuse vajadus peab olema hinnatud ning kodus toimetulek ei ole ajutiselt või püsivalt võimalik.",
+      "application": {
+        "channels": [
+          "kirjalik taotlus",
+          "",
+          "vabas vormis taotlus"
+        ],
+        "steps": [
+          "Taotleja, seaduslik esindaja või muu abivajadust märkav isik esitab taotluse Sotsiaalabiametile.",
+          "Sotsiaalabiamet hindab hooldusvajadust ja teenuse sobivust.",
+          "Otsus teenuse ja linna rahalise osaluse kohta tehakse kümne tööpäeva jooksul nõuetekohase taotluse saamisest."
+        ],
+        "deadline": null
+      },
+      "pricing": {
+        "description": "Linn katab hooldusteenuse hoolduskulu kuni kehtestatud piirmäärani; teenuse saaja tasub enda ülalpidamise ja muud kulud vastavalt sissetulekule ning teenusepakkuja hinnale."
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/valjaspool-kodu-osutatav-uldhooldusteenus",
+      "relatedForms": [
+        "narva_linn_form_hooldusasutusse_paigutamise_avaldus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_tervise_ja_sotsiaalosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "service",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_overview",
+        "uldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_service_uldhooldusteenus",
+      "document_id": "narva_linn_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/valjaspool-kodu-osutatav-uldhooldusteenus",
+      "content_hash": "a8a8fcc5852c694400160ed518a4f722b5ca4074f97eb362c2244d652b713d62",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_service_tugiisikuteenus",
+      "canonical_item_id": "narva_linn:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus toetab inimese iseseisvat toimetulekut olukorras, kus ta vajab sotsiaalsete, majanduslike, psühholoogiliste või terviseprobleemide tõttu olulist kõrvalabi. Tugiisik juhendab, motiveerib ning aitab arendada suuremat iseseisvust ja omavastutust. Teenust saab taotleda täiskasvanu, lapsevanem või laps, kes vajab abi asendushoolduselt, eestkostelt, perekonnas hooldamiselt või varjupaigateenuselt iseseisvasse ellu liikumisel. Teenus on abivajajale tasuta.",
+      "sourceKeys": [
+        "social_services_overview",
+        "tugiisikuteenus_page"
+      ],
+      "targetGroup": "Täiskasvanud, lapsevanemad ja lapsed, kellel on tugiisiku abi vajadus.",
+      "conditions": "Teenuse vajaduse selgitab välja Sotsiaalabiamet pärast taotluse saamist.",
+      "application": {
+        "channels": [
+          "taotlus",
+          ""
+        ],
+        "steps": [
+          "Abivajaja või seaduslik esindaja esitab Narva Linna Sotsiaalabiametile põhjendatud taotluse.",
+          "Ametnik võtab kümne tööpäeva jooksul ühendust ja selgitab teenuse vajaduse.",
+          "Teenuse osutamise või keeldumise otsustab Sotsiaalabiameti direktor."
+        ],
+        "deadline": null
+      },
+      "pricing": {
+        "amount": "tasuta"
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/tugiisikuteenus",
+      "relatedForms": [
+        "narva_linn_form_tugiisiku_teenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_tervise_ja_sotsiaalosakond",
+        "narva_linn_contact_lastekaitseosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "service",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_overview",
+        "tugiisikuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_service_tugiisikuteenus",
+      "document_id": "narva_linn_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/tugiisikuteenus",
+      "content_hash": "a1aaad0df55a8a106e15237374a9fc83a2bab086e586a7ba2fa629b0ddfcdf6e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "narva_linn:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus aitab täisealisel puudega inimesel teha igapäevaelu toiminguid, milles ta vajab füüsilist kõrvalabi. Teenuse eesmärk on suurendada inimese iseseisvat toimetulekut ja osalemist kõigis eluvaldkondades ning vähendada lähedaste hoolduskoormust. Abistaja toetab näiteks liikumisel, söömisel, toidu valmistamisel, riietumisel, hügieenitoimingutes, majapidamistöödes ja muudes vajalikes toimingutes. Teenuse saaja peab suutma oma vajadustest lähtuvalt abistajat juhendada.",
+      "sourceKeys": [
+        "isikliku_abistaja_teenus_page",
+        "social_services_overview"
+      ],
+      "targetGroup": "Täisealine puudega inimene, kes vajab füüsilist kõrvalabi ja suudab abistajat juhendada.",
+      "conditions": "Teenuse vajadus hinnatakse Sotsiaalabiametis; teenuse saaja peab suutma abistaja tööd juhendada ja koordineerida.",
+      "application": {
+        "channels": [
+          "taotlus",
+          "vabas vormis avaldus"
+        ],
+        "steps": [
+          "Taotleja või seaduslik esindaja esitab teenuse taotluse Narva Linna Sotsiaalabiametile.",
+          "Sotsiaalabiamet hindab abivajadust ja viib vajadusel läbi kodukülastuse.",
+          "Teenuse määramisel sõlmitakse teenuse osutamise kokkulepe ja määratakse omaosalus."
+        ],
+        "deadline": null
+      },
+      "pricing": {
+        "description": "Teenust rahastatakse linnaeelarvest ja isiku omaosalusest; omaosalus sõltub teenuse mahust, maksumusest ja teenuse saaja majanduslikust olukorrast."
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/isikliku-abistaja-teenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "narva_linn_contact_tervise_ja_sotsiaalosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "service",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "isikliku_abistaja_teenus_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_service_isikliku_abistaja_teenus",
+      "document_id": "narva_linn_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/isikliku-abistaja-teenus",
+      "content_hash": "697eedb3f768331e4952a6a0315a719889cc76bd0e1b3bd1194c5afd7e800170",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_service_eluruumi_tagamine",
+      "canonical_item_id": "narva_linn:service:eluruumi_tagamine",
+      "itemType": "service",
+      "title": "Eluruumi tagamine",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenus aitab Narva linna inimest või perekonda, kes ei suuda oma sotsiaalmajanduslikust olukorrast tulenevalt endale sobivat eluruumi tagada. Teenus võib seisneda Narva linnale kuuluva sotsiaaleluruumi kasutusse andmises või abistamises üüriturult eluruumi leidmisel. Teenus on mõeldud muu hulgas asendushoolduselt või järelhoolduselt lahkuvale inimesele, eluaseme kaotanud inimesele, vähekindlustatud perele ning inimesele, kelle tervis, vanus või vara ei võimalda ise eluruumi hankida. Sotsiaalabiamet otsustab teenuse kümne tööpäeva jooksul pärast nõuetekohase taotluse saamist.",
+      "sourceKeys": [
+        "eluruumi_tagamine_page",
+        "social_services_overview"
+      ],
+      "targetGroup": "Narva linna inimene või perekond, kes ei suuda sobivat eluruumi ise tagada.",
+      "conditions": "Taotlus peab kirjeldama eluruumi vajadust ja majanduslikku olukorda; kõik täisealised pereliikmed peavad taotluse allkirjastama.",
+      "application": {
+        "channels": [
+          "kirjalik taotlus",
+          ""
+        ],
+        "steps": [
+          "Esita Sotsiaalabiametile taotlus koos isikuandmete, pereandmete, eluruumi vajaduse ja majandusliku olukorra kirjeldusega.",
+          "Sotsiaalabiamet hindab olukorda ja teeb otsuse kümne tööpäeva jooksul."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/eluruumi-tagamine",
+      "relatedForms": [],
+      "relatedContacts": [
+        "narva_linn_contact_tervise_ja_sotsiaalosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "service",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "eluruumi_tagamine_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_service_eluruumi_tagamine",
+      "document_id": "narva_linn_service_eluruumi_tagamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/eluruumi-tagamine",
+      "content_hash": "c6642644da8bfd6dcd9acf8eadead294ef6013f49c61f847dd8a5de441024792",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "narva_linn:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldus seatakse täisealisele inimesele, kes vajab vaimse või kehalise puude tõttu abi oma õiguste teostamisel ja kohustuste täitmisel. Hooldus hõlmab hooldaja määramist ning hooldaja ülesannete kindlaksmääramist. Hoolduse taotlemiseks esitatakse vormikohane taotlus ja hooldajaks soovitava isiku nõusolek. Sotsiaalabiamet hindab abivajadust kodukülastusel ning hooldaja määratakse linnavalitsuse korraldusega.",
+      "sourceKeys": [
+        "social_services_overview",
+        "taisealise_isiku_hooldus_page"
+      ],
+      "targetGroup": "Täisealine Narva linna elanik, kes vajab puude tõttu olulist kõrvalabi.",
+      "conditions": "Hooldatav vajab kõrvalabi ning hooldajaks soovitud isik peab andma nõusoleku ja vastama sobivusnõuetele.",
+      "application": {
+        "channels": [
+          "vormikohane kirjalik taotlus"
+        ],
+        "steps": [
+          "Esita Sotsiaalabiametile hoolduse seadmise ja hooldaja määramise taotlus.",
+          "Lisa nõutud dokumendid, sh puude otsus ja hooldajaks soovitud isiku andmed.",
+          "Sotsiaalabiamet hindab hooldusvajadust ja linnavalitsus määrab hooldaja."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/taisealise-isiku-hooldus",
+      "relatedForms": [
+        "narva_linn_form_taisealise_isiku_hoolduse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_tervise_ja_sotsiaalosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "service",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_overview",
+        "taisealise_isiku_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_service_taisealise_isiku_hooldus",
+      "document_id": "narva_linn_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/taisealise-isiku-hooldus",
+      "content_hash": "1dfbbe1be6c847d6e1481ff5aeedeaa7d7e75ae1f711c210e272890de0a3342d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_service_lapse_tugiisikuteenus",
+      "canonical_item_id": "narva_linn:service:lapse_tugiisikuteenus",
+      "itemType": "service",
+      "title": "Lapse tugiisikuteenus",
+      "status": "active",
+      "summary": "Lapse tugiisikuteenus toetab puudega lapse arengut ja aitab lapsevanemal, eestkostjal või hooldajal toime tulla ning töötada. Teenus võib sisaldada juhendamist, motiveerimist, abistamist arendavates tegevustes, suhtlemise toetamist ning vajadusel puudega lapse hooldustoimingute sooritamist. Teenusele on õigus 0–18-aastasel puudega lapsel, kelle elukoht koos lapsevanema või hooldajaga on Narva linnas ning kelle abivajadus tuleneb puudest või sellega seotud probleemidest. Taotlus esitatakse lastekaitseosakonnale või Sotsiaalabiametile.",
+      "sourceKeys": [
+        "lapse_tugiisikuteenus_page",
+        "social_services_overview"
+      ],
+      "targetGroup": "0–18-aastane puudega laps ja teda kasvatav isik Narva linnas.",
+      "conditions": "Lapsel peab olema puue ning lapse ja lapsevanema või hooldaja elukoht peab olema Narva linn. Teenuse vajadust põhjendatakse taotluses ja lisadokumentides.",
+      "application": {
+        "channels": [
+          "vormikohane taotlus",
+          "digitaalselt allkirjastatud"
+        ],
+        "steps": [
+          "Esita lastekaitse spetsialistile või aadressile taotlus.",
+          "Lisa isikut tõendavad dokumendid, puude otsus ja vajadusel rehabilitatsiooniplaan või muud dokumendid.",
+          "Lastekaitseosakond hindab lapse abivajadust ja otsustab teenuse."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/lapse-tugiisikuteenus",
+      "relatedForms": [
+        "narva_linn_form_tugiisiku_teenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_lastekaitseosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "service",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "lapse_tugiisikuteenus_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_service_lapse_tugiisikuteenus",
+      "document_id": "narva_linn_service_lapse_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/lapse-tugiisikuteenus",
+      "content_hash": "4c1bac239f45a207cc705b172024d01e8c2e71a93da52fc4f515bb4790aa3879",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_service_hev_invatransporditeenus",
+      "canonical_item_id": "narva_linn:service:hev_invatransporditeenus",
+      "itemType": "service",
+      "title": "Haridusliku erivajadusega õpilastele haridusasutustesse invatransporditeenus",
+      "status": "active",
+      "summary": "Invatransporditeenus aitab Narva linna rahvastikuregistris oleval haridusliku erivajadusega õpilasel jõuda väljaspool Narvat asuvasse kooli, kui õpilasel ei ole puude tõttu võimalik kasutada ühistransporti. Teenus on mõeldud õpilasele, kelle õpib väljaspool Narva Rajaleidja või muu nõustamismeeskonna soovitusel. Taotlus esitatakse esmakordselt iga õppeaasta kohta ning lisatakse vajadusel õppeasutuse tõend.",
+      "sourceKeys": [
+        "hev_invatransporditeenus_page",
+        "social_services_overview"
+      ],
+      "targetGroup": "Narva linna haridusliku erivajadusega õpilane, kes õpib väljaspool Narvat ja ei saa kasutada ühistransporti.",
+      "conditions": "Õpilane peab olema rahvastikuregistri järgi Narva elanik ning õppima väljaspool Narvat nõustamismeeskonna soovitusel.",
+      "application": {
+        "channels": [
+          "vormikohane taotlus"
+        ],
+        "steps": [
+          "Õpilane või seaduslik esindaja esitab Sotsiaalabiametile taotluse.",
+          "Esimesel taotlemisel õppeaastal lisatakse vajadusel õppeasutuse tõend.",
+          "Teenuse vajaduse lõppemisest tuleb Sotsiaalabiametit teavitada kahe nädala jooksul."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/haridusliku-erivajadusega-opilastele-haridusasutustesse-invatransporditeenus",
+      "relatedForms": [
+        "narva_linn_form_invatranspordi_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_lastekaitseosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "service",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "hev_invatransporditeenus_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_service_hev_invatransporditeenus",
+      "document_id": "narva_linn_service_hev_invatransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/haridusliku-erivajadusega-opilastele-haridusasutustesse-invatransporditeenus",
+      "content_hash": "f7b10381dedcf3422eef0bb23c3b1c0beadf8cd6950fbe2d6417aeeb025815fe",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_service_jarelhooldusteenus",
+      "canonical_item_id": "narva_linn:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus toetab isiku iseseisvat toimetulekut ja õpingute jätkamist pärast asendushoolduselt või eestkostelt lahkumist. Teenus põhineb juhtumiplaanil ning selle sisus lepitakse kokku teenuse osutaja, teenuse saaja ja Narva Linna Sotsiaalabiameti vahel. Järelhooldust korraldab Sotsiaalabiameti lastekaitseosakond.",
+      "sourceKeys": [
+        "jarelhooldusteenus_page",
+        "social_services_overview"
+      ],
+      "targetGroup": "Asendushoolduselt või eestkostelt iseseisvasse ellu astuv noor.",
+      "conditions": "Teenuse vajadus määratakse juhtumiplaanis ning kokkuleppes Sotsiaalabiametiga.",
+      "application": {
+        "channels": [
+          "lastekaitseosakonna kaudu"
+        ],
+        "steps": [
+          "Pöördu Narva Linna Sotsiaalabiameti lastekaitseosakonda.",
+          "Koostatakse või täpsustatakse juhtumiplaan ning lepitakse teenuse tingimused kokku."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/jarelhooldusteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "narva_linn_contact_lastekaitseosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "service",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "jarelhooldusteenus_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_service_jarelhooldusteenus",
+      "document_id": "narva_linn_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/jarelhooldusteenus",
+      "content_hash": "adbd5ba2e4d38ebcb024a326cf9f1d35d5973f72a9c061b33eb31783fe25d26c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_service_asendushooldusteenus",
+      "canonical_item_id": "narva_linn:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus tagab pika- või lühiajaliselt lapse heaolu ja õigused, kui laps ei saa elada vanemliku hoolitsuse all. Teenuse eesmärk on pakkuda lapsele peresarnaseid elutingimusi, turvalist ja arengut toetavat keskkonda ning ettevalmistust võimetekohaseks toimetulekuks täisealisena. Teenust võib vaja minna näiteks vanema surma, vanema teovõime piiratuse, hooldusõiguse peatamise või äravõtmise või lapse vanemast eraldamise korral.",
+      "sourceKeys": [
+        "asendushooldusteenus_page",
+        "social_services_overview"
+      ],
+      "targetGroup": "Laps, kes ei saa ajutiselt või püsivalt elada vanemliku hoolitsuse all.",
+      "conditions": "Teenuse vajadus selgub lastekaitse menetluses ning lapse olukorra hindamisel.",
+      "application": {
+        "channels": [
+          "lastekaitseosakonna kaudu"
+        ],
+        "steps": [
+          "Pöördu Narva Linna Sotsiaalabiameti lastekaitseosakonda või teavita abivajavast lapsest.",
+          "Lastekaitse hindab lapse abivajadust ja korraldab sobiva asendushoolduse."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/asendushooldusteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "narva_linn_contact_lastekaitseosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "service",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "asendushooldusteenus_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_service_asendushooldusteenus",
+      "document_id": "narva_linn_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/asendushooldusteenus",
+      "content_hash": "cbc30fc6be1bdcd066ef125c2b2e0226f4974a6e838fc31c33d59242c46881eb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_service_lapsehoiuteenus",
+      "canonical_item_id": "narva_linn:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenus toetab last kasvatava isiku toimetulekut ja töötamist ning vähendab raske või sügava puudega lapse hoolduskoormust. Teenust osutatakse puudega lapsele, kelle abivajadus on seotud raske või sügava puudega. Taotlus esitatakse Narva Linna Sotsiaalabiametile ning teenust korraldab lastekaitseosakond.",
+      "sourceKeys": [
+        "lapsehoiuteenus_page",
+        "social_services_overview"
+      ],
+      "targetGroup": "Raske või sügava puudega laps ja teda kasvatav isik.",
+      "conditions": "Lapsel peab olema raske või sügav puue ning teenuse vajadus peab olema põhjendatud.",
+      "application": {
+        "channels": [
+          "vormikohane taotlus"
+        ],
+        "steps": [
+          "Esita Sotsiaalabiametile lapsehoiuteenuse taotlus.",
+          "Lisa lapse puude ja abivajadusega seotud dokumendid.",
+          "Lastekaitseosakond hindab teenuse vajadust ja korraldab teenuse."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/lapsehoiuteenus",
+      "relatedForms": [
+        "narva_linn_form_lapsehoiuteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_lastekaitseosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "service",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "lapsehoiuteenus_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_service_lapsehoiuteenus",
+      "document_id": "narva_linn_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/lapsehoiuteenus",
+      "content_hash": "2f1c89d6d9f9394f71b663220a0a1f93ddc0300a8d686626c906e6068270a84e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_service_volanoustamisteenus",
+      "canonical_item_id": "narva_linn:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab inimesel või perekonnal, kellel on võlgnevused või oht võlgadesse sattuda. Teenuse raames abistatakse varalise olukorra kindlakstegemisel, võlausaldajatega läbirääkimistel, nõuete rahuldamisel ja võlgnevusega seotud probleemide lahendamisel. Teenus aitab teadvustada võlgnevuste põhjuseid ja tagajärgi ning omandada oskusi uute võlgnevuste vältimiseks. Taotlus esitatakse Narva Linna Sotsiaalabiametile koos võlgnevust tõendavate dokumentidega.",
+      "sourceKeys": [
+        "social_services_overview",
+        "volanoustamisteenus_page"
+      ],
+      "targetGroup": "Narva linna inimene või perekond, kellel on võlgnevus või selle tekkimise oht.",
+      "conditions": "Teenusele on õigus isikul või perel, kes ei ole iseseisvalt võimeline rahalisi kohustusi täitma ega võlausaldajatega läbi rääkima.",
+      "application": {
+        "channels": [
+          "vormikohane kirjalik taotlus"
+        ],
+        "steps": [
+          "Esita Sotsiaalabiametile võlanõustamisteenuse taotlus.",
+          "Lisa võlgnevust ja majanduslikku olukorda tõendavad dokumendid.",
+          "Sotsiaalabiamet hindab teenuse vajadust ja suunab teenusele."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/volanoustamisteenus",
+      "relatedForms": [
+        "narva_linn_form_volanoustamisteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_tervise_ja_sotsiaalosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "service",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_overview",
+        "volanoustamisteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_service_volanoustamisteenus",
+      "document_id": "narva_linn_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/volanoustamisteenus",
+      "content_hash": "217c776877a8824fe73a3eb93cf3f0cc4c7a31fdd331c81636e7ebd8a98c53c7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "narva_linn:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus võimaldab puudega inimesel, kelle puue takistab isikliku või ühissõiduki kasutamist, kasutada vajadustele vastavat sõidukit tööle või õppeasutusse sõitmiseks ning avalike teenuste kasutamiseks. Narva lehel käsitletakse koos ka transporditoetust ja haridusliku erivajadusega õpilase transpordiga seotud abi. Taotlemine toimub Narva Linna Sotsiaalabiameti kaudu ning konkreetne lahendus sõltub abivajaduse hindamisest.",
+      "sourceKeys": [
+        "social_services_overview",
+        "sotsiaaltransporditeenus_page"
+      ],
+      "targetGroup": "Puudega inimene, kelle puue takistab isikliku või ühistranspordi kasutamist.",
+      "conditions": "Puue peab takistama tavapärase transpordi kasutamist ning sõidu vajadus peab olema seotud töö, õppe või avalike teenustega.",
+      "application": {
+        "channels": [
+          "taotlus Sotsiaalabiametile"
+        ],
+        "steps": [
+          "Pöördu Sotsiaalabiameti poole ja kirjelda transpordivajadust.",
+          "Sotsiaalabiamet hindab, kas vajalik on sotsiaaltransporditeenus või transporditoetus."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/sotsiaaltransporditeenus",
+      "relatedForms": [
+        "narva_linn_form_transporditoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_tervise_ja_sotsiaalosakond",
+        "narva_linn_contact_lastekaitseosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "service",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_overview",
+        "sotsiaaltransporditeenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_service_sotsiaaltransporditeenus",
+      "document_id": "narva_linn_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/sotsiaaltransporditeenus",
+      "content_hash": "b600d33bc4f44d4e974c49afa2c098eb4ca3b5ee8b4445530b0175093bfe0616",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_service_turvakoduteenus_lastele",
+      "canonical_item_id": "narva_linn:service:turvakoduteenus_lastele",
+      "itemType": "service",
+      "title": "Turvakoduteenus lastele",
+      "status": "active",
+      "summary": "Turvakoduteenus lastele annab ajutise elukoha, turvalise keskkonna ning esmase kriisiabi lapsele, kelle hooldamises esinevad puudused ohustavad tema elu, tervist või arengut. Teenuse osutamisel tagatakse lapse east ja vajadustest lähtuv hooldamine ning arengut toetav tegevus. Narva linna lastele korraldab teenust Narva Linnavalitsus ning teenus toimub Narva Sotsiaaltöökeskuse turvakodu osakonna kaudu. Narva linna teenuse saajale on teenus tasuta.",
+      "sourceKeys": [
+        "social_services_overview",
+        "turvakoduteenus_lastele_page"
+      ],
+      "targetGroup": "Abi vajav laps, kelle elu, tervis või areng on ohus.",
+      "conditions": "Teenusele võib lapse suunata ametiasutus või laps võib teenusele pöörduda ise; vajadust hinnatakse lastekaitse kaudu.",
+      "application": {
+        "channels": [
+          "lastekaitse",
+          "ametiasutuse suunamine",
+          "lapse isepöördumine"
+        ],
+        "steps": [
+          "Teavita abivajavast lapsest või pöördu lastekaitseosakonda.",
+          "Laps paigutatakse vajaduse korral turvakoduteenusele."
+        ],
+        "deadline": null
+      },
+      "pricing": {
+        "amount": "Narva linna teenuse saajale tasuta"
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/turvakoduteenus-lastele",
+      "relatedForms": [],
+      "relatedContacts": [
+        "narva_linn_contact_lastekaitseosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "service",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_overview",
+        "turvakoduteenus_lastele_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_service_turvakoduteenus_lastele",
+      "document_id": "narva_linn_service_turvakoduteenus_lastele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/turvakoduteenus-lastele",
+      "content_hash": "c8d0ce8d1d5f04fa2a5da25b83970558e4ab1c2f43e9e9a1368568b03e10cdc7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_service_turvakoduteenus",
+      "canonical_item_id": "narva_linn:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenus tagab täisealisele või perekonnale ajutise turvalise elukoha ja esmase abi olukorras, kus inimene ei saa tavapärases elukohas viibida. Narva lehe järgi osutatakse teenust Narva Sotsiaaltöökeskuse kaudu ning teenusele sõlmitakse leping kuni üheks aastaks. Teenuse sihtrühmaks on Narva linna rahvastikuregistrijärgsed elanikud.",
+      "sourceKeys": [
+        "social_services_overview",
+        "turvakoduteenus_page"
+      ],
+      "targetGroup": "Narva linna inimene või pere, kes vajab ajutist turvalist elukohta.",
+      "conditions": "Teenuse vajadus peab olema põhjendatud ning isiku elukoht peab olema Narva linnas.",
+      "application": {
+        "channels": [
+          "Sotsiaalabiameti kaudu"
+        ],
+        "steps": [
+          "Pöördu Sotsiaalabiameti tervise- ja sotsiaalosakonda.",
+          "Sotsiaalabiamet hindab teenuse vajadust ja korraldab turvakoduteenuse."
+        ],
+        "deadline": null
+      },
+      "pricing": {
+        "amount": "40 €/kuu"
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/turvakoduteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "narva_linn_contact_tervise_ja_sotsiaalosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "service",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_overview",
+        "turvakoduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_service_turvakoduteenus",
+      "document_id": "narva_linn_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/turvakoduteenus",
+      "content_hash": "34235ffc3f5a04743d51a31493294f4a25c6a4f06ec235c872a7e055912a25bb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_service_varjupaigateenus",
+      "canonical_item_id": "narva_linn:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus pakub ajutist ööbimiskohta täisealisele inimesele, kes ei ole võimeline endale ise ööbimiskohta leidma. Teenus hõlmab voodikohta, pesemisvõimalust ja turvalist keskkonda. Narva linn korraldab teenust Narva Sotsiaaltöökeskuse sotsiaalmaja kaudu aadressil Karja 6a. Narva linna elanikule, kellel puuduvad piisavad vahendid ööbimiskoha leidmiseks, on teenus tasuta.",
+      "sourceKeys": [
+        "social_services_overview",
+        "varjupaigateenus_page"
+      ],
+      "targetGroup": "Täisealine Narva linna elanik, kellel puudub ajutiselt ööbimiskoht.",
+      "conditions": "Isikul peab puuduma võimalus ise ööbimiskohta tagada ning ta peab vajama ajutist varjupaika.",
+      "application": {
+        "channels": [
+          "Sotsiaalabiameti või Narva Sotsiaaltöökeskuse kaudu"
+        ],
+        "steps": [
+          "Pöördu Sotsiaalabiameti või Narva Sotsiaaltöökeskuse poole.",
+          "Sotsiaalmaja korraldab ajutise ööbimiskoha."
+        ],
+        "deadline": null
+      },
+      "pricing": {
+        "amount": "tasuta"
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/varjupaigateenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "narva_linn_contact_tervise_ja_sotsiaalosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "service",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_overview",
+        "varjupaigateenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_service_varjupaigateenus",
+      "document_id": "narva_linn_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/varjupaigateenus",
+      "content_hash": "ffdfbfc959c57a303fd7f5df59d97b63905dda7ed6b22fdd3fd5cf6cad7e83f2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_resource_narva_linna_sotsiaalabiamet",
+      "canonical_item_id": "narva_linn:resource:narva_linna_sotsiaalabiamet",
+      "itemType": "resource",
+      "title": "Narva Linna Sotsiaalabiamet",
+      "status": "active",
+      "summary": "Narva Linna Sotsiaalabiamet on Narva linna ametiasutus, mille tegevusvaldkond hõlmab sotsiaalhoolekannet, terviseedendust ja tervishoiu korraldamist. Ameti ülesannete hulgas on toimetulekuraskuste ennetamine ja leevendamine, sotsiaaltoetuste maksmise korraldamine, sotsiaalteenuste ja muu sotsiaalabi korraldamine, eestkosteasutuse ülesannete täitmine ning omasteta või tundmatute isikute matmise korraldamine. Ameti hallatav asutus on Narva Sotsiaaltöökeskus.",
+      "sourceKeys": [
+        "social_aid_department"
+      ],
+      "name": "Narva Linna Sotsiaalabiamet",
+      "role": "sotsiaalvaldkonna ametiasutus",
+      "officialUrl": "https://www.narva.ee/narva-linna-sotsiaalabiamet",
+      "relatedContacts": [
+        "narva_linn_contact_sotsiaalabiamet"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_aid_department"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_resource_narva_linna_sotsiaalabiamet",
+      "document_id": "narva_linn_resource_narva_linna_sotsiaalabiamet",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/narva-linna-sotsiaalabiamet",
+      "content_hash": "0b8d18a26cbad2af4cebb07844babc5ec445834470eb546d5f9b1e4993754d96",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_resource_narva_sotsiaaltookeskus",
+      "canonical_item_id": "narva_linn:resource:narva_sotsiaaltookeskus",
+      "itemType": "resource",
+      "title": "Narva Sotsiaaltöökeskus",
+      "status": "active",
+      "summary": "Narva Sotsiaaltöökeskus on Narva Linna Sotsiaalabiameti hallatav asutus. KOV lehel on märgitud, et täiendav info ja kontaktandmed on asutuse eraldi veebilehel. Käesolev pakett kasutab allikana üksnes Narva linna ametlikku lehte ja ei kontrolli välise veebilehe sisu.",
+      "sourceKeys": [
+        "social_work_centre"
+      ],
+      "name": "Narva Sotsiaaltöökeskus",
+      "role": "hoolekandeasutus",
+      "officialUrl": "https://www.narva.ee/narva-sotsiaaltookeskus",
+      "relatedContacts": [
+        "narva_linn_contact_sotsiaalabiamet"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_work_centre"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_resource_narva_sotsiaaltookeskus",
+      "document_id": "narva_linn_resource_narva_sotsiaaltookeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/narva-sotsiaaltookeskus",
+      "content_hash": "39e0a189506f22fdc5598a5c301f0cc2980bfa5af9e02ac98456bedd1c722fdf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_resource_parkimiskaart",
+      "canonical_item_id": "narva_linn:resource:parkimiskaart",
+      "itemType": "resource",
+      "title": "Puudega inimese sõiduki parkimiskaart",
+      "status": "active",
+      "summary": "Parkimiskaart on Narva linna kaudu väljastatav praktiline ressurss täiskasvanud või lapsele, kellel on liikumis- või nägemispuudest tulenev vajadus kasutada puudega inimese sõiduki parkimiskaarti. Taotlemiseks esitatakse isikut tõendav dokument, puude otsus või arstitõend ning foto; ajutise kaardi korral väljastatakse kaart arstitõendi alusel kuni kuueks kuuks.",
+      "sourceKeys": [
+        "child_protection_department",
+        "health_social_department",
+        "parkimiskaart_page"
+      ],
+      "name": "Puudega inimese sõiduki parkimiskaart",
+      "role": "parkimiskaart",
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/parkimiskaart",
+      "relatedContacts": [
+        "narva_linn_contact_tervise_ja_sotsiaalosakond",
+        "narva_linn_contact_lastekaitseosakond"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "child_protection_department",
+        "health_social_department",
+        "parkimiskaart_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_resource_parkimiskaart",
+      "document_id": "narva_linn_resource_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/parkimiskaart",
+      "content_hash": "2d47a659b9691176a2934db693ec5e5d2ca751a45ee44f71385934b007fc1ee5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_resource_taisealisele_isikule_eestkostja_maaramine",
+      "canonical_item_id": "narva_linn:resource:taisealisele_isikule_eestkostja_maaramine",
+      "itemType": "resource",
+      "title": "Täisealisele isikule eestkostja määramine",
+      "status": "active",
+      "summary": "Täisealisele isikule eestkostja määramise info kirjeldab Narva Sotsiaalabiameti rolli eestkosteasutusena. Kohus määrab eestkoste juhul, kui täisealine inimene ei suuda vaimse tervise seisundi tõttu oma õigusi teostada või kohustusi täita. Sotsiaalabiamet osaleb eestkoste menetluses ning võtab vastu vajalikke dokumente, näiteks avalduse, isikut tõendavad dokumendid ja terviseseisundit tõendavad dokumendid.",
+      "sourceKeys": [
+        "health_social_department",
+        "taisealisele_isikule_eestkostja_maaramine_page"
+      ],
+      "name": "Täisealisele isikule eestkostja määramine",
+      "role": "eestkoste info",
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/taisealisele-isikule-eestkostja-maaramine",
+      "relatedContacts": [
+        "narva_linn_contact_tervise_ja_sotsiaalosakond"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "health_social_department",
+        "taisealisele_isikule_eestkostja_maaramine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_resource_taisealisele_isikule_eestkostja_maaramine",
+      "document_id": "narva_linn_resource_taisealisele_isikule_eestkostja_maaramine",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/taisealisele-isikule-eestkostja-maaramine",
+      "content_hash": "74e11cfcdb160ab764528ce55f1adaf296755d73e73db80568f79ec7f123dfa1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_resource_abivahendid",
+      "canonical_item_id": "narva_linn:resource:abivahendid",
+      "itemType": "resource",
+      "title": "Abivahendid",
+      "status": "active",
+      "summary": "Tervise- ja sotsiaalosakonna lehel on abivahendid nimetatud eakate ja puudega inimeste sotsiaalvaldkonna ressursina. Eraldi detailset abivahendite teenuse- või toetusekirjeldust KOV lehel ei olnud piisavalt avatud, kuid abivahendid on seotud puuetega inimeste igapäevase toimetuleku toetamisega.",
+      "sourceKeys": [
+        "health_social_department"
+      ],
+      "name": "Abivahendid",
+      "role": "abivahendite info",
+      "officialUrl": "https://www.narva.ee/tervise-ja-sotsiaalosakond",
+      "relatedContacts": [
+        "narva_linn_contact_tervise_ja_sotsiaalosakond"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "health_social_department"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_resource_abivahendid",
+      "document_id": "narva_linn_resource_abivahendid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/tervise-ja-sotsiaalosakond",
+      "content_hash": "ee2349be116fd2746d59cacb72b75e6d927a45741fac8664786c5cc890603cb7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_resource_ohvriabi",
+      "canonical_item_id": "narva_linn:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi (riigiteenus)",
+      "status": "active",
+      "summary": "Narva linna sotsiaal- ja tervishoiu menüüs on viidatud ohvriabile kui riigiteenusele. KOV leht kinnitab selle olemasolu abikanalina, kuid pakett ei kasuta välise ohvriabi veebilehe sisu. Ressurss on mõeldud vägivalla või kuriteo ohvritele suunamise infoks Narva linna veebikihis.",
+      "sourceKeys": [
+        "home",
+        "social_services_overview"
+      ],
+      "name": "Ohvriabi (riigiteenus)",
+      "role": "väline abikanal",
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused",
+      "relatedContacts": [],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "home",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_resource_ohvriabi",
+      "document_id": "narva_linn_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused",
+      "content_hash": "5f1a736cfd0a67c98a65497bc1e9ce4ea9e4953297287d0e80da81e222296cde",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_resource_narva_haigla",
+      "canonical_item_id": "narva_linn:resource:narva_haigla",
+      "itemType": "resource",
+      "title": "Narva Haigla",
+      "status": "active",
+      "summary": "Narva linna sotsiaalabi ja tervishoiu teenuste menüüs on Narva Haigla esitatud tervishoiuressursina. KOV leht viitab haiglale, kuid pakett ei kasuta välise haigla veebilehe sisu.",
+      "sourceKeys": [
+        "home",
+        "social_services_overview"
+      ],
+      "name": "Narva Haigla",
+      "role": "tervishoiuressurss",
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused",
+      "relatedContacts": [],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "home",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_resource_narva_haigla",
+      "document_id": "narva_linn_resource_narva_haigla",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused",
+      "content_hash": "b66f43203b1c9757a42ae234bd6c3f76b48c35f6e78c16bf65bfa7c285ddf71f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_resource_perearstid",
+      "canonical_item_id": "narva_linn:resource:perearstid",
+      "itemType": "resource",
+      "title": "Perearstid",
+      "status": "active",
+      "summary": "Narva linna sotsiaalabi ja tervishoiu menüüs on perearstid esitatud tervishoiuressursina. KOV veeb viitab perearstide teabele, kuid välise lehe sisu ei ole selle paketi allikaks.",
+      "sourceKeys": [
+        "home",
+        "social_services_overview"
+      ],
+      "name": "Perearstid",
+      "role": "tervishoiuressurss",
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused",
+      "relatedContacts": [],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "home",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_resource_perearstid",
+      "document_id": "narva_linn_resource_perearstid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused",
+      "content_hash": "460613d7437c5c224a29628a1d4dad49594583c383aec2473b2c53252153b105",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_resource_terviseportaal",
+      "canonical_item_id": "narva_linn:resource:terviseportaal",
+      "itemType": "resource",
+      "title": "Terviseportaal",
+      "status": "active",
+      "summary": "Narva linna sotsiaalabi ja tervishoiu menüüs on Terviseportaal nimetatud praktilise terviseinfo ressursina. Pakett kasutab allikana üksnes Narva linna ametlikku lehte ja ei kogu välise portaali sisu.",
+      "sourceKeys": [
+        "home",
+        "social_services_overview"
+      ],
+      "name": "Terviseportaal",
+      "role": "terviseinfo portaal",
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused",
+      "relatedContacts": [],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "home",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_resource_terviseportaal",
+      "document_id": "narva_linn_resource_terviseportaal",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused",
+      "content_hash": "d7d1a80077c079a77b93f5d1bad603bdefa200f75991af1a17f19ed1e2919e04",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_resource_tervisekassa",
+      "canonical_item_id": "narva_linn:resource:tervisekassa",
+      "itemType": "resource",
+      "title": "Tervisekassa",
+      "status": "active",
+      "summary": "Narva linna sotsiaalabi ja tervishoiu menüüs on Tervisekassa esitatud praktilise tervishoiuressursina. KOV leht kinnitab suunamise olemasolu, kuid välise Tervisekassa lehe sisu ei kasutata allikana.",
+      "sourceKeys": [
+        "home",
+        "social_services_overview"
+      ],
+      "name": "Tervisekassa",
+      "role": "tervishoiuressurss",
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused",
+      "relatedContacts": [],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "home",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_resource_tervisekassa",
+      "document_id": "narva_linn_resource_tervisekassa",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused",
+      "content_hash": "3c9c342cea5efe4afb2e928ea8c13a8013a8d138f6041fff78d6c4c9828beb29",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_resource_lahedase_surm_sundmusteenus",
+      "canonical_item_id": "narva_linn:resource:lahedase_surm_sundmusteenus",
+      "itemType": "resource",
+      "title": "Sündmusteenus „Lähedase surm”",
+      "status": "active",
+      "summary": "Narva linna sotsiaalabi ja tervishoiu menüüs on viidatud eesti.ee sündmusteenusele „Lähedase surm”. KOV leht kinnitab selle praktilise ressursina, kuid välise riigiportaali sisu ei ole käesoleva paketi allikaks.",
+      "sourceKeys": [
+        "home",
+        "social_services_overview"
+      ],
+      "name": "Sündmusteenus „Lähedase surm”",
+      "role": "väline riigiportaali ressurss",
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused",
+      "relatedContacts": [],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "home",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_resource_lahedase_surm_sundmusteenus",
+      "document_id": "narva_linn_resource_lahedase_surm_sundmusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused",
+      "content_hash": "05f95fd7692592413bec5582799b6df19a83de20355f72bb38ade7e1c78afca4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_resource_aed_video",
+      "canonical_item_id": "narva_linn:resource:aed_video",
+      "itemType": "resource",
+      "title": "AED kasutamise ja elustamise videod",
+      "status": "active",
+      "summary": "Narva linna sotsiaalabi ja tervishoiu menüüs on nimetatud AED ehk automaatse elustamisseadme kasutamise video ning elustamisvideo. Tegemist on KOV lehel nimetatud praktiliste esmaabiressurssidega; väliste videokeskkondade sisu ei kasutata allikana.",
+      "sourceKeys": [
+        "home",
+        "social_services_overview"
+      ],
+      "name": "AED kasutamise ja elustamise videod",
+      "role": "esmaabi ressurss",
+      "officialUrl": "https://www.narva.ee/sotsiaalteenused",
+      "relatedContacts": [],
+      "relatedTo": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "home",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_resource_aed_video",
+      "document_id": "narva_linn_resource_aed_video",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaalteenused",
+      "content_hash": "0381f1bd7612f7567b1b79987d96139434763771ecc10b2244098282b28d7432",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_benefit_elluastumistoetus",
+      "canonical_item_id": "narva_linn:benefit:elluastumistoetus",
+      "itemType": "benefit",
+      "title": "Elluastumistoetus",
+      "status": "active",
+      "summary": "Elluastumistoetus on ühekordne toetus isikule, kes astub iseseisvasse ellu pärast lapsepõlves hoolekandeasutuses kasvamist, eestkosteperes olemist või perekonnas hooldamist. Taotleja esitab Narva Linna Sotsiaalabiametile taotluse hiljemalt üks kuu enne iseseisvasse ellu astumist ning lastekaitseosakond lisab toetuse saamist põhjendavad andmed. Toetuse määr on 255 eurot.",
+      "sourceKeys": [
+        "elluastumistoetus_page",
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Asendushoolduselt, eestkosteperest või perekonnas hooldamiselt iseseisvasse ellu astuv noor.",
+      "application": {
+        "channels": [
+          "vormikohane taotlus"
+        ],
+        "steps": [
+          "Esita taotlus Narva Linna Sotsiaalabiametile hiljemalt üks kuu enne iseseisvasse ellu astumist.",
+          "Lastekaitseosakond lisab toetuse saamist põhjendavad andmed."
+        ],
+        "deadline": "Hiljemalt üks kuu enne iseseisvasse ellu astumist"
+      },
+      "amount": {
+        "amount": "255 €"
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/elluastumistoetus",
+      "relatedForms": [
+        "narva_linn_form_elluastumistoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_lastekaitseosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "elluastumistoetus_page",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_benefit_elluastumistoetus",
+      "document_id": "narva_linn_benefit_elluastumistoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/elluastumistoetus",
+      "content_hash": "cb69029628f661f5a0845cd45cf3b8b1e1f2930c2bb9f989dba1fe6cb0abd42c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_benefit_eluruumi_kohandamise_toetus",
+      "canonical_item_id": "narva_linn:benefit:eluruumi_kohandamise_toetus",
+      "itemType": "benefit",
+      "title": "Eluruumi kohandamise toetus",
+      "status": "active",
+      "summary": "Eluruumi kohandamise toetus on ette nähtud Narva linnas elavale puudega inimesele, kelle eluruumi tuleb kohandada puudest tulenevate takistuste vähendamiseks. Kohandused võivad puudutada eluruumi sissepääsu ja liikumisteed, hügieenitoiminguid või köögitoiminguid. Toetuse saamiseks esitab taotleja või tema esindaja Narva Linna Sotsiaalabiametile vormikohase või vabas vormis taotluse koos omandi- või kasutusõiguse dokumentide, vajadusel omanike nõusoleku, vähemalt kahe hinnapakkumise ja sissetulekuid tõendavate dokumentidega. Toetuse suurus on kuni 85% kohandamise maksumusest, kuid mitte üle 10 000 euro kord kolme aasta jooksul.",
+      "sourceKeys": [
+        "eluruumi_kohandamise_toetus_page",
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Narva linna puudega inimene, kelle tegelik ja rahvastikuregistrijärgne elukoht on Narva linn.",
+      "conditions": "Kohandamine peab oluliselt suurendama taotleja iseseisvat toimetulekut; arvestatakse kohanduse põhjendatust ja taotleja või pere sissetulekuid.",
+      "application": {
+        "channels": [
+          "vormikohane taotlus",
+          "vabas vormis taotlus"
+        ],
+        "steps": [
+          "Esita Sotsiaalabiametile taotlus, milles põhjendad kohandamise vajalikkust.",
+          "Lisa eluruumi kasutus- või omandiõiguse dokument, vajalikud nõusolekud, vähemalt kaks hinnapakkumist ja sissetulekuid tõendavad dokumendid.",
+          "Toetuse määramisel sõlmitakse vajadusel leping taotleja, töövõtja, Sotsiaalabiameti ja Linnamajandusameti vahel."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "amount": "kuni 85% kohanduse maksumusest, maksimaalselt 10 000 € kord kolme aasta jooksul"
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/eluruumi-kohandamise-toetus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "narva_linn_contact_tervise_ja_sotsiaalosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "eluruumi_kohandamise_toetus_page",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_benefit_eluruumi_kohandamise_toetus",
+      "document_id": "narva_linn_benefit_eluruumi_kohandamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/eluruumi-kohandamise-toetus",
+      "content_hash": "b98a9bd23808e1c7de32c6ca9bdbfa3d058aa04d3a4373531846f01fa31108ae",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_benefit_erakorraline_toetus",
+      "canonical_item_id": "narva_linn:benefit:erakorraline_toetus",
+      "itemType": "benefit",
+      "title": "Erakorraline toetus",
+      "status": "active",
+      "summary": "Erakorraline toetus on ette nähtud isikule või perekonnale, kes on õnnetusjuhtumi, tulekahju, äkilise haigestumise või muu erakorralise asjaolu tõttu sattunud ajutiselt hädaolukorda. Toetust taotletakse Narva Linna Sotsiaalabiametilt koos vajalike dokumentidega. Toetuse saamisel arvestatakse taotleja ja perekonna sissetulekut.",
+      "sourceKeys": [
+        "erakorraline_toetus_page",
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Ajutisse hädaolukorda sattunud Narva linna isik või perekond.",
+      "conditions": "Taotleja või pere netosissetulek peab jääma KOV lehel kirjeldatud piirmääradest alla ning olukord peab olema erakorraline.",
+      "application": {
+        "channels": [
+          "vormikohane taotlus"
+        ],
+        "steps": [
+          "Esita Sotsiaalabiametile taotlus ja olukorda tõendavad dokumendid."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/erakorraline-toetus",
+      "relatedForms": [
+        "narva_linn_form_erakorralise_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_tervise_ja_sotsiaalosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "erakorraline_toetus_page",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_benefit_erakorraline_toetus",
+      "document_id": "narva_linn_benefit_erakorraline_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/erakorraline-toetus",
+      "content_hash": "4003d4c0a3df63d897ec3edf132f11d6fcc8f6b767fcf05e7d38014af859f899",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_benefit_esmakordselt_kooli_mineva_lapse_toetus",
+      "canonical_item_id": "narva_linn:benefit:esmakordselt_kooli_mineva_lapse_toetus",
+      "itemType": "benefit",
+      "title": "Esmakordselt kooli mineva lapse toetus",
+      "status": "active",
+      "summary": "Esmakordselt kooli mineva lapse toetus on kinkepakk madala sissetulekuga perede lastele, kes lähevad esimest korda kooli. Toetus on suunatud puudega lastele, toimetulekutoetust saavate perede lastele, lastekaitse järelevalve all olevate riskiperede lastele ning peredele, kus kasvab vähemalt neli last. Taotlus esitatakse 1.–30. juulini ning lisatakse tõend lapse esimesse klassi vastuvõtmise kohta.",
+      "sourceKeys": [
+        "esmakordselt_kooli_mineva_lapse_toetus_page",
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Madala sissetulekuga pere laps, kes läheb esimest korda kooli.",
+      "conditions": "Laps peab kuuluma KOV lehel nimetatud sihtrühma; taotlusele lisatakse kooli vastuvõtmise tõend.",
+      "application": {
+        "channels": [
+          "taotlus"
+        ],
+        "steps": [
+          "Esita taotlus Sotsiaalabiametile 1.–30. juulini.",
+          "Lisa tõend lapse esimesse klassi vastuvõtmise kohta."
+        ],
+        "deadline": "1.–30. juuli"
+      },
+      "amount": {
+        "description": "kinkepakk"
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/esmakordselt-kooli-mineva-lapse-toetus",
+      "relatedForms": [
+        "narva_linn_form_esmakordselt_kooli_mineva_lapse_toetusetaotlus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_lastekaitseosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "esmakordselt_kooli_mineva_lapse_toetus_page",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_benefit_esmakordselt_kooli_mineva_lapse_toetus",
+      "document_id": "narva_linn_benefit_esmakordselt_kooli_mineva_lapse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/esmakordselt-kooli-mineva-lapse-toetus",
+      "content_hash": "264f0fcfa9a2c9f397f40ed5c2f80832b38eb365df19b4f35f333821254f845a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_benefit_hev_transporditoetus",
+      "canonical_item_id": "narva_linn:benefit:hev_transporditoetus",
+      "itemType": "benefit",
+      "title": "Haridusliku erivajadusega õpilase transporditoetus",
+      "status": "active",
+      "summary": "Haridusliku erivajadusega õpilase transporditoetus hüvitab transpordikulu õpilasele, kes on registreeritud Narva elanikuna ja õpib väljaspool Narvat nõustamismeeskonna soovitusel. Toetus on mõeldud õpilase sõidukulude katmiseks haridusasutusse ja tagasi. Taotlusele lisatakse sõidukulu tõendavad dokumendid, näiteks pilet, arve või kütusetšekk.",
+      "sourceKeys": [
+        "hev_transporditoetus_page",
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Narva linna haridusliku erivajadusega õpilane, kes õpib väljaspool Narvat.",
+      "conditions": "Õpilane peab õppima väljaspool Narvat nõustamismeeskonna soovitusel ning taotlusele tuleb lisada transpordikulude tõendid.",
+      "application": {
+        "channels": [
+          "vormikohane taotlus"
+        ],
+        "steps": [
+          "Esita Sotsiaalabiametile taotlus koos transpordikulu tõendavate dokumentidega."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "description": "kulupõhine hüvitis; sotsiaaltranspordi lehel nimetatakse HEV õpilase transporditoetuse piirmäärana kuni 200 € kuus"
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/haridusliku-erivajadusega-opilase-transporditoetus",
+      "relatedForms": [
+        "narva_linn_form_hev_transporditoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_lastekaitseosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "hev_transporditoetus_page",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_benefit_hev_transporditoetus",
+      "document_id": "narva_linn_benefit_hev_transporditoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/haridusliku-erivajadusega-opilase-transporditoetus",
+      "content_hash": "27ce204b44e3c955a0b9100abe223d7451ac1857dd6198aa10daecdd369bca7c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_benefit_hooldajatoetus",
+      "canonical_item_id": "narva_linn:benefit:hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus",
+      "status": "active",
+      "summary": "Hooldajatoetust on õigus saada hooldajal, kes ei tööta ega õpi statsionaarses õppevormis ning hooldab sügava puudega inimest. Hooldaja esitab Narva Linna Sotsiaalabiametile kirjaliku vormikohase taotluse. Toetuse määr on 50 eurot kuus.",
+      "sourceKeys": [
+        "hooldajatoetus_page",
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Sügava puudega inimest hooldav hooldaja.",
+      "conditions": "Hooldaja ei tööta ega õpi statsionaarses õppevormis ning hooldab sügava puudega isikut.",
+      "application": {
+        "channels": [
+          "vormikohane taotlus"
+        ],
+        "steps": [
+          "Esita Sotsiaalabiametile hooldajatoetuse taotlus."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "amount": "50 €/kuus"
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/hooldajatoetus",
+      "relatedForms": [
+        "narva_linn_form_hooldajatoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_tervise_ja_sotsiaalosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "hooldajatoetus_page",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_benefit_hooldajatoetus",
+      "document_id": "narva_linn_benefit_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/hooldajatoetus",
+      "content_hash": "e96f4421a54fe6912c42f7d62c8228e03939935be55e2e43d1a8dd0ff2167b87",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_benefit_joulupakitoetus",
+      "canonical_item_id": "narva_linn:benefit:joulupakitoetus",
+      "itemType": "benefit",
+      "title": "Jõulupakitoetus",
+      "status": "active",
+      "summary": "Jõulupakitoetus on kinkepakk madala sissetulekuga perede 2–12-aastastele lastele. Toetuse saajateks võivad olla vanemliku hoolitsuseta lapsed, puudega lapsed, toimetulekutoetust saavate perede lapsed, lastekaitse jälgimisel riskiperede lapsed ja vähemalt nelja lapsega perede lapsed. Toetuse andmine korraldatakse Sotsiaalabiameti nimekirjade alusel ning ühe lapse kohta antakse üks kinkepakk.",
+      "sourceKeys": [
+        "joulupakitoetus_page",
+        "social_benefits_overview"
+      ],
+      "targetGroup": "2–12-aastane laps madala sissetulekuga või erivajadusega perest.",
+      "application": {
+        "channels": [
+          "Sotsiaalabiameti nimekirjade alusel"
+        ],
+        "steps": [
+          "Sotsiaalabiamet koostab toetuse saajate nimekirjad KOV lehel nimetatud sihtrühmade alusel."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "description": "kinkepakk"
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/joulupakitoetus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "narva_linn_contact_lastekaitseosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "joulupakitoetus_page",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_benefit_joulupakitoetus",
+      "document_id": "narva_linn_benefit_joulupakitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/joulupakitoetus",
+      "content_hash": "5d7758f87ee2c8da46a3c9d681034c18e5585558394477c5a9fb6211d7c08c56",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_benefit_koolimineku_toetus",
+      "canonical_item_id": "narva_linn:benefit:koolimineku_toetus",
+      "itemType": "benefit",
+      "title": "Koolimineku toetus",
+      "status": "active",
+      "summary": "Koolimineku toetus on mõeldud 2.–12. klassi õppivale lapsele, kelle pere saab taotluse esitamise ajal toimetulekutoetust. Taotlus esitatakse 1.–20. augustini ning lisatakse tõend lapse õppimise kohta koolis või gümnaasiumis. Toetuse eesmärk on toetada lapse kooli algusega seotud kulusid madala sissetulekuga peres.",
+      "sourceKeys": [
+        "koolimineku_toetus_page",
+        "social_benefits_overview"
+      ],
+      "targetGroup": "2.–12. klassi õpilane perest, kes saab toimetulekutoetust.",
+      "conditions": "Pere peab taotluse esitamise ajal saama toimetulekutoetust; lisatakse koolis õppimise tõend.",
+      "application": {
+        "channels": [
+          "vormikohane taotlus"
+        ],
+        "steps": [
+          "Esita Sotsiaalabiametile taotlus 1.–20. augustini.",
+          "Lisa tõend õpilase õppimise kohta."
+        ],
+        "deadline": "1.–20. august"
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/koolimineku-toetus",
+      "relatedForms": [
+        "narva_linn_form_koolimineku_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_lastekaitseosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "koolimineku_toetus_page",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_benefit_koolimineku_toetus",
+      "document_id": "narva_linn_benefit_koolimineku_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/koolimineku-toetus",
+      "content_hash": "eaa8754c30f252d1b7ddafe99cfbab22b48c26bb0fd57cdbd6cb5ae1b8c8f348",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_benefit_koolitoetus",
+      "canonical_item_id": "narva_linn:benefit:koolitoetus",
+      "itemType": "benefit",
+      "title": "Koolitoetus ehk esimesse klassi mineva lapse toetus",
+      "status": "active",
+      "summary": "Koolitoetus on ühekordne toetus lapsele, kes alustab põhihariduse omandamist esimeses klassis. Toetus makstakse lapse vanemale või lapse tegelikule hooldajale, kui lapse ja taotleja elukoht on rahvastikuregistri andmetel Narva linnas. Taotlus esitatakse üldjuhul 12. septembrist 30. novembrini koolimineku aastal; kui laps õpib väljaspool Narvat, lisatakse õppeasutuse tõend. Toetuse suurus on 150 eurot lapse kohta.",
+      "sourceKeys": [
+        "koolitoetus_page",
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Narva linnas elav esimest klassi alustav laps ja tema vanem või tegelik hooldaja.",
+      "conditions": "Lapse ja taotleja elukoht peab olema Narva linnas; väljaspool Narvat õppimise korral lisatakse õppeasutuse tõend.",
+      "application": {
+        "channels": [
+          "vormikohane taotlus"
+        ],
+        "steps": [
+          "Esita taotlus Sotsiaalabiametile koolimineku aastal.",
+          "Lisa vajadusel õppeasutuse tõend."
+        ],
+        "deadline": "12. september kuni 30. november"
+      },
+      "amount": {
+        "amount": "150 € lapse kohta"
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/esimesse-klassi-mineva-lapse-toetus",
+      "relatedForms": [
+        "narva_linn_form_koolitoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_lastekaitseosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "koolitoetus_page",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_benefit_koolitoetus",
+      "document_id": "narva_linn_benefit_koolitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/esimesse-klassi-mineva-lapse-toetus",
+      "content_hash": "6de1bdc00c294ad97aac36b18935db18a9a782a78b94d44d64a12e5774df30e3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_benefit_laste_suvepuhkuse_toetus",
+      "canonical_item_id": "narva_linn:benefit:laste_suvepuhkuse_toetus",
+      "itemType": "benefit",
+      "title": "Laste suvepuhkuse toetus",
+      "status": "active",
+      "summary": "Laste suvepuhkuse toetus toetab sotsiaalselt vähekindlustatud perede laste suvise puhkuse korraldamist. Puudega lapse puhul võib toetus katta majutamist kuurortpiirkonnas, teiste sihtrühmade puhul laagrikupongi. Toetust ei maksta pere enda korraldatud puhkuse hüvitamiseks. Taotlus esitatakse üldjuhul 30. maiks koos pere sissetuleku ja lapse sihtrühma kuulumise andmetega.",
+      "sourceKeys": [
+        "laste_suvepuhkuse_toetus_page",
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Sotsiaalselt vähekindlustatud pere laps, sh puudega laps või toimetulekutoetust saava pere laps.",
+      "conditions": "Laps peab kuuluma KOV lehel nimetatud sihtrühma; pere sissetuleku tingimus kehtib, kui laps ei ole riiklikul või linna ülalpidamisel.",
+      "application": {
+        "channels": [
+          "taotlus"
+        ],
+        "steps": [
+          "Esita Sotsiaalabiametile taotlus hiljemalt 30. maiks.",
+          "Lisa vajalikud tõendid pere sissetuleku ja lapse sihtrühma kohta."
+        ],
+        "deadline": "30. mai"
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/laste-suvepuhkuse-toetus",
+      "relatedForms": [
+        "narva_linn_form_laste_suvepuhkuse_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_lastekaitseosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "laste_suvepuhkuse_toetus_page",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_benefit_laste_suvepuhkuse_toetus",
+      "document_id": "narva_linn_benefit_laste_suvepuhkuse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/laste-suvepuhkuse-toetus",
+      "content_hash": "c7e0687941000a0ec81d6905ce1ed500fd52bd7f1679b705a656e6631fb8f069",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_benefit_linnatoetus",
+      "canonical_item_id": "narva_linn:benefit:linnatoetus",
+      "itemType": "benefit",
+      "title": "Linnatoetus",
+      "status": "active",
+      "summary": "Linnatoetus on kord aastas makstav Narva linna toetus vanadus-, töövõimetus- või rahvapensioni saajale ning osalise või puuduva töövõimega täisealisele isikule. Taotleja peab olema rahvastikuregistri andmetel Narva elanik vähemalt aasta enne toetuse taotlemise või määramise aasta 1. jaanuari. Esmakordsel taotlemisel esitatakse vormikohane taotlus enne 1. septembrit ning edaspidi võib toetus makstakse automaatselt, kui andmed ei muutu. Toetus makstakse kord aastas 1. oktoobrist 30. novembrini ning selle määr on 25 eurot.",
+      "sourceKeys": [
+        "linnatoetus_page",
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Narva linna pensionär või osalise/puuduva töövõimega täisealine isik.",
+      "conditions": "Taotleja peab olema Narva linna elanik vähemalt aasta enne toetuse taotlemise või määramise aasta 1. jaanuari ning pension või töövõime peab olema tekkinud enne 1. septembrit.",
+      "application": {
+        "channels": [
+          "vormikohane taotlus",
+          "automaatne maksmine varasematele saajatele"
+        ],
+        "steps": [
+          "Esita esmakordsel taotlemisel vormikohane taotlus enne 1. septembrit.",
+          "Kui eelnevatel aastatel määratud toetuse andmed ei muutu, makstakse toetus üldjuhul automaatselt."
+        ],
+        "deadline": "Esmakordne taotlus enne 1. septembrit"
+      },
+      "amount": {
+        "amount": "25 € kord aastas"
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/linnatoetus",
+      "relatedForms": [
+        "narva_linn_form_linnatoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_tervise_ja_sotsiaalosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "linnatoetus_page",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_benefit_linnatoetus",
+      "document_id": "narva_linn_benefit_linnatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/linnatoetus",
+      "content_hash": "8e15470c5ca885079ffea0a9f0826a20b132bc8e8652b8192aa73d263e85775b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_benefit_matusetoetus",
+      "canonical_item_id": "narva_linn:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on ühekordne toetus matusekulude osaliseks hüvitamiseks inimesele, kes kannab Narva linna elaniku matuse korraldamise kulud. Toetuse määramisel esitatakse taotlus, isikut tõendav dokument ning lahkunu surma tõendav dokument. Toetus makstakse taotleja arvelduskontole või sularahas hiljemalt viie tööpäeva jooksul pärast otsuse tegemist. Toetuse määr on 300 eurot.",
+      "sourceKeys": [
+        "matusetoetus_page",
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Matuse korraldaja, kes kannab Narva linna elaniku matusekulud.",
+      "conditions": "Lahkunu elukoht peab olema surma hetkel Narva linnas ning taotleja peab esitama nõutud dokumendid.",
+      "application": {
+        "channels": [
+          "vormikohane taotlus"
+        ],
+        "steps": [
+          "Esita Sotsiaalabiametile taotlus koos isikut tõendava dokumendi ja lahkunu surmatõendiga.",
+          "Toetus makstakse pärast otsust arvelduskontole või sularahas."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "amount": "300 €"
+      },
+      "decisionTime": "Hiljemalt viis tööpäeva pärast otsuse tegemist",
+      "officialUrl": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/matusetoetus",
+      "relatedForms": [
+        "narva_linn_form_matusetoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_tervise_ja_sotsiaalosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "matusetoetus_page",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_benefit_matusetoetus",
+      "document_id": "narva_linn_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/matusetoetus",
+      "content_hash": "c209f53b869678f3461408fb8ac71684517675660861f48c546a1a14749961f1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_benefit_proteesitoetus",
+      "canonical_item_id": "narva_linn:benefit:proteesitoetus",
+      "itemType": "benefit",
+      "title": "Proteesitoetus",
+      "status": "active",
+      "summary": "Proteesitoetus hüvitab osaliselt proteesi, välja arvatud hambaproteesi, soetamise kulu täisealisele isikule, kes vajab proteesi. Taotlus esitatakse Narva Linna Sotsiaalabiametile kolme kuu jooksul pärast proteesi ostmist ning lisatakse kulu tõendavad dokumendid või arve. Toetuse piirmäär on 50 eurot kalendriaastas.",
+      "sourceKeys": [
+        "proteesitoetus_page",
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Täisealine proteesi vajav Narva linna elanik.",
+      "conditions": "Taotlusele lisatakse proteesi ostmist või arvet tõendavad dokumendid; hambaprotees ei kuulu toetuse alla.",
+      "application": {
+        "channels": [
+          "vormikohane taotlus"
+        ],
+        "steps": [
+          "Esita taotlus kolme kuu jooksul pärast proteesi ostmist.",
+          "Lisa kulu tõendavad dokumendid või arve."
+        ],
+        "deadline": "Kolme kuu jooksul pärast proteesi ostmist"
+      },
+      "amount": {
+        "amount": "kuni 50 € kalendriaastas"
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/proteesitoetus",
+      "relatedForms": [
+        "narva_linn_form_proteesitoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_tervise_ja_sotsiaalosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "proteesitoetus_page",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_benefit_proteesitoetus",
+      "document_id": "narva_linn_benefit_proteesitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/proteesitoetus",
+      "content_hash": "2130100fc948485eb3c2d1d03a1a32af737085abc33d4fa5123cb7dd8bf9ec53",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_benefit_puudega_laste_ravimitoetus",
+      "canonical_item_id": "narva_linn:benefit:puudega_laste_ravimitoetus",
+      "itemType": "benefit",
+      "title": "Puudega laste ravimitoetus",
+      "status": "active",
+      "summary": "Puudega laste ravimitoetus hüvitab osaliselt keskmise, raske või sügava puudega lapse ravimite kulu, kui ravimid on seotud lapse puudest tulenevate vajadustega. Taotlus esitatakse kolme kuu jooksul pärast ravimite ostmist ning kuludokument peab olema lapse nimel. Toetust makstakse sotsiaalmajandusliku olukorra hindamise alusel ning piirmäär on 40 eurot kalendriaastas.",
+      "sourceKeys": [
+        "puudega_laste_ravimitoetus_page",
+        "social_benefits_overview"
+      ],
+      "targetGroup": "Keskmise, raske või sügava puudega laps ja tema pere.",
+      "conditions": "Ravimikulu peab olema seotud lapse puudega ning kulu tõendav dokument peab olema lapse nimel. Pere sissetulek peab vastama KOV lehel kirjeldatud tingimustele.",
+      "application": {
+        "channels": [
+          "vormikohane taotlus"
+        ],
+        "steps": [
+          "Esita taotlus kolme kuu jooksul pärast ravimite ostmist.",
+          "Lisa lapse puude otsus ja ravimite kuludokumendid."
+        ],
+        "deadline": "Kolme kuu jooksul pärast ravimite ostmist"
+      },
+      "amount": {
+        "amount": "kuni 40 € kalendriaastas"
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/puudega-laste-ravimitoetus",
+      "relatedForms": [
+        "narva_linn_form_puudega_laste_ravimitoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_lastekaitseosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "puudega_laste_ravimitoetus_page",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_benefit_puudega_laste_ravimitoetus",
+      "document_id": "narva_linn_benefit_puudega_laste_ravimitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/puudega-laste-ravimitoetus",
+      "content_hash": "c82373f098aaeeb0a6521a0d4bda2a1ca5ec0226962106ccaa60d8753345ab37",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_benefit_puuetega_lapse_hooldajatoetus",
+      "canonical_item_id": "narva_linn:benefit:puuetega_lapse_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Puuetega lapse hooldajale hooldajatoetus",
+      "status": "active",
+      "summary": "Puuetega lapse hooldajale hooldajatoetus makstakse 3–18-aastase raske või sügava puudega lapse ühele hooldajale, kes ei tööta lapse kasvatamise tõttu. Toetuse saaja peab igapäevaselt tagama lapsele kõrvalabi, juhendamise või järelevalve. Hooldaja ja lapse elukoht peab rahvastikuregistri järgi olema Narva linn. Hooldusvajaduse hindamiseks on Sotsiaalabiametil kuni 30 kalendripäeva. Toetuse määr on raske puudega lapse puhul 80 eurot ja sügava puudega lapse puhul 100 eurot.",
+      "sourceKeys": [
+        "puuetega_lapse_hooldajatoetus_page",
+        "social_benefits_overview"
+      ],
+      "targetGroup": "3–18-aastase raske või sügava puudega lapse hooldaja.",
+      "conditions": "Hooldaja ei tööta lapse kasvatamise tõttu; hooldaja ja laps peavad olema Narva linna elanikud ning Sotsiaalabiamet hindab hooldusvajadust.",
+      "application": {
+        "channels": [
+          "kirjalik taotlus"
+        ],
+        "steps": [
+          "Esita Sotsiaalabiametile taotlus koos vajalike dokumentidega.",
+          "Sotsiaalabiamet hindab hooldusvajaduse kuni 30 kalendripäeva jooksul."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "amount": "80 € raske puudega lapse puhul; 100 € sügava puudega lapse puhul"
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/puuetega-lapse-hooldajale-hooldajatoetus",
+      "relatedForms": [
+        "narva_linn_form_puuetega_lapse_hooldajatoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_lastekaitseosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "puuetega_lapse_hooldajatoetus_page",
+        "social_benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_benefit_puuetega_lapse_hooldajatoetus",
+      "document_id": "narva_linn_benefit_puuetega_lapse_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/puuetega-lapse-hooldajale-hooldajatoetus",
+      "content_hash": "7d7fa67a602c2fd833388ab2661f69d0729011c09c40a16dfd2e46bd7dafa567",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_benefit_sunnitoetus",
+      "canonical_item_id": "narva_linn:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus makstakse pärast lapse sündi ühele lapse vanemale või seaduslikule esindajale. Taotleja ja lapse elukoht peab olema rahvastikuregistri järgi Narva linnas lapse sünnist alates ning toetust ei maksta, kui laps on riiklikul ülalpidamisel hoolekandeasutuses. Toetus on seotud eelmisel aastal kehtinud kuutasu alammääraga ning makstakse kolmes osas: 400 eurot pärast sündi, 100 eurot lapse üheaastaseks saamisel ja ülejäänud osa lapse kaheaastaseks saamisel. Taotlus esitatakse ühe aasta jooksul pärast sündi.",
+      "sourceKeys": [
+        "social_benefits_overview",
+        "sunnitoetus_page"
+      ],
+      "targetGroup": "Narva linnas elava lapse vanem või seaduslik esindaja.",
+      "conditions": "Lapse ja taotleja elukoht peab olema Narva linnas alates lapse sünnist. Teine ja kolmas osa makstakse tingimusel, et laps ja toetust taotlev vanem või esindaja on katkematult Narva linna elanikud kuni lapse kahe aastaseks saamiseni.",
+      "application": {
+        "channels": [
+          "vormikohane taotlus"
+        ],
+        "steps": [
+          "Esita Sotsiaalabiametile sünnitoetuse taotlus.",
+          "Lisa taotleja isikut tõendav dokument.",
+          "Esimene osa makstakse hiljemalt viie tööpäeva jooksul pärast kõigi vajalike dokumentide esitamist; teine ja kolmas osa makstakse hiljemalt viie tööpäeva jooksul pärast lapse ühe- ja kaheaastaseks saamist."
+        ],
+        "deadline": "Taotlus esitatakse ühe aasta jooksul pärast lapse sündi; teise ja kolmanda osa taotlemine on võimalik kuni lapse 1 aasta ja 11 kuu vanuseks saamiseni, kui esimest osa ei taotletud õigel ajal."
+      },
+      "amount": {
+        "amount": "400 € + 100 € + ülejäänud osa eelmisel aastal kehtinud kuutasu alammäärast"
+      },
+      "decisionTime": "Esimene osa hiljemalt viie tööpäeva jooksul pärast kõigi vajalike dokumentide esitamist",
+      "officialUrl": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/sunnitoetus",
+      "relatedForms": [
+        "narva_linn_form_sunnitoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_tervise_ja_sotsiaalosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_overview",
+        "sunnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_benefit_sunnitoetus",
+      "document_id": "narva_linn_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/sunnitoetus",
+      "content_hash": "585ff708827339f7b3c2ffcf0cd54d9a24b317af4b78d6b54514f3c0117a2a39",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_benefit_toimetulekutoetus",
+      "canonical_item_id": "narva_linn:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on ajutine abimeede, millega leevendatakse abivajavate inimeste ja perede materiaalset puudust. Toetust on õigus saada üksi elaval isikul või perel, kelle kuu netosissetulek pärast eluasemekulude mahaarvamist jääb alla kehtiva toimetulekupiiri. Alates 1. jaanuarist 2026 on toimetulekupiir üksi elavale inimesele või pere esimesele liikmele 220 eurot kuus, igale alaealisele 264 eurot kuus ning pere teisele ja igale järgmisele täisealisele liikmele 176 eurot kuus. Taotlus tuleb esitada hiljemalt kuu viimaseks tööpäevaks Sotsiaalabiameti tervise- ja sotsiaalosakonnas koos sissetuleku ja eluasemekulude dokumentidega.",
+      "sourceKeys": [
+        "social_benefits_overview",
+        "toimetulekutoetus_page"
+      ],
+      "targetGroup": "Üksi elav inimene või pere, kelle netosissetulek pärast eluasemekulusid jääb alla toimetulekupiiri.",
+      "conditions": "Taotlusele lisatakse isiku- ja perekonnaliikmete andmed, sissetuleku tõendid, eluasemekulud ja vajadusel pangakonto väljavõtted ning vara loetelu.",
+      "application": {
+        "channels": [
+          "isiklik pöördumine",
+          "vormikohane avaldus"
+        ],
+        "steps": [
+          "Pöördu hiljemalt kuu viimaseks tööpäevaks Sotsiaalabiameti tervise- ja sotsiaalosakonda.",
+          "Täida vormikohane avaldus ja lisa nõutud tõendid sissetulekute, eluasemekulude ja perekonnaliikmete kohta."
+        ],
+        "deadline": "Jooksva kuu viimane tööpäev"
+      },
+      "amount": {
+        "description": "toimetulekupiir + arvestatavad eluasemekulud – sissetulekud; üksikvanemaga perele lisaks 15 €"
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/toimetulekutoetus",
+      "relatedForms": [
+        "narva_linn_form_toimetulekutoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_tervise_ja_sotsiaalosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_overview",
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_benefit_toimetulekutoetus",
+      "document_id": "narva_linn_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/toimetulekutoetus",
+      "content_hash": "d02871017af826bd75cf7e0f686e71e6d300d769a7d9efe9b5381d203814d022",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_benefit_transporditoetus",
+      "canonical_item_id": "narva_linn:benefit:transporditoetus",
+      "itemType": "benefit",
+      "title": "Transporditoetus",
+      "status": "active",
+      "summary": "Transporditoetus hüvitab osaliselt transpordikulu sügava või raske liikumispuudega täisealisele inimesele, kes ei saa kasutada ühistransporti ning vajab transporti tervishoiu- või sotsiaalteenuse saamiseks. Hüvitada võib invatransporditeenuse kulu või isikliku sõiduauto kasutamise kulu. Taotlus esitatakse kolme kuu jooksul pärast transpordi kasutamist koos kuludokumentide ja teenuse saamist tõendavate dokumentidega. Toetuse piirmäär on 100 eurot kalendriaastas.",
+      "sourceKeys": [
+        "social_benefits_overview",
+        "transporditoetus_page"
+      ],
+      "targetGroup": "Sügava või raske liikumispuudega täisealine Narva linna elanik.",
+      "conditions": "Taotleja peab tõendama transpordi kasutamist tervishoiu- või sotsiaalteenuse saamiseks ja esitama kulu tõendavad dokumendid.",
+      "application": {
+        "channels": [
+          "vormikohane taotlus"
+        ],
+        "steps": [
+          "Esita taotlus kolme kuu jooksul pärast transpordi kasutamist.",
+          "Lisa kuludokumendid ja teenuse kasutamist tõendavad dokumendid."
+        ],
+        "deadline": "Kolme kuu jooksul pärast transpordi kasutamist"
+      },
+      "amount": {
+        "amount": "kuni 100 € kalendriaastas"
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/transporditoetus",
+      "relatedForms": [
+        "narva_linn_form_transporditoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "narva_linn_contact_tervise_ja_sotsiaalosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_overview",
+        "transporditoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_benefit_transporditoetus",
+      "document_id": "narva_linn_benefit_transporditoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/transporditoetus",
+      "content_hash": "2787c1e79857081d82eb917bb82cdb1db0422e64fdb8628486d8bf72205b9585",
+      "evidence_allowed": true
+    },
+    {
+      "id": "narva_linn_benefit_vaimse_tervise_teenuse_toetus",
+      "canonical_item_id": "narva_linn:benefit:vaimse_tervise_teenuse_toetus",
+      "itemType": "benefit",
+      "title": "Vaimse tervise teenuse toetus",
+      "status": "active",
+      "summary": "Vaimse tervise teenuse toetus toetab Narva linnas elavate inimeste psühhosotsiaalset heaolu ja vaimset tervist. Toetust saab taotleda abivajav laps või täiskasvanu, kelle elukoht rahvastikuregistris ja tegelik elukoht on Narva linnas. Toetuse abil võib kasutada näiteks psühholoogilist nõustamist, kriisinõustamist, hingehoidu, perenõustamist või pereteraapiat. Taotlus on vormivaba, kuid KOV soovitab selle esitada kirjalikult või kirjalikku taasesitamist võimaldavas vormis; üldjuhul valib taotleja teenusepakkuja ise. Toetus määratakse kuni 10 teenuskorra kohta aastas ning teenus tuleb kasutada kuue kuu jooksul.",
+      "sourceKeys": [
+        "social_benefits_overview",
+        "vaimse_tervise_teenuse_toetus_page"
+      ],
+      "targetGroup": "Narva linnas elav vaimse tervise teenust vajav laps või täiskasvanu.",
+      "conditions": "Taotleja rahvastikuregistrijärgne ja tegelik elukoht peab olema Narva linnas. Teenusepakkuja valib üldjuhul taotleja; Sotsiaalabiamet saab vajadusel aidata sobiva teenusepakkuja leidmisel.",
+      "application": {
+        "channels": [
+          "vormivaba taotlus",
+          "kirjalik taotlus",
+          ""
+        ],
+        "steps": [
+          "Esita Narva Linna Sotsiaalabiametile põhjendatud taotlus.",
+          "Sotsiaalabiameti direktor või volitatud isik otsustab taotluse rahuldamise või rahuldamata jätmise.",
+          "Pärast otsust võta ühe kuu jooksul ühendust teenusepakkujaga ja teavita Sotsiaalabiametit registreerumisest."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "description": "kuni 10 teenuskorda aastas; teenus kehtib 6 kuud esimesest kokkulepitud teenuse kuupäevast"
+      },
+      "officialUrl": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/vaimse-tervise-teenuse-toetus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "narva_linn_contact_tervise_ja_sotsiaalosakond",
+        "narva_linn_contact_lastekaitseosakond"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "narva_linn",
+      "municipality_name": "Narva linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_overview",
+        "vaimse_tervise_teenuse_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "narva_linn_benefit_vaimse_tervise_teenuse_toetus",
+      "document_id": "narva_linn_benefit_vaimse_tervise_teenuse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.narva.ee/sotsiaaltoetused/-/asset_publisher/c6DGSHfBeUiA/content/vaimse-tervise-teenuse-toetus",
+      "content_hash": "8321a9eff96cda173b4fc82cdd879f47447b3cd43ab73a4e7c52aacf9e7fd80e",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Narva linn",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

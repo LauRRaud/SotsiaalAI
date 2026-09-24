@@ -1,0 +1,35 @@
+{
+  "docId": "sotsiaaltoo-3-2019",
+  "articleId": "kolmes-omavalitsuses-ennetuskeskused-2019",
+  "title": "Kolmes omavalitsuses avati kogukondlikud ennetus- ja peretöökeskused",
+  "authors": [],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2019",
+  "section": "Uus lahendus sotsiaaltöös",
+  "pageRange": "105",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Lühike ülevaade Perepesa mudeli avamisest kolmes omavalitsuses eesmärgiga tugevdada ennetust ja peretööd.",
+  "tags": [
+    "perepesa",
+    "ennetustöö",
+    "peretöö"
+  ],
+  "source_type": "file",
+  "source_path": "ST3_2019_veeb_link_Part23.pdf",
+  "document_id": "sotsiaaltoo-3-2019-kolmes-omavalitsuses-ennetuskeskused-2019",
+  "source_format": "pdf",
+  "source_sha256": "6f610481c3804c22f1ab3a7f4c86f47e48d1d0467b2f6d6500420c18eebe1e65",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2019-kolmes-omavalitsuses-ennetuskeskused-2019",
+    "previous_source_path": "ST3_2019_veeb_link_Part23.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "6f610481c3804c22f1ab3a7f4c86f47e48d1d0467b2f6d6500420c18eebe1e65",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

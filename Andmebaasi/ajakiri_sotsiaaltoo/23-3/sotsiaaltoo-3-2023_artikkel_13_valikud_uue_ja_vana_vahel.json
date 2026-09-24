@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2023",
+  "articleId": "valikud-uue-ja-vana-vahel-kilde-euroopa-liidu-uute-liikmesriikide-perepoliitikast-i-2023-3",
+  "title": "Valikud uue ja vana vahel – kilde Euroopa Liidu „uute liikmesriikide“ perepoliitikast (I)",
+  "authors": [
+    "Jüri Kõre"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2023",
+  "section": "Analüüs",
+  "pageRange": "56-66",
+  "pdf_start_page": 1,
+  "pdf_end_page": 11,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Analüüsis vaadeldakse Euroopa Liidu nn uute liikmesriikide – sealhulgas Baltimaade ja mitme Ida-Euroopa riigi –\nperepoliitikat ning võrreldakse seda klassikaliste sotsiaalpoliitika mudelitega. Autor selgitab, miks ei sobitu need\nriigid hästi traditsioonilistesse konservatiivse, liberaalse, sotsiaaldemokraatliku ja ladina mudeli raamidesse ning\nmiks kasutatakse tihti pelgalt geograafilist grupeerimist. Artiklis käsitletakse laste ja perede toetuste,\nrasedus- ja sünnituspuhkuse, vanemahüvitiste ning isapuhkuse regulatsiooni arengut, tuues näiteid eri riikide\npoliitikameetmetest ja nende mõjust sündimusele ja soolisele võrdõiguslikkusele. Analüüs avab, kuidas ajalooline\ntaust, majanduslik olukord ja Euroopa Liidu rikkuse jaotumine kujundavad perepoliitikat ning seab raamistiku\nedasistele osadele, kus vaadeldakse üksikasjalikumalt konkreetseid riike ja lahendusi.",
+  "tags": [
+    "perepoliitika",
+    "Euroopa Liit",
+    "uued liikmesriigid",
+    "sotsiaalpoliitika",
+    "laste- ja peretoetused",
+    "rasedus- ja sünnituspuhkus",
+    "isapuhkus",
+    "sotsiaalne ebavõrdsus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2023_web_Part14.pdf",
+  "document_id": "sotsiaaltoo-3-2023-valikud-uue-ja-vana-vahel-kilde-euroopa-liidu-uute-liikmesriikide-perepoliitikast-i-2023-3",
+  "source_format": "pdf",
+  "source_sha256": "6a1dbdbaca05783be84129b6b5a19db3a02646b62473340e3348e362a76598e9",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2023-valikud-uue-ja-vana-vahel-kilde-euroopa-liidu-uute-liikmesriikide-perepoliitikast-i-2023-3",
+    "previous_source_path": "Sotsiaaltoo_3_2023_web_Part14.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "6a1dbdbaca05783be84129b6b5a19db3a02646b62473340e3348e362a76598e9",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

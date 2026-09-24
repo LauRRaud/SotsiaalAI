@@ -1,0 +1,45 @@
+{
+  "docId": "sotsiaaltoo-4-2018",
+  "articleId": "sotsiaalteenuste-tutvustamisest-linna-ja-valla-kodulehel-2018",
+  "title": "Sotsiaalteenuste tutvustamisest linna ja valla kodulehel",
+  "authors": [
+    "Kristi Ploom",
+    "Riste Uuesoo"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2018",
+  "section": "Õigus",
+  "pageRange": "32-34",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Õiguskantsleri ametkonna vaade sellele, kuidas omavalitsused peaksid oma kodulehtedel sotsiaalteenuseid esitama: info leitavus ja ajakohasus, 13 seaduses sätestatud teenuse sisuline lahtikirjutamine, abitaotluse võimalikult lihtne esitamine, erivajadustega inimeste teavitamine ning selge ja arusaadav keel.",
+  "tags": [
+    "sotsiaalteenused",
+    "kohalik omavalitsus",
+    "koduleht",
+    "info kättesaadavus",
+    "õiguskantsler",
+    "heas haldus",
+    "lihtkeel",
+    "viipekeel",
+    "puuetega inimesed",
+    "e-teenused"
+  ],
+  "source_type": "file",
+  "source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part9.pdf",
+  "document_id": "sotsiaaltoo-4-2018-sotsiaalteenuste-tutvustamisest-linna-ja-valla-kodulehel-2018",
+  "source_format": "pdf",
+  "source_sha256": "d1e9d327473691190d16ef9bfa96eab5be2dd5ddab4c4192dd6b12eefdaa31de",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2018-sotsiaalteenuste-tutvustamisest-linna-ja-valla-kodulehel-2018",
+    "previous_source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part9.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d1e9d327473691190d16ef9bfa96eab5be2dd5ddab4c4192dd6b12eefdaa31de",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

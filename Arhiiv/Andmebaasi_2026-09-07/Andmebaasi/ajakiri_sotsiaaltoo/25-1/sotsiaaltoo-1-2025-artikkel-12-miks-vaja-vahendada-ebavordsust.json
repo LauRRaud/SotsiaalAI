@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "miks-on-vaja-vahendada-ebavordsust-ja-kuidas-seda-teha-2025-1",
+  "title": "Miks on vaja vähendada ebavõrdsust ja kuidas seda teha?",
+  "authors": [
+    "Liis Reiter"
+  ],
+  "section": "Uudis",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "description": "Refereering professor Martin McKee ettekandest tervisedenduse konverentsil, mis käsitleb ebavõrdsuse vähendamise eetilisi, majanduslikke ja julgeolekuga seotud põhjuseid. Artikkel toob välja, et suur majanduslik ja sotsiaalne ebavõrdsus õõnestab inimväärikust, suurendab tervishoiu- ja sotsiaalkulusid, pärsib majanduskasvu ning soodustab poliitilist ebastabiilsust ja äärmuslust. Kirjeldatakse poliitikameetmeid, mis aitavad ebavõrdsust vähendada: progressiivne maksusüsteem, õiglane sissetulekute ümberjaotamine, universaalne tervishoiusüsteem, kättesaadav kvaliteetne haridus ning töötajate õiguste kaitse. Rõhutatakse, et ebavõrdsus ei ole paratamatus, vaid poliitiliste otsuste tagajärg.",
+  "tags": [
+    "ebavõrdsus",
+    "sotsiaalne õiglus",
+    "Martin McKee",
+    "progressiivne maksusüsteem",
+    "universaalne tervishoid",
+    "haridus",
+    "sotsiaalpoliitika"
+  ],
+  "source_path": "Miks on vaja vähendada ebavõrdsust ja kuidas seda teha_1_2025.pdf",
+  "pageRange": "1–5",
+  "document_id": "sotsiaaltoo-1-2025-miks-on-vaja-vahendada-ebavordsust-ja-kuidas-seda-teha-2025-1",
+  "source_format": "pdf",
+  "source_sha256": "f08b4f36a0e52abbac23d5f6a0c96b684844ce41680556fe920dd4bdfb090f2d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2025-miks-on-vaja-vahendada-ebavordsust-ja-kuidas-seda-teha-2025-1",
+    "previous_source_path": "Miks on vaja vähendada ebavõrdsust ja kuidas seda teha_1_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "f08b4f36a0e52abbac23d5f6a0c96b684844ce41680556fe920dd4bdfb090f2d",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

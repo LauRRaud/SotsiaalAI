@@ -1,0 +1,1713 @@
+{
+  "date": "2026-09-07",
+  "scope": "Serveri mittekustutatud juhendid, juhised, uuringud, organisatsioonimaterjalid ja poliitikaanalüüsid",
+  "server_documents": 170,
+  "local_matches": 170,
+  "matching": "SHA-256; source PDFs preserved",
+  "documents": [
+    {
+      "document_id": "oiguskantsler_2025_aasta_tegevuse_ulevaade_puuetega_inimeste_oigused",
+      "title": "2025. aasta tegevuse ülevaade: puuetega inimeste õigused",
+      "collection_id": "national_guidelines",
+      "sha256": "fd9e5c62b97ffefb6f139a350a00edb9728238e86e69e1ba97b0b4f28591e380",
+      "local_files": [
+        "RAG/master_sources_pdf/oiguskantsler_2025_aasta_tegevuse_ulevaade_puuetega_inimeste_oigused.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/238da53f40ec/puuetega-inimeste-oigused.pdf"
+    },
+    {
+      "document_id": "harno_4_sammu_markamiseks_ja_sekkumiseks_opetajale",
+      "title": "4 sammu märkamiseks ja sekkumiseks õpetajale",
+      "collection_id": "national_guidelines",
+      "sha256": "30aa53385b39d4971d217a3460fb51488437f01a4d81b9c98dafbb5067e643a9",
+      "local_files": [
+        "RAG/master_sources_pdf/harno_4_sammu_markamiseks_ja_sekkumiseks_opetajale.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/7a8521767a3d/juhend õpetajatele- vaimse_tervise_nouanded_17.05.pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_abivahendite_teatmik_2025",
+      "title": "Abivahendite teatmik 2025",
+      "collection_id": "national_guidelines",
+      "sha256": "c86d9a226c3ab910cf0a24f5403fefdb445a67cff540856d1f91e4316e9406b4",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalkindlustusamet_abivahendite_teatmik_2025.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/b7a95eac0019/Abivahendite teatmik 2025-1.pdf"
+    },
+    {
+      "document_id": "vordoigusvolinik_arvamus_toovoimetuslehe_teemal",
+      "title": "Arvamus töövõimetuslehe teemal",
+      "collection_id": "national_guidelines",
+      "sha256": "92b98d6e12c74a80222d31bd8f9589245af549b6b120ffcb3c05580a23b937a4",
+      "local_files": [
+        "RAG/master_sources_pdf/vordoigusvolinik_arvamus_toovoimetuslehe_teemal.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/0ea6147f95b7/Arvamus-nr-44_Töövõimetusleht.pdf"
+    },
+    {
+      "document_id": "statistikaamet_eesti_statistika_kvartalikiri_2_2018",
+      "title": "Eesti Statistika Kvartalikiri 2/2018",
+      "collection_id": "national_guidelines",
+      "sha256": "17e3d8b54f63b3e5c1a715b0f1edeeff65be4ad61fd4da4d2fe3ce1f205942e9",
+      "local_files": [
+        "RAG/master_sources_pdf/statistikaamet_eesti_statistika_kvartalikiri_2_2018.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/93a141a63bde/Kvartalikiri_2-2018.pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_elanikkonna_hoiakud_ja_teadlikkus_perevagivallast",
+      "title": "Elanikkonna hoiakud ja teadlikkus perevägivallast",
+      "collection_id": "national_guidelines",
+      "sha256": "7a964e52184cd9380a97a3132eb3da020daaec9859618e244cde19d81a8ac9bf",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalkindlustusamet_elanikkonna_hoiakud_ja_teadlikkus_perevagivallast.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/21efc4895960/Elanikkonna hoiakud ja teadlikkus perevägivallast.pdf"
+    },
+    {
+      "document_id": "harno_erinevate_oppijate_toetamine_opetaja_ja_tugispetsialisti_koo",
+      "title": "Erinevate õppijate toetamine õpetaja ja tugispetsialisti koostöös",
+      "collection_id": "national_guidelines",
+      "sha256": "c0e3f47ffd43f60d3f906ed923abd921643e7e6b5746c898430069132cdf678f",
+      "local_files": [
+        "RAG/master_sources_pdf/harno_erinevate_oppijate_toetamine_opetaja_ja_tugispetsialisti_koo.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/ee804bba8dbf/ErinevateOppijateToetamine_2021.pdf"
+    },
+    {
+      "document_id": "tervisekassa_esmatasandi_tervishoiu_arengumudel_lahima_10_aasta_perspekti",
+      "title": "Esmatasandi tervishoiu arengumudel lähima 10 aasta perspektiivis",
+      "collection_id": "national_guidelines",
+      "sha256": "f17bac84fcd0e1b4972f4388b0a4ca5791cd9ab6878f41b0140764f12807391a",
+      "local_files": [
+        "RAG/master_sources_pdf/tervisekassa_esmatasandi_tervishoiu_arengumudel_lahima_10_aasta_perspekti.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/488993ff6879/esmatasandi_toimemudel_lahima_10_aasta_perspektiivis.pdf"
+    },
+    {
+      "document_id": "tai_espad_2024_uimastite_tarvitamine_koolinoorte_seas",
+      "title": "ESPAD 2024: uimastite tarvitamine koolinoorte seas",
+      "collection_id": "national_guidelines",
+      "sha256": "6e8ab2ac17899f8721c470a3ec07c16bdc518a5945435809426cf1009290a12a",
+      "local_files": [
+        "RAG/master_sources_pdf/tai_espad_2024_uimastite_tarvitamine_koolinoorte_seas.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/036362f107b6/espad_raport_2024_21.04.2025.pdf"
+    },
+    {
+      "document_id": "paasteamet_evakuatsioonijuhi_koolitusmaterjal",
+      "title": "Evakuatsioonijuhi koolitusmaterjal",
+      "collection_id": "national_guidelines",
+      "sha256": "8d0f5adb72adb133a5f28f4ed670514f940a60079d4883aef833d48f305e91ec",
+      "local_files": [
+        "RAG/master_sources_pdf/paasteamet_evakuatsioonijuhi_koolitusmaterjal.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/7513108cc862/1552567704_evakuatsioonijuhile.pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_evaluation_of_the_impact_of_the_marac_networking_model",
+      "title": "Evaluation of the impact of the MARAC networking model",
+      "collection_id": "national_guidelines",
+      "sha256": "56b0212bf9a9f9a3b5e9cf71594c6e4c8851d93ae86b64c4833061c992ea89d2",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalkindlustusamet_evaluation_of_the_impact_of_the_marac_networking_model.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/87eadaab3c30/Evaluation of the impact of the MARAC networking model.pdf"
+    },
+    {
+      "document_id": "terviseamet_gripivastase_vaktsineerimise_labiviimise_juhend_2025",
+      "title": "Gripivastase vaktsineerimise läbiviimise juhend 2025",
+      "collection_id": "national_guidelines",
+      "sha256": "7329b53519cc8c1da4c06202acad7e5a59c39a4026a9bad57108eff127127cdc",
+      "local_files": [
+        "RAG/master_sources_pdf/terviseamet_gripivastase_vaktsineerimise_labiviimise_juhend_2025.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/1222cae8e06d/Lisa 2.5.1. Juhis_gripivastase_vaktsineerimise_labiviimiseks_2025.pdf"
+    },
+    {
+      "document_id": "paasteamet_haiglate_ja_hooldekodude_projekteerimise_juhis",
+      "title": "Haiglate ja hooldekodude projekteerimise juhis",
+      "collection_id": "national_guidelines",
+      "sha256": "be0e366c9448dbbfd8e46afcc4ab16ce4ff041eb7cdfecc1c8b1bd1fc1a4639e",
+      "local_files": [
+        "RAG/master_sources_pdf/paasteamet_haiglate_ja_hooldekodude_projekteerimise_juhis.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/630e0fbd6683/haiglate-ja-hooldekodude-projekteerimise-juhis-small-.pdf"
+    },
+    {
+      "document_id": "riigikontroll_haridusliku_erivajadusega_noorte_kutseopingute_ja_tooturule_",
+      "title": "Haridusliku erivajadusega noorte kutseõpingute ja tööturule jõudmise toetamine",
+      "collection_id": "national_guidelines",
+      "sha256": "315abbf50c92f0ea88ecdcae8fdf534bc8a69b5717fe809efdf292d4c7a08a40",
+      "local_files": [
+        "RAG/master_sources_pdf/riigikontroll_haridusliku_erivajadusega_noorte_kutseopingute_ja_tooturule_.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/a41b3e5728bc/19750_RKTR_6598_2-1.4_2344_003-2.pdf"
+    },
+    {
+      "document_id": "paasteamet_hoolekande_ja_tervishoiuasutuste_tuleohutus_pdf",
+      "title": "Hoolekande- ja tervishoiuasutuste tuleohutus",
+      "collection_id": "national_guidelines",
+      "sha256": "3eab944a784e5260f636cff5778f08f6be3623fe970cbfee72536cf794dbef8a",
+      "local_files": [
+        "lisatest/2024-03-03-hoolekande-ja-tervishoiuasutuste-tuleohutus.pdf",
+        "RAG/master_sources_pdf/paasteamet_hoolekande_ja_tervishoiuasutuste_tuleohutus_pdf.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/153b2e2a98bd/2024-03-03-hoolekande-ja-tervishoiuasutuste-tuleohutus.pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_hoolekandeteenuste_kvaliteedi_juhendmaterjal",
+      "title": "Hoolekandeteenuste kvaliteedi juhendmaterjal",
+      "collection_id": "national_guidelines",
+      "sha256": "91600ba7bb33f5b3727b0c3effd6caeac6ccdda9a13689d1547dcd807cc57e39",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalkindlustusamet_hoolekandeteenuste_kvaliteedi_juhendmaterjal.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/44c25730e7c0/hoolekandeteenuste_kvaliteedi_juhendmaterjal.pdf"
+    },
+    {
+      "document_id": "sotsiaalministeerium_inimkaubanduse_ennetamine_metodoloogia_tooks_noortega",
+      "title": "Inimkaubanduse ennetamine: metodoloogia tööks noortega",
+      "collection_id": "national_guidelines",
+      "sha256": "3323aae21484e15cc96d18657fba66ba23abe959ae9a97bca219f890447aaa22",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalministeerium_inimkaubanduse_ennetamine_metodoloogia_tooks_noortega.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/1f1a48d47d19/inimkaubanduse_ennetamine_metodoloogia_tooks_noortega.pdf"
+    },
+    {
+      "document_id": "sotsiaalministeerium_inimkaubanduse_teemal_koolitamine_praktilised_soovitused",
+      "title": "Inimkaubanduse teemal koolitamine: praktilised soovitused",
+      "collection_id": "national_guidelines",
+      "sha256": "b97c3855db6ae053df4a38efb4a944d802f87f4ec18fb0688c6c2997efeeaf4d",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalministeerium_inimkaubanduse_teemal_koolitamine_praktilised_soovitused.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/8ab3062c8d7b/inimkaubanduse_teemal_koolitamine.pdf"
+    },
+    {
+      "document_id": "aki_isikuandmed_sotsiaalhoolekande_ja_tervishoiusektoris",
+      "title": "Isikuandmed sotsiaalhoolekande- ja tervishoiusektoris",
+      "collection_id": "national_guidelines",
+      "sha256": "4fed2bd6ed302f2bbe6e5206193fe3f46fc512c67a01e2304d6525b4f69888d8",
+      "local_files": [
+        "RAG/master_sources_pdf/aki_isikuandmed_sotsiaalhoolekande_ja_tervishoiusektoris.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/862a844d33a9/isikuandmed_sotsiaalhoolekande-_ja_tervishoiusektoris.pdf"
+    },
+    {
+      "document_id": "aki_isikuandmete_tootleja_uldjuhend",
+      "title": "Isikuandmete töötleja üldjuhend",
+      "collection_id": "national_guidelines",
+      "sha256": "bcd9bb1c8f591a265bb4d65e695343bf0f3f1c8e58787d0ae02898797c464296",
+      "local_files": [
+        "RAG/master_sources_pdf/aki_isikuandmete_tootleja_uldjuhend.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/87e366ec2857/isikuandmete_tootleja_uldjuhend.pdf"
+    },
+    {
+      "document_id": "harno_juhend_laagritele_ja_malevatele_vaimse_tervise_nouanded",
+      "title": "Juhend laagritele ja malevatele: vaimse tervise nõuanded",
+      "collection_id": "national_guidelines",
+      "sha256": "2bf0c28bbba80d2df3801caede24bcf4b1775ca5966ee31a2a511c95f5f1bc4a",
+      "local_files": [
+        "RAG/master_sources_pdf/harno_juhend_laagritele_ja_malevatele_vaimse_tervise_nouanded.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/00fb6a44533d/juhend laagritele jamalevatele-vaimse_tervise_nouanded_laagrid-malevad_14.06.2021.pdf"
+    },
+    {
+      "document_id": "oiguskantsler_juhend_abivajavast_lapsest_teatamine_ja_andmekaitse",
+      "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+      "collection_id": "national_guidelines",
+      "sha256": "50a929984fb1a973d712c0156428e587b4fb4cfd10e88ebf01145204ba913d7b",
+      "local_files": [
+        "RAG/master_sources_pdf/oiguskantsler_juhend_abivajavast_lapsest_teatamine_ja_andmekaitse.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/8ea5319c8883/JUHEND - abivajavast lapsest teatamine ja andmekaitse (jaanuar 2021).pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_juhendmaterjal_kubervagivallast_ohvritega_tootavatele_spetsi",
+      "title": "Juhendmaterjal kübervägivallast ohvritega töötavatele spetsialistidele",
+      "collection_id": "national_guidelines",
+      "sha256": "dac27574f59b92d2469f092c5ebc6269f0fce8f107a3c0b56d84a2bc3f9108eb",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalkindlustusamet_juhendmaterjal_kubervagivallast_ohvritega_tootavatele_spetsi.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/3a85e0636c63/Juhendmaterjal kübervägivallast ohvritega töötavatele spetsialistidele.pdf"
+    },
+    {
+      "document_id": "paasteamet_juhendmaterjal_praktilise_valjaoppe_labiviimiseks_haiglas_ja",
+      "title": "Juhendmaterjal praktilise väljaõppe läbiviimiseks haiglas ja hooldekodus",
+      "collection_id": "national_guidelines",
+      "sha256": "618d4e9ebd29b801c0584be163a6c1ec3407a279fb1893256674ca1c5c0ee8ea",
+      "local_files": [
+        "RAG/master_sources_pdf/paasteamet_juhendmaterjal_praktilise_valjaoppe_labiviimiseks_haiglas_ja.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/b170ad00253b/praktilise-v-ljaoppe-juhendmaterjal-praktilise-oppe-labiviimiseks-haiglas-ja-hooldekodus.pdf"
+    },
+    {
+      "document_id": "harno_juhendmaterjal_opilase_toetamiseks_koolis",
+      "title": "Juhendmaterjal õpilase toetamiseks koolis",
+      "collection_id": "national_guidelines",
+      "sha256": "fe0e545a83af19897cd91d674eed8120e181ac576099994414f70ab349b662af",
+      "local_files": [
+        "RAG/master_sources_pdf/harno_juhendmaterjal_opilase_toetamiseks_koolis.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/355a6c76df14/Juhendmaterjal_6pilase_toetamiseks_22_1.pdf"
+    },
+    {
+      "document_id": "tootukassa_ska_sotsiaalministeerium_kes_aitab_ja_kuhu_poorduda_kui_sul_on_tuvastatud_puude_rasku",
+      "title": "Kes aitab ja kuhu pöörduda, kui sul on tuvastatud puude raskusaste?",
+      "collection_id": "national_guidelines",
+      "sha256": "915e76206d176dc4f639209a1de1afb3b269b6ac1f3145a6951b5909cd1e191e",
+      "local_files": [
+        "RAG/master_sources_pdf/tootukassa_ska_sotsiaalministeerium_kes_aitab_ja_kuhu_poorduda_kui_sul_on_tuvastatud_puude_rasku.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/c89390a51e70/puudega-tooealisele.pdf"
+    },
+    {
+      "document_id": "riigikontroll_koduteenuste_korraldus",
+      "title": "Koduteenuste korraldus",
+      "collection_id": "national_guidelines",
+      "sha256": "dfb57516103151660362dad0d5a8940d6487ab91ef13d2fdc84008af65b7218c",
+      "local_files": [
+        "RAG/master_sources_pdf/riigikontroll_koduteenuste_korraldus.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/696221e5107c/19294_RKTR_6564_2-1.4_2312_002-2.pdf"
+    },
+    {
+      "document_id": "praxis_centar_kohaliku_omavalitsuse_poolt_isikult_ja_voi_perekonnalt_sotsi",
+      "title": "Kohaliku omavalitsuse poolt isikult ja/või perekonnalt sotsiaalteenuste eest tasu nõudmine",
+      "collection_id": "national_guidelines",
+      "sha256": "8fbe360747abf16e4a38255f06bbbf688f8320b4e61b3e53586249aade26c17f",
+      "local_files": [
+        "RAG/master_sources_pdf/praxis_centar_kohaliku_omavalitsuse_poolt_isikult_ja_voi_perekonnalt_sotsi.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/099940d7a2cc/Kohaliku-omavalitsuse-poolt-isikult-javõi-perekonnalt-sotsiaalteenuste-eest-tasu-nõudmine.pdf"
+    },
+    {
+      "document_id": "peaasi_ee_koolilaste_ja_noorte_vaimne_tervis",
+      "title": "Koolilaste ja noorte vaimne tervis",
+      "collection_id": "national_guidelines",
+      "sha256": "9fc1e42ef514df9036bef7ca14c97c766ca7720d512cb86e922fad94a6fc5667",
+      "local_files": [
+        "lisatest/Laste-vaimne-tervis-koolis.pdf",
+        "RAG/master_sources_pdf/peaasi_ee_koolilaste_ja_noorte_vaimne_tervis.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/6163667d25d6/Laste-vaimne-tervis-koolis.pdf"
+    },
+    {
+      "document_id": "harno_koolitootajad_jms_toetav_susteemne_lahenemine",
+      "title": "Koolitöötajad jms toetav süsteemne lähenemine",
+      "collection_id": "national_guidelines",
+      "sha256": "536222c5998b406b22aa6f7a3e63f35491f7b6d16fa92521deb99d3c8b346cde",
+      "local_files": [
+        "RAG/master_sources_pdf/harno_koolitootajad_jms_toetav_susteemne_lahenemine.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/40b52ae1144b/Koolitootajad jms toetav süsteemne lahenemine_abimaterjal_kujundatud.pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+      "title": "Lapse heaolu hindamise käsiraamat",
+      "collection_id": "national_guidelines",
+      "sha256": "28d850ac84c92da4b66b3d99e081da69fafe0560a36f4831b9e394fa822e45bc",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/dbbf1b4f170e/käsiraamat.pdf"
+    },
+    {
+      "document_id": "statistikaamet_lapse_heaolu_mootmise_kasitlus",
+      "title": "Lapse heaolu mõõtmise käsitlus",
+      "collection_id": "national_guidelines",
+      "sha256": "19d03e9e2e0e908cfdf1f8b89551baff39d852c2055c083cd8d0b53948a42ef5",
+      "local_files": [
+        "RAG/master_sources_pdf/statistikaamet_lapse_heaolu_mootmise_kasitlus.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/fd0d614ab284/Lapse heaolu mõõtmise käsitlus.pdf"
+    },
+    {
+      "document_id": "oiguskantsler_lapse_oigused",
+      "title": "Lapse õigused",
+      "collection_id": "national_guidelines",
+      "sha256": "de846b25803873652b7e4324fdcb2dcff34f51b454b4894aad32648cbfd3058a",
+      "local_files": [
+        "RAG/master_sources_pdf/oiguskantsler_lapse_oigused.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/7e2769f900c2/LÕK voldik 2022_EST.pdf"
+    },
+    {
+      "document_id": "statistikaamet_laste_subjektiivne_heaolu_kohalikus_ja_rahvusvahelises_vaate",
+      "title": "Laste subjektiivne heaolu kohalikus ja rahvusvahelises vaates",
+      "collection_id": "national_guidelines",
+      "sha256": "bbc97a7bc2899bb913915aa1d52558c52c035e98b18faecc6080f0466a437114",
+      "local_files": [
+        "RAG/master_sources_pdf/statistikaamet_laste_subjektiivne_heaolu_kohalikus_ja_rahvusvahelises_vaate.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/78725d74dfc4/Laste_subjektiivne_heaolu_kohalikus_ja_rahvusvahelises_vaates.pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_marac_i_juhendmaterjal",
+      "title": "MARAC-i juhendmaterjal",
+      "collection_id": "national_guidelines",
+      "sha256": "c7d95277b46ba5b0e1f6fd761bee384f31f080e68b9c148859228c5d1afaf24f",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalkindlustusamet_marac_i_juhendmaterjal.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/a0db4fa9f933/MARAC-i juhendmaterjal.pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_marac_i_mudeli_juhend_kov_lastekaitsele",
+      "title": "MARAC-i mudeli juhend KOV lastekaitsele",
+      "collection_id": "national_guidelines",
+      "sha256": "1962a99d4a97ed3f8b67977901bb509e8ec97dbf75b9e7e201aea62ee129bd6f",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalkindlustusamet_marac_i_mudeli_juhend_kov_lastekaitsele.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/35da31e1bb75/MARAC mudeli juhend KOV lastekaitsele.pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_marac_i_teavitusleht",
+      "title": "MARAC-i teavitusleht",
+      "collection_id": "national_guidelines",
+      "sha256": "51e17b4972efac56c55d16ec54856191819b17ea09b4a4dd332012e63313acee",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalkindlustusamet_marac_i_teavitusleht.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/9de6cabbd992/MARAC teavitusleht_30.03.2023.pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_naiste_tugikeskuse_teenuse_kvaliteedijuhis",
+      "title": "Naiste tugikeskuse teenuse kvaliteedijuhis",
+      "collection_id": "national_guidelines",
+      "sha256": "99d3a928557bd60194c9f3977e6896e20ea9cfe0bee8c0f0fbea87614123c728",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalkindlustusamet_naiste_tugikeskuse_teenuse_kvaliteedijuhis.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/84b021731ef9/NTK teenuse kvaliteedijuhis.pdf"
+    },
+    {
+      "document_id": "tai_narkootikumide_tarvitamise_olukord_eestis_2023",
+      "title": "Narkootikumide tarvitamise olukord Eestis 2023",
+      "collection_id": "national_guidelines",
+      "sha256": "95017db3ac6f30e5811cc2e9f12a618f67950ff6c7021ffca9f315f13d246945",
+      "local_files": [
+        "RAG/master_sources_pdf/tai_narkootikumide_tarvitamise_olukord_eestis_2023.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/b62be5e15da8/narkootikumide_tarvitamise_olukord_eestis.pdf"
+    },
+    {
+      "document_id": "riigikontroll_omavalitsuste_tegevus_erivajadustega_inimeste_toetamisel",
+      "title": "Omavalitsuste tegevus erivajadustega inimeste toetamisel",
+      "collection_id": "national_guidelines",
+      "sha256": "b567521c76b15a8a43f4309ddcb2d20836539b4fe76375361fba7b5e9eefcae6",
+      "local_files": [
+        "RAG/master_sources_pdf/riigikontroll_omavalitsuste_tegevus_erivajadustega_inimeste_toetamisel.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/992055bd7d43/19429_RKTR_6574_2-1.4_2321_001-2 (1).pdf"
+    },
+    {
+      "document_id": "oska_oska_sotsiaaltoo_uuringu_luhiversioon_2021",
+      "title": "OSKA sotsiaaltöö uuringu lühiversioon 2021",
+      "collection_id": "national_guidelines",
+      "sha256": "3fb76f40a73693e564c32a9f8f284abcdac7663461fa5f50fae07d04531cdfc1",
+      "local_files": [
+        "RAG/master_sources_pdf/oska_oska_sotsiaaltoo_uuringu_luhiversioon_2021.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/88bd6bc41aa9/3-oska-sotsiaaltoo-uuringuaruanne-lyhiversioon-2021a.pdf"
+    },
+    {
+      "document_id": "oska_oska_sotsiaaltoo_uuringu_olulisemad_tulemused",
+      "title": "OSKA sotsiaaltöö uuringu olulisemad tulemused",
+      "collection_id": "national_guidelines",
+      "sha256": "545c633b8adaa13be9387d95f28d8fbb08dcd46e6896e7b6789a53cbe3558c63",
+      "local_files": [
+        "RAG/master_sources_pdf/oska_oska_sotsiaaltoo_uuringu_olulisemad_tulemused.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/e3a5edbe5be6/4-oska-sotsiaaltoo-olulisemad-tulemused.pdf"
+    },
+    {
+      "document_id": "oska_oska_sotsiaaltoo_uuringu_terviktekst_2021",
+      "title": "OSKA sotsiaaltöö uuringu terviktekst 2021",
+      "collection_id": "national_guidelines",
+      "sha256": "84b3b87054bf6645e224437c265f48c17732d4cef83584477b0782a1f9fc8c94",
+      "local_files": [
+        "RAG/master_sources_pdf/oska_oska_sotsiaaltoo_uuringu_terviktekst_2021.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/02a33d409558/OSKA_sotsiaaltoo_uuringuaruanne_terviktekst_2021.pdf"
+    },
+    {
+      "document_id": "peaasi_ee_peaasi_ee_haridus",
+      "title": "Peaasi.ee Haridus",
+      "collection_id": "national_guidelines",
+      "sha256": "d20d2a11872ebe2a812893be1aa63d4ec067a80d4231fdd3dfa1fd63951800ee",
+      "local_files": [
+        "RAG/master_sources_pdf/peaasi_ee_peaasi_ee_haridus.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/af5df6590981/Peaasi.ee-Haridus.pdf"
+    },
+    {
+      "document_id": "tervisekassa_pereoenduse_tegevusjuhend",
+      "title": "Pereõenduse tegevusjuhend",
+      "collection_id": "national_guidelines",
+      "sha256": "9e07379d70f6b72dd59d73a91caf3a85aacca51954422b1be26b6484ef6e8286",
+      "local_files": [
+        "RAG/master_sources_pdf/tervisekassa_pereoenduse_tegevusjuhend.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/54492f0ac4b7/a5_pereoenduse_tegevusjuhend_netti_2.pdf"
+    },
+    {
+      "document_id": "tootukassa_ska_sotsiaalministeerium_puude_raskusastme_tuvastamise_ja_toovoime_hindamise_taotlus_",
+      "title": "Puude raskusastme tuvastamise ja töövõime hindamise taotlus – tööealine",
+      "collection_id": "national_guidelines",
+      "sha256": "127c63cf9363996b0a7d98ec5ecc596e541a0a977e2a55e055e98e06017b207e",
+      "local_files": [
+        "RAG/master_sources_pdf/tootukassa_ska_sotsiaalministeerium_puude_raskusastme_tuvastamise_ja_toovoime_hindamise_taotlus_.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/5f8b1257e87b/toovoime_hindamine_ja_puude_raskusastme_tuvastamise_taotlus.pdf"
+    },
+    {
+      "document_id": "sotsiaalministeerium_puude_toetus_ja_lisa_toetus_2025_aastal",
+      "title": "Puude-toetus ja lisa-toetus 2025. aastal",
+      "collection_id": "national_guidelines",
+      "sha256": "2b8263a5d8773ecb0c26ce4349e663454ea33cdc35b33d9dc5b1b5d1c1efda16",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalministeerium_puude_toetus_ja_lisa_toetus_2025_aastal.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/7102a43994f0/puudetoetus ja lisatoetus 2025_KM.pdf"
+    },
+    {
+      "document_id": "statistikaamet_puudega_inimeste_sotsiaalne_loimumine",
+      "title": "Puudega inimeste sotsiaalne lõimumine",
+      "collection_id": "national_guidelines",
+      "sha256": "c29898ae72e0ec0b71675e106b9e5860fb3d63cb94c09d5ac3bb2c10bc3621c9",
+      "local_files": [
+        "RAG/master_sources_pdf/statistikaamet_puudega_inimeste_sotsiaalne_loimumine.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/0e608bb49091/Puudega_inimeste_sotsiaalne_loimumine.pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_puue_ja_hoolekanne_ska_aastaraamatu_pdf_osa_2025",
+      "title": "Puue ja hoolekanne — SKA aastaraamatu PDF-osa 2025",
+      "collection_id": "national_guidelines",
+      "sha256": "124cbc105c119db26a2b743b0d82d8937bfbdbdb5056cffae915ff906579c4e5",
+      "local_files": [
+        "RAG/server_sources_2026-09-07/sotsiaalkindlustusamet_puue_ja_hoolekanne_ska_aastaraamatu_pdf_osa_2025.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/cb6db9857fd6/sotsiaalkindlustusamet_puue_ja_hoolekanne_ska_aastaraamatu_pdf_osa_2025.pdf"
+    },
+    {
+      "document_id": "sotsiaalministeerium_puuetega_inimeste_tootamist_toetavad_meetmed",
+      "title": "Puuetega inimeste töötamist toetavad meetmed",
+      "collection_id": "national_guidelines",
+      "sha256": "7ec7d369c62706857891c9be805ed882e3eccf254eb96809f55b5b1e3e093bd5",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalministeerium_puuetega_inimeste_tootamist_toetavad_meetmed.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/a18654720145/pittm_1ja2etapp_kokku_2_.pdf"
+    },
+    {
+      "document_id": "oiguskantsler_puuetega_inimeste_oigused_kriisis",
+      "title": "Puuetega inimeste õigused kriisis",
+      "collection_id": "national_guidelines",
+      "sha256": "25db27fb739c7f8ee241ca72ba26d5208fe8963b544fdd523f29d1e54e28be7e",
+      "local_files": [
+        "RAG/master_sources_pdf/oiguskantsler_puuetega_inimeste_oigused_kriisis.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/a194e2c8be90/Puuetega inimeste õigused kriisis.pdf"
+    },
+    {
+      "document_id": "paasteamet_paasteameti_meelespea_kohalikule_omavalitsusele",
+      "title": "Päästeameti meelespea kohalikule omavalitsusele",
+      "collection_id": "national_guidelines",
+      "sha256": "dbcfcabb9e2bd788ec2f3fe972cb9561178db334b691a54ed021e076a346c56c",
+      "local_files": [
+        "RAG/master_sources_pdf/paasteamet_paasteameti_meelespea_kohalikule_omavalitsusele.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/8174151cfa14/2022-paasteameti-meelespea-kohalikule-omavalitsusele.pdf"
+    },
+    {
+      "document_id": "praxis_centar_raviresistentse_ja_suitsiidse_depressiooni_levimus_ning_maja",
+      "title": "Raviresistentse ja suitsiidse depressiooni levimus ning majanduslik mõju",
+      "collection_id": "national_guidelines",
+      "sha256": "b254252e066678677ac8fe05d847c57b59f5d3aac7132ec22bdaae7b596e3d17",
+      "local_files": [
+        "RAG/master_sources_pdf/praxis_centar_raviresistentse_ja_suitsiidse_depressiooni_levimus_ning_maja.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/2d51d55958bd/2021_Raviresistentse_ja_suitsiidse_depressiooni_levimus_ja_majanduslik_moju.pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_rehabilitatsiooni_teenuseosutajate_infopaeva_materjal",
+      "title": "Rehabilitatsiooni teenuseosutajate infopäeva materjal",
+      "collection_id": "national_guidelines",
+      "sha256": "0bb15c694acc63a9b0e5ca430cff4ccd05bed27495d8645c129ad458497660e7",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalkindlustusamet_rehabilitatsiooni_teenuseosutajate_infopaeva_materjal.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/6cfe96aebd4c/rehabilitatsiooni_teenuseosutajate_infopaev_16.10.2020.pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_seksuaalivakivallan_kriisikeskukset_fin",
+      "title": "Seksuaaliväkivallan kriisikeskukset (FIN)",
+      "collection_id": "national_guidelines",
+      "sha256": "057222a602b287e5ab031482d45a0912111218c629338e204a1d76fb26ef5f2f",
+      "local_files": [
+        "RAG/server_repair_2026-08-14/ocr/sotsiaalkindlustusamet_seksuaalivakivallan_kriisikeskukset_fin.ocr.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/1b4cfeb69d84/versions/a3afa7610914400b8e26240df32fd450/Ohvriabi_infovoldik_SAK_FIN+bleed3mm_0.pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_seksuaalsest_ahistamisest_vaba_ooelu_juhend",
+      "title": "Seksuaalsest ahistamisest vaba ööelu juhend",
+      "collection_id": "national_guidelines",
+      "sha256": "50b92c072fb8fd6853c4903b8c99f135b536f03efb58d935d86e2f5bb955f6f0",
+      "local_files": [
+        "RAG/server_repair_2026-08-14/ocr/sotsiaalkindlustusamet_seksuaalsest_ahistamisest_vaba_ooelu_juhend.ocr.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/b0b6b5f9e3cd/versions/5bd6ac32473e4130b9fea7f3b20895a6/Seksuaalsest ahistamisest vaba ööelu juhend A4_veeb linkidega.pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est",
+      "title": "Seksuaalvägivalla kriisiabikeskusi tutvustav voldik (EST)",
+      "collection_id": "national_guidelines",
+      "sha256": "7da40d324dc7daafe82ee8b42e42c5803c66998bfadb84373689ecc0467cec3d",
+      "local_files": [
+        "RAG/server_repair_2026-08-14/ocr/sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est.ocr.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/ae04a6e905b2/versions/c52d233ba559470d896666837923d93a/Ohvriabi infovoldik SAK EST+bleed3mm.pdf"
+    },
+    {
+      "document_id": "sotsiaalministeerium_seksuaalvagivalla_levimus_ja_hoiakud_eestis",
+      "title": "Seksuaalvägivalla levimus ja hoiakud Eestis",
+      "collection_id": "national_guidelines",
+      "sha256": "ba330936f1c71b89d293e44462c5080984717cfd1af66ba4e6ed5d3918921555",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalministeerium_seksuaalvagivalla_levimus_ja_hoiakud_eestis.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/0b7f18835659/sv_levimus_ja_hoiakud_eestis.pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_sexual_assault_crisis_centre_eng",
+      "title": "Sexual Assault Crisis Centre (ENG)",
+      "collection_id": "national_guidelines",
+      "sha256": "778f0e21ef27171f46aa642b84d7be2699e4ca5973e5ec5e515b2045745341ab",
+      "local_files": [
+        "RAG/server_repair_2026-08-14/ocr/sotsiaalkindlustusamet_sexual_assault_crisis_centre_eng.ocr.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/19f466bf5847/versions/cabe4f89d2a04ce5a7f7da7dd77a8449/Ohvriabi_infovoldik_SAK_ENG+bleed3mm.pdf"
+    },
+    {
+      "document_id": "harno_soovitused_kiusamise_valtimiseks_koolis",
+      "title": "Soovitused kiusamise vältimiseks koolis",
+      "collection_id": "national_guidelines",
+      "sha256": "fee3acef21e49c58c6557ec126651ae793013b462e57005ad3255aa7fb109c19",
+      "local_files": [
+        "RAG/master_sources_pdf/harno_soovitused_kiusamise_valtimiseks_koolis.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/b942d71437a7/Koolidele toeks kiusuennetuses märts-2022.pdf"
+    },
+    {
+      "document_id": "praxis_centar_sotsiaalne_innovatsioon_pikaajalises_hoolduses",
+      "title": "Sotsiaalne innovatsioon pikaajalises hoolduses",
+      "collection_id": "national_guidelines",
+      "sha256": "97ccc644ad76c201be085385e55fbb49f6f12507522c80ae80d21bb9b8ee0d27",
+      "local_files": [
+        "RAG/master_sources_pdf/praxis_centar_sotsiaalne_innovatsioon_pikaajalises_hoolduses.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/b00b907a0a9e/Sotsiaalne-innovatsioon-pikaajalises-hoolduses.pdf"
+    },
+    {
+      "document_id": "statistikaamet_sotsiaaltrendid_6",
+      "title": "Sotsiaaltrendid 6",
+      "collection_id": "national_guidelines",
+      "sha256": "cdabda89c218e61df71b5c8cd5a840c09b8f792d530aedf89b2f62a4bdd5ecc9",
+      "local_files": [
+        "RAG/master_sources_pdf/statistikaamet_sotsiaaltrendid_6.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/4b07677baf9a/Sotsiaaltrendid_6.pdf"
+    },
+    {
+      "document_id": "statistikaamet_sotsiaaltrendid_7",
+      "title": "Sotsiaaltrendid 7",
+      "collection_id": "national_guidelines",
+      "sha256": "e31fd9a178e0206abf9bfdba6e1de8d2ac99ac25b8871b0c699fe60d0d9a28b6",
+      "local_files": [
+        "RAG/master_sources_pdf/statistikaamet_sotsiaaltrendid_7.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/985fd54d67ec/sotsiaaltrendid_7.pdf"
+    },
+    {
+      "document_id": "oska_sotsiaaltoo_seirearuanne_2025",
+      "title": "Sotsiaaltöö seirearuanne 2025",
+      "collection_id": "national_guidelines",
+      "sha256": "5e0c325dacd284b4cbf0159347ea01870c6486ee49ff63770866c95de311f39b",
+      "local_files": [
+        "RAG/master_sources_pdf/oska_sotsiaaltoo_seirearuanne_2025.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/8cd8bc1377a0/Sotsiaaltoo-SEIREARUANNE-2025.pdf"
+    },
+    {
+      "document_id": "peaasi_ee_stigma_8_12_klass",
+      "title": "Stigma (8.–12. klass)",
+      "collection_id": "national_guidelines",
+      "sha256": "84211fd4fb8781435a840dd0371f8dfaad6ec82dc95c4ca7b759baf447cde1c3",
+      "local_files": [
+        "RAG/master_sources_pdf/peaasi_ee_stigma_8_12_klass.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/7b208e69ed25/Tunnikava-8-12kl-stigma.pdf"
+    },
+    {
+      "document_id": "tootukassa_ska_sotsiaalministeerium_teadlikkus_ja_hoiakud_vahenenud_toovoimega_inimeste_ning_too",
+      "title": "Teadlikkus ja hoiakud vähenenud töövõimega inimeste ning töövõimereformi teemal",
+      "collection_id": "national_guidelines",
+      "sha256": "cb92e400cdf0f88699fd5e6df3d3f4451012eca5b90a503f1193c83adb8a4dc3",
+      "local_files": [
+        "RAG/master_sources_pdf/tootukassa_ska_sotsiaalministeerium_teadlikkus_ja_hoiakud_vahenenud_toovoimega_inimeste_ning_too.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/aea9ede7734e/2017_tvr_koondraport.pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_teadlikkus_tugiteenuste_olemasolust_pere_ja_seksuaalvagivall",
+      "title": "Teadlikkus tugiteenuste olemasolust pere- ja seksuaalvägivalla ning inimkaubanduse ohvritele",
+      "collection_id": "national_guidelines",
+      "sha256": "e87ed91a1d423e72f1da226d88827d405c8d9ec0efedf5273312933eab12ecf4",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalkindlustusamet_teadlikkus_tugiteenuste_olemasolust_pere_ja_seksuaalvagivall.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/f0b8d68bef7d/Teadlikkus tugiteenuste olemasolust pere- ja seksuaalvägivalla ning inimkaubanduse ohvritele.pdf"
+    },
+    {
+      "document_id": "sm-terviseprobleemiga-laste-perede-hea-tava-2025",
+      "title": "Terviseprobleemiga laste ja nende perede toetamise hea tava",
+      "collection_id": "national_guidelines",
+      "sha256": "fa7d7d4d39d7665c178d1a640352914bb1fe7949c0870057214f3817435ec45b",
+      "local_files": [
+        "uuringud ja juhendid/Terviseprobleemiga laste ja nende perede toetamise hea tava 12.122025_VEEB.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/7124f44ea4e3/Terviseprobleemiga laste ja nende perede toetamise hea tava 12.122025_VEEB.pdf"
+    },
+    {
+      "document_id": "praxis_centar_terviseseisundist_voi_puudest_tingitud_erivajadustega_noorte",
+      "title": "Terviseseisundist või puudest tingitud erivajadustega noorte siirdumine koolist tööle",
+      "collection_id": "national_guidelines",
+      "sha256": "a75852ca8cf6df7e4c1946da7a847c37bc662d1ea0465dd0c89ca77b5e7fb432",
+      "local_files": [
+        "RAG/master_sources_pdf/praxis_centar_terviseseisundist_voi_puudest_tingitud_erivajadustega_noorte.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/09dc9fa9ed18/Erivajadustega-noorte-siirdumine-koolist-toole.pdf"
+    },
+    {
+      "document_id": "riigikontroll_toimetulekutoetuse_kui_riikliku_sotsiaalabi_korraldus",
+      "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+      "collection_id": "national_guidelines",
+      "sha256": "1cf6747a41ad9b0d39a61f275ca2693ce1a597e82c45e9c42844575ffdbb4d8d",
+      "local_files": [
+        "RAG/master_sources_pdf/riigikontroll_toimetulekutoetuse_kui_riikliku_sotsiaalabi_korraldus.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/b5aebbd76daf/16215_RKTR_3559_2-1.4_2299_002-2.pdf"
+    },
+    {
+      "document_id": "paasteamet_tuleohutuse_infohommik_mida_iga_hoolekandeasutus_peab_teadma",
+      "title": "Tuleohutuse infohommik: mida iga hoolekandeasutus peab teadma?",
+      "collection_id": "national_guidelines",
+      "sha256": "21c8972687fbd26b23049675e3587080cbe396dfd838faae9c0ff3df2a24281b",
+      "local_files": [
+        "RAG/master_sources_pdf/paasteamet_tuleohutuse_infohommik_mida_iga_hoolekandeasutus_peab_teadma.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/7187d35b391f/2025.04.29hoolekandeasutused-infohommik.pdf"
+    },
+    {
+      "document_id": "paasteamet_tuleohutuskonsultandi_koolitusmaterjal",
+      "title": "Tuleohutuskonsultandi koolitusmaterjal",
+      "collection_id": "national_guidelines",
+      "sha256": "cbf7fe568a28f4fc2497ceb96024678d46df2922e2c8f6737825fba5f7fe6ef1",
+      "local_files": [
+        "RAG/master_sources_pdf/paasteamet_tuleohutuskonsultandi_koolitusmaterjal.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/a8299b5f1d53/tuleohutuskonsultandile.pdf"
+    },
+    {
+      "document_id": "paasteamet_tuleohutuspaigaldised_ja_paastevahendid_haiglates_hooldekodu",
+      "title": "Tuleohutuspaigaldised ja päästevahendid haiglates/hooldekodudes",
+      "collection_id": "national_guidelines",
+      "sha256": "e053f82bfa39ea746c1188c230283be344334e8ab2558d4b7cff63a1b2d9b383",
+      "local_files": [
+        "RAG/master_sources_pdf/paasteamet_tuleohutuspaigaldised_ja_paastevahendid_haiglates_hooldekodu.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/d8374817ced9/tuleohutuspaigaldised-ja-paastevahendid-haiglates-ja-hooldekodudes.pdf"
+    },
+    {
+      "document_id": "tootukassa_ska_sotsiaalministeerium_tooandjate_hoiakud_vahenenud_toovoimega_inimeste_tootamise_s",
+      "title": "Tööandjate hoiakud vähenenud töövõimega inimeste töötamise suhtes",
+      "collection_id": "national_guidelines",
+      "sha256": "fe8a9eac18b07784dd9273727bd74dc80d9770233816d1b63eda7ece8417759e",
+      "local_files": [
+        "RAG/master_sources_pdf/tootukassa_ska_sotsiaalministeerium_tooandjate_hoiakud_vahenenud_toovoimega_inimeste_tootamise_s.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/01aa8c69736d/2021_tvrtooandjateuuringuloppraport.pdf"
+    },
+    {
+      "document_id": "tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_skeemi_loomise_ja_juurutamise_vahehindami_2",
+      "title": "Töövõime toetamise skeemi loomise ja juurutamise vahehindamise infoleht",
+      "collection_id": "national_guidelines",
+      "sha256": "13f4642c14df48b6f4dd274e457378fca40abb2d39de0a8f66b4ba3322dbb16f",
+      "local_files": [
+        "RAG/master_sources_pdf/tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_skeemi_loomise_ja_juurutamise_vahehindami_2.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/49e061d889c3/Töövõime toetamise skeemi loomise ja juurutamise vahehindamise infoleht.pdf"
+    },
+    {
+      "document_id": "riigikontroll_toovoime_vahenemise_ennetamine",
+      "title": "Töövõime vähenemise ennetamine",
+      "collection_id": "national_guidelines",
+      "sha256": "bc461e44cfd5caa757c948cfa92590863a878c3b06c790db26754c26f1954d78",
+      "local_files": [
+        "RAG/master_sources_pdf/riigikontroll_toovoime_vahenemise_ennetamine.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/a103f4182169/18277_RKTR_5564_2-1.4_2308_001-2.pdf"
+    },
+    {
+      "document_id": "statistikaamet_vaesus_eestis",
+      "title": "Vaesus Eestis",
+      "collection_id": "national_guidelines",
+      "sha256": "92e627e202d239b7046156710788b0038357459cdad45b6c0701cb4d3b15add2",
+      "local_files": [
+        "RAG/master_sources_pdf/statistikaamet_vaesus_eestis.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/b5d58c6133a6/Vaesus_Eestis_sisu.pdf"
+    },
+    {
+      "document_id": "peaasi_ee_vaimse_tervise_hoidmine_4_7_klass",
+      "title": "Vaimse tervise hoidmine (4.–7. klass)",
+      "collection_id": "national_guidelines",
+      "sha256": "122a7892f562293a3c4b39d79357044f96197663ffe22ec40a2fad03c4d1a771",
+      "local_files": [
+        "RAG/master_sources_pdf/peaasi_ee_vaimse_tervise_hoidmine_4_7_klass.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/fa3e44b4c4f1/Tunnikava-4-7kl-vaimne-tervis.pdf"
+    },
+    {
+      "document_id": "peaasi_ee_vaimse_tervise_hoidmine_8_12_klass",
+      "title": "Vaimse tervise hoidmine (8.–12. klass)",
+      "collection_id": "national_guidelines",
+      "sha256": "d510f9a01618e45a48e3def2df62a588613592ea78278fee891e5c11fa9a1a71",
+      "local_files": [
+        "RAG/master_sources_pdf/peaasi_ee_vaimse_tervise_hoidmine_8_12_klass.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/c2141f097859/Tunnikava-8-12kl-vaimne-tervis.pdf"
+    },
+    {
+      "document_id": "vordoigusvolinik_voliniku_poole_poordumiste_statistika_2021",
+      "title": "Voliniku poole pöördumiste statistika 2021",
+      "collection_id": "national_guidelines",
+      "sha256": "8658477e608ab59b565196c5cd0c9fa6889572076b4db1fac78fe193872bda85",
+      "local_files": [
+        "RAG/master_sources_pdf/vordoigusvolinik_voliniku_poole_poordumiste_statistika_2021.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/ea53427eb425/Volinik_2021_ulevaade.pdf"
+    },
+    {
+      "document_id": "vordoigusvolinik_voin_olla_puudega_laste_piltsonastik_puuetest",
+      "title": "Võin olla puudega – laste piltsõnastik puuetest",
+      "collection_id": "national_guidelines",
+      "sha256": "e49ddfa8ea15bd8b6d4cd34e8854ea7d56e793da1de7e4354814646849a2155f",
+      "local_files": [
+        "RAG/master_sources_pdf/vordoigusvolinik_voin_olla_puudega_laste_piltsonastik_puuetest.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/6d4e944a9dcc/piltsonastiku-veebiversioon2.pdf"
+    },
+    {
+      "document_id": "oiguskantsler_vordne_kohtlemine",
+      "title": "Võrdne kohtlemine",
+      "collection_id": "national_guidelines",
+      "sha256": "388bcd8b11b1b849fedeb6a19f521ab2a58b2d684b63c551a056937e5a8ec959",
+      "local_files": [
+        "RAG/master_sources_pdf/oiguskantsler_vordne_kohtlemine.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/9a73aaa83738/vordne-kohtlemine.pdf"
+    },
+    {
+      "document_id": "vordoigusvolinik_vordoiguslikkus_eestis_2024",
+      "title": "Võrdõiguslikkus Eestis 2024",
+      "collection_id": "national_guidelines",
+      "sha256": "2c85c0cc6f138e52f365c63338e7f986fc18982587cc438dfb4e786a23f096a8",
+      "local_files": [
+        "RAG/master_sources_pdf/vordoigusvolinik_vordoiguslikkus_eestis_2024.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/4e8030235808/Võrdõigusvoliniku-aastaraamat-2024_1.pdf"
+    },
+    {
+      "document_id": "sotsiaalministeerium_vagivald_ja_naiste_tervis",
+      "title": "Vägivald ja naiste tervis",
+      "collection_id": "national_guidelines",
+      "sha256": "9daf55037c0f098e02c152246936d92b54849b1098cd9964d18b6c37cce02d51",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalministeerium_vagivald_ja_naiste_tervis.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/803e410e83e2/vagivald_ja_naiste_tervis_1_.pdf"
+    },
+    {
+      "document_id": "sotsiaalministeerium_vagivald_lahisuhtes_selle_pohjused_ja_voimalikud_lahendused",
+      "title": "Vägivald lähisuhtes: selle põhjused ja võimalikud lahendused",
+      "collection_id": "national_guidelines",
+      "sha256": "fb1656c3ce88830ed3d409335332dbc33310e5a409bcb4c30999c86f71320ed6",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalministeerium_vagivald_lahisuhtes_selle_pohjused_ja_voimalikud_lahendused.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/2bacf16f3475/allaste_vagivald_lahisuhtes_biin_retsensioon_1_.pdf"
+    },
+    {
+      "document_id": "sotsiaalministeerium_vagivalla_moju_naiste_tervisele",
+      "title": "Vägivalla mõju naiste tervisele",
+      "collection_id": "national_guidelines",
+      "sha256": "9e1759d62699d05b5a871da02d9cc074eaa81db86b964b88f9ecbce9fc0bc7ab",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalministeerium_vagivalla_moju_naiste_tervisele.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/31a1a89ae23c/meedikute_kysitlus_1_.pdf"
+    },
+    {
+      "document_id": "harno_opilase_individuaalsuse_arvestamine_voimetekohase_oppe_tagam",
+      "title": "Õpilase individuaalsuse arvestamine võimetekohase õppe tagamisel",
+      "collection_id": "national_guidelines",
+      "sha256": "f8592e901ea99670d15669ec0c84563234934958a19fda1c4580bd55314bd65d",
+      "local_files": [
+        "RAG/master_sources_pdf/harno_opilase_individuaalsuse_arvestamine_voimetekohase_oppe_tagam.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/8bf0f02a4f1f/Individuaalsuse arvestamine jõukohase õppe tagamisel 22.pdf"
+    },
+    {
+      "document_id": "harno_opilase_toetamine_koolis_varasem_versioon",
+      "title": "Õpilase toetamine koolis (varasem versioon)",
+      "collection_id": "national_guidelines",
+      "sha256": "4cd50cad848a79f55137e31787ad8f43397b961637817b1c6c1ba713db15f213",
+      "local_files": [
+        "RAG/master_sources_pdf/harno_opilase_toetamine_koolis_varasem_versioon.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/01946e7a9497/Juhendmaterjal_6pilase_toetamiseks_22.pdf"
+    },
+    {
+      "document_id": "harno_opitulemuste_vahendamine_asendamine_ja_kohustusliku_oppeaine",
+      "title": "Õpitulemuste vähendamine, asendamine ja kohustusliku õppeaine õppimisest vabastamine",
+      "collection_id": "national_guidelines",
+      "sha256": "3c36e2568123e883308855fa62047399b863006d0745db2dcaaab6200c21d172",
+      "local_files": [
+        "lisatest/V2hendamine_2022.pdf",
+        "RAG/master_sources_pdf/harno_opitulemuste_vahendamine_asendamine_ja_kohustusliku_oppeaine.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/49d1d922a0e5/V2hendamine_2022.pdf"
+    },
+    {
+      "document_id": "harno_oppekeelest_erineva_emakeelega_opilane_koolis",
+      "title": "Õppekeelest erineva emakeelega õpilane koolis",
+      "collection_id": "national_guidelines",
+      "sha256": "215bd2c8faf12815e8f6ecb79b80963583d9caa06c89648f7a93373901448c92",
+      "local_files": [
+        "RAG/master_sources_pdf/harno_oppekeelest_erineva_emakeelega_opilane_koolis.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/802c57cac925/252_Soll_2011_Oppekeelest_erineva_emakeelega_opilane_koolis.pdf"
+    },
+    {
+      "document_id": "riigikontroll_ulevaade_erihoolekandeteenuste_kattesaadavusest",
+      "title": "Ülevaade erihoolekandeteenuste kättesaadavusest",
+      "collection_id": "national_guidelines",
+      "sha256": "79b9d9b181f27d664ef42c821eaa425f0cc17c9ca9cd39bcd4c697848a0862c3",
+      "local_files": [
+        "RAG/master_sources_pdf/riigikontroll_ulevaade_erihoolekandeteenuste_kattesaadavusest.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/5f5cdb800261/19828_RKTR_6603_2-1.4_2349_002-1.pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_rus",
+      "title": "Кризисные центры помощи жертвам сексуального насилия (RUS)",
+      "collection_id": "national_guidelines",
+      "sha256": "b2bcf46a4ad02c53ecdc17ef5d6f187d0be3d74e2fe0a0dfdb09aac281937631",
+      "local_files": [
+        "RAG/server_repair_2026-08-14/ocr/sotsiaalkindlustusamet_rus.ocr.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/bf87992467e0/versions/dd444c343ca04f118b5769d0e3fdfbd2/Ohvriabi infovoldik SAK RUS+bleed3mm.pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_ua",
+      "title": "Кризові центри допомоги жертвам сексуального насильства (UA)",
+      "collection_id": "national_guidelines",
+      "sha256": "e6d93f0a6c9a6dbc07ef97f9b66879fe3fd33f4813c28762e4da8494e6e479ec",
+      "local_files": [
+        "RAG/server_repair_2026-08-14/ocr/sotsiaalkindlustusamet_ua.ocr.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/c02b7ebcc6d4/versions/bf4e00928f934c9899d4875d28c227b7/Ohvriabi infovoldik SAK UA+bleed3mm.pdf"
+    },
+    {
+      "document_id": "lastekaitse_liit_mina_olen_enda_oma_juhendmaterjal_opetajale_ja_lapsevanemale",
+      "title": "“Mina olen enda oma” juhendmaterjal õpetajale ja lapsevanemale",
+      "collection_id": "organization_guidelines",
+      "sha256": "3407a555891615835cca88480b79f1aa8a255d97e3d5339108dfa72900c7cfb5",
+      "local_files": [
+        "RAG/master_sources_pdf/lastekaitse_liit_mina_olen_enda_oma_juhendmaterjal_opetajale_ja_lapsevanemale.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/5ee0a0eba987/juhendmaterial.pdf"
+    },
+    {
+      "document_id": "epikoda_giidi_too_kasiraamat_pohimotted_ja_soovitused",
+      "title": "Giidi töö käsiraamat – põhimõtted ja soovitused",
+      "collection_id": "organization_guidelines",
+      "sha256": "06e81616249d8a141f7071295550cdba839da5130b8ed209b0f7462aaebf48ec",
+      "local_files": [
+        "RAG/master_sources_pdf/epikoda_giidi_too_kasiraamat_pohimotted_ja_soovitused.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/3f9c973c8be9/Giidi-too-kasiraamat-–pohimotted-ja-soovitused-2025.pdf"
+    },
+    {
+      "document_id": "astangu_hindamisvahendi_kasiraamat",
+      "title": "Hindamisvahendi käsiraamat",
+      "collection_id": "organization_guidelines",
+      "sha256": "ea73380b77bf909a74cad63d3051bd7ffb90c4ccb054305991004b4645f218de",
+      "local_files": [
+        "RAG/master_sources_pdf/astangu_hindamisvahendi_kasiraamat.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/1fc22ea67389/Hindamisvahendi käsiraamat.pdf"
+    },
+    {
+      "document_id": "vordoigusvolinik_juhendmaterjal_karjaarispetsialistidele",
+      "title": "Juhendmaterjal karjäärispetsialistidele",
+      "collection_id": "organization_guidelines",
+      "sha256": "2010313af549b1679cd6559eb044af1be3dfd49fa975d3574507e2292c7773fa",
+      "local_files": [
+        "RAG/master_sources_pdf/vordoigusvolinik_juhendmaterjal_karjaarispetsialistidele.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/2030e052369f/BREAK-KARJÄÄRISPETS-44lk_A4_EST.pdf"
+    },
+    {
+      "document_id": "lastekaitse_liit_lapse_osalusoiguse_rakendamise_juhend",
+      "title": "Lapse osalusõiguse rakendamise juhend",
+      "collection_id": "organization_guidelines",
+      "sha256": "a912217c46a2d21b873afb851ac7271c2832bbd3293820b132c4f3c53e046043",
+      "local_files": [
+        "RAG/master_sources_pdf/lastekaitse_liit_lapse_osalusoiguse_rakendamise_juhend.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/c9251cc0a60c/Lapse_osalusoiguse_rakendamise_juhend_2025.pdf"
+    },
+    {
+      "document_id": "tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega",
+      "title": "TÖÖLEHT: Abiküsimused vestluseks algkoolilapsega",
+      "collection_id": "organization_guidelines",
+      "sha256": "e45924e05c1c71324f8def556ba3fe5db00e93a6baceb4fd05698e3dca0319a2",
+      "local_files": [
+        "lisatest/Tark_Vanem_tooleht_abikysimused_vestluseks_algkoolilapsega.pdf",
+        "RAG/master_sources_pdf/tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/7ebd7dbf6a35/Tark_Vanem_tooleht_abikysimused_vestluseks_algkoolilapsega.pdf"
+    },
+    {
+      "document_id": "tarkvanem_tooleht_abikusimused_vestluseks_lasteaialapsega",
+      "title": "TÖÖLEHT: Abiküsimused vestluseks lasteaialapsega",
+      "collection_id": "organization_guidelines",
+      "sha256": "73bcc8e03aaeaaccfd517aaabb40018b38d58b5539a3f47a34659d4e3e56c1c7",
+      "local_files": [
+        "RAG/master_sources_pdf/tarkvanem_tooleht_abikusimused_vestluseks_lasteaialapsega.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/bb340509a65c/Tark_Vanem_tooleht_abikysimused_vestluseks_lasteaialapsega.pdf"
+    },
+    {
+      "document_id": "tarkvanem_tooleht_abikusimused_vestluseks_teismelisega",
+      "title": "TÖÖLEHT: Abiküsimused vestluseks teismelisega",
+      "collection_id": "organization_guidelines",
+      "sha256": "0535e616cc7a690f24eb0e8f11cd4de8de27dc29a1c3c07fa11edb7977b4f43d",
+      "local_files": [
+        "RAG/master_sources_pdf/tarkvanem_tooleht_abikusimused_vestluseks_teismelisega.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/296c95b5d6ce/Tark_Vanem_tooleht_abikysimused_vestluseks_teismelisega.pdf"
+    },
+    {
+      "document_id": "tarkvanem_tooleht_kuidas_anda_lapsele_korraldusi",
+      "title": "TÖÖLEHT: Kuidas anda lapsele korraldusi?",
+      "collection_id": "organization_guidelines",
+      "sha256": "001b2e9c089e70de4f209914c7d3315ce2d60cd84260e56b2ff777bdebd31c96",
+      "local_files": [
+        "RAG/master_sources_pdf/tarkvanem_tooleht_kuidas_anda_lapsele_korraldusi.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/7e4f9464a45c/Tark_Vanem_tooleht_kuidas_anda_lapsele_korraldusi.pdf"
+    },
+    {
+      "document_id": "tarkvanem_tooleht_kuidas_sa_ennast_tunned",
+      "title": "TÖÖLEHT: Kuidas sa ennast tunned?",
+      "collection_id": "organization_guidelines",
+      "sha256": "b016a8aea839b9065701820dc6fae5246e186a890bc4da29bc9abd12d4bd2583",
+      "local_files": [
+        "RAG/master_sources_pdf/tarkvanem_tooleht_kuidas_sa_ennast_tunned.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/8d21defd01ca/Tark_Vanem_tooleht_kuidas_sa_ennast_tunned.pdf"
+    },
+    {
+      "document_id": "tarkvanem_tooleht_lapse_tunnustamine",
+      "title": "TÖÖLEHT: Lapse tunnustamine",
+      "collection_id": "organization_guidelines",
+      "sha256": "0cabdfea2d46093e962149cf2909c07a2f2f9833baa9eb3293558006dfbcd201",
+      "local_files": [
+        "RAG/master_sources_pdf/tarkvanem_tooleht_lapse_tunnustamine.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/a3a2fbdf0eff/Tark_Vanem_tooleht_lapse_tunnustamine.pdf"
+    },
+    {
+      "document_id": "tarkvanem_tooleht_marka_ja_tunnusta_positiivset_kaitumist",
+      "title": "TÖÖLEHT: Märka ja tunnusta positiivset käitumist",
+      "collection_id": "organization_guidelines",
+      "sha256": "61bc3ecead69d22bbc40b739d0297bf06ab2da1d224fae2efb382ddee131f0a4",
+      "local_files": [
+        "RAG/master_sources_pdf/tarkvanem_tooleht_marka_ja_tunnusta_positiivset_kaitumist.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/410bc8b58dfb/Tark_Vanem_tooleht_marka_ja_tunnusta_positiivset_kaitumist.pdf"
+    },
+    {
+      "document_id": "tarkvanem_tooleht_rahunemispaus",
+      "title": "TÖÖLEHT: Rahunemispaus",
+      "collection_id": "organization_guidelines",
+      "sha256": "d439ba5b560595ab15f43eff4839f03862ee6c8ec7df1a58aa10c5e2d8f99cdb",
+      "local_files": [
+        "RAG/server_repair_2026-08-14/ocr/tarkvanem_tooleht_rahunemispaus.ocr.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/38181563cf89/versions/bc9b278e0b54424eb7451fb20defab7e/Tooleht_rahunemispaus.pdf"
+    },
+    {
+      "document_id": "tarkvanem_tooleht_suhtekonto",
+      "title": "TÖÖLEHT: Suhtekonto",
+      "collection_id": "organization_guidelines",
+      "sha256": "dde3f058a75ec663d1f322e0c2bd04855c149ce26e9810eb4435a3ac9c8735e7",
+      "local_files": [
+        "RAG/master_sources_pdf/tarkvanem_tooleht_suhtekonto.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/e80b70d41f05/Suhtekonto_tooleht.pdf"
+    },
+    {
+      "document_id": "tarkvanem_tooleht_tugevate_tunnetega_toimetulek",
+      "title": "TÖÖLEHT: Tugevate tunnetega toimetulek",
+      "collection_id": "organization_guidelines",
+      "sha256": "15b4fd3c9a68ffba48f4206243bf24f1802f8c0a4652bd45b6f3f3d5b83df3a4",
+      "local_files": [
+        "RAG/master_sources_pdf/tarkvanem_tooleht_tugevate_tunnetega_toimetulek.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/d625146e3f4d/Tark_Vanem_tooleht_tugevate_tunnetega_toimetulek.pdf"
+    },
+    {
+      "document_id": "astangu_erivajaduste_alase_teadlikkuse_tostmine",
+      "title": "Erivajaduste alase teadlikkuse tõstmine",
+      "collection_id": "organization_materials",
+      "sha256": "bcafc7d41fe377d12ebaab46ca8da1f51145f1a4e10d33ac4067e74ea685615b",
+      "local_files": [
+        "RAG/master_sources_pdf/astangu_erivajaduste_alase_teadlikkuse_tostmine.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/18da621be86a/Töövahend_2_moodul_1_Erivajaduste_alase_teadlikkuse_tõstmine.pdf"
+    },
+    {
+      "document_id": "epikoda_heade_praktikate_kogumik",
+      "title": "Heade praktikate kogumik",
+      "collection_id": "organization_materials",
+      "sha256": "6038f88a7e3256e3a98e2321127e4404ca4391e6d1e0fe7859340bbfe2f331da",
+      "local_files": [
+        "RAG/master_sources_pdf/epikoda_heade_praktikate_kogumik.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/9f3a240d02dd/Heade_praktikate_kogumikEPIK2012.pdf"
+    },
+    {
+      "document_id": "tarkvanem_infomaterjal_beebivanematele_kodu_kohandamiseks_lapse_esimes",
+      "title": "Infomaterjal beebivanematele kodu kohandamiseks lapse esimesel eluaastal",
+      "collection_id": "organization_materials",
+      "sha256": "b4e936ef149255e9c59273ae83920994472b8187f59c408922212587e05b55fd",
+      "local_files": [
+        "RAG/master_sources_pdf/tarkvanem_infomaterjal_beebivanematele_kodu_kohandamiseks_lapse_esimes.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/0327b89444a8/infomaterjal-beebivanematele-kodu-kohandamiseks-lapse-esimesel-eluaastal.pdf"
+    },
+    {
+      "document_id": "astangu_kriisi_ennetamine",
+      "title": "Kriisi ennetamine",
+      "collection_id": "organization_materials",
+      "sha256": "e8238f5e40f494a22358a2024997b6dcf6194d997711f4676ee0012c226b2204",
+      "local_files": [
+        "RAG/master_sources_pdf/astangu_kriisi_ennetamine.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/bbfd2247959e/Töövahend_5_Moodul-1-Kriisi_ennetamine.pdf"
+    },
+    {
+      "document_id": "tarkvanem_kuidas_margata_et_noor_tarvitab_e_sigaretti_nikotiinipatja_v",
+      "title": "Kuidas märgata, et noor tarvitab e-sigaretti, nikotiinipatja või huuletubakat?",
+      "collection_id": "organization_materials",
+      "sha256": "180353ed44482677514d203d3da716abc2bf446772b28e2b9d7f0bc1a0f1af63",
+      "local_files": [
+        "RAG/master_sources_pdf/tarkvanem_kuidas_margata_et_noor_tarvitab_e_sigaretti_nikotiinipatja_v.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/07de06d784f5/TAI_Kuidas_margata_e-sigareti_tarvitamist_lapsevanemad.pdf"
+    },
+    {
+      "document_id": "lastekaitse_liit_lapse_osalemise_pohimotted",
+      "title": "Lapse osalemise põhimõtted",
+      "collection_id": "organization_materials",
+      "sha256": "ca7a80e2f2f66ca7ec3f1941a53d6dd4e7bc411f979ee7ae1b5056864002ea66",
+      "local_files": [
+        "RAG/master_sources_pdf/lastekaitse_liit_lapse_osalemise_pohimotted.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/10617e50f881/Lapse-osalemise-pohimotted-A1_5mm-bleed.pdf"
+    },
+    {
+      "document_id": "astangu_metoodiline_abimaterjal_kutsealase_ettevalmistuse_valjaoppe_",
+      "title": "Metoodiline abimaterjal kutsealase ettevalmistuse, väljaõppe ja töölerakendumise toetamiseks coaching’u kaudu",
+      "collection_id": "organization_materials",
+      "sha256": "fbeef7f4b61dd477be1b46176b5fcd29f062c51b8b3834923b1786af16ab5c8b",
+      "local_files": [
+        "RAG/master_sources_pdf/astangu_metoodiline_abimaterjal_kutsealase_ettevalmistuse_valjaoppe_.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/a049dd6b972b/Töövahend_3___Väljaõpe_ja_töölerakendumine_läbi_coachingu.pdf"
+    },
+    {
+      "document_id": "lastekaitse_liit_mul_on_oigus_2025",
+      "title": "Mul on õigus 2025",
+      "collection_id": "organization_materials",
+      "sha256": "1a62155db4ccad2952c581c88e1f0968d0ad4f9795982993a09b3d2e8db8f985",
+      "local_files": [
+        "RAG/master_sources_pdf/lastekaitse_liit_mul_on_oigus_2025.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/c1fa7854a026/Mul-on-oigus-2025.pdf"
+    },
+    {
+      "document_id": "peaasi_raagime_lastest_logiraamat_tooks_peredega_0_1_aastane_laps",
+      "title": "Räägime Lastest logiraamat tööks peredega: 0–1-aastane laps",
+      "collection_id": "organization_materials",
+      "sha256": "db5b37e72d1b7a2843287b3499e83d331ded97b51f1b1fd90f6fec314a554256",
+      "local_files": [
+        "RAG/master_sources_pdf/peaasi_raagime_lastest_logiraamat_tooks_peredega_0_1_aastane_laps.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/ac88cb8755cc/7.-Logiraamat-spetsialistile_0-1-aastane-laps-TAIDETAV.pdf"
+    },
+    {
+      "document_id": "peaasi_raagime_lastest_logiraamat_tooks_peredega_1_5_aastane_laps",
+      "title": "Räägime Lastest logiraamat tööks peredega: 1–5-aastane laps",
+      "collection_id": "organization_materials",
+      "sha256": "14e6f99d883c431c7ed94227954c1547f27bfab19876e626c337226ef72c3a8a",
+      "local_files": [
+        "RAG/master_sources_pdf/peaasi_raagime_lastest_logiraamat_tooks_peredega_1_5_aastane_laps.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/5ab6d648be9c/8.-Logiraamat-spetsialistile_1–5-aastane-laps.pdf"
+    },
+    {
+      "document_id": "peaasi_raagime_lastest_logiraamat_tooks_peredega_5_12_aastane_laps",
+      "title": "Räägime Lastest logiraamat tööks peredega: 5–12-aastane laps",
+      "collection_id": "organization_materials",
+      "sha256": "953fb2a3e5cfee0836b353f5c74781255a578661a71bc1dab6617c4074c1bd39",
+      "local_files": [
+        "RAG/master_sources_pdf/peaasi_raagime_lastest_logiraamat_tooks_peredega_5_12_aastane_laps.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/86cfc9f3d6e9/9.-Logiraamat-spetsialistile_5–12-aastane-laps-TAIDETAV.pdf"
+    },
+    {
+      "document_id": "peaasi_raagime_lastest_logiraamat_vanematele_0_1_aastane_laps",
+      "title": "Räägime Lastest logiraamat vanematele: 0–1-aastane laps",
+      "collection_id": "organization_materials",
+      "sha256": "9e5cba381b196b686ca7ea0a28c30160b3e2cb877c33e3e98e4298ff91f76c71",
+      "local_files": [
+        "RAG/master_sources_pdf/peaasi_raagime_lastest_logiraamat_vanematele_0_1_aastane_laps.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/d5624cb1a960/2.-Logiraamat-vanematele_0-1-aastane-laps-TAIDETAV.pdf"
+    },
+    {
+      "document_id": "peaasi_raagime_lastest_logiraamat_vanematele_1_5_aastane_laps",
+      "title": "Räägime Lastest logiraamat vanematele: 1–5-aastane laps",
+      "collection_id": "organization_materials",
+      "sha256": "6c4781ee5960b116bebaddc21c57fca7ff22c45e830a26bd9a81cefd1f73d672",
+      "local_files": [
+        "RAG/master_sources_pdf/peaasi_raagime_lastest_logiraamat_vanematele_1_5_aastane_laps.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/2c14d93ee9c2/3.-Logiraamat-vanematele_1-5-aastane-laps-TAIDETAV.pdf"
+    },
+    {
+      "document_id": "peaasi_raagime_lastest_logiraamat_vanematele_12_18_aastane_noor",
+      "title": "Räägime Lastest logiraamat vanematele: 12–18-aastane noor",
+      "collection_id": "organization_materials",
+      "sha256": "7d5433b126598f00dcc25b1e0ecf69829baa826d25c89e3e82a5b00965d9318a",
+      "local_files": [
+        "RAG/master_sources_pdf/peaasi_raagime_lastest_logiraamat_vanematele_12_18_aastane_noor.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/6213aa3eb5ea/5.-Logiraamat-vanematele_12-18-aastane-laps-TAIDETAV.pdf"
+    },
+    {
+      "document_id": "peaasi_raagime_lastest_logiraamat_vanematele_5_12_aastane_laps",
+      "title": "Räägime Lastest logiraamat vanematele: 5–12-aastane laps",
+      "collection_id": "organization_materials",
+      "sha256": "ca3d30e2a1122722a7ac03d20186c58f45ce88e312008a4be3103873624faed0",
+      "local_files": [
+        "RAG/master_sources_pdf/peaasi_raagime_lastest_logiraamat_vanematele_5_12_aastane_laps.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/801315efeb1a/4.-Logiraamat-vanematele_5-12-aastane-laps-TAIDETAV.pdf"
+    },
+    {
+      "document_id": "peaasi_raagime_lastest_logiraamat_vanematele_lapseootel_pere",
+      "title": "Räägime Lastest logiraamat vanematele: lapseootel pere",
+      "collection_id": "organization_materials",
+      "sha256": "a94fb4c51c3e66c28fce0b47eaae55b0f5c90588e9ee4c0eb6ac8914990cdb89",
+      "local_files": [
+        "RAG/master_sources_pdf/peaasi_raagime_lastest_logiraamat_vanematele_lapseootel_pere.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/9649797efb6b/1.-Logiraamat-vanematele_lapseootel-pere-TAIDETAV.pdf"
+    },
+    {
+      "document_id": "peaasi_raagime_lastest_praktikutele_1_5_aastaste_lastega_perede_nou",
+      "title": "Räägime Lastest praktikutele: 1–5-aastaste lastega perede nõustamiseks",
+      "collection_id": "organization_materials",
+      "sha256": "25bd9ecad9aa05ba982a403e739bcd5f19f31ef50cf157308826fc94229b68b4",
+      "local_files": [
+        "RAG/master_sources_pdf/peaasi_raagime_lastest_praktikutele_1_5_aastaste_lastega_perede_nou.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/d61928ece323/8.-Logiraamat-praktikutele-vanus-1-5.docx.pdf"
+    },
+    {
+      "document_id": "peaasi_raagime_lastest_praktikutele_12_18_aastaste_lastega_perede_n",
+      "title": "Räägime Lastest praktikutele: 12–18-aastaste lastega perede nõustamiseks",
+      "collection_id": "organization_materials",
+      "sha256": "4e403ff0dfc6db6129a75885aa9ac8351554dce7239beb35b14d720cf6b9ee90",
+      "local_files": [
+        "RAG/master_sources_pdf/peaasi_raagime_lastest_praktikutele_12_18_aastaste_lastega_perede_n.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/ae74708417d5/10.-Logiraamat-praktikutele-vanus-12-18.docx.pdf"
+    },
+    {
+      "document_id": "astangu_supervisioon",
+      "title": "Supervisioon",
+      "collection_id": "organization_materials",
+      "sha256": "138cc8526a9cf76b06fc1512cd1573909c8d20c98e03b01f80ffe78fc9880579",
+      "local_files": [
+        "RAG/master_sources_pdf/astangu_supervisioon.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/47b952a7b0e2/Töövahend_4_moodul_1_Supervisioon.pdf"
+    },
+    {
+      "document_id": "tarkvanem_sunnitusjargne_depressioon",
+      "title": "Sünnitusjärgne depressioon",
+      "collection_id": "organization_materials",
+      "sha256": "0fdb50283bb0b819912df32c4dddf68e9fe82dbf5bb01d89ebab7f060e184e5b",
+      "local_files": [
+        "RAG/master_sources_pdf/tarkvanem_sunnitusjargne_depressioon.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/f4b93554507f/Sunnitusjargne_depressioon_Gerli_Rand_voldik_99x210_veebi.pdf"
+    },
+    {
+      "document_id": "epikoda_teekond_erilise_lapse_korval",
+      "title": "Teekond erilise lapse kõrval",
+      "collection_id": "organization_materials",
+      "sha256": "b68defe06c878647094a4a3f417301edacf0e8e27ea64daefe36c2ec27551ba6",
+      "local_files": [
+        "RAG/master_sources_pdf/epikoda_teekond_erilise_lapse_korval.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/acd11f0fbbd3/epik_kasiraamat_2019-est-koos-low.pdf"
+    },
+    {
+      "document_id": "astangu_tooandjate_noustamine_ja_toetamine",
+      "title": "Tööandjate nõustamine ja toetamine",
+      "collection_id": "organization_materials",
+      "sha256": "6d7f1377093a963d9b4205c47d7a66bbd86a395c577fd9e347555551fb913c87",
+      "local_files": [
+        "RAG/master_sources_pdf/astangu_tooandjate_noustamine_ja_toetamine.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/2ac51e8d87ab/Töövahend_6_Moodul_2_Tööandjate_nõustamine_ja_toetamine.pdf"
+    },
+    {
+      "document_id": "tarkvanem_vaikelastega_perede_koduohutuse_hindamise_ankeet_kodukulastu",
+      "title": "Väikelastega perede koduohutuse hindamise ankeet kodukülastusi läbiviivale spetsialistile",
+      "collection_id": "organization_materials",
+      "sha256": "43627e57421fd8bc35c00f806a1a997e5af398a9a8783f5cc14235029e518c25",
+      "local_files": [
+        "RAG/master_sources_pdf/tarkvanem_vaikelastega_perede_koduohutuse_hindamise_ankeet_kodukulastu.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/34448b44f975/2023-vaikelaste-koduohutuse-hindmise-ankeet-kodukulastusi-labiviivale-spetsialistile.pdf"
+    },
+    {
+      "document_id": "epikoda_uro_puuetega_inimeste_oiguste_konventsioon_ja_fakultatiivpro",
+      "title": "ÜRO puuetega inimeste õiguste konventsioon ja fakultatiivprotokoll",
+      "collection_id": "organization_materials",
+      "sha256": "99e3c82de465076708a65b6c31e74f051046023137a9f07c6a0c3c44bdd0a1eb",
+      "local_files": [
+        "RAG/master_sources_pdf/epikoda_uro_puuetega_inimeste_oiguste_konventsioon_ja_fakultatiivpro.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/eff4dab2ee81/raamat_veeb.pdf"
+    },
+    {
+      "document_id": "epikoda_epikoja_arengukava_2025_2030",
+      "title": "EPIKoja arengukava 2025–2030",
+      "collection_id": "policy_analyses",
+      "sha256": "e3d7e30a0b5672b02f35241a9616158f54d61f0bdcad4052a74bb59665450f60",
+      "local_files": [
+        "RAG/master_sources_pdf/epikoda_epikoja_arengukava_2025_2030.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/7ebf8ae8493f/EPIKoja-arengukava-2025-2030.pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_perevagivalla_toimepanijatele_suunatud_programmide_euroopa_s",
+      "title": "Perevägivalla toimepanijatele suunatud programmide Euroopa standardid",
+      "collection_id": "policy_analyses",
+      "sha256": "57fe80902048b35fa5a926b53bd45268f2cffed70e0d72ef42aa97da2433b714",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalkindlustusamet_perevagivalla_toimepanijatele_suunatud_programmide_euroopa_s.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/bd1c0fdb0a2c/Perevagivalla toimepanijatele suunatud programmide Euroopa standardid.pdf"
+    },
+    {
+      "document_id": "paasteamet_paastevorgustiku_strateegia_aastani_2025",
+      "title": "Päästevõrgustiku strateegia aastani 2025",
+      "collection_id": "policy_analyses",
+      "sha256": "d8094ac8460ccda66fd6ae43bdc6150f1e956f91b3ccb2e10576acf7407a3a8b",
+      "local_files": [
+        "RAG/master_sources_pdf/paasteamet_paastevorgustiku_strateegia_aastani_2025.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/bf25ebc72494/paastevorgustiku-strateegia-aastani-2025-est.pdf"
+    },
+    {
+      "document_id": "sotsiaalministeerium_sotsiaalhoolekande_programm_2024_2027",
+      "title": "Sotsiaalhoolekande programm 2024–2027",
+      "collection_id": "policy_analyses",
+      "sha256": "0f594b033f006a832993f50cee5be180cf07f40af40ca6778fc80b740a350980",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalministeerium_sotsiaalhoolekande_programm_2024_2027.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/5550d79a9edc/Sotsiaalhoolekande programm 2024-2027 (1).pdf"
+    },
+    {
+      "document_id": "tootukassa_ska_sotsiaalministeerium_star_strateegia_2026_2030",
+      "title": "STAR strateegia 2026–2030",
+      "collection_id": "policy_analyses",
+      "sha256": "ad5a86fdcd8d6cc28e5e09122fe5d3bbf8332b2d97923fa8d72580555c20bdd8",
+      "local_files": [
+        "RAG/master_sources_pdf/tootukassa_ska_sotsiaalministeerium_star_strateegia_2026_2030.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/f4b267103d3a/Lisa 1_Sotsiaalteenuste ja -toetuste andmeregistri strateegia aastateks 2026-2030.pdf"
+    },
+    {
+      "document_id": "tootukassa_ska_sotsiaalministeerium_star_strateegia_tegevused_2026_2029",
+      "title": "STAR strateegia tegevused 2026–2029",
+      "collection_id": "policy_analyses",
+      "sha256": "c86811b344d76e17a3d2f2c0baaa3860d255995645468f6ebfa5f5a9d1fe726e",
+      "local_files": [
+        "RAG/master_sources_pdf/tootukassa_ska_sotsiaalministeerium_star_strateegia_tegevused_2026_2029.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/240877f7c382/Lisa 3_STAR strateegia tegevused_0.pdf"
+    },
+    {
+      "document_id": "tai_tai_arengukava_2025_2028",
+      "title": "TAI arengukava 2025–2028",
+      "collection_id": "policy_analyses",
+      "sha256": "60a83a8a211e775e3579110956e64e231f733de705cfc6fce1c418e0fb3d5735",
+      "local_files": [
+        "RAG/master_sources_pdf/tai_tai_arengukava_2025_2028.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/faaf15004c6f/tai_arengukava_2025_13.2.pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_eesti_elanikkonna_teadlikkuse_uuring_soopohise_vagivalla_ja_",
+      "title": "Eesti elanikkonna teadlikkuse uuring soopõhise vägivalla ja inimkaubanduse valdkonnas",
+      "collection_id": "research_reports",
+      "sha256": "3d16dda85a4c9e64b6d058cc5d9bd3cad9a54bec8f1dffbf24f85cae2edeb407",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalkindlustusamet_eesti_elanikkonna_teadlikkuse_uuring_soopohise_vagivalla_ja_.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/619ccc148b9d/Eesti elanikkonna teadlikkuse uuring soopõhise vägivalla ja inimkaubanduse valdkonnas.pdf"
+    },
+    {
+      "document_id": "tai_eesti_laste_vaimse_tervise_uuring",
+      "title": "Eesti laste vaimse tervise uuring",
+      "collection_id": "research_reports",
+      "sha256": "aded606b2ef6f5f574876a7c5050f252ac8b6bb956a7ab1a17e8597620d67f49",
+      "local_files": [
+        "RAG/master_sources_pdf/tai_eesti_laste_vaimse_tervise_uuring.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/3a17c013450a/lvtu_lopparuanne_16mai2025.pdf"
+    },
+    {
+      "document_id": "tai_eesti_taiskasvanud_rahvastiku_uimastite_tarvitamise_uuring_2",
+      "title": "Eesti täiskasvanud rahvastiku uimastite tarvitamise uuring 2023",
+      "collection_id": "research_reports",
+      "sha256": "f18c37071ba9894bca399125514d602ea3e45312a881035cd8ca606bb30f47fe",
+      "local_files": [
+        "RAG/master_sources_pdf/tai_eesti_taiskasvanud_rahvastiku_uimastite_tarvitamise_uuring_2.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/177ee214433d/tuku_2023.pdf"
+    },
+    {
+      "document_id": "paasteamet_ehituslike_tuleohutusnouete_kokkuvote",
+      "title": "Ehituslike tuleohutusnõuete kokkuvõte",
+      "collection_id": "research_reports",
+      "sha256": "231d778a92d010e41d6cdc9af935931e72dee8ccc12af9dc3e8d9726d408f2ab",
+      "local_files": [
+        "RAG/master_sources_pdf/paasteamet_ehituslike_tuleohutusnouete_kokkuvote.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/07ecfb135212/est-rgb.pdf"
+    },
+    {
+      "document_id": "paasteamet_enesekontrolli_tuleohutusaruanne",
+      "title": "Enesekontrolli tuleohutusaruanne",
+      "collection_id": "research_reports",
+      "sha256": "77c161e0b044f9f8fd33a56ce55e08b448303a4d2326947a0e87bbf905f51c30",
+      "local_files": [
+        "RAG/master_sources_pdf/paasteamet_enesekontrolli_tuleohutusaruanne.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/e60ebabed440/1539949760_-.pdf"
+    },
+    {
+      "document_id": "terviseamet_kokkuvote_2022_aasta_kohta_haridus_ja_sotsiaalasutuste_tervi",
+      "title": "Kokkuvõte 2022. aasta kohta: haridus- ja sotsiaalasutuste tervisekaitse järelevalve",
+      "collection_id": "research_reports",
+      "sha256": "cfb555e888000293983356a093181710e09387e8c155b50de308e5a107303280",
+      "local_files": [
+        "RAG/master_sources_pdf/terviseamet_kokkuvote_2022_aasta_kohta_haridus_ja_sotsiaalasutuste_tervi.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/26441813977f/2022. a kokkuvõte_haridus_sotsiaal_.pdf"
+    },
+    {
+      "document_id": "terviseamet_kokkuvote_2024_aasta_kohta_haridus_ja_sotsiaalasutuste_tervi",
+      "title": "Kokkuvõte 2024. aasta kohta: haridus- ja sotsiaalasutuste tervisekaitse järelevalve",
+      "collection_id": "research_reports",
+      "sha256": "71ebac325dd4a0d5a4de6cb5f734f014ce2afaff52af378bf4509ebc488f74d6",
+      "local_files": [
+        "RAG/master_sources_pdf/terviseamet_kokkuvote_2024_aasta_kohta_haridus_ja_sotsiaalasutuste_tervi.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/06b7d56b0612/2024. a kokkuvõte.pdf"
+    },
+    {
+      "document_id": "harno_kutseoppeasutuste_veebilehtede_ja_haridusinfoportaali_analuu",
+      "title": "Kutseõppeasutuste veebilehtede ja haridusinfoportaali analüüs",
+      "collection_id": "research_reports",
+      "sha256": "1e3e08a5371ef135930c72bab2341bfbe2fa1c641a56c912772c7afc30c2388b",
+      "local_files": [
+        "RAG/master_sources_pdf/harno_kutseoppeasutuste_veebilehtede_ja_haridusinfoportaali_analuu.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/0edce80174e2/Kutseõppeasutuste veebilehtede ja haridusinfoportaali analüüs.pdf"
+    },
+    {
+      "document_id": "praxis_centar_lapsendamise_ja_hooldusperre_paigutamise_jargne_hindamine_lo",
+      "title": "Lapsendamise ja hooldusperre paigutamise järgne hindamine / lõpparuanne",
+      "collection_id": "research_reports",
+      "sha256": "caa4446b72c83412732bee94ecfeea3c16fb27cedf3711187ce233649d3f7375",
+      "local_files": [
+        "RAG/master_sources_pdf/praxis_centar_lapsendamise_ja_hooldusperre_paigutamise_jargne_hindamine_lo.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/b114d85cfe5d/Lõpparuanne_20.11.20.pdf"
+    },
+    {
+      "document_id": "sotsiaalministeerium_ligipaasetavuse_kulu_tulu_analuus_lopparuanne",
+      "title": "Ligipääsetavuse kulu-tulu analüüs. Lõpparuanne",
+      "collection_id": "research_reports",
+      "sha256": "78c957e0215ecd471cecff3bb358794b2fcbb208e35281be1e87ceee15c16df0",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalministeerium_ligipaasetavuse_kulu_tulu_analuus_lopparuanne.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/ec51185cea67/Ligipääsetavuse kulu-tulu analüüs. Lõpparuanne_0.pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_marac_i_vorgustiku_mudeli_moju_hindamine_loppraport",
+      "title": "MARAC-i võrgustiku mudeli mõju hindamine. Lõppraport",
+      "collection_id": "research_reports",
+      "sha256": "3b671cb0faf3e4e26f342c06178a719280926530372db84c9a1034a0e3110d05",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalkindlustusamet_marac_i_vorgustiku_mudeli_moju_hindamine_loppraport.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/4f7eeca22345/MARACi võrgustiku mudeli mõju hindamine_lõppraport.pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_naiste_tugikeskuste_2021_aasta_kogemusuuringu_aruanne",
+      "title": "Naiste tugikeskuste 2021. aasta kogemusuuringu aruanne",
+      "collection_id": "research_reports",
+      "sha256": "4fc2677131fd4d9e625dd6a53877d696dfc43478efe2f479a2afe23af22ef58c",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalkindlustusamet_naiste_tugikeskuste_2021_aasta_kogemusuuringu_aruanne.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/d33a34792187/ntk_2021_kogemusuuringu_aruanne.pdf"
+    },
+    {
+      "document_id": "epikoda_puudega_inimeste_toimetulek_kriisiajal_miniuuringu_kokkuvote",
+      "title": "Puudega inimeste toimetulek kriisiajal – miniuuringu kokkuvõte",
+      "collection_id": "research_reports",
+      "sha256": "dd3bd44e9051fede91114ee64b4d7510f71ea3b0c3a3bd0e2ede8809c2df48ab",
+      "local_files": [
+        "RAG/master_sources_pdf/epikoda_puudega_inimeste_toimetulek_kriisiajal_miniuuringu_kokkuvote.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/34643e47e379/epikoja-miniuuringu-kokkuvote-september-2020.pdf"
+    },
+    {
+      "document_id": "praxis_centar_puudega_lastega_perede_toimetuleku_ja_vajaduste_uuring",
+      "title": "Puudega lastega perede toimetuleku ja vajaduste uuring",
+      "collection_id": "research_reports",
+      "sha256": "25efef954fcf900a7fa4e79ac4a4310412a2226b31b9e6e0842a8581027477c7",
+      "local_files": [
+        "RAG/master_sources_pdf/praxis_centar_puudega_lastega_perede_toimetuleku_ja_vajaduste_uuring.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/5680f215aab0/2017_Puudega_lastega_perede_toimetuleku_ja_vajaduste_uuring.pdf"
+    },
+    {
+      "document_id": "sotsiaalministeerium_puuetega_inimeste_ja_nende_pereliikmete_hoolduskoormuse_uuri",
+      "title": "Puuetega inimeste ja nende pereliikmete hoolduskoormuse uuring 2009",
+      "collection_id": "research_reports",
+      "sha256": "ec1128b16060cab2ac9ca57a58c1161246075c5d7717bb803bd3b2491def4285",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalministeerium_puuetega_inimeste_ja_nende_pereliikmete_hoolduskoormuse_uuri.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/2ec5098836d3/piu2009_loppraport.pdf"
+    },
+    {
+      "document_id": "sotsiaalkindlustusamet_riskihindamine_lahisuhtevagivalla_juhtumites_tervishoiutoota",
+      "title": "Riskihindamine lähisuhtevägivalla juhtumites – tervishoiutöötajatele",
+      "collection_id": "research_reports",
+      "sha256": "c24060bf164dde711fb604b768da62ccb36820c29a3980bf878a7fd6e4e402e4",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalkindlustusamet_riskihindamine_lahisuhtevagivalla_juhtumites_tervishoiutoota.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/6f4c43b08c90/Riskihindamine lähisuhtevägivalla juhtumites.pdf"
+    },
+    {
+      "document_id": "praxis_centar_ska_ja_kovid_loppraport",
+      "title": "SKA ja KOVid – lõppraport",
+      "collection_id": "research_reports",
+      "sha256": "4a34f1560bbc52d2ff38051d4b0c3de4b9e774acf0ad50ee11a1e981e4479e62",
+      "local_files": [
+        "RAG/master_sources_pdf/praxis_centar_ska_ja_kovid_loppraport.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/6de5eeb8ad1b/2023_SKA ja KOVid_Loppraport_avaldamiseks.pdf"
+    },
+    {
+      "document_id": "sotsiaalministeerium_soolise_vordoiguslikkuse_monitooring_2021_lahisuhtevagivald",
+      "title": "Soolise võrdõiguslikkuse monitooring 2021: Lähisuhtevägivald",
+      "collection_id": "research_reports",
+      "sha256": "60e78fe390a5175b0588041fbea632ac7936ea02fa23030f03c8315ce127dfe9",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalministeerium_soolise_vordoiguslikkuse_monitooring_2021_lahisuhtevagivald.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/40410aa93d42/SVM21. Lähisuhtevägivald.pdf"
+    },
+    {
+      "document_id": "sotsiaalministeerium_transpordi_ja_tehiskeskkonna_ligipaasetavuse_analuus",
+      "title": "Transpordi ja tehiskeskkonna ligipääsetavuse analüüs",
+      "collection_id": "research_reports",
+      "sha256": "33dc6b4e2510637b8a3d03f71afe98eeca40d73f9f234aab37c49fa5f5d25371",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalministeerium_transpordi_ja_tehiskeskkonna_ligipaasetavuse_analuus.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/3bd3c5ab382e/Transpordi ja tehiskeskkonna ligipääsetavuse analüüs.pdf"
+    },
+    {
+      "document_id": "aki_tto_de_kasutatavate_kliendisuhtluskeskkondade_seire_kokkuvot",
+      "title": "TTO-de kasutatavate kliendisuhtluskeskkondade seire kokkuvõte ja soovitused",
+      "collection_id": "research_reports",
+      "sha256": "306be1c59d43e1ba25096a8b14d3dcabd0a74b7c11621d9437458a25d19b985d",
+      "local_files": [
+        "RAG/master_sources_pdf/aki_tto_de_kasutatavate_kliendisuhtluskeskkondade_seire_kokkuvot.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/cac65aee4344/TTO-de kasutatavate kliendisuhtluskeskkondade seire kokkuvõte ja soovitused.pdf"
+    },
+    {
+      "document_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+      "title": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte",
+      "collection_id": "research_reports",
+      "sha256": "7b4ddd0349e15a4b5132c4ea6ad9f413fdbd9aceeb02270576bb36156fac5d02",
+      "local_files": [
+        "uuringud ja juhendid/Taisealiste-psuuhikahairega-inimeste-sh-eestkostetavate-uuringu-kokkuvote-2026.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/b2ae1fa393fa/Taisealiste-psuuhikahairega-inimeste-sh-eestkostetavate-uuringu-kokkuvote-2026.pdf"
+    },
+    {
+      "document_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-luhikokkuvote-2026",
+      "title": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu lühikokkuvõte",
+      "collection_id": "research_reports",
+      "sha256": "919789e8352d837b85d7ab4db7c4dbc463def5f2ce061e2e6ab1c4b6342d61ef",
+      "local_files": [
+        "uuringud ja juhendid/Taisealiste-psuuhikahairega-inimeste-sh-eestkostetavate-uuringu-luhikokkuvote-2026-1.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/69b10c436deb/Taisealiste-psuuhikahairega-inimeste-sh-eestkostetavate-uuringu-luhikokkuvote-2026-1.pdf"
+    },
+    {
+      "document_id": "praxis_centar_taiskasvanud_erivajadusega_inimeste_abivajaduse_hindamine_ja",
+      "title": "Täiskasvanud erivajadusega inimeste abivajaduse hindamine ja teenuste osutamine",
+      "collection_id": "research_reports",
+      "sha256": "97527d27aa7498e446e61248c5d1d71402c3b0967ef7ca48b57d9e275a9d5ebd",
+      "local_files": [
+        "RAG/master_sources_pdf/praxis_centar_taiskasvanud_erivajadusega_inimeste_abivajaduse_hindamine_ja.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/ae9647b9585e/Erivajadustega-inimeste-abivajaduse-hindamine-ja-teenuste-osutamine_lõppraport_10.02.pdf"
+    },
+    {
+      "document_id": "praxis_centar_taiskasvanud_erivajadusega_inimeste_abivajaduse_hindamine_ja_2",
+      "title": "Täiskasvanud erivajadusega inimeste abivajaduse hindamine ja teenuste osutamine – lühikokkuvõte",
+      "collection_id": "research_reports",
+      "sha256": "0d9a52da16e799c34fe097a1050f6aa157d94600e91fa053f5cfbdade31e69c7",
+      "local_files": [
+        "RAG/master_sources_pdf/praxis_centar_taiskasvanud_erivajadusega_inimeste_abivajaduse_hindamine_ja_2.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/c7d29036cd84/Luhikokkuvote-abivajaduse-hindamise-raportist.pdf"
+    },
+    {
+      "document_id": "tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_skeemi_loomise_ja_juurutamise_vahehindami",
+      "title": "Töövõime toetamise skeemi loomise ja juurutamise vahehindamise lõpparuanne",
+      "collection_id": "research_reports",
+      "sha256": "a73c800759affa63f4c824c9eeb52dcb211ed578066c3a59634cf4434c8aee9d",
+      "local_files": [
+        "RAG/master_sources_pdf/tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_skeemi_loomise_ja_juurutamise_vahehindami.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/5ff25090081e/Töövõime toetamise skeemi loomise ja juurutamise vahehindamise lõpparuanne.pdf"
+    },
+    {
+      "document_id": "tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromaja",
+      "title": "Töövõime toetamise süsteemi loomise ja juurutamise makromajandusliku mõju hindamine",
+      "collection_id": "research_reports",
+      "sha256": "d98001bb5d49d314c557a6dfa4db6d489a3c29d24baea04d095eca4469dcbf66",
+      "local_files": [
+        "RAG/master_sources_pdf/tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromaja.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/d97410001304/Töövõime toetamise süsteemi loomise ja juurutamise makromajandusliku mõju hindamine lõpparuanne (2).pdf"
+    },
+    {
+      "document_id": "praxis_centar_toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromaja",
+      "title": "Töövõime toetamise süsteemi loomise ja juurutamise makromajandusliku mõju hindamine – metoodikaraport",
+      "collection_id": "research_reports",
+      "sha256": "e329af5cf462a1534adf114831c555c4cde7f5655866647abc9d5b6cedb17fba",
+      "local_files": [
+        "RAG/master_sources_pdf/praxis_centar_toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromaja.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/e411292c12ed/2022_Toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromajandusliku_moju_hindamine_metoodikaraport.pdf"
+    },
+    {
+      "document_id": "lastekaitse_liit_uuring_lapse_heaolu_hindamine",
+      "title": "Uuring “Lapse heaolu hindamine”",
+      "collection_id": "research_reports",
+      "sha256": "cffa1512b4ff14863596851d9a0e3d86e65c5d33bd61ab5be9564d7448f48042",
+      "local_files": [
+        "RAG/master_sources_pdf/lastekaitse_liit_uuring_lapse_heaolu_hindamine.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/c9540892e111/Uuring-Lapse-heaolu-hindamine.pdf"
+    },
+    {
+      "document_id": "sotsiaalministeerium_uuring_taisealiste_puudega_inimeste_puude_tuvastamise_abivaj",
+      "title": "Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist",
+      "collection_id": "research_reports",
+      "sha256": "891cc5017e32622e567d306ef8dbe23961a249fb4b1f2fc939fa5d037eff99b1",
+      "local_files": [
+        "RAG/master_sources_pdf/sotsiaalministeerium_uuring_taisealiste_puudega_inimeste_puude_tuvastamise_abivaj.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/5e5e025a1d0b/Puuetega inimeste uuringu lõppraport.pdf"
+    },
+    {
+      "document_id": "praxis_centar_vanemaealiste_ja_eakate_toimetuleku_uuring_2015",
+      "title": "Vanemaealiste ja eakate toimetuleku uuring 2015",
+      "collection_id": "research_reports",
+      "sha256": "e60408f0270e1a43e8ed890685d781ab28acf1db6fe60f56f0fb56a251085d8e",
+      "local_files": [
+        "RAG/master_sources_pdf/praxis_centar_vanemaealiste_ja_eakate_toimetuleku_uuring_2015.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/ae669fd82c4c/VEU2015-lõpparuanne_TNSEmorSAPraxis_07122015.pdf"
+    },
+    {
+      "document_id": "tervisekassa_arevushaire_kasitlus_esmatasandil_kliinilise_auditi_kokkuvot",
+      "title": "Ärevushäire käsitlus esmatasandil – kliinilise auditi kokkuvõte",
+      "collection_id": "research_reports",
+      "sha256": "1caab240c604adbd96720af2eba4f47f516ab6e9a85edfa826c647f8db70d48d",
+      "local_files": [
+        "RAG/master_sources_pdf/tervisekassa_arevushaire_kasitlus_esmatasandil_kliinilise_auditi_kokkuvot.pdf"
+      ],
+      "server_path": "/var/lib/sotsiaalai-rag/docs/ce4e58cc2e0f/2018_arevushaire_kasitlus_esmatasandil_kokkuvote.pdf"
+    }
+  ]
+}

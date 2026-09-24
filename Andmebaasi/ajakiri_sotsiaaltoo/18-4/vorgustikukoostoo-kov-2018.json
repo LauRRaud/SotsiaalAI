@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-4-2018",
+  "articleId": "vorgustikukoostoo-kohalikus-omavalitsuses-2018",
+  "title": "Võrgustikukoostöö kohalikus omavalitsuses",
+  "authors": [
+    "Kadi Lauri"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2018",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "44-47",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab kohalike omavalitsuste võrgustikutöö praktikaid laste ja perede toetamisel ning SKA lastekaitse osakonna pakutavaid tugiteenuseid.",
+  "tags": [
+    "lastekaitse",
+    "KOV",
+    "võrgustikukoostöö",
+    "ennetamine",
+    "laste ja perede tugi"
+  ],
+  "source_type": "file",
+  "source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part12.pdf",
+  "document_id": "sotsiaaltoo-4-2018-vorgustikukoostoo-kohalikus-omavalitsuses-2018",
+  "source_format": "pdf",
+  "source_sha256": "03e8152f993302e67162862c2356f951ae4b1d39f4d527577eb9d37313763889",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2018-vorgustikukoostoo-kohalikus-omavalitsuses-2018",
+    "previous_source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part12.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "03e8152f993302e67162862c2356f951ae4b1d39f4d527577eb9d37313763889",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

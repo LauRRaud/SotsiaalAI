@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-luunja-vald",
+  "document_id": "kov-luunja-vald",
+  "municipality": "Luunja vald",
+  "municipality_id": "luunja_vald",
+  "county": "Tartumaa",
+  "checkedAt": "2026-04-29",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-luunja-vald",
+  "coverage": {
+    "services": 17,
+    "benefits": 18,
+    "resources": 6,
+    "contacts": 10,
+    "forms": 26,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "luunja_vald",
+    "source_register_file": "luunja-vald.sources.json",
+    "service_benefit_resource_items": 41,
+    "items_with_source_keys": 41,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 28,
+    "items_without_related_forms": 13,
+    "items_with_related_contacts": 39,
+    "items_without_related_contacts": 2,
+    "form_sources": 0,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Veebipakett käsitleb ainult Luunja valla ametlikul veebilehel avaldatud praktilist sotsiaalvaldkonna infot.",
+    "SPOKU linke kasutati e-taotluste ametliku esitamise kanalina selles ulatuses, milles Luunja valla leht neile viitab."
+  ],
+  "unresolvedIssues": [
+    "KOV veebis ei leidunud eraldi sotsiaalvaldkonna blankettide lehte; taotluste esitamise kanalina oli avaldatud SPOKU keskkond ja e-taotluste lingid teenuse või toetuse plokkides.",
+    "SPOKU e-taotluste lingid viivad üldisesse SPOKU keskkonda, mistõttu üksikvormide otseseid eraldi URL-e ei olnud võimalik KOV veebikihis kindlalt eraldada.",
+    "Suure pere toetuse, lastelaagri toetuse, hõbelusika ja laste jõulupakkide juures ei olnud KOV lehel eraldi vormi linki avaldatud; seetõttu neid vorme ei seostatud.",
+    "Päevakeskust või hoolekandeasutust Luunja valla ametlikul sotsiaalharul ega hallatavate asutuste lehel eraldi sotsiaalvaldkonna ressursina ei leitud.",
+    "Puudega inimese parkimiskaardi või eluruumi kohandamise toetuse eraldi KOV veebilehte ei leitud; lapsehoiuteenuse all nimetatakse eluruumide kohandamist ainult puudega lapse tugiteenuste võimalusena.",
+    "E-posti aadressid on veebilehel tehniliselt varjestatud kujul; failides säilitati need vaid nendes kohtades, kus KOV veebikihist oli aadress varasemast vaates selgelt tuvastatav, ja see vajab vajadusel käsitsi ülevaatust.",
+    "Õigusaktide ja Riigi Teataja viited jäeti KOV veebipaketist välja ning kuuluvad eraldi RT/legal kihti.",
+    "KOV lehel viidatud SPOKU eelvaate juhise dokumendilink ei olnud kontrolli ajal avanev; seetõttu juhise failisisu andmepaketti ei lisatud."
+  ],
+  "municipality_name": "Luunja vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "luunja-vald.sources.json",
+  "sourceCount": 11,
+  "counts": {
+    "services": 17,
+    "benefits": 18,
+    "resources": 6,
+    "contacts": 10,
+    "forms": 26,
+    "regulations": 0
+  },
+  "warnings": [
+    "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

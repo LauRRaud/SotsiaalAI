@@ -1,0 +1,27 @@
+{
+  "ingest": {
+    "ok": true,
+    "inserted": 6,
+    "docId": "sotsiaalkindlustusamet_seksuaalivakivallan_kriisikeskukset_fin",
+    "pageRange": "1–2",
+    "shortRef": "Seksuaaliväkivallan kriisikeskukset (FIN). 2026. lk 1–2.",
+    "originalDocId": null,
+    "fileName": "Ohvriabi_infovoldik_SAK_FIN+bleed3mm_0.pdf",
+    "collection": "sotsiaalai",
+    "pageStart": null,
+    "pageEnd": null
+  },
+  "verification": {
+    "doc_id": "sotsiaalkindlustusamet_seksuaalivakivallan_kriisikeskukset_fin",
+    "inserted": 6,
+    "chunks": 6,
+    "language": "fi",
+    "search_hits": 3,
+    "search_doc_ids": [
+      "sotsiaalkindlustusamet_seksuaalivakivallan_kriisikeskukset_fin",
+      "sotsiaalkindlustusamet_seksuaalivakivallan_kriisikeskukset_fin",
+      "sotsiaalkindlustusamet_seksuaalivakivallan_kriisikeskukset_fin"
+    ],
+    "query_sha256": "351800a2040273d0267c55988cf10b60c850070ed0c93c47fead747e1bb085a5"
+  }
+}

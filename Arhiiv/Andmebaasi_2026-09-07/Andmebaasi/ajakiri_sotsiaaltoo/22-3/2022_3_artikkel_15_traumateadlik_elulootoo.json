@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-3-2022",
+  "articleId": "traumateadlik-elulootoo-asendushooldusel-kasvavate-laste-identiteedi-toetamiseks-2022-3",
+  "title": "Traumateadlik elulootöö asendushooldusel kasvavate laste identiteedi toetamiseks",
+  "authors": [
+    "Judit Strömpl"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2022",
+  "section": "METOODIKA",
+  "pageRange": "60-69",
+  "pdf_start_page": 1,
+  "pdf_end_page": 10,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Metoodikaartikkel, mis käsitleb traumateadliku elulootöö sisu ja põhimõtteid asendushooldusel kasvavate laste identiteedi toetamisel. \nAutor seob rahvusvahelise uuringu- ja teooriatausta Eesti kogemustega, selgitades, miks lapsele on oluline arusaam oma päritolust, suhetest ja eluloosündmustest ning kuidas trauma seda mõjutab. \nArtiklis kirjeldatakse elulootöö eesmärke, etappe ja praktilisi võtteid (sh fotode, dokumentide ja mälestuste kasutamine), samuti hooldajate, spetsialistide ja lapse koostööd turvalise jutustamisruumi loomisel. \nRõhutatakse reflektiivse praktika, supervisiooni ja organisatsiooni tasandi toetuse vajadust, et traumateadlik elulootöö oleks järjepidev ning lapse heaolu ja turvatunnet tõstev.",
+  "tags": [
+    "traumateadlik lähenemine",
+    "elulootöö",
+    "asendushooldus",
+    "lapse identiteet",
+    "lapse õigused",
+    "pereajalugu",
+    "reflektiivne praktika",
+    "supervisioon",
+    "psühhosotsiaalne tugi",
+    "laste heaolu"
+  ],
+  "source_type": "file",
+  "source_path": "2022_3_artikkel_15_traumateadlik_elulootoo.pdf",
+  "document_id": "sotsiaaltoo-3-2022-traumateadlik-elulootoo-asendushooldusel-kasvavate-laste-identiteedi-toetamiseks-2022-3",
+  "source_format": "pdf",
+  "source_sha256": "104e557a5572706e90c766d7541d8ab2b01a0c3dddd78bf600dbefd01057e720",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2022-traumateadlik-elulootoo-asendushooldusel-kasvavate-laste-identiteedi-toetamiseks-2022-3",
+    "previous_source_path": "2022_3_artikkel_15_traumateadlik_elulootoo.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "104e557a5572706e90c766d7541d8ab2b01a0c3dddd78bf600dbefd01057e720",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

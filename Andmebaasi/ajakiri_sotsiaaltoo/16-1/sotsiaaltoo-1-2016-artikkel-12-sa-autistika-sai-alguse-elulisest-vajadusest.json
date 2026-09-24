@@ -1,0 +1,91 @@
+{
+  "docId": "sotsiaaltoo-1-2016",
+  "articleId": "sotsiaaltoo-1-2016-artikkel-12-sa-autistika-sai-alguse-elulisest-vajadusest",
+  "title": "SA Autistika sai alguse elulisest vajadusest",
+  "authors": [
+    "Sirje Norden"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2016",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "36-39",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "SA Autistika tegevjuht ja autistliku poja ema kirjeldab, kuidas sündis Eesti esimene töö- ja tegevuskeskus vaimupuude ja autismispektrihäirega täiskasvanutele. Keskus avati 1. septembril 2014 pärast Heateo SA teenusedisaini katseprojekti (juuni 2014 – jaanuar 2015) koostöös sotsiaalministeeriumi, Tallinna Sotsiaal- ja Tervishoiuameti ning Sotsiaalkindlustusametiga, nõu andsid Hollandi eksperdid. Keskuses töötab kolm tegevusjuhendajat ja on tegeldud seitsme noorega, abitööd teevad vabatahtlikud. Rahastus tuleb igapäevaelu toetamise (114 eurot kuus) ja toetatud elamise teenuse (177 eurot kuus) pearahast ning 250-eurosest omaosalusest, mis kulusid ei kata.",
+  "tags": [
+    "autismispektrihäire",
+    "erihoolekanne",
+    "teenusedisain",
+    "tegevusjuhendaja",
+    "vaimupuue",
+    "päevakeskus"
+  ],
+  "source_type": "file",
+  "source_path": "2016_1_artikkel_12_sa_autistika_sai_alguse_elulisest_vajadusest.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-12-sa-autistika-sai-alguse-elulisest-vajadusest",
+  "source_sha256": "08aff2264763a4164139ed21db87b6509bc4f0b496d0554a83183f73728dc574",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-12-sa-autistika-sai-alguse-elulisest-vajadusest",
+    "previous_source_path": "2016_1_artikkel_12_sa_autistika_sai_alguse_elulisest_vajadusest.txt",
+    "previous_source_original_path": "1-2016.pdf",
+    "reference_stored_source_sha256": "90506424282eab3e90cfac3840b1cd2f35bfca5b5e8d97beb966509c96896b26",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf",
+      "source_sha256": "2c193295e54f58982562b509b6283e93aa58b1695464671e1768e24e90888a6c",
+      "pdf_start_page": 38,
+      "pdf_end_page": 41,
+      "printed_page_range": "36-40",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 42,
+      "source_regions": [
+        {
+          "source_pdf_page": 38,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 39,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 40,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 41,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "36-39",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf"
+    },
+    "server_page_range": "36-40"
+  }
+}

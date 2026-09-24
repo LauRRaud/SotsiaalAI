@@ -1,0 +1,90 @@
+{
+  "docId": "sotsiaaltoo-2-2017",
+  "articleId": "abivajaja-omaosalus-2017-2",
+  "title": "Abivajaja omaosalus sotsiaalteenuse eest tasumisel",
+  "authors": [
+    "Kristi Ploom",
+    "Angelika Sarapuu"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2017",
+  "section": "Õigus",
+  "pageRange": "33-36",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Õiguskantsleri nõunike selgitus sellest, mida arvestada abivajaja majandusliku olukorra hindamisel sotsiaalteenuse eest tasumise otsustamisel. Selgitab järjestust isik → pere → kohalik omavalitsus ning rõhutab, et sotsiaalhoolekande seadus paneb omavalitsusele kohustuse veenduda, et ükski abivajaja ei jääks rahapuudusel vajaliku teenuseta. Osutab, et omavalitsuse panus sama teenuse eest võib olla eri juhtudel erinev. Järg eelmises numbris ilmunud artiklile omavalitsuse kohustustest.",
+  "tags": [
+    "omaosalus",
+    "sotsiaalteenused",
+    "õiguskantsler",
+    "kohalik omavalitsus",
+    "ülalpidamiskohustus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2-2017_veebi_link_Part14.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2017-abivajaja-omaosalus-2017-2",
+  "source_sha256": "f20db3f51ad2473ec0593494985e48e2e5d5565289068a9bf4159186ff1895c5",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2017-abivajaja-omaosalus-2017-2",
+    "previous_source_path": "Sotsiaaltoo_2-2017_veebi_link_Part14.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2-2017_veebi_link_Part14.pdf",
+    "reference_stored_source_sha256": "a4805eda2ee0c9ea3fa620f801040c631ea2448e79721fcd8113aa92ba848b3e",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf",
+      "source_sha256": "609af110244e684ccbb68aea9504f2490fce2852b1e7caa7bedacb621d661a8a",
+      "pdf_start_page": 35,
+      "pdf_end_page": 38,
+      "printed_page_range": "33-36",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 38,
+      "source_regions": [
+        {
+          "source_pdf_page": 35,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 36,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 37,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 38,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "33-36"
+    },
+    "server_page_range": "33-36"
+  }
+}

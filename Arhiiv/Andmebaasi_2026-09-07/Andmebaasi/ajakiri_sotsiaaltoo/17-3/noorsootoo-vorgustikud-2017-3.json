@@ -1,0 +1,89 @@
+{
+  "docId": "sotsiaaltoo-3-2017",
+  "articleId": "noorsootoo-vorgustikud-2017-3",
+  "title": "Noorsootöö võrgustikud kohalikes omavalitsustes",
+  "authors": [
+    "Lianne Teder"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2017",
+  "section": "Uurimus",
+  "pageRange": "78-81",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimus noorsootöö võrgustikest kohalikes omavalitsustes: ametlikud ja mitteametlikud võrgustikud, noorte kaasamise viisid ja omaalgatuse toetamine. Üle 50 omavalitsuse hindas 2017. aasta kevadel oma noorsootöö olukorda. Eristatakse juhtumipõhist võrgustikutööd ja laiemat valdkondlikku koostööd ning isetekkelisi ja sihipäraselt moodustatud võrgustikke.",
+  "tags": [
+    "noorsootöö",
+    "võrgustikutöö",
+    "kohalik omavalitsus",
+    "noorte kaasamine",
+    "uurimus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part20.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2017-noorsootoo-vorgustikud-2017-3",
+  "source_sha256": "448db6fa5bdca050f5ca214f6e36477742b1bb155d9547c01f1def95deffcd26",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2017-noorsootoo-vorgustikud-2017-3",
+    "previous_source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part20.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part20.pdf",
+    "reference_stored_source_sha256": "edb43d57322ae4146168eb038d664ec00f8fe62d81920cee92ac20286d4c08da",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf",
+      "source_sha256": "3f27c22982b22a396dace8a957798cc21d3240489c7ce4d92802bf1a94bde7a8",
+      "pdf_start_page": 80,
+      "pdf_end_page": 83,
+      "printed_page_range": "78-81",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 83,
+      "source_regions": [
+        {
+          "source_pdf_page": 80,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 81,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 82,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 83,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "78-81"
+    },
+    "server_page_range": "78-81"
+  }
+}

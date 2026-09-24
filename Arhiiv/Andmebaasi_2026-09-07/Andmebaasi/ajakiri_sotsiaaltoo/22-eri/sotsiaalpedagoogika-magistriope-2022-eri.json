@@ -1,0 +1,62 @@
+{
+  "docId": "sotsiaaltoo-eri-2022",
+  "articleId": "sotsiaalpedagoogika-magistriope-2022-eri",
+  "title": "Sotsiaalpedagoogika ja lastekaitse magistriõppe keskmes on lapse huvid",
+  "authors": [
+    "Ingrid Sindi"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö (erinumber)",
+  "issueLabel": "Eri/2022",
+  "section": "30 aastat õpetamist",
+  "pageRange": "56",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Lühiülevaade sotsiaalpedagoogika ja lastekaitse magistriõppekavast, mille alusel saab Tallinna Ülikoolis õppida alates 2002. aastast. Õppekava lõimib kaks eriala; ulatuslikult muudeti seda 2016. aastal ja uus nüüdisajastamine seisab ees 2022. aastal. Rõhutatakse, et mõlemad ametid eeldavad laste ja perede vajaduste, õiguste, heaolu ja huvide esikohale seadmist.",
+  "tags": [
+    "sotsiaalpedagoogika",
+    "lastekaitse",
+    "magistriõpe",
+    "õppekava",
+    "lapse huvid"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo-ERINUMBER_2022_Part10.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-eri-2022-sotsiaalpedagoogika-magistriope-2022-eri",
+  "source_sha256": "292d7c99c2d4af67468411e80409ef93238ff3d0fe0add354d8eed9e28785f60",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2022-sotsiaalpedagoogika-magistriope-2022-eri",
+    "previous_source_path": "Sotsiaaltoo-ERINUMBER_2022_Part10.txt",
+    "previous_source_original_path": "Sotsiaaltoo-ERINUMBER_2022_Part10.pdf",
+    "reference_stored_source_sha256": "6258dcfdabd6a35bcc08c38ea64bfcbfab16c630db8962ed832da9552c9bd630",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo-ERINUMBER_2022.pdf",
+      "source_sha256": "807b48240fe049838a94b8cffd3e1b388f778591bddb0ad5cb542d3cd6ff73b1",
+      "pdf_start_page": 58,
+      "pdf_end_page": 58,
+      "printed_page_range": "56-56",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 58,
+      "source_regions": [
+        {
+          "source_pdf_page": 58,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "56"
+    },
+    "server_page_range": "56-56"
+  }
+}

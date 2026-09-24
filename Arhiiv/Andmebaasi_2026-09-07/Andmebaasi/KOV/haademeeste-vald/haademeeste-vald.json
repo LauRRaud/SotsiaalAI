@@ -1,0 +1,3083 @@
+{
+  "municipality": "Häädemeeste vald",
+  "county": "Pärnumaa",
+  "checkedAt": "2026-04-11",
+  "items": [
+    {
+      "id": "haademeeste_vald_service_asendus_ja_jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Asendus- ja järelhooldusteenus",
+      "status": "active",
+      "summary": "Asendus- ja järelhooldusteenus aitab last või noort olukorras, kus vanemad ei saa tema eest hoolitseda, ning toetab asendushoolduselt või eestkostelt lahkuva noore iseseisvat toimetulekut.",
+      "targetGroup": "Lapsed, kelle vanemad ei suuda neid hooldada, ning asendushooldusel olnud noored kuni 25. eluaastani",
+      "conditions": "Asendushoolduse aluseks võib olla vanemate surm, vanemlike õiguste peatamine või lapse hooletusse jätmine; järelhooldusteenust saab noor, kes on olnud asendushooldusel ja vajab tuge iseseisvumiseks",
+      "application": "Teenuse korraldab lastekaitsetöötaja lapse abivajaduse hindamise järel. Järelhooldusteenuse saamiseks pöördub noor vallavalitsuse poole.",
+      "officialUrl": "https://haademeeste.ee/asendusjarelhooldus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eliise_erissaar"
+      ],
+      "item_type": "service",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "asendus_jarelhooldusteenus_page"
+      ],
+      "source_keys": [
+        "asendus_jarelhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_service_asendus_ja_jarelhooldusteenus",
+      "document_id": "haademeeste_vald_service_asendus_ja_jarelhooldusteenus",
+      "canonical_item_id": "haademeeste_vald_service_asendus_ja_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/asendusjarelhooldus",
+      "content_hash": "418e7a2f4afb55dca5880bf52a06bce624fcf921ce29c0e2792cdd8d8839ff31",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_service_eluruumi_tagamine",
+      "itemType": "service",
+      "title": "Eluruumi tagamine",
+      "status": "active",
+      "summary": "Eluruumi tagamine on abi inimesele või perekonnale, kellel ei ole võimalik endale eluruumi leida või seda säilitada ning kelle toimetulekut ohustab eluaseme puudumine.",
+      "targetGroup": "Häädemeeste valla elanikud, kes ei suuda sotsiaalmajandusliku olukorra tõttu eluaset tagada või vajavad erivajadusest tulenevalt eluruumi kohandamist",
+      "conditions": "Abivajadus hinnatakse sotsiaaltöötaja poolt; teenuse saamiseks peab taotleja elama Häädemeeste vallas",
+      "application": "Abi saamiseks tuleb pöörduda vallavalitsuse sotsiaaltöötaja poole, kes hindab olukorda ja aitab leida sobiva lahenduse.",
+      "officialUrl": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#eluruumi-tagamine",
+      "relatedForms": [],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane"
+      ],
+      "item_type": "service",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "haademeeste_vald_service_eluruumi_tagamine_page"
+      ],
+      "source_keys": [
+        "haademeeste_vald_service_eluruumi_tagamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_service_eluruumi_tagamine",
+      "document_id": "haademeeste_vald_service_eluruumi_tagamine",
+      "canonical_item_id": "haademeeste_vald_service_eluruumi_tagamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#eluruumi-tagamine",
+      "content_hash": "847fdee3f1a627b4815b5ef139faf7e2057c0854f055eb85c449fe7c12ff0590",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_service_isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus aitab erivajadusega täisealisel inimesel teha igapäevaseid toiminguid ning osaleda töös, õppes ja ühiskonnaelus. Teenus eeldab, et inimene suudab ise oma tegevusi korraldada ja abistajale juhiseid anda.",
+      "targetGroup": "Täisealised erivajadusega Häädemeeste valla elanikud, kes vajavad füüsilist kõrvalabi igapäevaeluks",
+      "conditions": "Taotleja peab olema võimeline korraldama oma asjaajamist ja andma abistajale ülesandeid; abivajadus hinnatakse kodukülastusel",
+      "application": "Taotlus esitatakse e‑posti teel, postiga või vallavalitsusse; sotsiaaltöötaja hindab abivajadust ja määrab teenuse mahu",
+      "officialUrl": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#isikliku-abistaja-teenus",
+      "relatedForms": [
+        "haademeeste_vald_form_isikliku_abistaja_taotlus"
+      ],
+      "relatedContacts": [
+        "haademeeste_vald_contact_gerli_liiva"
+      ],
+      "item_type": "service",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "haademeeste_vald_service_isikliku_abistaja_teenus_page"
+      ],
+      "source_keys": [
+        "haademeeste_vald_service_isikliku_abistaja_teenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_service_isikliku_abistaja_teenus",
+      "document_id": "haademeeste_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "haademeeste_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#isikliku-abistaja-teenus",
+      "content_hash": "3389f4e25943809cd57e3584c959645c2335fa4451e17cd81254c32f6f29affe",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_service_koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus aitab täisealisel inimesel oma kodus toime tulla, kui vanuse, terviseseisundi või tegevusvõime languse tõttu on vaja kõrvalabi. Teenus võib hõlmata koduabi ja isiklikku abistamist ning abivajadust hinnatakse kodukülastusel.",
+      "targetGroup": "Täisealised inimesed, kes vanuse või tervise tõttu vajavad abi igapäevaelus kodus toimetulemiseks",
+      "conditions": "Taotleja peab olema Häädemeeste valla elanik ning vajama abi igapäevaelus; taotlemisel selgitab sotsiaaltöötaja abivajaduse kodukülastusel",
+      "application": "Kirjaliku taotluse võib esitada e-posti teel, postiga, vallamaja või teenuskeskuse postkasti kaudu või piirkonna sotsiaaltöötajale. Seejärel hinnatakse abivajadust kodukülastusel.",
+      "officialUrl": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#koduteenus",
+      "relatedForms": [
+        "haademeeste_vald_form_koduteenus_taotlus"
+      ],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane"
+      ],
+      "item_type": "service",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "haademeeste_vald_service_koduteenus_page"
+      ],
+      "source_keys": [
+        "haademeeste_vald_service_koduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_service_koduteenus",
+      "document_id": "haademeeste_vald_service_koduteenus",
+      "canonical_item_id": "haademeeste_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#koduteenus",
+      "content_hash": "7598802d601312084c6acd6383e763778968a4936680a0e0a74f7f5e05b2d399",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_service_lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenus on mõeldud puudega lapse hooldamiseks ja arengu toetamiseks, et lapsevanem saaks täita töö-, õpi- või muid kohustusi.",
+      "targetGroup": "Puudega lapsed ja nende pered, kelle elukoht on Häädemeeste vald",
+      "conditions": "Laps peab olema puudega ja alla 18‑aastane (või kuni 19‑aastane, kui õpib koolis); taotluse menetlemisel hindab sotsiaaltöötaja abivajadust",
+      "application": "Vanem või eestkostja esitab vallavalitsusele taotluse. Lastekaitsetöötaja hindab teenuse vajadust ja määrab teenuse mahu.",
+      "officialUrl": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#lapsehoiuteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eliise_erissaar"
+      ],
+      "item_type": "service",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "haademeeste_vald_service_lapsehoiuteenus_page"
+      ],
+      "source_keys": [
+        "haademeeste_vald_service_lapsehoiuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_service_lapsehoiuteenus",
+      "document_id": "haademeeste_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "haademeeste_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#lapsehoiuteenus",
+      "content_hash": "443094d602e3492e29134544ed3d00fda66034de0d68a77a19baffbb3b32fd54",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_service_muud_tugiteenused",
+      "itemType": "service",
+      "title": "Muud tugiteenused",
+      "status": "active",
+      "summary": "Muud tugiteenused on individuaalselt korraldatavad teenused, näiteks psühholoogiline nõustamine, viipekeele tõlketeenus, perelepitusteenus, perenõustamine ja muu erialaspetsialisti abi.",
+      "targetGroup": "Häädemeeste valla elanikud, kes vajavad erispetsiifilist abi (psühholoogiline nõustamine, viipekeele tõlge, pereteraapia jne)",
+      "conditions": "Teenuse vajalikkus ja sobiv teenusepakkuja selgitatakse välja abivajaduse hindamisel; teenus on tasuta",
+      "application": "Kirjalik taotlus esitatakse vallavalitsusele e-posti teel, postiga, vallamaja või teenuskeskuse postkasti kaudu või piirkonna sotsiaaltöötajale. Otsus tehakse üldjuhul kümne tööpäeva jooksul.",
+      "officialUrl": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#muud-tugiteenused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eliise_erissaar",
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane"
+      ],
+      "item_type": "service",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "haademeeste_vald_service_muud_tugiteenused_page"
+      ],
+      "source_keys": [
+        "haademeeste_vald_service_muud_tugiteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_service_muud_tugiteenused",
+      "document_id": "haademeeste_vald_service_muud_tugiteenused",
+      "canonical_item_id": "haademeeste_vald_service_muud_tugiteenused",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#muud-tugiteenused",
+      "content_hash": "22172b8a3eb137ec01d89d19d0999a84bdb6e54040c8b9a7929fbe5474f290b8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_service_sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus aitab liikumisraskusega inimesel jõuda arsti juurde, tööle, õppima või avalikke teenuseid kasutama, kui ta ei saa kasutada ühistransporti või isiklikku sõidukit.",
+      "targetGroup": "Inimesed, kes kasutavad liikumiseks ratastooli, lapsevankrit või muud abivahendit või kelle tervislik seisund ei võimalda kasutada ühistransporti",
+      "conditions": "Teenust kasutatakse juhul, kui inimese liikumisfunktsioon on piiratud, ta kasutab liikumisabivahendit või vajab saatjat. Sõit tuleb tellida vähemalt kolm tööpäeva ette.",
+      "application": "Sõit tellitakse Pärnumaa Ühistranspordikeskuse kaudu telefonil või e-posti aadressil. Vajaduse selgitamiseks saab pöörduda ka piirkonna sotsiaaltöötaja või puuetega inimeste hoolekande spetsialisti poole.",
+      "officialUrl": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#sotsiaaltransport",
+      "relatedForms": [],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane",
+        "haademeeste_vald_contact_gerli_liiva"
+      ],
+      "item_type": "service",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "haademeeste_vald_service_sotsiaaltransporditeenus_page"
+      ],
+      "source_keys": [
+        "haademeeste_vald_service_sotsiaaltransporditeenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_service_sotsiaaltransporditeenus",
+      "document_id": "haademeeste_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "haademeeste_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#sotsiaaltransport",
+      "content_hash": "86d26a934dc866e8d38b5339d886d0aea3406b70300d7f139a42be82f30679b4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_service_tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus toetab last või täisealist inimest, kes vajab igapäevaelus kõrvalabi sotsiaalsete, majanduslike, tervislike või psühholoogiliste raskuste tõttu. Tugiisik aitab arendada oskusi, toetab asjaajamises ning suurendab iseseisvat toimetulekut.",
+      "targetGroup": "Lapsed ja täisealised Häädemeeste valla elanikud, kes vajavad kõrvalabi iseseisvaks toimetulekuks",
+      "conditions": "Taotlejal peab olema tuvastatud abivajadus; taotlusele lisatakse vajalikud dokumendid (nt rehabilitatsiooniplaan), hindamise teostab sotsiaaltöötaja",
+      "application": "Taotlus esitatakse e-posti teel, postiga, vallamaja või teenuskeskuse postkasti kaudu või piirkonna sotsiaaltöötajale. Vajaduse korral lisatakse asjakohased dokumendid, näiteks rehabilitatsiooniplaan.",
+      "officialUrl": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#tugiisikuteenus",
+      "relatedForms": [
+        "haademeeste_vald_form_tugiisikuteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eliise_erissaar",
+        "haademeeste_vald_contact_gerli_liiva"
+      ],
+      "item_type": "service",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "haademeeste_vald_service_tugiisikuteenus_page"
+      ],
+      "source_keys": [
+        "haademeeste_vald_service_tugiisikuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_service_tugiisikuteenus",
+      "document_id": "haademeeste_vald_service_tugiisikuteenus",
+      "canonical_item_id": "haademeeste_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#tugiisikuteenus",
+      "content_hash": "85cd76f765315eb6136b3e28553b3548016181018824d49d04ca8115a59dc0cb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_service_turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenus annab ajutise eluaseme ja turvalise keskkonna täisealisele inimesele või lapsele, kelle turvalisus on ohus ning kes vajab viivitamatut kaitset.",
+      "targetGroup": "Täisealised ja lapsed, kelle turvalisus on ohus ja kes vajavad ajutist varjupaika",
+      "conditions": "Teenuse vajaduse hindab sotsiaaltöötaja; teenus osutatakse kriisiolukorras",
+      "application": "Abi saamiseks tuleb võtta ühendust vallavalitsuse sotsiaaltöötaja või lastekaitsenõunikuga, kes hindab olukorda ja korraldab teenuse.",
+      "officialUrl": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#turvakoduteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane",
+        "haademeeste_vald_contact_eliise_erissaar"
+      ],
+      "item_type": "service",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "haademeeste_vald_service_turvakoduteenus_page"
+      ],
+      "source_keys": [
+        "haademeeste_vald_service_turvakoduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_service_turvakoduteenus",
+      "document_id": "haademeeste_vald_service_turvakoduteenus",
+      "canonical_item_id": "haademeeste_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#turvakoduteenus",
+      "content_hash": "4a6f29f0cc91486f17b9e35f9ceef9040cf65ccd20b3121a7999f4d478626028",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_service_taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldus aitab tagada kõrvalabi ja järelevalve täisealisele inimesele, kes vajab seda vaimse või kehalise seisundi tõttu. Hoolduse sisu ja hooldaja ülesanded lepitakse kokku hindamise ning halduslepingu alusel.",
+      "targetGroup": "Täisealised Häädemeeste valla elanikud, kellel on vaimse või kehalise puudega tõttu vajalik hooldaja",
+      "conditions": "Hooldaja ei tohi olla sügava puudega; abivajadus hinnatakse dokumentide ja kodukülastuse põhjal",
+      "application": "Taotlus esitatakse e‑posti teel, postiga või vallavalitsusse; sotsiaaltöötaja viib läbi kodukülastuse ja hindab hooldusvajadust",
+      "officialUrl": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#taisealise-isiku-hooldus",
+      "relatedForms": [
+        "haademeeste_vald_form_hooldus_hooldajatoetus_taotlus"
+      ],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane",
+        "haademeeste_vald_contact_gerli_liiva"
+      ],
+      "item_type": "service",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "haademeeste_vald_service_taisealise_isiku_hooldus_page"
+      ],
+      "source_keys": [
+        "haademeeste_vald_service_taisealise_isiku_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_service_taisealise_isiku_hooldus",
+      "document_id": "haademeeste_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "haademeeste_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#taisealise-isiku-hooldus",
+      "content_hash": "62ec8715c344ef2e03fd972c443165591d5b20281a1b0194e1ac1725bc228ca5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_service_varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus annab täisealisele inimesele ajutise ööbimiskoha, kui tal ei ole võimalik endale ise turvalist öömaja leida.",
+      "targetGroup": "Täisealised Häädemeeste valla elanikud, kes vajavad ajutist ööbimiskohta",
+      "conditions": "Vajalikkus tuvastatakse sotsiaaltöötaja hinnangu põhjal; teenust pakutakse kriisiolukordades",
+      "application": "Abi saamiseks tuleb võtta ühendust vallavalitsuse sotsiaaltöötajaga, kes hindab olukorda ja korraldab teenuse.",
+      "officialUrl": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#varjupaigateenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane"
+      ],
+      "item_type": "service",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "haademeeste_vald_service_varjupaigateenus_page"
+      ],
+      "source_keys": [
+        "haademeeste_vald_service_varjupaigateenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_service_varjupaigateenus",
+      "document_id": "haademeeste_vald_service_varjupaigateenus",
+      "canonical_item_id": "haademeeste_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#varjupaigateenus",
+      "content_hash": "b28f94710bba43be0325c2978f1e57e4e9171886a5a69016e3f5e403b0945182",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_service_valjaspool_kodu_osutatav_yldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatav üldhooldusteenus on ööpäevaringne hooldus täisealisele inimesele, kes ei tule terviseseisundi või tegevusvõime tõttu enam kodustes tingimustes toime ning kelle toimetulekut ei ole võimalik tagada teiste teenustega.",
+      "targetGroup": "Täisealised Häädemeeste valla elanikud, kellel on ööpäevaringne hooldusvajadus ja kelle kodune toimetulek ei ole muude teenustega tagatav",
+      "conditions": "Teenuse saamiseks peab inimese rahvastikuregistrijärgne elukoht olema Häädemeeste vald ja abivajadus hinnatakse kodukülastusel.",
+      "application": "Taotlus esitatakse vallavalitsusele kirjalikult või suuliselt. Piirkonna sotsiaaltöötaja hindab hooldusvajadust ja korraldab teenuse.",
+      "amount": "Alates 01.04.2026 tasub Häädemeeste vald hinnatud abivajadusega inimese üldhooldusteenuse hoolduskulude katteks kuni 600 eurot kuus; majutus, toitlustus ja muud isiku kanda jäävad kulud tasub teenuse saaja või tema ülalpidajad.",
+      "officialUrl": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#valjaspool-kodu-osutatav-uldhooldusteenus",
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane",
+        "haademeeste_vald_contact_gerli_liiva"
+      ],
+      "relatedForms": [],
+      "item_type": "service",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "haademeeste_vald_service_valjaspool_kodu_osutatav_yldhooldusteenus_page"
+      ],
+      "source_keys": [
+        "haademeeste_vald_service_valjaspool_kodu_osutatav_yldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_service_valjaspool_kodu_osutatav_yldhooldusteenus",
+      "document_id": "haademeeste_vald_service_valjaspool_kodu_osutatav_yldhooldusteenus",
+      "canonical_item_id": "haademeeste_vald_service_valjaspool_kodu_osutatav_yldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#valjaspool-kodu-osutatav-uldhooldusteenus",
+      "content_hash": "a20e319c4ed7a5f64d2da8a9d4847e50c1b3115e7ba2d00c9824b177219af0e5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_service_volanoustamine",
+      "itemType": "service",
+      "title": "Võlanõustamise teenus",
+      "status": "active",
+      "summary": "Võlanõustamise teenus aitab võlgadega toime tulla, korrastada eelarvet ja suhelda võlausaldajatega. Vallapoolse info järgi korraldatakse teenust koostöös spetsialistidega ning teenusele suunab sotsiaaltöötaja.",
+      "targetGroup": "Häädemeeste valla elanikud, kellel on makseraskused või võlad",
+      "conditions": "Teenusele suunab sotsiaaltöötaja pärast abivajaduse hindamist",
+      "application": "Võta ühendust piirkonna sotsiaaltöötajaga, kes hindab olukorra ja korraldab nõustamise",
+      "officialUrl": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#volanoustamine",
+      "relatedForms": [],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane"
+      ],
+      "item_type": "service",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "haademeeste_vald_service_volanoustamine_page"
+      ],
+      "source_keys": [
+        "haademeeste_vald_service_volanoustamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_service_volanoustamine",
+      "document_id": "haademeeste_vald_service_volanoustamine",
+      "canonical_item_id": "haademeeste_vald_service_volanoustamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused#volanoustamine",
+      "content_hash": "feb3885646ba3f40dbbf95132382059c5be517d96250608693afc3366bf6545d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_benefit_eakate_sunnipaevatoetus",
+      "itemType": "benefit",
+      "title": "Eakate sünnipäevatoetus",
+      "status": "active",
+      "summary": "Eakate sünnipäevatoetus on Häädemeeste valla kodulehel loetletud sissetulekust mittesõltuva sotsiaaltoetusena, kuid koduleht ei ava selle toetuse suurust ega täpseid tingimusi.",
+      "targetGroup": "Eakad Häädemeeste valla elanikud.",
+      "amount": null,
+      "conditions": null,
+      "application": "Sotsiaaltoetuste koondlehel on märgitud, et eakate sünnipäevatoetuse puhul ei ole eraldi taotluse esitamise nõuet nimetatud.",
+      "officialUrl": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_benefit_eakate_sunnipaevatoetus",
+      "document_id": "haademeeste_vald_benefit_eakate_sunnipaevatoetus",
+      "canonical_item_id": "haademeeste_vald_benefit_eakate_sunnipaevatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused",
+      "content_hash": "e999bca423068a8ab6583791802ce500cbefd3afd544920983489d1ac030cd12",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_benefit_erakorraline_toetus",
+      "itemType": "benefit",
+      "title": "Erakorraline toetus",
+      "status": "active",
+      "summary": "Erakorraline toetus on Häädemeeste valla kodulehel loetletud sissetulekust mittesõltuva sotsiaaltoetusena märkega „vastavalt juhtumile“. Koduleht ei kirjelda selle toetuse kindlat suurust ega eraldi kriteeriume.",
+      "targetGroup": "Häädemeeste valla elanik, kes vajab abi erakorralises olukorras.",
+      "amount": null,
+      "conditions": null,
+      "application": "Taotlus esitatakse vallavalitsusele. Kui eraldi blanketti ei ole ette nähtud, kasutatakse KOV sotsiaaltoetuse taotluse vormi ning vajaduse korral lisatakse olukorda tõendavad dokumendid.",
+      "officialUrl": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused",
+      "relatedForms": [
+        "haademeeste_vald_form_kov_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_benefit_erakorraline_toetus",
+      "document_id": "haademeeste_vald_benefit_erakorraline_toetus",
+      "canonical_item_id": "haademeeste_vald_benefit_erakorraline_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused",
+      "content_hash": "9bb379992ef3f7fd6b51d5c5efd961465d39836f3e11a8f25438f4233b335fec",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_benefit_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus",
+      "status": "active",
+      "summary": "Hooldajatoetus on Häädemeeste valla kodulehel loetletud sissetulekust mittesõltuva sotsiaaltoetusena. Hooldajatoetuse taotlemiseks on vallal eraldi hooldus- ja hooldajatoetuse ühine taotlusvorm, kuid koduleht ei kirjelda eraldi kehtivat 2026. aasta toetuse suurust ega detailseid tingimusi.",
+      "targetGroup": "Inimene, kes hooldab abi vajavat Häädemeeste valla elanikku ja taotleb vallalt hooldajatoetust.",
+      "amount": null,
+      "conditions": null,
+      "application": "Taotlus esitatakse vallavalitsusele hooldus- ja hooldajatoetuse vormil. Täpsemad tingimused ja abivajaduse hindamine selgitatakse vallavalitsuses.",
+      "officialUrl": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused",
+      "relatedForms": [
+        "haademeeste_vald_form_hooldus_hooldajatoetus_taotlus"
+      ],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane",
+        "haademeeste_vald_contact_gerli_liiva"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_benefit_hooldajatoetus",
+      "document_id": "haademeeste_vald_benefit_hooldajatoetus",
+      "canonical_item_id": "haademeeste_vald_benefit_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused",
+      "content_hash": "c92a641e6569ec3316988500453bd5a2757caa009e5e72031a54076528011502",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_benefit_joulutoetus",
+      "itemType": "benefit",
+      "title": "Jõulutoetus (kommipakk lastele)",
+      "status": "active",
+      "summary": "Jõulutoetus ehk kommipakk lastele on Häädemeeste valla kodulehel loetletud sissetulekust mittesõltuva sotsiaaltoetusena. Koduleht ei avalda toetuse vanusepiiri, väärtust ega täpset jagamise korda.",
+      "targetGroup": "Häädemeeste valla lapsed.",
+      "amount": null,
+      "conditions": null,
+      "application": "KOV lehel ei ole jõulutoetuse taotlemise korda eraldi kirjeldatud.",
+      "officialUrl": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_benefit_joulutoetus",
+      "document_id": "haademeeste_vald_benefit_joulutoetus",
+      "canonical_item_id": "haademeeste_vald_benefit_joulutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused",
+      "content_hash": "2b3d1730639a2f240454797bfc87ab3606ef03751b12d9188e34455dd6482dfd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_benefit_matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on ühekordne toetus matuse korraldamise kulude katmiseks. Häädemeeste valla lehe järgi on toetuse suurus 250 eurot.",
+      "targetGroup": "Inimene, kes korraldab Häädemeeste valla elaniku matust.",
+      "amount": "250 eurot",
+      "conditions": "Taotluses esitatakse surnud Häädemeeste valla elaniku andmed ning vajaduse korral lisatakse kuludokumendid või muud tõendid.",
+      "application": "Taotluse saab esitada iseteeninduses, digitaalselt allkirjastatuna e-posti teel või paberkandjal vallavalitsuses ja teenuskeskuses.",
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://haademeeste.ee/lahedase-surm",
+      "relatedForms": [
+        "haademeeste_vald_form_matusetoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "lahedase_surm_page"
+      ],
+      "source_keys": [
+        "lahedase_surm_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_benefit_matusetoetus",
+      "document_id": "haademeeste_vald_benefit_matusetoetus",
+      "canonical_item_id": "haademeeste_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/lahedase-surm",
+      "content_hash": "869341f63ac42ad34a42f5ca152d0c91e926cd5eb6530f57708d3e891853b4a9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_benefit_sissetulekust_soltuv_sotsiaaltoetus",
+      "itemType": "benefit",
+      "title": "Sissetulekust sõltuv sotsiaaltoetus",
+      "status": "active",
+      "summary": "Sissetulekust sõltuv sotsiaaltoetus on Häädemeeste valla vajaduspõhine toetus inimesele või perekonnale, kellele jääb kätte vähem kui riiklikult kehtestatud 1,5-kordne toimetulekupiir pereliikme kohta. Toetust võib kasutada näiteks retseptiravimite ja ravikulude, hädavajalike abivahendite, raviprotseduuridel käimise transpordikulude või muude igapäevast toimetulekut parandavate kulude osaliseks hüvitamiseks.",
+      "targetGroup": "Häädemeeste valla rahvastikuregistris olev inimene või perekond, kelle käsutusse jääv sissetulek on alla 1,5-kordse toimetulekupiiri pereliikme kohta.",
+      "amount": null,
+      "conditions": "Toetuse määramisel arvestatakse sissetulekuid, üldist majanduslikku olukorda, taotluse põhjendatust, olukorra leevendamise tulemuslikkust ning taotleja enda võimalusi toimetulekuks.",
+      "application": "Üldjuhul esitatakse vallavalitsusele kirjalik taotlus koos eelmise kuu sissetulekute, eluasemekulude ja puudest tulenevate lisakulude andmetega. Taotluse võib esitada e-posti teel, postiga, piirkonna sotsiaalametnikule või vallamaja või teenuskeskuse postkasti kaudu.",
+      "officialUrl": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused",
+      "relatedForms": [
+        "haademeeste_vald_form_kov_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane"
+      ],
+      "decisionTime": "10 tööpäeva",
+      "item_type": "benefit",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_benefit_sissetulekust_soltuv_sotsiaaltoetus",
+      "document_id": "haademeeste_vald_benefit_sissetulekust_soltuv_sotsiaaltoetus",
+      "canonical_item_id": "haademeeste_vald_benefit_sissetulekust_soltuv_sotsiaaltoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused",
+      "content_hash": "86eef8780277ebb24683796f01e8fabe4f5dd4d4bf8cd83899a8d54c73b8cb6c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_benefit_sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus on ühekordne toetus lapse sünni või lapsendamise korral. Häädemeeste valla kodulehe järgi on toetuse suurus 800 eurot.",
+      "targetGroup": "Lapse vanem või seaduslik esindaja, kelle elukoht on olnud vähemalt 12 kuud enne lapse sündi või lapsendamist Häädemeeste vallas ning kelle laps on registreeritud Häädemeeste valla elanikuks.",
+      "amount": "800 eurot ühe lapse kohta",
+      "conditions": "Taotleja elukoht peab olema olnud vähemalt 12 kalendrikuud enne lapse sündi või lapsendamist Häädemeeste vallas. Mitmike korral makstakse toetust iga lapse eest.",
+      "application": "Taotlus tuleb esitada kuue kuu jooksul pärast lapse sünni registreerimist. Taotluse saab esitada iseteeninduses, digitaalselt allkirjastatuna e-posti teel või paberkandjal vallavalitsuses ja teenuskeskuses.",
+      "deadline": "6 kuud pärast lapse sünni registreerimist",
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://haademeeste.ee/lapse-sund",
+      "relatedForms": [
+        "haademeeste_vald_form_sunnitoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "lapse_sund_page"
+      ],
+      "source_keys": [
+        "lapse_sund_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_benefit_sunnitoetus",
+      "document_id": "haademeeste_vald_benefit_sunnitoetus",
+      "canonical_item_id": "haademeeste_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/lapse-sund",
+      "content_hash": "807f8b55030f307f2f1857c4313603cfb0b36563a8c828dc74b60953f9db28f1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_benefit_i_klassi_toetus",
+      "itemType": "benefit",
+      "title": "Toetus I klassi õppima asunud laste vanematele",
+      "status": "active",
+      "summary": "Toetus I klassi õppima asunud laste vanematele on ühekordne koolitee alustamise toetus. Häädemeeste valla kodulehe järgi on toetuse suurus 200 eurot.",
+      "targetGroup": "Lapse vanem või eestkostja, kelle laps asub esimest korda 1. klassi ning kelle ja lapse elukoht on Häädemeeste vald.",
+      "amount": "200 eurot",
+      "conditions": "Toetust saab taotleda sõltumata sellest, kas laps läheb kooli Häädemeeste vallas või väljaspool valda.",
+      "application": "Taotlus saadetakse e-posti aadressile või tuuakse vallavalitsusse Uulus või teenuskeskusesse Häädemeestel.",
+      "officialUrl": "https://haademeeste.ee/toiming/toetus-i-klassi-oppima-asunud-laste-vanematele",
+      "relatedForms": [
+        "haademeeste_vald_form_i_klassi_astuja_taotlus"
+      ],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane"
+      ],
+      "decisionTime": "10 tööpäeva",
+      "item_type": "benefit",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "i_klassi_toetus_page"
+      ],
+      "source_keys": [
+        "i_klassi_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_benefit_i_klassi_toetus",
+      "document_id": "haademeeste_vald_benefit_i_klassi_toetus",
+      "canonical_item_id": "haademeeste_vald_benefit_i_klassi_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/toiming/toetus-i-klassi-oppima-asunud-laste-vanematele",
+      "content_hash": "d7af90d3c0975cc285d7395bc1c1882b86a34d08474cf085c43670f968ce13b5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_benefit_toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on riiklik toetus majanduslikult raskesse olukorda sattunud inimesele või perekonnale. Häädemeeste valla kodulehel on avaldatud 2026. aasta toimetulekupiiri suurused ning taotlemise kord.",
+      "targetGroup": "Inimene või perekond, kelle sissetulek pärast põhjendatud eluasemekulude arvestamist jääb alla riikliku toimetulekupiiri.",
+      "amount": "2026. aastal on toimetulekupiir pere esimesele või ainsale liikmele 220 eurot, igale järgnevale täiskasvanule 176 eurot ja igale alaealisele lapsele 264 eurot. Üksikvanemaga perele makstakse koos toimetulekutoetusega täiendavalt 15 eurot.",
+      "conditions": "Taotlusele lisatakse sissetulekuid ja eluasemekulusid tõendavad dokumendid. Taotlus tuleb esitada hiljemalt kuu viimaseks tööpäevaks selle omavalitsuse üksusele, kelle territooriumil asub inimese tegelik elukoht.",
+      "application": "Taotlus esitatakse piirkonna sotsiaalametnikule koos lisa- ja kuludokumentidega.",
+      "officialUrl": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused",
+      "relatedForms": [
+        "haademeeste_vald_form_toimetulekutoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane"
+      ],
+      "decisionTime": "5 tööpäeva",
+      "item_type": "benefit",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_benefit_toimetulekutoetus",
+      "document_id": "haademeeste_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "haademeeste_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused",
+      "content_hash": "d1b5ffc933af7df2daf98b98027c1d982bc0074f40a97f0117fc882f532d59a0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_resource_erihoolekandeteenused",
+      "itemType": "resource",
+      "title": "Erihoolekandeteenused",
+      "status": "active",
+      "summary": "Erihoolekandeteenuste leht annab ülevaate psüühilise erivajadusega inimesele suunatud teenustest, mida Häädemeeste valla lehel on välja toodud kui igapäevaelu toetamine, töötamise toetamine ja toetatud elamine.",
+      "targetGroup": "Psüühilise erivajadusega inimene, kes vajab kõrvalabi igapäevaelus, töötamisel või elamisel.",
+      "conditions": "Teenuse vajadust hindab Sotsiaalkindlustusameti juhtumikorraldaja. Kui teenuskoht on olemas, väljastab Sotsiaalkindlustusamet suunamiskirja.",
+      "application": "Teenuse saamiseks esitatakse taotlus Sotsiaalkindlustusameti juhtumikorraldajale. Kohaliku info ja nõustamise saamiseks saab pöörduda puuetega inimeste hoolekande spetsialisti poole.",
+      "officialUrl": "https://haademeeste.ee/erihoolekandeteenused",
+      "relatedContacts": [
+        "haademeeste_vald_contact_gerli_liiva"
+      ],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "erihoolekandeteenused_page"
+      ],
+      "source_keys": [
+        "erihoolekandeteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_resource_erihoolekandeteenused",
+      "document_id": "haademeeste_vald_resource_erihoolekandeteenused",
+      "canonical_item_id": "haademeeste_vald_resource_erihoolekandeteenused",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/erihoolekandeteenused",
+      "content_hash": "67ce6457dc33bebad7b832270586605370c4cd01f0f393395aa77b91bc78e508",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_resource_erivajadusega_laps",
+      "itemType": "resource",
+      "title": "Erivajadusega laps",
+      "status": "active",
+      "summary": "Erivajadusega lapse leht koondab infot erivajadusega lapse toetamise, varase märkamise ning Häädemeeste vallas pakutavate teenuste kohta. Leht toob välja lapsehoiuteenuse, tugiisikuteenuse ja sotsiaaltranspordi ning suunab vajadusel lastekaitsenõuniku või Sotsiaalkindlustusameti poole.",
+      "officialUrl": "https://haademeeste.ee/erivajadusegalaps",
+      "relatedContacts": [
+        "haademeeste_vald_contact_eliise_erissaar"
+      ],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "erivajadusega_laps_page"
+      ],
+      "source_keys": [
+        "erivajadusega_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_resource_erivajadusega_laps",
+      "document_id": "haademeeste_vald_resource_erivajadusega_laps",
+      "canonical_item_id": "haademeeste_vald_resource_erivajadusega_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/erivajadusegalaps",
+      "content_hash": "c6ef1a8fd605d6bf54fc3020bf06c7742f6866d8771346d4494107f034c13fb5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_resource_hadaohus_ja_abivajav_laps",
+      "itemType": "resource",
+      "title": "Hädaohus ja abivajav laps",
+      "status": "active",
+      "summary": "Hädaohus ja abivajav laps leht selgitab, millal vajab laps kiiret sekkumist või abi, ning annab juhise teatada abivajavast lapsest lasteabi numbril, kadunud laste numbril 116 000 või hädaabinumbril.",
+      "officialUrl": "https://haademeeste.ee/abivajavlaps",
+      "relatedContacts": [
+        "haademeeste_vald_contact_eliise_erissaar"
+      ],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "hadaohus_laps_page"
+      ],
+      "source_keys": [
+        "hadaohus_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_resource_hadaohus_ja_abivajav_laps",
+      "document_id": "haademeeste_vald_resource_hadaohus_ja_abivajav_laps",
+      "canonical_item_id": "haademeeste_vald_resource_hadaohus_ja_abivajav_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/abivajavlaps",
+      "content_hash": "fb074da7b4755319a064a8dd9d57c44941183c672e4f64acb111ff6146ac65fb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_resource_haademeeste_eakate_kodu",
+      "itemType": "resource",
+      "title": "Häädemeeste Eakate Kodu",
+      "status": "active",
+      "summary": "Häädemeeste Eakate Kodu on Häädemeeste valla ööpäevaringne hooldekodu Häädemeeste alevikus. Kodulehel on kirjas, et majas on 69 kohta, teenusele asumiseks tuleb esitada avaldus ja kehtiv isikut tõendav dokument ning alates 01.04.2026 tasub vald hinnatud abivajadusega inimese üldhooldusteenuse hoolduskulude katteks kuni 600 eurot kuus.",
+      "officialUrl": "https://haademeeste.ee/hooldekodu",
+      "relatedContacts": [
+        "haademeeste_vald_contact_eakatekodu_general_contact",
+        "haademeeste_vald_contact_eakatekodu_juhataja",
+        "haademeeste_vald_contact_eakatekodu_tegevusjuhendaja",
+        "haademeeste_vald_contact_eakatekodu_majandusjuht",
+        "haademeeste_vald_contact_eakatekodu_hooldusjuht"
+      ],
+      "relatedForms": [
+        "haademeeste_vald_form_eakate_kodu_avaldus"
+      ],
+      "item_type": "resource",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "eakate_kodu_page"
+      ],
+      "source_keys": [
+        "eakate_kodu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_resource_haademeeste_eakate_kodu",
+      "document_id": "haademeeste_vald_resource_haademeeste_eakate_kodu",
+      "canonical_item_id": "haademeeste_vald_resource_haademeeste_eakate_kodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/hooldekodu",
+      "content_hash": "6a4a5042c0ac517d4f5ca1a704037aa5ea0a5a6e7c9a182e8b428df99c07aa12",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_resource_haademeeste_kalmistud",
+      "itemType": "resource",
+      "title": "Häädemeeste kalmistud",
+      "status": "active",
+      "summary": "Häädemeeste kalmistute info on koondatud lähedase surma lehele. Sealt leiab Häädemeeste kalmistu kontaktid ning viited teiste valla kalmistute infole.",
+      "officialUrl": "https://haademeeste.ee/lahedase-surm",
+      "relatedContacts": [
+        "haademeeste_vald_contact_igor_treumuth"
+      ],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "lahedase_surm_page"
+      ],
+      "source_keys": [
+        "lahedase_surm_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_resource_haademeeste_kalmistud",
+      "document_id": "haademeeste_vald_resource_haademeeste_kalmistud",
+      "canonical_item_id": "haademeeste_vald_resource_haademeeste_kalmistud",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/lahedase-surm",
+      "content_hash": "abfa7f90d0c0d616702277011f9fcad72b7e783da37adb2260d4b775c1383c93",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_resource_kasulikke_viiteid",
+      "itemType": "resource",
+      "title": "Kasulikke viiteid",
+      "status": "active",
+      "summary": "Kasulike viidete leht koondab ametlikke viiteid ja videoid, mis tutvustavad näiteks naiste tugikeskuse teenust, kriisiabi, dementsusega inimese toetamise võimalusi ja võlanõustamist.",
+      "officialUrl": "https://haademeeste.ee/tjtkasulikkeviiteid",
+      "relatedContacts": [],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "kasulikke_viiteid_page"
+      ],
+      "source_keys": [
+        "kasulikke_viiteid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_resource_kasulikke_viiteid",
+      "document_id": "haademeeste_vald_resource_kasulikke_viiteid",
+      "canonical_item_id": "haademeeste_vald_resource_kasulikke_viiteid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/tjtkasulikkeviiteid",
+      "content_hash": "24115ea132db7a37b667ac5d857dfefdb61b43f83aa60bbaf165f92017d6a7fe",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_resource_lastekaitse",
+      "itemType": "resource",
+      "title": "Lastekaitse",
+      "status": "active",
+      "summary": "Lastekaitse leht selgitab, et kohalik omavalitsus hindab lapse abivajadust ja korraldab lapsele ning perele sobiva abi. Leht suunab küsimuste korral pöörduma lastekaitsenõuniku poole.",
+      "officialUrl": "https://haademeeste.ee/lastekaitse",
+      "relatedContacts": [
+        "haademeeste_vald_contact_eliise_erissaar"
+      ],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "lastekaitse_page"
+      ],
+      "source_keys": [
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_resource_lastekaitse",
+      "document_id": "haademeeste_vald_resource_lastekaitse",
+      "canonical_item_id": "haademeeste_vald_resource_lastekaitse",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/lastekaitse",
+      "content_hash": "b30e4446b502fb8549eef27bf34da8e96c7d6517ec6df06bdd69f9164d8a0a82",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_resource_metsakyla_kalmistu",
+      "itemType": "resource",
+      "title": "Metsaküla kalmistu",
+      "status": "active",
+      "summary": "Metsaküla kalmistu kontakt ja asendiplaani fail on avaldatud lähedase surma lehel.",
+      "officialUrl": "https://haademeeste.ee/lahedase-surm",
+      "relatedContacts": [
+        "haademeeste_vald_contact_toomas_toomla"
+      ],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "lahedase_surm_page"
+      ],
+      "source_keys": [
+        "lahedase_surm_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_resource_metsakyla_kalmistu",
+      "document_id": "haademeeste_vald_resource_metsakyla_kalmistu",
+      "canonical_item_id": "haademeeste_vald_resource_metsakyla_kalmistu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/lahedase-surm",
+      "content_hash": "4db6448d6402e935e5221c1e807460760e89152e35fcc41447c458eede388340",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_resource_muud_sotsiaalabi_voimalused",
+      "itemType": "resource",
+      "title": "Muud sotsiaalabi võimalused",
+      "status": "active",
+      "summary": "Muud sotsiaalabi võimalused leht koondab viiteid ja lühikirjeldusi abivahendite, tasuta õigusabi, vaimse tervise toe, sõltuvusravi, ohvriabi, toiduabi ning muude tugivõimaluste kohta.",
+      "officialUrl": "https://haademeeste.ee/sotsabivoimalused",
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane"
+      ],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "muud_sotsiaalabi_voimalused_page"
+      ],
+      "source_keys": [
+        "muud_sotsiaalabi_voimalused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_resource_muud_sotsiaalabi_voimalused",
+      "document_id": "haademeeste_vald_resource_muud_sotsiaalabi_voimalused",
+      "canonical_item_id": "haademeeste_vald_resource_muud_sotsiaalabi_voimalused",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/sotsabivoimalused",
+      "content_hash": "2045d0d67df9d8985a5d1e1565d610e1ee0ee219a859c21199e2d5e8fcb12005",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_resource_ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "Muud sotsiaalabi võimalused leht nimetab ohvriabi ühe abivõimalusena ning suunab seda kasutama, kui inimene on langenud kuriteo, hooletuse, halva kohtlemise või vaimse, füüsilise või seksuaalse vägivalla ohvriks.",
+      "officialUrl": "https://haademeeste.ee/sotsabivoimalused",
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane"
+      ],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "muud_sotsiaalabi_voimalused_page"
+      ],
+      "source_keys": [
+        "muud_sotsiaalabi_voimalused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_resource_ohvriabi",
+      "document_id": "haademeeste_vald_resource_ohvriabi",
+      "canonical_item_id": "haademeeste_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/sotsabivoimalused",
+      "content_hash": "96b45a82c1b95c935b4080819aa9fe9f95e086ba3cf5833270f91a4b123c75f2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_resource_parkimiskaart",
+      "itemType": "resource",
+      "title": "Puudega inimese sõiduki parkimiskaart",
+      "status": "active",
+      "summary": "Puudega inimese sõiduki parkimiskaardi leht kirjeldab parkimiskaardi väljastamise tingimusi ja korda. KOV lehe järgi väljastatakse kaart tasuta ning see antakse isikule, mitte sõidukile.",
+      "targetGroup": "Inimene, kellel on liikumis- või nägemisfunktsiooni kõrvalekalle ning kes vastab parkimiskaardi väljastamise tingimustele.",
+      "conditions": "Kaarti saab taotleda inimesele, kellel on keskmisele, raskele või sügavale puude raskusastmele vastav liikumis- või nägemisfunktsiooni kõrvalekalle, samuti ajutise kõrvalekalde korral pere- või eriarsti tõendi alusel. Kaardi taotlemiseks on vaja 3 × 4 cm fotot.",
+      "application": "Parkimiskaardi väljastab puuetega inimeste hoolekande spetsialist. Püsiva puude korral väljastatakse kaart puude kehtivuse ajaks kuni viieks aastaks, ajutise kõrvalekalde korral kuni kuueks kuuks.",
+      "officialUrl": "https://haademeeste.ee/parkimiskaart",
+      "relatedContacts": [
+        "haademeeste_vald_contact_gerli_liiva"
+      ],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "parkimiskaart_page"
+      ],
+      "source_keys": [
+        "parkimiskaart_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_resource_parkimiskaart",
+      "document_id": "haademeeste_vald_resource_parkimiskaart",
+      "canonical_item_id": "haademeeste_vald_resource_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/parkimiskaart",
+      "content_hash": "549043a3a7a06e7afa249d9070c89d19c4420e44d71c41f03c13e8108e343943",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_resource_toiduabi",
+      "itemType": "resource",
+      "title": "Toiduabi",
+      "status": "active",
+      "summary": "Häädemeeste valla kodulehe järgi jagab abivajajatele annetatud toiduabi Pärnu Toidupank. Toiduabi saavad ainult need inimesed või leibkonnad, kelle piirkonna sotsiaaltöötaja on eelnevalt abisaajate nimekirja kandnud.",
+      "targetGroup": "Toimetulekuraskustes Häädemeeste valla inimesed või leibkonnad, kelle abivajaduse on sotsiaaltöötaja hinnanud.",
+      "conditions": "Toiduabi on ajutine abimeede. Nimekirju uuendatakse regulaarselt ning toidupaki sisu sõltub annetatud toidust.",
+      "application": "Toiduabi saamiseks tuleb pöörduda piirkonna sotsiaaltöötaja poole, kes hindab abivajadust ja otsustab inimese lisamise abisaajate nimekirja.",
+      "officialUrl": "https://haademeeste.ee/sotsabivoimalused",
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane"
+      ],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "muud_sotsiaalabi_voimalused_page"
+      ],
+      "source_keys": [
+        "muud_sotsiaalabi_voimalused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_resource_toiduabi",
+      "document_id": "haademeeste_vald_resource_toiduabi",
+      "canonical_item_id": "haademeeste_vald_resource_toiduabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/sotsabivoimalused",
+      "content_hash": "b53a75588717fbfb777e2a580ce95f042466de5f62ba6a906bab911241443bc9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_resource_treimani_kalmistu",
+      "itemType": "resource",
+      "title": "Treimani kalmistu",
+      "status": "active",
+      "summary": "Treimani kalmistu kontakt on avaldatud lähedase surma lehel.",
+      "officialUrl": "https://haademeeste.ee/lahedase-surm",
+      "relatedContacts": [
+        "haademeeste_vald_contact_ulve_arukase"
+      ],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "lahedase_surm_page"
+      ],
+      "source_keys": [
+        "lahedase_surm_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_resource_treimani_kalmistu",
+      "document_id": "haademeeste_vald_resource_treimani_kalmistu",
+      "canonical_item_id": "haademeeste_vald_resource_treimani_kalmistu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/lahedase-surm",
+      "content_hash": "2dce0808a5709f443f8935da7a3b5a67c4f4c498c3ee9adfd88bf1e6448304e2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_resource_urissaare_kalmistu",
+      "itemType": "resource",
+      "title": "Urissaare kalmistu",
+      "status": "active",
+      "summary": "Urissaare kalmistu kontakt on avaldatud lähedase surma lehel.",
+      "officialUrl": "https://haademeeste.ee/lahedase-surm",
+      "relatedContacts": [
+        "haademeeste_vald_contact_kai_iir"
+      ],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "lahedase_surm_page"
+      ],
+      "source_keys": [
+        "lahedase_surm_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_resource_urissaare_kalmistu",
+      "document_id": "haademeeste_vald_resource_urissaare_kalmistu",
+      "canonical_item_id": "haademeeste_vald_resource_urissaare_kalmistu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/lahedase-surm",
+      "content_hash": "f39c54dd6a568ba5cec85e79b4987107c480c918eece77ea1bee4323bf707746",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_resource_voiste_kalmistu",
+      "itemType": "resource",
+      "title": "Võiste kalmistu",
+      "status": "active",
+      "summary": "Võiste kalmistu kontakt ja asendiplaani fail on avaldatud lähedase surma lehel.",
+      "officialUrl": "https://haademeeste.ee/lahedase-surm",
+      "relatedContacts": [
+        "haademeeste_vald_contact_ahto_hein"
+      ],
+      "relatedForms": [],
+      "item_type": "resource",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "lahedase_surm_page"
+      ],
+      "source_keys": [
+        "lahedase_surm_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_resource_voiste_kalmistu",
+      "document_id": "haademeeste_vald_resource_voiste_kalmistu",
+      "canonical_item_id": "haademeeste_vald_resource_voiste_kalmistu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/lahedase-surm",
+      "content_hash": "d749caa37fb63c7a570225197e1127fd5a90714330fc40f650374ba7a98846b6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_contact_ahto_hein",
+      "itemType": "contact",
+      "title": "Ahto Hein",
+      "status": "active",
+      "name": "Ahto Hein",
+      "role": "Kalmistuvaht",
+      "department": "Võiste kalmistu",
+      "summary": "Võiste kalmistu kalmistuvaht, kalmistu küsimustes.",
+      "officialUrl": "https://haademeeste.ee/lahedase-surm",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "lahedase_surm_page"
+      ],
+      "source_keys": [
+        "lahedase_surm_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_contact_ahto_hein",
+      "document_id": "haademeeste_vald_contact_ahto_hein",
+      "canonical_item_id": "haademeeste_vald_contact_ahto_hein",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/lahedase-surm",
+      "content_hash": "b30ddfb8d1744bd91dcddf31a95289181d887764cea64f097ab12cd042c33eb1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_contact_eha_sade",
+      "itemType": "contact",
+      "title": "Eha Säde",
+      "status": "active",
+      "name": "Eha Säde",
+      "role": "Sotsiaalnõunik",
+      "department": "Häädemeeste vallavalitsus",
+      "summary": "Sotsiaalnõunik, kelle tööks on täisealiste sotsiaalhoolekande, sotsiaalteenuste, vältimatu sotsiaalabi ja sotsiaaltoetuste korraldamine ning nõustamine sotsiaalabi taotlemisel.",
+      "officialUrl": "https://haademeeste.ee/kontakt",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "kontakt_page"
+      ],
+      "source_keys": [
+        "kontakt_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_contact_eha_sade",
+      "document_id": "haademeeste_vald_contact_eha_sade",
+      "canonical_item_id": "haademeeste_vald_contact_eha_sade",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/kontakt",
+      "content_hash": "d82f8ede3239118aa1b615a3ed1cac1cb0bba4241a59d285307cdb42b81bbf2d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_contact_eliise_erissaar",
+      "itemType": "contact",
+      "title": "Eliise Erissaar",
+      "status": "active",
+      "name": "Eliise Erissaar",
+      "role": "Lastekaitsenõunik",
+      "department": "Häädemeeste vallavalitsus",
+      "summary": "Lastekaitsenõunik, kes hindab lapse abivajadust ja korraldab lastekaitse valdkonna abi ning teenuseid.",
+      "officialUrl": "https://haademeeste.ee/kontakt",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "kontakt_page"
+      ],
+      "source_keys": [
+        "kontakt_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_contact_eliise_erissaar",
+      "document_id": "haademeeste_vald_contact_eliise_erissaar",
+      "canonical_item_id": "haademeeste_vald_contact_eliise_erissaar",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/kontakt",
+      "content_hash": "f1df3a5e89eca0a00d7634b20a102f675d1fe7c9527bf70ce4fa8fd6fc746a86",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_contact_gerli_liiva",
+      "itemType": "contact",
+      "title": "Gerli Liiva",
+      "status": "active",
+      "name": "Gerli Liiva",
+      "role": "Puuetega inimeste hoolekande spetsialist",
+      "department": "Häädemeeste vallavalitsus",
+      "summary": "Puuetega inimeste hoolekande spetsialist, kes nõustab erivajadusega inimesi ja nende peresid ning aitab korraldada vastavaid teenuseid.",
+      "officialUrl": "https://haademeeste.ee/kontakt",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "kontakt_page"
+      ],
+      "source_keys": [
+        "kontakt_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_contact_gerli_liiva",
+      "document_id": "haademeeste_vald_contact_gerli_liiva",
+      "canonical_item_id": "haademeeste_vald_contact_gerli_liiva",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/kontakt",
+      "content_hash": "e1c90d638f60cedc88d446a69bf86814a338d2de43e0e95b973678dae1ca4404",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_contact_eakatekodu_hooldusjuht",
+      "itemType": "contact",
+      "title": "Häädemeeste Eakate Kodu hooldusjuht",
+      "status": "active",
+      "name": "(hooldusjuhi nimi pole veebis avaldatud)",
+      "role": "Hooldusjuht",
+      "department": "Häädemeeste Eakate Kodu",
+      "summary": "Häädemeeste Eakate Kodu hooldusjuhi kontakt. Lehel on märgitud tööaeg E–R 8.00–16.30.",
+      "officialUrl": "https://haademeeste.ee/hooldekodu",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "eakate_kodu_page"
+      ],
+      "source_keys": [
+        "eakate_kodu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_contact_eakatekodu_hooldusjuht",
+      "document_id": "haademeeste_vald_contact_eakatekodu_hooldusjuht",
+      "canonical_item_id": "haademeeste_vald_contact_eakatekodu_hooldusjuht",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/hooldekodu",
+      "content_hash": "dbdaba2bf53a5719ab23049dc52b1eed5aa9745e644c186b362dbf0bd8058fb4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_contact_eakatekodu_juhataja",
+      "itemType": "contact",
+      "title": "Häädemeeste Eakate Kodu juhataja",
+      "status": "active",
+      "name": "(nimi pole veebis avaldatud)",
+      "role": "Juhataja",
+      "department": "Häädemeeste Eakate Kodu",
+      "summary": "Häädemeeste Eakate Kodu juhataja kontakt. Nime kodulehel ei avaldata, kuid telefoninumber on lehel olemas.",
+      "officialUrl": "https://haademeeste.ee/hooldekodu",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "eakate_kodu_page"
+      ],
+      "source_keys": [
+        "eakate_kodu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_contact_eakatekodu_juhataja",
+      "document_id": "haademeeste_vald_contact_eakatekodu_juhataja",
+      "canonical_item_id": "haademeeste_vald_contact_eakatekodu_juhataja",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/hooldekodu",
+      "content_hash": "096807086f151818873c0b3b86dc540ec8665b0304b1ed502b7777bac59da1c7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_contact_eakatekodu_majandusjuht",
+      "itemType": "contact",
+      "title": "Häädemeeste Eakate Kodu majandusjuht",
+      "status": "active",
+      "name": "(majandusjuhi nimi pole veebis avaldatud)",
+      "role": "Majandusjuht",
+      "department": "Häädemeeste Eakate Kodu",
+      "summary": "Häädemeeste Eakate Kodu majandusjuhi kontakt. Lehel on märgitud tööaeg E–R 8.00–16.30.",
+      "officialUrl": "https://haademeeste.ee/hooldekodu",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "eakate_kodu_page"
+      ],
+      "source_keys": [
+        "eakate_kodu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_contact_eakatekodu_majandusjuht",
+      "document_id": "haademeeste_vald_contact_eakatekodu_majandusjuht",
+      "canonical_item_id": "haademeeste_vald_contact_eakatekodu_majandusjuht",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/hooldekodu",
+      "content_hash": "7dbec7fe23ea372b853ef94ac607b49b3533c82f150c66b70e26bab7b0914434",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_contact_eakatekodu_tegevusjuhendaja",
+      "itemType": "contact",
+      "title": "Häädemeeste Eakate Kodu tegevusjuhendaja",
+      "status": "active",
+      "name": "(tegevusjuhendaja nimi pole veebis avaldatud)",
+      "role": "Tegevusjuhendaja",
+      "department": "Häädemeeste Eakate Kodu",
+      "summary": "Häädemeeste Eakate Kodu tegevusjuhendaja kontakt. Lehel on märgitud tööaeg E–R 8.00–16.30.",
+      "officialUrl": "https://haademeeste.ee/hooldekodu",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "eakate_kodu_page"
+      ],
+      "source_keys": [
+        "eakate_kodu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_contact_eakatekodu_tegevusjuhendaja",
+      "document_id": "haademeeste_vald_contact_eakatekodu_tegevusjuhendaja",
+      "canonical_item_id": "haademeeste_vald_contact_eakatekodu_tegevusjuhendaja",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/hooldekodu",
+      "content_hash": "8ef0b42346b27dabdd1b849ba052b18c80b5dbfb7473cdde61befddd64166397",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_contact_eakatekodu_general_contact",
+      "itemType": "contact",
+      "title": "Häädemeeste Eakate Kodu – üldkontakt",
+      "status": "active",
+      "name": "Häädemeeste Eakate Kodu",
+      "role": "Hooldekodu üldkontakt",
+      "department": "Häädemeeste Eakate Kodu",
+      "summary": "Häädemeeste Eakate Kodu üldkontakt Lasteaia tn 1, Häädemeeste alevikus.",
+      "officialUrl": "https://haademeeste.ee/hooldekodu",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "eakate_kodu_page"
+      ],
+      "source_keys": [
+        "eakate_kodu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_contact_eakatekodu_general_contact",
+      "document_id": "haademeeste_vald_contact_eakatekodu_general_contact",
+      "canonical_item_id": "haademeeste_vald_contact_eakatekodu_general_contact",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/hooldekodu",
+      "content_hash": "b517460e97c3558b50259b33050fd3bed734347af9f3ced14cd8dac675d86c37",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_contact_igor_treumuth",
+      "itemType": "contact",
+      "title": "Igor Treumuth",
+      "status": "active",
+      "name": "Igor Treumuth",
+      "role": "Kalmistuvaht",
+      "department": "Häädemeeste kalmistu",
+      "summary": "Häädemeeste kalmistu kalmistuvaht, kes on kalmistuvaht.",
+      "officialUrl": "https://haademeeste.ee/lahedase-surm",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "lahedase_surm_page"
+      ],
+      "source_keys": [
+        "lahedase_surm_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_contact_igor_treumuth",
+      "document_id": "haademeeste_vald_contact_igor_treumuth",
+      "canonical_item_id": "haademeeste_vald_contact_igor_treumuth",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/lahedase-surm",
+      "content_hash": "63ca1827c21f47fdb24f99607e2eb369567af76795bcf8bc4375e22260b89e81",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_contact_kai_iir",
+      "itemType": "contact",
+      "title": "Kai Iir",
+      "status": "active",
+      "name": "Kai Iir",
+      "role": "Kalmistuvaht",
+      "department": "Urissaare kalmistu",
+      "summary": "Urissaare kalmistu kalmistuvaht, kes tegeleb kalmistu küsimustes.",
+      "officialUrl": "https://haademeeste.ee/lahedase-surm",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "lahedase_surm_page"
+      ],
+      "source_keys": [
+        "lahedase_surm_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_contact_kai_iir",
+      "document_id": "haademeeste_vald_contact_kai_iir",
+      "canonical_item_id": "haademeeste_vald_contact_kai_iir",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/lahedase-surm",
+      "content_hash": "6067610a33df505936e79dce4a4ed474fe7c80351e43dd7f360711140c7db29c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_contact_kairi_tilsen",
+      "itemType": "contact",
+      "title": "Kairi Tilsen",
+      "status": "active",
+      "name": "Kairi Tilsen",
+      "role": "Noorte heaolu spetsialist",
+      "department": "Noortegarantii tugisüsteem",
+      "summary": "Noorte heaolu spetsialist, kes toetab 16–29-aastaseid noori haridusse või tööellu liikumisel ja nõustab järgmiste sammude planeerimisel.",
+      "officialUrl": "https://haademeeste.ee/kontakt",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "kontakt_page"
+      ],
+      "source_keys": [
+        "kontakt_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_contact_kairi_tilsen",
+      "document_id": "haademeeste_vald_contact_kairi_tilsen",
+      "canonical_item_id": "haademeeste_vald_contact_kairi_tilsen",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/kontakt",
+      "content_hash": "445b27509dee6225747e03f15ad387de6394283b356ae26f4e1eb695bea9932f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_contact_kaja_kivis",
+      "itemType": "contact",
+      "title": "Kaja Kivis",
+      "status": "active",
+      "name": "Kaja Kivis",
+      "role": "Avahooldustöötaja",
+      "department": "Häädemeeste vallavalitsus",
+      "summary": "Avahooldustöötaja, kelle poole saab pöörduda koduteenuse ja praktilise kõrvalabi küsimustes.",
+      "officialUrl": "https://haademeeste.ee/kontakt",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "kontakt_page"
+      ],
+      "source_keys": [
+        "kontakt_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_contact_kaja_kivis",
+      "document_id": "haademeeste_vald_contact_kaja_kivis",
+      "canonical_item_id": "haademeeste_vald_contact_kaja_kivis",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/kontakt",
+      "content_hash": "e45fedb2c588ae694c6e381eb1303c87a2c9632a3b89eb5f17f7e138a536743b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_contact_sandra_rebane",
+      "itemType": "contact",
+      "title": "Sandra Rebane",
+      "status": "active",
+      "name": "Sandra Rebane",
+      "role": "Sotsiaaltöö spetsialist",
+      "department": "Häädemeeste vallavalitsus",
+      "summary": "Sotsiaaltöö spetsialist, kes korraldab sotsiaalteenuseid, vältimatut sotsiaalabi ja muid abimeetmeid ning nõustab sotsiaalabi taotlemisel.",
+      "officialUrl": "https://haademeeste.ee/kontakt",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "kontakt_page"
+      ],
+      "source_keys": [
+        "kontakt_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_contact_sandra_rebane",
+      "document_id": "haademeeste_vald_contact_sandra_rebane",
+      "canonical_item_id": "haademeeste_vald_contact_sandra_rebane",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/kontakt",
+      "content_hash": "1a2c16046361bc9bae7d30b287190af97c4344d92d97acdd0fd6f4a6e7f85e5b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_contact_toomas_toomla",
+      "itemType": "contact",
+      "title": "Toomas Toomla",
+      "status": "active",
+      "name": "Toomas Toomla",
+      "role": "Kalmistuvaht",
+      "department": "Metsaküla kalmistu",
+      "summary": "Metsaküla kalmistu kalmistuvaht; kalmistu küsimustes.",
+      "officialUrl": "https://haademeeste.ee/lahedase-surm",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "lahedase_surm_page"
+      ],
+      "source_keys": [
+        "lahedase_surm_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_contact_toomas_toomla",
+      "document_id": "haademeeste_vald_contact_toomas_toomla",
+      "canonical_item_id": "haademeeste_vald_contact_toomas_toomla",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/lahedase-surm",
+      "content_hash": "f7874f5a1c20bf5b8fa3ed557c2a1c108de5bd5b3620deb9f27fb87c42dd4d7f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_contact_ulve_arukase",
+      "itemType": "contact",
+      "title": "Ulve Arukase",
+      "status": "active",
+      "name": "Ulve Arukase",
+      "role": "Kalmistuvaht",
+      "department": "Treimani kalmistu",
+      "summary": "Treimani kalmistu kalmistuvaht; tema poole saab pöörduda matmiste ja kalmistu hoolduse küsimustes.",
+      "officialUrl": "https://haademeeste.ee/lahedase-surm",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "lahedase_surm_page"
+      ],
+      "source_keys": [
+        "lahedase_surm_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_contact_ulve_arukase",
+      "document_id": "haademeeste_vald_contact_ulve_arukase",
+      "canonical_item_id": "haademeeste_vald_contact_ulve_arukase",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/lahedase-surm",
+      "content_hash": "b346ff53338094de4bc95a30b6493ce3438b04b8377498748011430a39877264",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_form_eakate_kodu_avaldus",
+      "itemType": "form",
+      "title": "Avaldus Häädemeeste Eakate Kodu teenusele",
+      "status": "active",
+      "format": "doc",
+      "submissionChannels": [
+        "postiga",
+        "sotsiaaltöötaja vahendusel"
+      ],
+      "summary": "Avalduse blankett Häädemeeste Eakate Kodu teenuse taotlemiseks. Lehel on märgitud, et teenusele asumiseks tuleb esitada avaldus ja kehtiv isikut tõendav dokument.",
+      "officialUrl": "https://haademeeste.ee/media/7515/download",
+      "relatedTo": [
+        "haademeeste_vald_resource_haademeeste_eakate_kodu",
+        "haademeeste_vald_service_valjaspool_kodu_osutatav_yldhooldusteenus"
+      ],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eakatekodu_general_contact",
+        "haademeeste_vald_contact_eakatekodu_juhataja"
+      ],
+      "item_type": "form",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "eakate_kodu_avaldus_form"
+      ],
+      "source_keys": [
+        "eakate_kodu_avaldus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_form_eakate_kodu_avaldus",
+      "document_id": "haademeeste_vald_form_eakate_kodu_avaldus",
+      "canonical_item_id": "haademeeste_vald_form_eakate_kodu_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/media/7515/download",
+      "content_hash": "ab0fcc997040a173191b0091531233c9e27947e281f4ebeec78841d56b5e0fe0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_form_hooldus_hooldajatoetus_taotlus",
+      "itemType": "form",
+      "title": "Hooldus- ja hooldajatoetuse taotlus",
+      "status": "active",
+      "format": "doc",
+      "submissionChannels": [
+        "e-posti teel",
+        "postiga",
+        "vallavalitsuses või teenuskeskuses kohapeal"
+      ],
+      "summary": "Hooldus- ja hooldajatoetuse ühine taotlusvorm täisealise isiku hoolduse seadmiseks või hooldajatoetuse taotlemiseks.",
+      "officialUrl": "https://haademeeste.ee/sites/default/files/documents/2025-12/Hooldus-hooldajatoetus_taotlus.doc",
+      "relatedTo": [
+        "haademeeste_vald_service_taisealise_isiku_hooldus",
+        "haademeeste_vald_benefit_hooldajatoetus"
+      ],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane",
+        "haademeeste_vald_contact_gerli_liiva"
+      ],
+      "item_type": "form",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "hooldus_hooldajatoetus_form"
+      ],
+      "source_keys": [
+        "hooldus_hooldajatoetus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_form_hooldus_hooldajatoetus_taotlus",
+      "document_id": "haademeeste_vald_form_hooldus_hooldajatoetus_taotlus",
+      "canonical_item_id": "haademeeste_vald_form_hooldus_hooldajatoetus_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/sites/default/files/documents/2025-12/Hooldus-hooldajatoetus_taotlus.doc",
+      "content_hash": "3b3e13e70ced7521e5bdea7c384bb6bd99fb728e57ff64b3fe9da63d8d211875",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_form_i_klassi_astuja_taotlus",
+      "itemType": "form",
+      "title": "I klassi astuja toetuse taotlus",
+      "status": "active",
+      "format": "docx",
+      "submissionChannels": [
+        "e-posti teel",
+        "vallavalitsuses või teenuskeskuses kohapeal"
+      ],
+      "summary": "I klassi õppima asuva lapse toetuse taotluse vorm. Vormil esitatakse lapse ja taotleja andmed ning kool, kuhu laps õppima asub.",
+      "officialUrl": "https://haademeeste.ee/sites/default/files/documents/2026-02/I%20klassi%20asutaja%20toetuse%20taotlus.docx",
+      "relatedTo": [
+        "haademeeste_vald_benefit_i_klassi_toetus"
+      ],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane"
+      ],
+      "item_type": "form",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "i_klassi_form"
+      ],
+      "source_keys": [
+        "i_klassi_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_form_i_klassi_astuja_taotlus",
+      "document_id": "haademeeste_vald_form_i_klassi_astuja_taotlus",
+      "canonical_item_id": "haademeeste_vald_form_i_klassi_astuja_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/sites/default/files/documents/2026-02/I%20klassi%20asutaja%20toetuse%20taotlus.docx",
+      "content_hash": "e3341017345053f3cb74d6289c6195e10ce5bbc569697dc7f15799447a1fcd40",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_form_isikliku_abistaja_taotlus",
+      "itemType": "form",
+      "title": "Isikliku abistaja teenuse taotlus",
+      "status": "active",
+      "format": "doc",
+      "submissionChannels": [
+        "e-posti teel",
+        "postiga",
+        "vallavalitsuses või teenuskeskuses kohapeal"
+      ],
+      "summary": "Isikliku abistaja teenuse taotluse vorm. Vormis kirjeldatakse tegevusi, milles inimene vajab kõrvalabi.",
+      "officialUrl": "https://haademeeste.ee/sites/default/files/documents/2025-12/Isikliku%20abistaja%20teenus_TAOTLUS__H%C3%A4%C3%A4demeesteVV.doc",
+      "relatedTo": [
+        "haademeeste_vald_service_isikliku_abistaja_teenus"
+      ],
+      "relatedContacts": [
+        "haademeeste_vald_contact_gerli_liiva"
+      ],
+      "item_type": "form",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "isikliku_abistaja_form"
+      ],
+      "source_keys": [
+        "isikliku_abistaja_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_form_isikliku_abistaja_taotlus",
+      "document_id": "haademeeste_vald_form_isikliku_abistaja_taotlus",
+      "canonical_item_id": "haademeeste_vald_form_isikliku_abistaja_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/sites/default/files/documents/2025-12/Isikliku%20abistaja%20teenus_TAOTLUS__H%C3%A4%C3%A4demeesteVV.doc",
+      "content_hash": "13f916e374eef23b1a0b84ae036901a7a6d7ab8c8a6f9012b2e26570ae32014c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_form_kov_sotsiaaltoetuse_taotlus",
+      "itemType": "form",
+      "title": "KOV sotsiaaltoetuse taotlus",
+      "status": "active",
+      "format": "docx",
+      "submissionChannels": [
+        "e-posti teel",
+        "postiga",
+        "vallavalitsuses või teenuskeskuses kohapeal"
+      ],
+      "summary": "Üldine KOV sotsiaaltoetuse taotluse vorm sissetulekust sõltuva sotsiaaltoetuse ja muude vallapoolsete toetuste taotlemiseks, mille jaoks eraldi blanketti ei ole.",
+      "officialUrl": "https://haademeeste.ee/sites/default/files/documents/2026-02/KOV%20sotsiaaltoetuse%20taotlus.docx",
+      "relatedTo": [
+        "haademeeste_vald_benefit_sissetulekust_soltuv_sotsiaaltoetus",
+        "haademeeste_vald_benefit_erakorraline_toetus"
+      ],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane"
+      ],
+      "item_type": "form",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "kov_sotsiaaltoetus_form"
+      ],
+      "source_keys": [
+        "kov_sotsiaaltoetus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_form_kov_sotsiaaltoetuse_taotlus",
+      "document_id": "haademeeste_vald_form_kov_sotsiaaltoetuse_taotlus",
+      "canonical_item_id": "haademeeste_vald_form_kov_sotsiaaltoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/sites/default/files/documents/2026-02/KOV%20sotsiaaltoetuse%20taotlus.docx",
+      "content_hash": "b5b15eaaff2d105e6b21849cbfdd5aa806fd1df309ed9f02cf79b30b027d7712",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_form_koduteenus_taotlus",
+      "itemType": "form",
+      "title": "Koduteenuse taotlus",
+      "status": "active",
+      "format": "doc",
+      "submissionChannels": [
+        "e-posti teel",
+        "postiga",
+        "vallavalitsuses või teenuskeskuses kohapeal"
+      ],
+      "summary": "Koduteenuse taotluse vorm koduteenuse taotlemiseks. Vormil esitatakse taotleja andmed, kontaktandmed ja abi vajaduse kirjeldus ning see esitatakse vallavalitsusele või piirkonna sotsiaaltöötajale.",
+      "officialUrl": "https://haademeeste.ee/sites/default/files/documents/2025-12/Koduteenus_TAOTLUS_H%C3%A4%C3%A4demeesteVV.doc",
+      "relatedTo": [
+        "haademeeste_vald_service_koduteenus"
+      ],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane"
+      ],
+      "item_type": "form",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "koduteenus_form"
+      ],
+      "source_keys": [
+        "koduteenus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_form_koduteenus_taotlus",
+      "document_id": "haademeeste_vald_form_koduteenus_taotlus",
+      "canonical_item_id": "haademeeste_vald_form_koduteenus_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/sites/default/files/documents/2025-12/Koduteenus_TAOTLUS_H%C3%A4%C3%A4demeesteVV.doc",
+      "content_hash": "b4e3df10956ebedd233eeadeeb6fd88015899d86907bb4a1cca79c90e6c414ef",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_form_matusetoetuse_taotlus",
+      "itemType": "form",
+      "title": "Matusetoetuse taotlus",
+      "status": "active",
+      "format": "docx",
+      "submissionChannels": [
+        "iseteeninduse keskkond",
+        "e-posti teel",
+        "vallavalitsuses või teenuskeskuses kohapeal"
+      ],
+      "summary": "Matusetoetuse taotluse vorm 250-eurose toetuse taotlemiseks. Taotluses esitatakse taotleja ja surnud Häädemeeste valla elaniku andmed.",
+      "officialUrl": "https://haademeeste.ee/sites/default/files/documents/2026-02/Matusetoetuse%20taotlus.docx",
+      "relatedTo": [
+        "haademeeste_vald_benefit_matusetoetus"
+      ],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane"
+      ],
+      "item_type": "form",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "matusetoetus_form"
+      ],
+      "source_keys": [
+        "matusetoetus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_form_matusetoetuse_taotlus",
+      "document_id": "haademeeste_vald_form_matusetoetuse_taotlus",
+      "canonical_item_id": "haademeeste_vald_form_matusetoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/sites/default/files/documents/2026-02/Matusetoetuse%20taotlus.docx",
+      "content_hash": "f9fb24f203b8f820fa4d30ca5f63e684cca6e2f9dd8eacf6c28f3bfb591fec1f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_form_sunnitoetuse_taotlus",
+      "itemType": "form",
+      "title": "Sünnitoetuse taotlus",
+      "status": "active",
+      "format": "docx",
+      "submissionChannels": [
+        "iseteeninduse keskkond",
+        "e-posti teel",
+        "vallavalitsuses või teenuskeskuses kohapeal"
+      ],
+      "summary": "Sünnitoetuse taotluse vorm 800-eurose sünnitoetuse taotlemiseks. Taotlus tuleb esitada kuue kuu jooksul pärast lapse sünni registreerimist.",
+      "officialUrl": "https://haademeeste.ee/sites/default/files/documents/2026-02/S%C3%BCnnitoetuse%20taotlus.docx",
+      "relatedTo": [
+        "haademeeste_vald_benefit_sunnitoetus"
+      ],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane"
+      ],
+      "item_type": "form",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "sunnitoetus_form"
+      ],
+      "source_keys": [
+        "sunnitoetus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_form_sunnitoetuse_taotlus",
+      "document_id": "haademeeste_vald_form_sunnitoetuse_taotlus",
+      "canonical_item_id": "haademeeste_vald_form_sunnitoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/sites/default/files/documents/2026-02/S%C3%BCnnitoetuse%20taotlus.docx",
+      "content_hash": "beaef8a1c15c1c4b4b100cbeaecc0974c2f0447b901303cd7992f9b093760784",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_form_toimetulekutoetuse_taotlus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse taotlus",
+      "status": "active",
+      "format": "doc",
+      "submissionChannels": [
+        "e-posti teel",
+        "postiga",
+        "vallavalitsuses või teenuskeskuses kohapeal"
+      ],
+      "summary": "Toimetulekutoetuse taotluse vorm, millele lisatakse sissetulekute ja eluasemekulude dokumendid.",
+      "officialUrl": "https://haademeeste.ee/sites/default/files/documents/2026-02/Toimetulekutoetuse%20taotlus.doc",
+      "relatedTo": [
+        "haademeeste_vald_benefit_toimetulekutoetus"
+      ],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eha_sade",
+        "haademeeste_vald_contact_sandra_rebane"
+      ],
+      "item_type": "form",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "toimetulekutoetus_form"
+      ],
+      "source_keys": [
+        "toimetulekutoetus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_form_toimetulekutoetuse_taotlus",
+      "document_id": "haademeeste_vald_form_toimetulekutoetuse_taotlus",
+      "canonical_item_id": "haademeeste_vald_form_toimetulekutoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/sites/default/files/documents/2026-02/Toimetulekutoetuse%20taotlus.doc",
+      "content_hash": "7c758754412ca76a16a621c45b5bdc4672f65e91d31bce673c160869055183d6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haademeeste_vald_form_tugiisikuteenuse_taotlus",
+      "itemType": "form",
+      "title": "Tugiisikuteenuse taotlus",
+      "status": "active",
+      "format": "doc",
+      "submissionChannels": [
+        "e-posti teel",
+        "postiga",
+        "vallavalitsuses või teenuskeskuses kohapeal"
+      ],
+      "summary": "Tugiisikuteenuse taotluse vorm. Vormil kirjeldatakse, kellele ja millise kõrvalabi jaoks tugiisikut vajatakse.",
+      "officialUrl": "https://haademeeste.ee/sites/default/files/documents/2025-12/Tugiisikuteenus_TAOTLUS__H%C3%A4%C3%A4demeesteVV%20%281%29.doc",
+      "relatedTo": [
+        "haademeeste_vald_service_tugiisikuteenus"
+      ],
+      "relatedContacts": [
+        "haademeeste_vald_contact_eliise_erissaar",
+        "haademeeste_vald_contact_gerli_liiva"
+      ],
+      "item_type": "form",
+      "municipality_id": "haademeeste_vald",
+      "municipality_name": "Häädemeeste vald",
+      "county": "Pärnumaa",
+      "sourceKeys": [
+        "tugiisikuteenuse_form"
+      ],
+      "source_keys": [
+        "tugiisikuteenuse_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haademeeste_vald_form_tugiisikuteenuse_taotlus",
+      "document_id": "haademeeste_vald_form_tugiisikuteenuse_taotlus",
+      "canonical_item_id": "haademeeste_vald_form_tugiisikuteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haademeeste.ee/sites/default/files/documents/2025-12/Tugiisikuteenus_TAOTLUS__H%C3%A4%C3%A4demeesteVV%20%281%29.doc",
+      "content_hash": "c6802f1e081d776d7d6c2686e90467829a207e58ade68bf0defab8e8109e598e",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_id": "haademeeste_vald",
+  "municipality_name": "Häädemeeste vald",
+  "checked_at": "2026-04-11",
+  "schemaVersion": "v2.5-sourcepackage",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

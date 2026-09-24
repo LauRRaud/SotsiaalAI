@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-saku-vald",
+  "document_id": "kov-saku-vald",
+  "municipality": "Saku vald",
+  "municipality_id": "saku_vald",
+  "county": "Harjumaa",
+  "checkedAt": "2026-04-30",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-saku-vald",
+  "coverage": {
+    "services": 17,
+    "benefits": 23,
+    "resources": 18,
+    "contacts": 9,
+    "forms": 17,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "saku_vald",
+    "source_register_file": "saku-vald.sources.json",
+    "service_benefit_resource_items": 58,
+    "items_with_source_keys": 58,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 33,
+    "items_without_related_forms": 25,
+    "items_with_related_contacts": 37,
+    "items_without_related_contacts": 21,
+    "form_sources": 1,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "7 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Pakett käsitleb ainult Saku valla ametlikul veebilehel avaldatud praktilist sotsiaalvaldkonna infot; RT/legal kiht on eraldi."
+  ],
+  "unresolvedIssues": [
+    "Saku valla veebilehel olid mitmed e-vormid ja dokumendifailid esitatud dünaamiliste või väliste iseteeninduslinkidena (Piksel, ARNO) ning kõigi vormide otseseid faililinke ei olnud võimalik kindlalt eraldada; seetõttu on vormide allikana kasutatud KOV ametlikku vormide koondlehte.",
+    "Kontaktilehel on ametnike e-posti aadressid varjestatud kujul '**'; aadresse ei taastatud oletuse põhjal.",
+    "Vältimatu sotsiaalabi on sotsiaalhoolekande korralduse lehel nimetatud, kuid eraldi praktilist teenuse/toetuse detailplokki ei leitud; eraldi itemit ei loodud.",
+    "Mõnede toetuste täpsed summad (nt kolme- ja enamalapselise pere koolitoetus, eaka tähtpäevatoetus) ei olnud KOV veebilehel praktilises teenusekirjelduses avaldatud.",
+    "Väliste ressursside (Sotsiaalkindlustusamet, Leinakool, hasartmängusõltuvuse nõustamiskeskus, naiste tugikeskused) sisu ei kontrollitud välislehtedelt; kirjeldati ainult seda infot, mida Saku valla veebileht avaldas."
+  ],
+  "municipality_name": "Saku vald",
+  "checked_at": "2026-04-30",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "saku-vald.sources.json",
+  "sourceCount": 15,
+  "counts": {
+    "services": 17,
+    "benefits": 23,
+    "resources": 18,
+    "contacts": 9,
+    "forms": 17,
+    "regulations": 0
+  },
+  "warnings": [
+    "7 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

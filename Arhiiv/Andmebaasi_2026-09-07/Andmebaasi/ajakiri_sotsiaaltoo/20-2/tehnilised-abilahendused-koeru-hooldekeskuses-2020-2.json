@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-2-2020",
+  "articleId": "tehnilised-abilahendused-koeru-hooldekeskuses-2020-2",
+  "title": "Tehnilised abilahendused Koeru Hooldekeskuses",
+  "authors": [
+    "Terje Teder"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2020",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "102-103",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab Koeru Hooldekeskuse kogemust dementsusega inimeste teenusekohanduste ja tehniliste abilahenduste kasutuselevõtul. Fookuses on turvasüsteemid, teraapiarobot PARO ning lahenduste mõju turvalisusele, suhtlusele ja igapäevasele hooldustööle.",
+  "tags": [
+    "Koeru Hooldekeskus",
+    "dementsus",
+    "abitehnoloogia",
+    "teraapiarobot",
+    "turvalahendused"
+  ],
+  "source_type": "file",
+  "source_path": "ST2_2020_web_link_Part25.pdf",
+  "document_id": "sotsiaaltoo-2-2020-tehnilised-abilahendused-koeru-hooldekeskuses-2020-2",
+  "source_format": "pdf",
+  "source_sha256": "1fea3f5f4a8e087714913273718f6ac49d3cbdcd63f1534942280c5d489f151b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2020-tehnilised-abilahendused-koeru-hooldekeskuses-2020-2",
+    "previous_source_path": "ST2_2020_web_link_Part25.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "1fea3f5f4a8e087714913273718f6ac49d3cbdcd63f1534942280c5d489f151b",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

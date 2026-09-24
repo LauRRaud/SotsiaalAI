@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-2-2020",
+  "articleId": "sotsiaalala-tootajad-kriisi-keskmes-2020-2",
+  "title": "Sotsiaalala töötajad kriisi keskmes",
+  "authors": [
+    "Sirlis Sõmer-Kull"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2020",
+  "section": "Sotsiaaltöö eriolukorras",
+  "pageRange": "10-12",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "ESTA kogutud tagasisidel põhinev ülevaade Covid-19 kriisi mõjust sotsiaalala töötajate tööle. Käsitletakse eesliinitöötajate koormust, ohutusmeetmeid, töökorralduse muutusi ning supervisiooni ja juhtide toetuse kriitilist rolli.",
+  "tags": [
+    "sotsiaalala töötajad",
+    "Covid-19",
+    "eriolukord",
+    "kriis",
+    "supervisioon",
+    "kovisioon",
+    "töökorraldus",
+    "eesliinitöö",
+    "ESTA"
+  ],
+  "source_type": "file",
+  "source_path": "ST2_2020_web_link_Part5.pdf",
+  "document_id": "sotsiaaltoo-2-2020-sotsiaalala-tootajad-kriisi-keskmes-2020-2",
+  "source_format": "pdf",
+  "source_sha256": "61117bf208535011e808edea2677a53c7f0f656f9b0fa2ef5c53803a40bf1128",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2020-sotsiaalala-tootajad-kriisi-keskmes-2020-2",
+    "previous_source_path": "ST2_2020_web_link_Part5.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "61117bf208535011e808edea2677a53c7f0f656f9b0fa2ef5c53803a40bf1128",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

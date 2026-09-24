@@ -1,0 +1,71 @@
+{
+  "docId": "sotsiaaltoo-3-2017",
+  "articleId": "volusonad-vorgustikutoo-2017-3",
+  "title": "Võrgustikutöö",
+  "authors": [
+    "Hans van Ewijk"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2017",
+  "section": "Võlusõnad",
+  "pageRange": "27-28",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uue rubriigi „Võlusõnad” avaartikkel, mille eesmärk on hakata koostama sotsiaaltöös maagilise tähenduse omandanud sõnade ja mõistete sõnastikku. Külalisprofessor selgitab mõistet võrgustikutöö: algses tähenduses kontaktide loomine oluliste inimestega, sotsiaaltöös aga kliendi suhetevõrgu kaardistamine perest ja sõpradest kuni põgusate tutvusteni. Tõdeb, et sotsiaalselt kõige haavatavamate inimeste võrgustik on napp.",
+  "tags": [
+    "võrgustikutöö",
+    "mõisted",
+    "terminoloogia",
+    "sotsiaalne võrgustik",
+    "Võlusõnad"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part9.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2017-volusonad-vorgustikutoo-2017-3",
+  "source_sha256": "f3b5943526ed2e52c199c8f669016b97318f77232a972e440ccca485666ef64c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2017-volusonad-vorgustikutoo-2017-3",
+    "previous_source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part9.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part9.pdf",
+    "reference_stored_source_sha256": "12fcf6879cb2aee5b197917a2937e4a39a2b9ca13f6f0a8e0523e4b5c65ca49a",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf",
+      "source_sha256": "3f27c22982b22a396dace8a957798cc21d3240489c7ce4d92802bf1a94bde7a8",
+      "pdf_start_page": 29,
+      "pdf_end_page": 30,
+      "printed_page_range": "27-28",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 30,
+      "source_regions": [
+        {
+          "source_pdf_page": 29,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 30,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "27-28"
+    },
+    "server_page_range": "27-28"
+  }
+}

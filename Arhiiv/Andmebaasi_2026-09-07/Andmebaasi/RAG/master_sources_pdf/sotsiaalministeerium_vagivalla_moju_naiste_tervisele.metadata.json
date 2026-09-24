@@ -1,0 +1,77 @@
+{
+  "source": {
+    "source_id": "sotsiaalministeerium_vagivalla_moju_naiste_tervisele",
+    "title": "Vägivalla mõju naiste tervisele",
+    "url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/meedikute_kysitlus_1_.pdf",
+    "normalized_url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/meedikute_kysitlus_1_.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "Sotsiaalministeerium",
+    "organization_id": "sotsiaalministeerium",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "Sotsiaalministeerium",
+      "vägivald",
+      "ohvriabi",
+      "naiste tervis",
+      "uuring",
+      "raport",
+      "analüüs"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Sotsiaalministeerium",
+      "heading_3": "Vanemad, aga endiselt kasulikud taustauuringud",
+      "heading_4": null,
+      "line": 551,
+      "order": 286
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Vägivalla mõju naiste tervisele"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Sotsiaalministeerium"
+    ],
+    "organizations_seen": [
+      "sotsiaalministeerium"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Sotsiaalministeerium",
+        "heading_3": "Vanemad, aga endiselt kasulikud taustauuringud",
+        "line": 551,
+        "order": 286
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/meedikute_kysitlus_1_.pdf"
+  },
+  "final_url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/meedikute_kysitlus_1_.pdf",
+  "redirects": [],
+  "sha256": "9e1759d62699d05b5a871da02d9cc074eaa81db86b964b88f9ecbce9fc0bc7ab",
+  "bytes": 650861,
+  "downloaded_at": "2026-08-14T08:00:55.729Z"
+}

@@ -1,0 +1,37 @@
+{
+  "docId": "sotsiaaltoo-1-2021",
+  "articleId": "jututajad-aitavad-leevendada-uksildust-2021-1",
+  "title": "Jututajad aitavad leevendada üksildust",
+  "authors": [
+    "Maarja-Liis Mölder"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2021",
+  "section": "Kogemus",
+  "pageRange": "92-96",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kogemuslugu üksildust vähendavast vabatahtlike programmist Jututaja.",
+  "tags": [
+    "üksildus",
+    "vabatahtlikud",
+    "kogemuslugu"
+  ],
+  "source_type": "file",
+  "source_path": "artikkel_15_jututajad.pdf",
+  "document_id": "sotsiaaltoo-1-2021-jututajad-aitavad-leevendada-uksildust-2021-1",
+  "source_format": "pdf",
+  "source_sha256": "9d2ba87dae64d6d0714764a49aa1e2c7f078cca44a0e0755a76a46777a3c865e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2021-jututajad-aitavad-leevendada-uksildust-2021-1",
+    "previous_source_path": "artikkel_15_jututajad.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "9d2ba87dae64d6d0714764a49aa1e2c7f078cca44a0e0755a76a46777a3c865e",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

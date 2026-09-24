@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2025",
+  "articleId": "kanepipoliitika-varjatud-tagajarjed-sotsiaaltoo-pilk-legaliseerimisele-2025-4",
+  "title": "Kanepipoliitika varjatud tagajärjed: sotsiaaltöö pilk legaliseerimisele",
+  "authors": [
+    "Marianne Paimre"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2025",
+  "section": "Uimastipoliitika",
+  "pageRange": "1–5",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb kanepi legaliseerimisega kaasnevaid sotsiaalseid ja terviseriske, mis avalikus arutelus sageli tahaplaanile jäävad. Vaadeldakse laste mürgistusi, töövõime vähenemist, psüühikahäireid, turundusvõtteid ning sotsiaaltöö rolli ennetuses ja poliitikakujunduses.",
+  "tags": [
+    "kanep",
+    "uimastipoliitika",
+    "legaliseerimine",
+    "ennetus",
+    "vaimne tervis",
+    "laste turvalisus",
+    "sotsiaaltöö"
+  ],
+  "source_type": "file",
+  "source_path": "Kanepipoliitika varjatud tagajärjed_sotsiaaltöö pilk legaliseerimisele.pdf",
+  "document_id": "sotsiaaltoo-4-2025-kanepipoliitika-varjatud-tagajarjed-sotsiaaltoo-pilk-legaliseerimisele-2025-4",
+  "source_format": "pdf",
+  "source_sha256": "ceaf259fbb1952c8b48b18efd68908a628cd4e3a4e3e324302e40f596cab5800",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2025-kanepipoliitika-varjatud-tagajarjed-sotsiaaltoo-pilk-legaliseerimisele-2025-4",
+    "previous_source_path": "Kanepipoliitika varjatud tagajärjed_sotsiaaltöö pilk legaliseerimisele.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ceaf259fbb1952c8b48b18efd68908a628cd4e3a4e3e324302e40f596cab5800",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

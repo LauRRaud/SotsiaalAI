@@ -1,0 +1,82 @@
+{
+  "source": {
+    "source_id": "oska_oska_sotsiaaltoo_uuringu_olulisemad_tulemused",
+    "title": "OSKA sotsiaaltöö uuringu olulisemad tulemused",
+    "url": "https://uuringud.oska.kutsekoda.ee/assets/files/sotsiaaltoo/4-oska-sotsiaaltoo-olulisemad-tulemused.pdf",
+    "normalized_url": "https://uuringud.oska.kutsekoda.ee/assets/files/sotsiaaltoo/4-oska-sotsiaaltoo-olulisemad-tulemused.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "OSKA",
+    "organization_id": "oska",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "OSKA",
+      "sotsiaaltöö",
+      "tööjõuvajadus",
+      "oskused",
+      "valdkonnauuring",
+      "uuring",
+      "raport",
+      "analüüs"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_027",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+    "source_context": {
+      "heading_2": "OSKA",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 239,
+      "order": 149
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "OSKA sotsiaaltöö uuringu olulisemad tulemused"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "OSKA"
+    ],
+    "organizations_seen": [
+      "oska"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "OSKA",
+        "line": 239,
+        "order": 149
+      },
+      {
+        "heading_2": "OSKA",
+        "line": 713,
+        "order": 356
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://uuringud.oska.kutsekoda.ee/assets/files/sotsiaaltoo/4-oska-sotsiaaltoo-olulisemad-tulemused.pdf"
+  },
+  "final_url": "https://uuringud.oska.kutsekoda.ee/assets/files/sotsiaaltoo/4-oska-sotsiaaltoo-olulisemad-tulemused.pdf",
+  "redirects": [],
+  "sha256": "545c633b8adaa13be9387d95f28d8fbb08dcd46e6896e7b6789a53cbe3558c63",
+  "bytes": 141072,
+  "downloaded_at": "2026-08-14T08:00:36.720Z"
+}

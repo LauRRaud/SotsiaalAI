@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2019",
+  "articleId": "pusivaesus-ja-vaesus-konkreetse-ajahetke-loikes-2019",
+  "title": "Püsivaesus ja vaesus konkreetsel ajahetkel",
+  "authors": [
+    "Hede Sinisaar"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2019",
+  "section": "Analüüs",
+  "pageRange": "80-85",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Analüüs, mis selgitab püsivaesuse ja hetkevaesuse mõisteid, võrdleb Eesti püsivaesuse näitajaid teiste Euroopa riikidega ja arutleb, mida see tähendab sotsiaalpoliitika kujundamisel.",
+  "tags": [
+    "püsivaesus",
+    "suhteline vaesus",
+    "absoluutne vaesus",
+    "sotsiaalpoliitika",
+    "Euroopa Liidu võrdlus",
+    "sotsiaalne ebavõrdsus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part16.pdf",
+  "document_id": "sotsiaaltoo-2-2019-pusivaesus-ja-vaesus-konkreetse-ajahetke-loikes-2019",
+  "source_format": "pdf",
+  "source_sha256": "ec503e36b310e86c9bf57b54c7555729a135f2ae6d212de9747c4648fb71f3aa",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2019-pusivaesus-ja-vaesus-konkreetse-ajahetke-loikes-2019",
+    "previous_source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part16.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ec503e36b310e86c9bf57b54c7555729a135f2ae6d212de9747c4648fb71f3aa",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

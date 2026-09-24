@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-2-2018",
+  "articleId": "marina-runno-persoon-2018",
+  "title": "Marina Runno: „Koostegutsemine annab palju jõudu ja kogemusi”",
+  "authors": [
+    "Sirlis Sõmer-Kull"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2018",
+  "section": "Persoon",
+  "pageRange": "3-7",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu Marina Runnost, tema koostöökogemusest, kaasamisest ja kogukonnatööst.",
+  "tags": [
+    "persoonilugu",
+    "kogukonnatöö",
+    "koostöö",
+    "kaasamine",
+    "sotsiaaltöö väärtused"
+  ],
+  "source_type": "file",
+  "source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part3.pdf",
+  "document_id": "sotsiaaltoo-2-2018-marina-runno-persoon-2018",
+  "source_format": "pdf",
+  "source_sha256": "d532e0ab1d69b092d5ea8f7636bf37f6cbc842cf83f169dc1195b094b8a526c5",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2018-marina-runno-persoon-2018",
+    "previous_source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part3.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d532e0ab1d69b092d5ea8f7636bf37f6cbc842cf83f169dc1195b094b8a526c5",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

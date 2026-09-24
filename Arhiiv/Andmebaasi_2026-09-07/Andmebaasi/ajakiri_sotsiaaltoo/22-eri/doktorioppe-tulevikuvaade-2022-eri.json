@@ -1,0 +1,98 @@
+{
+  "docId": "sotsiaaltoo-eri-2022",
+  "articleId": "doktorioppe-tulevikuvaade-2022-eri",
+  "title": "Sotsiaaltöö doktoriõppe tulevikuvaade",
+  "authors": [
+    "Merike Sisask"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö (erinumber)",
+  "issueLabel": "Eri/2022",
+  "section": "30 aastat õpetamist",
+  "pageRange": "50-54",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade Tallinna Ülikooli sotsiaaltöö doktoriõppekavast, mis avati 1997. aastal ja on ainus selles valdkonnas kogu Baltimaades. Õppekava on juhtinud professorid Taimi Tulva, Lauri Leppik ja alates 2014. aastast Merike Sisask. Rõhk on interdistsiplinaarsusel, koostööl ja rahvusvahelistumisel; õppekava viidi 2015. aasta struktuurireformi käigus ühiskonnateaduste instituuti.",
+  "tags": [
+    "doktoriõpe",
+    "sotsiaaltööteadus",
+    "Tallinna Ülikool",
+    "interdistsiplinaarsus",
+    "Baltimaad"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo-ERINUMBER_2022_Part8.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-eri-2022-doktorioppe-tulevikuvaade-2022-eri",
+  "source_sha256": "13ecc06654dd717c61221d33ce86208cc42b5541cc209e2012305d045e0ddd56",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2022-doktorioppe-tulevikuvaade-2022-eri",
+    "previous_source_path": "Sotsiaaltoo-ERINUMBER_2022_Part8.txt",
+    "previous_source_original_path": "Sotsiaaltoo-ERINUMBER_2022_Part8.pdf",
+    "reference_stored_source_sha256": "95dff1e286c5cb07676bb006cb11a25fb40b952a11cab732096a268d1706ef36",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo-ERINUMBER_2022.pdf",
+      "source_sha256": "807b48240fe049838a94b8cffd3e1b388f778591bddb0ad5cb542d3cd6ff73b1",
+      "pdf_start_page": 52,
+      "pdf_end_page": 56,
+      "printed_page_range": "50-54",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 56,
+      "source_regions": [
+        {
+          "source_pdf_page": 52,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 53,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 54,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 55,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 56,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "50-54"
+    },
+    "server_page_range": "50-54"
+  }
+}

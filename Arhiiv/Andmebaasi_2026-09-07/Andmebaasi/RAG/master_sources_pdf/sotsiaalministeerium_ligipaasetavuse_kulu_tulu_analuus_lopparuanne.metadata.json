@@ -1,0 +1,76 @@
+{
+  "source": {
+    "source_id": "sotsiaalministeerium_ligipaasetavuse_kulu_tulu_analuus_lopparuanne",
+    "title": "Ligipääsetavuse kulu-tulu analüüs. Lõpparuanne",
+    "url": "https://www.sm.ee/sites/default/files/documents/2022-10/Ligip%C3%A4%C3%A4setavuse%20kulu-tulu%20anal%C3%BC%C3%BCs.%20L%C3%B5pparuanne_0.pdf",
+    "normalized_url": "https://www.sm.ee/sites/default/files/documents/2022-10/Ligipääsetavuse kulu-tulu analüüs. Lõpparuanne_0.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "Sotsiaalministeerium",
+    "organization_id": "sotsiaalministeerium",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "Sotsiaalministeerium",
+      "ligipääsetavus",
+      "universaalne disain",
+      "uuring",
+      "raport",
+      "analüüs"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Sotsiaalministeerium",
+      "heading_3": "Puue, töövõime, ligipääsetavus",
+      "heading_4": null,
+      "line": 525,
+      "order": 275
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Ligipääsetavuse kulu-tulu analüüs. Lõpparuanne"
+    ],
+    "collection_hints": [
+      "research_reports"
+    ],
+    "source_types_seen": [
+      "research_report"
+    ],
+    "resource_types_seen": [
+      "research_evidence"
+    ],
+    "publishers_seen": [
+      "Sotsiaalministeerium"
+    ],
+    "organizations_seen": [
+      "sotsiaalministeerium"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Sotsiaalministeerium",
+        "heading_3": "Puue, töövõime, ligipääsetavus",
+        "line": 525,
+        "order": 275
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.sm.ee/sites/default/files/documents/2022-10/Ligipääsetavuse kulu-tulu analüüs. Lõpparuanne_0.pdf"
+  },
+  "final_url": "https://www.sm.ee/sites/default/files/documents/2022-10/Ligip%C3%A4%C3%A4setavuse%20kulu-tulu%20anal%C3%BC%C3%BCs.%20L%C3%B5pparuanne_0.pdf",
+  "redirects": [],
+  "sha256": "78c957e0215ecd471cecff3bb358794b2fcbb208e35281be1e87ceee15c16df0",
+  "bytes": 3512675,
+  "downloaded_at": "2026-08-14T08:00:54.174Z"
+}

@@ -1,0 +1,1229 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-voru-linn",
+  "document_id": "kov-voru-linn",
+  "municipality": "Võru linn",
+  "municipality_id": "voru_linn",
+  "county": "Võrumaa",
+  "checkedAt": "2026-04-30",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "voru_linn_contact_terje_kanger",
+      "canonical_item_id": "voru_linn:contact:terje_kanger",
+      "itemType": "contact",
+      "title": "Terje Kanger",
+      "status": "active",
+      "summary": "Võru linna sotsiaaltööosakonna juhataja, kes juhib osakonna tööd ja koordineerib Nöörimaa Tugikodu tööd. Ta vastutab toetuste ja hooldusteenuste menetlemise eest.",
+      "name": "Terje Kanger",
+      "role": "Sotsiaaltööosakonna juhataja",
+      "department": "Sotsiaaltööosakond",
+      "address": "Tartu 23, kab 4, 65608 Võru",
+      "sourceKeys": [
+        "voru_linn_contact_page",
+        "voru_linn_eluaseme_kohandamine"
+      ],
+      "item_type": "contact",
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "county": "Võrumaa",
+      "source_keys": [
+        "voru_linn_contact_page",
+        "voru_linn_eluaseme_kohandamine"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_linn_contact_terje_kanger",
+      "document_id": "voru_linn_contact_terje_kanger",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "00444ada14d957cd23b31f86af4533c67b055f1af0590493b16843714e9adeb9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_linn_contact_larisa_bokova",
+      "canonical_item_id": "voru_linn:contact:larisa_bokova",
+      "itemType": "contact",
+      "title": "Larisa Bõkova",
+      "status": "active",
+      "summary": "Hoolekande spetsialist, kes korraldab koduteenuse, eluruumi tagamise teenuse, sotsiaaltranspordi ja täisealise isiku hoolduse hindamist.",
+      "name": "Larisa Bõkova",
+      "role": "Hoolekande spetsialist",
+      "department": "Sotsiaaltööosakond",
+      "address": "Tartu 23, kab 3, 65608 Võru",
+      "sourceKeys": [
+        "voru_linn_contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "county": "Võrumaa",
+      "source_keys": [
+        "voru_linn_contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_linn_contact_larisa_bokova",
+      "document_id": "voru_linn_contact_larisa_bokova",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "683c825cf773f8709bd6dc8cd0af7754fbbeecfef212dec28be71688a702cb77",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_linn_contact_egle_niilus",
+      "canonical_item_id": "voru_linn:contact:egle_niilus",
+      "itemType": "contact",
+      "title": "Egle Niilus",
+      "status": "active",
+      "summary": "Eestkoste spetsialist, kes nõustab ja korraldab eestkoste seadmisega seotud küsimusi ning tugiisikuteenuseid täiskasvanutele.",
+      "name": "Egle Niilus",
+      "role": "Eestkoste ja hoolekande spetsialist",
+      "department": "Sotsiaaltööosakond",
+      "address": "Tartu 23, kab 5, 65608 Võru",
+      "sourceKeys": [
+        "voru_linn_contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "county": "Võrumaa",
+      "source_keys": [
+        "voru_linn_contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_linn_contact_egle_niilus",
+      "document_id": "voru_linn_contact_egle_niilus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "2621c3a29dbd922972e7abe6ea1c7b82b581057890d5189e07b34e24fe255160",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_linn_contact_marve_koiv",
+      "canonical_item_id": "voru_linn:contact:marve_koiv",
+      "itemType": "contact",
+      "title": "Marve Kõiv",
+      "status": "active",
+      "summary": "Lastekaitsespetsialist, kes tegeleb laste ja peredega seotud probleemide lahendamisega ja korraldab laste õiguste kaitset.",
+      "name": "Marve Kõiv",
+      "role": "Lastekaitsespetsialist",
+      "department": "Sotsiaaltööosakond",
+      "address": "Tartu 23, kab 9, 65608 Võru",
+      "sourceKeys": [
+        "voru_linn_contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "county": "Võrumaa",
+      "source_keys": [
+        "voru_linn_contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_linn_contact_marve_koiv",
+      "document_id": "voru_linn_contact_marve_koiv",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "bbfed9ecacb5abbe2df78de1d33d4dde15f4e96540c6280c8615ce7c08cf300b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_linn_contact_reneth_viirok",
+      "canonical_item_id": "voru_linn:contact:reneth_viirok",
+      "itemType": "contact",
+      "title": "Reneth Viirok",
+      "status": "active",
+      "summary": "Lastekaitsespetsialist, kes vastutab psühholoogilise nõustamise toetuse korraldamise eest ja lahendab lastega seotud probleemid.",
+      "name": "Reneth Viirok",
+      "role": "Lastekaitsespetsialist",
+      "department": "Sotsiaaltööosakond",
+      "address": "Tartu 23, kab 9, 65608 Võru",
+      "sourceKeys": [
+        "voru_linn_contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "county": "Võrumaa",
+      "source_keys": [
+        "voru_linn_contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_linn_contact_reneth_viirok",
+      "document_id": "voru_linn_contact_reneth_viirok",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "86d746829792f9f955a15fb10e3aac04ab1cc44b4a66f2afc4b7b8b48fbab0ac",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_linn_contact_paivi_kahusk",
+      "canonical_item_id": "voru_linn:contact:paivi_kahusk",
+      "itemType": "contact",
+      "title": "Päivi Kahusk",
+      "status": "active",
+      "summary": "Noorte heaolu spetsialist, kes toetab noorte tööhõive, hariduse ja sotsiaalse kaasamisega seotud küsimusi.",
+      "name": "Päivi Kahusk",
+      "role": "Noorte heaolu spetsialist",
+      "department": "Sotsiaaltööosakond",
+      "address": "Tartu 23, kab 7, 65608 Võru",
+      "sourceKeys": [
+        "voru_linn_contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "county": "Võrumaa",
+      "source_keys": [
+        "voru_linn_contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_linn_contact_paivi_kahusk",
+      "document_id": "voru_linn_contact_paivi_kahusk",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "05aae52f71a232667ed39784bf6257a7b47c60e3a0be4f4770bdd7e7c3a562f0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_linn_contact_liia_laats",
+      "canonical_item_id": "voru_linn:contact:liia_laats",
+      "itemType": "contact",
+      "title": "Liia Laats",
+      "status": "active",
+      "summary": "Tugiisik, kes toetab täiskasvanud erivajadusega inimesi ja nende peresid.",
+      "name": "Liia Laats",
+      "role": "Tugiisik",
+      "department": "Sotsiaaltööosakond",
+      "address": "Tartu 23, 65608 Võru",
+      "sourceKeys": [
+        "voru_linn_contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "county": "Võrumaa",
+      "source_keys": [
+        "voru_linn_contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_linn_contact_liia_laats",
+      "document_id": "voru_linn_contact_liia_laats",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "87b609a2d3ec944ebee0ce8726a58b69f9a996635f8439021a0f7c375a54720a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_linn_contact_ulle_lehtna",
+      "canonical_item_id": "voru_linn:contact:ulle_lehtna",
+      "itemType": "contact",
+      "title": "Ülle Lehtna",
+      "status": "active",
+      "summary": "Hooldustöötaja Pargikodus, kes toetab sotsiaaleluruumi teenuse kasutajaid.",
+      "name": "Ülle Lehtna",
+      "role": "Hooldustöötaja",
+      "department": "Pargikodu",
+      "address": "F. R. Kreutzwaldi 55, Võru",
+      "sourceKeys": [
+        "voru_linn_contact_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "county": "Võrumaa",
+      "source_keys": [
+        "voru_linn_contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_linn_contact_ulle_lehtna",
+      "document_id": "voru_linn_contact_ulle_lehtna",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "299303f5cdcda2e3954a131eaff3766fbb202f479f8426ced3f1bc088578bee0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_linn_service_koduteenus",
+      "canonical_item_id": "voru_linn:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus toetab täiskasvanuid, kes terviseseisundist või elukeskkonnast tulenevalt vajavad abi igapäevatoimingutes. Teenus hõlmab abi eneseteeninduses, toidu ostmisel ja valmistamisel, arstiabi korraldamisel, kodu korrastamisel ja kütmisel. Teenus on tasuline ning taotlemiseks tuleb pöörduda sotsiaaltööosakonda.",
+      "targetGroup": "Täisealised inimesed, kes vajavad kodus kõrvalabi",
+      "conditions": "Elukoht Võru linnas ja kõrvalabi vajadus.",
+      "application": {
+        "channels": [
+          "paper",
+          "post",
+          "email"
+        ],
+        "steps": "Esita taotlus sotsiaaltööosakonda koos isikut tõendava dokumendiga.",
+        "deadline": null
+      },
+      "decisionTime": "10 tööpäeva jooksul taotluse esitamisest",
+      "pricing": {
+        "amount": "tasuline",
+        "description": "kuutasu sõltub teenuse mahust"
+      },
+      "officialUrl": "https://www.voru.ee/koduteenus",
+      "relatedForms": [
+        "voru_linn_form_sotsiaaltoetuste_taotlus"
+      ],
+      "relatedContacts": [
+        "voru_linn_contact_larisa_bokova",
+        "voru_linn_contact_terje_kanger"
+      ],
+      "sourceKeys": [
+        "voru_linn_koduteenus"
+      ],
+      "item_type": "service",
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "county": "Võrumaa",
+      "source_keys": [
+        "voru_linn_koduteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_linn_service_koduteenus",
+      "document_id": "voru_linn_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voru.ee/koduteenus",
+      "content_hash": "28d69757f130d23fef2119c5c4541103fad40f44a703e310f4f6fb00485d21d0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_linn_service_sotsiaaltransport",
+      "canonical_item_id": "voru_linn:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus võimaldab erivajadusega või liikumispuudega inimestel sõita tööle, haiglasse, õppeasutusse või kasutada avalikke teenuseid sobiva transpordivahendiga. Teenus on mõeldud Võru linna elanikele, kes ei saa kasutada ühistransporti ega isiklikku sõidukit.",
+      "targetGroup": "Puudega või liikumisraskustega täiskasvanud, kes elavad Võru linnas",
+      "conditions": "Teenuse vajadus tuvastatakse sotsiaaltööspetsialisti hindamisel.",
+      "application": {
+        "channels": [
+          "paper",
+          "post",
+          "email"
+        ],
+        "steps": "Esita taotlus vähemalt 3 tööpäeva enne sõidu vajadust sotsiaaltööosakonda.",
+        "deadline": null
+      },
+      "pricing": {
+        "amount": "tasuline",
+        "description": "sõidutasu sõltub sihtkohast"
+      },
+      "officialUrl": "https://www.voru.ee/sotsiaaltransporditeenus",
+      "relatedForms": [
+        "voru_linn_form_sotsiaaltoetuste_taotlus"
+      ],
+      "relatedContacts": [
+        "voru_linn_contact_larisa_bokova"
+      ],
+      "sourceKeys": [
+        "voru_linn_sotsiaaltransport"
+      ],
+      "item_type": "service",
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "county": "Võrumaa",
+      "source_keys": [
+        "voru_linn_sotsiaaltransport"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_linn_service_sotsiaaltransport",
+      "document_id": "voru_linn_service_sotsiaaltransport",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voru.ee/sotsiaaltransporditeenus",
+      "content_hash": "f3944fd806735f0816af019daf0121d4effd8887cfa463d22eac999f0160fbc3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_linn_service_volanoustamine",
+      "canonical_item_id": "voru_linn:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab inimestel hinnata oma rahalist olukorda, planeerida pere eelarvet ja suhelda võlausaldajatega. Teenus toetab võlgade ennetamist ja võlgnevuste vähendamist.",
+      "targetGroup": "Võru linna elanikud, kellel on võlgnevused või makseraskused",
+      "conditions": "Rahalistest raskustest või võlgadest tulenev nõustamisvajadus.",
+      "application": {
+        "channels": [
+          "paper",
+          "post",
+          "email"
+        ],
+        "steps": "Esita taotlus sotsiaaltööosakonda ja lisa kehtiv isikut tõendav dokument.",
+        "deadline": null
+      },
+      "officialUrl": "https://www.voru.ee/volanoustamisteenus",
+      "relatedForms": [
+        "voru_linn_form_sotsiaaltoetuste_taotlus"
+      ],
+      "relatedContacts": [
+        "voru_linn_contact_larisa_bokova",
+        "voru_linn_contact_marve_koiv"
+      ],
+      "sourceKeys": [
+        "voru_linn_volanoustamine"
+      ],
+      "item_type": "service",
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "county": "Võrumaa",
+      "source_keys": [
+        "voru_linn_volanoustamine"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_linn_service_volanoustamine",
+      "document_id": "voru_linn_service_volanoustamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voru.ee/volanoustamisteenus",
+      "content_hash": "a187c82ad084944d03a26c93c7cf029940bec6a648635328eac2551928ae1ff0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_linn_service_eluruumiteenus",
+      "canonical_item_id": "voru_linn:service:eluruumi_tagamise_teenus",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Teenuse eesmärk on aidata täisealistel Võru linna elanikel, kes majanduslikel või sotsiaalsetel põhjustel ei saa endale sobivat eluruumi tagada. Linn sõlmib üürilepingu ja pakub sotsiaaleluruumi Nöörimaa tugikodus või Pargikodus.",
+      "targetGroup": "Täisealised Võru linna elanikud, kes ei suuda endale eluruumi tagada",
+      "conditions": "Abivajaduse hindamine ja eluruumi puudumine.",
+      "application": {
+        "channels": [
+          "paper",
+          "post",
+          "email"
+        ],
+        "steps": "Esita taotlus sotsiaaltööosakonda, kirjeldades eluruumi vajadust ja lisades nõutavad dokumendid.",
+        "deadline": null
+      },
+      "officialUrl": "https://www.voru.ee/eluruumi-tagamise-teenus",
+      "relatedForms": [
+        "voru_linn_form_sotsiaaltoetuste_taotlus"
+      ],
+      "relatedContacts": [
+        "voru_linn_contact_larisa_bokova"
+      ],
+      "sourceKeys": [
+        "voru_linn_eluaseme_kohandamine",
+        "voru_linn_service_eluruumiteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "county": "Võrumaa",
+      "source_keys": [
+        "voru_linn_eluaseme_kohandamine",
+        "voru_linn_service_eluruumiteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_linn_service_eluruumiteenus",
+      "document_id": "voru_linn_service_eluruumiteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voru.ee/eluruumi-tagamise-teenus",
+      "content_hash": "b59499b4f3b4eaf86d226647114dd4a9825d7eb7a802eb3604e6f46a7cfaf8de",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_linn_service_turvakoduteenus",
+      "canonical_item_id": "voru_linn:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenus pakub ajutist eluaset, turvalist keskkonda ja esmaseid hooldus- ning nõustamisteenuseid lastele ja täiskasvanutele, kes vajavad kiiret abi. Teenus tagab majutuse, pesemisvõimaluse ja sotsiaalnõustamise.",
+      "targetGroup": "Võru linna lapsed ja täiskasvanud, kes on sattunud kriisi või hoolduseta olukorda",
+      "conditions": "Teenust antakse kriisiolukorras vastavalt sotsiaaltöötaja otsusele; võib osutada ka teiste omavalitsuste elanikele.",
+      "application": {
+        "channels": [
+          "paper",
+          "post",
+          "email"
+        ],
+        "steps": "Pöördu sotsiaaltööosakonda või helista laste- või täiskasvanute kriisi puhul. Esita isikut tõendav dokument.",
+        "deadline": null
+      },
+      "officialUrl": "https://www.voru.ee/turvakoduteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "voru_linn_contact_terje_kanger",
+        "voru_linn_contact_marve_koiv",
+        "voru_linn_contact_reneth_viirok"
+      ],
+      "sourceKeys": [
+        "voru_linn_home",
+        "voru_linn_service_turvakoduteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "county": "Võrumaa",
+      "source_keys": [
+        "voru_linn_home",
+        "voru_linn_service_turvakoduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_linn_service_turvakoduteenus",
+      "document_id": "voru_linn_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voru.ee/turvakoduteenus",
+      "content_hash": "bb00ce07731b2d51249fd605f19a00c78ca46554b447cca8f602878eed98d8b7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_linn_service_taisealise_hooldus",
+      "canonical_item_id": "voru_linn:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hoolduse teenus võimaldab määrata hoolduse täisealisele inimesele, kes vajab igapäevast abi vaimse või füüsilise puudega ning kellele ei ole teist hooldajat olemas. Teenus on tähtajaline.",
+      "targetGroup": "Täisealised, kellel on hooldusvajadus ja kellele on määratud puue",
+      "conditions": "Vajadust hindab sotsiaaltööosakonna töötaja. Taotleja või tema esindaja peab esitama kehtiva isikut tõendava dokumendi ja puudeotsuse.",
+      "application": {
+        "channels": [
+          "paper",
+          "post",
+          "email"
+        ],
+        "steps": "Esita taotlus sotsiaaltööosakonda koos nõutud dokumentidega.",
+        "deadline": null
+      },
+      "officialUrl": "https://www.voru.ee/taisealise-isiku-hooldus",
+      "relatedForms": [
+        "voru_linn_form_sotsiaaltoetuste_taotlus"
+      ],
+      "relatedContacts": [
+        "voru_linn_contact_larisa_bokova"
+      ],
+      "sourceKeys": [
+        "voru_linn_home",
+        "voru_linn_service_taisealise_hooldus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "county": "Võrumaa",
+      "source_keys": [
+        "voru_linn_home",
+        "voru_linn_service_taisealise_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_linn_service_taisealise_hooldus",
+      "document_id": "voru_linn_service_taisealise_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voru.ee/taisealise-isiku-hooldus",
+      "content_hash": "35b76a64b94987fc1bf2ad9ca2d8f4888d795550dc8b5301834ad0c73f0197f7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_linn_service_varjupaik",
+      "canonical_item_id": "voru_linn:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus pakub ajutist öömaja ja esmaseid elamistingimusi täisealistele, kes ei leia omale peavarju. Teenust osutab Nöörimaa tugikodu ja see sisaldab voodikohta, pesemisvõimalust ja turvalist keskkonda.",
+      "targetGroup": "Täisealised elanikud, kellel puudub ajutiselt ööbimisvõimalus",
+      "conditions": "Vajalik on isikut tõendav dokument.",
+      "application": {
+        "channels": [
+          "paper",
+          "post",
+          "email"
+        ],
+        "steps": "Võta ühendust sotsiaaltööosakonna spetsialistiga või pöördu Nöörimaa tugikodusse.",
+        "deadline": null
+      },
+      "officialUrl": "https://www.voru.ee/varjupaigateenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "voru_linn_contact_larisa_bokova"
+      ],
+      "sourceKeys": [
+        "voru_linn_home",
+        "voru_linn_service_varjupaik_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "county": "Võrumaa",
+      "source_keys": [
+        "voru_linn_home",
+        "voru_linn_service_varjupaik_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_linn_service_varjupaik",
+      "document_id": "voru_linn_service_varjupaik",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voru.ee/varjupaigateenus",
+      "content_hash": "fe5b274743d6b1a37c172e53c41dd7f3af3f2740c18f6cb5722e48210ae92a69",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_linn_service_valtimatu_abi",
+      "canonical_item_id": "voru_linn:service:valtimatu_sotsiaalabi",
+      "itemType": "service",
+      "title": "Vältimatu sotsiaalabi",
+      "status": "active",
+      "summary": "Vältimatu sotsiaalabi tagab hädasolevatele inimestele esmase abi toidu, riiete ja ajutise majutuse näol, kuni inimene suudab taas ise toime tulla. Teenus on ajutine ja seda pakutakse koostöös sotsiaaltööosakonna ja Nöörimaa tugikoduga.",
+      "targetGroup": "Inimesed, kes on sattunud sotsiaalsesse kriisi ja vajavad kiiret abi",
+      "conditions": "Abi antakse ajutiselt kuni abivajaduse lõppemiseni. Vajalik on isikut tõendav dokument.",
+      "application": {
+        "channels": [
+          "paper",
+          "post",
+          "in_person"
+        ],
+        "steps": "Pöördu sotsiaaltööosakonda või tugikodusse ning esita kehtiv isikut tõendav dokument.",
+        "deadline": null
+      },
+      "officialUrl": "https://www.voru.ee/valtimatu-sotsiaalabi",
+      "relatedForms": [],
+      "relatedContacts": [
+        "voru_linn_contact_terje_kanger"
+      ],
+      "sourceKeys": [
+        "voru_linn_home",
+        "voru_linn_service_valtimatu_abi_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "county": "Võrumaa",
+      "source_keys": [
+        "voru_linn_home",
+        "voru_linn_service_valtimatu_abi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_linn_service_valtimatu_abi",
+      "document_id": "voru_linn_service_valtimatu_abi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voru.ee/valtimatu-sotsiaalabi",
+      "content_hash": "78579f78c540acdc66ef7822c71c8694675bb7ecf205a3cfb5a14bce8eb46280",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_linn_benefit_matusetoetus",
+      "canonical_item_id": "voru_linn:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on ühekordne toetus, millega Võru linn hüvitab matusekulud isiku surma korral, kui surnu viimaseks elukohaks rahvastikuregistri andmetel oli Võru linn või kulude kandja elab taotluse esitamise hetkel Võru linnas.",
+      "targetGroup": "Matuse korraldaja",
+      "conditions": "Üks toetus surnu kohta; taotleja peab tõendama seotust kuludega.",
+      "application": {
+        "channels": [
+          "paper",
+          "post",
+          "email"
+        ],
+        "steps": "Esita taotlus sotsiaaltööosakonda koos isikut tõendava dokumendi ja matusekulude tõenditega.",
+        "deadline": null
+      },
+      "amount": null,
+      "officialUrl": "https://www.voru.ee/matusetoetus",
+      "relatedForms": [
+        "voru_linn_form_sotsiaaltoetuste_taotlus"
+      ],
+      "relatedContacts": [
+        "voru_linn_contact_terje_kanger"
+      ],
+      "sourceKeys": [
+        "voru_linn_matusetoetus"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "county": "Võrumaa",
+      "source_keys": [
+        "voru_linn_matusetoetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_linn_benefit_matusetoetus",
+      "document_id": "voru_linn_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voru.ee/matusetoetus",
+      "content_hash": "8939ffb09fb9b3ad74ef7b5cfe6f5caacecf997263e662f8c5121e1d0c269625",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_linn_benefit_toimetulekutoetus",
+      "canonical_item_id": "voru_linn:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on riikliku toimetulekutoetuse maksmist täiendav abi, mis aitab madala sissetulekuga peredel katta eluaseme kulusid. Võru linnas on toetuse suurus seatud riiklikule miinimumile: 200 eurot esimesele täiskasvanule, 160 eurot järgmistele ja 240 eurot alaealistele; lisaks 15 eurot peredele, kus on ainult alaealised.",
+      "targetGroup": "Madala sissetulekuga perekonnad ja üksikisikud",
+      "conditions": "Sissetulek peab jääma alla kehtestatud piiri. Taotleja esitab sissetuleku ja kulude dokumendid.",
+      "application": {
+        "channels": [
+          "paper",
+          "post",
+          "email"
+        ],
+        "steps": "Esita taotlus sotsiaaltööosakonda koos isikute isikut tõendavate dokumentidega, eluruumi kasutusdokumendiga ning sissetuleku ja eluaseme kulude tõenditega.",
+        "deadline": null
+      },
+      "officialUrl": "https://www.voru.ee/toimetulekutoetus",
+      "relatedForms": [
+        "voru_linn_form_sotsiaaltoetuste_taotlus"
+      ],
+      "relatedContacts": [
+        "voru_linn_contact_terje_kanger"
+      ],
+      "sourceKeys": [
+        "voru_linn_toimetulekutoetus"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "county": "Võrumaa",
+      "source_keys": [
+        "voru_linn_toimetulekutoetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_linn_benefit_toimetulekutoetus",
+      "document_id": "voru_linn_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voru.ee/toimetulekutoetus",
+      "content_hash": "f3e4ad04b51a66e6f6d9c41b0aea5d21efcb765aa637e27e49dd252f58a681c7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_linn_service_parkimiskaart",
+      "canonical_item_id": "voru_linn:service:parkimiskaart",
+      "itemType": "service",
+      "title": "Parkimiskaart puudega isikule",
+      "status": "active",
+      "summary": "Parkimiskaart väljastatakse keskmise, raske või sügava liikumis- või nägemispuudega isikule ning ajutise funktsioonihäire korral. Kaart kehtib puudeotsuse tähtajal (kuni 5 aastat) või ajutise kaardi puhul kuni 6 kuud.",
+      "targetGroup": "Isikud, kellel on tuvastatud liikumis- või nägemispuue või ajutine funktsioonihäire",
+      "conditions": "Vajalik on puudeotsus või pere-/eriarsti teatis ning foto 3×4 cm. Kaardi saab taotleda isik või tema seaduslik esindaja.",
+      "application": {
+        "channels": [
+          "in_person"
+        ],
+        "steps": "Pöördu isiklikult sotsiaaltööosakonna kabinetti nr 2 (Tartu 23) ja esita taotlus, isikut tõendav dokument, puudeotsus ning foto.",
+        "deadline": null
+      },
+      "officialUrl": "https://www.voru.ee/parkimiskaart",
+      "relatedForms": [],
+      "relatedContacts": [
+        "voru_linn_contact_terje_kanger"
+      ],
+      "sourceKeys": [
+        "voru_linn_parkimiskaart"
+      ],
+      "item_type": "service",
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "county": "Võrumaa",
+      "source_keys": [
+        "voru_linn_parkimiskaart"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_linn_service_parkimiskaart",
+      "document_id": "voru_linn_service_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voru.ee/parkimiskaart",
+      "content_hash": "d70449c88cf90ad01630d492cb92d1812806d8312979f45e4d7d34b8a6dc9182",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_linn_service_eluaseme_kohandamine",
+      "canonical_item_id": "voru_linn:service:eluaseme_kohandamine",
+      "itemType": "service",
+      "title": "Puudega isiku eluaseme kohandamine",
+      "status": "active",
+      "summary": "Teenus aitab kohandada puudega isiku elamistingimusi vastavalt tema vajadustele, näiteks rajada kaldteid või muuta ruumid ligipääsetavaks. Taotlusi saab esitada Võru Linnavalitsusele, teenust rahastatakse Euroopa Liidu toetusest.",
+      "targetGroup": "Puudega inimesed, kelle eluaseme kohandamine parandab iseseisvat toimetulekut",
+      "conditions": "Taotleja peab esitama põhjendatud taotluse ja vajalikud dokumendid. Linnavalitsus hindab õigust teenusele.",
+      "application": {
+        "channels": [
+          "paper",
+          "email"
+        ],
+        "steps": "Esita digiallkirjastatud taotlus e-postiga või pabertaotlus sotsiaaltööosakonda.",
+        "deadline": null
+      },
+      "officialUrl": "https://www.voru.ee/puudega-isiku-eluaseme-kohandamine",
+      "relatedForms": [],
+      "relatedContacts": [
+        "voru_linn_contact_terje_kanger"
+      ],
+      "sourceKeys": [
+        "voru_linn_eluaseme_kohandamine"
+      ],
+      "item_type": "service",
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "county": "Võrumaa",
+      "source_keys": [
+        "voru_linn_eluaseme_kohandamine"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_linn_service_eluaseme_kohandamine",
+      "document_id": "voru_linn_service_eluaseme_kohandamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voru.ee/puudega-isiku-eluaseme-kohandamine",
+      "content_hash": "a0d425b058726fefffbb229a4add87518589390f582460020466068d50daf4cf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_linn_resource_linnasaun",
+      "canonical_item_id": "voru_linn:resource:linnasaun",
+      "itemType": "resource",
+      "title": "Linnasaun",
+      "status": "active",
+      "summary": "Linnasaun Paju tänaval pakub sauna kasutamise võimalust nii meestele kui naistele. See on avatud oktoobrist maini reedel ja laupäeval ning suveperioodil lühendatud aegadel. Pileti hind on 5 eurot; pensionäridele, puuetega inimestele ja õpilastele kehtivad soodushinnad.",
+      "officialUrl": "https://www.voru.ee/linnasaun",
+      "sourceKeys": [
+        "voru_linn_linnasaun"
+      ],
+      "relatedContacts": [],
+      "relatedTo": [],
+      "item_type": "resource",
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "county": "Võrumaa",
+      "source_keys": [
+        "voru_linn_linnasaun"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_linn_resource_linnasaun",
+      "document_id": "voru_linn_resource_linnasaun",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voru.ee/linnasaun",
+      "content_hash": "c539c89fa7356afe925ab5a364c52ca2e7981146e8e9b5e130b86b45ae7af73b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_linn_resource_noorimaa_tugikodu",
+      "canonical_item_id": "voru_linn:resource:noorimaa_tugikodu",
+      "itemType": "resource",
+      "title": "Nöörimaa Tugikodu",
+      "status": "active",
+      "summary": "Nöörimaa Tugikodu on Võru linna hooldekodu, mis pakub mitmesuguseid sotsiaalteenuseid, sealhulgas koduteenust, pesupesemisteenust, dušiteenust ja varjupaigateenust. Eesmärk on toetada iseseisvat toimetulekut ja pakkuda turvalist keskkonda.",
+      "officialUrl": "https://www.voru.ee/noorimaa-tugikodu",
+      "sourceKeys": [
+        "voru_linn_noorimaa_tugikodu"
+      ],
+      "relatedContacts": [],
+      "relatedTo": [],
+      "item_type": "resource",
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "county": "Võrumaa",
+      "source_keys": [
+        "voru_linn_noorimaa_tugikodu"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_linn_resource_noorimaa_tugikodu",
+      "document_id": "voru_linn_resource_noorimaa_tugikodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voru.ee/noorimaa-tugikodu",
+      "content_hash": "87f7069ed8118184fe17955eaa7596816b838f3ba8ea8541e0b6ff7ca285de4c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "voru_linn_form_sotsiaaltoetuste_taotlus",
+      "canonical_item_id": "voru_linn:form:sotsiaaltoetuste_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaaltoetuste taotluse vorm",
+      "status": "active",
+      "summary": "Üldine taotlusvorm, mida kasutatakse Võru linnas sotsiaaltoetuste ja teenuste taotlemiseks. Vormil kogutakse taotleja isikuandmeid, perekonna liikmete andmeid, sissetulekuid, eluasemekulusid ja pangaandmeid toetusraha ülekandmiseks.",
+      "format": "pdf",
+      "submissionChannels": [
+        "paper",
+        "post",
+        "email"
+      ],
+      "officialUrl": "https://www.voru.ee/sites/default/files/documents/2025-05/sotstoetuste_taotlus_2021_0.pdf",
+      "sections_present": [
+        "applicant_information",
+        "family_members",
+        "income",
+        "housing_costs",
+        "bank_details"
+      ],
+      "relatedTo": [
+        "voru_linn_service_koduteenus",
+        "voru_linn_service_sotsiaaltransport",
+        "voru_linn_service_volanoustamine",
+        "voru_linn_service_eluruumiteenus",
+        "voru_linn_service_taisealise_hooldus",
+        "voru_linn_service_parkimiskaart",
+        "voru_linn_service_eluaseme_kohandamine",
+        "voru_linn_benefit_matusetoetus",
+        "voru_linn_benefit_toimetulekutoetus"
+      ],
+      "sourceKeys": [
+        "voru_linn_forms_pdf"
+      ],
+      "item_type": "form",
+      "municipality_id": "voru_linn",
+      "municipality_name": "Võru linn",
+      "county": "Võrumaa",
+      "source_keys": [
+        "voru_linn_forms_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "voru_linn_form_sotsiaaltoetuste_taotlus",
+      "document_id": "voru_linn_form_sotsiaaltoetuste_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.voru.ee/sites/default/files/documents/2025-05/sotstoetuste_taotlus_2021_0.pdf",
+      "content_hash": "160ca08e94f62ab7b0ce56450a17068063c5c50992b32ba68bd72ef2137cb407",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Võru linn",
+  "checked_at": "2026-04-30",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

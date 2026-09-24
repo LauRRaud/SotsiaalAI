@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2024",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "tsiviil-sojalisest-koostoost-kriisi-ajal-2024-2",
+  "title": "Tsiviil-sõjalisest koostööst kriisi ajal",
+  "authors": [
+    "Ave Uusleer",
+    "Maria Reinstein",
+    "Pille Priilinn-Türk"
+  ],
+  "section": "Kriisivalmidus sotsiaaltöös",
+  "pageRange": "51-55",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "description": "Laiapindse riigikaitse ja tsiviil-sõjalise koostöö sisuline selgitus, tuues näiteid kriisidest, õppustest ja sotsiaalteenuste rollist.",
+  "tags": [
+    "kriisivalmidus",
+    "riigikaitse",
+    "tsiviil-sõjaline koostöö",
+    "kaitsevägi",
+    "KOV",
+    "elanikkonnakaitse"
+  ],
+  "source_path": "Sotsiaaltoo_2_2024_web_Part13.pdf",
+  "document_id": "sotsiaaltoo-2-2024-tsiviil-sojalisest-koostoost-kriisi-ajal-2024-2",
+  "source_format": "pdf",
+  "source_sha256": "047eadf15e5a6cd2af0dcd01c502aae78931952a63cb39d52e759628f92678d8",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2024-tsiviil-sojalisest-koostoost-kriisi-ajal-2024-2",
+    "previous_source_path": "Sotsiaaltoo_2_2024_web_Part13.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "047eadf15e5a6cd2af0dcd01c502aae78931952a63cb39d52e759628f92678d8",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

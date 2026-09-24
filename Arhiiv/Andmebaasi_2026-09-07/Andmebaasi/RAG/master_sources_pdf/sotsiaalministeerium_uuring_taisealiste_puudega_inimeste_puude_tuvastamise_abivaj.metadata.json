@@ -1,0 +1,80 @@
+{
+  "source": {
+    "source_id": "sotsiaalministeerium_uuring_taisealiste_puudega_inimeste_puude_tuvastamise_abivaj",
+    "title": "Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist",
+    "url": "https://www.sm.ee/sites/default/files/documents/2026-03/Puuetega%20inimeste%20uuringu%20l%C3%B5ppraport.pdf",
+    "normalized_url": "https://www.sm.ee/sites/default/files/documents/2026-03/Puuetega inimeste uuringu lõppraport.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "Sotsiaalministeerium",
+    "organization_id": "sotsiaalministeerium",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "Sotsiaalministeerium",
+      "puue",
+      "puudega inimene",
+      "erivajadus",
+      "puude raskusaste",
+      "puude tuvastamine",
+      "abivajaduse hindamine",
+      "uuring",
+      "raport",
+      "analüüs"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Sotsiaalministeerium",
+      "heading_3": "Puue, töövõime, ligipääsetavus",
+      "heading_4": null,
+      "line": 531,
+      "order": 278
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist"
+    ],
+    "collection_hints": [
+      "research_reports"
+    ],
+    "source_types_seen": [
+      "research_report"
+    ],
+    "resource_types_seen": [
+      "research_evidence"
+    ],
+    "publishers_seen": [
+      "Sotsiaalministeerium"
+    ],
+    "organizations_seen": [
+      "sotsiaalministeerium"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Sotsiaalministeerium",
+        "heading_3": "Puue, töövõime, ligipääsetavus",
+        "line": 531,
+        "order": 278
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.sm.ee/sites/default/files/documents/2026-03/Puuetega inimeste uuringu lõppraport.pdf"
+  },
+  "final_url": "https://www.sm.ee/sites/default/files/documents/2026-03/Puuetega%20inimeste%20uuringu%20l%C3%B5ppraport.pdf",
+  "redirects": [],
+  "sha256": "891cc5017e32622e567d306ef8dbe23961a249fb4b1f2fc939fa5d037eff99b1",
+  "bytes": 6451507,
+  "downloaded_at": "2026-08-14T08:00:54.596Z"
+}

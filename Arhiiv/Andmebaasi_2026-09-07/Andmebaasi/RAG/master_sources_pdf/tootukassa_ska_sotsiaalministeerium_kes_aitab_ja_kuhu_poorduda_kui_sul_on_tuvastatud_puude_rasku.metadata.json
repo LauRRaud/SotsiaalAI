@@ -1,0 +1,80 @@
+{
+  "source": {
+    "source_id": "tootukassa_ska_sotsiaalministeerium_kes_aitab_ja_kuhu_poorduda_kui_sul_on_tuvastatud_puude_rasku",
+    "title": "Kes aitab ja kuhu pöörduda, kui sul on tuvastatud puude raskusaste?",
+    "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-02/puudega-tooealisele.pdf",
+    "normalized_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-02/puudega-tooealisele.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Töötukassa / SKA / Sotsiaalministeerium",
+    "organization_id": "tootukassa_ska_sotsiaalministeerium",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Töötukassa",
+      "puue",
+      "puudega inimene",
+      "erivajadus",
+      "puude raskusaste",
+      "puude tuvastamine",
+      "abivajaduse hindamine",
+      "infomaterjal",
+      "Sotsiaalministeerium",
+      "Sotsiaalkindlustusamet"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "needs_review",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Töövõime / Töötukassa / SKA / STAR",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 349,
+      "order": 196
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Kes aitab ja kuhu pöörduda, kui sul on tuvastatud puude raskusaste?"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Töötukassa / SKA / Sotsiaalministeerium"
+    ],
+    "organizations_seen": [
+      "tootukassa_ska_sotsiaalministeerium"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Töövõime / Töötukassa / SKA / STAR",
+        "line": 349,
+        "order": 196
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-02/puudega-tooealisele.pdf",
+    "status_note": "download 404 2026-06-12; find new URL"
+  },
+  "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-02/puudega-tooealisele.pdf",
+  "redirects": [],
+  "sha256": "915e76206d176dc4f639209a1de1afb3b269b6ac1f3145a6951b5909cd1e191e",
+  "bytes": 461986,
+  "downloaded_at": "2026-08-14T08:00:43.326Z"
+}

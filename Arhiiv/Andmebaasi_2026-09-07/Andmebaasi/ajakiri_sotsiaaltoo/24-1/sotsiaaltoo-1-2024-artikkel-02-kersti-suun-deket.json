@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-1-2024",
+  "articleId": "kersti-suun-deket-sotsiaaltoo-on-nagu-ratsepaulikonna-omblemine-2024-1",
+  "title": "Kersti Suun-Deket: „Sotsiaaltöö on nagu rätsepaülikonna õmblemine“",
+  "authors": [
+    "Kadri Kuulpak"
+  ],
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2024",
+  "section": "Persoon",
+  "pageRange": "3-9",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persooniloos räägib Rakvere sotsiaalosakonna juhataja ja aasta sotsiaaltöötaja Kersti Suun-Deket oma teekonnast sotsiaalvaldkonda, meeskonna juhtimisest ja kliendikesksest mõtteviisist. Ta avab eetilisi dilemmade olukordi, kus tuleb tasakaalustada abivajaja soove, pere heaolu ja ühiskondlikke norme, ning kirjeldab, kuidas säilitada usalduslik suhe ka siis, kui otsused on kliendi silmis ebameeldivad. Intervjuus käsitletakse sotsiaaltöötajate väsimust, kriiside mõju motivatsioonile, supervisiooni ja kolleegitoe rolli ning vajadust süsteemse enesehoiu järele. Kersti jagab ka oma kogemust pereterapeudina ja mõtiskleb, kuidas hoida iseenda silmasära olukorras, kus ootused sotsiaaltöötajale on väga kõrged.",
+  "tags": [
+    "persoon",
+    "aasta sotsiaaltöötaja",
+    "Rakvere linn",
+    "sotsiaalosakonna juhtimine",
+    "eetilised dilemmad",
+    "kliendikeskne töö",
+    "motivatsioon",
+    "läbipõlemine",
+    "supervisioon",
+    "pereteraapia"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_1_2024_web_Part3.pdf",
+  "document_id": "sotsiaaltoo-1-2024-kersti-suun-deket-sotsiaaltoo-on-nagu-ratsepaulikonna-omblemine-2024-1",
+  "source_format": "pdf",
+  "source_sha256": "f73dff4ca15050b6bddbffeffe5564e934a13ab212e14db3c460c019c969fc1d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2024-kersti-suun-deket-sotsiaaltoo-on-nagu-ratsepaulikonna-omblemine-2024-1",
+    "previous_source_path": "Sotsiaaltoo_1_2024_web_Part3.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "f73dff4ca15050b6bddbffeffe5564e934a13ab212e14db3c460c019c969fc1d",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

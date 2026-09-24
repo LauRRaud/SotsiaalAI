@@ -92,6 +92,24 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**24.09 Kohalik töö koondatakse Gitisse Claude’i pilvetöö jaoks.**
+Omaniku selgel soovil kuuluvad commit’i ka `Andmebaasi/` PDF-id ja kogu
+`Arhiiv/`; lähtefailide baidid säilitatakse räside kontrolliks. Kaasa lähevad
+varasemad analüüsid, hindamismaterjalid, registrid ja abiskript. Brauseri
+ajutised jäljed ning ühekordsed `tmp-rag-*.sh` jäävad kohalikuks. Kontroll:
+kahe skripti ESLint, 16 valiku/teadmiste ettevalmistuse testi ja registri
+laadimine läbisid. See on olemasoleva töö salvestus, mitte kogu korpuse
+sisulise kvaliteedi ega ajaloolise võrdlusskripti läbiva käituse tõend.
+Imporditud vanade Markdown-failide tühikuvormistus säilib; koodi ja uue
+seisukirje diff-check läbis.
+
+**24.09 GitHub Actionsi deploy kontroll läbitud.**
+Production-keskkonna DEPLOY_SSH_KEY salvestati kohalikust võtmefailist uuesti
+LF-reavahetustega. Deploy-käivitus [35967045839](https://github.com/LauRRaud/SotsiaalAI/actions/runs/35967045839)
+läbis tootmisdeploy ja serveri smoke-testi (health + avaleht); main oli 6ea89a308.
+AUTOMERGE_TOKEN repository secret on olemas; GitHub API kinnitas main-i nõutud kontrollid quality-gate ja webpack-build, force-push ning kustutamine keelatud. Auto-merge ja squash lubatud; administraatori bypass säilib. Tokeni õigused ja automerge läbiv töö päris PR-iga on NOT_PROVEN.
+
+
 **24.09 KOV-kataloog järjestub küsimuse järgi — [ADR-023](../rag-v2/adr-023-question-ranked-municipal-catalogue.md).**
 Sõnaline kanal järjestab valla kirjed ja kõige asjakohasemad saavad kokkuvõtte.
 53 päris valla ja olukorralause paaris: kõik asjakohased teenused kataloogis
@@ -272,6 +290,15 @@ Edasi tuleb teadmiste ja puuduvate vektorite mahutöö ning adminiliidese ühend
 keelteülese/olukorrapõhise abi sisuline vastuvõtt ja perioodisüntees pole valmis.
 Admini käsitsi RAG-enesetest säilib; push/deploy pole tehtud.
 
+**23.09 klaaspindade ja vestlusmullide järelparandus — serveris (`00fb25ac0`).**
+Kaartide härmatis säilib hajumisel, ülariba materjal järgib kiirmenüüd,
+vestlusmullid kasutavad hägustatud toapilti ning AI tegevused asuvad mulli sees.
+Laua tsooninupp annab kaartidel lainega tagasisidet; tekstid on heledamad.
+Siht-eslint ja diff-check läbisid; serveri tootmisbuild koos i18n-kontrolliga
+läbis, ootel migratsioone polnud. Teenus active, avalik HTTPS ja uus
+taustapilt 200; avalehe sisenemine brauseris kontrollitud. Autenditud
+vestluse, tsoonilaine ja päris iOS-i visuaalne kontroll `NOT_PROVEN`.
+
 **23.09 ruumivaade, klaas ja loetavus — serveris (`c57eb2c3`).**
 Karussell ja paneelid seisavad nüüd metsajärve vaatega toas
 (`public/room/tuba-hamar.webp`), mis süttib ⏻-vajutusega; pilt täidab
@@ -289,6 +316,15 @@ Kohalikult: siht-eslint, i18n ja diff-check läbisid; kontrast mõõdetud
 Playwrightiga (kaardisildid 7,4–11,7:1, Meist-paneel 9,7–15,5:1). Deploy
 lõpetas edukalt, frontend active, avalik HTTPS 200. Omaniku brauseritest
 peale viimaseid dokk-/vihje-/sahtlimuudatusi `not_run`.
+
+**21.09 avastseeni täisekraaninurgad ja tekstikastide mõõt — serveris (`4a30a10e`).**
+Ekraanilugeja jaoks fokusseeritud täisekraaniloor ei päri enam globaalset
+10 px nurka ega fookusvarju; tegevusnupu fookus säilib. Sisupõhised
+tekstikastid kasutavad külgedel kohanduvat sisevahet: desktopis 24 px ja
+390 px vaates 16 px. Pika esimese sõnumi desktop-lugemismõõt on 37 rem,
+et kahe rea ümber ei jääks teistest kastidest rohkem tühja ala. Chromiumi
+mõlemad vaated, lint, i18n ja build läbisid; serveri build ja
+migratsioonieelkontroll korras, frontend active, avalik HTTPS 200.
 
 **21.09 avalehe saabumistekstide kastid — serveris (`16cc1749`).**
 Kerimisstseeni tekstikastid võtavad nüüd laiuse sisu järgi; senine kõigile
@@ -420,6 +456,14 @@ ja sellelt alustatud üleslibistus vahetab jaama. Ülariba peidetud klaas ning
 hägu lõikamise katse ei eemaldanud omaniku iOS 27 PWA udu ja asendati
 ülaltoodud järelparandusega. Muud Chromiumi turvaaladega mõõtmised ja
 WebKiti rõhtvaade läbisid. Tõend: `docs/audits/mobile-menu-landscape-2026-09-20.md`.
+
+**20.09 ülariba klaasmaterjal — kohalikult ühtlustatud, avaldamata.**
+RoomQuickbar kasutab menüükaartidega sama `gc-card-surface` kihti: ühine
+täide, sisehelk ja pehmendatud serv asendavad eraldi terava kontuuri.
+Taustahägu jäi oma piiratud kihile muutmata; ikoonid jäävad teravaks.
+Chromiumi mobiilivaates võrreldud materjalide arvutatud stiile ja pilti;
+standalone- ning kõrgkontrasti stiilid, ühe puudutuse avamine ja üleslibistusega
+sulgemine läbisid. Päris iPhone/PWA visuaal jääb NOT_PROVEN.
 
 **20.09 peidetud ülariba puudutus ja libistamine — serveris (`a1f1ba27`).**
 Puutel juhib paneeli ja ikoonide nähtavust ühine avanemisolek; hover/fookuse
@@ -3775,6 +3819,20 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 
 ### Tehtud
 
+**Klaaspindade järelparanduste väljalase (23.09, serveris `00fb25ac0`).**
+Kaartide hajumine, härmatis, ülariba ja vestlusmullide materjal ning
+lauakaartide tsoonitagasiside on avaldatud. Serveri build, i18n ja
+migratsioonieelkontroll läbisid; frontend active ja HTTPS 200.
+Autenditud vaadete ning päris iOS-i visuaal `NOT_PROVEN`.
+
+**Avastseeni kandiline täisekraan ja tekstikastide mõõt (21.09, serveris `4a30a10e`).**
+Programmilise fookusega `.room-veil` säilitab 0 px nurga ega kuva kogu
+vaateakna ümber globaalset fookusvarju; `Sisenen` jääb nähtava fookusega.
+Kerimisstseeni sisupõhiste kastide külgpadding on kohanduv 1–1,5 rem
+(kontrollitud 24 px desktopis ja 16 px mobiilis) ning pika avasõnumi
+desktop-piir on 37 rem. Avalikus Chromiumis kontrollitud arvutatud stiilid;
+serveri build läbis ja HTTPS vastas 200.
+
 **Avalehe saabumistekstide sisupõhine laius (21.09, serveris `16cc1749`).**
 Kerimisstseeni tekstikast kasutab teksti järgi `max-content` laiust ning
 säilitab pika teksti 42 rem töölauapiiri ja senise mobiilipiiri. Chromiumis
@@ -3894,74 +3952,9 @@ Seadmematriksis nimeliselt: **eestikeelse ettelugemise PCM16-heli päris iOS/Saf
 ---
 ## S11. Töökord
 
-**Uude aknasse kleepimiseks üks rida:**
+Ühised tööreeglid on [AGENTS.md](../../AGENTS.md)-s; siin neid ei dubleerita.
 
-> Loe `AGENTS.md` ning `SotsiaalAI.md`-st S1.0, S11 ja S1.0 nimetatud järgmise töö teemasektsioon;
-> ära loe kogu faili uuesti.
-
-Uue teema väljastamiseks lisa lepingufaili nimi (nt `sotsiaalkiirabi-v1-arendusleping.md`).
-Töökaust: `C:\Users\rauds\Desktop\SotsiaalAI`.
-
-### Reeglid
-
-**RAG universaalsus (omanik 07.09):** parandused peavad töötama kogu korpuses. Artikli nime, ID, küsimuse täpse sõnastuse või oodatud vastuse järgi runtime-erandeid ei lisata. Vajalik allikaline struktuur valmistatakse ette indekseerimisel ja kasutatakse vastava tähendusega graafis; mudeli juhis ei asenda puuduvat andmekihti.
-
-**GraphRAG-toote piir (omanik 07.09):** siht on müüdav korduvkasutatav toode; SotsiaalAI on esimene klient ja katsekeskkond. Iga RAG-ploki puhul määratakse, mis kuulub ühisesse tuuma ja mis kliendiseadistusse või SotsiaalAI adapterisse. Teise kliendi materjalid, profiil ja õigused peavad kasutama sama tuuma; SotsiaalAI sessiooni, vestlustabeleid ega sotsiaaltöö-spetsiifilisi eeldusi tuuma kohustuslikuks sõltuvuseks ei lisata.
-
-1. **Töö toimub omaniku 05.09.2026 juhisel otse põhikausta `main`-harus.**
-   Eraldi parandustööpuu pole nõutud. Ühes tööpuus on korraga üks kirjutaja ja üks
-   failipiiridega sidus teema; omaniku ja teiste sessioonide pooleliolevad failid säilivad.
-   Eraldi haru kasutatakse kokkuleppel. Ametlik DONE eeldab kontrollitud tulemust `main`-is;
-   täpne töökord on `AGENTS.md`-s.
-   Omaniku 08.09 juhis: alamagente ei kasutata, eriti Lunat. Varasem 07.09 ainult lugemist lubanud juhis on asendatud; kirjutaja teeb töö ja kontrolli ise.
-2. **Teste luuakse ja käivitatakse ainult arenduseks vajalikus ulatuses**, vastavalt `AGENTS.md`-le.
-   Iga sihttest tõendab konkreetse muudatuse riski või regressiooni; laia sviiti ega korduvaid
-   smoke-/E2E-proove ei tehta, kui kitsam kontroll piisab. Ploki järel kasutatakse asjakohast
-   eslinti ja `git diff --check` kontrolli; `i18n:check` lisandub tõlgete ning `prisma validate`
-   skeemi või migratsiooni muutusel. Peatüki lõpus ja enne push'i/deploy'd tehakse üks
-   tootmisbuild muutumatu koodipuu kohta. Vajalik pärisrada kontrollitakse olemasolevas
-   keskkonnas; kontrollimata runtime jääb `NOT_PROVEN`. Admini RAG-lehe kasutaja käivitatav
-   enesetest jääb operatiivse tootefunktsioonina alles.
-3. **Push, merge ja deploy ainult omaniku selgel loal**, vastavalt `AGENTS.md`-le. Sama kehtib päris e-kirjade, päris maksete ja päris partnerini jõudmise kohta. Parandustööpuu integratsioon `main`-i ei ole automaatne deploy-luba.
-4. **Ära loe tootmiskasutajate sisu** ega kasuta päris kasutajaid testimiseks.
-5. **Ära käivita `OPS-FINAL-A0`** — see on release candidate'i lõppvärav.
-6. **Ära korda teostaja staatilisi kontrolle, build'i ega auditeid**, kui sama muutumatu puu
-   tulemus on juba olemas. Uus jooks peab vastama uuele riskile, mitte rituaalile.
-7. **Olekut kannab ainult see fail.** Aktiivse ploki vaheetappe ei logita; uuenda seis ploki
-   lõpus ühe koondina või kohe, kui töö jääb blokituna/pooleli maha.
-
-Miks need reeglid tekkisid — `git show db514ba0:"docs/platvormi arendus/SEIS.md"`.
-
-### Kiirrežiim SOL-parandustele (omanik 12.08: üle 100 leiu, liigume plokkidena)
-
-- Kuni kolm sõltumatut peatükki/plokki võivad liikuda paralleelselt püsivates
-  `repair-a/b/c` tööpuudes. Enne väljastamist lukustatakse iga ploki failipiir; skeemi,
-  migratsioone, shared-helpereid, privaatsus- ja koondfaile puudutavad kattuvad plokid liiguvad
-  järjestikku või ühe omaniku all.
-- **Tööühik on 2–8 seotud leidu**, millel on sama helper, teenus, andmemudel või runtime-rada.
-  Üks suur mitmekihiline leid võib olla omaette plokk; seoseta leide ei liideta.
-- Alguses üks lühike kaart: vastuvõtukriteerium → failid → staatiline kontroll → käsitsi
-  DB/brauseri kontrolli vajadus. Täpsest raportist ja seotud koodist kaugemale ei loeta põhjuseta.
-- Automaatset negatiivkontrolli, fikstuuri ega sondi ei looda. Kõrgema riskiga käitumine
-  kontrollitakse vajadusel käsitsi olemasolevas keskkonnas; kontrollimata osa jääb `NOT_PROVEN`.
-- Ploki lõpus: kõik Seis-lõigud → **üks** `npm run sol:progress -- --write` → S1.0 tööots ja
-  vajadusel üks lühike teemakoond → väike staatiline värav. Peatüki viimase ploki järel üks
-  tootmisbuild. Käsitsi kontrolli detail jääb raportisse, mitte S1 teostuslooks.
-- Kohaliku vahecommit'i võib teha väikese värava järel, märkega `full gate: pending chapter
-  close`. **Enne push'i või deploy'd peavad staatilised väravad ja tootmisbuild olema rohelised.**
-  Skeemi-, turva-, makse-, privaatsus-, võistlus- või laia shared-helperi muudatus saab vajadusel
-  käsitsi runtime-kontrolli; selle puudumisel jääb tulemus `NOT_PROVEN`.
-
-### Ülesande lõpus
-
-Uuenda **selles failis** teemasektsiooni: mis liikus TEHTUD / POOLIK / TEGEMATA vahel, mis
-saba jäi lahti, mis jäi `NOT_PROVEN`. Kui töö käigus selgus, et mõni siinne lause on vale,
-paranda see kohapeal. Konkureerivat seisufaili ega „handoff-<kuupäev>" faili ei looda.
-
-### Esimene tegevus uues aknas
-
-Kontrolli read-only: `git status`, `git log -1`, `origin/main`. Teste ega build'i selleks ei
-jooksutata. Kui kontrollitud fakt erineb sellest failist, kehtib fakt — paranda fail.
+Uue töö alustamiseks: loe `AGENTS.md`, siit S1.0 ning ülesandega seotud teemasektsioon. Allolevaid keskkonnajuhiseid loe ainult vastava kontrolli vajadusel; dateeritud seadistus tuleb enne kasutamist üle kontrollida. `OPS-FINAL-A0` ei kuulu tavapärasesse arendusringi ja seda ei käivitata.
 
 ### Lokaalne testkeskkond (seatud 04.08, omanik: „las jääb")
 

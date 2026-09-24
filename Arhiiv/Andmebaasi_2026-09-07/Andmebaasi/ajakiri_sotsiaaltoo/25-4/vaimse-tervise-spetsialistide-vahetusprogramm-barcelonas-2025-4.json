@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2025",
+  "articleId": "vaimse-tervise-spetsialistide-vahetusprogramm-barcelonas-2025-4",
+  "title": "Vaimse tervise spetsialistide vahetusprogramm Barcelonas",
+  "authors": [
+    "Simone Epro"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2025",
+  "section": "Vaimne tervis",
+  "pageRange": "1–7",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel kirjeldab EU-Promensi vahetusprogrammi kogemusi Barcelonas ja tutvustab Kataloonia vaimse tervise teenuste korraldust. Esile tõstetakse erialadevahelisi meeskondi, kogukonnapõhist lähenemist, mobiilseid teenuseid ja õppetunde Eesti teenuste arendamiseks.",
+  "tags": [
+    "vaimne tervis",
+    "rahvusvaheline koostöö",
+    "vahetusprogramm",
+    "Kataloonia",
+    "kogukonnapõhine tugi",
+    "mobiilsed teenused",
+    "teenuste arendamine"
+  ],
+  "source_type": "file",
+  "source_path": "Vaimse tervise spetsialistide vahetusprogramm Barcelonas.pdf",
+  "document_id": "sotsiaaltoo-4-2025-vaimse-tervise-spetsialistide-vahetusprogramm-barcelonas-2025-4",
+  "source_format": "pdf",
+  "source_sha256": "3c395833eb23e6e6384b5063a468b01bd404edac07a7c89417f14582829f4150",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2025-vaimse-tervise-spetsialistide-vahetusprogramm-barcelonas-2025-4",
+    "previous_source_path": "Vaimse tervise spetsialistide vahetusprogramm Barcelonas.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "3c395833eb23e6e6384b5063a468b01bd404edac07a7c89417f14582829f4150",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

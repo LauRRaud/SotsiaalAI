@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-torva-vald",
+  "document_id": "kov-torva-vald",
+  "municipality": "Tõrva vald",
+  "municipality_id": "torva_vald",
+  "county": "Valgamaa",
+  "checkedAt": "2026-04-29",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-torva-vald",
+  "coverage": {
+    "services": 18,
+    "benefits": 12,
+    "resources": 4,
+    "contacts": 6,
+    "forms": 4,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "torva_vald",
+    "source_register_file": "torva-vald.sources.json",
+    "service_benefit_resource_items": 34,
+    "items_with_source_keys": 34,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 20,
+    "items_without_related_forms": 14,
+    "items_with_related_contacts": 30,
+    "items_without_related_contacts": 4,
+    "form_sources": 0,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "3 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Järelkontrollis parandati varasemad /teenus/ URL-id tegelikele /toiming/ detaillehtede URL-idele, lisati koondlehel eraldi nimetatud teenused ja toetused ning eemaldati sisemised viitemarkerid."
+  ],
+  "unresolvedIssues": [
+    "Toimetulekutoetuse eraldi Tõrva valla praktilist detaillehte ei leitud sotsiaaltoetuste koondlehelt; see tuleb vajadusel eraldi üle kontrollida.",
+    "E-posti aadressid on kodulehe HTML-vaates varjestatud kujul; neid ei taastatud oletuse põhjal.",
+    "SPOKU iseteeninduse konkreetseid vormipõhiseid URL-e ei eraldatud eraldi source’ideks, sest KOV lehed viitavad üldiselt e-taotluste keskkonnale.",
+    "Teenusepakkujate välist veebisisu perelepituse, ohvriabi ja vaimse tervise teenuste puhul ei kasutatud põhiallikana; kajastatud on ainult KOV lehel avaldatud info.",
+    "PDF- ja DOCX-failid on kajastatud KOV lehel avatud ametlike faililinkidena, kuid nende sisu ei kasutatud õigusliku aluse tõlgendamiseks."
+  ],
+  "municipality_name": "Tõrva vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "torva-vald.sources.json",
+  "sourceCount": 41,
+  "counts": {
+    "services": 18,
+    "benefits": 12,
+    "resources": 4,
+    "contacts": 6,
+    "forms": 4,
+    "regulations": 0
+  },
+  "warnings": [
+    "3 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

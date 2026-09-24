@@ -1,0 +1,4341 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-vinni-vald",
+  "document_id": "kov-vinni-vald",
+  "municipality": "Vinni vald",
+  "municipality_id": "vinni_vald",
+  "county": "Lääne Virumaa",
+  "checkedAt": "2026-04-30",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "vinni_vald_contact_general",
+      "canonical_item_id": "vinni_vald:contact:general",
+      "itemType": "contact",
+      "title": "Vinni Vallavalitsus",
+      "status": "active",
+      "summary": "Vinni Vallavalitsus on Vinni valla ametlikul kodulehel avaldatud üldkontakt kontakt sotsiaalvaldkonna küsimustes.",
+      "sourceKeys": [
+        "contact_page",
+        "home"
+      ],
+      "name": "Vinni Vallavalitsus",
+      "role": "üldkontakt",
+      "department": null,
+      "address": "Tartu mnt 2, Pajusti, Vinni vald 46603",
+      "relatedTo": [],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "contact_page",
+        "home"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_contact_general",
+      "document_id": "vinni_vald_contact_general",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "2b561f1f9b544b566b8cf8aba07d3739e2386272b41cb1faecbc5049e64d2121",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_contact_mirjam_selli",
+      "canonical_item_id": "vinni_vald:contact:mirjam_selli",
+      "itemType": "contact",
+      "title": "Mirjam Selli",
+      "status": "active",
+      "summary": "Mirjam Selli on Vinni valla ametlikul kodulehel avaldatud sotsiaalteenistuse juht kontakt sotsiaalvaldkonna küsimustes.",
+      "sourceKeys": [
+        "contact_page",
+        "social_services"
+      ],
+      "name": "Mirjam Selli",
+      "role": "sotsiaalteenistuse juht",
+      "department": "Sotsiaalteenistus",
+      "address": null,
+      "relatedTo": [
+        "vinni_vald_service_sotsiaaltransporditeenus"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "contact_page",
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_contact_mirjam_selli",
+      "document_id": "vinni_vald_contact_mirjam_selli",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "8497dc4487b8064a11cbb7ecd98f6b27f41e6cd196f8001d9eda99803082cee9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_contact_tiiu_ivanova",
+      "canonical_item_id": "vinni_vald:contact:tiiu_ivanova",
+      "itemType": "contact",
+      "title": "Tiiu Ivanova",
+      "status": "active",
+      "summary": "Tiiu Ivanova on Vinni valla ametlikul kodulehel avaldatud sotsiaaltööspetsialist kontakt sotsiaalvaldkonna küsimustes.",
+      "sourceKeys": [
+        "contact_page",
+        "social_services"
+      ],
+      "name": "Tiiu Ivanova",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaalteenistus",
+      "address": null,
+      "relatedTo": [
+        "vinni_vald_service_koduteenus",
+        "vinni_vald_service_sotsiaaltransporditeenus",
+        "vinni_vald_benefit_hooldajatoetus"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "contact_page",
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_contact_tiiu_ivanova",
+      "document_id": "vinni_vald_contact_tiiu_ivanova",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "af76ad59ff87e790ab1504fe864ab3dabe09e198334ce61ec72c09f70113f316",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_contact_elo_heinsaar",
+      "canonical_item_id": "vinni_vald:contact:elo_heinsaar",
+      "itemType": "contact",
+      "title": "Elo Heinsaar",
+      "status": "active",
+      "summary": "Elo Heinsaar on Vinni valla ametlikul kodulehel avaldatud sotsiaaltööspetsialist kontakt sotsiaalvaldkonna küsimustes.",
+      "sourceKeys": [
+        "contact_page",
+        "social_services"
+      ],
+      "name": "Elo Heinsaar",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaalteenistus",
+      "address": null,
+      "relatedTo": [
+        "vinni_vald_service_sotsiaaltransporditeenus",
+        "vinni_vald_benefit_toimetulekutoetus"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "contact_page",
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_contact_elo_heinsaar",
+      "document_id": "vinni_vald_contact_elo_heinsaar",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "78d0668c78a6331ede8c77b682ecfc6de6d5cc1cc8c619bab5855bb62f98a0e7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_contact_robin_reest",
+      "canonical_item_id": "vinni_vald:contact:robin_reest",
+      "itemType": "contact",
+      "title": "Robin Reest",
+      "status": "active",
+      "summary": "Robin Reest on Vinni valla ametlikul kodulehel avaldatud sotsiaaltööspetsialist kontakt sotsiaalvaldkonna küsimustes.",
+      "sourceKeys": [
+        "contact_page",
+        "social_services"
+      ],
+      "name": "Robin Reest",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaalteenistus",
+      "address": null,
+      "relatedTo": [
+        "vinni_vald_service_sotsiaaltransporditeenus",
+        "vinni_vald_benefit_toimetulekutoetus"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "contact_page",
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_contact_robin_reest",
+      "document_id": "vinni_vald_contact_robin_reest",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "06de546609a53e2d0fc1afb8318d1f7c7d8b9b5c045b5c90ff319614f59ef933",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_contact_aleftina_liski",
+      "canonical_item_id": "vinni_vald:contact:aleftina_liski",
+      "itemType": "contact",
+      "title": "Aleftina Liski",
+      "status": "active",
+      "summary": "Aleftina Liski on Vinni valla ametlikul kodulehel avaldatud laste heaolu spetsialist kontakt sotsiaalvaldkonna küsimustes.",
+      "sourceKeys": [
+        "contact_page",
+        "family_welfare",
+        "social_services"
+      ],
+      "name": "Aleftina Liski",
+      "role": "laste heaolu spetsialist",
+      "department": "Sotsiaalteenistus / laste heaolu",
+      "address": null,
+      "relatedTo": [
+        "vinni_vald_resource_laste_ja_perede_heaolu",
+        "vinni_vald_resource_abivajav_laps",
+        "vinni_vald_service_sotsiaaltransporditeenus"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "contact_page",
+        "family_welfare",
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_contact_aleftina_liski",
+      "document_id": "vinni_vald_contact_aleftina_liski",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "6f88a535a2564707ad92f563e602f98f85eebefcbf6a8e5e19ee0783340ba1d3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_contact_anzelika_kupp",
+      "canonical_item_id": "vinni_vald:contact:anzelika_kupp",
+      "itemType": "contact",
+      "title": "Anželika Kupp",
+      "status": "active",
+      "summary": "Anželika Kupp on Vinni valla ametlikul kodulehel avaldatud laste heaolu spetsialist kontakt sotsiaalvaldkonna küsimustes.",
+      "sourceKeys": [
+        "contact_page",
+        "social_services"
+      ],
+      "name": "Anželika Kupp",
+      "role": "laste heaolu spetsialist",
+      "department": "Sotsiaalteenistus / laste heaolu",
+      "address": null,
+      "relatedTo": [
+        "vinni_vald_resource_abivajav_laps",
+        "vinni_vald_service_sotsiaaltransporditeenus"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "contact_page",
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_contact_anzelika_kupp",
+      "document_id": "vinni_vald_contact_anzelika_kupp",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "47aa3afd2608503926de6ef4a21e3c89c23d7c0429947fed0d3ec516f6ef8f37",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_contact_elika_anier",
+      "canonical_item_id": "vinni_vald:contact:elika_anier",
+      "itemType": "contact",
+      "title": "Elika Anier",
+      "status": "active",
+      "summary": "Elika Anier on Vinni valla ametlikul kodulehel avaldatud sotsiaalhooldaja kontakt sotsiaalvaldkonna küsimustes.",
+      "sourceKeys": [
+        "social_services"
+      ],
+      "name": "Elika Anier",
+      "role": "sotsiaalhooldaja",
+      "department": "Sotsiaalteenistus",
+      "address": null,
+      "relatedTo": [
+        "vinni_vald_service_koduteenus"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_contact_elika_anier",
+      "document_id": "vinni_vald_contact_elika_anier",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "1dbccb7c8d5b1b804f23c74d0bbe1b23b6409710ef6a10ea6eba2da1f3937a34",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_contact_svetlana_sappinen",
+      "canonical_item_id": "vinni_vald:contact:svetlana_sappinen",
+      "itemType": "contact",
+      "title": "Svetlana Sappinen",
+      "status": "active",
+      "summary": "Svetlana Sappinen on Vinni valla ametlikul kodulehel avaldatud sotsiaalhooldaja kontakt sotsiaalvaldkonna küsimustes.",
+      "sourceKeys": [
+        "social_services"
+      ],
+      "name": "Svetlana Sappinen",
+      "role": "sotsiaalhooldaja",
+      "department": "Sotsiaalteenistus",
+      "address": null,
+      "relatedTo": [
+        "vinni_vald_service_koduteenus"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_contact_svetlana_sappinen",
+      "document_id": "vinni_vald_contact_svetlana_sappinen",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "0d84d9cbface67199e51f5293c5fe8805ea23ca7c25d2c261d97b5ae2453184d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_contact_maarika_koppel",
+      "canonical_item_id": "vinni_vald:contact:maarika_koppel",
+      "itemType": "contact",
+      "title": "Maarika Koppel",
+      "status": "active",
+      "summary": "Maarika Koppel on Vinni valla ametlikul kodulehel avaldatud ulvi kodu juhataja kontakt sotsiaalvaldkonna küsimustes.",
+      "sourceKeys": [
+        "social_institutions"
+      ],
+      "name": "Maarika Koppel",
+      "role": "Ulvi Kodu juhataja",
+      "department": "Ulvi Kodu",
+      "address": null,
+      "relatedTo": [
+        "vinni_vald_resource_ulvi_kodu"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_institutions"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_contact_maarika_koppel",
+      "document_id": "vinni_vald_contact_maarika_koppel",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "90eb8617bdc284f70aba169898666c72bab342acf9bdea94f49fb424b64ca802",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_contact_ille_koppel",
+      "canonical_item_id": "vinni_vald:contact:ille_koppel",
+      "itemType": "contact",
+      "title": "Ille Koppel",
+      "status": "active",
+      "summary": "Ille Koppel on Vinni valla ametlikul kodulehel avaldatud vinni perekodu juhataja kontakt sotsiaalvaldkonna küsimustes.",
+      "sourceKeys": [
+        "social_institutions"
+      ],
+      "name": "Ille Koppel",
+      "role": "Vinni Perekodu juhataja",
+      "department": "Vinni Perekodu",
+      "address": null,
+      "relatedTo": [
+        "vinni_vald_resource_vinni_perekodu"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_institutions"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_contact_ille_koppel",
+      "document_id": "vinni_vald_contact_ille_koppel",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "593fbae4f655b061d2379760d1b9d02bb125e600f709ba94b41def0f24ed8750",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_contact_helina_ansel",
+      "canonical_item_id": "vinni_vald:contact:helina_ansel",
+      "itemType": "contact",
+      "title": "Helina Ansel",
+      "status": "active",
+      "summary": "Helina Ansel on Vinni valla ametlikul kodulehel avaldatud vinni perekodu sotsiaaltöötaja kontakt sotsiaalvaldkonna küsimustes.",
+      "sourceKeys": [
+        "social_institutions"
+      ],
+      "name": "Helina Ansel",
+      "role": "Vinni Perekodu sotsiaaltöötaja",
+      "department": "Vinni Perekodu",
+      "address": null,
+      "relatedTo": [
+        "vinni_vald_resource_vinni_perekodu"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_institutions"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_contact_helina_ansel",
+      "document_id": "vinni_vald_contact_helina_ansel",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "c77fa78ab01c473d0286088fef4d868dc9c8ea7624c6cbb9c1da0600c912527a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_contact_sabina_beljakova",
+      "canonical_item_id": "vinni_vald:contact:sabina_beljakova",
+      "itemType": "contact",
+      "title": "Sabina Beljakova",
+      "status": "active",
+      "summary": "Sabina Beljakova on Vinni valla ametlikul kodulehel avaldatud vinni perekodu majandusjuhataja kontakt sotsiaalvaldkonna küsimustes.",
+      "sourceKeys": [
+        "social_institutions"
+      ],
+      "name": "Sabina Beljakova",
+      "role": "Vinni Perekodu majandusjuhataja",
+      "department": "Vinni Perekodu",
+      "address": null,
+      "relatedTo": [
+        "vinni_vald_resource_vinni_perekodu"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_institutions"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_contact_sabina_beljakova",
+      "document_id": "vinni_vald_contact_sabina_beljakova",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "f5195b4e255495e5e5946cbb074f3ad09585dca9ca5d90d70097655158e3b609",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_contact_eve_kukor",
+      "canonical_item_id": "vinni_vald:contact:eve_kukor",
+      "itemType": "contact",
+      "title": "Eve Kukor",
+      "status": "active",
+      "summary": "Eve Kukor on Vinni valla ametlikul kodulehel avaldatud vinni päevakeskuse perenaine kontakt sotsiaalvaldkonna küsimustes.",
+      "sourceKeys": [
+        "social_institutions"
+      ],
+      "name": "Eve Kukor",
+      "role": "Vinni Päevakeskuse perenaine",
+      "department": "Vinni Päevakeskus",
+      "address": null,
+      "relatedTo": [
+        "vinni_vald_resource_vinni_paevakeskus"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_institutions"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_contact_eve_kukor",
+      "document_id": "vinni_vald_contact_eve_kukor",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "94a956e8c49b7e4b8f417db1552283de9db160de068378dccac51b4077690174",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_service_koduteenus",
+      "canonical_item_id": "vinni_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus on ametiasutuse osutatav sotsiaalteenus täisealise inimese iseseisva ja turvalise toimetuleku tagamiseks kodustes tingimustes. Teenusega abistatakse toimingutes, mida inimene terviseseisundi, tegevusvõime või elukeskkonna tõttu kõrvalabita teha ei suuda. Teenuse maht ja kõrvalabi vajadus selguvad abivajaduse hindamisel ning teenuse saajaga sõlmitakse leping.",
+      "sourceKeys": [
+        "social_services"
+      ],
+      "targetGroup": "Täisealine inimene, kes vajab kodus teatud ulatuses kõrvalabi.",
+      "conditions": "Õigus on isikul, kes üldjuhul suudab oma harjumuspärases keskkonnas elada, kuid vajab iseseisvaks toimetulekuks kõrvalabi. Teenus on tasuline ja hinnakirja kehtestab vallavalitsus.",
+      "application": {
+        "channels": [
+          "phone",
+          "in-person",
+          "written"
+        ],
+        "steps": [
+          "Võtta ühendust sotsiaalteenistusega; sotsiaalhooldajad Elika Anier ja Svetlana Sappinen on lehel nimetatud."
+        ]
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedForms": [
+        "vinni_vald_form_taotlus_koduteenuse_osutamiseks"
+      ],
+      "relatedContacts": [
+        "vinni_vald_contact_elika_anier",
+        "vinni_vald_contact_svetlana_sappinen"
+      ],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_service_koduteenus",
+      "document_id": "vinni_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "1806b50490831023cfd46988b0751eb05fee303c69124b9ce23569cce6c938d4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_service_tugiisikuteenus",
+      "canonical_item_id": "vinni_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus toetab iseseisvat toimetulekut olukorras, kus inimene või pere vajab sotsiaalsete, majanduslike, psühholoogiliste või terviseprobleemide tõttu olulist kõrvalabi. Kõrvalabi seisneb juhendamises, motiveerimises ning inimese iseseisvuse ja omavastutuse suurendamises. Lastega perede puhul aitab teenus lapse hooldamist ja turvalise kasvukeskkonna loomist.",
+      "sourceKeys": [
+        "social_services"
+      ],
+      "targetGroup": "Sotsiaalhoolekandega hõlmatud isik või pere, sealhulgas alaealine.",
+      "conditions": "Teenust võib vaja minna lapse eest hoolitsemisel, puude, haiguse või raske sotsiaalse olukorra tõttu, kinnipidamiskohast vabanemisel, asendushoolduselt iseseisvalt elama asumisel või psüühika- või käitumishäire tõttu. Teenus on saajale tasuta.",
+      "application": {
+        "channels": [
+          "written"
+        ],
+        "steps": [
+          "Esitada tugiisiku teenuse avaldus; teenuse maht selgub abivajaduse hindamisel."
+        ]
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedForms": [
+        "vinni_vald_form_tugiisiku_teenuse_avaldus"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_service_tugiisikuteenus",
+      "document_id": "vinni_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "d3c91fb35f6671d5bc0d1444af97a03683b190726788c926dcaeb17effbec9fe",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "vinni_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldus seatakse inimesele, kes vaimse või kehalise puude tõttu vajab abi oma õiguste teostamiseks ja kohustuste täitmiseks. Taotluses saab märkida soovitud hooldaja andmed ning lisada hooldaja nõusoleku. Sotsiaaltöötaja hindab hooldusvajadust ja selgitab, kas vajadust saab katta mõne muu teenusega.",
+      "sourceKeys": [
+        "social_services"
+      ],
+      "targetGroup": "Täisealine inimene, kes vajab vaimse või kehalise puude tõttu kõrvalabi.",
+      "conditions": "Hooldus seatakse hooldatava ja hooldaja nõusolekul. Hooldusvajadus ja hooldaja ülesanded selgitatakse välja hindamisel.",
+      "application": {
+        "channels": [
+          "written"
+        ],
+        "steps": [
+          "Esitada hoolduse seadmise taotlus; võimalusel lisada hooldaja nõusolek."
+        ]
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedForms": [
+        "vinni_vald_form_taisealise_isiku_hooldus_avalduse"
+      ],
+      "relatedContacts": [
+        "vinni_vald_contact_tiiu_ivanova"
+      ],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_service_taisealise_isiku_hooldus",
+      "document_id": "vinni_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "c08aba9ce59ffb0d814338bc01ddcd5b79ea37692c019cec7e85132847831cfb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "vinni_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus suurendab puude tõttu füüsilist kõrvalabi vajava täisealise inimese iseseisvat toimetulekut ja osalemist kõigis eluvaldkondades. Isiklik abistaja aitab liikumisel, söömisel, toidu valmistamisel, riietumisel, hügieeni- ja majapidamistoimingutes ning muudes tegevustes, kuid inimene tegutseb koos abistajaga. Teenus on saajale tasuta.",
+      "sourceKeys": [
+        "social_services"
+      ],
+      "targetGroup": "Täisealine puudega inimene, kes vajab füüsilist kõrvalabi.",
+      "conditions": "Isiklikuks abistajaks ei määrata teenuse saaja esimese ega teise astme ülenejat või alanejat sugulast ega temaga samas eluruumis elavat inimest. Teenuse maht selgub abivajaduse hindamisel ja sõlmitakse leping.",
+      "application": {
+        "channels": [
+          "written"
+        ],
+        "steps": [
+          "Esitada taotlus, märkides põhjuse, tegevused ja võimalusel soovitud isikliku abistaja andmed."
+        ]
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedForms": [
+        "vinni_vald_form_isikliku_abistaja_teenus"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_service_isikliku_abistaja_teenus",
+      "document_id": "vinni_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "07b8c975719855a264223026a3ad2f591972d6f2c5f86edbcc457aa6095e79dc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_service_volanoustamisteenus",
+      "canonical_item_id": "vinni_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab inimesel teha kindlaks oma varaline olukord, pidada läbirääkimisi võlausaldajatega, rahuldada nõudeid, vältida uusi võlgnevusi ja lahendada muid võlgadega seotud probleeme. Teenuse vajadus selgub abivajaduse hindamise käigus. Teenus on tasuta.",
+      "sourceKeys": [
+        "social_services"
+      ],
+      "targetGroup": "Isik, kellel on sissenõutavaks muutunud rahaline kohustus ja kes ei suuda seda iseseisvalt täita.",
+      "conditions": "Teenuse vajadus tuvastatakse abivajaduse hindamisel.",
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_service_volanoustamisteenus",
+      "document_id": "vinni_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "391095e9a9c582be8cd93280e823226fac8b9f28db355a440d388350a12253c9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_service_varjupaigateenus",
+      "canonical_item_id": "vinni_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus tagab ajutise ööbimiskoha täisealisele inimesele, kes ei ole võimeline endale ööbimiskohta leidma. Teenusega tagatakse ajutine turvaline koht ööbimiseks ja hügieenitoiminguteks, et vältida peavarjuta jäämist. Kui inimene ei suuda teenuse eest tasuda, katab puudujääva osa Vinni valla eelarve.",
+      "sourceKeys": [
+        "social_services"
+      ],
+      "targetGroup": "Täisealine inimene, kes viibib Vinni valla haldusterritooriumil, kellel puudub ööbimiskoht ja kes ei suuda seda endale tagada.",
+      "conditions": "Taotluse võib esitada, kuid ametiasutus peab teenuse korraldama ka taotluseta. Võimalusel osaleb teenuse saaja tasumisel vastavalt majanduslikele võimalustele.",
+      "application": {
+        "channels": [
+          "written",
+          "oral"
+        ],
+        "steps": [
+          "Pöörduda sotsiaalteenistuse poole; vajadusel korraldatakse teenus ka taotluseta."
+        ]
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_service_varjupaigateenus",
+      "document_id": "vinni_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "f6da536794c2ab63b3d46d21a4097d189cb170d759bcaa9ea86accb6262d3f31",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_service_uldhooldusteenus",
+      "canonical_item_id": "vinni_vald:service:uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool isiku kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatav üldhooldusteenus tagab turvalise keskkonna ja toimetuleku täisealisele inimesele, kes ei suuda terviseseisundi, tegevusvõime või elukeskkonna tõttu kodus ajutiselt või püsivalt iseseisvalt toime tulla. Teenuse saamiseks tuleb esitada vabas vormis taotlus või e-taotlus. Üldhooldusteenuse vajadus selgub abivajaduse hindamisel.",
+      "sourceKeys": [
+        "general_care",
+        "social_services"
+      ],
+      "targetGroup": "Täisealine inimene, kes ei suuda kodustes tingimustes iseseisvalt toime tulla.",
+      "conditions": "Teenust saab isik, kelle toimetulekut ei ole võimalik tagada muu Vinni valla või riigi osutatava sotsiaalhoolekandelise abi toel. Hoolduskulude piirmäär Vinni vallas on 690 eurot kuus ühe üldhooldusteenuse saaja kohta.",
+      "application": {
+        "channels": [
+          "written",
+          "web"
+        ],
+        "steps": [
+          "Esitada vabas vormis taotlus ametiasutusele või e-taotlus Vinni valla iseteeninduses."
+        ]
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "690 € hoolduskulude piirmäär kuus",
+        "description": "Vallale kehtestatud ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirhind; inimese enda ja lähedaste kanda jäävad majutus, toitlustus ja muud isiklikud kulud."
+      },
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing_or_amount"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "general_care",
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_service_uldhooldusteenus",
+      "document_id": "vinni_vald_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "65094b112634a949881143c0eba40e6af25c3d67a72b5568770943c85eb9ad5b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_service_asendushooldusteenus",
+      "canonical_item_id": "vinni_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus tagab pika- või lühiajaliselt lapse heaolu ja õigused, pakkudes lapsele peresarnaseid elutingimusi, turvalist arengukeskkonda ning ettevalmistust iseseisvaks eluks. Teenuse osutajaks võib olla hoolduspere, perekodu või asenduskodu. Teenus tagatakse üldjuhul kuni lapse 18-aastaseks saamiseni.",
+      "sourceKeys": [
+        "social_services"
+      ],
+      "targetGroup": "Vanemliku hoolitsuseta või vanema hooldusõiguse piiranguga laps.",
+      "conditions": "Teenust osutatakse, kui lapse vanem on surnud, vanemale on määratud eestkostja, vanema hooldusõigus on peatatud, piiratud või ära võetud ja laps on vanemast eraldatud.",
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_service_asendushooldusteenus",
+      "document_id": "vinni_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "91eb16ea65a5ec8f1d4b917a05f48663abd53471659563c658ae89547f49aba8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_service_eluruumi_tagamise_teenus",
+      "canonical_item_id": "vinni_vald:service:eluruumi_tagamise_teenus",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenus kindlustab eluruumi kasutamise võimaluse inimesele, kes ei suuda sotsiaal-majandusliku olukorra tõttu tagada endale või perele sobivat eluruumi või kellel on puude tõttu raske oma eluruumis liikuda või toime tulla. Teenust korraldatakse Vinni vallale kuuluvate eluruumide kasutusele andmisega ja sotsiaalkorter antakse tähtajaliselt. Teenuse eest võib ametiasutus võtta tasu.",
+      "sourceKeys": [
+        "social_services"
+      ],
+      "targetGroup": "Inimene või pere, kes ei suuda endale eluruumi tagada või vajab puude tõttu sobivamat eluruumi.",
+      "conditions": "Taotluses tuleb märkida teenuse vajaduse põhjus, puude ja kõrvalabi asjaolud, sissetulek, pereliikmed, sotsiaalkorteri kasutamise aeg ning vajadusel teised täisealised majutatavad isikud.",
+      "application": {
+        "channels": [
+          "written"
+        ],
+        "steps": [
+          "Esitada ametiasutusele taotlus eluruumi tagamise teenuse saamiseks."
+        ]
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedForms": [
+        "vinni_vald_form_munitsipaalkorteri_taotlus"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_service_eluruumi_tagamise_teenus",
+      "document_id": "vinni_vald_service_eluruumi_tagamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "52d29cc9c0388a9d5170a6d4a15e7e4bbda3a728e6653fc537a98777979a752a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "vinni_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus toetab asendushoolduselt või eestkostelt lahkuva inimese iseseisvat toimetulekut ja õpingute jätkamist. Teenust osutatakse juhtumiplaani alusel ning omavalitsus tagab vajaduspõhise eluaseme, tugiteenused ja toetused. Ametiasutus korraldab järelhooldusteenust ka asjaoludest teadasaamisel ilma taotluseta.",
+      "sourceKeys": [
+        "social_services"
+      ],
+      "targetGroup": "Asendushoolduselt või eestkostelt lahkuv täisealine isik.",
+      "conditions": "Teenust korraldatakse juhtumiplaani alusel ning vajadusel alustatakse teenuse korraldamist ilma taotluseta.",
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_service_jarelhooldusteenus",
+      "document_id": "vinni_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "ce3a493bf8a3efcfa042178199ee28d6598b1d9628b48d8d70cbdf58a35a0e90",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "vinni_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus võimaldab erivajadusega inimesel kasutada tema vajadustele vastavat transpordivahendit tööle, õppeasutusse või muude avalike teenuste kasutamiseks sõitmisel. Teenuse saamiseks tuleb sotsiaalteenistuse ametnikule esitada suuline või kirjalik taotlus vähemalt kolm tööpäeva enne teenuse vajadust. Teenuse hind on 0,40 eurot kilomeeter ning madala sissetulekuga isikud võidakse omaosalustasust vabastada.",
+      "sourceKeys": [
+        "social_services"
+      ],
+      "targetGroup": "Erivajadusega inimene, kes ei saa erivajaduse tõttu kasutada ühissõidukit või isiklikku sõiduautot.",
+      "conditions": "Taotlus tuleb esitada vähemalt kolm tööpäeva enne teenuse vajadust. Teenuse saaja maksab omaosalustasu, välja arvatud maksevõime hindamisel madala sissetulekuga isikud.",
+      "application": {
+        "channels": [
+          "oral",
+          "written",
+          "phone"
+        ],
+        "steps": [
+          "Võtta ühendust sotsiaaltranspordi tellimise kontaktidega ja esitada taotlus vähemalt kolm tööpäeva enne sõitu."
+        ]
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "0,40 €/km",
+        "description": "Sotsiaaltransporditeenuse hind; madala sissetulekuga isik võib omaosalustasust vabastatud olla."
+      },
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedForms": [],
+      "relatedContacts": [
+        "vinni_vald_contact_mirjam_selli",
+        "vinni_vald_contact_tiiu_ivanova",
+        "vinni_vald_contact_anzelika_kupp",
+        "vinni_vald_contact_elo_heinsaar",
+        "vinni_vald_contact_robin_reest",
+        "vinni_vald_contact_aleftina_liski"
+      ],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing_or_amount",
+        "relatedContacts"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_service_sotsiaaltransporditeenus",
+      "document_id": "vinni_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "455c7cd1824a50c56be68eea463985a842580d73d72e3ebcd017b283ba4ab8b7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "vinni_vald:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenus toetab lapse hooldusõigust omava isiku, eestkostja või hooldaja toimetulekut ja töötamist, tagades lapse hooldamise, arendamise ja turvalisuse lapsehoiuteenuse osutaja juures. Riigi rahastatavat lapsehoiuteenust on õigus saada raske ja sügava puudega lapse seaduslikul esindajal või hooldajal kuni selle kalendriaasta lõpuni, mil laps saab 18-aastaseks. Teenus on saajale tasuta.",
+      "sourceKeys": [
+        "social_services"
+      ],
+      "targetGroup": "Raske või sügava puudega laps ning tema seaduslik esindaja või hooldaja.",
+      "conditions": "Teenuse vajadus peab olema lapse rehabilitatsiooniplaanis ning lapse hooldamine ei tohi samal ajal olla tagatud teiste sotsiaalteenustega ega haridusasutuses viibimisega.",
+      "application": null,
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_service_lapsehoiuteenus",
+      "document_id": "vinni_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "6de868fb91fff8787f18a5b90230154394d5e241c77c25962ed050956219cf8c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_service_turvakoduteenus",
+      "canonical_item_id": "vinni_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenus tagab ajutise eluaseme, turvalise keskkonna ja esmase abi inimestele, kes vajavad ohu tõttu väljaspool alalist elukohta turvalist keskkonda. Teenus on mõeldud lapsele, kelle hooldamises esinevad puudused ohustavad elu, tervist või arengut, ning täisealisele inimesele, kes vajab turvalist keskkonda. Teenus tagatakse vajalikuks perioodiks ja on teenuse saajale tasuta.",
+      "sourceKeys": [
+        "social_services"
+      ],
+      "targetGroup": "Laps või täisealine inimene, kelle elu, tervis või areng on ohus.",
+      "conditions": "Teenust võib taotleda, kuid ametiasutus peab teenuse korraldama ka taotluseta. Teenus on tasuta.",
+      "application": {
+        "channels": [
+          "written",
+          "oral"
+        ],
+        "steps": [
+          "Pöörduda sotsiaalteenistuse poole; ametiasutus korraldab teenuse vajadusel ka taotluseta."
+        ]
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_service_turvakoduteenus",
+      "document_id": "vinni_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "befabdbceadd4fd367fc00c6d5ab1d9aabd1d6ad8a371714022104d319b1d30d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_benefit_synnitoetus",
+      "canonical_item_id": "vinni_vald:benefit:synnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus on Vinni valla eelarvest lapse kasvatamisega kaasnevate osaliste kulude katmiseks makstav ühekordne toetus. 2026. aastal on sünnitoetuse suurus Vinni vallas 1000 eurot. Mitmike sünnitoetus on kahekordne määr ja see makstakse välja kahes osas.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "Lapsevanem, kelle enda ja vastsündinu elukoht rahvastikuregistris on Vinni vald; vajadusel lapse eestkostja või tegelik hooldaja.",
+      "conditions": "Makstakse pärast lapse sünni registreerimist. Mitmike puhul makstakse 50% pärast sündi ja 50% pärast laste aastaseks saamist tingimusel, et lapsed ja taotlev vanem on olnud Vinni valla elanikud.",
+      "amount": "1000 €; mitmike puhul kahekordne määr",
+      "application": {
+        "channels": [
+          "written",
+          "web"
+        ],
+        "steps": [
+          "Esitada sünnitoetuse avaldus või e-avaldus."
+        ]
+      },
+      "decisionTime": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "relatedForms": [
+        "vinni_vald_form_avaldus_synnitoetuse_saamiseks"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing_or_amount",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_benefit_synnitoetus",
+      "document_id": "vinni_vald_benefit_synnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "content_hash": "2f54af72ccb83ca0a8f9559b0fbc423155fbacabd359213178f95c45358b12cb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_benefit_matusetoetus",
+      "canonical_item_id": "vinni_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on riigieelarve toetusfondist ja Vinni valla eelarvest matuse korraldamisega kaasnevate kulude katmiseks makstav ühekordne toetus. Toetust makstakse ühe isiku matuse kohta ühele füüsilisest isikust matusekorraldajale. 2026. aastal on matusetoetuse suurus Vinni vallas 400 eurot.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "Matuse korraldaja, kui surnu viimane elukoht rahvastikuregistris oli Vinni vald.",
+      "conditions": "Kui matusekorraldajaid on mitu, peavad kulusid teinud isikud kokku leppima, kes toetust taotleb.",
+      "amount": "400 €",
+      "application": {
+        "channels": [
+          "written",
+          "web"
+        ],
+        "steps": [
+          "Esitada matusetoetuse avaldus või e-avaldus."
+        ]
+      },
+      "decisionTime": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "relatedForms": [
+        "vinni_vald_form_avaldus_matusetoetuse_saamiseks"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing_or_amount",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_benefit_matusetoetus",
+      "document_id": "vinni_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "content_hash": "5f19e9ee2034d15ffac478d5a4162047637c79e012a0b969fd01916217bcdd56",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_benefit_ranitsatoetus",
+      "canonical_item_id": "vinni_vald:benefit:ranitsatoetus",
+      "itemType": "benefit",
+      "title": "Ranitsatoetus",
+      "status": "active",
+      "summary": "Ranitsatoetus on Vinni valla eelarvest lapse põhihariduse alustamise kulude katmiseks makstav ühekordne toetus. 2026. aastal on ranitsatoetuse suurus 250 eurot. Toetust makstakse Vinni valla kooli esimesse klassi minevale lapsele ning Vinni valla lapsele, kes alustab õppimist Eestis erivajadustega laste või muukeelses koolis.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "Vinni valla laps, kes alustab põhihariduse omandamist esimeses klassis.",
+      "conditions": "Valla kooli puhul on aluseks munitsipaalkooli nimekiri. Erivajadustega laste või muukeelse kooli puhul esitab lapsevanem vabas vormis taotluse.",
+      "amount": "250 €",
+      "application": {
+        "channels": [
+          "school_list",
+          "written"
+        ],
+        "steps": [
+          "Valla munitsipaalkool koostab nimekirja; erivajadustega laste või muukeelse kooli puhul esitab vanem vabas vormis taotluse."
+        ]
+      },
+      "decisionTime": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing_or_amount"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_benefit_ranitsatoetus",
+      "document_id": "vinni_vald_benefit_ranitsatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "content_hash": "d65a56e684667a3f3a9656b87ec48192f34f4ceb8bfa33f398e01ea408ad004c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_benefit_eakate_sunnipaevatoetus",
+      "canonical_item_id": "vinni_vald:benefit:eakate_sunnipaevatoetus",
+      "itemType": "benefit",
+      "title": "Eakate sünnipäevatoetus",
+      "status": "active",
+      "summary": "Eakate sünnipäevatoetus on Vinni valla eelarvest eakatele sünnipäeva puhul makstav mitteperioodiline toetus. Toetust makstakse rahvastikuregistri andmetel Vinni vallas elavale 80-, 85-, 90- ning üle 90-aastasele eakale igal aastal tema sünnipäeva puhul. 2026. aastal on toetus 80-, 85-, 90- kuni 99-aastaseks saamisel 50 eurot ja 100-aastaseks või vanemaks saamisel 100 eurot.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "Vinni vallas elav eakas, kes saab 80, 85, 90 või üle 90 aasta vanaks.",
+      "conditions": "Toetus makstakse sünnipäeva puhul rahvastikuregistri andmete alusel.",
+      "amount": "50 € või 100 €",
+      "application": null,
+      "decisionTime": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "pricing_or_amount"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_benefit_eakate_sunnipaevatoetus",
+      "document_id": "vinni_vald_benefit_eakate_sunnipaevatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "content_hash": "f8999e81f1829586e134100d83c572e0fe58c837fdcf0b2068245e01b2295719",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_benefit_kuttetoetus",
+      "canonical_item_id": "vinni_vald:benefit:kuttetoetus",
+      "itemType": "benefit",
+      "title": "Küttetoetus",
+      "status": "active",
+      "summary": "Küttetoetus on Vinni valla eelarvest makstav toetus küttepuude, briketi, kivisöe või muu küttematerjali soetamiseks. Seda saab taotleda madala sissetulekuga inimene või pere üks kord aastas. Hüvitise määr sõltub sissetulekupiirist ja kuludokumendist.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "Madala sissetulekuga isik või pere, kes vajab küttematerjali.",
+      "conditions": "Õigus on isikul või perel, kelle sissetulek ühe pereliikme kohta on alla madala sissetuleku piiri. Kulud hüvitatakse kuludokumendi alusel.",
+      "amount": "kuni 400 € sissetuleku 305 €/kuus piiri korral; kuni 200 € 395 €/kuus piiri korral",
+      "application": {
+        "channels": [
+          "written",
+          "web"
+        ],
+        "steps": [
+          "Esitada sotsiaaltoetuse taotluse blankett või e-avaldus ning lisada kuludokument."
+        ]
+      },
+      "decisionTime": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "relatedForms": [
+        "vinni_vald_form_avaldus_sotsiaaltoetuse_saamiseks"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing_or_amount",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_benefit_kuttetoetus",
+      "document_id": "vinni_vald_benefit_kuttetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "content_hash": "a1868346e1c821dc1cff95bdbe0b983cc9693d3dec999a3a7dfb2a98451069f7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_benefit_lastelaagritoetus",
+      "canonical_item_id": "vinni_vald:benefit:lastelaagritoetus",
+      "itemType": "benefit",
+      "title": "Lastelaagritoetus",
+      "status": "active",
+      "summary": "Lastelaagritoetus on Vinni valla eelarvest makstav toetus madala sissetulekuga pere lapse lastelaagri kulude katmiseks. Kui sissetulek ühe pereliikme kohta on alla 305 euro kuus, hüvitatakse 100% lastelaagri maksumusest. Kui sissetulek on alla 395 euro kuus, hüvitatakse 50% lastelaagri maksumusest.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "Madala sissetulekuga isik või pere, kelle laps osaleb lastelaagris.",
+      "conditions": "Taotlemisel tuleb lähtuda madala sissetuleku piirist ja esitada kuludokument.",
+      "amount": "100% või 50% lastelaagri maksumusest",
+      "application": {
+        "channels": [
+          "written",
+          "web"
+        ],
+        "steps": [
+          "Esitada sotsiaaltoetuse taotluse blankett või e-avaldus ning kuludokument."
+        ]
+      },
+      "decisionTime": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "relatedForms": [
+        "vinni_vald_form_avaldus_sotsiaaltoetuse_saamiseks"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing_or_amount",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_benefit_lastelaagritoetus",
+      "document_id": "vinni_vald_benefit_lastelaagritoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "content_hash": "8553dc074533137185f6e457f80515ae8bca0583f87e762e5068a78b2561db1b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_benefit_uhiselamu_uuri_toetus",
+      "canonical_item_id": "vinni_vald:benefit:uhiselamu_uuri_toetus",
+      "itemType": "benefit",
+      "title": "Toetus ühiselamu üüri katmiseks",
+      "status": "active",
+      "summary": "Toetus ühiselamu üüri kulude hüvitamiseks on Vinni valla eelarvest makstav toetus madala sissetulekuga isikule või perele. Kui sissetulek ühe pereliikme kohta on alla 305 euro kuus, hüvitatakse 100% ühiselamu üüri maksumusest. Kui sissetulek on alla 395 euro kuus, hüvitatakse 50% üüri maksumusest.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "Madala sissetulekuga inimene või pere, kellel on ühiselamu üürikulu.",
+      "conditions": "Õigus on taotlejal, kelle sissetulek ühe pereliikme kohta jääb alla kehtestatud madala sissetuleku piiri; kulud hüvitatakse kuludokumendi alusel.",
+      "amount": "100% või 50% ühiselamu üürist",
+      "application": {
+        "channels": [
+          "written",
+          "web"
+        ],
+        "steps": [
+          "Esitada sotsiaaltoetuse taotluse blankett või e-avaldus koos kuludokumendiga."
+        ]
+      },
+      "decisionTime": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "relatedForms": [
+        "vinni_vald_form_avaldus_sotsiaaltoetuse_saamiseks"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing_or_amount",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_benefit_uhiselamu_uuri_toetus",
+      "document_id": "vinni_vald_benefit_uhiselamu_uuri_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "content_hash": "c2ad9bf25eb96528239d1834c49c7fd5fa91027722e5ff59b69d9ee599bf991c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_benefit_soidukulude_toetus",
+      "canonical_item_id": "vinni_vald:benefit:soidukulude_toetus",
+      "itemType": "benefit",
+      "title": "Toetus sõidukulude katmiseks",
+      "status": "active",
+      "summary": "Sõidutoetus on Vinni valla eelarvest makstav toetus madala sissetulekuga isikule või perele. Toetust makstakse arsti vastuvõtule sõiduks registreeritud vastuvõtuaja esitamisel ning kooli ja koju sõiduks bussipiletite esitamisel, kui õppurile ei laiene riiklik sõidukompensatsioon. Hüvitatakse 100% või 50% sõidukulu vastavalt sissetulekupiirile.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "Madala sissetulekuga inimene või pere, kellel on põhjendatud sõidukulud arsti vastuvõtule või õppimisega seoses.",
+      "conditions": "Taotlus eeldab registreeritud vastuvõtuaega või sõidupileteid ning sissetuleku vastavust piirmäärale.",
+      "amount": "100% või 50% sõidukuludest",
+      "application": {
+        "channels": [
+          "written",
+          "web"
+        ],
+        "steps": [
+          "Esitada sotsiaaltoetuse taotluse blankett või e-avaldus ning kuludokumendid."
+        ]
+      },
+      "decisionTime": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "relatedForms": [
+        "vinni_vald_form_avaldus_sotsiaaltoetuse_saamiseks"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing_or_amount",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_benefit_soidukulude_toetus",
+      "document_id": "vinni_vald_benefit_soidukulude_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "content_hash": "b41b8e144decd6bd892c8f8ffd8abf6db4095b98da7265635331239ffe14cdac",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_benefit_laste_toitlustus_ja_lasteaia_oppekulu_toetus",
+      "canonical_item_id": "vinni_vald:benefit:laste_toitlustus_ja_lasteaia_oppekulu_toetus",
+      "itemType": "benefit",
+      "title": "Toetus haridusasutuses laste toitlustamiseks ja lasteaia õppekulu hüvitamiseks",
+      "status": "active",
+      "summary": "See toetus on Vinni valla eelarvest makstav mitteperioodiline toetus madala sissetulekuga perele, kes kasvatab koolis, kutseõppeasutuses või lasteaias käivat last. Lasteaia lapsevanema õppekulu toetust saab taotleda kahe ja enama lapsega pere, kui lapsed käivad Vinni valla lasteaias. Osalustasu toetust hakatakse katma taotletavale kuule järgnevast kuust ning toetust makstakse poolaasta kaupa.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "Madala sissetulekuga pere, kelle laps õpib koolis, kutseõppeasutuses või käib lasteaias.",
+      "conditions": "Alla 305 euro suuruse sissetuleku puhul hüvitatakse toiduraha 100%; alla 395 euro puhul 50%.",
+      "amount": "100% või 50% toidu- või õppekulust",
+      "application": {
+        "channels": [
+          "written",
+          "web"
+        ],
+        "steps": [
+          "Esitada sotsiaaltoetuse taotluse blankett või e-avaldus."
+        ]
+      },
+      "decisionTime": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "relatedForms": [
+        "vinni_vald_form_avaldus_sotsiaaltoetuse_saamiseks"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing_or_amount",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_benefit_laste_toitlustus_ja_lasteaia_oppekulu_toetus",
+      "document_id": "vinni_vald_benefit_laste_toitlustus_ja_lasteaia_oppekulu_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "content_hash": "9b735ea17aa0b0eda7f1c40a58978be54f22a5f4d8b5a2f22cd2acaca638aaf2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_benefit_taiendav_ravimite_huvitamise_toetus",
+      "canonical_item_id": "vinni_vald:benefit:taiendav_ravimite_huvitamise_toetus",
+      "itemType": "benefit",
+      "title": "Täiendav ravimite hüvitamise toetus",
+      "status": "active",
+      "summary": "Täiendav ravimite hüvitamise toetus on Vinni valla eelarvest makstav toetus inimestele, kelle elukoht on Vinni vald ja kelle sissetulek jääb alla kehtestatud piiri. Toetust saab taotleda jooksva aasta ravimite kuludokumendi alusel. Toetuse ülempiir on 180 eurot aastas taotleja või tema perekonna kohta.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "Madala sissetulekuga inimene või pere; veebilehel nimetatakse eeskätt riikliku pensioni saajaid, kelle sissetulek on alla 555 euro.",
+      "conditions": "Sissetulek ühe pereliikme kohta peab olema alla 555 euro kuus ning kuludokumendid peavad puudutama jooksva aasta ravimeid.",
+      "amount": "kuni 180 € aastas",
+      "application": {
+        "channels": [
+          "written",
+          "web"
+        ],
+        "steps": [
+          "Esitada sotsiaaltoetuse taotluse blankett või e-avaldus ning ravimite kuludokument."
+        ]
+      },
+      "decisionTime": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "relatedForms": [
+        "vinni_vald_form_avaldus_sotsiaaltoetuse_saamiseks"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing_or_amount",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_benefit_taiendav_ravimite_huvitamise_toetus",
+      "document_id": "vinni_vald_benefit_taiendav_ravimite_huvitamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "content_hash": "c0ede31817994c04531bcb7bcd6b7caef380130bd84cb8ab7cfc98b56e0a575c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_benefit_tervisega_seotud_kulude_huvitamise_toetus",
+      "canonical_item_id": "vinni_vald:benefit:tervisega_seotud_kulude_huvitamise_toetus",
+      "itemType": "benefit",
+      "title": "Tervisega seotud kulude hüvitamise toetus",
+      "status": "active",
+      "summary": "Tervisega seotud kulude hüvitamise toetus on Vinni valla eelarvest makstav mitteperioodiline toetus. Hüvitada saab laste prillide ja täiskasvanute prilliklaaside, proteeside (v.a hambaproteesid), tugiaparaatide, muude erivajadusest tulenevate abivahendite, retseptiravimite, haigla omaosalusarvete ning perearsti määratud konsultatsioonide või uuringute kulu. Kuludokument ei tohi olla vanem kui kolm kuud.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "Madala sissetulekuga isik või pere, kellel on tervisega seotud vältimatud kulud.",
+      "conditions": "Kui sissetulek ühe pereliikme kohta on alla 305 euro kuus, hüvitatakse 100%; alla 395 euro kuus 50%. Kuludokument ei tohi olla vanem kui kolm kuud.",
+      "amount": "100% või 50% tervisekulust",
+      "application": {
+        "channels": [
+          "written",
+          "web"
+        ],
+        "steps": [
+          "Esitada sotsiaaltoetuse taotluse blankett või e-avaldus koos kuni kolme kuu vanuse kuludokumendiga."
+        ]
+      },
+      "decisionTime": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "relatedForms": [
+        "vinni_vald_form_avaldus_sotsiaaltoetuse_saamiseks"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing_or_amount",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_benefit_tervisega_seotud_kulude_huvitamise_toetus",
+      "document_id": "vinni_vald_benefit_tervisega_seotud_kulude_huvitamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "content_hash": "a6c00515b2de15a034fee59ce38e60ca2365eeced7cbf408670de9551fdd952f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_benefit_riiklike_dokumentide_vormistamise_toetus",
+      "canonical_item_id": "vinni_vald:benefit:riiklike_dokumentide_vormistamise_toetus",
+      "itemType": "benefit",
+      "title": "Toetus riiklike dokumentide vormistamiseks",
+      "status": "active",
+      "summary": "Riiklike dokumentide vormistamise toetus on Vinni valla eelarvest makstav mitteperioodiline toetus isikutunnistuse, elamisloa ja teiste seadusega kohustuslike dokumentide vormistamise kulude hüvitamiseks. Toetust saab taotleda madala sissetulekuga isik või pere. Hüvitise määr sõltub sissetulekupiirist.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "Madala sissetulekuga isik või pere, kellel on kohustusliku riikliku dokumendi vormistamise kulu.",
+      "conditions": "Alla 305 euro suuruse sissetuleku puhul hüvitatakse 100%; alla 395 euro puhul 50% dokumendi vormistamise maksumusest.",
+      "amount": "100% või 50% vormistamise maksumusest",
+      "application": {
+        "channels": [
+          "written",
+          "web"
+        ],
+        "steps": [
+          "Esitada sotsiaaltoetuse taotluse blankett või e-avaldus koos kuludokumendiga."
+        ]
+      },
+      "decisionTime": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "relatedForms": [
+        "vinni_vald_form_avaldus_sotsiaaltoetuse_saamiseks"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing_or_amount",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_benefit_riiklike_dokumentide_vormistamise_toetus",
+      "document_id": "vinni_vald_benefit_riiklike_dokumentide_vormistamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "content_hash": "b61aca3a6e5faef4bc2e4b9502cac15e556c64b235325d2392b93f126df2432c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_benefit_uhekordne_toetus_raske_majandusliku_olukorra_puhul",
+      "canonical_item_id": "vinni_vald:benefit:uhekordne_toetus_raske_majandusliku_olukorra_puhul",
+      "itemType": "benefit",
+      "title": "Ühekordne toetus raske majandusliku olukorra puhul",
+      "status": "active",
+      "summary": "Ühekordne toetus raske majandusliku olukorra puhul on Vinni valla eelarvest makstav mitteperioodiline toetus inimese ajutise raske majandusliku olukorra leevendamiseks ja hädavajalike sotsiaalsete või majanduslike vajadustega seotud kulude katmiseks. Toetust saab taotleda näiteks asenduskodust tagasipöördunud inimene, kinnipidamisasutusest tagasipöördunud inimene või pere, kes on sattunud toimetulekuraskustesse elatusvahendite kaotuse, lähedase surma, haiguse või muu planeerimatu väljamineku tõttu. Erandjuhul võib toetust maksta eluasemeteenuste või eluruumi hädavajaliku sanitaarse olukorra parandamiseks.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "Ajutiselt raskesse majanduslikku olukorda sattunud inimene või pere.",
+      "conditions": "Toetuse suurus sõltub toimetulekuvõimest, elukondlikest vajadustest ja abivajaduse hindamisest.",
+      "amount": null,
+      "application": {
+        "channels": [
+          "written",
+          "web"
+        ],
+        "steps": [
+          "Esitada ühekordse toetuse taotlus või e-avaldus koos olukorda tõendavate andmetega."
+        ]
+      },
+      "decisionTime": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "relatedForms": [
+        "vinni_vald_form_avaldus_sotsiaaltoetuse_saamiseks"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_benefit_uhekordne_toetus_raske_majandusliku_olukorra_puhul",
+      "document_id": "vinni_vald_benefit_uhekordne_toetus_raske_majandusliku_olukorra_puhul",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "content_hash": "4e6dfc028f3cdd55f1114b9c5db4554181a23b98523db5cbfa0c0de1b3f2dbce",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_benefit_erakorraline_toetus",
+      "canonical_item_id": "vinni_vald:benefit:erakorraline_toetus",
+      "itemType": "benefit",
+      "title": "Erakorraline toetus",
+      "status": "active",
+      "summary": "Erakorraline toetus on Vinni valla eelarvest toimetulekuraskustesse sattunud inimesele makstav mitteperioodiline toetus ajutise raske majandusliku olukorra leevendamiseks. Toetust makstakse, kui inimene või pere on sattunud toimetulekuraskustesse elatusvahendite kaotuse või planeerimatu väljamineku tõttu, näiteks tulekahju või loodusõnnetuse korral. Toetuse suurus sõltub toimetulekuvõimest, elukondlikest vajadustest ja abivajaduse hindamisest.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "Erakorralise sündmuse tõttu toimetulekuraskustesse sattunud inimene või pere.",
+      "conditions": "Toetuse aluseks on planeerimatu väljaminek või elatusvahendite kaotus; abivajadus hinnatakse juhtumipõhiselt.",
+      "amount": null,
+      "application": {
+        "channels": [
+          "written"
+        ],
+        "steps": [
+          "Esitada taotluse blankett koos olukorra kirjelduse ja tõenditega."
+        ]
+      },
+      "decisionTime": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "relatedForms": [
+        "vinni_vald_form_avaldus_sotsiaaltoetuse_saamiseks"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_benefit_erakorraline_toetus",
+      "document_id": "vinni_vald_benefit_erakorraline_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "content_hash": "87c94519da56668fc7ecb254d4c4cb09aec82ed6ad35db5719c3d6929b3fcda5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_benefit_valtimatu_sotsiaalabi_toetus",
+      "canonical_item_id": "vinni_vald:benefit:valtimatu_sotsiaalabi_toetus",
+      "itemType": "benefit",
+      "title": "Vältimatu sotsiaalabi toetus",
+      "status": "active",
+      "summary": "Vältimatu sotsiaalabi toetus on Vinni valla eelarvest makstav abi inimesele, kes on elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitus olukorras. Toetus katab toidu, riietuse, hädavajalike ravimite ja ajutise majutamise kulusid. Toetust makstakse seni, kuni inimene ei ole enam sotsiaalselt abitus olukorras, ning sotsiaaltöötaja viib koos abivajajaga läbi abivajaduse hindamise.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "Elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitus olukorras olev inimene.",
+      "conditions": "Abi kestab kuni abitus olukord on leevendatud. Sotsiaaltöötaja hindab abivajaduse koostöös inimesega.",
+      "amount": null,
+      "application": {
+        "channels": [
+          "written",
+          "web",
+          "oral"
+        ],
+        "steps": [
+          "Pöörduda sotsiaalteenistuse poole või esitada sotsiaaltoetuse taotlus/e-avaldus."
+        ]
+      },
+      "decisionTime": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "relatedForms": [
+        "vinni_vald_form_avaldus_sotsiaaltoetuse_saamiseks"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_benefit_valtimatu_sotsiaalabi_toetus",
+      "document_id": "vinni_vald_benefit_valtimatu_sotsiaalabi_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "content_hash": "8fcfe3174d9b5e9830eedcad316231e96778b4bc789b4d5c90ff86e134e8cf62",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_benefit_hooldajatoetus",
+      "canonical_item_id": "vinni_vald:benefit:hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus",
+      "status": "active",
+      "summary": "Hooldajatoetus on Vinni valla eelarvest isiku hooldamise toetamiseks makstav perioodiline toetus. Toetust saab puudega täisealise isiku hooldajaks määratud inimene ning puudega 3–18-aastast last kasvatav ja hooldav vanem, vanavanem, eestkostja või perekonnas hooldamise lepingu alusel last hooldav inimene, kui ta puudega lapse hooldamise tõttu ei saa töötada ning talle ei maksta töötutoetust või riiklikku pensioni. Toetust makstakse taotluse esitamisele järgneva kuu 1. kuupäevast ning iga kuu viimasel tööpäeval.",
+      "sourceKeys": [
+        "social_benefits"
+      ],
+      "targetGroup": "Puudega täisealise isiku hooldaja või puudega 3–18-aastast last hooldav inimene.",
+      "conditions": "Toetuse maksmine algab taotluse esitamisele järgneva kuu 1. kuupäevast ning lõpeb maksmise lõpetamist tingivate asjaolude tekkimise päevast.",
+      "amount": "määrad on avaldatud eraldi määrade otsuses",
+      "application": {
+        "channels": [
+          "written"
+        ],
+        "steps": [
+          "Esitada hooldajatoetuse taotluse blankett."
+        ]
+      },
+      "decisionTime": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "relatedForms": [
+        "vinni_vald_form_hoolduse_seadmine_lapsele",
+        "vinni_vald_form_taisealise_isiku_hooldus_avalduse"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing_or_amount",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_benefits"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_benefit_hooldajatoetus",
+      "document_id": "vinni_vald_benefit_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaaltoetused/",
+      "content_hash": "50e3e9c9cda9e8b815112c7cfccf4ed304f7cfad5920100a36a5daeac929e6c2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "vinni_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on riigi rahaline abi puuduses inimestele, mida maksab kohalik omavalitsus riigieelarvelistest vahenditest. Toetust on õigus saada üksi elaval inimesel või perel, kelle kuu netosissetulek pärast eluasemekulude tasumist normpinna ulatuses on alla kehtestatud toimetulekupiiri. Toimetulekutoetus määratakse jooksvaks kuuks ning eelnevate kuude eest tagasiulatuvalt ei määrata.",
+      "sourceKeys": [
+        "subsistence_benefit"
+      ],
+      "targetGroup": "Üksi elav inimene või pere, kelle sissetulek pärast eluasemekulude tasumist jääb alla toimetulekupiiri.",
+      "conditions": "2026 lehel on toimetulekupiir üksi elavale inimesele või pere esimesele liikmele 220 eurot kuus, igale alaealisele 264 eurot kuus ning teisele ja igale järgnevale täisealisele liikmele 176 eurot kuus. Taotleja esitab jooksva kuu eest avalduse vallamajja või teeninduskeskusesse ning lisab sissetulekuid ja eluasemekulusid tõendavad dokumendid.",
+      "amount": "TT = (eluasemekulud + perekonna toimetulekupiir) – sissetulek",
+      "application": {
+        "channels": [
+          "written",
+          "in-person"
+        ],
+        "steps": [
+          "Esitada iga kuu avaldus vallamajja või teeninduskeskusesse ning lisada nõutud tõendid."
+        ]
+      },
+      "decisionTime": null,
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toimetulekutoetus/",
+      "relatedForms": [
+        "vinni_vald_form_avaldus_toimetulekutoetuse_saamiseks",
+        "vinni_vald_form_loetelu_vara_toimetulekutoetuse"
+      ],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing_or_amount",
+        "relatedForms"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "benefit",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "subsistence_benefit"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_benefit_toimetulekutoetus",
+      "document_id": "vinni_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/toimetulekutoetus/",
+      "content_hash": "c71c25139fec3087d73b146e7508580023958a69b3c0556b8278e247da685110",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_resource_tammiku_kodu",
+      "canonical_item_id": "vinni_vald:resource:tammiku_kodu",
+      "itemType": "resource",
+      "title": "Tammiku Kodu",
+      "status": "active",
+      "summary": "Tammiku Kodu on Vinni valla sotsiaalasutus, mis osutab väljaspool kodu osutatavat üldhooldusteenust täisealisele inimesele, kes ei suuda kodustes tingimustes iseseisvalt toime tulla. Hooldekodu kohatasu alates 01.02.2026 on 1490 eurot ning hoolduskomponent alates 01.01.2026 on 690 eurot. Kohatasu ei sisalda hügieenivahendite ega ravimite maksumust. Asutuses pakutakse hooldamist, toitlustamist, ajalehtede ja raamatute lugemise, lauamängude, koroonamängu, teleri vaatamise ning värskes õhus viibimise võimalust.",
+      "sourceKeys": [
+        "social_institutions"
+      ],
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalasutused/",
+      "targetGroup": "Täisealised hooldust vajavad inimesed.",
+      "conditions": null,
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_institutions"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_resource_tammiku_kodu",
+      "document_id": "vinni_vald_resource_tammiku_kodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalasutused/",
+      "content_hash": "d643b8b60dae1b60f0c2ac745ae5b3f08557e63449d8fdf30bf91185b1f75607",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_resource_ulvi_kodu",
+      "canonical_item_id": "vinni_vald:resource:ulvi_kodu",
+      "itemType": "resource",
+      "title": "Ulvi Kodu",
+      "status": "active",
+      "summary": "Ulvi Kodu osutab väljaspool kodu osutatavat üldhooldusteenust täisealisele inimesele, kes vajab ööpäevaringset hooldust ja turvalist keskkonda. Hooldekodu kohatasu alates 01.02.2026 on 1490 eurot ning hoolduskomponent alates 01.01.2026 on 690 eurot. Ulvi Kodus on 28 kohta ja majutus 1- ja 2-kohalistes tubades; elanikele pakutakse nelja toidukorda päevas, vaba aja tegevusi ja pereliikmete külastusvõimalust.",
+      "sourceKeys": [
+        "social_institutions"
+      ],
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalasutused/",
+      "targetGroup": "Täisealised hooldust vajavad inimesed.",
+      "conditions": null,
+      "relatedForms": [],
+      "relatedContacts": [
+        "vinni_vald_contact_maarika_koppel"
+      ],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "relatedContacts"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_institutions"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_resource_ulvi_kodu",
+      "document_id": "vinni_vald_resource_ulvi_kodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalasutused/",
+      "content_hash": "33eeef230e7282f2eb3dec2258890a2f8e34a43d6438a7d35c4fea838e12e31f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_resource_vinni_perekodu",
+      "canonical_item_id": "vinni_vald:resource:vinni_perekodu",
+      "itemType": "resource",
+      "title": "Vinni Perekodu",
+      "status": "active",
+      "summary": "Vinni Perekodu tegevuse põhieesmärk on asendushooldusteenuse osutamine orbudele ja vanemliku hoolitsuseta lastele. Perekodu asub Vinnis aadressil Päikese 10. Kodulehel on avaldatud juhataja, sotsiaaltöötaja ja majandusjuhataja kontaktid ning hoolekogu koosseis.",
+      "sourceKeys": [
+        "social_institutions"
+      ],
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalasutused/",
+      "targetGroup": "Orvud ja vanemliku hoolitsuseta lapsed.",
+      "conditions": null,
+      "relatedForms": [],
+      "relatedContacts": [
+        "vinni_vald_contact_ille_koppel",
+        "vinni_vald_contact_helina_ansel",
+        "vinni_vald_contact_sabina_beljakova"
+      ],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "relatedContacts"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_institutions"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_resource_vinni_perekodu",
+      "document_id": "vinni_vald_resource_vinni_perekodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalasutused/",
+      "content_hash": "39db06e4958cbccb7a8bb77da922e67daee00645b46e3fd24516c9280ead80ca",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_resource_vinni_paevakeskus",
+      "canonical_item_id": "vinni_vald:resource:vinni_paevakeskus",
+      "itemType": "resource",
+      "title": "Vinni Päevakeskus",
+      "status": "active",
+      "summary": "Vinni Päevakeskus on sotsiaalvaldkonna kogukonnaressurss, mis on avatud teisipäevast reedeni kell 10.00–15.00. Päevakeskuses saab lugeda ajalehti ja ajakirju, mängida lauamänge, koroonat ja piljardit, kasutada internetti ning osaleda eakaid huvitavatel loengutel ja infotundidel. Päevakeskuse perenaine on Eve Kukor.",
+      "sourceKeys": [
+        "social_institutions"
+      ],
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalasutused/",
+      "targetGroup": "Eakad ja kogukonnaliikmed, kes soovivad päevakeskuse tegevustes osaleda.",
+      "conditions": null,
+      "relatedForms": [],
+      "relatedContacts": [
+        "vinni_vald_contact_eve_kukor"
+      ],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "relatedContacts"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "social_institutions"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_resource_vinni_paevakeskus",
+      "document_id": "vinni_vald_resource_vinni_paevakeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalasutused/",
+      "content_hash": "6e48305662fb4f86ff9c3bd4fc90def74d7c1af4f55f1c4fd5de3d79abef57d1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_resource_laste_ja_perede_heaolu",
+      "canonical_item_id": "vinni_vald:resource:laste_ja_perede_heaolu",
+      "itemType": "resource",
+      "title": "Laste ja perede heaolu",
+      "status": "active",
+      "summary": "Laste ja perede heaolu leht koondab peredele suunatud nõustamise ja toe info. Aleftina Liski võtab laste ja perede vastuvõtuks vastu teisipäeviti kell 9.00–16.00 Pajusti vallamajas ning muudel aegadel kokkuleppel. Pereteraapiat osutab MTÜ Inspiratsiooni Keskus, mänguteraapiat MTÜ Hingerada ning psühholoogilist nõustamist OÜ Treuman ja OÜ Calmio; teenusele soovimiseks tuleb pöörduda laste heaolu spetsialisti poole.",
+      "sourceKeys": [
+        "family_welfare"
+      ],
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/abi/laste-ja-perede-heaolu/",
+      "targetGroup": "Pered, lapsed ja lapsevanemad, kes vajavad pere- või psühholoogilist nõustamist.",
+      "conditions": null,
+      "relatedForms": [],
+      "relatedContacts": [
+        "vinni_vald_contact_aleftina_liski"
+      ],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "relatedContacts"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "family_welfare"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_resource_laste_ja_perede_heaolu",
+      "document_id": "vinni_vald_resource_laste_ja_perede_heaolu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/abi/laste-ja-perede-heaolu/",
+      "content_hash": "90e386dda73e76ba9b02b38e0fc244ed1480d7c1ddaf004a522c863c31ad6338",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_resource_pereteraapia",
+      "canonical_item_id": "vinni_vald:resource:pereteraapia",
+      "itemType": "resource",
+      "title": "Pereteraapia",
+      "status": "active",
+      "summary": "Pereteraapia aitab lahku minevatel lapsevanematel jõuda üksmeelele ja sõlmida lapse huvidest lähtuvad kokkulepped. Vinni valla lehe järgi pakub pereteraapia lapsevanematele erapooletut tuge uue elukorralduse loomisel, aitab lahendada erimeelsusi kohtuväliselt ning jääda toetavateks lapsevanemateks ka pärast lahkuminekut. Teenus on mõeldud lapsevanematele, kes plaanivad kooselu lõpetada või on selle juba lõpetanud.",
+      "sourceKeys": [
+        "family_welfare"
+      ],
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/abi/laste-ja-perede-heaolu/",
+      "targetGroup": "Lapsevanemad, kes lõpetavad või on lõpetanud kooselu.",
+      "conditions": null,
+      "relatedForms": [],
+      "relatedContacts": [
+        "vinni_vald_contact_aleftina_liski"
+      ],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "relatedContacts"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "family_welfare"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_resource_pereteraapia",
+      "document_id": "vinni_vald_resource_pereteraapia",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/abi/laste-ja-perede-heaolu/",
+      "content_hash": "e5b32d02e647b35580a679ce93642131930dfbf1a11c87d94611c977c35cbbda",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_resource_psuhholoogiline_noustamine",
+      "canonical_item_id": "vinni_vald:resource:psuhholoogiline_noustamine",
+      "itemType": "resource",
+      "title": "Psühholoogiline nõustamine",
+      "status": "active",
+      "summary": "Vinni Vallavalitsuses osutab psühholoogilist nõustamist OÜ Treuman ja OÜ Calmio. Psühholoogilisele nõustamisele registreerimiseks tuleb esmalt ühendust võtta sotsiaaltööspetsialisti või laste heaolu spetsialistiga. Leht ei nimeta eraldi hinnakirja ega tähtaegu.",
+      "sourceKeys": [
+        "family_welfare"
+      ],
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/abi/laste-ja-perede-heaolu/",
+      "targetGroup": "Inimesed ja pered, kes vajavad psühholoogilist nõustamist.",
+      "conditions": null,
+      "relatedForms": [],
+      "relatedContacts": [
+        "vinni_vald_contact_aleftina_liski"
+      ],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "relatedContacts"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "family_welfare"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_resource_psuhholoogiline_noustamine",
+      "document_id": "vinni_vald_resource_psuhholoogiline_noustamine",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/abi/laste-ja-perede-heaolu/",
+      "content_hash": "6f4fd501da98bf9020a36e4fd2f64603f58aa55a78b04a01561e02e4f889bd4f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_resource_perelepitusteenus",
+      "canonical_item_id": "vinni_vald:resource:perelepitusteenus",
+      "itemType": "resource",
+      "title": "Perelepitusteenus",
+      "status": "active",
+      "summary": "Vinni valla leht viitab riiklikule perelepitusteenusele. Teenuse saamiseks tuleb esitada taotlus Sotsiaalkindlustusametile ning teenus on lapsevanemale tasuta. Leht suunab täpsema info ja taotluse vormi Sotsiaalkindlustusameti kodulehele, mistõttu välise vormi sisu ei ole selles KOV veebipaketis eraldi kontrollitud.",
+      "sourceKeys": [
+        "family_welfare"
+      ],
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/abi/laste-ja-perede-heaolu/",
+      "targetGroup": "Lapsevanemad, kes vajavad lapse huvidest lähtuvaid kokkuleppeid lahkumineku järel.",
+      "conditions": null,
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "family_welfare"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_resource_perelepitusteenus",
+      "document_id": "vinni_vald_resource_perelepitusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/abi/laste-ja-perede-heaolu/",
+      "content_hash": "d5dbabcdc5d6a42109344afe47569debe457a95d80996968de07a0851bab5b56",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_resource_abivajav_laps",
+      "canonical_item_id": "vinni_vald:resource:abivajav_laps",
+      "itemType": "resource",
+      "title": "Abivajav laps",
+      "status": "active",
+      "summary": "Abivajav laps on laps, kelle heaolu on ohustatud või kelle puhul on kahtlus väärkohtlemises, hooletusse jätmises või muus lapse õigusi rikkuvas olukorras. Kohustus abivajavast lapsest teatada on kõigil, kellel on selline teave; teatada tuleb kohalikule omavalitsusele või lasteabi telefonil. Hädaohus olevast lapsest tuleb viivitamata teatada hädaabinumbril ning kadunud laste on 116 000.",
+      "sourceKeys": [
+        "child_in_need"
+      ],
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/abi/abivajav-laps/",
+      "targetGroup": "Lapsed, kelle heaolu, elu või tervis on ohus; inimesed, kes märkavad abivajadust.",
+      "conditions": null,
+      "relatedForms": [],
+      "relatedContacts": [
+        "vinni_vald_contact_aleftina_liski",
+        "vinni_vald_contact_anzelika_kupp"
+      ],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "relatedContacts"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "child_in_need"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_resource_abivajav_laps",
+      "document_id": "vinni_vald_resource_abivajav_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/abi/abivajav-laps/",
+      "content_hash": "c561235777438d18c1740e6043d94feb5391184f38c46cfffd6e4be824cc36eb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_resource_teata_abivajajast",
+      "canonical_item_id": "vinni_vald:resource:teata_abivajajast",
+      "itemType": "resource",
+      "title": "Teata abivajajast veebivorm",
+      "status": "active",
+      "summary": "Vinni valla kodulehel on veebivorm abivajajast teatamiseks. Vormis küsitakse teataja eesnime, telefoninumbrit ja e-posti aadressi ning abivajaja nime, elukohta, telefoni ja abivajaduse kirjeldust. Vorm nõuab brauseris JavaScripti lubamist.",
+      "sourceKeys": [
+        "notify_person_in_need"
+      ],
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/abi/teata-abivajajast/",
+      "targetGroup": "Inimesed, kes soovivad teavitada vallavalitsust abivajajast.",
+      "conditions": null,
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "notify_person_in_need"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_resource_teata_abivajajast",
+      "document_id": "vinni_vald_resource_teata_abivajajast",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/abi/teata-abivajajast/",
+      "content_hash": "88101a4922c49a93816737ab1da78c18975d7ac9fdc6c1e15a127ffcd3fcdee0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_resource_ohvriabi_ja_kriisiabi",
+      "canonical_item_id": "vinni_vald:resource:ohvriabi_ja_kriisiabi",
+      "itemType": "resource",
+      "title": "Ohvriabi ja kriisiabi",
+      "status": "active",
+      "summary": "Ohvriabi eesmärk on toetada ohvrite toimetulekut ja turvatunnet ning ennetada vägivalla kordumist. Vinni valla lehel avaldatud ohvriabi PDF annab abikanalid: ohvriabi kriisitelefon töötab ööpäevaringselt, välismaalt helistades; lasteabi on samuti ööpäevaringne. Lisaks on inimkaubanduse ennetamise ja ohvrite abistamise nõuandeliin ning vägivallast loobumise tugiliin",
+      "sourceKeys": [
+        "victim_support_page",
+        "victim_support_pdf"
+      ],
+      "officialUrl": "https://vinnivald.ee/wp-content/uploads/2026/04/Ohvriabi-info-2025.pdf",
+      "targetGroup": "Kuriteo, vägivalla või kriisijuhtumi tõttu kannatanud inimesed.",
+      "conditions": null,
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "victim_support_page",
+        "victim_support_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_resource_ohvriabi_ja_kriisiabi",
+      "document_id": "vinni_vald_resource_ohvriabi_ja_kriisiabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/wp-content/uploads/2026/04/Ohvriabi-info-2025.pdf",
+      "content_hash": "ad0c494b0bb58c4a7a277bcf4a5a55c83eb2616c5664ed2893fd2364f5393744",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_resource_elatisabi",
+      "canonical_item_id": "vinni_vald:resource:elatisabi",
+      "itemType": "resource",
+      "title": "Elatisabi",
+      "status": "active",
+      "summary": "Elatisabi leht selgitab Sotsiaalkindlustusameti kaudu makstavat toetust lastele, kelle vanem ei täida ülalpidamiskohustust. Lehe järgi makstakse Eestis elavatele lastele elatisabi 200 eurot ja õppimise korral lapse 21-aastaseks saamiseni. Taotlemise olukorrad võivad olla kohtumenetlusaegsed, täitemenetlusaegsed või pankrotimenetlusaegsed; täpsem info on Sotsiaalkindlustusameti kodulehel.",
+      "sourceKeys": [
+        "child_support"
+      ],
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/abi/elatisabi/",
+      "targetGroup": "Lapsed ja neid kasvatavad vanemad/eestkostjad, kui teine vanem ei täida elatise kohustust.",
+      "conditions": null,
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "child_support"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_resource_elatisabi",
+      "document_id": "vinni_vald_resource_elatisabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/abi/elatisabi/",
+      "content_hash": "ae4d01cae6e797a57cc26a0aae9136d105383795fd41a7e0c1ba738781c06aa3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_resource_parkimiskaart_ja_tasuta_soiduoigus",
+      "canonical_item_id": "vinni_vald:resource:parkimiskaart_ja_tasuta_soiduoigus",
+      "itemType": "resource",
+      "title": "Parkimiskaart ja tasuta sõiduõigus",
+      "status": "active",
+      "summary": "Puudega inimese sõiduki parkimiskaart on ette nähtud inimesele, kellele Sotsiaalkindlustusamet on määranud keskmise, raske või sügava puude raskusastmele vastava liikumis- või nägemisfunktsiooni kõrvalekalde, või ajutise liikumis- või nägemisfunktsiooni kõrvalekalde korral. Kaart väljastatakse taotluse alusel inimesele, mitte sõidukile, ning selle kasutamine on isikupõhine. Leht kirjeldab ka 0-euro piletit avalikel maakonna- ja kaugbussiliinidel keskmise ja raske puudega inimestele, töövõimekaardi omanikele ja sügava puudega inimese saatjatele.",
+      "sourceKeys": [
+        "parking_card"
+      ],
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/kaardid/parkimiskaart-ja-tasuta-soiduoigus/",
+      "targetGroup": "Liikumis- või nägemisfunktsiooni kõrvalekaldega inimesed ning tasuta sõiduõigusega puudega inimesed.",
+      "conditions": "Parkimiskaardi saamiseks tuleb esitada 3×4 cm pilt, SKA puude raskusastme otsus ning vajadusel pere- või eriarsti tõend.",
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup",
+        "conditions"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "parking_card"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_resource_parkimiskaart_ja_tasuta_soiduoigus",
+      "document_id": "vinni_vald_resource_parkimiskaart_ja_tasuta_soiduoigus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/kaardid/parkimiskaart-ja-tasuta-soiduoigus/",
+      "content_hash": "4e7284e8fca479ab2bb0701d806a8ac63f7be4c2feda8207274b0f11ca4a6d13",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_resource_toidukaart",
+      "canonical_item_id": "vinni_vald:resource:toidukaart",
+      "itemType": "resource",
+      "title": "Toidukaart",
+      "status": "active",
+      "summary": "Toidukaart on puudust kannatavate inimeste toiduabi vahend, millega saab Rimi kauplustes osta toitu ja esmatarbekaupu. Toiduabi aluseks on kohaliku omavalitsuse makstud toimetulekutoetus või vajaduspõhine toetus, mille menetlemisel on sotsiaaltöötaja märkinud inimese toiduabi saajaks. Toiduabi summa oli veebilehe järgi 2024. aastal 30 eurot abivajaja kohta kvartalis; kasutamata raha järgmisesse perioodi ei kandu ning kaardiga ei saa osta alkoholi, tubakat ega lotot.",
+      "sourceKeys": [
+        "food_card"
+      ],
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/kaardid/toidukaart/",
+      "targetGroup": "Toimetulekutoetuse või vajaduspõhise toetuse saajad, kelle sotsiaaltöötaja on märkinud toiduabi saajaks.",
+      "conditions": null,
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "food_card"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_resource_toidukaart",
+      "document_id": "vinni_vald_resource_toidukaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/kaardid/toidukaart/",
+      "content_hash": "4384ac537df1bd3774b9ecc1c250e7accd7fcea6f9af4cd2b8fda9ff741d2fc4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_resource_isikliku_abivahendi_kaart",
+      "canonical_item_id": "vinni_vald:resource:isikliku_abivahendi_kaart",
+      "itemType": "resource",
+      "title": "Isikliku abivahendi kaart",
+      "status": "active",
+      "summary": "Isikliku abivahendi kaart ei ole alates 1. detsembrist 2020 enam paberkandjal kasutusel. Abivahendite ostu- ja üüritehingute info liigub teenuseosutajate ja Sotsiaalkindlustusameti vahel elektrooniliselt ning inimene saab oma tehinguid vaadata ameti iseteeninduses. Leht toob näidetena abivahendid, nagu lamatiste ennetamise madratsid, mähkmed, proteesid, kargud, ratastoolid ja kuulmisabivahendid.",
+      "sourceKeys": [
+        "assistive_device_card"
+      ],
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/kaardid/isikliku-abivahendi-kaart/",
+      "targetGroup": "Inimesed, kes vajavad abivahendeid füüsilise või sotsiaalse iseseisvuse säilitamiseks.",
+      "conditions": null,
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "assistive_device_card"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_resource_isikliku_abivahendi_kaart",
+      "document_id": "vinni_vald_resource_isikliku_abivahendi_kaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/kaardid/isikliku-abivahendi-kaart/",
+      "content_hash": "e2d56e0f9433a475528cffd413aeadbad3fbe5bfe4b7b12a38dc34482f5e979d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_resource_tervishoiuressursid",
+      "canonical_item_id": "vinni_vald:resource:tervishoiuressursid",
+      "itemType": "resource",
+      "title": "Tervishoiuressursid",
+      "status": "active",
+      "summary": "Tervishoiu lehel on Vinni valla elanikele avaldatud perearstide, hambaarstide ja apteekide kontaktid ning vastuvõtu- või lahtiolekuajad. Leht nimetab Vinni tervisekeskust, Rägavere Perearstikeskust, Laekvere perearsti vastuvõttu, hambaarste ning Vinni, Laekvere ja Roela apteeki. Ressurss on informatiivne ja ei ole KOV sotsiaalteenus.",
+      "sourceKeys": [
+        "health"
+      ],
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/tervishoid/",
+      "targetGroup": "Vinni valla elanikud, kes otsivad perearsti, hambaarsti või apteegi infot.",
+      "conditions": null,
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "health"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_resource_tervishoiuressursid",
+      "document_id": "vinni_vald_resource_tervishoiuressursid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/tervishoid/",
+      "content_hash": "302318229e1021ff94cef68fc4dbde016c89a0acebcdeee7e030e0ad320902bf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_resource_riigi_infotelefonid",
+      "canonical_item_id": "vinni_vald:resource:riigi_infotelefonid",
+      "itemType": "resource",
+      "title": "Riigi infotelefonid",
+      "status": "active",
+      "summary": "Vinni valla sotsiaalvaldkonna lehtede jaluses on avaldatud praktilised riigi infotelefonid: kriisiinfotelefon, 1220 perearsti nõuandetelefon, konsulaarabi ja hädaabi. Need on üldised abikanalid ning paiknevad KOV lehe jaluse infoplokis.",
+      "sourceKeys": [
+        "home",
+        "social_benefits",
+        "social_services"
+      ],
+      "officialUrl": "https://vinnivald.ee",
+      "targetGroup": "Elanikud, kes vajavad kiiret nõu või hädaabi.",
+      "conditions": null,
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "home",
+        "social_benefits",
+        "social_services"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_resource_riigi_infotelefonid",
+      "document_id": "vinni_vald_resource_riigi_infotelefonid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee",
+      "content_hash": "dbe9a9f15c194b02284c9319c02a0763f00b35b566d9c09666a9c53a61760bf9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_resource_elanikkonnakaitse",
+      "canonical_item_id": "vinni_vald:resource:elanikkonnakaitse",
+      "itemType": "resource",
+      "title": "Elanikkonnakaitse ressursid",
+      "status": "active",
+      "summary": "Vinni valla elanikkonnakaitse rubriik koondab kriisideks valmistumise, Ole valmis äpi, avalike varjumiskohtade, kerksuskeskuste, evakuatsiooni, ohvriabi, vajalike numbrite ja koduste varude meelespea teemalised lingid. Rubriik on KOV kodulehel avaldatud praktiline kriisiinfo ressurss.",
+      "sourceKeys": [
+        "population_protection"
+      ],
+      "officialUrl": "https://vinnivald.ee/category/elanikkonnakaitse/",
+      "targetGroup": "Elanikud, kes vajavad kriisiolukorraks valmistumise ja abikanalite infot.",
+      "conditions": null,
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sections_present": [
+        "summary",
+        "targetGroup"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "population_protection"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_resource_elanikkonnakaitse",
+      "document_id": "vinni_vald_resource_elanikkonnakaitse",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/category/elanikkonnakaitse/",
+      "content_hash": "143f9a41bf25a162b5367a0ba4d496a3f6e06f200e470471a47b1aa9f380c743",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_form_avaldus_sotsiaaltoetuse_saamiseks",
+      "canonical_item_id": "vinni_vald:form:avaldus_sotsiaaltoetuse_saamiseks",
+      "itemType": "form",
+      "title": "Avaldus sotsiaaltoetuse saamiseks",
+      "status": "active",
+      "summary": "Avaldus sotsiaaltoetuse saamiseks on Vinni valla ametlik sotsiaalvaldkonna blankett või taotlusvorm. Vorm on seotud kodulehel avaldatud sotsiaalteenuse või -toetuse taotlemisega ning esitatakse paberil või juhul, kui KOV leht seda nimetab, e-avaldusena iseteeninduses.",
+      "sourceKeys": [
+        "form_social_support_rtf",
+        "forms_page"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://vinnivald.ee/wp-content/uploads/2025/01/VVblanket2023.rtf",
+      "submissionChannels": [
+        "paper",
+        "web"
+      ],
+      "relatedTo": [
+        "vinni_vald_benefit_kuttetoetus",
+        "vinni_vald_benefit_lastelaagritoetus",
+        "vinni_vald_benefit_uhiselamu_uuri_toetus",
+        "vinni_vald_benefit_soidukulude_toetus",
+        "vinni_vald_benefit_laste_toitlustus_ja_lasteaia_oppekulu_toetus",
+        "vinni_vald_benefit_taiendav_ravimite_huvitamise_toetus",
+        "vinni_vald_benefit_tervisega_seotud_kulude_huvitamise_toetus",
+        "vinni_vald_benefit_riiklike_dokumentide_vormistamise_toetus",
+        "vinni_vald_benefit_uhekordne_toetus_raske_majandusliku_olukorra_puhul",
+        "vinni_vald_benefit_erakorraline_toetus",
+        "vinni_vald_benefit_valtimatu_sotsiaalabi_toetus",
+        "vinni_vald_benefit_hooldajatoetus"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "form_social_support_rtf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_form_avaldus_sotsiaaltoetuse_saamiseks",
+      "document_id": "vinni_vald_form_avaldus_sotsiaaltoetuse_saamiseks",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/wp-content/uploads/2025/01/VVblanket2023.rtf",
+      "content_hash": "641fc138ba8e4a5600e510d2e92fbdf07a771f8ab097717c8d78131aa654aa84",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_form_avaldus_synnitoetuse_saamiseks",
+      "canonical_item_id": "vinni_vald:form:avaldus_synnitoetuse_saamiseks",
+      "itemType": "form",
+      "title": "Avaldus sünnitoetuse saamiseks",
+      "status": "active",
+      "summary": "Avaldus sünnitoetuse saamiseks on Vinni valla ametlik sotsiaalvaldkonna blankett või taotlusvorm. Vorm on seotud kodulehel avaldatud sotsiaalteenuse või -toetuse taotlemisega ning esitatakse paberil või juhul, kui KOV leht seda nimetab, e-avaldusena iseteeninduses.",
+      "sourceKeys": [
+        "form_birth_benefit_rtf",
+        "forms_page"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://vinnivald.ee/wp-content/uploads/2025/01/s_nnitoetuse_avaldus2.rtf",
+      "submissionChannels": [
+        "paper",
+        "web"
+      ],
+      "relatedTo": [
+        "vinni_vald_benefit_synnitoetus"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "form_birth_benefit_rtf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_form_avaldus_synnitoetuse_saamiseks",
+      "document_id": "vinni_vald_form_avaldus_synnitoetuse_saamiseks",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/wp-content/uploads/2025/01/s_nnitoetuse_avaldus2.rtf",
+      "content_hash": "c29a238ab431f068b38d369d9097d0726d63901edda89948f4518be3db095596",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_form_avaldus_matusetoetuse_saamiseks",
+      "canonical_item_id": "vinni_vald:form:avaldus_matusetoetuse_saamiseks",
+      "itemType": "form",
+      "title": "Avaldus matusetoetuse saamiseks",
+      "status": "active",
+      "summary": "Avaldus matusetoetuse saamiseks on Vinni valla ametlik sotsiaalvaldkonna blankett või taotlusvorm. Vorm on seotud kodulehel avaldatud sotsiaalteenuse või -toetuse taotlemisega ning esitatakse paberil või juhul, kui KOV leht seda nimetab, e-avaldusena iseteeninduses.",
+      "sourceKeys": [
+        "form_funeral_benefit_rtf",
+        "forms_page"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://vinnivald.ee/wp-content/uploads/2025/01/matusetoetuse-avaldus-1.rtf",
+      "submissionChannels": [
+        "paper",
+        "web"
+      ],
+      "relatedTo": [
+        "vinni_vald_benefit_matusetoetus"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "form_funeral_benefit_rtf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_form_avaldus_matusetoetuse_saamiseks",
+      "document_id": "vinni_vald_form_avaldus_matusetoetuse_saamiseks",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/wp-content/uploads/2025/01/matusetoetuse-avaldus-1.rtf",
+      "content_hash": "1a7a221d7bff63ed9213451fc7ff05f3bf4d492ffd191aa87686bae0d6ee547b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_form_avaldus_toimetulekutoetuse_saamiseks",
+      "canonical_item_id": "vinni_vald:form:avaldus_toimetulekutoetuse_saamiseks",
+      "itemType": "form",
+      "title": "Avaldus toimetulekutoetuse saamiseks",
+      "status": "active",
+      "summary": "Avaldus toimetulekutoetuse saamiseks on Vinni valla ametlik sotsiaalvaldkonna blankett või taotlusvorm. Vorm on seotud kodulehel avaldatud sotsiaalteenuse või -toetuse taotlemisega ning esitatakse paberil või juhul, kui KOV leht seda nimetab, e-avaldusena iseteeninduses.",
+      "sourceKeys": [
+        "form_subsistence_benefit_rtf",
+        "forms_page"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://vinnivald.ee/wp-content/uploads/2025/01/Toimetulekutoetuse_avaldus.rtf",
+      "submissionChannels": [
+        "paper"
+      ],
+      "relatedTo": [
+        "vinni_vald_benefit_toimetulekutoetus"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "form_subsistence_benefit_rtf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_form_avaldus_toimetulekutoetuse_saamiseks",
+      "document_id": "vinni_vald_form_avaldus_toimetulekutoetuse_saamiseks",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/wp-content/uploads/2025/01/Toimetulekutoetuse_avaldus.rtf",
+      "content_hash": "689575e1c31d47750eb579c476836b4860848d96ed6de4136be414fb75b62762",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_form_loetelu_vara_toimetulekutoetuse",
+      "canonical_item_id": "vinni_vald:form:loetelu_vara_toimetulekutoetuse",
+      "itemType": "form",
+      "title": "Loetelu vallas- ja kinnisasjadest toimetulekutoetuse esmataotlemisel",
+      "status": "active",
+      "summary": "Loetelu vallas- ja kinnisasjadest toimetulekutoetuse esmataotlemisel on Vinni valla ametlik sotsiaalvaldkonna blankett või taotlusvorm. Vorm on seotud kodulehel avaldatud sotsiaalteenuse või -toetuse taotlemisega ning esitatakse paberil või juhul, kui KOV leht seda nimetab, e-avaldusena iseteeninduses.",
+      "sourceKeys": [
+        "form_assets_list_rtf",
+        "forms_page"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://vinnivald.ee/wp-content/uploads/2025/01/Loetelu-vallas-ja-kinnisasjadest-esmataotlemisel.rtf",
+      "submissionChannels": [
+        "paper"
+      ],
+      "relatedTo": [
+        "vinni_vald_benefit_toimetulekutoetus"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "form_assets_list_rtf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_form_loetelu_vara_toimetulekutoetuse",
+      "document_id": "vinni_vald_form_loetelu_vara_toimetulekutoetuse",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/wp-content/uploads/2025/01/Loetelu-vallas-ja-kinnisasjadest-esmataotlemisel.rtf",
+      "content_hash": "eaa6f8a05654f4b1f214a042d075d4fc80434885dcb0372dd0de866058c5aeea",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_form_isikliku_abistaja_teenus",
+      "canonical_item_id": "vinni_vald:form:isikliku_abistaja_teenus",
+      "itemType": "form",
+      "title": "Avaldus isikliku abistaja teenuse saamiseks",
+      "status": "active",
+      "summary": "Avaldus isikliku abistaja teenuse saamiseks on Vinni valla ametlik sotsiaalvaldkonna blankett või taotlusvorm. Vorm on seotud kodulehel avaldatud sotsiaalteenuse või -toetuse taotlemisega ning esitatakse paberil või juhul, kui KOV leht seda nimetab, e-avaldusena iseteeninduses.",
+      "sourceKeys": [
+        "form_personal_assistant_docx",
+        "forms_page"
+      ],
+      "format": "docx",
+      "officialUrl": "https://vinnivald.ee/wp-content/uploads/2025/01/Taotlus-isikliku-abistaja-teenuse-osutamiseks-2023.docx",
+      "submissionChannels": [
+        "paper"
+      ],
+      "relatedTo": [
+        "vinni_vald_service_isikliku_abistaja_teenus"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "form_personal_assistant_docx",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_form_isikliku_abistaja_teenus",
+      "document_id": "vinni_vald_form_isikliku_abistaja_teenus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/wp-content/uploads/2025/01/Taotlus-isikliku-abistaja-teenuse-osutamiseks-2023.docx",
+      "content_hash": "f218f5509242a9487f352d78c82f7c7a9ebd3b31552cfde8ee4868720739e2f8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_form_hoolduse_seadmine_lapsele",
+      "canonical_item_id": "vinni_vald:form:hoolduse_seadmine_lapsele",
+      "itemType": "form",
+      "title": "Hoolduse seadmine ja hooldajaks määramine puudega lapse üle",
+      "status": "active",
+      "summary": "Hoolduse seadmine ja hooldajaks määramine puudega lapse üle on Vinni valla ametlik sotsiaalvaldkonna blankett või taotlusvorm. Vorm on seotud kodulehel avaldatud sotsiaalteenuse või -toetuse taotlemisega ning esitatakse paberil või juhul, kui KOV leht seda nimetab, e-avaldusena iseteeninduses.",
+      "sourceKeys": [
+        "form_child_care_rtf",
+        "forms_page"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://vinnivald.ee/wp-content/uploads/2025/01/hoolduse-maaramine.rtf",
+      "submissionChannels": [
+        "paper"
+      ],
+      "relatedTo": [
+        "vinni_vald_benefit_hooldajatoetus"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "form_child_care_rtf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_form_hoolduse_seadmine_lapsele",
+      "document_id": "vinni_vald_form_hoolduse_seadmine_lapsele",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/wp-content/uploads/2025/01/hoolduse-maaramine.rtf",
+      "content_hash": "1a9938b0f9679bbdd5ec645e60f392667917fec9d6490e05281c740ae489fd72",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_form_eluaseme_kohandamise_taotlus",
+      "canonical_item_id": "vinni_vald:form:eluaseme_kohandamise_taotlus",
+      "itemType": "form",
+      "title": "Taotlus meetmes „Puuetega inimeste eluaseme füüsiline kohandamine”",
+      "status": "active",
+      "summary": "Taotlus meetmes „Puuetega inimeste eluaseme füüsiline kohandamine” on Vinni valla ametlik sotsiaalvaldkonna blankett või taotlusvorm. Vorm on seotud kodulehel avaldatud sotsiaalteenuse või -toetuse taotlemisega ning esitatakse paberil või juhul, kui KOV leht seda nimetab, e-avaldusena iseteeninduses.",
+      "sourceKeys": [
+        "form_home_adaptation_docx",
+        "forms_page"
+      ],
+      "format": "docx",
+      "officialUrl": "https://vinnivald.ee/wp-content/uploads/2025/01/TAOTLUS-projektis-osalemiseks.docx",
+      "submissionChannels": [
+        "paper"
+      ],
+      "relatedTo": [],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "form_home_adaptation_docx",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_form_eluaseme_kohandamise_taotlus",
+      "document_id": "vinni_vald_form_eluaseme_kohandamise_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/wp-content/uploads/2025/01/TAOTLUS-projektis-osalemiseks.docx",
+      "content_hash": "6a146147ccf1cb8511c460ffa166d6f978f6032e9c86e2097fd68235e879dae9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_form_taotlus_koduteenuse_osutamiseks",
+      "canonical_item_id": "vinni_vald:form:taotlus_koduteenuse_osutamiseks",
+      "itemType": "form",
+      "title": "Taotlus koduteenuse osutamiseks",
+      "status": "active",
+      "summary": "Taotlus koduteenuse osutamiseks on Vinni valla ametlik sotsiaalvaldkonna blankett või taotlusvorm. Vorm on seotud kodulehel avaldatud sotsiaalteenuse või -toetuse taotlemisega ning esitatakse paberil või juhul, kui KOV leht seda nimetab, e-avaldusena iseteeninduses.",
+      "sourceKeys": [
+        "form_home_service_docx",
+        "forms_page"
+      ],
+      "format": "docx",
+      "officialUrl": "https://vinnivald.ee/wp-content/uploads/2025/01/Taotlus-koduteenuse-osutamiseks-2025.docx",
+      "submissionChannels": [
+        "paper"
+      ],
+      "relatedTo": [
+        "vinni_vald_service_koduteenus"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "form_home_service_docx",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_form_taotlus_koduteenuse_osutamiseks",
+      "document_id": "vinni_vald_form_taotlus_koduteenuse_osutamiseks",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/wp-content/uploads/2025/01/Taotlus-koduteenuse-osutamiseks-2025.docx",
+      "content_hash": "3057fd17d0fbe2e121f7a19580a2eae0f79195f98aec1028590e20f4ff09b52d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_form_taisealise_isiku_hooldus_avalduse",
+      "canonical_item_id": "vinni_vald:form:taisealise_isiku_hooldus_avalduse",
+      "itemType": "form",
+      "title": "Täisealise isiku hooldus avaldus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldus avaldus on Vinni valla ametlik sotsiaalvaldkonna blankett või taotlusvorm. Vorm on seotud kodulehel avaldatud sotsiaalteenuse või -toetuse taotlemisega ning esitatakse paberil või juhul, kui KOV leht seda nimetab, e-avaldusena iseteeninduses.",
+      "sourceKeys": [
+        "form_adult_care_rtf",
+        "forms_page"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://vinnivald.ee/wp-content/uploads/2025/01/Avaldus-hoolduse-seadmiseks-ja-hooldaja-maaramiseks-2023a.rtf",
+      "submissionChannels": [
+        "paper"
+      ],
+      "relatedTo": [
+        "vinni_vald_service_taisealise_isiku_hooldus",
+        "vinni_vald_benefit_hooldajatoetus"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "form_adult_care_rtf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_form_taisealise_isiku_hooldus_avalduse",
+      "document_id": "vinni_vald_form_taisealise_isiku_hooldus_avalduse",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/wp-content/uploads/2025/01/Avaldus-hoolduse-seadmiseks-ja-hooldaja-maaramiseks-2023a.rtf",
+      "content_hash": "f8968d809c7b82f52a4cd4cdca7319ced04f38a342935974b96eb466a559a499",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_form_tugiisiku_teenuse_avaldus",
+      "canonical_item_id": "vinni_vald:form:tugiisiku_teenuse_avaldus",
+      "itemType": "form",
+      "title": "Tugiisiku teenuse avaldus",
+      "status": "active",
+      "summary": "Tugiisiku teenuse avaldus on Vinni valla ametlik sotsiaalvaldkonna blankett või taotlusvorm. Vorm on seotud kodulehel avaldatud sotsiaalteenuse või -toetuse taotlemisega ning esitatakse paberil või juhul, kui KOV leht seda nimetab, e-avaldusena iseteeninduses.",
+      "sourceKeys": [
+        "form_support_person_rtf",
+        "forms_page"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://vinnivald.ee/wp-content/uploads/2025/01/Tugiisiku-teenuse-osutamise-avaldus-2023.rtf",
+      "submissionChannels": [
+        "paper"
+      ],
+      "relatedTo": [
+        "vinni_vald_service_tugiisikuteenus"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "form_support_person_rtf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_form_tugiisiku_teenuse_avaldus",
+      "document_id": "vinni_vald_form_tugiisiku_teenuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/wp-content/uploads/2025/01/Tugiisiku-teenuse-osutamise-avaldus-2023.rtf",
+      "content_hash": "8daf984b2623e93631451a61db8c874875f1acfe376c1c2198c4a8b6c1d2f147",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_form_munitsipaalkorteri_taotlus",
+      "canonical_item_id": "vinni_vald:form:munitsipaalkorteri_taotlus",
+      "itemType": "form",
+      "title": "Munitsipaalkorteri taotlus",
+      "status": "active",
+      "summary": "Munitsipaalkorteri taotlus on Vinni valla ametlik sotsiaalvaldkonna blankett või taotlusvorm. Vorm on seotud kodulehel avaldatud sotsiaalteenuse või -toetuse taotlemisega ning esitatakse paberil või juhul, kui KOV leht seda nimetab, e-avaldusena iseteeninduses.",
+      "sourceKeys": [
+        "form_municipal_housing_rtf",
+        "forms_page"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://vinnivald.ee/wp-content/uploads/2025/01/Munitsipaalkorteritaotlus.rtf",
+      "submissionChannels": [
+        "paper"
+      ],
+      "relatedTo": [
+        "vinni_vald_service_eluruumi_tagamise_teenus"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "form_municipal_housing_rtf",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_form_munitsipaalkorteri_taotlus",
+      "document_id": "vinni_vald_form_munitsipaalkorteri_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/wp-content/uploads/2025/01/Munitsipaalkorteritaotlus.rtf",
+      "content_hash": "7e9947ae5b67bee31b8e88678aaae5739f8aef6c44b31850d3a11fca850cee4c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "vinni_vald_form_teata_abivajajast_veebivorm",
+      "canonical_item_id": "vinni_vald:form:teata_abivajajast_veebivorm",
+      "itemType": "form",
+      "title": "Teata abivajajast veebivorm",
+      "status": "active",
+      "summary": "Teata abivajajast veebivorm on Vinni valla ametlik sotsiaalvaldkonna blankett või taotlusvorm. Vorm on seotud kodulehel avaldatud sotsiaalteenuse või -toetuse taotlemisega ning esitatakse paberil või juhul, kui KOV leht seda nimetab, e-avaldusena iseteeninduses.",
+      "sourceKeys": [
+        "forms_page",
+        "notify_person_in_need"
+      ],
+      "format": "web_form",
+      "officialUrl": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/abi/teata-abivajajast/",
+      "submissionChannels": [
+        "web"
+      ],
+      "relatedTo": [
+        "vinni_vald_resource_teata_abivajajast"
+      ],
+      "sections_present": [
+        "summary"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "vinni_vald",
+      "municipality_name": "Vinni vald",
+      "county": "Lääne Virumaa",
+      "source_keys": [
+        "forms_page",
+        "notify_person_in_need"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "vinni_vald_form_teata_abivajajast_veebivorm",
+      "document_id": "vinni_vald_form_teata_abivajajast_veebivorm",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://vinnivald.ee/pere-sotsiaal-ja-tervishoid/abi/teata-abivajajast/",
+      "content_hash": "193edb0626c997e8b3cc1add334eb59c5edc3d22d6bf2a1cc364be497d0cd77b",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Vinni vald",
+  "checked_at": "2026-04-30",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

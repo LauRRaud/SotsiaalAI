@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2022",
+  "articleId": "oigus-tervisele-2022-1",
+  "title": "Õigus tervisele",
+  "authors": [
+    "Ulvi Kõrgemaa"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2022",
+  "section": "Sotsiaalpoliitika",
+  "pageRange": "45-50",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tallinna Ülikooli sotsiaaltöö doktorandi artikkel käsitleb õigust tervisele kui üht olulisemat põhiõigust. Antakse ülevaade selle sisust rahvusvahelistes inimõiguste dokumentides ja Eesti õigusruumis, tuues esile seosed vaesuse, sotsiaalse tõrjutuse ja tervisega. Autor arutleb, kuidas riigi poliitikad ja ressursijaotus mõjutavad tervisevõrdsust ning millist rolli mängivad sotsiaaltöötajad tervise kaitsmisel, haavatavate rühmade toetamisel ja inimõiguste eest seismisel. Artikkel julgustab sotsiaaltöötajaid nägema oma tööd osana laiemast sotsiaalpoliitikast ja terviseõiguse tagamisest.",
+  "tags": [
+    "õigus tervisele",
+    "inimõigused",
+    "sotsiaalpoliitika",
+    "tervisevõrdsus",
+    "vaesus",
+    "sotsiaalne tõrjutus",
+    "sotsiaaltöö roll"
+  ],
+  "source_type": "file",
+  "source_path": "2022_artikkel_10_oigus_tervisele.pdf",
+  "document_id": "sotsiaaltoo-1-2022-oigus-tervisele-2022-1",
+  "source_format": "pdf",
+  "source_sha256": "556982b56b9839b93bdef8be5798bfc8cb7c7482b77faf53c46e457b47182bab",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2022-oigus-tervisele-2022-1",
+    "previous_source_path": "2022_artikkel_10_oigus_tervisele.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "556982b56b9839b93bdef8be5798bfc8cb7c7482b77faf53c46e457b47182bab",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

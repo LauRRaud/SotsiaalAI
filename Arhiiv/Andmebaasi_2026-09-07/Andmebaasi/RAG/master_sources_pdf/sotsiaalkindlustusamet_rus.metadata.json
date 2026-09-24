@@ -1,0 +1,77 @@
+{
+  "source": {
+    "source_id": "sotsiaalkindlustusamet_rus",
+    "title": "Кризисные центры помощи жертвам сексуального насилия (RUS)",
+    "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi%20infovoldik%20SAK%20RUS%2Bbleed3mm.pdf",
+    "normalized_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi infovoldik SAK RUS+bleed3mm.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Sotsiaalkindlustusamet",
+    "organization_id": "sotsiaalkindlustusamet",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Sotsiaalkindlustusamet",
+      "infomaterjal",
+      "SKA",
+      "seksuaalvägivald",
+      "seksuaalvägivalla kriisiabikeskus",
+      "ohvriabi"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "needs_review",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "SKA",
+      "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+      "heading_4": null,
+      "line": 485,
+      "order": 258
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Кризисные центры помощи жертвам сексуального насилия (RUS)"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Sotsiaalkindlustusamet"
+    ],
+    "organizations_seen": [
+      "sotsiaalkindlustusamet"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "SKA",
+        "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+        "line": 485,
+        "order": 258
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi infovoldik SAK RUS+bleed3mm.pdf",
+    "status_note": "0 chunks (scanned brochure, no text layer; needs OCR) 2026-06-12"
+  },
+  "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi%20infovoldik%20SAK%20RUS%2Bbleed3mm.pdf",
+  "redirects": [],
+  "sha256": "90a2e58be2883a1ea9621db0ba6967d6c696ca48444bde9f063e91ba84cfb645",
+  "bytes": 1180625,
+  "downloaded_at": "2026-08-14T08:00:51.666Z"
+}

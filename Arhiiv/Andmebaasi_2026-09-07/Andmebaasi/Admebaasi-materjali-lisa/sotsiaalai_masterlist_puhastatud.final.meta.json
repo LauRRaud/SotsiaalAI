@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "source-master-v1-final",
+  "docId": "sotsiaalai-source-master-final",
+  "title": "SotsiaalAI source master registry – final tööpakett",
+  "description": "Keskne allikaregister SotsiaalAI RAG-andmekorje, dubleerimise vältimise ja ingest-planeerimise jaoks. See ei ole kasutajale nähtav teadmuskorpus, vaid sisemine allikaregister ja dedupe-seed.",
+  "source_file": "sotsiaalai_masterlist_puhastatud.md",
+  "registry_file": "master_sources_final.json",
+  "registry_table_file": "master_sources_final.tsv",
+  "validation_report_file": "master_sources_final_validation_report.json",
+  "agent_rules_file": "master_sources_agent_rules_final.md",
+  "source_format": "json+md",
+  "language": "et",
+  "country": "EE",
+  "collection_id": "source_master_registry",
+  "source_type": "source_registry",
+  "resource_type": "source_master_list",
+  "evidence_role": "ingestion_planning",
+  "audience": "ADMIN",
+  "audiences": [
+    "ADMIN"
+  ],
+  "checked_at": "2026-04-29",
+  "source_status": "active",
+  "historical": false,
+  "legal_basis": false,
+  "display_full_text": false,
+  "allow_excerpts": "short_only",
+  "allowed_claim_types": [
+    "source_discovery",
+    "dedupe_reference",
+    "ingest_planning",
+    "publisher_identification",
+    "background"
+  ],
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "counts": {
+    "total_input_entries": 398,
+    "unique_sources": 323,
+    "duplicates_merged": 75,
+    "by_source_format": {
+      "html": 143,
+      "pdf": 180
+    },
+    "by_collection_hint": {
+      "organizations": 60,
+      "source_registry": 50,
+      "sotsiaaltoo_articles": 11,
+      "service_provider_registries": 16,
+      "research_reports": 36,
+      "national_guidelines": 103,
+      "policy_analyses": 7,
+      "organization_guidelines": 15,
+      "organization_materials": 25
+    },
+    "by_source_type": {
+      "organization_profile": 58,
+      "social_media_page": 2,
+      "web_page": 50,
+      "journal_article": 11,
+      "registry": 16,
+      "research_report": 36,
+      "information_material": 102,
+      "official_guideline": 40,
+      "policy_analysis": 7,
+      "methodology_material": 1
+    },
+    "by_ingest_status": {
+      "referenced_only": 137,
+      "ingest_candidate": 186
+    },
+    "by_ingest_priority": {
+      "low": 110,
+      "medium": 171,
+      "high": 42
+    }
+  },
+  "ingest_policy": {
+    "default_action": "do_not_ingest_master_list_as_user_facing_knowledge",
+    "use_as": "dedupe_seed_source_registry_and_ingest_planning",
+    "new_source_rule": "before adding a new source, normalize the URL and check master_sources_final.json",
+    "duplicate_rule": "if normalized_url exists, link to existing source_id instead of creating a duplicate",
+    "organization_rule": "organization home/profile pages require organization collection agent and 4 core files",
+    "knowledge_doc_rule": "PDF/DOCX/single HTML guidance requires knowledge-doc metadata and parser/chunk ingest",
+    "topic_hub_rule": "topic hubs are referenced_only by default; collect important subpages as topic pack or HTML knowledge-docs",
+    "registry_rule": "registries/directories are registry_reference by default, not plain RAG text",
+    "remote_url_allowed": true,
+    "source_path_required": false,
+    "production_ingest_requires_validation": true
+  },
+  "quality": {
+    "deduped_by": "normalized_url",
+    "manual_review_required": true,
+    "known_limitations": [
+      "Automaatne klassifitseerimine võib vajada sisulist ülevaatust.",
+      "Search-confirmed ja Redirect lingid vajavad hilisemat tehnilist kontrolli.",
+      "Master-list sisaldab korraga organisatsioone, PDF-juhendeid, uuringuid, teemaportaale, registrilehti ja artikleid.",
+      "Register ei anna veel lõppkasutajale sisulist RAG-vastust; sisu tekib alles konkreetse allika ingestiga."
+    ]
+  },
+  "generated_at": "2026-04-29",
+  "finalized_at": "2026-04-29",
+  "readme_file": "source_master_package_README_FINAL.md",
+  "architecture_note_file": "sotsiaalai_rag_masterlist_andmekorje_selgitus.md",
+  "user_facing_knowledge": false
+}

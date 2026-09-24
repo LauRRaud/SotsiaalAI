@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2024",
+  "issueLabel": "4/2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "persoon-2024-4",
+  "title": "Kogu hingest töötades ei tohi iseennast kaotada",
+  "authors": [
+    "Kaili Käesel-Maastik",
+    "Merilin Nöör",
+    "Birgit Siigur"
+  ],
+  "section": "Persoon",
+  "pageRange": "3–9",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "source_path": "sotsiaaltoo_4_2024_web_Part3.pdf",
+  "description": "Vestlusring kolmega kogenud spetsialistiga, kes räägivad pingelistest juhtumitest, töökoormusest, enesehoiu vajalikkusest ning professionaalsuse hoidmisest muutuvates tingimustes.",
+  "tags": [
+    "persoon",
+    "sotsiaaltöötaja",
+    "enesehoid",
+    "töökoormus",
+    "professionaalsus"
+  ],
+  "document_id": "sotsiaaltoo-4-2024-persoon-2024-4",
+  "source_format": "pdf",
+  "source_sha256": "9b693900157868ea6fb1a7638b2e02436c4fcf9020271b095e12342feece816a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2024-persoon-2024-4",
+    "previous_source_path": "sotsiaaltoo_4_2024_web_Part3.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "9b693900157868ea6fb1a7638b2e02436c4fcf9020271b095e12342feece816a",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

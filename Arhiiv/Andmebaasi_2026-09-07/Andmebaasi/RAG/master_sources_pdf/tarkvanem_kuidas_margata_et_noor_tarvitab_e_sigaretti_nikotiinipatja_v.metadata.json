@@ -1,0 +1,79 @@
+{
+  "source": {
+    "source_id": "tarkvanem_kuidas_margata_et_noor_tarvitab_e_sigaretti_nikotiinipatja_v",
+    "title": "Kuidas märgata, et noor tarvitab e-sigaretti, nikotiinipatja või huuletubakat?",
+    "url": "https://tarkvanem.ee/wp-content/uploads/2023/08/TAI_Kuidas_margata_e-sigareti_tarvitamist_lapsevanemad.pdf",
+    "normalized_url": "https://tarkvanem.ee/wp-content/uploads/2023/08/TAI_Kuidas_margata_e-sigareti_tarvitamist_lapsevanemad.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Tarkvanem",
+    "organization_id": "tarkvanem",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Tarkvanem",
+      "lapsed ja pered",
+      "noor",
+      "sõltuvus",
+      "uimastid",
+      "narkootikumid",
+      "ennetustöö",
+      "riskikäitumine",
+      "infomaterjal"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "Tarkvanem",
+      "heading_4": null,
+      "line": 637,
+      "order": 323
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Kuidas märgata, et noor tarvitab e-sigaretti, nikotiinipatja või huuletubakat?"
+    ],
+    "collection_hints": [
+      "organization_materials"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Tarkvanem"
+    ],
+    "organizations_seen": [
+      "tarkvanem"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "Tarkvanem",
+        "line": 637,
+        "order": 323
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://tarkvanem.ee/wp-content/uploads/2023/08/TAI_Kuidas_margata_e-sigareti_tarvitamist_lapsevanemad.pdf"
+  },
+  "final_url": "https://tarkvanem.ee/wp-content/uploads/2023/08/TAI_Kuidas_margata_e-sigareti_tarvitamist_lapsevanemad.pdf",
+  "redirects": [],
+  "sha256": "180353ed44482677514d203d3da716abc2bf446772b28e2b9d7f0bc1a0f1af63",
+  "bytes": 431614,
+  "downloaded_at": "2026-08-14T08:00:59.071Z"
+}

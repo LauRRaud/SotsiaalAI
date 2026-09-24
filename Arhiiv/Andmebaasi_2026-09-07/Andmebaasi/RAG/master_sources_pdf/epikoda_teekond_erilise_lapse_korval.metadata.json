@@ -1,0 +1,75 @@
+{
+  "source": {
+    "source_id": "epikoda_teekond_erilise_lapse_korval",
+    "title": "Teekond erilise lapse kõrval",
+    "url": "https://epikoda.ee/wp-content/uploads/2025/09/epik_kasiraamat_2019-est-koos-low.pdf",
+    "normalized_url": "https://epikoda.ee/wp-content/uploads/2025/09/epik_kasiraamat_2019-est-koos-low.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "EPIKoda",
+    "organization_id": "epikoda",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Eesti Puuetega Inimeste Koda",
+      "lapsed ja pered",
+      "laps",
+      "infomaterjal",
+      "EPIKoda"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "EPIKoda",
+      "heading_4": null,
+      "line": 563,
+      "order": 290
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Teekond erilise lapse kõrval"
+    ],
+    "collection_hints": [
+      "organization_materials"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "EPIKoda"
+    ],
+    "organizations_seen": [
+      "epikoda"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "EPIKoda",
+        "line": 563,
+        "order": 290
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://epikoda.ee/wp-content/uploads/2025/09/epik_kasiraamat_2019-est-koos-low.pdf"
+  },
+  "final_url": "https://epikoda.ee/wp-content/uploads/2025/09/epik_kasiraamat_2019-est-koos-low.pdf",
+  "redirects": [],
+  "sha256": "b68defe06c878647094a4a3f417301edacf0e8e27ea64daefe36c2ec27551ba6",
+  "bytes": 4312621,
+  "downloaded_at": "2026-08-14T08:00:56.094Z"
+}

@@ -1,0 +1,50 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "safe-boxi-idee-on-abiks-lastega-tootavale-spetsialistile-2026",
+  "title": "Safe box'i idee on abiks lastega töötavale spetsialistile",
+  "authors": [
+    "Aile Aedma"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Metoodika",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab Safe box'i metoodikat, mis aitab lastega töötavatel spetsialistidel toetada noorte vaimset tervist ja heaolu. Tööriist ühendab turvaliste esemetega karbi, töölehed ja juhendmaterjalid ning võimaldab koostada individuaalseid turvaplaane. Metoodika eesmärk on ennetada enesekahjustamist ja suitsiidimõtteid ning toetada noorte toimetulekut kriitilistel hetkedel.",
+  "tags": [
+    "metoodika",
+    "Safe box",
+    "vaimne tervis",
+    "suitsiidiennetus",
+    "turvaplaan",
+    "lapse heaolu",
+    "ennetustöö",
+    "psühhosotsiaalne tugi",
+    "noored"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-02-09",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/safe-box-abiks-lastega-tootavale-spetsialistile",
+  "source_type": "web",
+  "source_path": "safe-box-i-idee-on-abiks-lastega-tootavale-spetsialistile.html",
+  "lead": "Järjest rohkem lapsi vajab abi vaimse tervise ja heaolu küsimuses. Pidasime laste heaolu osakonna varajase märkamise ja ennetustalituses oluliseks võtta Eestis kasutusele tõenduspõhine ja praktiline tööriist lastega töötavatele spetsialistidele, kes iga päev toetavad lapsi, noori ja perekondi.",
+  "document_id": "sotsiaaltoo-2-2026-safe-boxi-idee-on-abiks-lastega-tootavale-spetsialistile-2026",
+  "source_format": "html",
+  "source_sha256": "4ec6c91d6fddbf201ad2f9ab7923e09e6a1e714860d31ead0f68ed8aafc9a62a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-safe-boxi-idee-on-abiks-lastega-tootavale-spetsialistile-2026",
+    "previous_source_path": "safe-box-i-idee-on-abiks-lastega-tootavale-spetsialistile.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "2f2e673095a4a825028a1977d9b52ab700e65dfa0b2cd0b4e7bb034a002f93d9",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "e37f420f19bee081628e18a418a41bb50a660a05c10177531630d3301abffa92",
+    "observed_web_title": "Safe box on abiks lastega töötavale spetsialistile"
+  },
+  "retrieved_at": "2026-09-07T19:39:40.035764+00:00"
+}

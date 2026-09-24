@@ -1,0 +1,75 @@
+{
+  "source": {
+    "source_id": "tarkvanem_tooleht_suhtekonto",
+    "title": "TÖÖLEHT: Suhtekonto",
+    "url": "https://tarkvanem.ee/wp-content/uploads/2023/11/Suhtekonto_tooleht.pdf",
+    "normalized_url": "https://tarkvanem.ee/wp-content/uploads/2023/11/Suhtekonto_tooleht.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "method_guidance",
+    "publisher": "Tarkvanem",
+    "organization_id": "tarkvanem",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Tarkvanem",
+      "tööleht",
+      "lapse kasvatamine",
+      "suhtlemisoskused",
+      "praktiline töövahend"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "Tarkvanem",
+      "heading_4": null,
+      "line": 627,
+      "order": 318
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "TÖÖLEHT: Suhtekonto"
+    ],
+    "collection_hints": [
+      "organization_guidelines"
+    ],
+    "source_types_seen": [
+      "official_guideline"
+    ],
+    "resource_types_seen": [
+      "method_guidance"
+    ],
+    "publishers_seen": [
+      "Tarkvanem"
+    ],
+    "organizations_seen": [
+      "tarkvanem"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "Tarkvanem",
+        "line": 627,
+        "order": 318
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://tarkvanem.ee/wp-content/uploads/2023/11/Suhtekonto_tooleht.pdf"
+  },
+  "final_url": "https://tarkvanem.ee/wp-content/uploads/2023/11/Suhtekonto_tooleht.pdf",
+  "redirects": [],
+  "sha256": "dde3f058a75ec663d1f322e0c2bd04855c149ce26e9810eb4435a3ac9c8735e7",
+  "bytes": 282507,
+  "downloaded_at": "2026-08-14T08:00:58.886Z"
+}

@@ -1,0 +1,3984 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-laaneranna-vald",
+  "document_id": "kov-laaneranna-vald",
+  "municipality": "Lääneranna vald",
+  "municipality_id": "laaneranna_vald",
+  "county": "Pärnumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "laaneranna_vald_service_sotsiaalnoustamine",
+      "canonical_item_id": "laaneranna_vald:service:sotsiaalnoustamine",
+      "itemType": "service",
+      "title": "Sotsiaalnõustamine",
+      "status": "active",
+      "summary": "Sotsiaalnõustamine on teenus Lääneranna vallas elavatele isikutele ja peredele, kes pöörduvad murega vallavalitsuse haridus-, kultuuri- ja sotsiaalosakonna poole. Teenuse käigus otsitakse koos inimesega lahendusi tema sotsiaalmajandusliku ja iseseisva toimetulekuvõime parandamiseks.",
+      "sourceKeys": [
+        "service_sotsiaalnoustamine"
+      ],
+      "targetGroup": "Lääneranna vallas elavad isikud ja pered, kes vajavad nõu toimetuleku parandamiseks",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "kohapeal",
+          "",
+          ""
+        ],
+        "steps": [
+          "Pöördu haridus-, kultuuri- ja sotsiaalosakonda, helista või saada päring e-posti teel."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://www.laanerannavald.ee/sotsiaalnoustamine",
+      "relatedContacts": [
+        "laaneranna_vald_contact_kelli_soon",
+        "laaneranna_vald_contact_koidu_rummel",
+        "laaneranna_vald_contact_gersti_roots",
+        "laaneranna_vald_contact_silva_nilb",
+        "laaneranna_vald_contact_saima_soobard"
+      ],
+      "relatedForms": [],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": false,
+        "application": true,
+        "pricing_or_amount": false,
+        "contacts": true,
+        "forms": false
+      },
+      "item_type": "service",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_sotsiaalnoustamine"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_service_sotsiaalnoustamine",
+      "document_id": "laaneranna_vald_service_sotsiaalnoustamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/sotsiaalnoustamine",
+      "content_hash": "8ffba02e90d52afcc34a7a01bbd1998f46c4df0f55e2166e0babca61397f2182",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_service_koduteenus",
+      "canonical_item_id": "laaneranna_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenuse eesmärk on tagada täisealise inimese iseseisev ja turvaline toimetulek kodustes tingimustes. Teenuse käigus abistatakse toimingutes, mida inimene terviseseisundi, tegevusvõime või elukeskkonna tõttu kõrvalabita teha ei suuda. Teenus on tasuline, kuid teenuse eest tasutakse valla eelarvest, kui inimesel ei ole piisavalt vara, sissetulekut või ülalpidajaid.",
+      "sourceKeys": [
+        "service_koduteenus"
+      ],
+      "targetGroup": "Täisealised inimesed, kes vajavad kõrvalabi kodustes tingimustes elamiseks",
+      "conditions": "Sotsiaaltöö spetsialist külastab teenust vajavat isikut, hindab abivajadust ja koostab hooldusplaani. Teenuse tegevused ja maht märgitakse koduteenuse lepingusse.",
+      "application": {
+        "channels": [
+          "taotlus sotsiaalosakonda"
+        ],
+        "steps": [
+          "Esita taotlus Lääneranna Vallavalitsuse sotsiaalosakonda.",
+          "Abivajavast isikust võivad teatada ka naabrid, arst, hooldustöötaja või muud isikud."
+        ],
+        "deadline": null
+      },
+      "pricing": "Teenuse eest tasutakse arve alusel; valla eelarvest tasutakse juhul, kui teenuse saajal puuduvad piisavad vahendid või ülalpidajad.",
+      "officialUrl": "https://www.laanerannavald.ee/koduteenus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_kelli_soon",
+        "laaneranna_vald_contact_koidu_rummel",
+        "laaneranna_vald_contact_gersti_roots"
+      ],
+      "relatedForms": [
+        "laaneranna_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": true,
+        "contacts": true,
+        "forms": true
+      },
+      "item_type": "service",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_koduteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_service_koduteenus",
+      "document_id": "laaneranna_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/koduteenus",
+      "content_hash": "a5e6b84321d243c1b4fcc040cd6a9266890b4dc6c1032ab986d7635419fd95fd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_service_erakorraline_koduteenus",
+      "canonical_item_id": "laaneranna_vald:service:erakorraline_koduteenus",
+      "itemType": "service",
+      "title": "Erakorraline koduteenus",
+      "status": "active",
+      "summary": "Erakorraline koduteenus on lühiajaline abi inimesele, kellel puudub kehtiv koduteenuse leping, kuid kellel tekib ootamatu abivajadus. Teenuse sisu on sarnane koduteenusega ja see aitab tagada kiire abi seni, kuni tavapärane teenus on vormistatud. Teenus on tasuline.",
+      "sourceKeys": [
+        "service_erakorraline_koduteenus"
+      ],
+      "targetGroup": "Isikud, kellel puudub koduteenuse leping, kuid kellel on tekkinud ootamatu ja kiire abivajadus",
+      "conditions": "Teenust kasutatakse juhul, kui abi on vaja kohe ning ei ole võimalik oodata tavapärase koduteenuse vormistamist. Teenusele järgneb üldjuhul koduteenuse lepingu sõlmimine.",
+      "application": {
+        "channels": [
+          "",
+          ""
+        ],
+        "steps": [
+          "Võta telefoni või e-posti teel ühendust Lääneranna Vallavalitsuse sotsiaalosakonnaga."
+        ],
+        "deadline": null
+      },
+      "pricing": "Teenuse eest võetakse tasu.",
+      "officialUrl": "https://www.laanerannavald.ee/erakorraline-koduteenus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_kelli_soon",
+        "laaneranna_vald_contact_koidu_rummel",
+        "laaneranna_vald_contact_gersti_roots"
+      ],
+      "relatedForms": [],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": true,
+        "contacts": true,
+        "forms": false
+      },
+      "item_type": "service",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_erakorraline_koduteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_service_erakorraline_koduteenus",
+      "document_id": "laaneranna_vald_service_erakorraline_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/erakorraline-koduteenus",
+      "content_hash": "b7ee87e7b30fcdc4ecc2b937b94256e7a53c8e1967f0dcb56a73d12c172e474a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_service_uldhooldusteenus",
+      "canonical_item_id": "laaneranna_vald:service:uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatav üldhooldusteenus tagab turvalise keskkonna ja toimetuleku täisealisele inimesele, kes ei suuda kodus ajutiselt või püsivalt iseseisvalt toime tulla. Teenuse kasutamise vajadust hindab sotsiaaltöö spetsialist. Teenus on tasuline ning valla hoolduskulude katmise piirmäär on 500 eurot kalendrikuus teenuse saaja kohta.",
+      "sourceKeys": [
+        "service_uldhooldusteenus"
+      ],
+      "targetGroup": "Täisealised inimesed, kes terviseseisundi, tegevusvõime või elukeskkonna tõttu ei tule kodus toime",
+      "conditions": "Sotsiaaltöö spetsialist külastab teenust vajavat inimest hooldusvajaduse hindamiseks.",
+      "application": {
+        "channels": [
+          "taotlus sotsiaalosakonda"
+        ],
+        "steps": [
+          "Teenust vajav inimene või esindaja esitab taotluse Lääneranna Vallavalitsuse sotsiaalosakonda.",
+          "Abivajavast inimesest võivad vallavalitsusele teatada ka teised isikud."
+        ],
+        "deadline": null
+      },
+      "pricing": "Tasuline teenus; Lääneranna valla hoolduskulude katmise piirmäär on 500 eurot kalendrikuus teenuse saaja kohta.",
+      "officialUrl": "https://www.laanerannavald.ee/uldhooldusteenus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_gersti_roots"
+      ],
+      "relatedForms": [
+        "laaneranna_vald_form_uldhooldusteenuse_taotlus"
+      ],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": true,
+        "contacts": true,
+        "forms": true
+      },
+      "item_type": "service",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_uldhooldusteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_service_uldhooldusteenus",
+      "document_id": "laaneranna_vald_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/uldhooldusteenus",
+      "content_hash": "55dd7456390d31110d87cc9a93aa71ac1ed5499c058917e2ec75e70e10c2207e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_service_tugiisikuteenus",
+      "canonical_item_id": "laaneranna_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus toetab inimese iseseisvat toimetulekut olukordades, kus ta vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu olulist kõrvalabi. Teenus seisneb juhendamises, motiveerimises ja omavastutuse arendamises ning lapse puhul lapse arengu toetamises. Teenust osutatakse kodus või muus kokkulepitud kohas, näiteks lasteaias või koolis.",
+      "sourceKeys": [
+        "service_tugiisikuteenus"
+      ],
+      "targetGroup": "Isikud ja pered, kes vajavad iseseisva toimetuleku toetamiseks juhendamist või kõrvalabi; lapsed, kelle areng vajab tuge",
+      "conditions": "Sotsiaalosakonna otsuse alusel sõlmitakse tugiisikuteenuse osutajaga leping, kus määratakse toimingud, aeg, maht ja tasumise kord.",
+      "application": {
+        "channels": [
+          "taotlus sotsiaalosakonda"
+        ],
+        "steps": [
+          "Teenust vajav inimene või tema esindaja esitab taotluse Lääneranna Vallavalitsuse sotsiaalosakonda."
+        ],
+        "deadline": null
+      },
+      "pricing": "Tasumise kord määratakse teenuse osutamise lepingus.",
+      "officialUrl": "https://www.laanerannavald.ee/tugiisikuteenus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_kelli_soon",
+        "laaneranna_vald_contact_koidu_rummel",
+        "laaneranna_vald_contact_gersti_roots",
+        "laaneranna_vald_contact_saima_soobard"
+      ],
+      "relatedForms": [
+        "laaneranna_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": true,
+        "contacts": true,
+        "forms": true
+      },
+      "item_type": "service",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_tugiisikuteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_service_tugiisikuteenus",
+      "document_id": "laaneranna_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/tugiisikuteenus",
+      "content_hash": "f359e8afc40af08cba53bdf467dbb2b8f6f4e3ffdc18742c35fe5804276cf974",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "laaneranna_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hoolduse eesmärk on hooldada täisealist inimest, kes vajab vaimse või kehalise puude tõttu abi oma õiguste teostamisel ja kohustuste täitmisel. Hooldus aitab inimesel jätkata elamist oma kodus ning hõlmab kõrvalabi, juhendamist ja järelevalvet igapäevategevustes.",
+      "sourceKeys": [
+        "service_taisealise_isiku_hooldus"
+      ],
+      "targetGroup": "Täisealised vaimse või kehalise puudega inimesed, kes vajavad hooldaja abi",
+      "conditions": "Üldjuhul ei määrata hooldajaks isikut, kes on hooldatava suhtes ülalpidamiskohustusega või kellel on raske või sügav puue. Sotsiaaltöö spetsialist külastab teenust vajavat inimest abivajaduse hindamiseks.",
+      "application": {
+        "channels": [
+          "taotlus sotsiaalosakonda"
+        ],
+        "steps": [
+          "Teenust vajav inimene või tema esindaja esitab taotluse Lääneranna Vallavalitsuse sotsiaalosakonda."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://www.laanerannavald.ee/taisealise-isiku-hooldus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_kelli_soon",
+        "laaneranna_vald_contact_koidu_rummel",
+        "laaneranna_vald_contact_gersti_roots"
+      ],
+      "relatedForms": [
+        "laaneranna_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": false,
+        "contacts": true,
+        "forms": true
+      },
+      "item_type": "service",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_taisealise_isiku_hooldus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_service_taisealise_isiku_hooldus",
+      "document_id": "laaneranna_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/taisealise-isiku-hooldus",
+      "content_hash": "e7571545808b5e993ed1b10cbdabdba8e637a98be0db4df19eef686261276e6b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "laaneranna_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus suurendab puude tõttu füüsilist kõrvalabi vajava täisealise inimese iseseisvat toimetulekut ja osalemist kõigis eluvaldkondades. Abistaja aitab igapäevaelu tegevustes, näiteks liikumisel, söömisel, toidu valmistamisel, riietumisel, hügieenitoimingutes ja majapidamistöödes.",
+      "sourceKeys": [
+        "service_isikliku_abistaja_teenus"
+      ],
+      "targetGroup": "Puude tõttu füüsilist kõrvalabi vajavad täisealised inimesed",
+      "conditions": "Teenuse osutamise lepingus määratakse isikliku abistaja toimingud, nende aeg, maht ja tasumise kord. Teenust ei saa osutada isik, kelle karistatus või lähisuhe võib teenuse saaja turvalisust või sõltumatust kahjustada.",
+      "application": {
+        "channels": [
+          "taotlus sotsiaalosakonda"
+        ],
+        "steps": [
+          "Teenust vajav inimene või tema esindaja esitab taotluse Lääneranna Vallavalitsuse sotsiaalosakonda."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://www.laanerannavald.ee/isikliku-abistaja-teenus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_kelli_soon",
+        "laaneranna_vald_contact_koidu_rummel",
+        "laaneranna_vald_contact_gersti_roots"
+      ],
+      "relatedForms": [
+        "laaneranna_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": false,
+        "contacts": true,
+        "forms": true
+      },
+      "item_type": "service",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_isikliku_abistaja_teenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_service_isikliku_abistaja_teenus",
+      "document_id": "laaneranna_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/isikliku-abistaja-teenus",
+      "content_hash": "4a31abe5de4d45553f2d024d198b7a4623b6bd16f31ed3787fdb974f8e19e458",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_service_varjupaigateenus",
+      "canonical_item_id": "laaneranna_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus on ajutine abimeede täisealisele inimesele, kes ei ole võimeline endale ööbimiskohta leidma. Ajutises ööbimiskohas peab olema voodikoht, pesemisvõimalus ja turvaline keskkond. Teenuse vajadust ja edasist abi hinnatakse pärast teenusele saabumist koos teenuse saaja, teenuse osutaja ja sotsiaalosakonnaga.",
+      "sourceKeys": [
+        "service_varjupaigateenus"
+      ],
+      "targetGroup": "Täisealised inimesed, kes ei suuda endale ajutist ööbimiskohta leida",
+      "conditions": "Teenuse saamiseks võib pöörduda otse teenuse osutaja poole taotlust esitamata.",
+      "application": {
+        "channels": [
+          "otse teenuse osutaja poole"
+        ],
+        "steps": [
+          "Pöördu teenuse osutaja poole.",
+          "Pärast teenusele saabumist hinnatakse edasist abivajadust koos sotsiaalosakonnaga."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://www.laanerannavald.ee/varjupaigateenus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_koidu_rummel",
+        "laaneranna_vald_contact_gersti_roots"
+      ],
+      "relatedForms": [],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": false,
+        "contacts": true,
+        "forms": false
+      },
+      "item_type": "service",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_varjupaigateenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_service_varjupaigateenus",
+      "document_id": "laaneranna_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/varjupaigateenus",
+      "content_hash": "9038fba52226c1e5475c8e4ad69a18703c81b77836b42c2d3429eb73ee5600e6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_service_turvakoduteenus",
+      "canonical_item_id": "laaneranna_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenus tagab abi vajavale lapsele või täisealisele inimesele ajutise eluaseme, turvalise keskkonna ja esmase abi. Esmase abi hulka võib kuuluda kriisiabi, mis taastab psüühilist tasakaalu ja igapäevaelus tegutsemise võimet, samuti teavitamine teistest abi saamise võimalustest.",
+      "sourceKeys": [
+        "service_turvakoduteenus"
+      ],
+      "targetGroup": "Laps või täisealine inimene, kes vajab turvalist keskkonda või kelle elu, tervis või areng on ohustatud",
+      "conditions": "Teenust saavad lapsed, kelle hooldamises esinevad puudused ohustavad nende elu, tervist või arengut, ning täisealised, kes vajavad turvalist keskkonda.",
+      "application": {
+        "channels": [
+          "kontakt sotsiaalosakonnaga"
+        ],
+        "steps": [
+          "Võta ühendust valla sotsiaaltöö spetsialisti või lastekaitsespetsialistiga."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://www.laanerannavald.ee/turvakoduteenus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_kelli_soon",
+        "laaneranna_vald_contact_koidu_rummel",
+        "laaneranna_vald_contact_gersti_roots",
+        "laaneranna_vald_contact_saima_soobard"
+      ],
+      "relatedForms": [],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": false,
+        "contacts": true,
+        "forms": false
+      },
+      "item_type": "service",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_turvakoduteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_service_turvakoduteenus",
+      "document_id": "laaneranna_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/turvakoduteenus",
+      "content_hash": "376278de48d402828174de121c5a98a6f0cd1487bea639a6c8ebd32b4b66e880",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "laaneranna_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus võimaldab erivajadusega või puudega inimesel, kelle tervislik olukord takistab isikliku või ühissõiduki kasutamist, kasutada vajadustele vastavat transpordivahendit. Lääneranna vallas korraldab sotsiaaltransporti Pärnumaa Ühistranspordikeskus. Teenuse tellimusi esitatakse PÜTK-ile pärast sotsiaaltöötajalt suunamise saamist.",
+      "sourceKeys": [
+        "service_sotsiaaltransporditeenus"
+      ],
+      "targetGroup": "Erivajadusega või puuetega inimesed, kelle tervislik olukord takistab isikliku või ühissõiduki kasutamist",
+      "conditions": "Esmakordne teenuse kasutamise taotlus esitatakse telefoni teel vähemalt 3 tööpäeva enne teenuse kasutamist.",
+      "application": {
+        "channels": [
+          ""
+        ],
+        "steps": [
+          "Helista Lääneranna Vallavalitsuse sotsiaaltöö spetsialistile vähemalt 3 tööpäeva enne esimest teenuse kasutamist.",
+          "Suunatud kasutaja tellib sõidu PÜTK telefonil tööpäeviti kell 08.00–15.00.",
+          "Väljaspool tööaega erandjuhtudel helista telefonil."
+        ],
+        "deadline": "Vähemalt 3 tööpäeva enne teenuse kasutamist"
+      },
+      "pricing": null,
+      "officialUrl": "https://www.laanerannavald.ee/sotsiaaltransporditeenus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_gersti_roots"
+      ],
+      "relatedForms": [],
+      "relatedTo": [
+        "laaneranna_vald_resource_putk_sotsiaaltransport"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": false,
+        "contacts": true,
+        "forms": false
+      },
+      "item_type": "service",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_sotsiaaltransporditeenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_service_sotsiaaltransporditeenus",
+      "document_id": "laaneranna_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/sotsiaaltransporditeenus",
+      "content_hash": "6a74c847fa6bf45e26e8bc11d5306debe8cbb49e2eef0442bfe687e6748ab79b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_service_sotsiaaltranspordi_saatja_teenus",
+      "canonical_item_id": "laaneranna_vald:service:sotsiaaltranspordi_saatja_teenus",
+      "itemType": "service",
+      "title": "Sotsiaaltranspordi saatja teenus",
+      "status": "active",
+      "summary": "Sotsiaaltranspordi saatja teenus on mõeldud sotsiaaltransporditeenust saavale puudega inimesele, kes vajab sõidu ajal kõrvalabi või juhendamist ja kellel puuduvad seadusjärgsed ülalpidajad. Teenuse eest võetakse omaosalustasu, mille kehtestab vallavalitsus korraldusega.",
+      "sourceKeys": [
+        "service_sotsiaaltranspordi_saatja_teenus"
+      ],
+      "targetGroup": "Sotsiaaltranspordi teenust saavad puudega isikud, kes vajavad kõrvalabi või juhendamist",
+      "conditions": "Teenuse kasutajal peavad puuduma seadusjärgsed ülalpidajad; teenus on seotud sotsiaaltranspordi kasutamisega.",
+      "application": {
+        "channels": [
+          ""
+        ],
+        "steps": [
+          "Esita esmakordne teenuse kasutamise taotlus telefoni teel Lääneranna Vallavalitsuse sotsiaaltöö spetsialistile."
+        ],
+        "deadline": "Vähemalt 7 tööpäeva enne teenuse kasutamist"
+      },
+      "pricing": "Teenuse eest võetakse omaosalustasu.",
+      "officialUrl": "https://www.laanerannavald.ee/sotsiaaltranspordi-saatja-teenus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_gersti_roots"
+      ],
+      "relatedForms": [],
+      "relatedTo": [
+        "laaneranna_vald_service_sotsiaaltransporditeenus"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": true,
+        "contacts": true,
+        "forms": false
+      },
+      "item_type": "service",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_sotsiaaltranspordi_saatja_teenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_service_sotsiaaltranspordi_saatja_teenus",
+      "document_id": "laaneranna_vald_service_sotsiaaltranspordi_saatja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/sotsiaaltranspordi-saatja-teenus",
+      "content_hash": "00a5b21446dc3eb78828b5a44defb946dd47d5af4517a7f2bec1dab5695f88fc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_service_eluruumi_tagamine",
+      "canonical_item_id": "laaneranna_vald:service:eluruumi_tagamine",
+      "itemType": "service",
+      "title": "Eluruumi tagamine",
+      "status": "active",
+      "summary": "Eluruumi tagamine kindlustab eluruumi kasutamise võimaluse isikule, kes ei ole oma sotsiaalmajandusliku olukorra tõttu võimeline endale ja oma perekonnale sobivat eluruumi tagama. Teenus on tähtajaline ja seda pakutakse ajaks, mil inimene eluruumi vajab. Kui inimene loobub vallavalitsuse pakutud eluruumist, ei ole tal õigust nõuda teist eluruumi.",
+      "sourceKeys": [
+        "service_eluruumi_tagamine"
+      ],
+      "targetGroup": "Isikud ja pered, kes ei suuda sotsiaalmajandusliku olukorra tõttu endale eluruumi tagada",
+      "conditions": "Eluruum tagatakse tähtajaliselt ajaks, mil inimene eluruumi vajab.",
+      "application": {
+        "channels": [
+          "taotlus sotsiaalosakonda"
+        ],
+        "steps": [
+          "Teenust vajav inimene või tema esindaja esitab taotluse Lääneranna Vallavalitsuse sotsiaalosakonda."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://www.laanerannavald.ee/eluruumi-tagamine",
+      "relatedContacts": [
+        "laaneranna_vald_contact_kelli_soon",
+        "laaneranna_vald_contact_koidu_rummel",
+        "laaneranna_vald_contact_gersti_roots"
+      ],
+      "relatedForms": [
+        "laaneranna_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": false,
+        "contacts": true,
+        "forms": true
+      },
+      "item_type": "service",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_eluruumi_tagamine"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_service_eluruumi_tagamine",
+      "document_id": "laaneranna_vald_service_eluruumi_tagamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/eluruumi-tagamine",
+      "content_hash": "8dbc3f770bc546a397cd9be2258c68e155c513007b4e9dd43b1394fc2ca3dd68",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_service_volanoustamisteenus",
+      "canonical_item_id": "laaneranna_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab Lääneranna valla võlaprobleemidega füüsilistel isikutel, perekondadel ja leibkondadel võlgnevusi likvideerida või talutavaks muuta, vältida uute võlgade tekkimist ning lahendada muid võlgadega seotud probleeme. Teenusele suunamise esmaseks mahuks ühe kliendi puhul on kuni 10 teenustundi. Teenuse osutajana on KOV lehel nimetatud MTÜ Pesapuu.",
+      "sourceKeys": [
+        "service_volanoustamisteenus"
+      ],
+      "targetGroup": "Võlaprobleemidega füüsilised isikud, perekonnad ja leibkonnad Lääneranna vallas",
+      "conditions": "Teenuse vajaja võib pöörduda nii sotsiaalosakonna kui ka teenuse osutaja poole.",
+      "application": {
+        "channels": [
+          "sotsiaalosakond",
+          "teenuse osutaja"
+        ],
+        "steps": [
+          "Võta ühendust sotsiaalosakonnaga või teenuse osutajaga.",
+          "Vajadusel esita sotsiaalteenuse avaldus."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://www.laanerannavald.ee/volanoustamisteenus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_kelli_soon"
+      ],
+      "relatedForms": [
+        "laaneranna_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedTo": [
+        "laaneranna_vald_resource_mtu_pesapuu"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": false,
+        "contacts": true,
+        "forms": true
+      },
+      "item_type": "service",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_volanoustamisteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_service_volanoustamisteenus",
+      "document_id": "laaneranna_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/volanoustamisteenus",
+      "content_hash": "96018466c7f1be24ac6f415662337e32dd4d13443369dc719765f18043c47817",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "laaneranna_vald:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenus toetab raske või sügava puudega last kasvatava inimese toimetulekut või töötamist ning vähendab lapse erivajadusest tulenevat hoolduskoormust. Teenust võimaldatakse 1,5–3-aastase lapse vanematele lasteaiakoha asemel nende nõusolekul ning kuni 18-aastasele raske või sügava puudega lapsele. 18-aastaseks saanud raske või sügava puudega inimese puhul võib teenust osutada kalendriaasta lõpuni, mil ta täisealiseks sai.",
+      "sourceKeys": [
+        "service_lapsehoiuteenus"
+      ],
+      "targetGroup": "1,5–3-aastase lapse vanemad lasteaiakoha asemel ning kuni 18-aastased raske või sügava puudega lapsed ja nende pered",
+      "conditions": "Raske ja sügava puudega lapse puhul hindab vallavalitsus teenuse vajadust ning lähtutakse lapse hooldusvajadusest. Teenus on tasuline vastavalt teenuseosutaja hinnakirjale.",
+      "application": {
+        "channels": [
+          "taotlus sotsiaalosakonda"
+        ],
+        "steps": [
+          "Esita taotlus Lääneranna Vallavalitsuse sotsiaalosakonda."
+        ],
+        "deadline": null
+      },
+      "pricing": "Tasuline vastavalt teenuseosutaja hinnakirjale.",
+      "officialUrl": "https://www.laanerannavald.ee/lapsehoiuteenus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_saima_soobard"
+      ],
+      "relatedForms": [
+        "laaneranna_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": true,
+        "contacts": true,
+        "forms": true
+      },
+      "item_type": "service",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_lapsehoiuteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_service_lapsehoiuteenus",
+      "document_id": "laaneranna_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/lapsehoiuteenus",
+      "content_hash": "8f2f3dd86cdf9153318ed4e04cf697e581baf885053d905fda635ae3e3f84497",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_service_asendushooldusteenus",
+      "canonical_item_id": "laaneranna_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus võimaldab vanemliku hoolitsuseta lapsele peresarnased elutingimused, turvalise ja arenguks soodsa elukeskkonna ning ettevalmistuse iseseisvaks toimetulekuks täisealisena. Asendushoolduse vormid on lapsendamine, eestkoste ning asendushooldus hooldusperes, perekodus või asenduskodus. Teenus korraldatakse ka ilma taotluseta, kui asjaoludest saadakse teada.",
+      "sourceKeys": [
+        "service_asendushooldusteenus"
+      ],
+      "targetGroup": "Vanemliku hoolitsuseta lapsed",
+      "conditions": "Asendushooldusteenuse andmine otsustatakse halduslepinguga hoolduspere, perekodu või asenduskodu teenuse osutajaga. Teenus on teenuse saajale tasuta, kuigi teenuse hind kehtestatakse teenuse osutaja poolt.",
+      "application": {
+        "channels": [
+          "lastekaitse juhtumikorraldus"
+        ],
+        "steps": [
+          "Teenust korraldab ametiasutus asjaoludest teadasaamisel ka ilma taotlust esitamata."
+        ],
+        "deadline": null
+      },
+      "pricing": "Teenuse saajale tasuta.",
+      "officialUrl": "https://www.laanerannavald.ee/asendushooldusteenus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_saima_soobard"
+      ],
+      "relatedForms": [],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": true,
+        "contacts": true,
+        "forms": false
+      },
+      "item_type": "service",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_asendushooldusteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_service_asendushooldusteenus",
+      "document_id": "laaneranna_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/asendushooldusteenus",
+      "content_hash": "601f70f233552c3e1b2f1bc157e2da7db50d13452616b0b55a0d9ae313e97813",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "laaneranna_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus toetab asendushoolduselt ja eestkostelt lahkuva isiku iseseisvat toimetulekut ja õpingute jätkamist. Teenust osutatakse juhtumiplaani alusel ning vallavalitsus tagab vajaduse korral eluaseme, tugiteenused ja toetused. Iga noore olukorda hinnatakse individuaalselt koos noorega.",
+      "sourceKeys": [
+        "service_jarelhooldusteenus"
+      ],
+      "targetGroup": "Asendushoolduselt või eestkostelt lahkuvad noored",
+      "conditions": "Teenust rahastatakse teenust saava isiku rahvastikuregistrijärgse kohaliku omavalitsuse eelarvest ja järelhooldusel oleva isiku sissetulekutest.",
+      "application": {
+        "channels": [
+          "taotlus",
+          "sotsiaalosakonna algatus"
+        ],
+        "steps": [
+          "Taotluse võib esitada isiku täisealiseks saamiseni eestkostja ülesandeid täitnud isik või asendushooldusteenust osutanud isik.",
+          "Sotsiaalosakond võib teenuse korraldada ka asjaoludest teada saamisel ilma taotluseta."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://www.laanerannavald.ee/jarelhooldusteenus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_saima_soobard"
+      ],
+      "relatedForms": [],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": false,
+        "contacts": true,
+        "forms": false
+      },
+      "item_type": "service",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_jarelhooldusteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_service_jarelhooldusteenus",
+      "document_id": "laaneranna_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/jarelhooldusteenus",
+      "content_hash": "4a542afc63aa9685dbe34bb8c7afdd2ed84d93b7643605903d2fd10210ec452a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_service_pesemis_ja_pesupesemisteenus",
+      "canonical_item_id": "laaneranna_vald:service:pesemis_ja_pesupesemisteenus",
+      "itemType": "service",
+      "title": "Pesemis- ja pesupesemisteenus",
+      "status": "active",
+      "summary": "Pesemisteenus võimaldab teenuse saajal kasutada pesemisruumi ja vajadusel saada abi tegevuses, milleks ta vajab puude või ea tõttu füüsilist kõrvalabi. Pesupesemisteenus võimaldab kasutada pesumasinat ja kuivatit ning vajadusel saada abi pesupesemisel.",
+      "sourceKeys": [
+        "service_pesemisteenused"
+      ],
+      "targetGroup": "Isikud, kes puude või ea tõttu vajavad pesemisel või pesupesemisel füüsilist kõrvalabi",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "taotlus sotsiaalosakonda"
+        ],
+        "steps": [
+          "Teenust vajav inimene või tema esindaja esitab taotluse Lääneranna Vallavalitsuse sotsiaalosakonda."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://www.laanerannavald.ee/pesemisteenused",
+      "relatedContacts": [
+        "laaneranna_vald_contact_kelli_soon",
+        "laaneranna_vald_contact_koidu_rummel",
+        "laaneranna_vald_contact_gersti_roots"
+      ],
+      "relatedForms": [
+        "laaneranna_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": false,
+        "application": true,
+        "pricing_or_amount": false,
+        "contacts": true,
+        "forms": true
+      },
+      "item_type": "service",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_pesemisteenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_service_pesemis_ja_pesupesemisteenus",
+      "document_id": "laaneranna_vald_service_pesemis_ja_pesupesemisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/pesemisteenused",
+      "content_hash": "3eb66180c28e6b34e16e9a327b881d4c4597a769f50cf9e3ccc2a1b43006c307",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_service_hairenuputeenus",
+      "canonical_item_id": "laaneranna_vald:service:hairenuputeenus",
+      "itemType": "service",
+      "title": "Häirenuputeenus",
+      "status": "active",
+      "summary": "Häirenuputeenus on inimese eluruumi paigaldatud kahepoolset sidet võimaldav hädaabisüsteem, mille kaudu saab ööpäevaringselt abi kutsuda. Teenus on mõeldud üksi elavale inimesele, kelle terviseseisund, kõrge iga või erivajadus raskendab toimetulekut või suhtlemist ning suurendab riski sattuda kodus või selle läheduses abitusse olukorda.",
+      "sourceKeys": [
+        "service_hairenuputeenus"
+      ],
+      "targetGroup": "Üksi elavad inimesed, kelle terviseseisund, kõrge iga või erivajadus suurendab abitusse olukorda sattumise riski",
+      "conditions": "Teenuse eest võib vallavalitsus võtta tasu; tasu tingimused ja määr kehtestatakse eraldi.",
+      "application": {
+        "channels": [
+          "taotlus sotsiaalosakonda"
+        ],
+        "steps": [
+          "Teenust vajav inimene või tema esindaja esitab taotluse Lääneranna Vallavalitsuse sotsiaalosakonda."
+        ],
+        "deadline": null
+      },
+      "pricing": "Teenuse eest võib võtta tasu.",
+      "officialUrl": "https://www.laanerannavald.ee/hairenuputeenus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_kelli_soon"
+      ],
+      "relatedForms": [
+        "laaneranna_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": true,
+        "contacts": true,
+        "forms": true
+      },
+      "item_type": "service",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_hairenuputeenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_service_hairenuputeenus",
+      "document_id": "laaneranna_vald_service_hairenuputeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/hairenuputeenus",
+      "content_hash": "8ca1e8e800595b2a4717db90d7b55223a2c7485554498467b779b23fd2ca87b4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_service_taiendavad_vajaduspohised_teenused",
+      "canonical_item_id": "laaneranna_vald:service:taiendavad_vajaduspohised_teenused",
+      "itemType": "service",
+      "title": "Täiendavad vajaduspõhised teenused",
+      "status": "active",
+      "summary": "Täiendavate vajaduspõhiste teenuste eesmärk on korraldada abivajajale tegelikust vajadusest lähtuvaid teenuseid. Vallavalitsus võib korraldada muu hulgas psühholoogilist nõustamist, kriisiabi, tugirühmi ja tugiprogramme, rehabilitatsiooni, erihoolekandeteenusel osalemist, toiduabi, tõlketeenust või viipekeele teenust.",
+      "sourceKeys": [
+        "service_taiendavad_vajaduspohised_teenused"
+      ],
+      "targetGroup": "Isikud, kelle abivajadus nõuab tavapärastest teenustest erinevaid vajaduspõhiseid lahendusi",
+      "conditions": "Teenuse osutamine lähtub isiku kõrvalabi vajadusest.",
+      "application": {
+        "channels": [
+          "taotlus sotsiaalosakonda"
+        ],
+        "steps": [
+          "Teenust vajav inimene või tema esindaja esitab taotluse Lääneranna Vallavalitsuse sotsiaalosakonda."
+        ],
+        "deadline": null
+      },
+      "pricing": null,
+      "officialUrl": "https://www.laanerannavald.ee/taiendavad-vajaduspohised-teenused",
+      "relatedContacts": [
+        "laaneranna_vald_contact_kelli_soon",
+        "laaneranna_vald_contact_koidu_rummel",
+        "laaneranna_vald_contact_gersti_roots",
+        "laaneranna_vald_contact_saima_soobard"
+      ],
+      "relatedForms": [
+        "laaneranna_vald_form_sotsiaalteenuse_avaldus"
+      ],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": false,
+        "contacts": true,
+        "forms": true
+      },
+      "item_type": "service",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_taiendavad_vajaduspohised_teenused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_service_taiendavad_vajaduspohised_teenused",
+      "document_id": "laaneranna_vald_service_taiendavad_vajaduspohised_teenused",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/taiendavad-vajaduspohised-teenused",
+      "content_hash": "e52d992555e37dcd93e886d780d847ce2420b5cbd83c751c0dd78f4a74400d13",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_service_vaimse_tervise_teenus",
+      "canonical_item_id": "laaneranna_vald:service:vaimse_tervise_teenus",
+      "itemType": "service",
+      "title": "Vaimse tervise teenus",
+      "status": "active",
+      "summary": "Vaimse tervise teenus toetab Lääneranna valla elanike psühhosotsiaalset heaolu ja vaimset tervist. Teenust osutatakse valla elanikeregistris olevatele inimestele ning alaealistele ja nende peredele riskikäitumise ennetamiseks ja vähendamiseks tasuta. Teenuste hulka kuuluvad psühholoogiline nõustamine, individuaal- ja perenõustamine ning pereteraapia.",
+      "sourceKeys": [
+        "service_vaimse_tervise_teenus"
+      ],
+      "targetGroup": "Lääneranna valla elanikud, alaealised ja nende pered, kes vajavad psühhosotsiaalset või vaimse tervise tuge",
+      "conditions": "Teenust osutatakse isikutele, kelle rahvastikuregistri järgne elukoht on Lääneranna vald. Alaealistele ja nende peredele on teenus tasuta ohustava riskikäitumise ennetamiseks ja vähendamiseks.",
+      "application": {
+        "channels": [
+          "lastekaitsespetsialisti või sotsiaaltööspetsialisti suunamine"
+        ],
+        "steps": [
+          "Pöördu lastekaitsespetsialisti või oma piirkonna sotsiaaltööspetsialisti poole."
+        ],
+        "deadline": null
+      },
+      "pricing": "Alaealistele ja nende peredele tasuta riskikäitumise ennetamiseks ja vähendamiseks.",
+      "officialUrl": "https://www.laanerannavald.ee/vaimse-tervise-teenus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_saima_soobard",
+        "laaneranna_vald_contact_kelli_soon",
+        "laaneranna_vald_contact_koidu_rummel",
+        "laaneranna_vald_contact_gersti_roots"
+      ],
+      "relatedForms": [],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": true,
+        "contacts": true,
+        "forms": false
+      },
+      "item_type": "service",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_vaimse_tervise_teenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_service_vaimse_tervise_teenus",
+      "document_id": "laaneranna_vald_service_vaimse_tervise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/vaimse-tervise-teenus",
+      "content_hash": "37ed37caa5b0e7c26d001d613ed6d11137820e01cc1f440c92e7dd786bc38939",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "laaneranna_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetuse eesmärk on ajutise abimeetmena leevendada materiaalse puuduse all kannatavate inimeste ja perede olukorda ning tagada minimaalsed vahendid esmavajaduste rahuldamiseks. Toetust saavad isikud või pered, kelle eelmise kuu netosissetulek pärast eluasemekulude mahaarvamist jääb alla kehtestatud toimetulekupiiri. 2026. aasta lehel on toimetulekupiir 220 eurot esimesele liikmele, 176 eurot järgmisele täisealisele ja 264 eurot alaealisele lapsele.",
+      "sourceKeys": [
+        "benefit_toimetulekutoetus"
+      ],
+      "targetGroup": "Üksi elavad isikud ja pered, kelle sissetulek pärast eluasemekulusid jääb alla toimetulekupiiri",
+      "conditions": "Taotlemisel arvestatakse eelmise kuu netosissetulekut, jooksval kuul tasumisele kuuluvaid eluasemekulusid ja kehtivat toimetulekupiiri.",
+      "application": {
+        "channels": [
+          "vorm"
+        ],
+        "steps": [
+          "Esita toimetulekutoetuse taotlus."
+        ],
+        "deadline": null
+      },
+      "amount": "Toetuse suurus sõltub leibkonna sissetulekutest, eluasemekuludest ja toimetulekupiirist.",
+      "decisionTime": null,
+      "officialUrl": "https://www.laanerannavald.ee/toimetulekutoetus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_silva_nilb"
+      ],
+      "relatedForms": [
+        "laaneranna_vald_form_toimetulekutoetuse_taotlus"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": true,
+        "contacts": true,
+        "forms": true
+      },
+      "item_type": "benefit",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_toimetulekutoetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_benefit_toimetulekutoetus",
+      "document_id": "laaneranna_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/toimetulekutoetus",
+      "content_hash": "e365dd31692adfdd3eb2410372766cc62fc4a64d7faf017af8b075dca202a357",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_benefit_lisatoetus",
+      "canonical_item_id": "laaneranna_vald:benefit:lisatoetus",
+      "itemType": "benefit",
+      "title": "Lisatoetus",
+      "status": "active",
+      "summary": "Lisatoetus on ühekordne sotsiaaltoetus, mida makstakse vahendite olemasolu korral väikese sissetulekuga leibkondadele hädavajalike kulutuste osaliseks katmiseks. Toetus määratakse summas, mis aitab tagada leibkonnale eluks vajalikud vahendid vastavalt toimetulekupiirile ja leibkonnaliikmete arvule. Toetust võib erandina maksta ka inimeselle, kelle elukoht rahvastikuregistris ei ole Lääneranna vald, kuid kes abi vajamise ajal asub vallas.",
+      "sourceKeys": [
+        "benefit_lisatoetus"
+      ],
+      "targetGroup": "Väikese sissetulekuga leibkonnad ja erandina Lääneranna vallas abi vajamise ajal viibivad isikud",
+      "conditions": "Hädavajalike kulude hulka ei arvestata laene, võlgnevusi, täitenõudeid, liisinguid, sõltlaste asendusravi ega tasulisi raviteenuseid. Kulutusi ei arvestata, kui need on tehtud rohkem kui 31 päeva enne taotluse esitamist.",
+      "application": {
+        "channels": [
+          "vorm"
+        ],
+        "steps": [
+          "Esita sissetulekust sõltuva sotsiaaltoetuse taotlus."
+        ],
+        "deadline": null
+      },
+      "amount": "Ühekordne toetus; summa määratakse vajaduse järgi.",
+      "decisionTime": null,
+      "officialUrl": "https://www.laanerannavald.ee/lisatoetus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_silva_nilb"
+      ],
+      "relatedForms": [
+        "laaneranna_vald_form_sissetulekust_soltuv_sotsiaaltoetus"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": true,
+        "contacts": true,
+        "forms": true
+      },
+      "item_type": "benefit",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_lisatoetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_benefit_lisatoetus",
+      "document_id": "laaneranna_vald_benefit_lisatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/lisatoetus",
+      "content_hash": "8466cde09d6550b3e47f835bcfda1d9333e89e3b315f6c787efcb180040e5fe9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_benefit_huvihariduse_ja_huvitegevuse_toetus",
+      "canonical_item_id": "laaneranna_vald:benefit:huvihariduse_ja_huvitegevuse_toetus",
+      "itemType": "benefit",
+      "title": "Huvihariduse ja huvitegevuse toetus",
+      "status": "active",
+      "summary": "Huvihariduse ja huvitegevuse toetust makstakse väikese sissetulekuga lastega leibkondadele huvihariduse ja huvitegevuse kulude osaliseks katmiseks, kui eelarves on vahendid olemas. Toetus katab näiteks osavõtutasusid, transpordikulu, isiklike vahendite soetamist ning võistlustel, konkurssidel või laagrites osalemist. Üldjuhul makstakse toetust igakuiselt taotlusele järgneval poolaastal.",
+      "sourceKeys": [
+        "benefit_huvihariduse_ja_huvitegevuse_toetus"
+      ],
+      "targetGroup": "Väikese sissetulekuga lastega leibkonnad",
+      "conditions": "Leibkonna netosissetulek ühe liikme kohta peab olema väiksem kui Vabariigi Valitsuse kehtestatud töötasu alammäär. Toetust ei maksta, kui taotlejal või ülalpidamiskohustusega isikutel on piisavad vahendid kulude tasumiseks.",
+      "application": {
+        "channels": [
+          "vorm"
+        ],
+        "steps": [
+          "Esita sissetulekust sõltuva sotsiaaltoetuse taotlus."
+        ],
+        "deadline": null
+      },
+      "amount": "Sõltub kuludest ja eelarvevahenditest.",
+      "decisionTime": null,
+      "officialUrl": "https://www.laanerannavald.ee/huvihariduse-ja-huvitegevuse-toetus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_silva_nilb"
+      ],
+      "relatedForms": [
+        "laaneranna_vald_form_sissetulekust_soltuv_sotsiaaltoetus"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": true,
+        "contacts": true,
+        "forms": true
+      },
+      "item_type": "benefit",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_huvihariduse_ja_huvitegevuse_toetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_benefit_huvihariduse_ja_huvitegevuse_toetus",
+      "document_id": "laaneranna_vald_benefit_huvihariduse_ja_huvitegevuse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/huvihariduse-ja-huvitegevuse-toetus",
+      "content_hash": "2159bcdcc7aa28bcce8a7468a949370fb2b9b30bb0f34411e2ecdd7d8bb9c82d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_benefit_sunnitoetus",
+      "canonical_item_id": "laaneranna_vald:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetuse suurus Lääneranna vallas on 700 eurot. Toetus makstakse kahes osas: 350 eurot lapse sünni registreerimise järel ja 350 eurot lapse sünnile järgneval aastal, kui lapse ja ühe vanema või eestkostja elukoht on 1. jaanuari seisuga Lääneranna vald.",
+      "sourceKeys": [
+        "benefit_sunnitoetus"
+      ],
+      "targetGroup": "Lapsevanem või eestkostja, kelle laps registreeritakse Lääneranna valla elanikuks",
+      "conditions": "Esimese osa saamiseks peab vähemalt üks lapsevanem või eestkostja olema lapse sünniaasta 1. jaanuari seisuga Lääneranna valla elanik ning laps peab sünni registreerimisel kanduma valla elanike nimekirja. Teise osa saamiseks peavad laps ja üks vanem või eestkostja olema väljamakse aasta 1. jaanuari seisuga Lääneranna valla elanikud.",
+      "application": {
+        "channels": [
+          "SPOKU e-taotlus"
+        ],
+        "steps": [
+          "Esita sünnitoetuse taotlus SPOKU infosüsteemis."
+        ],
+        "deadline": null
+      },
+      "amount": "700 eurot kokku; 350 eurot + 350 eurot",
+      "decisionTime": null,
+      "officialUrl": "https://www.laanerannavald.ee/sunnitoetus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_silva_nilb"
+      ],
+      "relatedForms": [
+        "laaneranna_vald_form_sunnitoetuse_avaldus_spoku"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": true,
+        "contacts": true,
+        "forms": true
+      },
+      "item_type": "benefit",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_sunnitoetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_benefit_sunnitoetus",
+      "document_id": "laaneranna_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/sunnitoetus",
+      "content_hash": "6de8c3af2f822ec84728ca8da718ac36d994b78226be286086dfd553c3f17e0a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_benefit_matusetoetus",
+      "canonical_item_id": "laaneranna_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on 250 euro suurune toetus, mida makstakse surma hetkel rahvastikuregistri andmetel Lääneranna vallas elanud lahkunu matmise korraldajale. Taotlus tuleb esitada kolme kuu jooksul lahkunu surma registreerimisest.",
+      "sourceKeys": [
+        "benefit_matusetoetus"
+      ],
+      "targetGroup": "Lahkunu perekonnaliikmed, sugulased või teised matmist korraldavad isikud",
+      "conditions": "Lahkunu peab olema surma hetkel rahvastikuregistri andmetel elanud Lääneranna vallas.",
+      "application": {
+        "channels": [
+          "SPOKU e-taotlus"
+        ],
+        "steps": [
+          "Esita matusetoetuse taotlus SPOKU infosüsteemis."
+        ],
+        "deadline": "3 kuu jooksul lahkunu surma registreerimisest"
+      },
+      "amount": "250 eurot",
+      "decisionTime": null,
+      "officialUrl": "https://www.laanerannavald.ee/matusetoetus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_silva_nilb"
+      ],
+      "relatedForms": [
+        "laaneranna_vald_form_matusetoetuse_avaldus_spoku"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": true,
+        "contacts": true,
+        "forms": true
+      },
+      "item_type": "benefit",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_matusetoetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_benefit_matusetoetus",
+      "document_id": "laaneranna_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/matusetoetus",
+      "content_hash": "557e5b15b79854b1a7fcefeeb1ebbf186aa62129ddfd9d0523b1ff3505122680",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_benefit_puudega_lapse_hooldaja_toetus",
+      "canonical_item_id": "laaneranna_vald:benefit:puudega_lapse_hooldaja_toetus",
+      "itemType": "benefit",
+      "title": "Puudega lapse hooldaja toetus",
+      "status": "active",
+      "summary": "Puudega lapse hooldaja toetus on igakuine sotsiaaltoetus lapsevanemale või eestkostjale puudega kuni 18-aastase lapse hooldamise eest. Keskmise puudega lapse hoolduse tagamisel on toetus 50 eurot kuus ning raske või sügava puudega lapse hoolduse tagamisel 100 eurot kuus.",
+      "sourceKeys": [
+        "benefit_puudega_lapse_hooldaja_toetus"
+      ],
+      "targetGroup": "Puudega kuni 18-aastast last hooldav lapsevanem või eestkostja",
+      "conditions": "Toetuse taotlemiseks ja täpsemaks infoks tuleb pöörduda vallavalitsusse.",
+      "application": {
+        "channels": [
+          "vorm",
+          "vallavalitsus"
+        ],
+        "steps": [
+          "Pöördu vallavalitsusse ja esita puudega lapse hooldaja määramise ja toetuse taotlus."
+        ],
+        "deadline": null
+      },
+      "amount": "50 eurot kuus keskmise puudega lapse hooldamisel; 100 eurot kuus raske või sügava puudega lapse hooldamisel",
+      "decisionTime": null,
+      "officialUrl": "https://www.laanerannavald.ee/puudega-lapse-hooldaja-toetus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_silva_nilb"
+      ],
+      "relatedForms": [
+        "laaneranna_vald_form_puudega_lapse_hooldaja_taotlus"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": true,
+        "contacts": true,
+        "forms": true
+      },
+      "item_type": "benefit",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_puudega_lapse_hooldaja_toetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_benefit_puudega_lapse_hooldaja_toetus",
+      "document_id": "laaneranna_vald_benefit_puudega_lapse_hooldaja_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/puudega-lapse-hooldaja-toetus",
+      "content_hash": "4b1d6053d15d7ce8623bfdeca9fb45ad56ccc325b7ab9e5848859fc76c83c8c6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_benefit_taisealise_puudega_isiku_hooldaja_toetus",
+      "canonical_item_id": "laaneranna_vald:benefit:taisealise_puudega_isiku_hooldaja_toetus",
+      "itemType": "benefit",
+      "title": "Täisealise puudega isiku hooldaja toetus",
+      "status": "active",
+      "summary": "Täisealise puudega isiku hooldaja toetus on igakuine toetus, mis hüvitab osaliselt puudega inimese hooldajale hooldusega tekkivaid kulusid. 18-aastase ja vanema raske puudega inimese hooldamisel makstakse 30 eurot kuus ning sügava puudega inimese hooldamisel 50 eurot kuus.",
+      "sourceKeys": [
+        "benefit_taisealise_puudega_isiku_hooldaja_toetus"
+      ],
+      "targetGroup": "Täisealise raske või sügava puudega inimese hooldaja",
+      "conditions": "Toetuse taotlemiseks ja täpsemaks infoks tuleb pöörduda vallavalitsusse.",
+      "application": {
+        "channels": [
+          "vorm",
+          "vallavalitsus"
+        ],
+        "steps": [
+          "Pöördu vallavalitsusse ja esita täisealise puudega isiku hooldaja määramise ja toetuse taotlus."
+        ],
+        "deadline": null
+      },
+      "amount": "30 eurot kuus raske puudega inimese hooldamisel; 50 eurot kuus sügava puudega inimese hooldamisel",
+      "decisionTime": null,
+      "officialUrl": "https://www.laanerannavald.ee/taisealise-puudega-isiku-hooldaja-toetus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_silva_nilb"
+      ],
+      "relatedForms": [
+        "laaneranna_vald_form_taisealise_puudega_isiku_hooldaja_taotlus"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": true,
+        "contacts": true,
+        "forms": true
+      },
+      "item_type": "benefit",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_taisealise_puudega_isiku_hooldaja_toetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_benefit_taisealise_puudega_isiku_hooldaja_toetus",
+      "document_id": "laaneranna_vald_benefit_taisealise_puudega_isiku_hooldaja_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/taisealise-puudega-isiku-hooldaja-toetus",
+      "content_hash": "9d00a2c65b9c9069b8633d1cfc8174bc7bbd3d5c1b4802657d62451294c2a98b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_benefit_eakate_sunnipaevatoetus",
+      "canonical_item_id": "laaneranna_vald:benefit:eakate_sunnipaevatoetus",
+      "itemType": "benefit",
+      "title": "Eakate sünnipäevatoetus",
+      "status": "active",
+      "summary": "Eakate sünnipäevatoetus määratakse rahvastikuregistri andmetel Lääneranna vallas elavatele eakatele. Toetus makstakse 80. ja 85. sünnipäeval ning alates 90. eluaastast igal sünnipäeval. Toetuse suurus on 50 eurot ning alates 100. sünnipäevast 100 eurot.",
+      "sourceKeys": [
+        "benefit_eakate_sunnipaevatoetus"
+      ],
+      "targetGroup": "Rahvastikuregistri järgi Lääneranna vallas elavad eakad",
+      "conditions": "Toetuse saamiseks avaldust ei esitata.",
+      "application": {
+        "channels": [
+          "automaatselt"
+        ],
+        "steps": [
+          "Taotlust ei esitata; toetus määratakse rahvastikuregistri andmete alusel."
+        ],
+        "deadline": null
+      },
+      "amount": "50 eurot; alates 100. sünnipäevast 100 eurot",
+      "decisionTime": null,
+      "officialUrl": "https://www.laanerannavald.ee/eakate-sunnipaevatoetus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_silva_nilb",
+        "laaneranna_vald_contact_kelli_soon",
+        "laaneranna_vald_contact_gersti_roots"
+      ],
+      "relatedForms": [],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": true,
+        "contacts": true,
+        "forms": false
+      },
+      "item_type": "benefit",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_eakate_sunnipaevatoetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_benefit_eakate_sunnipaevatoetus",
+      "document_id": "laaneranna_vald_benefit_eakate_sunnipaevatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/eakate-sunnipaevatoetus",
+      "content_hash": "4ccf3acb0d1f0b2d8f08acb1e0d9ae9707df2dd31c861b6a07ab6a8c4a32cc2f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_benefit_ranitsatoetus",
+      "canonical_item_id": "laaneranna_vald:benefit:ranitsatoetus",
+      "itemType": "benefit",
+      "title": "Ranitsatoetus",
+      "status": "active",
+      "summary": "Ranitsatoetus on 200 euro suurune toetus lapsevanemale või eestkostjale lapse 1. klassi astumise korral. Toetus määratakse koolide direktorite poolt 10. septembri seisuga esitatud 1. klassi õpilaste nimekirjade alusel.",
+      "sourceKeys": [
+        "benefit_ranitsatoetus"
+      ],
+      "targetGroup": "1. klassi astuva lapse vanem või eestkostja",
+      "conditions": "Vähemalt üks lapsevanem või eestkostja ja laps peavad olema rahvastikuregistri järgi Lääneranna valla elanikud.",
+      "application": {
+        "channels": [
+          "SPOKU e-taotlus"
+        ],
+        "steps": [
+          "Esita ranitsatoetuse avaldus SPOKU infosüsteemis."
+        ],
+        "deadline": null
+      },
+      "amount": "200 eurot",
+      "decisionTime": null,
+      "officialUrl": "https://www.laanerannavald.ee/ranitsatoetus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_silva_nilb"
+      ],
+      "relatedForms": [
+        "laaneranna_vald_form_ranitsatoetuse_avaldus_spoku"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": true,
+        "contacts": true,
+        "forms": true
+      },
+      "item_type": "benefit",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_ranitsatoetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_benefit_ranitsatoetus",
+      "document_id": "laaneranna_vald_benefit_ranitsatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/ranitsatoetus",
+      "content_hash": "1b473f02e154748747e54754d3344a5e75b4a51cb7c456de33358e315bd4337b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_benefit_joulupaki_toetus",
+      "canonical_item_id": "laaneranna_vald:benefit:joulupaki_toetus",
+      "itemType": "benefit",
+      "title": "Jõulupaki toetus",
+      "status": "active",
+      "summary": "Jõulupakid on ette nähtud kõigile rahvastikuregistri järgi Lääneranna vallas elavatele lastele, kes viibivad Lääneranna valla koolieelsetes lasteasutustes või õpivad üldhariduskoolide statsionaarses õppes 1.–12. klassis. Jõulupaki saamiseks taotlust ei esitata.",
+      "sourceKeys": [
+        "benefit_joulupaki_toetus"
+      ],
+      "targetGroup": "Lääneranna valla koolieelsed lapsed ja üldhariduskoolide 1.–12. klassi õpilased",
+      "conditions": "Laps peab olema rahvastikuregistri järgi Lääneranna valla elanik ja registreeritud koolieelses lasteasutuses või statsionaarses üldharidusõppes.",
+      "application": {
+        "channels": [
+          "automaatselt"
+        ],
+        "steps": [
+          "Taotlust ei esitata."
+        ],
+        "deadline": null
+      },
+      "amount": null,
+      "decisionTime": null,
+      "officialUrl": "https://www.laanerannavald.ee/joulupaki-toetus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_saima_soobard"
+      ],
+      "relatedForms": [],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": false,
+        "contacts": true,
+        "forms": false
+      },
+      "item_type": "benefit",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_joulupaki_toetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_benefit_joulupaki_toetus",
+      "document_id": "laaneranna_vald_benefit_joulupaki_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/joulupaki-toetus",
+      "content_hash": "e74de68cf34987397a207b7fe9157c9a317ee5a43d184db410bb408a4b9c5ac2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_benefit_asendushooldusteenusel_viibiva_lapse_toetus",
+      "canonical_item_id": "laaneranna_vald:benefit:asendushooldusteenusel_viibiva_lapse_toetus",
+      "itemType": "benefit",
+      "title": "Asendushooldusteenusel viibiva lapse toetus",
+      "status": "active",
+      "summary": "Lääneranna valla sotsiaaltoetuste koondlehel on eraldi nimetatud asendushooldusteenusel viibiva lapse toetus. Detaillehte või eraldi praktilist kirjeldust ei õnnestunud KOV veebilt leida; toetuse olemasolu on kinnitatud koondlehe loetelus.",
+      "sourceKeys": [
+        "benefits_overview"
+      ],
+      "targetGroup": "Asendushooldusteenusel viibiv laps",
+      "conditions": null,
+      "application": null,
+      "amount": null,
+      "decisionTime": null,
+      "officialUrl": "https://www.laanerannavald.ee/sotsiaaltoetused",
+      "relatedContacts": [
+        "laaneranna_vald_contact_saima_soobard"
+      ],
+      "relatedForms": [],
+      "unresolvedIssues": [
+        "Detaillehte, summat, taotlemise korda ja tingimusi ei leitud KOV veebikihist."
+      ],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": false,
+        "application": false,
+        "pricing_or_amount": false,
+        "contacts": true,
+        "forms": false
+      },
+      "item_type": "benefit",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefits_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_benefit_asendushooldusteenusel_viibiva_lapse_toetus",
+      "document_id": "laaneranna_vald_benefit_asendushooldusteenusel_viibiva_lapse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/sotsiaaltoetused",
+      "content_hash": "3905c5c83e25c6f7f00f2d9928efb64c811255f685ffd8aedc12f90173871819",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_benefit_jarelhooldusteenusel_viibiva_isiku_toetus",
+      "canonical_item_id": "laaneranna_vald:benefit:jarelhooldusteenusel_viibiva_isiku_toetus",
+      "itemType": "benefit",
+      "title": "Järelhooldusteenusel viibiva isiku toetus",
+      "status": "active",
+      "summary": "Järelhooldusteenusel viibiva isiku toetust makstakse isiklike kulude katteks igakuiselt. Järelhooldusteenusel viibivale kuni 25-aastasele inimesele, kes omandab teenusel viibimise ajal kesk-, kutse- või kõrghariduse, makstakse ka ühekordset toetust iga kooliastme lõpetamise puhul.",
+      "sourceKeys": [
+        "benefit_jarelhooldusteenusel_viibiva_isiku_toetus"
+      ],
+      "targetGroup": "Järelhooldusteenusel viibivad kuni 25-aastased isikud",
+      "conditions": null,
+      "application": null,
+      "amount": null,
+      "decisionTime": null,
+      "officialUrl": "https://www.laanerannavald.ee/jarelhooldusteenusel-viibiva-isiku-toetus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_saima_soobard"
+      ],
+      "relatedForms": [],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": false,
+        "application": false,
+        "pricing_or_amount": false,
+        "contacts": true,
+        "forms": false
+      },
+      "item_type": "benefit",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_jarelhooldusteenusel_viibiva_isiku_toetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_benefit_jarelhooldusteenusel_viibiva_isiku_toetus",
+      "document_id": "laaneranna_vald_benefit_jarelhooldusteenusel_viibiva_isiku_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/jarelhooldusteenusel-viibiva-isiku-toetus",
+      "content_hash": "869b82e39c3e778d65500a1d5383f6f430ea94c2277cacfeee053d62736ae071",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_benefit_hoolduspere_toetus",
+      "canonical_item_id": "laaneranna_vald:benefit:hoolduspere_toetus",
+      "itemType": "benefit",
+      "title": "Hoolduspere toetus",
+      "status": "active",
+      "summary": "Hoolduspere toetust makstakse hooldusperes viibiva lapse hooldamise ning ülalpidamis- ja isiklike kulude katteks hooldusperele, kellega Lääneranna Vallavalitsus on sõlminud hooldusperes või perekonnas hooldamise lepingu. Vajaduse korral võib sotsiaalosakond toetust suurendada vastavalt lapse tegelikele ülalpidamis- või erivajadusest tulenevatele kuludele.",
+      "sourceKeys": [
+        "benefit_hoolduspere_toetus"
+      ],
+      "targetGroup": "Lääneranna Vallavalitsusega lepingu sõlminud hoolduspered",
+      "conditions": "Toetuse saaja ei pea olema Lääneranna valla elanik, kui lapse rahvastikuregistri järgne elukoht on Lääneranna vald.",
+      "application": null,
+      "amount": null,
+      "decisionTime": null,
+      "officialUrl": "https://www.laanerannavald.ee/hoolduspere-toetus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_saima_soobard"
+      ],
+      "relatedForms": [],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": false,
+        "pricing_or_amount": false,
+        "contacts": true,
+        "forms": false
+      },
+      "item_type": "benefit",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_hoolduspere_toetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_benefit_hoolduspere_toetus",
+      "document_id": "laaneranna_vald_benefit_hoolduspere_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/hoolduspere-toetus",
+      "content_hash": "bb384b6810927f031d665a3e3634cd5c917ff84c61d2d195bfd45772fb463295",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_benefit_tsernoboli_aej_toetus",
+      "canonical_item_id": "laaneranna_vald:benefit:tsernoboli_aej_toetus",
+      "itemType": "benefit",
+      "title": "Tšernobõli AEJ avarii tagajärgede likvideerimisel osalenud isikute toetus",
+      "status": "active",
+      "summary": "Toetust makstakse isikutele, kes on osalenud Tšernobõli aatomielektrijaama avarii tagajärgede likvideerimisel. Toetuse suurus on 30 eurot kalendrikuus. Taotlus esitatakse toetuse esmakordsel taotlemisel.",
+      "sourceKeys": [
+        "benefit_tsernoboli_aej_toetus"
+      ],
+      "targetGroup": "Tšernobõli AEJ avarii tagajärgede likvideerimisel osalenud isikud",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "vorm"
+        ],
+        "steps": [
+          "Esita taotlus toetuse esmakordsel taotlemisel."
+        ],
+        "deadline": null
+      },
+      "amount": "30 eurot kuus",
+      "decisionTime": null,
+      "officialUrl": "https://www.laanerannavald.ee/tsernoboli-aej-toetus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_silva_nilb"
+      ],
+      "relatedForms": [
+        "laaneranna_vald_form_tsernoboli_toetuse_taotlus"
+      ],
+      "unresolvedIssues": [
+        "KOV lehel on nimetatud toetuse taotlemise vorm, kuid täpset faili- või e-vormi linki ei ole avaldatud."
+      ],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": false,
+        "application": true,
+        "pricing_or_amount": true,
+        "contacts": true,
+        "forms": true
+      },
+      "item_type": "benefit",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_tsernoboli_aej_toetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_benefit_tsernoboli_aej_toetus",
+      "document_id": "laaneranna_vald_benefit_tsernoboli_aej_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/tsernoboli-aej-toetus",
+      "content_hash": "2ed5cfe90ff29ab799c78eb4a91dd7a906cc8adf5a9b833f01914cd7f47d4c5f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_benefit_leinatoetuslaagris_osalemise_toetus",
+      "canonical_item_id": "laaneranna_vald:benefit:leinatoetuslaagris_osalemise_toetus",
+      "itemType": "benefit",
+      "title": "Leinatoetuslaagris osalemise toetus",
+      "status": "active",
+      "summary": "Leinatoetuslaagris osalemise toetust makstakse 7–18-aastastele inimestele, kes on kaotanud taotlusele eelneva 1,5 aasta jooksul lähedase pereliikme ning kelle osalemist leinatoetuslaagri programmis on programmi korraldaja kohtumise tulemusel hinnanud vajalikuks. Üldjuhul määratakse toetus leinatoetuslaagris osalemiseks üks kord kalendriaastas.",
+      "sourceKeys": [
+        "benefit_leinatoetuslaagris_osalemise_toetus"
+      ],
+      "targetGroup": "7–18-aastased lapsed ja noored, kes on kaotanud lähedase pereliikme",
+      "conditions": "Osalemine peab olema programmi korraldaja kohtumise tulemusel hinnatud vajalikuks.",
+      "application": {
+        "channels": [
+          "lastekaitsespetsialist"
+        ],
+        "steps": [
+          "Toetuse taotlemiseks pöördu lastekaitsespetsialisti poole."
+        ],
+        "deadline": null
+      },
+      "amount": null,
+      "decisionTime": null,
+      "officialUrl": "https://www.laanerannavald.ee/leinatoetuslaagris-osalemise-toetus",
+      "relatedContacts": [
+        "laaneranna_vald_contact_saima_soobard"
+      ],
+      "relatedForms": [],
+      "unresolvedIssues": [],
+      "sections_present": {
+        "summary": true,
+        "targetGroup": true,
+        "conditions": true,
+        "application": true,
+        "pricing_or_amount": false,
+        "contacts": true,
+        "forms": false
+      },
+      "item_type": "benefit",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_leinatoetuslaagris_osalemise_toetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_benefit_leinatoetuslaagris_osalemise_toetus",
+      "document_id": "laaneranna_vald_benefit_leinatoetuslaagris_osalemise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/leinatoetuslaagris-osalemise-toetus",
+      "content_hash": "09c900280d87872a8dcd5c31b7ace7d0fd1f60d91065bbd1254c65b8a85ef0e7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_resource_puudega_inimese_soiduki_parkimiskaart",
+      "canonical_item_id": "laaneranna_vald:resource:puudega_inimese_soiduki_parkimiskaart",
+      "itemType": "resource",
+      "title": "Puudega inimese sõiduki parkimiskaart",
+      "status": "active",
+      "summary": "Puudega inimese sõiduki parkimiskaarti saab taotleda inimene, kellel on liikumis- või nägemispuue või ajutine liikumisvõime kaotus. Parkimiskaart väljastatakse inimesele, mitte sõidukile, ja see antakse välja puuet tõendaval dokumendil märgitud puude raskusastme kehtivuse ajaks, kuid mitte kauemaks kui viieks aastaks. Vajalikud dokumendid on 3×4 cm foto, Sotsiaalkindlustusameti puude raskusastme otsus ning ajutise häire korral arstitõend.",
+      "sourceKeys": [
+        "service_parkimiskaart"
+      ],
+      "officialUrl": "https://www.laanerannavald.ee/puudega-inimese-soiduki-parkimiskaart",
+      "address": null,
+      "relatedContacts": [
+        "laaneranna_vald_contact_kelli_soon",
+        "laaneranna_vald_contact_koidu_rummel",
+        "laaneranna_vald_contact_gersti_roots",
+        "laaneranna_vald_contact_silva_nilb"
+      ],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_parkimiskaart"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_resource_puudega_inimese_soiduki_parkimiskaart",
+      "document_id": "laaneranna_vald_resource_puudega_inimese_soiduki_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/puudega-inimese-soiduki-parkimiskaart",
+      "content_hash": "4c39606968a9c1e3222f6ee2352afe7aac14bac28c87ac2de14c2b222f0e0714",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_resource_putk_sotsiaaltransport",
+      "canonical_item_id": "laaneranna_vald:resource:putk_sotsiaaltransport",
+      "itemType": "resource",
+      "title": "Pärnumaa Ühistranspordikeskus sotsiaaltranspordi korraldajana",
+      "status": "active",
+      "summary": "Lääneranna valla sotsiaaltranspordi korraldajana on KOV lehel nimetatud Pärnumaa Ühistranspordikeskus. Teenusele suunatud kasutaja tellib sõidu PÜTK telefonil tööpäeviti kell 08.00–15.00 ning erandjuhul väljaspool tööaega telefonil.",
+      "sourceKeys": [
+        "service_sotsiaaltransporditeenus"
+      ],
+      "officialUrl": "https://www.laanerannavald.ee/sotsiaaltransporditeenus",
+      "address": null,
+      "relatedContacts": [
+        "laaneranna_vald_contact_gersti_roots"
+      ],
+      "relatedTo": [
+        "laaneranna_vald_service_sotsiaaltransporditeenus"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_sotsiaaltransporditeenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_resource_putk_sotsiaaltransport",
+      "document_id": "laaneranna_vald_resource_putk_sotsiaaltransport",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/sotsiaaltransporditeenus",
+      "content_hash": "33814f79328024f4a7b1c18a893b01d62b1a96607c7daeeb0187a1e850816917",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_resource_mtu_pesapuu",
+      "canonical_item_id": "laaneranna_vald:resource:mtu_pesapuu",
+      "itemType": "resource",
+      "title": "MTÜ Pesapuu võlanõustamisteenuse osutajana",
+      "status": "active",
+      "summary": "Lääneranna valla võlanõustamisteenuse lehel on teenuse osutajana nimetatud MTÜ Pesapuu. Teenuse vajaja võib pöörduda nii valla sotsiaalosakonna kui ka teenuse osutaja poole.",
+      "sourceKeys": [
+        "service_volanoustamisteenus"
+      ],
+      "officialUrl": "https://www.laanerannavald.ee/volanoustamisteenus",
+      "address": null,
+      "relatedContacts": [
+        "laaneranna_vald_contact_kelli_soon"
+      ],
+      "relatedTo": [
+        "laaneranna_vald_service_volanoustamisteenus"
+      ],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "service_volanoustamisteenus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_resource_mtu_pesapuu",
+      "document_id": "laaneranna_vald_resource_mtu_pesapuu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/volanoustamisteenus",
+      "content_hash": "c7a5048712257c41f27f0dfe650ab12c04e4b37f6ccc1cdbdaa308da75a5248b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_resource_sa_laaneranna_hoolekanne",
+      "canonical_item_id": "laaneranna_vald:resource:sa_laaneranna_hoolekanne",
+      "itemType": "resource",
+      "title": "SA Lääneranna Hoolekanne",
+      "status": "active",
+      "summary": "SA Lääneranna Hoolekanne on tervishoiu- ja sotsiaalhoolekandeasutus, mille eesmärk on osutada tervishoiu-, eri- ja üldhooldusteenuseid, sotsiaalhoolekandeteenuseid ning kogukonnateenuseid. Asutus toetab ja säilitab inimeste toimetulekut ning elukvaliteeti. KOV lehel on avaldatud Koonga ja Varbla aadressid, juhatuse liikme nimi, ja viide veebilehele.",
+      "sourceKeys": [
+        "resource_hoolekandeasutused"
+      ],
+      "officialUrl": "https://www.laanerannavald.ee/hoolekandeasutused",
+      "address": "Männiaia, Koonga küla, 88401 Pärnu maakond; Hooldekodu, Allika küla, 88205 Pärnu maakond",
+      "relatedContacts": [],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "resource_hoolekandeasutused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_resource_sa_laaneranna_hoolekanne",
+      "document_id": "laaneranna_vald_resource_sa_laaneranna_hoolekanne",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/hoolekandeasutused",
+      "content_hash": "cecd581d014cc9da436dee0e2807e8e64866dcc6b5834ce3a8f003c2abdedb23",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_resource_ou_lihula_sudamekodu",
+      "canonical_item_id": "laaneranna_vald:resource:ou_lihula_sudamekodu",
+      "itemType": "resource",
+      "title": "OÜ Lihula Südamekodu",
+      "status": "active",
+      "summary": "OÜ Lihula Südamekodu on Lihulas tegutsev hoolekandeasutus. KOV lehel on avaldatud aadress, juhatuse liige ja viide asutuse veebilehele.",
+      "sourceKeys": [
+        "resource_hoolekandeasutused"
+      ],
+      "officialUrl": "https://www.laanerannavald.ee/hoolekandeasutused",
+      "address": "Tallinna mnt 37, Lihula linn, 90303 Pärnu maakond",
+      "relatedContacts": [],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "resource_hoolekandeasutused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_resource_ou_lihula_sudamekodu",
+      "document_id": "laaneranna_vald_resource_ou_lihula_sudamekodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/hoolekandeasutused",
+      "content_hash": "e6929375b47d41a43841ab55d4020ab5eb07cb5f9fdb042e2e927f883c7f4295",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_resource_lastekaitse",
+      "canonical_item_id": "laaneranna_vald:resource:lastekaitse",
+      "itemType": "resource",
+      "title": "Lastekaitse",
+      "status": "active",
+      "summary": "Lääneranna vallas tegeleb lastekaitse valdkonnaga lastekaitsespetsialist. Lastekaitsetöö eesmärk on lapse seaduses ette nähtud õiguste kaitse ning lapsevanemate või hooldajate toetamine lapse kasvukeskkonna mõjutamise kaudu. KOV ülesanded hõlmavad laste ja perede nõustamist, lapse abivajaduse hindamist, erivajadustega laste ja perede nõustamist ning vanemliku hoolitsuseta jäänud lapse hooldamise korraldamist.",
+      "sourceKeys": [
+        "resource_lastekaitse"
+      ],
+      "officialUrl": "https://www.laanerannavald.ee/lastekaitse",
+      "address": null,
+      "relatedContacts": [
+        "laaneranna_vald_contact_saima_soobard"
+      ],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "resource_lastekaitse"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_resource_lastekaitse",
+      "document_id": "laaneranna_vald_resource_lastekaitse",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/lastekaitse",
+      "content_hash": "862d19f82c8e305df9c1ee261f631170b533ed597d987f8feee9400539fa424e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_resource_abivajavast_lapsest_teatamine",
+      "canonical_item_id": "laaneranna_vald:resource:abivajavast_lapsest_teatamine",
+      "itemType": "resource",
+      "title": "Abivajavast lapsest teatamine ja Lasteabi",
+      "status": "active",
+      "summary": "KOV leht selgitab, et igal inimesel on kohustus teatada abivajavast või hädaohus olevast lapsest. Abivajavast lapsest tuleb viivitamata teatada kohalikule omavalitsusele, lastekaitsespetsialistile või lasteabitelefonil; hädaohu korral tuleb helistada.",
+      "sourceKeys": [
+        "resource_lastekaitse"
+      ],
+      "officialUrl": "https://www.laanerannavald.ee/lastekaitse",
+      "address": null,
+      "relatedContacts": [
+        "laaneranna_vald_contact_saima_soobard"
+      ],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "resource_lastekaitse"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_resource_abivajavast_lapsest_teatamine",
+      "document_id": "laaneranna_vald_resource_abivajavast_lapsest_teatamine",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/lastekaitse",
+      "content_hash": "db5dd31250064b28c48d248a18523fde467708222d9d2f2ee53acfd9bfbf828c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_resource_lastemaja",
+      "canonical_item_id": "laaneranna_vald:resource:lastemaja",
+      "itemType": "resource",
+      "title": "Lastemaja",
+      "status": "active",
+      "summary": "Lastemaja on lapsesõbralik erialade vaheline teenus seksuaalselt väärkoheldud, väärkohtlemise kahtlusega või kahjustava seksuaalkäitumisega laste abistamiseks. KOV leht selgitab, et teenuse alustamiseks võtab omavalitsuse lastekaitsetöötaja ühendust lastemaja spetsialistiga ning pöörduda võivad ka lapsevanem, laps, tavakodanik või spetsialist.",
+      "sourceKeys": [
+        "resource_lastekaitse"
+      ],
+      "officialUrl": "https://www.laanerannavald.ee/lastekaitse",
+      "address": null,
+      "relatedContacts": [
+        "laaneranna_vald_contact_saima_soobard"
+      ],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "resource_lastekaitse"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_resource_lastemaja",
+      "document_id": "laaneranna_vald_resource_lastemaja",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/lastekaitse",
+      "content_hash": "fa7aed47c63715b7beab94bdb0d1b7d49b8d3e79f005ac8c4e9a76f55c83547c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_resource_riiklik_perelepitus",
+      "canonical_item_id": "laaneranna_vald:resource:riiklik_perelepitus",
+      "itemType": "resource",
+      "title": "Riiklik perelepitusteenus",
+      "status": "active",
+      "summary": "Perelepitusteenus aitab lahku minevatel lapsevanematel jõuda lapse huvidest lähtuvate kokkulepeteni, sealhulgas lapse elukoha, suhtlemise, ülalpidamise ja igapäevaelu küsimustes. Lääneranna valla leht viitab riiklikule perelepitusteenusele ning märgib, et teenus on lapsevanematele tasuta.",
+      "sourceKeys": [
+        "resource_lastekaitse"
+      ],
+      "officialUrl": "https://www.laanerannavald.ee/lastekaitse",
+      "address": null,
+      "relatedContacts": [
+        "laaneranna_vald_contact_saima_soobard"
+      ],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "resource_lastekaitse"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_resource_riiklik_perelepitus",
+      "document_id": "laaneranna_vald_resource_riiklik_perelepitus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/lastekaitse",
+      "content_hash": "4435d19840e2c55e988825ed1b30c25f4863075120393340e836f950de30d8a9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_resource_ohvriabi",
+      "canonical_item_id": "laaneranna_vald:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "Ohvriabi toetab kuriteo, vägivalla või kriisijuhtumi ohvrite toimetulekut ja turvatunnet ning aitab ennetada vägivalla kordumist. KOV leht suunab palunabi.ee, Sotsiaalkindlustusameti ohvriabi ja kriisitelefoni juurde ning viitab tasuta e-kursustele.",
+      "sourceKeys": [
+        "resource_ohvriabi"
+      ],
+      "officialUrl": "https://www.laanerannavald.ee/ohvriabi",
+      "address": null,
+      "relatedContacts": [],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "resource_ohvriabi"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_resource_ohvriabi",
+      "document_id": "laaneranna_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/ohvriabi",
+      "content_hash": "0921004768d996154829c1d61228f98e519dd23d157675ce2f4935d22071e84c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_resource_kasulik_teave_abikanalid",
+      "canonical_item_id": "laaneranna_vald:resource:kasulik_teave_abikanalid",
+      "itemType": "resource",
+      "title": "Kasulik teave sotsiaalvaldkonna abikanalite kohta",
+      "status": "active",
+      "summary": "Lääneranna valla kasuliku teabe lehel on koondatud viited ametite, tugiorganisatsioonide ja infomaterjalide juurde. Leht viitab näiteks Sotsiaalkindlustusametile, Eesti Puuetega Inimeste Kojale, Töötukassale, Lasteabi infoportaalile ja nõuandetelefonile, omastehoolduse infopunktile, Eluliinile ning Läänemaa ja Pärnu naiste tugikeskustele.",
+      "sourceKeys": [
+        "resource_kasulik_teave"
+      ],
+      "officialUrl": "https://www.laanerannavald.ee/kasulik-teave",
+      "address": null,
+      "relatedContacts": [],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "resource_kasulik_teave"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_resource_kasulik_teave_abikanalid",
+      "document_id": "laaneranna_vald_resource_kasulik_teave_abikanalid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/kasulik-teave",
+      "content_hash": "aa092fac764fe092a11653f4c20736b8374228bfe4b83c1b54172fb35f629047",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_resource_noortegarantii_tugisusteem",
+      "canonical_item_id": "laaneranna_vald:resource:noortegarantii_tugisusteem",
+      "itemType": "resource",
+      "title": "Noortegarantii tugisüsteem",
+      "status": "active",
+      "summary": "Noortegarantii tugisüsteem toetab 16–29-aastaseid noori haridusteele naasmisel või tööturule jõudmisel. Tugisüsteem asub kohalikus omavalitsuses ning koosneb infosüsteemi lahendusest ja juhtumikorraldusest. Lääneranna valla juhtumikorraldajana on KOV lehel nimetatud Ene-Ly Juganson.",
+      "sourceKeys": [
+        "resource_noortegarantii"
+      ],
+      "officialUrl": "https://www.laanerannavald.ee/noortegarantii-tugisusteem",
+      "address": null,
+      "relatedContacts": [
+        "laaneranna_vald_contact_ene_ly_juganson"
+      ],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "resource_noortegarantii"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_resource_noortegarantii_tugisusteem",
+      "document_id": "laaneranna_vald_resource_noortegarantii_tugisusteem",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/noortegarantii-tugisusteem",
+      "content_hash": "e518fc6b60a0266e981eea0da900354a6f2c1deab94af21d31c3a0b412bd34bc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_resource_oigusnoustamine_lastega_peredele",
+      "canonical_item_id": "laaneranna_vald:resource:oigusnoustamine_lastega_peredele",
+      "itemType": "resource",
+      "title": "Õigusnõustamine lastega peredele",
+      "status": "active",
+      "summary": "Lääneranna valla õigusnõustamise leht suunab lastega pered tasuta juriidilise nõustamise võimalusele perekonnaõiguse küsimustes. Nõustamine toimub telefoni teel ja vajab eelnevat registreerumist. Lehel on ka info riigi poolt toetatud õigusnõustamise muutumise kohta 2026. aastal.",
+      "sourceKeys": [
+        "resource_oigusnoustamine"
+      ],
+      "officialUrl": "https://www.laanerannavald.ee/oigusnoustamine",
+      "address": null,
+      "relatedContacts": [],
+      "relatedTo": [],
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "resource_oigusnoustamine"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_resource_oigusnoustamine_lastega_peredele",
+      "document_id": "laaneranna_vald_resource_oigusnoustamine_lastega_peredele",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/oigusnoustamine",
+      "content_hash": "57131312055245c40f18587c29bab92a9e891f70b1c441dd7ccdf97824673eee",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_contact_saima_soobard",
+      "canonical_item_id": "laaneranna_vald:contact:saima_soobard",
+      "itemType": "contact",
+      "title": "Saima Soobard",
+      "status": "active",
+      "summary": "Saima Soobard on Lääneranna valla haridus- ja sotsiaalosakonna juhataja; lastekaitsespetsialist kontakt sotsiaal- ja tervishoiuvaldkonnas.",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "name": "Saima Soobard",
+      "role": "Haridus- ja sotsiaalosakonna juhataja; lastekaitsespetsialist",
+      "department": "Haridus- ja sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://www.laanerannavald.ee/ametnikud",
+      "relatedTo": [],
+      "additionalInfo": null,
+      "item_type": "contact",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_contact_saima_soobard",
+      "document_id": "laaneranna_vald_contact_saima_soobard",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/ametnikud",
+      "content_hash": "d2efbce5052aff86fc8496a66a3ec7dd602b6f274b3163987f9040f9179ca7ac",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_contact_evelin_vanaselja",
+      "canonical_item_id": "laaneranna_vald:contact:evelin_vanaselja",
+      "itemType": "contact",
+      "title": "Evelin Vanaselja",
+      "status": "active",
+      "summary": "Evelin Vanaselja on Lääneranna valla haridusspetsialist kontakt sotsiaal- ja tervishoiuvaldkonnas.",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "name": "Evelin Vanaselja",
+      "role": "Haridusspetsialist",
+      "department": "Haridus- ja sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://www.laanerannavald.ee/ametnikud",
+      "relatedTo": [],
+      "additionalInfo": null,
+      "item_type": "contact",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_contact_evelin_vanaselja",
+      "document_id": "laaneranna_vald_contact_evelin_vanaselja",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/ametnikud",
+      "content_hash": "04f063d668b9c7e08933fa693a7a7ad88230e01064dd36a0c37166e3e4e1bc62",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_contact_silva_nilb",
+      "canonical_item_id": "laaneranna_vald:contact:silva_nilb",
+      "itemType": "contact",
+      "title": "Silva Nilb",
+      "status": "active",
+      "summary": "Silva Nilb on Lääneranna valla sotsiaaltöö spetsialist (toetused) kontakt sotsiaal- ja tervishoiuvaldkonnas.",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "name": "Silva Nilb",
+      "role": "Sotsiaaltöö spetsialist (toetused)",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://www.laanerannavald.ee/ametnikud",
+      "relatedTo": [],
+      "additionalInfo": "Vastuvõtt: Koongas E 12–15; Varblas T 10–13; Hanilas T 14–16; Lihulas K,N 09–13 ja 13.30–16",
+      "item_type": "contact",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_contact_silva_nilb",
+      "document_id": "laaneranna_vald_contact_silva_nilb",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/ametnikud",
+      "content_hash": "b2f4027c3ca8df73450c80365060f91b83ea8dd1aff249a1a6d63e8c08cc5a27",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_contact_kelli_soon",
+      "canonical_item_id": "laaneranna_vald:contact:kelli_soon",
+      "itemType": "contact",
+      "title": "Kelli Soon",
+      "status": "active",
+      "summary": "Kelli Soon on Lääneranna valla sotsiaaltöö spetsialist kontakt sotsiaal- ja tervishoiuvaldkonnas.",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "name": "Kelli Soon",
+      "role": "Sotsiaaltöö spetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://www.laanerannavald.ee/ametnikud",
+      "relatedTo": [],
+      "additionalInfo": "Vastuvõtt: Koongas T 09–16; Hanilas N 09–16; Lihulas kokkuleppel",
+      "item_type": "contact",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_contact_kelli_soon",
+      "document_id": "laaneranna_vald_contact_kelli_soon",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/ametnikud",
+      "content_hash": "3356a257b018127f8f43f01be507357f6fe19a1019c373ac500b0d76c390f3ec",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_contact_koidu_rummel",
+      "canonical_item_id": "laaneranna_vald:contact:koidu_rummel",
+      "itemType": "contact",
+      "title": "Koidu Rummel",
+      "status": "active",
+      "summary": "Koidu Rummel on Lääneranna valla sotsiaaltöö spetsialist (lihula) kontakt sotsiaal- ja tervishoiuvaldkonnas.",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "name": "Koidu Rummel",
+      "role": "Sotsiaaltöö spetsialist (Lihula)",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://www.laanerannavald.ee/ametnikud",
+      "relatedTo": [],
+      "additionalInfo": "Vastuvõtt: E 14–16, T 09–13, muudel aegadel kokkuleppel",
+      "item_type": "contact",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_contact_koidu_rummel",
+      "document_id": "laaneranna_vald_contact_koidu_rummel",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/ametnikud",
+      "content_hash": "72ed77a1673db8a18d65df2261a675fa70c5b8d3a48d718f422de05f29b19877",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_contact_gersti_roots",
+      "canonical_item_id": "laaneranna_vald:contact:gersti_roots",
+      "itemType": "contact",
+      "title": "Gersti Roots",
+      "status": "active",
+      "summary": "Gersti Roots on Lääneranna valla sotsiaaltöö spetsialist kontakt sotsiaal- ja tervishoiuvaldkonnas.",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "name": "Gersti Roots",
+      "role": "Sotsiaaltöö spetsialist",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://www.laanerannavald.ee/ametnikud",
+      "relatedTo": [],
+      "additionalInfo": "Vastuvõtt: Varblas T ja N 09–13, 13.30–16, muudel aegadel kokkuleppel",
+      "item_type": "contact",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_contact_gersti_roots",
+      "document_id": "laaneranna_vald_contact_gersti_roots",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/ametnikud",
+      "content_hash": "9a6cc78bbde4a8e881acc1438e2722251c08f6d279d50ae9ac648d5afc7514cd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_contact_ene_ly_juganson",
+      "canonical_item_id": "laaneranna_vald:contact:ene_ly_juganson",
+      "itemType": "contact",
+      "title": "Ene-Ly Juganson",
+      "status": "active",
+      "summary": "Ene-Ly Juganson on Lääneranna valla ngts juhtumikorraldaja kontakt sotsiaal- ja tervishoiuvaldkonnas.",
+      "sourceKeys": [
+        "resource_noortegarantii",
+        "social_contacts"
+      ],
+      "name": "Ene-Ly Juganson",
+      "role": "NGTS juhtumikorraldaja",
+      "department": "Haridus- ja sotsiaalosakond",
+      "address": null,
+      "officialUrl": "https://www.laanerannavald.ee/ametnikud",
+      "relatedTo": [],
+      "additionalInfo": null,
+      "item_type": "contact",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "resource_noortegarantii",
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_contact_ene_ly_juganson",
+      "document_id": "laaneranna_vald_contact_ene_ly_juganson",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/ametnikud",
+      "content_hash": "c837f99afb41979af3261a3f78bdc829100b9922218c2cebd5efe1b1ec7bd29c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_contact_sotsiaalosakond",
+      "canonical_item_id": "laaneranna_vald:contact:sotsiaalosakond",
+      "itemType": "contact",
+      "title": "Lääneranna valla sotsiaalosakond",
+      "status": "active",
+      "summary": "Lääneranna valla sotsiaalosakond on Lääneranna valla sotsiaal- ja tervishoiuvaldkonna üldkontakt kontakt sotsiaal- ja tervishoiuvaldkonnas.",
+      "sourceKeys": [
+        "social_contacts"
+      ],
+      "name": "Lääneranna valla sotsiaalosakond",
+      "role": "Sotsiaal- ja tervishoiuvaldkonna üldkontakt",
+      "department": "Haridus- ja sotsiaalosakond",
+      "address": "Jaama tn 1, Lihula linn, 90302 Pärnu maakond",
+      "officialUrl": "https://www.laanerannavald.ee/ametnikud",
+      "relatedTo": [],
+      "additionalInfo": null,
+      "item_type": "contact",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_contacts"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_contact_sotsiaalosakond",
+      "document_id": "laaneranna_vald_contact_sotsiaalosakond",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/ametnikud",
+      "content_hash": "139bcad6b07b46af7145d340f7711dd703d02457bd2d76612aa8c6dd9c3cd368",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_form_toimetulekutoetuse_taotlus",
+      "canonical_item_id": "laaneranna_vald:form:toimetulekutoetuse_taotlus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse taotlus",
+      "status": "active",
+      "summary": "PDF-vorm toimetulekutoetuse taotlemiseks. Vormis esitatakse taotleja andmed, pereliikmete arv ja sissetulekud ning toetuse väljamaksmise soov.",
+      "sourceKeys": [
+        "form_toimetulekutoetuse_taotlus"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://www.laanerannavald.ee/documents/16319726//Toimetulekutoetuse_taotlus.pdf/1a395832-3b02-45f2-a44c-25bd6535f8a5",
+      "submissionChannels": [
+        "paberil",
+        "e-postiga allkirjastatult"
+      ],
+      "relatedTo": [
+        "laaneranna_vald_benefit_toimetulekutoetus"
+      ],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "form_toimetulekutoetuse_taotlus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_form_toimetulekutoetuse_taotlus",
+      "document_id": "laaneranna_vald_form_toimetulekutoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/documents/16319726//Toimetulekutoetuse_taotlus.pdf/1a395832-3b02-45f2-a44c-25bd6535f8a5",
+      "content_hash": "23415de562f45dd45e670d5a1835fc5b9515a4d752237f68567e9a091749eeb1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_form_sissetulekust_soltuv_sotsiaaltoetus",
+      "canonical_item_id": "laaneranna_vald:form:sissetulekust_soltuv_sotsiaaltoetus",
+      "itemType": "form",
+      "title": "Sissetulekust sõltuva sotsiaaltoetuse taotlus",
+      "status": "active",
+      "summary": "PDF-vorm sissetulekust sõltuvate sotsiaaltoetuste, näiteks lisatoetuse ning huvihariduse ja huvitegevuse toetuse taotlemiseks. Vormis kirjeldatakse toetuse vajadust, lisatakse kuludokumendid ja esitatakse leibkonna sissetulekud.",
+      "sourceKeys": [
+        "form_sissetulekust_soltuv_sotsiaaltoetus"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://www.laanerannavald.ee/documents/16319726//Sissetulekust_soltuva_sotsiaaltoetuse_taotlus.pdf/193a02f2-f175-4057-820b-5f018369f391",
+      "submissionChannels": [
+        "paberil",
+        "e-postiga allkirjastatult"
+      ],
+      "relatedTo": [
+        "laaneranna_vald_benefit_lisatoetus",
+        "laaneranna_vald_benefit_huvihariduse_ja_huvitegevuse_toetus"
+      ],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "form_sissetulekust_soltuv_sotsiaaltoetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_form_sissetulekust_soltuv_sotsiaaltoetus",
+      "document_id": "laaneranna_vald_form_sissetulekust_soltuv_sotsiaaltoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/documents/16319726//Sissetulekust_soltuva_sotsiaaltoetuse_taotlus.pdf/193a02f2-f175-4057-820b-5f018369f391",
+      "content_hash": "9531e9a932f98705169c88b6d4775f11fa6181d8d8a790ca6d596e1d116c2729",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_form_sotsiaalteenuse_avaldus",
+      "canonical_item_id": "laaneranna_vald:form:sotsiaalteenuse_avaldus",
+      "itemType": "form",
+      "title": "Sotsiaalteenuse avaldus",
+      "status": "active",
+      "summary": "PDF-vorm Lääneranna valla sotsiaalteenuste taotlemiseks. Vormis esitatakse teenuse kasutaja andmed, puude raskusaste ja sotsiaalteenuse vajaduse põhjendus.",
+      "sourceKeys": [
+        "form_sotsiaalteenuse_avaldus"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://www.laanerannavald.ee/documents/16319726//Sotsiaalteenuse_avaldus.pdf/faf99735-5f75-427d-8cc5-34b5fc02e33d",
+      "submissionChannels": [
+        "paberil",
+        "e-postiga allkirjastatult"
+      ],
+      "relatedTo": [
+        "laaneranna_vald_service_koduteenus",
+        "laaneranna_vald_service_tugiisikuteenus",
+        "laaneranna_vald_service_taisealise_isiku_hooldus",
+        "laaneranna_vald_service_isikliku_abistaja_teenus",
+        "laaneranna_vald_service_eluruumi_tagamine",
+        "laaneranna_vald_service_volanoustamisteenus",
+        "laaneranna_vald_service_lapsehoiuteenus",
+        "laaneranna_vald_service_pesemis_ja_pesupesemisteenus",
+        "laaneranna_vald_service_hairenuputeenus",
+        "laaneranna_vald_service_taiendavad_vajaduspohised_teenused"
+      ],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "form_sotsiaalteenuse_avaldus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_form_sotsiaalteenuse_avaldus",
+      "document_id": "laaneranna_vald_form_sotsiaalteenuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/documents/16319726//Sotsiaalteenuse_avaldus.pdf/faf99735-5f75-427d-8cc5-34b5fc02e33d",
+      "content_hash": "eedd6c1356ef6905f36cb99f9e30059c301b11d55a5f1cab8e42e54064c71297",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_form_uldhooldusteenuse_taotlus",
+      "canonical_item_id": "laaneranna_vald:form:uldhooldusteenuse_taotlus",
+      "itemType": "form",
+      "title": "Üldhooldusteenuse taotlus",
+      "status": "active",
+      "summary": "PDF-vorm väljaspool kodu osutatava üldhooldusteenuse taotlemiseks ja andmete töötlemise nõusoleku andmiseks. Vormis esitatakse teenuse kasutaja andmed, puude raskusaste ja teenuse vajaduse põhjendus.",
+      "sourceKeys": [
+        "form_uldhooldusteenuse_taotlus"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://www.laanerannavald.ee/documents/16319726//Uldhooldusteenuse_taotlus.pdf/81d72a78-baa4-4755-a73b-963f0e55cb6e",
+      "submissionChannels": [
+        "paberil",
+        "e-postiga allkirjastatult"
+      ],
+      "relatedTo": [
+        "laaneranna_vald_service_uldhooldusteenus"
+      ],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "form_uldhooldusteenuse_taotlus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_form_uldhooldusteenuse_taotlus",
+      "document_id": "laaneranna_vald_form_uldhooldusteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/documents/16319726//Uldhooldusteenuse_taotlus.pdf/81d72a78-baa4-4755-a73b-963f0e55cb6e",
+      "content_hash": "d8bd2dd19ca7c62b862ebca31a5443fbe977d9c79efc9aac7e7ba7c441558b90",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_form_sunnitoetuse_avaldus_spoku",
+      "canonical_item_id": "laaneranna_vald:form:sunnitoetuse_avaldus_spoku",
+      "itemType": "form",
+      "title": "Sünnitoetuse avaldus",
+      "status": "active",
+      "summary": "SPOKU e-taotlus sünnitoetuse taotlemiseks. KOV vormide leht viitab sünnitoetuse avaldusele Lääneranna valla iseteeninduses.",
+      "sourceKeys": [
+        "social_forms",
+        "spoku_laaneranna"
+      ],
+      "format": "web_form",
+      "officialUrl": "https://piksel.ee/spoku/laaneranna/index.php?module=207&op=0",
+      "submissionChannels": [
+        "SPOKU iseteenindus"
+      ],
+      "relatedTo": [
+        "laaneranna_vald_benefit_sunnitoetus"
+      ],
+      "relatedContacts": [],
+      "unresolvedIssues": [
+        "Vormipõhist otselinki ei õnnestunud avalikult eraldada; KOV leht suunab SPOKU iseteeninduse üldvaatesse."
+      ],
+      "item_type": "form",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_forms",
+        "spoku_laaneranna"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_form_sunnitoetuse_avaldus_spoku",
+      "document_id": "laaneranna_vald_form_sunnitoetuse_avaldus_spoku",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://piksel.ee/spoku/laaneranna/index.php?module=207&op=0",
+      "content_hash": "c0e978bbf5a208b47400a14c12daab234167385268d64eb33d15450e655973c3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_form_matusetoetuse_avaldus_spoku",
+      "canonical_item_id": "laaneranna_vald:form:matusetoetuse_avaldus_spoku",
+      "itemType": "form",
+      "title": "Matusetoetuse avaldus",
+      "status": "active",
+      "summary": "SPOKU e-taotlus matusetoetuse taotlemiseks. KOV vormide leht viitab matusetoetuse avaldusele Lääneranna valla iseteeninduses.",
+      "sourceKeys": [
+        "social_forms",
+        "spoku_laaneranna"
+      ],
+      "format": "web_form",
+      "officialUrl": "https://piksel.ee/spoku/laaneranna/index.php?module=207&op=0",
+      "submissionChannels": [
+        "SPOKU iseteenindus"
+      ],
+      "relatedTo": [
+        "laaneranna_vald_benefit_matusetoetus"
+      ],
+      "relatedContacts": [],
+      "unresolvedIssues": [
+        "Vormipõhist otselinki ei õnnestunud avalikult eraldada; KOV leht suunab SPOKU iseteeninduse üldvaatesse."
+      ],
+      "item_type": "form",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "social_forms",
+        "spoku_laaneranna"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_form_matusetoetuse_avaldus_spoku",
+      "document_id": "laaneranna_vald_form_matusetoetuse_avaldus_spoku",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://piksel.ee/spoku/laaneranna/index.php?module=207&op=0",
+      "content_hash": "7cb217be043c6376c8c9691221117d17992a04bbdac7f0b477170348ecdb14b2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_form_puudega_lapse_hooldaja_taotlus",
+      "canonical_item_id": "laaneranna_vald:form:puudega_lapse_hooldaja_taotlus",
+      "itemType": "form",
+      "title": "Puudega lapse hooldaja määramise ja puudega lapse hooldaja toetuse taotlus",
+      "status": "active",
+      "summary": "PDF-vorm puudega lapse hooldaja määramiseks ja puudega lapse hooldaja toetuse taotlemiseks. Vormis esitatakse hooldaja, taotleja ja hooldatava lapse andmed ning nõusolek hooldajaks olemiseks.",
+      "sourceKeys": [
+        "form_puudega_lapse_hooldaja_taotlus"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://www.laanerannavald.ee/documents/16319726//Puudega_lapse_hooldaja_maaramise_ja_toetuse_taotlus.pdf/483252b4-f9a4-4c51-b1d1-e082ac203143",
+      "submissionChannels": [
+        "paberil",
+        "e-postiga allkirjastatult"
+      ],
+      "relatedTo": [
+        "laaneranna_vald_benefit_puudega_lapse_hooldaja_toetus"
+      ],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "form_puudega_lapse_hooldaja_taotlus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_form_puudega_lapse_hooldaja_taotlus",
+      "document_id": "laaneranna_vald_form_puudega_lapse_hooldaja_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/documents/16319726//Puudega_lapse_hooldaja_maaramise_ja_toetuse_taotlus.pdf/483252b4-f9a4-4c51-b1d1-e082ac203143",
+      "content_hash": "74c74177da250953fe351701cd5993daca36d199580c2c926d1746510c6ea7a6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_form_taisealise_puudega_isiku_hooldaja_taotlus",
+      "canonical_item_id": "laaneranna_vald:form:taisealise_puudega_isiku_hooldaja_taotlus",
+      "itemType": "form",
+      "title": "Täisealise puudega isiku hooldaja määramise ja täisealise puudega isiku hooldaja toetuse taotlus",
+      "status": "active",
+      "summary": "PDF-vorm täisealise puudega isiku hooldaja määramiseks ja hooldajatoetuse taotlemiseks. Vormis esitatakse hooldatava ja hooldaja andmed ning hooldaja nõusolek.",
+      "sourceKeys": [
+        "form_taisealise_puudega_isiku_hooldaja_taotlus"
+      ],
+      "format": "pdf",
+      "officialUrl": "https://www.laanerannavald.ee/documents/16319726//Taisealise_puudega_isiku_hooldaja_maaramise_ja_toetuse_taotlus.pdf/eef0c86a-891c-4736-9f3b-460a3e2c63f8",
+      "submissionChannels": [
+        "paberil",
+        "e-postiga allkirjastatult"
+      ],
+      "relatedTo": [
+        "laaneranna_vald_benefit_taisealise_puudega_isiku_hooldaja_toetus"
+      ],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "form_taisealise_puudega_isiku_hooldaja_taotlus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_form_taisealise_puudega_isiku_hooldaja_taotlus",
+      "document_id": "laaneranna_vald_form_taisealise_puudega_isiku_hooldaja_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/documents/16319726//Taisealise_puudega_isiku_hooldaja_maaramise_ja_toetuse_taotlus.pdf/eef0c86a-891c-4736-9f3b-460a3e2c63f8",
+      "content_hash": "9b760881055ccf9d95e0ca5b48f917324f523b9d325cb725cc7b8140debeac4c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_form_ranitsatoetuse_avaldus_spoku",
+      "canonical_item_id": "laaneranna_vald:form:ranitsatoetuse_avaldus_spoku",
+      "itemType": "form",
+      "title": "Ranitsatoetuse avaldus",
+      "status": "active",
+      "summary": "SPOKU e-taotlus ranitsatoetuse taotlemiseks. Toetuse detailleht viitab ranitsatoetuse avalduse vormile Lääneranna valla iseteeninduses.",
+      "sourceKeys": [
+        "benefit_ranitsatoetus",
+        "spoku_laaneranna"
+      ],
+      "format": "web_form",
+      "officialUrl": "https://piksel.ee/spoku/laaneranna/index.php?module=207&op=0",
+      "submissionChannels": [
+        "SPOKU iseteenindus"
+      ],
+      "relatedTo": [
+        "laaneranna_vald_benefit_ranitsatoetus"
+      ],
+      "relatedContacts": [],
+      "unresolvedIssues": [
+        "Vormipõhist otselinki ei õnnestunud avalikult eraldada; detailleht suunab SPOKU iseteenindusse."
+      ],
+      "item_type": "form",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_ranitsatoetus",
+        "spoku_laaneranna"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_form_ranitsatoetuse_avaldus_spoku",
+      "document_id": "laaneranna_vald_form_ranitsatoetuse_avaldus_spoku",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://piksel.ee/spoku/laaneranna/index.php?module=207&op=0",
+      "content_hash": "f3de6be005535c756b606cf15b8bd4cfc2fbc396e9dcfc1ae3924e47839542f6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "laaneranna_vald_form_tsernoboli_toetuse_taotlus",
+      "canonical_item_id": "laaneranna_vald:form:tsernoboli_toetuse_taotlus",
+      "itemType": "form",
+      "title": "Tšernobõli AEJ toetuse taotlemise vorm",
+      "status": "active",
+      "summary": "Tšernobõli AEJ avarii tagajärgede likvideerimisel osalenud isikute toetuse leht nimetab toetuse taotlemise vormi, kuid avalikku faili- või e-vormi linki ei olnud detaillehel eraldi avatud.",
+      "sourceKeys": [
+        "benefit_tsernoboli_aej_toetus"
+      ],
+      "format": "not_published",
+      "officialUrl": "https://www.laanerannavald.ee/tsernoboli-aej-toetus",
+      "submissionChannels": [
+        "taotlus esmakordsel taotlemisel"
+      ],
+      "relatedTo": [
+        "laaneranna_vald_benefit_tsernoboli_aej_toetus"
+      ],
+      "relatedContacts": [],
+      "unresolvedIssues": [
+        "Täpne vormi URL puudub KOV detaillehel."
+      ],
+      "item_type": "form",
+      "municipality_id": "laaneranna_vald",
+      "municipality_name": "Lääneranna vald",
+      "county": "Pärnumaa",
+      "source_keys": [
+        "benefit_tsernoboli_aej_toetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "laaneranna_vald_form_tsernoboli_toetuse_taotlus",
+      "document_id": "laaneranna_vald_form_tsernoboli_toetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.laanerannavald.ee/tsernoboli-aej-toetus",
+      "content_hash": "cab484ac94a266abd9c5df145ff113713ac7a1f504cd18745456b434f6dc187b",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Lääneranna vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

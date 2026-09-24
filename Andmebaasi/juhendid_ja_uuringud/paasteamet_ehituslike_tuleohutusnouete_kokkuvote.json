@@ -1,0 +1,143 @@
+{
+  "source_path": "paasteamet_ehituslike_tuleohutusnouete_kokkuvote.pdf",
+  "source_format": "pdf",
+  "sha256": "231d778a92d010e41d6cdc9af935931e72dee8ccc12af9dc3e8d9726d408f2ab",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/paasteamet_ehituslike_tuleohutusnouete_kokkuvote.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "paasteamet_ehituslike_tuleohutusnouete_kokkuvote",
+          "title": "Ehituslike tuleohutusnõuete kokkuvõte",
+          "url": "https://www.rescue.ee/files/2020-09/est-rgb.pdf",
+          "normalized_url": "https://www.rescue.ee/files/2020-09/est-rgb.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "Päästeamet",
+          "organization_id": "paasteamet",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Päästeamet",
+            "tuleohutus",
+            "pääste",
+            "evakuatsioon",
+            "kriisivalmidus",
+            "uuring",
+            "raport",
+            "analüüs"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 407,
+            "order": 223
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Ehituslike tuleohutusnõuete kokkuvõte"
+          ],
+          "collection_hints": [
+            "research_reports"
+          ],
+          "source_types_seen": [
+            "research_report"
+          ],
+          "resource_types_seen": [
+            "research_evidence"
+          ],
+          "publishers_seen": [
+            "Päästeamet"
+          ],
+          "organizations_seen": [
+            "paasteamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+              "line": 407,
+              "order": 223
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.rescue.ee/files/2020-09/est-rgb.pdf"
+        },
+        "final_url": "https://www.rescue.ee/files/2020-09/est-rgb.pdf",
+        "redirects": [],
+        "sha256": "231d778a92d010e41d6cdc9af935931e72dee8ccc12af9dc3e8d9726d408f2ab",
+        "bytes": 6588568,
+        "downloaded_at": "2026-08-14T08:00:46.640Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "paasteamet_ehituslike_tuleohutusnouete_kokkuvote",
+      "metadata": {
+        "createdAt": "2026-06-12T03:46:21.004466+00:00",
+        "type": "FILE",
+        "fileName": "est-rgb.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:46:20.936306+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/07ecfb135212/est-rgb.pdf",
+        "title": "Ehituslike tuleohutusnõuete kokkuvõte",
+        "description": "Source master headings: Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2020,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–58",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "research_reports",
+        "source_id": "paasteamet_ehituslike_tuleohutusnouete_kokkuvote",
+        "document_id": "paasteamet_ehituslike_tuleohutusnouete_kokkuvote",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "2a2c2ad0eab29dad7996fb2f023b179acb12fb9a39aaf3b3a693962de6a02e87",
+        "url": "https://www.rescue.ee/files/2020-09/est-rgb.pdf",
+        "url_canonical": "https://www.rescue.ee/files/2020-09/est-rgb.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "paasteamet_ehituslike_tuleohutusnouete_kokkuvote",
+        "updatedAt": "2026-06-12T03:46:21.004489+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

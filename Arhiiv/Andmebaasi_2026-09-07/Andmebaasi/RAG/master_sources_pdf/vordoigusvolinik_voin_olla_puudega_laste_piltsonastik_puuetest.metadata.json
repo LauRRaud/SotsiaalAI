@@ -1,0 +1,84 @@
+{
+  "source": {
+    "source_id": "vordoigusvolinik_voin_olla_puudega_laste_piltsonastik_puuetest",
+    "title": "Võin olla puudega – laste piltsõnastik puuetest",
+    "url": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2026-01/piltsonastiku-veebiversioon2.pdf",
+    "normalized_url": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2026-01/piltsonastiku-veebiversioon2.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Võrdõigusvolinik",
+    "organization_id": "vordoigusvolinik",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Võrdõigusvolinik",
+      "puue",
+      "puudega inimene",
+      "erivajadus",
+      "lapsed ja pered",
+      "laps",
+      "võrdne kohtlemine",
+      "diskrimineerimine",
+      "võrdõiguslikkus",
+      "infomaterjal"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_066",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+    "source_context": {
+      "heading_2": "Võrdõigusvolinik",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 331,
+      "order": 188
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "Võin olla puudega – laste piltsõnastik puuetest"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Võrdõigusvolinik"
+    ],
+    "organizations_seen": [
+      "vordoigusvolinik"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Võrdõigusvolinik",
+        "line": 331,
+        "order": 188
+      },
+      {
+        "heading_2": "Võrdõigusvolinik",
+        "line": 805,
+        "order": 395
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2026-01/piltsonastiku-veebiversioon2.pdf"
+  },
+  "final_url": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2026-01/piltsonastiku-veebiversioon2.pdf",
+  "redirects": [],
+  "sha256": "e49ddfa8ea15bd8b6d4cd34e8854ea7d56e793da1de7e4354814646849a2155f",
+  "bytes": 3176547,
+  "downloaded_at": "2026-08-14T08:00:39.967Z"
+}

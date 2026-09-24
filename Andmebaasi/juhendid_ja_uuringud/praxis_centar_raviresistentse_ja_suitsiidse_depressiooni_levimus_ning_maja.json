@@ -1,0 +1,145 @@
+{
+  "source_path": "praxis_centar_raviresistentse_ja_suitsiidse_depressiooni_levimus_ning_maja.pdf",
+  "source_format": "pdf",
+  "sha256": "b254252e066678677ac8fe05d847c57b59f5d3aac7132ec22bdaae7b596e3d17",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/praxis_centar_raviresistentse_ja_suitsiidse_depressiooni_levimus_ning_maja.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "praxis_centar_raviresistentse_ja_suitsiidse_depressiooni_levimus_ning_maja",
+          "title": "Raviresistentse ja suitsiidse depressiooni levimus ning majanduslik mõju",
+          "url": "https://centar.ee/pdf/ee/2021_Raviresistentse_ja_suitsiidse_depressiooni_levimus_ja_majanduslik_moju.pdf",
+          "normalized_url": "https://centar.ee/pdf/ee/2021_Raviresistentse_ja_suitsiidse_depressiooni_levimus_ja_majanduslik_moju.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "Praxis / CentAR",
+          "organization_id": "praxis_centar",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Praxis",
+            "tervishoid",
+            "esmatasand",
+            "patsient",
+            "depressioon",
+            "suitsiidirisk",
+            "vaimne tervis",
+            "psüühiline heaolu",
+            "nõustamine",
+            "infomaterjal"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Praxis / CentAR / poliitikauuringud",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 453,
+            "order": 244
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Raviresistentse ja suitsiidse depressiooni levimus ning majanduslik mõju"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Praxis / CentAR"
+          ],
+          "organizations_seen": [
+            "praxis_centar"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Praxis / CentAR / poliitikauuringud",
+              "line": 453,
+              "order": 244
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://centar.ee/pdf/ee/2021_Raviresistentse_ja_suitsiidse_depressiooni_levimus_ja_majanduslik_moju.pdf"
+        },
+        "final_url": "https://centar.ee/pdf/ee/2021_Raviresistentse_ja_suitsiidse_depressiooni_levimus_ja_majanduslik_moju.pdf",
+        "redirects": [],
+        "sha256": "b254252e066678677ac8fe05d847c57b59f5d3aac7132ec22bdaae7b596e3d17",
+        "bytes": 7201839,
+        "downloaded_at": "2026-08-14T08:00:49.229Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "praxis_centar_raviresistentse_ja_suitsiidse_depressiooni_levimus_ning_maja",
+      "metadata": {
+        "createdAt": "2026-06-12T03:47:18.157744+00:00",
+        "type": "FILE",
+        "fileName": "2021_Raviresistentse_ja_suitsiidse_depressiooni_levimus_ja_majanduslik_moju.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:47:18.086627+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/2d51d55958bd/2021_Raviresistentse_ja_suitsiidse_depressiooni_levimus_ja_majanduslik_moju.pdf",
+        "title": "Raviresistentse ja suitsiidse depressiooni levimus ning majanduslik mõju",
+        "description": "Source master headings: Praxis / CentAR / poliitikauuringud",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": null,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–61",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "praxis_centar_raviresistentse_ja_suitsiidse_depressiooni_levimus_ning_maja",
+        "document_id": "praxis_centar_raviresistentse_ja_suitsiidse_depressiooni_levimus_ning_maja",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "96243a9fb908134687ef40ef41f9683b3e7b0f249f4754522f5080aa1c8a13ed",
+        "url": "https://centar.ee/pdf/ee/2021_Raviresistentse_ja_suitsiidse_depressiooni_levimus_ja_majanduslik_moju.pdf",
+        "url_canonical": "https://centar.ee/pdf/ee/2021_Raviresistentse_ja_suitsiidse_depressiooni_levimus_ja_majanduslik_moju.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "praxis_centar_raviresistentse_ja_suitsiidse_depressiooni_levimus_ning_maja",
+        "updatedAt": "2026-06-12T03:47:18.157770+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

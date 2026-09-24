@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-eri-2018",
+  "articleId": "mary-richmond-social-diagnosis-1917-2018",
+  "title": "Mary Richmond ja sada aastat teaduslikku sotsiaaltööd: „Social Diagnosis”, 1917",
+  "authors": [
+    "Marju Selg"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö (juubeli erinumber)",
+  "issueLabel": "Eri/2018",
+  "section": "Ajalugu",
+  "pageRange": "26-30",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab Mary Ellen Richmondi elu ja tööd ning tema teose „Social Diagnosis” kui üht esimest teaduslikku käsitlust sotsiaaltöö juhtumipõhisest hindamisest ja professionaalsest metoodikast.",
+  "tags": [
+    "Mary Richmond",
+    "Social Diagnosis",
+    "sotsiaaltöö ajalugu",
+    "juhtumipõhine töö",
+    "professionaalne metoodika",
+    "naised sotsiaaltöös"
+  ],
+  "source_type": "file",
+  "source_path": "ST_eri_2018_web_link_Part10.pdf",
+  "document_id": "sotsiaaltoo-eri-2018-mary-richmond-social-diagnosis-1917-2018",
+  "source_format": "pdf",
+  "source_sha256": "44bb0700ea54414c87e38e9e6ba50fe04058daffc235011ad0a77c6479ea2852",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2018-mary-richmond-social-diagnosis-1917-2018",
+    "previous_source_path": "ST_eri_2018_web_link_Part10.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "44bb0700ea54414c87e38e9e6ba50fe04058daffc235011ad0a77c6479ea2852",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

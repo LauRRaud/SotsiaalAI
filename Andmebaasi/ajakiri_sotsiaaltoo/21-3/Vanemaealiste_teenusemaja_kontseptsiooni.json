@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-3-2021",
+  "articleId": "vanemaealiste-teenusemaja-kontseptsiooni-luhitutvustus-2021-3",
+  "title": "Vanemaealiste teenusemaja kontseptsiooni lühitutvustus",
+  "authors": [
+    "Tarmo Kurves"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2021",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "16-18",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi hoolekandepoliitika juhi artikkel tutvustab vanemaealiste teenusmaja kontseptsiooni kui kogukonnapõhist lahendust eakate iseseisva toimetuleku pikendamiseks. Selgitatakse, miks üksi elavate eakate arvu kasv ja koduteenuste piiratuse tingimustes on vaja alternatiivi traditsioonilisele üldhooldekodule. Kirjeldatakse teenusmaja põhimõtteid: ligipääsetavad üheliikmelised või väikesed korterid, vajaduspõhine kõrvalabi, ühised ruumid ja teenused, mille kaudu saab eakas jääda kogukonda. Artikkel käsitleb ka rahvastikuprognoose, omavalitsuste vajadusi ning Euroopa Regionaalarengu Fondi toel kavandatavat toetusmeedet teenusmajade rajamiseks.",
+  "tags": [
+    "vanemaealised",
+    "teenusmaja",
+    "kogukonnapõhine hoolekanne",
+    "toetatud elamine",
+    "pikaajaline hooldus",
+    "kohalik omavalitsus",
+    "Euroopa Regionaalarengu Fond"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2021_web_link_Part6.pdf",
+  "document_id": "sotsiaaltoo-3-2021-vanemaealiste-teenusemaja-kontseptsiooni-luhitutvustus-2021-3",
+  "source_format": "pdf",
+  "source_sha256": "055f513432f98e458d9bb98418705176342bb44c0d8348a27066a2accdbb6bce",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2021-vanemaealiste-teenusemaja-kontseptsiooni-luhitutvustus-2021-3",
+    "previous_source_path": "Sotsiaaltoo_3_2021_web_link_Part6.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "055f513432f98e458d9bb98418705176342bb44c0d8348a27066a2accdbb6bce",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

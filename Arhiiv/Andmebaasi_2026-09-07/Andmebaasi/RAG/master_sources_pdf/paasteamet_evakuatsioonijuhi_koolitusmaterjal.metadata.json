@@ -1,0 +1,79 @@
+{
+  "source": {
+    "source_id": "paasteamet_evakuatsioonijuhi_koolitusmaterjal",
+    "title": "Evakuatsioonijuhi koolitusmaterjal",
+    "url": "https://www.rescue.ee/files/2019-03/1552567704_evakuatsioonijuhile.pdf",
+    "normalized_url": "https://www.rescue.ee/files/2019-03/1552567704_evakuatsioonijuhile.pdf",
+    "source_format": "pdf",
+    "source_type": "official_guideline",
+    "resource_type": "method_guidance",
+    "publisher": "Päästeamet",
+    "organization_id": "paasteamet",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Päästeamet",
+      "pääste",
+      "evakuatsioon",
+      "kriisivalmidus",
+      "lapsed ja pered",
+      "haridus",
+      "kool",
+      "õpilase toetamine",
+      "tugimeetmed",
+      "spetsialisti juhend"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "high",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 399,
+      "order": 219
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Evakuatsioonijuhi koolitusmaterjal"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "official_guideline"
+    ],
+    "resource_types_seen": [
+      "method_guidance"
+    ],
+    "publishers_seen": [
+      "Päästeamet"
+    ],
+    "organizations_seen": [
+      "paasteamet"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+        "line": 399,
+        "order": 219
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.rescue.ee/files/2019-03/1552567704_evakuatsioonijuhile.pdf"
+  },
+  "final_url": "https://www.rescue.ee/files/2019-03/1552567704_evakuatsioonijuhile.pdf",
+  "redirects": [],
+  "sha256": "8d0f5adb72adb133a5f28f4ed670514f940a60079d4883aef833d48f305e91ec",
+  "bytes": 1320340,
+  "downloaded_at": "2026-08-14T08:00:45.962Z"
+}

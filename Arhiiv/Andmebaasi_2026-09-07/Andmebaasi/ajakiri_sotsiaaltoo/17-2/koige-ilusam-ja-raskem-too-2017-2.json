@@ -1,0 +1,80 @@
+{
+  "docId": "sotsiaaltoo-2-2017",
+  "articleId": "koige-ilusam-ja-raskem-too-2017-2",
+  "title": "Kõige ilusam ja raskem töö",
+  "authors": [
+    "Elin Kütt"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2017",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "7-9",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaaltöö ja sotsiaalpoliitika magistri lugu sellest, kuidas ta erialale jõudis ja mida on klientidelt õppinud. Kirjeldab õpinguid Lääne-Viru Rakenduskõrgkoolis ja Tartu Ülikoolis ning viit aastat tööd AS Hoolekandeteenused Tartu Kaunase Kodus, sh kolme aastat vanemtegevusjuhendajana. Sama autor avaldas 2016. aastal ajakirjas uurimuse sotsiaaltöötajate tööalase toetuse kogemustest.",
+  "tags": [
+    "erialavalik",
+    "sotsiaaltööharidus",
+    "tegevusjuhendaja",
+    "erihoolekanne",
+    "praktika"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2-2017_veebi_link_Part4.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2017-koige-ilusam-ja-raskem-too-2017-2",
+  "source_sha256": "a446c0035482e61771aaaacbcb5c075eb87f2331a447132c245726eb2c1f2cb8",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2017-koige-ilusam-ja-raskem-too-2017-2",
+    "previous_source_path": "Sotsiaaltoo_2-2017_veebi_link_Part4.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2-2017_veebi_link_Part4.pdf",
+    "reference_stored_source_sha256": "05b6cbd4b564ca1d1577d560fbf520c8dc78a0fb86bf2bf7c3456d4c25308f52",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf",
+      "source_sha256": "609af110244e684ccbb68aea9504f2490fce2852b1e7caa7bedacb621d661a8a",
+      "pdf_start_page": 9,
+      "pdf_end_page": 11,
+      "printed_page_range": "7-9",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 11,
+      "source_regions": [
+        {
+          "source_pdf_page": 9,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 10,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 11,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "7-9"
+    },
+    "server_page_range": "7-9"
+  }
+}

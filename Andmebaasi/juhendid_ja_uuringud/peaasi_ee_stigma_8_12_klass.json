@@ -1,0 +1,140 @@
+{
+  "source_path": "peaasi_ee_stigma_8_12_klass.pdf",
+  "source_format": "pdf",
+  "sha256": "84211fd4fb8781435a840dd0371f8dfaad6ec82dc95c4ca7b759baf447cde1c3",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/peaasi_ee_stigma_8_12_klass.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "peaasi_ee_stigma_8_12_klass",
+          "title": "Stigma (8.–12. klass)",
+          "url": "https://peaasi.ee/wp-content/uploads/2018/11/Tunnikava-8-12kl-stigma.pdf",
+          "normalized_url": "https://peaasi.ee/wp-content/uploads/2018/11/Tunnikava-8-12kl-stigma.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "Peaasi.ee",
+          "organization_id": "peaasi_ee",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Peaasi.ee",
+            "vaimne tervis",
+            "psüühiline heaolu",
+            "nõustamine",
+            "infomaterjal"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Laste ja noorte vaimne tervis / kool / pere ristumiskoht",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 421,
+            "order": 229
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Stigma (8.–12. klass)"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Peaasi.ee"
+          ],
+          "organizations_seen": [
+            "peaasi_ee"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Laste ja noorte vaimne tervis / kool / pere ristumiskoht",
+              "line": 421,
+              "order": 229
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://peaasi.ee/wp-content/uploads/2018/11/Tunnikava-8-12kl-stigma.pdf"
+        },
+        "final_url": "https://peaasi.ee/wp-content/uploads/2018/11/Tunnikava-8-12kl-stigma.pdf",
+        "redirects": [],
+        "sha256": "84211fd4fb8781435a840dd0371f8dfaad6ec82dc95c4ca7b759baf447cde1c3",
+        "bytes": 531279,
+        "downloaded_at": "2026-08-14T08:00:47.190Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "peaasi_ee_stigma_8_12_klass",
+      "metadata": {
+        "createdAt": "2026-06-12T03:46:28.047474+00:00",
+        "type": "FILE",
+        "fileName": "Tunnikava-8-12kl-stigma.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:46:27.971581+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/7b208e69ed25/Tunnikava-8-12kl-stigma.pdf",
+        "title": "Stigma (8.–12. klass)",
+        "description": "Source master headings: Laste ja noorte vaimne tervis / kool / pere ristumiskoht",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2018,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–7",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "peaasi_ee_stigma_8_12_klass",
+        "document_id": "peaasi_ee_stigma_8_12_klass",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "c05069232dc35726263bf782bb5604b0523ca1ff91f4a6538bba4135db1b13d6",
+        "url": "https://peaasi.ee/wp-content/uploads/2018/11/Tunnikava-8-12kl-stigma.pdf",
+        "url_canonical": "https://peaasi.ee/wp-content/uploads/2018/11/Tunnikava-8-12kl-stigma.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "peaasi_ee_stigma_8_12_klass",
+        "updatedAt": "2026-06-12T03:46:28.047500+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

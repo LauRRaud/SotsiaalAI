@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "marelle-erlenheim-mulle-meeldib-kui-saan-kasulik-olla-2025-1",
+  "title": "Marelle Erlenheim: mulle meeldib, kui saan kasulik olla",
+  "authors": [
+    "Kairiin Nuudi"
+  ],
+  "section": "Persoon",
+  "pdf_start_page": 1,
+  "pdf_end_page": 12,
+  "description": "Persoonilugu omavalitsuse sotsiaaltöötajate eestkõneleja Marelle Erlenheimiga. Intervjuus räägib ta oma mitmekülgsest karjäärist riigikaitses, ministeeriumis ja kohalikus omavalitsuses ning sellest, kuidas erinevad kogemused on kujundanud tema arusaama sotsiaaltööst. Fookuses on sotsiaaltöötajate heaolu, vastutuse ja solidaarsuse tasakaal, riigi ja KOVi rollide ja ootuste põrkumine, bürokraatia mõju töötajate koormusele ning vajadus usalduse, professionaalsuse ja selgete valikute järele. Marelle rõhutab, et sotsiaalsüsteem peab olema jätkusuutlik nii rahalises kui ka inimressursi mõttes ning et sotsiaaltöötaja vajab tuge, tänapäevaseid töövahendeid ja arenguvõimalusi.",
+  "tags": [
+    "persoon",
+    "sotsiaaltöötajate heaolu",
+    "kohalik omavalitsus",
+    "sotsiaalpoliitika",
+    "solidaarsus",
+    "bürokraatia",
+    "töökoormus"
+  ],
+  "source_path": "Marelle Erlenheim_mulle meeldib, kui saan kasulik olla_1_2025.pdf",
+  "pageRange": "1–12",
+  "document_id": "sotsiaaltoo-1-2025-marelle-erlenheim-mulle-meeldib-kui-saan-kasulik-olla-2025-1",
+  "source_format": "pdf",
+  "source_sha256": "4680904a1b3007b7828f0ce64fd139ac102e1c5698be4eb135acbfea48e4efd0",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2025-marelle-erlenheim-mulle-meeldib-kui-saan-kasulik-olla-2025-1",
+    "previous_source_path": "Marelle Erlenheim_mulle meeldib, kui saan kasulik olla_1_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "4680904a1b3007b7828f0ce64fd139ac102e1c5698be4eb135acbfea48e4efd0",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

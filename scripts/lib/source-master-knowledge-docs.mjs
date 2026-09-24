@@ -7,7 +7,7 @@ import {
   validateKnowledgeMetadata
 } from "./knowledge-docs.mjs";
 
-export const DEFAULT_SOURCE_MASTER_PATH = "Andmebaasi/Admebaasi-materjali-lisa/master_sources_final.json";
+export const DEFAULT_SOURCE_MASTER_PATH = "Andmebaasi/register/master_sources_final.json";
 
 const COLLECTION_HINT_TO_COLLECTION_ID = new Map([
   ["national_guidelines", "national_guidelines"],

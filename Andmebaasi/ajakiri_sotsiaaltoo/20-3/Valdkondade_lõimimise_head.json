@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2020",
+  "articleId": "valdkondade-loimimise-head-kogemused-elva-vallas-2020-3",
+  "title": "Valdkondade lõimimise head kogemused Elva vallas",
+  "authors": [
+    "Marika Saar"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2020",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "28-31",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Elva valla näitel kirjeldatakse, kuidas haridus-, sotsiaal-, tervise- ja noorsootöö valdkonda omavahel lõimides toetatakse laste ja perede heaolu, vaimset tervist, tervisedendust ning eakate ja puudega inimeste aktiivset osalemist kogukonnas. Artikkel toob esile koostöövormid, võrgustikud ja ennetustegevused, mis aitavad paremini märgata abivajajaid ning pakkuda neile sidusat tuge.",
+  "tags": [
+    "Elva vald",
+    "valdkondade lõimimine",
+    "laste ja perede toetus",
+    "vaimne tervis",
+    "tugiteenused",
+    "tervisedendus",
+    "eakad",
+    "kohalik omavalitsus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2020_web_link_Part7.pdf",
+  "document_id": "sotsiaaltoo-3-2020-valdkondade-loimimise-head-kogemused-elva-vallas-2020-3",
+  "source_format": "pdf",
+  "source_sha256": "374e2e5db4736dc98d183ac3a3e875b3f79c70ed3bbea8e6ac8d0918ba373902",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2020-valdkondade-loimimise-head-kogemused-elva-vallas-2020-3",
+    "previous_source_path": "Sotsiaaltoo_3_2020_web_link_Part7.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "374e2e5db4736dc98d183ac3a3e875b3f79c70ed3bbea8e6ac8d0918ba373902",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

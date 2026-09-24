@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2021",
+  "articleId": "uusi-teadmisi-volanoustamise-koolituselt-2021-1",
+  "title": "Uusi teadmisi võlanõustamise koolituselt",
+  "authors": [
+    "Anne Rähn"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2021",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "38-42",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel annab ülevaate võlanõustamise täienduskoolitusest kohalike omavalitsuste sotsiaaltöötajatele. Selgitatakse, milline on võlanõustamise kui sotsiaalteenuse eesmärk ja sisu, milliseid teadmisi vajab võlanõustaja (nt finantskirjaoskus, täitemenetlus, maksekäsu kiirmenetlus, eraisiku pankrot) ning kuidas sotsiaaltöötajad saavad märgata klientide võlaprobleeme ja suunata neid võlanõustamisele. Rõhutatakse ennetustöö olulisust ning koostööd sotsiaaltöötajate ja kutseliste võlanõustajate vahel.",
+  "tags": [
+    "võlanõustamine",
+    "sotsiaalteenused",
+    "võlaprobleemid",
+    "täitemenetlus",
+    "finantskirjaoskus",
+    "koolitus",
+    "ennetustöö"
+  ],
+  "source_type": "file",
+  "source_path": "artikkel_7_volanoustamise_koolitus.pdf",
+  "document_id": "sotsiaaltoo-1-2021-uusi-teadmisi-volanoustamise-koolituselt-2021-1",
+  "source_format": "pdf",
+  "source_sha256": "037211068efa70213d592f9f883bb7f5445db686c42e4fdc988fc9d4fbce1ada",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2021-uusi-teadmisi-volanoustamise-koolituselt-2021-1",
+    "previous_source_path": "artikkel_7_volanoustamise_koolitus.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "037211068efa70213d592f9f883bb7f5445db686c42e4fdc988fc9d4fbce1ada",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

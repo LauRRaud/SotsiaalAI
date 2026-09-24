@@ -1,0 +1,92 @@
+{
+  "docId": "sotsiaaltoo-1-2016",
+  "articleId": "sotsiaaltoo-1-2016-artikkel-16-katarina-seeherr",
+  "title": "Katarina Seeherr",
+  "authors": [
+    "Rain Uusen"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2016",
+  "section": "Persoon",
+  "pageRange": "48-51",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu Pahkla Camphilli Küla kultuurielu juhist ja Tamme maja perenaisest Katarina Seeherrist, kes on külas elanud 24 aastat. Ta kirjeldab 1939. aastal Šotimaal Karl Königi juhtimisel alguse saanud Camphilli liikumist ja küla igapäeva: ühistööd looma-, metsa- ja aiatöödel, õhtusi tegevusi vabatahtlikega ning külakoosolekut, kus otsused protokollitakse. Seeherr peab erihoolekande suunda õigeks, kuid küsib, kas küla on peresarnane elukeskkond või institutsioon, ja hoiatab läbimõtlemata deinstitutsionaliseerimise eest. Kolm küla elanikku on alustanud iseseisvat elu, kuid toetuse vajadus ei lõpe kunagi.",
+  "tags": [
+    "persoonilugu",
+    "pahkla camphilli küla",
+    "erihoolekanne",
+    "deinstitutsionaliseerimine",
+    "intellektipuue",
+    "kogukond"
+  ],
+  "source_type": "file",
+  "source_path": "2016_1_artikkel_16_katarina_seeherr.pdf",
+  "added": "2026-08-17",
+  "fulltext_note": "Tekst eraldatud uuesti PDF-ist 17.08.2026 (esialgne lõikamine kaotas pealkirja ja juhtlõigu).",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-16-katarina-seeherr",
+  "source_sha256": "c586cb7509875be8f054ff9fed06f244a366c82ed109a1381f9a323fe45d8ee4",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-16-katarina-seeherr",
+    "previous_source_path": "2016_1_artikkel_16_katarina_seeherr.txt",
+    "previous_source_original_path": "1-2016.pdf",
+    "reference_stored_source_sha256": "28faa3a9be3fd3ad5175cff710789b06277110fd70d4e9e16ffb6216a8eefe52",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf",
+      "source_sha256": "2c193295e54f58982562b509b6283e93aa58b1695464671e1768e24e90888a6c",
+      "pdf_start_page": 50,
+      "pdf_end_page": 53,
+      "printed_page_range": "48-52",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 54,
+      "source_regions": [
+        {
+          "source_pdf_page": 50,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 51,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 52,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 53,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "48-51",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf"
+    },
+    "server_page_range": "48-52"
+  }
+}

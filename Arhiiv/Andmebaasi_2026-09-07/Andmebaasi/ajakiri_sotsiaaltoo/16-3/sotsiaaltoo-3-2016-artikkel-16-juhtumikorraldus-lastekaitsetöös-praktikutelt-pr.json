@@ -1,0 +1,99 @@
+{
+  "docId": "sotsiaaltoo-3-2016",
+  "articleId": "sotsiaaltoo-3-2016-artikkel-16-juhtumikorraldus-lastekaitsetöös-praktikutelt-pr",
+  "title": "Juhtumikorraldus lastekaitsetöös: praktikutelt praktikutele",
+  "authors": [
+    "Anne Sundja"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2016",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "55-59",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sundja selgitab aasta algul jõustunud lastekaitseseaduse rakendamist: esmase info saamisest on juhtumikorralduse algatamise otsuseni aega kümme päeva ja ka suuline otsustus on otsus. Ta rõhutab info dokumenteerimist, kliendi kirjalikku nõusolekut, lapse arvamuse väljaselgitamist ja lihtmenetluse kohest algatamist STARis. Kahtluse korral tuleks juhtum pigem algatada. Autor kirjeldab Sotsiaalkindlustusameti lastekaitseüksuse kogemust omavalitsustes, kus STARi kasutatakse väga erinevalt, ning märgib, et sotsiaalministeerium plaanib korraldada praktilisi koolitusi lastekaitsejuhtumite kajastamiseks STARis.",
+  "tags": [
+    "lastekaitse",
+    "juhtumikorraldus",
+    "lastekaitseseadus",
+    "star",
+    "abivajaduse hindamine",
+    "võrgustikutöö"
+  ],
+  "source_type": "file",
+  "source_path": "2016_3_artikkel_16_juhtumikorraldus_lastekaitsetoos_praktikutelt_prakti.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2016-sotsiaaltoo-3-2016-artikkel-16-juhtumikorraldus-lastekaitset-s-praktikutelt-pr",
+  "source_sha256": "7780a40c4c9aa874dbcee41361e067cd03af45cee0e1fa5200fb41f84db23e74",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2016-sotsiaaltoo-3-2016-artikkel-16-juhtumikorraldus-lastekaitset-s-praktikutelt-pr",
+    "previous_source_path": "2016_3_artikkel_16_juhtumikorraldus_lastekaitsetoos_praktikutelt_prakti.txt",
+    "previous_source_original_path": "3-2016.pdf",
+    "reference_stored_source_sha256": "1c329963625476aa4e0910cbc3cdb73c931c7638a49450954e145db3a63618ec",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\3-2016.pdf",
+      "source_sha256": "7a9be30ca3f1a959b3d48a3f12065bc9c37d0f618f6cbb71e681f6e83199aacc",
+      "pdf_start_page": 57,
+      "pdf_end_page": 61,
+      "printed_page_range": "55-60",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 62,
+      "source_regions": [
+        {
+          "source_pdf_page": 57,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 58,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 59,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 60,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 61,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "55-59"
+    },
+    "server_page_range": "55-60"
+  }
+}

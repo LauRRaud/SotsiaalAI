@@ -1,0 +1,142 @@
+{
+  "source_path": "harno_oppekeelest_erineva_emakeelega_opilane_koolis.pdf",
+  "source_format": "pdf",
+  "sha256": "215bd2c8faf12815e8f6ecb79b80963583d9caa06c89648f7a93373901448c92",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/harno_oppekeelest_erineva_emakeelega_opilane_koolis.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "harno_oppekeelest_erineva_emakeelega_opilane_koolis",
+          "title": "Õppekeelest erineva emakeelega õpilane koolis",
+          "url": "https://harno.ee/sites/default/files/documents/2022-09/252_Soll_2011_Oppekeelest_erineva_emakeelega_opilane_koolis.pdf",
+          "normalized_url": "https://harno.ee/sites/default/files/documents/2022-09/252_Soll_2011_Oppekeelest_erineva_emakeelega_opilane_koolis.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "HARNO",
+          "organization_id": "harno",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Haridus- ja Noorteamet",
+            "lapsed ja pered",
+            "haridus",
+            "kool",
+            "õpilase toetamine",
+            "tugimeetmed",
+            "infomaterjal"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "HARNO / HEV / kooli tugimeetmed",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 387,
+            "order": 214
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Õppekeelest erineva emakeelega õpilane koolis"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "HARNO"
+          ],
+          "organizations_seen": [
+            "harno"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "HARNO / HEV / kooli tugimeetmed",
+              "line": 387,
+              "order": 214
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://harno.ee/sites/default/files/documents/2022-09/252_Soll_2011_Oppekeelest_erineva_emakeelega_opilane_koolis.pdf"
+        },
+        "final_url": "https://harno.ee/sites/default/files/documents/2022-09/252_Soll_2011_Oppekeelest_erineva_emakeelega_opilane_koolis.pdf",
+        "redirects": [],
+        "sha256": "215bd2c8faf12815e8f6ecb79b80963583d9caa06c89648f7a93373901448c92",
+        "bytes": 1108485,
+        "downloaded_at": "2026-08-14T08:00:45.363Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "harno_oppekeelest_erineva_emakeelega_opilane_koolis",
+      "metadata": {
+        "createdAt": "2026-06-12T03:46:13.631373+00:00",
+        "type": "FILE",
+        "fileName": "252_Soll_2011_Oppekeelest_erineva_emakeelega_opilane_koolis.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:46:13.561223+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/802c57cac925/252_Soll_2011_Oppekeelest_erineva_emakeelega_opilane_koolis.pdf",
+        "title": "Õppekeelest erineva emakeelega õpilane koolis",
+        "description": "Source master headings: HARNO / HEV / kooli tugimeetmed",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2022,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–107",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "harno_oppekeelest_erineva_emakeelega_opilane_koolis",
+        "document_id": "harno_oppekeelest_erineva_emakeelega_opilane_koolis",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "ffd2bf2ae961aab71666fbb8b0fd455692b8476874b8973ace99d0fb0abc5d46",
+        "url": "https://harno.ee/sites/default/files/documents/2022-09/252_Soll_2011_Oppekeelest_erineva_emakeelega_opilane_koolis.pdf",
+        "url_canonical": "https://harno.ee/sites/default/files/documents/2022-09/252_Soll_2011_Oppekeelest_erineva_emakeelega_opilane_koolis.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "harno_oppekeelest_erineva_emakeelega_opilane_koolis",
+        "updatedAt": "2026-06-12T03:46:13.631396+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

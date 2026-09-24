@@ -1,0 +1,127 @@
+{
+  "docId": "sotsiaaltoo-erinumber-2016",
+  "articleId": "sotsiaaltoo-erinumber-2016-artikkel-11-toetuste-ja-huvitiste-moju-majanduslikule-toimetulekule",
+  "title": "Toetuste ja hüvitiste mõju majanduslikule toimetulekule",
+  "authors": [
+    "Kristiina Kamenik",
+    "Hede Sinisaar"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "erinumber 2016",
+  "section": "Majanduslik toimetulek",
+  "pageRange": "35-42",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi analüütikud mõõdavad toetuste ja hüvitiste mõju majanduslikule toimetulekule absoluutse ja suhtelise vaesuse näitajate kaudu ning seovad selle heaolu arengukava teise alaeesmärgiga. Numbriliselt tihedaim artikkel numbris.",
+  "tags": [
+    "vaesus",
+    "toetused",
+    "hüvitised",
+    "majanduslik toimetulek",
+    "statistika"
+  ],
+  "source_type": "file",
+  "source_path": "2016_eri_artikkel_11_toetuste_ja_huvitiste_moju_majanduslikule_toimetulek.pdf",
+  "added": "2026-08-18",
+  "fulltext_note": "Erinumber „Sotsiaaltöö ; erinumber 2016\" (DIGAR nlib-digar:390083), pühendatud heaolu arengukavale 2016–2023. Lisatud korpusesse 18.08.2026.",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-11-toetuste-ja-huvitiste-moju-majanduslikule-toimetulekule",
+  "source_sha256": "670f17308b76a787fafe6d7878cdfe00b99283a110dc25e3355db559012c43f6",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-11-toetuste-ja-huvitiste-moju-majanduslikule-toimetulekule",
+    "previous_source_path": "2016_eri_artikkel_11_toetuste_ja_huvitiste_moju_majanduslikule_toimetulek.txt",
+    "previous_source_original_path": "2016_erinumber.pdf",
+    "reference_stored_source_sha256": "0d3aa9251b185c4067c5559a95ee066c35a6e055535607eea590011ed2841cbf",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2016_erinumber.pdf",
+      "source_sha256": "ae3bbf0a621beae80ae1e05a13206ffa00c6811806397ee8ac925f3762d93c70",
+      "pdf_start_page": 37,
+      "pdf_end_page": 44,
+      "printed_page_range": "35-42",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 44,
+      "source_regions": [
+        {
+          "source_pdf_page": 37,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 38,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 39,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 40,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 41,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 42,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 43,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 44,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "35-42"
+    },
+    "server_page_range": "35-42"
+  }
+}

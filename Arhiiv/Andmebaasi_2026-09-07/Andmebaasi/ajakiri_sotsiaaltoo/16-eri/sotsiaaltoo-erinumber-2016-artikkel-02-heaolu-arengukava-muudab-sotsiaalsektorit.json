@@ -1,0 +1,117 @@
+{
+  "docId": "sotsiaaltoo-erinumber-2016",
+  "articleId": "sotsiaaltoo-erinumber-2016-artikkel-02-heaolu-arengukava-muudab-sotsiaalsektorit",
+  "title": "Heaolu arengukava muudab sotsiaalsektorit",
+  "authors": [
+    "Rait Kuuse"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "erinumber 2016",
+  "section": "Heaolu arengukava",
+  "pageRange": "3-9",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalala asekantsler tutvustab heaolu arengukava 2016–2023 ülesehitust ja väidab, et kava muudab sotsiaalsektori juhtimisloogikat: väiksemad kontseptsioonid on asendunud tervikuga ja eesmärgid on seotud eelarvega. Nimetab kava kaheksa-aastaseks maksumuseks 18,1 miljardit eurot ning kirjeldab nelja alaeesmärki ja nende mõõdikuid.",
+  "tags": [
+    "heaolu arengukava",
+    "sotsiaalpoliitika",
+    "strateegia",
+    "rahastamine",
+    "mõõdikud"
+  ],
+  "source_type": "file",
+  "source_path": "2016_eri_artikkel_02_heaolu_arengukava_muudab_sotsiaalsektorit.pdf",
+  "added": "2026-08-18",
+  "fulltext_note": "Erinumber „Sotsiaaltöö ; erinumber 2016\" (DIGAR nlib-digar:390083), pühendatud heaolu arengukavale 2016–2023. Lisatud korpusesse 18.08.2026.",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-02-heaolu-arengukava-muudab-sotsiaalsektorit",
+  "source_sha256": "4e5bb1ab02f487dfb223a9a0cb8eed44318329a63102611628197a554ffd4cd4",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-02-heaolu-arengukava-muudab-sotsiaalsektorit",
+    "previous_source_path": "2016_eri_artikkel_02_heaolu_arengukava_muudab_sotsiaalsektorit.txt",
+    "previous_source_original_path": "2016_erinumber.pdf",
+    "reference_stored_source_sha256": "3eb314027b0a4bdc76992af25910516779ddbe0516a2465c7ac087b84a9da88c",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2016_erinumber.pdf",
+      "source_sha256": "ae3bbf0a621beae80ae1e05a13206ffa00c6811806397ee8ac925f3762d93c70",
+      "pdf_start_page": 5,
+      "pdf_end_page": 11,
+      "printed_page_range": "3-9",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 11,
+      "source_regions": [
+        {
+          "source_pdf_page": 5,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 6,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 7,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 8,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 9,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 10,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 11,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "3-9"
+    },
+    "server_page_range": "3-9"
+  }
+}

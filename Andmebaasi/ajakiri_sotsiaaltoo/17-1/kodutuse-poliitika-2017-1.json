@@ -1,0 +1,210 @@
+{
+  "docId": "sotsiaaltoo-1-2017",
+  "articleId": "kodutuse-poliitika-2017-1",
+  "title": "Trepist üles või alla. Eesti vajab tulemuslikumat kodutuse poliitikat",
+  "authors": [
+    "Jüri Kõre",
+    "Ivo Käsk",
+    "Eleanoora Tint"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2017",
+  "section": "Eelretsenseeritud artikkel",
+  "pageRange": "39-55",
+  "pdf_start_page": 1,
+  "pdf_end_page": 17,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Jüri Kõre, Ivo Käsk ja Eleanoora Tint väidavad eelretsenseeritud artiklis, et Eestil puudub kodutuse vähendamise strateegia ja et levinud astmelise rehabilitatsiooni mudel ei vii inimesi edasi. Ühe varjupaiga 2014. aasta andmetel jõudis 139 teadaoleva staatusega kliendist eluasemepõhise lahenduseni 14%, 42% jäi endisesse seisu ja 11% suri; 15 aasta jooksul taotles ligi 3000 kliendist sotsiaaleluruumi 58 ja edasi liikus viis. Autorid osutavad Housing First 70–90% tulemuslikkusele ning hindavad Eesti kodutute arvuks 1900–2100.",
+  "tags": [
+    "eelretsenseeritud artikkel",
+    "kodutus",
+    "eluasemepoliitika",
+    "housing first",
+    "varjupaik",
+    "vaesus"
+  ],
+  "source_type": "file",
+  "source_path": "2017_1_Part12.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2017-kodutuse-poliitika-2017-1",
+  "source_sha256": "3df2b87b3c507072717bdfb0e2a73c9431dcf08cb6db7990534f9e48e6406f7a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2017-kodutuse-poliitika-2017-1",
+    "previous_source_path": "2017_1_Part12.txt",
+    "previous_source_original_path": "2017_1.pdf",
+    "reference_stored_source_sha256": "8518a34071b8bd116c0de2b029665f4c6749c8f1b0d88bf09ac61d7e7e4410d3",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf",
+      "source_sha256": "335f81467a555f12c55d0e8bf60122a178c5267567cf79607448a5d987629e50",
+      "pdf_start_page": 41,
+      "pdf_end_page": 57,
+      "printed_page_range": "39-55",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 57,
+      "source_regions": [
+        {
+          "source_pdf_page": 41,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 42,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 43,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 44,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 45,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 46,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 47,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 48,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 49,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 50,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 51,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 52,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 53,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 54,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 55,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 56,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 57,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        }
+      ],
+      "effective_printed_page_range": "39-55",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf"
+    },
+    "server_page_range": "39-55"
+  }
+}

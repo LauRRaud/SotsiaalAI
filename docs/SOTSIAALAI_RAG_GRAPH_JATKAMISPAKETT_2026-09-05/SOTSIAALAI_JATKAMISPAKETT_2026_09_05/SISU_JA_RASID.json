@@ -1,0 +1,67 @@
+{
+  "schema_version": "sotsiaalai-conversation-handover-1",
+  "snapshot_date": "2026-09-05",
+  "active_state_owner": "docs/platvormi arendus/SotsiaalAI.md#S1.0",
+  "latest_local_S1_0_included": false,
+  "repository_refreshed_for_this_package": false,
+  "contains_source_pdfs": false,
+  "contains_secrets": false,
+  "contains_runtime_vectors_or_ledgers": false,
+  "files": [
+    {
+      "file": "ALUSTA_SIIT_RAG_GRAPH_2026-09-05.md",
+      "sha256": "fde221f49d131b26999fe66496502fd16330b4da04b667b1045fdb325642ba53",
+      "bytes": 15307,
+      "kind": "new_handover_summary",
+      "note": "Ei ole uus aktiivne seisufail ega uue teostuse tõend."
+    },
+    {
+      "file": "CODEX_RAG_GRAPH_LAHTEULESANNE.md",
+      "sha256": "f51825a33171a9872f57a917dcc640ee3f8d7b50c29ad4a27c5a6b623c884082",
+      "bytes": 28640,
+      "kind": "unchanged_copy",
+      "source_attachment_path": "CODEX_RAG_GRAPH_v0_1/CODEX_RAG_GRAPH_LAHTEULESANNE.md",
+      "note": "Algne tervikülesanne, varasema tööseisuga."
+    },
+    {
+      "file": "SOTSIAALAI_RAG_GRAPH_ARENDUSTEEKAART_v0_1.md",
+      "sha256": "c2fc14735d884f4a1600d509fc4580c0091f4abc6496fbef2ca7dd0679a99a8a",
+      "bytes": 20088,
+      "kind": "unchanged_copy",
+      "source_attachment_path": "SOTSIAALAI_RAG_GRAPH_ARENDUSTEEKAART_v0_1.md",
+      "note": "Suunadokument; vananenud seisupeatükke ei kasutata aktiivse tööjuhisena."
+    },
+    {
+      "file": "rag-susteem-master.md",
+      "sha256": "1ea9e7bf4efa010d9702504132a71d74851635835f430b1ca60b1ca67916b1b6",
+      "bytes": 17754,
+      "kind": "unchanged_copy",
+      "source_attachment_path": "rag-susteem-master.md",
+      "note": "Varem üles laaditud masteri koopia; mitte värske GitHubi väljavõte."
+    },
+    {
+      "file": "rag-v2-multi-source-preparation-2026-09-05.md",
+      "sha256": "f23973746ebd4b48757f3303b459c59d6aabbb952772aaac98c86df4ba38972d",
+      "bytes": 20388,
+      "kind": "unchanged_copy",
+      "source_attachment_path": "rag-v2-multi-source-preparation-2026-09-05(1).md",
+      "note": "Uuendatud kohalik audit koos lõpetatud M2.3 diagnoosiga."
+    },
+    {
+      "file": "CODEX_M2_3_RUBRIIK_V2_JA_KORDUSHINDAMINE_v0_1.md",
+      "sha256": "b32d5f76d98564b049d5a9e2b3bf1c32e3f03105e36561028e885debf67f55b1",
+      "bytes": 13401,
+      "kind": "unchanged_copy",
+      "source_attachment_path": "CODEX_M2_3/CODEX_M2_3_RUBRIIK_V2_JA_KORDUSHINDAMINE_v0_1.md",
+      "note": "Viimane väljastatud konkreetne arendusülesanne; lõpetamist pole raporteeritud."
+    },
+    {
+      "file": "RAG_V2_KOODIULEVAATUS_aa2b12072.md",
+      "sha256": "6df7d751ac378329cecc34e94b300b7524ce87c0c8e3dca277c8284baaeab35f",
+      "bytes": 15698,
+      "kind": "unchanged_copy",
+      "source_attachment_path": "SOTSIAALAI_REPO_REVIEW/RAG_V2_KOODIULEVAATUS_aa2b12072.md",
+      "note": "Varasem sihitud koodiülevaatus; audit täpsustab hiljem juhtumeid."
+    }
+  ]
+}

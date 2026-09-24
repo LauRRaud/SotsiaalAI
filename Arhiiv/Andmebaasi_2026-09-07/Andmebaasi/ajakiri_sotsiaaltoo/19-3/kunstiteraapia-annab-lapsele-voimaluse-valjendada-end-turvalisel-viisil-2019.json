@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-3-2019",
+  "articleId": "kunstiteraapia-annab-lapsele-voimaluse-valjendada-end-turvalisel-viisil-2019",
+  "title": "Kunstiteraapia annab lapsele võimaluse väljendada end turvalisel viisil",
+  "authors": [
+    "Marika Ratnik"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2019",
+  "section": "Teraapia",
+  "pageRange": "97-101",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Visuaalkunstiteraapia võimaluste ülevaade laste ja noorukitega töös: kunstiteraapia põhimõtted, sekkumistasandid (diagnostiline, psühhoterapeutiline, funktsionaalne, rekreatiivne, palliatiivne), näited tööst eri sihtrühmadega ning soovitused lastekaitsetöötajatele ja teistele spetsialistidele, millal kunstiteraapiat kaaluda.",
+  "tags": [
+    "kunstiteraapia",
+    "visuaalkunstiteraapia",
+    "laste vaimne tervis",
+    "lastekaitse",
+    "loovteraapiad",
+    "trauma ja lein",
+    "psühhosotsiaalne tugi"
+  ],
+  "source_type": "file",
+  "source_path": "ST3_2019_veeb_link_Part21.pdf",
+  "document_id": "sotsiaaltoo-3-2019-kunstiteraapia-annab-lapsele-voimaluse-valjendada-end-turvalisel-viisil-2019",
+  "source_format": "pdf",
+  "source_sha256": "ba1e6921315cde704a59ab2cc90bbca0fabdfdd13b46a2e98375e5095c680911",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2019-kunstiteraapia-annab-lapsele-voimaluse-valjendada-end-turvalisel-viisil-2019",
+    "previous_source_path": "ST3_2019_veeb_link_Part21.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ba1e6921315cde704a59ab2cc90bbca0fabdfdd13b46a2e98375e5095c680911",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

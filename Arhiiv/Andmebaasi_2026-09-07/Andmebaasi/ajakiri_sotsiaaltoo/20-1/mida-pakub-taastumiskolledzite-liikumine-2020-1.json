@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-1-2020",
+  "articleId": "mida-pakub-taastumiskolledzite-liikumine-2020-1",
+  "title": "Mida pakub taastumiskolledžite liikumine?",
+  "authors": [
+    "Urve Tõnisson"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2020",
+  "section": "Taastumist toetavad meetodid",
+  "pageRange": "72-75",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab rahvusvahelist taastumiskolledžite liikumist ja selle põhimõtteid, kus vaimse tervise teenuseid arendatakse haridusliku, mitte terapeutilise loogika alusel. Kirjeldatakse muutust probleemikeskselt mõtteviisilt tugevustele ja õppimisele suunatud lähenemisele, taastumiskolledžite võtmetunnuseid, õppurite ja tuutorite rolle ning kogemust Eestis tegutseva Heaolu ja Taastumise Kooli näitel.",
+  "tags": [
+    "taastumiskolledž",
+    "Recovery College",
+    "hariduslik lähenemine",
+    "taastumiskesksed teenused",
+    "vaimne tervis",
+    "CARe mõtteviis",
+    "õppimine",
+    "võimestamine",
+    "Heaolu ja Taastumise Kool"
+  ],
+  "source_type": "file",
+  "source_path": "ST1_2020_web_link_Part16.pdf",
+  "document_id": "sotsiaaltoo-1-2020-mida-pakub-taastumiskolledzite-liikumine-2020-1",
+  "source_format": "pdf",
+  "source_sha256": "d83df925fa0ba6a725aea411ad6776a8b865873c9d004bc575a70bd26bb07b2f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2020-mida-pakub-taastumiskolledzite-liikumine-2020-1",
+    "previous_source_path": "ST1_2020_web_link_Part16.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d83df925fa0ba6a725aea411ad6776a8b865873c9d004bc575a70bd26bb07b2f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

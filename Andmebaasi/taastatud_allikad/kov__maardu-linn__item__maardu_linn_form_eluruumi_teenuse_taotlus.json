@@ -1,0 +1,78 @@
+{
+  "provenance": {
+    "kind": "recovered_from_legacy_index",
+    "source_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "source_text_store": "/var/lib/sotsiaalai-rag/lexical-index.sqlite3",
+    "recovered_at": "2026-09-07T20:11:41.708487+00:00"
+  },
+  "review_status": "compare_with_primary_source_before_ingest",
+  "document_id": "kov::maardu-linn::item::maardu_linn_form_eluruumi_teenuse_taotlus",
+  "metadata": {
+    "createdAt": "2026-05-20T06:14:17.617486+00:00",
+    "type": "TEXT",
+    "lastIngested": "2026-05-20T06:14:17.580553+00:00",
+    "title": "Eluruumi teenuse taotlus",
+    "description": "Eluruumi teenuse taotlus on KOV veebis nimetatud sotsiaalvaldkonna taotlus või blankett.",
+    "audience": "BOTH",
+    "audiences": [
+      "CLIENT",
+      "SOCIAL_WORKER"
+    ],
+    "authors": [],
+    "tags": [
+      "form"
+    ],
+    "language": "et",
+    "collection_id": "kov_services",
+    "country": "EE",
+    "county": "Raplamaa",
+    "jurisdiction_level": "MUNICIPALITY",
+    "municipality_name": "Märjamaa vald",
+    "municipality_id": "maardu_linn",
+    "district_name": null,
+    "district_id": null,
+    "source_format": null,
+    "checked_at": "2026-04-29",
+    "item_type": "form",
+    "content_status": "active",
+    "resource_type": "form",
+    "source_keys": [
+      "sotsiaaleluasemeteenus_page"
+    ],
+    "source_urls": [
+      "https://maardu.ee/sotsiaaleluasemeteenus"
+    ],
+    "source_register_file": "maardu-linn.sources.json",
+    "source_count": 27,
+    "administering_body": null,
+    "issuer": null,
+    "act_title": null,
+    "act_reference": null,
+    "canonical_source_id": null,
+    "act_type": null,
+    "effective_start": null,
+    "effective_end": null,
+    "is_current_version": null,
+    "text_type": null,
+    "source_type": "application_form",
+    "path": null,
+    "url": "https://maardu.ee/sotsiaaleluasemeteenus",
+    "source_sha256": null,
+    "source_updated_at": null,
+    "original_doc_id": null,
+    "fileName": null,
+    "mimeType": "text/markdown",
+    "geo_detection_method": null,
+    "geo_detection_confidence": null,
+    "docId": "kov::maardu-linn::item::maardu_linn_form_eluruumi_teenuse_taotlus",
+    "updatedAt": "2026-06-10T20:54:29.274794+00:00",
+    "content_hash": "0ce68f41a8c947a83e2b27c61a9b6ea95efee7e2dde195ac9ee2e4fbde05727e"
+  },
+  "chunks": [
+    {
+      "chunk_id": "kov::maardu-linn::item::maardu_linn_form_eluruumi_teenuse_taotlus:0:bbe073e8",
+      "document_version": null,
+      "text": "[TITLE] Eluruumi teenuse taotlus\n[DESC] Eluruumi teenuse taotlus on KOV veebis nimetatud sotsiaalvaldkonna taotlus või blankett.\n[SECTION] Blanketid ja taotlused\n[ITEM_TYPE] form\n[STATUS] active\n[RESOURCE_TYPE] form\n[COUNTY] Raplamaa\n[MUNICIPALITY] Märjamaa vald\n# Eluruumi teenuse taotlus Liik: form Staatus: active Failivorming: vorm või e-vorm Ametlik link: https://maardu.ee/sotsiaaleluasemeteenus Sihtrühm: Puudub. Auditoorium: CLIENT, SOCIAL_WORKER Kokkuvõte: Eluruumi teenuse taotlus on KOV veebis nimetatud sotsiaalvaldkonna taotlus või blankett. Ressursi tüüp: form Tingimused: Taotlemine: Puudub. Esitamise kanalid: - e-vorm - pabervorm Vormid: Puudub. Haldaja / teenuseosutaja: Puudub. Kontaktid: Puudub. Seotud kirjed: - maardu_linn_service_sotsiaaleluasemeteenus Tasulisus või summa: Puudub. Õiguslik alus: Puudub."
+    }
+  ]
+}

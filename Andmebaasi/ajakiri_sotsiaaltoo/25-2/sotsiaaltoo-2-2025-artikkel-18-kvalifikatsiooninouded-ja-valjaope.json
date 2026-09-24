@@ -1,0 +1,45 @@
+{
+  "docId": "sotsiaaltoo-2-2025",
+  "articleId": "tervishoiu-ja-sotsiaalvaldkonna-kvalifikatsiooninoudeid-ja-valjaopet-saab-hinnata-uhtse-metoodikaga-2025-2",
+  "title": "Tervishoiu ja sotsiaalvaldkonna kvalifikatsiooninõudeid ja väljaõpet saab hinnata ühtse metoodikaga",
+  "authors": [
+    "Merle Purre",
+    "Mari Ader",
+    "Merike Sisask",
+    "Laura Kalda"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2025",
+  "section": "Uurimus",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimus ühtsest metoodikast, millega hinnata tervishoiu- ja sotsiaalvaldkonna spetsialistide kvalifikatsiooninõudeid ja väljaõppe teekondi, eriti vaimse tervise valdkonnas. Analüüsitakse rollide, pädevuste ja hariduse vastavust praktilisele tööle ning kitsaskohti tööjõupoliitikas ja regulatsioonis.",
+  "tags": [
+    "kvalifikatsiooninõuded",
+    "väljaõpe",
+    "vaimse tervise spetsialistid",
+    "kutsestandardid",
+    "tööjõupoliitika",
+    "metoodika",
+    "tervishoid",
+    "sotsiaalvaldkond"
+  ],
+  "source_type": "file",
+  "source_path": "Tervishoiu ja sotsiaalvaldkonna kvalifikatsiooninõudeid ja väljaõpet saab hinnata ühtse metoodikaga_2_2025.pdf",
+  "pageRange": "1–7",
+  "document_id": "sotsiaaltoo-2-2025-tervishoiu-ja-sotsiaalvaldkonna-kvalifikatsiooninoudeid-ja-valjaopet-saab-hinnata-uhtse-metoodikaga-2025-2",
+  "source_format": "pdf",
+  "source_sha256": "7e99afdb42c9831053691a12c775d93870b5131b8828e4cee5a02def2c0ce1b9",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2025-tervishoiu-ja-sotsiaalvaldkonna-kvalifikatsiooninoudeid-ja-valjaopet-saab-hinnata-uhtse-metoodikaga-2025-2",
+    "previous_source_path": "Tervishoiu ja sotsiaalvaldkonna kvalifikatsiooninõudeid ja väljaõpet saab hinnata ühtse metoodikaga_2_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "7e99afdb42c9831053691a12c775d93870b5131b8828e4cee5a02def2c0ce1b9",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "source_path": "paasteamet_paasteameti_meelespea_kohalikule_omavalitsusele.pdf",
+  "source_format": "pdf",
+  "sha256": "dbcfcabb9e2bd788ec2f3fe972cb9561178db334b691a54ed021e076a346c56c",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/paasteamet_paasteameti_meelespea_kohalikule_omavalitsusele.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "paasteamet_paasteameti_meelespea_kohalikule_omavalitsusele",
+          "title": "Päästeameti meelespea kohalikule omavalitsusele",
+          "url": "https://www.rescue.ee/files/Materjalid/2022-paasteameti-meelespea-kohalikule-omavalitsusele.pdf",
+          "normalized_url": "https://www.rescue.ee/files/Materjalid/2022-paasteameti-meelespea-kohalikule-omavalitsusele.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "Päästeamet",
+          "organization_id": "paasteamet",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Päästeamet",
+            "tuleohutus",
+            "pääste",
+            "evakuatsioon",
+            "kriisivalmidus",
+            "kohalik omavalitsus",
+            "KOV",
+            "infomaterjal"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 403,
+            "order": 221
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Päästeameti meelespea kohalikule omavalitsusele"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Päästeamet"
+          ],
+          "organizations_seen": [
+            "paasteamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+              "line": 403,
+              "order": 221
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.rescue.ee/files/Materjalid/2022-paasteameti-meelespea-kohalikule-omavalitsusele.pdf"
+        },
+        "final_url": "https://www.rescue.ee/files/Materjalid/2022-paasteameti-meelespea-kohalikule-omavalitsusele.pdf",
+        "redirects": [],
+        "sha256": "dbcfcabb9e2bd788ec2f3fe972cb9561178db334b691a54ed021e076a346c56c",
+        "bytes": 10182113,
+        "downloaded_at": "2026-08-14T08:00:46.659Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "paasteamet_paasteameti_meelespea_kohalikule_omavalitsusele",
+      "metadata": {
+        "createdAt": "2026-06-12T03:46:17.102191+00:00",
+        "type": "FILE",
+        "fileName": "2022-paasteameti-meelespea-kohalikule-omavalitsusele.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:46:17.036227+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/8174151cfa14/2022-paasteameti-meelespea-kohalikule-omavalitsusele.pdf",
+        "title": "Päästeameti meelespea kohalikule omavalitsusele",
+        "description": "Source master headings: Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2022,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–24",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "paasteamet_paasteameti_meelespea_kohalikule_omavalitsusele",
+        "document_id": "paasteamet_paasteameti_meelespea_kohalikule_omavalitsusele",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "139f3d8d895c36c8d6d30372c529bf48297373653fb3e6c57081f44b43db4fdf",
+        "url": "https://www.rescue.ee/files/Materjalid/2022-paasteameti-meelespea-kohalikule-omavalitsusele.pdf",
+        "url_canonical": "https://www.rescue.ee/files/Materjalid/2022-paasteameti-meelespea-kohalikule-omavalitsusele.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "paasteamet_paasteameti_meelespea_kohalikule_omavalitsusele",
+        "updatedAt": "2026-06-12T03:46:17.102215+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

@@ -1,0 +1,5 @@
+{
+  "input_per_million": 0.13,
+  "currency": "USD",
+  "version": "openai-text-embedding-3-large-standard-2026-09-05"
+}

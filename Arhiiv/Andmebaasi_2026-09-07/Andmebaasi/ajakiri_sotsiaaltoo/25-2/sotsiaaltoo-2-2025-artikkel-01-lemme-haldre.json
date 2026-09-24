@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "lemme-haldre-laste-moistmist-oleks-rohkem-vaja-2025-2",
+  "title": "Lemme Haldre: laste mõistmist oleks rohkem vaja",
+  "authors": [
+    "Kadri Kuulpak"
+  ],
+  "section": "Persoon",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "description": "Persoonilugu psühholoogi ja pereterapeudi Lemme Haldrega, kes on aastakümneid tegelenud väärkoheldud laste abistamise ja vanemahariduse arendamisega. Intervjuu käsitleb Tartu laste tugikeskuse loomislugu, laste väärkohtlemise märkide äratundmist, hallide tsoonide juhtumeid ning koostööd koolide, lasteaedade, lastekaitse ja õigussüsteemiga. Haldre rõhutab spetsialistide enesereflektsiooni, laste vaimse tervise toetamise vajalikkust, süsteemi aukudesse kukkumise ohtu ning vanemlusprogrammi „Imelised aastad“ rolli vanemate toetamisel.",
+  "tags": [
+    "Lemme Haldre",
+    "laste väärkohtlemine",
+    "laste vaimne tervis",
+    "Tartu laste tugikeskus",
+    "lastekaitse",
+    "vanemlusprogramm",
+    "Imelised aastad"
+  ],
+  "source_path": "Lemme Haldre_2_2025.pdf",
+  "pageRange": "1–9",
+  "document_id": "sotsiaaltoo-2-2025-lemme-haldre-laste-moistmist-oleks-rohkem-vaja-2025-2",
+  "source_format": "pdf",
+  "source_sha256": "531a1a468db2f038851af0fa5f192db227e3fecd17d822c7d8e51c177e031280",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2025-lemme-haldre-laste-moistmist-oleks-rohkem-vaja-2025-2",
+    "previous_source_path": "Lemme Haldre_2_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "531a1a468db2f038851af0fa5f192db227e3fecd17d822c7d8e51c177e031280",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

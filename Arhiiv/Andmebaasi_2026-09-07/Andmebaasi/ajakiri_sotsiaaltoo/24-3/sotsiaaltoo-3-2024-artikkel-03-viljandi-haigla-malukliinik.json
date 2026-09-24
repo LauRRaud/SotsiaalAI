@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-3-2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2024",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "viljandi-haigla-malukliinik-terviklik-raviteekond-maluhaigustega-inimeste-heaks-2024-3",
+  "title": "Viljandi haigla mälukliinik – terviklik raviteekond mäluhaigustega inimeste heaks",
+  "authors": [
+    "Eleri Luhamets"
+  ],
+  "section": "Korraldus",
+  "pageRange": "14-17",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "description": "Viljandi haigla mälukliiniku kirjeldus kui tervikliku raviteekonna näide mäluhaigustega inimeste ja nende lähedaste toetamisel. Artiklis selgitatakse dementsuse riskitegureid, varase diagnoosi vajadust ja diagnostika takistusi ning tutvustatakse mälukliiniku meeskonda: mäluõdesid, neurolooge, geriaatrit, psühhiaatrit, neuropsühholoogi ja sotsiaaltöötajat. Käsitletakse meeskonnatööd ravi- ja tugiplaani koostamisel, koostööd dementsuse kompetentsikeskusega ning lähedaste süsteemset kaasamist, et toetada inimese igapäevast toimetulekut ja elulõpuplaanide läbimõtlemist.",
+  "tags": [
+    "mälukliinik",
+    "Viljandi haigla",
+    "dementsus",
+    "mäluhaigused",
+    "raviteekond",
+    "meeskonnatöö",
+    "mäluõde",
+    "sotsiaaltöö tervishoius",
+    "lähedaste kaasamine"
+  ],
+  "source_path": "sotsiaaltoo_3_2024_web_Part5.pdf",
+  "document_id": "sotsiaaltoo-3-2024-viljandi-haigla-malukliinik-terviklik-raviteekond-maluhaigustega-inimeste-heaks-2024-3",
+  "source_format": "pdf",
+  "source_sha256": "e1818ec46b86ad4ea449fb0b771708076bc039458a12356d4b36dd75d22dd43f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2024-viljandi-haigla-malukliinik-terviklik-raviteekond-maluhaigustega-inimeste-heaks-2024-3",
+    "previous_source_path": "sotsiaaltoo_3_2024_web_Part5.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e1818ec46b86ad4ea449fb0b771708076bc039458a12356d4b36dd75d22dd43f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

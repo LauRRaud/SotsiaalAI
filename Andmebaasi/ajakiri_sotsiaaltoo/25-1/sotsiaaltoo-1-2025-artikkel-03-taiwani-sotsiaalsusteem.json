@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "taiwani-sotsiaalsusteemiga-tutvumise-kogemus-2025-1",
+  "title": "Eriline ja samasugune ühekorraga – Taiwani sotsiaalsüsteemiga tutvumise kogemus",
+  "authors": [
+    "Kadri Koppel"
+  ],
+  "section": "Sotsiaaltöö kui elukutse",
+  "pdf_start_page": 1,
+  "pdf_end_page": 14,
+  "description": "Kadri Koppeli kogemuslugu rahvusvahelisest sotsiaaltöötajate vahetusprogrammist CIF ja osalemisest Taiwani programmis. Autor kirjeldab Taiwani sotsiaalsüsteemi, sealsete sotsiaaltöötajate tööd, organisatsioonikultuuri ja klienditööd ning võrdleb neid Eesti praktikatega. Artikkel käsitleb kultuurilisi erinevusi, sotsiaalpoliitilisi sarnasusi, erivajadustega inimeste, eakate ja laste toetamise lahendusi ning rahvusvahelise kogemuse mõju professionaalsele identiteedile ja teadmiste pagasile. Rõhutatakse võrgustumise, kolleegidelt õppimise ja uute vaatenurkade rolli sotsiaaltöötaja arengus.",
+  "tags": [
+    "rahvusvaheline kogemus",
+    "Taiwan",
+    "sotsiaaltöö kui elukutse",
+    "CIF vahetusprogramm",
+    "võrgustumine",
+    "sotsiaalsüsteemid",
+    "professionaalne areng"
+  ],
+  "source_path": "Eriline ja samasugune ühekorraga – Taiwani sotsiaalsüsteemiga tutvumise kogemus_1_2025.pdf",
+  "pageRange": "1–14",
+  "document_id": "sotsiaaltoo-1-2025-taiwani-sotsiaalsusteemiga-tutvumise-kogemus-2025-1",
+  "source_format": "pdf",
+  "source_sha256": "004fe4541b8d662a9dc6c2bec94a497924bfdf013a893a52d585eabaa09f6273",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2025-taiwani-sotsiaalsusteemiga-tutvumise-kogemus-2025-1",
+    "previous_source_path": "Eriline ja samasugune ühekorraga – Taiwani sotsiaalsüsteemiga tutvumise kogemus_1_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "004fe4541b8d662a9dc6c2bec94a497924bfdf013a893a52d585eabaa09f6273",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

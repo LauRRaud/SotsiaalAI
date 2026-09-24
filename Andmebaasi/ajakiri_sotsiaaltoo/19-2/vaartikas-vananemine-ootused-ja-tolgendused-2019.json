@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2019",
+  "articleId": "vaartikas-vananemine-eri-vanuses-inimeste-ootused-2019",
+  "title": "Väärikas vananemine: eri vanuses inimeste ootused ja tõlgendused",
+  "authors": [
+    "Mare Leino",
+    "Mare Merimaa"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2019",
+  "section": "Uurimus",
+  "pageRange": "74-79",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel analüüsib eri vanuses inimeste arusaamu väärikast vananemisest, tuues esile ootused tervise, majandusliku kindlustatuse, sotsiaalsete suhete ja ühiskonna hoiakute suhtes.",
+  "tags": [
+    "väärikas vananemine",
+    "eakad",
+    "elukvaliteet",
+    "põlvkondade võrdlus",
+    "sotsiaalne õiglus",
+    "vananemispoliitika"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part15.pdf",
+  "document_id": "sotsiaaltoo-2-2019-vaartikas-vananemine-eri-vanuses-inimeste-ootused-2019",
+  "source_format": "pdf",
+  "source_sha256": "96f45010ba43420f107ab04a5e17edebf47d5d138878eafb06e8b9a2bd9e2e11",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2019-vaartikas-vananemine-eri-vanuses-inimeste-ootused-2019",
+    "previous_source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part15.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "96f45010ba43420f107ab04a5e17edebf47d5d138878eafb06e8b9a2bd9e2e11",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

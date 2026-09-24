@@ -1,0 +1,71 @@
+{
+  "docId": "sotsiaaltoo-2-2017",
+  "articleId": "minu-teekond-sotsiaaltooni-2017-2",
+  "title": "Minu teekond sotsiaaltööni ja sealt edasi",
+  "authors": [
+    "Mariliis Raidma"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2017",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "15-16",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Vilistlaslugu, mis kirjeldab teekonda riigiteadustest sotsiaaltööni Tartu Ülikooli Pärnu kolledži kaudu. Autor rõhutab, et töö kohalikus omavalitsuses hõlmab kõiki inimese jaoks olulisi valdkondi ja on suunatud kindla paikkonna arendamisele.",
+  "tags": [
+    "erialavalik",
+    "kohalik omavalitsus",
+    "sotsiaaltööharidus",
+    "Pärnu kolledž"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2-2017_veebi_link_Part7.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2017-minu-teekond-sotsiaaltooni-2017-2",
+  "source_sha256": "4b22a065684917bda7105e26b33d87b8dcc27eb4cb8e3253ce87a2d9e4041b25",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2017-minu-teekond-sotsiaaltooni-2017-2",
+    "previous_source_path": "Sotsiaaltoo_2-2017_veebi_link_Part7.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2-2017_veebi_link_Part7.pdf",
+    "reference_stored_source_sha256": "41080a6243e34de13482fb8814c881b618438d205d4d23cbec2045d245a5e11a",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf",
+      "source_sha256": "609af110244e684ccbb68aea9504f2490fce2852b1e7caa7bedacb621d661a8a",
+      "pdf_start_page": 17,
+      "pdf_end_page": 18,
+      "printed_page_range": "15-16",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 18,
+      "source_regions": [
+        {
+          "source_pdf_page": 17,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 18,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "15-16",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf"
+    },
+    "server_page_range": "15-16"
+  }
+}

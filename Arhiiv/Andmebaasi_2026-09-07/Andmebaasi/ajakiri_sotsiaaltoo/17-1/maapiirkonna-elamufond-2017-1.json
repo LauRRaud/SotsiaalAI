@@ -1,0 +1,99 @@
+{
+  "docId": "sotsiaaltoo-1-2017",
+  "articleId": "maapiirkonna-elamufond-2017-1",
+  "title": "Maapiirkondade elamufondi probleemidega kaasnevad sotsiaalsed kitsaskohad",
+  "authors": [
+    "Martin Parts"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2017",
+  "section": "Uurimus",
+  "pageRange": "61-65",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Martin Parts näitab oma bakalaureuse- ja magistritööle tuginedes, et 1990. aastate erastamine, mis kahandas avaliku elamufondi osakaalu 61%-lt 4%-le, jättis maapiirkondade korterelamud kinnisvaralõksu: omanikud ei saa kortereid müüa ega majandada ning elanikud kannavad kõrgeid kommunaalkulusid lagunevates hoonetes. Kagu-Eesti valdade 14 sotsiaaltöötaja intervjuude põhjal soovitab ta üleriigilist tugifondi, mahajäetud majade munitsipaliseerimist ja elanike koondamist korrashoitud hoonetesse. Haldusreformi mõju maapiirkondadele on tema sõnul kirjutamise ajal veel lahtine.",
+  "tags": [
+    "uurimus",
+    "elamufond",
+    "maapiirkonnad",
+    "eluase",
+    "kohalik omavalitsus",
+    "erastamine"
+  ],
+  "source_type": "file",
+  "source_path": "2017_1_Part14.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2017-maapiirkonna-elamufond-2017-1",
+  "source_sha256": "2a77fad0d58b403e2598fe77b48416fa30587cf0f7f561c439aaaba103fab56b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2017-maapiirkonna-elamufond-2017-1",
+    "previous_source_path": "2017_1_Part14.txt",
+    "previous_source_original_path": "2017_1.pdf",
+    "reference_stored_source_sha256": "455516e8e8533c14a1d38cbc06722b34a7fba8600c45f8588db0f5c902536cdb",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf",
+      "source_sha256": "335f81467a555f12c55d0e8bf60122a178c5267567cf79607448a5d987629e50",
+      "pdf_start_page": 63,
+      "pdf_end_page": 67,
+      "printed_page_range": "61-65",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 67,
+      "source_regions": [
+        {
+          "source_pdf_page": 63,
+          "bounds": [
+            0,
+            415.628,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 64,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 65,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 66,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 67,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        }
+      ],
+      "effective_printed_page_range": "61-65"
+    },
+    "server_page_range": "61-65"
+  }
+}

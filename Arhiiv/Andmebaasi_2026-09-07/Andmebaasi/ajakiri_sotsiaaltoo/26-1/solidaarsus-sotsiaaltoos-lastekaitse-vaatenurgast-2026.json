@@ -1,0 +1,51 @@
+{
+  "docId": "sotsiaaltoo-1-2026",
+  "articleId": "solidaarsus-sotsiaaltoos-lastekaitse-vaatenurgast-2026",
+  "title": "Solidaarsus sotsiaaltöös lastekaitse vaatenurgast",
+  "authors": [
+    "Asgeir Falch-Eriksen",
+    "Karmen Toros"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2026",
+  "section": "Teoreetilised lähtekohad",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Autorid käsitlevad solidaarsust kolmetasandilise mõistena, eristades sotsiaalset, õigus-poliitilist ja professionaalset solidaarsust, ning selgitavad, kuidas see raamistab sotsiaaltöö eesmärki ja eetilisi aluseid. Lastekaitsetöös peab professionaalne solidaarsus autorite hinnangul põhinema universaalsetel inimõigustel, mis seab lapse huvid ja väärikuse professionaalse otsustamise keskmesse.",
+  "tags": [
+    "solidaarsus",
+    "lastekaitse",
+    "lapse õigused",
+    "ÜRO lapse õiguste konventsioon",
+    "professionaalne eetika",
+    "inimõigused",
+    "usaldussuhe",
+    "sotsiaaltöö teooria"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-03-01",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/solidaarsus-sotsiaaltoos-lastekaitse-vaatenurgast",
+  "source_type": "web",
+  "source_path": "solidaarsus-sotsiaaltoos-lastekaitse-vaatenurgast.html",
+  "lead": "Lastekaitsetöö toimub nii sotsiaalse, õigus-poliitilise kui ka professionaalse solidaarsuse raamides. Solidaarsust saab käsitleda mitmel tasandil, mis aitab mõista sotsiaaltöö kui elukutse eesmärki ja selle eetilisi aluseid.",
+  "abstract": "Artikkel käsitleb solidaarsust laiemalt kui kogu sotsiaaltöö, eelkõige aga kui lastekaitse teoreetilist ja eetilist alust. Lähtudes arusaamast, et sotsiaaltöö ei tegele üksnes üksikjuhtumitega, vaid toimib laiemas sotsiaalses ja õiguslikus raamistikus, analüüsitakse solidaarsust mitmetasandilisena, mis aitab mõista sotsiaaltöö kui elukutse eesmärki, legitiimsust ja vastutust.",
+  "document_id": "sotsiaaltoo-1-2026-solidaarsus-sotsiaaltoos-lastekaitse-vaatenurgast-2026",
+  "source_format": "html",
+  "source_sha256": "b9f982daae436657c7a9b2d3b79cee9707277e2f4042c8c36fd1c3d625b415c2",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2026-solidaarsus-sotsiaaltoos-lastekaitse-vaatenurgast-2026",
+    "previous_source_path": "solidaarsus-sotsiaaltoos-lastekaitse-vaatenurgast.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "54c06af2158982fe36d5b14e193dd5e4ceec4058d764c6a2cba27af0d6435f9a",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "15a0268c7d47684575b8b84252ceff65bf25e59bcd49123f8c8cf3b14bc3a221",
+    "observed_web_title": "Solidaarsus sotsiaaltöös lastekaitse vaatenurgast"
+  },
+  "retrieved_at": "2026-09-07T19:39:35.014807+00:00"
+}

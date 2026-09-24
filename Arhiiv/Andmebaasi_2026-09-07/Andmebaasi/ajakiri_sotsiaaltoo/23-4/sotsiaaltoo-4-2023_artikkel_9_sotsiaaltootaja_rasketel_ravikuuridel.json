@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-4-2023",
+  "articleId": "sotsiaaltootaja-aitab-rasketel-ravikuuridel-vastu-pidada-2023-4",
+  "title": "Sotsiaaltöötaja aitab rasketel ravikuuridel vastu pidada",
+  "authors": [
+    "Kairiin Nuudi"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2023",
+  "section": "Intervjuu",
+  "pageRange": "40-45",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Intervjuus räägib Umeå ülikooli haigla vähikeskuse sotsiaaltöötaja Mirjam Bergknut, kuidas sotsiaaltöö aitab\ninimestel toime tulla vähi diagnoosi, kurnavate raviskeemide ja elu ümberkorraldamisega. Ta kirjeldab oma teekonda\ntervishoiu sotsiaaltöös, töö eri tahke ja koostööd tervishoiutiimiga, rõhutades inimkeskset lähenemist ja patsiendi\nkui oma elu eksperdi rolli. Artiklis käsitletakse sotsiaaltöötaja panust majandusliku toimetuleku, peresuhteid,\nvaimset tervist ja taastusravi puudutavate küsimuste lahendamisel ning seda, kuidas toetada patsiente ja nende\nlähedasi elukriisis nii, et nad suudaksid raviga lõpuni minna.",
+  "tags": [
+    "haigla sotsiaaltöö",
+    "vähikeskus",
+    "Umeå ülikooli haigla",
+    "onkoloogilised patsiendid",
+    "inimkeskne ravi",
+    "vaimne tervis",
+    "taastusravi",
+    "peretugi"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2023_web_Part10.pdf",
+  "document_id": "sotsiaaltoo-4-2023-sotsiaaltootaja-aitab-rasketel-ravikuuridel-vastu-pidada-2023-4",
+  "source_format": "pdf",
+  "source_sha256": "d657256eb1e743b3a355e5f6b15f7eaed96308f680145c888c65c837e140e088",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2023-sotsiaaltootaja-aitab-rasketel-ravikuuridel-vastu-pidada-2023-4",
+    "previous_source_path": "Sotsiaaltoo_4_2023_web_Part10.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d657256eb1e743b3a355e5f6b15f7eaed96308f680145c888c65c837e140e088",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

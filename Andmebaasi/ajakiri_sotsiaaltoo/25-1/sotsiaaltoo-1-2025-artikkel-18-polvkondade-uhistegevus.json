@@ -1,0 +1,47 @@
+{
+  "docId": "sotsiaaltoo-1-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "source_format": "pdf",
+  "url": "https://www.tai.ee/et/sotsiaaltoo/uhised-hetked-ja-uksteiselt-oppimine-kuidas-eri-polvkonnad-koos-heaolu-loovad",
+  "source_url": "https://www.tai.ee/et/sotsiaaltoo/uhised-hetked-ja-uksteiselt-oppimine-kuidas-eri-polvkonnad-koos-heaolu-loovad",
+  "articleId": "uhised-hetked-ja-uksteiselt-oppimine-2025-1",
+  "title": "Ühised hetked ja üksteiselt õppimine: kuidas eri põlvkonnad koos heaolu loovad",
+  "authors": [
+    "Merike Meriloo"
+  ],
+  "section": "Kogukond",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "description": "Artikkel käsitleb eri põlvkondade koostegutsemise ja vastastikuse õppimise mõju inimeste heaolule. Autor tutvustab põlvkondadevahelisi algatusi, kus lapsed, noored, tööealised ja eakad veedavad ühiselt aega, jagavad kogemusi, osalevad tegevustes ja toetavad üksteist. Rõhutatakse, et sellised kohtumised aitavad vähendada üksildust, tugevdada kogukondlikku sidusust, murda stereotüüpe ning luua uut mõtestatust nii nooremate kui ka vanemate inimeste elus. Tuuakse näiteid haridus-, hoolekande- ja kogukonnavahelisest koostööst ning antakse soovitusi, kuidas põlvkondadevahelisi programme süsteemsemalt arendada.",
+  "tags": [
+    "põlvkonnad",
+    "kogukond",
+    "heaolu",
+    "ühistegevus",
+    "vabatahtlik tegevus",
+    "sotsiaalne sidusus"
+  ],
+  "source_path": "Ühised hetked ja üksteiselt õppimine_kuidas eri põlvkonnad koos heaolu loovad_1_2025.pdf",
+  "retrieved_at": "2025-12-05T17:54:00+02:00",
+  "snapshot_contains_browser_headers": true,
+  "mapping_status": "VERIFIED",
+  "mapping_checked": "2026-08-15",
+  "mapping_note": "Salvestatud fail on TAI ametliku artiklilehe PDF-väljatrükk, mitte ajakirjanumbri algupärane küljendus. Tekst sisaldab brauseri päiseid, leheküljenumbreid, URL-e ja väljatrüki ajatemplina 05.12.2025 17:54; pealkiri ja autor on ametlikult artiklilehelt kontrollitud.",
+  "pageRange": "1–8",
+  "document_id": "sotsiaaltoo-1-2025-uhised-hetked-ja-uksteiselt-oppimine-2025-1",
+  "source_sha256": "2243ac8b3780f6048d065d9ff01825dccd7cad06c23750baf563053404b62d82",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2025-uhised-hetked-ja-uksteiselt-oppimine-2025-1",
+    "previous_source_path": "Ühised hetked ja üksteiselt õppimine_kuidas eri põlvkonnad koos heaolu loovad_1_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "2243ac8b3780f6048d065d9ff01825dccd7cad06c23750baf563053404b62d82",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

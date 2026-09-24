@@ -1,0 +1,145 @@
+{
+  "source_path": "paasteamet_evakuatsioonijuhi_koolitusmaterjal.pdf",
+  "source_format": "pdf",
+  "sha256": "8d0f5adb72adb133a5f28f4ed670514f940a60079d4883aef833d48f305e91ec",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/paasteamet_evakuatsioonijuhi_koolitusmaterjal.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "paasteamet_evakuatsioonijuhi_koolitusmaterjal",
+          "title": "Evakuatsioonijuhi koolitusmaterjal",
+          "url": "https://www.rescue.ee/files/2019-03/1552567704_evakuatsioonijuhile.pdf",
+          "normalized_url": "https://www.rescue.ee/files/2019-03/1552567704_evakuatsioonijuhile.pdf",
+          "source_format": "pdf",
+          "source_type": "official_guideline",
+          "resource_type": "method_guidance",
+          "publisher": "Päästeamet",
+          "organization_id": "paasteamet",
+          "collection_hint": "guidance_and_methods",
+          "evidence_role": "practice_guidance",
+          "topic_tags": [
+            "Päästeamet",
+            "pääste",
+            "evakuatsioon",
+            "kriisivalmidus",
+            "lapsed ja pered",
+            "haridus",
+            "kool",
+            "õpilase toetamine",
+            "tugimeetmed",
+            "spetsialisti juhend"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "high",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 399,
+            "order": 219
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Evakuatsioonijuhi koolitusmaterjal"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "official_guideline"
+          ],
+          "resource_types_seen": [
+            "method_guidance"
+          ],
+          "publishers_seen": [
+            "Päästeamet"
+          ],
+          "organizations_seen": [
+            "paasteamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+              "line": 399,
+              "order": 219
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.rescue.ee/files/2019-03/1552567704_evakuatsioonijuhile.pdf"
+        },
+        "final_url": "https://www.rescue.ee/files/2019-03/1552567704_evakuatsioonijuhile.pdf",
+        "redirects": [],
+        "sha256": "8d0f5adb72adb133a5f28f4ed670514f940a60079d4883aef833d48f305e91ec",
+        "bytes": 1320340,
+        "downloaded_at": "2026-08-14T08:00:45.962Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "paasteamet_evakuatsioonijuhi_koolitusmaterjal",
+      "metadata": {
+        "createdAt": "2026-06-11T18:50:56.074478+00:00",
+        "type": "FILE",
+        "fileName": "1552567704_evakuatsioonijuhile.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-11T18:50:56.013057+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/7513108cc862/1552567704_evakuatsioonijuhile.pdf",
+        "title": "Evakuatsioonijuhi koolitusmaterjal",
+        "description": "Source master headings: Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2019,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–34",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "paasteamet_evakuatsioonijuhi_koolitusmaterjal",
+        "document_id": "paasteamet_evakuatsioonijuhi_koolitusmaterjal",
+        "source_type": "official_guideline",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-11",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "64b2133119b109c9250104c0670136a07275cef277f48501c46b54f58fd024eb",
+        "url": "https://www.rescue.ee/files/2019-03/1552567704_evakuatsioonijuhile.pdf",
+        "url_canonical": "https://www.rescue.ee/files/2019-03/1552567704_evakuatsioonijuhile.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "paasteamet_evakuatsioonijuhi_koolitusmaterjal",
+        "updatedAt": "2026-06-11T18:50:56.074502+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

@@ -1,0 +1,84 @@
+{
+  "source": {
+    "source_id": "sotsiaalkindlustusamet_teadlikkus_tugiteenuste_olemasolust_pere_ja_seksuaalvagivall",
+    "title": "Teadlikkus tugiteenuste olemasolust pere- ja seksuaalvägivalla ning inimkaubanduse ohvritele",
+    "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Teadlikkus%20tugiteenuste%20olemasolust%20pere-%20ja%20seksuaalv%C3%A4givalla%20ning%20inimkaubanduse%20ohvritele.pdf",
+    "normalized_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Teadlikkus tugiteenuste olemasolust pere- ja seksuaalvägivalla ning inimkaubanduse ohvritele.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Sotsiaalkindlustusamet",
+    "organization_id": "sotsiaalkindlustusamet",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Sotsiaalkindlustusamet",
+      "lapsed ja pered",
+      "lapsevanem",
+      "pere",
+      "vanemlus",
+      "ohvriabi",
+      "lähisuhtevägivald",
+      "perevägivald",
+      "seksuaalvägivald",
+      "seksuaalne ahistamine",
+      "inimkaubandus",
+      "infomaterjal",
+      "SKA",
+      "vägivald"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "SKA",
+      "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+      "heading_4": null,
+      "line": 497,
+      "order": 264
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Teadlikkus tugiteenuste olemasolust pere- ja seksuaalvägivalla ning inimkaubanduse ohvritele"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Sotsiaalkindlustusamet"
+    ],
+    "organizations_seen": [
+      "sotsiaalkindlustusamet"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "SKA",
+        "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+        "line": 497,
+        "order": 264
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Teadlikkus tugiteenuste olemasolust pere- ja seksuaalvägivalla ning inimkaubanduse ohvritele.pdf"
+  },
+  "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Teadlikkus%20tugiteenuste%20olemasolust%20pere-%20ja%20seksuaalv%C3%A4givalla%20ning%20inimkaubanduse%20ohvritele.pdf",
+  "redirects": [],
+  "sha256": "e87ed91a1d423e72f1da226d88827d405c8d9ec0efedf5273312933eab12ecf4",
+  "bytes": 1226508,
+  "downloaded_at": "2026-08-14T08:00:52.894Z"
+}

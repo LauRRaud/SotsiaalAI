@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2021",
+  "articleId": "nahtamatu-nahtavaks-pagulaste-igapaevaelu-moetestamine-visuaalsete-meetoditega-2021-2",
+  "title": "Nähtamatu nähtavaks: pagulaste igapäevaelu mõtestamine visuaalsete meetoditega",
+  "authors": [
+    "Annela Samuel"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2021",
+  "section": "Uurimus",
+  "pageRange": "74-81",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimus, mis käsitleb Tallinnas elavate islamimaadest pärit pagulasnaiste rändekogemusi ja kohanemist, kasutades kultuuripsühholoogilist raamistikku ja visuaalseid uurimismeetodeid. Autor kirjeldab, kuidas fotointervjuud aitavad naistel ise oma igapäevaelu, emotsioone ja tähendusi avada, muutes nähtavaks sageli varju jäävad kogemused. Artikkel toob esile sundrände eripära, kultuurilise ülemineku keerukuse, soospetsiifilised väljakutsed ning sümboolsete ressursside (nt toit, usk, kodu, suhted) rolli uue elu ülesehitamisel. Rõhutatakse, et pagulastega töötavad spetsialistid peaksid arvestama iga inimese ainulaadset teekonda ning kasutama jõustavaid, osalejale sõna andvaid meetodeid, mis toetavad usalduse, sidususe ja heaolu kasvu.",
+  "tags": [
+    "pagulased",
+    "pagulasnaised",
+    "sundränne",
+    "sotsiaaltöö pagulastega",
+    "visuaalsed meetodid",
+    "fotointervjuu",
+    "kultuuripsühholoogia",
+    "kohanemine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2021_web_link_Part16.pdf",
+  "document_id": "sotsiaaltoo-2-2021-nahtamatu-nahtavaks-pagulaste-igapaevaelu-moetestamine-visuaalsete-meetoditega-2021-2",
+  "source_format": "pdf",
+  "source_sha256": "e59e5abf93db80a0292c1dea496c4de32057aa26afa8102ab2e098e0cf92483b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2021-nahtamatu-nahtavaks-pagulaste-igapaevaelu-moetestamine-visuaalsete-meetoditega-2021-2",
+    "previous_source_path": "Sotsiaaltoo_2_2021_web_link_Part16.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e59e5abf93db80a0292c1dea496c4de32057aa26afa8102ab2e098e0cf92483b",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

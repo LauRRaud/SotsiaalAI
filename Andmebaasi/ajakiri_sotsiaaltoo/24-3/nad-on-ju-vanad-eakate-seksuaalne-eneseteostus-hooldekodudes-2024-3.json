@@ -1,0 +1,50 @@
+{
+  "docId": "sotsiaaltoo-3-2024",
+  "articleId": "eakate-seksuaalne-eneseteostus-hooldekodudes-2024-3",
+  "title": "„Nad on ju vanad, mis seksuaalsusest me siin enam räägime?!“ Eakate seksuaalse eneseteostuse võimalused hooldekodudes",
+  "authors": [
+    "Raili Pütsepp"
+  ],
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2024",
+  "section": "Uurimus",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb hooldekodudes elavate eakate seksuaalse eneseteostuse võimalusi, töötajate hoiakuid ning privaatsuse, autonoomia ja seksuaalõiguste tagamist.",
+  "tags": [
+    "eakad",
+    "seksuaalsus",
+    "hooldekodu",
+    "seksuaalne eneseteostus",
+    "seksuaalõigused",
+    "privaatsus",
+    "autonoomia"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2024-09-25",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/nad-ju-vanad-mis-seksuaalsusest-me-siin-enam-raagime-eakate-seksuaalse",
+  "source_type": "web",
+  "source_path": "nad-on-ju-vanad-eakate-seksuaalne-eneseteostus-hooldekodudes-2024-3.html",
+  "mapping_status": "VERIFIED",
+  "mapping_checked": "2026-08-14",
+  "mapping_note": "Eraldi veebiarikkel; seda ei seostata Piret Salmistu kohaliku PDF-artikliga.",
+  "document_id": "sotsiaaltoo-3-2024-eakate-seksuaalne-eneseteostus-hooldekodudes-2024-3",
+  "source_format": "html",
+  "source_sha256": "701cbb99b37101a08f760964ca5217702e2ed954de5b6334eecf2080e15678bf",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2024-eakate-seksuaalne-eneseteostus-hooldekodudes-2024-3",
+    "previous_source_path": "nad-on-ju-vanad-eakate-seksuaalne-eneseteostus-hooldekodudes-2024-3.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "f9c084f03dc87ab945fe40d896210f003cc85358d7aaf0221e52483cc32f24c8",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "f68e58460710b55ebffbd2f779bd5a1b5e79788a6358a2ffaec2843e685f9f3e",
+    "observed_web_title": "„Nad on ju vanad, mis seksuaalsusest me siin enam räägime?!“ Eakate seksuaalse eneseteostuse võimalused hooldekodudes"
+  },
+  "retrieved_at": "2026-09-07T19:39:33.399474+00:00"
+}

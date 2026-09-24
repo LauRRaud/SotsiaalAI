@@ -1,0 +1,80 @@
+{
+  "source": {
+    "source_id": "sotsiaalministeerium_inimkaubanduse_teemal_koolitamine_praktilised_soovitused",
+    "title": "Inimkaubanduse teemal koolitamine: praktilised soovitused",
+    "url": "https://www.sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Sooline_vordoiguslikkus/Inimkaubandus_ja_prostitusioon/inimkaubanduse_teemal_koolitamine.pdf",
+    "normalized_url": "https://www.sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Sooline_vordoiguslikkus/Inimkaubandus_ja_prostitusioon/inimkaubanduse_teemal_koolitamine.pdf",
+    "source_format": "pdf",
+    "source_type": "official_guideline",
+    "resource_type": "method_guidance",
+    "publisher": "Sotsiaalministeerium",
+    "organization_id": "sotsiaalministeerium",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Sotsiaalministeerium",
+      "lapsed ja pered",
+      "haridus",
+      "kool",
+      "õpilase toetamine",
+      "tugimeetmed",
+      "ohvriabi",
+      "inimkaubandus",
+      "praktiline töövahend",
+      "spetsialisti juhend"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "high",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Sotsiaalministeerium",
+      "heading_3": "Ohvriabi, lähisuhtevägivald, inimkaubandus",
+      "heading_4": null,
+      "line": 541,
+      "order": 282
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Inimkaubanduse teemal koolitamine: praktilised soovitused"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "official_guideline"
+    ],
+    "resource_types_seen": [
+      "method_guidance"
+    ],
+    "publishers_seen": [
+      "Sotsiaalministeerium"
+    ],
+    "organizations_seen": [
+      "sotsiaalministeerium"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Sotsiaalministeerium",
+        "heading_3": "Ohvriabi, lähisuhtevägivald, inimkaubandus",
+        "line": 541,
+        "order": 282
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Sooline_vordoiguslikkus/Inimkaubandus_ja_prostitusioon/inimkaubanduse_teemal_koolitamine.pdf"
+  },
+  "final_url": "https://www.sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Sooline_vordoiguslikkus/Inimkaubandus_ja_prostitusioon/inimkaubanduse_teemal_koolitamine.pdf",
+  "redirects": [],
+  "sha256": "b97c3855db6ae053df4a38efb4a944d802f87f4ec18fb0688c6c2997efeeaf4d",
+  "bytes": 380111,
+  "downloaded_at": "2026-08-14T08:00:55.080Z"
+}

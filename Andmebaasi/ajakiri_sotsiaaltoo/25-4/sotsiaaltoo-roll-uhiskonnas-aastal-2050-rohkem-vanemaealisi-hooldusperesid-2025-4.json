@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2025",
+  "articleId": "sotsiaaltoo-roll-uhiskonnas-aastal-2050-rohkem-vanemaealisi-hooldusperesid-2025-4",
+  "title": "Sotsiaaltöö roll ühiskonnas aastal 2050. Rohkem vanemaealisi hooldusperesid",
+  "authors": [
+    "Agnes Kulmar"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2025",
+  "section": "Asendushooldus",
+  "pageRange": "1–6",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb rahvastiku vananemise ja vähese sündimuse mõju asendushooldusele ning pakub lahendusena välja vanemaealiste suurema kaasamise hooldusperedena. Fookuses on perepõhise asendushoolduse väärtus ja vajadus muuta ühiskondlikku mõtteviisi.",
+  "tags": [
+    "asendushooldus",
+    "hoolduspere",
+    "vanemaealised",
+    "rahvastiku vananemine",
+    "sündimus",
+    "perepõhine hooldus",
+    "lapse heaolu"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltöö roll ühiskonnas aastal 2050. Rohkem vanemaealisi hooldusperesid.pdf",
+  "document_id": "sotsiaaltoo-4-2025-sotsiaaltoo-roll-uhiskonnas-aastal-2050-rohkem-vanemaealisi-hooldusperesid-2025-4",
+  "source_format": "pdf",
+  "source_sha256": "b00969c76a4df713a88dc31f40ae326bbfaf20d6483c8c2d7d5f806403cc071d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2025-sotsiaaltoo-roll-uhiskonnas-aastal-2050-rohkem-vanemaealisi-hooldusperesid-2025-4",
+    "previous_source_path": "Sotsiaaltöö roll ühiskonnas aastal 2050. Rohkem vanemaealisi hooldusperesid.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b00969c76a4df713a88dc31f40ae326bbfaf20d6483c8c2d7d5f806403cc071d",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-kohtla-jarve-linn",
+  "document_id": "kov-kohtla-jarve-linn",
+  "municipality": "Kohtla-Järve linn",
+  "municipality_id": "kohtla_jarve_linn",
+  "county": "Ida-Virumaa",
+  "checkedAt": "2026-04-29",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-kohtla-jarve-linn",
+  "coverage": {
+    "services": 15,
+    "benefits": 18,
+    "resources": 18,
+    "contacts": 30,
+    "forms": 26,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "kohtla_jarve_linn",
+    "source_register_file": "kohtla-jarve-linn.sources.json",
+    "service_benefit_resource_items": 51,
+    "items_with_source_keys": 51,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 29,
+    "items_without_related_forms": 22,
+    "items_with_related_contacts": 37,
+    "items_without_related_contacts": 14,
+    "form_sources": 0,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Paketis kasutati ainult Kohtla-Järve linna ametlikku veebikihti ja sellel avaldatud praktilist infot.",
+    "KOV veebilehel esinenud RT või õigusakti lingid jäeti allikapaketist välja, sest RT/legal kiht on eraldi."
+  ],
+  "unresolvedIssues": [
+    "Mitme vormi ja e-vormi puhul viitas KOV leht välisele e-teenuse või faililingile; selles paketis jäi allikaks KOV leht ning täpseid väliseid lõpp-URL-e ei kasutatud põhiallikana.",
+    "KOV veebilehel on paljude ametnike e-posti aadressid varjestatud kujul „**“; aadresse ei taastatud oletuse põhjal.",
+    "Sotsiaalteenuste üldleht ütleb, et teenuse täpsem sisu ja tingimused määratakse hinnatud abivajaduse ja haldusaktiga; seetõttu on osa teenuse tingimusi juhtumipõhised.",
+    "Muu vajaliku sotsiaalteenuse või abi kohta ei ole eraldi detaillehte; info põhineb sotsiaalteenuste koondlehel.",
+    "Matusetoetuse lehel on otsustamise lõigus sõnastuslik vastuolu, kus lauses kasutatakse sõna „sünnitoetus“; kirje on siiski käsitletud matusetoetusena."
+  ],
+  "municipality_name": "Kohtla-Järve linn",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "kohtla-jarve-linn.sources.json",
+  "sourceCount": 29,
+  "counts": {
+    "services": 15,
+    "benefits": 18,
+    "resources": 18,
+    "contacts": 30,
+    "forms": 26,
+    "regulations": 0
+  },
+  "warnings": [
+    "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

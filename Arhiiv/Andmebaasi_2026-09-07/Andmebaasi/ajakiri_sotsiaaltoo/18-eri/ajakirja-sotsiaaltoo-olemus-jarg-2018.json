@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-eri-2018",
+  "articleId": "ajakirja-sotsiaaltoo-olemus-jarg-2018",
+  "title": "Ajakirja Sotsiaaltöö olemus (järg)",
+  "authors": [
+    "Hans van Ewijk"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö (juubeli erinumber)",
+  "issueLabel": "Eri/2018",
+  "section": "Erialased ajakirjad",
+  "pageRange": "17-19",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikli jätk, mis käsitleb Sotsiaaltöö ajakirja suhteid huvirühmade, toetajate ja lugejatega ning toob näiteid Läti sotsiaaltöö ajakirja arenguloost ja erialaväljaannete kestlikkuse tingimustest.",
+  "tags": [
+    "Sotsiaaltöö ajakiri",
+    "huvirühmad ja sidusrühmad",
+    "ajakirja sõltumatus",
+    "Läti sotsiaaltöö ajakiri",
+    "Gvido Kubulnieks",
+    "erialaste ajakirjade kestlikkus"
+  ],
+  "source_type": "file",
+  "source_path": "ST_eri_2018_web_link_Part8.pdf",
+  "mapping_fixed": "2026-08-14",
+  "document_id": "sotsiaaltoo-eri-2018-ajakirja-sotsiaaltoo-olemus-jarg-2018",
+  "source_format": "pdf",
+  "source_sha256": "d4827d7275507c080254471b52be385cbad712b75f63ca9fe759e8247d9e0a6c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2018-ajakirja-sotsiaaltoo-olemus-jarg-2018",
+    "previous_source_path": "ST_eri_2018_web_link_Part8.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d4827d7275507c080254471b52be385cbad712b75f63ca9fe759e8247d9e0a6c",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

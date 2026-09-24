@@ -1,0 +1,78 @@
+{
+  "source": {
+    "source_id": "tarkvanem_tooleht_abikusimused_vestluseks_lasteaialapsega",
+    "title": "TÖÖLEHT: Abiküsimused vestluseks lasteaialapsega",
+    "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_abikysimused_vestluseks_lasteaialapsega.pdf",
+    "normalized_url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_abikysimused_vestluseks_lasteaialapsega.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "method_guidance",
+    "publisher": "Tarkvanem",
+    "organization_id": "tarkvanem",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Tarkvanem",
+      "lapsed ja pered",
+      "laps",
+      "tööleht",
+      "lapse kasvatamine",
+      "suhtlemisoskused",
+      "lasteaed",
+      "praktiline töövahend"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "Tarkvanem",
+      "heading_4": null,
+      "line": 649,
+      "order": 329
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "TÖÖLEHT: Abiküsimused vestluseks lasteaialapsega"
+    ],
+    "collection_hints": [
+      "organization_guidelines"
+    ],
+    "source_types_seen": [
+      "official_guideline"
+    ],
+    "resource_types_seen": [
+      "method_guidance"
+    ],
+    "publishers_seen": [
+      "Tarkvanem"
+    ],
+    "organizations_seen": [
+      "tarkvanem"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "Tarkvanem",
+        "line": 649,
+        "order": 329
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_abikysimused_vestluseks_lasteaialapsega.pdf"
+  },
+  "final_url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_abikysimused_vestluseks_lasteaialapsega.pdf",
+  "redirects": [],
+  "sha256": "73bcc8e03aaeaaccfd517aaabb40018b38d58b5539a3f47a34659d4e3e56c1c7",
+  "bytes": 104254,
+  "downloaded_at": "2026-08-14T08:00:59.141Z"
+}

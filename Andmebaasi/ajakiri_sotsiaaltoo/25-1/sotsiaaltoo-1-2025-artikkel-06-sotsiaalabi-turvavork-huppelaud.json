@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "kas-sotsiaalabi-on-turvavork-voi-huppelaud-2025-1",
+  "title": "Kas sotsiaalabi on (turva)võrk või hüppelaud? Kuidas aidata inimesed kiiresti taas jalule",
+  "authors": [
+    "Kati Nõlvak"
+  ],
+  "section": "Korraldus",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "description": "Artikkel käsitleb sotsiaalabi kui süsteemi, mis peaks aitama inimestel majanduslikust raskusest välja tulla, mitte hoidma neid püsivalt toetuste saajatena. Kati Nõlvak selgitab, kuidas toimetulekutoetus, võlanõustamine, tööturuteenused ja muud abimeetmed moodustavad tervikliku paketi, mis peaks olema kujundatud andmepõhiselt ja piirkondlikke erisusi arvestades. Analüüsitakse toimetulekutoetuse statistikat, toetusesaajate profiili ja seoseid töötuse ning võlanõustamisteenuse kasutamisega. Autor rõhutab, et eesmärk on muuta sotsiaalabi hüppelauaks iseseisva toimetuleku suunas, mitte turvavõrguks, kuhu inimene pikaks ajaks kinni jääb.",
+  "tags": [
+    "sotsiaalabi",
+    "toimetulekutoetus",
+    "majanduslik toimetulek",
+    "võlanõustamine",
+    "töötus",
+    "andmepõhine otsustamine",
+    "sotsiaalhoolekanne"
+  ],
+  "source_path": "Kas sotsiaalabi on (turva)võrk või hüppelaud_1_2025.pdf",
+  "pageRange": "1–9",
+  "document_id": "sotsiaaltoo-1-2025-kas-sotsiaalabi-on-turvavork-voi-huppelaud-2025-1",
+  "source_format": "pdf",
+  "source_sha256": "22ca636366254af0c87f4f2aed3fa79b349d57fbb364d145bd35954a45335685",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2025-kas-sotsiaalabi-on-turvavork-voi-huppelaud-2025-1",
+    "previous_source_path": "Kas sotsiaalabi on (turva)võrk või hüppelaud_1_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "22ca636366254af0c87f4f2aed3fa79b349d57fbb364d145bd35954a45335685",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

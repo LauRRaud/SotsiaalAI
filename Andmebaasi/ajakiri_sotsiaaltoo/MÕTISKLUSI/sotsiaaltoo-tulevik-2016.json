@@ -1,0 +1,41 @@
+{
+  "docId": "motisklusi-sotsiaaltoost-2016",
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "MÕTISKLUSI",
+  "pdf_start_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "sotsiaaltoo-tulevik-2016",
+  "title": "Sotsiaaltöö tulevik",
+  "authors": [
+    "Jean-Pierre Wilken",
+    "Hans van Ewijk"
+  ],
+  "pageRange": "40-41",
+  "pdf_end_page": 2,
+  "section": "Hea praktika",
+  "description": "Artikkel vaatab sotsiaaltöö tulevikku ning kirjeldab sotsiaaltööd avatud, teadusliku ja praktilise alusega professioonina. Fookuses on T-kujulise spetsialisti mudel, partnerluses töötamine ning sotsiaaltöö kaks keskset ülesannet: toetamine ja sidemete loomine.",
+  "tags": [
+    "sotsiaaltöö tulevik",
+    "T-kujuline spetsialist",
+    "professionaliseerumine",
+    "partnerlus",
+    "sidemete loomine",
+    "sotsiaalne kvaliteet"
+  ],
+  "source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part15.pdf",
+  "document_id": "motisklusi-sotsiaaltoost-2016-sotsiaaltoo-tulevik-2016",
+  "source_format": "pdf",
+  "source_sha256": "5128c7e379e0c35fec70c97769f3926d162a8ece6961bc8ef3b123b450022cd6",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "motisklusi-sotsiaaltoost-2016-sotsiaaltoo-tulevik-2016",
+    "previous_source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part15.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "5128c7e379e0c35fec70c97769f3926d162a8ece6961bc8ef3b123b450022cd6",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

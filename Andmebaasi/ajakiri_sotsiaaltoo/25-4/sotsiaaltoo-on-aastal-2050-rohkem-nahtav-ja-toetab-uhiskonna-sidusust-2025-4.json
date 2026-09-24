@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2025",
+  "articleId": "sotsiaaltoo-on-aastal-2050-rohkem-nahtav-ja-toetab-uhiskonna-sidusust-2025-4",
+  "title": "Sotsiaaltöö on aastal 2050 rohkem nähtav ja toetab ühiskonna sidusust",
+  "authors": [
+    "Natalja Rosenthal"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2025",
+  "section": "Tulevikuvaade",
+  "pageRange": "1–6",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Essee arutleb, kuidas tehnoloogia, rahvastiku vananemine, sotsiaalne ebavõrdsus ja kliimamuutused kujundavad sotsiaaltöö rolli aastaks 2050. Autor rõhutab sotsiaaltöö nähtavuse, digipädevuse, rahvusvahelise koostöö ja poliitikakujunduses osalemise tähtsust.",
+  "tags": [
+    "sotsiaaltöö tulevik",
+    "2050",
+    "tehisintellekt",
+    "rahvastiku vananemine",
+    "kliimamuutused",
+    "sotsiaalne sidusus",
+    "poliitikakujundus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltöö on aastal 2050 rohkem nähtav ja toetab ühiskonna sidusust.pdf",
+  "document_id": "sotsiaaltoo-4-2025-sotsiaaltoo-on-aastal-2050-rohkem-nahtav-ja-toetab-uhiskonna-sidusust-2025-4",
+  "source_format": "pdf",
+  "source_sha256": "dd216e4d76af263ea66b212f307b68d766110fc082c35fa0c1aafcd44b12ef6c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2025-sotsiaaltoo-on-aastal-2050-rohkem-nahtav-ja-toetab-uhiskonna-sidusust-2025-4",
+    "previous_source_path": "Sotsiaaltöö on aastal 2050 rohkem nähtav ja toetab ühiskonna sidusust.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "dd216e4d76af263ea66b212f307b68d766110fc082c35fa0c1aafcd44b12ef6c",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

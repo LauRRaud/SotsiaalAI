@@ -1,0 +1,100 @@
+{
+  "docId": "sotsiaaltoo-3-2018",
+  "articleId": "rahvusvahelised-lastekaitsejuhtumid-2018",
+  "title": "Rahvusvahelised lastekaitsejuhtumid Sotsiaalkindlustusameti praktikas",
+  "authors": [
+    "Katrin Malm"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2018",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "75-79",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalkindlustusameti lastekaitseosakonna peaspetsialisti ülevaade rahvusvahelistest lastekaitsejuhtumitest, kus abivajav laps või üks lapsevanem on pärit, elas või elab välismaal. Artikkel esitab hulga elulisi näiteid 2018. aastal ametisse jõudnud pöördumistest: Soome, Portugali ja Iirimaaga seotud juhtumid, hooldusõiguse ja suhtluskorra vaidlused, lapseröövid, laste jäämine välisriiki ilma täiskasvanuta. Selgitab, et rahvusvahelised ja riigisisesed juhtumid on sisult sarnased, kuid nõuavad teiste riikide lastekaitse põhimõtete tundmist, operatiivset reageerimist ja koostööd välisriigi ametkondadega. Käsitleb ka lapse tagastamise küsimuse tundlikkust olukorras, kus tagasipöördumisest keeldumise põhjusena tuuakse välja koduvägivald.",
+  "tags": [
+    "rahvusvaheline lastekaitse",
+    "Sotsiaalkindlustusamet",
+    "hooldusõigus",
+    "lapserööv",
+    "piiriülene koostöö",
+    "väljaränne"
+  ],
+  "source_type": "file",
+  "source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part17.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2018-rahvusvahelised-lastekaitsejuhtumid-2018",
+  "source_sha256": "a95b7d0bd1c15bf0d83016b7d78e0a2bac82d7ab22e9f692dcda6bc626977a4f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2018-rahvusvahelised-lastekaitsejuhtumid-2018",
+    "previous_source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part17.txt",
+    "previous_source_original_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part17.pdf",
+    "reference_stored_source_sha256": "33eae2d7cbb000d2b792a4b071d814f17b4c917918f42f0e051c07e4d682c5af",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\18-3\\155619680390_Sotsiaaltoo_nr3_2018_veebi_link.pdf",
+      "source_sha256": "45eac17c335ef472708d0eb485f916c201e5db46ac64163cc7aeeb1f47dd10a9",
+      "pdf_start_page": 77,
+      "pdf_end_page": 81,
+      "printed_page_range": "75-79",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 81,
+      "source_regions": [
+        {
+          "source_pdf_page": 77,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 78,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 79,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 80,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 81,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "75-79",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\18-3\\155619680390_Sotsiaaltoo_nr3_2018_veebi_link.pdf"
+    },
+    "server_page_range": "75-79"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-2-2024",
+  "articleId": "elutööpreemia-laureaat-kai-rannastu-uksi-sotsiaaltood-ei-tee-2024-2",
+  "title": "Elutööpreemia laureaat Kai Rannastu: „Üksi sotsiaaltööd ei tee!“",
+  "authors": [
+    "Kadri Kuulpak"
+  ],
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2024",
+  "section": "Persoon",
+  "pageRange": "3-8",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu sotsiaalvaldkonna elutööpreemia laureaadi Kai Rannastuga avab tema teekonda keemiateaduskonnast sotsiaaltöö ja kutsehariduse maailma. Intervjuus räägitakse hooldustöötajate koolitamisest, erivajadusega noorte kutsehariduse arendamisest, rollist Eesti sotsiaaltöö assotsiatsioonis ning eetikakomitee töös. Olulisel kohal on meeskonnatöö, supervisioon ja õpetaja roll õppijate ning kolleegide toetamisel, aga ka küsimus, kuidas hoida iseennast valdkonnas, kus üksi ei tee keegi sotsiaaltööd.",
+  "tags": [
+    "persoon",
+    "Kai Rannastu",
+    "sotsiaaltöö",
+    "hooldustöö",
+    "kutseharidus",
+    "erivajadusega noored",
+    "supervisioon",
+    "ESTA",
+    "elutööpreemia"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2024_web_Part3.pdf",
+  "document_id": "sotsiaaltoo-2-2024-elut-preemia-laureaat-kai-rannastu-uksi-sotsiaaltood-ei-tee-2024-2",
+  "source_format": "pdf",
+  "source_sha256": "69e7b16a8c3b550289047b12efbe1f2509fecdc6bc890aefa797970177cf42e9",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2024-elut-preemia-laureaat-kai-rannastu-uksi-sotsiaaltood-ei-tee-2024-2",
+    "previous_source_path": "Sotsiaaltoo_2_2024_web_Part3.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "69e7b16a8c3b550289047b12efbe1f2509fecdc6bc890aefa797970177cf42e9",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

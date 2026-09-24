@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2018",
+  "articleId": "vaartikas-elu-hooldekodus-algab-inimlikkusest-2018",
+  "title": "Väärikas elu hooldekodus algab inimlikkusest ja hoolimisest",
+  "authors": [
+    "Elge Härma"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2018",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "39-42",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Praktikalugu hooldekodu Tohvri kogemusest, kus rõhuasetus on inimväärikust hoidval keskkonnal, loovusel, kogukonnakoostööl ja elanike igapäevaelu sisustamisel.",
+  "tags": [
+    "hooldekodu",
+    "eakad",
+    "inimväärikus",
+    "hoolimine",
+    "loovtegevused",
+    "kogukonnakoostöö",
+    "dementsusega inimesed"
+  ],
+  "source_type": "file",
+  "source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part12.pdf",
+  "document_id": "sotsiaaltoo-2-2018-vaartikas-elu-hooldekodus-algab-inimlikkusest-2018",
+  "source_format": "pdf",
+  "source_sha256": "095982067a4d2764245bc2fca8ce18c93e3a531f6971bbd99f7ff2b3ee94bc8a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2018-vaartikas-elu-hooldekodus-algab-inimlikkusest-2018",
+    "previous_source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part12.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "095982067a4d2764245bc2fca8ce18c93e3a531f6971bbd99f7ff2b3ee94bc8a",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

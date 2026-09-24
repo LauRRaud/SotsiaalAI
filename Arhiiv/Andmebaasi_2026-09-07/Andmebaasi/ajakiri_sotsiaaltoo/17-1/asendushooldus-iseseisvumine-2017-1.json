@@ -1,0 +1,108 @@
+{
+  "docId": "sotsiaaltoo-1-2017",
+  "articleId": "asendushooldus-iseseisvumine-2017-1",
+  "title": "Kuidas muuta asendushoolduse noorte siirdumine iseseisvasse ellu sujuvamaks",
+  "authors": [
+    "Pirjo Turk"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2017",
+  "section": "Uurimus",
+  "pageRange": "56-61",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Praxise analüütik Pirjo Turk esitab sotsiaalministeeriumi tellitud 2016. aasta uuringu tulemused, mis põhinevad 196 asenduskodunoore küsitlusel ja intervjuudel. Asendushoolduselt lahkuvatel noortel on madalam haridustase, nad ei tunne toetusvõimalusi — peaaegu pooled ei teadnud Archimedese üliõpilasstipendiumist —, ei ole kaasatud igapäevatoimingutesse ega oska rahaga ümber käia, ning ligi pool pole osalenud oma juhtumiplaani koostamises. Iga teine asenduskodust pärit neiu on end tahtlikult vigastanud. Turk soovitab üleriigilisi noortekodusid ja varasemat tugiisikut.",
+  "tags": [
+    "uurimus",
+    "asendushooldus",
+    "noored",
+    "iseseisvumine",
+    "lastekaitse",
+    "juhtumiplaan"
+  ],
+  "source_type": "file",
+  "source_path": "2017_1_Part13.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2017-asendushooldus-iseseisvumine-2017-1",
+  "source_sha256": "18fa5d011a5d66fe1a9ff717d49664fe823013c2118093de5fb72f52ab186d78",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2017-asendushooldus-iseseisvumine-2017-1",
+    "previous_source_path": "2017_1_Part13.txt",
+    "previous_source_original_path": "2017_1.pdf",
+    "reference_stored_source_sha256": "a3a3650476b745af7d27a2a9b1fb16171a6cf00fddbd959f9d0dabb28eb30fde",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf",
+      "source_sha256": "335f81467a555f12c55d0e8bf60122a178c5267567cf79607448a5d987629e50",
+      "pdf_start_page": 58,
+      "pdf_end_page": 63,
+      "printed_page_range": "56-61",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 63,
+      "source_regions": [
+        {
+          "source_pdf_page": 58,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 59,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 60,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 61,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 62,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 63,
+          "bounds": [
+            0,
+            0,
+            496,
+            415.628
+          ]
+        }
+      ],
+      "effective_printed_page_range": "56-61"
+    },
+    "server_page_range": "56-61"
+  }
+}

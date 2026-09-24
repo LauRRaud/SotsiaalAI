@@ -1,0 +1,37 @@
+{
+  "docId": "sotsiaaltoo-4-2017",
+  "articleId": "sootsiaalne-innovatsioon-2017",
+  "title": "Sotsiaalne innovatsioon – kellele ja kuidas?",
+  "authors": [
+    "Gerli Aavik"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2017",
+  "section": "Innovatsioon hoolekandes",
+  "pageRange": "29-31",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade sotsiaalse innovatsiooni olemusest, vajadusest ning rakendamise võimalustest hoolekandesektoris.",
+  "tags": [
+    "innovatsioon",
+    "teenusedisain",
+    "hoolekanne"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaalne innovatsioon - kellele ja kuidas_.pdf",
+  "document_id": "sotsiaaltoo-4-2017-sootsiaalne-innovatsioon-2017",
+  "source_format": "pdf",
+  "source_sha256": "b496146a04e7bf167d0dd287c9d9fc422572ddd2fe19e6d5247d61dbe363d6d7",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2017-sootsiaalne-innovatsioon-2017",
+    "previous_source_path": "Sotsiaalne innovatsioon - kellele ja kuidas_.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b496146a04e7bf167d0dd287c9d9fc422572ddd2fe19e6d5247d61dbe363d6d7",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

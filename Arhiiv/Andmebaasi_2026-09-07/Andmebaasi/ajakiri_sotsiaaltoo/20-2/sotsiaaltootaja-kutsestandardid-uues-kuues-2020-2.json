@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2020",
+  "articleId": "sotsiaaltootaja-kutsestandardid-uues-kuues-2020-2",
+  "title": "Sotsiaaltöötaja kutsestandardid uues kuues",
+  "authors": [
+    "Marju Selg"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2020",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "42-45",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab uuendatud sotsiaaltöötaja kutsestandardeid ning selgitab, kuidas need toetavad paindlikumat, tänapäevasemat ja töötajasõbralikumat professionaalset arengut. Käsitletakse nii T-kujulise professionaalsuse ideed kui ka kutse taotlemise praktilist väärtust.",
+  "tags": [
+    "kutsestandard",
+    "sotsiaaltöötaja",
+    "kutse taotlemine",
+    "professionaalsus",
+    "kompetentsid",
+    "ESTA"
+  ],
+  "source_type": "file",
+  "source_path": "ST2_2020_web_link_Part14.pdf",
+  "document_id": "sotsiaaltoo-2-2020-sotsiaaltootaja-kutsestandardid-uues-kuues-2020-2",
+  "source_format": "pdf",
+  "source_sha256": "0bc7677d1fa391b226b3d72deb04ddecb110fabf4331adaeda8201922307c575",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2020-sotsiaaltootaja-kutsestandardid-uues-kuues-2020-2",
+    "previous_source_path": "ST2_2020_web_link_Part14.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "0bc7677d1fa391b226b3d72deb04ddecb110fabf4331adaeda8201922307c575",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

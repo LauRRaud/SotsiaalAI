@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-4-2021",
+  "articleId": "terviklik-abi-kodu-lahedalt-iste-mudel-2021-4",
+  "title": "Terviklik abi kodu lähedalt – isikukeskne erihoolekanne omavalitsustes",
+  "authors": [
+    "Katrin Tsuiman"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2021",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "9-16",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade ISTE teenusemudelist, mis aitab pakkuda isikukeskset ja kogukonnapõhist erihoolekannet. Artiklis kirjeldatakse tööprotsesse, juhtumikorralduse rolli, omavalitsuste koostööd ning illustreeritakse lähenemist klientide lugude kaudu.",
+  "tags": [
+    "ISTE",
+    "erihoolekanne",
+    "isikukeskne lähenemine",
+    "KOV",
+    "juhtumikorraldus",
+    "kogukonnatugi"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2021_web_Part4.pdf",
+  "document_id": "sotsiaaltoo-4-2021-terviklik-abi-kodu-lahedalt-iste-mudel-2021-4",
+  "source_format": "pdf",
+  "source_sha256": "b0660e4f88edecebd1e3e3fb90c66e73afae034fd642e3def5547626072ab02b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2021-terviklik-abi-kodu-lahedalt-iste-mudel-2021-4",
+    "previous_source_path": "Sotsiaaltoo_4_2021_web_Part4.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b0660e4f88edecebd1e3e3fb90c66e73afae034fd642e3def5547626072ab02b",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

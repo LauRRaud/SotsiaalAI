@@ -1,0 +1,40 @@
+{
+  "docId": "motisklusi-sotsiaaltoost-2016",
+  "articleId": "sotsiaaltootajate-juhtimine-2016",
+  "title": "Sotsiaaltöötajate juhtimine",
+  "authors": [
+    "Hans van Ewijk"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "MÕTISKLUSI",
+  "section": "Hea praktika",
+  "pageRange": "29-31",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb sotsiaaltöö juhtimist esmatasandi juhi vaatenurgast, rõhutades toetava, suunava ja õppimist võimaldava juhtimise tähtsust. Fookuses on teadmuste koosloomine, meeskonnatöö, keerukate olukordade haldamine ning sellise juhtimise vajadus, mis mõistab sotsiaaltöötaja töö eripära ja aitab professionaalset arengut teadlikult toetada.",
+  "tags": [
+    "sotsiaaltöö juhtimine",
+    "esmatasandi juht",
+    "teadmusloome",
+    "õppiv organisatsioon",
+    "meeskonnatöö",
+    "toetav juhtimine"
+  ],
+  "source_type": "file",
+  "source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part12.pdf",
+  "document_id": "motisklusi-sotsiaaltoost-2016-sotsiaaltootajate-juhtimine-2016",
+  "source_format": "pdf",
+  "source_sha256": "87b197e3ba0d3f25d7f0462c4da9c4cbe50788ba909edf354d4a74f9ff4d6e86",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "motisklusi-sotsiaaltoost-2016-sotsiaaltootajate-juhtimine-2016",
+    "previous_source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part12.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "87b197e3ba0d3f25d7f0462c4da9c4cbe50788ba909edf354d4a74f9ff4d6e86",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

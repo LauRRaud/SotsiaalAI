@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-1-2024",
+  "articleId": "anu-aunapuu-eessona-2024-1",
+  "title": "Eessõna",
+  "authors": [
+    "Anu Aunapuu"
+  ],
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2024",
+  "section": "Eessõna",
+  "pageRange": "2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Avaartiklis arutleb autor sotsiaaltöö eetika, väärtuste ja uskumuste üle, mis suunavad nii ühiskonna kui ka sotsiaalvaldkonna arengut. Ta toob näiteid sellest, kuidas ajas on muutunud suhtumine naiste ja laste õigustesse ning rõhutab iga inimese vajadust olla märgatud, aktsepteeritud ja väärikalt koheldud. Kirjeldatakse eetikadilemmade kohti igapäevases praktikas – enesemääramisõigus, info jagamine, digivahendite kasutamine ja meediasuhted – ning seda, kuidas eetikakoodeks saab raskete otsuste tegemisel toeks. Oluline rõhuasetus on ka sotsiaaltöötaja enesehoid ja juhtide vastutus luua tingimused läbipõlemise ennetamiseks.",
+  "tags": [
+    "eessõna",
+    "sotsiaaltöö eetika",
+    "eetikakoodeks",
+    "väärtused",
+    "enesemääramisõigus",
+    "inimväärikus",
+    "eneshoid",
+    "läbipõlemise ennetamine",
+    "juhtimine",
+    "sotsiaalvaldkonna töötajad"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_1_2024_web_Part2.pdf",
+  "document_id": "sotsiaaltoo-1-2024-anu-aunapuu-eessona-2024-1",
+  "source_format": "pdf",
+  "source_sha256": "2901e9e9e58faac16a772ce03f9152c055aeeb9094b01b6c72c2173e5d050772",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2024-anu-aunapuu-eessona-2024-1",
+    "previous_source_path": "Sotsiaaltoo_1_2024_web_Part2.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "2901e9e9e58faac16a772ce03f9152c055aeeb9094b01b6c72c2173e5d050772",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

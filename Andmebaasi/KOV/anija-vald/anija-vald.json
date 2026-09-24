@@ -1,0 +1,2583 @@
+{
+  "municipality": "Anija vald",
+  "county": "Harjumaa",
+  "checkedAt": "2026-04-12",
+  "items": [
+    {
+      "id": "anija_vald_service_koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Anija vald korraldab koduteenuse, mis aitab abi vajavatel inimestel igapäevase toimetuleku tagamiseks püsida oma kodus. Teenus hõlmab koduses elus abistamist ning selle üle korraldab valla sotsiaaltööspetsialist. Vajaduse korral saavad elanikud teenuse saamiseks pöörduda sotsiaaltööspetsialisti poole【782255682017537†L190-L211】.",
+      "application": "Võta ühendust valla sotsiaaltööspetsialistiga ja kirjeldage oma abivajadust【782255682017537†L190-L211】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedContacts": [
+        "anija_vald_contact_airi_horrak",
+        "anija_vald_contact_kristel_laan"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_service_koduteenus",
+      "document_id": "anija_vald_service_koduteenus",
+      "canonical_item_id": "anija_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "62df575b2d0087d63b3cc408d1c95980b9dfa155f13b38138cd4726b7de53dd7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatava üldhooldusteenuse eesmärk on tagada hooldamine neile, kelle iseseisev toimetulek kodus ei ole enam võimalik. Valla sotsiaaltööspetsialist aitab elanikul leida ja korraldada hooldusteenuse sobivas asutuses【782255682017537†L190-L211】.",
+      "application": "Võta ühendust sotsiaaltööspetsialistiga, kes aitab hinnata vajadust ja korraldab hooldusteenuse【782255682017537†L190-L211】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedContacts": [
+        "anija_vald_contact_airi_horrak",
+        "anija_vald_contact_kristel_laan"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "document_id": "anija_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "canonical_item_id": "anija_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "5eda9e82cfe6489edb6fa0c7f291919201d427125c8aa0ff9c2421fc8385d275",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_service_tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus pakub abivajajale tugiisiku, kes aitab tal igapäevaeluga toime tulla, näiteks arsti juurde minemisel või kogukonda integreerumisel. Teenust saab taotleda sotsiaaltööspetsialisti kaudu【782255682017537†L190-L211】.",
+      "application": "Pöördu valla sotsiaaltööspetsialisti poole, et hinnata tugiisiku vajadust ja taotleda teenust【782255682017537†L190-L211】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedContacts": [
+        "anija_vald_contact_airi_horrak",
+        "anija_vald_contact_kristel_laan"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_service_tugiisikuteenus",
+      "document_id": "anija_vald_service_tugiisikuteenus",
+      "canonical_item_id": "anija_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "10b047d59eccd6aac0a4a230a225d8b69ace7b0bd6dcefd779b8212781c61945",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_service_taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldus teenus toetab peresid, kes hooldavad erivajadusega täiskasvanut. Valla sotsiaaltööspetsialist aitab korraldada hooldust ja nõustamist, et hooldusvajadusega isik saaks vajalikku abi【782255682017537†L190-L211】.",
+      "application": "Hooldusvajaduse hindamiseks võta ühendust sotsiaaltööspetsialistiga【782255682017537†L190-L211】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedContacts": [
+        "anija_vald_contact_airi_horrak",
+        "anija_vald_contact_kristel_laan"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_service_taisealise_isiku_hooldus",
+      "document_id": "anija_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "anija_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "0ed953d537991c81cbc0d213743afb3f0307383bf878000f8f8d187dc65edf0a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_service_isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus võimaldab raske puudega inimesel saada assistendi abi toimingute tegemisel, mida ta ise teha ei suuda. Teenuse korraldab valla sotsiaaltööspetsialist【782255682017537†L190-L211】.",
+      "application": "Pöördu sotsiaaltööspetsialisti poole, et hinnata abistaja vajadus ja taotleda teenust【782255682017537†L190-L211】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedContacts": [
+        "anija_vald_contact_airi_horrak",
+        "anija_vald_contact_kristel_laan"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_service_isikliku_abistaja_teenus",
+      "document_id": "anija_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "anija_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "29c73cf4713f64e4a00c3c82b9f090fcc6b04b9d5fcbd2c13030bc0d71fd483f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_service_varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus tagab ajutise ööbimisvõimaluse ja esmase abi inimestele, kellel puudub turvaline eluase. Sotsiaaltööspetsialist suunab abivajaja turvalisse varjupaika ja aitab korraldada lisatoetusi【782255682017537†L190-L211】.",
+      "application": "Teenuse saamiseks võta ühendust valla sotsiaaltööspetsialistiga【782255682017537†L190-L211】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedContacts": [
+        "anija_vald_contact_airi_horrak",
+        "anija_vald_contact_kristel_laan"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_service_varjupaigateenus",
+      "document_id": "anija_vald_service_varjupaigateenus",
+      "canonical_item_id": "anija_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "82a36c92d543d55d4bb022e56439fa5398efd8209d9b5978b227f4fb6b7474b9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_service_turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenus pakub ohutus ja ajutist elukohta isikutele, kes vajavad kiiret kaitset (nt vägivalla ohvrid). Sotsiaaltööspetsialistid suunavad vajadusel turvakodusse ja korraldavad abi【782255682017537†L190-L211】.",
+      "application": "Abi saamiseks pöördu sotsiaaltööspetsialisti või kriisiabi poole, kes hindab vajadust ja korraldab teenuse【782255682017537†L190-L211】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedContacts": [
+        "anija_vald_contact_airi_horrak",
+        "anija_vald_contact_kristel_laan"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_service_turvakoduteenus",
+      "document_id": "anija_vald_service_turvakoduteenus",
+      "canonical_item_id": "anija_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "edc1c0b990bea300d25d4b4e00049b0aa0cd45e7eee673bb5ed60dd5f7501919",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_service_sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus aitab liikumisraskustega inimestel või neil, kellele ühistransport ei ole sobiv, jõuda arsti juurde ja muudele teenustele. Transporti korraldab valla sotsiaaltööspetsialist ja seda saab taotleda vastavalt vajadusele【782255682017537†L190-L211】.",
+      "application": "Võta ühendust valla sotsiaaltööspetsialistiga ja selgita transpordivajadus【782255682017537†L190-L211】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedContacts": [
+        "anija_vald_contact_airi_horrak",
+        "anija_vald_contact_kristel_laan"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_service_sotsiaaltransporditeenus",
+      "document_id": "anija_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "anija_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "f0b436ba982492df5cfbfb1788791546edd8d15a8d6101c4e619d5182d6ac7e8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_service_eluaseme_teenus",
+      "itemType": "service",
+      "title": "Eluaseme teenus",
+      "status": "active",
+      "summary": "Eluaseme teenus toetab neid, kellel on raskusi sobiva eluruumi leidmisega. Valla sotsiaaltööspetsialist annab nõu ja aitab taotleda eluasemega seotud lahendusi【782255682017537†L190-L211】.",
+      "application": "Pöördu sotsiaaltööspetsialisti poole, et arutada eluasemeteenuse võimalusi【782255682017537†L190-L211】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedContacts": [
+        "anija_vald_contact_airi_horrak",
+        "anija_vald_contact_kristel_laan"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_service_eluaseme_teenus",
+      "document_id": "anija_vald_service_eluaseme_teenus",
+      "canonical_item_id": "anija_vald_service_eluaseme_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "684fef9a2e5e4886e19acaf1dbc008d7ce2eac042121cea3d0292a0521aff3e4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_service_volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab elanikel, kes on sattunud võlgadesse, saada nõuandeid võlgade restruktureerimiseks ja majandusliku toimetuleku parandamiseks. Nõustamiseks tuleb ühendust võtta valla sotsiaaltööspetsialistiga【782255682017537†L190-L211】.",
+      "application": "Võta ühendust sotsiaaltööspetsialistiga, kes aitab leida võlanõustaja【782255682017537†L190-L211】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedContacts": [
+        "anija_vald_contact_airi_horrak",
+        "anija_vald_contact_kristel_laan"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_service_volanoustamisteenus",
+      "document_id": "anija_vald_service_volanoustamisteenus",
+      "canonical_item_id": "anija_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "9715784459a54031cdbb812b823823cf882a60d32308b9094ee27b2bffe1d82c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_service_lapsehoiuteenus_suure_hooldus_ja_abivajadusega_lapsele",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus suure hooldus- ja abivajadusega lapsele",
+      "status": "active",
+      "summary": "Teenust pakutakse peredele, kellel on erivajadusega laps ja kes vajavad lühiajalist lapsehoidu. Valla sotsiaaltööspetsialist aitab korraldada lapsehoiuteenuse, et vanemad saaksid tegeleda muude kohustustega【782255682017537†L190-L211】.",
+      "application": "Pöördu sotsiaaltööspetsialisti poole, et taotleda lapsehoiuteenust【782255682017537†L190-L211】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedContacts": [
+        "anija_vald_contact_airi_horrak",
+        "anija_vald_contact_kristel_laan"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_service_lapsehoiuteenus_suure_hooldus_ja_abivajadusega_lapsele",
+      "document_id": "anija_vald_service_lapsehoiuteenus_suure_hooldus_ja_abivajadusega_lapsele",
+      "canonical_item_id": "anija_vald_service_lapsehoiuteenus_suure_hooldus_ja_abivajadusega_lapsele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "d65064059640bd45f2af330c6c52032ac87cf4832fd993757ca52f73203f83cb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_service_asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus korraldab lapse hooldamise, kui ta ei saa elada oma bioloogiliste vanematega. Anija vald leiab asendushooldusperesid või lasteasutusi ja toetab nende tööd【782255682017537†L190-L211】.",
+      "application": "Teenuse korraldamiseks pöördu sotsiaaltööspetsialisti või lastekaitsetöötaja poole【782255682017537†L190-L211】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedContacts": [
+        "anija_vald_contact_airi_horrak",
+        "anija_vald_contact_kristel_laan",
+        "anija_vald_contact_leena_masing"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_service_asendushooldusteenus",
+      "document_id": "anija_vald_service_asendushooldusteenus",
+      "canonical_item_id": "anija_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "0d907758e9b433baaed2b2a8e4587c0a8ec35a4a7ad112cba9586720abb3f797",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_service_jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus toetab asendushoolduselt või hooldusperest ellu astunud noori iseseisvuse saavutamisel. Teenus pakub nõustamist ja praktilist abi, et noor saaks iseseisvalt elada【782255682017537†L190-L211】.",
+      "application": "Noor või tema hooldaja võib pöörduda sotsiaaltööspetsialisti poole, kes korraldab teenuse【782255682017537†L190-L211】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedContacts": [
+        "anija_vald_contact_airi_horrak",
+        "anija_vald_contact_kristel_laan",
+        "anija_vald_contact_leena_masing",
+        "anija_vald_contact_heidy_murula"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_service_jarelhooldusteenus",
+      "document_id": "anija_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "anija_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "cef9fbbe25561864b5b1ed5bfb52e606f8b423a278857ee95c633864cc538feb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_service_igapaevaelu_toetamine",
+      "itemType": "service",
+      "title": "Igapäevaelu toetamise teenus",
+      "status": "active",
+      "summary": "Igapäevaelu toetamise teenus on erihooldusteenus, mille eesmärk on parandada kliendi iseseisvust ja toimetulekut tavapärases keskkonnas. Teenust osutatakse Kehra sotsiaalkeskuse päevakeskuses igal tööpäeval【637227872247566†L221-L233】.",
+      "targetGroup": "Inimesed, kellel on erivajadus ja kes vajavad igapäevaelus juhendamist【637227872247566†L221-L233】.",
+      "application": "Teenusele suunatakse spetsialisti ettepanekul või põhjendatud avalduse alusel ning see toimub sotsiaalkeskuses【637227872247566†L221-L233】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalkeskus/",
+      "relatedContacts": [
+        "anija_vald_contact_kai_viirmann",
+        "anija_vald_contact_maie_sirkas",
+        "anija_vald_contact_katrin_liiv"
+      ],
+      "sourceKeys": [
+        "sotsiaalkeskus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalkeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_service_igapaevaelu_toetamine",
+      "document_id": "anija_vald_service_igapaevaelu_toetamine",
+      "canonical_item_id": "anija_vald_service_igapaevaelu_toetamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalkeskus/",
+      "content_hash": "68cd38c348c0d6e6ee3e548fd8a81ca43f4594c05e58fe62ad1053b5b0c1145c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_service_toetatud_elamine",
+      "itemType": "service",
+      "title": "Toetatud elamise teenus",
+      "status": "active",
+      "summary": "Toetatud elamise teenus aitab klientidel iseseisvalt toime tulla neile kuuluvates eluruumides. Teenuse käigus külastatakse klienti kaks korda nädalas ning aidatakse säilitada tavapärasele võimalikult lähedast elukeskkonda【637227872247566†L221-L233】.",
+      "targetGroup": "Inimesed, kes vajavad juhendamist ja abi iseseisva elu korraldamisel【637227872247566†L221-L233】.",
+      "application": "Teenusele pääseb spetsialisti ettepanekul või avalduse alusel ning see toimub kliendi kodus【637227872247566†L221-L233】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalkeskus/",
+      "relatedContacts": [
+        "anija_vald_contact_kai_viirmann",
+        "anija_vald_contact_maie_sirkas",
+        "anija_vald_contact_katrin_liiv"
+      ],
+      "sourceKeys": [
+        "sotsiaalkeskus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalkeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_service_toetatud_elamine",
+      "document_id": "anija_vald_service_toetatud_elamine",
+      "canonical_item_id": "anija_vald_service_toetatud_elamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalkeskus/",
+      "content_hash": "360cc953cd813ca275226a8fee7eb92827cf8a07a8e5b9e6b9776b8515fc4012",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_service_pesupesemise_ja_kuivatamise_teenus",
+      "itemType": "service",
+      "title": "Pesupesemise ja kuivatamise teenus",
+      "status": "active",
+      "summary": "Kehra sotsiaalkeskuses saavad pensionärid ja vähekindlustatud isikud kasutada pesu pesemise ja kuivatamise teenust. Masinatäie pesu pesemise tasu on 2 eurot ning pesu kuivatamise tasu samuti 2 eurot【637227872247566†L212-L220】.",
+      "targetGroup": "Pensionärid ja vähekindlustatud inimesed, kellel puudub kodune pesupesemisvõimalus【637227872247566†L212-L220】.",
+      "amount": "2 eurot pesu pesemine, 2 eurot kuivatamine【637227872247566†L212-L220】.",
+      "application": "Teenust saab kasutada eelneval kokkuleppel sotsiaalkeskusega【637227872247566†L212-L220】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalkeskus/",
+      "relatedContacts": [
+        "anija_vald_contact_kai_viirmann"
+      ],
+      "sourceKeys": [
+        "sotsiaalkeskus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalkeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_service_pesupesemise_ja_kuivatamise_teenus",
+      "document_id": "anija_vald_service_pesupesemise_ja_kuivatamise_teenus",
+      "canonical_item_id": "anija_vald_service_pesupesemise_ja_kuivatamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalkeskus/",
+      "content_hash": "198f783c8ada1c0d46ca497e6f13c2775f64e6445f3fe7611f174cfa9b1a9cce",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_service_dusi_kasutamise_teenus",
+      "itemType": "service",
+      "title": "Duši kasutamise teenus",
+      "status": "active",
+      "summary": "Kehra sotsiaalkeskus pakub duši kasutamise võimalust inimestele, kellel ei ole kodus pesemisvõimalust. Teenuse hind on 2 eurot inimese kohta ning kasutamine toimub eelneval kokkuleppel【637227872247566†L212-L220】.",
+      "targetGroup": "Elanikud, kellel puudub kodune dušivõimalus【637227872247566†L212-L220】.",
+      "amount": "2 eurot inimese kohta【637227872247566†L212-L220】.",
+      "application": "Teenuse kasutamiseks tuleb aeg kokku leppida sotsiaalkeskusega【637227872247566†L212-L220】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalkeskus/",
+      "relatedContacts": [
+        "anija_vald_contact_kai_viirmann"
+      ],
+      "sourceKeys": [
+        "sotsiaalkeskus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalkeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_service_dusi_kasutamise_teenus",
+      "document_id": "anija_vald_service_dusi_kasutamise_teenus",
+      "canonical_item_id": "anija_vald_service_dusi_kasutamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalkeskus/",
+      "content_hash": "04b38bef4d4b4e02f3c6eb161a938a8dcfae67458c8a96bb97515734900fbd47",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_service_paevakeskuse_teenus_eakale_voi_puudega_isikule",
+      "itemType": "service",
+      "title": "Päevakeskuse teenus eakale või puudega isikule",
+      "status": "active",
+      "summary": "Päevakeskuse teenus pakub eakatele ja puudega inimestele sotsiaalkeskuses tegevusi, huviringe, kohtumisi ja tugigruppe. Teenuse eesmärk on toetada sotsiaalset aktiivsust ja ennetada üksildust【637227872247566†L212-L233】.",
+      "targetGroup": "Eakad ja puudega inimesed Anija vallas【637227872247566†L212-L233】.",
+      "application": "Teenuses osalemiseks tuleb pöörduda sotsiaalkeskuse juhataja poole【637227872247566†L212-L233】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalkeskus/",
+      "relatedContacts": [
+        "anija_vald_contact_kai_viirmann"
+      ],
+      "sourceKeys": [
+        "sotsiaalkeskus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalkeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_service_paevakeskuse_teenus_eakale_voi_puudega_isikule",
+      "document_id": "anija_vald_service_paevakeskuse_teenus_eakale_voi_puudega_isikule",
+      "canonical_item_id": "anija_vald_service_paevakeskuse_teenus_eakale_voi_puudega_isikule",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalkeskus/",
+      "content_hash": "5f84962fa944610f1d254e247111e5024219e6e06f18e4585a2bf156f660fd65",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_benefit_sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus makstakse lapsele, kelle rahvastikuregistrijärgne elukoht on alates sünnist katkematult Anija vald ning kelle vanemad või üksikvanem on valla elanikud lapse sünnil ja taotlemise ajal. Toetuse määr on kuni 1200 eurot ühe lapse kohta, makstuna osade kaupa lapse sünni, ühe- ja kaheaastaseks saamise järel【394965649540368†L204-L233】. Taotluse peab esitama kolme kuu jooksul pärast lapse sündi ja lapse aastaseks saamisel【394965649540368†L233-L237】.",
+      "targetGroup": "Anija vallas sündinud lapsed ja nende vanemad või üksikvanemad, kes on vallakodanikud【394965649540368†L204-L233】.",
+      "amount": "kuni 1200 eurot ühe lapse kohta【394965649540368†L204-L233】.",
+      "conditions": "Lapse ja vanemate rahvastikuregistri elukoht peab olema Anija vald lapse sünnil ja taotlemise ajal; toetus makstakse mitmes osas【394965649540368†L204-L233】.",
+      "application": "Esita kirjalik või elektrooniline taotlus kolme kuu jooksul pärast lapse sündi ja lapse aastaseks saamisel【394965649540368†L233-L237】.",
+      "deadline": "3 kuud pärast sünni- ja aastapäevade toimumist【394965649540368†L233-L237】",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "relatedForms": [
+        "anija_vald_form_sunnitoetuse_taotlus_print",
+        "anija_vald_form_sunnitoetuse_i_osa",
+        "anija_vald_form_sunnitoetuse_ii_osa"
+      ],
+      "relatedContacts": [
+        "anija_vald_contact_lydia_kruusmann"
+      ],
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_benefit_sunnitoetus",
+      "document_id": "anija_vald_benefit_sunnitoetus",
+      "canonical_item_id": "anija_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "content_hash": "fe246f87a83583db5beeb6b9dadeb0f464b0f15d01ad5e7d43ac95177b61130a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_benefit_erakorraline_toetus",
+      "itemType": "benefit",
+      "title": "Erakorraline toetus",
+      "status": "active",
+      "summary": "Erakorraline toetus aitab ootamatutes majanduslikes raskustes olevaid inimesi või peresid, näiteks tulekahju, loodusõnnetuse või erakorralise abivahendi vajaduse korral. Toetust antakse, kui pereliikme sissetulek on alla poole kehtivast miinimumpalgast ning summa võib olla kuni 350 eurot【394965649540368†L244-L256】.",
+      "targetGroup": "Pereliikmed või pered, kelle sissetulek ühe inimese kohta on alla poole miinimumpalgast ja kes seisavad silmitsi ootamatute raskustega【394965649540368†L244-L256】.",
+      "amount": "kuni 350 eurot【394965649540368†L244-L256】.",
+      "conditions": "Taotleja peab olema sattunud äkilisse majanduslikku raskusse ning pereliikme sissetulek peab jääma alla poole miinimumpalgast【394965649540368†L244-L256】.",
+      "application": "Esita vallavalitsusele kirjalik avaldus koos sissetulekuid ja väljaminekuid tõendavate dokumentidega; taotluse vaatab läbi sotsiaalkomisjon või vallavalitsus【394965649540368†L246-L256】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "relatedForms": [
+        "anija_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "anija_vald_contact_lydia_kruusmann"
+      ],
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_benefit_erakorraline_toetus",
+      "document_id": "anija_vald_benefit_erakorraline_toetus",
+      "canonical_item_id": "anija_vald_benefit_erakorraline_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "content_hash": "401a8a5a9356cad5a590e2acf6db9b7e383de42777d25412c0416e6026f5f2a4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_benefit_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus",
+      "status": "active",
+      "summary": "Hooldajatoetus on mõeldud vallavalitsuse määratud puudega lapse või täisealise isiku hooldajale. Toetust võib maksta perekonna ühele liikmele kuni kahe puudega lapse või kahe täisealise puudega inimese hooldamise eest. Toetust ei anta isikule, kes ei ole ise võimeline kõrvalise abita toimetulema või õpib päevases õppes, ning toetuse suurus on 40 eurot madalama hooldusvajadusega ja 60 eurot kõrgema hooldusvajadusega isiku hooldamise eest kuus【394965649540368†L263-L302】.",
+      "targetGroup": "Puudega lapse või täisealise isiku hooldaja, kes on vallavalitsuse korraldusega määratud hooldajaks【394965649540368†L263-L273】.",
+      "amount": "40 eurot kuus madala hooldusvajadusega isiku hooldamise eest, 60 eurot kuus kõrge hooldusvajaduse korral【394965649540368†L297-L302】.",
+      "conditions": "Toetust antakse ainult ühele perekonnaliikmele; toetust ei maksta, kui taotleja ei tule kõrvalise abita toime, õpib päevases õppes või kui vajaduse saab katta muude teenustega【394965649540368†L263-L284】.",
+      "application": "Esita taotlus vallavalitsusele; toetus määratakse otsuse tegemisele järgneva kuu 1. kuupäevast ja makstakse välja igakuiselt【394965649540368†L285-L293】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "relatedForms": [
+        "anija_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "anija_vald_contact_lydia_kruusmann"
+      ],
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_benefit_hooldajatoetus",
+      "document_id": "anija_vald_benefit_hooldajatoetus",
+      "canonical_item_id": "anija_vald_benefit_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "content_hash": "6866189b6688e3cad8230c0922751504d160cbada38b7bbfab1df0e48f227827",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_benefit_igapaevase_toimetuleku_soodustamise_toetus",
+      "itemType": "benefit",
+      "title": "Igapäevase toimetuleku soodustamise toetus",
+      "status": "active",
+      "summary": "Igapäevase toimetuleku soodustamise toetus aitab katta ettenägematuid eluasemega seotud ja muude elamiskulude kulusid. Toetust võib taotleda kuni kolm korda aastas ning toetuse suurus on kuni 65 eurot. Sihtrühmaks on puudega isikud, pensionärid ilma ülalpidajateta, vanglast vabanenud, ellu astunud noored, pikaajalised töötud, paljulapselised pered, puudega lapsega pered, töövõimekao tõttu mittetöötavad isikud ja teised väikese sissetulekuga pered【394965649540368†L310-L334】.",
+      "targetGroup": "Puudega isikud, pensionärid ilma ülalpidajateta, vanglast vabanenud, ellu astunud noored, pikaajalised töötud, paljulapselised pered, puudelapsega pered, puuduva või osalise töövõimega isikud ja muud isikud, kelle sissetulek ühe pereliikme kohta jääb alla valla toimetulekupiiri【394965649540368†L315-L329】.",
+      "amount": "kuni 65 eurot ühe taotluse kohta (kuni kolm korda aastas)【394965649540368†L330-L334】.",
+      "conditions": "Sissetulek ühe pereliikme kohta peab olema pool või alla poole miinimumpalgast; toetus on mõeldud ootamatute eluasemekulude ja muude elamiskulude katmiseks【394965649540368†L310-L334】.",
+      "application": "Esita vallavalitsusele kirjalik avaldus koos sissetulekute ja väljaminekute tõenditega; taotluse kinnitab sotsiaalkomisjon või vallavalitsus【394965649540368†L330-L334】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "relatedForms": [
+        "anija_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "anija_vald_contact_lydia_kruusmann"
+      ],
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_benefit_igapaevase_toimetuleku_soodustamise_toetus",
+      "document_id": "anija_vald_benefit_igapaevase_toimetuleku_soodustamise_toetus",
+      "canonical_item_id": "anija_vald_benefit_igapaevase_toimetuleku_soodustamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "content_hash": "40e8e30715c49bd229a0ec963e9bdcaf8acbaea2345708995fd2b3a1b72576e6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_benefit_koolitoetus",
+      "itemType": "benefit",
+      "title": "Koolitoetus",
+      "status": "active",
+      "summary": "Koolitoetus toetab riskiperesid laste koolitarvete, riiete ja jalanõude ostmisel või õpilaskodu ja ühiselamu üüri maksmisel. Toetust saavad kaks korda aastas paljulapselised pered (vähemalt kolm alla 18-aastast last), puudelapsega pered ja üksikvanemad, kellel puudub teise vanema toetus. Toetuse suurus on kuni 35 eurot lapse kohta【394965649540368†L340-L352】.",
+      "targetGroup": "Riskipered: paljulapselised pered (vähemalt kolm alla 18-aastast last), puudelapsega pered ja üksikvanemaga pered【394965649540368†L340-L352】.",
+      "amount": "kuni 35 eurot lapse kohta【394965649540368†L340-L352】.",
+      "conditions": "Pereliikme sissetulek peab olema pool või alla poole kehtivast miinimumpalgast; toetus makstakse arve alusel kas sularahas, pangakontole või kinkepakina【394965649540368†L340-L352】.",
+      "application": "Esita vallavalitsusele kirjalik avaldus koos sissetuleku- ja väljaminekudokumentidega; otsuse teeb sotsiaalkomisjon või vallavalitsus【394965649540368†L347-L352】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "relatedForms": [
+        "anija_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "anija_vald_contact_lydia_kruusmann"
+      ],
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_benefit_koolitoetus",
+      "document_id": "anija_vald_benefit_koolitoetus",
+      "canonical_item_id": "anija_vald_benefit_koolitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "content_hash": "e58724ec403e45e630c87e1b0288702823146cfbba8005ee078e8d346c9614fe",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_benefit_kuttetoetus",
+      "itemType": "benefit",
+      "title": "Küttetoetus",
+      "status": "active",
+      "summary": "Küttetoetus aitab riskirühma kuuluvatel isikutel, peredel ja töövõimekaotusega inimestel katta küttekulusid. Toetust on võimalik taotleda kord aastas ja toetuse suurus on kuni 65 eurot. Taotlemise eelduseks on, et perekonna sissetulek ühe liikme kohta on pool või alla poole miinimumpalgast【394965649540368†L356-L363】.",
+      "targetGroup": "Riskirühma isik, riskipere või töövõime kaotanud isik, kes ei ole võimeline töötama【394965649540368†L356-L363】.",
+      "amount": "kuni 65 eurot kord aastas【394965649540368†L356-L363】.",
+      "conditions": "Sissetulek peab olema pool või alla poole miinimumpalgast; toetus makstakse üks kord aastas küttekulude katteks【394965649540368†L356-L363】.",
+      "application": "Esita vallavalitsusele kirjalik avaldus koos sissetulekudokumentidega; taotluse kinnitab sotsiaalkomisjon või vallavalitsus【394965649540368†L356-L363】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "relatedForms": [
+        "anija_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "anija_vald_contact_lydia_kruusmann"
+      ],
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_benefit_kuttetoetus",
+      "document_id": "anija_vald_benefit_kuttetoetus",
+      "canonical_item_id": "anija_vald_benefit_kuttetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "content_hash": "015be6c612ecc67b9b389aa2c2100e8de07b516569011d38f81e4e4918e5bb80",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_benefit_lagritoetus",
+      "itemType": "benefit",
+      "title": "Laagritoetus",
+      "status": "active",
+      "summary": "Laagritoetus kompenseerib osaliselt laste ja noorte laagrite piletite maksumuse. Toetust võib taotleda kord aastas ning toetuse suurus on kuni 35 eurot lapse kohta. Toetust saavad paljulapselised pered, puudelapsega pered, üksikvanemaga pered, eestkostepered ja kasupered, kelle pereliikmete sissetulek on pool või alla poole miinimumpalgast【394965649540368†L368-L387】.",
+      "targetGroup": "Paljulapselised pered, puudelapsega pered, üksikvanemaga pered, eestkostepered ja kasupered【394965649540368†L373-L380】.",
+      "amount": "kuni 35 eurot ühe lapse kohta【394965649540368†L385-L386】.",
+      "conditions": "Pereliikme sissetulek peab olema pool või alla poole miinimumpalgast ning toetus on mõeldud laagri osalemise kulude katmiseks kord aastas【394965649540368†L368-L387】.",
+      "application": "Esita vallavalitsusele kirjalik taotlus koos sissetulekuid ja väljaminekuid tõendavate dokumentidega; taotluse kinnitab sotsiaalkomisjon või vallavalitsus【394965649540368†L382-L387】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "relatedForms": [
+        "anija_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "anija_vald_contact_lydia_kruusmann"
+      ],
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_benefit_lagritoetus",
+      "document_id": "anija_vald_benefit_lagritoetus",
+      "canonical_item_id": "anija_vald_benefit_lagritoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "content_hash": "00a69d967832fa7772af392302174cbfc3405978ac3e08bed20aae14edca95b0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_benefit_laste_toitlustamise_toetus",
+      "itemType": "benefit",
+      "title": "Laste toitlustamise toetus",
+      "status": "active",
+      "summary": "Laste toitlustamise toetus tagab Anija valla koolide õpilastele tasuta koolilõuna ning hüvitab toidu- ja toitlustuskulud lasteaedades, pikapäevarühmades, õpilaskodudes ja kutseõppeasutustes. Toetust antakse kuni kuueks kuuks ning taotlemise eelduseks on, et pereliikme sissetulek on pool või alla poole miinimumpalgast. Toetust saavad puudelapsega või puudega last kasvatav isik, paljulapselised pered ja üksikvanemaga pered【394965649540368†L392-L415】.",
+      "targetGroup": "Puudega lapsega või puudega last kasvatav isik, paljulapselised pered ja üksikvanemaga pered【394965649540368†L403-L409】.",
+      "amount": null,
+      "conditions": "Toetus määratakse kuni kuueks kuuks ning pereliikme sissetulek peab olema pool või alla poole miinimumpalgast【394965649540368†L392-L415】.",
+      "application": "Esita vallavalitsusele kirjalik taotlus koos sissetuleku- ja väljaminekudokumentidega; vajaduse korral võib taotluse esitada ka hooldaja, õpetaja või sotsiaaltöötaja【394965649540368†L410-L415】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "relatedForms": [
+        "anija_vald_form_laste_toitlustamise_toetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "anija_vald_contact_lydia_kruusmann"
+      ],
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_benefit_laste_toitlustamise_toetus",
+      "document_id": "anija_vald_benefit_laste_toitlustamise_toetus",
+      "canonical_item_id": "anija_vald_benefit_laste_toitlustamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "content_hash": "e556a1472d91a088e4e6d96ce98cb50d28f7cb2e65cdc2398084470bf76511cb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_benefit_matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetust makstakse 250 eurot isikule, kes korraldab Anija vallas elanud inimese matused. Erandjuhtudel võib toetust saada ka siis, kui surnu elukoht oli teises omavalitsuses või tal puudus elukoht, tingimusel et matusekorraldaja on Anija valla elanik ja ei ole saanud matusetoetust teiselt omavalitsuselt【394965649540368†L420-L427】.",
+      "targetGroup": "Isik, kes korraldab Anija valla elaniku matused või erandjuhtudel teises omavalitsuses elanud isiku matused, kui matusekorraldaja on Anija valla elanik【394965649540368†L420-L427】.",
+      "amount": "250 eurot【394965649540368†L420-L427】.",
+      "conditions": "Taotleja peab korraldama matuse ja olema vastavuses elukoha nõuetega【394965649540368†L420-L427】.",
+      "application": "Esita vallavalitsusele kirjalik taotlus; toetus kantakse taotleja arvele või otse matuseteenuse osutajale【394965649540368†L426-L427】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "relatedForms": [
+        "anija_vald_form_matusetoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "anija_vald_contact_lydia_kruusmann"
+      ],
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_benefit_matusetoetus",
+      "document_id": "anija_vald_benefit_matusetoetus",
+      "canonical_item_id": "anija_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "content_hash": "18e20d257570d297b53927d264659d172e953ced6cfae6812c8f03b80ffd6f10",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_benefit_tervisetoetus",
+      "itemType": "benefit",
+      "title": "Tervisetoetus",
+      "status": "active",
+      "summary": "Tervisetoetus kompenseerib prillide, ravikulude või abivahendite ostu ja rentimise kulud. Toetust saab taotleda kord aastas ja puudelapsega perel kuni neli korda aastas. Sihtrühmaks on puudega isikud, pensionärid ilma ülalpidajateta, vanglast vabanenud, ellu astunud noored, pikaajalised töötud, paljulapselised pered, puudelapsega pered, puuduva või osalise töövõimega isikud ja teised inimesed, kelle sissetulek ühe pereliikme kohta jääb alla toimetulekupiiri. Toetuse suurus on kuni 35 eurot【394965649540368†L431-L461】.",
+      "targetGroup": "Puudega inimesed, ülalpidajateta pensionärid, vanglast vabanenud, asenduskodust ellu astunud noored, pikaajalised töötud, paljulapselised pered, puudelapsega pered, töövõimetud või osaliselt töövõimega isikud ja teised madala sissetulekuga inimesed【394965649540368†L433-L451】.",
+      "amount": "kuni 35 eurot (puudelapsega perel kuni neli korda aastas)【394965649540368†L459-L461】.",
+      "conditions": "Taotleja sissetulek peab olema pool või alla poole miinimumpalgast; toetust makstakse prillide, ravikulude või abivahendite ostu ja rentimise eest. Erandjuhul hüvitatakse puudega isikule ka ravimite kulud, kui need ületavad aastase puudetoetuse summat【394965649540368†L453-L456】.",
+      "application": "Esita kirjalik avaldus koos sissetuleku- ja väljaminekudokumentidega; taotluse vaatab läbi sotsiaalkomisjon või vallavalitsus【394965649540368†L456-L461】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "relatedForms": [
+        "anija_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "relatedContacts": [
+        "anija_vald_contact_lydia_kruusmann"
+      ],
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_benefit_tervisetoetus",
+      "document_id": "anija_vald_benefit_tervisetoetus",
+      "canonical_item_id": "anija_vald_benefit_tervisetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "content_hash": "f4bf7e6bff52e1b065688fb5a644e2aee06bec56a01d0049135e04abf50b3519",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_benefit_toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on riiklik toetus inimestele ja peredele, kelle netosissetulekud pärast eluasemekulude mahaarvamist on alla riikliku toimetulekupiiri. 2026. aasta toimetulekupiir on 220 eurot kuus esimesele pereliikmele, 176 eurot teistele täiskasvanutele ja 264 eurot alaealistele. Toetuse suurus on valemi põhine: (toimetulekupiir + eluasemekulud) – sissetulek. Taotleja peab esitama taotluse iga kuu koos sissetuleku ja eluasemekulude tõenditega【394965649540368†L466-L519】.",
+      "targetGroup": "Isikud ja pered, kelle netosissetulek eluasemekulude mahaarvamisel jääb alla toimetulekupiiri ja kes elavad Anija vallas【394965649540368†L466-L502】.",
+      "amount": "Toetuse suurus arvutatakse valemiga (toimetulekupiir + eluasemekulud) – sissetulek【394965649540368†L466-L502】.",
+      "conditions": "Taotlejad peavad vastama riikliku toimetulekutoetuse tingimustele; toetust ei anta isikule, kellele osutatakse ööpäevaringset hooldusteenust või kes viibib kinnipidamisasutuses【394965649540368†L466-L602】.",
+      "application": "Taotleja esitab kuu viimaseks tööpäevaks taotluse koos perekonnaliikmete, sissetulekute ja eluasemekulude dokumentidega; toetus arvestatakse iga kuu eraldi【394965649540368†L510-L524】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "relatedForms": [
+        "anija_vald_form_toimetulekutoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "anija_vald_contact_lydia_kruusmann"
+      ],
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_benefit_toimetulekutoetus",
+      "document_id": "anija_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "anija_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "content_hash": "883316b3d2cf9f26c3f69c725f0bb8bc257ba465390788f015149c2f458c790a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_benefit_transporditoetus",
+      "itemType": "benefit",
+      "title": "Transporditoetus",
+      "status": "active",
+      "summary": "Transporditoetus hüvitab osa transpordikuludest, kui isik vajab takso või muu sõidukiga sõitu raviasutusse ega saa kasutada ühistransporti. Toetust võib taotleda kuni neli korda aastas ja toetuse suurus on kuni 35 eurot. Sihtrühma kuuluvad puudega inimesed, ülalpidajateta pensionärid, vanglast vabanenud, ellu astunud noored, pikaajalised töötud, paljulapselised pered, puudelapsega pered, töövõimetud või osalise töövõimega isikud ning muud toimetulekuraskustes isikud【394965649540368†L644-L672】.",
+      "targetGroup": "Puudega inimesed, ülalpidajateta pensionärid, vanglast vabanenud, ellu astunud noored, pikaajalised töötud, paljulapselised pered, puudelapsega pered, töövõimetud või osalise töövõimega isikud ja muud isikud, kelle sissetulek ühe pereliikme kohta jääb alla toimetulekupiiri【394965649540368†L650-L663】.",
+      "amount": "kuni 35 eurot, kuni neli korda aastas【394965649540368†L644-L672】.",
+      "conditions": "Taotleja peab vajama transpordiks takso või muud transporditeenust tervishoiuteenuse kasutamiseks ning sissetulek peab olema pool või alla poole miinimumpalgast【394965649540368†L644-L667】.",
+      "application": "Esita kirjalik avaldus koos sissetuleku- ja väljaminekudokumentidega; taotluse kinnitab sotsiaalkomisjon või vallavalitsus【394965649540368†L667-L672】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "relatedForms": [
+        "anija_vald_form_transporditeenuse_avaldus"
+      ],
+      "relatedContacts": [
+        "anija_vald_contact_lydia_kruusmann"
+      ],
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_benefit_transporditoetus",
+      "document_id": "anija_vald_benefit_transporditoetus",
+      "canonical_item_id": "anija_vald_benefit_transporditoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "content_hash": "af18d5a5971530bfb04a1e9ceb20fb287413cc8a296a62c75582e0bb84e819b3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_benefit_sunnipaevatoetus",
+      "itemType": "benefit",
+      "title": "Sünnipäevatoetus",
+      "status": "active",
+      "summary": "Sünnipäevatoetus tähendab, et Anija vald saadab 70., 75., 80., 85., 90. ja 95. sünnipäeval vallakodanikule õnnitluskaardi. 100. sünnipäeval makstakse lisaks ka 100 eurot ja antakse kingitus. Toetuse saamiseks ei ole vaja eraldi avaldust esitada【394965649540368†L677-L681】.",
+      "targetGroup": "Anija valla elanikud, kes saavad 70, 75, 80, 85, 90, 95 või 100 aastat vana【394965649540368†L677-L681】.",
+      "amount": "Õnnitluskaart 70.–95. sünnipäeval; 100 eurot ja kingitus 100. sünnipäeval【394965649540368†L679-L681】.",
+      "conditions": "Saaja peab olema Anija valla elanik; toetuse saamiseks ei ole vaja taotlust esitada【394965649540368†L679-L681】.",
+      "application": "Avaldust ei ole vaja esitada; õnnitlused saadetakse automaatselt【394965649540368†L679-L681】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "relatedForms": null,
+      "relatedContacts": [
+        "anija_vald_contact_lydia_kruusmann"
+      ],
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_benefit_sunnipaevatoetus",
+      "document_id": "anija_vald_benefit_sunnipaevatoetus",
+      "canonical_item_id": "anija_vald_benefit_sunnipaevatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/peretoimingud-ja-sotsiaaltoetused/",
+      "content_hash": "ebccf955c0549f954b556d04de9386dec7cd47a27a67bb9f4d72e29d70cdc388",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_resource_muud_sotsiaalteenused",
+      "itemType": "resource",
+      "title": "Muud sotsiaalteenused",
+      "status": "active",
+      "summary": "Muud sotsiaalteenused on loetelu täiendavatest sotsiaalteenustest, mida Anija vallavalitsus võib abivajaduse korral pakkuda. Loetelusse kuuluvad nõustamine, psühholoogi ja perelepituse teenused, eripedagoogi ja logopeedi teenus, kriisiabi (sealhulgas laste leinalaager), tugirühmade ja programmide teenused, rehabilitatsioonis osalemine, erihoolekandeteenused (toetatud elamine, toetatud töötamine, igapäevaelu toetamine), sõltuvusravi, toiduabi, viipekeele teenus, omasteta surnud isiku matmise korraldamine, häirenuputeenus, päevakeskuse teenus eakatele ja puuetega inimestele, päevahoiuteenus täisealistele puuetega inimestele ning muud toetavad teenused【978082341400239†L8-L28】. Teenustele suunatakse spetsialisti ettepanekul või põhjendatud avalduse alusel ning need võivad olla tasulised; teenused on tasuta psüühilise erivajadusega täisealistele, paljulapselistele peredele ja inimestele, kelle sissetulek on alla kahekordse toimetulekupiiri【978082341400239†L29-L46】.",
+      "targetGroup": "Abivajajad, kelle olukord nõuab täiendavaid teenuseid; teatud teenused on tasuta psüühilise erivajadusega täisealistele, paljulapselistele peredele ja väikese sissetulekuga inimestele【978082341400239†L29-L46】.",
+      "application": "Teenusele suunatakse spetsialisti ettepanekul või isiku põhjendatud avalduse alusel, millele lisatakse vajaminevad dokumendid【978082341400239†L29-L33】.",
+      "officialUrl": "https://anija.ee/wp-content/uploads/2024/12/Muud-sotsiaalteenused-.pdf",
+      "relatedContacts": [
+        "anija_vald_contact_airi_horrak",
+        "anija_vald_contact_kristel_laan"
+      ],
+      "sourceKeys": [
+        "muud_sotsiaalteenused_pdf"
+      ],
+      "item_type": "resource",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "muud_sotsiaalteenused_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_resource_muud_sotsiaalteenused",
+      "document_id": "anija_vald_resource_muud_sotsiaalteenused",
+      "canonical_item_id": "anija_vald_resource_muud_sotsiaalteenused",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/wp-content/uploads/2024/12/Muud-sotsiaalteenused-.pdf",
+      "content_hash": "57553978f87de172dd3a34dcfb629dba64819b4854636f25113d410e77a074bd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_resource_sotsiaalkeskus",
+      "itemType": "resource",
+      "title": "Sotsiaalkeskus",
+      "status": "active",
+      "summary": "Anija valla Kehra sotsiaalkeskus pakub eakatele ja puuetega inimestele tegevusi ja teenuseid. Keskuses toimuvad huviringid, väljasõidud, võimlemisrühmad, keraamika ja kunstigrupid ning tugigrupid ja mälutreening. Lisaks osutatakse praktilisi teenuseid, nagu pesu pesemine ja kuivatamine, duši kasutamine ning päevakeskuse teenus, et toetada abivajajate igapäevaelu【637227872247566†L212-L233】.",
+      "targetGroup": "Eakad ja puuetega inimesed Anija vallas【637227872247566†L212-L233】.",
+      "application": "Teenuste kasutamiseks tuleb pöörduda sotsiaalkeskuse juhataja poole ja leppida kokku teenuse aeg või osalemine【637227872247566†L212-L233】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalkeskus/",
+      "relatedContacts": [
+        "anija_vald_contact_kai_viirmann"
+      ],
+      "sourceKeys": [
+        "sotsiaalkeskus_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalkeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_resource_sotsiaalkeskus",
+      "document_id": "anija_vald_resource_sotsiaalkeskus",
+      "canonical_item_id": "anija_vald_resource_sotsiaalkeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalkeskus/",
+      "content_hash": "3e3de1fcff33c96efe85e6dfa91cce49b7be9741cf152904470a4c258b65b763",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_resource_lastekaitse_teatamine",
+      "itemType": "resource",
+      "title": "Lastekaitse ja abivajavast lapsest teatamine",
+      "status": "active",
+      "summary": "Anija valla lastekaitse leht rõhutab, et iga inimene on kohustatud teatama abivajavast lapsest. Abivajavast lapsest tuleb teatada vallavalitsusele või helistada riiklikule lasteabitelefonile; teataja võib jääda anonüümseks【538347555837519†L190-L206】. Vajaduse korral võib pöörduda ka politsei poole või otse lastekaitsetöötaja poole【538347555837519†L196-L206】.",
+      "targetGroup": "Kõik inimesed, kes märkavad abi vajavat last【538347555837519†L190-L206】.",
+      "application": "Helista lasteabitelefonile või võta ühendust valla lastekaitsetöötajatega või politseiga【538347555837519†L196-L206】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/tervis-ja-lapsed/lastekaitse/",
+      "relatedContacts": [
+        "anija_vald_contact_leena_masing",
+        "anija_vald_contact_liis_pork",
+        "anija_vald_contact_eike_magi"
+      ],
+      "sourceKeys": [
+        "lastekaitse_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_resource_lastekaitse_teatamine",
+      "document_id": "anija_vald_resource_lastekaitse_teatamine",
+      "canonical_item_id": "anija_vald_resource_lastekaitse_teatamine",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/tervis-ja-lapsed/lastekaitse/",
+      "content_hash": "71c4175f802deb7737a7c01491ac84227a0343d94cffb62201b61bb3feccca64",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_resource_eluaseme_kohandamine",
+      "itemType": "resource",
+      "title": "Puuetega inimeste eluaseme kohandamine",
+      "status": "active",
+      "summary": "Anija vald osaleb Euroopa Regionaalarengu Fondi projektides, mis on suunatud puuetega inimeste eluaseme kohandamisele. Projekti eesmärk on muuta eluruumid sobivaks liikumise, hügieeni ja köögitoimingute parandamiseks. Varasematel aastatel on kohandatud kodusid Aegviidu alevis ja Kehra linnas valla omafinantseeringu kaasabil【782255682017537†L223-L252】.",
+      "targetGroup": "Puuetega inimesed, kes vajavad eluruumi kohandamist, et parandada liikumist, hügieeni või köögitoiminguid【782255682017537†L223-L239】.",
+      "application": "Abi saamiseks tuleb pöörduda valla sotsiaaltööspetsialisti poole ja uurida projektis osalemise võimalusi【782255682017537†L223-L252】.",
+      "officialUrl": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "relatedContacts": [
+        "anija_vald_contact_airi_horrak",
+        "anija_vald_contact_kristel_laan"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_resource_eluaseme_kohandamine",
+      "document_id": "anija_vald_resource_eluaseme_kohandamine",
+      "canonical_item_id": "anija_vald_resource_eluaseme_kohandamine",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://anija.ee/pere-sotsiaal-ja-tervishoid/toetused-ja-teenused/sotsiaalteenused/",
+      "content_hash": "8e1ddbeed63413c32384b8ee708e60686847402a5d8df3432b55f223a179e023",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_contact_airi_horrak",
+      "itemType": "contact",
+      "name": "Airi Hõrrak",
+      "role": "Sotsiaaltööspetsialist teenuste alal",
+      "department": "Anija vallavalitsus, sotsiaalosakond",
+      "relatedTo": [
+        "anija_vald_service_koduteenus",
+        "anija_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+        "anija_vald_service_tugiisikuteenus",
+        "anija_vald_service_taisealise_isiku_hooldus",
+        "anija_vald_service_isikliku_abistaja_teenus",
+        "anija_vald_service_varjupaigateenus",
+        "anija_vald_service_turvakoduteenus",
+        "anija_vald_service_sotsiaaltransporditeenus",
+        "anija_vald_service_eluaseme_teenus",
+        "anija_vald_service_volanoustamisteenus",
+        "anija_vald_service_lapsehoiuteenus_suure_hooldus_ja_abivajadusega_lapsele",
+        "anija_vald_service_asendushooldusteenus",
+        "anija_vald_service_jarelhooldusteenus",
+        "anija_vald_resource_muud_sotsiaalteenused",
+        "anija_vald_resource_eluaseme_kohandamine"
+      ],
+      "sourceKeys": [
+        "kontakt_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "kontakt_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_contact_airi_horrak",
+      "document_id": "anija_vald_contact_airi_horrak",
+      "canonical_item_id": "anija_vald_contact_airi_horrak",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "f435696b2fb66fb0c267ae701d3e7186fb47458d956fabb8fd209261d231dad4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_contact_lydia_kruusmann",
+      "itemType": "contact",
+      "name": "Lydia Kruusmann",
+      "role": "Sotsiaaltööspetsialist toetuste alal",
+      "department": "Anija vallavalitsus, sotsiaalosakond",
+      "relatedTo": [
+        "anija_vald_benefit_sunnitoetus",
+        "anija_vald_benefit_erakorraline_toetus",
+        "anija_vald_benefit_hooldajatoetus",
+        "anija_vald_benefit_igapaevase_toimetuleku_soodustamise_toetus",
+        "anija_vald_benefit_koolitoetus",
+        "anija_vald_benefit_kuttetoetus",
+        "anija_vald_benefit_lagritoetus",
+        "anija_vald_benefit_laste_toitlustamise_toetus",
+        "anija_vald_benefit_matusetoetus",
+        "anija_vald_benefit_tervisetoetus",
+        "anija_vald_benefit_toimetulekutoetus",
+        "anija_vald_benefit_transporditoetus",
+        "anija_vald_benefit_sunnipaevatoetus"
+      ],
+      "sourceKeys": [
+        "kontakt_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "kontakt_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_contact_lydia_kruusmann",
+      "document_id": "anija_vald_contact_lydia_kruusmann",
+      "canonical_item_id": "anija_vald_contact_lydia_kruusmann",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "99dc6fce46de18bde5e85330f62c6fd35a90716f18ff15c950241324d51ebe4a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_contact_kristel_laan",
+      "itemType": "contact",
+      "name": "Kristel Lään",
+      "role": "Aegviidu piirkonna sotsiaaltööspetsialist",
+      "department": "Anija vallavalitsus, sotsiaalosakond",
+      "relatedTo": [
+        "anija_vald_service_koduteenus",
+        "anija_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+        "anija_vald_service_tugiisikuteenus",
+        "anija_vald_service_taisealise_isiku_hooldus",
+        "anija_vald_service_isikliku_abistaja_teenus",
+        "anija_vald_service_varjupaigateenus",
+        "anija_vald_service_turvakoduteenus",
+        "anija_vald_service_sotsiaaltransporditeenus",
+        "anija_vald_service_eluaseme_teenus",
+        "anija_vald_service_volanoustamisteenus",
+        "anija_vald_service_lapsehoiuteenus_suure_hooldus_ja_abivajadusega_lapsele",
+        "anija_vald_service_asendushooldusteenus",
+        "anija_vald_service_jarelhooldusteenus",
+        "anija_vald_resource_muud_sotsiaalteenused",
+        "anija_vald_resource_eluaseme_kohandamine"
+      ],
+      "sourceKeys": [
+        "kontakt_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "kontakt_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_contact_kristel_laan",
+      "document_id": "anija_vald_contact_kristel_laan",
+      "canonical_item_id": "anija_vald_contact_kristel_laan",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "44eb88f5e9b5b2bb87812cf8f75679af8dd2569b185fdc91db659180ddee0f8c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_contact_liis_pork",
+      "itemType": "contact",
+      "name": "Liis Põrk",
+      "role": "Laste ja perede spetsialist (ajutiselt töölt eemal)",
+      "department": "Anija vallavalitsus, sotsiaalosakond",
+      "relatedTo": [
+        "anija_vald_resource_lastekaitse_teatamine"
+      ],
+      "sourceKeys": [
+        "kontakt_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "kontakt_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_contact_liis_pork",
+      "document_id": "anija_vald_contact_liis_pork",
+      "canonical_item_id": "anija_vald_contact_liis_pork",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "aacc3dc54315ca1c5355a5a41545e77e6fadb6c5cd40e003eae68b7b8c40256d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_contact_eike_magi",
+      "itemType": "contact",
+      "name": "Eike Mägi",
+      "role": "Laste ja perede spetsialist (ajutiselt töölt eemal)",
+      "department": "Anija vallavalitsus, sotsiaalosakond",
+      "relatedTo": [
+        "anija_vald_resource_lastekaitse_teatamine"
+      ],
+      "sourceKeys": [
+        "kontakt_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "kontakt_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_contact_eike_magi",
+      "document_id": "anija_vald_contact_eike_magi",
+      "canonical_item_id": "anija_vald_contact_eike_magi",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "b9909c8d0de8171b0c399fd5e64f1afb2199fc84baab5b3808408d4eb01b198c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_contact_leena_masing",
+      "itemType": "contact",
+      "name": "Leena Masing",
+      "role": "Laste hoolekandespetsialist",
+      "department": "Anija vallavalitsus, sotsiaalosakond",
+      "relatedTo": [
+        "anija_vald_service_asendushooldusteenus",
+        "anija_vald_service_jarelhooldusteenus",
+        "anija_vald_resource_lastekaitse_teatamine"
+      ],
+      "sourceKeys": [
+        "kontakt_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "kontakt_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_contact_leena_masing",
+      "document_id": "anija_vald_contact_leena_masing",
+      "canonical_item_id": "anija_vald_contact_leena_masing",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "3f069a97b4c21722398f01e0b5cca0dff64b30ac431b8912c9927eb419ec2470",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_contact_heidy_murula",
+      "itemType": "contact",
+      "name": "Heidy Murula",
+      "role": "Noorte heaolu spetsialist ja juhtumikorraldaja",
+      "department": "Anija vallavalitsus, sotsiaalosakond",
+      "relatedTo": [
+        "anija_vald_service_jarelhooldusteenus"
+      ],
+      "sourceKeys": [
+        "kontakt_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "kontakt_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_contact_heidy_murula",
+      "document_id": "anija_vald_contact_heidy_murula",
+      "canonical_item_id": "anija_vald_contact_heidy_murula",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "3676dcdaf8d109a3317d412893009454adb7fc3d18457806bc226e3b503f5473",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_contact_kai_viirmann",
+      "itemType": "contact",
+      "name": "Kai Viirmann",
+      "role": "Sotsiaalkeskuse juhataja",
+      "department": "Kehra sotsiaalkeskus",
+      "relatedTo": [
+        "anija_vald_service_igapaevaelu_toetamine",
+        "anija_vald_service_toetatud_elamine",
+        "anija_vald_service_pesupesemise_ja_kuivatamise_teenus",
+        "anija_vald_service_dusi_kasutamise_teenus",
+        "anija_vald_service_paevakeskuse_teenus_eakale_voi_puudega_isikule",
+        "anija_vald_resource_sotsiaalkeskus"
+      ],
+      "sourceKeys": [
+        "sotsiaalkeskus_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalkeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_contact_kai_viirmann",
+      "document_id": "anija_vald_contact_kai_viirmann",
+      "canonical_item_id": "anija_vald_contact_kai_viirmann",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "2d06ea07f80654a892b613b79febd5feffac290171ddb5f6f67a57dc7ee4a238",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_contact_maie_sirkas",
+      "itemType": "contact",
+      "name": "Maie Sirkas",
+      "role": "Erihoolekande tegevusjuhendaja",
+      "department": "Kehra sotsiaalkeskus",
+      "relatedTo": [
+        "anija_vald_service_igapaevaelu_toetamine",
+        "anija_vald_service_toetatud_elamine"
+      ],
+      "sourceKeys": [
+        "sotsiaalkeskus_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalkeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_contact_maie_sirkas",
+      "document_id": "anija_vald_contact_maie_sirkas",
+      "canonical_item_id": "anija_vald_contact_maie_sirkas",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "576a53188a7369875bc3dd5f840a364cefc2b2782fd4e44a57d7ef93afdf177b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_contact_katrin_liiv",
+      "itemType": "contact",
+      "name": "Katrin Liiv",
+      "role": "Erihoolekande tegevusjuhendaja",
+      "department": "Kehra sotsiaalkeskus",
+      "relatedTo": [
+        "anija_vald_service_igapaevaelu_toetamine",
+        "anija_vald_service_toetatud_elamine"
+      ],
+      "sourceKeys": [
+        "sotsiaalkeskus_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalkeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_contact_katrin_liiv",
+      "document_id": "anija_vald_contact_katrin_liiv",
+      "canonical_item_id": "anija_vald_contact_katrin_liiv",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "7cef9fade119acd147cfab3102b854f5778f7dea5f62875ad1d6531182ca5cdb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_form_sunnitoetuse_taotlus_print",
+      "itemType": "form",
+      "title": "Sünnitoetuse taotlus (prinditav)",
+      "format": "docx",
+      "url": "https://anija.ee/wp-content/uploads/2026/02/Sunnitoetuse-taotlus-PRINDITAV.docx",
+      "summary": "Prinditav taotlusvorm sünnitoetuse saamiseks. Vormi kasutavad vanemad, kes soovivad taotleda sünnitoetust.",
+      "relatedTo": [
+        "anija_vald_benefit_sunnitoetus"
+      ],
+      "sourceKeys": [
+        "sunnitoetuse_print_form"
+      ],
+      "item_type": "form",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sunnitoetuse_print_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_form_sunnitoetuse_taotlus_print",
+      "document_id": "anija_vald_form_sunnitoetuse_taotlus_print",
+      "canonical_item_id": "anija_vald_form_sunnitoetuse_taotlus_print",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "83fb16b958a69f00b60fc4cba2f5a1bd0a17b213f8461bedb78c29250e4ba78b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_form_sunnitoetuse_i_osa",
+      "itemType": "form",
+      "title": "Sünnitoetuse taotlus (I osa)",
+      "format": "docx",
+      "url": "https://anija.ee/wp-content/uploads/2024/12/Sunnitoetuse-taotlus-I-osa.docx",
+      "summary": "Sünnitoetuse taotluse I osa vorm, mida kasutavad vanemad laste puhul, kes on sündinud kuni 31.12.2025.",
+      "relatedTo": [
+        "anija_vald_benefit_sunnitoetus"
+      ],
+      "sourceKeys": [
+        "sunnitoetuse_i_osa_form"
+      ],
+      "item_type": "form",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sunnitoetuse_i_osa_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_form_sunnitoetuse_i_osa",
+      "document_id": "anija_vald_form_sunnitoetuse_i_osa",
+      "canonical_item_id": "anija_vald_form_sunnitoetuse_i_osa",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "28597fb0cae35592d0a2dee425adc4ea662264c1b67b896e92c732d787fac38a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_form_sunnitoetuse_ii_osa",
+      "itemType": "form",
+      "title": "Sünnitoetuse taotlus (II osa)",
+      "format": "docx",
+      "url": "https://anija.ee/wp-content/uploads/2024/12/Sunnitoetuse-taotlus-II-osa.doc.docx",
+      "summary": "Sünnitoetuse taotluse II osa vorm, mida kasutatakse lapse ühe- ja kaheaastaseks saamisel toetuse järgnevate osade saamiseks.",
+      "relatedTo": [
+        "anija_vald_benefit_sunnitoetus"
+      ],
+      "sourceKeys": [
+        "sunnitoetuse_ii_osa_form"
+      ],
+      "item_type": "form",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sunnitoetuse_ii_osa_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_form_sunnitoetuse_ii_osa",
+      "document_id": "anija_vald_form_sunnitoetuse_ii_osa",
+      "canonical_item_id": "anija_vald_form_sunnitoetuse_ii_osa",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "f2b74fea17e7e9b446250c45fb06d097f235fbdbc1afa72b21807afaa6c17be9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_form_lapsehoiuteenuse_taotlus",
+      "itemType": "form",
+      "title": "Lapsehoiuteenuse toetuse taotlus",
+      "format": "doc",
+      "url": "https://anija.ee/wp-content/uploads/2024/12/Lapsehoiuteenuse-toetuse-taotlus.DOC.doc",
+      "summary": "Taotlusvorm lapsehoiuteenuse toetuse või lapsehoiuteenuse saamiseks suure hooldus- ja abivajadusega lapsele.",
+      "relatedTo": [
+        "anija_vald_service_lapsehoiuteenus_suure_hooldus_ja_abivajadusega_lapsele"
+      ],
+      "sourceKeys": [
+        "lapsehoiuteenuse_form"
+      ],
+      "item_type": "form",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lapsehoiuteenuse_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_form_lapsehoiuteenuse_taotlus",
+      "document_id": "anija_vald_form_lapsehoiuteenuse_taotlus",
+      "canonical_item_id": "anija_vald_form_lapsehoiuteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "f24db8f92584fd47bce218538e28e5fa4d873c2e9272224b184073a09a3f6ca4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_form_transporditeenuse_avaldus",
+      "itemType": "form",
+      "title": "Transporditeenuse avaldus",
+      "format": "doc",
+      "url": "https://anija.ee/wp-content/uploads/2024/12/Transporditeenuse-avaldus.DOC.doc",
+      "summary": "Avaldusvorm sotsiaaltransporditeenuse kasutamiseks või transporditoetuse taotlemiseks.",
+      "relatedTo": [
+        "anija_vald_service_sotsiaaltransporditeenus",
+        "anija_vald_benefit_transporditoetus"
+      ],
+      "sourceKeys": [
+        "transporditeenuse_avaldus_form"
+      ],
+      "item_type": "form",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "transporditeenuse_avaldus_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_form_transporditeenuse_avaldus",
+      "document_id": "anija_vald_form_transporditeenuse_avaldus",
+      "canonical_item_id": "anija_vald_form_transporditeenuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "8be9b648bf337c6ab85e2b76ba1b294b5241a7a337dee5f52baf6af0f34a3e42",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_form_matusetoetuse_taotlus",
+      "itemType": "form",
+      "title": "Matusetoetuse taotlus",
+      "format": "pdf",
+      "url": "https://anija.ee/wp-content/uploads/2024/12/Matusetoetuse-taotlus-2024-.pdf",
+      "summary": "Taotlusvorm matusetoetuse saamiseks Anija vallas.",
+      "relatedTo": [
+        "anija_vald_benefit_matusetoetus"
+      ],
+      "sourceKeys": [
+        "matusetoetuse_form"
+      ],
+      "item_type": "form",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "matusetoetuse_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_form_matusetoetuse_taotlus",
+      "document_id": "anija_vald_form_matusetoetuse_taotlus",
+      "canonical_item_id": "anija_vald_form_matusetoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "7dfbfabed1322b25ebd2533b614db10559dfdc99cb49e46680bd9e5947f8f39f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_form_sotsiaaltoetuse_avaldus",
+      "itemType": "form",
+      "title": "Sotsiaaltoetuse avaldus",
+      "format": "doc",
+      "url": "https://anija.ee/wp-content/uploads/2024/12/Sotsiaaltoetuse-avaldus.DOC.doc",
+      "summary": "Üldine avaldusvorm erinevate sotsiaaltoetuste (nt erakorraline toetus, igapäevase toimetuleku soodustamise toetus, koolitoetus, küttetoetus, laagritoetus või tervisetoetus) taotlemiseks.",
+      "relatedTo": [
+        "anija_vald_benefit_erakorraline_toetus",
+        "anija_vald_benefit_igapaevase_toimetuleku_soodustamise_toetus",
+        "anija_vald_benefit_koolitoetus",
+        "anija_vald_benefit_kuttetoetus",
+        "anija_vald_benefit_lagritoetus",
+        "anija_vald_benefit_tervisetoetus",
+        "anija_vald_benefit_hooldajatoetus"
+      ],
+      "sourceKeys": [
+        "sotsiaaltoetuse_form"
+      ],
+      "item_type": "form",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetuse_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_form_sotsiaaltoetuse_avaldus",
+      "document_id": "anija_vald_form_sotsiaaltoetuse_avaldus",
+      "canonical_item_id": "anija_vald_form_sotsiaaltoetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "2c49792229a2ec78bdee29feb2ffe7301f6e96b6f6109e8621cc4ede12744d62",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_form_laste_toitlustamise_toetuse_avaldus",
+      "itemType": "form",
+      "title": "Laste toitlustamise toetuse avaldus",
+      "format": "doc",
+      "url": "https://anija.ee/wp-content/uploads/2024/12/Laste-toitlustamise-toetuse-avaldus2018.DOC.doc",
+      "summary": "Taotlusvorm laste toitlustamise toetuse saamiseks.",
+      "relatedTo": [
+        "anija_vald_benefit_laste_toitlustamise_toetus"
+      ],
+      "sourceKeys": [
+        "laste_toitlustamise_form"
+      ],
+      "item_type": "form",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "laste_toitlustamise_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_form_laste_toitlustamise_toetuse_avaldus",
+      "document_id": "anija_vald_form_laste_toitlustamise_toetuse_avaldus",
+      "canonical_item_id": "anija_vald_form_laste_toitlustamise_toetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "2cc19cd5031b30f24af923d2203d354ce661ed759bbdb5db28610ded2fd53eee",
+      "evidence_allowed": true
+    },
+    {
+      "id": "anija_vald_form_toimetulekutoetuse_taotlus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse taotlus",
+      "format": "doc",
+      "url": "https://anija.ee/wp-content/uploads/2024/12/Toimetulekutoetuse-taotlus.DOC.doc",
+      "summary": "Taotlusvorm toimetulekutoetuse saamiseks.",
+      "relatedTo": [
+        "anija_vald_benefit_toimetulekutoetus"
+      ],
+      "sourceKeys": [
+        "toimetulekutoetuse_form"
+      ],
+      "item_type": "form",
+      "municipality_id": "anija_vald",
+      "municipality_name": "Anija vald",
+      "county": "Harjumaa",
+      "source_keys": [
+        "toimetulekutoetuse_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "anija_vald_form_toimetulekutoetuse_taotlus",
+      "document_id": "anija_vald_form_toimetulekutoetuse_taotlus",
+      "canonical_item_id": "anija_vald_form_toimetulekutoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "5c182a89e3b43239d919daf9f50822d838f7f871c716f7fa4fa3efa6be14b9f3",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_id": "anija_vald",
+  "municipality_name": "Anija vald",
+  "checked_at": "2026-04-12",
+  "schemaVersion": "v2.5-sourcepackage",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-narva-joesuu-linn",
+  "document_id": "kov-narva-joesuu-linn",
+  "municipality": "Narva-Jõesuu linn",
+  "municipality_id": "narva_joesuu_linn",
+  "county": "Ida-Virumaa",
+  "checkedAt": "2026-04-29",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-narva-joesuu-linn",
+  "coverage": {
+    "services": 13,
+    "benefits": 19,
+    "resources": 11,
+    "contacts": 22,
+    "forms": 18,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "narva_joesuu_linn",
+    "source_register_file": "narva-joesuu-linn.sources.json",
+    "service_benefit_resource_items": 43,
+    "items_with_source_keys": 43,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 28,
+    "items_without_related_forms": 15,
+    "items_with_related_contacts": 39,
+    "items_without_related_contacts": 4,
+    "form_sources": 15,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Pakett kasutab Narva-Jõesuu linna ametlikke veebilehti ja nende ametlikke sotsiaalvaldkonna vormilinke.",
+    "Riigi Teataja ja õigusaktide lingid on jäetud veebipaketist välja ning kuuluvad eraldi RT/legal kihti."
+  ],
+  "unresolvedIssues": [
+    "Isikliku abistaja teenuse aktiivset eraldi teenuse detaillehte ei leitud; seda nimetatakse ainult varasemas sotsiaalteenuste arendamise projektis.",
+    "Varjupaigateenuse ja turvakoduteenuse eraldi KOV teenuse detaillehti ei leitud; vältimatu sotsiaalabi leht nimetab ajutist peavarju varjupaigas, kuid ei ava eraldi teenuse korda.",
+    "Asendushooldus- ja järelhooldusteenuse eraldi KOV teenuse detaillehti ei leitud; SA Narva-Jõesuu Peremajad on kajastatud ressursina KOV lehel avaldatud ulatuses.",
+    "Eluruumide kohandamise lehel on avaldatud 2025. aasta taotlustähtaeg; 2026. aasta taotlusvooru tähtaega ei leitud.",
+    "Terviseteenuse lehel on teenuse mahuna avaldatud 2025. aasta 40 eurot inimese kohta; 2026. aasta mahtu ei leitud.",
+    "Elluastumistoetuse, lastelaagrite tuusikute hüvitamise ja puudega lapsele toetava sotsiaalteenuse kohta leiti vormi või vormilehe nimetus, kuid detailne teenuse/toetuse kirjeldus jäi avaldamata.",
+    "Mitmed DOC/DOCX vormid olid ametliku lingina leitavad, kuid nende sisu ei saanud tööriistaga täielikult parsida; faililingid on siiski lisatud ametliku KOV vormilehe või detaillehe põhjal.",
+    "Väliste partnerite ja abikanalite sisu ei kontrollitud väljaspool KOV lehti; need on kajastatud ainult KOV lehel avaldatud ulatuses."
+  ],
+  "municipality_name": "Narva-Jõesuu linn",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "narva-joesuu-linn.sources.json",
+  "sourceCount": 45,
+  "counts": {
+    "services": 13,
+    "benefits": 19,
+    "resources": 11,
+    "contacts": 22,
+    "forms": 18,
+    "regulations": 0
+  },
+  "warnings": [
+    "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

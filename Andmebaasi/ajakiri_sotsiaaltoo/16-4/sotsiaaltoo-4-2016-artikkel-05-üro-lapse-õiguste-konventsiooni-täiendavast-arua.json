@@ -1,0 +1,119 @@
+{
+  "docId": "sotsiaaltoo-4-2016",
+  "articleId": "sotsiaaltoo-4-2016-artikkel-05-üro-lapse-õiguste-konventsiooni-täiendavast-arua",
+  "title": "ÜRO lapse õiguste konventsiooni täiendavast aruandest",
+  "authors": [
+    "Helika Saar",
+    "Kiira Gornischeff"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2016",
+  "section": "Lapse õigused",
+  "pageRange": "31-37",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Helika Saar ja Kiira Gornischeff annavad ülevaate MTÜ Lastekaitse Liidu eestvedamisel koostatud II täiendavast aruandest ÜRO lapse õiguste konventsiooni täitmise kohta, mis esitati komiteele 1. novembril 2015 ja mida tutvustati Genfis 2016. aasta veebruaris. Analüüs tehti märtsist septembrini 2015. Aruanne osutab, et riik esitas oma aruande kuus aastat pärast tähtaega, et 2013. aastal elas suhtelises vaesuses 49 200 last ehk 20,2% alaealistest ning et Riigikontrolli 2013. aasta auditi ajal töötas eraldi lastekaitsespetsialist vaid 38% omavalitsustes.",
+  "tags": [
+    "lapse õigused",
+    "üro lapse õiguste konventsioon",
+    "täiendav aruanne",
+    "lastekaitse liit",
+    "kodanikuühendused",
+    "laste vaesus"
+  ],
+  "source_type": "file",
+  "source_path": "2016_4_artikkel_05_uro_lapse_oiguste_konventsiooni_taiendavast_aruandes.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-05-ro-lapse-iguste-konventsiooni-t-iendavast-arua",
+  "source_sha256": "09b4786591bf9eba4adeba1ffabdfdc0decf75c62fb44daca618b3b791501ce7",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-05-ro-lapse-iguste-konventsiooni-t-iendavast-arua",
+    "previous_source_path": "2016_4_artikkel_05_uro_lapse_oiguste_konventsiooni_taiendavast_aruandes.txt",
+    "previous_source_original_path": "4-2016.pdf",
+    "reference_stored_source_sha256": "13c9636629d58c48bdaa2ab44fb88615e80aaa334ee9f4230e245bd652c84f83",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf",
+      "source_sha256": "0f07da03ffde36588435e96f8dda0f52a8140fbf9cc4201bb95e85b594e03fc9",
+      "pdf_start_page": 33,
+      "pdf_end_page": 39,
+      "printed_page_range": "31-38",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 40,
+      "source_regions": [
+        {
+          "source_pdf_page": 33,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 34,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 35,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 36,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 37,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 38,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 39,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "31-37",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf"
+    },
+    "server_page_range": "31-38"
+  }
+}

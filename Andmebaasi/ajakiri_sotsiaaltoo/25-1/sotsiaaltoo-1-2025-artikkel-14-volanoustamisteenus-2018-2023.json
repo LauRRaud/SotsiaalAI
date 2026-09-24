@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "volanoustamisteenus-aastatel-2018-2023-2025-1",
+  "title": "Võlanõustamisteenus aastatel 2018–2023",
+  "authors": [
+    "Sotsiaalministeeriumi analüüsi- ja statistikaosakond"
+  ],
+  "section": "Statistika",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "description": "Ülevaade võlanõustamisteenuse kasutamisest Eestis aastatel 2018–2023. Artikkel analüüsib teenusele suunamiste arvu, klientide tausta, peamisi adressenõude ja võlaprobleemide liike ning piirkondlikke erinevusi. Käsitletakse teenuse rahastamist, korraldust, koostööd kohalike omavalitsuste, töötukassa ja sotsiaalkindlustusametiga ning seda, kuidas võlanõustamine aitab ennetada süvenevat vaesust ja sotsiaalset tõrjutust. Toodud on järeldused ja soovitused teenuse arendamiseks ning kättesaadavuse parandamiseks.",
+  "tags": [
+    "võlanõustamine",
+    "võlad",
+    "statistika",
+    "sotsiaalteenused",
+    "vaesus",
+    "Sotsiaalministeerium",
+    "finantsraskused"
+  ],
+  "source_path": "Võlanõustamisteenus aastatel 2018–2023_1_2025.pdf",
+  "pageRange": "1–5",
+  "document_id": "sotsiaaltoo-1-2025-volanoustamisteenus-aastatel-2018-2023-2025-1",
+  "source_format": "pdf",
+  "source_sha256": "61519156ceeca02580deb9064844626c182ee6121ff90bf3944f41b8ee7bb52a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2025-volanoustamisteenus-aastatel-2018-2023-2025-1",
+    "previous_source_path": "Võlanõustamisteenus aastatel 2018–2023_1_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "61519156ceeca02580deb9064844626c182ee6121ff90bf3944f41b8ee7bb52a",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "docId": "sotsiaaltoo-3-2017",
+  "articleId": "isikuandmete-edastamine-2017-3",
+  "title": "Isikuandmete edastamisest ametialases koostöös",
+  "authors": [
+    "Maire Iro",
+    "Raavo Palu"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2017",
+  "section": "Õigus",
+  "pageRange": "37-41",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Andmekaitse Inspektsiooni nõuniku ja õigusdirektori juhis selle kohta, kuidas edastada abivajaja andmeid ametialases koostöös ilma tema õigusi riivamata. Rõhutab, et sotsiaalvaldkonna andmestik on iseäranis tundlik — terviseseisundi või puude andmed on delikaatsed isikuandmed — ning et andmekaitse nõuded ei tohi olla takistuseks abivajajate aitamisel. Ilmus enne isikuandmete kaitse üldmääruse jõustumist 2018.",
+  "tags": [
+    "andmekaitse",
+    "isikuandmed",
+    "delikaatsed andmed",
+    "võrgustikutöö",
+    "asutustevaheline koostöö"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part11.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2017-isikuandmete-edastamine-2017-3",
+  "source_sha256": "e8f03995174957769adc0b39a9759944b81f34fc813135166f0ebc56950c5f82",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2017-isikuandmete-edastamine-2017-3",
+    "previous_source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part11.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part11.pdf",
+    "reference_stored_source_sha256": "212989a1255eeaf8fbe297beef8cbf4277f2c4f29d129baafca7ef9a13262e7e",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf",
+      "source_sha256": "3f27c22982b22a396dace8a957798cc21d3240489c7ce4d92802bf1a94bde7a8",
+      "pdf_start_page": 39,
+      "pdf_end_page": 43,
+      "printed_page_range": "37-41",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 43,
+      "source_regions": [
+        {
+          "source_pdf_page": 39,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 40,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 41,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 42,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 43,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "37-41",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf"
+    },
+    "server_page_range": "37-41"
+  }
+}

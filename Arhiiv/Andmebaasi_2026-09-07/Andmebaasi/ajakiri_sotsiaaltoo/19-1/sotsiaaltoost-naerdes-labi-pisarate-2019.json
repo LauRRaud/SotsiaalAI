@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-1-2019",
+  "articleId": "sotsiaaltoost-naerdes-labi-pisarate-2019",
+  "title": "Sotsiaaltööst – naerdes läbi pisarate",
+  "authors": [
+    "Marju Selg"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2019",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "79-84",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Analüütiline ja humoorikas vaade sotsiaaltöö professionaalsele identiteedile, rolliootustele ja deprofessionaliseerumise riskidele.",
+  "tags": [
+    "sotsiaaltöö identiteet",
+    "huumor",
+    "professionaalsus",
+    "bürokraatia",
+    "avalik arvamus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part19.pdf",
+  "document_id": "sotsiaaltoo-1-2019-sotsiaaltoost-naerdes-labi-pisarate-2019",
+  "source_format": "pdf",
+  "source_sha256": "0c183a2fe8e5425fd2aa492c4bad041417848e1be4896eb75cdab2e4a4097b2f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2019-sotsiaaltoost-naerdes-labi-pisarate-2019",
+    "previous_source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part19.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "0c183a2fe8e5425fd2aa492c4bad041417848e1be4896eb75cdab2e4a4097b2f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

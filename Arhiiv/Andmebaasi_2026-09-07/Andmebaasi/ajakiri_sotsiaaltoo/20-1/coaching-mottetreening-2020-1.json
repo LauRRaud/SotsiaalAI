@@ -1,0 +1,45 @@
+{
+  "docId": "sotsiaaltoo-1-2020",
+  "articleId": "coaching-mottetreening-2020-1",
+  "title": "Coaching ehk mõttetreening personaalse taastumise toetuseks",
+  "authors": [
+    "Dagmar Narusson",
+    "Triin Rebbas"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2020",
+  "section": "Taastumist toetavad meetodid",
+  "pageRange": "49-51",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab coaching’u põhimõtteid taastumise toetamisel – eesmärgistamine, tugevustele keskendumine, motivatsiooni hoidmine ja kliendi enesejuhtimise arendamine. Lähemalt käsitletakse mõttetreeningu praktilisi tehnikaid ning olukordi, kus see aitab luua selgust, suurendada enesekindlust ja muuta mõtteviisi võimalusi otsivaks.",
+  "tags": [
+    "coaching",
+    "mõttetreening",
+    "taastumine",
+    "enesearendamine",
+    "motivatsioon",
+    "nõustamine",
+    "psühhosotsiaalne tugi",
+    "eesmärgistamine",
+    "vaimne tervis"
+  ],
+  "source_type": "file",
+  "source_path": "ST1_2020_web_link_Part11.pdf",
+  "mapping_fixed": "20260814-161821",
+  "document_id": "sotsiaaltoo-1-2020-coaching-mottetreening-2020-1",
+  "source_format": "pdf",
+  "source_sha256": "8b97a545fd9073ed5fd19e30cfc47121cd2a03705e317992b3a58770efa4e505",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2020-coaching-mottetreening-2020-1",
+    "previous_source_path": "ST1_2020_web_link_Part11.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "8b97a545fd9073ed5fd19e30cfc47121cd2a03705e317992b3a58770efa4e505",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

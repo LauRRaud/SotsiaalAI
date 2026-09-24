@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2019",
+  "articleId": "kas-toetatud-elamise-teenus-toetab-enesemaaramisoi-2019",
+  "title": "Kas toetatud elamise teenus toetab enesemääramisõigust?",
+  "authors": [
+    "Katrin Liiv"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2019",
+  "section": "Uurimus",
+  "pageRange": "67-73",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Magistriuurimus, mis analüüsib toetatud elamise teenuse mõju psüühikahäirete ja vaimupuudega inimeste enesemääramisõiguse kasutamisele ning osalemisele otsustusprotsessides.",
+  "tags": [
+    "toetatud elamine",
+    "enesemääramisõigus",
+    "psüühikahäire",
+    "vaimupuue",
+    "kogukonnapõhised teenused",
+    "deinstitutsionaliseerimine",
+    "vaimse tervise teenused"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part17.pdf",
+  "document_id": "sotsiaaltoo-1-2019-kas-toetatud-elamise-teenus-toetab-enesemaaramisoi-2019",
+  "source_format": "pdf",
+  "source_sha256": "36b059f44aa466169b432db23ba58da15bf24fb7dcbe43b18c4ab9d80e7bc0e1",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2019-kas-toetatud-elamise-teenus-toetab-enesemaaramisoi-2019",
+    "previous_source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part17.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "36b059f44aa466169b432db23ba58da15bf24fb7dcbe43b18c4ab9d80e7bc0e1",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "source_path": "epikoda_puudega_inimeste_toimetulek_kriisiajal_miniuuringu_kokkuvote.pdf",
+  "source_format": "pdf",
+  "sha256": "dd3bd44e9051fede91114ee64b4d7510f71ea3b0c3a3bd0e2ede8809c2df48ab",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/epikoda_puudega_inimeste_toimetulek_kriisiajal_miniuuringu_kokkuvote.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "epikoda_puudega_inimeste_toimetulek_kriisiajal_miniuuringu_kokkuvote",
+          "title": "Puudega inimeste toimetulek kriisiajal – miniuuringu kokkuvõte",
+          "url": "https://epikoda.ee/wp-content/uploads/2025/09/epikoja-miniuuringu-kokkuvote-september-2020.pdf",
+          "normalized_url": "https://epikoda.ee/wp-content/uploads/2025/09/epikoja-miniuuringu-kokkuvote-september-2020.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "EPIKoda",
+          "organization_id": "epikoda",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Eesti Puuetega Inimeste Koda",
+            "puue",
+            "puudega inimene",
+            "erivajadus",
+            "kriisivalmidus",
+            "riskijuhtimine",
+            "uuring",
+            "raport",
+            "analüüs",
+            "EPIKoda"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Partnerid",
+            "heading_3": "EPIKoda",
+            "heading_4": null,
+            "line": 571,
+            "order": 294
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Puudega inimeste toimetulek kriisiajal – miniuuringu kokkuvõte"
+          ],
+          "collection_hints": [
+            "research_reports"
+          ],
+          "source_types_seen": [
+            "research_report"
+          ],
+          "resource_types_seen": [
+            "research_evidence"
+          ],
+          "publishers_seen": [
+            "EPIKoda"
+          ],
+          "organizations_seen": [
+            "epikoda"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Partnerid",
+              "heading_3": "EPIKoda",
+              "line": 571,
+              "order": 294
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://epikoda.ee/wp-content/uploads/2025/09/epikoja-miniuuringu-kokkuvote-september-2020.pdf"
+        },
+        "final_url": "https://epikoda.ee/wp-content/uploads/2025/09/epikoja-miniuuringu-kokkuvote-september-2020.pdf",
+        "redirects": [],
+        "sha256": "dd3bd44e9051fede91114ee64b4d7510f71ea3b0c3a3bd0e2ede8809c2df48ab",
+        "bytes": 484838,
+        "downloaded_at": "2026-08-14T08:00:56.396Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "epikoda_puudega_inimeste_toimetulek_kriisiajal_miniuuringu_kokkuvote",
+      "metadata": {
+        "createdAt": "2026-06-12T03:59:10.681577+00:00",
+        "type": "FILE",
+        "fileName": "epikoja-miniuuringu-kokkuvote-september-2020.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:59:10.611324+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/34643e47e379/epikoja-miniuuringu-kokkuvote-september-2020.pdf",
+        "title": "Puudega inimeste toimetulek kriisiajal – miniuuringu kokkuvõte",
+        "description": "Source master headings: Partnerid; EPIKoda",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2025,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–25",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "research_reports",
+        "source_id": "epikoda_puudega_inimeste_toimetulek_kriisiajal_miniuuringu_kokkuvote",
+        "document_id": "epikoda_puudega_inimeste_toimetulek_kriisiajal_miniuuringu_kokkuvote",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "f62d6e87689e7e5daf23398ecf605babdd89132bb02cc5e9238c0a6fe2496a2f",
+        "url": "https://epikoda.ee/wp-content/uploads/2025/09/epikoja-miniuuringu-kokkuvote-september-2020.pdf",
+        "url_canonical": "https://epikoda.ee/wp-content/uploads/2025/09/epikoja-miniuuringu-kokkuvote-september-2020.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "epikoda_puudega_inimeste_toimetulek_kriisiajal_miniuuringu_kokkuvote",
+        "updatedAt": "2026-06-12T03:59:10.681601+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

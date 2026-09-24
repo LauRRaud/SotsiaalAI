@@ -1,0 +1,38 @@
+{
+  "docId": "sotsiaaltoo-4-2019",
+  "articleId": "pikaajalise-hoolduse-susteemi-muutmine-2019",
+  "title": "Pikaajalise hoolduse süsteemi tuleb Eestis muuta",
+  "authors": [
+    "Ketri Kupper",
+    "Häli Tarum"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2019",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "8-10",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb pikaajalise hoolduse süsteemi kitsaskohti ja vajalikke muudatusi Eestis.",
+  "tags": [
+    "pikaajaline hooldus",
+    "sotsiaaltöö korraldus",
+    "poliitika"
+  ],
+  "source_type": "file",
+  "source_path": "ST4_2019_web_link_Part4.pdf",
+  "document_id": "sotsiaaltoo-4-2019-pikaajalise-hoolduse-susteemi-muutmine-2019",
+  "source_format": "pdf",
+  "source_sha256": "9dd2cfa44f84d4c665a270504a853df4a30008a455b87737c73e742755652854",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2019-pikaajalise-hoolduse-susteemi-muutmine-2019",
+    "previous_source_path": "ST4_2019_web_link_Part4.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "9dd2cfa44f84d4c665a270504a853df4a30008a455b87737c73e742755652854",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

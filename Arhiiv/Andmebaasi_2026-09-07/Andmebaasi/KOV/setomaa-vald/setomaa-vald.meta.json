@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-setomaa-vald",
+  "document_id": "kov-setomaa-vald",
+  "municipality": "Setomaa vald",
+  "municipality_id": "setomaa_vald",
+  "county": "Võrumaa",
+  "checkedAt": "2026-04-30",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-setomaa-vald",
+  "coverage": {
+    "services": 18,
+    "benefits": 10,
+    "resources": 8,
+    "contacts": 10,
+    "forms": 9,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "setomaa_vald",
+    "source_register_file": "setomaa-vald.sources.json",
+    "service_benefit_resource_items": 36,
+    "items_with_source_keys": 36,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 25,
+    "items_without_related_forms": 11,
+    "items_with_related_contacts": 28,
+    "items_without_related_contacts": 8,
+    "form_sources": 4,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Paketti on täiendatud Setomaa valla ametliku veebilehe sotsiaalhoolekande haru põhjal: sotsiaalteenuste koondleht, teenuste detaillehed, toetuste koondleht, kontaktileht, hoolekandeasutuste leht ning seotud vormilingid.",
+    "RT/legal allikaid ei ole andmefaili allikatena kasutatud; RT viited jäeti veebipaketi põhiandmetest välja."
+  ],
+  "unresolvedIssues": [
+    "Mitmed e-posti aadressid on Setomaa valla veebilehel varjestatud kujul '**'; neid ei taastatud oletuse põhjal.",
+    "Vormilingid on KOV veebilt tuvastatud ja otseste failURL-idena lisatud, kuid osa failide sisu ei olnud tööriistaga loetav; vormide seosed põhinevad KOV lehe otsestel vormilinkidel.",
+    "Värska Südamekodu OÜ on üldhooldusteenuse lehel nimetatud teenusepakkujana, kuid välise teenusepakkuja veebilehte ei kasutatud allikana.",
+    "Hoolekandeasutuste lehel on Setomaa Hooldekodu kohta põhjalik info; Värska Südamekodu kohta KOV lehel detailne praktiline info puudus.",
+    "Liina Oinaku e-posti aadress on eri teenuselehtedel ja kontaktilehel kuvatud ebaühtlaselt või varjestatult; paketti jäeti kontaktilehel nähtud varjestatud kuju."
+  ],
+  "municipality_name": "Setomaa vald",
+  "checked_at": "2026-04-30",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "setomaa-vald.sources.json",
+  "sourceCount": 35,
+  "counts": {
+    "services": 18,
+    "benefits": 10,
+    "resources": 8,
+    "contacts": 10,
+    "forms": 9,
+    "regulations": 0
+  },
+  "warnings": [
+    "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

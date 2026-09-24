@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "tallinna-erihoolekande-ja-rehabilitatsiooni-keskus-jargib-vaartusi-ja-loob-voimalusi-2025-2",
+  "title": "Tallinna erihoolekande ja rehabilitatsiooni keskus järgib väärtusi ja loob võimalusi",
+  "authors": [
+    "Jane Langemets"
+  ],
+  "section": "Kogemus",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "description": "Artikkel tutvustab Tallinna erihoolekande ja rehabilitatsiooni keskust (TERK), mis koondab erihoolekande ja rehabilitatsiooniteenused ühtse juhtimise alla. Kirjeldatakse keskuse väärtuspõhist lähenemist, kus fookuses on inimese võimete ja soovide toetamine, kogukonnas elamise võimaldamine ja eri teenuste sidumine. Autor avab personalitöö, koostöö partneritega, teenuste arendamise ning klientide lugude kaudu, kuidas TERK loob inimestele uusi võimalusi iseseisvuseks, tööhõiveks ja osalemiseks ühiskonnaelus.",
+  "tags": [
+    "erihoolekanne",
+    "rehabilitatsioon",
+    "Tallinn",
+    "kogukonnateenused",
+    "intellektipuue",
+    "vaimse tervise häired",
+    "inimkeskne lähenemine"
+  ],
+  "source_path": "Tallinna erihoolekande ja rehabilitatsiooni keskus järgib väärtusi ja loob võimalusi_2_2025.pdf",
+  "pageRange": "1–9",
+  "document_id": "sotsiaaltoo-2-2025-tallinna-erihoolekande-ja-rehabilitatsiooni-keskus-jargib-vaartusi-ja-loob-voimalusi-2025-2",
+  "source_format": "pdf",
+  "source_sha256": "3f4629e416435204ec056819d0aea091f360136117875b06a6c10cc496590643",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2025-tallinna-erihoolekande-ja-rehabilitatsiooni-keskus-jargib-vaartusi-ja-loob-voimalusi-2025-2",
+    "previous_source_path": "Tallinna erihoolekande ja rehabilitatsiooni keskus järgib väärtusi ja loob võimalusi_2_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "3f4629e416435204ec056819d0aea091f360136117875b06a6c10cc496590643",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-3-2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2024",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "kuidas-saab-tooandja-edendada-hoolekandetootajate-heaolu-2024-3",
+  "title": "Kuidas saab tööandja edendada hoolekandetöötajate heaolu?",
+  "authors": [
+    "Keiu Talve"
+  ],
+  "section": "Tööalane tugi",
+  "pageRange": "87-92",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "description": "Artikkel käsitleb hoolekandetöötajate heaolu edendamist kvaliteedijuhtimise ja teadliku personalijuhtimise vaatenurgast. Autor seob sotsiaalteenuste kvaliteedi töötajate pädevuse, väärtuspõhise juhtimise ja toetava organisatsioonikultuuriga, toetudes sotsiaalhoolekande seaduse, Sotsiaalkindlustusameti kvaliteedijuhiste, EQUASSi ja EFQM-i raamistikule. Selgitatakse, kuidas tööandja saab tagada turvalise töökeskkonna, töötajate arengu, tunnustamise ja kaasamise, rõhutades väärtuste ja selgete ootuste rolli. Käsitletakse töö ja eraelu tasakaalu, enesehoiu ja tööandja vastutuse piire, personali puuduse ja konkurentsi mõju ning praktilisi võtteid töötajate hoidmiseks. Südamekodude näitel tuuakse välja konkreetseid samme, nagu ühtsed tööviisid, tunnustamissüsteem, terviseedendus, ühisüritused ja õppereisid, mis aitavad luua motiveerivat ja hoidvat töökeskkonda.",
+  "tags": [
+    "tööheaolu",
+    "hoolekandetöötajad",
+    "kvaliteedijuhtimine",
+    "personalijuhtimine",
+    "EQUASS",
+    "EFQM",
+    "väärtuspõhine juhtimine",
+    "töökeskkond",
+    "tunnustamine",
+    "Südamekodud"
+  ],
+  "source_path": "sotsiaaltoo_3_2024_web_Part16.pdf",
+  "document_id": "sotsiaaltoo-3-2024-kuidas-saab-tooandja-edendada-hoolekandetootajate-heaolu-2024-3",
+  "source_format": "pdf",
+  "source_sha256": "09f4793d02715420a39a5c751d7cfc6ea1f3e88331454095bd9cded86fe45966",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2024-kuidas-saab-tooandja-edendada-hoolekandetootajate-heaolu-2024-3",
+    "previous_source_path": "sotsiaaltoo_3_2024_web_Part16.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "09f4793d02715420a39a5c751d7cfc6ea1f3e88331454095bd9cded86fe45966",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

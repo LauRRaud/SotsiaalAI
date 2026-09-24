@@ -1,0 +1,148 @@
+{
+  "source_path": "statistikaamet_vaesus_eestis.pdf",
+  "source_format": "pdf",
+  "sha256": "92e627e202d239b7046156710788b0038357459cdad45b6c0701cb4d3b15add2",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/statistikaamet_vaesus_eestis.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "statistikaamet_vaesus_eestis",
+          "title": "Vaesus Eestis",
+          "url": "https://www.stat.ee/sites/default/files/2020-07/Vaesus_Eestis_sisu.pdf",
+          "normalized_url": "https://www.stat.ee/sites/default/files/2020-07/Vaesus_Eestis_sisu.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "Statistikaamet",
+          "organization_id": "statistikaamet",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Statistikaamet",
+            "statistika",
+            "sotsiaalnäitajad",
+            "vaesus",
+            "toimetulek",
+            "uuring",
+            "raport",
+            "analüüs"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_022",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "Statistikaamet",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 227,
+            "order": 144
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Vaesus Eestis"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Statistikaamet"
+          ],
+          "organizations_seen": [
+            "statistikaamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Statistikaamet",
+              "line": 227,
+              "order": 144
+            },
+            {
+              "heading_2": "Statistikaamet",
+              "line": 701,
+              "order": 351
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.stat.ee/sites/default/files/2020-07/Vaesus_Eestis_sisu.pdf"
+        },
+        "final_url": "https://www.stat.ee/sites/default/files/2020-07/Vaesus_Eestis_sisu.pdf",
+        "redirects": [],
+        "sha256": "92e627e202d239b7046156710788b0038357459cdad45b6c0701cb4d3b15add2",
+        "bytes": 2887078,
+        "downloaded_at": "2026-08-14T08:00:36.305Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "statistikaamet_vaesus_eestis",
+      "metadata": {
+        "createdAt": "2026-06-12T04:18:54.384411+00:00",
+        "type": "FILE",
+        "fileName": "Vaesus_Eestis_sisu.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T04:18:54.325048+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/b5d58c6133a6/Vaesus_Eestis_sisu.pdf",
+        "title": "Vaesus Eestis",
+        "description": "Duplikaadid ühendatud: 1 lisakirjet. Source master headings: Statistikaamet",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2020,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–201",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "statistikaamet_vaesus_eestis",
+        "document_id": "statistikaamet_vaesus_eestis",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "85eb537edcd908a085d559bb3512b295f5e31dd18ac5ec6f9fc1d71a6e797a21",
+        "url": "https://www.stat.ee/sites/default/files/2020-07/Vaesus_Eestis_sisu.pdf",
+        "url_canonical": "https://www.stat.ee/sites/default/files/2020-07/Vaesus_Eestis_sisu.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "statistikaamet_vaesus_eestis",
+        "updatedAt": "2026-06-12T04:18:54.384444+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-2-2024",
+  "articleId": "alusharidusseadus-toob-muudatusi-lastehoidudele-ja-lasteaedadele-2024-2",
+  "title": "Alusharidusseadus toob muudatusi lastehoidudele ja lasteaedadele",
+  "authors": [
+    "Maila Rajamets"
+  ],
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2024",
+  "section": "Korraldus",
+  "pageRange": "26-28",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel selgitab uue alusharidusseaduse põhimõtteid ja mõjusid lastehoidudele ning lasteaedadele. Fookuses on lapsehoiuteenuse liikumine sotsiaalhoolekande süsteemist alusharidussüsteemi, lastehoiu ja lasteaia nõuete ühtlustamine, KOV-i kohustused kohtade tagamisel ning tugiteenuste korraldamine eri toe vajavatele lastele.",
+  "tags": [
+    "alusharidusseadus",
+    "alusharidus",
+    "lastehoid",
+    "lasteaed",
+    "KOV",
+    "tugiteenused",
+    "haridus",
+    "lapse areng",
+    "individuaalne arenduskava",
+    "EHIS"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2024_web_Part7.pdf",
+  "document_id": "sotsiaaltoo-2-2024-alusharidusseadus-toob-muudatusi-lastehoidudele-ja-lasteaedadele-2024-2",
+  "source_format": "pdf",
+  "source_sha256": "a03e599d01cab6d02b7c5120d552bf51468f2a4c60f3edc8ee03b496614bcca1",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2024-alusharidusseadus-toob-muudatusi-lastehoidudele-ja-lasteaedadele-2024-2",
+    "previous_source_path": "Sotsiaaltoo_2_2024_web_Part7.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "a03e599d01cab6d02b7c5120d552bf51468f2a4c60f3edc8ee03b496614bcca1",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

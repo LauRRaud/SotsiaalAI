@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "kas-vanus-maarab-meie-voimalused-2025-1",
+  "title": "Kas vanus määrab meie võimalused? Vanuseline diskrimineerimine tööl ja ühiskonnas",
+  "authors": [
+    "Christian Veske"
+  ],
+  "section": "Õigus",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "description": "Võrdõigusvolinik Christian Veske selgitab, mis on vanuseline diskrimineerimine ja kuidas see mõjutab nii noori kui ka vanemaealisi. Artikkel avab erinevad olukorrad, kus vanusest saab põhjendamatu tõrjumise alus – töölevõtt, koondamine, koolitus- ja karjäärivõimalused, teenustele ligipääs. Analüüsitakse, kuidas vanuselised stereotüübid, pensioniiga, tööturu ja sotsiaalsüsteemi korraldus võivad tugevdada ebavõrdsust ning millist rolli mängivad Eesti ja Euroopa õigusruum ning võrdse kohtlemise põhimõte. Artiklis tuuakse näiteid voliniku praktikast, antakse soovitusi tööandjatele ja poliitikakujundajatele ning rõhutatakse, et vanus ei tohiks olla takistuseks inimeste osalemisel töös, kogukonnaelus ja otsustusprotsessides.",
+  "tags": [
+    "vanuseline diskrimineerimine",
+    "võrdne kohtlemine",
+    "tööõigus",
+    "ebavõrdsus",
+    "võrdõigusvolinik",
+    "tööandja praktikad",
+    "inimõigused"
+  ],
+  "source_path": "1_2025_vanuseline diskrimineerimine.pdf",
+  "pageRange": "1–7",
+  "document_id": "sotsiaaltoo-1-2025-kas-vanus-maarab-meie-voimalused-2025-1",
+  "source_format": "pdf",
+  "source_sha256": "0074a82361ab6a89489416998ba6e0f7030bdf2ae6785753e0f0ac354a2090a7",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2025-kas-vanus-maarab-meie-voimalused-2025-1",
+    "previous_source_path": "1_2025_vanuseline diskrimineerimine.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "0074a82361ab6a89489416998ba6e0f7030bdf2ae6785753e0f0ac354a2090a7",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

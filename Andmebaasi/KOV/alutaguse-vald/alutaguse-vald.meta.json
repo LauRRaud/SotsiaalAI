@@ -1,0 +1,67 @@
+{
+  "id": "alutaguse-vald",
+  "municipality": "Alutaguse vald",
+  "county": "Ida-Virumaa",
+  "checkedAt": "2026-04-12",
+  "status": "ingest_ready",
+  "coverage": {
+    "services": 16,
+    "benefits": 14,
+    "resources": 7,
+    "contacts": 11,
+    "forms": 6,
+    "regulations": 0
+  },
+  "notes": [
+    "Kontaktide ja blanketide osa täiendati ametliku kontaktilehe ning valdkonna blanketilehe põhjal.",
+    "Parandati Alutaguse valla lehtede URL-id vastavalt uuendatud kodulehe struktuurile: teenuste ja toetuste detaillehed viidi /toiming/ aadressidele ning sotsiaalvaldkonna kontaktide ja laste/ohvriabi lehed uutele pere-sotsiaal-ja-tervishoid alamteedele.",
+    "Asendati vanad Liferay dokumendilingid uute /sites/default/files/documents/ vormi-URL-idega seal, kus valla uuendatud lehtedel oli uus vorm leitav."
+  ],
+  "unresolvedIssues": [
+    "Eakate sünnipäevatoetuse detaillehte ei õnnestunud kontrolli käigus otse avada; toetus lisati ametliku otsingukatke põhjal, kuid taotlemise täpsem kord jäi detaillehest täielikult kinnitamata.",
+    "E-taotluste leht nimetab kindlustamata isiku ravikulude katmist sotsiaaltoetuse taotluse ühe liigina, kuid selle toetuse eraldi detaillehte ega täpsemaid tingimusi ei õnnestunud ametlikul veebilt üheselt leida.",
+    "Kontaktilehel on ajutine teade, et Kuremäe teeninduspunkt on remondi ajaks suletud ja vastuvõtt toimub Kurtna seltsimajas; see operatiivne info võib hiljem muutuda."
+  ],
+  "schemaVersion": "v2.5-sourcepackage",
+  "municipality_id": "alutaguse_vald",
+  "municipality_name": "Alutaguse vald",
+  "checked_at": "2026-04-12",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "collection_id": "kov_services",
+  "jurisdiction_level": "MUNICIPALITY",
+  "sourceRegisterFile": "alutaguse-vald.sources.json",
+  "sourceCount": 51,
+  "counts": {
+    "services": 16,
+    "benefits": 14,
+    "resources": 7,
+    "contacts": 11,
+    "forms": 6,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "alutaguse_vald",
+    "source_register_file": "alutaguse-vald.sources.json",
+    "service_benefit_resource_items": 37,
+    "items_with_source_keys": 37,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 24,
+    "items_without_related_forms": 13,
+    "items_with_related_contacts": 31,
+    "items_without_related_contacts": 6,
+    "form_sources": 6,
+    "contact_sources": 1,
+    "regulation_sources": 0,
+    "warnings": [
+      "6 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "warnings": [
+    "6 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

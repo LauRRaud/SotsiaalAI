@@ -1,0 +1,82 @@
+{
+  "source": {
+    "source_id": "peaasi_raagime_lastest_praktikutele_1_5_aastaste_lastega_perede_nou",
+    "title": "Räägime Lastest praktikutele: 1–5-aastaste lastega perede nõustamiseks",
+    "url": "https://peaasi.ee/wp-content/uploads/2024/08/8.-Logiraamat-praktikutele-vanus-1-5.docx.pdf",
+    "normalized_url": "https://peaasi.ee/wp-content/uploads/2024/08/8.-Logiraamat-praktikutele-vanus-1-5.docx.pdf",
+    "source_format": "pdf",
+    "source_type": "official_guideline",
+    "resource_type": "method_guidance",
+    "publisher": "Peaasi",
+    "organization_id": "peaasi",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Peaasi.ee",
+      "lapsed ja pered",
+      "laps",
+      "lapsevanem",
+      "pere",
+      "vanemlus",
+      "Räägime Lastest",
+      "perevestlus",
+      "perede nõustamine",
+      "logiraamat",
+      "praktiline töövahend",
+      "spetsialisti juhend"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "high",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "Peaasi",
+      "heading_4": null,
+      "line": 621,
+      "order": 316
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Räägime Lastest praktikutele: 1–5-aastaste lastega perede nõustamiseks"
+    ],
+    "collection_hints": [
+      "organization_materials"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Peaasi"
+    ],
+    "organizations_seen": [
+      "peaasi"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "Peaasi",
+        "line": 621,
+        "order": 316
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://peaasi.ee/wp-content/uploads/2024/08/8.-Logiraamat-praktikutele-vanus-1-5.docx.pdf"
+  },
+  "final_url": "https://peaasi.ee/wp-content/uploads/2024/08/8.-Logiraamat-praktikutele-vanus-1-5.docx.pdf",
+  "redirects": [],
+  "sha256": "25bd9ecad9aa05ba982a403e739bcd5f19f31ef50cf157308826fc94229b68b4",
+  "bytes": 1874144,
+  "downloaded_at": "2026-08-14T08:00:58.680Z"
+}

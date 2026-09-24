@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-1-2023",
+  "articleId": "kas-klaas-on-pooltuhi-voi-pooltais-2023-1",
+  "title": "Kas klaas on pooltühi või pooltäis?",
+  "authors": [
+    "Eike Käsi"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2023",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "18-22",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Keila abilinnapea Eike Käsi mõtiskleb kohaliku omavalitsuse vaates viimaste aastate kriiside,\nhooldusreformi ja teenuseosutajate nappuse üle. Ta seob sotsiaalse toimetuleku riigi julgeolekuga,\nkirjeldab Ukraina sõjapõgenikega töötamise kogemust ning rõhutab kogukondliku hoolivuse tähtsust.\nArtiklis käsitletakse ka erivajadustega laste perede olukorda, tugiteenuste rahastamise muutust,\nharidus- ja tervisevaldkonna koostöö vajakajäämisi ning vaimse tervise teemat. Autori sõnum on,\net „klaasi täitumine“ sõltub valdkondadeülest koostööst ja teadlikust ennetusest.",
+  "tags": [
+    "kohalik omavalitsus",
+    "Keila vald",
+    "hooldereform",
+    "Ukraina sõjapõgenikud",
+    "erivajadustega lapsed",
+    "vaimne tervis",
+    "haridus ja tervishoid",
+    "kogukond"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_1_2023_web_Part6.pdf",
+  "document_id": "sotsiaaltoo-1-2023-kas-klaas-on-pooltuhi-voi-pooltais-2023-1",
+  "source_format": "pdf",
+  "source_sha256": "ad1cef3151704d421850fc2c4f863767e062b988f70116af271df71e6fedc778",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2023-kas-klaas-on-pooltuhi-voi-pooltais-2023-1",
+    "previous_source_path": "Sotsiaaltoo_1_2023_web_Part6.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ad1cef3151704d421850fc2c4f863767e062b988f70116af271df71e6fedc778",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

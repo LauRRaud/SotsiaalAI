@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="e792add6-4568-4cd6-a348-f818851a1b5e" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Narva Linnavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2015-02-26</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT IV</RTosa>
+				<avaldamineKuupaev>2015-03-06</avaldamineKuupaev>
+				<RTartikkel>26</RTartikkel>
+				<aktViide>406032015026</aktViide>
+			</avaldamismarge>
+			<aktiNr>4</aktiNr>
+			<joustumine>2015-05-08</joustumine>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2019-12-31</avaldamineKuupaev><RTaasta>2019</RTaasta><RTartikkel>67</RTartikkel><aktViide>431122019067</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2020-01-03</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2019-12-27</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>431122019067</globaalID>
+		<metaandmedVersioon>11</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2019-12-30</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1028549</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2015-03-04</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Jelena Tõsjatova</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="a5dfc4e6-a087-4e0c-8bab-b3b9478e5674">
+		<nimi id="ff0c36bf-24ed-4543-b94b-97d615c7f8d1">
+			<pealkiri id="dda956f4-3ac5-4743-a897-411098d2c273">Narva linna Sotsiaalabiameti põhimäärus</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="6577ebda-8e0a-4e0e-93eb-62c3fe090b87">
+		<aktikuupaev id="7372538a-933d-420f-8d27-6ddba4b4daa5">2019-12-19</aktikuupaev>
+		<avaldamismarge id="3b8e41d9-3da2-470d-aaaf-8b8363101a35">
+			<RTosa id="bfa1731e-0a8a-4846-86cd-ffb7ef71104b">RT IV</RTosa>
+			<avaldamineKuupaev id="8e0fa106-949a-45f9-ab31-6960dada7e5e">2019-12-31</avaldamineKuupaev>
+			<RTartikkel id="8cd9d927-6393-4acb-82cf-34ed93232258">26</RTartikkel>
+			<aktViide id="20a20c1f-8ce2-4170-94a9-3e45de5181a6">431122019026</aktViide>
+		</avaldamismarge>
+		<joustumine id="5a470ad5-722c-4dfa-a976-e90608453996">2020-01-03</joustumine>
+		<aktiNr id="2246d024-ab31-4f5b-9f06-bb187ef60171">25</aktiNr>
+	</muutmismarge>
+	<sisu id="55214875-7407-4d85-ad09-5d5eb935f2e4">
+		<preambul id="0a0edee5-7d36-44df-b562-0a17d907df0d">
+			<tavatekst id="74c47cf1-1ca1-4b90-8413-e6a95a3c8963">Määrus kehtestatakse Kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 34 ja Narva linna Põhimääruse punkti 10.2.1 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="7d1f5e5b-a186-49d9-9593-eed991349e88">1</paragrahvNr>
+			<kuvatavNr id="05dc8eb8-480b-4e33-9e0b-0c54c117f19c"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="c4283e4f-e1ce-4f78-a5dc-766e86c8f65c">Üldsätted</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="725e6773-dc36-4e3d-b1d2-4925fd137751">1</loigeNr>
+				<kuvatavNr id="e8a83d30-8f04-44f3-8555-8b50b9a220b6"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="4a90c66c-d25a-4c63-9fa7-591e6f887b24">
+					<tavatekst id="fd3a26ef-d184-4891-a658-64efb4045c25">Narva linna Sotsiaalabiamet (edaspidi <i>amet</i>) on Narva linna ametiasutus, mis täidab talle õigusaktidega ja käesoleva põhimäärusega antud ülesandeid.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr id="89ba8f3e-cbde-4638-b226-d0683c0eb411">2</loigeNr>
+				<kuvatavNr id="ffcacf4a-1422-4e45-b5bd-cc1b470a8dfa"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="e1307804-a981-46d3-a9b8-84279aae6dcf">
+					<tavatekst id="56406632-3497-453d-8491-3ffcc29e6681">Ameti nimi on Narva linna Sotsiaalabiamet.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg3">
+				<loigeNr id="884b0377-96ac-4955-b460-19185c77cd64">3</loigeNr>
+				<kuvatavNr id="bc5d0f1b-637e-4f60-8ebd-993b153baf6a"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="681580e7-9fe6-4b76-aa19-2a7af0d58a89">
+					<tavatekst id="e7b4c833-2463-4423-9a69-bbf27c0d0dd8">Ametil on oma rekvisiitidega kirjaplank ja Narva linnavapi kujutisega pitsat. Ametil on oma alaeelarve ja arvelduskontod. Amet on raamatupidamiskohustuslane Narva Linnavalitsuse (edaspidi <i>linnavalitsus</i>) koosseisus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg4">
+				<loigeNr id="2f73e01f-992d-4fa9-b53c-b0610d43e22c">4</loigeNr>
+				<kuvatavNr id="5c49f958-0549-4793-9ab0-6b55e1d13ab3"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="dac96c2e-9e30-45e5-a28a-1ab8c5a385ac">
+					<tavatekst id="b8b91d64-d5de-4c60-a591-e6f987bf8d44">Ameti vara on munitsipaalomand. Ameti kasutusse antud linnavara valdamine, kasutamine ja käsutamine toimub Narva Linnavolikogu (edaspidi <i>linnavolikogu</i>) poolt kehtestatud korras.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg5">
+				<loigeNr id="c2ca3386-9c5e-4ede-9961-215fff67a478">5</loigeNr>
+				<kuvatavNr id="f3ce01ae-52e9-44e8-90dc-14fa3cbe8ad5"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="54668322-b5f5-45e2-b44e-40dc9cd1699b">
+					<tavatekst id="3a5a9f89-9b69-4d4b-b9fc-5164b5919772">Amet juhindub oma tegevuses kehtivast seadusandlusest, linnavolikogu määrustest ja otsustest, linnavalitsuse määrustest ja korraldustest, käesolevast põhimäärusest, linnapea käskkirjadest, ameti direktori käskkirjadest ning teistest õigusaktidest.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg6">
+				<loigeNr id="8c8fce8f-a5e2-4f69-b0a9-a3bd9754c578">6</loigeNr>
+				<kuvatavNr id="1606d4bf-c48b-470e-9304-9495ab7ea82f"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="3294f3b7-6b59-40f0-8d54-edd546696332">
+					<tavatekst id="5cf19fc6-7b2b-481f-8f47-2a73363cf1df">Ameti haldusalaks on sotsiaalhoolekanne, tervisedendus ja tervishoid Narva linnas. Ameti haldusalas tegutseb linna ametiasutuse hallatav asutus Narva Sotsiaaltöökeskus (edaspidi <i>keskus</i>).</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg7">
+				<loigeNr id="a270562a-8ded-4fc3-b28e-f8c07e6a886f">7</loigeNr>
+				<kuvatavNr id="07fdf434-4da8-4469-933a-25f2fda943a8"><![CDATA[(7)]]></kuvatavNr>
+				<sisuTekst id="c08daf31-44c0-4aa5-ba5e-2bb38f9305a0">
+					<tavatekst id="551d159e-5454-44fc-b738-9c46a0f48ec8">Ameti põhimääruse ja struktuuri kinnitab Narva Linnavolikogu.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="fa451ed1-82ca-48da-a1c7-909e0d7bf89d">2</paragrahvNr>
+			<kuvatavNr id="5c7441d8-12de-4c1a-922b-41922d86b194"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="77e8a86d-5fb6-4e3d-8df7-f66e390b4e27">Ülesanded</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="2da4f5cc-f1a1-4d40-ba1e-537b2e100e49"/>
+				<kuvatavNr id="da919a6b-23d6-446b-a995-34cb4c0b7315"/>
+				<sisuTekst id="7dc0d2ed-74d9-4200-8d92-715174df52b2">
+					<tavatekst id="e60682a3-5d35-4c9e-bdf4-ca7d36d67adb">Ameti ülesanded on:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para2lg1p1">
+					<alampunktNr id="5445a232-5109-401b-93bf-9f25bf896487">1</alampunktNr>
+					<kuvatavNr id="87c1e0e3-723c-483a-93fd-976523e4fd34"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="13e388ca-f673-410d-9927-019e39283816">
+						<tavatekst id="590736a8-594e-4b97-ad66-37841d1f250d">Narva linnas elavatele inimestele toimetulekuraskuste ennetamiseks, kõrvaldamiseks ja kergendamiseks abi osutamine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p2">
+					<alampunktNr id="305cfd44-554b-48ef-9843-611ff1fa3f0f">2</alampunktNr>
+					<kuvatavNr id="80f31fde-263f-470a-adfb-3da9da1c07e9"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="e0e18a93-65e2-47fd-9027-1de5eb0d15d0">
+						<tavatekst id="e184ce52-9b4a-4d74-8cc1-6387649568cc">osakonna tööks vajaliku info kogumine ja vahendamine ning andmekogudes sisalduvate andmete töötlemine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p3">
+					<alampunktNr id="f476f3c8-7794-43bb-b697-66992304f4fe">3</alampunktNr>
+					<kuvatavNr id="3797eff8-ead8-4d77-b2be-0f65dc6e94a8"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="1162f246-db7a-47dc-bc27-5efa183793d0">
+						<tavatekst id="26f9583a-3111-4988-aa0c-ea5d138e7740">sotsiaaltoetuste määramine ja maksmine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p4">
+					<alampunktNr id="97d777c6-40e4-45a9-8099-8dc346f9ba81">4</alampunktNr>
+					<kuvatavNr id="899b94f5-90ef-496f-88fd-745318f74687"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="a2bc22e8-d75b-4388-9a0d-f3b5fdb09716">
+						<tavatekst id="7b55e2bc-577d-422c-a83c-364bd114eca0">sotsiaalteenuste ja muu sotsiaalabi osutamise korraldamine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p5">
+					<alampunktNr id="2bbc8739-7dce-47cd-9f9f-c4e1b284ca0a">5</alampunktNr>
+					<kuvatavNr id="00ff0252-7c95-4d3a-b27c-b391e45544b4"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="c2a10102-8cf9-44db-89e5-8ae46d14a8f4">
+						<tavatekst id="c9cda785-9f0e-43f1-8953-0a827d70530c">eestkostega seonduva töö korraldamine ja perekonnaseadusest tulenevate Narva linna kui eestkosteasutuse ülesannete täitmine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p6">
+					<alampunktNr id="ae863b48-9baf-497d-9982-febedd14fe48">6</alampunktNr>
+					<kuvatavNr id="29ec482c-e9db-4aff-b72b-bd12b8e283a8"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="357e8db4-32a1-4f87-8bca-14acf448d54f">
+						<tavatekst id="c69aacb5-e9e0-452d-934a-f3bdfe746a45">omasteta surnute matmise korraldamine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p7">
+					<alampunktNr id="bf4d599e-07de-4e56-8967-052743e4db0a">7</alampunktNr>
+					<kuvatavNr id="7a22d123-af4d-4e48-8ecc-d80c6f599c1a"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="9e02830e-d3a6-4c54-a7b2-ce6361f06293">
+						<tavatekst id="64565503-9f22-4420-9777-55539cb4b4b3">tervishoiualase tegevuse korraldamine:</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p7b1">
+					<alampunktNr id="77c3be20-dbc3-401a-bc4e-6bdb7146db32" ylaIndeks="1">7</alampunktNr>
+					<kuvatavNr id="1e45010b-dd72-407b-aa4a-8026bdafa32f"><![CDATA[7.1. ]]></kuvatavNr>
+					<sisuTekst id="4ee8ba7e-63e0-41c7-90ec-15b99738e83c">
+						<tavatekst id="8a8a47e5-1055-42db-9148-f234529bb17a">tervisekaitsealaste õigusaktide täitmise korraldamine ja nende järgimise kontrollimine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p7b2">
+					<alampunktNr id="e45fe28c-df4d-4958-b1f9-92c1cd01a374" ylaIndeks="2">7</alampunktNr>
+					<kuvatavNr id="0a668c80-56d1-4c05-a993-4f9ae9acc232"><![CDATA[7.2. ]]></kuvatavNr>
+					<sisuTekst id="8d086255-ce7d-480f-b3d7-bc5bab83e323">
+						<tavatekst id="3b6b172f-0824-4c6d-a92e-e7e9f2231f47">elanikkonna haiguste ennetamisele ja tervise edendamisele suunatud tegevuse korraldamine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p7b3">
+					<alampunktNr id="b6c042e3-e29f-400c-b99d-cf9b7aa9aa55" ylaIndeks="3">7</alampunktNr>
+					<kuvatavNr id="7835fb2b-72b4-4e13-abde-dbba769117af"><![CDATA[7.3. ]]></kuvatavNr>
+					<sisuTekst id="f003e064-8952-40ff-9490-04bdf24d1d36">
+						<tavatekst id="a122aa67-0e90-464b-8f20-0fa9b26355c8">tervisele ohutu elukeskkonna loomisele, tervisehäirete ja haiguste ennetamisele suunatud programmide väljatöötamine ja elluviimise korraldamine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p7b4">
+					<alampunktNr id="357d1839-dd0b-454d-9229-1665ba48baf2" ylaIndeks="4">7</alampunktNr>
+					<kuvatavNr id="6580ba93-809f-47aa-9ede-cb2f3a499a13"><![CDATA[7.4. ]]></kuvatavNr>
+					<sisuTekst id="5fce99e1-ae7c-4ebe-8a78-9de1360f972b">
+						<tavatekst id="d7accdaa-ad42-4508-9296-73ae216ca982">ettepanekute esitamine kohalikule omavalitsusele või teistele pädevatele organitele elukeskkonna seisundi parandamiseks ja tervise edendamiseks linnas;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p8">
+					<alampunktNr id="2bca3b62-eb37-4836-bf31-0438bdd81988">8</alampunktNr>
+					<kuvatavNr id="c171537d-67f8-44fd-86f7-94eb2d81b88b"><![CDATA[8) ]]></kuvatavNr>
+					<sisuTekst id="2e70c259-1562-461a-944c-9a45627363bb">
+						<tavatekst id="7dd6e539-4b88-4335-9800-3e6fe3998b5c">Narva linna sotsiaalhoolekande arengukava väljatöötamine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p9">
+					<alampunktNr id="495b7d66-d885-41df-a7bc-2431c89bd83f">9</alampunktNr>
+					<kuvatavNr id="f36cd464-bcd4-446b-8dd1-590776d5c1c1"><![CDATA[9) ]]></kuvatavNr>
+					<sisuTekst id="e92d5001-455b-43ed-9a6d-677efa641177">
+						<tavatekst id="fd82b4cd-efe4-49d1-8b8a-303df470fa72">keskuse tegevuse koordineerimine, kontrollimine ja töö analüüsimine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p10">
+					<alampunktNr id="c51bc3a2-da80-470d-a8db-747e2d63900e">10</alampunktNr>
+					<kuvatavNr id="d8ecfdbc-4413-4cb5-a621-70d0ede6a9cb"><![CDATA[10) ]]></kuvatavNr>
+					<sisuTekst id="26740b32-936c-47ed-bb34-40853ebb58ee">
+						<tavatekst id="95ec141f-dd27-4e84-b216-d6edf5f7a301">valdkonna teavitamis-, koostöö- ja tunnustusürituste korraldamine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p11">
+					<alampunktNr id="fbc0f412-1c71-4600-b206-dc7616a01a88">11</alampunktNr>
+					<kuvatavNr id="b6b44eaf-378c-4060-8503-c1224c2f7655"><![CDATA[11) ]]></kuvatavNr>
+					<sisuTekst id="fafe46af-e3c6-4152-ab41-cbf62416b859">
+						<tavatekst id="625d45d9-5932-4029-b9e5-52ee9a5295fd">teiste ametiasutuste ja mittetulundusühingutega koostöö tegemine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p12">
+					<alampunktNr id="9326a660-fbf8-4e18-8cc9-5c00e1f9bc8f">12</alampunktNr>
+					<kuvatavNr id="3cfb37db-b651-42c7-8650-53e2e3b21a09"><![CDATA[12) ]]></kuvatavNr>
+					<sisuTekst id="c1d8e421-67d1-4578-ada5-056067275c3b">
+						<tavatekst id="9cc8a7eb-5f39-4f61-8c2e-c704aea99430">valdkonnaga seotud mittetulundusühingute esindajate nõustamine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p13">
+					<alampunktNr id="2e729b61-d604-43ea-acde-a4a78514dee3">13</alampunktNr>
+					<kuvatavNr id="966284dd-6ae5-4b05-8a45-5ac1914a1fba"><![CDATA[13) ]]></kuvatavNr>
+					<sisuTekst id="71bcee29-c2b7-44fc-899d-d535f02300ba">
+						<tavatekst id="c51a39cc-09d1-48dc-8eaa-dafb52d6b134">valdkonnaga seotud linnavalitsuse ja linnavolikogu õigusaktide eelnõude ettevalmistamine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p14">
+					<alampunktNr id="e0d85990-ac54-4f0a-9d7d-cb5e3c402000">14</alampunktNr>
+					<kuvatavNr id="84f3362f-0f85-42aa-95d6-104c168fe1c4"><![CDATA[14) ]]></kuvatavNr>
+					<sisuTekst id="5ee8b5c9-e05f-4938-862e-a7c0cef3d126">
+						<tavatekst id="05fe8f30-1864-44ec-ab76-a5d702f78735">muude seadustega ja kehtivate õigusaktidega ettenähtud ülesannete täitmine oma haldusalal.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="294e90d3-65a1-4730-b240-a0db225b6fd3">3</paragrahvNr>
+			<kuvatavNr id="9bfd4e43-9e03-43da-9237-ab19b15a708b"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="97046a3b-766e-4983-8452-abd3edac281a">Õigused</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="7028ed16-9be7-4dfc-b72d-6fa7cf9453b3"/>
+				<kuvatavNr id="7140f0ef-bbd7-4d9a-90b1-1482e5f7c23b"/>
+				<sisuTekst id="76a83729-aba8-4b3c-a802-4ae06b7f8585">
+					<tavatekst id="473f4c82-f20d-4ce4-b296-d1f1b2fd3bbe">Põhimääruses sätestatud ülesannete täitmiseks on ametil õigus:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para3lg1p1">
+					<alampunktNr id="8af73b83-43d0-42b9-a8d5-610ebff13a7c">1</alampunktNr>
+					<kuvatavNr id="77416434-9f85-4335-a1e5-f3d14baacf5d"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="67c5f47b-1405-42d4-8a8c-0df8a7d4bfd5">
+						<tavatekst id="fa2e9379-4e9a-4e42-8b4b-17833398fe48">saada linna ametiasutustelt ja hallatavatelt asutustelt ning teistelt juriidilistelt ja füüsilistelt isikutelt andmeid ja informatsiooni, mis on vajalikud talle pandud ülesannete täitmiseks;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p2">
+					<alampunktNr id="39a9a001-cdee-4bbc-83fa-555346573fb5">2</alampunktNr>
+					<kuvatavNr id="1c5eb299-7633-4c42-b7e1-4e0a86df30ca"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="e27d1164-3629-47a2-89a3-d2a1dbef1154">
+						<tavatekst id="4b5652b6-4fae-4758-8511-b801a6072517">teha linnavalitsusele ettepanekuid ameti ülesannete täitmiseks vajalike õigusaktide vastuvõtmiseks ning valmistada ette nende aktide eelnõud;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p3">
+					<alampunktNr id="f4246297-c999-433b-8f7e-d137ccdba4b0">3</alampunktNr>
+					<kuvatavNr id="b955c0e4-9720-435c-8db0-18e95ec29cff"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="825c82b7-6927-442e-9001-6ac06ff09be9">
+						<tavatekst id="2b35bbde-facd-41e6-a94f-ace3684cb216">võtta haldusaktidena vastu otsuseid osakonna pädevusse antud küsimustes;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p4">
+					<alampunktNr id="a1bcb1a3-8348-436b-8bd4-ad0c284d342d">4</alampunktNr>
+					<kuvatavNr id="6922dba1-8d96-4290-9009-f680d6c5cc46"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="2bc5429a-59d4-4c73-bd1a-a3afb588ea9b">
+						<tavatekst id="ebc7607c-192c-49aa-812a-8a0928c90783">teha koostööd teiste asutuste ja organisatsioonide ning muude isikutega käesolevast põhimäärusest tulenevate ülesannete täitmiseks;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p5">
+					<alampunktNr id="42202b63-7215-4234-b2e6-f94e76fd5053">5</alampunktNr>
+					<kuvatavNr id="c7c11e96-3f6a-4880-93c8-7eb86d9de8e3"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="da8a1244-a882-40ac-97f3-bfd940f15901">
+						<tavatekst id="5654b699-e1d3-404b-a944-57a8ae8880b6">teostada järelevalvet riigi, munitsipaal- ja eraomandis olevate avalik-, eraõiguslike juriidiliste ja füüsiliste isikute halduses või omandis olevatel territooriumidel, ehitistel ning rajatistel tervisekaitsealaste õigusaktide täitmise üle ja õigusaktide rikkumise korral teha ettevõtte, asutuse, organisatsiooni juhtkonnale või füüsilisele isikule ettepanekud rikkumiste kõrvaldamiseks;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p6">
+					<alampunktNr id="eb24681a-3916-4ae1-93a4-7a767108c1b1">6</alampunktNr>
+					<kuvatavNr id="f17b47d1-4999-47cf-93c4-b712f82d3c2d"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="cc994b5d-c697-4ec0-a608-d5f0b3b2c4c2">
+						<tavatekst id="49333e20-bce9-48d2-97bc-54a8906db9f0">moodustada ameti pädevuses olevate küsimuste lahendamiseks alalisi ja ajutisi komisjone ja töögruppe, kaasata oma töösse koosseisuväliseid spetsialiste;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p7">
+					<alampunktNr id="e157793b-d1a8-4fcf-aed1-1d30d856108f">7</alampunktNr>
+					<kuvatavNr id="b462d7e7-35ae-4008-8925-907769f01fb5"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="fc04b3b0-af08-44f5-a28d-cab40ae4f201">
+						<tavatekst id="d7bddb9a-3682-43d5-8113-94e2d8587d8f">kaasata oma ülesannete täitmisel vajadusel ja kokkuleppel linnavalitsusega teiste struktuuriüksuste teenistujaid;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p8">
+					<alampunktNr id="4fe15da0-d1c0-4429-bb8b-7df1d2833db2">8</alampunktNr>
+					<kuvatavNr id="879b8187-e4ae-4bdf-9855-dfe452272f35"><![CDATA[8) ]]></kuvatavNr>
+					<sisuTekst id="a67832b2-aac1-4800-9d1a-63c19f4047ec">
+						<tavatekst id="651c5893-9f49-4f30-bac9-22bd8c36fb70">kontrollida keskuse ja teiste ameti eelarvest rahastavate asutuste tegevust;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p9">
+					<alampunktNr id="ac401e46-e6d8-431a-8327-6710b7e9917d">9</alampunktNr>
+					<kuvatavNr id="14e85ee7-8aa0-4f4f-9bdb-2b9d097527c5"><![CDATA[9) ]]></kuvatavNr>
+					<sisuTekst id="e5f9eb33-9d94-4e83-9d33-0502d936e871">
+						<tavatekst id="17c3e33a-6de8-4d63-9dba-e9c8f6639fb1">sõlmida Narva linna nimel füüsiliste ja juriidiliste isikutega lepinguid ametile pandud ülesannete täitmiseks linnavolikogu poolt kehtestatud korras;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p10">
+					<alampunktNr id="7a6d1583-cc41-4b52-9eab-a7ed489d9196">10</alampunktNr>
+					<kuvatavNr id="63236fad-bd6f-4ee8-9a43-f8ef84cb977d"><![CDATA[10) ]]></kuvatavNr>
+					<sisuTekst id="9af8c20c-20c7-45a1-8c9b-576f7140252e">
+						<tavatekst id="cbb346e4-e9a4-4e2d-bd29-dcc9e0aa77e3">korraldada sotsiaaltöötajate väljaõpet.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="50cd183d-8ec5-40c4-933a-fb8ac67031f9">4</paragrahvNr>
+			<kuvatavNr id="f58a5627-6ded-4fae-8870-9ece82d09776"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="d3be723f-5cca-4db2-91e1-d7ef548fe929">Kohustused</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="ddda472e-ec59-4a2e-99f9-c569e986104f"/>
+				<kuvatavNr id="06231775-9f2d-4f12-90a7-776394bf3bfe"/>
+				<sisuTekst id="a36e0a22-1044-43fa-b965-6b4bc1326570">
+					<tavatekst id="230ceb30-7543-4759-be2d-f80aa9ce73b4">Amet on kohustatud:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para4lg1p1">
+					<alampunktNr id="12df4188-73b1-48a4-8e37-83c2bacf6689">1</alampunktNr>
+					<kuvatavNr id="a5bf5ea8-a040-40fe-b68d-6d9131793ada"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="63de1139-52dd-48ce-9c01-b41a20691818">
+						<tavatekst id="d957b0e2-3b3f-4735-be8f-57f1745e4e42">täitma temale pandud ülesanded tähtaegselt ja kvaliteetselt;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p2">
+					<alampunktNr id="86ca75be-4762-4118-88e0-a18643cfa29d">2</alampunktNr>
+					<kuvatavNr id="0dcc8c2b-e197-4553-ae1c-e91a5827fc3f"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="34e15e8e-0816-4bb5-83e7-0d1192c40979">
+						<tavatekst id="85b65305-ac86-488d-a025-d2d867f748bd">kasutama tema kasutuses olevat vara ja vahendeid otstarbekalt ning heaperemehelikult;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p3">
+					<alampunktNr id="df585b17-ce13-46d2-b102-0d5e700a3f90">3</alampunktNr>
+					<kuvatavNr id="dc6c0182-ec0e-4a30-ab81-c40bcb0c5a97"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="fae776eb-e483-4852-a40e-41d899bec5ae">
+						<tavatekst id="57d67bd9-acaa-479c-9a07-2839e2f1d83b">edastama teistele struktuuriüksustele nende ülesannete täitmiseks vajalikku informatsiooni.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="4ba54954-587f-47e7-88e0-d625b071fcac">5</paragrahvNr>
+			<kuvatavNr id="9734e3a7-e667-4728-b2df-ff8a73a11b3d"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="e971d774-62e7-4c58-80f0-7fd1ab850bc2">Juhtimine</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="38808bcf-ab7f-4b76-9c28-99699f55a8fc">1</loigeNr>
+				<kuvatavNr id="8623bc0b-8908-4fae-9420-e0dea952a25a"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="9ba48605-8c30-42e3-8ddb-18277f4a5500">
+					<tavatekst id="8acf8998-140f-4d81-81e3-0c91e0894e18">Ameti tegevust planeerib ja juhib ameti direktor, kelle ülesandeks on tagada ameti majanduslik ja organisatsiooniline funktsioneerimine ning koordineerida ameti igapäevast tegevust.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="776720a7-e375-489a-9193-02e2ca934ee9">2</loigeNr>
+				<kuvatavNr id="f0fac2b7-c631-4e25-878c-28a8a768425d"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="14ac9692-feef-4aa7-92bf-27edc89849c7">
+					<tavatekst id="3d23ac93-01c2-499c-8f2b-e63950b6d5fd">Direktori nimetab ametisse ja vabastab ametist linnavalitsus linnapea ettepanekul. Ameti direktor allub linnapeale.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="8733a910-6403-4281-990c-199377fd69ef">
+					<avaldamismarge id="5e039b8d-3504-4ad2-a794-ad6cf6900dba">
+						<RTosa id="7cffd9c3-f631-486a-a84f-13d61651a031">RT IV</RTosa>
+						<avaldamineKuupaev id="7818a1a2-5bcb-48af-9228-66dcf2ef2460">2019-12-31</avaldamineKuupaev>
+						<RTartikkel id="5669c901-d958-4197-ad8c-3a5532359595">26</RTartikkel>
+						<aktViide id="b8402aaf-76b3-4f29-be5c-21cf134c429a">431122019</aktViide>
+					</avaldamismarge>
+					<joustumine id="8f3b177c-8ad3-468b-b81a-354a8c0bec9c">2020-01-03</joustumine>
+					<aktiNr id="6a30b666-1a3c-4bb9-b0c3-f87266d88688">25</aktiNr>
+				</muutmismarge>
+			</loige>
+			<loige id="para5lg3">
+				<loigeNr id="e3138a16-a4e1-4e87-9190-1c5df6cebc5a">3</loigeNr>
+				<kuvatavNr id="2b31c921-2669-4740-96ea-be7f0821e368"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="7dcaf575-f5c0-4b5b-baac-0ad4152f457b">
+					<tavatekst id="3162f486-1718-4b4b-93c3-ba225a378136">Ameti direktor:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg3p1">
+					<alampunktNr id="87f01f98-7635-4ef7-85ff-cd9cb7ff16e4">1</alampunktNr>
+					<kuvatavNr id="278cbcfe-b05f-44a7-8f59-466efb2dcf31"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="32521840-175f-41b1-a871-52fcceb7a889">
+						<tavatekst id="37c1568b-6d6c-4a6e-9758-6ea73ca0d9a8">tagab käesolevas põhimääruses sätestatud ülesannete täitmise ja esindab ametit nende täitmisel;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p2">
+					<alampunktNr id="9377ef18-afb0-441f-ad97-d83c4a566487">2</alampunktNr>
+					<kuvatavNr id="62680623-b597-4fdd-a687-fbcce27e7e77"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="30f71886-8bdd-40fe-8db1-b51db388cf1e">
+						<tavatekst id="4dabaf6f-0243-4124-bb4b-1b56b0f49d26">otsustab ametile eraldatud eelarvevahendite kasutamise ja tagab nende sihipärase kasutamise, vastutab selliste vahendite sihtotstarbelise ning täpse kasutamise eest;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p3">
+					<alampunktNr id="da9f039d-3a8b-497d-a8b3-e730acaa7daf">3</alampunktNr>
+					<kuvatavNr id="6cbb79f6-37c8-43ce-87d5-04fa67b1d2b0"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="065f96c0-355a-45e7-862f-ced88fa9d70a">
+						<tavatekst id="a44f7f9d-19d7-4272-974b-f23c803ecd50">nimetab ametisse ja vabastab ametist ameti ametnikke ning sõlmib, muudab ja lõpetab töölepingud abiteenistujatega, kohaldab nende suhtes ergutusi ja distsiplinaarkaristusi;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p4">
+					<alampunktNr id="98173db3-f4cb-4255-801e-eccadc387295">4</alampunktNr>
+					<kuvatavNr id="aff6fd7c-8015-4303-bb4a-459588255063"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="d84224d5-7c94-4f5c-995d-3ed14f424127">
+						<tavatekst id="37ebb7b1-2396-4351-bcc6-223208620871">määrab ameti ametnike ja abiteenistujate ameti- ja tööülesanded, kinnitab nende ameti- ning tööjuhendid, vastavalt vajadusele määrab ametisisese tööjaotuse;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p5">
+					<alampunktNr id="217c2e00-4506-4d3e-843d-943e2ba98035">5</alampunktNr>
+					<kuvatavNr id="766c8974-4780-4524-acd9-7ec56f9cfcb5"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="883cd548-b017-40bf-b907-d5aa398e0703">
+						<tavatekst id="d883321f-929b-4f3b-bf38-8f93e0a725f6">kinnitab ameti ametnike ja abiteenistujate puhkuste ajakava ja korraldab nende täiendkoolitust;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p6">
+					<alampunktNr id="70fe9c02-b0a5-4ab0-a5fd-4afc77d02190">6</alampunktNr>
+					<kuvatavNr id="43811b41-1e33-492a-8469-2f273afa6ad9"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="0a259c64-2a00-442e-9da3-03138b2172f6">
+						<tavatekst id="43d55643-8505-4090-a37a-c8f5c440620a">koostab aastaeelarve eelnõu, korraldab tsentraliseeritud raamatupidamisarvestuse;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p7">
+					<alampunktNr id="d8da6e3b-9718-4014-ac5c-bcf10cad3f27">7</alampunktNr>
+					<kuvatavNr id="f777c917-ff4b-4a69-aa13-1da500484b9c"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="6ba8aa64-a55d-411a-ad34-4b6789d3e829">
+						<tavatekst id="4ce366c1-5f4f-4c97-aa73-c3a6f20c9391">annab linnavalitsuses aru ameti tegevusest;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p8">
+					<alampunktNr id="7e65617b-16a5-4e88-933f-53c0bdde811b">8</alampunktNr>
+					<kuvatavNr id="a876b46d-03d5-4687-8f10-fbb68ed8a784"><![CDATA[8) ]]></kuvatavNr>
+					<sisuTekst id="42ab52f3-510a-4cc2-a26a-87315f251f99">
+						<tavatekst id="4e8b5b9c-932f-408c-bc05-643e7a875db7">korraldab ameti asjaajamist, ameti valitsemisel oleva linnavara valdamist, kasutamist ja käsutamist linnavolikogu ja linnavalitsuse poolt kehtestatud korras, vastutab ameti vara ja ametile eraldatud vahendite sihtotstarbelise kasutamise eest;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p9">
+					<alampunktNr id="81a9c166-ec54-496e-a027-13fff9096d9e">9</alampunktNr>
+					<kuvatavNr id="f1f624b0-1de9-4091-b2c5-c3d5284fd98d"><![CDATA[9) ]]></kuvatavNr>
+					<sisuTekst id="9a3e429f-3d67-4e10-b956-d71cf6f40d31">
+						<tavatekst id="33f6594e-80bf-42fb-a2ab-24342d3747c6">koordineerib keskuse tegevust ja korraldab keskuse tegevuse kontrollimist;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p10">
+					<alampunktNr id="11b71944-4eeb-4981-87b2-30024f11277f">10</alampunktNr>
+					<kuvatavNr id="aba51ff8-2349-4504-af60-92ba47cbd7b9"><![CDATA[10) ]]></kuvatavNr>
+					<sisuTekst id="6da23cb9-59e4-41c1-8de9-29eb999ee282">
+						<tavatekst id="ac97044c-efc1-4083-8783-0f103855ee60">linnavalitsuse korralduste alusel sõlmib, muudab ja lõpetab tööleping keskuse juhatajaga;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p11">
+					<alampunktNr id="6e452eb3-79bc-4391-9698-089c6cfd12a4">11</alampunktNr>
+					<kuvatavNr id="5212db65-1a94-4a6a-a584-0e0339d80088"><![CDATA[11) ]]></kuvatavNr>
+					<sisuTekst id="39d323b4-a6fc-44dd-b6f8-2566c14e7465">
+						<tavatekst id="3d50e8ba-f664-47cd-a22a-c2761317839f">teeb linnavalitsusele ettepanekuid ameti töö parendamise ja struktuuri muutmise kohta;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p12">
+					<alampunktNr id="f93889f8-b534-4695-b27a-9895aa2b7ee6">12</alampunktNr>
+					<kuvatavNr id="659f604d-1a9d-4357-afef-dab39a56360f"><![CDATA[12) ]]></kuvatavNr>
+					<sisuTekst id="8b450e80-fb25-49b6-872b-ba797a879780">
+						<tavatekst id="a82e56d3-0968-43f5-b83d-999b01c2850e">korraldab muude linnavolikogu ja -valitsuse poolt ametile pandud ülesannete täitmist;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p13">
+					<alampunktNr id="4a255ea4-b03f-49b2-bcb0-035e8fe4a3bb">13</alampunktNr>
+					<kuvatavNr id="f1f5972a-dbfc-46de-8f89-399d1addaaff"><![CDATA[13) ]]></kuvatavNr>
+					<sisuTekst id="8404aaab-30b0-4cfa-927f-87e0211f6c61">
+						<tavatekst id="37a3a932-bdc1-498f-bb12-71c49ed8eaaa">vastutab oma ametijuhendis, käesolevas põhimääruses sätestatud ja linnavolikogu ning linnavalitsuse poolt ametile seaduse alusel pandud ülesannete õigeaegse, täpse ja õiguspärase täitmise eest.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para5lg4">
+				<loigeNr id="a0869d50-9b8b-4db7-bf48-2ee9202d2adc">4</loigeNr>
+				<kuvatavNr id="0771ca72-f50f-44a4-b024-d3ec2e409049"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="5cbd2c60-6d29-4843-a230-965d1694c152">
+					<tavatekst id="4abd2025-2aad-42d1-a9c2-b7a10eeefcc4">Direktor omab allkirja õigust ameti nimel, annab töö korraldamiseks ameti töötajatele seaduste alusel käskkirju ning suulisi ja kirjalikke korraldusi.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg5">
+				<loigeNr id="9f6572f5-333c-4a92-bb45-3fbb36e2c5fb">5</loigeNr>
+				<kuvatavNr id="0b9d004a-c757-4214-b96c-a0bc687df4f9"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="521a3d9b-fc72-4a4b-93c2-85d96377a371">
+					<tavatekst id="15ec9923-65f3-498a-b378-41fe3333b708">Direktori äraolekul asendab teda ametijuhendiga või linnapea käskkirjaga määratud isik.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="251fe753-6cf2-449f-81b7-a1aa3e4b920c">6</paragrahvNr>
+			<kuvatavNr id="66a14c94-148a-4f06-8b6b-8747b6db7ea7"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="cfca03af-9c4c-4fa2-bca3-ef65e5195e7a">Finantseerimine ja majandamise alused</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="07917359-1431-471e-aab0-cd2cba74ddf1">1</loigeNr>
+				<kuvatavNr id="bd7ff359-54ed-4e35-9ce2-46789c59309e"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="8338ae53-66c1-4768-935c-95283338e08b">
+					<tavatekst id="40e9d1c4-f375-41a0-bfb9-ad599ea6da22">Amet on linna eelarve vahenditest finantseeritav asutus. Peale selle on ametil õigus saada rahalisi vahendeid riigieelarvest, sihtasutustelt, teistelt juriidilistelt ja füüsilistelt isikutelt oma haldusala ülesannete täitmiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg2">
+				<loigeNr id="b269cd0b-f13d-4dc8-a7a8-8a127fa07771">2</loigeNr>
+				<kuvatavNr id="ecbf9657-04fb-4262-a7f6-0d7c3d121f30"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="b772a576-b6de-4975-868d-64099f7ae9b8">
+					<tavatekst id="70d7ba10-e367-4c9c-be56-fa0fd85f3e55">Ameti finants-majanduslikku tegevust kontrollib ja teostab mitte harvem kui kord 3 aastas finants-majandusliku tegevuse revisjoni Narva Linnavalitsuse Rahandusamet.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="9a39d888-5eb4-4df7-b6ed-dd6d91663e15">7</paragrahvNr>
+			<kuvatavNr id="0b66f7ee-3af8-4a0b-a596-54550ac80fe1"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="bec731fe-ea78-4e30-8d5f-8ebf75fec0d5">Ameti reorganiseerimine ja tegevuse lõpetamine</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr id="ecc1631e-51a1-4dff-b83b-a5d630f0ece7">1</loigeNr>
+				<kuvatavNr id="b068e839-47c3-422f-a6ec-a2e014d25bcf"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="2804cfeb-40d7-43ee-b772-f469fdfe6c70">
+					<tavatekst id="29923bf2-45c1-4808-8e94-034224772e25">Amet reorganiseeritakse ja likvideeritakse linnavolikogu otsusel.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg2">
+				<loigeNr id="13392b4b-26c9-4413-83ea-f9150c496a4a">2</loigeNr>
+				<kuvatavNr id="82659313-47a2-4fba-a699-eebb69c89ffa"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="5eb72a51-7b22-4af4-9b74-df31934a8ff2">
+					<tavatekst id="8cab34c9-a64b-4cc7-9ade-efdd13612913">Ameti likvideerimisel antakse arhiveerimisele kuuluvad dokumendid säilitamisele linnaarhiivi.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para8">
+			<paragrahvNr id="f76366f9-550e-41b5-8ea4-83a367ead5cf">8</paragrahvNr>
+			<kuvatavNr id="f91ab3da-e4e0-4716-a8dd-e7b802c2bcbe"><![CDATA[§ 8. ]]></kuvatavNr>
+			<paragrahvPealkiri id="22d6cef7-1b49-4132-8a19-25754221079c">Jõustumine ja rakendussätted</paragrahvPealkiri>
+			<loige id="para8lg1">
+				<loigeNr id="1af0e3c4-07a7-4397-9574-8aff10ddaa76">1</loigeNr>
+				<kuvatavNr id="a5f7dc32-9ac4-4b16-b327-8d24e02c8e8b"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="3e640f62-98d7-49b9-a35e-bf2b25aa8324">
+					<tavatekst id="722d4c7b-b298-4490-ad2c-4308f0a782b5">Määrus jõustub 01.03.2015. a.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8lg2">
+				<loigeNr id="ebf3e3a2-f203-41b3-bdaa-03fcded34b82">2</loigeNr>
+				<kuvatavNr id="2b94b3d3-a700-487f-9062-f57422c22f29"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="3cbca900-9921-48d4-bfc8-c74c60aa42c2">
+					<tavatekst id="6ca52b1b-455f-48af-9bb3-a506686dc58a">[Käesolevast tekstist välja jäetud.]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+	
+</oigusakt>

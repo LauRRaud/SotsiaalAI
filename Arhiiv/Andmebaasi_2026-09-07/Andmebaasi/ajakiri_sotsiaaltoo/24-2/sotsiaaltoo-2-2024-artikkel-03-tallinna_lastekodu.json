@@ -1,0 +1,45 @@
+{
+  "docId": "sotsiaaltoo-2-2024",
+  "articleId": "tallinna-lastekodu-laste-kodu-kus-tootamine-on-eluvais-2024-2",
+  "title": "Tallinna Lastekodu – laste kodu, kus töötamine on eluviis",
+  "authors": [
+    "Sigrid Petoffer",
+    "Triin Rajang",
+    "Margit Randaru"
+  ],
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2024",
+  "section": "Persoon",
+  "pageRange": "9-14",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab Tallinna Lastekodu kui suurt ja mitmekülgset hoolekandeasutust, kus osutatakse asendushooldust, järelhooldust, turvakodu-, lapsehoiu-, erihoolekande- ja rehabilitatsiooniteenuseid ning tugiteenuseid hooldus-, eestkoste- ja lapsendajaperedele. Autorid kirjeldavad, kuidas teenuseid kujundatakse järjest inimkesksemaks, luues individuaalseid lahendusi suure abivajadusega lastele ja noortele, sh väiksemad peremudelid ning kriisi- ja erihoolduspered. Juttu on ka töötajate värbamisest ja juhendamisest, piiride nihutamisest lapse huvides ning Tallinna Lastekodu rollist asendushoolduse valdkonna suunanäitajana.",
+  "tags": [
+    "Tallinna Lastekodu",
+    "asendushooldus",
+    "lastekaitse",
+    "kriisihoolduspered",
+    "erihoolduspered",
+    "puudega lapsed",
+    "sotsiaalteenused",
+    "hoolekandeasutus",
+    "töötajate värbamine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2024_web_Part4.pdf",
+  "document_id": "sotsiaaltoo-2-2024-tallinna-lastekodu-laste-kodu-kus-tootamine-on-eluvais-2024-2",
+  "source_format": "pdf",
+  "source_sha256": "e37b0ee7caee095f46d998a8c7045517b80bf1bbbeff39e8185b1e2990c81e29",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2024-tallinna-lastekodu-laste-kodu-kus-tootamine-on-eluvais-2024-2",
+    "previous_source_path": "Sotsiaaltoo_2_2024_web_Part4.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "e37b0ee7caee095f46d998a8c7045517b80bf1bbbeff39e8185b1e2990c81e29",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

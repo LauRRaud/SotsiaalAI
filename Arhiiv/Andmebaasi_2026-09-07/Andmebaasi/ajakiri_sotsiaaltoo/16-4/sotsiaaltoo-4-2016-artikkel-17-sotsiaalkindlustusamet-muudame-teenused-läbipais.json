@@ -1,0 +1,92 @@
+{
+  "docId": "sotsiaaltoo-4-2016",
+  "articleId": "sotsiaaltoo-4-2016-artikkel-17-sotsiaalkindlustusamet-muudame-teenused-läbipais",
+  "title": "Sotsiaalkindlustusamet: muudame teenused läbipaistvamaks ja mugavamaks",
+  "authors": [
+    "Egon Veermäe",
+    "Olle Selliov",
+    "Eve Liblik"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2016",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "90-93",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalkindlustusameti juulis ametisse asunud peadirektor Egon Veermäe, ohvriabi üksuse juht Olle Selliov ja lastekaitse üksuse juht Eve Liblik tutvustavad asutuse plaane. Amet vahendab aastas ligi kaks miljardit eurot pensione ja toetusi ning selle tegevusest sõltub üle 700 000 inimese toimetulek; 17 bürood jäävad alles. 2017. aastast võtab amet üle naiste tugikeskuste teenuse, mida kasutab umbes 1800 naist ja üle 150 lapse aastas, ning maavalitsustelt riigisisese lapsendamise korraldamise; käivitub lapsendajate register ja pereuuring muutub kõigile tasuta.",
+  "tags": [
+    "sotsiaaltöö korraldus",
+    "sotsiaalkindlustusamet",
+    "naiste tugikeskus",
+    "ohvriabi",
+    "lapsendamine",
+    "lastekaitseüksus"
+  ],
+  "source_type": "file",
+  "source_path": "2016_4_artikkel_17_sotsiaalkindlustusamet_muudame_teenused_labipaistvam.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-17-sotsiaalkindlustusamet-muudame-teenused-l-bipais",
+  "source_sha256": "1f3c7685b669a4fe827cbd05496afcfcf0eab0d8ad6af2e2e7b6eccbd759fd9c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-17-sotsiaalkindlustusamet-muudame-teenused-l-bipais",
+    "previous_source_path": "2016_4_artikkel_17_sotsiaalkindlustusamet_muudame_teenused_labipaistvam.txt",
+    "previous_source_original_path": "4-2016.pdf",
+    "reference_stored_source_sha256": "5f2249807354d091a099b7943583f66b89f340612718d17080399507b24d92bd",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf",
+      "source_sha256": "0f07da03ffde36588435e96f8dda0f52a8140fbf9cc4201bb95e85b594e03fc9",
+      "pdf_start_page": 92,
+      "pdf_end_page": 95,
+      "printed_page_range": "90-94",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 96,
+      "source_regions": [
+        {
+          "source_pdf_page": 92,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 93,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 94,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 95,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "90-93"
+    },
+    "server_page_range": "90-94"
+  }
+}

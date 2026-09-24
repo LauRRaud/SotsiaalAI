@@ -1,0 +1,37 @@
+{
+  "docId": "sotsiaaltoo-4-2017",
+  "articleId": "uued-lahendused-heaolutalgutelt-2017",
+  "title": "Uued lahendused heaolutalgutelt",
+  "authors": [
+    "Kristiina Tuisk"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2017",
+  "section": "Innovatsioon hoolekandes",
+  "pageRange": "33-35",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel kirjeldab Garage48 heaolutalgute käigus välja töötatud uudseid lahendusi.",
+  "tags": [
+    "heaolutalgud",
+    "innovatsioon",
+    "teenused"
+  ],
+  "source_type": "file",
+  "source_path": "Uued lahendused heaolutalgutelt.pdf",
+  "document_id": "sotsiaaltoo-4-2017-uued-lahendused-heaolutalgutelt-2017",
+  "source_format": "pdf",
+  "source_sha256": "53e09b17120bf2f1d5f01b71536d13fcf674f8ca7d06907fa99b77f679ce0fc9",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2017-uued-lahendused-heaolutalgutelt-2017",
+    "previous_source_path": "Uued lahendused heaolutalgutelt.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "53e09b17120bf2f1d5f01b71536d13fcf674f8ca7d06907fa99b77f679ce0fc9",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

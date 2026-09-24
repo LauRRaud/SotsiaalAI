@@ -1,0 +1,51 @@
+{
+  "docId": "sotsiaaltoo-1-2026",
+  "articleId": "omavalitsuse-sotsiaaltoo-monopol-ja-selle-varjatud-hind-2026",
+  "title": "Omavalitsuse sotsiaaltöö „monopol“ ja selle varjatud hind",
+  "authors": [
+    "Katri-Liis Lepik",
+    "Kadri Kangro"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2026",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artiklis arutletakse, kuidas vastutus hoolekande eest on Eestis liiga suurel määral koondunud kohaliku omavalitsuse õlule. Autorid väidavad, et vastutus hoolimise ja toimetuleku eest on jagatud ning solidaarsusmajanduse kaudu saavad kaasa tegutseda vabaühendused, ettevõtted ja kogukonnad. Näidetena tuuakse kohalikud algatused, mis ühendavad sotsiaalset ja majanduslikku väärtust.",
+  "tags": [
+    "solidaarsusmajandus",
+    "kohalik omavalitsus",
+    "sotsiaaltöö korraldus",
+    "kogukond",
+    "vabaühendused",
+    "sotsiaalne ettevõtlus",
+    "LEADER",
+    "hoolekanne",
+    "koostöö"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-02-09",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/omavalitsuse-sotsiaaltoo-monopol-ja-selle-varjatud-hind",
+  "source_type": "web",
+  "source_path": "omavalitsuse-sotsiaaltoo-monopol-ja-selle-varjatud-hind.html",
+  "lead": "Hoolitsemine, abistamine ja toetamine on olulised ühiskondlikud ülesanded, mille kaudu luuakse laiemat väärtust kui vaid konkreetse abivajaja olukorra leevendamine. Kui sotsiaaltöö jääb ainult omavalitsuse vastutada, võib see kaasa tuua soovimatuid tagajärgi. Omavalitsuste ja vabaühenduste koostöö võiks kujundada mõjul põhinevaks nii, et see aitaks selgemalt mõtestada, mille nimel tegutsetakse.",
+  "document_id": "sotsiaaltoo-1-2026-omavalitsuse-sotsiaaltoo-monopol-ja-selle-varjatud-hind-2026",
+  "source_format": "html",
+  "source_sha256": "3ce82e3c538d6810e9d3eedd6b90320d15fc889f9f594c4bc70d861fec525c71",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2026-omavalitsuse-sotsiaaltoo-monopol-ja-selle-varjatud-hind-2026",
+    "previous_source_path": "omavalitsuse-sotsiaaltoo-monopol-ja-selle-varjatud-hind.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "71f5c41ea5b1b7f15729d8225ce94882c9524e6b3aadb8549d592906f6610fab",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "902825170d68617f5b700c0a6b303bea86c0854fc792fb5a925be0ad29d2dc7a",
+    "observed_web_title": "Omavalitsuse sotsiaaltöö „monopol“ ja selle varjatud hind"
+  },
+  "retrieved_at": "2026-09-07T19:39:34.333162+00:00"
+}

@@ -1,0 +1,99 @@
+{
+  "docId": "sotsiaaltoo-eri-2022",
+  "articleId": "esimene-lend-intervjuu-2022-eri",
+  "title": "Sotsiaaltöö esimeses lennus õppinud Kristiina Salong ja Indrek Juss: „Meid koolitati olema maailmamuutjad”",
+  "authors": [
+    "Regina Lind"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö (erinumber)",
+  "issueLabel": "Eri/2022",
+  "section": "30 aastat õpetamist",
+  "pageRange": "33-37",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Vestlus Tallinna Ülikooli sotsiaaltöö esimese lennu õppurite Kristiina Salongi ja Indrek Jussiga ning kursuse juhendaja Lauri Leppikuga, kes said augustis 2021 videosilla vahendusel kokku. Kursusel oli 21–22 õppijat, sh viis noormeest. Vilistlased hindavad kõrgelt akadeemilist haridust, mis õpetas maailmas toimuvat analüüsima, ja rohket praktikat. Märgitakse, et paljud ei jätka erialatööl.",
+  "tags": [
+    "sotsiaaltööharidus",
+    "esimene lend",
+    "vilistlased",
+    "praktika",
+    "intervjuu"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo-ERINUMBER_2022_Part5.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-eri-2022-esimene-lend-intervjuu-2022-eri",
+  "source_sha256": "162a6ce59e0aa9c6512e5de0962319c61edf8d5d7de63eb82d8d08d750afb6a5",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2022-esimene-lend-intervjuu-2022-eri",
+    "previous_source_path": "Sotsiaaltoo-ERINUMBER_2022_Part5.txt",
+    "previous_source_original_path": "Sotsiaaltoo-ERINUMBER_2022_Part5.pdf",
+    "reference_stored_source_sha256": "235facc421519aeb1be4483a04510daccb20b265f2d09cd555df9e2cd0aac257",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo-ERINUMBER_2022.pdf",
+      "source_sha256": "807b48240fe049838a94b8cffd3e1b388f778591bddb0ad5cb542d3cd6ff73b1",
+      "pdf_start_page": 35,
+      "pdf_end_page": 39,
+      "printed_page_range": "33-37",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 39,
+      "source_regions": [
+        {
+          "source_pdf_page": 35,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 36,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 37,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 38,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 39,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "33-37",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo-ERINUMBER_2022.pdf"
+    },
+    "server_page_range": "33-37"
+  }
+}

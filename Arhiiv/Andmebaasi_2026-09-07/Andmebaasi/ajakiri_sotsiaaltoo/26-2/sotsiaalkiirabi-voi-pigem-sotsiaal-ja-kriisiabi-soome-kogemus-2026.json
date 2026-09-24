@@ -1,0 +1,49 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "sotsiaalkiirabi-voi-pigem-sotsiaal-ja-kriisiabi-soome-kogemus-2026",
+  "title": "Sotsiaalkiirabi või pigem sotsiaal- ja kriisiabi? Soome kogemus",
+  "authors": [
+    "Merike Mikk"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Rahvusvaheline vaade",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab Soome ööpäevaringset sotsiaal- ja kriisiabi, mis on avalike teenuste osa olnud ligi kaks aastakümmet. Autor kirjeldab Länsi-Uusimaa sotsiaal- ja kriisikeskuse tööd ning tihedat koostööd politsei, päästeteenistuse ja kiirabiga, mis tagab tõhusa kriisiabi olukordades, kus tuleb kohe otsustada ja tegutseda.",
+  "tags": [
+    "sotsiaalkiirabi",
+    "kriisiabi",
+    "valvesotsiaaltöö",
+    "Soome",
+    "ametkondade koostöö",
+    "lastekaitse",
+    "perevägivald",
+    "rahvusvaheline võrdlus"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-06-10",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/sotsiaalkiirabi-voi-pigem-sotsiaal-ja-kriisiabi-soome-kogemus",
+  "source_type": "web",
+  "source_path": "sotsiaalkiirabi-voi-pigem-sotsiaal-ja-kriisiabi-soome-kogemus.html",
+  "lead": "Kui Eestis arutatakse üha tõsisemalt nn sotsiaalkiirabi ellukutsumist, siis Soomes on ööpäevaringne sotsiaal- ja kriisiabi olnud osa avalikest teenustest juba ligi kaks aastakümmet. Kuidas on see korraldatud ja milliste juhtumitega puudub valvesotsiaaltöötaja kokku oma igapäevatöös?",
+  "document_id": "sotsiaaltoo-2-2026-sotsiaalkiirabi-voi-pigem-sotsiaal-ja-kriisiabi-soome-kogemus-2026",
+  "source_format": "html",
+  "source_sha256": "01e6e0392992e5ce85ada2b03e19c215b1d0f8932dc59c0e4369eb847e49bcd8",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-sotsiaalkiirabi-voi-pigem-sotsiaal-ja-kriisiabi-soome-kogemus-2026",
+    "previous_source_path": "sotsiaalkiirabi-voi-pigem-sotsiaal-ja-kriisiabi-soome-kogemus.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "234f59d0ce125dd7ff7e741d348d072a1cb589084b3f23ffdb8f4e03961ae7cd",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "2136caeefc1c04dd1276827fd7429e20be23474e0ad3de97d8d3724c448c86e7",
+    "observed_web_title": "Sotsiaalkiirabi või pigem sotsiaal- ja kriisiabi? Soome kogemus"
+  },
+  "retrieved_at": "2026-09-07T19:39:40.177336+00:00"
+}

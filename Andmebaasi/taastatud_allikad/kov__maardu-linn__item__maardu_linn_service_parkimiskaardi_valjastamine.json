@@ -1,0 +1,83 @@
+{
+  "provenance": {
+    "kind": "recovered_from_legacy_index",
+    "source_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "source_text_store": "/var/lib/sotsiaalai-rag/lexical-index.sqlite3",
+    "recovered_at": "2026-09-07T20:11:41.708487+00:00"
+  },
+  "review_status": "compare_with_primary_source_before_ingest",
+  "document_id": "kov::maardu-linn::item::maardu_linn_service_parkimiskaardi_valjastamine",
+  "metadata": {
+    "createdAt": "2026-05-20T06:14:06.797649+00:00",
+    "type": "TEXT",
+    "lastIngested": "2026-05-20T06:14:06.762326+00:00",
+    "title": "Puudega inimese sõiduki parkimiskaardi väljastamine",
+    "description": "Parkimiskaart on isikupõhine pildiga dokument, mis väljastatakse tasuta õigustatud isikule. Kaarti saavad taotleda liikumispuudega või nägemispuudega inimesed ning inimesed, kelle käimine on tugevalt raskendatud raske üldhaigestumise tõttu.",
+    "audience": "BOTH",
+    "audiences": [
+      "CLIENT",
+      "SOCIAL_WORKER"
+    ],
+    "authors": [],
+    "tags": [
+      "service"
+    ],
+    "language": "et",
+    "collection_id": "kov_services",
+    "country": "EE",
+    "county": "Raplamaa",
+    "jurisdiction_level": "MUNICIPALITY",
+    "municipality_name": "Märjamaa vald",
+    "municipality_id": "maardu_linn",
+    "district_name": null,
+    "district_id": null,
+    "source_format": null,
+    "checked_at": "2026-04-29",
+    "item_type": "service",
+    "content_status": "active",
+    "resource_type": "service",
+    "source_keys": [
+      "parkimiskaart_page"
+    ],
+    "source_urls": [
+      "https://maardu.ee/puudega-inimese-soiduki-parkimiskaardi-valjastamine"
+    ],
+    "source_register_file": "maardu-linn.sources.json",
+    "source_count": 27,
+    "administering_body": null,
+    "issuer": null,
+    "act_title": null,
+    "act_reference": null,
+    "canonical_source_id": null,
+    "act_type": null,
+    "effective_start": null,
+    "effective_end": null,
+    "is_current_version": null,
+    "text_type": null,
+    "source_type": "kov_service_info",
+    "path": null,
+    "url": "https://maardu.ee/puudega-inimese-soiduki-parkimiskaardi-valjastamine",
+    "source_sha256": null,
+    "source_updated_at": null,
+    "original_doc_id": null,
+    "fileName": null,
+    "mimeType": "text/markdown",
+    "geo_detection_method": null,
+    "geo_detection_confidence": null,
+    "docId": "kov::maardu-linn::item::maardu_linn_service_parkimiskaardi_valjastamine",
+    "updatedAt": "2026-06-10T20:54:35.534461+00:00",
+    "content_hash": "83dea58b6c721b1110823a7bb5646d972d6a9c3d9b56fbb71354f6b77857980e"
+  },
+  "chunks": [
+    {
+      "chunk_id": "kov::maardu-linn::item::maardu_linn_service_parkimiskaardi_valjastamine:0:4a857ef7",
+      "document_version": null,
+      "text": "[TITLE] Puudega inimese sõiduki parkimiskaardi väljastamine\n[DESC] Parkimiskaart on isikupõhine pildiga dokument, mis väljastatakse tasuta õigustatud isikule. Kaarti saavad taotleda liikumispuudega või nägemispuudega inimesed ning inimesed, kelle käimine on tugevalt raskendatud raske üldhaigestumise tõttu.\n[SECTION] Teenused\n[ITEM_TYPE] service\n[STATUS] active\n[RESOURCE_TYPE] service\n[COUNTY] Raplamaa\n[MUNICIPALITY] Märjamaa vald\n# Puudega inimese sõiduki parkimiskaardi väljastamine Liik: service Staatus: active Ametlik link: https://maardu.ee/puudega-inimese-soiduki-parkimiskaardi-valjastamine Sihtrühm: Liikumis- või nägemispuudega inimesed ning liikumis- või nägemispuudega lapse vanem või eestkostja. Auditoorium: CLIENT, SOCIAL_WORKER Kokkuvõte: Parkimiskaart on isikupõhine pildiga dokument, mis väljastatakse tasuta õigustatud isikule. Kaarti saavad taotleda liikumispuudega või nägemispuudega inimesed ning inimesed, kelle käimine on tugevalt raskendatud raske üldhaigestumise tõttu. Ressursi tüüp: service Tingimused: Taotlemine: Kanalid: - kohapealne taotlemine Sammud: - esitada isikut tõendav dokument, SKA otsus või muu tõend ning foto 3 x 4 cm Vormid: Puudub. Haldaja / teenuseosutaja: Puudub. Kontaktid: Puudub. Seotud kontaktid: - maardu_linn_contact_natalja_fjodorova Tasulisus või summa: Puudub. Õiguslik alus: Puudub."
+    },
+    {
+      "chunk_id": "kov::maardu-linn::item::maardu_linn_service_parkimiskaardi_valjastamine:1:a2474d73",
+      "document_version": null,
+      "text": "[TITLE] Puudega inimese sõiduki parkimiskaardi väljastamine\n[DESC] Parkimiskaart on isikupõhine pildiga dokument, mis väljastatakse tasuta õigustatud isikule. Kaarti saavad taotleda liikumispuudega või nägemispuudega inimesed ning inimesed, kelle käimine on tugevalt raskendatud raske üldhaigestumise tõttu.\n[SECTION] Teenused\n[ITEM_TYPE] service\n[STATUS] active\n[RESOURCE_TYPE] service\n[COUNTY] Raplamaa\n[MUNICIPALITY] Märjamaa vald\n://maardu.ee/puudega-inimese-soiduki-parkimiskaardi-valjastamine"
+    }
+  ]
+}

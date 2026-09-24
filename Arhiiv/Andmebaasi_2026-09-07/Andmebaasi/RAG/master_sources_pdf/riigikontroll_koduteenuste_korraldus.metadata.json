@@ -1,0 +1,85 @@
+{
+  "source": {
+    "source_id": "riigikontroll_koduteenuste_korraldus",
+    "title": "Koduteenuste korraldus",
+    "url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19294_RKTR_6564_2-1.4_2312_002-2.pdf",
+    "normalized_url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19294_RKTR_6564_2-1.4_2312_002-2.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "Riigikontroll",
+    "organization_id": "riigikontroll",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "Riigikontroll",
+      "hoolekanne",
+      "sotsiaalteenused",
+      "hooldus",
+      "koduteenus",
+      "audit",
+      "avaliku sektori kontroll",
+      "riigi teenused",
+      "uuring",
+      "raport",
+      "analüüs"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_061",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+    "source_context": {
+      "heading_2": "Riigikontroll",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 319,
+      "order": 183
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "Koduteenuste korraldus"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Riigikontroll"
+    ],
+    "organizations_seen": [
+      "riigikontroll"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Riigikontroll",
+        "line": 319,
+        "order": 183
+      },
+      {
+        "heading_2": "Riigikontroll",
+        "line": 793,
+        "order": 390
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19294_RKTR_6564_2-1.4_2312_002-2.pdf"
+  },
+  "final_url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19294_RKTR_6564_2-1.4_2312_002-2.pdf",
+  "redirects": [],
+  "sha256": "dfb57516103151660362dad0d5a8940d6487ab91ef13d2fdc84008af65b7218c",
+  "bytes": 791814,
+  "downloaded_at": "2026-08-14T08:00:39.688Z"
+}

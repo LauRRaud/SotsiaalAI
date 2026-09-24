@@ -1,0 +1,107 @@
+{
+  "docId": "sotsiaaltoo-3-2017",
+  "articleId": "toovoime-hindamise-esimesed-tulemused-2017-3",
+  "title": "Uue töövõime hindamise süsteemi esimesed tulemused",
+  "authors": [
+    "Arne Kailas"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2017",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "7-12",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi töövõimepoliitika juhi ülevaade töövõimereformi esimestest tulemustest. Reformi viidi ellu etappidena: 2016. aasta jaanuarist hakati pakkuma uusi ja muudetud teenuseid, sama aasta 1. juulist alustati uutel põhimõtetel töövõime hindamisega. Artikkel vaatab, kuidas on rakendunud hindamine uue metoodika järgi ja töövõimetoetuse maksmine ning milliseid teenuseid on vähenenud töövõimega inimesed enim kasutanud. Esimene järelvaatus kümnendi suurimale reformile.",
+  "tags": [
+    "töövõimereform",
+    "töövõime hindamine",
+    "töövõimetoetus",
+    "tööturuteenused",
+    "järelhindamine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part4.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2017-toovoime-hindamise-esimesed-tulemused-2017-3",
+  "source_sha256": "ff22e51c95fde4c4d542fd8e2a68dc5314c8ee4d337af8328e121d306f953a04",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2017-toovoime-hindamise-esimesed-tulemused-2017-3",
+    "previous_source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part4.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part4.pdf",
+    "reference_stored_source_sha256": "0029806cbe1f8d512285b2fb89a11d56e2856adcaa9233b538765435886f42da",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf",
+      "source_sha256": "3f27c22982b22a396dace8a957798cc21d3240489c7ce4d92802bf1a94bde7a8",
+      "pdf_start_page": 9,
+      "pdf_end_page": 14,
+      "printed_page_range": "7-12",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 14,
+      "source_regions": [
+        {
+          "source_pdf_page": 9,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 10,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 11,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 12,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 13,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 14,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "7-12"
+    },
+    "server_page_range": "7-12"
+  }
+}

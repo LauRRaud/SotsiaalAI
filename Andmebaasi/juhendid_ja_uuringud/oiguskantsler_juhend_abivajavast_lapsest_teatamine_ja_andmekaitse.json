@@ -1,0 +1,149 @@
+{
+  "source_path": "oiguskantsler_juhend_abivajavast_lapsest_teatamine_ja_andmekaitse.pdf",
+  "source_format": "pdf",
+  "sha256": "50a929984fb1a973d712c0156428e587b4fb4cfd10e88ebf01145204ba913d7b",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/oiguskantsler_juhend_abivajavast_lapsest_teatamine_ja_andmekaitse.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "oiguskantsler_juhend_abivajavast_lapsest_teatamine_ja_andmekaitse",
+          "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+          "url": "https://www.oiguskantsler.ee/sites/default/files/JUHEND%20-%20abivajavast%20lapsest%20teatamine%20ja%20andmekaitse%20%28jaanuar%202021%29.pdf",
+          "normalized_url": "https://www.oiguskantsler.ee/sites/default/files/JUHEND - abivajavast lapsest teatamine ja andmekaitse (jaanuar 2021).pdf",
+          "source_format": "pdf",
+          "source_type": "official_guideline",
+          "resource_type": "method_guidance",
+          "publisher": "Õiguskantsler",
+          "organization_id": "oiguskantsler",
+          "collection_hint": "guidance_and_methods",
+          "evidence_role": "practice_guidance",
+          "topic_tags": [
+            "Õiguskantsler",
+            "andmekaitse",
+            "isikuandmed",
+            "GDPR",
+            "andmetöötlus",
+            "privaatsus",
+            "lapsed ja pered",
+            "laps",
+            "spetsialisti juhend"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "high",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_003",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "Õiguskantsler",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 183,
+            "order": 125
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Juhend: abivajavast lapsest teatamine ja andmekaitse"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "official_guideline"
+          ],
+          "resource_types_seen": [
+            "best_practice_guidance"
+          ],
+          "publishers_seen": [
+            "Õiguskantsler"
+          ],
+          "organizations_seen": [
+            "oiguskantsler"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Õiguskantsler",
+              "line": 183,
+              "order": 125
+            },
+            {
+              "heading_2": "Õiguskantsler",
+              "line": 657,
+              "order": 332
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.oiguskantsler.ee/sites/default/files/JUHEND - abivajavast lapsest teatamine ja andmekaitse (jaanuar 2021).pdf"
+        },
+        "final_url": "https://www.oiguskantsler.ee/sites/default/files/JUHEND%20-%20abivajavast%20lapsest%20teatamine%20ja%20andmekaitse%20%28jaanuar%202021%29.pdf",
+        "redirects": [],
+        "sha256": "50a929984fb1a973d712c0156428e587b4fb4cfd10e88ebf01145204ba913d7b",
+        "bytes": 207537,
+        "downloaded_at": "2026-08-14T08:00:33.881Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "oiguskantsler_juhend_abivajavast_lapsest_teatamine_ja_andmekaitse",
+      "metadata": {
+        "createdAt": "2026-06-11T18:40:18.078528+00:00",
+        "type": "FILE",
+        "fileName": "JUHEND - abivajavast lapsest teatamine ja andmekaitse (jaanuar 2021).pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-11T18:40:18.015559+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/8ea5319c8883/JUHEND - abivajavast lapsest teatamine ja andmekaitse (jaanuar 2021).pdf",
+        "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+        "description": "Duplikaadid ühendatud: 1 lisakirjet. Source master headings: Õiguskantsler",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2021,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–13",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "oiguskantsler_juhend_abivajavast_lapsest_teatamine_ja_andmekaitse",
+        "document_id": "oiguskantsler_juhend_abivajavast_lapsest_teatamine_ja_andmekaitse",
+        "source_type": "official_guideline",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-11",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "44dda75a40c66dbb03814d183d2647f21ddffc8ecf348b837f0323c412ce08a3",
+        "url": "https://www.oiguskantsler.ee/sites/default/files/JUHEND%20-%20abivajavast%20lapsest%20teatamine%20ja%20andmekaitse%20%28jaanuar%202021%29.pdf",
+        "url_canonical": "https://www.oiguskantsler.ee/sites/default/files/JUHEND - abivajavast lapsest teatamine ja andmekaitse (jaanuar 2021).pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "oiguskantsler_juhend_abivajavast_lapsest_teatamine_ja_andmekaitse",
+        "updatedAt": "2026-06-11T18:40:18.078553+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

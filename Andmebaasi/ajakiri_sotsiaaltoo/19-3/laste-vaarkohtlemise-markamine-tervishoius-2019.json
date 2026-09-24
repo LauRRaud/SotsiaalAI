@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-3-2019",
+  "articleId": "laste-vaarkohtlemise-markamine-tervishoius-2019",
+  "title": "Laste väärkohtlemise märkamine ja abi osutamine tervishoius",
+  "authors": [
+    "Maarja Kärson"
+  ],
+  "authors_fixed": "2026-08-15",
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2019",
+  "section": "Tugi ja teenused",
+  "pageRange": "65-70",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb laste väärkohtlemise märkamist tervishoius, perearstide ja -õdede rolli ning teavitamiskohustust.",
+  "tags": [
+    "laste väärkohtlemine",
+    "tervishoid",
+    "teavitamiskohustus",
+    "lastekaitse"
+  ],
+  "source_type": "file",
+  "source_path": "ST3_2019_veeb_link_Part14.pdf",
+  "document_id": "sotsiaaltoo-3-2019-laste-vaarkohtlemise-markamine-tervishoius-2019",
+  "source_format": "pdf",
+  "source_sha256": "345908d970b77df4ed5e816e7bbc008275c18a7fcbc325bf7e34ed8456936964",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2019-laste-vaarkohtlemise-markamine-tervishoius-2019",
+    "previous_source_path": "ST3_2019_veeb_link_Part14.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "345908d970b77df4ed5e816e7bbc008275c18a7fcbc325bf7e34ed8456936964",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

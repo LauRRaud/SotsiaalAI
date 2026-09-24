@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-3-2020",
+  "articleId": "uue-ohvriabi-seaduse-poole-2020-3",
+  "title": "Uue ohvriabi seaduse poole",
+  "authors": [
+    "Kristiina Luht"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2020",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "8-13",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "SOCIAL_WORKER",
+  "language": "et",
+  "description": "Artikkel käsitleb ohvriabi seaduse uuendamise vajadust ja kavandatavaid muudatusi, et tagada vägivalla ja kuriteo ohvritele senisest selgemad õigused, kvaliteetsem tugi ning paremini toimiv koostöö riiklike ja kohalike tugisüsteemide vahel.",
+  "tags": [
+    "ohvriabi",
+    "ohvriabi seadus",
+    "kuriteoohvrid",
+    "psühhosotsiaalne kriisiabi",
+    "sotsiaalpoliitika",
+    "seadusloome",
+    "sotsiaaltöö korraldus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2020_web_link_Part4.pdf",
+  "document_id": "sotsiaaltoo-3-2020-uue-ohvriabi-seaduse-poole-2020-3",
+  "source_format": "pdf",
+  "source_sha256": "d6c234d077755fca1d9cc813ced94fecabafd766c5496a0c78a600abf3c3cc9d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2020-uue-ohvriabi-seaduse-poole-2020-3",
+    "previous_source_path": "Sotsiaaltoo_3_2020_web_link_Part4.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d6c234d077755fca1d9cc813ced94fecabafd766c5496a0c78a600abf3c3cc9d",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

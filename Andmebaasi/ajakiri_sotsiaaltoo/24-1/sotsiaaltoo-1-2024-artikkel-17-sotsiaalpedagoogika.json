@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-1-2024",
+  "articleId": "sotsiaalpedagoogika-simone-epro-2024-1",
+  "title": "Sotsiaalpedagoogika",
+  "authors": [
+    "Simone Epro"
+  ],
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2024",
+  "section": "Erialakeel",
+  "pageRange": "95-96",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel annab selge ja kompaktse ülevaate sotsiaalpedagoogika tähendusest, eesmärkidest ja kujunemisloost. Autor selgitab valdkonna põhimõtteid, tuginedes teemantmudelile, mis seostub sotsiaaltöö eluilmakeskse käsitlusega. Käsitletakse inimese heaolu, tervikliku õppimise, täievolilisuse ja suhete rolli ning sotsiaalpedagoogi kui tugispetsialisti töövaldkondi. Tekst avab ka valdkonna ajaloolise arengu ning tänapäevased rõhuasetused, sh humaniseerimise ja sotsiaalse õigluse.",
+  "tags": [
+    "sotsiaalpedagoogika",
+    "teemantmudel",
+    "haridus",
+    "sotsiaaltöö",
+    "kogukond",
+    "heaolu",
+    "õppimine",
+    "täievolilisus",
+    "sotsiaalpedagoog"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_1_2024_web_Part17.pdf",
+  "document_id": "sotsiaaltoo-1-2024-sotsiaalpedagoogika-simone-epro-2024-1",
+  "source_format": "pdf",
+  "source_sha256": "d398c0d8df93fed4bdfb937ca209ad16e5c988f167fa0f122f02eefb4b56906b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2024-sotsiaalpedagoogika-simone-epro-2024-1",
+    "previous_source_path": "Sotsiaaltoo_1_2024_web_Part17.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d398c0d8df93fed4bdfb937ca209ad16e5c988f167fa0f122f02eefb4b56906b",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

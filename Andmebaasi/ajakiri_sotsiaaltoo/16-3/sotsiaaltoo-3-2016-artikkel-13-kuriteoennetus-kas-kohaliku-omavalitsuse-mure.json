@@ -1,0 +1,101 @@
+{
+  "docId": "sotsiaaltoo-3-2016",
+  "articleId": "sotsiaaltoo-3-2016-artikkel-13-kuriteoennetus-kas-kohaliku-omavalitsuse-mure",
+  "title": "Kuriteoennetus – kas kohaliku omavalitsuse mure?",
+  "authors": [
+    "Anu Leps",
+    "Rainer Rohtla"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2016",
+  "section": "Ennetus",
+  "pageRange": "42-46",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Leps ja Rohtla tutvustavad Tartu Ülikooli rakendusuuringute keskuse RAKE 2015.–2016. aastal justiitsministeeriumi tellimusel tehtud küsitlust, millele vastas 62% kohalike omavalitsuste juhtidest. Pea 90% vastanutest pidas ennast ennetustöö eest vastutavaks, kuid planeerimisse panustas 48% ja elluviimisse 41%; tegelike vastutajatena nähti sotsiaalametnikke (71%), koolide personali (69%) ja noorsootöötajaid (54%). Takistusena nimetas pool juhtidest rahapuudust ja 13% väheseid teadmisi. 60% peab ennetust politsei ülesandeks. Autorid soovitavad muuta õigusakte ja täpsustada rollijaotust.",
+  "tags": [
+    "kuriteoennetus",
+    "kohalik omavalitsus",
+    "uurimus",
+    "küsitlus",
+    "turvalisus",
+    "võrgustikutöö"
+  ],
+  "source_type": "file",
+  "source_path": "2016_3_artikkel_13_kuriteoennetus_kas_kohaliku_omavalitsuse_mure.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2016-sotsiaaltoo-3-2016-artikkel-13-kuriteoennetus-kas-kohaliku-omavalitsuse-mure",
+  "source_sha256": "e9f069f310be1a3519bcd70ac3c9acc9191e56014b1495c5041d1f1067d7e973",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2016-sotsiaaltoo-3-2016-artikkel-13-kuriteoennetus-kas-kohaliku-omavalitsuse-mure",
+    "previous_source_path": "2016_3_artikkel_13_kuriteoennetus_kas_kohaliku_omavalitsuse_mure.txt",
+    "previous_source_original_path": "3-2016.pdf",
+    "reference_stored_source_sha256": "bd5cbb46a949e579421d01d545a6720ae78981d93a5e4b2a5df87dd06def580d",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\3-2016.pdf",
+      "source_sha256": "7a9be30ca3f1a959b3d48a3f12065bc9c37d0f618f6cbb71e681f6e83199aacc",
+      "pdf_start_page": 44,
+      "pdf_end_page": 48,
+      "printed_page_range": "42-47",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 49,
+      "source_regions": [
+        {
+          "source_pdf_page": 44,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 45,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 46,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 47,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 48,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "42-46",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\3-2016.pdf"
+    },
+    "server_page_range": "42-47"
+  }
+}

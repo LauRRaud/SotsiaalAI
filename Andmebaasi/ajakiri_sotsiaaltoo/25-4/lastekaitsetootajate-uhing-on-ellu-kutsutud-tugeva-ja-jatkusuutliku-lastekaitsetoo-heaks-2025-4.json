@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2025",
+  "articleId": "lastekaitsetootajate-uhing-on-ellu-kutsutud-tugeva-ja-jatkusuutliku-lastekaitsetoo-heaks-2025-4",
+  "title": "Lastekaitsetöötajate ühing on ellu kutsutud tugeva ja jätkusuutliku lastekaitsetöö heaks",
+  "authors": [
+    "Triin Voodla"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2025",
+  "section": "Lastekaitse tööalane areng",
+  "pageRange": "1–5",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab lastekaitsetöötajate ühingu loomise põhjuseid, eesmärke ja arengusuundi. Fookuses on lastekaitsetöötajate kutseidentiteedi tugevdamine, tööheaolu toetamine, huvide esindamine ja valdkonna koostöövõrgustike arendamine.",
+  "tags": [
+    "lastekaitse",
+    "erialauhing",
+    "kutseidentiteet",
+    "tooheaolu",
+    "supervisioon",
+    "poliitikakujundus",
+    "kutsealane areng"
+  ],
+  "source_type": "file",
+  "source_path": "Lastekaitsetöötajate ühing on ellu kutsutud tugeva ja jätkusuutliku lastekaitsetöö heaks.pdf",
+  "document_id": "sotsiaaltoo-4-2025-lastekaitsetootajate-uhing-on-ellu-kutsutud-tugeva-ja-jatkusuutliku-lastekaitsetoo-heaks-2025-4",
+  "source_format": "pdf",
+  "source_sha256": "fdb87f5501f94a117af4f6916f5d5cfeccb52856bff065b4f0a61264d1a413eb",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2025-lastekaitsetootajate-uhing-on-ellu-kutsutud-tugeva-ja-jatkusuutliku-lastekaitsetoo-heaks-2025-4",
+    "previous_source_path": "Lastekaitsetöötajate ühing on ellu kutsutud tugeva ja jätkusuutliku lastekaitsetöö heaks.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "fdb87f5501f94a117af4f6916f5d5cfeccb52856bff065b4f0a61264d1a413eb",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

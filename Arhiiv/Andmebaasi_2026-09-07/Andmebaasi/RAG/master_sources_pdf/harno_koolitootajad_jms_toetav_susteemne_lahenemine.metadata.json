@@ -1,0 +1,76 @@
+{
+  "source": {
+    "source_id": "harno_koolitootajad_jms_toetav_susteemne_lahenemine",
+    "title": "Koolitöötajad jms toetav süsteemne lähenemine",
+    "url": "https://harno.ee/sites/default/files/documents/2022-01/Koolitootajad%20jms%20toetav%20s%C3%BCsteemne%20lahenemine_abimaterjal_kujundatud.pdf",
+    "normalized_url": "https://harno.ee/sites/default/files/documents/2022-01/Koolitootajad jms toetav süsteemne lahenemine_abimaterjal_kujundatud.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "HARNO",
+    "organization_id": "harno",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Haridus- ja Noorteamet",
+      "lapsed ja pered",
+      "haridus",
+      "kool",
+      "õpilase toetamine",
+      "tugimeetmed",
+      "infomaterjal"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "HARNO / HEV / kooli tugimeetmed",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 371,
+      "order": 206
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Koolitöötajad jms toetav süsteemne lähenemine"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "HARNO"
+    ],
+    "organizations_seen": [
+      "harno"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "HARNO / HEV / kooli tugimeetmed",
+        "line": 371,
+        "order": 206
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://harno.ee/sites/default/files/documents/2022-01/Koolitootajad jms toetav süsteemne lahenemine_abimaterjal_kujundatud.pdf"
+  },
+  "final_url": "https://harno.ee/sites/default/files/documents/2022-01/Koolitootajad%20jms%20toetav%20s%C3%BCsteemne%20lahenemine_abimaterjal_kujundatud.pdf",
+  "redirects": [],
+  "sha256": "536222c5998b406b22aa6f7a3e63f35491f7b6d16fa92521deb99d3c8b346cde",
+  "bytes": 738472,
+  "downloaded_at": "2026-08-14T08:00:44.717Z"
+}

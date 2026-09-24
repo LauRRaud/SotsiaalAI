@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-4-2018",
+  "articleId": "riikliku-ohvriabi-arenguvajadused-ohvriabitootajate-hinnangul-2018",
+  "title": "Riikliku ohvriabi arenguvajadused ohvriabitöötajate hinnangul",
+  "authors": [
+    "Kristiina Luht"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2018",
+  "section": "Uurimus",
+  "pageRange": "52-57",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Magistriuurimus ohvriabitöötajate hinnangutest riikliku ohvriabi toimimisele, kvaliteedile ja arenguvajadustele.",
+  "tags": [
+    "ohvriabi",
+    "vägivallaohvrid",
+    "SKA",
+    "teenuste kvaliteet",
+    "uurimus"
+  ],
+  "source_type": "file",
+  "source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part14.pdf",
+  "document_id": "sotsiaaltoo-4-2018-riikliku-ohvriabi-arenguvajadused-ohvriabitootajate-hinnangul-2018",
+  "source_format": "pdf",
+  "source_sha256": "0cd68fc6f7e8a28f451c2c1f361cc53f233af27e895c4801d8e68352059949de",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2018-riikliku-ohvriabi-arenguvajadused-ohvriabitootajate-hinnangul-2018",
+    "previous_source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part14.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "0cd68fc6f7e8a28f451c2c1f361cc53f233af27e895c4801d8e68352059949de",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

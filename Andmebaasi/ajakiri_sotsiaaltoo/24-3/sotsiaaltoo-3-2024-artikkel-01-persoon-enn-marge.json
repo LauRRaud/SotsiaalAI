@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2024",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "hooldajad-enn-ja-marge-panevad-hooldekodu-elanikeid-isegi-tantsima-2024-3",
+  "title": "Hooldajad Enn ja Marge panevad hooldekodu elanikud isegi tantsima",
+  "authors": [
+    "Kadri Kuulpak"
+  ],
+  "section": "Persoon",
+  "pageRange": "3-7",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "description": "Persoonilugu Tabasalu Pihlakodu hooldajatest Enn Ottist ja Marge Sumrest, kes töötavad dementsusega inimeste osakonnas. Artikkel kirjeldab nende igapäevatööd, huumoriga ja soojusega täidetud suhtlust elanikega, valmisolekut teha rohkem kui miinimum, panustada keskkonna kujundamisse ning toetada ka lähedasi. Käsitletakse hooldajatöö emotsionaalset poolt, lähedaste tagasisidet, surmaga kokku puutumist ja seda, kuidas paar õpib end hoidma, et raske tööga toime tulla.",
+  "tags": [
+    "persoon",
+    "hooldaja",
+    "dementsus",
+    "Pihlakodu",
+    "hooldekodu",
+    "hooldustöö",
+    "inimkeskne hooldus",
+    "lähedaste tagasiside"
+  ],
+  "source_path": "sotsiaaltoo_3_2024_web_Part3.pdf",
+  "document_id": "sotsiaaltoo-3-2024-hooldajad-enn-ja-marge-panevad-hooldekodu-elanikeid-isegi-tantsima-2024-3",
+  "source_format": "pdf",
+  "source_sha256": "f4610129374dc80be9dd0bf38370010a2593867ec61e9495a5a8d678a39a85c0",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2024-hooldajad-enn-ja-marge-panevad-hooldekodu-elanikeid-isegi-tantsima-2024-3",
+    "previous_source_path": "sotsiaaltoo_3_2024_web_Part3.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "f4610129374dc80be9dd0bf38370010a2593867ec61e9495a5a8d678a39a85c0",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

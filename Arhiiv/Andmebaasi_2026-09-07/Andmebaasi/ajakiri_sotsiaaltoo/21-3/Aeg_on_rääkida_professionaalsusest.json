@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-3-2021",
+  "articleId": "aeg-on-raakida-professionaalsusest-sotsiaaltoos-2021-3",
+  "title": "Aeg on rääkida professionaalsusest sotsiaaltöös",
+  "authors": [
+    "Sirlis Sõmer-Kull"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2021",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "57-60",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Autor avab arutelu sotsiaaltöö professionaalsuse üle, rõhutades erialase identiteedi, eetika ja pädevuste olulisust. Artikkel käsitleb pideva enesearengu, supervisiooni ja teaduspõhise praktika rolli kvaliteetse sotsiaaltöö tagamisel. Esile tõstetakse ka vajadus ühise professionaalse keele ja standardite järele.",
+  "tags": [
+    "professionaalsus",
+    "sotsiaaltöötaja pädevused",
+    "eetika",
+    "supervisioon",
+    "erialane identiteet"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2021_web_link_Part13.pdf",
+  "document_id": "sotsiaaltoo-3-2021-aeg-on-raakida-professionaalsusest-sotsiaaltoos-2021-3",
+  "source_format": "pdf",
+  "source_sha256": "c531183972263ad721bee7894eaf6c6bd9e258e2a16ef9536d6ee29970a09f2a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2021-aeg-on-raakida-professionaalsusest-sotsiaaltoos-2021-3",
+    "previous_source_path": "Sotsiaaltoo_3_2021_web_link_Part13.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "c531183972263ad721bee7894eaf6c6bd9e258e2a16ef9536d6ee29970a09f2a",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "source_path": "tarkvanem_tooleht_kuidas_anda_lapsele_korraldusi.pdf",
+  "source_format": "pdf",
+  "sha256": "001b2e9c089e70de4f209914c7d3315ce2d60cd84260e56b2ff777bdebd31c96",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/tarkvanem_tooleht_kuidas_anda_lapsele_korraldusi.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "tarkvanem_tooleht_kuidas_anda_lapsele_korraldusi",
+          "title": "TÖÖLEHT: Kuidas anda lapsele korraldusi?",
+          "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_kuidas_anda_lapsele_korraldusi.pdf",
+          "normalized_url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_kuidas_anda_lapsele_korraldusi.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "method_guidance",
+          "publisher": "Tarkvanem",
+          "organization_id": "tarkvanem",
+          "collection_hint": "guidance_and_methods",
+          "evidence_role": "practice_guidance",
+          "topic_tags": [
+            "Tarkvanem",
+            "lapsed ja pered",
+            "laps",
+            "tööleht",
+            "lapse kasvatamine",
+            "suhtlemisoskused",
+            "praktiline töövahend"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Partnerid",
+            "heading_3": "Tarkvanem",
+            "heading_4": null,
+            "line": 631,
+            "order": 320
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "TÖÖLEHT: Kuidas anda lapsele korraldusi?"
+          ],
+          "collection_hints": [
+            "organization_guidelines"
+          ],
+          "source_types_seen": [
+            "official_guideline"
+          ],
+          "resource_types_seen": [
+            "method_guidance"
+          ],
+          "publishers_seen": [
+            "Tarkvanem"
+          ],
+          "organizations_seen": [
+            "tarkvanem"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Partnerid",
+              "heading_3": "Tarkvanem",
+              "line": 631,
+              "order": 320
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_kuidas_anda_lapsele_korraldusi.pdf"
+        },
+        "final_url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_kuidas_anda_lapsele_korraldusi.pdf",
+        "redirects": [],
+        "sha256": "001b2e9c089e70de4f209914c7d3315ce2d60cd84260e56b2ff777bdebd31c96",
+        "bytes": 117821,
+        "downloaded_at": "2026-08-14T08:00:58.930Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "tarkvanem_tooleht_kuidas_anda_lapsele_korraldusi",
+      "metadata": {
+        "createdAt": "2026-06-12T03:59:54.423375+00:00",
+        "type": "FILE",
+        "fileName": "Tark_Vanem_tooleht_kuidas_anda_lapsele_korraldusi.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:59:54.352328+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/7e4f9464a45c/Tark_Vanem_tooleht_kuidas_anda_lapsele_korraldusi.pdf",
+        "title": "TÖÖLEHT: Kuidas anda lapsele korraldusi?",
+        "description": "Source master headings: Partnerid; Tarkvanem",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2018,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "organization_guidelines",
+        "source_id": "tarkvanem_tooleht_kuidas_anda_lapsele_korraldusi",
+        "document_id": "tarkvanem_tooleht_kuidas_anda_lapsele_korraldusi",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "1640b3788b5618289cb4236c8db7586e3c06dac7185d50e36eaab8f87fe69070",
+        "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_kuidas_anda_lapsele_korraldusi.pdf",
+        "url_canonical": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_kuidas_anda_lapsele_korraldusi.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "tarkvanem_tooleht_kuidas_anda_lapsele_korraldusi",
+        "updatedAt": "2026-06-12T03:59:54.423398+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

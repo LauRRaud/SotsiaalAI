@@ -1,0 +1,110 @@
+{
+  "docId": "sotsiaaltoo-erinumber-2016-artikkel-05-regionaalareng-ja-sotsiaalne-kaitse-eestis-seosed-ja-vastast",
+  "articleId": "sotsiaaltoo-erinumber-2016-artikkel-05-regionaalareng-ja-sotsiaalne-kaitse-eestis-seosed-ja-vastast",
+  "title": "Regionaalareng ja sotsiaalne kaitse Eestis: seosed ja vastastikused mõjud",
+  "authors": [
+    "Jüri Kõre",
+    "Aado Keskpaik"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "erinumber 2016",
+  "section": "Sotsiaalpoliitika",
+  "pageRange": "14-19",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tartu ja Tallinna Ülikooli uurijad analüüsivad regionaalarengu ja sotsiaalse kaitse vastastikuseid mõjusid: omavalitsuste elanikkonna ja sissetulekute diferentseerumine kujundab sotsiaalse kaitse vajadust, ja sotsiaalse kaitse korraldus mõjutab omakorda regionaalarengut. Artikkel ilmub pool aastat enne haldusreformi jõustumist.",
+  "tags": [
+    "regionaalareng",
+    "sotsiaalne kaitse",
+    "kohalik omavalitsus",
+    "ebavõrdsus",
+    "haldusreform"
+  ],
+  "source_type": "file",
+  "source_path": "2016_eri_artikkel_05_regionaalareng_ja_sotsiaalne_kaitse_eestis_seosed_ja.pdf",
+  "added": "2026-08-18",
+  "fulltext_note": "Erinumber „Sotsiaaltöö ; erinumber 2016\" (DIGAR nlib-digar:390083), pühendatud heaolu arengukavale 2016–2023. Lisatud korpusesse 18.08.2026.",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-erinumber-2016-artikkel-05-regionaalareng-ja-sotsiaalne-kaitse-eestis-seosed-ja-vastast",
+  "source_sha256": "4ffa8c8247c601c8f80eaf8ca87c21095c7130e8fbc438d15c09b7e649f1c35f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-erinumber-2016-artikkel-05-regionaalareng-ja-sotsiaalne-kaitse-eestis-seosed-ja-vastast",
+    "previous_source_path": "2016_eri_artikkel_05_regionaalareng_ja_sotsiaalne_kaitse_eestis_seosed_ja.txt",
+    "previous_source_original_path": "2016_erinumber.pdf",
+    "reference_stored_source_sha256": "2da8f34ceacd5d768400738106e7ac8305ea3d68b883437ccd55dd237c7d3c99",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\2016_erinumber.pdf",
+      "source_sha256": "ae3bbf0a621beae80ae1e05a13206ffa00c6811806397ee8ac925f3762d93c70",
+      "pdf_start_page": 16,
+      "pdf_end_page": 21,
+      "printed_page_range": "14-19",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 21,
+      "source_regions": [
+        {
+          "source_pdf_page": 16,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 17,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 18,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 19,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 20,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 21,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "14-19",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2016_erinumber.pdf"
+    },
+    "server_page_range": "14-19"
+  }
+}

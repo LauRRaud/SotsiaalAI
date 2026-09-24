@@ -1,0 +1,146 @@
+{
+  "source_path": "praxis_centar_kohaliku_omavalitsuse_poolt_isikult_ja_voi_perekonnalt_sotsi.pdf",
+  "source_format": "pdf",
+  "sha256": "8fbe360747abf16e4a38255f06bbbf688f8320b4e61b3e53586249aade26c17f",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/praxis_centar_kohaliku_omavalitsuse_poolt_isikult_ja_voi_perekonnalt_sotsi.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "praxis_centar_kohaliku_omavalitsuse_poolt_isikult_ja_voi_perekonnalt_sotsi",
+          "title": "Kohaliku omavalitsuse poolt isikult ja/või perekonnalt sotsiaalteenuste eest tasu nõudmine",
+          "url": "https://praxis.ee/uploads/2014/08/Kohaliku-omavalitsuse-poolt-isikult-jav%C3%B5i-perekonnalt-sotsiaalteenuste-eest-tasu-n%C3%B5udmine.pdf",
+          "normalized_url": "https://praxis.ee/uploads/2014/08/Kohaliku-omavalitsuse-poolt-isikult-javõi-perekonnalt-sotsiaalteenuste-eest-tasu-nõudmine.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "Praxis / CentAR",
+          "organization_id": "praxis_centar",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Praxis",
+            "lapsed ja pered",
+            "lapsevanem",
+            "pere",
+            "vanemlus",
+            "kohalik omavalitsus",
+            "KOV",
+            "sotsiaalteenuse tasu",
+            "omaosalus",
+            "KOV sotsiaalteenus",
+            "infomaterjal"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Praxis / CentAR / poliitikauuringud",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 445,
+            "order": 240
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Kohaliku omavalitsuse poolt isikult ja/või perekonnalt sotsiaalteenuste eest tasu nõudmine"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Praxis / CentAR"
+          ],
+          "organizations_seen": [
+            "praxis_centar"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Praxis / CentAR / poliitikauuringud",
+              "line": 445,
+              "order": 240
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://praxis.ee/uploads/2014/08/Kohaliku-omavalitsuse-poolt-isikult-javõi-perekonnalt-sotsiaalteenuste-eest-tasu-nõudmine.pdf"
+        },
+        "final_url": "https://praxis.ee/uploads/2014/08/Kohaliku-omavalitsuse-poolt-isikult-jav%C3%B5i-perekonnalt-sotsiaalteenuste-eest-tasu-n%C3%B5udmine.pdf",
+        "redirects": [],
+        "sha256": "8fbe360747abf16e4a38255f06bbbf688f8320b4e61b3e53586249aade26c17f",
+        "bytes": 2790577,
+        "downloaded_at": "2026-08-14T08:00:48.485Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "praxis_centar_kohaliku_omavalitsuse_poolt_isikult_ja_voi_perekonnalt_sotsi",
+      "metadata": {
+        "createdAt": "2026-06-12T03:47:03.711180+00:00",
+        "type": "FILE",
+        "fileName": "Kohaliku-omavalitsuse-poolt-isikult-javõi-perekonnalt-sotsiaalteenuste-eest-tasu-nõudmine.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:47:03.639271+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/099940d7a2cc/Kohaliku-omavalitsuse-poolt-isikult-javõi-perekonnalt-sotsiaalteenuste-eest-tasu-nõudmine.pdf",
+        "title": "Kohaliku omavalitsuse poolt isikult ja/või perekonnalt sotsiaalteenuste eest tasu nõudmine",
+        "description": "Source master headings: Praxis / CentAR / poliitikauuringud",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2014,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–126",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "praxis_centar_kohaliku_omavalitsuse_poolt_isikult_ja_voi_perekonnalt_sotsi",
+        "document_id": "praxis_centar_kohaliku_omavalitsuse_poolt_isikult_ja_voi_perekonnalt_sotsi",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "db41b264cb2ddb5d4262d6cf0dba3e0635372e37352f014016cea48392ac81bb",
+        "url": "https://praxis.ee/uploads/2014/08/Kohaliku-omavalitsuse-poolt-isikult-jav%C3%B5i-perekonnalt-sotsiaalteenuste-eest-tasu-n%C3%B5udmine.pdf",
+        "url_canonical": "https://praxis.ee/uploads/2014/08/Kohaliku-omavalitsuse-poolt-isikult-javõi-perekonnalt-sotsiaalteenuste-eest-tasu-nõudmine.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "praxis_centar_kohaliku_omavalitsuse_poolt_isikult_ja_voi_perekonnalt_sotsi",
+        "updatedAt": "2026-06-12T03:47:03.711202+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

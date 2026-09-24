@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2023",
+  "articleId": "sidus-kogukond-kui-vabatahtlike-ja-avaliku-sektori-koostoo-voti-2023-2",
+  "title": "Sidus kogukond kui vabatahtlike ja avaliku sektori koostöö võti",
+  "authors": [
+    "Kadi Kass",
+    "Kertu Kesküla"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2023",
+  "section": "Kogukondade arendamine",
+  "pageRange": "36-40",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb sidusa kogukonna olemust ja seda, kuidas avalik sektor ja kogukonnad saavad üksteist vastastikku\ntoetada. Autorid avavad, mida kogukond tegelikult tähendab – mitte pelgalt ühist elupiirkonda, vaid vastastikuseid\nsuhteid, praktilist abi, jagatud väärtusi ja eesmärke. Näidete kaudu, sh Ukraina sõjapõgenike toetamine, selgitatakse,\nkuidas vabatahtlikud, ühendused ja omavalitsused saavad kriisides koostööd teha ning miks on oluline panustada\nkogukonna sidususse ja mitteformaalsesse suhtlusse. Rõhutatakse vabatahtlike väärtust, nende toetamise vajadust ning\nseda, et sidus kogukond ei teki iseenesest, vaid vajab järjepidevat hoidmist ja teadlikku arendamist.",
+  "tags": [
+    "kogukond",
+    "sidus kogukond",
+    "vabatahtlik töö",
+    "avaliku sektori koostöö",
+    "Ukraina sõjapõgenikud",
+    "kogukondade arendamine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2023_web_par_Part11.pdf",
+  "document_id": "sotsiaaltoo-2-2023-sidus-kogukond-kui-vabatahtlike-ja-avaliku-sektori-koostoo-voti-2023-2",
+  "source_format": "pdf",
+  "source_sha256": "7c36b4569f64327827858a41023d1be136f463ba9b3bb52867face87389ec2b7",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2023-sidus-kogukond-kui-vabatahtlike-ja-avaliku-sektori-koostoo-voti-2023-2",
+    "previous_source_path": "Sotsiaaltoo_2_2023_web_par_Part11.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "7c36b4569f64327827858a41023d1be136f463ba9b3bb52867face87389ec2b7",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="730e1c9f-2a65-4c44-b24a-b0123a2ee885" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Tallinna Linnavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2016-02-25</aktikuupaev>
+			<avaldamismarge>
+				<RTosa id="ef73b82a-03e6-4575-8721-cb44d02adee9">RT IV</RTosa>
+				<avaldamineKuupaev id="857049fb-f260-4995-aa3f-93cadb2c947b">2016-03-03</avaldamineKuupaev>
+				<RTartikkel id="76a72f37-7ffa-4841-8625-895cd805e6c8">14</RTartikkel>
+				<aktViide id="34e6d5be-6e20-479a-b12c-8108ba1892d9">403032016014</aktViide>
+			</avaldamismarge>
+			<joustumine>2016-03-06</joustumine>
+			<aktiNr>11</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-04-12</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>15</RTartikkel><aktViide>412042025015</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2025-05-01</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2025-04-09</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>412042025015</globaalID>
+		<metaandmedVersioon>9</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2025-04-11</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1033406</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>4</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2018-12-20</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="925296a5-41a4-408a-a89c-30f54793e524">
+		<nimi id="75a95c59-5a43-449c-9ecc-b8c1bcf42b37">
+			<pealkiri id="4a5b78ac-9d9c-45d4-acb3-12ee3753d6f0">Sotsiaalhoolekande seaduse, lastekaitseseaduse, sotsiaalseadustiku üldosa seaduse ja riigilõivuseadusega kohaliku omavalitsuse üksuse pädevusse antud ülesannete delegeerimine</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="0a064630-f79b-4384-84c3-ab36db3a4a32">
+		<aktikuupaev id="48c43b61-efba-493b-b2a8-940b1e8b8485">2018-12-13</aktikuupaev>
+		<avaldamismarge id="ad767153-84ea-4a59-9d4a-3277771e125b">
+			<RTosa id="28220ba4-8430-4c54-978e-06df36659556">RT IV</RTosa>
+			<avaldamineKuupaev id="6cd70e8a-2a5d-420c-900b-96d365e91fde">2018-12-21</avaldamineKuupaev>
+			<RTartikkel id="ab198476-36e6-44d4-be93-611a151671b9">3</RTartikkel>
+			<aktViide id="9e90f1c8-b836-4344-9886-082a64ebc8f7">421122018003</aktViide>
+		</avaldamismarge>
+		<joustumine id="aebeaab1-ea03-4de2-a7b6-d3a0cd7ac7c4">2018-12-24</joustumine>
+		<aktiNr id="342e1a08-1d2a-44cc-8851-a6cf7ba3f25b">20</aktiNr>
+	</muutmismarge>
+	<muutmismarge id="cc448a03-745e-41cc-b00b-983d0325ebef">
+		<aktikuupaev id="7492d98b-8045-4270-87a5-c52bbd77c162">2025-04-03</aktikuupaev>
+		<avaldamismarge id="eeec7f24-c6cb-4905-83c7-a77b147f1e9c">
+			<RTosa id="3fda8ebd-3132-4f53-a776-db5faae582fa">RT IV</RTosa>
+			<avaldamineKuupaev id="49e9949e-5219-4024-b142-6adb5279d3db">2025-04-12</avaldamineKuupaev>
+			<RTartikkel id="c3e597c2-2090-45da-8035-8aa6b1eac53f">1</RTartikkel>
+			<aktViide id="1ea244a1-4b7b-4288-a081-94c9f8c34a3e">412042025001</aktViide>
+		</avaldamismarge>
+		<joustumine id="a37713da-e60c-4f5f-9e8e-03d659efbe2c">2025-05-01</joustumine>
+	</muutmismarge>
+	<sisu id="98bcdf31-034f-4b2e-a587-5fbea5ad7142">
+		<preambul id="c7d0e20d-37ef-420e-9635-dd0f7bda13ac">
+			<tavatekst id="51fafd5e-2383-435f-80d3-2170a8565389">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lg 2, sotsiaalhoolekande seaduse § 5 lg-te 1 ja 2, § 135 lg 3 ja § 156 lg 3<sup>2</sup>, lastekaitseseaduse §-de 11 ja 17, § 23 lg 2 ja § 38 lg 5 ning riigilõivuseaduse § 35 lg 2, § 38 lg 1, § 39 lg 4 ja § 43 lg 1 alusel.</tavatekst>
+			<muutmismarge id="2ecd01c4-0518-40ec-aa8f-e8df2935eaf2">
+				<avaldamismarge id="1d181c61-d698-401d-82f0-92c4ce652d41">
+					<RTosa id="86f7d872-6f21-47a6-bb1b-e4972b4ac770">RT IV</RTosa>
+					<avaldamineKuupaev id="6019f61a-4b3a-4ae8-b7a3-1cdb289b21f3">2025-04-12</avaldamineKuupaev>
+					<RTartikkel id="29628aee-e66c-4157-b673-0d0de2ec573f">1</RTartikkel>
+					<aktViide id="94dadb2c-4b66-4d9d-a9cf-4e564278aaa9">412042025001</aktViide>
+				</avaldamismarge>
+				<joustumine id="1fb64b07-d546-474a-8361-a381f39aad9e">2025-05-01</joustumine>
+			</muutmismarge>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="5bae69e8-ed87-41dd-a6d8-e0034306ff26">1</paragrahvNr>
+			<kuvatavNr id="9c39275e-9f76-4b52-bf06-2302ca00cfa5"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="e92e5c35-49d6-4c1b-a30f-6df9092c2ad9">Sotsiaalhoolekande seadusega kohaliku omavalitsuse üksusele pandud ülesannete täitmise delegeerimine</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="58d4ed09-d04a-4d4d-9b2f-789fef83a587">1</loigeNr>
+				<kuvatavNr id="982cef90-5215-4cb9-b7ce-5e6a1a74b15d"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="c1e695e7-4a9d-49c3-afb2-4a689961328d">
+					<tavatekst id="6812db09-6a0b-4178-9172-b64be8b1dcb7">Linnavalitsusele delegeeritakse sotsiaalteenuste, sotsiaaltoetuste, vältimatu sotsiaalabi ja muu abi andmise korraldamine isikutele, kelle elukohana on rahvastikuregistrisse kantud Tallinna linn või kes viibivad Tallinna haldusterritooriumil.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr id="53d1bbf0-62ef-4446-9361-3c731a158ed0">2</loigeNr>
+				<kuvatavNr id="ae321dc0-0df0-408b-a414-dee4180956ff"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="c733ca69-6d91-4900-93c5-c88762fe16dd">
+					<tavatekst id="c8cb5744-69cb-40b9-bff9-6b977c06d35b">Tallinna Sotsiaal- ja Tervishoiuametile delegeeritakse järgmised ülesanded:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para1lg2p1">
+					<alampunktNr id="05cc0b44-75ba-4207-a8e8-469a8c0f4abf">1</alampunktNr>
+					<kuvatavNr id="1a13e176-98a8-4066-9d51-153e3a4c57b1"><![CDATA[1) ]]></kuvatavNr>
+					
+					<muutmismarge id="0c1a7324-1789-41e2-ac89-da0dda2cc363">
+						<tavatekst id="45c83ba4-abed-4d88-9147-fff4781425d8">kehtetu -</tavatekst>
+						<avaldamismarge id="35de47d5-9b87-4fac-91ee-ffad50ae8895">
+							<RTosa id="abfcfbb2-7236-43d4-90b8-570f76fe6161">RT IV</RTosa>
+							<avaldamineKuupaev id="78f7c679-3bca-457a-a782-a673999adbad">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="59db06e0-9d54-410a-9a79-4afbd3727065">1</RTartikkel>
+							<aktViide id="98d4d908-f0b1-4e78-8070-0a55ec6c3e20">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="cf14943f-3c0e-4872-9226-060cabb3eee1">2025-05-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para1lg2p2">
+					<alampunktNr id="a9f44fef-e1f9-4f0e-892a-888a49c93155">2</alampunktNr>
+					<kuvatavNr id="bb2e8134-bebe-43ad-8c59-105c5ae81dac"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="5b228c48-1349-4743-b343-3944468cc1e3">
+						<tavatekst id="f55bddb2-01d4-4a46-adf4-791a3f29e367">riigieelarvest Tallinna linnale raske ja sügava puudega lastele abi osutamiseks määratud toetuse kasutamise korraldamine lapsehoiu-, tugiisiku-, sotsiaaltranspordi- või muude sotsiaalteenustena.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg2p3">
+					<alampunktNr id="70bbd782-4b25-4be9-b9a9-b20ddc58ebcb">3</alampunktNr>
+					<kuvatavNr id="e873a677-a97c-444f-a1fe-d0925ba9f7d2"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="3ce44a39-c58e-46fa-ab53-c9ba36c9c83a">
+						<tavatekst id="2ebb1795-646c-4a5f-96b2-343a704ea5c7">riigieelarvest Tallinna linnale asendus- ja järelhooldusteenuse osutamiseks ja korraldamiseks ning hooldusperede toetamiseks määratud toetuse kasutamise korraldamine.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="62c8ad9c-9c14-4dc4-a609-135a35f3cbc0">
+						<avaldamismarge id="508273ef-7e5e-4274-a04f-2103a1b66f37">
+							<RTosa id="a07cb477-7349-4b73-8cce-66349cf23edb">RT IV</RTosa>
+							<avaldamineKuupaev id="6ff37e1e-6efc-43f6-9f80-593933a321f9">2018-12-21</avaldamineKuupaev>
+							<RTartikkel id="16644fdd-71e4-41f8-ac84-bce003adf935">3</RTartikkel>
+							<aktViide id="b3a077ab-245f-4142-8e6c-662292a52274">421122018003</aktViide>
+						</avaldamismarge>
+						<joustumine id="1f20346f-0af0-4a87-8e5a-1cf708493d4d">2018-12-24</joustumine>
+					</muutmismarge>
+				</alampunkt>
+			</loige>
+			<loige id="para1lg3">
+			<loigeNr>3</loigeNr>
+			<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="b4ac0796-f9de-4932-abef-8dd3410b2014">
+					<tavatekst id="681ee604-a171-48d1-ab67-f94938a7dae0">Linnaosade valitsuste sotsiaalhoolekande osakondadele delegeeritakse järgmised ülesanded:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para1lg3p1">
+					<alampunktNr id="d2f5ce10-fd24-4004-b422-361bb57961c4">1</alampunktNr>
+					<kuvatavNr id="cdf995ca-e71c-4871-9b7a-fcf7da3eba20"><![CDATA[1) ]]></kuvatavNr>
+					
+					<muutmismarge id="d3b69f72-67ee-47b1-8f97-37f5d1d4b53f">
+						<tavatekst id="ac5668f4-a001-45f8-95fc-c7a22f53e638">kehtetu -</tavatekst>
+						<avaldamismarge id="68aea844-e47a-4240-85e7-53c3656f31d3">
+							<RTosa id="95ae4f59-2a87-4b85-8385-9b69ae530afc">RT IV</RTosa>
+							<avaldamineKuupaev id="cba3ec4c-3b12-45f9-b2c8-55808b4446ea">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="f4c740e8-2b0c-49b6-9db3-89cefd41dfc3">1</RTartikkel>
+							<aktViide id="2fdd2e5b-86cd-472d-86b7-dac6d0c59643">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="372d8978-8bf2-4000-8dd3-a842fa2e2b88">2025-05-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para1lg3p2">
+					<alampunktNr id="aca6eda9-e4a6-4a7e-aaaf-0e9b8f50a463">2</alampunktNr>
+					<kuvatavNr id="9114b6bb-708b-452d-a576-36af9b15fdf8"><![CDATA[2) ]]></kuvatavNr>
+				
+					<muutmismarge id="bf2cf366-4f4f-4351-a9f1-989bb573ce5e">
+						<tavatekst id="c4a25e99-0743-463e-acf9-a91e4cc5d1d6">kehtetu -</tavatekst>
+						<avaldamismarge id="984ecefb-b699-4b0f-8e82-e98501639b8b">
+							<RTosa id="e8f696f9-be9e-44e3-a6ae-73a1fc405b80">RT IV</RTosa>
+							<avaldamineKuupaev id="ecee43f6-a6e2-462e-ae75-fff798e8edb4">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="25f24601-a936-43cc-84f7-90055c52994d">1</RTartikkel>
+							<aktViide id="eecb95d3-7070-4028-84ce-2a5b30473f35">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="4e865d2b-9e79-4970-8887-7f149049e73e">2025-05-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para1lg3p3">
+					<alampunktNr id="e090328e-9423-444e-8990-91bac06f69ad">3</alampunktNr>
+					<kuvatavNr id="cc87cf7d-b69f-485e-a075-143f6be99b6b"><![CDATA[3) ]]></kuvatavNr>
+					
+					<muutmismarge id="70b89ed0-1e15-45b1-b235-f41b57904bd0">
+						<tavatekst id="38a55365-96c7-402d-bfac-0ba2c0736f2a">kehtetu -</tavatekst>
+						<avaldamismarge id="6ba04690-00e2-4c41-a3db-18fe00e177e5">
+							<RTosa id="7f83a905-620f-4fef-9fd2-979226295e2d">RT IV</RTosa>
+							<avaldamineKuupaev id="fb21b650-920e-49b1-afb8-c23495e70094">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="fd854d72-3415-44df-ac72-c27bd34e3039">1</RTartikkel>
+							<aktViide id="de793821-7eca-469b-b653-51316b7f5d85">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="7223b37b-57b1-4d20-8122-1167dd04c6cc">2025-05-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para1lg3p4">
+					<alampunktNr id="e7a7de55-ad14-439e-af73-1124d41a72ca">4</alampunktNr>
+					<kuvatavNr id="38bd3563-f6f8-4db8-8646-911ed43ead5c"><![CDATA[4) ]]></kuvatavNr>
+					
+					<muutmismarge id="17ac463f-d878-4583-b249-ab2a505c0b49">
+						<tavatekst id="734dedf5-79dd-4ad7-8607-66ae7bfa65a3">kehtetu -</tavatekst>
+						<avaldamismarge id="c4bc5621-2e3a-4565-95eb-ca1a12eb6bed">
+							<RTosa id="a0a0124b-e569-43f9-819b-cd0dd44064f2">RT IV</RTosa>
+							<avaldamineKuupaev id="5e56cc16-bdcb-4a3e-8054-ef6829e96493">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="b31a2412-92fe-4c79-9ea6-4aa1598a424c">1</RTartikkel>
+							<aktViide id="f0dc678a-1db6-4bd4-a128-3b8f1db0cac4">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="683bef5d-e402-4156-9fb2-3e57b1f5abe9">2025-05-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para1lg3p5">
+					<alampunktNr id="10c83cea-85d7-40de-8f3f-b942397b1f13">5</alampunktNr>
+					<kuvatavNr id="4778549c-74fa-4d3f-b6cb-241c829f3a98"><![CDATA[5) ]]></kuvatavNr>
+					
+					<muutmismarge id="ebcf3526-834e-46e0-937d-5cb16757e958">
+						<tavatekst id="35fe215a-2bd6-4d03-a431-030855768dc9">kehtetu -</tavatekst>
+						<avaldamismarge id="340b85ef-7489-42bb-81cc-06e71382d830">
+							<RTosa id="5aac13df-e74c-4f3d-9695-934ef1d8f0f4">RT IV</RTosa>
+							<avaldamineKuupaev id="224066b6-7a51-41a4-8fde-6cbf74ae61f5">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="912b6511-ca3f-4093-af6e-37e4bbddacf7">1</RTartikkel>
+							<aktViide id="9fa139bc-257e-4c2b-b365-9a19aba5af47">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="b9eeb1b3-af4d-4c7c-a448-d743a96fcb8a">2025-05-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para1lg3p6">
+					<alampunktNr id="7d540914-caed-4ac7-aa71-06bc46de5667">6</alampunktNr>
+					<kuvatavNr id="d640f5f6-a485-4710-b25c-bf2dd84d3541"><![CDATA[6) ]]></kuvatavNr>
+					
+					<muutmismarge id="e496ce9c-2cb4-4525-b223-fbf5982eb5fd">
+						<tavatekst id="b1fafb97-1197-4e56-a674-3c2d9e1d85ee">kehtetu -</tavatekst>
+						<avaldamismarge id="b51b5e8f-a03f-4b64-8789-6f2b2b6406d0">
+							<RTosa id="a824d228-2e2b-4102-a666-88f900938897">RT IV</RTosa>
+							<avaldamineKuupaev id="38777299-6cab-4b13-a0c2-f31ff6796276">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="8baf7478-ee6b-40df-8324-7b73a20a3289">1</RTartikkel>
+							<aktViide id="30c1c177-d7fd-4567-b99b-7fcad1fcead0">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="35678e01-5ad5-4a84-be0e-1b1f1f895a7a">2025-05-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para1lg3p7">
+					<alampunktNr id="6b853ab0-11c9-4a12-9c13-67b25c15c2e1">7</alampunktNr>
+					<kuvatavNr id="38bfd283-0361-4f1a-a7d0-a227e36593e5"><![CDATA[7) ]]></kuvatavNr>
+					
+					<muutmismarge id="3ae5fd15-b6fa-4082-a358-50e34ec10a83">
+						<tavatekst id="947816e6-0609-40b5-8862-2eda664ef1c2">kehtetu -</tavatekst>
+						<avaldamismarge id="22986740-87e5-42eb-b60f-d1e6c99fd5f1">
+							<RTosa id="4a68e9bd-152b-45f4-bda9-7d9e4b94d7d8">RT IV</RTosa>
+							<avaldamineKuupaev id="e98de316-2b71-4ebf-aadd-815afb7b7322">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="d1a7c765-37b9-4884-8fa8-70e7c25203f2">1</RTartikkel>
+							<aktViide id="e6ac42d3-d547-4e75-81b3-58a851e4af2c">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="53b2f179-51c3-4d30-b32d-bde5ee2d5490">2025-05-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para1lg3p8">
+					<alampunktNr id="7130f4ae-0fe7-4528-baa6-3d6776b1c767">8</alampunktNr>
+					<kuvatavNr id="424e675b-6eed-4c5b-a5f6-02bcf9ce70fa"><![CDATA[8) ]]></kuvatavNr>
+					<sisuTekst id="2c834ee4-39a6-49db-9694-8e3709f06143">
+						<tavatekst id="a9284ee3-675e-46e6-b430-269ac9b4e2be">riigieelarvest makstava täiendava sotsiaaltoetuse määramine ja maksmine.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg3p9">
+					<alampunktNr id="84bbc373-665b-4033-bc77-bfa2c7878ac3">9</alampunktNr>
+					<kuvatavNr id="9f435656-c239-42f7-9861-269de121b966"><![CDATA[9) ]]></kuvatavNr>
+					
+					<muutmismarge id="eb579e5f-94f4-4c28-b8fa-c008364b0763">
+						<tavatekst id="2249026c-f019-45ea-97ed-1fd0cba75b0d">kehtetu -</tavatekst>
+						<avaldamismarge id="a0259e1a-3ce7-44ea-8fc6-31171ae2b2e6">
+							<RTosa id="6f88c1a4-9597-40d1-96f2-b724f5c263f0">RT IV</RTosa>
+							<avaldamineKuupaev id="98b6a0cc-48f7-4244-b832-e7ba6a3c6f4a">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="fabe4668-e4bb-4ca2-bc17-ae8876fac082">1</RTartikkel>
+							<aktViide id="4c77cb61-d863-4700-87d8-c1e65d219d00">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="52daf77a-c31a-415b-ad11-7247ebb9ac5e">2025-05-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="075c8549-238f-4aae-a494-08f1599ce25d">2</paragrahvNr>
+			<kuvatavNr id="548b6225-6115-4232-9fc3-391283a5a602"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="6d34a253-c503-4969-886e-a196ffa7db13">Lastekaitseseadusega kohaliku omavalitsuse üksusele pandud ülesannete täitmise delegeerimine</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="9597a7f4-18d7-41a7-99d9-ad27c8b59ed7">1</loigeNr>
+				<kuvatavNr id="c1af41e9-007b-4bd7-9f13-18825d39395c"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="c30fa7fb-3460-4807-ac64-e18fca514129">
+					<tavatekst id="631fd2e6-3d3c-43e9-882e-b1001d8c9302">Linnavalitsusele delegeeritakse järgmised ülesanded:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para2lg1p1">
+					<alampunktNr id="9374978e-1b4c-47f0-8a13-b758e4bb76fa">1</alampunktNr>
+					<kuvatavNr id="c78a6d13-b87e-4630-8958-df58ee1c6359"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="5c770fcf-087d-4851-ba67-66c7cdf5b13f">
+						<tavatekst id="c0944e75-1609-49ea-9955-b0dcabe46bb9">lastekaitse korraldamine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p2">
+					<alampunktNr id="73496596-64a6-4b9b-b478-9a83914b7b74">2</alampunktNr>
+					<kuvatavNr id="535e9b9b-d466-4558-8c8f-9d9a8a295911"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="e59cb548-d938-41e1-b438-d77614b18933">
+						<tavatekst id="78970548-796c-4fd3-b707-6514f8302c8f">lapse õigusi ja heaolu tagavate programmide ja projektide väljatöötamine ning nende rakendamine Tallinna haldusterritooriumil last ohustavate riskide ennetamiseks ja vähendamiseks;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p3">
+					<alampunktNr id="a1df9b90-234c-4ed8-9757-c50e99c447a9">3</alampunktNr>
+					<kuvatavNr id="efe44f60-e4db-46b7-b492-deb582e30fec"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="875c7142-ed5d-4a00-bf35-7e9f0553cdc7">
+						<tavatekst id="053a35c7-8150-4377-86cd-3e9c1cc3c2c4">linna ametiasutuste hallatavate lasteasutuste sisehindamise üle teenistusliku järelevalve korraldamine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p4">
+					<alampunktNr id="126b348b-670d-403c-b1ee-0c4f77b783e0">4</alampunktNr>
+					<kuvatavNr id="ffdfc103-9367-474d-b02a-1ca477f64e42"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="84bfa83c-dfb4-4b6e-9a5f-05078c39a02a">
+						<tavatekst id="64986dec-b399-41a1-bbb8-90818b9625c7">alaealise öise liikumispiirangu ajutine lühendamine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p5">
+					<alampunktNr id="729cdd4f-a0c3-4fd8-bc3f-0adef4176e14">5</alampunktNr>
+					<kuvatavNr id="e6c2cb04-6d6f-46bb-814d-dbc71fe3f55e"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="dab047cc-bb1d-422b-915d-fd35ae60feaa">
+						<tavatekst id="f8e55610-67ca-4acd-862b-102afbd2a9ef">tingimuste loomine lastekaitsetöö tegemiseks eesmärgiga tagada kohaliku omavalitsuse üksuse ülesannete täitmine; laste ja perede komisjoni moodustamine.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="0e81c420-d83b-4d4f-a655-73bde1e91c6f">2</loigeNr>
+				<kuvatavNr id="2337052d-1048-48b7-b10a-b16f175343c5"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="f50147f8-713b-408d-a297-0ddf461adf13">
+					<tavatekst id="7481b8f5-7186-4c24-8636-e74da7884bd3">Tallinna Sotsiaal- ja Tervishoiuametile delegeeritakse järgmised ülesanded:</tavatekst>
+				</sisuTekst>
+				
+				<alampunkt id="para2lg2p1">
+					<alampunktNr id="bb8320fb-a685-4b6a-92fc-89ca5cc717c1">1</alampunktNr>
+					<kuvatavNr id="08d27964-7f01-4542-a02c-1b9313fda664"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="2e50f5f8-d535-4d1d-bb5f-3816e88d5f78">
+						<tavatekst id="6f91f5d7-23c0-47ef-a8ce-6041f8ae0091">lapse arengut toetava keskkonna loomiseks ning laste, lastega perede ja lapsi kasvatavate isikute toimetuleku parandamiseks vajaliku teabe kogumine laste ja perede olukorra ning vajaduste kohta;</tavatekst>
+					</sisuTekst>
+					
+				</alampunkt>
+				<alampunkt id="para2lg2p2">
+					<alampunktNr id="ec2241e2-aec8-4645-8c72-9ecb2ea2816c">2</alampunktNr>
+					<kuvatavNr id="abe79429-428c-4386-a995-1a177a00e45d"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="29baea64-9823-4090-8472-c14d48f18025">
+						<tavatekst id="10f13585-2939-4627-ac3b-6d940917344a">abi vajavast lapsest teada saamisel viivitamata lapse abivajaduse hindamine ja lapse abistamiseks meetmete pakkumine;</tavatekst>
+					</sisuTekst>
+					
+				</alampunkt>
+				<alampunkt id="para2lg2p3">
+					<alampunktNr id="a4a7223f-5262-4e0e-b04e-26c9f56f3d77">3</alampunktNr>
+					<kuvatavNr id="24c9d894-323b-4e96-9430-88178918c3ce"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="9b2f4285-4593-48ea-85ee-a822673dd06b">
+						<tavatekst id="facdf957-1337-4aba-ad61-0af97d29e661">perekonnast eraldatud lapsele ja tema perekonnale meetmete pakkumine;</tavatekst>
+					</sisuTekst>
+					
+				</alampunkt>
+				<alampunkt id="para2lg2p4">
+					<alampunktNr id="4afbe239-7c0a-4714-a615-f421e1ab07b8">4</alampunktNr>
+					<kuvatavNr id="f982d29a-31d9-4739-9fe8-29dbd7bd0ec4"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="1a11f9d2-79f9-4071-b06a-d06f03cc8ce8">
+						<tavatekst id="200949cf-224d-442f-944f-c051810cc158">riikliku järelevalve teostamine lastekaitseseaduses sätestatud alustel.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="bd97cb2e-5ad5-4420-92f7-a2b47bc6eb69">
+						<avaldamismarge id="479be32a-9fd2-46d2-9013-dc7c9bf34af7">
+							<RTosa id="1bcf352d-9032-4bed-96c3-7bc08ed6ad2a">RT IV</RTosa>
+							<avaldamineKuupaev id="f0003d11-639e-4a9c-88db-cecb3cb18e47">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="b16c075d-7e69-4549-b5a6-f47647ad54be">1</RTartikkel>
+							<aktViide id="c14c2dcd-1a2f-4cd1-ab87-60514f04fed4">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="0fd3e056-c31d-4e2f-ac28-6063bf4fe79e">2025-05-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr id="b23151f3-e92d-4890-961d-4322d2d62862">3</loigeNr>
+				<kuvatavNr id="567fb52a-fdbb-4011-8edc-fad9fd900eb3"><![CDATA[(3)]]></kuvatavNr>
+				
+				<muutmismarge id="e1cd7203-788f-47b6-aa81-0f21185a94ef">
+					<tavatekst id="ace1198b-08e1-49a1-a5a1-0df7a7417604">Kehtetu -</tavatekst>
+					<avaldamismarge id="9f3feb5d-4387-4c7e-a3fc-49e37dbf05b4">
+						<RTosa id="01b7c9f8-649b-4968-9417-15457e663b7a">RT IV</RTosa>
+						<avaldamineKuupaev id="76221b73-a807-4c90-b68c-9b030379dca2">2025-04-12</avaldamineKuupaev>
+						<RTartikkel id="6db859a8-309b-4a34-9dac-add8c1345de2">1</RTartikkel>
+						<aktViide id="c34bffcc-310c-4b24-825b-a6d4ff444e07">412042025001</aktViide>
+					</avaldamismarge>
+					<joustumine id="762bec21-3223-45ba-99ed-c943017e98f5">2025-05-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="7efb6ded-40e6-41f7-a964-50d130369b53">3</paragrahvNr>
+			<kuvatavNr id="d237698c-f173-4ac1-88b2-b5fdb6e0ea12"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="c70e4de9-26e7-46fa-9c2d-5374f3898e61">Sotsiaalseadustiku üldosa seadusega kohaliku omavalitsuse üksusele pandud ülesannete täitmise delegeerimine</paragrahvPealkiri>
+			<muutmismarge id="c406cfc7-58e5-4b32-9644-4476e843807c">
+				<tavatekst id="96c4792b-c07e-4871-b155-974fc6409848">Kehtetu -</tavatekst>
+				<avaldamismarge id="2f749fa5-09a6-428d-9b3e-5daf9f5402f8">
+					<RTosa id="5f9d0b45-a05f-4845-8307-9ff9fd7583b4">RT IV</RTosa>
+					<avaldamineKuupaev id="8430d779-0099-48b6-94ec-93d9829c6be9">2025-04-12</avaldamineKuupaev>
+					<RTartikkel id="e5cfa9b4-fe44-4e99-9222-755d8cc45924">1</RTartikkel>
+					<aktViide id="28fcc433-7aca-4180-834a-89d3f74108b5">412042025001</aktViide>
+				</avaldamismarge>
+				<joustumine id="e63cb328-94bf-42b5-bd46-4b26fff63209">2025-05-01</joustumine>
+			</muutmismarge>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="b51a2b99-9d99-430e-a24e-dd7574bb4229">4</paragrahvNr>
+			<kuvatavNr id="9f6baec1-7391-48b7-9f55-1de4da2836a1"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="6b0f4481-4c48-4597-bead-62a3919e7292">Riigilõivuseadusega kohaliku omavalitsuse üksusele pandud ülesannete täitmise delegeerimine</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<sisuTekst id="e02f3146-c763-4f3c-877c-352e8472e65d">
+					<tavatekst id="05ac3560-91e7-4f10-8329-55aab5a7ef22">Linnaosade valitsuste sotsiaalhoolekande osakondade juhatajatele delegeeritakse edasivolitamise õigusega ülesanne esitada Politsei- ja Piirivalveametile või konsulaarametnikule taotlusi isikute riigilõivu tasumisest vabastamiseks või tasutava riigilõivu määra vähendamiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="bc8df501-a902-4270-a83f-506c12b374f4">5</paragrahvNr>
+			<kuvatavNr id="783de4dd-7d26-4870-871f-f5a52a7f9816"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="0aeab691-ee44-406f-9909-c85a6a14f2a4">Määruste kehtetuks tunnistamine</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="11016e0b-3a2e-47a8-b510-719680d3e7ae"/>
+				<kuvatavNr id="217c5965-db82-4a34-ac73-4f64bf2a4d64"/>
+				<sisuTekst id="02e6bc5c-f4cb-47fe-a8c4-02400ebedd57">
+					<tavatekst id="16c76a45-57e3-4d9c-b8a3-f936040dd7a4">[Käesolevast tekstist välja jäetud.]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

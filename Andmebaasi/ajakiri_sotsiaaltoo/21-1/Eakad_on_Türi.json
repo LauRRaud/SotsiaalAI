@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-1-2021",
+  "articleId": "eakad-on-tyri-vallas-kogukonna-vaartuslik-ja-hoitud-osa-2021-1",
+  "title": "Eakad on Türi vallas kogukonna väärtuslik ja hoitud osa",
+  "authors": [
+    "Kaia Iva"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2021",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "21-25",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Türi valla kogemus eakate hoolekande ja toetavate teenuste arendamisel. Artikkel annab ülevaate teenusmajast, koduteenuse ja sotsiaaltranspordi korraldusest, hooldekodudest, dementsusega inimeste toetamisest ning kodude kohandamise ja uute teenusmudelite (nt päevahoid ja lõimitud sotsiaalteenus) kavandamisest. Rõhutatakse eakate kui kogukonna väärtusliku osa rolli ning vajadust pakkuda paindlikke, kvaliteetseid ja kodulähedasi lahendusi, mis toetavad nii eakate iseseisvust kui ka nende lähedasi.",
+  "tags": [
+    "eakad",
+    "kohalik omavalitsus",
+    "Türi vald",
+    "koduteenus",
+    "teenusmaja",
+    "hooldekodu",
+    "kodude kohandamine",
+    "päevahoid"
+  ],
+  "source_type": "file",
+  "source_path": "artikkel_4_eakad_on_tyri_vallas.pdf",
+  "document_id": "sotsiaaltoo-1-2021-eakad-on-tyri-vallas-kogukonna-vaartuslik-ja-hoitud-osa-2021-1",
+  "source_format": "pdf",
+  "source_sha256": "2b93b69f257ee29a82cd4930c13e21868ea9387b2300a8f41c1a90d4a3f16c56",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2021-eakad-on-tyri-vallas-kogukonna-vaartuslik-ja-hoitud-osa-2021-1",
+    "previous_source_path": "artikkel_4_eakad_on_tyri_vallas.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "2b93b69f257ee29a82cd4930c13e21868ea9387b2300a8f41c1a90d4a3f16c56",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

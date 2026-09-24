@@ -1,0 +1,91 @@
+{
+  "docId": "sotsiaaltoo-2-2016",
+  "articleId": "sotsiaaltoo-2-2016-artikkel-10-soome-sotsiaaltöös-ja-sotsiaaltöö-koolituses-on",
+  "title": "Soome sotsiaaltöös ja sotsiaaltöö koolituses on toimumas suured muutused",
+  "authors": [
+    "Anneli Pohjola"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2016",
+  "section": "Uued suunad Euroopas",
+  "pageRange": "42-45",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Lapi Ülikooli professor ja ülikoolide võrgustiku Sosnet koordinaator kirjeldab Soome sotsiaal- ja tervishoiureformi, millega 2019. aastast läheb teenuste korraldamine valdadelt 18 maakonnale ning toimetulekutoetuse maksmine 2017. aastast Sotsiaalkindlustusametile Kela. 2016. aasta märtsis jõustus sotsiaalhoolekande kutseseadus, mis nõuab sotsiaaltöötajalt magistrikraadi ja kirjeldab §-s 9 tema kohustusi. Sosneti eestvedamisel asendus senine litsentsiaaditööl põhinev spetsialiseerumiskoolitus uue tasulise õppega neljas valdkonnas: maht 70 EAP-d, kestus 2,5–3 aastat, õppemaks 50 eurot ainepunkti eest ja 20–24 õppurit valdkonna kohta.",
+  "tags": [
+    "uued suunad Euroopas",
+    "Soome",
+    "sotsiaal- ja tervishoiureform",
+    "sotsiaaltööharidus",
+    "kutsenõuded",
+    "spetsialiseerumiskoolitus"
+  ],
+  "source_type": "file",
+  "source_path": "2016_2_artikkel_10_soome_sotsiaaltoos_ja_sotsiaaltoo_koolituses_on_toim.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-10-soome-sotsiaalt-s-ja-sotsiaalt-koolituses-on",
+  "source_sha256": "7c7482752dcef69b38b0e4cb8ae96755d853a533205f72d2657966b838c69b96",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-10-soome-sotsiaalt-s-ja-sotsiaalt-koolituses-on",
+    "previous_source_path": "2016_2_artikkel_10_soome_sotsiaaltoos_ja_sotsiaaltoo_koolituses_on_toim.txt",
+    "previous_source_original_path": "2-2016.pdf",
+    "reference_stored_source_sha256": "899c99150a5805f79c7015bfacb020a1ddd43ba21169f31d2e240a16de5d2290",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\2-2016.pdf",
+      "source_sha256": "cf45b61607b21a62a1003f99c97d65180c4fb4f591a874c983c4b63e5c804a36",
+      "pdf_start_page": 44,
+      "pdf_end_page": 47,
+      "printed_page_range": "42-46",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 48,
+      "source_regions": [
+        {
+          "source_pdf_page": 44,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 45,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 46,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 47,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "42-45",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2-2016.pdf"
+    },
+    "server_page_range": "42-46"
+  }
+}

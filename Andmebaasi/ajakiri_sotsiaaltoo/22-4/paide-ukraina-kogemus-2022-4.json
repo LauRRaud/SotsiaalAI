@@ -1,0 +1,37 @@
+{
+  "docId": "sotsiaaltoo-4-2022",
+  "articleId": "paide-ukraina-kogemus-2022-4",
+  "title": "Üheksa kiiret kuud südamelinnas Paides",
+  "authors": [
+    "Piret Moora"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2022",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "14-18",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Paide linna kogemus Ukraina sõjapõgenike vastuvõtmisel ja toetamisel.",
+  "tags": [
+    "kohalik omavalitsus",
+    "Ukraina sõjapõgenikud",
+    "kriisireageerimine"
+  ],
+  "source_type": "file",
+  "source_path": "2022_4_artikkel_4_paide.pdf",
+  "document_id": "sotsiaaltoo-4-2022-paide-ukraina-kogemus-2022-4",
+  "source_format": "pdf",
+  "source_sha256": "24b1195c9920f45f64009063671a6660b5d0719ae21c5f8e2ae1ffe3acc2a1ef",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2022-paide-ukraina-kogemus-2022-4",
+    "previous_source_path": "2022_4_artikkel_4_paide.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "24b1195c9920f45f64009063671a6660b5d0719ae21c5f8e2ae1ffe3acc2a1ef",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

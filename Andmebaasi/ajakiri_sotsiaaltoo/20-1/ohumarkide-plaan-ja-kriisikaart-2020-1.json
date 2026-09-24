@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-1-2020",
+  "articleId": "ohumarkide-plaan-ja-kriisikaart-2020-1",
+  "title": "Ohumärkide plaan ja kriisikaart vaimse tervise raskustega inimestele",
+  "authors": [
+    "Eveli Lilleoja"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2020",
+  "section": "Taastumist toetavad meetodid",
+  "pageRange": "53-57",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab magistriuurimusest lähtuvat ohumärkide plaani ja kriisikaardi teenuse vajadust ning võimalusi vaimse tervise raskustega inimeste toetamisel. Selgitatakse kriisi ja tagasilanguse mõisteid, oma ohumärkide teadvustamise olulisust, ohumärkide plaani ja kriisikaardi eesmärke, sisu ning kasu inimese igapäevase toimetuleku ja turvalisuse suurendamisel.",
+  "tags": [
+    "ohumärkide plaan",
+    "kriisikaart",
+    "vaimne tervis",
+    "kriisitöö",
+    "personaalne taastumine",
+    "ennetustöö",
+    "magistriuurimus",
+    "psüühikahäire",
+    "sotsiaaltöö praktika"
+  ],
+  "source_type": "file",
+  "source_path": "ST1_2020_web_link_Part12.pdf",
+  "document_id": "sotsiaaltoo-1-2020-ohumarkide-plaan-ja-kriisikaart-2020-1",
+  "source_format": "pdf",
+  "source_sha256": "5c3dc51c03aba7bdd7a8058786ae3112130da27b782993f659626e6e1d93e5cb",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2020-ohumarkide-plaan-ja-kriisikaart-2020-1",
+    "previous_source_path": "ST1_2020_web_link_Part12.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "5c3dc51c03aba7bdd7a8058786ae3112130da27b782993f659626e6e1d93e5cb",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

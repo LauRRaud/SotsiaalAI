@@ -1,0 +1,142 @@
+{
+  "source_path": "sotsiaalkindlustusamet_rehabilitatsiooni_teenuseosutajate_infopaeva_materjal.pdf",
+  "source_format": "pdf",
+  "sha256": "0bb15c694acc63a9b0e5ca430cff4ccd05bed27495d8645c129ad458497660e7",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/sotsiaalkindlustusamet_rehabilitatsiooni_teenuseosutajate_infopaeva_materjal.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "sotsiaalkindlustusamet_rehabilitatsiooni_teenuseosutajate_infopaeva_materjal",
+          "title": "Rehabilitatsiooni teenuseosutajate infopäeva materjal",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/rehabilitatsiooni_teenuseosutajate_infopaev_16.10.2020.pdf",
+          "normalized_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/rehabilitatsiooni_teenuseosutajate_infopaev_16.10.2020.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "Sotsiaalkindlustusamet",
+          "organization_id": "sotsiaalkindlustusamet",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Sotsiaalkindlustusamet",
+            "rehabilitatsioon",
+            "sotsiaalne rehabilitatsioon",
+            "rehabilitatsiooniteenus",
+            "infomaterjal",
+            "SKA"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "SKA",
+            "heading_3": "Puue, rehabilitatsioon, hoolekanne",
+            "heading_4": null,
+            "line": 509,
+            "order": 269
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Rehabilitatsiooni teenuseosutajate infopäeva materjal"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Sotsiaalkindlustusamet"
+          ],
+          "organizations_seen": [
+            "sotsiaalkindlustusamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "SKA",
+              "heading_3": "Puue, rehabilitatsioon, hoolekanne",
+              "line": 509,
+              "order": 269
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/rehabilitatsiooni_teenuseosutajate_infopaev_16.10.2020.pdf"
+        },
+        "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/rehabilitatsiooni_teenuseosutajate_infopaev_16.10.2020.pdf",
+        "redirects": [],
+        "sha256": "0bb15c694acc63a9b0e5ca430cff4ccd05bed27495d8645c129ad458497660e7",
+        "bytes": 3679876,
+        "downloaded_at": "2026-08-14T08:00:53.438Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "sotsiaalkindlustusamet_rehabilitatsiooni_teenuseosutajate_infopaeva_materjal",
+      "metadata": {
+        "createdAt": "2026-06-12T03:58:05.024799+00:00",
+        "type": "FILE",
+        "fileName": "rehabilitatsiooni_teenuseosutajate_infopaev_16.10.2020.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:58:04.953719+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/6cfe96aebd4c/rehabilitatsiooni_teenuseosutajate_infopaev_16.10.2020.pdf",
+        "title": "Rehabilitatsiooni teenuseosutajate infopäeva materjal",
+        "description": "Source master headings: SKA; Puue, rehabilitatsioon, hoolekanne",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2024,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–131",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "sotsiaalkindlustusamet_rehabilitatsiooni_teenuseosutajate_infopaeva_materjal",
+        "document_id": "sotsiaalkindlustusamet_rehabilitatsiooni_teenuseosutajate_infopaeva_materjal",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "216c74070198dce0a2f8ecdb5a95f85a3de7703ba99bbe66b1706e495a15fe70",
+        "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/rehabilitatsiooni_teenuseosutajate_infopaev_16.10.2020.pdf",
+        "url_canonical": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/rehabilitatsiooni_teenuseosutajate_infopaev_16.10.2020.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "sotsiaalkindlustusamet_rehabilitatsiooni_teenuseosutajate_infopaeva_materjal",
+        "updatedAt": "2026-06-12T03:58:05.024821+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

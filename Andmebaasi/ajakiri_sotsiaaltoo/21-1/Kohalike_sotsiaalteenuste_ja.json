@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-1-2021",
+  "articleId": "kohalike-sotsiaalteenuste-ja-sotsiaaltoetuste-kattesaadavus-2021-1",
+  "title": "Kohalike sotsiaalteenuste ja sotsiaaltoetuste kättesaadavus",
+  "authors": [
+    "Kersti Kriisk"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2021",
+  "section": "Uurimus",
+  "pageRange": "52-62",
+  "pdf_start_page": 1,
+  "pdf_end_page": 11,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimus tugineb Kersti Kriiski doktoritööle ning käsitleb kohalike sotsiaalteenuste ja -toetuste kättesaadavust Eesti omavalitsustes aastatel 2006–2016. Analüüsitakse valitsemistasandite vahelisi suhteid, detsentraliseerimise mõjusid, territoriaalset õiglust ja kohalike heaolusüsteemide eripärasid. Artikkel näitab, kuidas omavalitsuste demograafiline ja sotsiaalmajanduslik taust, finantsautonoomia ja riigi rahastamismudel mõjutavad teenuste ja toetuste pakkumist ning millised riskid tekivad, kui teenuste kättesaadavus sõltub liigagi palju inimese elukohast. Esitatakse ka järeldused ja soovitused sotsiaalpoliitika kujundajatele.",
+  "tags": [
+    "sotsiaalteenuste kättesaadavus",
+    "sotsiaaltoetused",
+    "kohalik omavalitsus",
+    "detsentraliseerimine",
+    "territoriaalne õiglus",
+    "heaolusüsteemid",
+    "sotsiaalpoliitika analüüs",
+    "doktoritöö"
+  ],
+  "source_type": "file",
+  "source_path": "artikkel_10_kohalike_teenuste_kattesaadavus.pdf",
+  "document_id": "sotsiaaltoo-1-2021-kohalike-sotsiaalteenuste-ja-sotsiaaltoetuste-kattesaadavus-2021-1",
+  "source_format": "pdf",
+  "source_sha256": "99c4f3949b5eeadb2fa01badf26c7b6c094d989aa148bb34e0db3cdef171de90",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2021-kohalike-sotsiaalteenuste-ja-sotsiaaltoetuste-kattesaadavus-2021-1",
+    "previous_source_path": "artikkel_10_kohalike_teenuste_kattesaadavus.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "99c4f3949b5eeadb2fa01badf26c7b6c094d989aa148bb34e0db3cdef171de90",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

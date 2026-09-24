@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-eri-2018",
+  "articleId": "esimesi-sotsiaaltoo-ajakiri-fliegende-blatter-2018",
+  "title": "Esimesi sotsiaaltöö ajakirju maailmas: Fliegende Blätter aus dem Rauhen Hause zu Horn bei Hamburg",
+  "authors": [
+    "Marju Selg"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö (juubeli erinumber)",
+  "issueLabel": "Eri/2018",
+  "section": "Erialased ajakirjad",
+  "pageRange": "20-25",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ajalooline ülevaade ühest esimestest sotsiaaltöö ajakirjadest maailmas – Fliegende Blätter aus dem Rauhen Hause zu Horn bei Hamburg –, selle eesmärkidest, sisust ja rollist sotsiaaltöö eneseteadvuse ja diakooniatöö arengus.",
+  "tags": [
+    "sotsiaaltöö ajalugu",
+    "erialased ajakirjad",
+    "Fliegende Blätter",
+    "Rauhes Haus",
+    "diakooniatöö",
+    "sisemisjoni ajalugu",
+    "professionaalse ajakirjanduse roll"
+  ],
+  "source_type": "file",
+  "source_path": "ST_eri_2018_web_link_Part9.pdf",
+  "document_id": "sotsiaaltoo-eri-2018-esimesi-sotsiaaltoo-ajakiri-fliegende-blatter-2018",
+  "source_format": "pdf",
+  "source_sha256": "a724012bb7c32eecc408c63535240d1a4dce29c732b988d03357e50cdafbefb9",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2018-esimesi-sotsiaaltoo-ajakiri-fliegende-blatter-2018",
+    "previous_source_path": "ST_eri_2018_web_link_Part9.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "a724012bb7c32eecc408c63535240d1a4dce29c732b988d03357e50cdafbefb9",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

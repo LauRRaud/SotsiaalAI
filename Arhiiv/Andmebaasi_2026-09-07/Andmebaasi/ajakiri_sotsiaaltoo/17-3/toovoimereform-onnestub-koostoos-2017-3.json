@@ -1,0 +1,80 @@
+{
+  "docId": "sotsiaaltoo-3-2017",
+  "articleId": "toovoimereform-onnestub-koostoos-2017-3",
+  "title": "Töövõimereform õnnestub koostöös",
+  "authors": [
+    "Marge Arusoo"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2017",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "42-44",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Eesti Töötukassa peaspetsialist-sisekoolitaja ülevaade töövõimereformi esimesest aastast töötukassa vaatest. Möödunud üheksa kuu statistika järgi on kuue kuuga töö leidnud iga kolmas ja aasta jooksul iga teine vähenenud töövõimega tööotsija. Rõhutab, et olulisim ei ole hindamine ja toetuse maksmine, vaid tööle saamiseks või tööl püsimiseks vajalike teenuste osutamine, ning et selles on tähtis võrgustikutöö.",
+  "tags": [
+    "töövõimereform",
+    "töötukassa",
+    "tööhõive",
+    "võrgustikutöö",
+    "vähenenud töövõime"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part12.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2017-toovoimereform-onnestub-koostoos-2017-3",
+  "source_sha256": "986a02962060571c43edb9987b23bb33ae750b8abaf4c6d893b5e01f45a1c64b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2017-toovoimereform-onnestub-koostoos-2017-3",
+    "previous_source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part12.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part12.pdf",
+    "reference_stored_source_sha256": "81cc71cdc6f88a3e618e98000280d75b1c6f1d321be13acaea018bd09fe85b79",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf",
+      "source_sha256": "3f27c22982b22a396dace8a957798cc21d3240489c7ce4d92802bf1a94bde7a8",
+      "pdf_start_page": 44,
+      "pdf_end_page": 46,
+      "printed_page_range": "42-44",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 46,
+      "source_regions": [
+        {
+          "source_pdf_page": 44,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 45,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 46,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "42-44"
+    },
+    "server_page_range": "42-44"
+  }
+}

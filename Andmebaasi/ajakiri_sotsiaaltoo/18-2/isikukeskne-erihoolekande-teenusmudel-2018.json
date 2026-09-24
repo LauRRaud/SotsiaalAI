@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-2-2018",
+  "articleId": "isikukeskse-erihoolekande-teenusmudel-kaheksas-omavalitsuses-2018",
+  "title": "Isikukeskse erihoolekande teenusmudel kaheksas omavalitsuses",
+  "authors": [
+    "Katrin Tsuiman"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2018",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "33-36",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kirjeldatakse isikukeskse erihoolekande teenusmudeli katsetamist kaheksas omavalitsuses: toetusvajaduse hindamine, teenuskomponentidest koosnevad paketid, isiklik eelarve, omavalitsuse rolli kasv ning kogemused, mis aitavad erihoolekannet muuta paindlikumaks ja inimese vajadustest lähtuvaks.",
+  "tags": [
+    "isikukeskne teenusmudel",
+    "erihoolekanne",
+    "psüühikahäirega inimesed",
+    "kohalik omavalitsus",
+    "teenuskomponendid",
+    "isiklik eelarve",
+    "hoolduskoordinatsioon",
+    "teenusedisain",
+    "pilootprojektid"
+  ],
+  "source_type": "file",
+  "source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part10.pdf",
+  "document_id": "sotsiaaltoo-2-2018-isikukeskse-erihoolekande-teenusmudel-kaheksas-omavalitsuses-2018",
+  "source_format": "pdf",
+  "source_sha256": "1da3e3deb8de5e7e715e80a7d304b610e8601fa5cb7e8397ee1fd546837857f8",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2018-isikukeskse-erihoolekande-teenusmudel-kaheksas-omavalitsuses-2018",
+    "previous_source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part10.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "1da3e3deb8de5e7e715e80a7d304b610e8601fa5cb7e8397ee1fd546837857f8",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

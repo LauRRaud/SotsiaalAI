@@ -1,0 +1,314 @@
+{
+  "release": "5074b5e03f9fa7708b6ad3db9f8bb9ca243c8d08",
+  "runtimeCode": "dba8e06d8cb82f23d9d9aaf100469c88eaea915d",
+  "buildId": "kDAqeRc59ock3wOuMJUDt",
+  "id": "U75-F07",
+  "question": "Mitu EL-i rändekava alusel saabunud leibkonda ja inimest elas Tartus 2017. aasta novembris ning kuidas leibkonnad jagunesid Priit Kiilaspä artikli järgi?",
+  "mode": "isolated",
+  "emptyConversationObserved": true,
+  "previousVisibleTestTurns": 0,
+  "startedAt": "2026-08-31T15:28:35.333Z",
+  "answerObservedAt": "2026-08-31T15:29:06.256Z",
+  "visibleAnswer": "Assistent:\n\nMa ei saa sellele praegu piisavalt kindlat vastust anda.\n\n18:28",
+  "sourceButtonCount": 0,
+  "visibleExplanation": "Miks süsteem nii otsustas?\n\nNeed on salvestatud otsuse sisendid ja tingimused, mitte automaatne algpõhjuse garantii. Allikaaastate vastuolu korral võrdle küsimuse perioodi ja artikli ilmumisaastat. Ajaloo arvud kirjeldavad selle päringu valikut, mitte vestluse kogupikkust.\n\nPlanneri valitud allikaaastad\nÜhtegi ei salvestatud\nPlanneri valitud mõõtmisperioodi aastad\nÜhtegi ei salvestatud\nKuidas aastamainimisi tõlgendati\n2017: ebaselge roll\nOtsustava värava põhjus\nÜkski nõutud dokumendiluku tingimuste kombinatsioon ei leidnud kinnitust.\nKandidaat enne lõppväravat\nsotsiaaltoo-4-2017-pagulastega-too-tartu-2017\nKandidaadi allikaaasta\n2017\nKõik nõutud autorid kinnitatud\nJah\nPäringuga saabunud ajaloosõnumeid\n0\nOtsinguajalugu: sisend → valitud\n0 → 0\nMudeliajalugu: saadaval → valitud\n0 → 0\nMudeliajaloo valiku põhjus\nKüsimus hinnati iseseisvaks; mudelile varasemat ajalugu ei lisatud.",
+  "diagnostics": {
+    "schema_version": "rag_diagnostics_v2",
+    "trace_id": "turn:cmthe85kh005vtzkm7amo2lmz:attempt:1",
+    "pairing_evidence": {
+      "turn_id": "cmthe85kh005vtzkm7amo2lmz",
+      "user_message_id": "cmthe85kf005utzkmdqhb30fj",
+      "attempt": 1
+    },
+    "technical_status": "BLOCKED",
+    "answer_correctness": "NOT_PROVEN",
+    "root_cause_status": "NOT_PROVEN",
+    "first_observed_failure": {
+      "id": "identity",
+      "status": "BLOCKED",
+      "code": "document_identity_mismatch",
+      "evidence_paths": [
+        "document_identity"
+      ]
+    },
+    "limitations": [
+      "automatic_checks_are_not_answer_correctness",
+      "blocking_gate_is_not_necessarily_root_cause",
+      "model_draft_not_logged"
+    ],
+    "runtime_missing_fields": [
+      "build_id",
+      "release_sha",
+      "prompt_hash",
+      "index_generation"
+    ],
+    "runtime": {
+      "configured_model": "gpt-5.6-luna",
+      "history_message_count": 0
+    },
+    "stages": [
+      {
+        "id": "planning",
+        "status": "OBSERVED",
+        "code": "plan_recorded",
+        "evidence_paths": [
+          "query_plan"
+        ]
+      },
+      {
+        "id": "retrieval",
+        "status": "OBSERVED",
+        "code": "retrieval_recorded",
+        "evidence_paths": [
+          "retrieved_count",
+          "retrieved_source_ids",
+          "conversational_recovery"
+        ]
+      },
+      {
+        "id": "identity",
+        "status": "BLOCKED",
+        "code": "document_identity_mismatch",
+        "evidence_paths": [
+          "document_identity"
+        ]
+      },
+      {
+        "id": "context",
+        "status": "NOT_PROVEN",
+        "code": "rendered_context_not_identified",
+        "evidence_paths": [
+          "rendered_context_hash",
+          "model_context_source_ids"
+        ]
+      },
+      {
+        "id": "validation",
+        "status": "NOT_PROVEN",
+        "code": "validation_result_not_recorded",
+        "evidence_paths": [
+          "fact_validation"
+        ]
+      },
+      {
+        "id": "attribution",
+        "status": "OBSERVED",
+        "code": "source_attribution",
+        "evidence_paths": [
+          "attribution_decisions",
+          "displayed_source_ids"
+        ]
+      },
+      {
+        "id": "persistence",
+        "status": "OBSERVED",
+        "code": "completed",
+        "evidence_paths": [
+          "ChatTurn.status"
+        ]
+      }
+    ],
+    "evidence": {
+      "source": "assistant_message.metadata.rag_trace",
+      "present": true,
+      "trace_level": "retrieved_candidates",
+      "counts": {
+        "retrieved_count": 9,
+        "selected_context_count": 0,
+        "rendered_context_chars": 0,
+        "selected_source_count": 0,
+        "answer_source_count": 0,
+        "displayed_source_count": 0
+      },
+      "context_hash": null,
+      "sources": {
+        "retrieved_source_ids": [
+          "sotsiaaltoo_pagulastega-too-tartu-2017"
+        ],
+        "selected_context_source_ids": [],
+        "model_context_source_ids": [],
+        "validated_supporting_source_ids": [],
+        "claim_supported_source_ids": [],
+        "answer_source_ids": [],
+        "displayed_source_ids": []
+      },
+      "omissions": [
+        {
+          "path": "document_identity.reasons",
+          "reason": "redacted_or_invalid",
+          "omitted": 20
+        },
+        {
+          "path": "document_identity.reasons",
+          "reason": "upstream_item_limit",
+          "omitted": 6
+        }
+      ],
+      "plan": {
+        "observed": true,
+        "mode": "specific_research_fact",
+        "selection_strategy": "document_identity_then_fact",
+        "history_reference": {
+          "explicit_source_anaphora": false,
+          "carry_previous_source_filter": false
+        },
+        "years": {
+          "observed": true,
+          "source_years": [],
+          "evidence_period_years": [],
+          "mentions_observed": true,
+          "mentions": [
+            {
+              "value": "2017",
+              "role": "ambiguous",
+              "method": "no_explicit_year_cue"
+            }
+          ],
+          "unselected_source_years": []
+        }
+      },
+      "history": {
+        "observed": true,
+        "request_raw_count": 0,
+        "normalized_client_count": 0,
+        "retrieval_input_count": 0,
+        "retrieval_selected_count": 0,
+        "model_available_count": 0,
+        "model_selected_count": 0,
+        "retrieval_input_origin": "client_payload",
+        "model_selection_reason": "self_contained",
+        "retrieval_exclusion_reasons": []
+      },
+      "identity": {
+        "observed": true,
+        "confidence": "low",
+        "matched": false,
+        "required": true,
+        "enabled": true,
+        "reasons": [],
+        "reason_count": 26,
+        "reasons_omitted": 6,
+        "decision": {
+          "stage": "initial_lock",
+          "reason": "document_anchor_not_confirmed",
+          "candidate_document_id": "sotsiaaltoo-4-2017-pagulastega-too-tartu-2017",
+          "candidate_confidence": "high",
+          "eligible": false,
+          "candidate_matched": true,
+          "selected_source_year": "2017",
+          "required_source_years": [],
+          "confirmed_source_years": [],
+          "unconfirmed_source_years": [],
+          "checks": {
+            "exact_title_confirmed": false,
+            "canonical_title_confirmed": false,
+            "all_authors_confirmed": true,
+            "all_source_years_confirmed": false,
+            "author_confirmation_trusted": false
+          }
+        },
+        "candidates": [
+          {
+            "document_id": "sotsiaaltoo-4-2017-pagulastega-too-tartu-2017",
+            "score": 64,
+            "subject_match_count": 7,
+            "body_subject_match_count": 7,
+            "identity_matched": true,
+            "author_matched": true,
+            "source_compatible": true,
+            "source_year_compatible": true,
+            "resolved_source_year": "2017",
+            "source_year_matches": []
+          }
+        ]
+      },
+      "metric_contract": {
+        "observed": false
+      },
+      "validation": {
+        "observed": false,
+        "bindings": [],
+        "metric_bindings": [],
+        "relation_diagnostics": []
+      },
+      "claims": [
+        {
+          "claim_id": "claim_1",
+          "claim_hash": "30730126",
+          "supporting_source_ids": []
+        }
+      ],
+      "recovery": {
+        "observed": true,
+        "reason": "clarification_model_failed",
+        "action": "state_evidence_limit",
+        "trigger": "no_confirmed_context",
+        "target": "none",
+        "reply_source": "deterministic_fallback",
+        "clarification_guard": "closed_lexicon_or_typo_correction",
+        "active": false,
+        "question_asked": false,
+        "external_knowledge_allowed": false,
+        "technical_status_allowed": false,
+        "model_call_count": 1,
+        "additional_model_call_count": 0,
+        "correction_hint_count": 0,
+        "missing_fields": []
+      },
+      "attribution": {
+        "observed": true,
+        "displayed_sources_subset_of_selected": true,
+        "displayed_sources_subset_of_answer": true,
+        "decisions": []
+      },
+      "context": [],
+      "timings": {
+        "planner_ms": 58,
+        "query_planning_ms": 1,
+        "query_build_ms": 1,
+        "retrieval_wall_ms": 2154,
+        "multi_query_retrieval_ms": 4287,
+        "retrieval_parallel_sum_ms": 4287,
+        "embedding_sum_ms": 750,
+        "embedding_ms": 750,
+        "dense_sum_ms": 541,
+        "dense_ms": 541,
+        "registry_ms": 956,
+        "lexical_sum_ms": 66,
+        "lexical_ms": 66,
+        "lemma_fts_shadow_ms": 0,
+        "document_sibling_sum_ms": 217,
+        "service_fact_segment_sum_ms": 906,
+        "document_identity_ms": 65,
+        "fact_segment_search_ms": 0,
+        "context_render_ms": 0,
+        "model_ms": 382,
+        "first_model_call_ms": 382,
+        "retrieval_context_total_ms": 2345
+      },
+      "projection_excludes": [
+        "raw_prompt_and_question",
+        "source_body_previews",
+        "model_draft",
+        "free_text_planner_terms",
+        "full_unbounded_runtime_trace"
+      ],
+      "insufficient_evidence": false,
+      "missing_sections": [],
+      "coverage": "LIMITED"
+    }
+  },
+  "reference": "message:cmthe85vt005ytzkm0krd2mfx",
+  "reportHref": "/api/chat/conversations/conv-b2da92fe-73a2-4230-9b09-309e1537bb85/diagnostics?format=md&lang=et",
+  "assessment": {
+    "result": "FAIL",
+    "reason": "Õige aktiivne artikkel leiti, kuid dokumendilukk blokeeris; neli leibkonda, kümme inimest ja koosseis jäid vastamata.",
+    "criteria": {
+      "C1": "MISSING",
+      "C2": "MISSING"
+    },
+    "firstObservedFailure": "document_identity_mismatch",
+    "rootCauseStatus": "UNDER_INVESTIGATION",
+    "sourcePanel": "NOT_AVAILABLE"
+  }
+}

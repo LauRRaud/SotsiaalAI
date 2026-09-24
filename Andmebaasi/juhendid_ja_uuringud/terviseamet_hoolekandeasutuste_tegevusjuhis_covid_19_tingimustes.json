@@ -1,0 +1,98 @@
+{
+  "source_path": "terviseamet_hoolekandeasutuste_tegevusjuhis_covid_19_tingimustes.pdf",
+  "source_format": "pdf",
+  "sha256": "57b5dace4b307c6bb53e6b8adc895b83425bef20aa98e044a260ef6a028bcf54",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/terviseamet_hoolekandeasutuste_tegevusjuhis_covid_19_tingimustes.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "terviseamet_hoolekandeasutuste_tegevusjuhis_covid_19_tingimustes",
+          "title": "Hoolekandeasutuste tegevusjuhis COVID-19 tingimustes",
+          "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-11/Hoolekandeasutuste%20tegevusjuhis%20COVID-19%20tingimustes.pdf",
+          "normalized_url": "https://www.terviseamet.ee/sites/default/files/documents/2024-11/Hoolekandeasutuste tegevusjuhis COVID-19 tingimustes.pdf",
+          "source_format": "pdf",
+          "source_type": "official_guideline",
+          "resource_type": "method_guidance",
+          "publisher": "Terviseamet",
+          "organization_id": "terviseamet",
+          "collection_hint": "guidance_and_methods",
+          "evidence_role": "practice_guidance",
+          "topic_tags": [
+            "Terviseamet",
+            "hoolekanne",
+            "sotsiaalteenused",
+            "hooldus",
+            "hooldekodu",
+            "hoolekandeasutus",
+            "tervishoid",
+            "nakkushaigused",
+            "infektsioonikontroll",
+            "COVID-19",
+            "spetsialisti juhend"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "low",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_052",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "Terviseamet",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 299,
+            "order": 174
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Hoolekandeasutuste tegevusjuhis COVID-19 tingimustes"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Terviseamet"
+          ],
+          "organizations_seen": [
+            "terviseamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Terviseamet",
+              "line": 299,
+              "order": 174
+            },
+            {
+              "heading_2": "Terviseamet",
+              "line": 773,
+              "order": 381
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.terviseamet.ee/sites/default/files/documents/2024-11/Hoolekandeasutuste tegevusjuhis COVID-19 tingimustes.pdf",
+          "priority_note": "covid-era guidance; deprioritized 2026-06-11 per owner decision"
+        },
+        "final_url": "https://www.terviseamet.ee/sites/default/files/documents/2024-11/Hoolekandeasutuste%20tegevusjuhis%20COVID-19%20tingimustes.pdf",
+        "redirects": [],
+        "sha256": "57b5dace4b307c6bb53e6b8adc895b83425bef20aa98e044a260ef6a028bcf54",
+        "bytes": 229855,
+        "downloaded_at": "2026-08-14T08:00:37.575Z"
+      }
+    }
+  ],
+  "server_metadata": [],
+  "review_status": "metadata_conversion_pending"
+}

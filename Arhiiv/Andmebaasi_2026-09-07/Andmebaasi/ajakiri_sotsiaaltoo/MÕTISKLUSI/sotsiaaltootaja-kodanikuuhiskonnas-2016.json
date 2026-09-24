@@ -1,0 +1,48 @@
+{
+  "docId": "motisklusi-sotsiaaltoost-2016",
+  "articleId": "sotsiaaltootaja-kodanikuuhiskonnas-2016",
+  "title": "Sotsiaaltöötaja kodanikuühiskonnas",
+  "authors": [
+    "Jean Pierre Wilken"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "MÕTISKLUSI",
+  "section": "Peegeldusi Euroopast",
+  "publication_type": "artiklite kogumik",
+  "collectionTitle": "Mõtisklusi sotsiaaltööst",
+  "publisher": "Tervise Arengu Instituut",
+  "isbn": "978-9949-461-65-3",
+  "url": "https://www.tai.ee/sites/default/files/2022-01/147573713462_motisklusi_sotsiaaltoost_link.pdf",
+  "pageRange": "9-11",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel vaatleb sotsiaaltöö uut identiteeti kodanikuühiskonna ja osalusriigi tingimustes. Fookuses on kogukondade taaselustamine, inimeste võimestamine, professionaalse abi roll muutuvates heaolukorraldustes ning sotsiaaltöötaja ülesanne toetada haavatavate inimeste sidumist kogukonnaga.",
+  "tags": [
+    "kodanikuühiskond",
+    "kogukonnatöö",
+    "võimestamine",
+    "osalusriik",
+    "professionaalne hoolekanne",
+    "haavatavad grupid"
+  ],
+  "source_type": "file",
+  "source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part5.pdf",
+  "mapping_status": "VERIFIED",
+  "mapping_checked": "2026-08-15",
+  "mapping_note": "Tekstifragment ise ei sisalda numbrit ega aastat. 2016 on eraldiseisva artiklikogumiku „Mõtisklusi sotsiaaltööst“ ilmumisaasta, mitte ajakirjanumbri tähis; aasta ja kogumiku andmed kontrolliti TAI ametlikust tervik-PDF-ist ja juubelinumbri tagasivaatest.",
+  "document_id": "motisklusi-sotsiaaltoost-2016-sotsiaaltootaja-kodanikuuhiskonnas-2016",
+  "source_format": "pdf",
+  "source_sha256": "4d92621c3bc682c2285a5c8f4614e482a2768a9087ad5a58c539579aebcab37c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "motisklusi-sotsiaaltoost-2016-sotsiaaltootaja-kodanikuuhiskonnas-2016",
+    "previous_source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part5.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "4d92621c3bc682c2285a5c8f4614e482a2768a9087ad5a58c539579aebcab37c",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

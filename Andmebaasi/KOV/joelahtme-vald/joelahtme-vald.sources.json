@@ -1,0 +1,2200 @@
+{
+  "schemaVersion": "kov-sources-v2.5-sourcepackage",
+  "docId": "kov-joelahtme-vald",
+  "document_id": "kov-joelahtme-vald",
+  "municipality": "Jõelähtme vald",
+  "municipality_id": "joelahtme_vald",
+  "county": "Harjumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "sources": [
+    {
+      "source_id": "home",
+      "title": "Jõelähtme Vallavalitsuse avaleht",
+      "url": "https://joelahtme.kovtp.ee",
+      "url_canonical": "https://joelahtme.ee/",
+      "normalized_url": "https://joelahtme.ee/",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "navigation"
+      ],
+      "document_id": "home",
+      "source_key": "home",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "09247bc39053c93612f3ec545147a45c2ee72f575a94251f90f6fef71480566e",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "home"
+    },
+    {
+      "source_id": "social_services_overview",
+      "title": "Sotsiaalteenused",
+      "url": "https://joelahtme.ee/sotsiaalteenused1",
+      "url_canonical": "https://joelahtme.ee/sotsiaalteenused1",
+      "normalized_url": "https://joelahtme.ee/sotsiaalteenused1",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "navigation",
+        "service_overview"
+      ],
+      "document_id": "social_services_overview",
+      "source_key": "social_services_overview",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "19e10b9e7b1ebc1375f0beb066fd608d4757f8e5e33d5e0b5fb6ff87409ff2ac",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "social_services_overview"
+    },
+    {
+      "source_id": "social_benefits_overview",
+      "title": "Sotsiaaltoetused",
+      "url": "https://joelahtme.ee/sotsiaaltoetused1",
+      "url_canonical": "https://joelahtme.ee/sotsiaaltoetused1",
+      "normalized_url": "https://joelahtme.ee/sotsiaaltoetused1",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "navigation",
+        "benefit_overview"
+      ],
+      "document_id": "social_benefits_overview",
+      "source_key": "social_benefits_overview",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "f7d774621f4ce67cd16cd5603b866e26674970949606436a7fbc4f3441ebb766",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "social_benefits_overview"
+    },
+    {
+      "source_id": "social_contacts",
+      "title": "Ametnike kontaktid: sotsiaalosakond",
+      "url": "https://joelahtme.ee/ametnike-kontaktid",
+      "url_canonical": "https://joelahtme.ee/ametnike-kontaktid",
+      "normalized_url": "https://joelahtme.ee/ametnike-kontaktid",
+      "source_type": "contact_page",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "contacts"
+      ],
+      "document_id": "social_contacts",
+      "source_key": "social_contacts",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [],
+      "content_hash": "d1f23d8edea09a17d24c517a69ec5357ea9cd4775308dd929b86ed79d8cf8157",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "social_contacts"
+    },
+    {
+      "source_id": "forms_page",
+      "title": "Avaldused ja vormid: sotsiaal ja tervishoid",
+      "url": "https://joelahtme.ee/blanketid",
+      "url_canonical": "https://joelahtme.ee/blanketid",
+      "normalized_url": "https://joelahtme.ee/blanketid",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "forms",
+        "navigation"
+      ],
+      "document_id": "forms_page",
+      "source_key": "forms_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_benefit_eluruumide_kohandamise_toetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "e8f6f1dbf3301f903df4b0a7318914e1287a83c3c75ebd5083fc81e92a19e12e",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "forms_page"
+    },
+    {
+      "source_id": "social_protection_overview",
+      "title": "Sotsiaalkaitse korraldus",
+      "url": "https://joelahtme.ee/sotsiaalkaitse-korraldus1",
+      "url_canonical": "https://joelahtme.ee/sotsiaalkaitse-korraldus1",
+      "normalized_url": "https://joelahtme.ee/sotsiaalkaitse-korraldus1",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resource"
+      ],
+      "document_id": "social_protection_overview",
+      "source_key": "social_protection_overview",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_resource_sotsiaalkaitse_korraldus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "cdd2ef092faa6fb548869ee6be2cef84009859119df60dd05b095b9ddf342293",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "social_protection_overview"
+    },
+    {
+      "source_id": "eluasemeteenus_page",
+      "title": "Eluasemeteenus",
+      "url": "https://joelahtme.ee/eluasemeteenus",
+      "url_canonical": "https://joelahtme.ee/eluasemeteenus",
+      "normalized_url": "https://joelahtme.ee/eluasemeteenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service"
+      ],
+      "document_id": "eluasemeteenus_page",
+      "source_key": "eluasemeteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_service_eluasemeteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "04fedd8007499085ba8ed83c23239f87b53433a02e409ea9c91c697bd7a6916d",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "eluasemeteenus_page"
+    },
+    {
+      "source_id": "koduteenus_page",
+      "title": "Koduteenus",
+      "url": "https://joelahtme.ee/koduteenus",
+      "url_canonical": "https://joelahtme.ee/koduteenus",
+      "normalized_url": "https://joelahtme.ee/koduteenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service"
+      ],
+      "document_id": "koduteenus_page",
+      "source_key": "koduteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_service_koduteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "25166eff4cd9d2fcead1658dc77b24c683fd014642aacce6db4230f24e2d1bd8",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "koduteenus_page"
+    },
+    {
+      "source_id": "lapsehoiuteenus_page",
+      "title": "Lapsehoiuteenus",
+      "url": "https://joelahtme.ee/lapsehoiuteenus",
+      "url_canonical": "https://joelahtme.ee/lapsehoiuteenus",
+      "normalized_url": "https://joelahtme.ee/lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service"
+      ],
+      "document_id": "lapsehoiuteenus_page",
+      "source_key": "lapsehoiuteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_service_lapsehoiuteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "6c63e6b31eeb412c06b54421bf7ed12a293c284121b7a0dfe198b74bf21e8ef7",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "lapsehoiuteenus_page"
+    },
+    {
+      "source_id": "sotsiaaltransporditeenus_page",
+      "title": "Sotsiaaltransporditeenus",
+      "url": "https://joelahtme.ee/sotsiaaltransporditeenus",
+      "url_canonical": "https://joelahtme.ee/sotsiaaltransporditeenus",
+      "normalized_url": "https://joelahtme.ee/sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service"
+      ],
+      "document_id": "sotsiaaltransporditeenus_page",
+      "source_key": "sotsiaaltransporditeenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_service_sotsiaaltransporditeenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "ea5424f4fbff166d60310bd077cb95ac55159627c6f62bdb1b1295c0307bf6f1",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sotsiaaltransporditeenus_page"
+    },
+    {
+      "source_id": "tugiisikuteenus_page",
+      "title": "Tugiisikuteenus",
+      "url": "https://joelahtme.ee/tugiisikuteenus",
+      "url_canonical": "https://joelahtme.ee/tugiisikuteenus",
+      "normalized_url": "https://joelahtme.ee/tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service"
+      ],
+      "document_id": "tugiisikuteenus_page",
+      "source_key": "tugiisikuteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_service_tugiisikuteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "125a5cbcd1c21935240014bacf9d6612d477cc09b317b807ce3c5a23f170891e",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "tugiisikuteenus_page"
+    },
+    {
+      "source_id": "varjupaigateenus_page",
+      "title": "Varjupaigateenus",
+      "url": "https://joelahtme.ee/varjupaigateenus",
+      "url_canonical": "https://joelahtme.ee/varjupaigateenus",
+      "normalized_url": "https://joelahtme.ee/varjupaigateenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service"
+      ],
+      "document_id": "varjupaigateenus_page",
+      "source_key": "varjupaigateenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_service_varjupaigateenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "de692a8e52c19225427547520d77840e3e0e0ac0848cf8190a96a91fccdca15c",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "varjupaigateenus_page"
+    },
+    {
+      "source_id": "isikliku_abistaja_teenus_page",
+      "title": "Isikliku abistaja teenus",
+      "url": "https://joelahtme.ee/isikliku-abistaja-teenus",
+      "url_canonical": "https://joelahtme.ee/isikliku-abistaja-teenus",
+      "normalized_url": "https://joelahtme.ee/isikliku-abistaja-teenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service"
+      ],
+      "document_id": "isikliku_abistaja_teenus_page",
+      "source_key": "isikliku_abistaja_teenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_service_isikliku_abistaja_teenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "27c804186fcbc2d042fcca332242812233fe404dc990eaefe358c336276a11c6",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "isikliku_abistaja_teenus_page"
+    },
+    {
+      "source_id": "hoolduse_seadmine_page",
+      "title": "Hoolduse seadmine ja hooldaja määramine",
+      "url": "https://joelahtme.ee/hoolduse-seadmine",
+      "url_canonical": "https://joelahtme.ee/hoolduse-seadmine",
+      "normalized_url": "https://joelahtme.ee/hoolduse-seadmine",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service"
+      ],
+      "document_id": "hoolduse_seadmine_page",
+      "source_key": "hoolduse_seadmine_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_benefit_hooldajatoetus",
+        "joelahtme_vald_service_hoolduse_seadmine"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "e34fe6fed3ef8e8a8569e101ca4e15368eeb50c47c534ab035ba836873694380",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "hoolduse_seadmine_page"
+    },
+    {
+      "source_id": "turvakoduteenus_page",
+      "title": "Turvakoduteenus",
+      "url": "https://joelahtme.ee/turvakoduteenusele",
+      "url_canonical": "https://joelahtme.ee/turvakoduteenusele",
+      "normalized_url": "https://joelahtme.ee/turvakoduteenusele",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service"
+      ],
+      "document_id": "turvakoduteenus_page",
+      "source_key": "turvakoduteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_resource_tallinna_naiste_kriisikodu",
+        "joelahtme_vald_service_turvakoduteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "b6bde7141857589b0571d55b54b186dd90eaa8a573de9546a0db73304d5abcc9",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "turvakoduteenus_page"
+    },
+    {
+      "source_id": "volanoustamisteenus_page",
+      "title": "Võlanõustamisteenus",
+      "url": "https://joelahtme.ee/volanoustamisteenus",
+      "url_canonical": "https://joelahtme.ee/volanoustamisteenus",
+      "normalized_url": "https://joelahtme.ee/volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service"
+      ],
+      "document_id": "volanoustamisteenus_page",
+      "source_key": "volanoustamisteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_service_volanoustamisteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "9b639b7e5c38346451a04e8802c78522c91f05e8f3b9821ea7d1e32d193d9345",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "volanoustamisteenus_page"
+    },
+    {
+      "source_id": "uldhooldusteenus_page",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "url": "https://joelahtme.ee/uldhooldusteenus",
+      "url_canonical": "https://joelahtme.ee/uldhooldusteenus",
+      "normalized_url": "https://joelahtme.ee/uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service"
+      ],
+      "document_id": "uldhooldusteenus_page",
+      "source_key": "uldhooldusteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_service_uldhooldusteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "975db1a23aec538aa4589e4efb84356e446ec91e19a1ab80a7b64967fcfa66c3",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "uldhooldusteenus_page"
+    },
+    {
+      "source_id": "toetavad_teenused_puudega_lastele_page",
+      "title": "Toetavad teenused raske ja sügava puudega lastele",
+      "url": "https://joelahtme.ee/toetavad-teenused-raske-ja-sugava-puudega-lastele",
+      "url_canonical": "https://joelahtme.ee/toetavad-teenused-raske-ja-sugava-puudega-lastele",
+      "normalized_url": "https://joelahtme.ee/toetavad-teenused-raske-ja-sugava-puudega-lastele",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service"
+      ],
+      "document_id": "toetavad_teenused_puudega_lastele_page",
+      "source_key": "toetavad_teenused_puudega_lastele_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_service_toetavad_teenused_puudega_lastele"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "64c511716e1fc6daa7cb173e126c0bb9f1036f5a30a4c93a15070becbebdbeda",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "toetavad_teenused_puudega_lastele_page"
+    },
+    {
+      "source_id": "integreeritud_hoolekandeteenus_page",
+      "title": "Integreeritud hoolekandeteenus",
+      "url": "https://joelahtme.ee/integreeritud-hoolekandeteenus",
+      "url_canonical": "https://joelahtme.ee/integreeritud-hoolekandeteenus",
+      "normalized_url": "https://joelahtme.ee/integreeritud-hoolekandeteenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "service"
+      ],
+      "document_id": "integreeritud_hoolekandeteenus_page",
+      "source_key": "integreeritud_hoolekandeteenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_service_integreeritud_hoolekandeteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "b893e07aa7b7e0fb6453f9ef87cdad1f354493b37443ad4794bba726585a04d4",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "integreeritud_hoolekandeteenus_page"
+    },
+    {
+      "source_id": "toimetulekutoetus_page",
+      "title": "Toimetulekutoetus",
+      "url": "https://joelahtme.ee/toimetulekutoetus",
+      "url_canonical": "https://joelahtme.ee/toimetulekutoetus",
+      "normalized_url": "https://joelahtme.ee/toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "benefit"
+      ],
+      "document_id": "toimetulekutoetus_page",
+      "source_key": "toimetulekutoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_benefit_toimetulekutoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "42ba2786bdf6dee862e888d61ce353eaafefd7300665a5f506ef195bcbf62e2b",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "toimetulekutoetus_page"
+    },
+    {
+      "source_id": "toimetulekut_soodustavad_toetused_page",
+      "title": "Toimetulekut soodustavad sotsiaaltoetused",
+      "url": "https://joelahtme.ee/toimetulekut-soodustavad-sotsiaaltoetused",
+      "url_canonical": "https://joelahtme.ee/toimetulekut-soodustavad-sotsiaaltoetused",
+      "normalized_url": "https://joelahtme.ee/toimetulekut-soodustavad-sotsiaaltoetused",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "benefit"
+      ],
+      "document_id": "toimetulekut_soodustavad_toetused_page",
+      "source_key": "toimetulekut_soodustavad_toetused_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_benefit_erakorraline_toetus_ja_valtimatu_sotsiaalabi",
+        "joelahtme_vald_benefit_kuttetoetus",
+        "joelahtme_vald_benefit_lastega_perede_toetus",
+        "joelahtme_vald_benefit_tervisetoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "802b403920abcbca997b714c43bdd2b80b72755be6558174e41d00a235b38cb6",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "toimetulekut_soodustavad_toetused_page"
+    },
+    {
+      "source_id": "sunnitoetus_page",
+      "title": "Sünnitoetus",
+      "url": "https://joelahtme.ee/sunnitoetus",
+      "url_canonical": "https://joelahtme.ee/sunnitoetus",
+      "normalized_url": "https://joelahtme.ee/sunnitoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "benefit"
+      ],
+      "document_id": "sunnitoetus_page",
+      "source_key": "sunnitoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_benefit_sunnitoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "2307a31f5f989ed481cc992679e2de04fd4491a4dd0befab464c159492bd5a07",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sunnitoetus_page"
+    },
+    {
+      "source_id": "ranitsatoetus_page",
+      "title": "Ranitsatoetus",
+      "url": "https://joelahtme.ee/ranitsatoetus",
+      "url_canonical": "https://joelahtme.ee/ranitsatoetus",
+      "normalized_url": "https://joelahtme.ee/ranitsatoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "benefit"
+      ],
+      "document_id": "ranitsatoetus_page",
+      "source_key": "ranitsatoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_benefit_ranitsatoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "c570489d507feb33a2379270a3fc5d6bd484648da8b334e09802882babbe8f5d",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "ranitsatoetus_page"
+    },
+    {
+      "source_id": "koolitoetus_page",
+      "title": "Koolitoetus",
+      "url": "https://joelahtme.ee/koolitoetus",
+      "url_canonical": "https://joelahtme.ee/koolitoetus",
+      "normalized_url": "https://joelahtme.ee/koolitoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "benefit"
+      ],
+      "document_id": "koolitoetus_page",
+      "source_key": "koolitoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_benefit_koolitoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "69ce8ef142f07627d8e9e8d75ab43d47af89ebbdeeaf398aee66e6ee5acf12fd",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "koolitoetus_page"
+    },
+    {
+      "source_id": "medaliga_kiitusega_lopetanu_toetus_page",
+      "title": "Medaliga ning kiitusega lõpetanu toetus",
+      "url": "https://joelahtme.ee/medaliga-ning-kiitusega-lopetanu-toetus",
+      "url_canonical": "https://joelahtme.ee/medaliga-ning-kiitusega-lopetanu-toetus",
+      "normalized_url": "https://joelahtme.ee/medaliga-ning-kiitusega-lopetanu-toetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "benefit"
+      ],
+      "document_id": "medaliga_kiitusega_lopetanu_toetus_page",
+      "source_key": "medaliga_kiitusega_lopetanu_toetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_benefit_medaliga_kiitusega_lopetanu_toetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "263d56b48f6d024eb3fc33c9dbe002dacb2d3e64ce18dea0d1450caf2fd4982e",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "medaliga_kiitusega_lopetanu_toetus_page"
+    },
+    {
+      "source_id": "matusetoetus_page",
+      "title": "Matusetoetus",
+      "url": "https://joelahtme.ee/matusetoetus",
+      "url_canonical": "https://joelahtme.ee/matusetoetus",
+      "normalized_url": "https://joelahtme.ee/matusetoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "benefit"
+      ],
+      "document_id": "matusetoetus_page",
+      "source_key": "matusetoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_benefit_matusetoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "a6de2835ffce19337d0bbc796110707343e45577688fb6d8ca27acf31b112603",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "matusetoetus_page"
+    },
+    {
+      "source_id": "lapsehoiuteenuse_toetus_page",
+      "title": "Lapsehoiuteenuse toetus",
+      "url": "https://joelahtme.ee/lapsehoiuteenuse-toetus",
+      "url_canonical": "https://joelahtme.ee/lapsehoiuteenuse-toetus",
+      "normalized_url": "https://joelahtme.ee/lapsehoiuteenuse-toetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "benefit"
+      ],
+      "document_id": "lapsehoiuteenuse_toetus_page",
+      "source_key": "lapsehoiuteenuse_toetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_benefit_lapsehoiuteenuse_toetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "945beba6b3c4991c577930d6785fa27f580ef8370dd8521a179b0fc1c3929baf",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "lapsehoiuteenuse_toetus_page"
+    },
+    {
+      "source_id": "hooldajatoetus_page",
+      "title": "Hooldajatoetus",
+      "url": "https://joelahtme.ee/hooldajatoetus",
+      "url_canonical": "https://joelahtme.ee/hooldajatoetus",
+      "normalized_url": "https://joelahtme.ee/hooldajatoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "benefit"
+      ],
+      "document_id": "hooldajatoetus_page",
+      "source_key": "hooldajatoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "0749daba5ffe23d714918a7b06e41d80aa13df132085300570c5a10f77186f14",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "hooldajatoetus_page"
+    },
+    {
+      "source_id": "opilaste_soit_page",
+      "title": "Õpilaste sõiduõigus ja sõidukulude hüvitamine",
+      "url": "https://joelahtme.ee/opilaste-soit",
+      "url_canonical": "https://joelahtme.ee/opilaste-soit",
+      "normalized_url": "https://joelahtme.ee/opilaste-soit",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "benefit"
+      ],
+      "document_id": "opilaste_soit_page",
+      "source_key": "opilaste_soit_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_benefit_opilaste_soidukulude_huvitamine"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "cf5ad7c1cfb737da1a2a9e1339325410e47101b2970ab539b8dccfca9aa08548",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "opilaste_soit_page"
+    },
+    {
+      "source_id": "joulutoetus_page",
+      "title": "Jõulutoetus",
+      "url": "https://joelahtme.ee/joulutoetus",
+      "url_canonical": "https://joelahtme.ee/joulutoetus",
+      "normalized_url": "https://joelahtme.ee/joulutoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "benefit"
+      ],
+      "document_id": "joulutoetus_page",
+      "source_key": "joulutoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_benefit_joulutoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "bb92f99f20ed16e020fb979ab6549db076e271d4e55ad59038d93afe5985927d",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "joulutoetus_page"
+    },
+    {
+      "source_id": "eestkoste_page",
+      "title": "Eestkoste täisealisele inimesele",
+      "url": "https://joelahtme.ee/eestkoste-seadmine",
+      "url_canonical": "https://joelahtme.ee/eestkoste-seadmine",
+      "normalized_url": "https://joelahtme.ee/eestkoste-seadmine",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resource"
+      ],
+      "document_id": "eestkoste_page",
+      "source_key": "eestkoste_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_resource_eestkoste_taisealisele"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "7e8deb547746c72d7f9d42bc90d9ce1d966101dc1787d810dca271f23669c700",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "eestkoste_page"
+    },
+    {
+      "source_id": "erihoolekandeteenused_page",
+      "title": "Erihoolekandeteenused ja ISTE projekt",
+      "url": "https://joelahtme.ee/erihoolekandeteenused",
+      "url_canonical": "https://joelahtme.ee/erihoolekandeteenused",
+      "normalized_url": "https://joelahtme.ee/erihoolekandeteenused",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resource"
+      ],
+      "document_id": "erihoolekandeteenused_page",
+      "source_key": "erihoolekandeteenused_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_resource_erihoolekandeteenused_ja_iste"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "b548e54bcaf1385a8127a6538c00bfbd0e55ebf21664df8517995660fa0032ab",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "erihoolekandeteenused_page"
+    },
+    {
+      "source_id": "hairenuputeenus_page",
+      "title": "Häirenuputeenus",
+      "url": "https://joelahtme.ee/hairenuputeenus",
+      "url_canonical": "https://joelahtme.ee/hairenuputeenus",
+      "normalized_url": "https://joelahtme.ee/hairenuputeenus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resource"
+      ],
+      "document_id": "hairenuputeenus_page",
+      "source_key": "hairenuputeenus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_resource_hairenuputeenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "a3c2cb75d8c6575c13393ec8b01168c349c915b968b8847df525717c1fed36be",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "hairenuputeenus_page"
+    },
+    {
+      "source_id": "sotsiaaltootaja_vastuvotud_page",
+      "title": "Sotsiaaltöötaja vastuvõtud",
+      "url": "https://joelahtme.ee/sotsiaaltootaja-vastuvotud",
+      "url_canonical": "https://joelahtme.ee/sotsiaaltootaja-vastuvotud",
+      "normalized_url": "https://joelahtme.ee/sotsiaaltootaja-vastuvotud",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resource"
+      ],
+      "document_id": "sotsiaaltootaja_vastuvotud_page",
+      "source_key": "sotsiaaltootaja_vastuvotud_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_resource_sotsiaaltootaja_vastuvotud"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "83dffadd3ab23a462e33219e9a99dd88cf909d92bba7c472cc3ea7f0a1a5cd36",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sotsiaaltootaja_vastuvotud_page"
+    },
+    {
+      "source_id": "parkimiskaart_page",
+      "title": "Liikumispuudega või pimedat inimest teenindava sõiduki parkimiskaart",
+      "url": "https://joelahtme.ee/liikumispuudega-voi-pimedat-inimest-teenindava-soiduki-parkimiskaardi-taotlemine",
+      "url_canonical": "https://joelahtme.ee/liikumispuudega-voi-pimedat-inimest-teenindava-soiduki-parkimiskaardi-taotlemine",
+      "normalized_url": "https://joelahtme.ee/liikumispuudega-voi-pimedat-inimest-teenindava-soiduki-parkimiskaardi-taotlemine",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resource"
+      ],
+      "document_id": "parkimiskaart_page",
+      "source_key": "parkimiskaart_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_resource_parkimiskaart"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "7d27415f25c66bb28bdf1036ef2b18fc0940b96a42db9357dda65eac9254bf46",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "parkimiskaart_page"
+    },
+    {
+      "source_id": "hoolekande_asutused_page",
+      "title": "Hoolekande asutused",
+      "url": "https://joelahtme.ee/hoolekande-asutused",
+      "url_canonical": "https://joelahtme.ee/hoolekande-asutused",
+      "normalized_url": "https://joelahtme.ee/hoolekande-asutused",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resource"
+      ],
+      "document_id": "hoolekande_asutused_page",
+      "source_key": "hoolekande_asutused_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_resource_ihasalu_pansionaat"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "75cca2e308f64bf0643838b7914be10628202be4b68bb2412763cac84966686b",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "hoolekande_asutused_page"
+    },
+    {
+      "source_id": "oigusabi_vahekindlustatule_page",
+      "title": "Õigusabi vähekindlustatule",
+      "url": "https://joelahtme.ee/oigusabi-vahekindlustatule",
+      "url_canonical": "https://joelahtme.ee/oigusabi-vahekindlustatule",
+      "normalized_url": "https://joelahtme.ee/oigusabi-vahekindlustatule",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "resource"
+      ],
+      "document_id": "oigusabi_vahekindlustatule_page",
+      "source_key": "oigusabi_vahekindlustatule_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_resource_oigusabi_vahekindlustatule"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "8b332d668e55ddb2328e58abf40acd84b3ca848de5569cd686a228f4b97c0b57",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "oigusabi_vahekindlustatule_page"
+    },
+    {
+      "source_id": "eluruumide_kohandamise_toetuse_avaldus_file",
+      "title": "Puuetega inimestele eluruumide kohandamise toetuse avaldus.RTF",
+      "url": "https://joelahtme.ee/documents///Puuetega%2Binimestele%2Beluruumide%2Bkohandamise%2Btoetuse%2Bavaldus.RTF/4554ed95-3bbb-4632-b294-da8fc598a462?version=1.0",
+      "url_canonical": "https://joelahtme.ee/documents///Puuetega%2Binimestele%2Beluruumide%2Bkohandamise%2Btoetuse%2Bavaldus.RTF/4554ed95-3bbb-4632-b294-da8fc598a462?version=1.0",
+      "normalized_url": "https://joelahtme.ee/documents///Puuetega%2Binimestele%2Beluruumide%2Bkohandamise%2Btoetuse%2Bavaldus.RTF/4554ed95-3bbb-4632-b294-da8fc598a462?version=1.0",
+      "source_type": "application_form",
+      "source_format": "rtf",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "eluruumide_kohandamise_toetuse_avaldus_file",
+      "source_key": "eluruumide_kohandamise_toetuse_avaldus_file",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_form_eluruumide_kohandamise_toetuse_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "0ef6bf743689dca0a8ff66b3b346db9dbf4acd4891ac9f2b6e4ea5dc1ee32256",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "eluruumide_kohandamise_toetuse_avaldus_file"
+    },
+    {
+      "source_id": "opilase_soidutoetuse_avaldus_file",
+      "title": "Avaldus õpilase sõidutoetuse taotlemiseks.RTF",
+      "url": "https://joelahtme.ee/documents///Avaldus%2B%C3%B5pilase%2Bs%C3%B5idutoetuse%2Btaotlemiseks.RTF/b1883e79-e03a-444a-86a8-80f0bccb3a5e?version=1.0",
+      "url_canonical": "https://joelahtme.ee/documents///Avaldus%2B%C3%B5pilase%2Bs%C3%B5idutoetuse%2Btaotlemiseks.RTF/b1883e79-e03a-444a-86a8-80f0bccb3a5e?version=1.0",
+      "normalized_url": "https://joelahtme.ee/documents///Avaldus%2B%C3%B5pilase%2Bs%C3%B5idutoetuse%2Btaotlemiseks.RTF/b1883e79-e03a-444a-86a8-80f0bccb3a5e?version=1.0",
+      "source_type": "application_form",
+      "source_format": "rtf",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "opilase_soidutoetuse_avaldus_file",
+      "source_key": "opilase_soidutoetuse_avaldus_file",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_form_opilase_soidutoetuse_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "090abe60f8ed048e7709014f0c07eafa6b16420d83769da95c2dc480a1b3fcbb",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "opilase_soidutoetuse_avaldus_file"
+    },
+    {
+      "source_id": "puudega_lapse_hooldajatoetuse_avaldus_file",
+      "title": "Puudega lapse hooldajatoetuse taotlemise avaldus.RTF",
+      "url": "https://joelahtme.ee/documents///Puudega%2Blapse%2Bhooldajatoetuse%2Btaotlemise%2Bavaldus.RTF/b0c86842-edf3-4093-8ef0-79353b5a5153?version=1.0",
+      "url_canonical": "https://joelahtme.ee/documents///Puudega%2Blapse%2Bhooldajatoetuse%2Btaotlemise%2Bavaldus.RTF/b0c86842-edf3-4093-8ef0-79353b5a5153?version=1.0",
+      "normalized_url": "https://joelahtme.ee/documents///Puudega%2Blapse%2Bhooldajatoetuse%2Btaotlemise%2Bavaldus.RTF/b0c86842-edf3-4093-8ef0-79353b5a5153?version=1.0",
+      "source_type": "application_form",
+      "source_format": "rtf",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "puudega_lapse_hooldajatoetuse_avaldus_file",
+      "source_key": "puudega_lapse_hooldajatoetuse_avaldus_file",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_form_puudega_lapse_hooldajatoetuse_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "a7d17677fb378aeeb3ff0adfe053b9791155cc7e6e585bb66b6e5c174d854ecc",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "puudega_lapse_hooldajatoetuse_avaldus_file"
+    },
+    {
+      "source_id": "lapsehoiuteenuse_toetuse_avaldus_file",
+      "title": "Avaldus lapsehoiuteenuse toetuse taotlemiseks.RTF",
+      "url": "https://joelahtme.ee/documents///Avaldus%2Blapsehoiuteenuse%2Btoetuse%2Btaotlemiseks.RTF/dd27469e-c6f7-4c97-ba5a-582872a3c48c?version=1.0",
+      "url_canonical": "https://joelahtme.ee/documents///Avaldus%2Blapsehoiuteenuse%2Btoetuse%2Btaotlemiseks.RTF/dd27469e-c6f7-4c97-ba5a-582872a3c48c?version=1.0",
+      "normalized_url": "https://joelahtme.ee/documents///Avaldus%2Blapsehoiuteenuse%2Btoetuse%2Btaotlemiseks.RTF/dd27469e-c6f7-4c97-ba5a-582872a3c48c?version=1.0",
+      "source_type": "application_form",
+      "source_format": "rtf",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "lapsehoiuteenuse_toetuse_avaldus_file",
+      "source_key": "lapsehoiuteenuse_toetuse_avaldus_file",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_form_lapsehoiuteenuse_toetuse_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "40216e6149fe5d70652137a886858bfa3d57d81b8da03c3078ce2c627fb488fd",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "lapsehoiuteenuse_toetuse_avaldus_file"
+    },
+    {
+      "source_id": "toimetulekutoetuse_avaldus_file",
+      "title": "Toimetulekutoetuse taotlemise avaldus.RTF",
+      "url": "https://joelahtme.ee/documents///Toimetulekutoetuse%2Btaotlemise%2Bavaldus.RTF/c3b5cbef-dfb3-413a-8546-7467ea640167?version=1.0",
+      "url_canonical": "https://joelahtme.ee/documents///Toimetulekutoetuse%2Btaotlemise%2Bavaldus.RTF/c3b5cbef-dfb3-413a-8546-7467ea640167?version=1.0",
+      "normalized_url": "https://joelahtme.ee/documents///Toimetulekutoetuse%2Btaotlemise%2Bavaldus.RTF/c3b5cbef-dfb3-413a-8546-7467ea640167?version=1.0",
+      "source_type": "application_form",
+      "source_format": "rtf",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "toimetulekutoetuse_avaldus_file",
+      "source_key": "toimetulekutoetuse_avaldus_file",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_form_toimetulekutoetuse_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "154d702b888873f576f2ea2c25080f2b28b712b12c8e688c6e9d29a70cd8a113",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "toimetulekutoetuse_avaldus_file"
+    },
+    {
+      "source_id": "taotleja_varade_loetelu_file",
+      "title": "Taotleja varade loetelu vorm.RTF",
+      "url": "https://joelahtme.ee/documents///Taotleja%2Bvarade%2Bloetelu%2Bvorm.RTF/303f8e12-75ca-429b-8198-223ac1b7b0a5?version=1.0",
+      "url_canonical": "https://joelahtme.ee/documents///Taotleja%2Bvarade%2Bloetelu%2Bvorm.RTF/303f8e12-75ca-429b-8198-223ac1b7b0a5?version=1.0",
+      "normalized_url": "https://joelahtme.ee/documents///Taotleja%2Bvarade%2Bloetelu%2Bvorm.RTF/303f8e12-75ca-429b-8198-223ac1b7b0a5?version=1.0",
+      "source_type": "application_form",
+      "source_format": "rtf",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "taotleja_varade_loetelu_file",
+      "source_key": "taotleja_varade_loetelu_file",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_form_taotleja_varade_loetelu"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "5e7b05906c1032df6bc8d99d114c1cd2703120781da45768751c4dc50e22e36b",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "taotleja_varade_loetelu_file"
+    },
+    {
+      "source_id": "sotsiaaltoetuse_avaldus_pdf_file",
+      "title": "Sotsiaaltoetuse avaldus.RTF.pdf",
+      "url": "https://joelahtme.ee/documents///Sotsiaaltoetuse%2Bavaldus.RTF.pdf/535c3a6d-fbd2-426d-b75a-ba0cda33ba75?version=1.0",
+      "url_canonical": "https://joelahtme.ee/documents///Sotsiaaltoetuse%2Bavaldus.RTF.pdf/535c3a6d-fbd2-426d-b75a-ba0cda33ba75?version=1.0",
+      "normalized_url": "https://joelahtme.ee/documents///Sotsiaaltoetuse%2Bavaldus.RTF.pdf/535c3a6d-fbd2-426d-b75a-ba0cda33ba75?version=1.0",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "sotsiaaltoetuse_avaldus_pdf_file",
+      "source_key": "sotsiaaltoetuse_avaldus_pdf_file",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_form_sotsiaaltoetuse_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "d878cb2450b81b2cb6ee19ea19dd4c28dd68dc20b61e928133623b4e51ccd205",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sotsiaaltoetuse_avaldus_pdf_file"
+    },
+    {
+      "source_id": "sotsiaalhoolekandelise_abi_taotlus_file",
+      "title": "Sotsiaalhoolekandelise abi taotlus.RTF",
+      "url": "https://joelahtme.ee/documents///Sotsiaalhoolekandelise%2Babi%2Btaotlus.RTF/75c05bec-9878-4165-b7fd-ec5eb08440ce?version=1.0",
+      "url_canonical": "https://joelahtme.ee/documents///Sotsiaalhoolekandelise%2Babi%2Btaotlus.RTF/75c05bec-9878-4165-b7fd-ec5eb08440ce?version=1.0",
+      "normalized_url": "https://joelahtme.ee/documents///Sotsiaalhoolekandelise%2Babi%2Btaotlus.RTF/75c05bec-9878-4165-b7fd-ec5eb08440ce?version=1.0",
+      "source_type": "application_form",
+      "source_format": "rtf",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "sotsiaalhoolekandelise_abi_taotlus_file",
+      "source_key": "sotsiaalhoolekandelise_abi_taotlus_file",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_form_sotsiaalhoolekandelise_abi_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "dd3d3347ab97a26d3f2c8c060c408962c1462b445b85db846776ba4567435198",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "sotsiaalhoolekandelise_abi_taotlus_file"
+    },
+    {
+      "source_id": "lasteaiatoidu_vabastuse_avaldus_file",
+      "title": "Avaldus lasteaiatoidu maksmisest vabastamiseks.RTF",
+      "url": "https://joelahtme.ee/documents///Avaldus%2Blasteaiatoidu%2Bmaksmisest%2Bvabastamiseks.RTF/826b1147-c3fb-4c21-937a-8a02c88fc018?version=1.0",
+      "url_canonical": "https://joelahtme.ee/documents///Avaldus%2Blasteaiatoidu%2Bmaksmisest%2Bvabastamiseks.RTF/826b1147-c3fb-4c21-937a-8a02c88fc018?version=1.0",
+      "normalized_url": "https://joelahtme.ee/documents///Avaldus%2Blasteaiatoidu%2Bmaksmisest%2Bvabastamiseks.RTF/826b1147-c3fb-4c21-937a-8a02c88fc018?version=1.0",
+      "source_type": "application_form",
+      "source_format": "rtf",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "lasteaiatoidu_vabastuse_avaldus_file",
+      "source_key": "lasteaiatoidu_vabastuse_avaldus_file",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_form_lasteaiatoidu_vabastuse_avaldus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "a076fffe57d1b784a117597f0dfbb06621a13f730a29ae768a81089ba4034fa4",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "lasteaiatoidu_vabastuse_avaldus_file"
+    },
+    {
+      "source_id": "spoku_web_form",
+      "title": "SPOKU iseteeninduskeskkond",
+      "url": "https://spoku.joelahtme.ee",
+      "url_canonical": "https://spoku.joelahtme.ee",
+      "normalized_url": "https://spoku.joelahtme.ee",
+      "source_type": "web_form",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "spoku_web_form",
+      "source_key": "spoku_web_form",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_form_koolitoetus_spoku",
+        "joelahtme_vald_form_matusetoetus_spoku",
+        "joelahtme_vald_form_medaliga_kiitusega_spoku",
+        "joelahtme_vald_form_sunnitoetus_spoku"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "6a4894d9aa1c97f59929a3ad63738241751f1a28ff0baeaf53c0e8347116e314",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "spoku_web_form"
+    },
+    {
+      "source_id": "arno_web_form",
+      "title": "ARNO haridusteenuste haldamise süsteem",
+      "url": "https://arno.joelahtme.ee/",
+      "url_canonical": "https://arno.joelahtme.ee/",
+      "normalized_url": "https://arno.joelahtme.ee/",
+      "source_type": "web_form",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "Jõelähtme Vallavalitsus",
+      "language": "et",
+      "source_status": "active",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "arno_web_form",
+      "source_key": "arno_web_form",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Jõelähtme vald",
+      "municipality_id": "joelahtme_vald",
+      "municipality_name": "Jõelähtme vald",
+      "county": "Harjumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "joelahtme_vald_form_ranitsatoetus_arno"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "d7c1e5f76ca73b51a080981dc424307f60758c54a9e98e6877468f77de03a426",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "arno_web_form"
+    }
+  ],
+  "municipality_name": "Jõelähtme vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

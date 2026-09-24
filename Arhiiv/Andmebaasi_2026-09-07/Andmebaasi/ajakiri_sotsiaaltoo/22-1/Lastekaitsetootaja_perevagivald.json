@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-1-2022",
+  "articleId": "lastekaitsetootaja-perevagivalla-maerkamine-2022-1",
+  "title": "Lastekaitsetöötaja vajab süvendatud teadmisi perevägivalla märkamisest",
+  "authors": [
+    "Kaire Talviste"
+  ],
+  "authors_fixed": "2026-08-15",
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2022",
+  "section": "Lastekaitse",
+  "pageRange": "64-69",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb lastekaitsetöötajate pädevust perevägivalla märkamisel, riskihinnangute tegemisel ja laste kaitsmisel. Autor rõhutab koolituse, juhendamise ja kogemuspõhise õppimise tähtsust ning toob välja perevägivalla mõju laste arengule.",
+  "tags": [
+    "lastekaitse",
+    "perevägivald",
+    "riskihindamine",
+    "lapse õigused",
+    "turvalisus"
+  ],
+  "source_type": "file",
+  "source_path": "2022_artikkel_14_lastekaitsetootaja_perevagivald.pdf",
+  "mapping_status": "VERIFIED",
+  "mapping_checked": "2026-08-15",
+  "mapping_note": "Autor kontrollitud kohaliku artikliteksti järgi: Kaire Talviste.",
+  "document_id": "sotsiaaltoo-1-2022-lastekaitsetootaja-perevagivalla-maerkamine-2022-1",
+  "source_format": "pdf",
+  "source_sha256": "c1b51a79caa49ef51a1f4a36cfc9a6a3ac9041a3e2a603aa7e4c261f34e88230",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2022-lastekaitsetootaja-perevagivalla-maerkamine-2022-1",
+    "previous_source_path": "2022_artikkel_14_lastekaitsetootaja_perevagivald.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "c1b51a79caa49ef51a1f4a36cfc9a6a3ac9041a3e2a603aa7e4c261f34e88230",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

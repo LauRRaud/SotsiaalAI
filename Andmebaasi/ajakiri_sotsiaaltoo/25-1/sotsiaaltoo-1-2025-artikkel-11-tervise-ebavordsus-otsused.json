@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "miks-on-tervise-ebavordsust-suvendavaid-otsuseid-nii-lihtne-teha-2025-1",
+  "title": "Miks on tervise ebavõrdsust süvendavaid otsuseid nii lihtne teha?",
+  "authors": [
+    "Liis Reiter"
+  ],
+  "section": "Uudis",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "description": "Refereering WHO Barcelona tervisesüsteemide rahastamise büroo vanemökonomisti Triin Habichti ettekandest tervisedenduse konverentsil. Artikkel selgitab, miks poliitilised otsused kipuvad tervise ebavõrdsust süvendama: tervist nähakse liiga palju individuaalse vastutusena, poliitika soosib sageli jõukamaid, lühiajaline eelarvesääst seatakse pikemaajalise tervisekasude ette ning ebavõrdsuse vähendamist peetakse liiga keeruliseks ja kulukaks. Tuuakse näiteid Eesti kontekstist – tervishoiuteenuste omaosaluse suurendamine, ravikindlustuseta inimeste hulk, regionaalsed vaesuse ja tervise erinevused – ning pakutakse välja lahendusi: tervisemõjude hindamine seadusloomes, rahastusotsuste suunamine ebavõrdsuse vähendamisele ja otsustajate suurem vastutus oma poliitika tagajärgede eest.",
+  "tags": [
+    "tervise ebavõrdsus",
+    "tervisepoliitika",
+    "Triin Habicht",
+    "WHO",
+    "ravikindlustus",
+    "omaosalus",
+    "vaesus ja tervis"
+  ],
+  "source_path": "Miks on tervise ebavõrdsust süvendavaid otsuseid nii lihtne teha_1_2025.pdf",
+  "pageRange": "1–7",
+  "document_id": "sotsiaaltoo-1-2025-miks-on-tervise-ebavordsust-suvendavaid-otsuseid-nii-lihtne-teha-2025-1",
+  "source_format": "pdf",
+  "source_sha256": "7feeb571dad5db55aa21cdf734fd6106e732311bb9a7488874487dc165ef487f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2025-miks-on-tervise-ebavordsust-suvendavaid-otsuseid-nii-lihtne-teha-2025-1",
+    "previous_source_path": "Miks on tervise ebavõrdsust süvendavaid otsuseid nii lihtne teha_1_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "7feeb571dad5db55aa21cdf734fd6106e732311bb9a7488874487dc165ef487f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-3-2019",
+  "articleId": "raske-ja-sugava-puudega-laste-tugiisiku-ja-lapsehoiuteenus-2019",
+  "title": "Raske ja sügava puudega lastele suunatud tugiisiku- ja lapsehoiuteenus",
+  "authors": [
+    "Kadri Arumetsa"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2019",
+  "section": "Tugi ja teenused",
+  "pageRange": "85-89",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Magistritööl põhinev analüüs raske ja sügava puudega lastele mõeldud tugiisiku- ja lapsehoiuteenuse vajadusest, kättesaadavusest ja korraldusest Eestis: millised on pere- ja laste vajadused, peamised kitsaskohad ning milliseid lahendusi kohalike omavalitsuste ja riigi tasandil vajatakse.",
+  "tags": [
+    "tugiisikuteenus",
+    "lapsehoiuteenus",
+    "puudega lapsed",
+    "teenuste kättesaadavus",
+    "perede toetus",
+    "ÜRO puuetega inimeste õiguste konventsioon"
+  ],
+  "source_type": "file",
+  "source_path": "ST3_2019_veeb_link_Part18.pdf",
+  "document_id": "sotsiaaltoo-3-2019-raske-ja-sugava-puudega-laste-tugiisiku-ja-lapsehoiuteenus-2019",
+  "source_format": "pdf",
+  "source_sha256": "58d7859db92ff571017270b1c47a40ca2ee37bf530ef31df73c6df9dfab8601c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2019-raske-ja-sugava-puudega-laste-tugiisiku-ja-lapsehoiuteenus-2019",
+    "previous_source_path": "ST3_2019_veeb_link_Part18.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "58d7859db92ff571017270b1c47a40ca2ee37bf530ef31df73c6df9dfab8601c",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

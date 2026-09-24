@@ -1,0 +1,48 @@
+{
+  "docId": "sotsiaaltoo-2-2025",
+  "articleId": "uus-juhend-laste-ja-vanaduspensioniealiste-puude-raskusastme-tuvastamine-2025-2",
+  "title": "Uus juhend: laste ja vanaduspensioniealiste puude raskusastme tuvastamine",
+  "authors": [
+    "Laura Kalda",
+    "Hille Maas",
+    "Tiina Tammik",
+    "Linda Tarto",
+    "Sabina Trankmann",
+    "Karl Haljasmets"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2025",
+  "section": "Metoodika",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab uut juhendit laste ja vanaduspensioniealiste puude raskusastme tuvastamiseks, mis tugineb RFK mudelile ja rahvusvahelisele võrdlusele. Käsitletakse hindamisloogikat, eakohasust, testimist ning võimalikku mõju toetuste ja teenuste planeerimisele.",
+  "tags": [
+    "puude raskusaste",
+    "RFK",
+    "funktsioneerimisvõime",
+    "puuetega lapsed",
+    "vanaduspensioniealised",
+    "hindamine",
+    "Sotsiaalkindlustusamet",
+    "WHO",
+    "metoodika"
+  ],
+  "source_type": "file",
+  "source_path": "Uus juhend_ laste ja vanaduspensioniealiste puude raskusastme tuvastamine_2_2025.pdf",
+  "pageRange": "1–8",
+  "document_id": "sotsiaaltoo-2-2025-uus-juhend-laste-ja-vanaduspensioniealiste-puude-raskusastme-tuvastamine-2025-2",
+  "source_format": "pdf",
+  "source_sha256": "af76f5f1611856207524e0ec2a3aee7dd7ba2ba173cf3fdbff9c0bffadcaf119",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2025-uus-juhend-laste-ja-vanaduspensioniealiste-puude-raskusastme-tuvastamine-2025-2",
+    "previous_source_path": "Uus juhend_ laste ja vanaduspensioniealiste puude raskusastme tuvastamine_2_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "af76f5f1611856207524e0ec2a3aee7dd7ba2ba173cf3fdbff9c0bffadcaf119",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

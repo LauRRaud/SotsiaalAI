@@ -1,0 +1,99 @@
+{
+  "docId": "sotsiaaltoo-3-2017",
+  "articleId": "marac-mudel-2017-3",
+  "title": "MARAC – võrgustikupõhine mudel lähisuhtevägivalla juhtumite korraldamiseks",
+  "authors": [
+    "Triin Raudsepp"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2017",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "45-49",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalkindlustusameti ohvriabi osakonna projektijuhi artikkel MARAC-mudelist — võrgustikupõhisest mudelist lähisuhtevägivalla juhtumite korraldamiseks. Eesti oludele kohandatud mudel aitab ohvrit ära tunda, hinnata tema vajadusi ja probleemi tõsidust, teistele spetsialistidele teada anda ning ühiselt sekkumisi kavandada. Viitab, et kolmandik tapmistest toimub lähisuhtevägivalla situatsioonis ja et korduvvägivalla osakaal on hoolimata pingutustest suur. MARAC-i esimene täispikk tutvustus ajakirjas.",
+  "tags": [
+    "MARAC",
+    "lähisuhtevägivald",
+    "ohvriabi",
+    "võrgustikutöö",
+    "riskihindamine",
+    "Sotsiaalkindlustusamet"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part13.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2017-marac-mudel-2017-3",
+  "source_sha256": "fc64927a364d4ba24ddc478034dc9c022237be468aa41c6e0e604a8178fae3da",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2017-marac-mudel-2017-3",
+    "previous_source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part13.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part13.pdf",
+    "reference_stored_source_sha256": "2472aa750e890c3c9709c5aa6b22763bc530c9a642f186e892d74b00172a68f2",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf",
+      "source_sha256": "3f27c22982b22a396dace8a957798cc21d3240489c7ce4d92802bf1a94bde7a8",
+      "pdf_start_page": 47,
+      "pdf_end_page": 51,
+      "printed_page_range": "45-49",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 51,
+      "source_regions": [
+        {
+          "source_pdf_page": 47,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 48,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 49,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 50,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 51,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "45-49"
+    },
+    "server_page_range": "45-49"
+  }
+}

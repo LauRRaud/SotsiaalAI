@@ -1,0 +1,151 @@
+{
+  "source_path": "riigikontroll_koduteenuste_korraldus.pdf",
+  "source_format": "pdf",
+  "sha256": "dfb57516103151660362dad0d5a8940d6487ab91ef13d2fdc84008af65b7218c",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/riigikontroll_koduteenuste_korraldus.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "riigikontroll_koduteenuste_korraldus",
+          "title": "Koduteenuste korraldus",
+          "url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19294_RKTR_6564_2-1.4_2312_002-2.pdf",
+          "normalized_url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19294_RKTR_6564_2-1.4_2312_002-2.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "Riigikontroll",
+          "organization_id": "riigikontroll",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Riigikontroll",
+            "hoolekanne",
+            "sotsiaalteenused",
+            "hooldus",
+            "koduteenus",
+            "audit",
+            "avaliku sektori kontroll",
+            "riigi teenused",
+            "uuring",
+            "raport",
+            "analüüs"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_061",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "Riigikontroll",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 319,
+            "order": 183
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Koduteenuste korraldus"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Riigikontroll"
+          ],
+          "organizations_seen": [
+            "riigikontroll"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Riigikontroll",
+              "line": 319,
+              "order": 183
+            },
+            {
+              "heading_2": "Riigikontroll",
+              "line": 793,
+              "order": 390
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19294_RKTR_6564_2-1.4_2312_002-2.pdf"
+        },
+        "final_url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19294_RKTR_6564_2-1.4_2312_002-2.pdf",
+        "redirects": [],
+        "sha256": "dfb57516103151660362dad0d5a8940d6487ab91ef13d2fdc84008af65b7218c",
+        "bytes": 791814,
+        "downloaded_at": "2026-08-14T08:00:39.688Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "riigikontroll_koduteenuste_korraldus",
+      "metadata": {
+        "createdAt": "2026-06-12T03:43:35.318313+00:00",
+        "type": "FILE",
+        "fileName": "19294_RKTR_6564_2-1.4_2312_002-2.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:43:35.250322+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/696221e5107c/19294_RKTR_6564_2-1.4_2312_002-2.pdf",
+        "title": "Koduteenuste korraldus",
+        "description": "Duplikaadid ühendatud: 1 lisakirjet. Source master headings: Riigikontroll",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2025,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–43",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "riigikontroll_koduteenuste_korraldus",
+        "document_id": "riigikontroll_koduteenuste_korraldus",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "2689e6b95a7f58464c2bd5e58d5afc9e71e53cb56e159890ec13a9eb6051f3b9",
+        "url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19294_RKTR_6564_2-1.4_2312_002-2.pdf",
+        "url_canonical": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19294_RKTR_6564_2-1.4_2312_002-2.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "riigikontroll_koduteenuste_korraldus",
+        "updatedAt": "2026-06-12T03:43:35.318337+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

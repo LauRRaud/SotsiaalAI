@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2019",
+  "articleId": "teekond-institutsioonist-personaalse-taastumise-poole-2019",
+  "title": "Teekond institutsioonist personaalse taastumise poole",
+  "authors": [
+    "Tuuli Ainsaar"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2019",
+  "section": "Uurimus",
+  "pageRange": "52-57",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Magistriuurimus, mis uurib psüühikahäirega inimeste personaalse taastumise teekonda pärast kolimist institutsioonist kogukonda ning seda, kuidas teenus toetab nende iseseisvust ja osalust.",
+  "tags": [
+    "personaalse taastumise mudel",
+    "psüühikahäire",
+    "kogukonnas elamine",
+    "deinstitutsionaliseerimine",
+    "toetavad suhted",
+    "taastumiskogemus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part12.pdf",
+  "document_id": "sotsiaaltoo-2-2019-teekond-institutsioonist-personaalse-taastumise-poole-2019",
+  "source_format": "pdf",
+  "source_sha256": "3b1e0891ebf8202d672a1f9f533dc8b8dc7f9b30805bf3af362dabe2f56ceb3f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2019-teekond-institutsioonist-personaalse-taastumise-poole-2019",
+    "previous_source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part12.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "3b1e0891ebf8202d672a1f9f533dc8b8dc7f9b30805bf3af362dabe2f56ceb3f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

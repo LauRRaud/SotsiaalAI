@@ -1,0 +1,109 @@
+{
+  "docId": "sotsiaaltoo-3-2016",
+  "articleId": "sotsiaaltoo-3-2016-artikkel-04-seksuaalkurjategijate-kohtlemine-karistuse-kandm",
+  "title": "Seksuaalkurjategijate kohtlemine karistuse kandmise ajal",
+  "authors": [
+    "Linda Paap"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2016",
+  "section": "Taasühiskonnastamine vanglas",
+  "pageRange": "11-16",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Paap teatab, et 2015. aastal registreeriti Eestis 500 seksuaalkuritegu ehk 35% rohkem kui aasta varem ja 85% neist pandi toime laste vastu; vanglakaristust kandis 171 ja kriminaalhooldusel oli 156 seksuaalkurjategijat, neist 21-le määras kohus ravi. Seksuaalkurjategijad paigutatakse Tartu vanglasse, kus kasutatakse riskihindamisvahendeid Static-2002, Stable-2007 ja Acute ning kognitiiv-käitumuslikku programmi „Uus suund”. Kompleksravi osutab OÜ Arstlik Perenõuandla. Suurima probleemina nimetavad kriminaalhooldusametnikud vabaduses tabavat häbimärgistamist ja spetsialistide puudumist; 2015. aastal loodi nõuandetelefon STOPP.",
+  "tags": [
+    "seksuaalkuriteod",
+    "riskihindamine",
+    "uus suund",
+    "kompleksravi",
+    "kriminaalhooldus",
+    "häbimärgistamine",
+    "lanzarote konventsioon"
+  ],
+  "source_type": "file",
+  "source_path": "2016_3_artikkel_04_seksuaalkurjategijate_kohtlemine_karistuse_kandmise.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2016-sotsiaaltoo-3-2016-artikkel-04-seksuaalkurjategijate-kohtlemine-karistuse-kandm",
+  "source_sha256": "a3927b7b2297fe7b9bd4be75adde081d6fa07e30cea7795415dfc27a8c3353ca",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2016-sotsiaaltoo-3-2016-artikkel-04-seksuaalkurjategijate-kohtlemine-karistuse-kandm",
+    "previous_source_path": "2016_3_artikkel_04_seksuaalkurjategijate_kohtlemine_karistuse_kandmise.txt",
+    "previous_source_original_path": "3-2016.pdf",
+    "reference_stored_source_sha256": "533213024924e2173f285fe2406415b062ebdbb656f81e4cbf323dc1f39766af",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\3-2016.pdf",
+      "source_sha256": "7a9be30ca3f1a959b3d48a3f12065bc9c37d0f618f6cbb71e681f6e83199aacc",
+      "pdf_start_page": 13,
+      "pdf_end_page": 18,
+      "printed_page_range": "11-17",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 19,
+      "source_regions": [
+        {
+          "source_pdf_page": 13,
+          "bounds": [
+            0,
+            279.303,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 14,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 15,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 16,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 17,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 18,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "11-16"
+    },
+    "server_page_range": "11-17"
+  }
+}

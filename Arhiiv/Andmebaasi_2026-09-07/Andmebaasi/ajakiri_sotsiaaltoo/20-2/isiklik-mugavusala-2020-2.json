@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2020",
+  "articleId": "isiklik-mugavusala-2020-2",
+  "title": "Isiklik mugavusala",
+  "authors": [
+    "Jaana Laanemann"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2020",
+  "section": "Kogemus",
+  "pageRange": "14-15",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artiklis kirjeldab psühholoog Jaana Laanemann, kuidas koroonakriis sundis teda loobuma tavapärasest näost näkku nõustamisest ja kohanema e-nõustamisega. Isikliku kogemuse kaudu avab ta, kuidas ebakindlusest võib kujuneda professionaalne areng ja mugavusala laienemine.",
+  "tags": [
+    "koroonakriis",
+    "e-nõustamine",
+    "psühholoogiline nõustamine",
+    "kahjude vähendamine",
+    "kohanemine",
+    "kogemuslugu"
+  ],
+  "source_type": "file",
+  "source_path": "ST2_2020_web_link_Part7.pdf",
+  "document_id": "sotsiaaltoo-2-2020-isiklik-mugavusala-2020-2",
+  "source_format": "pdf",
+  "source_sha256": "97f7beeea62269d23bb2c7a44239276ba17a914aab59c6f7f2fc230fa3a7d84b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2020-isiklik-mugavusala-2020-2",
+    "previous_source_path": "ST2_2020_web_link_Part7.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "97f7beeea62269d23bb2c7a44239276ba17a914aab59c6f7f2fc230fa3a7d84b",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

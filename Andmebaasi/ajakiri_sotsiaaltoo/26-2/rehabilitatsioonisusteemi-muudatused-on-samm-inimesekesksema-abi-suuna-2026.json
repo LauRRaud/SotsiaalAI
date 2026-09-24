@@ -1,0 +1,50 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "rehabilitatsioonisusteemi-muudatused-on-samm-inimesekesksema-abi-suuna-2026",
+  "title": "Rehabilitatsioonisüsteemi muudatused on samm inimesekesksema abi suunas",
+  "authors": [
+    "Eva Kuslap",
+    "Brit Tammiste"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Sotsiaalpoliitika",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade rehabilitatsioonisüsteemi reformist, mille eesmärk on muuta abi inimesekesksemaks ja paremini koordineerituks. Kavandatud muudatuste järgi hakkab rehabilitatsiooniteenust korraldama tervisekassa tervishoiu kaudu ning uue mudeli keskmesse tuleb terviseteejuht, kes tagab valdkonnaülese koostöö ja õigeaegse abi.",
+  "tags": [
+    "rehabilitatsioon",
+    "rehabilitatsioonireform",
+    "terviseteejuht",
+    "teenuste integratsioon",
+    "tervishoiu ja sotsiaalvaldkonna koostöö",
+    "abivajaduse hindamine",
+    "sotsiaalpoliitika",
+    "inimesekeskne teenus"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-05-07",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/rehabilitatsioonisusteemi-muudatused-samm-inimesekesksema-abi-suunas",
+  "source_type": "web",
+  "source_path": "rehabilitatsioonisusteemi-muudatused-on-samm-inimesekesksema-abi-suunas.html",
+  "lead": "Eestis tehakse põhjalikke rehabilitatsioonisüsteemi muudatusi. Nende rakendamine on üks kolmest tervishoiu ja sotsiaalvaldkonna lõimimist toetavast sotsiaalministeeriumi tegevusest. Eesmärk on muuta abi inimesekesksemaks, paremini koordineerituks ja õigeaegseks. Nii halduslike ümberkorralduste kui ka sisuliste muudatuste kaudu aidatakse inimestel saada paremini abi ja võimestatakse spetsialistide koostööd.",
+  "document_id": "sotsiaaltoo-2-2026-rehabilitatsioonisusteemi-muudatused-on-samm-inimesekesksema-abi-suuna-2026",
+  "source_format": "html",
+  "source_sha256": "223cbcdefde5816d4b454f5022f3c79abf6211507de98f37ef5f3f6303dd14b7",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-rehabilitatsioonisusteemi-muudatused-on-samm-inimesekesksema-abi-suuna-2026",
+    "previous_source_path": "rehabilitatsioonisusteemi-muudatused-on-samm-inimesekesksema-abi-suunas.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "65ced324beb3c427292c120dab21c95fdccf543a993d9dbb63e9674fc9161c51",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "04d34138f8ed26da624b66f9d8fa51bafd81b319a124a4e8336a6b2715130ecc",
+    "observed_web_title": "Rehabilitatsioonisüsteemi muudatused on samm inimesekesksema abi suunas"
+  },
+  "retrieved_at": "2026-09-07T19:39:39.051237+00:00"
+}

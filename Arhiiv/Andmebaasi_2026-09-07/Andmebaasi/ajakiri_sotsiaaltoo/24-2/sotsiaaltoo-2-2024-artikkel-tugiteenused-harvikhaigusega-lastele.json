@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-2-2024",
+  "articleId": "tugiteenused-harvikhaigusega-lastele-vajavad-suuremat-tahelepanu-2024-2",
+  "title": "Tugiteenused harvikhaigusega lastele vajavad suuremat tähelepanu",
+  "authors": [
+    "Heili Piho-Arna"
+  ],
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2024",
+  "section": "Kogemus",
+  "pageRange": "34-37",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel harvikhaigustega laste perede raskustest ja teenuste kättesaadavusest.",
+  "tags": [
+    "harvikhaigused",
+    "erivajadusega lapsed",
+    "lapsehoiuteenus",
+    "tugiisikuteenus",
+    "sotsiaalteenused",
+    "KOV",
+    "teenuse korraldus",
+    "hoolduskoormus",
+    "supervisioon",
+    "pere toetus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2024_web_Part9.pdf",
+  "document_id": "sotsiaaltoo-2-2024-tugiteenused-harvikhaigusega-lastele-vajavad-suuremat-tahelepanu-2024-2",
+  "source_format": "pdf",
+  "source_sha256": "6b2db903f96ce914f066aaa8844a5b234096c3f280a63f36eb8baab71b0fb895",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2024-tugiteenused-harvikhaigusega-lastele-vajavad-suuremat-tahelepanu-2024-2",
+    "previous_source_path": "Sotsiaaltoo_2_2024_web_Part9.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "6b2db903f96ce914f066aaa8844a5b234096c3f280a63f36eb8baab71b0fb895",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,4127 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-sillamae-linn",
+  "document_id": "kov-sillamae-linn",
+  "municipality": "Sillamäe linn",
+  "municipality_id": "sillamae_linn",
+  "county": "Ida-Virumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "sillamae_linn_contact_sotsiaalhoolekande_osakond",
+      "canonical_item_id": "sillamae_linn:contact:sotsiaalhoolekande_osakond",
+      "itemType": "contact",
+      "title": "Sotsiaalhoolekande osakond",
+      "status": "active",
+      "summary": "Sillamäe Linnavalitsuse sotsiaalhoolekande osakond korraldab linna sotsiaalteenuseid, sotsiaaltoetusi, sotsiaalnõustamist, lastekaitset ja vältimatut sotsiaalabi. Üldkontaktina saab kasutada linnavalitsuse telefoni ja e-posti ning pöörduda spetsialistide vastuvõtule Kesk tn 27 hoones.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Sotsiaalhoolekande osakond",
+      "role": "üldkontakt",
+      "department": "Sillamäe Linnavalitsuse sotsiaalhoolekande osakond",
+      "address": "Kesk tn 27, 40231 Sillamäe",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_contact_sotsiaalhoolekande_osakond",
+      "document_id": "sillamae_linn_contact_sotsiaalhoolekande_osakond",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "665886ccd89f92618d38655f90cc33539a79344e2640a1a1b4f07b0adb401266",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_contact_tatjana_bolsakova",
+      "canonical_item_id": "sillamae_linn:contact:tatjana_bolsakova",
+      "itemType": "contact",
+      "title": "Tatjana Bolšakova",
+      "status": "active",
+      "summary": "Tatjana Bolšakova on sotsiaalhoolekande osakonna juhataja. Tema vastuvõtuajad on talveperioodil esmaspäeval 09.00-12.00 ja 14.00-16.00, teisipäeval 14.00-18.00 ning neljapäeval 09.00-12.00 ja 14.00-16.00; suveperioodil teisipäevane vastuvõtt lõpeb kell 17.30. Vastuvõtt toimub kabinetis 113.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Tatjana Bolšakova",
+      "role": "osakonna juhataja",
+      "department": "Sillamäe Linnavalitsuse sotsiaalhoolekande osakond",
+      "address": "Kesk tn 27, 40231 Sillamäe",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_contact_tatjana_bolsakova",
+      "document_id": "sillamae_linn_contact_tatjana_bolsakova",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "6c7a3919ec3aa558264d4cee0831c0fa13084e63e56387d788311308ac4bcf5d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_contact_mare_valja",
+      "canonical_item_id": "sillamae_linn:contact:mare_valja",
+      "itemType": "contact",
+      "title": "Mare Välja",
+      "status": "active",
+      "summary": "Mare Välja on lastekaitse peaspetsialist. Tema töövaldkonnad on lastekaitsealased tegevused, raske ja sügava puudega lapsehoiuteenus ning puudega lapse hooldajatoetus. Lastekaitse leht nimetab teda Sillamäe linnavalitsuse lastekaitsespetsialistina.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Mare Välja",
+      "role": "peaspetsialist (lastekaitse, raske ja sügava puudega lapsehoiuteenus, puudega lapse hooldajatoetus)",
+      "department": "Sillamäe Linnavalitsuse sotsiaalhoolekande osakond",
+      "address": "Kesk tn 27, 40231 Sillamäe",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_contact_mare_valja",
+      "document_id": "sillamae_linn_contact_mare_valja",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "632df7c6830afc8806555994905e71b30b0b1d357f5997da2f81ec69443311d9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_contact_tatjana_zelenjajeva",
+      "canonical_item_id": "sillamae_linn:contact:tatjana_zelenjajeva",
+      "itemType": "contact",
+      "title": "Tatjana Zelenjajeva",
+      "status": "active",
+      "summary": "Tatjana Zelenjajeva töövaldkonnad on täiskasvanute eestkoste, täiskasvanute hooldekodusse paigutamine ja puudega inimeste nõustamine. Ta on seotud täisealiste hoolekande, üldhooldusteenuse ja puudega inimeste abiga.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Tatjana Zelenjajeva",
+      "role": "peaspetsialist (täiskasvanute eestkoste, hooldekodusse paigutamine, puudega inimeste nõustamine)",
+      "department": "Sillamäe Linnavalitsuse sotsiaalhoolekande osakond",
+      "address": "Kesk tn 27, 40231 Sillamäe",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_contact_tatjana_zelenjajeva",
+      "document_id": "sillamae_linn_contact_tatjana_zelenjajeva",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "9098e9ceead3d134aeb664fe64603b835affdfa539af24633073f91abdba8212",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_contact_ksenia_mitina",
+      "canonical_item_id": "sillamae_linn:contact:ksenia_mitina",
+      "itemType": "contact",
+      "title": "Ksenia Mitina",
+      "status": "active",
+      "summary": "Ksenia Mitina töövaldkonnad on täiskasvanute hooldekodusse paigutamine, puudega inimeste nõustamine ja parkimiskaartide väljastamine. Veebilehel oli tema juures ajutine puhkuseteade ajavahemikuks 17.-30.04.2026.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Ksenia Mitina",
+      "role": "spetsialist (täiskasvanute hooldekodusse paigutamine, puudega inimeste nõustamine, parkimiskaardid)",
+      "department": "Sillamäe Linnavalitsuse sotsiaalhoolekande osakond",
+      "address": "Kesk tn 27, 40231 Sillamäe",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_contact_ksenia_mitina",
+      "document_id": "sillamae_linn_contact_ksenia_mitina",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "593890a2efef480f95a30acdd3af496ef6f2c9755b2b1f0fa233983d110fd4cf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_contact_nadezda_piirak",
+      "canonical_item_id": "sillamae_linn:contact:nadezda_piirak",
+      "itemType": "contact",
+      "title": "Nadezda Piirak",
+      "status": "active",
+      "summary": "Nadezda Piirak tegeleb toimetulekutoetuse, täiendavate sotsiaaltoetuste, sotsiaalteenuste, vältimatu sotsiaalabi ja sotsiaalnõustamisega. Vastuvõtt toimub talveperioodil esmaspäeval 09.00-12.00 ja 14.00-16.00, teisipäeval 14.00-18.00 ning neljapäeval 09.00-12.00 ja 14.00-16.00; suveperioodil lõpeb teisipäevane vastuvõtt kell 17.30. Kabinet.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Nadezda Piirak",
+      "role": "spetsialist (toimetulekutoetus, täiendavad sotsiaaltoetused, sotsiaalteenused, vältimatu sotsiaalabi, sotsiaalnõustamine)",
+      "department": "Sillamäe Linnavalitsuse sotsiaalhoolekande osakond",
+      "address": "Kesk tn 27, 40231 Sillamäe",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_contact_nadezda_piirak",
+      "document_id": "sillamae_linn_contact_nadezda_piirak",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "fd4ba53b4e4cbead6b7ddabe7267276dfec77227570b81a5a19a1a74040c1a47",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_contact_olga_ivanova",
+      "canonical_item_id": "sillamae_linn:contact:olga_ivanova",
+      "itemType": "contact",
+      "title": "Olga Ivanova",
+      "status": "active",
+      "summary": "Olga Ivanova tegeleb toimetulekutoetuse, täiendavate sotsiaaltoetuste, sotsiaalteenuste, vältimatu sotsiaalabi ja sotsiaalnõustamisega. Veebilehel oli tema juures ajutine puhkuseteade ajavahemikuks 27.-30.04.2026.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Olga Ivanova",
+      "role": "spetsialist (toimetulekutoetus, täiendavad sotsiaaltoetused, sotsiaalteenused, vältimatu sotsiaalabi, sotsiaalnõustamine)",
+      "department": "Sillamäe Linnavalitsuse sotsiaalhoolekande osakond",
+      "address": "Kesk tn 27, 40231 Sillamäe",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_contact_olga_ivanova",
+      "document_id": "sillamae_linn_contact_olga_ivanova",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "85ddaba35167477aa78c402aadf73887594636667d3abbc4905bc726e0a7cd30",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_contact_jevgenia_dvornik",
+      "canonical_item_id": "sillamae_linn:contact:jevgenia_dvornik",
+      "itemType": "contact",
+      "title": "Jevgenia Dvornik",
+      "status": "active",
+      "summary": "Jevgenia Dvornik on noorte heaolu spetsialist. Vastuvõtt toimub eelneval kokkuleppel.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Jevgenia Dvornik",
+      "role": "noorte heaolu spetsialist",
+      "department": "Sillamäe Linnavalitsuse sotsiaalhoolekande osakond",
+      "address": "Kesk tn 27, 40231 Sillamäe",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_contact_jevgenia_dvornik",
+      "document_id": "sillamae_linn_contact_jevgenia_dvornik",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "482a8750ed4ed3e5595ce07507ebe12c6e38507a94f67a502a45738a667c4ee8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_contact_jelizaveta_blinova",
+      "canonical_item_id": "sillamae_linn:contact:jelizaveta_blinova",
+      "itemType": "contact",
+      "title": "Jelizaveta Blinova",
+      "status": "inactive",
+      "summary": "Jelizaveta Blinova on veebilehel märgitud sotsiaalhoolekande osakonna spetsialistina, kuid tema töösuhe on peatatud. Varasemate töövaldkondadena on märgitud suure hooldus- ja abivajadusega lastele sotsiaalteenused, puudega lapse hooldajatoetus, sünnitoetus, lasteaia kohamaksu toetus ning koolitoetused.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Jelizaveta Blinova",
+      "role": "spetsialist (töösuhe peatatud)",
+      "department": "Sillamäe Linnavalitsuse sotsiaalhoolekande osakond",
+      "address": "Kesk tn 27, 40231 Sillamäe",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "contact",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_contact_jelizaveta_blinova",
+      "document_id": "sillamae_linn_contact_jelizaveta_blinova",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "inactive",
+      "url_canonical": null,
+      "content_hash": "99d4690de2b250cd2d8410e45c94ea9c67edd93efa2fb6ead695c74e15d44556",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_service_koduteenus",
+      "canonical_item_id": "sillamae_linn:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenuse eesmärk on tagada täisealise inimese iseseisev ja turvaline toimetulek kodustes tingimustes. Teenuse käigus abistatakse inimest tegevustes, mida ta terviseseisundi, tegevusvõime või elukeskkonna tõttu kõrvalabita teha ei saa, näiteks kütmine, toiduvalmistamine, eluruumi ja riiete korrastamine, toiduainete ostmine ja muu asjaajamine. Teenus võib olla tasuta või tasuline sõltuvalt seadusjärgsete ülalpidajate olemasolust ja majanduslikest võimalustest.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": "Täisealised abivajavad inimesed, kelle rahvastikuregistrijärgne või faktiline elukoht on Sillamäe linn.",
+      "conditions": "Tasuta teenust saavad Sillamäe elanikud, kellel puuduvad piisavad iseseisva toimetuleku ja hoolduse tagamise võimalused. Tasulist teenust võivad saada Sillamäe elanikud, kellel on ülalpidajad ja piisavad majanduslikud võimalused, samuti inimesed, kes faktiliselt elavad Sillamäel.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita koduteenuse saamiseks taotlus Sillamäe Linnavalitsuse sotsiaalhoolekande osakonnale paberkandjal, osakonna postkasti või digiallkirjastatult e-posti teel. Taotluses märgitakse taotleja andmed, taotletav teenus ja vajadusel perekonna koosseisu, sissetuleku või teenuse vajaduse andmed."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "sillamae_linn_contact_tatjana_zelenjajeva",
+        "sillamae_linn_contact_ksenia_mitina",
+        "sillamae_linn_contact_nadezda_piirak",
+        "sillamae_linn_contact_olga_ivanova"
+      ],
+      "item_type": "service",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_service_koduteenus",
+      "document_id": "sillamae_linn_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "636f0bcac8de3a9f0bca6da64f2a3d444edeeb76d8d39120d3ad3f1b4df61b80",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_service_uldhooldusteenus",
+      "canonical_item_id": "sillamae_linn:service:uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatav üldhooldusteenus tagab turvalise keskkonna ja toimetuleku täisealisele inimesele, kes ei suuda kodustes tingimustes ajutiselt või püsivalt iseseisvalt toime tulla. Teenusele võib suunata isiku, kellel puudub ülalpidamiskohustusega isik või kelle ülalpidaja ei suuda hooldust mõjuval põhjusel täielikult või osaliselt tagada. Sillamäe linna elaniku ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirmäär on alates 1. juulist 2023 700 eurot.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": "Täisealised isikud, kes ei tule kodus iseseisvalt toime.",
+      "conditions": "Teenusele suunamine toimub linnavalitsuse korraldusega. Taotleja peab esitama isiku- ja kontaktandmed ning vajadusel perekonna koosseisu ja sissetulekute andmed.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Täida üldhooldusteenuse taotlus ja esita see Sillamäe Linnavalitsuse sotsiaalhoolekande osakonna spetsialistile paberkandjal, postkasti või digiallkirjastatult e-posti teel."
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": 700,
+        "currency": "EUR",
+        "description": "Sillamäe linna elaniku hoolduskulude tasumise piirmäär ööpäevaringsel üldhooldusteenusel."
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "relatedTo": [],
+      "relatedForms": [
+        "sillamae_linn_form_uldhooldusteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "sillamae_linn_contact_tatjana_zelenjajeva",
+        "sillamae_linn_contact_ksenia_mitina"
+      ],
+      "item_type": "service",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_service_uldhooldusteenus",
+      "document_id": "sillamae_linn_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "d0c1f532462832eb5d94562871d1b18ed45a8e75c6d8ed63dc9ce3baaaac10a1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_service_paevakeskus",
+      "canonical_item_id": "sillamae_linn:service:paevakeskus",
+      "itemType": "service",
+      "title": "Suure hooldus- ja abivajadusega isikute päevakeskuse teenus",
+      "status": "active",
+      "summary": "Päevakeskuse teenus tagab suure hooldus- ja abivajadusega isikule päevasel ajal turvalise keskkonna, ohutu ajaveetmise, hoolduse, järelevalve ja arendavad tegevused. Teenuse teine eesmärk on vähendada pereliikmete hoolduskoormust ning toetada hoolduskoormusega inimesi tööturule sisenemisel või tööturul jätkamisel. Teenuse sihtrühma kuuluvad inimesed, kes vajavad päevasel ajal pidevat järelevalvet, kuid saavad iseseisvalt hakkama söömise ja põhiliste hügieenitoimingutega. Teenust osutab Hoolekandeasutus Sügis.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": "Suure hooldus- ja abivajadusega Sillamäe elanikud.",
+      "conditions": "Klient peab vajama päevasel ajal järelevalvet ja arendavaid tegevusi ning olema suuteline iseseisvalt sööma ja põhilisi hügieenitoiminguid tegema.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita päevakeskuse teenuse saamiseks taotlus Sillamäe Linnavalitsuse sotsiaalhoolekande osakonnale paberkandjal, osakonna postkasti või digiallkirjastatult e-posti teel. Taotluses märgitakse taotleja andmed, taotletav teenus ja vajadusel perekonna koosseisu, sissetuleku või teenuse vajaduse andmed."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "sillamae_linn_contact_tatjana_zelenjajeva",
+        "sillamae_linn_contact_ksenia_mitina"
+      ],
+      "item_type": "service",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_service_paevakeskus",
+      "document_id": "sillamae_linn_service_paevakeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "4a96db9b76e09d91a796df068f3609f90830c3d1be9772966c0fb844b300aba9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_service_tugiisik_taiskasvanule",
+      "canonical_item_id": "sillamae_linn:service:tugiisik_taiskasvanule",
+      "itemType": "service",
+      "title": "Tugiisikuteenus täiskasvanule",
+      "status": "active",
+      "summary": "Täiskasvanute tugiisikuteenus toetab isiku iseseisvat toimetulekut olukorras, kus ta vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu olulist kõrvalabi. Kõrvalabi seisneb juhendamises, motiveerimises ja inimese suurema iseseisvuse ning omavastutuse arendamises. Teenuse osutamiseks koostatakse haldusakt või haldusleping, milles määratakse kõrvalabi vajadusest tulenevad toimingud.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": "Täiskasvanud Sillamäe linna elanikud, kes vajavad iseseisvaks toimetulekuks kõrvalabi.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita tugiisikuteenuse saamiseks taotlus Sillamäe Linnavalitsuse sotsiaalhoolekande osakonnale paberkandjal, osakonna postkasti või digiallkirjastatult e-posti teel. Taotluses märgitakse taotleja andmed, taotletav teenus ja vajadusel perekonna koosseisu, sissetuleku või teenuse vajaduse andmed."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "sillamae_linn_contact_nadezda_piirak",
+        "sillamae_linn_contact_olga_ivanova"
+      ],
+      "item_type": "service",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_service_tugiisik_taiskasvanule",
+      "document_id": "sillamae_linn_service_tugiisik_taiskasvanule",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "204ce6d9e5e1085590972ac4b0d8e8674e28194bc275a90fe1b603001d49f1c5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "sillamae_linn:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hoolduse eesmärk on korraldada hooldus täisealisele inimesele, kes vaimse või kehalise puude tõttu vajab abi oma õiguste teostamiseks ja kohustuste täitmiseks. Hoolduse seadmisel hinnatakse abivajadust ja määratakse hooldaja ülesanded ning kohustused. Hooldust teostab sotsiaalosakonna määratud isik.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": "Täisealised vaimse või kehalise puudega inimesed.",
+      "conditions": "Vajalik on abivajaduse hindamine ja hoolduse seadmine sotsiaalosakonna poolt.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita täisealise isiku hoolduse saamiseks taotlus Sillamäe Linnavalitsuse sotsiaalhoolekande osakonnale paberkandjal, osakonna postkasti või digiallkirjastatult e-posti teel. Taotluses märgitakse taotleja andmed, taotletav teenus ja vajadusel perekonna koosseisu, sissetuleku või teenuse vajaduse andmed."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "sillamae_linn_contact_tatjana_zelenjajeva",
+        "sillamae_linn_contact_ksenia_mitina"
+      ],
+      "item_type": "service",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_service_taisealise_isiku_hooldus",
+      "document_id": "sillamae_linn_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "fdd16027f6e14987239876597c3216d2dd81cd97248a1bc8f64d60ecd987d7ee",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "sillamae_linn:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenuse eesmärk on suurendada füüsilise kõrvalabi vajadusega täisealise puudega inimese iseseisvat toimetulekut ja osalemist eri eluvaldkondades. Abistaja aitab tegevustes, milleks inimene vajab puude tõttu füüsilist kõrvalabi, sealhulgas liikumisel, söömisel, toidu valmistamisel, riietumisel, hügieenitoimingutes ja majapidamistöödes. Tööülesanded, tööaeg ja rahalised kohustused määratakse haldusaktis või halduslepingus.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": "Täisealised puudega inimesed, kes vajavad füüsilist kõrvalabi.",
+      "conditions": "Teenuse vajadus ja rahalised kohustused määratakse individuaalselt haldusaktis või lepingus.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita isikliku abistaja teenuse saamiseks taotlus Sillamäe Linnavalitsuse sotsiaalhoolekande osakonnale paberkandjal, osakonna postkasti või digiallkirjastatult e-posti teel. Taotluses märgitakse taotleja andmed, taotletav teenus ja vajadusel perekonna koosseisu, sissetuleku või teenuse vajaduse andmed."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "sillamae_linn_contact_tatjana_zelenjajeva",
+        "sillamae_linn_contact_ksenia_mitina"
+      ],
+      "item_type": "service",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_service_isikliku_abistaja_teenus",
+      "document_id": "sillamae_linn_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "f4ad4e4bb620c044ff34d715c7d7c562151d7e2d000700885e91f1803b3de722",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_service_varjupaigateenus",
+      "canonical_item_id": "sillamae_linn:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenuse eesmärk on tagada ajutine ööbimiskoht täisealisele inimesele, kes ei ole võimeline endale ööbimiskohta leidma. Teenuse saamiseks ei ole vaja esitada taotlust; inimene pöördub otse teenuse osutaja poole. Teenuse osutaja esitab sotsiaalosakonnale andmed teenust saanud isikute kohta ning teenus on tasuta.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": "Täisealised inimesed, kes vajavad ajutist ööbimiskohta.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "in_person"
+        ],
+        "steps": [
+          "Pöördu otse varjupaigateenuse osutaja poole. Eraldi taotlust ei nõuta."
+        ],
+        "deadline": null
+      },
+      "pricing": {
+        "amount": 0,
+        "currency": "EUR",
+        "description": "Teenust osutatakse tasuta."
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "sillamae_linn_contact_nadezda_piirak",
+        "sillamae_linn_contact_olga_ivanova"
+      ],
+      "item_type": "service",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_service_varjupaigateenus",
+      "document_id": "sillamae_linn_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "b1082d2fde3f0bfafa9ad66d795b9bac1e14098d15924c949753de064c0c215f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_service_turvakoduteenus",
+      "canonical_item_id": "sillamae_linn:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenuse eesmärk on tagada ajutine eluase, turvaline keskkond ja esmane abi. Esmase abi raames tagatakse vajaduse korral kriisiabi, mis aitab taastada psüühilise tasakaalu ja tegevusvõime ning teavitatakse teistest abi saamise võimalustest. Teenust võimaldatakse lapsele, kelle hooldamises esinevad puudused ohustavad elu, tervist või arengut, ning täisealisele isikule, kes vajab turvalist keskkonda. Teenus on tasuta ja seda saab kasutada otse teenuse osutaja poole pöördudes.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": "Lapsed ja täisealised isikud, kes vajavad turvalist ajutist keskkonda.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "in_person"
+        ],
+        "steps": [
+          "Pöördu otse turvakoduteenuse osutaja poole. Eraldi taotlust ei nõuta."
+        ],
+        "deadline": null
+      },
+      "pricing": {
+        "amount": 0,
+        "currency": "EUR",
+        "description": "Teenust osutatakse tasuta."
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "sillamae_linn_contact_mare_valja",
+        "sillamae_linn_contact_nadezda_piirak",
+        "sillamae_linn_contact_olga_ivanova"
+      ],
+      "item_type": "service",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_service_turvakoduteenus",
+      "document_id": "sillamae_linn_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "00fe84145d9b5b0b06843e0e4d14709b6bc53c758d9fe40090ac026efbbb5d22",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_service_sotsiaaltransport",
+      "canonical_item_id": "sillamae_linn:service:sotsiaaltransport",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus võimaldab puudega inimesel, kelle puue takistab isikliku või ühissõiduki kasutamist, kasutada sobivat transpordivahendit tööle, õppeasutusse või avalike teenuste juurde sõitmiseks. Teenuse osutaja abistab vajadusel sõidukisse sisenemisel ja väljumisel ning teenust korraldab Hoolekandeasutus Sügis. Teenus on tasuline ja kasutaja tasub arve alusel teenuse osutajale, kuid osaluse tasumisel saab taotleda abi sotsiaalosakonnalt. Taotlus tuleb võimalusel esitada viis tööpäeva enne soovitud sõiduaega.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": "Puudega inimesed, kelle puue takistab isikliku või ühissõiduki kasutamist.",
+      "conditions": "Taotlus tuleb võimalusel esitada viis tööpäeva enne soovitud sõiduaega. Teenuse eest võetakse kasutajalt tasu, mida saab eraldi taotluse alusel osaliselt katta.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita sotsiaaltransporditeenuse saamiseks taotlus Sillamäe Linnavalitsuse sotsiaalhoolekande osakonnale paberkandjal, osakonna postkasti või digiallkirjastatult e-posti teel. Taotluses märgitakse taotleja andmed, taotletav teenus ja vajadusel perekonna koosseisu, sissetuleku või teenuse vajaduse andmed."
+        ],
+        "deadline": null
+      },
+      "pricing": {
+        "amount": null,
+        "description": "Teenuse kasutaja tasub arve alusel; tasu osalist katmist saab taotleda sotsiaalosakonnalt."
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "sillamae_linn_contact_tatjana_zelenjajeva",
+        "sillamae_linn_contact_ksenia_mitina"
+      ],
+      "item_type": "service",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_service_sotsiaaltransport",
+      "document_id": "sillamae_linn_service_sotsiaaltransport",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "cde8d5b383751d98a91b023a66506cb5b0d924374cc0eddcd8e27ef1cc2aad84",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_service_volanoustamine",
+      "canonical_item_id": "sillamae_linn:service:volanoustamine",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab isikut tema varalise olukorra kindlakstegemisel, võlausaldajaga läbirääkimiste pidamisel ja nõuete rahuldamisel. Teenuse eesmärk on vältida uute võlgnevuste tekkimist, parandada toimetulekuvõimet ja lahendada muid võlgnevusega seotud probleeme. Teenusele on õigus kõigil Sillamäe linna elanikel sõltumata sissetulekust ja sotsiaalsest seisundist ning teenus on tasuta.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": "Kõik Sillamäe linna elanikud, kellel on võlgnevused või võlgnevuste tekkimise oht.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita võlanõustamisteenuse saamiseks taotlus Sillamäe Linnavalitsuse sotsiaalhoolekande osakonnale paberkandjal, osakonna postkasti või digiallkirjastatult e-posti teel. Taotluses märgitakse taotleja andmed, taotletav teenus ja vajadusel perekonna koosseisu, sissetuleku või teenuse vajaduse andmed."
+        ],
+        "deadline": null
+      },
+      "pricing": {
+        "amount": 0,
+        "currency": "EUR",
+        "description": "Teenust osutatakse tasuta."
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "sillamae_linn_contact_nadezda_piirak",
+        "sillamae_linn_contact_olga_ivanova"
+      ],
+      "item_type": "service",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_service_volanoustamine",
+      "document_id": "sillamae_linn_service_volanoustamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "39f2cd5737cfffecb8cc963bd01db963f1df9cd7b54b5490b7234561f4dfbe11",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_service_eluruumi_tagamine",
+      "canonical_item_id": "sillamae_linn:service:eluruumi_tagamine",
+      "itemType": "service",
+      "title": "Eluruumi tagamine",
+      "status": "active",
+      "summary": "Eluruumi tagamise eesmärk on võimaldada eluruumi kasutamine inimesele, kes ei ole sotsiaalmajandusliku olukorra tõttu võimeline tagama endale ja oma perele vajadustele vastavat eluruumi. Puude tõttu eluruumis liikumise, endaga toimetuleku või suhtlemise raskustega inimesi abistab linnavalitsus eluruumi kohandamisel või sobivama eluruumi saamisel. Teenuse saamiseks esitatakse taotlus Hoolekandeasutusele Sügis.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": "Inimesed, kes ei suuda tagada endale või perele sobivat eluruumi, ning puudega inimesed, kes vajavad eluruumi kohandamist või sobivamat eluaset.",
+      "conditions": "Taotlus esitatakse Hoolekandeasutusele Sügis.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita eluruumi üürileandmise taotlus Hoolekandeasutusele Sügis paberkandjal või digiallkirjastatult e-posti teel."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "relatedForms": [
+        "sillamae_linn_form_eluruumi_uurileandmise_taotlus"
+      ],
+      "relatedContacts": [
+        "sillamae_linn_contact_tatjana_zelenjajeva",
+        "sillamae_linn_contact_ksenia_mitina"
+      ],
+      "item_type": "service",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_service_eluruumi_tagamine",
+      "document_id": "sillamae_linn_service_eluruumi_tagamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "e529cd5ebd1fe66cc53e357eb2861e86dcfec25e7fec14adce076df5a59a9a05",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_service_lapsehoiuteenus",
+      "canonical_item_id": "sillamae_linn:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenus on lapsevanema töötamist, õppimist või toimetulekut toetav sotsiaalteenus, mille osutamise ajal tagab lapse hooldamise, arendamise ja turvalisuse lapsehoiuteenuse osutaja. Teenus hõlmab lapse igapäevaseid hooldustoiminguid, nagu söötmine, pesemine, mähkmete vahetamine ja liigutamine, ning arendavaid tegevusi. Lapsevanem või seaduslik esindaja esitab avalduse ja põhjendab teenuse vajadust ning lisab vajalikud dokumendid.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": "Lapsed ja pered, kellel on vajadus lapsehoiuteenuse järele; sh erivajadusega või puudega lapse pered.",
+      "conditions": "Taotlusele lisatakse vajaduse korral puude raskusastme otsus, rehabilitatsiooniplaan, üle 16-aastase lapse töövõime hindamise otsus ning õppenõustamismeeskonna soovitused.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita lapsehoiuteenuse saamiseks taotlus Sillamäe Linnavalitsuse sotsiaalhoolekande osakonnale paberkandjal, osakonna postkasti või digiallkirjastatult e-posti teel. Taotluses märgitakse taotleja andmed, taotletav teenus ja vajadusel perekonna koosseisu, sissetuleku või teenuse vajaduse andmed."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "sillamae_linn_contact_mare_valja"
+      ],
+      "item_type": "service",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_service_lapsehoiuteenus",
+      "document_id": "sillamae_linn_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "1182138037266746e2e58d65f8e0145cb93d994ca225fa78a61a5ea1389ac0c9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_service_tugiisik_lapsele",
+      "canonical_item_id": "sillamae_linn:service:tugiisik_lapsele",
+      "itemType": "service",
+      "title": "Tugiisikuteenus lapsele",
+      "status": "active",
+      "summary": "Lapse tugiisikuteenuse sisuks on lapse juhendamine, abistamine ja jõustamine arendavates tegevustes, kohustuste täitmisel, õiguste teostamisel ja keerulise olukorraga toimetulekul. Tugiisik võib last saata, õppimisel motiveerida ning aidata suhelda perekonnaliikmete ja teiste inimestega. Teenus toimub lapse seadusliku esindaja teadmisel ja nõusolekul ning täpsed tööülesanded kirjeldatakse lepingus või ametijuhendis.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": "Lapsed, kes vajavad individuaalset tugiisikut arengu, õppimise või toimetuleku toetamiseks.",
+      "conditions": "Taotlusele lisatakse vajaduse korral puude raskusastme otsus, rehabilitatsiooniplaan, üle 16-aastase lapse töövõime hindamise otsus ning õppenõustamismeeskonna soovitused.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita lapse tugiisikuteenuse saamiseks taotlus Sillamäe Linnavalitsuse sotsiaalhoolekande osakonnale paberkandjal, osakonna postkasti või digiallkirjastatult e-posti teel. Taotluses märgitakse taotleja andmed, taotletav teenus ja vajadusel perekonna koosseisu, sissetuleku või teenuse vajaduse andmed."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "sillamae_linn_contact_mare_valja"
+      ],
+      "item_type": "service",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_service_tugiisik_lapsele",
+      "document_id": "sillamae_linn_service_tugiisik_lapsele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "00c1e1ef51ac4fff1bc8a42006d94f0651c1d0fb86b899e350c1f0e4022051b0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_service_parkimiskaart",
+      "canonical_item_id": "sillamae_linn:service:parkimiskaart",
+      "itemType": "service",
+      "title": "Liikumispuudega või pimedat inimest teenindava sõiduki parkimiskaardi väljastamine",
+      "status": "active",
+      "summary": "Parkimiskaart lihtsustab nägemis- või liikumispuudega inimese liiklemist ning seda saab taotleda elukohajärgsest omavalitsusest. Parkimiskaarti saab taotleda inimene, kellel on keskmisele, raskele või sügavale puudele vastav liikumis- või nägemisfunktsiooni kõrvalekalle või ajutine liikumis- või nägemisfunktsiooni kõrvalekalle. Kaart antakse inimesele, mitte sõidukile, ja selle kasutamise õigus kehtib üksnes siis, kui puudega inimene juhib sõidukit ise või teda sõidutatakse.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": "Liikumispuudega või pimedad inimesed ning ajutise liikumis- või nägemisfunktsiooni kõrvalekaldega inimesed.",
+      "conditions": "Püsiv parkimiskaart antakse välja puude raskusastme kehtivuse ajaks, kuid mitte kauemaks kui viieks aastaks. Ajutine parkimiskaart antakse eri- või perearsti tõendi alusel kuni kuueks kuuks ning seda saab pikendada kuni 12 kuuni.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Täida parkimiskaardi taotlus täiskasvanule või lapsele ja esita see Sillamäe Linnavalitsuse sotsiaalhoolekande osakonnale paberkandjal või digiallkirjastatult e-posti teel."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "relatedForms": [
+        "sillamae_linn_form_parkimiskaart_taiskasvanu",
+        "sillamae_linn_form_parkimiskaart_laps"
+      ],
+      "relatedContacts": [
+        "sillamae_linn_contact_ksenia_mitina"
+      ],
+      "item_type": "service",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_service_parkimiskaart",
+      "document_id": "sillamae_linn_service_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "d38cc7c3c8bdc36235c68fef513b393f85fc701c13e266985dd40e8c612077cd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_service_suure_hooldusvajadusega_laste_sotsiaalteenused",
+      "canonical_item_id": "sillamae_linn:service:suure_hooldusvajadusega_laste_sotsiaalteenused",
+      "itemType": "service",
+      "title": "Suure hooldus- ja abivajadusega lastele sotsiaalteenused",
+      "status": "active",
+      "summary": "Sotsiaalteenuste sihtrühm on 0-18-aastased suure hooldus- ja abivajadusega lapsed, kes vajavad tuge ja kelle rahvastikuregistrijärgne elukoht on Sillamäe linn. Lapsele võivad olla tagatud lapsehoiuteenus, tugiisiku teenus, transporditeenus ja muud vajalikud teenused, mis vähendavad pere hoolduskoormust. Taotluses põhjendab lapsevanem või seaduslik esindaja teenuse vajadust ning lisab puude, rehabilitatsiooni ja nõustamismeeskonna dokumendid.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": "0-18-aastased suure hooldus- ja abivajadusega lapsed, kelle elukoht on Sillamäe linn.",
+      "conditions": "Vajalik on teenuse vajaduse põhjendamine ja toetavad dokumendid: puude raskusastme otsus, rehabilitatsiooniplaan olemasolul, üle 16-aastase lapse töövõime hindamise otsus ja õppenõustamismeeskonna soovitused olemasolul.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita suure hooldus- ja abivajadusega lapse sotsiaalteenuse saamiseks taotlus Sillamäe Linnavalitsuse sotsiaalhoolekande osakonnale paberkandjal, osakonna postkasti või digiallkirjastatult e-posti teel. Taotluses märgitakse taotleja andmed, taotletav teenus ja vajadusel perekonna koosseisu, sissetuleku või teenuse vajaduse andmed."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "sillamae_linn_contact_mare_valja"
+      ],
+      "item_type": "service",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_service_suure_hooldusvajadusega_laste_sotsiaalteenused",
+      "document_id": "sillamae_linn_service_suure_hooldusvajadusega_laste_sotsiaalteenused",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "eb6a4e76b79a0a6b3bdcdeb678387748c8e342cb414feeef98164dbee631776f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_service_asendushooldusteenus",
+      "canonical_item_id": "sillamae_linn:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenuse eesmärk on tagada lapse heaolu ja õigused pika- või lühiajaliselt, võimaldades lapsele põhivajaduste rahuldamiseks peresarnased elutingimused ning turvalise ja arengut toetava elukeskkonna. Teenuse kaudu toetatakse lapse ettevalmistamist võimetekohaseks toimetulekuks täisealisena. Teenuse osutamist korraldab Sillamäe Linnavalitsus ning vajadusel kaasatakse hoolduspere, perekodu, asenduskodu või muu teenuseosutaja.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": "Sillamäe linnas elavad lapsed, kellele tuleb tagada asendushooldusteenus.",
+      "conditions": "Teenust tagatakse rahvastikuregistrijärgselt Sillamäe linnas elavale lapsele, kellele on vajalik asendushooldus.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita asendushooldusteenuse saamiseks taotlus Sillamäe Linnavalitsuse sotsiaalhoolekande osakonnale paberkandjal, osakonna postkasti või digiallkirjastatult e-posti teel. Taotluses märgitakse taotleja andmed, taotletav teenus ja vajadusel perekonna koosseisu, sissetuleku või teenuse vajaduse andmed."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "sillamae_linn_contact_mare_valja"
+      ],
+      "item_type": "service",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_service_asendushooldusteenus",
+      "document_id": "sillamae_linn_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "5dcbae853b808d48f555d24fa989d84d5b9570de9ddb8a948e63d960c44e2efc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_service_jarelhooldusteenus",
+      "canonical_item_id": "sillamae_linn:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenuse eesmärk on toetada asendushoolduselt ja eestkostelt lahkuva isiku iseseisvat toimetulekut ning õpingute jätkamist. Sillamäe Linnavalitsus korraldab teenust ja kaasab vajadusel vahetuid teenuseosutajaid. Teenust tagatakse registrijärgselt Sillamäe linnas elavale täisealisele isikule, kellel on õigus järelhooldusele.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": "Asendushoolduselt või eestkostelt lahkuvad täisealised isikud, kelle registrijärgne elukoht on Sillamäe linn.",
+      "conditions": "Vajalik on järelhooldusteenuse vajadus ja elukoht Sillamäe linnas.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita järelhooldusteenuse saamiseks taotlus Sillamäe Linnavalitsuse sotsiaalhoolekande osakonnale paberkandjal, osakonna postkasti või digiallkirjastatult e-posti teel. Taotluses märgitakse taotleja andmed, taotletav teenus ja vajadusel perekonna koosseisu, sissetuleku või teenuse vajaduse andmed."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "sillamae_linn_contact_mare_valja",
+        "sillamae_linn_contact_nadezda_piirak",
+        "sillamae_linn_contact_olga_ivanova"
+      ],
+      "item_type": "service",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_service_jarelhooldusteenus",
+      "document_id": "sillamae_linn_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "1f8003235f6989df5a35fa8ad1d506dc319523e030a24af3ace45b2d38317994",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_service_valtimatu_sotsiaalabi",
+      "canonical_item_id": "sillamae_linn:service:valtimatu_sotsiaalabi",
+      "itemType": "service",
+      "title": "Vältimatu sotsiaalabi",
+      "status": "active",
+      "summary": "Sillamäe linn osutab vältimatut abi ka inimestele, kelle rahvastikuregistrijärgne elukoht ei ole Sillamäe linn, kuid kes abi vajamise ajal viibivad Sillamäe linna haldusterritooriumil. Teenus on mõeldud esmaseks abiks olukorras, kus inimene vajab kiiret sotsiaalabi. Veebileht ei kirjelda vältimatu sotsiaalabi täpset menetluskäiku eraldi detailplokis.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": "Sillamäe linnas viibivad inimesed, kes vajavad vältimatut abi.",
+      "conditions": "Abi võib osutada ka inimesele, kelle rahvastikuregistrijärgne elukoht ei ole Sillamäe linn, kuid kes abi vajamise ajal viibib Sillamäe haldusterritooriumil.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Pöördu Sillamäe Linnavalitsuse sotsiaalhoolekande osakonna spetsialisti poole."
+        ],
+        "deadline": null
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "sillamae_linn_contact_nadezda_piirak",
+        "sillamae_linn_contact_olga_ivanova"
+      ],
+      "item_type": "service",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_service_valtimatu_sotsiaalabi",
+      "document_id": "sillamae_linn_service_valtimatu_sotsiaalabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "c8aaa8b4cd9e1cc11641c45502e6814e2b6e056dc8d15c6c15839e39dbf417f2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_benefit_toimetulekutoetus",
+      "canonical_item_id": "sillamae_linn:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on riiklik rahaline abi puuduses inimestele, mida maksab kohalik omavalitsus. Toetus määratakse siis, kui muud vaesuse ja puuduse leevendamise abinõud on ebapiisavad. Arvestamisel võetakse aluseks pere eelmise kuu netosissetulek, jooksval kuul tasumisele kuuluvad eluasemekulud ja toimetulekupiir. Taotlus tuleb esitada hiljemalt kuu viimaseks tööpäevaks ning toetus määratakse viie tööpäeva jooksul pärast kõigi dokumentide esitamist.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Üksi elavad inimesed ja pered, kelle sissetulek pärast arvestatud eluasemekulude mahaarvamist on alla kehtiva toimetulekupiiri.",
+      "conditions": "Arvestatakse sissetulekut, perekonna koosseisu ja eluasemekulusid. Taotleja peab esitama vajalikud dokumendid ja taotluse kuu viimaseks tööpäevaks.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita toimetulekutoetuse avaldus paberkandjal sotsiaalhoolekande osakonnale või digiallkirjastatult e-posti teel. Esmakordsel taotlemisel kasuta esmakordse taotleja vormi."
+        ],
+        "deadline": "kuu viimane tööpäev"
+      },
+      "decisionTime": "5 tööpäeva pärast kõigi dokumentide esitamist; makstakse 3 tööpäeva jooksul otsuse tegemisest",
+      "amount": null,
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "relatedTo": [],
+      "relatedForms": [
+        "sillamae_linn_form_toimetulekutoetus_esmakordne",
+        "sillamae_linn_form_toimetulekutoetus",
+        "sillamae_linn_form_toimetulekutoetus_asutustele"
+      ],
+      "relatedContacts": [
+        "sillamae_linn_contact_nadezda_piirak",
+        "sillamae_linn_contact_olga_ivanova"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_benefit_toimetulekutoetus",
+      "document_id": "sillamae_linn_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "content_hash": "89edc316a6ed78ae869115346ab768680a84a6e2a6ebbbf35a4094d255ba92af",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_benefit_erakorraline_toetus",
+      "canonical_item_id": "sillamae_linn:benefit:erakorraline_toetus",
+      "itemType": "benefit",
+      "title": "Erakorraline toetus",
+      "status": "active",
+      "summary": "Erakorraline toetus on mõeldud isikutele või peredele, kes on sattunud sotsiaalselt abitusse olukorda õnnetuse, tulekahju, haigestumise või muu erakorralise olukorra tagajärjel. Taotlusel esitatakse toetuse määramisel arvesse võetavate isikute andmed, sotsiaalne seisund, sissetulekut ja eluasemekulusid tõendavad dokumendid ning erakorralist olukorda kinnitavad dokumendid. Toetus määratakse linnavalitsuse sotsiaalkomisjoni otsuse alusel ja selle suurus on kuni 300 eurot kalendriaastas ühe isiku kohta.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Erakorralisse sotsiaalselt abitusse olukorda sattunud isikud ja pered.",
+      "conditions": "Vajalik on tõendada erakorralise olukorra tekkimist, sissetulekuid ja vajadusel eluasemekulusid.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita materiaalse abi toetuse avaldus koos tõendavate dokumentidega sotsiaalhoolekande osakonnale."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "currency": "EUR",
+        "max": 300,
+        "period": "kalendriaasta ühe isiku kohta"
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "relatedForms": [
+        "sillamae_linn_form_materiaalse_abi_toetus"
+      ],
+      "relatedContacts": [
+        "sillamae_linn_contact_nadezda_piirak",
+        "sillamae_linn_contact_olga_ivanova"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_benefit_erakorraline_toetus",
+      "document_id": "sillamae_linn_benefit_erakorraline_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "content_hash": "5177e67c2bb49eebeaec4e91c17779fe6137fb420b2205d9b7bf5286315f684b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_benefit_lasteaia_kohamaksu_toetus",
+      "canonical_item_id": "sillamae_linn:benefit:lasteaia_kohamaksu_toetus",
+      "itemType": "benefit",
+      "title": "Lasteaia kohamaksu toetus",
+      "status": "active",
+      "summary": "Lasteaia kohamaksu toetust võivad taotleda vähekindlustatud lastega pered ning nelja ja enama 0-19-aastase lapsega pered. Taotluse võivad esitada lapsevanemad, hooldajad, eestkostjad või vajadusel lasteaia direktorid, lastekaitsetöötajad või muud isikud. Toetus määratakse üldjuhul kord kuus ja kantakse üle Sillamäe lasteaiale ning selle suurus ei või ületada poolt kehtivast toimetuleku määrast ühe lapse kohta.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Vähekindlustatud lastega pered ja nelja või enama lapsega pered.",
+      "conditions": "Taotlus tuleb esitada hiljemalt jooksva kuu 20. kuupäevaks ning sellele lisatakse sissetulekut, lasteaia arvet ja muid kulusid tõendavad dokumendid.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita lasteaia kohamaksu toetuse avaldus koos nõutud dokumentidega sotsiaalhoolekande osakonnale."
+        ],
+        "deadline": "jooksva kuu 20. kuupäev"
+      },
+      "amount": {
+        "description": "kuni 1/2 kehtivast toimetuleku määrast kuus ühe lapse kohta"
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "relatedForms": [
+        "sillamae_linn_form_lasteaia_kohamaksu_toetus"
+      ],
+      "relatedContacts": [
+        "sillamae_linn_contact_mare_valja"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_benefit_lasteaia_kohamaksu_toetus",
+      "document_id": "sillamae_linn_benefit_lasteaia_kohamaksu_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "content_hash": "724ace22e3c5fad69ce66e09942279bb82f41c7589bd33410b842e55e75043cc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_benefit_lasteaia_toitlustus_toetus",
+      "canonical_item_id": "sillamae_linn:benefit:lasteaia_toitlustus_toetus",
+      "itemType": "benefit",
+      "title": "Toetus toitlustamiseks lasteaias",
+      "status": "active",
+      "summary": "Toetus toitlustamiseks lasteaias on mõeldud vähekindlustatud lastega peredele. Taotlus tuleb esitada hiljemalt jooksva kuu 20. kuupäevaks ning toetust kantakse üldjuhul kord kuus üle Sillamäe lasteaiale. Taotlusele lisatakse pere sissetulekut tõendavad dokumendid, taotleja isikut tõendava dokumendi koopia, lasteaia arve, elatise nõudmist tõendavad dokumendid ja viimase kuu eluasemekulude kviitungid.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Vähekindlustatud lastega pered.",
+      "conditions": "Taotlus tuleb esitada hiljemalt jooksva kuu 20. kuupäevaks; lisada tuleb sissetulekut ja kulusid tõendavad dokumendid.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita lasteaia kohamaksu toetuse avaldus, mida kasutatakse ka toitlustustoetuse taotlemiseks, koos nõutud dokumentidega."
+        ],
+        "deadline": "jooksva kuu 20. kuupäev"
+      },
+      "amount": {
+        "description": "kuni 1/2 kehtivast toimetuleku määrast kuus ühe lapse kohta"
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "relatedForms": [
+        "sillamae_linn_form_lasteaia_kohamaksu_toetus"
+      ],
+      "relatedContacts": [
+        "sillamae_linn_contact_mare_valja"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_benefit_lasteaia_toitlustus_toetus",
+      "document_id": "sillamae_linn_benefit_lasteaia_toitlustus_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "content_hash": "329bfa742400e8f71e805eff2e35044cb8c96c1d6322c4346cb8fc3377072ed6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_benefit_transpordikulude_toetus",
+      "canonical_item_id": "sillamae_linn:benefit:transpordikulude_toetus",
+      "itemType": "benefit",
+      "title": "Transpordikulude osalise hüvitamise toetus",
+      "status": "active",
+      "summary": "Transpordikulude osalise hüvitamise toetus on mõeldud tervishoiu- või sotsiaalteenuste saamisega seotud transpordikulude katmiseks. Taotleda saavad mittetöötavad vanaduspensionärid, mittetöötavad osalise või puuduva töövõimega inimesed ning puudega lapse vanem või eestkostja, kui laps ei saa terviseseisundi tõttu kasutada ühistransporti. Hüvitatakse taotlusele eelneva kolme kuu jooksul tehtud kulud kuni 50 protsendi ulatuses, kuid mitte rohkem kui 150 eurot kalendriaastas ühe isiku kohta.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Mittetöötavad vanaduspensionärid, osalise või puuduva töövõimega inimesed ning puudega laste vanemad või eestkostjad.",
+      "conditions": "Kulud peavad olema seotud tervishoiu- või sotsiaalteenuse saamisega ning neid tuleb tõendada kuludokumentide ja teenuse saamist tõendava dokumendiga.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita retseptiravimite, prillide, invatehniliste abivahendite ja transpordikulude toetuse taotlus koos kuludokumentidega."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "currency": "EUR",
+        "max": 150,
+        "period": "kalendriaasta ühe isiku kohta",
+        "description": "kuni 50% kuludest"
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "relatedForms": [
+        "sillamae_linn_form_ravimid_prillid_abivahendid_transport"
+      ],
+      "relatedContacts": [
+        "sillamae_linn_contact_nadezda_piirak",
+        "sillamae_linn_contact_olga_ivanova"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_benefit_transpordikulude_toetus",
+      "document_id": "sillamae_linn_benefit_transpordikulude_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "content_hash": "9f2be51e43eea3e75e87aa3c14f3601f70e4b61d01640780b6d3a333de613125",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_benefit_retseptiravimite_toetus",
+      "canonical_item_id": "sillamae_linn:benefit:retseptiravimite_toetus",
+      "itemType": "benefit",
+      "title": "Retseptiravimite ostmise toetus",
+      "status": "active",
+      "summary": "Retseptiravimite ostmise toetust saavad taotleda vanaduspensionärid, osalise või puuduva töövõimega inimesed, kellele ei maksta töötukassast töötuskindlustushüvitist, ning puudega lapse vanem või eestkostja. Toetusega hüvitatakse taotlusele eelneva kolme kuu jooksul tehtud retseptiravimite kulutused. Kuludokumentidel peavad olema kirjas taotleja nimi, ravimite nimetused ja maksumused ning toetuse määr on kuni 50 eurot kalendriaastas.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Vanaduspensionärid, osalise või puuduva töövõimega inimesed ning puudega lapse vanem või eestkostja.",
+      "conditions": "Retseptiravimite kuludokumendid peavad sisaldama taotleja nime, ravimite nimetusi ja maksumusi.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita retseptiravimite, prillide, invatehniliste abivahendite ja transpordikulude toetuse taotlus koos retseptiravimite kuludokumentidega."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "currency": "EUR",
+        "max": 50,
+        "period": "kalendriaasta"
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "relatedForms": [
+        "sillamae_linn_form_ravimid_prillid_abivahendid_transport"
+      ],
+      "relatedContacts": [
+        "sillamae_linn_contact_nadezda_piirak",
+        "sillamae_linn_contact_olga_ivanova"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_benefit_retseptiravimite_toetus",
+      "document_id": "sillamae_linn_benefit_retseptiravimite_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "content_hash": "123415e898446acd28c6ed5f532f66dd87e005114c3d1039007d1ba2c56a2aa7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_benefit_prillid_abivahendid",
+      "canonical_item_id": "sillamae_linn:benefit:prillid_abivahendid",
+      "itemType": "benefit",
+      "title": "Prillide ja invatehniliste abivahendite ostmise või laenutamise toetus",
+      "status": "active",
+      "summary": "Prillide ja invatehniliste abivahendite ostmise või laenutamise toetust saavad taotleda vanaduspensionärid, osalise või puuduva töövõimega inimesed ning puudega lapse vanem või eestkostja. Prillitoetus määratakse prilliklaaside maksumuse osaliseks või täielikuks hüvitamiseks. Toetusega hüvitatakse taotlusele eelneva kolme kuu jooksul tehtud kulutused ning toetuse määr on kuni 50 eurot kalendriaastas.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Vanaduspensionärid, osalise või puuduva töövõimega inimesed ning puudega lapse vanem või eestkostja.",
+      "conditions": "Taotleja esitab kuludokumendid prillide või invatehniliste abivahendite ostmise või laenutamise kohta.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita retseptiravimite, prillide, invatehniliste abivahendite ja transpordikulude toetuse taotlus koos kuludokumentidega."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "currency": "EUR",
+        "max": 50,
+        "period": "kalendriaasta"
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "relatedForms": [
+        "sillamae_linn_form_ravimid_prillid_abivahendid_transport"
+      ],
+      "relatedContacts": [
+        "sillamae_linn_contact_nadezda_piirak",
+        "sillamae_linn_contact_olga_ivanova"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_benefit_prillid_abivahendid",
+      "document_id": "sillamae_linn_benefit_prillid_abivahendid",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "content_hash": "f9bc68b60baacb05519a34defee4e620ccfb88776c6b3681743a890d25b350b7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_benefit_taisealise_taiendav_toetus",
+      "canonical_item_id": "sillamae_linn:benefit:taisealise_taiendav_toetus",
+      "itemType": "benefit",
+      "title": "Hooldust vajava täisealise isiku täiendav toetus",
+      "status": "active",
+      "summary": "Hooldust vajava täisealise isiku täiendav toetus on igakuiselt makstav rahaline toetus, mis aitab säilitada toimetulekut koduses keskkonnas ja kompenseerib hooldamisega seotud lisaväljaminekuid. Toetust makstakse sügava puudega isikule või tema hooldajale, kes tagab ööpäevaringselt kõrvalabi, juhendamise või järelevalve, ning isiku kohtu poolt määratud eestkostjale, kui eestkostetav ei viibi ööpäevaringsel hoolekandeteenusel. Toetuse määr on 35 eurot kuus.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Sügava puudega täisealised inimesed, nende hooldajad või kohtu määratud eestkostjad.",
+      "conditions": "Toetust ei maksta eestkostjale, kelle eestkostetav viibib ööpäevaringsel hoolekandeteenusel. Muutustest tuleb teatada sotsiaalhoolekande osakonnale 10 päeva jooksul.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita hooldust vajava täisealise isiku täiendava toetuse taotlus koos toetuse õigust tõendavate dokumentidega."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "currency": "EUR",
+        "amount": 35,
+        "period": "kuu"
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "relatedForms": [
+        "sillamae_linn_form_taisealise_taiendav_toetus"
+      ],
+      "relatedContacts": [
+        "sillamae_linn_contact_tatjana_zelenjajeva",
+        "sillamae_linn_contact_ksenia_mitina"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_benefit_taisealise_taiendav_toetus",
+      "document_id": "sillamae_linn_benefit_taisealise_taiendav_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "content_hash": "0eb8a301227fce2ec2e14207ffbde32b0ca90cb68c7a10724c58b25d1cacd683",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_benefit_puudega_lapse_hooldajatoetus",
+      "canonical_item_id": "sillamae_linn:benefit:puudega_lapse_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus puudega lapse hooldajale",
+      "status": "active",
+      "summary": "Hooldajatoetus puudega lapse hooldajale on igakuine sotsiaaltoetus 3-18-aastase hooldusvajadusega puudega lapse hooldamise eest. Toetust saab taotleda üks Sillamäe linnas elav raske või sügava puudega lapse vanem, eestkostja, võõrasvanem või perehoolduslepingu alusel hooldav isik, kes elab lapsega samal aadressil ja ei saa töötada lapse hooldamise tõttu. Toetuse määr on 50 eurot ning see makstakse hooldaja arvelduskontole.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Raske või sügava puudega 3-18-aastase lapse hooldaja.",
+      "conditions": "Taotleja peab elama rahvastikuregistri järgi Sillamäel ja tegelikult koos puudega lapsega ning ei tohi lapse hooldamise tõttu töötada.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita puudega lapse hooldajatoetuse taotlus koos nõutud dokumentidega."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "currency": "EUR",
+        "amount": 50,
+        "period": "kuu"
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "relatedForms": [
+        "sillamae_linn_form_puudega_lapse_hooldajatoetus"
+      ],
+      "relatedContacts": [
+        "sillamae_linn_contact_mare_valja"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_benefit_puudega_lapse_hooldajatoetus",
+      "document_id": "sillamae_linn_benefit_puudega_lapse_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "content_hash": "416b47f61d7261917587436839e879fed05404552c4c483cb3427fc295808d64",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_benefit_sunnitoetus",
+      "canonical_item_id": "sillamae_linn:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Lapse sünnitoetus",
+      "status": "active",
+      "summary": "Lapse sünnitoetus määratakse ühekordselt lapsevanemale tingimusel, et lapse mõlemad vanemad või üksikvanem on taotlemise ajal Sillamäe linna elanikud ning vähemalt üks vanem on elanud Sillamäel vähemalt aasta vahetult enne lapse sündi. Laps peab olema sünnist alates Sillamäe linna elanik ja elama toetuse taotlejaga Sillamäel. Taotluse võib esitada kuue kuu jooksul lapse sünnist. Toetuse määr on 500 eurot ja kui üks vanem on teise omavalitsuse elanik, makstakse 50 protsenti määrast; toetus makstakse kahes osas.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Sillamäe linna lapsevanemad ja üksikvanemad.",
+      "conditions": "Vanemate ja lapse rahvastikuregistrijärgne seos Sillamäega ning vähemalt ühe vanema aastane eelnev elukoht Sillamäel; taotlus esitatakse 6 kuu jooksul pärast lapse sündi.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita sünnitoetuse avalduse I osa pärast lapse sündi ja II osa pärast lapse 1-aastaseks saamist, kui tingimused on täidetud."
+        ],
+        "deadline": "6 kuud lapse sündimisest"
+      },
+      "amount": {
+        "currency": "EUR",
+        "amount": 500,
+        "description": "Makstakse kahes osas; teise omavalitsuse elanikust vanema puhul 50% määrast."
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "relatedForms": [
+        "sillamae_linn_form_sunnitoetus_i_osa",
+        "sillamae_linn_form_sunnitoetus_ii_osa"
+      ],
+      "relatedContacts": [
+        "sillamae_linn_contact_mare_valja"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_benefit_sunnitoetus",
+      "document_id": "sillamae_linn_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "content_hash": "5fe0e6382033143a2254960b5938561e91cd37018ef395123498c01074e062ee",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_benefit_koolimineku_toetus",
+      "canonical_item_id": "sillamae_linn:benefit:koolimineku_toetus",
+      "itemType": "benefit",
+      "title": "Koolimineku toetus",
+      "status": "active",
+      "summary": "Koolimineku toetus on ühekordne toetus esmakordselt kooli mineva lapse vanemale, eestkostjale või lapse hooldajale. Laps peab olema Sillamäe linna elanik ning alustama õpinguid Sillamäe linna koolis. Toetus määratakse Eesti Hariduse Infosüsteemi õpilaste nimekirjade alusel, taotlus tuleb esitada kolme kuu jooksul õppeaasta algusest ja toetuse määr on 100 eurot.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Esmakordselt kooli mineva Sillamäe linna lapse vanem, eestkostja või hooldaja.",
+      "conditions": "Laps peab olema Sillamäe linna elanik ja alustama õppimist Sillamäe linna koolis. Toetust ei maksta asendushooldusteenusel viibivale lapsele.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita koolimineku toetuse taotlus koos lapse isikut tõendava dokumendi või sünnitõendi koopiaga."
+        ],
+        "deadline": "3 kuu jooksul õppeaasta algusest"
+      },
+      "amount": {
+        "currency": "EUR",
+        "amount": 100
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "relatedForms": [
+        "sillamae_linn_form_koolimineku_toetus"
+      ],
+      "relatedContacts": [
+        "sillamae_linn_contact_mare_valja"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_benefit_koolimineku_toetus",
+      "document_id": "sillamae_linn_benefit_koolimineku_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "content_hash": "a5dd38f701124f2c0d3074387f69026a40478fe40adb04e2670103472c09aa9d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_benefit_kooli_oppeaasta_alguse_toetus",
+      "canonical_item_id": "sillamae_linn:benefit:kooli_oppeaasta_alguse_toetus",
+      "itemType": "benefit",
+      "title": "Kooli õppeaasta alguse toetus",
+      "status": "active",
+      "summary": "Kooli õppeaasta alguse toetus on 2.-12. klassi minevale lapsele makstav perioodiline toetus, mida makstakse üks kord aastas septembris-oktoobris. Toetust makstakse lapsevanemale, eestkostjale või perekonnas hooldajale, kui laps on Sillamäe linna elanik ja õpib Sillamäe linna koolis või väljaspool linna, kui vastavat haridustaset Sillamäel ei ole võimalik omandada. Taotlus esitatakse augustis-septembris ning toetuse määr on 50 eurot.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "2.-12. klassi õppiva Sillamäe linna lapse vanem, eestkostja või hooldaja.",
+      "conditions": "Laps peab olema Sillamäe linna elanik ja õppima sobivas koolis. Toetust ei maksta asendushooldusteenusel viibivatele lastele.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita kooli õppeaasta alguse toetuse taotlus; esmasel taotlemisel lisa lapse isikut tõendav dokument või sünnitõend."
+        ],
+        "deadline": "august-september"
+      },
+      "amount": {
+        "currency": "EUR",
+        "amount": 50
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "relatedForms": [
+        "sillamae_linn_form_kooli_oppeaasta_alguse_toetus"
+      ],
+      "relatedContacts": [
+        "sillamae_linn_contact_mare_valja"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_benefit_kooli_oppeaasta_alguse_toetus",
+      "document_id": "sillamae_linn_benefit_kooli_oppeaasta_alguse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "content_hash": "081e4a671c19a0e3a44f709c7d345bbaf909dfef67a9c0fe1b5adbe2093d24a9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_benefit_gumnaasiumi_medali_toetus",
+      "canonical_item_id": "sillamae_linn:benefit:gumnaasiumi_medali_toetus",
+      "itemType": "benefit",
+      "title": "Gümnaasiumi medaliga lõpetanute toetus",
+      "status": "active",
+      "summary": "Gümnaasiumi medaliga lõpetanute toetus on ühekordne toetus noorele, kes lõpetab gümnaasiumi kuld- või hõbemedaliga. Toetuse määramise aluseks on koolide kinnitatud andmed ja taotlusele lisatakse isikut tõendava dokumendi koopia. Toetuse määr on 200 eurot kuldmedaliga lõpetanule ja 130 eurot hõbemedaliga lõpetanule.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Sillamäe linna gümnaasiumi kuld- või hõbemedaliga lõpetanud noored.",
+      "conditions": "Aluseks on kooli kinnitatud andmed; taotlusele lisatakse isikut tõendava dokumendi koopia.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita gümnaasiumi medaliga lõpetanute toetuse taotlus koos isikut tõendava dokumendi koopiaga."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "currency": "EUR",
+        "gold": 200,
+        "silver": 130
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "relatedForms": [
+        "sillamae_linn_form_gumnaasiumi_medali_toetus"
+      ],
+      "relatedContacts": [
+        "sillamae_linn_contact_jevgenia_dvornik"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_benefit_gumnaasiumi_medali_toetus",
+      "document_id": "sillamae_linn_benefit_gumnaasiumi_medali_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "content_hash": "318bc49b359595d58d480d7e29af56d66d843ae6981d62ba87e7d4fc1109bb79",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_benefit_vanaduspensionaride_toetus",
+      "canonical_item_id": "sillamae_linn:benefit:vanaduspensionaride_toetus",
+      "itemType": "benefit",
+      "title": "Ühekordne vanaduspensionäride toetus",
+      "status": "active",
+      "summary": "Ühekordne vanaduspensionäride toetus määratakse riikliku pensionikindlustuse seaduse alusel vanaduspensioni saavale inimesele, välja arvatud ennetähtaegse või soodustingimustel vanaduspensioni saajale. Esmakordsel taotlemisel tuleb esitada kirjalik taotlus ja isikut tõendava dokumendi koopia. Taotlus esitatakse aasta viimases kvartalis ning toetus makstakse detsembris või vahendite puudumisel järgmise aasta esimeses kvartalis. Toetuse määr on 15 eurot.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Vanaduspensionärid, kes on Sillamäe linna elanikud.",
+      "conditions": "Toetust ei maksta isikule, kes viibib ööpäevaringsel hoolekandeteenusel ja kelle hoolduskulusid tasub Sillamäe linn täielikult või osaliselt.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita ühekordse vanaduspensionäride toetuse taotlus aasta viimases kvartalis; esmakordsel taotlemisel lisa isikut tõendava dokumendi koopia."
+        ],
+        "deadline": "aasta viimane kvartal"
+      },
+      "amount": {
+        "currency": "EUR",
+        "amount": 15
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "relatedForms": [
+        "sillamae_linn_form_vanaduspensionaride_toetus"
+      ],
+      "relatedContacts": [
+        "sillamae_linn_contact_nadezda_piirak",
+        "sillamae_linn_contact_olga_ivanova"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_benefit_vanaduspensionaride_toetus",
+      "document_id": "sillamae_linn_benefit_vanaduspensionaride_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "content_hash": "d0e28029ae13b0990fdb0da6e0d94d6cf64afac8a8bc4dfb2c0a182e4bcf70cc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_benefit_juubelitoetus_eakatele",
+      "canonical_item_id": "sillamae_linn:benefit:juubelitoetus_eakatele",
+      "itemType": "benefit",
+      "title": "Juubelitoetus eakatele",
+      "status": "active",
+      "summary": "Juubelitoetust makstakse eakale tema 80., 85., 90. ja iga järgneva sünnipäeva puhul. Toetus kantakse toetuse saaja poolt taotluses esitatud arvelduskontole. Toetuse määr on 25 eurot.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Sillamäe linna eakad, kellel on 80., 85., 90. või hilisem sünnipäev.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita eakate juubelitoetuse taotlus sotsiaalhoolekande osakonnale."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "currency": "EUR",
+        "amount": 25
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "relatedForms": [
+        "sillamae_linn_form_juubelitoetus_eakatele"
+      ],
+      "relatedContacts": [
+        "sillamae_linn_contact_nadezda_piirak",
+        "sillamae_linn_contact_olga_ivanova"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_benefit_juubelitoetus_eakatele",
+      "document_id": "sillamae_linn_benefit_juubelitoetus_eakatele",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "content_hash": "888a129b7c6a162db153accd2122362710baf4c58f8d16d9e8a5e9626b574fe4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_benefit_matusetoetus",
+      "canonical_item_id": "sillamae_linn:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on ühekordne sotsiaaltoetus matuse kulude osaliseks kompenseerimiseks matuse korraldajale. Toetust makstakse isikule, kes kannab Sillamäe linna elaniku matuse korraldamise kulu, samuti Sillamäe elanikule, kes taotleb toetust isiku matmiseks, kellel puudus rahvastikuregistrijärgne elukoht või kelle eest ei olnud võimalik saada toetust teisest omavalitsusest. Toetuse määr on 250 eurot.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Matuse korraldaja Sillamäe linna elaniku surma korral või Sillamäe elanik, kes kannab matusekulu.",
+      "conditions": "Matusetoetust makstakse matuse korraldamise kulude osaliseks katmiseks ja tundmatu või omasteta surnu matuse korraldab Sillamäe Linnavalitsus.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita matusetoetuse taotlus sotsiaalhoolekande osakonnale."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "currency": "EUR",
+        "amount": 250
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "relatedForms": [
+        "sillamae_linn_form_matusetoetus"
+      ],
+      "relatedContacts": [
+        "sillamae_linn_contact_nadezda_piirak",
+        "sillamae_linn_contact_olga_ivanova"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_benefit_matusetoetus",
+      "document_id": "sillamae_linn_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "content_hash": "0017bdd7e3b75aa032a57d9cbc030dc79b07a8acbd733d0a7c46e1dec49b4d74",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_benefit_eluruumi_kohandamise_toetus",
+      "canonical_item_id": "sillamae_linn:benefit:eluruumi_kohandamise_toetus",
+      "itemType": "benefit",
+      "title": "Puudega inimesele eluruumi kohandamise toetus",
+      "status": "active",
+      "summary": "Eluruumi kohandamise toetuse eesmärk on vähendada puudest tingitud raskusi eluruumi sisenemisel, eluruumis liikumisel ja enesega toimetulekul. Toetust määratakse sügava liikumispuudega või progresseeruva liikumisvõime kaotusega raske puudega inimesele, kelle elukoht on Sillamäe linnas asuv kohandamist vajav eluruum ja kelle majanduslik seisund ei võimalda kohandamist ise tasuda. Toetuse suurus on kuni 85 protsenti kohanduse maksumusest, kuid mitte rohkem kui 2000 eurot; linnavalitsus võib majanduslikust olukorrast lähtudes anda toetust kuni 100 protsenti maksumusest, kuid samuti kuni 2000 eurot.",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "targetGroup": "Sügava liikumispuudega või progresseeruva liikumisvõime kaotusega raske puudega Sillamäe linna elanikud.",
+      "conditions": "Kohandatav eluruum peab olema taotleja alaline elukoht ja taotleja või tema pereliikme omandis või kasutuses. Kohandustöö peab parandama iseseisvat toimetulekut ja vähendama puudest tingitud takistusi.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita vormivaba taotlus Sillamäe Linnavalitsuse sotsiaalhoolekande osakonna spetsialistile paberkandjal või digiallkirjastatult e-posti teel."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "currency": "EUR",
+        "max": 2000,
+        "description": "kuni 85% kohandamise maksumusest; erandina kuni 100%, kuid mitte üle 2000 euro"
+      },
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "sillamae_linn_contact_tatjana_zelenjajeva",
+        "sillamae_linn_contact_ksenia_mitina"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_benefit_eluruumi_kohandamise_toetus",
+      "document_id": "sillamae_linn_benefit_eluruumi_kohandamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "67f28beed14126e370f007e13996f86fcbdedb0ed06a1fe1feef507da3249725",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_benefit_sotsiaalhoolekande_urituste_toetus",
+      "canonical_item_id": "sillamae_linn:benefit:sotsiaalhoolekande_urituste_toetus",
+      "itemType": "benefit",
+      "title": "Sotsiaalhoolekande ürituste toetus",
+      "status": "active",
+      "summary": "Sillamäe linna eelarvest antakse toetust tegevustele, mis parandavad laste, noorte, puudega inimeste, eakate ja toimetulekuraskustes perede iseseisvat toimetulekut, vähendavad riskilaste ja -noorukite riskikäitumist ning aitavad ennetada või kõrvaldada toimetulekuraskusi. Tegevus peab toimuma Sillamäel või olema suunatud Sillamäe elanikele ning taotlejal peab olema vähemalt 10 protsenti omafinantseeringut. Taotlusi võetakse vastu üldjuhul neli korda aastas: 1. detsembriks, 1. märtsiks, 1. juuniks ja 1. septembriks.",
+      "sourceKeys": [
+        "social_benefits_page"
+      ],
+      "targetGroup": "Sotsiaalhoolekande ürituste ja tegevuste korraldajad, kelle tegevus on suunatud Sillamäe elanikele.",
+      "conditions": "Tegevus peab toimuma Sillamäe haldusterritooriumil või olema suunatud Sillamäe elanikele; vajalik on vähemalt 10% omafinantseering.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": [
+          "Esita sotsiaalhoolekande ürituste toetuse taotlus ja hiljem aruanne sotsiaalhoolekande osakonnale."
+        ],
+        "deadline": "1. detsember, 1. märts, 1. juuni, 1. september"
+      },
+      "amount": null,
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "relatedForms": [
+        "sillamae_linn_form_sotsiaalhoolekande_urituste_toetus_aruanne"
+      ],
+      "relatedContacts": [
+        "sillamae_linn_contact_nadezda_piirak",
+        "sillamae_linn_contact_olga_ivanova"
+      ],
+      "relatedTo": [],
+      "item_type": "benefit",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_benefits_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_benefit_sotsiaalhoolekande_urituste_toetus",
+      "document_id": "sillamae_linn_benefit_sotsiaalhoolekande_urituste_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaaltoetused",
+      "content_hash": "c6969f9477b6fa53c25fa76e1b5caae92c40ef4061bfc2594c1707f93b2d22e1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_resource_lastekaitse",
+      "canonical_item_id": "sillamae_linn:resource:lastekaitse",
+      "itemType": "resource",
+      "title": "Lastekaitse",
+      "status": "active",
+      "summary": "Sillamäe linnavalitsuse lastekaitse eesmärk on lapse õiguste ja heaolu igakülgne tagamine. Lapsi puudutavate toetuste ja teenuste taotlemiseks tuleb pöörduda lastekaitsetöötaja poole. Sillamäe linnavalitsuse lastekaitsespetsialist on Mare Välja.",
+      "sourceKeys": [
+        "child_protection_page"
+      ],
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/lapse-ja-perede-heaolu/lastekaitse",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "sillamae_linn_contact_mare_valja"
+      ],
+      "item_type": "resource",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "child_protection_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_resource_lastekaitse",
+      "document_id": "sillamae_linn_resource_lastekaitse",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/lapse-ja-perede-heaolu/lastekaitse",
+      "content_hash": "3687e2aaaff2d376a015d0c7ebe77e09c16191c987dbd8dfbf0dabada6f8ba40",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_resource_abivajav_laps",
+      "canonical_item_id": "sillamae_linn:resource:abivajav_laps",
+      "itemType": "resource",
+      "title": "Hädaohus ja abivajav laps",
+      "status": "active",
+      "summary": "Sillamäe linna veebileht selgitab, et abivajavast lapsest tuleb teatada kohaliku omavalitsuse lastekaitsetöötajale, lasteabitelefonile või kadunud laste telefonile 116 000. Hädaohus olevast lapsest tuleb kohe teatada hädaabinumbril. Lasteabi on ööpäevaringne, tasuta ja anonüümne ning nõustab eesti, vene ja inglise keeles.",
+      "sourceKeys": [
+        "child_at_risk_page"
+      ],
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/lapse-ja-perede-heaolu/hadaohus-ja-abivajav-laps",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "sillamae_linn_contact_mare_valja"
+      ],
+      "item_type": "resource",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "child_at_risk_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_resource_abivajav_laps",
+      "document_id": "sillamae_linn_resource_abivajav_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/lapse-ja-perede-heaolu/hadaohus-ja-abivajav-laps",
+      "content_hash": "dbaea39848d74e72a0ee19521df9e0e15468abd09f92e31bcf3e743ac71dd637",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_resource_ohvriabi",
+      "canonical_item_id": "sillamae_linn:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi ja kriisiabi",
+      "status": "active",
+      "summary": "Ohvriabisse saab pöörduda inimene, kes on ise või kelle lähedane on kannatanud kuriteo, vägivalla või kriisijuhtumi tõttu. Ohvriabi kriisitelefon on ja välismaalt helistades Lisaks on lehel toodud emotsionaalse toe ja hingehoiu 116 123, inimkaubanduse ennetamise nõuandeliin, vägivallast loobumise tugiliin ning lasteabi.",
+      "sourceKeys": [
+        "victim_support_page"
+      ],
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/lapse-ja-perede-heaolu/ohvriabi",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "victim_support_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_resource_ohvriabi",
+      "document_id": "sillamae_linn_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/lapse-ja-perede-heaolu/ohvriabi",
+      "content_hash": "27818febf473f0b9488619e4af1a015c18c059a84a864191a63924485c7f9628",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_resource_laste_hoolekande_asutus_lootus",
+      "canonical_item_id": "sillamae_linn:resource:laste_hoolekande_asutus_lootus",
+      "itemType": "resource",
+      "title": "Laste Hoolekande Asutus Lootus",
+      "status": "active",
+      "summary": "Laste Hoolekande Asutus Lootus on Sillamäe linna hoolekandeasutus aadressil J. Gagarini tn 7. KOV veebileht avaldab kontakttelefonina ja viitab asutuse kodulehele.",
+      "sourceKeys": [
+        "care_institutions_page"
+      ],
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/tervise-ja-hoolekandeasutused/hoolekandeasutused",
+      "address": "J. Gagarini tn 7, Sillamäe",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "care_institutions_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_resource_laste_hoolekande_asutus_lootus",
+      "document_id": "sillamae_linn_resource_laste_hoolekande_asutus_lootus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/tervise-ja-hoolekandeasutused/hoolekandeasutused",
+      "content_hash": "66849def8de9111b29a0c0ae38c12652603f24d601d7552bf241f37e0e94f178",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_resource_hoolekandeasutus_sugis",
+      "canonical_item_id": "sillamae_linn:resource:hoolekandeasutus_sugis",
+      "itemType": "resource",
+      "title": "Hoolekandeasutus Sügis",
+      "status": "active",
+      "summary": "Hoolekandeasutus Sügis on Sillamäe linna hoolekandeasutus aadressil Geoloogia tn 18. KOV veebileht avaldab telefonid ja ning viitab asutuse kodulehele. Sügis on seotud mitme Sillamäe sotsiaalteenusega, sealhulgas sotsiaaltranspordi ja eluruumi tagamisega.",
+      "sourceKeys": [
+        "care_institutions_page",
+        "social_services_page"
+      ],
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/tervise-ja-hoolekandeasutused/hoolekandeasutused",
+      "address": "Geoloogia tn 18, Sillamäe",
+      "relatedTo": [
+        "sillamae_linn_service_sotsiaaltransport",
+        "sillamae_linn_service_eluruumi_tagamine"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "care_institutions_page",
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_resource_hoolekandeasutus_sugis",
+      "document_id": "sillamae_linn_resource_hoolekandeasutus_sugis",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/tervise-ja-hoolekandeasutused/hoolekandeasutused",
+      "content_hash": "cededfc20707840b048d6dc460ce88450404f6a9bb2dce04c4a71ec76fdf4bd6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_resource_sillamae_kodu",
+      "canonical_item_id": "sillamae_linn:resource:sillamae_kodu",
+      "itemType": "resource",
+      "title": "AS Hoolekandeteenused Sillamäe Kodu",
+      "status": "active",
+      "summary": "AS Hoolekandeteenused Sillamäe Kodu on hoolekandeasutus aadressil Tervise tn 12, Sillamäe. KOV veebileht avaldab kontakttelefonina ja viitab asutuse kodulehele.",
+      "sourceKeys": [
+        "care_institutions_page"
+      ],
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/tervise-ja-hoolekandeasutused/hoolekandeasutused",
+      "address": "Tervise tn 12, Sillamäe",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "care_institutions_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_resource_sillamae_kodu",
+      "document_id": "sillamae_linn_resource_sillamae_kodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/tervise-ja-hoolekandeasutused/hoolekandeasutused",
+      "content_hash": "11d7c3f72e276edc476e9a9fd1a441b156fbda0b66deb35cff473888e012c9d2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_resource_orv_hoolekeskus",
+      "canonical_item_id": "sillamae_linn:resource:orv_hoolekeskus",
+      "itemType": "resource",
+      "title": "O.R.V. Hoolekeskus OÜ",
+      "status": "active",
+      "summary": "O.R.V. Hoolekeskus OÜ on hoolekandeasutus aadressil Hariduse tn 23, Sillamäe. KOV veebileht avaldab kontakttelefonina ja viitab asutuse kodulehele.",
+      "sourceKeys": [
+        "care_institutions_page"
+      ],
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/tervise-ja-hoolekandeasutused/hoolekandeasutused",
+      "address": "Hariduse tn 23, Sillamäe",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "care_institutions_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_resource_orv_hoolekeskus",
+      "document_id": "sillamae_linn_resource_orv_hoolekeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/tervise-ja-hoolekandeasutused/hoolekandeasutused",
+      "content_hash": "ba48dacb20158153e2e92fa2287288fc5b1416903195fc5545c521b640cb4847",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_resource_vesta",
+      "canonical_item_id": "sillamae_linn:resource:vesta",
+      "itemType": "resource",
+      "title": "VESTA – valdkondade ülene sotsiaal- ja tervishoiuteenuste toetus ja abi",
+      "status": "active",
+      "summary": "VESTA on Ida-Virumaa täisealistele elanikele suunatud tugi, mis ühendab tervise- ja sotsiaalvaldkonna spetsialistid ühtseks meeskonnaks. Teenus on mõeldud inimestele, kellel on mitu kroonilist haigust koos sotsiaalsete raskustega, näiteks pärast haiglast koju naasmist. VESTA-le saavad suunata perearst, pereõde, eriarst või kohaliku omavalitsuse sotsiaaltöötaja. Sillamäe piirkonna tervisejuhi kontakttelefon Perearstide Keskus Neemes on",
+      "sourceKeys": [
+        "social_services_page"
+      ],
+      "officialUrl": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "address": "Perearstide Keskus Neeme, I. Pavlovi tn 12a, Sillamäe",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "sillamae_linn_contact_nadezda_piirak",
+        "sillamae_linn_contact_olga_ivanova"
+      ],
+      "item_type": "resource",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_resource_vesta",
+      "document_id": "sillamae_linn_resource_vesta",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/et/pere-sotsiaal-ja-tervishoid/sotsiaaltoetused-ja-teenused/sotsiaalteenused",
+      "content_hash": "346bca7c0712b63f642362bb367a6baa83fd06cba4c9e526411e59d72908f055",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_form_uldhooldusteenuse_taotlus",
+      "canonical_item_id": "sillamae_linn:form:uldhooldusteenuse_taotlus",
+      "itemType": "form",
+      "title": "Väljaspool kodu osutatava üldhooldusteenuse taotlus",
+      "status": "active",
+      "summary": "DOC-vorm väljaspool kodu osutatava üldhooldusteenuse taotlemiseks. Vorm esitatakse sotsiaalhoolekande osakonnale paberkandjal või digiallkirjastatult e-posti teel.",
+      "sourceKeys": [
+        "form_uldhooldus"
+      ],
+      "format": "doc",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "officialUrl": "https://www.sillamae.ee/sites/default/files/documents/2026-01/V%C3%A4ljaspool%20kodu%20osutatav%20%C3%BCldhooldusteenuse%20taotlus%202026.doc",
+      "relatedTo": [
+        "sillamae_linn_service_uldhooldusteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_uldhooldus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_form_uldhooldusteenuse_taotlus",
+      "document_id": "sillamae_linn_form_uldhooldusteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/sites/default/files/documents/2026-01/V%C3%A4ljaspool%20kodu%20osutatav%20%C3%BCldhooldusteenuse%20taotlus%202026.doc",
+      "content_hash": "d966e94efceed13b51ed86ec72ddb8755ab0723aaa976cd9cbf96fe38cdef90f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_form_eluruumi_uurileandmise_taotlus",
+      "canonical_item_id": "sillamae_linn:form:eluruumi_uurileandmise_taotlus",
+      "itemType": "form",
+      "title": "Eluruumi üürileandmise taotlus",
+      "status": "active",
+      "summary": "PDF-vorm eluruumi üürileandmise taotlemiseks. Vorm on seotud eluruumi tagamise teenusega ning esitatakse Hoolekandeasutusele Sügis paberkandjal või e-posti teel.",
+      "sourceKeys": [
+        "form_eluruumi_uur"
+      ],
+      "format": "pdf",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "officialUrl": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Eluruumi%20%C3%BC%C3%BCrileandmise%20taotlus.pdf",
+      "relatedTo": [
+        "sillamae_linn_service_eluruumi_tagamine"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_eluruumi_uur"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_form_eluruumi_uurileandmise_taotlus",
+      "document_id": "sillamae_linn_form_eluruumi_uurileandmise_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Eluruumi%20%C3%BC%C3%BCrileandmise%20taotlus.pdf",
+      "content_hash": "a8efab0e9799981f199d0ffe3e8503bfdcf24dd843d48d016217e489867181e8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_form_parkimiskaart_taiskasvanu",
+      "canonical_item_id": "sillamae_linn:form:parkimiskaart_taiskasvanu",
+      "itemType": "form",
+      "title": "Puudega inimese parkimiskaardi taotlus",
+      "status": "active",
+      "summary": "DOC-vorm liikumis- või nägemispuudega täiskasvanu parkimiskaardi taotlemiseks. Vorm esitatakse sotsiaalhoolekande osakonnale paberkandjal või digiallkirjastatult e-posti teel.",
+      "sourceKeys": [
+        "form_parkimiskaart"
+      ],
+      "format": "doc",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "officialUrl": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Puudega%20inimese%20parkimiskaardi%20taotlus.doc",
+      "relatedTo": [
+        "sillamae_linn_service_parkimiskaart"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_parkimiskaart"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_form_parkimiskaart_taiskasvanu",
+      "document_id": "sillamae_linn_form_parkimiskaart_taiskasvanu",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Puudega%20inimese%20parkimiskaardi%20taotlus.doc",
+      "content_hash": "90e93517fdd9c2588c605d8f5d8c3b0a4e53b40ae6deccefd18d953b9fb03b34",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_form_parkimiskaart_laps",
+      "canonical_item_id": "sillamae_linn:form:parkimiskaart_laps",
+      "itemType": "form",
+      "title": "Puudega lapse parkimiskaardi taotlus",
+      "status": "active",
+      "summary": "DOC-vorm puudega lapse parkimiskaardi taotlemiseks. Vorm esitatakse sotsiaalhoolekande osakonnale paberkandjal või digiallkirjastatult e-posti teel.",
+      "sourceKeys": [
+        "form_parkimiskaart_laps"
+      ],
+      "format": "doc",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "officialUrl": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Puudega%20inimese%20parkimiskaardi%20taotlus%20lastele.doc",
+      "relatedTo": [
+        "sillamae_linn_service_parkimiskaart"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_parkimiskaart_laps"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_form_parkimiskaart_laps",
+      "document_id": "sillamae_linn_form_parkimiskaart_laps",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Puudega%20inimese%20parkimiskaardi%20taotlus%20lastele.doc",
+      "content_hash": "5987fdf6ddb2a501ac7ccf664e9a1a817c53fb1a7238c9ba3252485c07ac9531",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_form_toimetulekutoetus_esmakordne",
+      "canonical_item_id": "sillamae_linn:form:toimetulekutoetus_esmakordne",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse avaldus esmakordsele taotlejale",
+      "status": "active",
+      "summary": "DOC-vorm toimetulekutoetuse esmakordseks taotlemiseks. Vorm esitatakse sotsiaalhoolekande osakonda või digiallkirjastatult e-posti teel.",
+      "sourceKeys": [
+        "form_ttt_esmakordne"
+      ],
+      "format": "doc",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "officialUrl": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Toimetulekutoetuse%20avaldus_esmakordne.doc",
+      "relatedTo": [
+        "sillamae_linn_benefit_toimetulekutoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_ttt_esmakordne"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_form_toimetulekutoetus_esmakordne",
+      "document_id": "sillamae_linn_form_toimetulekutoetus_esmakordne",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Toimetulekutoetuse%20avaldus_esmakordne.doc",
+      "content_hash": "28c41cc7f5c885e6ad20cd6a1da1bc1edb0ebff462988411be107ff32403a1cf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_form_toimetulekutoetus",
+      "canonical_item_id": "sillamae_linn:form:toimetulekutoetus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse avaldus",
+      "status": "active",
+      "summary": "DOC-vorm toimetulekutoetuse korduvaks või tavapäraseks taotlemiseks. Vorm esitatakse sotsiaalhoolekande osakonda või digiallkirjastatult e-posti teel.",
+      "sourceKeys": [
+        "form_ttt"
+      ],
+      "format": "doc",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "officialUrl": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Toimetulekutoetuse%20avaldus.doc",
+      "relatedTo": [
+        "sillamae_linn_benefit_toimetulekutoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_ttt"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_form_toimetulekutoetus",
+      "document_id": "sillamae_linn_form_toimetulekutoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Toimetulekutoetuse%20avaldus.doc",
+      "content_hash": "486623a95db30c1f6c59580cc5b738fc95a42387f7e86e58c57a133b70fb53c3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_form_toimetulekutoetus_asutustele",
+      "canonical_item_id": "sillamae_linn:form:toimetulekutoetus_asutustele",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse maksmine asutuste kontodele avaldus",
+      "status": "active",
+      "summary": "DOC-vorm, millega saab taotleda toimetulekutoetuse maksmist asutuste kontodele. Vorm on seotud toimetulekutoetusega.",
+      "sourceKeys": [
+        "form_ttt_asutustele"
+      ],
+      "format": "doc",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "officialUrl": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Toimetulekutoetuse%20maksmine%20asutuste%20kontodele_avaldus.doc",
+      "relatedTo": [
+        "sillamae_linn_benefit_toimetulekutoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_ttt_asutustele"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_form_toimetulekutoetus_asutustele",
+      "document_id": "sillamae_linn_form_toimetulekutoetus_asutustele",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Toimetulekutoetuse%20maksmine%20asutuste%20kontodele_avaldus.doc",
+      "content_hash": "2ebcd82f4820f6265f403488a289e7ec132d847de4b0359cd6c8a3a574ef4b86",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_form_materiaalse_abi_toetus",
+      "canonical_item_id": "sillamae_linn:form:materiaalse_abi_toetus",
+      "itemType": "form",
+      "title": "Materiaalse abi toetuse avaldus",
+      "status": "active",
+      "summary": "DOC-vorm erakorralise või muu materiaalse abi taotlemiseks. Vorm esitatakse koos sissetulekut ja abivajadust tõendavate dokumentidega.",
+      "sourceKeys": [
+        "form_materiaalne_abi"
+      ],
+      "format": "doc",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "officialUrl": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Materiaalse%20abi%20toetuse%20%20avaldus.doc",
+      "relatedTo": [
+        "sillamae_linn_benefit_erakorraline_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_materiaalne_abi"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_form_materiaalse_abi_toetus",
+      "document_id": "sillamae_linn_form_materiaalse_abi_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Materiaalse%20abi%20toetuse%20%20avaldus.doc",
+      "content_hash": "f09bd8a721401b1f87f56aaca4bcf2836919c29dad0542ac07e364258d1af301",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_form_lasteaia_kohamaksu_toetus",
+      "canonical_item_id": "sillamae_linn:form:lasteaia_kohamaksu_toetus",
+      "itemType": "form",
+      "title": "Lasteaia kohamaksu toetuse avaldus",
+      "status": "active",
+      "summary": "DOC-vorm lasteaia kohamaksu toetuse ja lasteaia toitlustustoetuse taotlemiseks. Vorm esitatakse sotsiaalhoolekande osakonnale koos sissetulekut ja lasteaia arvet tõendavate dokumentidega.",
+      "sourceKeys": [
+        "form_lasteaia_kohamaks"
+      ],
+      "format": "doc",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "officialUrl": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Lasteaia%20kohamaksu%20toetuse%20avaldus.doc",
+      "relatedTo": [
+        "sillamae_linn_benefit_lasteaia_kohamaksu_toetus",
+        "sillamae_linn_benefit_lasteaia_toitlustus_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_lasteaia_kohamaks"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_form_lasteaia_kohamaksu_toetus",
+      "document_id": "sillamae_linn_form_lasteaia_kohamaksu_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Lasteaia%20kohamaksu%20toetuse%20avaldus.doc",
+      "content_hash": "b5c8a6dc500bb7b13025f759e0613a95a9fcb43c69b6f0a53f055f8a5f5526ba",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_form_ravimid_prillid_abivahendid_transport",
+      "canonical_item_id": "sillamae_linn:form:ravimid_prillid_abivahendid_transport",
+      "itemType": "form",
+      "title": "Retseptiravimite, prillide, invatehniliste abivahendite ja transpordikulude toetuse taotlus",
+      "status": "active",
+      "summary": "DOCX-vorm retseptiravimite, prillide, invatehniliste abivahendite ja transpordikulude hüvitamise toetuste taotlemiseks. Vorm esitatakse kuludokumentidega.",
+      "sourceKeys": [
+        "form_ravimid_prillid_transport"
+      ],
+      "format": "docx",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "officialUrl": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Retseptiravimid%2C%20prillid%2C%20invatehniliste%20abivahendid%2C%20transpordikulud_toetuse%20taotlus.docx",
+      "relatedTo": [
+        "sillamae_linn_benefit_transpordikulude_toetus",
+        "sillamae_linn_benefit_retseptiravimite_toetus",
+        "sillamae_linn_benefit_prillid_abivahendid"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_ravimid_prillid_transport"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_form_ravimid_prillid_abivahendid_transport",
+      "document_id": "sillamae_linn_form_ravimid_prillid_abivahendid_transport",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Retseptiravimid%2C%20prillid%2C%20invatehniliste%20abivahendid%2C%20transpordikulud_toetuse%20taotlus.docx",
+      "content_hash": "eea2da067057605a4c76d9304b361fe5c11804e2dce2650dbf6feeb54ed255d6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_form_taisealise_taiendav_toetus",
+      "canonical_item_id": "sillamae_linn:form:taisealise_taiendav_toetus",
+      "itemType": "form",
+      "title": "Hooldust vajava täisealise isiku täiendava toetuse taotlus",
+      "status": "active",
+      "summary": "DOC-vorm hooldust vajava täisealise isiku täiendava toetuse taotlemiseks. Vorm esitatakse koos toetuse õigust tõendavate dokumentidega.",
+      "sourceKeys": [
+        "form_taisealise_taiendav"
+      ],
+      "format": "doc",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "officialUrl": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Hooldust%20vajava%20t%C3%A4isealise%20isiku%20t%C3%A4iendav%20toetuse%20taotlus.doc",
+      "relatedTo": [
+        "sillamae_linn_benefit_taisealise_taiendav_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_taisealise_taiendav"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_form_taisealise_taiendav_toetus",
+      "document_id": "sillamae_linn_form_taisealise_taiendav_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Hooldust%20vajava%20t%C3%A4isealise%20isiku%20t%C3%A4iendav%20toetuse%20taotlus.doc",
+      "content_hash": "1c1bd4b069251a5096b04d4c8d30c4c8a3e2dfecb502015a412a7eb0680fc845",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_form_puudega_lapse_hooldajatoetus",
+      "canonical_item_id": "sillamae_linn:form:puudega_lapse_hooldajatoetus",
+      "itemType": "form",
+      "title": "Hooldajatoetus puudega lapse hooldajale",
+      "status": "active",
+      "summary": "PDF-vorm puudega lapse hooldajatoetuse taotlemiseks. Vormis esitatakse hooldaja ja hooldatava andmed ning lisatakse nõutud dokumendid.",
+      "sourceKeys": [
+        "form_lapse_hooldajatoetus"
+      ],
+      "format": "pdf",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "officialUrl": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Hooldajatoetus%20puudega%20lapse%20hooldajale.pdf",
+      "relatedTo": [
+        "sillamae_linn_benefit_puudega_lapse_hooldajatoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_lapse_hooldajatoetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_form_puudega_lapse_hooldajatoetus",
+      "document_id": "sillamae_linn_form_puudega_lapse_hooldajatoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Hooldajatoetus%20puudega%20lapse%20hooldajale.pdf",
+      "content_hash": "6a756f7e965d8a80eda8b9350204fc12da6f25c2776aab02d707dccee00afbf2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_form_sunnitoetus_i_osa",
+      "canonical_item_id": "sillamae_linn:form:sunnitoetus_i_osa",
+      "itemType": "form",
+      "title": "Sünnitoetuse avaldus I osa",
+      "status": "active",
+      "summary": "DOC-vorm lapse sünnitoetuse esimese osa taotlemiseks pärast lapse sündi.",
+      "sourceKeys": [
+        "form_sunnitoetus_1"
+      ],
+      "format": "doc",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "officialUrl": "https://www.sillamae.ee/sites/default/files/documents/2025-05/S%C3%BCnnitoetuse%20avaldus_I%20osa.doc",
+      "relatedTo": [
+        "sillamae_linn_benefit_sunnitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_sunnitoetus_1"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_form_sunnitoetus_i_osa",
+      "document_id": "sillamae_linn_form_sunnitoetus_i_osa",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/sites/default/files/documents/2025-05/S%C3%BCnnitoetuse%20avaldus_I%20osa.doc",
+      "content_hash": "c47a275d5f55cc55449451a40fae5054edbbeffcd6d2e9b82dc0473259ff6846",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_form_sunnitoetus_ii_osa",
+      "canonical_item_id": "sillamae_linn:form:sunnitoetus_ii_osa",
+      "itemType": "form",
+      "title": "Sünnitoetuse avaldus II osa",
+      "status": "active",
+      "summary": "DOC-vorm lapse sünnitoetuse teise osa taotlemiseks pärast lapse 1-aastaseks saamist.",
+      "sourceKeys": [
+        "form_sunnitoetus_2"
+      ],
+      "format": "doc",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "officialUrl": "https://www.sillamae.ee/sites/default/files/documents/2025-05/S%C3%BCnnitoetuse%20avaldus_II%20osa.doc",
+      "relatedTo": [
+        "sillamae_linn_benefit_sunnitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_sunnitoetus_2"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_form_sunnitoetus_ii_osa",
+      "document_id": "sillamae_linn_form_sunnitoetus_ii_osa",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/sites/default/files/documents/2025-05/S%C3%BCnnitoetuse%20avaldus_II%20osa.doc",
+      "content_hash": "36cd18fd2909f4be3ac1efed254a075c0ee7ed620148109ca3822686d7c6b5e0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_form_koolimineku_toetus",
+      "canonical_item_id": "sillamae_linn:form:koolimineku_toetus",
+      "itemType": "form",
+      "title": "Koolimineku toetuse taotlus 1. klassi lapsele",
+      "status": "active",
+      "summary": "DOC-vorm esmakordselt kooli mineva lapse toetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_koolimineku"
+      ],
+      "format": "doc",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "officialUrl": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Koolimineku%20toetus_1.klass_taotlus.doc",
+      "relatedTo": [
+        "sillamae_linn_benefit_koolimineku_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_koolimineku"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_form_koolimineku_toetus",
+      "document_id": "sillamae_linn_form_koolimineku_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Koolimineku%20toetus_1.klass_taotlus.doc",
+      "content_hash": "199c25ca204db1ecf54d2f71651253ba73ee40247438eefa5efeb8f0a4408113",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_form_kooli_oppeaasta_alguse_toetus",
+      "canonical_item_id": "sillamae_linn:form:kooli_oppeaasta_alguse_toetus",
+      "itemType": "form",
+      "title": "Kooli õppeaasta alguse toetuse taotlus",
+      "status": "active",
+      "summary": "DOC-vorm 2.-12. klassi õppeaasta alguse toetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_kooli_alguse"
+      ],
+      "format": "doc",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "officialUrl": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Kooli%20%C3%B5ppeaasta%20alguse%20toetus_taotlus.doc",
+      "relatedTo": [
+        "sillamae_linn_benefit_kooli_oppeaasta_alguse_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_kooli_alguse"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_form_kooli_oppeaasta_alguse_toetus",
+      "document_id": "sillamae_linn_form_kooli_oppeaasta_alguse_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Kooli%20%C3%B5ppeaasta%20alguse%20toetus_taotlus.doc",
+      "content_hash": "82049777e138f38107e45f088db03fdbef36461474be3a0f8ddf25df123c29d7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_form_gumnaasiumi_medali_toetus",
+      "canonical_item_id": "sillamae_linn:form:gumnaasiumi_medali_toetus",
+      "itemType": "form",
+      "title": "Gümnaasiumi medaliga lõpetanute toetuse taotlus",
+      "status": "active",
+      "summary": "DOC-vorm gümnaasiumi kuld- või hõbemedaliga lõpetanute toetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_medal"
+      ],
+      "format": "doc",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "officialUrl": "https://www.sillamae.ee/sites/default/files/documents/2025-05/G%C3%BCmnaasiumi%20medaliga%20l%C3%B5petanute%20toetus.doc",
+      "relatedTo": [
+        "sillamae_linn_benefit_gumnaasiumi_medali_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_medal"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_form_gumnaasiumi_medali_toetus",
+      "document_id": "sillamae_linn_form_gumnaasiumi_medali_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/sites/default/files/documents/2025-05/G%C3%BCmnaasiumi%20medaliga%20l%C3%B5petanute%20toetus.doc",
+      "content_hash": "e89f8fb43164ed85451ca0a6f716bfcbeb5fb4e67567c32b9d5b16378b8c56aa",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_form_vanaduspensionaride_toetus",
+      "canonical_item_id": "sillamae_linn:form:vanaduspensionaride_toetus",
+      "itemType": "form",
+      "title": "Ühekordse vanaduspensionäride toetuse taotlus",
+      "status": "active",
+      "summary": "DOC-vorm ühekordse vanaduspensionäride toetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_vanaduspensionar"
+      ],
+      "format": "doc",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "officialUrl": "https://www.sillamae.ee/sites/default/files/documents/2025-05/%C3%9Chekordne%20vanaduspension%C3%A4ride%20toetus.doc",
+      "relatedTo": [
+        "sillamae_linn_benefit_vanaduspensionaride_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_vanaduspensionar"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_form_vanaduspensionaride_toetus",
+      "document_id": "sillamae_linn_form_vanaduspensionaride_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/sites/default/files/documents/2025-05/%C3%9Chekordne%20vanaduspension%C3%A4ride%20toetus.doc",
+      "content_hash": "0a1cbb6281067e3bef40575ba9f0296c281d9b0b8acbb773926055f1e572c335",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_form_juubelitoetus_eakatele",
+      "canonical_item_id": "sillamae_linn:form:juubelitoetus_eakatele",
+      "itemType": "form",
+      "title": "Eakatele juubelitoetuse taotlus",
+      "status": "active",
+      "summary": "DOC-vorm eakate juubelitoetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_juubel"
+      ],
+      "format": "doc",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "officialUrl": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Eakatele%20juubelitoetuse%20taotlus.doc",
+      "relatedTo": [
+        "sillamae_linn_benefit_juubelitoetus_eakatele"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_juubel"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_form_juubelitoetus_eakatele",
+      "document_id": "sillamae_linn_form_juubelitoetus_eakatele",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Eakatele%20juubelitoetuse%20taotlus.doc",
+      "content_hash": "7fcca728dd48d5656e5433b2ef8e9e60dfa6d99a9988eb01a265dc96189f4480",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_form_matusetoetus",
+      "canonical_item_id": "sillamae_linn:form:matusetoetus",
+      "itemType": "form",
+      "title": "Matusetoetuse taotlus",
+      "status": "active",
+      "summary": "DOC-vorm matusetoetuse taotlemiseks.",
+      "sourceKeys": [
+        "form_matus"
+      ],
+      "format": "doc",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "officialUrl": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Matusetoetuse%20taotlus.doc",
+      "relatedTo": [
+        "sillamae_linn_benefit_matusetoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_matus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_form_matusetoetus",
+      "document_id": "sillamae_linn_form_matusetoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Matusetoetuse%20taotlus.doc",
+      "content_hash": "7cb286b06f5cf0eaccbab792e87151fbdeda84726385f60c0b1ddf0a87b58265",
+      "evidence_allowed": true
+    },
+    {
+      "id": "sillamae_linn_form_sotsiaalhoolekande_urituste_toetus_aruanne",
+      "canonical_item_id": "sillamae_linn:form:sotsiaalhoolekande_urituste_toetus_aruanne",
+      "itemType": "form",
+      "title": "Sotsiaalhoolekande ürituste toetuse taotlus ja aruanne",
+      "status": "active",
+      "summary": "PDF-vorm sotsiaalhoolekande ürituste ja tegevuste toetuse taotlemiseks ning kasutamise aruandeks.",
+      "sourceKeys": [
+        "form_uritused"
+      ],
+      "format": "pdf",
+      "submissionChannels": [
+        "in_person",
+        "email"
+      ],
+      "officialUrl": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Sillam%C3%A4e%20linna%20eelarvest%20sotsiaalhoolekande%20%C3%BCritustele%20toetuse%20taotlus%20ja%20aruanne.pdf",
+      "relatedTo": [
+        "sillamae_linn_benefit_sotsiaalhoolekande_urituste_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "sillamae_linn",
+      "municipality_name": "Sillamäe linn",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_uritused"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "sillamae_linn_form_sotsiaalhoolekande_urituste_toetus_aruanne",
+      "document_id": "sillamae_linn_form_sotsiaalhoolekande_urituste_toetus_aruanne",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.sillamae.ee/sites/default/files/documents/2025-05/Sillam%C3%A4e%20linna%20eelarvest%20sotsiaalhoolekande%20%C3%BCritustele%20toetuse%20taotlus%20ja%20aruanne.pdf",
+      "content_hash": "27e8d0b35295be02d340f1d027ee2dc20fb2059cb74d96bbb4e1f993d008e189",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Sillamäe linn",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

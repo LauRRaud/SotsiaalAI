@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-tallinn",
+  "document_id": "kov-tallinn",
+  "municipality": "Tallinna linn",
+  "municipality_id": "tallinn",
+  "municipality_name": "Tallinna linn",
+  "county": "Harjumaa",
+  "country": "EE",
+  "language": "et",
+  "checkedAt": "2026-05-21",
+  "checked_at": "2026-05-21",
+  "lastMetadataUpgradeAt": "2026-05-21",
+  "status": "ingest_ready",
+  "ingestReady": true,
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-tallinn",
+  "sourceRegisterFile": "tallinn.sources.json",
+  "sourceCount": 59,
+  "counts": {
+    "services": 47,
+    "benefits": 12,
+    "resources": 12,
+    "forms": 14,
+    "contacts": 0,
+    "regulations": 0
+  },
+  "coverage": {
+    "services": 47,
+    "benefits": 12,
+    "resources": 12,
+    "forms": 14,
+    "contacts": 0,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "tallinn",
+    "source_register_file": "tallinn.sources.json",
+    "service_benefit_resource_items": 71,
+    "items_total": 85,
+    "items_with_source_keys": 85,
+    "items_missing_source_keys": [],
+    "broken_source_keys": [],
+    "items_with_related_forms": 32,
+    "items_without_related_forms": 39,
+    "items_with_related_contacts": 16,
+    "items_without_related_contacts": 55,
+    "form_sources": 14,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "unused_sources": [
+      "tallinn_homepage",
+      "tallinn_services_social_welfare_xml"
+    ],
+    "warnings": [
+      "2 source'i j?id ?ldiseks allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Pakett on koostatud kasutaja antud Tallinna ametliku veebilehe tekstide, varasemalt antud URL-ide ja üleslaetud koondfaili põhjal; veebist uut infot ei otsitud.",
+    "Isiku-, telefoni-, e-posti- ja aadressikontaktid ei ole items massiivis ega source_registeris kontaktiallikatena.",
+    "RT/legal allikaid ei kasutatud; õiguslik kontroll peab tulema eraldi RT/legal kihist.",
+    "Tallinna p?hipakett on liidetud KOV/tallinn delta-lisakorje failidega 2026-05-21.",
+    "Kontaktid on hoitud eraldi failis tallinn.contacts.json; teenuste/toetuste JSON ei sisalda contact itemeid.",
+    "RT/legal kiht on eraldi dokumendis kov-rt-tallinn ja seda veebipaketti ei kasutatud ?igusallikana."
+  ],
+  "unresolvedIssues": [
+    "Mitme teenuse täpne detaillehe URL tuleb hiljem kontrollida Tallinna teenuste indeksist või XML-ist, kui see on süsteemsele valideerimisele oluline.",
+    "Kontaktid tuleb normaliseerida eraldi kontaktiregistris ja vajadusel siduda teenustega contactRefs kaudu.",
+    "Pensionilisa DOCX, juhtkoera toetuse taotlusvormi ja matusetoetuse DOCX täpne faililink vajab hilisemat ülevaatust.",
+    "Eestkoste seadmine ja Eestkoste määramine kattuvad sisuliselt; otsustada tuleb, kas hoida kaks ametlikku kirjet või koondada üheks.",
+    "Suure hooldus- ja abivajadusega lapse hoiu teenus: ametlikku detaillehte ei leitud.",
+    "Vanemluskoolitus \"Imelised aastad\": detailleht jäi leidmata.",
+    "Kogemusnõustamine psüühikahäirega inimesele: leht pole kättesaadav.",
+    "Psüühikahäirega inimese tugiteenus: leht pole kättesaadav.",
+    "Psühhosotsiaalne nõustamine nägemispuudega lastele ja täiskasvanutele: detailleht pole kättesaadav.",
+    "Sotsiaalnõustamine viipekeeles: leht pole kättesaadav.",
+    "Nõustamine nägemispuudega inimesele: leht pole kättesaadav.",
+    "Viipekeele õpe lastele ja vanematele: leht pole kättesaadav.",
+    "Rehabilitatsioon (puuetega inimestele): detailleht pole kättesaadav.",
+    "Erihoolekandeteenus: detailleht pole kättesaadav.",
+    "Supiköök: detailleht pole avastatud.",
+    "Toiduabi: detailleht pole avastatud.",
+    "Kriisiabi nõustamine: detailleht pole avastatud.",
+    "Teenused ja toetused Tšernobõlis osalenutele: detailleht pole avastatud.",
+    "Saunad: detailleht pole avastatud.",
+    "Majandamisnõustamine: detailleht pole avastatud.",
+    "Puuetega inimeste nõustamine: leht pole kättesaadav."
+  ],
+  "warnings": [
+    "2 source'i j?id ?ldiseks allikaks ilma otsese item seoseta."
+  ]
+}

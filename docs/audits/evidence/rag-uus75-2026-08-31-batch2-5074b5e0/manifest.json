@@ -1,0 +1,226 @@
+{
+  "schema_version": "rag_manual_batch_v1",
+  "batch": "U75-F04-F08",
+  "prompt_origin": "C:/Users/rauds/.codex/worktrees/4954/SotsiaalAI/eval/rag-uus75-allikapohine-2026-08-31.json",
+  "manifest_sha256": "683449f7ac618e7cdf47b99d0f778d7a8cc30a1a0afe0aeaa36b41f53e85fd2e",
+  "planned_unique_questions": 5,
+  "planned_requests": 10,
+  "order": [
+    "U75-F04",
+    "U75-F05",
+    "U75-F06",
+    "U75-F07",
+    "U75-F08"
+  ],
+  "protocol": "Exact manifest wording; first each in a new observed empty conversation, then same five in one new conversation. No code or corpus changes during baseline comparisons. Failures examined after both modes. Variants/retests recorded separately.",
+  "baseline": {
+    "head": "5074b5e03f9fa7708b6ad3db9f8bb9ca243c8d08",
+    "runtime_code": "dba8e06d8cb82f23d9d9aaf100469c88eaea915d",
+    "build_id": "kDAqeRc59ock3wOuMJUDt"
+  },
+  "items": [
+    {
+      "id": "U75-F04",
+      "question": "Milliseid Eesti ja Euroopa Liidu üksi elavate üle 65-aastaste osakaale 2017. aasta kohta vahendab 2019. aasta artikkel „Mitmepalgeline üksildus SHARE vanemaealiste uuringu andmetel”?",
+      "expected_claims": [
+        {
+          "id": "C1",
+          "text": "Euroopa Liidu keskmine oli 32,5%.",
+          "required": true
+        },
+        {
+          "id": "C2",
+          "text": "Eesti näitaja oli 43,6%.",
+          "required": true
+        },
+        {
+          "id": "C3",
+          "text": "Need on 2017. aasta üksi elamise näitajad; need ei mõõda otse emotsionaalset üksildust.",
+          "required": true
+        }
+      ],
+      "must_not": [
+        "Ei tohi asendada küsitud allikat pelgalt sarnase pealkirjaga dokumendiga.",
+        "Ei tohi esitada ajaloolist kirjeldust kontrollimata kehtiva reegli või tänase statistikaga.",
+        "Ei tohi omistada neid arve SHARE 2015 küsitluslainele ega 2019. aasta mõõtmisele."
+      ],
+      "criteria": {
+        "PASS": "Kõik expected_claims on sisuliselt õiged, õigete isikute/ajaperioodide/teenuste ja allikatega seotud. Vastuse nähtavad allikad toetavad kõiki nõutud väiteid; pole must_not rikkumist. Sõnasõnalist vastusevõtit ei nõuta.",
+        "PARTIAL": "Vähemalt üks kontrollitav põhiväide on õige ja allikaga seotud, kuid mõni nõutud väide, seos või allikatugi puudub; ühtegi keskset fakti ei moonutata.",
+        "FAIL": "Keskne arv, ajaseos, omavalitsus, autor või allikaseos on vale; lisatakse keelatud/fabritseeritud väide; asjakohase tõendi olemasolul vastus puudub või keeldutakse. Sama küsimuse sisuliselt vale vastust ei hinnata PARTIAL-iks."
+      },
+      "evidence": {
+        "document_id": "sotsiaaltoo-2-2019-mitmepalgeline-uksildus-share-vanemaealiste-uuringu-andmetel-2019",
+        "source_id": "sotsiaaltoo_mitmepalgeline-uksildus-share-vanemaealiste-uuringu-andmetel-2019",
+        "title": "Mitmepalgeline üksildus SHARE vanemaealiste uuringu andmetel",
+        "authors": [
+          "Merike Sisask",
+          "Katrin Roosipuu"
+        ],
+        "publication_year": 2019,
+        "registry_active_version": "890f2d0837cc459592b10284ddaa1466",
+        "chunk_id": "sotsiaaltoo-2-2019-mitmepalgeline-uksildus-share-vanemaealiste-uuringu-andmetel-2019:0:1e6ece9b:version:890f2d0837cc459592b10284ddaa1466",
+        "chunk_sha256": "2cd40c8310290eed370f503603db4ddbf4ba55c908064ddec77b1327ab3f6150"
+      }
+    },
+    {
+      "id": "U75-F05",
+      "question": "Mida tähendab Ele Laksi 2026. aasta artiklis „Üksildus ja noored tänapäeva kogukondades” Eesti kohta esitatud 36% ning mis ajast pärineb viidatud uuring?",
+      "expected_claims": [
+        {
+          "id": "C1",
+          "text": "36% puudutab Eesti 15-aastasi küsitletud tüdrukuid, kes tundsid üksildust iga päev või suurema osa ajast.",
+          "required": true
+        },
+        {
+          "id": "C2",
+          "text": "Artikkel viitab WHO 2021/2022. aasta uuringule (Cosma jt 2023), mitte 2026. aastal tehtud mõõtmisele.",
+          "required": true
+        }
+      ],
+      "must_not": [
+        "Ei tohi asendada küsitud allikat pelgalt sarnase pealkirjaga dokumendiga.",
+        "Ei tohi esitada ajaloolist kirjeldust kontrollimata kehtiva reegli või tänase statistikaga.",
+        "Ei tohi üldistada 36% kõigile Eesti noortele, poistele ega kõigile vanuserühmadele."
+      ],
+      "criteria": {
+        "PASS": "Kõik expected_claims on sisuliselt õiged, õigete isikute/ajaperioodide/teenuste ja allikatega seotud. Vastuse nähtavad allikad toetavad kõiki nõutud väiteid; pole must_not rikkumist. Sõnasõnalist vastusevõtit ei nõuta.",
+        "PARTIAL": "Vähemalt üks kontrollitav põhiväide on õige ja allikaga seotud, kuid mõni nõutud väide, seos või allikatugi puudub; ühtegi keskset fakti ei moonutata.",
+        "FAIL": "Keskne arv, ajaseos, omavalitsus, autor või allikaseos on vale; lisatakse keelatud/fabritseeritud väide; asjakohase tõendi olemasolul vastus puudub või keeldutakse. Sama küsimuse sisuliselt vale vastust ei hinnata PARTIAL-iks."
+      },
+      "evidence": {
+        "document_id": "sotsiaaltoo-2-2026-uksildus-ja-noored-tanapaeva-kogukondades-2026",
+        "source_id": "sotsiaaltoo_uksildus-ja-noored-tanapaeva-kogukondades-2026",
+        "title": "Üksildus ja noored tänapäeva kogukondades",
+        "authors": [
+          "Ele Laks"
+        ],
+        "publication_year": 2026,
+        "registry_active_version": "43de31c44f854388bec58459b199e226",
+        "chunk_id": "sotsiaaltoo-2-2026-uksildus-ja-noored-tanapaeva-kogukondades-2026:1:b7abbfc4:version:43de31c44f854388bec58459b199e226",
+        "chunk_sha256": "d042283c6e6f337b35b9deab7329ad9cc5f0d87c0d0cf3adbe97aa3a8f149171"
+      }
+    },
+    {
+      "id": "U75-F06",
+      "question": "Kuidas jaotati omavalitsused 2014. aastal alanud alkoholipoliitika pilootprojektis ning millised omavalitsused rakendasid sekkumiskava Triinu Toobali 2016. aasta artikli järgi?",
+      "expected_claims": [
+        {
+          "id": "C1",
+          "text": "Projektis osales kuus omavalitsust: kolm sekkumise ja kolm kontrollrühmas.",
+          "required": true
+        },
+        {
+          "id": "C2",
+          "text": "Sekkumiskava rakendasid Kuressaare linn, Põltsamaa linn ja Põlva vald.",
+          "required": true
+        },
+        {
+          "id": "C3",
+          "text": "Kontrollomavalitsuste nimesid artikkel ei avalikusta.",
+          "required": true
+        }
+      ],
+      "must_not": [
+        "Ei tohi asendada küsitud allikat pelgalt sarnase pealkirjaga dokumendiga.",
+        "Ei tohi esitada ajaloolist kirjeldust kontrollimata kehtiva reegli või tänase statistikaga.",
+        "Ei tohi mõelda välja kontrollomavalitsusi ega asendada toonast Kuressaare linna automaatselt tänase Saaremaa vallaga."
+      ],
+      "criteria": {
+        "PASS": "Kõik expected_claims on sisuliselt õiged, õigete isikute/ajaperioodide/teenuste ja allikatega seotud. Vastuse nähtavad allikad toetavad kõiki nõutud väiteid; pole must_not rikkumist. Sõnasõnalist vastusevõtit ei nõuta.",
+        "PARTIAL": "Vähemalt üks kontrollitav põhiväide on õige ja allikaga seotud, kuid mõni nõutud väide, seos või allikatugi puudub; ühtegi keskset fakti ei moonutata.",
+        "FAIL": "Keskne arv, ajaseos, omavalitsus, autor või allikaseos on vale; lisatakse keelatud/fabritseeritud väide; asjakohase tõendi olemasolul vastus puudub või keeldutakse. Sama küsimuse sisuliselt vale vastust ei hinnata PARTIAL-iks."
+      },
+      "evidence": {
+        "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-24-alkoholipoliitika-kohalikul-tasandil-pilootproje",
+        "source_id": "sotsiaaltoo_sotsiaaltoo-1-2016-artikkel-24-alkoholipoliitika-kohalikul-tasandil-pilootproje",
+        "title": "Alkoholipoliitika kohalikul tasandil – pilootprojekti esmased õppetunnid ja tulemused",
+        "authors": [
+          "Triinu Toobal"
+        ],
+        "publication_year": 2016,
+        "registry_active_version": "99f8d727070440fe86774be121a6e5fe",
+        "chunk_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-24-alkoholipoliitika-kohalikul-tasandil-pilootproje:0:e452e5ed:version:99f8d727070440fe86774be121a6e5fe",
+        "chunk_sha256": "ad254e443317c0e3a00be2a34f28a9a3825d7d38750162d413325feac2f1f66d"
+      }
+    },
+    {
+      "id": "U75-F07",
+      "question": "Mitu EL-i rändekava alusel saabunud leibkonda ja inimest elas Tartus 2017. aasta novembris ning kuidas leibkonnad jagunesid Priit Kiilaspä artikli järgi?",
+      "expected_claims": [
+        {
+          "id": "C1",
+          "text": "Neli leibkonda, kokku kümme inimest.",
+          "required": true
+        },
+        {
+          "id": "C2",
+          "text": "Kaks üksikisikut, üks kolmeliikmeline ja üks viieliikmeline perekond.",
+          "required": true
+        }
+      ],
+      "must_not": [
+        "Ei tohi asendada küsitud allikat pelgalt sarnase pealkirjaga dokumendiga.",
+        "Ei tohi esitada ajaloolist kirjeldust kontrollimata kehtiva reegli või tänase statistikaga.",
+        "Ei tohi nimetada seda kõigi Tartu pagulaste arvuks ega praeguseks olukorraks."
+      ],
+      "criteria": {
+        "PASS": "Kõik expected_claims on sisuliselt õiged, õigete isikute/ajaperioodide/teenuste ja allikatega seotud. Vastuse nähtavad allikad toetavad kõiki nõutud väiteid; pole must_not rikkumist. Sõnasõnalist vastusevõtit ei nõuta.",
+        "PARTIAL": "Vähemalt üks kontrollitav põhiväide on õige ja allikaga seotud, kuid mõni nõutud väide, seos või allikatugi puudub; ühtegi keskset fakti ei moonutata.",
+        "FAIL": "Keskne arv, ajaseos, omavalitsus, autor või allikaseos on vale; lisatakse keelatud/fabritseeritud väide; asjakohase tõendi olemasolul vastus puudub või keeldutakse. Sama küsimuse sisuliselt vale vastust ei hinnata PARTIAL-iks."
+      },
+      "evidence": {
+        "document_id": "sotsiaaltoo-4-2017-pagulastega-too-tartu-2017",
+        "source_id": "sotsiaaltoo_pagulastega-too-tartu-2017",
+        "title": "Omavalitsustes tehtav töö pagulastega Tartu näitel",
+        "authors": [
+          "Priit Kiilaspä"
+        ],
+        "publication_year": 2017,
+        "registry_active_version": "3da8ca83be26403b8f6d153258c77b8b",
+        "chunk_id": "sotsiaaltoo-4-2017-pagulastega-too-tartu-2017:0:40b28279:version:3da8ca83be26403b8f6d153258c77b8b",
+        "chunk_sha256": "9455bff5951cfe50f20f04e0af35d7db84888606eec1cc98b97408fc2b486f19"
+      }
+    },
+    {
+      "id": "U75-F08",
+      "question": "Milline on eluaseme ja rehabilitatsiooni järjekord kahes lähenemises, mida võrreldakse 2017. aasta artiklis „Trepist üles või alla. Eesti vajab tulemuslikumat kodutuse poliitikat”?",
+      "expected_claims": [
+        {
+          "id": "C1",
+          "text": "Traditsioonilises lähenemises pakutakse kõigepealt rehabilitatsiooni ja alles seejärel omaette eluaset.",
+          "required": true
+        },
+        {
+          "id": "C2",
+          "text": "Eluasemepõhises lähenemises tuleb eluase enne, rehabilitatsioon algab selle järel või tegelikult samal ajal.",
+          "required": true
+        }
+      ],
+      "must_not": [
+        "Ei tohi asendada küsitud allikat pelgalt sarnase pealkirjaga dokumendiga.",
+        "Ei tohi esitada ajaloolist kirjeldust kontrollimata kehtiva reegli või tänase statistikaga.",
+        "Ei tohi väita, et eluasemepõhine mudel loobub rehabilitatsioonist."
+      ],
+      "criteria": {
+        "PASS": "Kõik expected_claims on sisuliselt õiged, õigete isikute/ajaperioodide/teenuste ja allikatega seotud. Vastuse nähtavad allikad toetavad kõiki nõutud väiteid; pole must_not rikkumist. Sõnasõnalist vastusevõtit ei nõuta.",
+        "PARTIAL": "Vähemalt üks kontrollitav põhiväide on õige ja allikaga seotud, kuid mõni nõutud väide, seos või allikatugi puudub; ühtegi keskset fakti ei moonutata.",
+        "FAIL": "Keskne arv, ajaseos, omavalitsus, autor või allikaseos on vale; lisatakse keelatud/fabritseeritud väide; asjakohase tõendi olemasolul vastus puudub või keeldutakse. Sama küsimuse sisuliselt vale vastust ei hinnata PARTIAL-iks."
+      },
+      "evidence": {
+        "document_id": "sotsiaaltoo-1-2017-kodutuse-poliitika-2017-1",
+        "source_id": "sotsiaaltoo_kodutuse-poliitika-2017-1",
+        "title": "Trepist üles või alla. Eesti vajab tulemuslikumat kodutuse poliitikat",
+        "authors": [
+          "Jüri Kõre",
+          "Ivo Käsk",
+          "Eleanoora Tint"
+        ],
+        "publication_year": 2017,
+        "registry_active_version": "7404f868120641e892cc44bfa4958d10",
+        "chunk_id": "sotsiaaltoo-1-2017-kodutuse-poliitika-2017-1:0:9c7bb705:version:7404f868120641e892cc44bfa4958d10",
+        "chunk_sha256": "bcb8d6602150df036145a4acccb032f0e6cad677de48a1c9ec5bd5a14a9cfbb3"
+      }
+    }
+  ]
+}

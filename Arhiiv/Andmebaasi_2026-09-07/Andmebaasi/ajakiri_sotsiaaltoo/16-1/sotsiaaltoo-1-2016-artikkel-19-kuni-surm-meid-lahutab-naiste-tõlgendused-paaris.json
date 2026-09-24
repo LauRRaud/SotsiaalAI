@@ -1,0 +1,117 @@
+{
+  "docId": "sotsiaaltoo-1-2016",
+  "articleId": "sotsiaaltoo-1-2016-artikkel-19-kuni-surm-meid-lahutab-naiste-tõlgendused-paaris",
+  "title": "Kuni surm meid lahutab: naiste tõlgendused paarisuhtevägivalla riski ja ohvristumise teguritest ning toimetulekuviisidest",
+  "authors": [
+    "Jane Rist"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2016",
+  "section": "Uurimus",
+  "pageRange": "63-69",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tallinna Ülikoolis kaitstud ja prof Taimi Tulva juhendatud magistriuurimusel põhinev artikkel naiste tõlgendustest paarisuhtevägivalla riski- ja ohvristumise teguritest. Valimi moodustasid lumepallimeetodil leitud kümme vägivaldses suhtes elavat 31–48aastast naist, kes olid suhtes olnud keskmiselt 20,8 aastat; teemaintervjuud tehti augustist 2014 jaanuarini 2015 ja lisandus ekspertintervjuu Helve Kasega. Analüüs tugineb Lenore Walkeri vägivalla tsükliteooriale. Tulemused seovad ohvristumise lapsepõlves kogetud vägivalla ja kiirustades alustatud kooseluga; abi ei otsita häbi ja süüdistamishirmu tõttu. 2014. aastal registreeriti Eestis 2721 perevägivalla kuritegu.",
+  "tags": [
+    "uurimus",
+    "paarisuhtevägivald",
+    "ohvristumine",
+    "vägivalla tsükliteooria",
+    "kvalitatiivne sisuanalüüs",
+    "toimetulek"
+  ],
+  "source_type": "file",
+  "source_path": "2016_1_artikkel_19_kuni_surm_meid_lahutab_naiste_tolgendused_paarisuhte.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-19-kuni-surm-meid-lahutab-naiste-t-lgendused-paaris",
+  "source_sha256": "67055914d91d168f6f2a8f420f2d83063078035786e9d69a59496bf0e03ca405",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-19-kuni-surm-meid-lahutab-naiste-t-lgendused-paaris",
+    "previous_source_path": "2016_1_artikkel_19_kuni_surm_meid_lahutab_naiste_tolgendused_paarisuhte.txt",
+    "previous_source_original_path": "1-2016.pdf",
+    "reference_stored_source_sha256": "6a92608a183bff877864e72747d0c13fb7a877000547ec1bdd4768928ea36c41",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf",
+      "source_sha256": "2c193295e54f58982562b509b6283e93aa58b1695464671e1768e24e90888a6c",
+      "pdf_start_page": 65,
+      "pdf_end_page": 71,
+      "printed_page_range": "63-69",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 71,
+      "source_regions": [
+        {
+          "source_pdf_page": 65,
+          "bounds": [
+            0,
+            178.34,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 66,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 67,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 68,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 69,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 70,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 71,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            199.016
+          ]
+        }
+      ],
+      "effective_printed_page_range": "63-69"
+    },
+    "server_page_range": "63-69"
+  }
+}

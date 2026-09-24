@@ -1,0 +1,117 @@
+{
+  "kind": "assistant_artifact_review_not_code_execution",
+  "review_date": "2026-09-05",
+  "user_reported_commit": "2577100af",
+  "commit_independently_verified": false,
+  "application_tests_rerun": false,
+  "external_model_calls_by_reviewer": 0,
+  "reviewed_artifacts": [
+    {
+      "file": "README(1).md",
+      "sha256": "6b382a9d840ada3a7f98474152e47ad680f72a109343115bec5d503784e8acdd"
+    },
+    {
+      "file": "adr-001-local-ingestion(1).md",
+      "sha256": "6509178192dca09c205ced869156e525618955cffb6efb8f5e2a68b8e7d1d612"
+    },
+    {
+      "file": "adr-002-local-hybrid-search.md",
+      "sha256": "24a62f2947271d0be3d3117a494cd22a9e253831c53b6029ceb89ea5971a3f89"
+    },
+    {
+      "file": "verification.json",
+      "sha256": "d2009fca6aa6a8d17642963101465e8f23222aea0dc476fc188d4ae681ef4dad"
+    },
+    {
+      "file": "evidence.html",
+      "sha256": "07e22c1f914d347b61a916c3211c07e710d15f8086bf96e6d954894ab3384627"
+    },
+    {
+      "file": "evidence.json",
+      "sha256": "e85109aae206b73822521dcd6603392743817b2d57fb858b1634cb5f663ff662"
+    },
+    {
+      "file": "m2-2-plan.json",
+      "sha256": "68efb418c17620164ecc006f8c18ddb445a203d795bc8b47cbcec174cde2ec47"
+    },
+    {
+      "file": "tokenizer-examples.json",
+      "sha256": "b3634a57f5688cdb9c129253d5f0213619b1f01ded31e104e76710e0339167c4"
+    }
+  ],
+  "checks": {
+    "json_files_parse": true,
+    "original_pdf_hash_matches_plan": true,
+    "original_metadata_hash_matches_plan": true,
+    "nine_query_hashes_match_utf8_text": true,
+    "evidence_query_hash_matches_OTT": true,
+    "plan_token_sum_matches": true,
+    "plan_input_count_matches_attempt_cap": true
+  },
+  "reported_tests": {
+    "m1": {
+      "pass": 22,
+      "fail": 0,
+      "skip": 0
+    },
+    "search_unit": {
+      "pass": 7,
+      "fail": 0,
+      "skip": 0
+    },
+    "search_real_integration": {
+      "pass": 11,
+      "fail": 0,
+      "skip": 0
+    }
+  },
+  "evidence_observed": {
+    "entries": 3,
+    "source_chars_python_unicode_codepoints": [
+      2149,
+      776,
+      11
+    ],
+    "source_span_counts": [
+      33,
+      13,
+      1
+    ],
+    "header_only_candidate": "Sotsiaaltöö",
+    "reported_context_tokens": 5614,
+    "context_tokens_retokenized": false,
+    "reported_latency_ms": 237.47939999999997,
+    "reported_query_runs": 1,
+    "embedding_mode": "mock"
+  },
+  "pilot_observed": {
+    "document_inputs": 16,
+    "query_inputs": 9,
+    "reported_document_token_sum": 12203,
+    "reported_query_token_sum": 217,
+    "total_reported_tokens": 12420,
+    "original_plan_id": "pilot_plan_d1099e3796e88e9cbec22ae3f61e75e17cd3270106def0e4f0b8d0ae4b35afc8",
+    "material_egress_approved": false,
+    "spend_cap_approved": false,
+    "positive_query_count": 7,
+    "positive_query_families": {
+      "ott-limitations": 3,
+      "documentation-framing": 3,
+      "bibliography": 1
+    }
+  },
+  "cost_estimate": {
+    "rate_usd_per_million_input_tokens": "0.13",
+    "estimated_usd": "0.0016146",
+    "suggested_not_approved_cap_usd": "0.05",
+    "rate_source": "https://developers.openai.com/api/docs/models/text-embedding-3-large",
+    "checked_on": "2026-09-05",
+    "is_actual_billing": false
+  },
+  "interpretation_limits": [
+    "No repository or live databases were inspected.",
+    "Tokens were summed from the supplied plan, not independently re-tokenized.",
+    "Mock retrieval does not establish semantic quality.",
+    "A one-document nine-query pilot is not corpus-wide validation."
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-eri-2018",
+  "articleId": "mitte-minu-tagahoovis-kogukonna-arengu-seisukohast-2018",
+  "title": "Nähtus „mitte minu tagahoovis” kogukonna arengu seisukohast",
+  "authors": [
+    "Zsolt Bugarszki"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö (juubeli erinumber)",
+  "issueLabel": "Eri/2018",
+  "section": "Uurimus",
+  "pageRange": "52-58",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Analüüs NIMBY-nähtusest ehk „mitte minu tagahoovis” hoiakutest, nende mõjust kogukonna arengule ja sotsiaalteenuste paiknemisele ning strateegiatest, kuidas sotsiaalteenuste arendajad ja omavalitsused saavad kogukonna muresid ennetada ja nendega dialoogi pidada.",
+  "tags": [
+    "NIMBY nähtus",
+    "kogukonna areng",
+    "sotsiaalteenuste paiknemine",
+    "kogukonna vastuseis",
+    "riskikommunikatsioon",
+    "kogukonnaga suhtlemine"
+  ],
+  "source_type": "file",
+  "source_path": "ST_eri_2018_web_link_Part15.pdf",
+  "document_id": "sotsiaaltoo-eri-2018-mitte-minu-tagahoovis-kogukonna-arengu-seisukohast-2018",
+  "source_format": "pdf",
+  "source_sha256": "c17088c416f78e03add02074bc61a74b5c1d8d8f1aef226fbbdfc4f9b0c5ea12",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2018-mitte-minu-tagahoovis-kogukonna-arengu-seisukohast-2018",
+    "previous_source_path": "ST_eri_2018_web_link_Part15.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "c17088c416f78e03add02074bc61a74b5c1d8d8f1aef226fbbdfc4f9b0c5ea12",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-1-2019",
+  "articleId": "koostoos-lapse-heaks-koolitus-2019",
+  "title": "Koolitus „Koostöös lapse heaks” toetab kohalikke koostöövõrgustikke",
+  "authors": [
+    "Helika Saar"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2019",
+  "section": "Projekt",
+  "pageRange": "85-88",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade Lastekaitse Liidu multidistsiplinaarsest koolitusprogrammist, mis toetab lastekaitsetöös osalevate spetsialistide koostööd ja ühtset arusaama lapse heaolust.",
+  "tags": [
+    "lastekaitse",
+    "multidistsiplinaarne koostöö",
+    "koolitus",
+    "lapse heaolu",
+    "võrgustikutöö"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part20.pdf",
+  "document_id": "sotsiaaltoo-1-2019-koostoos-lapse-heaks-koolitus-2019",
+  "source_format": "pdf",
+  "source_sha256": "8c342125e6a6f0c9569c60ed010dfdf3f0da34a06a947228b230ebc5d2253166",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2019-koostoos-lapse-heaks-koolitus-2019",
+    "previous_source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part20.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "8c342125e6a6f0c9569c60ed010dfdf3f0da34a06a947228b230ebc5d2253166",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

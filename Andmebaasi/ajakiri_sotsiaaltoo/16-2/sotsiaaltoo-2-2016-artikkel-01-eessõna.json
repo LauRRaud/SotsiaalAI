@@ -1,0 +1,66 @@
+{
+  "docId": "sotsiaaltoo-2-2016",
+  "articleId": "sotsiaaltoo-2-2016-artikkel-01-eessõna",
+  "title": "Eessõna",
+  "authors": [
+    "Kaupo Rätsepp"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2016",
+  "section": "Eessõna",
+  "pageRange": "2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Harku vallavanem alustab numbri eessõna pildiga valla pensionäride ühiselt jõuluõhtusöögilt ja tõdeb, et hoolekandetöötajad teevad alati natuke rohkem kui peaks. Sotsiaalvaldkonna ülesanded on tema hinnangul ühed kõige vastutusrikkamad kohalikule omavalitsusele pandud ülesannetest. Omavalitsuse võimekus sotsiaalteenuseid uuendada ja arendada sõltub eeskätt inimestest — nii sotsiaalvaldkonna töötajatest kui ka volikogu liikmetest, kes peavad olema valmis sotsiaaltöötajaid kuulama ja sotsiaaltöö teemal kaasa rääkima. Suuremad omavalitsused suudavad palgata paremaid spetsialiste ja tegeleda sotsiaalküsimustega sisulisemalt, kuid autor rõhutab, et omavalitsuste ühinemine ei ole ainus võimalus kvaliteetseteks teenusteks — koostöö teiste omavalitsuste ja erasektoriga on alati võimalik, küsimus on soovis ja tahtes. Riigi kirumise asemel soovitab ta kasutada olemasolevat ressurssi leidlikult, kaasata tublisid inimesi ja neid tunnustada.",
+  "tags": [
+    "eessõna",
+    "kohalik omavalitsus",
+    "sotsiaalteenuste korraldus",
+    "omavalitsuste ühinemine",
+    "koostöö",
+    "tunnustamine",
+    "hoolekandetöötaja"
+  ],
+  "source_type": "file",
+  "source_path": "2016_2_artikkel_01_eessona.pdf",
+  "added": "2026-08-17",
+  "description_source": "ümber kirjutatud 2026-08-17 pärast A4 tekstiparandust",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-01-eess-na",
+  "source_sha256": "453f445465fe0fdc7db38f28645b2677d5358978589273a4d41b8086a11fbac4",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-01-eess-na",
+    "previous_source_path": "2016_2_artikkel_01_eessona.txt",
+    "previous_source_original_path": "2-2016.pdf",
+    "reference_stored_source_sha256": "d92586c96512bab612f244093abfdc48e510dbf0075ec58d859cba2ef023a248",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\2-2016.pdf",
+      "source_sha256": "cf45b61607b21a62a1003f99c97d65180c4fb4f591a874c983c4b63e5c804a36",
+      "pdf_start_page": 4,
+      "pdf_end_page": 4,
+      "printed_page_range": "2-3",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 5,
+      "source_regions": [
+        {
+          "source_pdf_page": 4,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "2",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2-2016.pdf"
+    },
+    "server_page_range": "2-3"
+  }
+}

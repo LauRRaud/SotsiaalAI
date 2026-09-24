@@ -1,0 +1,184 @@
+{
+  "source_path": "peaasi_ee_koolilaste_ja_noorte_vaimne_tervis.pdf",
+  "source_format": "pdf",
+  "sha256": "9fc1e42ef514df9036bef7ca14c97c766ca7720d512cb86e922fad94a6fc5667",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/peaasi_ee_koolilaste_ja_noorte_vaimne_tervis.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "peaasi_ee_koolilaste_ja_noorte_vaimne_tervis",
+          "title": "Koolilaste ja noorte vaimne tervis",
+          "url": "https://peaasi.ee/wp-content/uploads/2014/11/Laste-vaimne-tervis-koolis.pdf",
+          "source_url": "https://peaasi.ee/wp-content/uploads/2014/11/Laste-vaimne-tervis-koolis.pdf",
+          "source_format": "pdf",
+          "ingest_status": "ingest_candidate",
+          "recommended_pipeline": "knowledge_doc_pipeline"
+        },
+        "final_url": "https://peaasi.ee/wp-content/uploads/2014/11/Laste-vaimne-tervis-koolis.pdf",
+        "local_origin": "consolidated_existing_file",
+        "recorded_at": "2026-08-14T09:25:00.000Z",
+        "bytes": 443383,
+        "sha256": "9fc1e42ef514df9036bef7ca14c97c766ca7720d512cb86e922fad94a6fc5667"
+      }
+    },
+    {
+      "original_path": "lisatest/peaasi-ee-koolilaste-ja-noorte-vaimne-tervis.json",
+      "metadata": {
+        "schemaVersion": "knowledge-doc-v1",
+        "country": "EE",
+        "sector": "social",
+        "audience": "BOTH",
+        "audiences": [
+          "SOCIAL_WORKER",
+          "CLIENT"
+        ],
+        "language": "et",
+        "source_origin_type": "file",
+        "source_format": "pdf",
+        "source_status": "active",
+        "historical": false,
+        "checked_at": "2026-05-03",
+        "copyright_status": "restricted_citation_summary_only",
+        "display_full_text": false,
+        "allow_excerpts": "short_only",
+        "ingest": {
+          "chunking_strategy": "section_aware",
+          "preserve_page_numbers": true,
+          "preserve_heading_path": true,
+          "display_full_text": false,
+          "allow_short_excerpts": true
+        },
+        "quality": {
+          "metadata_complete": false,
+          "section_index_complete": false,
+          "ocr_required": false,
+          "needs_manual_review": true,
+          "review_note": "Draft metadata generated for test ingestion. Codex should validate field names against the current project schema."
+        },
+        "docId": "peaasi-ee-koolilaste-ja-noorte-vaimne-tervis",
+        "canonical_source_id": "peaasi-ee-koolilaste-ja-noorte-vaimne-tervis",
+        "source_id": "peaasi_ee_koolilaste_ja_noorte_vaimne_tervis",
+        "document_id": "peaasi-ee-koolilaste-ja-noorte-vaimne-tervis",
+        "title": "Koolilaste ja noorte vaimne tervis",
+        "description": "Peaasi.ee infomaterjal koolilaste ja noorte vaimse tervise märkamiseks, toetavaks vestluseks, kooli tugivõrgustiku kaasamiseks ning õpetajale praktilisteks soovitusteks.",
+        "publisher": "Peaasi.ee",
+        "source_organization": "Peaasi.ee",
+        "organization_id": "peaasi_ee",
+        "publisher_type": "ngo",
+        "authority_level": "specialist_information_material",
+        "year": null,
+        "publication_date": null,
+        "document_kind": "manual",
+        "resource_type": "information_material",
+        "source_type": "information_material",
+        "collection_id": "organization_materials",
+        "collection_hint": "information_materials",
+        "domain": "children_youth_mental_health",
+        "evidence_role": "background",
+        "allowed_claim_types": [
+          "background",
+          "practice_recommendation",
+          "communication_guidance",
+          "support_pathway",
+          "risk_awareness",
+          "definition"
+        ],
+        "disallowed_claim_types": [
+          "legal_entitlement",
+          "benefit_amount",
+          "municipal_service_availability",
+          "application_deadline",
+          "medical_diagnosis_or_treatment",
+          "emergency_triage_as_final_decision"
+        ],
+        "topics": [
+          "lapsed ja pered",
+          "noor",
+          "haridus",
+          "kool",
+          "õpilase toetamine",
+          "tugimeetmed",
+          "vaimne tervis",
+          "psüühiline heaolu",
+          "nõustamine",
+          "kriisi märkamine",
+          "lasteabi"
+        ],
+        "target_groups": [
+          "koolilapsed",
+          "noored",
+          "õpilased",
+          "õpetajad",
+          "lastega töötavad spetsialistid",
+          "lapsevanemad"
+        ],
+        "source_path": "Laste-vaimne-tervis-koolis.pdf",
+        "source_url": "https://peaasi.ee/wp-content/uploads/2014/11/Laste-vaimne-tervis-koolis.pdf",
+        "page_count": 14,
+        "registry_source": {
+          "source_master_source_id": "peaasi_ee_koolilaste_ja_noorte_vaimne_tervis",
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://peaasi.ee/wp-content/uploads/2014/11/Laste-vaimne-tervis-koolis.pdf"
+        },
+        "jurisdiction_level": "NATIONAL"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "peaasi_ee_koolilaste_ja_noorte_vaimne_tervis",
+      "metadata": {
+        "createdAt": "2026-06-12T03:46:25.564537+00:00",
+        "type": "FILE",
+        "fileName": "Laste-vaimne-tervis-koolis.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:46:25.498045+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/6163667d25d6/Laste-vaimne-tervis-koolis.pdf",
+        "title": "Koolilaste ja noorte vaimne tervis",
+        "description": "Duplikaadid ühendatud: 1 lisakirjet. Source master headings: Laste ja noorte vaimne tervis / kool / pere ristumiskoht; Partnerid; Peaasi",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2014,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–14",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "peaasi_ee_koolilaste_ja_noorte_vaimne_tervis",
+        "document_id": "peaasi_ee_koolilaste_ja_noorte_vaimne_tervis",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "13dce7f50ee0924e0138c1bdecf50b1da9ccee2a2127c85faf061b46fce9863e",
+        "url": "https://peaasi.ee/wp-content/uploads/2014/11/Laste-vaimne-tervis-koolis.pdf",
+        "url_canonical": "https://peaasi.ee/wp-content/uploads/2014/11/Laste-vaimne-tervis-koolis.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "peaasi_ee_koolilaste_ja_noorte_vaimne_tervis",
+        "updatedAt": "2026-06-12T03:46:25.564560+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

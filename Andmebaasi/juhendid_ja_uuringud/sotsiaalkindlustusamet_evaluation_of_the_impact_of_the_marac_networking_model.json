@@ -1,0 +1,143 @@
+{
+  "source_path": "sotsiaalkindlustusamet_evaluation_of_the_impact_of_the_marac_networking_model.pdf",
+  "source_format": "pdf",
+  "sha256": "56b0212bf9a9f9a3b5e9cf71594c6e4c8851d93ae86b64c4833061c992ea89d2",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/sotsiaalkindlustusamet_evaluation_of_the_impact_of_the_marac_networking_model.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "sotsiaalkindlustusamet_evaluation_of_the_impact_of_the_marac_networking_model",
+          "title": "Evaluation of the impact of the MARAC networking model",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-09/Evaluation%20of%20the%20impact%20of%20the%20MARAC%20networking%20model.pdf",
+          "normalized_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-09/Evaluation of the impact of the MARAC networking model.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "Sotsiaalkindlustusamet",
+          "organization_id": "sotsiaalkindlustusamet",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Sotsiaalkindlustusamet",
+            "ohvriabi",
+            "MARAC",
+            "riskihindamine",
+            "võrgustikutöö",
+            "infomaterjal",
+            "SKA"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "SKA",
+            "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+            "heading_4": null,
+            "line": 477,
+            "order": 254
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Evaluation of the impact of the MARAC networking model"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Sotsiaalkindlustusamet"
+          ],
+          "organizations_seen": [
+            "sotsiaalkindlustusamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "SKA",
+              "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+              "line": 477,
+              "order": 254
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-09/Evaluation of the impact of the MARAC networking model.pdf"
+        },
+        "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-09/Evaluation%20of%20the%20impact%20of%20the%20MARAC%20networking%20model.pdf",
+        "redirects": [],
+        "sha256": "56b0212bf9a9f9a3b5e9cf71594c6e4c8851d93ae86b64c4833061c992ea89d2",
+        "bytes": 9643163,
+        "downloaded_at": "2026-08-14T08:00:52.899Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "sotsiaalkindlustusamet_evaluation_of_the_impact_of_the_marac_networking_model",
+      "metadata": {
+        "createdAt": "2026-06-12T04:19:40.644156+00:00",
+        "type": "FILE",
+        "fileName": "Evaluation of the impact of the MARAC networking model.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T04:19:40.519343+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/87eadaab3c30/Evaluation of the impact of the MARAC networking model.pdf",
+        "title": "Evaluation of the impact of the MARAC networking model",
+        "description": "Source master headings: SKA; Ohvriabi, MARAC, naiste tugikeskused",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2024,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–169",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "sotsiaalkindlustusamet_evaluation_of_the_impact_of_the_marac_networking_model",
+        "document_id": "sotsiaalkindlustusamet_evaluation_of_the_impact_of_the_marac_networking_model",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "b76ea2466ca72912b50c1435ce1e7b0613fda244e9cdd193f546d1db75203ebc",
+        "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-09/Evaluation%20of%20the%20impact%20of%20the%20MARAC%20networking%20model.pdf",
+        "url_canonical": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-09/Evaluation of the impact of the MARAC networking model.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "sotsiaalkindlustusamet_evaluation_of_the_impact_of_the_marac_networking_model",
+        "updatedAt": "2026-06-12T04:19:40.644177+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

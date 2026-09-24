@@ -1,0 +1,90 @@
+{
+  "docId": "sotsiaaltoo-3-2017",
+  "articleId": "kogukonnas-peitub-voimalus-2017-3",
+  "title": "Kogukonnas peitub võimalus ja ressurss",
+  "authors": [
+    "Dagmar Narusson"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2017",
+  "section": "Uurimus",
+  "pageRange": "68-71",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tartu Ülikooli lektori artikkel deinstitutsionaliseerimise teisest etapist ja kogukonnaga koostöö tähtsusest. Viitab Euroopa Parlamendi tähelepanekule, et riigid on investeerinud peamiselt uute hoonete ehitamisse, tegemata on jäänud süsteemsed muudatused inimeste iseseisvama elu korraldamiseks. Uurimus sündis AS Hoolekandeteenused arendajate 2016. aasta sügisel tõstatatud küsimusest, mida teha, et suurtest erihoolekandeüksustest linnakorteritesse asuvad psüühikahäirega inimesed ja nende uued naabrid omavahel läbi saaksid.",
+  "tags": [
+    "deinstitutsionaliseerimine",
+    "kogukond",
+    "sotsiaalne kaasatus",
+    "erihoolekanne",
+    "NIMBY",
+    "uurimus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part18.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2017-kogukonnas-peitub-voimalus-2017-3",
+  "source_sha256": "a3853b6ae2a055e7d18afaaa1c9e80e4810b1a4b0a6ef206fe0aa95e6d4b145d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2017-kogukonnas-peitub-voimalus-2017-3",
+    "previous_source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part18.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part18.pdf",
+    "reference_stored_source_sha256": "4a58f44967212b2840f63a83987c8aae3d6859a4675b8563136dccb45ca94ecc",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf",
+      "source_sha256": "3f27c22982b22a396dace8a957798cc21d3240489c7ce4d92802bf1a94bde7a8",
+      "pdf_start_page": 70,
+      "pdf_end_page": 73,
+      "printed_page_range": "68-71",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 73,
+      "source_regions": [
+        {
+          "source_pdf_page": 70,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 71,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 72,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 73,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "68-71"
+    },
+    "server_page_range": "68-71"
+  }
+}

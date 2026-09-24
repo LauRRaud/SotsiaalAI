@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2017",
+  "articleId": "kliendist-kodanikuks-persoonalne-taastumine-2017",
+  "title": "Kliendist kodanikuks ehk personaalne taastumine vaimse tervise valdkonnas",
+  "authors": [
+    "Külli Mäe",
+    "Anna Toots"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2017",
+  "section": "Sotsiaaltöö meetodid",
+  "pageRange": "53-57",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel selgitab personaalse taastumise mõistet vaimse tervise valdkonnas, võrdleb kliinilist ja personaalset taastumist, tutvustab CHIME-raamistikku, CARe metoodikat ning taastumiskooli kui taastumiskeskset hoolekandemudelit.",
+  "tags": [
+    "personaalne taastumine",
+    "vaimse tervise taastumine",
+    "CARe metoodika",
+    "CHIME raamistik",
+    "recovery college",
+    "psühhosotsiaalne rehabilitatsioon"
+  ],
+  "source_type": "file",
+  "source_path": "Kliendist kodanikuks ehk personaalne taastumine vaimse tervise valdkonnas.pdf",
+  "document_id": "sotsiaaltoo-4-2017-kliendist-kodanikuks-persoonalne-taastumine-2017",
+  "source_format": "pdf",
+  "source_sha256": "17ec7782eceaf41ef7e84754c935b0dae0d530f834e89be26aaf70dc20897c79",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2017-kliendist-kodanikuks-persoonalne-taastumine-2017",
+    "previous_source_path": "Kliendist kodanikuks ehk personaalne taastumine vaimse tervise valdkonnas.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "17ec7782eceaf41ef7e84754c935b0dae0d530f834e89be26aaf70dc20897c79",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

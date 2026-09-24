@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-1-2023",
+  "articleId": "erialaajakirja-roll-eesti-sotsiaaltoos-2023-1",
+  "title": "Erialaajakirja roll Eesti sotsiaaltöös",
+  "authors": [
+    "Kairiin Nuudi"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2023",
+  "section": "Uurimus",
+  "pageRange": "58-67",
+  "pdf_start_page": 1,
+  "pdf_end_page": 10,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimus käsitleb ajakirja Sotsiaaltöö rolli Eesti sotsiaaltöömaastikul alates 1990. aastatest. Autor analüüsib\najakirjanumbrite sisu, autorite ringi ning teemapüstitusi, näidates, kuidas ajakiri on mõjutanud erialast\nidentiteeti, keeletarvitust ja poliitikakujundamist. Vaadeldakse nii teadusartiklite kui ka praktikute\nkogemuslugude osa ning arutletakse erialaväljaande lähituleviku väljakutsete, näiteks digipöörde ja uute\nsihtrühmade kaasamise üle.",
+  "tags": [
+    "erialaajakiri",
+    "Sotsiaaltöö ajakiri",
+    "uurimus",
+    "professionaalne identiteet",
+    "teadmusloome",
+    "sotsiaalpoliitika"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_1_2023_web_Part13.pdf",
+  "document_id": "sotsiaaltoo-1-2023-erialaajakirja-roll-eesti-sotsiaaltoos-2023-1",
+  "source_format": "pdf",
+  "source_sha256": "cc70131a76b20d81da4eefbd93c81a670c97a263f155307f1817b00f0bea8723",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2023-erialaajakirja-roll-eesti-sotsiaaltoos-2023-1",
+    "previous_source_path": "Sotsiaaltoo_1_2023_web_Part13.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "cc70131a76b20d81da4eefbd93c81a670c97a263f155307f1817b00f0bea8723",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

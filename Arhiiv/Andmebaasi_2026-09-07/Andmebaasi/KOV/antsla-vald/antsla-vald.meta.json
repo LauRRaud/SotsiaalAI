@@ -1,0 +1,65 @@
+{
+  "id": "antsla_vald",
+  "municipality": "Antsla vald",
+  "county": "Võrumaa",
+  "checkedAt": "2026-04-12",
+  "status": "ingest_ready",
+  "coverage": {
+    "services": 13,
+    "benefits": 15,
+    "resources": 12,
+    "contacts": 8,
+    "forms": 0,
+    "regulations": 0
+  },
+  "notes": [],
+  "unresolvedIssues": [
+    "Mitmete toetuste ja teenuste detaillehtedel viidati avalduse või taotluse blanketile, kuid vormi lingid olid keskkonnas ligipääsmatud. Seetõttu ei saanud luua eraldi vormi kirjeid ega kontrollida taotlusvormide sisu.",
+    "Sotsiaalteenuste loetelus oli viide saunateenusele (\"Saun\"), kuid vastav leht puudus või tagastas 404. Teenuse olemasolu ei õnnestunud kinnitada.",
+    "Koduteenuse kirjelduses mainiti hooldustöötajat Kairi Varikut, kuid valla kontaktiloendis polnud tema kontaktandmeid; seetõttu ei lisatud eraldi kontaktikirjet.",
+    "Paljude toetuste puhul polnud täpset otsustamisaega või tähtaega märgitud; need jäid struktureeritud väljal täitmata.",
+    "Mõned ressursid (näiteks kaugtõlge ja kirjutustõlge) on riiklikud teenused, millele Antsla vald üksnes viitab; kohalikku taotluskorraldust ei ole."
+  ],
+  "schemaVersion": "v2.5-sourcepackage",
+  "municipality_id": "antsla_vald",
+  "municipality_name": "Antsla vald",
+  "checked_at": "2026-04-12",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "collection_id": "kov_services",
+  "jurisdiction_level": "MUNICIPALITY",
+  "sourceRegisterFile": "antsla-vald.sources.json",
+  "sourceCount": 64,
+  "counts": {
+    "services": 13,
+    "benefits": 15,
+    "resources": 12,
+    "contacts": 8,
+    "forms": 0,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "antsla_vald",
+    "source_register_file": "antsla-vald.sources.json",
+    "service_benefit_resource_items": 40,
+    "items_with_source_keys": 40,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 0,
+    "items_without_related_forms": 40,
+    "items_with_related_contacts": 30,
+    "items_without_related_contacts": 10,
+    "form_sources": 3,
+    "contact_sources": 1,
+    "regulation_sources": 0,
+    "warnings": [
+      "20 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "warnings": [
+    "20 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

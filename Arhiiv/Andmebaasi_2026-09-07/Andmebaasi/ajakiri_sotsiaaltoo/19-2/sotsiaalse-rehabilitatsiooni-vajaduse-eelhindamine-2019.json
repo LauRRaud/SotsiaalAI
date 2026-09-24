@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2019",
+  "articleId": "sotsiaalse-rehabilitatsiooni-vajaduse-eelhindamine-ja-teenuse-sisu-2019",
+  "title": "Puuetega inimeste sotsiaalse rehabilitatsiooni vajaduse eelhindamine ja rehabilitatsiooniteenuste sisu kujundamine Eestis",
+  "authors": [
+    "Karin Hanga"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2019",
+  "section": "Uurimus",
+  "pageRange": "43-51",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Doktoritööl põhinev artikkel, mis analüüsib puuetega inimeste sotsiaalse rehabilitatsiooni vajaduse eelhindamise põhimõtteid ja rehabilitatsiooniteenuste sisu kujundamist Eestis.",
+  "tags": [
+    "sotsiaalne rehabilitatsioon",
+    "puuetega inimesed",
+    "vajaduse hindamine",
+    "teenuse disain",
+    "WHODAS 2.0",
+    "rehabilitatsioonisüsteem"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part11.pdf",
+  "document_id": "sotsiaaltoo-2-2019-sotsiaalse-rehabilitatsiooni-vajaduse-eelhindamine-ja-teenuse-sisu-2019",
+  "source_format": "pdf",
+  "source_sha256": "d475c1f01b600d01808931f75c18bcd39267a8727caf900bfa17cca0a6d47b96",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2019-sotsiaalse-rehabilitatsiooni-vajaduse-eelhindamine-ja-teenuse-sisu-2019",
+    "previous_source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part11.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d475c1f01b600d01808931f75c18bcd39267a8727caf900bfa17cca0a6d47b96",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

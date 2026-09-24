@@ -1,0 +1,49 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "mentorlus-aitab-kaasa-sotsiaalvaldkonna-juhtide-arengule-ja-enesehoiul-2026",
+  "title": "Mentorlus aitab kaasa sotsiaalvaldkonna juhtide arengule ja enesehoiule",
+  "authors": [
+    "Meeli Tuubel"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Tööalane tugi",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb mentorlust kui sotsiaalvaldkonna juhtide professionaalse arengu ja enesehoiu vormi, mille eestvedaja on Eesti sotsiaaltöö assotsiatsioon. Mentorlus loob hinnanguvaba peatumisruumi ja aitab juhtidel näha oma tugevusi ning arenguvõimalusi. Organisatsiooniväline mentor toetab juhte küsimuste ja tagasiside kaudu, olles kahe võrdse partneri dialoog.",
+  "tags": [
+    "mentorlus",
+    "juhtimine",
+    "enesehoid",
+    "tööalane tugi",
+    "professionaalne areng",
+    "ESTA",
+    "kogemuste jagamine",
+    "supervisioon"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-03-12",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/mentorlus-aitab-kaasa-sotsiaalvaldkonna-juhtide-arengule-ja-enesehoiule",
+  "source_type": "web",
+  "source_path": "mentorlus-aitab-kaasa-sotsiaalvaldkonna-juhtide-arengule-ja-enesehoiule.html",
+  "lead": "Mentorlus on üks tööarengu ja enesehoiu vorme, mis loob juhile, aga ka teisele oma rollis tuge vajavale spetsialistile hinnanguvaba peatumisruumi, annab võimaluse vaadelda oma olukorda ja kasvada.",
+  "document_id": "sotsiaaltoo-2-2026-mentorlus-aitab-kaasa-sotsiaalvaldkonna-juhtide-arengule-ja-enesehoiul-2026",
+  "source_format": "html",
+  "source_sha256": "8f3e33864ae82736c7e6a0483e8e6567761cc4e49ec3eadca7cbe7d84ea180e8",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-mentorlus-aitab-kaasa-sotsiaalvaldkonna-juhtide-arengule-ja-enesehoiul-2026",
+    "previous_source_path": "mentorlus-aitab-kaasa-sotsiaalvaldkonna-juhtide-arengule-ja-enesehoiule.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "2688e189ab61b46b2222e2683456e8fc4b6609534a2bf721cf55d46df1bcc3f0",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "3e7b875d0185a2876493c18f0867f85e1c6b25726e26ad88b982d514d9fe5545",
+    "observed_web_title": "Mentorlus aitab kaasa sotsiaalvaldkonna juhtide arengule ja enesehoiule"
+  },
+  "retrieved_at": "2026-09-07T19:39:36.977162+00:00"
+}

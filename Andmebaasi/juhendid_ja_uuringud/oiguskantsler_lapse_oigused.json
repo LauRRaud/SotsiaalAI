@@ -1,0 +1,148 @@
+{
+  "source_path": "oiguskantsler_lapse_oigused.pdf",
+  "source_format": "pdf",
+  "sha256": "de846b25803873652b7e4324fdcb2dcff34f51b454b4894aad32648cbfd3058a",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/oiguskantsler_lapse_oigused.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "oiguskantsler_lapse_oigused",
+          "title": "Lapse õigused",
+          "url": "https://www.oiguskantsler.ee/sites/default/files/L%C3%95K%20voldik%202022_EST.pdf",
+          "normalized_url": "https://www.oiguskantsler.ee/sites/default/files/LÕK voldik 2022_EST.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "Õiguskantsler",
+          "organization_id": "oiguskantsler",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Õiguskantsler",
+            "lapsed ja pered",
+            "laps",
+            "lapse õigused",
+            "lapse osalus",
+            "õigused",
+            "inimõigused",
+            "infomaterjal"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_006",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "Õiguskantsler",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 189,
+            "order": 128
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Lapse õigused"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Õiguskantsler"
+          ],
+          "organizations_seen": [
+            "oiguskantsler"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Õiguskantsler",
+              "line": 189,
+              "order": 128
+            },
+            {
+              "heading_2": "Õiguskantsler",
+              "line": 663,
+              "order": 335
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.oiguskantsler.ee/sites/default/files/LÕK voldik 2022_EST.pdf"
+        },
+        "final_url": "https://www.oiguskantsler.ee/sites/default/files/L%C3%95K%20voldik%202022_EST.pdf",
+        "redirects": [],
+        "sha256": "de846b25803873652b7e4324fdcb2dcff34f51b454b4894aad32648cbfd3058a",
+        "bytes": 6551477,
+        "downloaded_at": "2026-08-14T08:00:34.238Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "oiguskantsler_lapse_oigused",
+      "metadata": {
+        "createdAt": "2026-06-12T03:36:54.536925+00:00",
+        "type": "FILE",
+        "fileName": "LÕK voldik 2022_EST.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:36:54.472097+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/7e2769f900c2/LÕK voldik 2022_EST.pdf",
+        "title": "Lapse õigused",
+        "description": "Duplikaadid ühendatud: 1 lisakirjet. Source master headings: Õiguskantsler",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": null,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–20",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "oiguskantsler_lapse_oigused",
+        "document_id": "oiguskantsler_lapse_oigused",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "8ecb9ca773ba5e995b43b8ce111f15e680b2b191ce8191459dcbc5e167549686",
+        "url": "https://www.oiguskantsler.ee/sites/default/files/L%C3%95K%20voldik%202022_EST.pdf",
+        "url_canonical": "https://www.oiguskantsler.ee/sites/default/files/LÕK voldik 2022_EST.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "oiguskantsler_lapse_oigused",
+        "updatedAt": "2026-06-12T03:36:54.536949+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

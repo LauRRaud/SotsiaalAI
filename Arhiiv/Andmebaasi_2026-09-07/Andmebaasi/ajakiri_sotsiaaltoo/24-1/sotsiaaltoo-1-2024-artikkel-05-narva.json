@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-1-2024",
+  "articleId": "narva-sotsiaaltoos-keskendutakse-teenuste-kvaliteedile-ja-koostoole-2024-1",
+  "title": "Narva sotsiaaltöös keskendutakse teenuste kvaliteedile ja koostööle",
+  "authors": [
+    "Kristi Mürk"
+  ],
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2024",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "20-24",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel kirjeldab Narva linna sotsiaalvaldkonna korraldust olukorras, kus elanikkond väheneb ja vananeb ning abivajadus on suur. Autor tutvustab linna sotsiaaltöökeskuse rolli teenuste osutajana, rõhutades kvaliteedi tagamist, tugiteenuste mitmekesisust ning eakate hoolekande, lastega perede ja teiste sihtrühmade toetamise lahendusi. Käsitletakse koostööd PPA, haigla, SKA nõustamisteenuse ja kohalike MTÜ-dega, samuti ennetus- ja vanemlusprogrammide arendamist. Juttu on ka energiakriisi ja toimetulekuraskuste mõjust, uute abivajajate lisandumisest ning vajadusest hoida fookuses iga üksiku inimese heaolu.",
+  "tags": [
+    "Narva linn",
+    "kohalik omavalitsus",
+    "sotsiaaltöö korraldus",
+    "sotsiaaltöökeskus",
+    "eakate hoolekanne",
+    "lastega pered",
+    "koostöö PPA ja haiglaga",
+    "SKA nõustamine",
+    "MTÜd",
+    "toimetulekuraskused"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_1_2024_web_Part6.pdf",
+  "document_id": "sotsiaaltoo-1-2024-narva-sotsiaaltoos-keskendutakse-teenuste-kvaliteedile-ja-koostoole-2024-1",
+  "source_format": "pdf",
+  "source_sha256": "9e74d828c076d166490c125e26aa63b398b2a54276c977fa392f05d3bbe2ae1d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2024-narva-sotsiaaltoos-keskendutakse-teenuste-kvaliteedile-ja-koostoole-2024-1",
+    "previous_source_path": "Sotsiaaltoo_1_2024_web_Part6.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "9e74d828c076d166490c125e26aa63b398b2a54276c977fa392f05d3bbe2ae1d",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

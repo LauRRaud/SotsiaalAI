@@ -1,0 +1,91 @@
+{
+  "docId": "sotsiaaltoo-3-2018",
+  "articleId": "uued-algatused-hoolekandes-2018",
+  "title": "Uued algatused hoolekandes",
+  "authors": [
+    "Ketri Kupper"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2018",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "34-37",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi hoolekande osakonna peaspetsialisti ülevaade 2018. aastal käivitunud hoolekande arendusprojektidest. Vabatahtliku tegevuse koostöömudeli katseprojekti võitis riigihankega MTÜ Eesti Külaliikumine Kodukant; kaks aastat kestev projekt viiakse ellu kuues maakonnas ja vähemalt 18 omavalitsuses ning selle lõpuks peavad vabatahtlikud olema abistanud vähemalt 1000 eakat või täisealist erivajadusega inimest, kellest 10% vabatahtlikest peavad olema 55+. Kirjeldab dementsuse kompetentsikeskuse loomist (ühispakkumise tegid MTÜ Elu Dementsusega, SA Viljandi Haigla, SA EELK Tallinna Diakooniahaigla ja Tartu Tervishoiukõrgkool, leping kuni 2021. aasta lõpuni, tegevus Tartus, Tallinnas ja Viljandis). Kolmandana tutvustab augustis käivitunud hoolduse koordinatsiooni katseprojekti kuues piirkonnas (Tallinn, Saaremaa, Tartu, Rakvere, Tori ja Tõrva vald), kus katsetatakse hoolduskoordinaatori ametikohta esmatasandil ja InterRAI kontakthindamise instrumenti.",
+  "tags": [
+    "vabatahtlik töö",
+    "dementsuse kompetentsikeskus",
+    "hoolduskoordinaator",
+    "InterRAI",
+    "katseprojekt",
+    "hoolduse koordinatsioon",
+    "teenuste lõimimine"
+  ],
+  "source_type": "file",
+  "source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part10.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2018-uued-algatused-hoolekandes-2018",
+  "source_sha256": "57386e54364a941c42267d95e67e4433d16f53ff72c935bbcd39a1abf1448851",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2018-uued-algatused-hoolekandes-2018",
+    "previous_source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part10.txt",
+    "previous_source_original_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part10.pdf",
+    "reference_stored_source_sha256": "cead4f7233dc8b6b17d51cff691ac0eb05fcc34c56ed1c391712d189d5ecbc58",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\18-3\\155619680390_Sotsiaaltoo_nr3_2018_veebi_link.pdf",
+      "source_sha256": "45eac17c335ef472708d0eb485f916c201e5db46ac64163cc7aeeb1f47dd10a9",
+      "pdf_start_page": 36,
+      "pdf_end_page": 39,
+      "printed_page_range": "34-37",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 39,
+      "source_regions": [
+        {
+          "source_pdf_page": 36,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 37,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 38,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 39,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "34-37"
+    },
+    "server_page_range": "34-37"
+  }
+}

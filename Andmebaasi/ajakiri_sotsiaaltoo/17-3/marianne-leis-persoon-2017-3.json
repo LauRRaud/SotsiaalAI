@@ -1,0 +1,90 @@
+{
+  "docId": "sotsiaaltoo-3-2017",
+  "articleId": "marianne-leis-persoon-2017-3",
+  "title": "Marianne Leis: meie ametis on kõige tähtsamad koostöö ja suhtlemine",
+  "authors": [
+    "Marita Haho"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2017",
+  "section": "Persoon",
+  "pageRange": "3-6",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu Anija valla sotsiaaltöötajast Marianne Leisist (61), kes on sotsiaalalal tegutsenud üle 20 aasta. Ta rõhutab, et ametis on kõige tähtsamad koostöö ja suhtlemine, ning ütleb, et oma südant ei pea ära andma: ühtegi inimest ei saa muuta, inimene muudab ennast ise, sotsiaaltöötaja saab pakkuda ainult võimalusi.",
+  "tags": [
+    "persoonilugu",
+    "kohalik omavalitsus",
+    "klienditöö",
+    "enesehoid",
+    "koostöö"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part3.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2017-marianne-leis-persoon-2017-3",
+  "source_sha256": "6a51df4ee811dc3731baadfb35cea39e594deba8bb7e0189ac061fb71c711506",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2017-marianne-leis-persoon-2017-3",
+    "previous_source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part3.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part3.pdf",
+    "reference_stored_source_sha256": "d824bc7544f82d1299f812336d6dea17120fc0d08a03ee1a116ba5faea64c4a1",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf",
+      "source_sha256": "3f27c22982b22a396dace8a957798cc21d3240489c7ce4d92802bf1a94bde7a8",
+      "pdf_start_page": 5,
+      "pdf_end_page": 8,
+      "printed_page_range": "3-6",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 8,
+      "source_regions": [
+        {
+          "source_pdf_page": 5,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 6,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 7,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 8,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "3-6",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf"
+    },
+    "server_page_range": "3-6"
+  }
+}

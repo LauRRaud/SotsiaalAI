@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "malestuseks-riho-rahuoja-2025-2",
+  "title": "Mälestuseks. Inimlike väärtuste järgija Riho Rahuoja",
+  "authors": [
+    "Ajakiri Sotsiaaltöö"
+  ],
+  "section": "Mälestuseks",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "description": "Mälestuslugu sotsiaalvaldkonna kauaaegsest suunajast ja Hiiumaa hoolekande arendajast Riho Rahuojast. Artikkel võtab kokku tema töö sotsiaalnõuniku, maavanema, sotsiaalministeeriumi asekantsleri ja Hiiumaa sotsiaalkeskuse juhina. Kaasteelised meenutavad Rahuojat kui inimeste inimest, tasakaalukat juhti ja praktikast lähtuvat poliitikakujundajat, kes panustas eakate, puuetega inimeste ja asenduskodulaste heaolusse ning hoolekandesüsteemi arendamisse nii riigi kui kohaliku tasandi vaates.",
+  "tags": [
+    "Riho Rahuoja",
+    "sotsiaalpoliitika",
+    "hoolekanne",
+    "Hiiumaa",
+    "sotsiaalministeerium",
+    "eakad",
+    "puuetega inimesed"
+  ],
+  "source_path": "Riho_mälestusteks_2_2025.pdf",
+  "pageRange": "1–5",
+  "document_id": "sotsiaaltoo-2-2025-malestuseks-riho-rahuoja-2025-2",
+  "source_format": "pdf",
+  "source_sha256": "4147d5247e1bfb00031df2e78924cb6c2f115aef0fabf0df661b4b392e7c24a0",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2025-malestuseks-riho-rahuoja-2025-2",
+    "previous_source_path": "Riho_mälestusteks_2_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "4147d5247e1bfb00031df2e78924cb6c2f115aef0fabf0df661b4b392e7c24a0",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

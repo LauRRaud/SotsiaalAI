@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-4-2022",
+  "articleId": "puude-raskusastme-tuvastamine-ja-toovoime-hindamine-noustamisteenuse-praktika-pohjal-2022-4",
+  "title": "Puude raskusastme tuvastamine ja töövõime hindamine nõustamisteenuse praktika põhjal",
+  "authors": [
+    "Kristi Rekand"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2022",
+  "section": "Õigus",
+  "pageRange": "45-50",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel võtab kokku Eesti Puuetega Inimeste Koja nõustamisteenuse kogemuse töövõime hindamise\nja puude raskusastme tuvastamise toetamisel. Autor kirjeldab, milliste küsimustega inimesed nõustaja\npoole pöörduvad, kuidas on muutunud pöördumiste sisu alates töövõimereformi algusest ning miks\non vaide- ja kohtumenetluse osakaal viimasel ajal oluliselt kasvanud. Põhjalikult selgitatakse,\nmillele tuleks tähelepanu pöörata taotluse esitamisel: arsti külastuste ja terviseandmete piisavus,\nigapäevase toimetuleku kirjeldamine erinevates eluvaldkondades, abivahendite, ravimite ja teenuste\ntegelik mõju ning lisatõendite (nt rehabilitatsiooniplaan, spetsialistide hinnangud) lisamine.\nSamuti antakse praktilisi soovitusi, millal on põhjendatud vaide esitamine, kuidas vaide sisu\nüles ehitada ja millised on haldusorgani kohustused kaalutlusõiguse kasutamisel ning tõendite kogumisel.\nArtikkel on eriti kasulik sotsiaaltöötajatele ja nõustajatele, kes toetavad kliente keerukas\ntöövõime- ja puude hindamise süsteemis orienteerumisel ning seisavad hea selle eest, et otsused\nvastaksid inimese tegelikule abivajadusele.",
+  "tags": [
+    "puude raskusaste",
+    "töövõime hindamine",
+    "Eesti Puuetega Inimeste Koda",
+    "töövõimereform",
+    "vaie",
+    "haldusmenetlus",
+    "terviseandmed",
+    "nõustamisteenus",
+    "puudega inimesed"
+  ],
+  "source_type": "file",
+  "source_path": "2022_4_artikkel_10_puude_raskusaste.pdf",
+  "document_id": "sotsiaaltoo-4-2022-puude-raskusastme-tuvastamine-ja-toovoime-hindamine-noustamisteenuse-praktika-pohjal-2022-4",
+  "source_format": "pdf",
+  "source_sha256": "84f9d7c0844f8d313924ff93c1ec983f784186b349afc2db1b34548167b76f5d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2022-puude-raskusastme-tuvastamine-ja-toovoime-hindamine-noustamisteenuse-praktika-pohjal-2022-4",
+    "previous_source_path": "2022_4_artikkel_10_puude_raskusaste.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "84f9d7c0844f8d313924ff93c1ec983f784186b349afc2db1b34548167b76f5d",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

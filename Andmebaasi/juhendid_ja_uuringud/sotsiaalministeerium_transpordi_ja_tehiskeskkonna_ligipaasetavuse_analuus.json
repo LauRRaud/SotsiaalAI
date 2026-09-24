@@ -1,0 +1,142 @@
+{
+  "source_path": "sotsiaalministeerium_transpordi_ja_tehiskeskkonna_ligipaasetavuse_analuus.pdf",
+  "source_format": "pdf",
+  "sha256": "33dc6b4e2510637b8a3d03f71afe98eeca40d73f9f234aab37c49fa5f5d25371",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/sotsiaalministeerium_transpordi_ja_tehiskeskkonna_ligipaasetavuse_analuus.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "sotsiaalministeerium_transpordi_ja_tehiskeskkonna_ligipaasetavuse_analuus",
+          "title": "Transpordi ja tehiskeskkonna ligipääsetavuse analüüs",
+          "url": "https://www.sm.ee/sites/default/files/documents/2022-06/Transpordi%20ja%20tehiskeskkonna%20ligip%C3%A4%C3%A4setavuse%20anal%C3%BC%C3%BCs.pdf",
+          "normalized_url": "https://www.sm.ee/sites/default/files/documents/2022-06/Transpordi ja tehiskeskkonna ligipääsetavuse analüüs.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "Sotsiaalministeerium",
+          "organization_id": "sotsiaalministeerium",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Sotsiaalministeerium",
+            "ligipääsetavus",
+            "universaalne disain",
+            "uuring",
+            "raport",
+            "analüüs"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Sotsiaalministeerium",
+            "heading_3": "Puue, töövõime, ligipääsetavus",
+            "heading_4": null,
+            "line": 527,
+            "order": 276
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Transpordi ja tehiskeskkonna ligipääsetavuse analüüs"
+          ],
+          "collection_hints": [
+            "research_reports"
+          ],
+          "source_types_seen": [
+            "research_report"
+          ],
+          "resource_types_seen": [
+            "research_evidence"
+          ],
+          "publishers_seen": [
+            "Sotsiaalministeerium"
+          ],
+          "organizations_seen": [
+            "sotsiaalministeerium"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Sotsiaalministeerium",
+              "heading_3": "Puue, töövõime, ligipääsetavus",
+              "line": 527,
+              "order": 276
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.sm.ee/sites/default/files/documents/2022-06/Transpordi ja tehiskeskkonna ligipääsetavuse analüüs.pdf"
+        },
+        "final_url": "https://www.sm.ee/sites/default/files/documents/2022-06/Transpordi%20ja%20tehiskeskkonna%20ligip%C3%A4%C3%A4setavuse%20anal%C3%BC%C3%BCs.pdf",
+        "redirects": [],
+        "sha256": "33dc6b4e2510637b8a3d03f71afe98eeca40d73f9f234aab37c49fa5f5d25371",
+        "bytes": 9017892,
+        "downloaded_at": "2026-08-14T08:00:55.195Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "sotsiaalministeerium_transpordi_ja_tehiskeskkonna_ligipaasetavuse_analuus",
+      "metadata": {
+        "createdAt": "2026-06-12T03:58:19.455283+00:00",
+        "type": "FILE",
+        "fileName": "Transpordi ja tehiskeskkonna ligipääsetavuse analüüs.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:58:19.385832+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/3bd3c5ab382e/Transpordi ja tehiskeskkonna ligipääsetavuse analüüs.pdf",
+        "title": "Transpordi ja tehiskeskkonna ligipääsetavuse analüüs",
+        "description": "Source master headings: Sotsiaalministeerium; Puue, töövõime, ligipääsetavus",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2022,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–135",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "research_reports",
+        "source_id": "sotsiaalministeerium_transpordi_ja_tehiskeskkonna_ligipaasetavuse_analuus",
+        "document_id": "sotsiaalministeerium_transpordi_ja_tehiskeskkonna_ligipaasetavuse_analuus",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "c8d4c7f952c4065ea5b4ee4447cc59457f6658180f64faf037ca37f5d2fd9041",
+        "url": "https://www.sm.ee/sites/default/files/documents/2022-06/Transpordi%20ja%20tehiskeskkonna%20ligip%C3%A4%C3%A4setavuse%20anal%C3%BC%C3%BCs.pdf",
+        "url_canonical": "https://www.sm.ee/sites/default/files/documents/2022-06/Transpordi ja tehiskeskkonna ligipääsetavuse analüüs.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "sotsiaalministeerium_transpordi_ja_tehiskeskkonna_ligipaasetavuse_analuus",
+        "updatedAt": "2026-06-12T03:58:19.455307+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

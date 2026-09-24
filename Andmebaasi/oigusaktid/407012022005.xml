@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="2eec8b6e-f2c7-424a-92b6-ffd7c7d5cb94" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Kohila Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2018-03-27</aktikuupaev>
+			<avaldamismarge>
+				<RTosa id="0ab8575e-0c84-4765-afc4-fc45addd687b">RT IV</RTosa>
+				<avaldamineKuupaev id="c5792fd4-12cb-49ee-bff5-7ce8e7290402">2018-05-04</avaldamineKuupaev>
+				<RTartikkel id="f09a8329-cfa4-4c93-97d8-bc448bde1d2a">90</RTartikkel>
+				<aktViide id="5f771251-e688-43f2-9a96-60eca716ecf3">404052018090</aktViide>
+			</avaldamismarge>
+			<joustumine>2018-05-07</joustumine>
+			<aktiNr>4</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2022-01-07+02:00</avaldamineKuupaev>
+			<RTaasta>2022</RTaasta>
+			<RTartikkel>5</RTartikkel>
+			<aktViide>407012022005</aktViide>
+		</avaldamismarge>
+		<kehtivus>
+			<kehtivuseAlgus>2022-01-10+02:00</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2022-01-04</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>407012022005</globaalID>
+		<metaandmedVersioon>19</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2025-05-05</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1043022</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2018-05-02</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>?Teadmata? ?Teadmata?</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>7</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2018-05-03</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>12</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2018-11-06</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="3dad92e5-0199-4a96-a59f-82e17ce4e0c9">
+		<nimi id="39b0dc50-66c6-41d5-a7d5-4a69614c8de6">
+			<pealkiri id="735b4407-a37a-4490-bc57-a8b5d00b7ca4">Kohila valla poolt korraldatavate sotsiaalteenuste osutamise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="553741e6-a707-4cdf-bda5-39950b4b6e93">
+		<aktikuupaev id="cf7ca110-fb9e-4e22-81b2-464bcbbea46e">2018-10-30</aktikuupaev>
+		<avaldamismarge id="57be6f83-fe8f-49da-85f5-5fbd58b25b91">
+			<RTosa id="be35365d-370b-4f06-9c6b-abfb5965dc66">RT IV</RTosa>
+			<avaldamineKuupaev id="0ddde9c1-8c05-41f1-a544-e2161deb5273">2018-11-07</avaldamineKuupaev>
+			<RTartikkel id="21683b49-7f6a-4b02-ae8b-ceaa347b9ded">26</RTartikkel>
+			<aktViide id="92ee679d-7afc-4af7-9940-7e25967fab9e">407112018026</aktViide>
+		</avaldamismarge>
+		<joustumine id="edd447db-ee75-4407-84c5-89f9e7f6ccb9">2018-11-10</joustumine>
+	</muutmismarge>
+	<muutmismarge id="e92112a6-54ca-47e5-82ae-0900db916e36">
+		<aktikuupaev id="80c523dc-3fb5-44b6-a7a2-9da33f86cf9f">2021-12-30</aktikuupaev>
+		<avaldamismarge id="87ad1cab-0074-4d43-8534-19eb76d279d3">
+			<RTosa id="6ed8bd1a-f4c3-4d12-8d11-d8f4b54586ce">RT IV</RTosa>
+			<avaldamineKuupaev id="5e1bab18-06d2-490d-b090-69168edc219f">2022-01-07</avaldamineKuupaev>
+			<RTartikkel id="15c97a48-a258-4562-93ee-43d9816a7530">1</RTartikkel>
+			<aktViide id="43b18e6f-8ba3-4be7-bd6f-8b4e8cab9d87">407012022001</aktViide>
+		</avaldamismarge>
+		<joustumine id="c572b5d4-379f-4322-a158-1714a5d392f2">2022-01-10</joustumine>
+		<tavatekst id="ef7b4241-a6b8-471a-a2bf-523a5ea2af70">, rakendatakse alates 01.03.2020</tavatekst>
+	</muutmismarge>
+	<sisu id="a579f154-c656-4d18-b6ea-8a59fb84e702">
+		<preambul id="319e48b1-7a25-40a9-ab2a-e8c886bbbf5b">
+			<tavatekst id="21956f2a-e81c-4aee-a614-eeb859d43519">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 6 lg 1, § 22 lg 1 p 5 ja sotsiaalhoolekande seaduse § 14 lõike 2 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="a2e94d1e-5c4a-475b-96fb-a76a349fc30b">1</paragrahvNr>
+			<kuvatavNr id="fd1b4f6b-f51e-49a0-901e-de3feb207d1a"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="ee110b53-4fdd-462c-8810-b04413795906">Üldsätted</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="d7db9aa6-3f67-4145-8768-9ecf09233e69">1</loigeNr>
+				<kuvatavNr id="580a1010-cbe1-4878-847a-9ef99ea0f62a"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="b8bba11d-d1dc-486f-8af8-c617182d1d79">
+					<tavatekst id="981ce703-fd00-468e-961b-9b3924d205b7">Käesolev kord sätestab Kohila valla (edaspidi <i>vald</i>) poolt korraldatavad sotsiaalteenused ning nende osutamise tingimused ja korra, kui see ei ole reguleeritud riigi või Kohila vallavolikogu muu õigusaktiga.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr id="971de404-4a89-4711-ba11-593b0865c230">2</loigeNr>
+				<kuvatavNr id="77fd3bb1-18d2-4422-afa2-043c45b4b398"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="d08a006a-eb86-495d-a675-74325e585ef0">
+					<tavatekst id="55898d19-5338-453f-8ec1-f8627956285f">Käesolevas korras kasutatakse mõisteid alljärgnevas tähenduses:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para1lg2p1">
+					<alampunktNr id="2a269ca3-b77c-4ced-882b-e506c8999e70">1</alampunktNr>
+					<kuvatavNr id="7774e527-3783-4874-a261-9c42270d08da"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="9aab77a9-a3c2-48dd-8e2c-0b128fc95f47">
+						<tavatekst id="5d5d4c8b-1cb4-4de3-a80a-df07cecc0f53">toimetulek on isiku või perekonna füüsiline või psühhosotsiaalne võime igapäevases elus toime tulla;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg2p2">
+					<alampunktNr id="efdb1c37-908c-4dbe-91a4-e60301039d38">2</alampunktNr>
+					<kuvatavNr id="67979798-3885-4a30-9cc1-6cedc09ef284"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="f3c5c3ee-6930-4d14-90fe-5c4d976db14c">
+						<tavatekst id="53b2a604-2bb6-4e5a-85b4-c0cd14a77837">sotsiaalteenus on isiku või perekonna toimetulekut soodustav mitterahaline toetus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg2p3">
+					<alampunktNr id="67575483-8c4a-4ce2-bc51-9a7dd5902fdf">3</alampunktNr>
+					<kuvatavNr id="e8e16aa2-1315-44b9-acc8-978118512fd4"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="229fe4b8-0b7b-4430-847f-b3c6ee56e47b">
+						<tavatekst id="7c86ddc4-d975-42be-b272-b3bd28343237">rehabilitatsiooniplaan on rehabilitatsiooniasutuses isiku või tema seadusliku esindaja aktiivsel osalemisel koostatud kirjalik dokument, milles antakse hinnang isiku tegevusvõimele, kõrvalabi, juhendamise või järelvalve vajadusele ning tuuakse ära isiku iseseisvaks toimetulekuks ja sotsiaalseks integreerumiseks vajalikud tegevused;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg2p4">
+					<alampunktNr id="4611074b-bfe9-474e-8eb5-69cf9b68687a">4</alampunktNr>
+					<kuvatavNr id="2e8214e3-34cc-4310-821b-ecacfc96d348"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="d61010ec-ac4e-4d62-b92a-38c9e2296441">
+						<tavatekst id="638fd79d-06a4-4636-be55-9c195e692976">hooldusplaan on isiku või tema seadusliku esindaja osalemisel koostatud kirjalik dokument, milles antakse hinnang isiku tervislikule seisundile ja kõrvalabi vajadusele ning määratakse kindlaks toimingud isiku toimetulekuvõime toetamiseks ja säilitamiseks;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg2p5">
+					<alampunktNr id="1ecc16f5-af01-4bf5-8ca1-40d070453ccc">5</alampunktNr>
+					<kuvatavNr id="d50a228d-a487-4c42-963c-5640c0e862c7"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="045a4a76-5a45-4e39-8a24-26d0c48f29c2">
+						<tavatekst id="5780ca65-6317-4cc5-a87b-4974a36c915c">juhtumiplaan on kirjalik dokument, mis koosneb hinnangust isiku abivajadusele ja tema probleemide lahendamist käsitlevast tegevuskavast.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para1lg3">
+				<loigeNr id="2e97e703-7afd-4558-b3dc-d76e70c2acf5">3</loigeNr>
+				<kuvatavNr id="f5a08369-cd07-43d2-887f-1f078ae8793b"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="5b39427b-c62b-4183-807a-b95b4570bc5a">
+					<tavatekst id="15707612-8f37-4f89-bcf2-cc462b68cdc8">Sotsiaalteenust osutatakse vähekindlustatud või erivajadustega isikutele ja perekondadele.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg4">
+				<loigeNr id="8b07aff1-2d96-4100-8f38-37b16e628260">4</loigeNr>
+				<kuvatavNr id="b1a28856-af93-4c2d-b37b-e153fee20361"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="ffa03131-ef1b-4a07-a43e-68ec951f34de">
+					<tavatekst id="e9a02b0c-2350-4d9d-933b-5936498c91c3">Käesolevas korras kirjeldatud sotsiaalteenuste loetelu ei ole ammendav ning taotluste menetlemise kord laieneb üldiselt kõigile sotsiaalhoolekande seaduses või käesolevas määruses kirjeldatud sotsiaalteenustele ning teistele Kohila Vallavalitsuse (edaspidi <i>vallavalitsus</i>) ja vallavalitsuse hallatavate asutuste osutatavatele sotsiaalteenustele, mille taotlemise ja osutamisega seonduv ei ole reguleeritud eraldi õigusaktidega. Juhul, kui konkreetse sotsiaalteenuse osutamisega seonduv on reguleeritud eraldi õigusaktiga, kohaldatakse sotsiaalteenuse osutamise suhtes käesolevat korda niivõrd, kuivõrd see ei ole vastuolus vastava õigusaktiga.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg5">
+				<loigeNr id="c2c5deb7-fde7-4ea6-9ce1-54edd3b94c28">5</loigeNr>
+				<kuvatavNr id="234db142-d647-41f5-8951-39ebae281f45"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="aea56134-2e73-4a46-9182-53730ebf164d">
+					<tavatekst id="e7c477cb-cf87-4371-990d-f499883d97f6">Vallavalitsus kehtestab lähtuvalt käesolevast korrast sotsiaalteenuste hinnad ja täiendavad tingimused.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="a8e3e890-b649-4311-aa51-aa09addcc4e5">2</paragrahvNr>
+			<kuvatavNr id="88213bf2-77cf-4725-8620-0f6999fc3f0f"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="abd43ca9-3f1f-4a87-85d2-31b7d31fd78e">Isikliku abistaja teenus</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="77eb0c10-6d97-4a94-aaf7-00846243a232">1</loigeNr>
+				<kuvatavNr id="be3f3079-9e62-4d7b-ae85-e1d653e90a22"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="26796d89-a999-40be-8e25-e2ed6fa58c59">
+					<tavatekst id="2c3b158c-f689-4f41-97b9-d70ebb1f67bf">Isikliku abistaja teenuse eesmärk on suurendada puuetega inimeste sotsiaaltoetuste seaduse tähenduses puude tõttu füüsilist kõrvalabi vajava täisealise isiku iseseisvat toimetulekut ja osalemist kõigis eluvaldkondades, vähendades teenust saava isiku seadusjärgsete hooldajate hoolduskoormust.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="52612c6d-d9c6-488e-a72f-08c269997421">2</loigeNr>
+				<kuvatavNr id="4079d7da-6575-494a-9a4f-64ce74888b91"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="e07b15c7-aec1-422d-8b71-d28e526c6e44">
+					<tavatekst id="ce15aa15-0e6a-434c-8666-1db8e266d11f">Puudega täiskasvanud isikule määratakse isikliku abistaja teenus vallavalitsuse korraldusega või juhtumiplaani tegevuskavas.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr id="e4c8d1dd-4277-4511-9f5e-f728d7596143">3</loigeNr>
+				<kuvatavNr id="625589e6-c415-4881-9d3e-715ba80a7e46"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="d129da27-5e3f-42ba-b9fd-eb896330307d">
+					<tavatekst id="f0a3206e-8b8b-4619-adb7-5ec71821287d">Puudega lapsele võib isikliku abistaja teenuse määrata rehabilitatsiooniplaani alusel või juhtumiplaani tegevuskavas.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="3ddd1a73-9c6a-48b3-af96-314307b7a0ee">3</paragrahvNr>
+			<kuvatavNr id="5d814138-4a9a-48a9-8bc0-48314395c8e8"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="5c56f060-c724-4774-9999-727bfc62e78d">Varjupaigateenus</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="ba09f3ee-2839-4eef-8472-f8fcc23fb931">1</loigeNr>
+				<kuvatavNr id="3bb7f2a8-5e29-4132-b117-76fdcd9760e0"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="aab032c4-954d-4d55-8038-c9fb2c49bb2c">
+					<tavatekst id="fddd08dc-d868-43ae-a654-aaa4f28000d6">Varjupaigateenuse eesmärk on ajutise ööbimiskoha võimaluse kindlustamine täisealisele isikule, kes ei ole võimeline endale ööbimiskohta leidma. Ajutises ööbimiskohas peab olema tagatud voodikoht, pesemisvõimalus ja turvaline keskkond.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="57925386-9327-43b8-99bf-ac2aa2a0be67">2</loigeNr>
+				<kuvatavNr id="82ba6bfe-4743-4113-b871-4f49cdb267bc"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="e90c1f1b-0e45-4e16-9e46-8e73239b3be3">
+					<tavatekst id="c5d993e7-9e44-4bde-a59e-c60cb127657d">Ajutiseks ööbimiskohaks võib lugeda vallale kuuluva eluruumi ajutist kasutamist vallavalitsuse kinnitatud korra alusel.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg3">
+				<loigeNr id="e2ebbe17-b5f3-40c3-aa3e-1882cfbd9d0a">3</loigeNr>
+				<kuvatavNr id="3156ff1a-b659-496b-a48d-01a40b8ef5ed"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="4dc2e0a0-d6d2-4b9c-a433-dc9bfcf175ea">
+					<tavatekst id="58cb362a-436e-4481-979d-4223543fcd89">Vallavalitsus võib halduslepinguga volitada varjupaigateenuse osutamise otsustamise eraõiguslikule juriidilisele või füüsilisele isikule, vallavalitsuse hallatavale asutusele või teise kohaliku omavalitsuse üksuse ametiasutusele.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="6bfcb6a2-bf9e-4593-90d4-ec52c3ea4da2">4</paragrahvNr>
+			<kuvatavNr id="4681662b-9256-441e-a674-40b1da5139a7"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="43187ced-f1ab-47bc-9876-7e3405fe302c">Turvakoduteenus</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="65a4b997-52de-46df-b7dc-efc4ce260304">1</loigeNr>
+				<kuvatavNr id="bf9c93ac-c2d0-4acc-b0b2-56858211ea23"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="6e77fc91-6310-4dc2-9ba6-8b1c72c50f11">
+					<tavatekst id="103256de-604f-408e-ab49-fa8d6caeedfc">Turvakoduteenuse eesmärk on tagada ajutine eluase, turvaline keskkond ja esmane abi alaealisele isikule, kes vajab abi tema hooldamises esinevate puuduste tõttu, mis ohustavad tema elu, tervist või arengut või täisealisele isikule, kes vajab turvalist keskkonda.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="bd0e6469-61ef-43a3-95de-ccb6604bb41b">2</loigeNr>
+				<kuvatavNr id="203d0883-97ed-4e95-8003-17b10f5c0730"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="1afa48b4-7cbd-48eb-badc-12c1b0c62b2f">
+					<tavatekst id="e0cb5116-b8d9-4cb1-a991-79c47d76bc33">Esmase abi raames tuleb isikule vajaduse korral tagada kriisiabi, mis taastab isiku psüühilise tasakaalu ja tegevusvõime igapäevaelus, ning teavitada isikut teistest abi saamise võimalustest. Tulenevalt isiku east ja vajadusest tagatakse ka tema hooldamine ja arendamine.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr id="2c46d410-6b89-471d-b86e-0ec4c4ebc3dd">3</loigeNr>
+				<kuvatavNr id="24faa928-43dc-4e26-9f53-b91591431ab8"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="8828f4f5-23fc-4a01-9b39-a711cd3f53fa">
+					<tavatekst id="ecddd5b5-5747-414b-b898-997912a08683">Vallavalitsus võib halduslepinguga volitada turvakoduteenuse osutamise otsustamise eraõiguslikule juriidilisele või füüsilisele isikule, vallavalitsuse hallatavale asutusele või teise kohaliku omavalitsuse üksuse ametiasutusele.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="4f0ef63c-c891-44b2-ab9a-3b63bde676d3">5</paragrahvNr>
+			<kuvatavNr id="8dda26e6-f317-4f58-9319-023f9af0e92e"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="52f10e29-c47e-4d3a-a5c6-fcbd04daaaa2">Sotsiaaltransporditeenus</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="8fda20ae-a05c-40f9-8a12-33369858ec14">1</loigeNr>
+				<kuvatavNr id="c4712003-e560-4678-85d7-3c016c411f48"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="193a6737-c9a6-470f-8595-42b4de4d538c">
+					<tavatekst id="1dd0c711-7015-4494-8220-b861f553bd7f">Sotsiaaltransporditeenuse eesmärk on võimaldada puuetega inimeste sotsiaaltoetuste seaduse § 2 lõike 1 tähenduses puudega isikul, kellel puue takistab isikliku või ühissõiduki kasutamist, kasutada tema vajadustele vastavat transpordivahendit tööle või õppeasutusse sõitmiseks või avalike teenuste kasutamiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="39a0644c-2ce0-4499-8ca9-58d5b2dba938">2</loigeNr>
+				<kuvatavNr id="821bbeb9-8350-4993-9581-9b10e705f237"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="6bee2344-2888-4f9c-b6ba-c426fdeefa98">
+					<tavatekst id="66bd7be6-7db4-4779-82a7-19141ef26f43">Sotsiaaltransporditeenuse osutamise kord sätestatakse Kohila Vallavolikogu määrusega.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="9aa9a2ae-ad13-4436-8f9c-3171c3c82c16">6</paragrahvNr>
+			<kuvatavNr id="b98ca440-6442-4ccc-a481-2a567c73d425"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="399a0f2f-5c8f-40fb-8a64-f58db8d9a094">Eluruumi tagamise teenus</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="269e5e9d-d373-4ebb-bc68-c448a5ad602f">1</loigeNr>
+				<kuvatavNr id="0878f4fa-e6eb-4349-ad28-d31e92ed1c40"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="dae90138-39e5-4133-a778-47d906114a4b">
+					<tavatekst id="04dd30f1-1288-4300-90e0-1a5bfcd6a850">Eluruumi tagamise eesmärk on eluruumi kasutamise võimaluse kindlustamine isikule, kes ei ole sotsiaalmajanduslikust olukorrast tulenevalt võimeline enda ja oma perekonna vajadustele vastavat eluruumi tagama.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg2">
+				<loigeNr id="401bb078-421e-4af6-b0c9-40432204d712">2</loigeNr>
+				<kuvatavNr id="befe63bf-da37-4fe7-ae40-22d90b935be4"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="76f63718-e9e6-48b3-a654-8b886211fa24">
+					<tavatekst id="41c57e33-572b-49d4-bb3d-e74282779332">Vallale kuuluvate sotsiaaleluruumide kasutusele andmise kord sätestatakse Kohila Vallavolikogu määrusega.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="03f6abc1-93c7-41c2-9a1e-626fb1f5f670">7</paragrahvNr>
+			<kuvatavNr id="8044eaf7-efb5-4940-9a73-245e8f881ea3"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="67081770-fe75-40ac-bcdd-316325a7339f">Eluruumi kohandamise teenus</paragrahvPealkiri>
+			<muutmismarge id="19df8347-f32f-4ff2-ac3b-5b76698a3548">
+				<tavatekst id="5003a25f-f6be-404d-845e-eec984268d04">Kehtetu -</tavatekst>
+				<avaldamismarge id="8827fbc2-1581-46b6-9179-b2b4ef386596">
+					<RTosa id="a9b8dfb0-338b-48ec-b778-2c37f4aec134">RT IV</RTosa>
+					<avaldamineKuupaev id="b7ac9aa0-8a65-49a1-9ea1-5ba528bbca74">2018-11-07</avaldamineKuupaev>
+					<RTartikkel id="56e2497b-297d-4e62-b071-d1645c38b2de">26</RTartikkel>
+					<aktViide id="44ab3e4c-f95e-471b-9d26-a1a8a4010b3e">407112018026</aktViide>
+				</avaldamismarge>
+				<joustumine id="c9ba64f5-c732-4533-b3a2-c744eb697b94">2018-11-10</joustumine>
+			</muutmismarge>
+		</paragrahv>
+		<paragrahv id="para8">
+			<paragrahvNr id="c2bed7e0-5dae-4934-96ca-790e1e483ec6">8</paragrahvNr>
+			<kuvatavNr id="603857fe-480a-4bc5-9aa3-20f41d194469"><![CDATA[§ 8. ]]></kuvatavNr>
+			<paragrahvPealkiri id="6ea863c8-4423-4258-9ebe-6af8bb3b0878">Võlanõustamisteenus</paragrahvPealkiri>
+			<loige id="para8lg1">
+				<loigeNr id="8a615748-2b1f-4e30-a89d-e9d40d81ab7d">1</loigeNr>
+				<kuvatavNr id="d787c80a-0725-477c-bc3a-8c98084f9123"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="f1b41a8b-1bf8-4f5d-861d-e4675393e5de">
+					<tavatekst id="0ac530c4-f0d8-4f10-99e9-93d978c18671">Võlanõustamisteenuse eesmärk on abistada isikut tema varalise olukorra kindlakstegemisel, võlausaldajaga läbirääkimiste pidamisel ja nõuete rahuldamisel, et vältida uute võlgnevuste tekkimist, parandada isiku toimetulekuvõimet ning lahendada muid võlgnevusega seotud probleeme.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8lg2">
+				<loigeNr id="2d658c93-e480-4f55-af6e-d77793e9a722">2</loigeNr>
+				<kuvatavNr id="12d8f716-5a91-49d7-8e4a-ac4651fe1fde"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="5b048b47-cc81-4457-a051-1679659a5594">
+					<tavatekst id="d7192c6e-d6f8-4031-9d89-5ba8af3c9557">Vallavalitsus võib halduslepinguga volitada võlanõustamisteenuse osutamise otsustamise eraõiguslikule juriidilisele või füüsilisele isikule, vallavalitsuse hallatavale asutusele või teise kohaliku omavalitsuse üksuse ametiasutusele.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para9">
+			<paragrahvNr id="7c217bb9-52cb-4b44-af87-12498ad9bce5">9</paragrahvNr>
+			<kuvatavNr id="f26a73dc-86be-43ab-b821-85e3a17362e9"><![CDATA[§ 9. ]]></kuvatavNr>
+			<paragrahvPealkiri id="28b249fd-8419-47e0-b125-4a968f22733f">Koduteenus</paragrahvPealkiri>
+			<loige id="para9lg1">
+				<loigeNr id="39a8b32c-0ce9-4063-b3fe-a6b7ec9e66fa">1</loigeNr>
+				<kuvatavNr id="66249ccc-cdb6-49cf-8b67-c2518a99b01b"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="8bfb8705-3fde-4480-9894-55d5f0a1805f">
+					<tavatekst id="50c8abb8-487a-4fe1-8d1c-118e4142c0d9">Koduteenuse eesmärk on täisealise isiku iseseisva ja turvalise toimetuleku tagamine kodustes tingimustes, säilitades ja parandades tema elukvaliteeti. Koduteenuse raames a bistatakse isikut toimingutes, mida isik terviseseisundist, tegevusvõimest või elukeskkonnast tulenevatel põhjustel ei suuda sooritada kõrvalabita, kuid mis on vajalikud kodustes tingimustes elamiseks, nagu kütmine, toiduvalmistamine, eluruumi ja riiete korrastamine ning väljaspool eluruumi toiduainete ja majapidamistarvete ostmine ja muu asjaajamine.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para9lg2">
+				<loigeNr id="123fc81e-4406-4228-9b05-cb16e1e7c13f">2</loigeNr>
+				<kuvatavNr id="0417ba8b-c914-4d48-859f-5ed69fb7aa0a"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="53f125e7-c50d-4f78-93fe-d4de560896e5">
+					<tavatekst id="9950af65-9d5e-4f2a-9e98-1da8440d0236">Koduteenuse osutamise kord sätestatakse Kohila Vallavolikogu määrusega.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para10">
+			<paragrahvNr id="6811b865-9d2b-4fc4-8779-d08bae1dbca2">10</paragrahvNr>
+			<kuvatavNr id="c8fbc775-d716-4fd5-a4af-dd4fab2f9724"><![CDATA[§ 10. ]]></kuvatavNr>
+			<paragrahvPealkiri id="23fc733b-fa00-4333-b390-c7afa9ad10a4">Väljaspool kodu osutatav üldhooldusteenus</paragrahvPealkiri>
+			<loige id="para10lg1">
+				<loigeNr id="c00d3185-4cd4-4c92-bbbb-5e635a731297">1</loigeNr>
+				<kuvatavNr id="0691025f-24e6-487f-b2bb-9616ece836da"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="0bf5c364-48f0-4d88-bf8a-f8ed96a1da3f">
+					<tavatekst id="853a3420-3873-41f2-8c56-26ac406f1f4a">Väljaspool kodu osutatav üldhooldusteenuse eesmärk on turvalise keskkonna ja toimetuleku tagamine täisealisele isikule, kes terviseseisundist, tegevusvõimest või elukeskkonnast tulenevatel põhjustel ei suuda kodustes tingimustes ajutiselt või püsivalt iseseisvalt toime tulla.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para10lg2">
+				<loigeNr id="fa5a9e90-6bd8-42eb-8b85-b6a6ced07fee">2</loigeNr>
+				<kuvatavNr id="15b58185-b4ca-4eb6-b34b-2c41e51dabe3"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="bd751d2e-32df-4faa-bd78-6b05bcadb2f6">
+					<tavatekst id="fe64a6fa-9158-4b2c-8667-d506e0406258">Väljaspool kodu osutatavat üldhooldusteenust osutatakse ööpäevaringselt hooldekodus, intervallhoiuteenusena periooditi või päevahoiuteenusena teenusepakkuja juures.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="b57f9206-adf5-4f90-8a3a-324fe00c2d28">
+					<avaldamismarge id="8f913d5d-0174-4d75-9822-0799808f230c">
+						<RTosa id="ee20f84e-e23a-4b15-9738-a635fc948781">RT IV</RTosa>
+						<avaldamineKuupaev id="0b882adc-95f3-4694-afd3-0aefe4cf1e2b">2022-01-07</avaldamineKuupaev>
+						<RTartikkel id="cca4359e-9a76-4934-bd4d-a90a72c751cf">1</RTartikkel>
+						<aktViide id="6dc7c896-c2db-4342-8277-31ecab57571d">407012022001</aktViide>
+					</avaldamismarge>
+					<joustumine id="60eb571a-147c-4c24-afd6-19aa011e3f09">2022-01-10</joustumine>
+					<tavatekst>, rakendatakse alates 01.03.2020</tavatekst>
+				</muutmismarge>
+			</loige>
+			<loige id="para10lg3">
+				<loigeNr id="724b26f2-5ab7-4535-b7ba-bad4cf8215a5">3</loigeNr>
+				<kuvatavNr id="5f088639-21cf-42df-a7ba-8282435b81b8"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="5c668a71-589c-4360-847c-b8a767a4c8ef">
+					<tavatekst id="878f6243-4629-4bb6-81a4-b18dc12472b9">Väljaspool kodu osutatava üldhooldusteenuse osutamise kord sätestatakse Kohila Vallavolikogu määrusega.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="b4322726-90fa-4544-9357-367c84f0fdc8">
+					<avaldamismarge id="0beb6888-1e4a-49f2-9630-d12a549fe00d">
+						<RTosa id="604e67ff-6175-4109-becc-e60812062d01">RT IV</RTosa>
+						<avaldamineKuupaev id="9ca35fba-8ada-430c-9983-3f5438f47456">2022-01-07</avaldamineKuupaev>
+						<RTartikkel id="cb746f05-55cd-454c-8826-af7fdbb957f1">1</RTartikkel>
+						<aktViide id="a94d43b7-2cc0-4b0a-9c51-4353c9599d2c">407012022001</aktViide>
+					</avaldamismarge>
+					<joustumine id="13d96454-489a-4fd0-9cfa-5421814cf927">2022-01-10</joustumine>
+					<tavatekst>, rakendatakse alates 01.03.2020</tavatekst>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para11">
+			<paragrahvNr id="18138800-e2ee-410d-bcab-c9c5a1ada637">11</paragrahvNr>
+			<kuvatavNr id="3d0b221f-3f31-499a-9dc2-e4d7e2c1d0ef"><![CDATA[§ 11. ]]></kuvatavNr>
+			<paragrahvPealkiri id="6c6b77c6-fb97-45fc-9075-8d4c59abeb4f">Lapsehoiuteenus</paragrahvPealkiri>
+			<loige id="para11lg1">
+				<loigeNr id="150b21e8-403e-4090-9469-c31cd6394ae0">1</loigeNr>
+				<kuvatavNr id="4a104fd6-2aa5-47d5-b47d-d9cad025ddbd"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="fbab6381-b815-442c-9390-ae2965e611c5">
+					<tavatekst id="a47ff3b7-278f-482b-8b65-16113f1367c2">Lapsehoiuteenus on lapse seadusliku esindaja või perekonnas hooldaja (edaspidi vanem) toimetulekut või töötamist toetav teenus, mille osutamise vältel tagab lapsehoiuteenuse osutaja lapse hooldamise, arendamise ja turvalisuse.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para11lg2">
+				<loigeNr id="e847559a-043b-428a-95e2-87b7a0a5bb21">2</loigeNr>
+				<kuvatavNr id="3eda2506-39c9-4053-957b-aa953e80f76d"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="13c64127-c3c3-43e9-b381-940c4d3beeee">
+					<tavatekst id="a8b9f2b7-edfb-4794-8f5d-af2804086b78">Raske ja sügava puudega lapsele lapsehoiuteenuse osutamise eesmärk on vähendada raske ja sügava puudega lapse perekonna hoolduskoormust või puudest tulenevat lisavajadust.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para11lg3">
+				<loigeNr id="f9fd1a51-4e10-4cd4-8f7b-776d12ac897b">3</loigeNr>
+				<kuvatavNr id="fcc5b37c-e2b2-47cb-bb21-9fc83031d4b2"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="eee82692-96a1-4a3d-b1a5-d9fe5aa5c036">
+					<tavatekst id="e0a84426-552b-413e-a48d-1b0d20dc5e05">Lapsehoiuteenuse osutamise kord sätestatakse Kohila Vallavolikogu määrusega.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para12">
+			<paragrahvNr id="a2b1ef43-b01b-4832-a663-82e22d2053f7">12</paragrahvNr>
+			<kuvatavNr id="3f9defaa-484e-4e19-92e5-105fa843ec3a"><![CDATA[§ 12. ]]></kuvatavNr>
+			<paragrahvPealkiri id="b8f25912-b0e0-4a7f-8602-88438b17c403">Tugiisikuteenus</paragrahvPealkiri>
+			<loige id="para12lg1">
+				<loigeNr id="a0e3af3c-9fca-4995-b144-dfbf466b0236">1</loigeNr>
+				<kuvatavNr id="2a5f7cc7-99d9-41eb-8ba9-65e760e11950"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="d647d155-737f-4ae2-ab48-2b28a6ca2529">
+					<tavatekst id="67c1f71f-4523-4d94-b929-94a6251f8b26">Tugiisikuteenus on kohaliku omavalitsuse üksuse korraldatav sotsiaalteenus, mille eesmärk on iseseisva toimetuleku toetamine olukordades, kus isik vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu oma kohustuste täitmisel ja õiguste teostamisel olulisel määral kõrvalabi. Kõrvalabi seisneb juhendamises, motiveerimises ning isiku suurema iseseisvuse ja omavastutuse võime arendamises.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para12lg2">
+				<loigeNr id="107ab48d-6bcb-413d-87b3-0ddd2358f594">2</loigeNr>
+				<kuvatavNr id="90123670-1faf-4900-b8bf-9b10078dec53"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="da731aea-753c-4388-84e7-ce221a6ddbd2">
+					<tavatekst id="cb87eff4-23ea-4977-b5e6-bf3d88ff0b34">Tugiisikuteenuse osutamise kord sätestatakse Kohila Vallavolikogu määrusega.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para13">
+			<paragrahvNr id="6eeb45df-795c-4703-bc54-1aa16972ef2a">13</paragrahvNr>
+			<kuvatavNr id="b4dad19e-3d25-435d-86a8-ef9965137304"><![CDATA[§ 13. ]]></kuvatavNr>
+			<paragrahvPealkiri id="f7cf0b90-1f42-4e8a-9576-4c2615ea8b5d">Täisealise isiku hooldus</paragrahvPealkiri>
+			<loige id="para13lg1">
+				<loigeNr id="f845f58d-be9b-4229-b04f-bc388c440578">1</loigeNr>
+				<kuvatavNr id="ee7eec25-3b69-47a7-8c2f-c8c1734425eb"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="c666500d-a0ea-4363-94ec-6d46f2d5eaab">
+					<tavatekst id="a8145124-6c96-473e-acef-e3208c51e1ae">Täisealisele isikule seatakse hooldus, kui isik vaimse või kehalise puude tõttu vajab abi oma õiguste teostamiseks ja kohustuste täitmiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para13lg2">
+				<loigeNr id="bf575f18-5d73-45ff-99bc-ba67f46c715d">2</loigeNr>
+				<kuvatavNr id="e14a8a05-6156-47c5-9664-9790d516da54"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="469d0ad0-d2e6-472a-98c0-d1df8532cd1c">
+					<tavatekst id="2b3ab9bc-047a-4015-907a-de1f345c36c3">Hoolduse seadmise, hooldaja määramise ning hooldajatoetuse määramise ja maksmise kord sätestatakse Kohila Vallavolikogu määrusega.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para14">
+			<paragrahvNr id="8f3f5817-065e-47be-bb2b-a6298ec759e5">14</paragrahvNr>
+			<kuvatavNr id="36f1c816-92bc-4131-bd12-4577a343d4f0"><![CDATA[§ 14. ]]></kuvatavNr>
+			<paragrahvPealkiri id="a3eb1779-7a3b-45e2-b587-975969e2702f">Sotsiaalteenuste võimaldamise alused</paragrahvPealkiri>
+			<loige id="para14lg1">
+				<loigeNr id="e98ff49d-143a-4ac2-be77-d45dc8c63fc0">1</loigeNr>
+				<kuvatavNr id="65112cbe-4cc0-4be0-b358-3475f9b20e59"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="de439b9d-78ad-46d0-a07a-e9a318b46785">
+					<tavatekst id="411d3ea1-244b-4604-bcee-c1ce1f8ba2fe">Sotsiaalteenuste võimaldamisel võetakse aluseks isiku tegelik toimetulekuvõime ning sellest tulenevalt kõrvalabi vajaduse ulatus. Rehabilitatsiooniplaani olemasolu korral lähtutakse teenuste osutamisel muuhulgas rehabilitatsiooniplaanist.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para14lg2">
+				<loigeNr id="066f2a03-8808-4824-89a5-8a87650f154a">2</loigeNr>
+				<kuvatavNr id="aeb4ac55-ed1c-4aa6-bf76-83013f47468d"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="f9fe18a2-39e5-4246-89bc-f58e64262481">
+					<tavatekst id="1274f61e-b6cb-4cbd-bd65-40cc012bf58e">Isiku toimetulekuvõime ning abi- või hooldusvajaduse hindamisel kasutatakse selleks üldtunnustatud hindamismetoodikaid ning kaasatakse vajadusel perearsti, eriarsti või teisi spetsialiste. Vajadusel suunatakse isik pädevama ametiasutuse või spetsialisti poole ja tehakse koostööd vajadustele vastava teenuse väljaselgitamiseks ja võimaldamiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para14lg3">
+				<loigeNr id="f474dfd4-ee5a-4636-adc3-d4712838f856">3</loigeNr>
+				<kuvatavNr id="fbcde375-4bc4-4af8-a576-507f01317166"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="e93d584b-c37c-4f86-9913-bb2adecb2579">
+					<tavatekst id="9a4ec0e4-584b-4624-9298-9ae81e445997">Isikule, kes iseseisva toimetuleku parandamiseks vajab pikaajalist ja mitmekülgset abi rakendatakse juhtumikorraldust ning koostatakse juhtumiplaan. Teenuste võimaldamisel lähtutakse edaspidi kehtivast juhtumiplaanist.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para14lg4">
+				<loigeNr id="94a9696b-fa46-48cf-8440-766aade572ea">4</loigeNr>
+				<kuvatavNr id="aba6fd06-2481-4ed1-be37-bf846c16fd54"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="fac5f761-15c1-4948-8eb7-57ab5eb9f342">
+					<tavatekst id="095c69d7-6664-4f28-bf93-da18c6ece0b1">Sotsiaalteenuseid osutatakse abivajavale isikule järjestatud teenuste süsteemi põhimõttel, mille kohaselt iga järgmist teenust osutatakse isikule vaid juhul, kui eelmise teenusega ei saa isiku vajadusi enam rahuldada või kui isik ei ole suuteline seda teenust kasutama.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para14lg5">
+				<loigeNr id="87225793-278a-4eb6-83b1-b44f97646c0c">5</loigeNr>
+				<kuvatavNr id="0a6cbb50-9e93-4404-89ba-85b645a4ecd0"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="a4888149-2b21-4586-816c-cbba435d56e5">
+					<tavatekst id="e0198da6-124e-48c9-89b7-f409c15e217d">Sotsiaalteenust osutatakse abivajava isiku nõusolekul.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para15">
+			<paragrahvNr id="d32f37e6-635a-4ad8-9e90-659457d5c4e2">15</paragrahvNr>
+			<kuvatavNr id="047b00e9-2fe9-47be-b24a-322ca43c8eee"><![CDATA[§ 15. ]]></kuvatavNr>
+			<paragrahvPealkiri id="f6507c0f-2d7e-4114-a2a0-ca312cee41da">Sotsiaalteenuse taotlemine</paragrahvPealkiri>
+			<loige id="para15lg1">
+				<loigeNr id="b4c4f579-50da-4a30-8f47-7852e5406a02">1</loigeNr>
+				<kuvatavNr id="435c471f-b333-4eed-bea5-768a032ef33c"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="72470ed9-768f-4a1d-9d90-7101c78ce087">
+					<tavatekst id="b39f51c6-eab1-4fe2-9fe1-303bd68de31e">Sotsiaalteenuseid on õigus taotleda isikul, kes rahvastikuregistri järgi elab Kohila vallas. Sotsiaalteenust võib taotleda ka kõrvalabi vajava isiku seaduslik esindaja.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para15lg2">
+				<loigeNr id="3f270893-3e9d-4711-bdaf-10b19f9cfb99">2</loigeNr>
+				<kuvatavNr id="a378b59f-a23a-4e40-8de7-828b0ef0c0e3"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="121aa594-4f11-4992-b33f-8b3bcff527f7">
+					<tavatekst id="a56e2705-bd1d-4693-9da9-fcc24929bc4a">Sotsiaalteenuse taotlemiseks esitab taotleja kirjaliku avalduse vallavalitsusele. Avalduses märgitakse taotleja nimi, isikukood, elukoht, andmed perekonna koosseisu ja sissetulekute kohta ning teenuse taotlemise põhjendus ja toimetulekuks vajaliku kõrvalabi vajaduse kirjeldus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para15lg3">
+				<loigeNr id="82d6c18f-c5e7-472a-ac61-ea0dae844def">3</loigeNr>
+				<kuvatavNr id="b9d908a0-6fe4-4015-b6fa-e563f8dca018"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="e0162fa6-5560-4b04-b564-750e595516c4">
+					<tavatekst id="b03be468-61e4-442c-89f4-2632fc5438b5">Vajadusel võib teenuse vajaduse hindamise ning teenuste osutamise menetluse algatada vallavalitsuse sotsiaalvaldkonna ametnik. Sellisel juhul tuleb ametnikul informeerida teenuse võimalikku saajat teenuse vajaduse hindamise menetluse algatamisest ning viia edasine hindamine läbi, kui isik või tema seaduslik esindaja annab selleks nõusoleku.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para15lg4">
+				<loigeNr id="34815848-7e38-4c9f-866b-b136b719c502">4</loigeNr>
+				<kuvatavNr id="cd4cc90f-ac05-4003-916c-feddea276e48"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="afb154eb-bb49-4ed2-ab21-28f120e0c139">
+					<tavatekst id="530bb3f6-995a-4218-979e-c770b5f26751">Avalduse või ametniku ettepanekul algatatud menetluse edasises protsessis on õigus nõuda täiendavaid dokumente (Sotsiaalkindlustusameti otsus puude määramise kohta, isiklik rehabilitatsiooniplaan, geriaatrilise hindamise tulemus, Sotsiaalkindlustusameti või Töötukassa hindamise tulemus, isiku või tema ülalpidamiseks kohustatud pereliikmete sissetulekud jms).</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para15lg5">
+				<loigeNr id="be89fd95-08da-4f4f-9ada-9720fed20fda">5</loigeNr>
+				<kuvatavNr id="03b750bf-9c10-446c-8fd7-a4fbc8d93fec"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="09a82aa7-634b-4e19-9d5d-0e661099039e">
+					<tavatekst id="0b8be3e2-0040-4611-a9ca-bfc3538e6010">Vajadusel külastab vallavalitsuse ametnik/töötaja sotsiaalteenust vajavat isikut tema kodus või viibimiskohas toimetulekuvõime ning abi-või hooldusvajaduse ulatuse täiendavaks hindamiseks ning sobivaima teenuse väljaselgitamiseks. Sotsiaalvaldkonna töötaja võib olukorra hindamisele kaasata ka teisi erialaspetsialiste.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para16">
+			<paragrahvNr id="a5e648c7-155b-4836-ade5-760eecc4abf9">16</paragrahvNr>
+			<kuvatavNr id="b0b5e4f2-6538-4a9d-b6c9-8b291e4cc879"><![CDATA[§ 16. ]]></kuvatavNr>
+			<paragrahvPealkiri id="af5d2cf8-ea3a-46d1-a5c3-c4c71e71d5cc">Sotsiaalteenuse vajaduse hindamine ning teenusele suunamine</paragrahvPealkiri>
+			<loige id="para16lg1">
+				<loigeNr id="973ca94e-f56d-4573-8d0f-a62d80c4afb2">1</loigeNr>
+				<kuvatavNr id="49affc69-92d8-4410-af2b-b911a9ad0a97"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="ea3d48b8-e4cb-4935-8961-ca112a4b494c">
+					<tavatekst id="0e9136c4-ee48-4484-9bf3-d27a8a5cd641">Kohila Vallavalitsuse sotsiaalvaldkonna ametnik selgitab välja abi saamiseks pöördunud isiku abivajaduse ja sellele vastava abi.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para16lg2">
+				<loigeNr id="8e1a8d13-769e-401d-bc08-bea242032294">2</loigeNr>
+				<kuvatavNr id="3b0703b8-d92b-4150-8fda-ec4d6d5cce7f"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="dedabcde-277d-47b2-8ea6-de64a066e13a">
+					<tavatekst id="838dafb9-3e8c-420b-9d06-f1cafc4b5795">Abivajaduse väljaselgitamisel lähtutakse terviklikust lähenemisest isiku abivajadusele, võttes arvesse tema toimetulekut ja ühiskonnaelus osalemist mõjutavaid asjaolusid, sealhulgas:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para16lg2p1">
+					<alampunktNr id="59d8b277-d6e9-43b7-b18c-4bb703946be4">1</alampunktNr>
+					<kuvatavNr id="58b00e1a-3f8c-4f57-a2dc-bc31bc063f26"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="73380bc7-bd51-4c2d-8501-9b26be30bfbc">
+						<tavatekst id="3705d5ab-bc76-4ccf-93ed-7308816882df">isiku personaalse tegevusvõimega seonduvaid asjaolusid;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para16lg2p2">
+					<alampunktNr id="54076dfb-fafc-493e-a84f-64d00ac96769">2</alampunktNr>
+					<kuvatavNr id="45e247ab-ed7b-472b-b15a-067421fbc83d"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="fd81837c-f10f-4ffc-84ac-a90d27d3aada">
+						<tavatekst id="58563d02-4380-46a9-84a2-4e092863d77a">isiku füüsilise ja sotsiaalse elukeskkonnaga seonduvaid asjaolusid.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para16lg3">
+				<loigeNr id="4f739345-1f86-43ad-8fcb-ddd505c186c5">3</loigeNr>
+				<kuvatavNr id="c72fb76d-0841-4258-b230-967e392ada41"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="2b2e5977-5801-4064-8179-62b33e056650">
+					<tavatekst id="e126c5f2-2513-4255-af1d-773eff5c2810">Teenuse võimaldamisel isikule võetakse arvesse isiku tervislikku seisundit, iseseisva toimetuleku võimet, vajaduspõhist teenust konkreetsele isikule ning muud isiku ja tema juhtumiga seotud asjaolusid. Rehabilitatsiooniplaani või hooldusplaani olemasolu korral lähtutakse teenuste osutamisel muuhulgas rehabilitatsiooniplaanist või hooldusplaanist.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para16lg4">
+				<loigeNr id="f86016c6-ae05-441e-bea7-f2bf3265b4e9">4</loigeNr>
+				<kuvatavNr id="fb26e2d6-e23f-42ad-b26d-3765bd17b7b2"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="b6bc34cd-abbb-46fc-b693-b8f459c27796">
+					<tavatekst id="d6d76a40-07a6-4d96-a3d1-0278bdd4a71d">Teenuse vajaduse ja vajaliku teenuse ulatuse ning teenuse osutamise sageduse üle otsustamisel võib sotsiaalvaldkonna töötaja kaasata oma töösse teisi erialaspetsialiste või küsida neilt eksperthinnanguid ja arvamusi, samuti võib teenuse vajaduse täpsustamiseks kaasata ka teenuse osutaja.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para16lg5">
+				<loigeNr id="42595c8b-9bb8-4697-a550-a0fe2d8ae297">5</loigeNr>
+				<kuvatavNr id="bd28c0ef-6e53-44fc-9ddb-34aa11d3b9a9"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="68046550-b7d1-4d4e-a287-d9994d8a1a41">
+					<tavatekst id="8cbb7ac9-8be2-4f44-ace4-6f78876b365d">Mitmekülgse abivajaduse selgumisel koostatakse isikule juhtumiplaan, mille tegevuskavas tuuakse välja isiku toimetulekut parandavad teenused, nende sagedus, maht, teenuse osutaja andmed ning muud olulised asjaolud.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para17">
+			<paragrahvNr id="659fd9d3-8f6c-4148-a366-63b76c745ebb">17</paragrahvNr>
+			<kuvatavNr id="4aba0e83-b391-4d67-b42d-6b1d7f3a605d"><![CDATA[§ 17. ]]></kuvatavNr>
+			<paragrahvPealkiri id="10d6c7a0-6eb7-40b5-9dfd-8b88da103a85">Sotsiaalteenuse osutamise korraldamine</paragrahvPealkiri>
+			<loige id="para17lg1">
+				<loigeNr id="b441d194-1cbb-4de8-b717-9972b855f605">1</loigeNr>
+				<kuvatavNr id="808b6435-bc61-4cc3-9ab0-c3e2d0bc61de"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="bca07fea-743f-4c38-b6bf-5f039a79e57e">
+					<tavatekst id="615c54c4-fd2b-4b9f-a1d3-22a57e98d06b">Kohila valla poolt korraldatavaid sotsiaalteenuseid võib isikule vahetult osutada vallavalitsus või vallavalitsuse hallatav asutus, eraõiguslik juriidiline isik, füüsilisest isikust ettevõtja vm.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para17lg2">
+				<loigeNr id="47582af2-f4e9-47a1-b5b2-1ff4d6dacd09">2</loigeNr>
+				<kuvatavNr id="632ad6b2-b300-46d2-a993-984eaf3e7ae7"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="025da2ed-3184-4371-bcad-287abc2b3888">
+					<tavatekst id="55687500-f379-409d-8aaa-c257e261813f">Juhul, kui sotsiaalteenust finantseeritakse osaliselt või täielikult valla eelarvest, on teenuse osutamise aluseks kolmepoolne leping teenuse osutaja, vallavalitsuse ja teenuse saaja vahel, vallavalitsuse korraldus või juhtumiplaani tegevuskava.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para17lg3">
+				<loigeNr id="c22b520a-f7e4-4c2f-8800-06841c51131d">3</loigeNr>
+				<kuvatavNr id="191f22ba-bbae-4e87-a401-0f95444752b2"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="57928dde-5eb6-4930-99dd-7914bb59b3ec">
+					<tavatekst id="80d0489b-b66d-4bf6-ac9f-5093a4c13411">Lepingus või haldusaktis sätestatakse isikule osutatava teenuse sisu, teenuse toimingute ulatus ja osutamise sagedus, samuti teenuse eest tasumisega seotud asjaolud, mida ei käsitleta käesolevas korras või muudes õigusaktides.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para18">
+			<paragrahvNr id="dd70e01a-8672-4b36-b873-4cdeef787a1f">18</paragrahvNr>
+			<kuvatavNr id="f95fe36f-e9de-4692-b04a-3ffaed86eee6"><![CDATA[§ 18. ]]></kuvatavNr>
+			<paragrahvPealkiri id="70b8043b-7fd7-4bc1-8c95-9dcfdae15f14">Sotsiaalteenuste finantseerimine, sotsiaalteenuse eest tasumine</paragrahvPealkiri>
+			<loige id="para18lg1">
+				<loigeNr id="86890d25-4170-4612-9cb3-12e7314d20b5">1</loigeNr>
+				<kuvatavNr id="3c08fe3e-a769-4644-86de-171ac5349861"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="36f1636e-9355-424f-9ace-61301b493640">
+					<tavatekst id="bb337a26-e762-449f-bfa4-cbad6c857eb0">Sotsiaalteenuste osutamisega seotud kulud kaetakse täielikult või osaliselt Kohila valla eelarvest sotsiaaltoetusteks ja sotsiaalteenusteks ettenähtud vahenditest või vallaeelarvesse laekuvatest muudest sihtotstarbelistest vahenditest.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para18lg2">
+				<loigeNr id="2d9330a7-a33d-41c0-afe0-d9c937647c18">2</loigeNr>
+				<kuvatavNr id="53a93111-aac4-4ea2-8c6a-9426d0c07588"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="02300279-1bea-4f1e-87e0-257b393e4f22">
+					<tavatekst id="34733775-ed0b-498b-9e2d-82900655b609">Sotsiaalteenuse eest võetava tasu suuruse kehtestab vallavalitsus üldkorraldusega.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para18lg3">
+				<loigeNr id="156b4d0b-35a1-4d41-825c-2d8790950c1c">3</loigeNr>
+				<kuvatavNr id="0a920067-d105-4947-85bb-877c7ccf4401"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="68b2699b-3136-4d49-afdf-bb98c78ab7a9">
+					<tavatekst id="7dd286db-59e7-4df9-9d18-ad276642f49b">Isikult võetava tasu suurus oleneb sotsiaalteenuse mahust, teenuse maksumusest ning teenust saava isiku ja tema perekonna majanduslikust olukorrast.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para18lg4">
+				<loigeNr id="29b5bc9c-c2ea-4631-9b29-133352536bb4">4</loigeNr>
+				<kuvatavNr id="df4eb82d-3aa8-4e02-ad90-0fc309031468"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="ef2eda37-e065-4338-ba5b-990b9eefe688">
+					<tavatekst id="78f4838b-c448-42be-8c30-8cdd17f07d94">Vallavalitsusel on õigus põhjendatud otsusega vabastada isik täielikult või osaliselt teenuse eest tasumisest, arvestades teenust saava isiku sissetulekuid, seadusjärgsete ülalpidajate olemasolu ja nende sissetulekuid, isikule kuuluvat kinnisvara, teenuse kasutamise põhjust ning muid juhtumiga seotud asjaolusid.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para19">
+			<paragrahvNr id="7a3d118c-3ae8-4c62-926c-b7182d3f563b">19</paragrahvNr>
+			<kuvatavNr id="17f14123-e283-41f1-b60e-0175f2c56684"><![CDATA[§ 19. ]]></kuvatavNr>
+			<paragrahvPealkiri id="b4e02cb4-66bd-4ed9-b436-6d956fe1b3d4">Järelevalve ja kaebuste lahendamine</paragrahvPealkiri>
+			<loige id="para19lg1">
+				<loigeNr id="30bbfed1-5afe-4db8-b447-e8bba89bbf6f">1</loigeNr>
+				<kuvatavNr id="6a2b3f5f-60e1-4863-a823-0b0b02e97881"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="0eac2dcb-d958-4f32-a2d5-6a77994fc642">
+					<tavatekst id="acb8184f-6adb-410b-8140-ef4ecb3a8ecc">Sotsiaalteenuse nõuetele vastavust jälgib ja sotsiaalteenuseid saavate isikute kaebusi lahendab sotsiaalnõunik, kellel on õigus kaasata vajaduse korral vastava ala asjatundjaid.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para19lg2">
+				<loigeNr id="b1330ef6-86bc-481c-94e8-8f0c61391915">2</loigeNr>
+				<kuvatavNr id="b8d0cf8b-7661-4372-82a6-0c2b580fcb1d"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="d95227c8-e232-4c51-8873-3b060482c6d7">
+					<tavatekst id="7ea70367-20e0-4da9-9fbf-fe4d188dcc7d">Vallavalitsuse otsusega mittenõustumisel on teenuse taotlejal õigus pöörduda seaduses sätestatud korras kaebusega halduskohtusse või vaidega vallavalitsuse kaudu Sotsiaalkindlustusameti poole.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

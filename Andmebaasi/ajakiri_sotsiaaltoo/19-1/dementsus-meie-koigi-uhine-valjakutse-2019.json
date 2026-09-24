@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-1-2019",
+  "articleId": "dementsus-meie-koigi-uhine-valjakutse-2019",
+  "title": "Dementsus – meie kõigi ühine väljakutse",
+  "authors": [
+    "René Randver",
+    "Mari Rull",
+    "Terje Bachmann"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2019",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "14-20",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade dementsusega inimeste ja nende lähedaste olukorrast Eestis, teenusevajadusest, Dementsuse Kompetentsikeskuse rollist ning tervishoiu ja hoolekande koostööst kvaliteetse hoolduse tagamisel.",
+  "tags": [
+    "dementsus",
+    "eakad",
+    "pikaajaline hooldus",
+    "Dementsuse Kompetentsikeskus",
+    "hooldusteenused",
+    "hooldajate toetus",
+    "tervishoiu ja hoolekande koostöö"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part5.pdf",
+  "document_id": "sotsiaaltoo-1-2019-dementsus-meie-koigi-uhine-valjakutse-2019",
+  "source_format": "pdf",
+  "source_sha256": "77441263260c5886e6086e658892912a20a183f2731dcdaf8eac5e385b8af09e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2019-dementsus-meie-koigi-uhine-valjakutse-2019",
+    "previous_source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part5.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "77441263260c5886e6086e658892912a20a183f2731dcdaf8eac5e385b8af09e",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

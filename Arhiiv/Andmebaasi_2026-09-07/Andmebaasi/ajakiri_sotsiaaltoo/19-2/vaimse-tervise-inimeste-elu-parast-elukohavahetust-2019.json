@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2019",
+  "articleId": "vaimse-tervise-probleemiga-inimeste-elu-parast-elukohavahetust-2019",
+  "title": "Vaimse tervise probleemiga inimeste elu pärast elukohavahetust",
+  "authors": [
+    "Elen Kokla"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2019",
+  "section": "Uurimus",
+  "pageRange": "58-65",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel, mis põhineb magistritööl ja käsitleb psüühikahäirega inimeste kogemusi elukohavahetuse järel, keskendudes igapäevaelule, suhetele, tööle ja kogukonda kuulumisele.",
+  "tags": [
+    "vaimse tervise probleem",
+    "elukohavahetus",
+    "kogukonnapõhised teenused",
+    "iseseisev elu",
+    "taastumine",
+    "psüühikahäirega inimeste kogemused"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part13.pdf",
+  "document_id": "sotsiaaltoo-2-2019-vaimse-tervise-probleemiga-inimeste-elu-parast-elukohavahetust-2019",
+  "source_format": "pdf",
+  "source_sha256": "ae9bc1c4e45f36159e99d617d6e23e9ae93f5187782285e6c918577c79be82e7",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2019-vaimse-tervise-probleemiga-inimeste-elu-parast-elukohavahetust-2019",
+    "previous_source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part13.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ae9bc1c4e45f36159e99d617d6e23e9ae93f5187782285e6c918577c79be82e7",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2022",
+  "articleId": "okosotsiaaltoo-juhatab-teed-jatkusuutlikumasse-tulevikku-2022-2",
+  "title": "Ökosotsiaaltöö juhatab teed jätkusuutlikumasse tulevikku",
+  "authors": [
+    "Kairiin Nuudi",
+    "Aila-Leena Matthies"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2022",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "28-36",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Vestlus Jyväskylä Ülikooli professori Aila-Leena Matthiesega ökosotsiaaltööst kui uut tüüpi lähenemisest, mis seob sotsiaaltöö keskkonna- ja jätkusuutlikkuse küsimustega. Lahatakse ökosotsiaaltöö mõistet ja ajaloolist arengut, arutletakse antropotsentrilise maailmapildi muutumise üle ökotsentriliseks ning analüüsitakse sotsiaaltöö rolli keskkonnakriisi ja kliimamuutuse kontekstis. Näidete kaudu tuuakse esile, kuidas haavatavate rühmade igapäevaelu on keskkonnamuutustest kõigest enam mõjutatud ning milliseid tegutsemisviise ja väärtusmuutusi ökosotsiaalne üleminek sotsiaaltööle eeldab.",
+  "tags": [
+    "ökosotsiaaltöö",
+    "keskkonnakriis",
+    "kliimamuutus",
+    "jätkusuutlikkus",
+    "sotsiaaltöö teooria",
+    "kriitiline sotsiaaltöö",
+    "heaolupoliitika"
+  ],
+  "source_type": "file",
+  "source_path": "2022_2_artikkel_6_okosotsiaaltoo.pdf",
+  "document_id": "sotsiaaltoo-2-2022-okosotsiaaltoo-juhatab-teed-jatkusuutlikumasse-tulevikku-2022-2",
+  "source_format": "pdf",
+  "source_sha256": "df64ece3d39544d16c1d46c70f4e2fbd898f415bfb11918932e1d36ac640e306",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2022-okosotsiaaltoo-juhatab-teed-jatkusuutlikumasse-tulevikku-2022-2",
+    "previous_source_path": "2022_2_artikkel_6_okosotsiaaltoo.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "df64ece3d39544d16c1d46c70f4e2fbd898f415bfb11918932e1d36ac640e306",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

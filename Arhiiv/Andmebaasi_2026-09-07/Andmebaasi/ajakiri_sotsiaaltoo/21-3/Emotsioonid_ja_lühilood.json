@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-3-2021",
+  "articleId": "emotsioonid-ja-luhilood-sotsiaaltoo-praktikas-2021-3",
+  "title": "Emotsioonid ja lühilood sotsiaaltöö praktikas ja hariduses",
+  "authors": [
+    "Alessandro Sicora"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2021",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "61-64",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb emotsioonide rolli sotsiaaltöös ning tutvustab lühilugude kasutamist õppe- ja praktikameetodina. Autor selgitab, kuidas narratiivsed tehnikad aitavad töötajatel mõtestada keerulisi juhtumeid, tugevdada reflektiivset mõtlemist ja arendada empaatilist suhtumist. Rõhutatakse emotsioonide teadlikku juhtimist ja dialoogilist õppimist.",
+  "tags": [
+    "emotsioonid",
+    "lühilood",
+    "reflektiivne praktika",
+    "narratiivsed meetodid",
+    "sotsiaaltöö haridus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2021_web_link_Part14.pdf",
+  "document_id": "sotsiaaltoo-3-2021-emotsioonid-ja-luhilood-sotsiaaltoo-praktikas-2021-3",
+  "source_format": "pdf",
+  "source_sha256": "7893b664be463ecd890daad898125ffbf551813f4854dc4cfecd5a72f4a2f666",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2021-emotsioonid-ja-luhilood-sotsiaaltoo-praktikas-2021-3",
+    "previous_source_path": "Sotsiaaltoo_3_2021_web_link_Part14.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "7893b664be463ecd890daad898125ffbf551813f4854dc4cfecd5a72f4a2f666",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-4-2019",
+  "articleId": "toenduspohine-kiusamise-ennetamine-koolides-2019",
+  "title": "Tõenduspõhine kiusamise ennetamine koolides – milleks ja kuidas?",
+  "authors": [
+    "Kristiina Treial"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2019",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "54-57",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel selgitab, miks on vaja tegeleda kiusamise tõenduspõhise ennetamisega lasteaias ja koolis, tutvustab KiVa programmi põhimõtteid, mõju ning rakendamist Eesti koolides.",
+  "tags": [
+    "kiusamine",
+    "KiVa programm",
+    "kool",
+    "ennetustöö",
+    "vaimne tervis"
+  ],
+  "source_type": "file",
+  "source_path": "ST4_2019_web_link_Part14.pdf",
+  "document_id": "sotsiaaltoo-4-2019-toenduspohine-kiusamise-ennetamine-koolides-2019",
+  "source_format": "pdf",
+  "source_sha256": "14070c113d8bc70246f55aa7f2ba460b3a901e71509073c8001c9b1b5199d47a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2019-toenduspohine-kiusamise-ennetamine-koolides-2019",
+    "previous_source_path": "ST4_2019_web_link_Part14.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "14070c113d8bc70246f55aa7f2ba460b3a901e71509073c8001c9b1b5199d47a",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

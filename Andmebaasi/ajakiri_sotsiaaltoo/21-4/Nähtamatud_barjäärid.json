@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-4-2021",
+  "articleId": "nahtamatud-barjaarid-uimastisoltlus-ja-probleemid-praktikas-2021-4",
+  "title": "Nähtamatud barjäärid: uimastisõltuvus ja probleemid praktikas",
+  "authors": [
+    "Simone Eelmaa",
+    "Alisa Aalbok"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2021",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "88-94",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb uimastisõltuvusega seotud stigmat, sõltuvusprobleemidega inimeste abivajadust ning spetsialistide rolli toetava ja mittekaristava lähenemise kujundamisel. Analüüsitakse narkomaani ja narkokurjategija stereotüüpe, karistuspraktikat ning vältimatuid tõkkeid, mis takistavad inimestel abi otsida ja saada.",
+  "tags": [
+    "uimastisõltuvus",
+    "stigma",
+    "sotsiaaltöö praktika",
+    "karistusõigus",
+    "narkootikumid",
+    "kahjude vähendamine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2021_web_Part19.pdf",
+  "mapping_fixed": "20260814-161821",
+  "document_id": "sotsiaaltoo-4-2021-nahtamatud-barjaarid-uimastisoltlus-ja-probleemid-praktikas-2021-4",
+  "source_format": "pdf",
+  "source_sha256": "b9a0eb720fb0f9a0348ee51cd6fec65cbc16a4eedf334f3cc290f5ae15f784d5",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2021-nahtamatud-barjaarid-uimastisoltlus-ja-probleemid-praktikas-2021-4",
+    "previous_source_path": "Sotsiaaltoo_4_2021_web_Part19.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b9a0eb720fb0f9a0348ee51cd6fec65cbc16a4eedf334f3cc290f5ae15f784d5",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-3-2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2024",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "dementsuse-valdkonna-arenguprogramm-aitab-parandada-teenuse-kvaliteeti-2024-3",
+  "title": "Dementsuse valdkonna arenguprogramm aitab parandada teenuse kvaliteeti",
+  "authors": [
+    "Kersti Peterson"
+  ],
+  "section": "Tööalane tugi",
+  "pageRange": "93-95",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "description": "Artikkel tutvustab Tervise Arengu Instituudi eestvedamisel loodud dementsuse valdkonna arenguprogrammi, mille eesmärk on tõsta hoolekandeasutuste dementsusega klientidele osutatava teenuse kvaliteeti. Kirjeldatakse koolitusprogrammi ülesehitust: mitmemoodulilist õpet sisekoolitajatele, mille fookuses on dementsussündroomi tundmine, diagnoosimise ja ravi põhimõtted, kliendi vastuvõtu ja hooldusplaani korraldamine, igapäevase toimetuleku ja aktiviseerimise toetamine, probleemse käitumise ennetamine, elulõpuhooldus, lähedaste kaasamine ning hooldajate enda heaolu ja eneseabi. Tutvustatakse dementsuse kompetentsikeskuse pakutavat mentorlust, suvekoolide ja võrgustikukohtumiste rolli kogemuste vahetamisel, taskuhäälingute ja juhendmaterjalide loomist. Programmi mõju-uuring näitab positiivset mõju hoiakutele, keskkonnale ja töövõtetele. Artiklis selgitatakse ka 2024. aasta muudatusi: uued moodulid, andragoogiline tugi, kovisioonid, ristkoolitus teistes asutustes ning plaan kaasata juhte enam teenuse kujundamisse, et ühtlustada dementsusega inimeste teenuse kvaliteeti kogu Eestis.",
+  "tags": [
+    "dementsus",
+    "koolitusprogramm",
+    "arenguprogramm",
+    "Tervise Arengu Instituut",
+    "dementsuse kompetentsikeskus",
+    "sisekoolitajad",
+    "mentorlus",
+    "suvekool",
+    "võrgustikukohtumised",
+    "teenuse kvaliteet"
+  ],
+  "source_path": "sotsiaaltoo_3_2024_web_Part17.pdf",
+  "document_id": "sotsiaaltoo-3-2024-dementsuse-valdkonna-arenguprogramm-aitab-parandada-teenuse-kvaliteeti-2024-3",
+  "source_format": "pdf",
+  "source_sha256": "6d113466fb6cffba77cce8f9961b1f62e3ce12a456cb8b837a86d9f6572e0c67",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2024-dementsuse-valdkonna-arenguprogramm-aitab-parandada-teenuse-kvaliteeti-2024-3",
+    "previous_source_path": "sotsiaaltoo_3_2024_web_Part17.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "6d113466fb6cffba77cce8f9961b1f62e3ce12a456cb8b837a86d9f6572e0c67",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

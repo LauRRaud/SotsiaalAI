@@ -1,0 +1,147 @@
+{
+  "source_path": "vordoigusvolinik_vordoiguslikkus_eestis_2024.pdf",
+  "source_format": "pdf",
+  "sha256": "2c85c0cc6f138e52f365c63338e7f986fc18982587cc438dfb4e786a23f096a8",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/vordoigusvolinik_vordoiguslikkus_eestis_2024.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "vordoigusvolinik_vordoiguslikkus_eestis_2024",
+          "title": "Võrdõiguslikkus Eestis 2024",
+          "url": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2025-06/V%C3%B5rd%C3%B5igusvoliniku-aastaraamat-2024_1.pdf",
+          "normalized_url": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2025-06/Võrdõigusvoliniku-aastaraamat-2024_1.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "Võrdõigusvolinik",
+          "organization_id": "vordoigusvolinik",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Võrdõigusvolinik",
+            "võrdne kohtlemine",
+            "diskrimineerimine",
+            "võrdõiguslikkus",
+            "õigused",
+            "inimõigused",
+            "infomaterjal"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_065",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "Võrdõigusvolinik",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 329,
+            "order": 187
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Võrdõiguslikkus Eestis 2024"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Võrdõigusvolinik"
+          ],
+          "organizations_seen": [
+            "vordoigusvolinik"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Võrdõigusvolinik",
+              "line": 329,
+              "order": 187
+            },
+            {
+              "heading_2": "Võrdõigusvolinik",
+              "line": 803,
+              "order": 394
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2025-06/Võrdõigusvoliniku-aastaraamat-2024_1.pdf"
+        },
+        "final_url": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2025-06/V%C3%B5rd%C3%B5igusvoliniku-aastaraamat-2024_1.pdf",
+        "redirects": [],
+        "sha256": "2c85c0cc6f138e52f365c63338e7f986fc18982587cc438dfb4e786a23f096a8",
+        "bytes": 8512671,
+        "downloaded_at": "2026-08-14T08:00:40.153Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "vordoigusvolinik_vordoiguslikkus_eestis_2024",
+      "metadata": {
+        "createdAt": "2026-06-12T03:43:53.034540+00:00",
+        "type": "FILE",
+        "fileName": "Võrdõigusvoliniku-aastaraamat-2024_1.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:43:52.974463+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/4e8030235808/Võrdõigusvoliniku-aastaraamat-2024_1.pdf",
+        "title": "Võrdõiguslikkus Eestis 2024",
+        "description": "Duplikaadid ühendatud: 1 lisakirjet. Source master headings: Võrdõigusvolinik",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2024,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–92",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "vordoigusvolinik_vordoiguslikkus_eestis_2024",
+        "document_id": "vordoigusvolinik_vordoiguslikkus_eestis_2024",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "b930c745c539d69f4d2bab0452aa103a88cd456d4bb824c658f60b734a938165",
+        "url": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2025-06/V%C3%B5rd%C3%B5igusvoliniku-aastaraamat-2024_1.pdf",
+        "url_canonical": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2025-06/Võrdõigusvoliniku-aastaraamat-2024_1.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "vordoigusvolinik_vordoiguslikkus_eestis_2024",
+        "updatedAt": "2026-06-12T03:43:53.034563+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

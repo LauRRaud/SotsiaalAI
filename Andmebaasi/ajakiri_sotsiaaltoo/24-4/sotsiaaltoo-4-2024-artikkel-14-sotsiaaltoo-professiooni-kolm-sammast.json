@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-4-2024",
+  "issueLabel": "4/2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "sotsiaaltoo-professiooni-kolm-sammast-2024-4",
+  "title": "Sotsiaaltöö professiooni kujunemise kolm sammast: praktika, erialaharidus ja uurimistöö",
+  "authors": [
+    "Reeli Sirotkina"
+  ],
+  "section": "Doktoritöö tutvustus",
+  "pageRange": "88–93",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "source_path": "sotsiaaltoo_4_2024_web_Part16.pdf",
+  "description": "Doktoritöö „Abistavast võimestavaks elukutseks – sotsiaaltöö professionaliseerumise protsess Eestis“ tutvustus. Autor käsitleb sotsiaaltöö arengut Eestis viimase kolmekümne aasta jooksul, tuginedes neljale kvalitatiivsele uuringule, mis vaatlevad sotsiaaltööd praktika, erialahariduse ja uurimistöö vaatenurgast. Analüüsitakse üldsotsiaaltöö rolli, spetsialiseerumise ja standardiseerimise mõjusid, sotsiaaltöötu haridussüsteemi kujunemist, praktika kui „signatuurpedagoogika“ tähtsust ning doktoritööde panust eriala arengusse. Kasutades professionaalse projekti ja konstruktsionismi raamistikke, näitab autor, kuidas poliitilised muutused, Euroopa Liiduga ühinemine ja tõenduspõhisuse surve on mõjutanud sotsiaaltöö praktikaid, tiimide rollijaotust ja professionaalset autonoomiat. Rõhutatakse sotsiaaltöötaja transdistsiplinaarset pädevust, uurimismeelsuse ning refleksiivsuse olulisust ja kutsutakse mõtestama, kuidas arendada professiooni nii, et säiliks paindlikkus ja inimkeskne lähenemine.",
+  "tags": [
+    "sotsiaaltöö professioon",
+    "professionaliseerumine",
+    "doktoritöö",
+    "praktika",
+    "erialaharidus",
+    "uurimistöö",
+    "üldsotsiaaltöö",
+    "professionaalne projekt"
+  ],
+  "document_id": "sotsiaaltoo-4-2024-sotsiaaltoo-professiooni-kolm-sammast-2024-4",
+  "source_format": "pdf",
+  "source_sha256": "c5afa4f9db09adc296ab1874fd503c93395536fa8609b7b48923c3866310118a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2024-sotsiaaltoo-professiooni-kolm-sammast-2024-4",
+    "previous_source_path": "sotsiaaltoo_4_2024_web_Part16.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "c5afa4f9db09adc296ab1874fd503c93395536fa8609b7b48923c3866310118a",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "valmisolek-on-hoolimine-sotsiaalvaldkond-liigub-joudsalt-kriisivalmidu-2026",
+  "title": "Valmisolek on hoolimine. Sotsiaalvaldkond liigub jõudsalt kriisivalmiduse suunas",
+  "authors": [
+    "Liisa Paavel"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Kriisivalmidus sotsiaaltöös",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade sotsiaalvaldkonna süsteemsest kriisivalmiduse arendamisest. Kriisiõppusel testiti hoolekandeasutuste evakuatsiooniplaane praktiliste toimingute ja koostöö harjutamise kaudu. Õppus näitas, et kriisivalmidus nõuab selget rollijaotust, paremat infovoogu ja inimesekeskseid lahendusi.",
+  "tags": [
+    "kriisivalmidus",
+    "evakuatsioon",
+    "toimepidevus",
+    "kriisiõppus",
+    "hoolekandeasutused",
+    "kohalik omavalitsus",
+    "koostöö",
+    "elanikkonnakaitse"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-05-12",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/valmisolek-hoolimine-sotsiaalvaldkond-liigub-joudsalt-kriisivalmiduse-suunas",
+  "source_type": "web",
+  "source_path": "valmisolek-on-hoolimine-sotsiaalvaldkond-liigub-joudsalt-kriisivalmiduse-suunas.html",
+  "lead": "Õppuste suurim väärtus on, et kitsaskohad tulevad ilmseks turvalises keskkonnas. Nii saab teha parandusi enne päris kriisi. Ida- ja Põhja-Eestis korraldatud hoolekandeasutuse evakuatsiooni väliõppus „Suur vedamine“ oli hea kogemus sotsiaalvaldkonna kriisivalmiduse arendamisel, pannes proovile osalejate suhtlemisoskuse, paindlikkuse ja võime hoida turvatunnet.",
+  "document_id": "sotsiaaltoo-2-2026-valmisolek-on-hoolimine-sotsiaalvaldkond-liigub-joudsalt-kriisivalmidu-2026",
+  "source_format": "html",
+  "source_sha256": "382c689c9ddc9c757b1514869c1a017ad788135cc261db5e02c44b9e4ddde39e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-valmisolek-on-hoolimine-sotsiaalvaldkond-liigub-joudsalt-kriisivalmidu-2026",
+    "previous_source_path": "valmisolek-on-hoolimine-sotsiaalvaldkond-liigub-joudsalt-kriisivalmiduse-suunas.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "0c419fce10cede55fbfeb4aa8f1a879fee22691cceb4c58834ec5602661e7be0",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "647ad03b9e62325bfb7afbc46721d283ea6a034227783fc43bb2859624ccf296",
+    "observed_web_title": "Valmisolek on hoolimine. Sotsiaalvaldkond liigub jõudsalt kriisivalmiduse suunas"
+  },
+  "retrieved_at": "2026-09-07T19:39:41.870660+00:00"
+}

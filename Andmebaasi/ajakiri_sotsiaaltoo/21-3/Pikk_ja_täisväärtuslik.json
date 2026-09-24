@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-3-2021",
+  "articleId": "pikk-ja-taisvaartuslik-elu-tartu-linnas-2021-3",
+  "title": "Pikk ja täisväärtuslik elu Tartu linnas",
+  "authors": [
+    "Mihkel Lees"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2021",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "19-22",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tartu abilinnapea annab ülevaate linnastrateegiast, mille eesmärk on tagada elanikele pikk ja täisväärtuslik elu. Artikkel kirjeldab, kuidas linn arendab terviseedendust, sotsiaalteenuseid, liikuvuskeskkonda ja avalikku ruumi, et toetada inimeste heaolu kogu elukaare jooksul. Rõhutatakse koostööd tervishoiuasutuste, haridus- ja kultuuriasutuste, kogukondade ning kolmanda sektoriga, samuti vajadust pöörata rohkem tähelepanu vaimsele tervisele ja üksilduse ennetamisele. Tartu kogemus näitab, kuidas strateegiline planeerimine, andmepõhised otsused ja elanike kaasamine aitavad luua hoolekandekeskset, ligipääsetavat ja hoolivat linnaruumi.",
+  "tags": [
+    "Tartu linn",
+    "kohalik omavalitsus",
+    "terviseedendus",
+    "heaolu",
+    "linnaplaneerimine",
+    "sotsiaalteenused",
+    "kogukonnatöö"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2021_web_link_Part7.pdf",
+  "document_id": "sotsiaaltoo-3-2021-pikk-ja-taisvaartuslik-elu-tartu-linnas-2021-3",
+  "source_format": "pdf",
+  "source_sha256": "5f3587b72d6ab3e5f2c63c9d765d09140023678bd0c8ad5f4f61072fb7dc9971",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2021-pikk-ja-taisvaartuslik-elu-tartu-linnas-2021-3",
+    "previous_source_path": "Sotsiaaltoo_3_2021_web_link_Part7.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "5f3587b72d6ab3e5f2c63c9d765d09140023678bd0c8ad5f4f61072fb7dc9971",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

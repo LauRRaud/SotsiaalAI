@@ -1,0 +1,37 @@
+{
+  "docId": "sotsiaaltoo-4-2019",
+  "articleId": "hoolduse-koord-projekt-2019",
+  "title": "Mida õppida hoolduse koordinatsiooni pilootprojektist",
+  "authors": [
+    "Uku Torjus"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2019",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "12-15",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade hoolduse koordinatsiooni pilootprojektist ning selle tulemustest ja õppetundidest.",
+  "tags": [
+    "koordinatsioon",
+    "pilootprojekt",
+    "sotsiaaltöö"
+  ],
+  "source_type": "file",
+  "source_path": "ST4_2019_web_link_Part5.pdf",
+  "document_id": "sotsiaaltoo-4-2019-hoolduse-koord-projekt-2019",
+  "source_format": "pdf",
+  "source_sha256": "aa90f3ac9f4b76957c077f2e94f91f38de8fa17e0ee264527a3730c506c64b5b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2019-hoolduse-koord-projekt-2019",
+    "previous_source_path": "ST4_2019_web_link_Part5.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "aa90f3ac9f4b76957c077f2e94f91f38de8fa17e0ee264527a3730c506c64b5b",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

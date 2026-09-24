@@ -1,0 +1,62 @@
+{
+  "docId": "sotsiaaltoo-erinumber-2016",
+  "articleId": "sotsiaaltoo-erinumber-2016-artikkel-03-koostoos-hea-tegemine",
+  "title": "Koostöös HEA tegemine",
+  "authors": [
+    "Maris Mälzer"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "erinumber 2016",
+  "section": "Heaolu arengukava",
+  "pageRange": "10",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Strateegia ja eelarve osakonna nõunik kirjeldab, kuidas heaolu arengukava koostati: juhtkomitee, valdkondliku komisjoni roll struktuuritoetuste seaduse alusel ja kaasamisprotsess. Väidab, et kaasamise küsimus ei ole enam „miks\", vaid „kuidas hästi\".",
+  "tags": [
+    "heaolu arengukava",
+    "kaasamine",
+    "poliitikakujundamine",
+    "struktuurivahendid"
+  ],
+  "source_type": "file",
+  "source_path": "2016_eri_artikkel_03_koostoos_hea_tegemine.pdf",
+  "added": "2026-08-18",
+  "fulltext_note": "Erinumber „Sotsiaaltöö ; erinumber 2016\" (DIGAR nlib-digar:390083), pühendatud heaolu arengukavale 2016–2023. Lisatud korpusesse 18.08.2026.",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-03-koostoos-hea-tegemine",
+  "source_sha256": "783e03d2a7cac2f1755a22272770fbac32817b2abcf5080a237ef90f64c370b7",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-03-koostoos-hea-tegemine",
+    "previous_source_path": "2016_eri_artikkel_03_koostoos_hea_tegemine.txt",
+    "previous_source_original_path": "2016_erinumber.pdf",
+    "reference_stored_source_sha256": "ab43c850df6444544c4799497631722a2f231aa30a35964c69e4ac29855f2b00",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2016_erinumber.pdf",
+      "source_sha256": "ae3bbf0a621beae80ae1e05a13206ffa00c6811806397ee8ac925f3762d93c70",
+      "pdf_start_page": 12,
+      "pdf_end_page": 12,
+      "printed_page_range": "10-10",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 12,
+      "source_regions": [
+        {
+          "source_pdf_page": 12,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "10"
+    },
+    "server_page_range": "10-10"
+  }
+}

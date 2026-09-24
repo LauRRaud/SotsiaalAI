@@ -1,0 +1,38 @@
+{
+  "docId": "sotsiaaltoo-2-2019",
+  "articleId": "erihoolekandekyla-autistidele-2019",
+  "title": "Eesti esimene kogukonnapõhine erihoolekandeküla autistidele",
+  "authors": [
+    "Liis Ehrminger"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2019",
+  "section": "Uus lahendus sotsiaaltöös",
+  "pageRange": "105",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab Eesti esimest kogukonnapõhist erihoolekandeküla suurema abivajadusega autistidele, mis rajatakse Harku valda Liikvale. Kirjeldatakse projekti tausta, rahastust, kogukonnapõhist lähenemist ning kavandatavaid teenuseid ja tegevusi.",
+  "tags": [
+    "erihoolekanne",
+    "autism",
+    "kogukonnapõhine teenus",
+    "inimkeskne lähenemine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr2_2019autistidele105.pdf",
+  "document_id": "sotsiaaltoo-2-2019-erihoolekandekyla-autistidele-2019",
+  "source_format": "pdf",
+  "source_sha256": "b536bf7de2962d291683465883eb2a11464cd73f01c1df667444e1ce6fb7ecff",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2019-erihoolekandekyla-autistidele-2019",
+    "previous_source_path": "Sotsiaaltoo_nr2_2019autistidele105.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b536bf7de2962d291683465883eb2a11464cd73f01c1df667444e1ce6fb7ecff",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "source": {
+    "source_id": "harno_soovitused_kiusamise_valtimiseks_koolis",
+    "title": "Soovitused kiusamise vältimiseks koolis",
+    "url": "https://harno.ee/sites/default/files/documents/2022-03/Koolidele%20toeks%20kiusuennetuses%20m%C3%A4rts-2022.pdf",
+    "normalized_url": "https://harno.ee/sites/default/files/documents/2022-03/Koolidele toeks kiusuennetuses märts-2022.pdf",
+    "source_format": "pdf",
+    "source_type": "official_guideline",
+    "resource_type": "method_guidance",
+    "publisher": "HARNO",
+    "organization_id": "harno",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Haridus- ja Noorteamet",
+      "lapsed ja pered",
+      "haridus",
+      "kool",
+      "õpilase toetamine",
+      "tugimeetmed",
+      "praktiline töövahend",
+      "spetsialisti juhend"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "high",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_074",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+    "source_context": {
+      "heading_2": "HARNO / HEV / kooli tugimeetmed",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 383,
+      "order": 212
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "Soovitused kiusamise vältimiseks koolis"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "official_guideline"
+    ],
+    "resource_types_seen": [
+      "method_guidance"
+    ],
+    "publishers_seen": [
+      "HARNO"
+    ],
+    "organizations_seen": [
+      "harno"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "HARNO / HEV / kooli tugimeetmed",
+        "line": 383,
+        "order": 212
+      },
+      {
+        "heading_2": "Laste ja noorte vaimne tervis / kool / pere ristumiskoht",
+        "line": 429,
+        "order": 233
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://harno.ee/sites/default/files/documents/2022-03/Koolidele toeks kiusuennetuses märts-2022.pdf"
+  },
+  "final_url": "https://harno.ee/sites/default/files/documents/2022-03/Koolidele%20toeks%20kiusuennetuses%20m%C3%A4rts-2022.pdf",
+  "redirects": [],
+  "sha256": "fee3acef21e49c58c6557ec126651ae793013b462e57005ad3255aa7fb109c19",
+  "bytes": 271214,
+  "downloaded_at": "2026-08-14T08:00:45.144Z"
+}

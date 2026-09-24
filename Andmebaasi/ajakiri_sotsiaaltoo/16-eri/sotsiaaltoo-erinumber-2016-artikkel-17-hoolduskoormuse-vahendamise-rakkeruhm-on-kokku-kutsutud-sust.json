@@ -1,0 +1,83 @@
+{
+  "docId": "sotsiaaltoo-erinumber-2016-artikkel-17-hoolduskoormuse-vahendamise-rakkeruhm-on-kokku-kutsutud-sust",
+  "articleId": "sotsiaaltoo-erinumber-2016-artikkel-17-hoolduskoormuse-vahendamise-rakkeruhm-on-kokku-kutsutud-sust",
+  "title": "Hoolduskoormuse vähendamise rakkerühm on kokku kutsutud süsteemsete muutuste saavutamiseks",
+  "authors": [
+    "Anniki Lai",
+    "Rauno Mäekivi"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "erinumber 2016",
+  "section": "Omastehooldus",
+  "pageRange": "59-61",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Riigikantselei juurde 2015. aasta detsembris valitsuse otsusega moodustatud hoolduskoormuse vähendamise rakkerühma juht ja koordinaator tutvustavad rakkerühma ülesannet: kaardistada lähedaste hooldamisega seotud probleemid ja töötada välja lahendused eakate, puudega täisealiste ja laste hoolduse osas.",
+  "tags": [
+    "hoolduskoormus",
+    "rakkerühm",
+    "Riigikantselei",
+    "omastehooldus",
+    "poliitikakujundamine"
+  ],
+  "source_type": "file",
+  "source_path": "2016_eri_artikkel_17_hoolduskoormuse_vahendamise_rakkeruhm_on_kokku_kutsu.pdf",
+  "added": "2026-08-18",
+  "fulltext_note": "Erinumber „Sotsiaaltöö ; erinumber 2016\" (DIGAR nlib-digar:390083), pühendatud heaolu arengukavale 2016–2023. Lisatud korpusesse 18.08.2026.",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-erinumber-2016-artikkel-17-hoolduskoormuse-vahendamise-rakkeruhm-on-kokku-kutsutud-sust",
+  "source_sha256": "2f87993f29e001546bc47c14410ceffdffa831fbe6f81a1cfbfda17813c2bb06",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-erinumber-2016-artikkel-17-hoolduskoormuse-vahendamise-rakkeruhm-on-kokku-kutsutud-sust",
+    "previous_source_path": "2016_eri_artikkel_17_hoolduskoormuse_vahendamise_rakkeruhm_on_kokku_kutsu.txt",
+    "previous_source_original_path": "2016_erinumber.pdf",
+    "reference_stored_source_sha256": "38eb764438f362da449833a2b93710031d0dcafc4efec6715d32c4c410d6ddc2",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\2016_erinumber.pdf",
+      "source_sha256": "ae3bbf0a621beae80ae1e05a13206ffa00c6811806397ee8ac925f3762d93c70",
+      "pdf_start_page": 61,
+      "pdf_end_page": 63,
+      "printed_page_range": "59-61",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 63,
+      "source_regions": [
+        {
+          "source_pdf_page": 61,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 62,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 63,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "59-61",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2016_erinumber.pdf"
+    },
+    "server_page_range": "59-61"
+  }
+}

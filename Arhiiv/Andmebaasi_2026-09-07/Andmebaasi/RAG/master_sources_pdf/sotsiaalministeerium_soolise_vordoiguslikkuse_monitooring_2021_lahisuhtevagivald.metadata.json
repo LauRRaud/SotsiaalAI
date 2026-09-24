@@ -1,0 +1,82 @@
+{
+  "source": {
+    "source_id": "sotsiaalministeerium_soolise_vordoiguslikkuse_monitooring_2021_lahisuhtevagivald",
+    "title": "Soolise võrdõiguslikkuse monitooring 2021: Lähisuhtevägivald",
+    "url": "https://www.sm.ee/sites/default/files/documents/2022-12/SVM21.%20L%C3%A4hisuhtev%C3%A4givald.pdf",
+    "normalized_url": "https://www.sm.ee/sites/default/files/documents/2022-12/SVM21. Lähisuhtevägivald.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "Sotsiaalministeerium",
+    "organization_id": "sotsiaalministeerium",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "Sotsiaalministeerium",
+      "ohvriabi",
+      "lähisuhtevägivald",
+      "perevägivald",
+      "võrdne kohtlemine",
+      "diskrimineerimine",
+      "võrdõiguslikkus",
+      "õigused",
+      "inimõigused",
+      "uuring",
+      "raport",
+      "analüüs"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Sotsiaalministeerium",
+      "heading_3": "Ohvriabi, lähisuhtevägivald, inimkaubandus",
+      "heading_4": null,
+      "line": 537,
+      "order": 280
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Soolise võrdõiguslikkuse monitooring 2021: Lähisuhtevägivald"
+    ],
+    "collection_hints": [
+      "research_reports"
+    ],
+    "source_types_seen": [
+      "research_report"
+    ],
+    "resource_types_seen": [
+      "research_evidence"
+    ],
+    "publishers_seen": [
+      "Sotsiaalministeerium"
+    ],
+    "organizations_seen": [
+      "sotsiaalministeerium"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Sotsiaalministeerium",
+        "heading_3": "Ohvriabi, lähisuhtevägivald, inimkaubandus",
+        "line": 537,
+        "order": 280
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.sm.ee/sites/default/files/documents/2022-12/SVM21. Lähisuhtevägivald.pdf"
+  },
+  "final_url": "https://www.sm.ee/sites/default/files/documents/2022-12/SVM21.%20L%C3%A4hisuhtev%C3%A4givald.pdf",
+  "redirects": [],
+  "sha256": "60e78fe390a5175b0588041fbea632ac7936ea02fa23030f03c8315ce127dfe9",
+  "bytes": 172752,
+  "downloaded_at": "2026-08-14T08:00:54.843Z"
+}

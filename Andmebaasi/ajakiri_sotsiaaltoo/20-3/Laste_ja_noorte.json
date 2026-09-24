@@ -1,0 +1,51 @@
+{
+  "docId": "sotsiaaltoo-3-2020",
+  "articleId": "laste-ja-noorte-ennetav-abistamine-2020-3",
+  "title": "Laste ja noorte ennetav abistamine",
+  "authors": [
+    "Kiira Gornischeff",
+    "Enelis Linnas",
+    "Kirsika Aas",
+    "Margarita Ingel",
+    "Kristi Loide",
+    "Laura Kane",
+    "Taimi Nilson",
+    "Simone Epro",
+    "Sandra Sutting"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2020",
+  "section": "Teenuste integratsioon",
+  "pageRange": "48-52",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel annab ülevaate sotsiaalkindlustusameti ennetusteenuste talituse tööst kõrge riskiga alaealiste toetamisel. Kirjeldatakse ennetavaid ja sekkuvaid teenuseid (sh KLAT, MDFT ja abivajava lapse sotsiaalne rehabilitatsioon/SRT), riskihindamise põhimõtteid ning vajadust luua terviklik ja valdkondadeülene süsteem, mis võimaldab lastele ja noortele õigeaegset tuge.",
+  "tags": [
+    "lastekaitse",
+    "ennetusteenused",
+    "SRT",
+    "MDFT",
+    "kinnine lasteasutus",
+    "riskihindamine",
+    "noorte abistamine",
+    "sotsiaalkindlustusamet"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2020_web_link_Part11.pdf",
+  "mapping_fixed": "20260814-161821",
+  "document_id": "sotsiaaltoo-3-2020-laste-ja-noorte-ennetav-abistamine-2020-3",
+  "source_format": "pdf",
+  "source_sha256": "60f0de5299cb19de86379e9deb8876f789d00d394ad96b49d19af1581655caf6",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2020-laste-ja-noorte-ennetav-abistamine-2020-3",
+    "previous_source_path": "Sotsiaaltoo_3_2020_web_link_Part11.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "60f0de5299cb19de86379e9deb8876f789d00d394ad96b49d19af1581655caf6",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

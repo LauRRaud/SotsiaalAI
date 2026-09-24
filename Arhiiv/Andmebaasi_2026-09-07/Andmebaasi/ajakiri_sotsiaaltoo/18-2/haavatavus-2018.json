@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2018",
+  "articleId": "haavatavus-2018",
+  "title": "Haavatavus",
+  "authors": [
+    "Hans van Ewijk"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2018",
+  "section": "Võlusõnad",
+  "pageRange": "63-64",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Mõtisklus erinevatest haavatavuse liikidest – elu jooksul kujunenud, füüsiline, vaimne, hingeline, sotsiaalne ja moraalne – ning nende seosest neoliberaalse ühiskonna ootustega, sotsiaalsüsteemide toimimisega ja inimeste toimetulekuga.",
+  "tags": [
+    "haavatavus",
+    "sotsiaalne haavatavus",
+    "neoliberaalne ühiskond",
+    "sotsiaalhoolekanne",
+    "sotsiaalne tõhusus",
+    "sotsiaalne kaasamine",
+    "eetika",
+    "sotsiaaltöö väärtused"
+  ],
+  "source_type": "file",
+  "source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part16.pdf",
+  "document_id": "sotsiaaltoo-2-2018-haavatavus-2018",
+  "source_format": "pdf",
+  "source_sha256": "dd3998f4d227f5d89e1b2d9c1701ce78b64ae8e33c448e2273e1592348dea7b2",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2018-haavatavus-2018",
+    "previous_source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part16.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "dd3998f4d227f5d89e1b2d9c1701ce78b64ae8e33c448e2273e1592348dea7b2",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

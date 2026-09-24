@@ -1,0 +1,90 @@
+{
+  "docId": "sotsiaaltoo-erinumber-2016",
+  "articleId": "sotsiaaltoo-erinumber-2016-artikkel-08-oska-uurib-milliseid-oskusi-vajab-tuleviku-tooturg",
+  "title": "OSKA uurib, milliseid oskusi vajab tuleviku tööturg",
+  "authors": [
+    "Tiia Randma"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "erinumber 2016",
+  "section": "Tööhõive",
+  "pageRange": "25-28",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kutsekoja juhatuse liige tutvustab aasta tagasi käivitunud OSKA tööjõuvajaduse seire- ja prognoosisüsteemi, mis analüüsib Eesti majanduse oskuste ja tööjõu vajadust kümne aasta perspektiivis. See on 2016. aasta teine OSKA-käsitlus ajakirjas.",
+  "tags": [
+    "OSKA",
+    "tööjõuvajadus",
+    "oskused",
+    "kutseharidus",
+    "prognoos"
+  ],
+  "source_type": "file",
+  "source_path": "2016_eri_artikkel_08_oska_uurib_milliseid_oskusi_vajab_tuleviku_tooturg.pdf",
+  "added": "2026-08-18",
+  "fulltext_note": "Erinumber „Sotsiaaltöö ; erinumber 2016\" (DIGAR nlib-digar:390083), pühendatud heaolu arengukavale 2016–2023. Lisatud korpusesse 18.08.2026.",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-08-oska-uurib-milliseid-oskusi-vajab-tuleviku-tooturg",
+  "source_sha256": "83d5156324a1824b6f34d2641a5358ee00a3d5460658592fbeef43e5f4b31e29",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-08-oska-uurib-milliseid-oskusi-vajab-tuleviku-tooturg",
+    "previous_source_path": "2016_eri_artikkel_08_oska_uurib_milliseid_oskusi_vajab_tuleviku_tooturg.txt",
+    "previous_source_original_path": "2016_erinumber.pdf",
+    "reference_stored_source_sha256": "f71779f085d8b8b54dab5d75582f9fc96cce10555f50cffcb033914ac87d3aca",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2016_erinumber.pdf",
+      "source_sha256": "ae3bbf0a621beae80ae1e05a13206ffa00c6811806397ee8ac925f3762d93c70",
+      "pdf_start_page": 27,
+      "pdf_end_page": 30,
+      "printed_page_range": "25-28",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 30,
+      "source_regions": [
+        {
+          "source_pdf_page": 27,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 28,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 29,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 30,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "25-28"
+    },
+    "server_page_range": "25-28"
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "docId": "sotsiaaltoo-2-2016",
+  "articleId": "sotsiaaltoo-2-2016-artikkel-13-narratiivteraapia-kliinilises-ja-rakenduslikus-s",
+  "title": "Narratiivteraapia kliinilises ja rakenduslikus sotsiaaltöös positiivse kehakuvandi kujunemise näitel teismelistel ja noorukitel",
+  "authors": [
+    "Davide Ticchi"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2016",
+  "section": "Sotsiaaltöö meetodid",
+  "pageRange": "53-59",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tallinna Ülikooli sotsiaaltöö doktorant tutvustab narratiivteraapia teoreetilisi lähtekohti ja meetodi kasutamist teismeliste ning noorukite kehakuvandi kujunemisel. Meetodi võtsid 1989. aastal kasutusele David Epston ja Michael White; kesksed võtted on probleemi eksternaliseerimine ja unikaalsete olukordade otsimine inimese loost. Artikkel selgitab White'i sõnastatud kolme piiravat eeldust – tõe tahet, allasurumise hüpoteesi ja vabastavat narratiivi – ning siksakilist küsitlusprotsessi. Autori doktoritöö andmeid kogutakse rindkere seina deformatsiooniga patsientidelt Tallinna Lastehaiglas ja Genova Gaslini lastehaiglas ning noorsportlastelt.",
+  "tags": [
+    "sotsiaaltöö meetodid",
+    "narratiivteraapia",
+    "kehakuvand",
+    "kliiniline sotsiaaltöö",
+    "noorukid",
+    "eksternaliseerimine"
+  ],
+  "source_type": "file",
+  "source_path": "2016_2_artikkel_13_narratiivteraapia_kliinilises_ja_rakenduslikus_sotsi.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-13-narratiivteraapia-kliinilises-ja-rakenduslikus-s",
+  "source_sha256": "f7ebef78dd1fc5a6de339834cdd20940a38958cae5d1520aa56b286936bfdf0d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-13-narratiivteraapia-kliinilises-ja-rakenduslikus-s",
+    "previous_source_path": "2016_2_artikkel_13_narratiivteraapia_kliinilises_ja_rakenduslikus_sotsi.txt",
+    "previous_source_original_path": "2-2016.pdf",
+    "reference_stored_source_sha256": "dcb104f4b19b40a3dfd188a9981d8bc20eb2dbd54df4b5b77d576e2dffaafaab",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\2-2016.pdf",
+      "source_sha256": "cf45b61607b21a62a1003f99c97d65180c4fb4f591a874c983c4b63e5c804a36",
+      "pdf_start_page": 55,
+      "pdf_end_page": 61,
+      "printed_page_range": "53-60",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 62,
+      "source_regions": [
+        {
+          "source_pdf_page": 55,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 56,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 57,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 58,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 59,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 60,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 61,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "53-59",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2-2016.pdf"
+    },
+    "server_page_range": "53-60"
+  }
+}

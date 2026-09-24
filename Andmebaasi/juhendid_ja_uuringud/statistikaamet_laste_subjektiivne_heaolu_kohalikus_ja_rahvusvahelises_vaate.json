@@ -1,0 +1,149 @@
+{
+  "source_path": "statistikaamet_laste_subjektiivne_heaolu_kohalikus_ja_rahvusvahelises_vaate.pdf",
+  "source_format": "pdf",
+  "sha256": "bbc97a7bc2899bb913915aa1d52558c52c035e98b18faecc6080f0466a437114",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/statistikaamet_laste_subjektiivne_heaolu_kohalikus_ja_rahvusvahelises_vaate.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "statistikaamet_laste_subjektiivne_heaolu_kohalikus_ja_rahvusvahelises_vaate",
+          "title": "Laste subjektiivne heaolu kohalikus ja rahvusvahelises vaates",
+          "url": "https://www.stat.ee/sites/default/files/2020-07/Laste_subjektiivne_heaolu_kohalikus_ja_rahvusvahelises_vaates.pdf",
+          "normalized_url": "https://www.stat.ee/sites/default/files/2020-07/Laste_subjektiivne_heaolu_kohalikus_ja_rahvusvahelises_vaates.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "Statistikaamet",
+          "organization_id": "statistikaamet",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Statistikaamet",
+            "lapsed ja pered",
+            "laps",
+            "statistika",
+            "sotsiaalnäitajad",
+            "heaolu",
+            "uuring",
+            "raport",
+            "analüüs"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_018",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "Statistikaamet",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 219,
+            "order": 140
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Laste subjektiivne heaolu kohalikus ja rahvusvahelises vaates"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Statistikaamet"
+          ],
+          "organizations_seen": [
+            "statistikaamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Statistikaamet",
+              "line": 219,
+              "order": 140
+            },
+            {
+              "heading_2": "Statistikaamet",
+              "line": 693,
+              "order": 347
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.stat.ee/sites/default/files/2020-07/Laste_subjektiivne_heaolu_kohalikus_ja_rahvusvahelises_vaates.pdf"
+        },
+        "final_url": "https://www.stat.ee/sites/default/files/2020-07/Laste_subjektiivne_heaolu_kohalikus_ja_rahvusvahelises_vaates.pdf",
+        "redirects": [],
+        "sha256": "bbc97a7bc2899bb913915aa1d52558c52c035e98b18faecc6080f0466a437114",
+        "bytes": 968271,
+        "downloaded_at": "2026-08-14T08:00:35.993Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "statistikaamet_laste_subjektiivne_heaolu_kohalikus_ja_rahvusvahelises_vaate",
+      "metadata": {
+        "createdAt": "2026-06-12T03:37:31.420410+00:00",
+        "type": "FILE",
+        "fileName": "Laste_subjektiivne_heaolu_kohalikus_ja_rahvusvahelises_vaates.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:37:31.355911+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/78725d74dfc4/Laste_subjektiivne_heaolu_kohalikus_ja_rahvusvahelises_vaates.pdf",
+        "title": "Laste subjektiivne heaolu kohalikus ja rahvusvahelises vaates",
+        "description": "Duplikaadid ühendatud: 1 lisakirjet. Source master headings: Statistikaamet",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2020,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–68",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "statistikaamet_laste_subjektiivne_heaolu_kohalikus_ja_rahvusvahelises_vaate",
+        "document_id": "statistikaamet_laste_subjektiivne_heaolu_kohalikus_ja_rahvusvahelises_vaate",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "1756107b88d762f37f077d6ff08c898120b8593cf3de2c6eea09da35aea3f5c9",
+        "url": "https://www.stat.ee/sites/default/files/2020-07/Laste_subjektiivne_heaolu_kohalikus_ja_rahvusvahelises_vaates.pdf",
+        "url_canonical": "https://www.stat.ee/sites/default/files/2020-07/Laste_subjektiivne_heaolu_kohalikus_ja_rahvusvahelises_vaates.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "statistikaamet_laste_subjektiivne_heaolu_kohalikus_ja_rahvusvahelises_vaate",
+        "updatedAt": "2026-06-12T03:37:31.420448+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

@@ -1,0 +1,150 @@
+{
+  "source_path": "sotsiaalministeerium_puuetega_inimeste_ja_nende_pereliikmete_hoolduskoormuse_uuri.pdf",
+  "source_format": "pdf",
+  "sha256": "ec1128b16060cab2ac9ca57a58c1161246075c5d7717bb803bd3b2491def4285",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/sotsiaalministeerium_puuetega_inimeste_ja_nende_pereliikmete_hoolduskoormuse_uuri.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "sotsiaalministeerium_puuetega_inimeste_ja_nende_pereliikmete_hoolduskoormuse_uuri",
+          "title": "Puuetega inimeste ja nende pereliikmete hoolduskoormuse uuring 2009",
+          "url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/piu2009_loppraport.pdf",
+          "normalized_url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/piu2009_loppraport.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "Sotsiaalministeerium",
+          "organization_id": "sotsiaalministeerium",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Sotsiaalministeerium",
+            "puue",
+            "puudega inimene",
+            "erivajadus",
+            "hoolekanne",
+            "sotsiaalteenused",
+            "hooldus",
+            "lapsed ja pered",
+            "lapsevanem",
+            "pere",
+            "vanemlus",
+            "uuring",
+            "raport",
+            "analüüs"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Sotsiaalministeerium",
+            "heading_3": "Vanemad, aga endiselt kasulikud taustauuringud",
+            "heading_4": null,
+            "line": 547,
+            "order": 284
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Puuetega inimeste ja nende pereliikmete hoolduskoormuse uuring 2009"
+          ],
+          "collection_hints": [
+            "research_reports"
+          ],
+          "source_types_seen": [
+            "research_report"
+          ],
+          "resource_types_seen": [
+            "research_evidence"
+          ],
+          "publishers_seen": [
+            "Sotsiaalministeerium"
+          ],
+          "organizations_seen": [
+            "sotsiaalministeerium"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Sotsiaalministeerium",
+              "heading_3": "Vanemad, aga endiselt kasulikud taustauuringud",
+              "line": 547,
+              "order": 284
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/piu2009_loppraport.pdf"
+        },
+        "final_url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/piu2009_loppraport.pdf",
+        "redirects": [],
+        "sha256": "ec1128b16060cab2ac9ca57a58c1161246075c5d7717bb803bd3b2491def4285",
+        "bytes": 1267879,
+        "downloaded_at": "2026-08-14T08:00:55.466Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "sotsiaalministeerium_puuetega_inimeste_ja_nende_pereliikmete_hoolduskoormuse_uuri",
+      "metadata": {
+        "createdAt": "2026-06-12T03:58:43.684337+00:00",
+        "type": "FILE",
+        "fileName": "piu2009_loppraport.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:58:43.616162+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/2ec5098836d3/piu2009_loppraport.pdf",
+        "title": "Puuetega inimeste ja nende pereliikmete hoolduskoormuse uuring 2009",
+        "description": "Source master headings: Sotsiaalministeerium; Vanemad, aga endiselt kasulikud taustauuringud",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2009,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–147",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "research_reports",
+        "source_id": "sotsiaalministeerium_puuetega_inimeste_ja_nende_pereliikmete_hoolduskoormuse_uuri",
+        "document_id": "sotsiaalministeerium_puuetega_inimeste_ja_nende_pereliikmete_hoolduskoormuse_uuri",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "9d1f9ff9f8fb7cd6c79c63b761d43aef67f3a57944202c43bd118039ae723e22",
+        "url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/piu2009_loppraport.pdf",
+        "url_canonical": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/piu2009_loppraport.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "sotsiaalministeerium_puuetega_inimeste_ja_nende_pereliikmete_hoolduskoormuse_uuri",
+        "updatedAt": "2026-06-12T03:58:43.684360+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

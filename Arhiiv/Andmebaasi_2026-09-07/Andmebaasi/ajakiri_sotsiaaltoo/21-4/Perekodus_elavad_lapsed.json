@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2021",
+  "articleId": "perekodus-elavad-lapsed-soovivad-teada-kes-nad-on-ja-kust-nad-tulevad-2021-4",
+  "title": "Perekodus elavad lapsed soovivad teada, kes nad on ja kust nad tulevad",
+  "authors": [
+    "Liina Kõiv"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2021",
+  "section": "Uurimus",
+  "pageRange": "57-64",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Magistriuuring, mis keskendub perekodus elavate laste vaatenurgale suhetele bioloogilise perekonnaga ja nende suhete tähendusele identiteedi kujunemisel. Autor analüüsib elulootöö meetodil kogutud laste jutustusi oma sünnipere, sugulaste ja elusündmuste kohta ning näitab, et lapsed soovivad teada, kes nad on ja kust nad pärit on. Uurimus toob esile, et sageli on info päritolupere kohta lünklik ning sotsiaaltöötajatel ja kasvatajatest vanematel on oluline roll lapsele tema loo rääkimisel. Käsitletakse ka sotsiaalmeedia rolli kontaktide loomisel ja hoidmisel ning antakse soovitusi, kuidas perekodus teadlikumalt toetada lapse identiteeti ja suhteid sünniperega.",
+  "tags": [
+    "perekoduteenus",
+    "bioloogiline perekond",
+    "identiteet",
+    "elulootöö",
+    "asendushooldus",
+    "lapsekeskne lähenemine",
+    "magistriuurimus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2021_web_Part15.pdf",
+  "document_id": "sotsiaaltoo-4-2021-perekodus-elavad-lapsed-soovivad-teada-kes-nad-on-ja-kust-nad-tulevad-2021-4",
+  "source_format": "pdf",
+  "source_sha256": "d7c7a6c631967baadd9e2bee2b425b5c2e836acd5ae54be10d332ab19502777c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2021-perekodus-elavad-lapsed-soovivad-teada-kes-nad-on-ja-kust-nad-tulevad-2021-4",
+    "previous_source_path": "Sotsiaaltoo_4_2021_web_Part15.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d7c7a6c631967baadd9e2bee2b425b5c2e836acd5ae54be10d332ab19502777c",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2021",
+  "articleId": "ubuntu-mina-olen-sest-meie-oleme-2021-2",
+  "title": "Ubuntu: mina olen, sest meie oleme",
+  "authors": [
+    "Dagmar Narusson"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2021",
+  "section": "Teoreetilised lähtekohad",
+  "pageRange": "82-84",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab Aafrika päritolu ubuntu-filosoofiat, mille keskne mõte on, et inimene on inimene läbi teiste inimeste. Autor seob ubuntu väärtusi – vastastikune hoolimine, solidaarsus, kogukondlikkus ja vastutuse jagamine – tänapäevase sotsiaaltööga ning rahvusvahelise sotsiaaltöö päeva sõnumiga. Arutletakse, kuidas ubuntu aitab näha inimest suhetes, mitte üksikute probleemide kogumina, ja miks on oluline tugevdada nii professionaalses kui ka igapäevases elus hoiakut „mina olen, sest meie oleme“. Artikkel julgustab sotsiaaltöötajaid ja kogukondi mõtestama oma praktikat rohkem globaalse õigluse, inimväärikuse ja vastastikuse sõltuvuse võtmes.",
+  "tags": [
+    "ubuntu",
+    "teoreetilised lähtekohad",
+    "sotsiaaltöö väärtused",
+    "solidaarsus",
+    "kogukonnatöö",
+    "inimväärikus",
+    "rahvusvaheline sotsiaaltöö päev"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2021_web_link_Part17.pdf",
+  "document_id": "sotsiaaltoo-2-2021-ubuntu-mina-olen-sest-meie-oleme-2021-2",
+  "source_format": "pdf",
+  "source_sha256": "aed4812a90a37f0052393c9f95eb72054827f13f0de2572d8dc642f754359c11",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2021-ubuntu-mina-olen-sest-meie-oleme-2021-2",
+    "previous_source_path": "Sotsiaaltoo_2_2021_web_link_Part17.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "aed4812a90a37f0052393c9f95eb72054827f13f0de2572d8dc642f754359c11",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

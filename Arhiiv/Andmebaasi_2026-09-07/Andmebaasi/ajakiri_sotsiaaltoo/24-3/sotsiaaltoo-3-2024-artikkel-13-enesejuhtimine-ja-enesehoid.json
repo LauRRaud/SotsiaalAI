@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-3-2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2024",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "enesejuhtimine-ja-enesehoid-sotsiaaltoos-2024-3",
+  "title": "Enesejuhtimine ja enesehoid sotsiaaltöös",
+  "authors": [
+    "Dagmar Narusson"
+  ],
+  "section": "Eetika",
+  "pageRange": "77-86",
+  "pdf_start_page": 1,
+  "pdf_end_page": 10,
+  "description": "Artikkel käsitleb sotsiaaltöötajate enesejuhtimist ja enesehoidu kui professionaalsuse osa. Autor selgitab, miks pidev kokkupuude raskete elusituatsioonide, eetiliste dilemmade ja traumalugudega suurendab sekundaarse traumaatilise stressi ja läbipõlemise riski. Tutvustatakse enesehoiu mõistet ja seoseid kaastunderahulolu, kaastundeväsimuse ja enesekaastundega, antakse praktilisi soovitusi füüsilise ja vaimse tervise hoidmiseks (liikumine, lõõgastus, teadvelolek, supervisioon, õppimine, sotsiaalne tugi). Artiklis avatakse toimevõimekuse ja psühholoogilise kapitali (lootus, enesetõhusus, optimism, säilenõtkus) rolli, kirjeldatakse refleksiooni kui enesepeegelduse tööriista ning analüüsitakse sekundaarset traumaatilist stressi ja läbipõlemise sümptomeid. Rõhutatakse, et enesehoid on eetiline kohustus nii klientide kaitsmiseks kui ka sotsiaaltöötaja kestliku töövõime tagamiseks.",
+  "tags": [
+    "enesehoid",
+    "enesejuhtimine",
+    "sotsiaaltöötajad",
+    "läbipõlemise ennetamine",
+    "sekundaarne traumaatiline stress",
+    "psühholoogiline kapital",
+    "refleksioon",
+    "kaastundeväsimus",
+    "tööheaolu",
+    "eetika sotsiaaltöös"
+  ],
+  "source_path": "sotsiaaltoo_3_2024_web_Part15.pdf",
+  "document_id": "sotsiaaltoo-3-2024-enesejuhtimine-ja-enesehoid-sotsiaaltoos-2024-3",
+  "source_format": "pdf",
+  "source_sha256": "dae4bb4dae44be5d236e7bccae197c6fc2b3f36f6f12d97dac27abfe42ce722f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2024-enesejuhtimine-ja-enesehoid-sotsiaaltoos-2024-3",
+    "previous_source_path": "sotsiaaltoo_3_2024_web_Part15.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "dae4bb4dae44be5d236e7bccae197c6fc2b3f36f6f12d97dac27abfe42ce722f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

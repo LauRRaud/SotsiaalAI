@@ -1,0 +1,90 @@
+{
+  "docId": "sotsiaaltoo-1-2016",
+  "articleId": "sotsiaaltoo-1-2016-artikkel-02-lastekaitse-juhtumikorraldusest-sotsiaalteenuste",
+  "title": "Lastekaitse juhtumikorraldusest sotsiaalteenuste ja -toetuste andmeregistris",
+  "authors": [
+    "Katrin Pedastsaar"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2016",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "3-6",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalteenuste ja -toetuste andmeregistri juht selgitab, et uue lastekaitseseaduse ja sotsiaalhoolekande seadusega peavad omavalitsused kandma abivajavate laste juhtumiandmed ja juhtumiplaanid STARi, mida hakkab kasutama ka Sotsiaalkindlustusameti lastekaitseüksus. 2015. aastal oli STARis juhtumimenetlusi algatanud ligi 180 omavalitsust ja lastega seotud menetlusi teinud pea kaks kolmandikku. Sotsiaalhoolekande seaduse § 160 järgi tuleb asenduskodu- ja lapsehoiuteenuse andmed kanda registrisse märtsi ning juhtumiplaanid juuni lõpuks. 2015. aastal peeti 26 juhtumikorralduse koolitust 246 osalejaga. Autor vastab levinud väärarusaamadele juhtumiplaani täitmise kohta.",
+  "tags": [
+    "star",
+    "juhtumikorraldus",
+    "lastekaitse",
+    "juhtumiplaan",
+    "sotsiaalhoolekande seadus",
+    "dokumenteerimine"
+  ],
+  "source_type": "file",
+  "source_path": "2016_1_artikkel_02_lastekaitse_juhtumikorraldusest_sotsiaalteenuste_ja.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-02-lastekaitse-juhtumikorraldusest-sotsiaalteenuste",
+  "source_sha256": "f79689e38be5f6186255751a629f2899c30f179c4ed12e2a56bda2b278020f6b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-02-lastekaitse-juhtumikorraldusest-sotsiaalteenuste",
+    "previous_source_path": "2016_1_artikkel_02_lastekaitse_juhtumikorraldusest_sotsiaalteenuste_ja.txt",
+    "previous_source_original_path": "1-2016.pdf",
+    "reference_stored_source_sha256": "b1d6047f6ae21814ff59405cc9beac083ad26de0ead3c389729016aae8317a92",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf",
+      "source_sha256": "2c193295e54f58982562b509b6283e93aa58b1695464671e1768e24e90888a6c",
+      "pdf_start_page": 5,
+      "pdf_end_page": 8,
+      "printed_page_range": "3-7",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 9,
+      "source_regions": [
+        {
+          "source_pdf_page": 5,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 6,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 7,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 8,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "3-6"
+    },
+    "server_page_range": "3-7"
+  }
+}

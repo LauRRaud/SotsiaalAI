@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2017",
+  "articleId": "kovisioon-hea-voimalus-toetada-sotsiaalvaldkonna-tootajaid-2017",
+  "title": "Kovisioon – hea võimalus, kuidas toetada sotsiaalvaldkonna töötajaid",
+  "authors": [
+    "Signe Vesso"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2017",
+  "section": "Tööalane tugi",
+  "pageRange": "81-84",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade kovisioonist kui kollegiaalsest nõustamisest: õppiva organisatsiooni põhimõtted, kovisioonigrupi töökorraldus, roll professionaalse arengu ja läbipõlemise ennetamisel ning kasu nii sotsiaaltöötajatele kui organisatsioonidele.",
+  "tags": [
+    "kovisioon",
+    "kollegiaalne nõustamine",
+    "supervisioon",
+    "tööalane tugi",
+    "läbipõlemise ennetamine",
+    "professionaalne areng",
+    "õppiv organisatsioon"
+  ],
+  "source_type": "file",
+  "source_path": "Kovisioon - hea võimalus, kuidas toetada sotsiaalvaldkonna töötajaid.pdf",
+  "document_id": "sotsiaaltoo-4-2017-kovisioon-hea-voimalus-toetada-sotsiaalvaldkonna-tootajaid-2017",
+  "source_format": "pdf",
+  "source_sha256": "20299545319240d64cac09b2dcb46e081077f44f3d89b815556f973e0d640e12",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2017-kovisioon-hea-voimalus-toetada-sotsiaalvaldkonna-tootajaid-2017",
+    "previous_source_path": "Kovisioon - hea võimalus, kuidas toetada sotsiaalvaldkonna töötajaid.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "20299545319240d64cac09b2dcb46e081077f44f3d89b815556f973e0d640e12",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

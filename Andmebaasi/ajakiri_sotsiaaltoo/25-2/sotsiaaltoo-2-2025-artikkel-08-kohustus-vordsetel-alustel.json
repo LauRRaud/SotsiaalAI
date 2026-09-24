@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "kohustus-osutada-sotsiaalteenuseid-vordsetel-alustel-2025-2",
+  "title": "Kohustus osutada sotsiaalteenuseid võrdsetel alustel",
+  "authors": [
+    "Marelle Erlenheim"
+  ],
+  "section": "Õigus",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "description": "Artikkel analüüsib kohalike omavalitsuste kohustust osutada sotsiaalteenuseid võrdsetel alustel ja inimestele arusaadaval viisil. Autor käsitleb sotsiaalhoolekande seaduse põhimõtteid, õiguskantsleri praktikat, kohtuotsuseid ning sotsiaalteenuste korraldamise ja rahastamise põhimõtteid. Tuuakse näiteid, kuidas erinevad KOVid on tõlgendanud oma rolli ja millised ohukohad seonduvad juhtumipõhise abi, teenuse kättesaadavuse, läbipaistvate kriteeriumide ja inimese õiguskindlusega. Artikkel rõhutab, et sotsiaalteenused on osa põhiõiguste tagamisest, mitte heategevus.",
+  "tags": [
+    "sotsiaalteenused",
+    "kohalik omavalitsus",
+    "õigus",
+    "võrdne kohtlemine",
+    "sotsiaalhoolekande seadus",
+    "õiguskindlus",
+    "rahastus"
+  ],
+  "source_path": "Kohustus osutada sotsiaalteenuseid võrdsetel alustel_2_2025.pdf",
+  "pageRange": "1–9",
+  "document_id": "sotsiaaltoo-2-2025-kohustus-osutada-sotsiaalteenuseid-vordsetel-alustel-2025-2",
+  "source_format": "pdf",
+  "source_sha256": "2d2a6a951181f2648d0a84e75260d233e0c3a5e8b650e2721a370cc28d283287",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2025-kohustus-osutada-sotsiaalteenuseid-vordsetel-alustel-2025-2",
+    "previous_source_path": "Kohustus osutada sotsiaalteenuseid võrdsetel alustel_2_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "2d2a6a951181f2648d0a84e75260d233e0c3a5e8b650e2721a370cc28d283287",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

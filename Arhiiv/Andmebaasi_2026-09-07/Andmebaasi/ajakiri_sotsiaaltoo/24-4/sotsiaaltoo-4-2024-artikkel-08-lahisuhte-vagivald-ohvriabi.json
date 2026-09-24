@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-4-2024",
+  "issueLabel": "4/2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "lahisuhte-vagivald-ohvriabi-2024-4",
+  "title": "Lähisuhtevägivald ja ohvriabi võimalused",
+  "authors": [
+    "Liis Allmäe"
+  ],
+  "section": "Korraldus",
+  "pageRange": "50–55",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "source_path": "sotsiaaltoo_4_2024_web_Part10.pdf",
+  "description": "Artikkel annab ülevaate lähisuhtevägivalla levikust Eestis, elanike hoiakutest ning naiste ja meeste erinevatest kogemustest. Selgitatakse vägivalla vorme, sh kontrolliv ja situatsiooniline vägivald ning kübervägivald, ning käsitletakse vägivalla seoseid soolise ebavõrdsuse ja patriarhaalsete normidega. Autor kirjeldab võrgustikutöö ja MARAC-mudeli rolli kõrge riskiga juhtumite lahendamisel ning tutvustab sotsiaalkindlustusameti ohvriabi teenuseid, naiste tugikeskusi ja teisi abivõimalusi. Rõhutatakse vajadust ühiste tööpõhimõtete, teadlikkuse ja koostöö järele, et vähendada vägivalla levikut ning pakkuda kannatanutele turvalisi lahendusi.",
+  "tags": [
+    "lähisuhtevägivald",
+    "naistevastane vägivald",
+    "ohvriabi",
+    "MARAC",
+    "sooline ebavõrdsus",
+    "kübervägivald",
+    "võrgustikutöö",
+    "ennetamine"
+  ],
+  "document_id": "sotsiaaltoo-4-2024-lahisuhte-vagivald-ohvriabi-2024-4",
+  "source_format": "pdf",
+  "source_sha256": "12b478807d7da5223bf078fbac288256add5f0cd3f625ac49e2402d25dd042d0",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2024-lahisuhte-vagivald-ohvriabi-2024-4",
+    "previous_source_path": "sotsiaaltoo_4_2024_web_Part10.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "12b478807d7da5223bf078fbac288256add5f0cd3f625ac49e2402d25dd042d0",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

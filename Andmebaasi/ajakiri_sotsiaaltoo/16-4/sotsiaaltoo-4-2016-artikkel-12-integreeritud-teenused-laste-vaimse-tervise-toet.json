@@ -1,0 +1,100 @@
+{
+  "docId": "sotsiaaltoo-4-2016",
+  "articleId": "sotsiaaltoo-4-2016-artikkel-12-integreeritud-teenused-laste-vaimse-tervise-toet",
+  "title": "Integreeritud teenused laste vaimse tervise toetamiseks: ennetus, varajane märkamine ja õigeaegne abi",
+  "authors": [
+    "Tiina Tõemets"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2016",
+  "section": "Abi võimalused / praktika",
+  "pageRange": "66-70",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi projektijuht Tiina Tõemets tutvustab ministeeriumis valminud integreeritud teenuste kontseptsiooni laste vaimse tervise toetamiseks, mis valmis Norra toetusel programmi „Rahvatervis” raames. Ta nimetab kolme varajast riskitegurit – pikaajaline stress, tähelepanu defitsiit ning vaesus ja kehvad kasvutingimused – ning tõenduspõhiseid sekkumisi „Circle of Security”, „Imelised aastad”, MDFT-pereteraapia, KiVa ja VEPA. Eesti oludele kohandatakse hindamisvahendeid M-CHAT-R/F, PSOC, KIDSCREEN-52 ja FFSS; laste vaimse tervise kabinette katsetati Põlva, Võru ja Valga maakonnas.",
+  "tags": [
+    "laste vaimne tervis",
+    "ennetus",
+    "integreeritud teenused",
+    "tõenduspõhised programmid",
+    "hindamisvahendid",
+    "sotsiaalministeerium"
+  ],
+  "source_type": "file",
+  "source_path": "2016_4_artikkel_12_integreeritud_teenused_laste_vaimse_tervise_toetamis.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-12-integreeritud-teenused-laste-vaimse-tervise-toet",
+  "source_sha256": "0c6cbf6d7020ddac88b0ccce656cdf21489e0c5360a8f02b9f588acb12b76943",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-12-integreeritud-teenused-laste-vaimse-tervise-toet",
+    "previous_source_path": "2016_4_artikkel_12_integreeritud_teenused_laste_vaimse_tervise_toetamis.txt",
+    "previous_source_original_path": "4-2016.pdf",
+    "reference_stored_source_sha256": "95d1fa8e800068a6985f1a3dfdf52433417bf5170035e4e4adc784acb4ba8519",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf",
+      "source_sha256": "0f07da03ffde36588435e96f8dda0f52a8140fbf9cc4201bb95e85b594e03fc9",
+      "pdf_start_page": 68,
+      "pdf_end_page": 72,
+      "printed_page_range": "66-71",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 73,
+      "source_regions": [
+        {
+          "source_pdf_page": 68,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 69,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 70,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 71,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 72,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "66-70",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf"
+    },
+    "server_page_range": "66-71"
+  }
+}

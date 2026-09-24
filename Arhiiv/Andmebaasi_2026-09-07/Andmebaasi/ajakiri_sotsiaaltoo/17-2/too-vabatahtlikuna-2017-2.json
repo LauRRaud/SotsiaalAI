@@ -1,0 +1,70 @@
+{
+  "docId": "sotsiaaltoo-2-2017",
+  "articleId": "too-vabatahtlikuna-2017-2",
+  "title": "Töö vabatahtlikuna toetas eneseleidmist",
+  "authors": [
+    "Sandra Sutting"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2017",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "22-23",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Lastekaitse ja sotsiaalpedagoogika magistrandi lugu, milles vabatahtlik töö on eneseleidmise vahend. Kirjeldab gümnaasiumi lõpetamise järgset ebakindlust erialavalikul ja seda, kuidas sotsiaaltöö juures kõnetas võimalus töötada inimestega.",
+  "tags": [
+    "erialavalik",
+    "vabatahtlik töö",
+    "sotsiaalpedagoogika",
+    "lastekaitse"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2-2017_veebi_link_Part10.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2017-too-vabatahtlikuna-2017-2",
+  "source_sha256": "050043004acb5197b0fe88e094a1beb9975cde5f229fb270e605d2549eef240c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2017-too-vabatahtlikuna-2017-2",
+    "previous_source_path": "Sotsiaaltoo_2-2017_veebi_link_Part10.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2-2017_veebi_link_Part10.pdf",
+    "reference_stored_source_sha256": "505a626282cb7f4c69a8d07e115460031211bc0c933d9aed80c6a0a19c29886b",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf",
+      "source_sha256": "609af110244e684ccbb68aea9504f2490fce2852b1e7caa7bedacb621d661a8a",
+      "pdf_start_page": 24,
+      "pdf_end_page": 25,
+      "printed_page_range": "22-23",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 25,
+      "source_regions": [
+        {
+          "source_pdf_page": 24,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 25,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "22-23"
+    },
+    "server_page_range": "22-23"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "source": {
+    "source_id": "praxis_centar_sotsiaalne_innovatsioon_pikaajalises_hoolduses",
+    "title": "Sotsiaalne innovatsioon pikaajalises hoolduses",
+    "url": "https://www.praxis.ee/uploads/2015/10/Sotsiaalne-innovatsioon-pikaajalises-hoolduses.pdf",
+    "normalized_url": "https://www.praxis.ee/uploads/2015/10/Sotsiaalne-innovatsioon-pikaajalises-hoolduses.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Praxis / CentAR",
+    "organization_id": "praxis_centar",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Praxis",
+      "hoolekanne",
+      "sotsiaalteenused",
+      "hooldus",
+      "infomaterjal"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Praxis / CentAR / poliitikauuringud",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 437,
+      "order": 236
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Sotsiaalne innovatsioon pikaajalises hoolduses"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Praxis / CentAR"
+    ],
+    "organizations_seen": [
+      "praxis_centar"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Praxis / CentAR / poliitikauuringud",
+        "line": 437,
+        "order": 236
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.praxis.ee/uploads/2015/10/Sotsiaalne-innovatsioon-pikaajalises-hoolduses.pdf"
+  },
+  "final_url": "https://www.praxis.ee/uploads/2015/10/Sotsiaalne-innovatsioon-pikaajalises-hoolduses.pdf",
+  "redirects": [],
+  "sha256": "97ccc644ad76c201be085385e55fbb49f6f12507522c80ae80d21bb9b8ee0d27",
+  "bytes": 740480,
+  "downloaded_at": "2026-08-14T08:00:47.641Z"
+}

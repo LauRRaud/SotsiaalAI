@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-2-2022",
+  "articleId": "liikumispuudega-naiste-raseduse-sunnituse-ja-sunnitusjargse-aja-kogemused-ning-valjakutsed-2022-2",
+  "title": "Liikumispuudega naiste raseduse, sünnituse ja sünnitusjärgse aja kogemused ning väljakutsed",
+  "authors": [
+    "Marika Merits",
+    "Kadi Lubi",
+    "Anneliis Aavik"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2022",
+  "section": "Eelretsenseeritud artikkel",
+  "pageRange": "79-89",
+  "pdf_start_page": 1,
+  "pdf_end_page": 11,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kvalitatiivne uuring liikumispuudega naiste raseduse, sünnituse ja sünnitusjärgse aja kogemustest. Kolme naise süvaintervjuude põhjal kirjeldatakse nii füüsilisi kui ka emotsionaalseid väljakutseid, tervishoiuteenustele ja -hoonetele ligipääsetavuse probleeme, spetsialistide hoiakuid ning tugivõrgustiku rolli. Autorid toovad esile vajaduse personaalsete kohanduste, abivahendite ja teenuste järele ning osutavad tegevusterapeutide potentsiaalsele rollile tervishoiu meeskondades. Artikkel rõhutab, et liikumispuudega naiste emadus on inimõigus, mille toetamiseks tuleb vähendada nii füüsilise kui ka sotsiaalse keskkonna tõkkeid.",
+  "tags": [
+    "liikumispuue",
+    "emadus",
+    "rasedus",
+    "sünnitus",
+    "sünnitusjärgne aeg",
+    "ligipääsetavus",
+    "tegevusteraapia",
+    "inimõigused"
+  ],
+  "source_type": "file",
+  "source_path": "2022_2_artikkel_14_liikumispuudega_naised.pdf",
+  "document_id": "sotsiaaltoo-2-2022-liikumispuudega-naiste-raseduse-sunnituse-ja-sunnitusjargse-aja-kogemused-ning-valjakutsed-2022-2",
+  "source_format": "pdf",
+  "source_sha256": "ea3a3959cebc7aada62902c35ff308646ebd21e2f74e228d1f3b1a21056775f6",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2022-liikumispuudega-naiste-raseduse-sunnituse-ja-sunnitusjargse-aja-kogemused-ning-valjakutsed-2022-2",
+    "previous_source_path": "2022_2_artikkel_14_liikumispuudega_naised.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ea3a3959cebc7aada62902c35ff308646ebd21e2f74e228d1f3b1a21056775f6",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

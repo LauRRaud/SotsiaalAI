@@ -1,0 +1,150 @@
+{
+  "source_path": "sotsiaalkindlustusamet_teadlikkus_tugiteenuste_olemasolust_pere_ja_seksuaalvagivall.pdf",
+  "source_format": "pdf",
+  "sha256": "e87ed91a1d423e72f1da226d88827d405c8d9ec0efedf5273312933eab12ecf4",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/sotsiaalkindlustusamet_teadlikkus_tugiteenuste_olemasolust_pere_ja_seksuaalvagivall.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "sotsiaalkindlustusamet_teadlikkus_tugiteenuste_olemasolust_pere_ja_seksuaalvagivall",
+          "title": "Teadlikkus tugiteenuste olemasolust pere- ja seksuaalvägivalla ning inimkaubanduse ohvritele",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Teadlikkus%20tugiteenuste%20olemasolust%20pere-%20ja%20seksuaalv%C3%A4givalla%20ning%20inimkaubanduse%20ohvritele.pdf",
+          "normalized_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Teadlikkus tugiteenuste olemasolust pere- ja seksuaalvägivalla ning inimkaubanduse ohvritele.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "Sotsiaalkindlustusamet",
+          "organization_id": "sotsiaalkindlustusamet",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Sotsiaalkindlustusamet",
+            "lapsed ja pered",
+            "lapsevanem",
+            "pere",
+            "vanemlus",
+            "ohvriabi",
+            "lähisuhtevägivald",
+            "perevägivald",
+            "seksuaalvägivald",
+            "seksuaalne ahistamine",
+            "inimkaubandus",
+            "infomaterjal",
+            "SKA",
+            "vägivald"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "SKA",
+            "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+            "heading_4": null,
+            "line": 497,
+            "order": 264
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Teadlikkus tugiteenuste olemasolust pere- ja seksuaalvägivalla ning inimkaubanduse ohvritele"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Sotsiaalkindlustusamet"
+          ],
+          "organizations_seen": [
+            "sotsiaalkindlustusamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "SKA",
+              "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+              "line": 497,
+              "order": 264
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Teadlikkus tugiteenuste olemasolust pere- ja seksuaalvägivalla ning inimkaubanduse ohvritele.pdf"
+        },
+        "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Teadlikkus%20tugiteenuste%20olemasolust%20pere-%20ja%20seksuaalv%C3%A4givalla%20ning%20inimkaubanduse%20ohvritele.pdf",
+        "redirects": [],
+        "sha256": "e87ed91a1d423e72f1da226d88827d405c8d9ec0efedf5273312933eab12ecf4",
+        "bytes": 1226508,
+        "downloaded_at": "2026-08-14T08:00:52.894Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "sotsiaalkindlustusamet_teadlikkus_tugiteenuste_olemasolust_pere_ja_seksuaalvagivall",
+      "metadata": {
+        "createdAt": "2026-06-12T03:47:53.104518+00:00",
+        "type": "FILE",
+        "fileName": "Teadlikkus tugiteenuste olemasolust pere- ja seksuaalvägivalla ning inimkaubanduse ohvritele.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:47:53.034622+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/f0b8d68bef7d/Teadlikkus tugiteenuste olemasolust pere- ja seksuaalvägivalla ning inimkaubanduse ohvritele.pdf",
+        "title": "Teadlikkus tugiteenuste olemasolust pere- ja seksuaalvägivalla ning inimkaubanduse ohvritele",
+        "description": "Source master headings: SKA; Ohvriabi, MARAC, naiste tugikeskused",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2024,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–12",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "sotsiaalkindlustusamet_teadlikkus_tugiteenuste_olemasolust_pere_ja_seksuaalvagivall",
+        "document_id": "sotsiaalkindlustusamet_teadlikkus_tugiteenuste_olemasolust_pere_ja_seksuaalvagivall",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "e2f6af2537e20e9a013bcad291cd1afafec1879d15ac89704d6481eae91cae1c",
+        "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Teadlikkus%20tugiteenuste%20olemasolust%20pere-%20ja%20seksuaalv%C3%A4givalla%20ning%20inimkaubanduse%20ohvritele.pdf",
+        "url_canonical": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Teadlikkus tugiteenuste olemasolust pere- ja seksuaalvägivalla ning inimkaubanduse ohvritele.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "sotsiaalkindlustusamet_teadlikkus_tugiteenuste_olemasolust_pere_ja_seksuaalvagivall",
+        "updatedAt": "2026-06-12T03:47:53.104542+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "municipality": "Lääne-Harju vald",
+  "municipality_id": "laane_harju_vald",
+  "county": "Harjumaa",
+  "checkedAt": "2026-04-29",
+  "docId": "kov-laane-harju-vald",
+  "document_id": "kov-laane-harju-vald",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "status": "ingest_ready",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "expected_rt_docId": "kov-rt-laane-harju-vald",
+  "coverage": {
+    "services": 25,
+    "benefits": 15,
+    "resources": 9,
+    "contacts": 16,
+    "forms": 15,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "laane_harju_vald",
+    "source_register_file": "laane-harju-vald.sources.json",
+    "service_benefit_resource_items": 49,
+    "items_with_source_keys": 49,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 32,
+    "items_without_related_forms": 17,
+    "items_with_related_contacts": 2,
+    "items_without_related_contacts": 47,
+    "form_sources": 3,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "6 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Paketti täiendati Lääne-Harju valla ametliku veebilehe sotsiaal-, pere-, eakate ja erivajadusega inimeste, teenuste, toetuste, kontaktide ning vormide harude põhjal.",
+    "Õigusakte ja Riigi Teataja allikaid ei kasutatud allikatena; õiguslik alus peab olema eraldi RT/legal kihis."
+  ],
+  "unresolvedIssues": [
+    "Mitme DOC/DOCX/RTF vormi täpne allalaaditav faili URL ei olnud stabiilselt eraldatav; vormid lisati form itemitena selle KOV lehe allika kaudu, kus fail on ametlikult nimetatud.",
+    "KOV veebiteksti ekstraktsioon varjestas osa laste heaolu spetsialistide ja mõnede kontaktide e-posti aadresse; nende kontaktide e-posti väli jäeti nulliks ning ja roll säilitati.",
+    "Mõned teenused on KOV veebis esitatud koondlehe sees, mitte eraldi detail-URL-il; selliste itemite officialUrl viitab vastavale ametlikule koondlehele.",
+    "Muud vajaduspõhised sotsiaalteenused (viipekeeletõlk, häirenupp, toiduabi, erialaspetsialisti nõustamine, kriisiabi, sõltuvusravi) on KOV lehel nimetatud, kuid praktilised tingimused ja taotlemise üksikasjad on napid.",
+    "Välised teenusepakkujad, nagu Keila Teraapiakeskus OÜ, MTÜ Toetus ja Benita Kodu AS, jäid kontrollimata väljaspool KOV lehte; pakett kajastab ainult KOV veebilehel avaldatud infot.",
+    "Rahvusvahelise ja ajutise kaitse saanute tugiisikuteenuse menüüviide viitab välisele ressursile ja selle detailne praktiline info jäi KOV veebikihis napiks.",
+    "SPOKU iseteeninduskeskkonna otselingid on KOV lehtedel nimetatud, kuid autentimist nõudvaid vorme ei kontrollitud sisuliselt."
+  ],
+  "RT_CANDIDATES_FOR_SEPARATE_MANIFEST": [
+    "Sotsiaalhoolekande seadus",
+    "Sotsiaalhoolekandelise abi andmise kord Lääne-Harju vallas",
+    "Puuetega inimeste eluaseme füüsilise kohandamise teenuse taotlemise ja määramise kord",
+    "Sotsiaaltoetuste piirmäärad"
+  ],
+  "municipality_name": "Lääne-Harju vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "laane-harju-vald.sources.json",
+  "sourceCount": 40,
+  "counts": {
+    "services": 25,
+    "benefits": 15,
+    "resources": 9,
+    "contacts": 16,
+    "forms": 15,
+    "regulations": 0
+  },
+  "warnings": [
+    "6 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

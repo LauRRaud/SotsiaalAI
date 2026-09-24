@@ -1,0 +1,45 @@
+{
+  "docId": "sotsiaaltoo-3-2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2024",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "kuidas-riik-toetab-dementsusega-inimesi-ja-nende-lahedasi-2024-3",
+  "title": "Kuidas riik toetab dementsusega inimesi ja nende lähedasi?",
+  "authors": [
+    "Maarja Seppel"
+  ],
+  "section": "Korraldus",
+  "pageRange": "8-13",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "description": "Sotsiaalministeeriumi spetsialistide ülevaade sellest, kuidas riik toetab dementsusega inimesi ja nende lähedasi. Artikkel kirjeldab dementsuse kompetentsikeskuse, hoolekandeasutuste koolitusprogrammide ja omastehoolduse infopunkti rolli, EL struktuurivahenditest rahastatavaid teenusearendusi, hooldereformi ja uute kvaliteedinõuete sisu, eestkostekorralduse muutmise plaane, tehnoloogia kasutuselevõtu toetamist ning tervise- ja sotsiaalvaldkonna lõimimise samme, sh raviteekondade arendamist ja geriaatria ning palliatiivravi tugevdamist.",
+  "tags": [
+    "dementsus",
+    "riiklik tugi",
+    "sotsiaalteenused",
+    "pikaajaline hooldus",
+    "hooldereform",
+    "dementsuse kompetentsikeskus",
+    "omastehooldus",
+    "innovatsioon sotsiaalvaldkonnas",
+    "tervise ja sotsiaali lõimimine",
+    "geriaatria",
+    "palliatiivravi"
+  ],
+  "source_path": "sotsiaaltoo_3_2024_web_Part4.pdf",
+  "document_id": "sotsiaaltoo-3-2024-kuidas-riik-toetab-dementsusega-inimesi-ja-nende-lahedasi-2024-3",
+  "source_format": "pdf",
+  "source_sha256": "737c3f900f0eecc887f857d6f79fcb0ee70e3e1a30e128e867031bb85b837188",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2024-kuidas-riik-toetab-dementsusega-inimesi-ja-nende-lahedasi-2024-3",
+    "previous_source_path": "sotsiaaltoo_3_2024_web_Part4.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "737c3f900f0eecc887f857d6f79fcb0ee70e3e1a30e128e867031bb85b837188",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

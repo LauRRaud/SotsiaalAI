@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-4-2020",
+  "articleId": "jane-addams-ja-sotsiaalne-settlement-2020-4",
+  "title": "Jane Addams ja sotsiaalne settlement",
+  "authors": [
+    "Marju Selg"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2020",
+  "section": "Sotsiaaltöö ajalugu",
+  "pageRange": "90-96",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ajalooline ülevaade Jane Addamsi elust, settlement-liikumisest ja Hull House'i kujunemisest. Artikkel käsitleb Addamsi panust sotsiaaltöö arengusse, tema rolli rahuliikumistes, sotsiaalreformides ja sotsioloogia kujunemises. Samuti avatakse settlement-majade eesmärke, naabruskonnatöö põhimõtteid ning ajaloolisi mõjureid, mis kujundasid nii Ameerika sotsiaaltööd kui laiemalt sotsiaalteaduslikku mõtlemist.",
+  "tags": [
+    "Jane Addams",
+    "settlement-liikumine",
+    "Hull House",
+    "sotsiaaltöö ajalugu",
+    "sotsiaalreform",
+    "naabruskonnatöö",
+    "ökosotsiaalne lähenemine",
+    "sotsioloogia ajalugu"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2020_web_link_Part17.pdf",
+  "document_id": "sotsiaaltoo-4-2020-jane-addams-ja-sotsiaalne-settlement-2020-4",
+  "source_format": "pdf",
+  "source_sha256": "9bb71e02757c0bfa52dead7eb104489b87f7a34c34812d592fca281d7aed3777",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2020-jane-addams-ja-sotsiaalne-settlement-2020-4",
+    "previous_source_path": "Sotsiaaltoo_4_2020_web_link_Part17.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "9bb71e02757c0bfa52dead7eb104489b87f7a34c34812d592fca281d7aed3777",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "source": {
+    "source_id": "peaasi_ee_vaimse_tervise_hoidmine_8_12_klass",
+    "title": "Vaimse tervise hoidmine (8.–12. klass)",
+    "url": "https://peaasi.ee/wp-content/uploads/2018/11/Tunnikava-8-12kl-vaimne-tervis.pdf",
+    "normalized_url": "https://peaasi.ee/wp-content/uploads/2018/11/Tunnikava-8-12kl-vaimne-tervis.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Peaasi.ee",
+    "organization_id": "peaasi_ee",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Peaasi.ee",
+      "infomaterjal",
+      "vaimne tervis",
+      "psüühiline heaolu",
+      "nõustamine"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Laste ja noorte vaimne tervis / kool / pere ristumiskoht",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 419,
+      "order": 228
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Vaimse tervise hoidmine (8.–12. klass)"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Peaasi.ee"
+    ],
+    "organizations_seen": [
+      "peaasi_ee"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Laste ja noorte vaimne tervis / kool / pere ristumiskoht",
+        "line": 419,
+        "order": 228
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://peaasi.ee/wp-content/uploads/2018/11/Tunnikava-8-12kl-vaimne-tervis.pdf"
+  },
+  "final_url": "https://peaasi.ee/wp-content/uploads/2018/11/Tunnikava-8-12kl-vaimne-tervis.pdf",
+  "redirects": [],
+  "sha256": "d510f9a01618e45a48e3def2df62a588613592ea78278fee891e5c11fa9a1a71",
+  "bytes": 265889,
+  "downloaded_at": "2026-08-14T08:00:47.191Z"
+}

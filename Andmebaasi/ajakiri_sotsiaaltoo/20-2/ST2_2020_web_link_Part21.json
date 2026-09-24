@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2020",
+  "articleId": "lapse-haal-lastekaitsetoos-laste-osalemiskogemused-2020-2",
+  "title": "Lapse hääl lastekaitsetöös – laste osalemiskogemused",
+  "authors": [
+    "Kadi Lauri",
+    "Karmen Toros",
+    "Rafaela Lehtme"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2020",
+  "section": "Uurimus",
+  "pageRange": "79-85",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kvalitatiivne uurimus käsitleb Eesti laste kogemusi oma osalusest lastekaitsetöö hindamisprotsessis. Tulemused osutavad, et lapsi kaasatakse endiselt ebapiisavalt ning usaldusliku, lapsekeskse suhtluse tugevdamine on lastekaitsetöös hädavajalik.",
+  "tags": [
+    "lastekaitse",
+    "laste osalus",
+    "lapse õigused",
+    "lapse hael",
+    "hindamisprotsess",
+    "uurimus"
+  ],
+  "source_type": "file",
+  "source_path": "ST2_2020_web_link_Part21.pdf",
+  "document_id": "sotsiaaltoo-2-2020-lapse-haal-lastekaitsetoos-laste-osalemiskogemused-2020-2",
+  "source_format": "pdf",
+  "source_sha256": "764f5abc3d4f3cdcba819913ae499950aa41895f27118a1ef02267ceaf82af93",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2020-lapse-haal-lastekaitsetoos-laste-osalemiskogemused-2020-2",
+    "previous_source_path": "ST2_2020_web_link_Part21.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "764f5abc3d4f3cdcba819913ae499950aa41895f27118a1ef02267ceaf82af93",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "document_count": 16,
+  "documents": [
+    {
+      "doc_id": "sotsiaalkindlustusamet_seksuaalivakivallan_kriisikeskukset_fin",
+      "document_status": 200,
+      "chunks_status": 200,
+      "source_status": 200,
+      "chunks": 0,
+      "source_bytes": 1123389,
+      "source_sha256": "a4c1136166e574a1944345d3eb2f657f8ec8f2ab60c17389abc969095c64fa1f",
+      "source_head": "%PDF-",
+      "content_type": "application/pdf"
+    },
+    {
+      "doc_id": "sotsiaalkindlustusamet_seksuaalsest_ahistamisest_vaba_ooelu_juhend",
+      "document_status": 200,
+      "chunks_status": 200,
+      "source_status": 200,
+      "chunks": 0,
+      "source_bytes": 2917669,
+      "source_sha256": "e8437a96b20dd1368417cecc5b0ff63ac7ed29758cac6f0b838a427e4c940b56",
+      "source_head": "%PDF-",
+      "content_type": "application/pdf"
+    },
+    {
+      "doc_id": "sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est",
+      "document_status": 200,
+      "chunks_status": 200,
+      "source_status": 200,
+      "chunks": 0,
+      "source_bytes": 1091480,
+      "source_sha256": "72bcb2ccd145ef6db931f20ecef8fab002e3c9c5e8481a6464ea6626648a9a49",
+      "source_head": "%PDF-",
+      "content_type": "application/pdf"
+    },
+    {
+      "doc_id": "sotsiaalkindlustusamet_sexual_assault_crisis_centre_eng",
+      "document_status": 200,
+      "chunks_status": 200,
+      "source_status": 200,
+      "chunks": 0,
+      "source_bytes": 1143725,
+      "source_sha256": "e73e0a6402d91939d24a3733b5c9259d04b971065a48550a1f54181436e0631a",
+      "source_head": "%PDF-",
+      "content_type": "application/pdf"
+    },
+    {
+      "doc_id": "tarkvanem_tooleht_rahunemispaus",
+      "document_status": 200,
+      "chunks_status": 200,
+      "source_status": 200,
+      "chunks": 0,
+      "source_bytes": 2026443,
+      "source_sha256": "5ad051c5e5dbee8694f6d9fa6c4b97889c2f33519fffaed6d618bdcbe3982674",
+      "source_head": "%PDF-",
+      "content_type": "application/pdf"
+    },
+    {
+      "doc_id": "sotsiaalkindlustusamet_rus",
+      "document_status": 200,
+      "chunks_status": 200,
+      "source_status": 200,
+      "chunks": 0,
+      "source_bytes": 1180625,
+      "source_sha256": "90a2e58be2883a1ea9621db0ba6967d6c696ca48444bde9f063e91ba84cfb645",
+      "source_head": "%PDF-",
+      "content_type": "application/pdf"
+    },
+    {
+      "doc_id": "sotsiaalkindlustusamet_ua",
+      "document_status": 200,
+      "chunks_status": 200,
+      "source_status": 200,
+      "chunks": 0,
+      "source_bytes": 1152035,
+      "source_sha256": "e9979fb82e71647a9ea1f51971236121b3f38413773b2f8c82fa56c7bb8944a1",
+      "source_head": "%PDF-",
+      "content_type": "application/pdf"
+    },
+    {
+      "doc_id": "paasteamet_hoolekande_ja_tervishoiuasutuste_tuleohutus_pdf",
+      "document_status": 200,
+      "chunks_status": 200,
+      "source_status": 200,
+      "chunks": 35,
+      "source_bytes": 1378497,
+      "source_sha256": "3eab944a784e5260f636cff5778f08f6be3623fe970cbfee72536cf794dbef8a",
+      "source_head": "%PDF-",
+      "content_type": "application/pdf"
+    },
+    {
+      "doc_id": "paasteamet-hoolekande-ja-tervishoiuasutuste-tuleohutus",
+      "document_status": 200,
+      "chunks_status": 200,
+      "source_status": 200,
+      "chunks": 35,
+      "source_bytes": 1378497,
+      "source_sha256": "3eab944a784e5260f636cff5778f08f6be3623fe970cbfee72536cf794dbef8a",
+      "source_head": "%PDF-",
+      "content_type": "application/pdf"
+    },
+    {
+      "doc_id": "harno_opitulemuste_vahendamine_asendamine_ja_kohustusliku_oppeaine",
+      "document_status": 200,
+      "chunks_status": 200,
+      "source_status": 200,
+      "chunks": 69,
+      "source_bytes": 1413642,
+      "source_sha256": "3c36e2568123e883308855fa62047399b863006d0745db2dcaaab6200c21d172",
+      "source_head": "%PDF-",
+      "content_type": "application/pdf"
+    },
+    {
+      "doc_id": "harno-opitulemuste-vahendamine-asendamine-ja-oppeainest-vabastamine",
+      "document_status": 200,
+      "chunks_status": 200,
+      "source_status": 200,
+      "chunks": 69,
+      "source_bytes": 1413642,
+      "source_sha256": "3c36e2568123e883308855fa62047399b863006d0745db2dcaaab6200c21d172",
+      "source_head": "%PDF-",
+      "content_type": "application/pdf"
+    },
+    {
+      "doc_id": "peaasi_ee_koolilaste_ja_noorte_vaimne_tervis",
+      "document_status": 200,
+      "chunks_status": 200,
+      "source_status": 200,
+      "chunks": 32,
+      "source_bytes": 443383,
+      "source_sha256": "9fc1e42ef514df9036bef7ca14c97c766ca7720d512cb86e922fad94a6fc5667",
+      "source_head": "%PDF-",
+      "content_type": "application/pdf"
+    },
+    {
+      "doc_id": "peaasi-ee-koolilaste-ja-noorte-vaimne-tervis",
+      "document_status": 200,
+      "chunks_status": 200,
+      "source_status": 200,
+      "chunks": 32,
+      "source_bytes": 443383,
+      "source_sha256": "9fc1e42ef514df9036bef7ca14c97c766ca7720d512cb86e922fad94a6fc5667",
+      "source_head": "%PDF-",
+      "content_type": "application/pdf"
+    },
+    {
+      "doc_id": "ska-seksuaalvagivalla-kriisiabikeskusi-tutvustav-voldik-est",
+      "document_status": 200,
+      "chunks_status": 200,
+      "source_status": 200,
+      "chunks": 0,
+      "source_bytes": 1091480,
+      "source_sha256": "72bcb2ccd145ef6db931f20ecef8fab002e3c9c5e8481a6464ea6626648a9a49",
+      "source_head": "%PDF-",
+      "content_type": "application/pdf"
+    },
+    {
+      "doc_id": "tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega",
+      "document_status": 200,
+      "chunks_status": 200,
+      "source_status": 200,
+      "chunks": 2,
+      "source_bytes": 104285,
+      "source_sha256": "e45924e05c1c71324f8def556ba3fe5db00e93a6baceb4fd05698e3dca0319a2",
+      "source_head": "%PDF-",
+      "content_type": "application/pdf"
+    },
+    {
+      "doc_id": "tarkvanem-tooleht-abikusimused-vestluseks-algkoolilapsega",
+      "document_status": 200,
+      "chunks_status": 200,
+      "source_status": 200,
+      "chunks": 2,
+      "source_bytes": 104285,
+      "source_sha256": "e45924e05c1c71324f8def556ba3fe5db00e93a6baceb4fd05698e3dca0319a2",
+      "source_head": "%PDF-",
+      "content_type": "application/pdf"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2020",
+  "articleId": "abistavad-digilahendused-tuleviku-hooldustoo-voti-2020-2",
+  "title": "Abistavad digilahendused – tuleviku hooldustöö võti",
+  "authors": [
+    "Terje Bachmann"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2020",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "97-101",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel annab ülevaate digilahendustest, mida saab kasutada hoolekandeasutustes eakate ja mäluhäiretega inimeste turvalisuse, suhtlemise ja hooldustöö korralduse toetamiseks. Eraldi vaadeldakse tehnoloogiate praktilisi kasutusvõimalusi ning nende mõju hooldajate töökoormusele ja teenuse kvaliteedile.",
+  "tags": [
+    "digilahendused",
+    "hooldustöö",
+    "hoolekandeasutused",
+    "abitehnoloogia",
+    "dementsus",
+    "turvalisus"
+  ],
+  "source_type": "file",
+  "source_path": "ST2_2020_web_link_Part24.pdf",
+  "document_id": "sotsiaaltoo-2-2020-abistavad-digilahendused-tuleviku-hooldustoo-voti-2020-2",
+  "source_format": "pdf",
+  "source_sha256": "87dcec04cbd62247e312dea0dcfad7095332900a8919ef137bb85872c19604ac",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2020-abistavad-digilahendused-tuleviku-hooldustoo-voti-2020-2",
+    "previous_source_path": "ST2_2020_web_link_Part24.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "87dcec04cbd62247e312dea0dcfad7095332900a8919ef137bb85872c19604ac",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

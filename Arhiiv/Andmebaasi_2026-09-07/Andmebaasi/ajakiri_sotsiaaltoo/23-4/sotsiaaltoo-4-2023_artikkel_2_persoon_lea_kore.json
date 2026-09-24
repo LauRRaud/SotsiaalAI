@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-4-2023",
+  "articleId": "lea-kore-haigla-sotsiaaltootaja-seob-sotsiaal-ja-tervishoiuvaldkonda-2023-4",
+  "title": "Lea Kõre: „Haigla sotsiaaltöötaja seob sotsiaal- ja tervishoiuvaldkonda“",
+  "authors": [
+    "Kadri Kuulpak"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2023",
+  "section": "Persoon",
+  "pageRange": "3-8",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu tutvustab Lääne-Tallinna keskhaigla õendusabikliiniku sotsiaaltöötajat Lea Kõret, kelle töö keskmes\non keeruka tervise- ja sotsiaalabivajadusega patsiendid. Intervjuus räägitakse haigla sotsiaaltöötaja rollist\nvahendajana meditsiini- ja sotsiaalvaldkonna vahel, andmevahetuse ja andmekaitsega seotud kitsaskohtadest ning\nsuurenevast hoolduskoormusest seoses eakate ja ravikindlustamata patsientidega. Lea Kõre rõhutab põhjaliku\nhindamise, isikupõhise koostöö ning meeskonnatöö tähtsust olukorras, kus süsteemi killustatus toob kaasa inimeste\n„loksutamise“ haigla, kodu ja hooldekodu vahel.",
+  "tags": [
+    "haigla sotsiaaltöö",
+    "Lääne-Tallinna keskhaigla",
+    "eakad",
+    "hooldereform",
+    "ravikindlustamata patsiendid",
+    "andmekaitse ja andmevahetus",
+    "hooldekodu",
+    "koostöö omavalitsusega"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2023_web_Part3.pdf",
+  "document_id": "sotsiaaltoo-4-2023-lea-kore-haigla-sotsiaaltootaja-seob-sotsiaal-ja-tervishoiuvaldkonda-2023-4",
+  "source_format": "pdf",
+  "source_sha256": "bc8f4bd018f7de84196d453fa381faf45d1e770ab6020dcd5a1255bd6b47b4f8",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2023-lea-kore-haigla-sotsiaaltootaja-seob-sotsiaal-ja-tervishoiuvaldkonda-2023-4",
+    "previous_source_path": "Sotsiaaltoo_4_2023_web_Part3.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "bc8f4bd018f7de84196d453fa381faf45d1e770ab6020dcd5a1255bd6b47b4f8",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "docId": "sotsiaaltoo-1-2017",
+  "articleId": "sirotkina-kommentaar-oska-2017-1",
+  "title": "Tööturg vajab tarku valdkonna suunajaid ja visiooniloojaid",
+  "authors": [
+    "Reeli Sirotkina"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2017",
+  "section": "Kommentaar",
+  "pageRange": "76-77",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Reeli Sirotkina kritiseerib OSKA raportit mõistekasutuse pärast: raport tarvitab sotsiaaltööd katusmõistena, mis hõlmab ka kõrgharidust mittenõudvaid ameteid nagu hooldustöötaja ja tegevusjuhendaja, ning läheb sellega vastuollu IFSW 2014. aasta ülemaailmse definitsiooniga sotsiaaltööst kui praktikal põhinevast professioonist ja akadeemilisest teadusalast. Järeldus, et tulevikus vajatakse rohkem hooldustöötajaid, on tema hinnangul vaid pool tõest, sest tööturg vajab ka magistrikraadiga suunajaid. Ta vaidlustab käsituse, et vananemine tähendab automaatselt rohkem hooldustöötajaid.",
+  "tags": [
+    "kommentaar",
+    "OSKA",
+    "sotsiaaltöö definitsioon",
+    "professioon",
+    "kõrgharidus",
+    "eakad"
+  ],
+  "source_type": "file",
+  "source_path": "2017_1_Part17.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2017-sirotkina-kommentaar-oska-2017-1",
+  "source_sha256": "b807563626c66f0baa13433b7071b6f985633e28b54126732deb9ab3ff86019d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2017-sirotkina-kommentaar-oska-2017-1",
+    "previous_source_path": "2017_1_Part17.txt",
+    "previous_source_original_path": "2017_1.pdf",
+    "reference_stored_source_sha256": "b70d400980aba572515a6fad7d158a2e8be2093d1934e95f937287f1ff6d488d",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf",
+      "source_sha256": "335f81467a555f12c55d0e8bf60122a178c5267567cf79607448a5d987629e50",
+      "pdf_start_page": 78,
+      "pdf_end_page": 79,
+      "printed_page_range": "76-77",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 79,
+      "source_regions": [
+        {
+          "source_pdf_page": 78,
+          "bounds": [
+            0,
+            169.676,
+            496,
+            709
+          ]
+        },
+        {
+          "source_pdf_page": 79,
+          "bounds": [
+            0,
+            0,
+            496,
+            379.924
+          ]
+        }
+      ],
+      "effective_printed_page_range": "76-77"
+    },
+    "server_page_range": "76-77"
+  }
+}

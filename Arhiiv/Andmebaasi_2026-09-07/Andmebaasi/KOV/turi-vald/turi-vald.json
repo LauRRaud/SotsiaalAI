@@ -1,0 +1,3264 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-turi-vald",
+  "document_id": "kov-turi-vald",
+  "municipality": "Türi vald",
+  "municipality_id": "turi_vald",
+  "county": "Järvamaa",
+  "checkedAt": "2026-04-30",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "turi_vald_contact_katri_meltsas",
+      "canonical_item_id": "turi_vald:contact:katri_meltsas",
+      "itemType": "contact",
+      "name": "Katri Meltsas",
+      "role": "vallavalitsuse liige",
+      "department": "Vallavalitsus",
+      "address": "Hariduse tänav 3, Türi linn, 72213, Türi vald",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_contact_katri_meltsas",
+      "document_id": "turi_vald_contact_katri_meltsas",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "0c9fb97cb7908af260480e8793977285b1fafb8a90765af416f56450236d8095",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_contact_astrit_fedorits",
+      "canonical_item_id": "turi_vald:contact:astrit_fedorits",
+      "itemType": "contact",
+      "name": "Astrit Fedoritš",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Hariduse tänav 3, Türi linn, 72213, Türi vald",
+      "sourceKeys": [
+        "sotsiaalteenused_page",
+        "sotsiaaltoetused_page"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "sotsiaalteenused_page",
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_contact_astrit_fedorits",
+      "document_id": "turi_vald_contact_astrit_fedorits",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "1d50c0c01c195637769fadc2fc47996b2dbf3ad08dac31a821a63dc2ba6a2f0c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_contact_kaja_laanest",
+      "canonical_item_id": "turi_vald:contact:kaja_laanest",
+      "itemType": "contact",
+      "name": "Kaja Laanest",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Hariduse tänav 3, Türi linn, 72213, Türi vald",
+      "sourceKeys": [
+        "lapse_sund_page",
+        "sotsiaalteenused_page",
+        "sotsiaaltoetused_page"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "lapse_sund_page",
+        "sotsiaalteenused_page",
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_contact_kaja_laanest",
+      "document_id": "turi_vald_contact_kaja_laanest",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "5a87e8c730708954dbcbae392792d90f9a3e1361ed0a099349e17e3ff6baa289",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_contact_eva_kaukver",
+      "canonical_item_id": "turi_vald:contact:eva_kaukver",
+      "itemType": "contact",
+      "name": "Eva Kaukver",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Hariduse tänav 3, Türi linn, 72213, Türi vald",
+      "sourceKeys": [
+        "sotsiaalteenused_page",
+        "sotsiaaltoetused_page"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "sotsiaalteenused_page",
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_contact_eva_kaukver",
+      "document_id": "turi_vald_contact_eva_kaukver",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "acf41f443b13393cc77c08449d1c1ac9d5449ac3e5036ca95ff6150be744a1fe",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_contact_jelena_plakk",
+      "canonical_item_id": "turi_vald:contact:jelena_plakk",
+      "itemType": "contact",
+      "name": "Jelena Plakk",
+      "role": "lastekaitsespetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Hariduse tänav 3, Türi linn, 72213, Türi vald",
+      "sourceKeys": [
+        "abivajav_laps_page",
+        "asendus_jarelhooldus_page",
+        "erivajadusega_laps_page",
+        "lastekaitse_page"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "abivajav_laps_page",
+        "asendus_jarelhooldus_page",
+        "erivajadusega_laps_page",
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_contact_jelena_plakk",
+      "document_id": "turi_vald_contact_jelena_plakk",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "b828a682d98a6dc1b4a4ac0fc439a13b42ce74c099a8e82e51ece10b21fbaff9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_contact_birgit_jurjens",
+      "canonical_item_id": "turi_vald:contact:birgit_jurjens",
+      "itemType": "contact",
+      "name": "Birgit Jürjens",
+      "role": "noorsootöö spetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "F. J. Wiedemanni 1, 72213 Türi",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_contact_birgit_jurjens",
+      "document_id": "turi_vald_contact_birgit_jurjens",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "0b54e2bb332dcb48551b3cb805b9a93b953346f5ac3608d9d4f2c937b66c7c5d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_contact_mari_tool",
+      "canonical_item_id": "turi_vald:contact:mari_tool",
+      "itemType": "contact",
+      "name": "Mari Tool",
+      "role": "lastekaitse spetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "F. J. Wiedemanni 1, 72213 Türi",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_contact_mari_tool",
+      "document_id": "turi_vald_contact_mari_tool",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "351c03e8d2856b2ba67afeedfca63053f63be9344302dca657ba2bfae03b6faf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_contact_reet_maiste",
+      "canonical_item_id": "turi_vald:contact:reet_maiste",
+      "itemType": "contact",
+      "name": "Reet Maiste",
+      "role": "eestkoste spetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "F. J. Wiedemanni 1, 72213 Türi",
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_contact_reet_maiste",
+      "document_id": "turi_vald_contact_reet_maiste",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "f4c6e28cb106d09b74fc2d2e4d53d8f88009c34b268309173fa6196fb3e4c458",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_service_koduteenus",
+      "canonical_item_id": "turi_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus toetab täisealisi Türi elanikke, kes vajavad igapäevaelus abi, et säilitada turvaline elamine kodus ja parandada elukvaliteeti. Teenus hõlmab tegevusi nagu kütmine, toidu valmistamine, kodu korrashoid ning sisseostude ja ravimite toomine. Taotluse esitamisel tuleb kirjeldada vajaminevad tegevused ja põhjendada, miks perekond ei saa aidata.",
+      "targetGroup": "Täisealised, kes ei tule igapäevatoimingutega iseseisvalt toime",
+      "conditions": "Teenust antakse juhul, kui abivajaja ei saa abi perekonnalt.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          "kontakt sotsiaaltööspetsialistiga"
+        ],
+        "steps": [
+          "Täitke taotlusvorm",
+          "Esitage avaldus vallavalitsusele",
+          "Koostage teenusleping"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "vastavalt teenusele"
+      },
+      "officialUrl": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_eva_kaukver"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "koduteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "koduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_service_koduteenus",
+      "document_id": "turi_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "20a037e37688619ece50752de8b1c0c015f870abe75a643dec9940897129e055",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "turi_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Teenuse eesmärk on aidata täisealisi puudega inimesi igapäevaelus: liikumine, söömine, riietumine, hügieenitoimingud ja kodu korrashoid. Abistaja ei tohi olla lähisugulane ega kooselupartner. Taotluses selgitatakse abivajadus ja võimalik soovitatud abistaja.",
+      "targetGroup": "Täisealised puudega inimesed",
+      "conditions": "Abistaja ei tohi olla perekonnaliige; abivajadus peab olema põhjendatud.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          "kontakt sotsiaaltööspetsialistiga"
+        ],
+        "steps": [
+          "Esitage avaldus ja kirjeldage abivajadust",
+          "Vald aitab leida sobiva abistaja",
+          "Sõlmitakse leping"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "tasuline vastavalt kokkuleppele"
+      },
+      "officialUrl": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_eva_kaukver"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "isiklik_abistaja_teenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "isiklik_abistaja_teenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_service_isikliku_abistaja_teenus",
+      "document_id": "turi_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "298085d76fb6a3e08300acd8d2ae2c51a81f1388dbb1ce9e43177c9b8977788c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_service_eluruumi_tagamise_teenus",
+      "canonical_item_id": "turi_vald:service:eluruumi_tagamise_teenus",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Teenuse raames pakub vald ajutist või alalist eluaset neile, kes ei suuda ise eluaset hankida. Taotlus peab sisaldama põhjendust, pereliikmete ja sissetulekute andmeid ning soovitud perioodi. Üürnik maksab üür ja kommunaalkulud; vald võib lepingu lõpetada, kui maksekohustusi ei täideta.",
+      "targetGroup": "Täisealised, kes ei suuda endale eluaset tagada",
+      "conditions": "Taotleja peab näitama eluasemevajadust ja esitama majandusliku olukorra andmed.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          "kontakt sotsiaaltööspetsialistiga"
+        ],
+        "steps": [
+          "Esitage eluruumi tagamise avaldus",
+          "Vald hindab vajadust",
+          "Sõlmitakse üürileping"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "Üür ja kommunaalkulud vastavalt lepingule"
+      },
+      "officialUrl": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_astrit_fedorits",
+        "turi_vald_contact_kaja_laanest"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "eluruumi_tagamise_teenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "eluruumi_tagamise_teenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_service_eluruumi_tagamise_teenus",
+      "document_id": "turi_vald_service_eluruumi_tagamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "97ba3dde5590b88abd35277aa4effa9b2cc4b44f2359d2bbcb98a4c48aa7dcad",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_service_loimitud_sotsiaalteenus",
+      "canonical_item_id": "turi_vald:service:loimitud_sotsiaalteenus",
+      "itemType": "service",
+      "title": "Lõimitud sotsiaalteenus",
+      "status": "active",
+      "summary": "Teenuse eesmärk on pakkuda täiskasvanutele ja nende peredele kompleksset tuge: nõustamist, tehnilist järelvalvet, abi igapäevastes toimingutes ning transporti tervishoiu- ja sotsiaalteenustele. Teenuse sisu ja maht lepitakse kokku individuaalse hindamise põhjal.",
+      "targetGroup": "Täiskasvanud ja pered, kellel on toimetulekuraskused",
+      "conditions": "Isik peab kuuluma riskirühma ja vajama mitmekülgset abi.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          "kohtumine sotsiaalosakonnaga"
+        ],
+        "steps": [
+          "Esitage taotlus ja kirjeldage olukorda",
+          "Koostatakse individuaalne tegevuskava",
+          "Teenuse osutamine korraldatakse kokkulepitud mahus"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "turi_vald_contact_katri_meltsas",
+        "turi_vald_contact_astrit_fedorits",
+        "turi_vald_contact_kaja_laanest"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "loimitud_sotsiaalteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "loimitud_sotsiaalteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_service_loimitud_sotsiaalteenus",
+      "document_id": "turi_vald_service_loimitud_sotsiaalteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "b64ca8aacec0b95b5516a981af49c6535bf3271cf477a35948c4b8ac66a13a74",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_service_parkimiskaart",
+      "canonical_item_id": "turi_vald:service:parkimiskaart",
+      "itemType": "service",
+      "title": "Parkimiskaart liikumis- või nägemispuudega inimesele",
+      "status": "active",
+      "summary": "Parkimiskaart võimaldab liikumis- või nägemispuudega isikul parkida tasuta avalikes tasulistes parkimisalade ning erandjuhtudel liiklusmärkide kehtivusalas. Kaart väljastatakse isikupõhiselt kuni viieks aastaks; ajutise puudega kuni kuueks kuuks. Taotluseks on vaja ID-d, foto ja puude raskusastme otsust või arstitõendit.",
+      "targetGroup": "Mõõduka, raske või sügava liikumis- või nägemispuudega inimesed",
+      "conditions": "Puue peab olema tõendatud; ajutise puude puhul on vaja arstitõendit.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          "kontakt sotsiaaltööspetsialistiga"
+        ],
+        "steps": [
+          "Esitage taotlus koos vajalike dokumentidega",
+          "Sotsiaalosakond väljastab parkimiskaardi",
+          "Asetage kaart sõiduki armatuurlauale"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://www.tyri.ee/parkimiskaart-liikumis-voi-nagemispuudega-inimesele",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "turi_vald_contact_eva_kaukver"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "parkimiskaart_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "parkimiskaart_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_service_parkimiskaart",
+      "document_id": "turi_vald_service_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tyri.ee/parkimiskaart-liikumis-voi-nagemispuudega-inimesele",
+      "content_hash": "d3297655616a78c9481ab95d43ffd68aeb716fd45fcb828e48212e27c6ea0ebd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_service_paevahoiuteenus",
+      "canonical_item_id": "turi_vald:service:paevahoiuteenus",
+      "itemType": "service",
+      "title": "Päevahoiuteenus",
+      "status": "active",
+      "summary": "Päevahoiuteenus pakub eakatele ja puudega inimestele päevast hooldust ja järelevalvet Väätsa eakate kodus. Teenuse eesmärk on säilitada nende elukvaliteet ja võimaldada lähedastel töötada; teenusega kaasnevad tegevused, transport ja toidukorrad.",
+      "targetGroup": "Eakad ja puudega inimesed, kes vajavad päevast hooldust",
+      "conditions": "Teenust pakutakse, kui inimene vajab järelevalvet ja toetust päevasel ajal.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          ""
+        ],
+        "steps": [
+          "Esitage taotlus sotsiaalosakonnale",
+          "Lepitakse kokku teenuse maht"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "teenuse maksumus vastavalt hinnakirjale"
+      },
+      "officialUrl": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_eva_kaukver"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "paevahoiuteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "paevahoiuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_service_paevahoiuteenus",
+      "document_id": "turi_vald_service_paevahoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "558dccab263fb4faafa2ea60a582ded6697ea13b376f23a0cfa894d265f3971b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "turi_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus juhuveona",
+      "status": "active",
+      "summary": "Teenust pakutakse inimestele, kes ei saa tervisliku seisundi tõttu kasutada ühistransporti. Vald korraldab sõidu vähemalt üks tööpäev ette tellimisel. Sõit Türi valla piires maksab 7 eurot ja väljaspool valda 0,50 eurot kilomeetri kohta (miinimum 7 eurot).",
+      "targetGroup": "Isikud, kes tervisliku seisundi tõttu ei saa kasutada ühistransporti",
+      "conditions": "Tellimus tuleb esitada vähemalt üks tööpäev ette ja märkida sõidu aeg ja marsruut.",
+      "application": {
+        "channels": [
+          "",
+          "kirjalik tellimus"
+        ],
+        "steps": [
+          "Helistage või saatke tellimus",
+          "Lepitakse kokku sõiduaeg ja marsruut",
+          "Sõit toimub kokkulepitud ajal"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "7 € Türi piires; väljaspool 0,50 €/km"
+      },
+      "officialUrl": "https://www.tyri.ee/sotsiaaltransporditeenus-juhuveona",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "turi_vald_contact_kaja_laanest"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "sotsiaaltransport_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "sotsiaaltransport_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_service_sotsiaaltransporditeenus",
+      "document_id": "turi_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tyri.ee/sotsiaaltransporditeenus-juhuveona",
+      "content_hash": "954c30dc635f8c05d857e01e45dbde9295d68569f187109650638a93afc4acb7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_service_tugiisikuteenus",
+      "canonical_item_id": "turi_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus annab tuge ja nõustamist peredele ja üksikisikutele, kes seisavad silmitsi sotsiaalsete, majanduslike või terviseprobleemidega. Tugiisik abistab kodus või mujal, motiveerib ja toetab iseseisvust ning teenus on abivajajale tasuta.",
+      "targetGroup": "Pered ja üksikisikud, kes vajavad abi toimetulekul",
+      "conditions": "Abi vajav isik või pere peab vajama intensiivset tuge ja nõustamist.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          "vestlus sotsiaaltöötajaga"
+        ],
+        "steps": [
+          "Esitage taotlus või pöörduge sotsiaaltöötaja poole",
+          "Koostatakse tegevuskava",
+          "Tugiisik alustab tööd kokkulepitud mahus"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_eva_kaukver"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "tugiisikuteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "tugiisikuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_service_tugiisikuteenus",
+      "document_id": "turi_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "8a95ebd1c1d7c9aad7fd2c0a0975d3be9048eb417204dc407b7d4b986e7c9b42",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_service_hooldaja_maaramine",
+      "canonical_item_id": "turi_vald:service:hooldaja_maaramine",
+      "itemType": "service",
+      "title": "Hooldaja määramine",
+      "status": "active",
+      "summary": "Teenuse käigus määratakse hooldaja täisealisele puuetega inimesele, kellel on raskusi õiguste teostamise ja kohustuste täitmisega. Taotluses esitatakse soovitud hooldaja andmed ja põhjendus; hooldaja saab hooldajatoetust ja sotsiaalmaksu tasub vald.",
+      "targetGroup": "Täisealised puuetega inimesed, kellel on vaja hooldajat",
+      "conditions": "Hooldaja määratakse, kui teised teenused ei kata abivajadust ja isik on nõus hooldajaga.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          "kohtumine sotsiaaltöötajaga"
+        ],
+        "steps": [
+          "Esitage avaldus hooldaja määramiseks",
+          "Vald hindab vajadust ja hooldaja sobivust",
+          "Tehakse otsus"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_eva_kaukver"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "hooldaja_maaramine_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "hooldaja_maaramine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_service_hooldaja_maaramine",
+      "document_id": "turi_vald_service_hooldaja_maaramine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "67321287ae5464c7d1884c7867d4d29ce8b3709128f140100c6e78af94c3d435",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_service_turvakoduteenus",
+      "canonical_item_id": "turi_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenus tagab ajutise kaitstud majutuse lastele ja täiskasvanutele, kelle elu või tervis on ohus. Teenust võib kasutada ilma avalduseta; vald sõlmib teenusepakkujaga lepingu ja katab kulud.",
+      "targetGroup": "Lapsed ja täiskasvanud kriisis",
+      "conditions": "Teenust osutatakse kriisijuhtudel sõltumata sissetulekust.",
+      "application": {
+        "channels": [
+          "teenusele suunamine",
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Pöörduge sotsiaalosakonda",
+          "Vajaduse korral sõlmitakse leping",
+          "Kliendile korraldatakse turvaline majutus"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_jelena_plakk"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "turvakodu_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "turvakodu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_service_turvakoduteenus",
+      "document_id": "turi_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "96b718a1a796fb21855cdbc4ed1c2ef9980ba991e76394c279620f913fbd3ba1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_service_varjupaigateenus",
+      "canonical_item_id": "turi_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus pakub täisealistele ööbimisvõimalust, kui neil puudub ajutiselt eluase. Teenust saab kasutada avaldusega või ilma; isik tasub võimaluse korral osa kuludest ja vald katab ülejäänu.",
+      "targetGroup": "Täisealised, kellel puudub ajutine elukoht",
+      "conditions": "Teenust antakse juhul, kui teised meetmed ei taga ajutist eluaset.",
+      "application": {
+        "channels": [
+          "avalduse esitamine",
+          "pöördumine sotsiaaltöötaja poole"
+        ],
+        "steps": [
+          "Esitage taotlus või pöörduge sotsiaaltöötaja poole",
+          "Sõlmitakse vajadusel leping",
+          "Suundutakse varjupaika"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_astrit_fedorits"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "varjupaiga_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "varjupaiga_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_service_varjupaigateenus",
+      "document_id": "turi_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "f19a071e31b5307607401c2c54a70b92e3424d1b28aa69af628428bbea40879e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_service_uldhooldusteenus",
+      "canonical_item_id": "turi_vald:service:uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool isiku kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Teenuse eesmärk on tagada eakatele ja puudega inimestele turvaline elukeskkond ja ööpäevaringsed teenused, kui nad ei saa enam iseseisvalt kodus hakkama. Taotluses esitatakse sissetulekuandmed; vald katab hoolduskulud kuni 625 € ja kliendi osa moodustavad elamiskulud ning toitlustus.",
+      "targetGroup": "Eakad ja puudega inimesed, kes ei suuda kodus toime tulla",
+      "conditions": "Isik peab esitama taotluse ja läbima toimetuleku hindamise.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          "sotsiaaltöötaja poole pöördumine"
+        ],
+        "steps": [
+          "Esitage avaldus hooldekodusse suunamiseks",
+          "Vald hindab vajadust",
+          "Sõlmitakse hooldekoduga leping"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "vald katab hoolduse kuni 625 €, ülejäänu maksab klient"
+      },
+      "officialUrl": "https://www.tyri.ee/valjaspool-isiku-kodu-osutatav-uldhooldusteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_eva_kaukver"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "uldhooldusteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "uldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_service_uldhooldusteenus",
+      "document_id": "turi_vald_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tyri.ee/valjaspool-isiku-kodu-osutatav-uldhooldusteenus",
+      "content_hash": "5a045357d81cff5c9d206e4552d4d19c2fa0cd6bc21979a0cc5cb9d38a99d8d1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_service_volanoustamisteenus",
+      "canonical_item_id": "turi_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Teenus aitab inimestel, kelle võlakohustused ületavad maksevõime, kaardistada olukorda, pidada läbirääkimisi võlausaldajatega ja leida võimalusi võlgade tasumiseks. Teenus on klientidele tasuta.",
+      "targetGroup": "Inimesed, kellel on võlad ja makseraskused",
+      "conditions": "Võlgnikul peab olema kehtiv rahaline kohustus, mida ta ei suuda täita.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          "pöördumine sotsiaaltöötaja poole"
+        ],
+        "steps": [
+          "Esitage taotlus või pöörduge nõustaja poole",
+          "Koostatakse finantsplaan",
+          "Suheldakse võlausaldajatega"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://www.tyri.ee/volanoustamisteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_kaja_laanest"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "volanoustamine_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "volanoustamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_service_volanoustamisteenus",
+      "document_id": "turi_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tyri.ee/volanoustamisteenus",
+      "content_hash": "a0409215d49a6742937fea8f50818049984f87e52ce305bad0268f0d3d461bb0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_resource_invatransport",
+      "canonical_item_id": "turi_vald:resource:invatransport",
+      "itemType": "resource",
+      "title": "Ööpäevaringne invatransport",
+      "status": "active",
+      "summary": "Alre OÜ pakub eriveo ja meditsiinilist transporti ööpäevaringselt, sh ratastoolitõstuki ja kanderaamiga sõidukid.",
+      "contact": "Ööpäevaringne invatransport",
+      "address": null,
+      "sourceKeys": [
+        "invatransport_resource_page"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "invatransport_resource_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_resource_invatransport",
+      "document_id": "turi_vald_resource_invatransport",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "75e99de6328c6f5035cd327d7d3bcdb08f894e770a837e2c6b06f8f27cbac6d9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_resource_turi_paevakeskus",
+      "canonical_item_id": "turi_vald:resource:turi_paevakeskus",
+      "itemType": "resource",
+      "title": "Türi Päevakeskus",
+      "status": "active",
+      "summary": "Türi Päevakeskus on päevane hoolekandeasutus vaimse või psüühilise erivajadusega täiskasvanutele. Keskus toetab igapäevaoskusi, iseseisvust, sotsiaalset osalemist ja vajadusel toetatud elamist.",
+      "contact": "Türi Päevakeskus",
+      "address": "Vabriku pst 15, Türi 72212",
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_resource_turi_paevakeskus",
+      "document_id": "turi_vald_resource_turi_paevakeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "724e138c645308545f2061c3e57c3da0884a4abab660e08cabddbe6677453d5b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_resource_suda_eesti_sotsiaalkeskus",
+      "canonical_item_id": "turi_vald:resource:suda_eesti_sotsiaalkeskus",
+      "itemType": "resource",
+      "title": "Süda‑Eesti Sotsiaalkeskus",
+      "status": "active",
+      "summary": "MTÜ Süda-Eesti Sotsiaalkeskus pakub tööalast rehabilitatsiooni, psühholoogilist nõustamist, võlanõustamist, tugiisikuteenust, madala läve keskuse tegevusi ja Järvamaa Toidupanga tegevust.",
+      "contact": "Süda‑Eesti Sotsiaalkeskus",
+      "address": "Aiavilja 13, Paide, 72719",
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_resource_suda_eesti_sotsiaalkeskus",
+      "document_id": "turi_vald_resource_suda_eesti_sotsiaalkeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "2a5a97c6fab6b590f2e0de3dcbaad191568c457ab639ece1abf901e4e483fc74",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_form_general_form",
+      "canonical_item_id": "turi_vald:form:general_form",
+      "itemType": "form",
+      "title": "Avaldus sotsiaaltoetuse või -teenuse taotlemiseks",
+      "status": "active",
+      "summary": "Üldine taotlusvorm sotsiaalteenuste ja -toetuste esitamiseks Türi vallas.",
+      "format": "rtf",
+      "submissionChannels": [
+        "",
+        "paberil"
+      ],
+      "sourceKeys": [
+        "general_form"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "general_form"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_form_general_form",
+      "document_id": "turi_vald_form_general_form",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "e4d37909b3c8fd2b7c7f70786219175685036cd5af4bfd29e1b21559f03f60ce",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_form_services_price_pdf",
+      "canonical_item_id": "turi_vald:form:services_price_pdf",
+      "itemType": "form",
+      "title": "Tasuliste sotsiaalteenuste hinnad",
+      "status": "active",
+      "summary": "PDF dokument Türi Vallavalitsuse tasuliste sotsiaalteenuste hindade ja hinna määramise aluste kohta.",
+      "format": "pdf",
+      "submissionChannels": [],
+      "sourceKeys": [
+        "services_price_pdf"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "services_price_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_form_services_price_pdf",
+      "document_id": "turi_vald_form_services_price_pdf",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "a8dfff2a2480bdc7a1cc870fa85004969267a4ee2301bb2da21f54afa40b58f2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_benefit_lapse_synnitoetus",
+      "canonical_item_id": "turi_vald:benefit:lapse_synnitoetus",
+      "itemType": "benefit",
+      "title": "Lapse sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetust on õigus saada lapse vanemal, kelle lapse ja lapse ühe vanema elukoht on rahvastikuregistri järgi Türi vallas. Toetus on 700 eurot ja makstakse kahes osas: 350 eurot pärast lapse sünni registreerimist ning 350 eurot pärast lapse aastaseks saamist. Teise osa jaoks ei pea eraldi taotlust esitama, kui vallal on andmed olemas.",
+      "targetGroup": "Lapse vanemad, kes elavad Türi vallas",
+      "conditions": "Laps ja vähemalt üks vanem peavad olema valla elanikud; avaldus esitatakse kolme kuu jooksul sünnist.",
+      "application": {
+        "channels": [
+          "e‑taotlus",
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Registreerige lapse sünd",
+          "Esitage avaldus",
+          "Teine osa makstakse lapse 1. sünnipäeval"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "amount": "700",
+        "currency": "EUR"
+      },
+      "pricing": null,
+      "officialUrl": "https://www.tyri.ee/perekond-ja-sotsiaalabi/perekonnasundmused/lapse-sund",
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form",
+        "turi_vald_form_abivajadusest_soltumatu_toetuse_avaldus_pdf"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_kaja_laanest"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "lapse_sund_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "lapse_sund_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_benefit_lapse_synnitoetus",
+      "document_id": "turi_vald_benefit_lapse_synnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tyri.ee/perekond-ja-sotsiaalabi/perekonnasundmused/lapse-sund",
+      "content_hash": "b30aaca8539fee6cde1bad93f7d995583752fd3a45ff4cc9c71ac3400cd08657",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_benefit_eakate_synnipaevatoetus",
+      "canonical_item_id": "turi_vald:benefit:eakate_synnipaevatoetus",
+      "itemType": "benefit",
+      "title": "Eakate sünnipäevatoetus",
+      "status": "active",
+      "summary": "Toetust makstakse 80. ja 85. sünnipäeval ning alates 90. eluaastast igal sünnipäeval 50 €; 100. sünnipäevaks saadetakse tervitus ja lilled.",
+      "targetGroup": "Türi valla elanikud alates 80. eluaastast",
+      "conditions": "Avaldus tuleb esitada kolme kuu jooksul sünnipäevast.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          "e‑taotlus"
+        ],
+        "steps": [
+          "Esitage taotlus koos isikut tõendava dokumendiga"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "amount": "50",
+        "currency": "EUR"
+      },
+      "pricing": null,
+      "officialUrl": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form",
+        "turi_vald_form_abivajadusest_soltumatu_toetuse_avaldus_pdf"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_kaja_laanest"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_benefit_eakate_synnipaevatoetus",
+      "document_id": "turi_vald_benefit_eakate_synnipaevatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "febae430b855621a240b66b415264c095892c37248d50dd742b2ab5236007de0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_benefit_hooldajatoetus",
+      "canonical_item_id": "turi_vald:benefit:hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus",
+      "status": "active",
+      "summary": "Igakuine toetus 50–100 € makstakse raske või sügava puudega inimese hooldajale; puudega lapse hooldajale makstakse toimetulekupiiri ulatuses.",
+      "targetGroup": "Puudega isiku hooldajad",
+      "conditions": "Hooldaja peab olema ametlikult määratud ja mitte saama töötutoetust.",
+      "application": {
+        "channels": [
+          "e‑taotlus",
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Esitage taotlus ja puudeotsus"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "amount": "50–100",
+        "currency": "EUR"
+      },
+      "pricing": null,
+      "officialUrl": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_eva_kaukver"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "hooldaja_maaramine_page",
+        "sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "hooldaja_maaramine_page",
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_benefit_hooldajatoetus",
+      "document_id": "turi_vald_benefit_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "0c59b1fde6e8bfc47f0ec0f0d37521a3e4b46eba4cad57d584cce3dbb23a3b41",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_benefit_isikliku_abistaja_toetus",
+      "canonical_item_id": "turi_vald:benefit:isikliku_abistaja_toetus",
+      "itemType": "benefit",
+      "title": "Isikliku abistaja toetus",
+      "status": "active",
+      "summary": "Toetus hüvitab isikliku abistaja teenuse kulud kuni 20 tundi kuus, arvutades tunnitasu riikliku miinimumpalga järgi.",
+      "targetGroup": "Täisealised raske või sügava puudega inimesed",
+      "conditions": "Teenust peab osutama füüsiline isik; juriidilise isiku teenust ei hüvitata.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          "e‑taotlus"
+        ],
+        "steps": [
+          "Esitage toetusetaotlus",
+          "Esitage iga kuu töötundide aruanne"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "amount": "vastavalt kasutatud tundidele",
+        "currency": "EUR"
+      },
+      "pricing": null,
+      "officialUrl": "https://www.tyri.ee/isikliku-abistaja-toetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form",
+        "turi_vald_form_isikliku_abistaja_toetuse_taotlus_pdf"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_eva_kaukver"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "isiklik_abistaja_toetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "isiklik_abistaja_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_benefit_isikliku_abistaja_toetus",
+      "document_id": "turi_vald_benefit_isikliku_abistaja_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tyri.ee/isikliku-abistaja-toetus",
+      "content_hash": "698b5732ad92e4f2fc8f18c212ab25d4a6cd5cd160642d39c37475a92a5e0d86",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_benefit_matusetoetus",
+      "canonical_item_id": "turi_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on Türi valla sotsiaaltoetus matuse korraldamisega seotud kulude osaliseks hüvitamiseks juhul, kui lahkunu elukoht oli surma registreerimisel Türi vald. Toetust makstakse ühele füüsilisele isikule, kes kandis matusekulud; kui kulusid kandsid mitu inimest, lepivad nad kokku taotleja. Toetuse suurus on 250 eurot ja taotlus tuleb esitada kolme kuu jooksul surmapäevast arvates.",
+      "targetGroup": "Matuse korraldajad",
+      "conditions": "Avaldus esitatakse kolme kuu jooksul pärast surma.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          "e‑taotlus"
+        ],
+        "steps": [
+          "Esitage avaldus ja surmatõend"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "amount": "250",
+        "currency": "EUR"
+      },
+      "pricing": null,
+      "officialUrl": "https://www.tyri.ee/perekond-ja-sotsiaalabi/lahedase-surm/matusetoetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form",
+        "turi_vald_form_abivajadusest_soltumatu_toetuse_avaldus_pdf"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_astrit_fedorits"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "matusetoetus_detail_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "matusetoetus_detail_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_benefit_matusetoetus",
+      "document_id": "turi_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tyri.ee/perekond-ja-sotsiaalabi/lahedase-surm/matusetoetus",
+      "content_hash": "273de96465e104ecc7b37bde1db8a5e6e5b4c964df3b1f4cdbab5ef5aa7a6672",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_benefit_kooli_alustamise_toetus",
+      "canonical_item_id": "turi_vald:benefit:kooli_alustamise_toetus",
+      "itemType": "benefit",
+      "title": "Kooli alustamise toetus",
+      "status": "active",
+      "summary": "Ühekordne 150 € toetus lapsevanemale, kelle laps alustab esimest klassi.",
+      "targetGroup": "Lapsevanemad, kelle laps alustab 1. klassi",
+      "conditions": "Laps ja vanem peavad olema Türi valla elanikud; avaldus esitatakse 3 kuu jooksul kooli algusest.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          "e‑taotlus"
+        ],
+        "steps": [
+          "Esitage avaldus koos elukoha tõenditega"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "amount": "150",
+        "currency": "EUR"
+      },
+      "pricing": null,
+      "officialUrl": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form",
+        "turi_vald_form_abivajadusest_soltumatu_toetuse_avaldus_pdf"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_astrit_fedorits"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_benefit_kooli_alustamise_toetus",
+      "document_id": "turi_vald_benefit_kooli_alustamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "a1638491b92717cd3134eff79957e7943030b53a4284e3358011da45ea60d3e5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_benefit_eluruumi_kohandamise_toetus",
+      "canonical_item_id": "turi_vald:benefit:eluruumi_kohandamise_toetus",
+      "itemType": "benefit",
+      "title": "Puudega isiku eluruumi kohandamise toetus",
+      "status": "active",
+      "summary": "Ühekordne toetus aitab kohandada eluruumi ligipääsetavamaks, näiteks ehitada kaldtee või laiendada uksi. Toetuse suurus sõltub tööde maksumusest.",
+      "targetGroup": "Puudega inimesed, kes elavad püsivalt Türi vallas",
+      "conditions": "Taotleja esitab eluruumi andmed ja kaks hinnapakkumist; toetust antakse üks kord.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          "e‑taotlus"
+        ],
+        "steps": [
+          "Esitage avaldus, tööde kirjeldus ja hinnapakkumised"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "amount": "vastavalt tööde maksumusele",
+        "currency": "EUR"
+      },
+      "pricing": null,
+      "officialUrl": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_eva_kaukver"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_benefit_eluruumi_kohandamise_toetus",
+      "document_id": "turi_vald_benefit_eluruumi_kohandamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "1db47e7f9d400925792f47fddeff5b1fb2386d390b5aab7858dcd45408aded1b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_benefit_raske_majanduslik_olukord",
+      "canonical_item_id": "turi_vald:benefit:raske_majanduslik_olukord",
+      "itemType": "benefit",
+      "title": "Raske majandusliku olukorra toetus",
+      "status": "active",
+      "summary": "Vajaduspõhine ühekordne toetus inimestele ja peredele, kes satuvad majanduslikku kriisi (nt asenduskodust või vanglast naasmise järel, lähedase surm, tulekahju). Toetuse suurus võib ulatuda kuni kolmekordse toimetulekupiirini.",
+      "targetGroup": "Kriisi sattunud inimesed ja pered",
+      "conditions": "Toetust saab taotleda vajaduse korral; otsus põhineb perekonna sissetulekul ja vajadusel.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          "sotsiaalosakonna vastuvõtt"
+        ],
+        "steps": [
+          "Kirjeldage taotluses kriisi ja vajadust",
+          "Vald hindab olukorda ja määrab toetuse"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "amount": "kuni 3 × toimetulekupiir",
+        "currency": "EUR"
+      },
+      "pricing": null,
+      "officialUrl": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_kaja_laanest",
+        "turi_vald_contact_astrit_fedorits"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_benefit_raske_majanduslik_olukord",
+      "document_id": "turi_vald_benefit_raske_majanduslik_olukord",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "f01dccf2422261e0524d3555553a3846f8fa20c18162ad91292bb2764d1e93d0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_benefit_riiklik_toimetulekutoetus",
+      "canonical_item_id": "turi_vald:benefit:riiklik_toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Riiklik toimetulekutoetus",
+      "status": "active",
+      "summary": "Riiklik toimetulekutoetus aitab peredel, kelle sissetulek ei kata toimetulekupiiri ja eluasemekulusid; toetuse suurus arvutatakse tulude ja kulude alusel.",
+      "targetGroup": "Madala sissetulekuga pered ja üksikisikud",
+      "conditions": "Perekond peab esitama sissetulekuid ja kulusid tõendavad dokumendid.",
+      "application": {
+        "channels": [
+          "e‑taotlus",
+          "kirjalik taotlus"
+        ],
+        "steps": [
+          "Esitage taotlus koos sissetulekute ja kuludega",
+          "Vald arvutab toetuse"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "amount": "arvutatakse",
+        "currency": "EUR"
+      },
+      "pricing": null,
+      "officialUrl": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_kaja_laanest"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_benefit_riiklik_toimetulekutoetus",
+      "document_id": "turi_vald_benefit_riiklik_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "e948d27085bfbb7a53869022b41e87f7886b99b5091661b3b038cc440c129a39",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_benefit_dokumendi_toetus",
+      "canonical_item_id": "turi_vald:benefit:dokumendi_toetus",
+      "itemType": "benefit",
+      "title": "Toetus riiklike dokumentide vormistamiseks",
+      "status": "active",
+      "summary": "Toetus katab kuni 100% kohustuslike riiklikke dokumentide (nt ID‑kaart, pass, elamisluba) vormistamise kulud abivajajatele.",
+      "targetGroup": "Inimesed, kellel puudub raha riikliku dokumendi vormistamiseks",
+      "conditions": "Toetuse määramisel võetakse arvesse taotleja majanduslikku olukorda.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          "e‑taotlus"
+        ],
+        "steps": [
+          "Esitage taotlus koos kulutšekkidega"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "amount": "kuni 100%",
+        "currency": "EUR"
+      },
+      "pricing": null,
+      "officialUrl": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_kaja_laanest",
+        "turi_vald_contact_astrit_fedorits"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_benefit_dokumendi_toetus",
+      "document_id": "turi_vald_benefit_dokumendi_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "ba555bbb196079d8e585b24bd728f5556929432ab5e930af1f00c791190b1acb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_benefit_uldhooldusteenuse_toetus",
+      "canonical_item_id": "turi_vald:benefit:uldhooldusteenuse_toetus",
+      "itemType": "benefit",
+      "title": "Üldhooldusteenuse tagamise toetus",
+      "status": "active",
+      "summary": "Toetus aitab maksta hooldekodu teenust, kui klient ja tema pere ei suuda seda täies mahus tasuda; vald katab erinevuse teenuse maksumuse ja isiku panuse vahel.",
+      "targetGroup": "Hooldekodusse paigutatud inimesed, kelle sissetulek ei kata teenust",
+      "conditions": "Toetus määratakse pärast sissetuleku hindamist ja arvestab pere panust.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          "e‑taotlus"
+        ],
+        "steps": [
+          "Esitage hooldekodusse suunamise avaldus ja kompenseerimise taotlus"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "amount": "vastavalt hooldekodu arvele",
+        "currency": "EUR"
+      },
+      "pricing": null,
+      "officialUrl": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_eva_kaukver"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "sotsiaaltoetused_page",
+        "uldhooldusteenus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "sotsiaaltoetused_page",
+        "uldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_benefit_uldhooldusteenuse_toetus",
+      "document_id": "turi_vald_benefit_uldhooldusteenuse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "629d2e366a1ab9a17e7724c0439bc429453c6d52ed4c881edb26244cd0906bcf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_benefit_toitlustamise_lasteaia_toetus",
+      "canonical_item_id": "turi_vald:benefit:toitlustamise_lasteaia_toetus",
+      "itemType": "benefit",
+      "title": "Haridusasutuse toitlustamise ja lasteaia kohatasu toetus",
+      "status": "active",
+      "summary": "Toetus katab kooli toitlustamise ja lasteaia kohatasu kulud majanduslikult raskustes olevatele peredele kuni 100% ulatuses.",
+      "targetGroup": "Lapsed haridusasutustes, kelle perel on rahalised raskused",
+      "conditions": "Tulu hindamisel arvestatakse perekonna sissetulekuid; taotluses tuleb esitada lapse ja õppeasutuse andmed.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          "e‑taotlus"
+        ],
+        "steps": [
+          "Esitage avaldus koos lapse andmetega",
+          "Vald hindab sissetulekut ja otsustab toetuse"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "amount": "kuni 100%",
+        "currency": "EUR"
+      },
+      "pricing": null,
+      "officialUrl": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_astrit_fedorits",
+        "turi_vald_contact_kaja_laanest"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_benefit_toitlustamise_lasteaia_toetus",
+      "document_id": "turi_vald_benefit_toitlustamise_lasteaia_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "a4ecf1e6a1608c3f99e8abfc1794011df1226c0d288ee40c9ebffa592f7da063",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_benefit_ravikulu_toetus",
+      "canonical_item_id": "turi_vald:benefit:ravikulu_toetus",
+      "itemType": "benefit",
+      "title": "Ravikulu hüvitamise või abivahendi soetamise toetus",
+      "status": "active",
+      "summary": "Toetus aitab tasuda ravikulu ja abivahendite ostu või renti, sh prillid, proteesid ja muud abivahendid; toetus on tavaliselt kuni kahekordne toimetulekupiir.",
+      "targetGroup": "Inimesed suurte ravikuludega",
+      "conditions": "Taotlusele lisatakse ravikulusid ja abivahendite ostu tõendavad dokumendid; vajadusel arstitõend.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          "e‑taotlus"
+        ],
+        "steps": [
+          "Esitage avaldus ja kuludokumendid",
+          "Vajadusel lisage arstitõend"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "amount": "kuni 2 × toimetulekupiir",
+        "currency": "EUR"
+      },
+      "pricing": null,
+      "officialUrl": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_astrit_fedorits",
+        "turi_vald_contact_kaja_laanest"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_benefit_ravikulu_toetus",
+      "document_id": "turi_vald_benefit_ravikulu_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "21d569d7e6dd093885acf910ccdf04e1a460201110106fe4a09c01e1a99d4613",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_benefit_sotsiaalse_psuhholoogilise_noustamise_toetus",
+      "canonical_item_id": "turi_vald:benefit:sotsiaalse_psuhholoogilise_noustamise_toetus",
+      "itemType": "benefit",
+      "title": "Sotsiaalse ja psühholoogilise nõustamise teenuse toetus",
+      "status": "active",
+      "summary": "Toetus katab sotsiaal- ja psühholoogilise nõustamise teenuse kulud täielikult, aidates inimesi ja peresid iseseisva toimetuleku parandamisel.",
+      "targetGroup": "Inimesed ja pered, kes vajavad nõustamist",
+      "conditions": "Avaldus tuleb esitada koos nõustamisteenuse arvega; soovi korral makstakse teenusepakkujale otse.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          "e‑taotlus"
+        ],
+        "steps": [
+          "Esitage avaldus ja arve",
+          "Vald hüvitab nõustamise"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": {
+        "amount": "vastavalt arvele",
+        "currency": "EUR"
+      },
+      "pricing": null,
+      "officialUrl": null,
+      "relatedTo": [],
+      "relatedForms": [
+        "turi_vald_form_general_form"
+      ],
+      "relatedContacts": [
+        "turi_vald_contact_astrit_fedorits",
+        "turi_vald_contact_kaja_laanest",
+        "turi_vald_contact_eva_kaukver",
+        "turi_vald_contact_jelena_plakk"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_benefit_sotsiaalse_psuhholoogilise_noustamise_toetus",
+      "document_id": "turi_vald_benefit_sotsiaalse_psuhholoogilise_noustamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "246775be3c2d20048799d6a2a31320fe483029d05d30d66a73069565cecc3c8f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_contact_kati_nolvak",
+      "canonical_item_id": "turi_vald:contact:kati_nolvak",
+      "itemType": "contact",
+      "name": "Kati Nõlvak",
+      "role": "haridusspetsialist",
+      "department": "Haridusvaldkond",
+      "address": "Hariduse tänav 3, Türi linn, 72213, Türi vald",
+      "sourceKeys": [
+        "erivajadusega_laps_page"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "contact",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "erivajadusega_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_contact_kati_nolvak",
+      "document_id": "turi_vald_contact_kati_nolvak",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "cf9c518c6e0fff6874108263dcbb5db91873710fbc5d87049438d7d9ce378564",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_service_asendushooldusteenus",
+      "canonical_item_id": "turi_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus pakub lapsele, kes ei saa ajutiselt või pikemaajaliselt oma sünniperekonnas elada, hoolt hooldusperes, perekodus või asenduskodus. Teenuse eesmärk on lapsele peresarnase, turvalise ja arengut toetava keskkonna tagamine. Teenus on tasuta ja seda korraldab kohalik omavalitsus.",
+      "targetGroup": "Lapsed, kes ei saa elada oma sünniperekonnas",
+      "conditions": "Teenuse vajadus selgitatakse välja lastekaitsetöö käigus; teenuse saamiseks tuleb pöörduda lastekaitsespetsialisti poole.",
+      "application": {
+        "channels": [
+          "pöördumine lastekaitsespetsialisti poole"
+        ],
+        "steps": [
+          "Võtke ühendust Türi valla lastekaitsespetsialistiga",
+          "Lastekaitsetöötaja hindab lapse ja pere olukorda",
+          "Vajaduse korral korraldatakse lapsele asendushooldus"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "tasuta"
+      },
+      "officialUrl": "https://www.tyri.ee/perekond-ja-sotsiaalabi/laste-ja-perede-heaolu/asendus-ja-jarelhooldusteenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "turi_vald_contact_jelena_plakk"
+      ],
+      "sourceKeys": [
+        "asendus_jarelhooldus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "asendus_jarelhooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_service_asendushooldusteenus",
+      "document_id": "turi_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tyri.ee/perekond-ja-sotsiaalabi/laste-ja-perede-heaolu/asendus-ja-jarelhooldusteenus",
+      "content_hash": "fe169b26afec6a217425522b8da36fe08f47ad0f52f472b390e5a3a1dc79500c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "turi_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus toetab noort pärast täisealiseks saamist, kui ta on olnud asendushooldusel ja vajab tuge iseseisvaks toimetulekuks või õpingute jätkamiseks. Türi valla leht käsitleb järelhooldust koos asendushooldusega.",
+      "targetGroup": "Asendushoolduselt iseseisvasse ellu liikuvad noored",
+      "conditions": "Teenuse vajadus selgitatakse välja juhtumipõhiselt lastekaitse või sotsiaalvaldkonna töö käigus.",
+      "application": {
+        "channels": [
+          "pöördumine lastekaitsespetsialisti poole"
+        ],
+        "steps": [
+          "Võtke ühendust lastekaitsespetsialistiga",
+          "Hinnatakse noore abivajadust",
+          "Lepitakse kokku toetavad tegevused"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": {
+        "amount": "tasuta"
+      },
+      "officialUrl": "https://www.tyri.ee/perekond-ja-sotsiaalabi/laste-ja-perede-heaolu/asendus-ja-jarelhooldusteenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "turi_vald_contact_jelena_plakk"
+      ],
+      "sourceKeys": [
+        "asendus_jarelhooldus_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "service",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "asendus_jarelhooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_service_jarelhooldusteenus",
+      "document_id": "turi_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tyri.ee/perekond-ja-sotsiaalabi/laste-ja-perede-heaolu/asendus-ja-jarelhooldusteenus",
+      "content_hash": "9a99d7cd9640df99cdb577114e58d099c783b429ce9d1348fa537ca75752b055",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "turi_vald:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenus on Türi valla sotsiaalteenuste hinnakirjas eraldi nimetatud sotsiaalteenus. Detailset teenusekirjeldust eraldi lehelt ei leitud, kuid KOV leht kinnitab, et Türi vald käsitleb lapsehoiuteenust sotsiaalteenusena ja osutab seda oma asutuste kaudu või korraldab teenuse osutamist.",
+      "targetGroup": "Lapsed ja pered, kellel on lapsehoiuvajadus",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "pöördumine sotsiaalosakonna või lastekaitsespetsialisti poole"
+        ],
+        "steps": [
+          "Küsige sotsiaalosakonnalt, kas pere olukorras saab lapsehoiuteenust kasutada"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://www.tyri.ee/perekond-ja-sotsiaalabi/abi-toimetulekuraskusega-inimesele/sotsiaalteenuste-hinnakiri",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "turi_vald_contact_jelena_plakk"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenuste_hinnakiri_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [
+        "Detailset lapsehoiuteenuse kirjeldust eraldi Türi valla veebilehel ei leitud; info põhineb hinnakirja/teenuste loetelul."
+      ],
+      "item_type": "service",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "sotsiaalteenuste_hinnakiri_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_service_lapsehoiuteenus",
+      "document_id": "turi_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tyri.ee/perekond-ja-sotsiaalabi/abi-toimetulekuraskusega-inimesele/sotsiaalteenuste-hinnakiri",
+      "content_hash": "b257141d2cfbfe33249c24428b163a203869eb68ab75637081f7fdf724b3b7f1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_service_teenus_lastega_pere_toetamiseks",
+      "canonical_item_id": "turi_vald:service:teenus_lastega_pere_toetamiseks",
+      "itemType": "service",
+      "title": "Teenus lastega pere toetamiseks",
+      "status": "active",
+      "summary": "Türi valla sotsiaalteenuste hinnakiri nimetab eraldi teenusena teenust lastega pere toetamiseks. Detailset alamlehte ei leitud, kuid nimetuse järgi on teenus suunatud lastega perede toimetuleku toetamisele ja korraldatakse KOV sotsiaal- või lastekaitsetöö raames.",
+      "targetGroup": "Lastega pered, kellel on toimetuleku- või abivajadus",
+      "conditions": "Teenuse vajadus selgitatakse välja juhtumipõhiselt.",
+      "application": {
+        "channels": [
+          "pöördumine lastekaitsespetsialisti või sotsiaalosakonna poole"
+        ],
+        "steps": [
+          "Pöörduge Türi valla lastekaitse- või sotsiaalspetsialisti poole",
+          "Spetsialist hindab pere abivajadust"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://www.tyri.ee/perekond-ja-sotsiaalabi/abi-toimetulekuraskusega-inimesele/sotsiaalteenuste-hinnakiri",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "turi_vald_contact_jelena_plakk"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenuste_hinnakiri_page"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [
+        "Detailset teenuse alamlehte ei leitud; info põhineb Türi valla sotsiaalteenuste hinnakirja loetelul."
+      ],
+      "item_type": "service",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "sotsiaalteenuste_hinnakiri_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_service_teenus_lastega_pere_toetamiseks",
+      "document_id": "turi_vald_service_teenus_lastega_pere_toetamiseks",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tyri.ee/perekond-ja-sotsiaalabi/abi-toimetulekuraskusega-inimesele/sotsiaalteenuste-hinnakiri",
+      "content_hash": "b2680fbc0ec265b9ccaafcf4af20dacf43e8405c376a24bd0c99f6cff095b039",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_resource_koduanduri_teenus",
+      "canonical_item_id": "turi_vald:resource:koduanduri_teenus",
+      "itemType": "resource",
+      "title": "Koduanduri teenus",
+      "status": "active",
+      "summary": "Koduandur aitab saada ülevaadet üksi elava eaka lähedase igapäevasest toimetulekust. Andurid koguvad infot liikumise ja sisekliima kohta, andmed kuvatakse rakenduses või veebis ning vajadusel saadetakse teavitus e-kirja või SMS-iga. Koduandur OÜ on olnud Türi valla koostööpartner hoolekandeteenuste laiendamise projektis.",
+      "contact": "Koduandur OÜ / Türi valla sotsiaalosakond",
+      "address": null,
+      "sourceKeys": [
+        "koduanduri_page"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "koduanduri_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_resource_koduanduri_teenus",
+      "document_id": "turi_vald_resource_koduanduri_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "caa9811fe525f6017a058921baf86a7acba8ba25e2f4db9be5f2a21bac59684b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_resource_medi_hairenupp_ja_pliidivalvur",
+      "canonical_item_id": "turi_vald:resource:medi_hairenupp_ja_pliidivalvur",
+      "itemType": "resource",
+      "title": "Medi häirenupp ja pliidivalvur",
+      "status": "active",
+      "summary": "Medi häirenuputeenus võimaldab inimesel õnnetuse, terviserikke või kukkumise korral kutsuda abi ühe nupuvajutusega. Randmel või kaelas olev veekindel häirenupp loob ühenduse Medi kõnekeskusega, kus operaator hindab olukorda ja korraldab abi. Türi valla leht suunab lisainfo saamiseks Medi kontaktile ning Türi valla sotsiaalosakonnale.",
+      "contact": "Medi / Türi valla sotsiaalosakond",
+      "address": null,
+      "sourceKeys": [
+        "medi_hairenupp_page"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "medi_hairenupp_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_resource_medi_hairenupp_ja_pliidivalvur",
+      "document_id": "turi_vald_resource_medi_hairenupp_ja_pliidivalvur",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "3901bbb562cdf9bea5e530e672bac626f1764670e62df2b1d721cb206840a7de",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_resource_iste_projekt",
+      "canonical_item_id": "turi_vald:resource:iste_projekt",
+      "itemType": "resource",
+      "title": "ISTE projekt",
+      "status": "active",
+      "summary": "ISTE on isikukeskse erihoolekande teenusmudeli projekt psüühilise erivajadusega täisealiste inimeste toetamiseks. Teenus põhineb vajadustest lähtuvatel teenuskomponentidel ning võimaldab kokku panna paindliku teenusepaketi. Türi vald jätkab koostööd Sotsiaalkindlustusametiga 2025–2026, teenuskohtade arv on piiratud ja fookus on varasemate teenusesaajate jätkutoetusel.",
+      "contact": "Türi valla sotsiaalosakond",
+      "address": null,
+      "sourceKeys": [
+        "iste_page"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "iste_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_resource_iste_projekt",
+      "document_id": "turi_vald_resource_iste_projekt",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "ebfe07beccf4bcdb5e4d38b1e848a73f7f1ee2daaae671b4ef9e961e6716a6da",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_resource_lastekaitse",
+      "canonical_item_id": "turi_vald:resource:lastekaitse",
+      "itemType": "resource",
+      "title": "Lastekaitse",
+      "status": "active",
+      "summary": "Lastekaitse eesmärk on tagada lapse turvaline ja toetav kasvukeskkond. Lastekaitsespetsialist hindab lapse ja pere olukorda ning aitab leida sobiva nõustamise, tugiteenuse või muu toe.",
+      "contact": "Jelena Plakk",
+      "address": null,
+      "sourceKeys": [
+        "lastekaitse_page"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_resource_lastekaitse",
+      "document_id": "turi_vald_resource_lastekaitse",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "59ccf029dd53e986e380715f4167278ad14127f8b5cbddb22dc7153db9cc6817",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_resource_abivajav_voi_hadaohus_laps",
+      "canonical_item_id": "turi_vald:resource:abivajav_voi_hadaohus_laps",
+      "itemType": "resource",
+      "title": "Abivajav või hädaohus laps",
+      "status": "active",
+      "summary": "Türi valla leht selgitab, et abivajavast lapsest tuleb teavitada kohalikku lastekaitsetöötajat või noorte heaolu spetsialisti; vajadusel saab helistada Lasteabi telefonile. Hädaohus oleva lapse korral tuleb helistada viivitamata hädaabinumbrile.",
+      "contact": "Lasteabi / Türi valla lastekaitsespetsialist",
+      "address": null,
+      "sourceKeys": [
+        "abivajav_laps_page"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "abivajav_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_resource_abivajav_voi_hadaohus_laps",
+      "document_id": "turi_vald_resource_abivajav_voi_hadaohus_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "7d87e1e0412288f31fca02495c1a385e19853bb79d5492a8519c7fe2a9cc975b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_resource_erivajadusega_laps",
+      "canonical_item_id": "turi_vald:resource:erivajadusega_laps",
+      "itemType": "resource",
+      "title": "Erivajadusega lapse info ja suunamine",
+      "status": "active",
+      "summary": "Türi valla leht juhendab erivajadusega lapse puhul pöörduma esmalt perearsti või haridusasutuse tugispetsialisti poole ning vajadusel Rajaleidja või Sotsiaalkindlustusameti poole. Omavalitsuse lastekaitse- või sotsiaaltöötaja annab infot toetavate teenuste ja toetuste kohta ning hindab abivajadust.",
+      "contact": "Kati Nõlvak / Jelena Plakk",
+      "address": null,
+      "sourceKeys": [
+        "erivajadusega_laps_page"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "erivajadusega_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_resource_erivajadusega_laps",
+      "document_id": "turi_vald_resource_erivajadusega_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "66967ef8bfec48eeaaa53d3b4e116804224fd18ad9dff281e765eb43ba690275",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_resource_karu_sudamekodu",
+      "canonical_item_id": "turi_vald:resource:karu_sudamekodu",
+      "itemType": "resource",
+      "title": "Käru Südamekodu",
+      "status": "active",
+      "summary": "Käru Südamekodu on Türi vallas asuv hoolekandeasutus, mis pakub ööpäevaringset üldhooldusteenust eakatele ja vähenenud toimetulekuvõimega inimestele. Asutus asub Käru alevikus ja pakub hooldust, toitlustamist, hügieenitoimingute tuge ning sotsiaalset tegevust.",
+      "contact": "Käru Südamekodu",
+      "address": "Viljandi maantee 13, Käru alevik, Türi vald, Järva maakond",
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_resource_karu_sudamekodu",
+      "document_id": "turi_vald_resource_karu_sudamekodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "2c0a7c751609c382841204e4c39ec400b9adab47dbb903866de48156b2327751",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_resource_vaatsa_eakate_kodu",
+      "canonical_item_id": "turi_vald:resource:vaatsa_eakate_kodu",
+      "itemType": "resource",
+      "title": "Väätsa Eakate Kodu",
+      "status": "active",
+      "summary": "Väätsa Eakate Kodu on Türi vallas Väätsa alevikus asuv hoolekandeasutus eakatele inimestele, kes vajavad igapäevast hooldust ja turvalist elukeskkonda. Asutus mahutab kuni 38 klienti.",
+      "contact": "Väätsa Eakate Kodu",
+      "address": "Türi tee 1, Väätsa alevik, Türi vald, Järva maakond",
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_resource_vaatsa_eakate_kodu",
+      "document_id": "turi_vald_resource_vaatsa_eakate_kodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "d24f37c493f3a9845dda7273d43d585da54d2958c1995795a0d43bd3fb743a2c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_resource_turi_kodu",
+      "canonical_item_id": "turi_vald:resource:turi_kodu",
+      "itemType": "resource",
+      "title": "Türi Kodu",
+      "status": "active",
+      "summary": "Türi Kodu on Hoolekandeteenused AS-i teenuskoht Türi linnas. Asutus koosneb kuuest peremajast ning sobib mõõduka kuni keskmise hooldusvajadusega inimestele, kes vajavad ööpäevaringset juhendamist ja järelevalvet.",
+      "contact": "Türi Kodu",
+      "address": "Staadioni 17, Türi linn, Türi vald, Järva maakond",
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "relatedTo": [],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "resource",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_resource_turi_kodu",
+      "document_id": "turi_vald_resource_turi_kodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "cfeec9fe6b3249d0b66c26276150dbe1616fba7c38c0e59157fa5936db458f12",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_form_abivajadusest_soltumatu_toetuse_avaldus_pdf",
+      "canonical_item_id": "turi_vald:form:abivajadusest_soltumatu_toetuse_avaldus_pdf",
+      "itemType": "form",
+      "title": "Avaldus abivajadusest sõltumatu toetuse taotlemiseks",
+      "status": "active",
+      "summary": "PDF-vorm sünnitoetuse, kooli alustamise toetuse, eakate sünnipäevatoetuse ja matusetoetuse taotlemiseks. Vorm sisaldab toetuse valikut ja taotleja kontaktandmeid.",
+      "format": "pdf",
+      "submissionChannels": [
+        "",
+        "paberil"
+      ],
+      "sourceKeys": [
+        "abivajadusest_soltumatu_pdf",
+        "synnitoetus_pdf"
+      ],
+      "relatedTo": [
+        "turi_vald_benefit_lapse_synnitoetus",
+        "turi_vald_benefit_eakate_synnipaevatoetus",
+        "turi_vald_benefit_matusetoetus",
+        "turi_vald_benefit_kooli_alustamise_toetus"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "abivajadusest_soltumatu_pdf",
+        "synnitoetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_form_abivajadusest_soltumatu_toetuse_avaldus_pdf",
+      "document_id": "turi_vald_form_abivajadusest_soltumatu_toetuse_avaldus_pdf",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "e34978ad3f9402437f1e7eab3356f45cc571ed9a57a037c1c4b0a0e171659a79",
+      "evidence_allowed": true
+    },
+    {
+      "id": "turi_vald_form_isikliku_abistaja_toetuse_taotlus_pdf",
+      "canonical_item_id": "turi_vald:form:isikliku_abistaja_toetuse_taotlus_pdf",
+      "itemType": "form",
+      "title": "Isikliku abistaja toetuse taotlus ja aruanne",
+      "status": "active",
+      "summary": "PDF-vorm isikliku abistaja toetuse taotlemiseks ja osutatud tundide aruandeks. Vormis märgitakse abistatav, osutatud tunnid ja arveldusandmed.",
+      "format": "pdf",
+      "submissionChannels": [
+        "",
+        "paberil"
+      ],
+      "sourceKeys": [
+        "isikliku_abistaja_toetus_pdf"
+      ],
+      "relatedTo": [
+        "turi_vald_benefit_isikliku_abistaja_toetus"
+      ],
+      "sections_present": null,
+      "unresolvedIssues": [],
+      "item_type": "form",
+      "municipality_id": "turi_vald",
+      "municipality_name": "Türi vald",
+      "county": "Järvamaa",
+      "source_keys": [
+        "isikliku_abistaja_toetus_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "turi_vald_form_isikliku_abistaja_toetuse_taotlus_pdf",
+      "document_id": "turi_vald_form_isikliku_abistaja_toetuse_taotlus_pdf",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "2363e4e8214a6448c661f0fac502def5bebb4e48a8cbb5c780bc130b5e23034e",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Türi vald",
+  "checked_at": "2026-04-30",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

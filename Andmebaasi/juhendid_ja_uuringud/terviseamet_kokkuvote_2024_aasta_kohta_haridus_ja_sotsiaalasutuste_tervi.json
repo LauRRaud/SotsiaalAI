@@ -1,0 +1,148 @@
+{
+  "source_path": "terviseamet_kokkuvote_2024_aasta_kohta_haridus_ja_sotsiaalasutuste_tervi.pdf",
+  "source_format": "pdf",
+  "sha256": "71ebac325dd4a0d5a4de6cb5f734f014ce2afaff52af378bf4509ebc488f74d6",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/terviseamet_kokkuvote_2024_aasta_kohta_haridus_ja_sotsiaalasutuste_tervi.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "terviseamet_kokkuvote_2024_aasta_kohta_haridus_ja_sotsiaalasutuste_tervi",
+          "title": "Kokkuvõte 2024. aasta kohta: haridus- ja sotsiaalasutuste tervisekaitse järelevalve",
+          "url": "https://www.terviseamet.ee/sites/default/files/documents/2025-04/2024.%20a%20kokkuv%C3%B5te.pdf",
+          "normalized_url": "https://www.terviseamet.ee/sites/default/files/documents/2025-04/2024. a kokkuvõte.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "Terviseamet",
+          "organization_id": "terviseamet",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Terviseamet",
+            "uuring",
+            "raport",
+            "analüüs",
+            "tervisekaitse",
+            "järelevalve",
+            "haridusasutus",
+            "sotsiaalasutus"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_053",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "Terviseamet",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 301,
+            "order": 175
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Kokkuvõte 2024. aasta kohta: haridus- ja sotsiaalasutuste tervisekaitse järelevalve"
+          ],
+          "collection_hints": [
+            "research_reports"
+          ],
+          "source_types_seen": [
+            "research_report"
+          ],
+          "resource_types_seen": [
+            "research_evidence"
+          ],
+          "publishers_seen": [
+            "Terviseamet"
+          ],
+          "organizations_seen": [
+            "terviseamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Terviseamet",
+              "line": 301,
+              "order": 175
+            },
+            {
+              "heading_2": "Terviseamet",
+              "line": 775,
+              "order": 382
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.terviseamet.ee/sites/default/files/documents/2025-04/2024. a kokkuvõte.pdf"
+        },
+        "final_url": "https://www.terviseamet.ee/sites/default/files/documents/2025-04/2024.%20a%20kokkuv%C3%B5te.pdf",
+        "redirects": [],
+        "sha256": "71ebac325dd4a0d5a4de6cb5f734f014ce2afaff52af378bf4509ebc488f74d6",
+        "bytes": 117715,
+        "downloaded_at": "2026-08-14T08:00:37.683Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "terviseamet_kokkuvote_2024_aasta_kohta_haridus_ja_sotsiaalasutuste_tervi",
+      "metadata": {
+        "createdAt": "2026-06-12T03:43:22.560977+00:00",
+        "type": "FILE",
+        "fileName": "2024. a kokkuvõte.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:43:22.496493+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/06b7d56b0612/2024. a kokkuvõte.pdf",
+        "title": "Kokkuvõte 2024. aasta kohta: haridus- ja sotsiaalasutuste tervisekaitse järelevalve",
+        "description": "Duplikaadid ühendatud: 1 lisakirjet. Source master headings: Terviseamet",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2024,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–7",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "research_reports",
+        "source_id": "terviseamet_kokkuvote_2024_aasta_kohta_haridus_ja_sotsiaalasutuste_tervi",
+        "document_id": "terviseamet_kokkuvote_2024_aasta_kohta_haridus_ja_sotsiaalasutuste_tervi",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "ff6c28938113d2ecfd80a36abbbb2017179b3d981514f22155e379d87ea46df0",
+        "url": "https://www.terviseamet.ee/sites/default/files/documents/2025-04/2024.%20a%20kokkuv%C3%B5te.pdf",
+        "url_canonical": "https://www.terviseamet.ee/sites/default/files/documents/2025-04/2024. a kokkuvõte.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "terviseamet_kokkuvote_2024_aasta_kohta_haridus_ja_sotsiaalasutuste_tervi",
+        "updatedAt": "2026-06-12T03:43:22.561005+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

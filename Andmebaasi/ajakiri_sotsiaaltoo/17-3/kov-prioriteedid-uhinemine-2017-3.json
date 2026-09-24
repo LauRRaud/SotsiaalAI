@@ -1,0 +1,108 @@
+{
+  "docId": "sotsiaaltoo-3-2017",
+  "articleId": "kov-prioriteedid-uhinemine-2017-3",
+  "title": "Kohalike omavalitsuste sotsiaalvaldkonna prioriteedid vabatahtliku ühinemise kontekstis",
+  "authors": [
+    "Kersti Kriisk"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2017",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "13-18",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tallinna Ülikooli lektori ja doktorandi analüüs sellest, millised on sotsiaalvaldkonna korraldamise prioriteedid vabatahtlikult ühinevates omavalitsustes. Tõdeb, et riigi tasandil on haldusreformi sisule seatud vaid üldised eesmärgid ja lahtiseks on jäetud, kuidas neid saavutada — ühinevad omavalitsused määravad selle ise, mistõttu on oluline roll ühinemisläbirääkimistel. Viitab Riigikontrolli 2017. aasta märgukirjale selgete valdkondlike eesmärkide olulisusest.",
+  "tags": [
+    "haldusreform",
+    "omavalitsuste ühinemine",
+    "ühinemislepingud",
+    "sotsiaalvaldkonna prioriteedid",
+    "Riigikontroll"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part5.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2017-kov-prioriteedid-uhinemine-2017-3",
+  "source_sha256": "e0a4b073775d531887d561671384eade828e115794c1be198ca41619f6e92fdc",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2017-kov-prioriteedid-uhinemine-2017-3",
+    "previous_source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part5.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part5.pdf",
+    "reference_stored_source_sha256": "da6bf8d6353dad12c1e844be2e04659c0345ace37e0447e9aed55fa175412729",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf",
+      "source_sha256": "3f27c22982b22a396dace8a957798cc21d3240489c7ce4d92802bf1a94bde7a8",
+      "pdf_start_page": 15,
+      "pdf_end_page": 20,
+      "printed_page_range": "13-18",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 20,
+      "source_regions": [
+        {
+          "source_pdf_page": 15,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 16,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 17,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 18,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 19,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 20,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "13-18",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf"
+    },
+    "server_page_range": "13-18"
+  }
+}

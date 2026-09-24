@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-rapina-vald",
+  "document_id": "kov-rapina-vald",
+  "municipality": "Räpina vald",
+  "municipality_id": "rapina_vald",
+  "county": "Põlvamaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "status": "ingest_ready",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "expected_rt_docId": "kov-rt-rapina-vald",
+  "coverage": {
+    "services": 17,
+    "benefits": 12,
+    "resources": 10,
+    "contacts": 9,
+    "forms": 7,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "rapina_vald",
+    "source_register_file": "rapina-vald.sources.json",
+    "service_benefit_resource_items": 39,
+    "items_with_source_keys": 39,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 8,
+    "items_without_related_forms": 31,
+    "items_with_related_contacts": 23,
+    "items_without_related_contacts": 16,
+    "form_sources": 1,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "3 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Pakett on parandatud nii, et RAG-tekstis ja JSON-ides ei ole sisemisi viitemarkereid ega lõpuallikate loendit.",
+    "Peamised sotsiaalvaldkonna harud, toetused, lastekaitse lehed, kontaktid ja blankettide leht on uuesti normaliseeritud."
+  ],
+  "unresolvedIssues": [
+    "Sotsiaal- ja tervishoiu alaste blankettide üksikute failide otselinke ei õnnestunud korje ajal kindlalt avada; vormid on seostatud blankettide lehe kaudu.",
+    "Turvakodu alamlehe sisu oli korje ajal osaliselt kättesaamatu; turvakoduteenuse kirjeldus põhineb KOV varjupaiga ja turvakodu lehe ning menüüharu infol.",
+    "Järelhooldusteenuse eraldi praktilist detaillehte ei leitud; teenus on tuvastatud KOV sotsiaalhoolekandelise abi loetelust.",
+    "Jõulutoetuse, eakate õnnitluskaardi ja elamu välisilme toetuse detailseid praktilisi tingimusi ei leitud eraldi lehelt; need on kajastatud piiratud info alusel.",
+    "Toimetulekutoetuse detaillehel oli avaldatud vananenud toimetulekupiiri summa; kehtivat summat ei normaliseeritud KOV paketis.",
+    "Väliste teenusepakkujate (nt Võrumaa Naiste Tugikeskus, Tartu varjupaik, Ristipalo pansionaat) andmeid ei kontrollitud väljaspool KOV lehte.",
+    "Mõne sotsiaalosakonna töötaja telefoninumber esines erinevatel KOV lehtedel erineval kujul; peamine kontakt võeti kontaktilehelt ja alternatiivne number märgiti vajadusel eraldi."
+  ],
+  "municipality_name": "Räpina vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "rapina-vald.sources.json",
+  "sourceCount": 29,
+  "counts": {
+    "services": 17,
+    "benefits": 12,
+    "resources": 10,
+    "contacts": 9,
+    "forms": 7,
+    "regulations": 0
+  },
+  "warnings": [
+    "3 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

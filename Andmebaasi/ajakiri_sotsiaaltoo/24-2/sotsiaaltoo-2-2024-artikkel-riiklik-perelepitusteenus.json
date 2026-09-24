@@ -1,0 +1,45 @@
+{
+  "docId": "sotsiaaltoo-2-2024",
+  "articleId": "teekond-riikliku-perelepitusteenuseni-ja-sealt-edasi-2024-2",
+  "title": "Teekond riikliku perelepitusteenuseni ja sealt edasi",
+  "authors": [
+    "Liilia Mänd",
+    "Tuuli-Brit Vaga"
+  ],
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2024",
+  "section": "Kogemus",
+  "pageRange": "38-42",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade perelepitusteenuse loomisest ja esimestest tulemustest.",
+  "tags": [
+    "perelepitus",
+    "riiklik perelepitusteenus",
+    "lahkuminek",
+    "vanemluskokkulepe",
+    "lapse huvid",
+    "lapse ärakuulamine",
+    "sotsiaalkindlustusamet",
+    "kohtuväline kokkulepe",
+    "peretöö",
+    "KOV koostöö"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2024_web_Part10.pdf",
+  "document_id": "sotsiaaltoo-2-2024-teekond-riikliku-perelepitusteenuseni-ja-sealt-edasi-2024-2",
+  "source_format": "pdf",
+  "source_sha256": "fb02f4e8c4e7b4862c9491be21cb887ca73d2976b33b641ff7cb1aa8226cfa4c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2024-teekond-riikliku-perelepitusteenuseni-ja-sealt-edasi-2024-2",
+    "previous_source_path": "Sotsiaaltoo_2_2024_web_Part10.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "fb02f4e8c4e7b4862c9491be21cb887ca73d2976b33b641ff7cb1aa8226cfa4c",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

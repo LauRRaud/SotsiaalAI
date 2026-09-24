@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-eri-2018",
+  "articleId": "laur-raudsoo-ajakirja-juubel-2018",
+  "title": "Ajakiri Sotsiaaltöö – Laur Raudsoo vaade ajakirja arengule",
+  "authors": [
+    "Laur Raudsoo"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö (juubeliväljaanne)",
+  "issueLabel": "Eri/2018",
+  "section": "Ajakirja juubel",
+  "pageRange": "3-5",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ajakirja tegevtoimetaja Laur Raudsoo tagasivaade Sotsiaaltöö ajakirja kujunemisele, tänastele väljakutsetele ja tulevikusuundadele.",
+  "tags": [
+    "Sotsiaaltöö ajakiri",
+    "ajakirja ajalugu",
+    "meediapraktika",
+    "toimetamine",
+    "persoon"
+  ],
+  "source_type": "file",
+  "source_path": "ST_eri_2018_web_link_Part3.pdf",
+  "document_id": "sotsiaaltoo-eri-2018-laur-raudsoo-ajakirja-juubel-2018",
+  "source_format": "pdf",
+  "source_sha256": "470e3f941ff46e75c17521a2b6cf42e0c068ad1088ad86de7622b6c8c0182a42",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2018-laur-raudsoo-ajakirja-juubel-2018",
+    "previous_source_path": "ST_eri_2018_web_link_Part3.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "470e3f941ff46e75c17521a2b6cf42e0c068ad1088ad86de7622b6c8c0182a42",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

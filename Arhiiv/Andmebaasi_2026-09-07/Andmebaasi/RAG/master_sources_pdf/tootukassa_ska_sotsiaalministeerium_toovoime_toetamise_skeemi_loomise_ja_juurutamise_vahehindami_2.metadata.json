@@ -1,0 +1,77 @@
+{
+  "source": {
+    "source_id": "tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_skeemi_loomise_ja_juurutamise_vahehindami_2",
+    "title": "Töövõime toetamise skeemi loomise ja juurutamise vahehindamise infoleht",
+    "url": "https://mkm.ee/sites/default/files/documents/2023-07/T%C3%B6%C3%B6v%C3%B5ime%20toetamise%20skeemi%20loomise%20ja%20juurutamise%20vahehindamise%20infoleht.pdf",
+    "normalized_url": "https://mkm.ee/sites/default/files/documents/2023-07/Töövõime toetamise skeemi loomise ja juurutamise vahehindamise infoleht.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Töötukassa / SKA / Sotsiaalministeerium",
+    "organization_id": "tootukassa_ska_sotsiaalministeerium",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Töötukassa",
+      "töövõime",
+      "vähenenud töövõime",
+      "töötamine",
+      "tööturuteenused",
+      "infomaterjal",
+      "Sotsiaalministeerium",
+      "Sotsiaalkindlustusamet"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Töövõime / Töötukassa / SKA / STAR",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 357,
+      "order": 200
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Töövõime toetamise skeemi loomise ja juurutamise vahehindamise infoleht"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Töötukassa / SKA / Sotsiaalministeerium"
+    ],
+    "organizations_seen": [
+      "tootukassa_ska_sotsiaalministeerium"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Töövõime / Töötukassa / SKA / STAR",
+        "line": 357,
+        "order": 200
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://mkm.ee/sites/default/files/documents/2023-07/Töövõime toetamise skeemi loomise ja juurutamise vahehindamise infoleht.pdf"
+  },
+  "final_url": "https://mkm.ee/sites/default/files/documents/2023-07/T%C3%B6%C3%B6v%C3%B5ime%20toetamise%20skeemi%20loomise%20ja%20juurutamise%20vahehindamise%20infoleht.pdf",
+  "redirects": [],
+  "sha256": "13f4642c14df48b6f4dd274e457378fca40abb2d39de0a8f66b4ba3322dbb16f",
+  "bytes": 201323,
+  "downloaded_at": "2026-08-14T08:00:43.904Z"
+}

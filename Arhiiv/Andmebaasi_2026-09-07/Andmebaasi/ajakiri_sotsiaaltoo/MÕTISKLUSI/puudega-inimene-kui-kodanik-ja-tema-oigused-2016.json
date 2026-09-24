@@ -1,0 +1,40 @@
+{
+  "docId": "motisklusi-sotsiaaltoost-2016",
+  "articleId": "puudega-inimene-kui-kodanik-ja-tema-oigused-2016",
+  "title": "Puudega inimene kui kodanik ja tema õigused",
+  "authors": [
+    "Jean Pierre Wilken"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "MÕTISKLUSI",
+  "section": "Hea praktika",
+  "pageRange": "26-28",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb puudega inimest kodanikuna, kellel on inim- ja kodanikuõigused ning õigus täielikule osalusele ühiskonnas. Fookuses on ÜRO puuetega inimeste õiguste konventsioon, kodaniku-lähenemine sotsiaaltöös, sotsiaalne kaasatus ning sotsiaaltöötaja roll õiguste teadvustamisel, diskrimineerimise vähendamisel ja ühiskondliku osaluse toetamisel.",
+  "tags": [
+    "puudealased õigused",
+    "kodaniku-lähenemine",
+    "ÜRO konventsioon",
+    "sotsiaalne kaasatus",
+    "võrdsed võimalused",
+    "õiguspõhine sotsiaaltöö"
+  ],
+  "source_type": "file",
+  "source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part11.pdf",
+  "document_id": "motisklusi-sotsiaaltoost-2016-puudega-inimene-kui-kodanik-ja-tema-oigused-2016",
+  "source_format": "pdf",
+  "source_sha256": "c050674c0643a7a090bdf536176496f802d77ad5f04b2f78f75a9447b67ac269",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "motisklusi-sotsiaaltoost-2016-puudega-inimene-kui-kodanik-ja-tema-oigused-2016",
+    "previous_source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part11.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "c050674c0643a7a090bdf536176496f802d77ad5f04b2f78f75a9447b67ac269",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "source": {
+    "source_id": "tootukassa_ska_sotsiaalministeerium_star_strateegia_tegevused_2026_2029",
+    "title": "STAR strateegia tegevused 2026–2029",
+    "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-03/Lisa%203_STAR%20strateegia%20tegevused_0.pdf",
+    "normalized_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-03/Lisa 3_STAR strateegia tegevused_0.pdf",
+    "source_format": "pdf",
+    "source_type": "policy_analysis",
+    "resource_type": "policy_context",
+    "publisher": "Töötukassa / SKA / Sotsiaalministeerium",
+    "organization_id": "tootukassa_ska_sotsiaalministeerium",
+    "collection_hint": "policy_and_strategy",
+    "evidence_role": "policy_context",
+    "topic_tags": [
+      "Töötukassa",
+      "strateegia",
+      "poliitika planeerimine",
+      "Sotsiaalministeerium",
+      "Sotsiaalkindlustusamet"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Töövõime / Töötukassa / SKA / STAR",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 353,
+      "order": 198
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "STAR strateegia tegevused 2026–2029"
+    ],
+    "collection_hints": [
+      "policy_analyses"
+    ],
+    "source_types_seen": [
+      "policy_analysis"
+    ],
+    "resource_types_seen": [
+      "policy_context"
+    ],
+    "publishers_seen": [
+      "Töötukassa / SKA / Sotsiaalministeerium"
+    ],
+    "organizations_seen": [
+      "tootukassa_ska_sotsiaalministeerium"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Töövõime / Töötukassa / SKA / STAR",
+        "line": 353,
+        "order": 198
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-03/Lisa 3_STAR strateegia tegevused_0.pdf"
+  },
+  "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-03/Lisa%203_STAR%20strateegia%20tegevused_0.pdf",
+  "redirects": [],
+  "sha256": "c86811b344d76e17a3d2f2c0baaa3860d255995645468f6ebfa5f5a9d1fe726e",
+  "bytes": 799109,
+  "downloaded_at": "2026-08-14T08:00:42.116Z"
+}

@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-1-2022",
+  "articleId": "pandeemia-laste-vaimne-tervis-ja-toetamine-osa-1-2022-1",
+  "title": "Pandeemia mõju laste vaimsele tervisele ja kuidas neid toetada. 1. osa",
+  "authors": [
+    "Karin Streimann"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2022",
+  "section": "Uurimus",
+  "pageRange": "70-76",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimus käsitleb pandeemia mõju laste vaimsele tervisele, sh ärevuse ja stressi kasvu, suhete muutumist ning turvatunde vähenemist. Autorid kirjeldavad laste vajadusi, toetavaid sekkumisi ja vältimatu abi põhimõtteid.",
+  "tags": [
+    "laste vaimne tervis",
+    "COVID-19",
+    "pandeemia mõju",
+    "toetusmeetmed",
+    "lapse heaolu"
+  ],
+  "source_type": "file",
+  "source_path": "2022_artikkel_15_pandeemia_laste_vaimne_tervis.pdf",
+  "authors_vana": [
+    "Egle Kriisa",
+    "Marie Abel"
+  ],
+  "authors_parandatud": "2026-08-17, A5 pöördsuuna kontroll, kinnitatud lähte-PDF-i autorirea vastu",
+  "document_id": "sotsiaaltoo-1-2022-pandeemia-laste-vaimne-tervis-ja-toetamine-osa-1-2022-1",
+  "source_format": "pdf",
+  "source_sha256": "696928e4579bef5ba44c16e0a935e3fa72c3023bc48bbfd13de837478dee4e64",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2022-pandeemia-laste-vaimne-tervis-ja-toetamine-osa-1-2022-1",
+    "previous_source_path": "2022_artikkel_15_pandeemia_laste_vaimne_tervis.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "696928e4579bef5ba44c16e0a935e3fa72c3023bc48bbfd13de837478dee4e64",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

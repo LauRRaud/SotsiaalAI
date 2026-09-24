@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-otepaa-vald",
+  "document_id": "kov-otepaa-vald",
+  "municipality": "Otepää vald",
+  "municipality_id": "otepaa_vald",
+  "county": "Valgamaa",
+  "checkedAt": "2026-04-29",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-otepaa-vald",
+  "coverage": {
+    "services": 18,
+    "benefits": 10,
+    "resources": 16,
+    "contacts": 11,
+    "forms": 15,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "otepaa_vald",
+    "source_register_file": "otepaa-vald.sources.json",
+    "service_benefit_resource_items": 44,
+    "items_with_source_keys": 44,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 13,
+    "items_without_related_forms": 31,
+    "items_with_related_contacts": 31,
+    "items_without_related_contacts": 13,
+    "form_sources": 8,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Pakett kasutab ainult Otepää valla ametliku veebilehe ja selle ametlikult avaldatud failide praktilist sotsiaalvaldkonna infot.",
+    "RT ja õigusaktide lingid jäeti teadlikult KOV veebipaketist välja, sest RT/legal kiht on eraldi."
+  ],
+  "unresolvedIssues": [
+    "SPOKU iseteeninduse otselinki ei õnnestunud KOV lehelt kindlalt eraldada; mitmel taotluslehel on märgitud, et ülemineku ajal toimub avalduste esitamine e-posti teel.",
+    "Esmakordselt kooli mineva lapse toetuse ehk ranitsatoetuse täpset summat KOV detailleht ei avaldanud.",
+    "Hooldajatoetuse leht kirjeldab nii raske või sügava puudega täisealise isiku hooldamist kui ka puudega lapse hooldamist samal detaillehel; eraldi täiskasvanu ja lapse toetuse itemiteks jagamist ei kinnitatud KOV veebis.",
+    "Mitme teenuse puhul avaldab KOV veeb üldise sotsiaalteenuse kirjelduse, kuid mitte detailset menetluskäiku, otsustamise aega ega tasu; need jäeti oletamata.",
+    "Mõne sotsiaalteenistuse töötaja e-posti aadress oli ligipääsetavas veebitekstis varjestatud või ebaselge; neid e-posti aadresse ei taastatud oletuse põhjal.",
+    "Välised teenusepakkujad ja abikanalid, näiteks Lastemaja, Medi, Lasteabi, palunabi.ee ja sõltuvusabi ressursid, on kajastatud ainult selles ulatuses, milles Otepää valla ametlik veeb neid nimetab; väliseid saite eraldi allikana ei kasutatud.",
+    "Parkimiskaardi kohta ei õnnestunud Otepää valla sotsiaalvaldkonna veebiharust eraldi praktilist KOV infot kinnitada.",
+    "Vältimatu sotsiaalabi kohta ei õnnestunud Otepää valla praktilisel veebikihil eraldi teenuse või toetuse detaillehte kinnitada."
+  ],
+  "municipality_name": "Otepää vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "otepaa-vald.sources.json",
+  "sourceCount": 47,
+  "counts": {
+    "services": 18,
+    "benefits": 10,
+    "resources": 16,
+    "contacts": 11,
+    "forms": 15,
+    "regulations": 0
+  },
+  "warnings": [
+    "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

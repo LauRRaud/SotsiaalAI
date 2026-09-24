@@ -1,0 +1,72 @@
+{
+  "docId": "sotsiaaltoo-1-2016",
+  "articleId": "sotsiaaltoo-1-2016-artikkel-05-uuest-abivahendi-korraldusest-abivahendi-ettevõt",
+  "title": "Uuest abivahendi korraldusest abivahendi ettevõtte silmade läbi",
+  "authors": [
+    "Kadri Tiido"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2016",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "12-13",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Invaru OÜ juhatuse liige loetleb uue abivahendimääruse plussid: eelarvet planeeritakse ühes kohas, abivahendid on elukohast sõltumata võrdselt kättesaadavad ja ettevõttel on üks leping. Kuu aega uue korra järgi töötanud ettevõtete oote- ja teenindusaeg on pikenenud, sest tuleb leida arstitõendis kirjeldatule määruse ISO koodi vaste, kontrollida kaardi kehtivust ja vajaduse tuvastaja õigusi ning lasta 16–63aastastel täita Euroopa Sotsiaalfondi tõttu nõutav tööhõive staatuse ankeet. Uued nõuded hõlmavad korralist hooldust, asendusabivahendit, varuosade säilitamist kolm kuud ja abivahendispetsialisti kutsega töötajat igas müügipunktis.",
+  "tags": [
+    "abivahendid",
+    "abivahendi ettevõte",
+    "sotsiaalhoolekande seadus",
+    "kutsestandard",
+    "klienditeenindus",
+    "hooldus"
+  ],
+  "source_type": "file",
+  "source_path": "2016_1_artikkel_05_uuest_abivahendi_korraldusest_abivahendi_ettevotte_s.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-05-uuest-abivahendi-korraldusest-abivahendi-ettev-t",
+  "source_sha256": "8be50f769c5e50bc491e73f2bf4673037cdfea7cd5809b5f20eccd0b46937541",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-05-uuest-abivahendi-korraldusest-abivahendi-ettev-t",
+    "previous_source_path": "2016_1_artikkel_05_uuest_abivahendi_korraldusest_abivahendi_ettevotte_s.txt",
+    "previous_source_original_path": "1-2016.pdf",
+    "reference_stored_source_sha256": "8af2af66ea5ce873db65a7423b6648f1fc5a47b6e2d45b71745b59ced99048c3",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf",
+      "source_sha256": "2c193295e54f58982562b509b6283e93aa58b1695464671e1768e24e90888a6c",
+      "pdf_start_page": 14,
+      "pdf_end_page": 15,
+      "printed_page_range": "12-14",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 16,
+      "source_regions": [
+        {
+          "source_pdf_page": 14,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 15,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "12-13"
+    },
+    "server_page_range": "12-14"
+  }
+}

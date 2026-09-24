@@ -1,0 +1,78 @@
+{
+  "source": {
+    "source_id": "astangu_tooandjate_noustamine_ja_toetamine",
+    "title": "Tööandjate nõustamine ja toetamine",
+    "url": "https://www.astangu.ee/sites/default/files/media/To%CC%88o%CC%88vahend_6_Moodul_2_To%CC%88o%CC%88andjate_no%CC%83ustamine_ja_toetamine.pdf",
+    "normalized_url": "https://www.astangu.ee/sites/default/files/media/Töövahend_6_Moodul_2_Tööandjate_nõustamine_ja_toetamine.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Astangu",
+    "organization_id": "astangu",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Astangu Kutserehabilitatsiooni Keskus",
+      "töövõime",
+      "vähenenud töövõime",
+      "töötamine",
+      "tööturuteenused",
+      "tööandja",
+      "infomaterjal",
+      "Astangu"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Partnerid",
+      "heading_3": "Astangu",
+      "heading_4": null,
+      "line": 579,
+      "order": 297
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Tööandjate nõustamine ja toetamine"
+    ],
+    "collection_hints": [
+      "organization_materials"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Astangu"
+    ],
+    "organizations_seen": [
+      "astangu"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Partnerid",
+        "heading_3": "Astangu",
+        "line": 579,
+        "order": 297
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.astangu.ee/sites/default/files/media/Töövahend_6_Moodul_2_Tööandjate_nõustamine_ja_toetamine.pdf"
+  },
+  "final_url": "https://www.astangu.ee/sites/default/files/media/To%CC%88o%CC%88vahend_6_Moodul_2_To%CC%88o%CC%88andjate_no%CC%83ustamine_ja_toetamine.pdf",
+  "redirects": [],
+  "sha256": "6d7f1377093a963d9b4205c47d7a66bbd86a395c577fd9e347555551fb913c87",
+  "bytes": 792994,
+  "downloaded_at": "2026-08-14T08:00:56.815Z"
+}

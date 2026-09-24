@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-1-2024",
+  "articleId": "ella-kirsipuu-elu-kutse-emade-ja-lastekaitse-ning-naisliikumise-edendamine-2024-1",
+  "title": "Ella Kirsipuu elu kutse: emade- ja lastekaitse ning naisliikumise edendamine",
+  "authors": [
+    "Taimi Tulva",
+    "Mare Torm"
+  ],
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2024",
+  "section": "Ajalugu",
+  "pageRange": "73-79",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ajalooartiklis antakse ülevaade sotsiaaltöötaja ja pedagoogi Ella Kirsipuu elutööst, keskendudes tema panusele emade- ja lastekaitse arendamisse Eesti Vabariigis. Kirjeldatakse Kirsipuu tegevust õpetaja, sotsiaalala korraldaja ja naisliikumise edendajana ning tema rolli sotsiaal- ja kodundusinstituudi kujunemisel. Arhiiviallikatele ja mälestustele tuginedes seotakse ajalooline vaade nüüdisaegse sotsiaaltööga.",
+  "tags": [
+    "Ella Kirsipuu",
+    "sotsiaaltöö ajalugu",
+    "emade- ja lastekaitse",
+    "naisliikumine",
+    "haridusajalugu",
+    "sotsiaal- ja kodundusinstituut",
+    "Eesti Vabariik",
+    "ajaloolised allikad"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_1_2024_web_Part14.pdf",
+  "document_id": "sotsiaaltoo-1-2024-ella-kirsipuu-elu-kutse-emade-ja-lastekaitse-ning-naisliikumise-edendamine-2024-1",
+  "source_format": "pdf",
+  "source_sha256": "117d5cdfc4dc0ef9f405374eaed5edc802c4cd8a4762695c100f500c0ac7b878",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2024-ella-kirsipuu-elu-kutse-emade-ja-lastekaitse-ning-naisliikumise-edendamine-2024-1",
+    "previous_source_path": "Sotsiaaltoo_1_2024_web_Part14.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "117d5cdfc4dc0ef9f405374eaed5edc802c4cd8a4762695c100f500c0ac7b878",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

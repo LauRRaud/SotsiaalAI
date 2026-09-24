@@ -1,0 +1,73 @@
+{
+  "docId": "sotsiaaltoo-3-2016",
+  "articleId": "sotsiaaltoo-3-2016-artikkel-11-mdft-rakendamine-vanglas-nõuab-erilisi-oskusi",
+  "title": "MDFT rakendamine vanglas nõuab erilisi oskusi",
+  "authors": [
+    "Jako Salla"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2016",
+  "section": "Kogukonnakesksed teenused",
+  "pageRange": "36-37",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Faili esimene osa on Salla lugu MDFT rakendamisest vanglas: alaealiste kinnipeetavate arv on püsinud 20–30 piires, enamik poisse on Viru vangla noorteüksuses, ning vangla meeskond on programmi läbi viinud viie vabanenud ja 2016. aasta suvel viie karistust kandva noorega. Hollandi MDFT Akadeemia koolitajad Kees Mos ja Henno Verdam selgitavad, et kinnises keskkonnas lisandub neljale sambale viiendana asutus ise. Faili teine osa on Rain Uuseni persooniloo algus kriminaalhooldusametnik Maris Mõttusest.",
+  "tags": [
+    "mdft",
+    "viru vangla",
+    "alaealised kinnipeetavad",
+    "holland",
+    "pereteraapia"
+  ],
+  "source_type": "file",
+  "source_path": "2016_3_artikkel_11_mdft_rakendamine_vanglas_nouab_erilisi_oskusi.pdf",
+  "added": "2026-08-17",
+  "fulltext_note": "Tekst korrastatud 17.08.2026 (pdftotext oli artikli piiri valesti lõiganud).",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2016-sotsiaaltoo-3-2016-artikkel-11-mdft-rakendamine-vanglas-n-uab-erilisi-oskusi",
+  "source_sha256": "4132a7329106b957353ca65906854dbc7d13fa9eb6d5356c217ef75b2d851c3d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2016-sotsiaaltoo-3-2016-artikkel-11-mdft-rakendamine-vanglas-n-uab-erilisi-oskusi",
+    "previous_source_path": "2016_3_artikkel_11_mdft_rakendamine_vanglas_nouab_erilisi_oskusi.txt",
+    "previous_source_original_path": "3-2016.pdf",
+    "reference_stored_source_sha256": "1a20af1c5e4fceb8c092b83ba03fdd7cfaeb5290beaa5588cdb5c1f2d4275c73",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\3-2016.pdf",
+      "source_sha256": "7a9be30ca3f1a959b3d48a3f12065bc9c37d0f618f6cbb71e681f6e83199aacc",
+      "pdf_start_page": 38,
+      "pdf_end_page": 39,
+      "printed_page_range": "36-38",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 40,
+      "source_regions": [
+        {
+          "source_pdf_page": 38,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 39,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "36-37",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\3-2016.pdf"
+    },
+    "server_page_range": "36-38"
+  }
+}

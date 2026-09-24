@@ -1,0 +1,146 @@
+{
+  "source_path": "paasteamet_tuleohutuskonsultandi_koolitusmaterjal.pdf",
+  "source_format": "pdf",
+  "sha256": "cbf7fe568a28f4fc2497ceb96024678d46df2922e2c8f6737825fba5f7fe6ef1",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/paasteamet_tuleohutuskonsultandi_koolitusmaterjal.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "paasteamet_tuleohutuskonsultandi_koolitusmaterjal",
+          "title": "Tuleohutuskonsultandi koolitusmaterjal",
+          "url": "https://www.rescue.ee/files/2019-03/tuleohutuskonsultandile.pdf",
+          "normalized_url": "https://www.rescue.ee/files/2019-03/tuleohutuskonsultandile.pdf",
+          "source_format": "pdf",
+          "source_type": "official_guideline",
+          "resource_type": "method_guidance",
+          "publisher": "Päästeamet",
+          "organization_id": "paasteamet",
+          "collection_hint": "guidance_and_methods",
+          "evidence_role": "practice_guidance",
+          "topic_tags": [
+            "Päästeamet",
+            "tuleohutus",
+            "pääste",
+            "evakuatsioon",
+            "kriisivalmidus",
+            "lapsed ja pered",
+            "haridus",
+            "kool",
+            "õpilase toetamine",
+            "tugimeetmed",
+            "spetsialisti juhend"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "high",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 409,
+            "order": 224
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Tuleohutuskonsultandi koolitusmaterjal"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "official_guideline"
+          ],
+          "resource_types_seen": [
+            "method_guidance"
+          ],
+          "publishers_seen": [
+            "Päästeamet"
+          ],
+          "organizations_seen": [
+            "paasteamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+              "line": 409,
+              "order": 224
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.rescue.ee/files/2019-03/tuleohutuskonsultandile.pdf"
+        },
+        "final_url": "https://www.rescue.ee/files/2019-03/tuleohutuskonsultandile.pdf",
+        "redirects": [],
+        "sha256": "cbf7fe568a28f4fc2497ceb96024678d46df2922e2c8f6737825fba5f7fe6ef1",
+        "bytes": 6609027,
+        "downloaded_at": "2026-08-14T08:00:48.241Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "paasteamet_tuleohutuskonsultandi_koolitusmaterjal",
+      "metadata": {
+        "createdAt": "2026-06-11T18:51:10.989657+00:00",
+        "type": "FILE",
+        "fileName": "tuleohutuskonsultandile.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-11T18:51:10.924351+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/a8299b5f1d53/tuleohutuskonsultandile.pdf",
+        "title": "Tuleohutuskonsultandi koolitusmaterjal",
+        "description": "Source master headings: Päästeamet / kriisivalmidus / ligipääsetavus kriisis",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2019,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–305",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "paasteamet_tuleohutuskonsultandi_koolitusmaterjal",
+        "document_id": "paasteamet_tuleohutuskonsultandi_koolitusmaterjal",
+        "source_type": "official_guideline",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-11",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "e880b0c275e2090bbd318fd7b1428caf8539f1ec68cb613008eaeb4c185c5274",
+        "url": "https://www.rescue.ee/files/2019-03/tuleohutuskonsultandile.pdf",
+        "url_canonical": "https://www.rescue.ee/files/2019-03/tuleohutuskonsultandile.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "paasteamet_tuleohutuskonsultandi_koolitusmaterjal",
+        "updatedAt": "2026-06-11T18:51:10.989680+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

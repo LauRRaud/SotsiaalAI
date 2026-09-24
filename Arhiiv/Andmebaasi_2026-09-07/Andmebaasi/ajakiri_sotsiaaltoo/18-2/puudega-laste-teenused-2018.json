@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-2-2018",
+  "articleId": "puudega-laste-perede-teenuste-kasutamine-ja-nende-vajadus-2018",
+  "title": "Puudega laste perede teenuste kasutamine ja nende vajadus",
+  "authors": [
+    "Mari Sarv"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2018",
+  "section": "Uurimus",
+  "pageRange": "18-24",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimus puudega lastega perede teenuste kasutamisest ja vajadustest, analüüsides sotsiaaltranspordi, tugiisiku, lapsehoiuteenuse, rehabilitatsiooni, psühholoogi ja muude teenuste kättesaadavust ning vanemate kogemusi ja ootusi.",
+  "tags": [
+    "puudega laste pered",
+    "sotsiaalteenused",
+    "teenuste kättesaadavus",
+    "sotsiaaltransport",
+    "tugiisiku teenus",
+    "lapsehoiuteenus",
+    "rehabilitatsioon",
+    "teenusevajaduse hindamine",
+    "sotsiaalpoliitika analüüs"
+  ],
+  "source_type": "file",
+  "source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part7.pdf",
+  "document_id": "sotsiaaltoo-2-2018-puudega-laste-perede-teenuste-kasutamine-ja-nende-vajadus-2018",
+  "source_format": "pdf",
+  "source_sha256": "14f97e3cbd1740d12c14e60b0022dadf03f7ec60aeda3df0641585e04b17a7ea",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2018-puudega-laste-perede-teenuste-kasutamine-ja-nende-vajadus-2018",
+    "previous_source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part7.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "14f97e3cbd1740d12c14e60b0022dadf03f7ec60aeda3df0641585e04b17a7ea",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

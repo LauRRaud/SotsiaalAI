@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-4-2018",
+  "articleId": "laste-esindajate-suutlikkus-2018",
+  "title": "Laste esindajate suutlikkus toetada lapse osalemist menetlustes",
+  "authors": [
+    "Judit Strömpl"
+  ],
+  "authors_fixed": "2026-08-15",
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2018",
+  "section": "Projekt",
+  "pageRange": "66-70",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb laste esindajate rolli ja suutlikkust toetada lapse osalemist menetlustes.",
+  "tags": [
+    "lastekaitse",
+    "menetlused",
+    "lapse õigused",
+    "esindamine"
+  ],
+  "source_type": "file",
+  "source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part17.pdf",
+  "document_id": "sotsiaaltoo-4-2018-laste-esindajate-suutlikkus-2018",
+  "source_format": "pdf",
+  "source_sha256": "225b2c027a3f22d3373abc0e5eb504530ba90473c4b55c432dd43084544eac67",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2018-laste-esindajate-suutlikkus-2018",
+    "previous_source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part17.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "225b2c027a3f22d3373abc0e5eb504530ba90473c4b55c432dd43084544eac67",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "docId": "sotsiaaltoo-2-2017",
+  "articleId": "julgus-aitab-edu-saavutada-2017-2",
+  "title": "Julgus aitab edu saavutada",
+  "authors": [
+    "Marten Aluste"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2017",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "17-19",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Rakenduskõrghariduse õppekava lõpetaja lugu Tartu Ülikooli Pärnu kolledžist. Rõhutab praktilise lähenemise ja väikese kursuse eeliseid ning seda, et suurte tegude tegemiseks on vaja koostööd ja inimene ei tohiks oma tööd tehes üksi olla.",
+  "tags": [
+    "erialavalik",
+    "rakenduskõrgharidus",
+    "praktika",
+    "koostöö"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2-2017_veebi_link_Part8.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2017-julgus-aitab-edu-saavutada-2017-2",
+  "source_sha256": "6086aec8e3a2f262150acea17b676ad2ba09595e4433efa9ef108a2a190bdd19",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2017-julgus-aitab-edu-saavutada-2017-2",
+    "previous_source_path": "Sotsiaaltoo_2-2017_veebi_link_Part8.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2-2017_veebi_link_Part8.pdf",
+    "reference_stored_source_sha256": "745a6e731d4e031faa6cc95ebf90b073570410d21fac2ba833cf6800f90522b2",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf",
+      "source_sha256": "609af110244e684ccbb68aea9504f2490fce2852b1e7caa7bedacb621d661a8a",
+      "pdf_start_page": 19,
+      "pdf_end_page": 21,
+      "printed_page_range": "17-19",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 21,
+      "source_regions": [
+        {
+          "source_pdf_page": 19,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 20,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 21,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "17-19",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf"
+    },
+    "server_page_range": "17-19"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "source": {
+    "source_id": "tootukassa_ska_sotsiaalministeerium_tooandjate_hoiakud_vahenenud_toovoimega_inimeste_tootamise_s",
+    "title": "Tööandjate hoiakud vähenenud töövõimega inimeste töötamise suhtes",
+    "url": "https://mkm.ee/sites/default/files/documents/2023-07/2021_tvrtooandjateuuringuloppraport.pdf",
+    "normalized_url": "https://mkm.ee/sites/default/files/documents/2023-07/2021_tvrtooandjateuuringuloppraport.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Töötukassa / SKA / Sotsiaalministeerium",
+    "organization_id": "tootukassa_ska_sotsiaalministeerium",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Töötukassa",
+      "töövõime",
+      "vähenenud töövõime",
+      "töötamine",
+      "tööturuteenused",
+      "tööandja",
+      "infomaterjal",
+      "Sotsiaalministeerium",
+      "Sotsiaalkindlustusamet"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Töövõime / Töötukassa / SKA / STAR",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 361,
+      "order": 202
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Tööandjate hoiakud vähenenud töövõimega inimeste töötamise suhtes"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Töötukassa / SKA / Sotsiaalministeerium"
+    ],
+    "organizations_seen": [
+      "tootukassa_ska_sotsiaalministeerium"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Töövõime / Töötukassa / SKA / STAR",
+        "line": 361,
+        "order": 202
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://mkm.ee/sites/default/files/documents/2023-07/2021_tvrtooandjateuuringuloppraport.pdf"
+  },
+  "final_url": "https://mkm.ee/sites/default/files/documents/2023-07/2021_tvrtooandjateuuringuloppraport.pdf",
+  "redirects": [],
+  "sha256": "fe8a9eac18b07784dd9273727bd74dc80d9770233816d1b63eda7ece8417759e",
+  "bytes": 4633212,
+  "downloaded_at": "2026-08-14T08:00:44.572Z"
+}

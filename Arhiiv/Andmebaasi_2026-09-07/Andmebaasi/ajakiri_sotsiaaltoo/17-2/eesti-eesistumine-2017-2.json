@@ -1,0 +1,97 @@
+{
+  "docId": "sotsiaaltoo-2-2017",
+  "articleId": "eesti-eesistumine-2017-2",
+  "title": "Eesti eesistumine aitab luua kaasavat ja kestlikku Euroopat",
+  "authors": [
+    "Käthlin Sander"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2017",
+  "section": "Sotsiaalpoliitika",
+  "pageRange": "28-32",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi nõuniku ülevaade Eesti esimesest Euroopa Liidu Nõukogu eesistumisest (juuli–detsember 2017) ja selle sotsiaalvaldkonna teemadest. Selgitab nõukogu eesistujariigi rolli, läbirääkimiste korraldust ning Eesti prioriteete kaasava ja kestliku Euroopa loomisel.",
+  "tags": [
+    "Euroopa Liit",
+    "eesistumine",
+    "sotsiaalpoliitika",
+    "Euroopa sotsiaalõiguste sammas"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2-2017_veebi_link_Part13.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2017-eesti-eesistumine-2017-2",
+  "source_sha256": "1996eae216304bf16e0ef3dc996be25d2e4bef6eb848c9b04f50bff6d66983c8",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2017-eesti-eesistumine-2017-2",
+    "previous_source_path": "Sotsiaaltoo_2-2017_veebi_link_Part13.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2-2017_veebi_link_Part13.pdf",
+    "reference_stored_source_sha256": "fb39fff3a1b36705d03ba41d4b353822de012bca76fe305e4a26daf6233c65cb",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf",
+      "source_sha256": "609af110244e684ccbb68aea9504f2490fce2852b1e7caa7bedacb621d661a8a",
+      "pdf_start_page": 30,
+      "pdf_end_page": 34,
+      "printed_page_range": "28-32",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 34,
+      "source_regions": [
+        {
+          "source_pdf_page": 30,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 31,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 32,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 33,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 34,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "28-32"
+    },
+    "server_page_range": "28-32"
+  }
+}

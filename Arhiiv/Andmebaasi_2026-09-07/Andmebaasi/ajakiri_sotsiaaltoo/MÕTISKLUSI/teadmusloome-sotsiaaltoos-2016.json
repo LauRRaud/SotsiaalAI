@@ -1,0 +1,40 @@
+{
+  "docId": "motisklusi-sotsiaaltoost-2016",
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "MÕTISKLUSI",
+  "pdf_start_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "teadmusloome-sotsiaaltoos-2016",
+  "title": "Teadmusloome sotsiaaltöös",
+  "authors": [
+    "Jean Pierre Wilken"
+  ],
+  "pageRange": "32-36",
+  "pdf_end_page": 5,
+  "section": "Hea praktika",
+  "description": "Artikkel käsitleb sotsiaaltöö teadmusloomet seoses sotsiaaltöö definitsiooniga ning avab teadmuse eri tasandeid ja allikaid. Fookuses on teadusliku, isikliku, kogemusliku ja kontekstuaalse teadmise ühendamine, praktikapõhiste tõendite loomine ning pidev teadmuse arendamine sotsiaaltöö praktikas.",
+  "tags": [
+    "sotsiaaltöö teadmus",
+    "teadmusloome",
+    "tõenduspõhisus",
+    "praktikapõhised tõendid",
+    "kliendi kogemuslik teadmine",
+    "reflektiivne praktika"
+  ],
+  "source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part13.pdf",
+  "document_id": "motisklusi-sotsiaaltoost-2016-teadmusloome-sotsiaaltoos-2016",
+  "source_format": "pdf",
+  "source_sha256": "920282e1ca59ff6d6a5f3fd7264281afe2bcdbcfcf4729de324873bf0cc1bced",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "motisklusi-sotsiaaltoost-2016-teadmusloome-sotsiaaltoos-2016",
+    "previous_source_path": "147573713462_motisklusi_sotsiaaltoost_link_Part13.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "920282e1ca59ff6d6a5f3fd7264281afe2bcdbcfcf4729de324873bf0cc1bced",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2020",
+  "articleId": "malcolm-payne-ja-hans-van-ewijk-hea-sotsiaaltootaja-pohiomadus-on-visadus-2020-2",
+  "title": "Malcolm Payne ja Hans van Ewijk: hea sotsiaaltöötaja põhiomadus on visadus",
+  "authors": [
+    "Regina Lind"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2020",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "51-55",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Intervjuus arutlevad Malcolm Payne ja Hans van Ewijk sotsiaaltöö tähenduse, sotsiaaltöötaja põhiomaduste ja elukutse tuleviku üle. Kesksele kohale tõusevad visadus, mõistmisvõime, suhete loomine ja pühendumus inimeste toetamisel.",
+  "tags": [
+    "intervjuu",
+    "Malcolm Payne",
+    "Hans van Ewijk",
+    "sotsiaaltöötaja",
+    "visadus",
+    "elukutse"
+  ],
+  "source_type": "file",
+  "source_path": "ST2_2020_web_link_Part16.pdf",
+  "document_id": "sotsiaaltoo-2-2020-malcolm-payne-ja-hans-van-ewijk-hea-sotsiaaltootaja-pohiomadus-on-visadus-2020-2",
+  "source_format": "pdf",
+  "source_sha256": "ab438ee9a253e77b61934256b5b084f0412afeac62947100058280837245acbd",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2020-malcolm-payne-ja-hans-van-ewijk-hea-sotsiaaltootaja-pohiomadus-on-visadus-2020-2",
+    "previous_source_path": "ST2_2020_web_link_Part16.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ab438ee9a253e77b61934256b5b084f0412afeac62947100058280837245acbd",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

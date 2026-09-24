@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-3-2021",
+  "articleId": "sotsiaaltootajate-sailenotkuse-suurendamine-2021-3",
+  "title": "Sotsiaaltöötajate säilenõtkuse suurendamine",
+  "authors": [
+    "Monika Punová",
+    "Pavel Navrátil",
+    "Jitka Navrátilová"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2021",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "65-68",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab uurimust, mis käsitleb sotsiaaltöötajate säilenõtkuse kujunemist ja tugevdamist. Autorid analüüsivad stressi, läbipõlemise riski, emotsionaalset koormust ning tegureid, mis toetavad vastupidavust: kolleegitugi, supervisioon, organisatsioonikultuur ja enesehoid. Samuti antakse praktilisi soovitusi tööheaolu parandamiseks ja kriisidega toime tulemiseks.",
+  "tags": [
+    "säilenõtkus",
+    "läbipõlemine",
+    "tööheaolu",
+    "supervisioon",
+    "stressijuhtimine",
+    "sotsiaaltöötajate toetus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2021_web_link_Part15.pdf",
+  "document_id": "sotsiaaltoo-3-2021-sotsiaaltootajate-sailenotkuse-suurendamine-2021-3",
+  "source_format": "pdf",
+  "source_sha256": "034713d68555ca7eada63be152ac208a3d1d39b123662adc49bddd4c12b7a041",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2021-sotsiaaltootajate-sailenotkuse-suurendamine-2021-3",
+    "previous_source_path": "Sotsiaaltoo_3_2021_web_link_Part15.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "034713d68555ca7eada63be152ac208a3d1d39b123662adc49bddd4c12b7a041",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

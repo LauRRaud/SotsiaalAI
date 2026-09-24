@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2025",
+  "articleId": "tootaja-saab-edaspidi-tootuskindlustusest-suurema-kaitse-2025-4",
+  "title": "Töötaja saab edaspidi töötuskindlustusest suurema kaitse",
+  "authors": [
+    "Ingrid Erm-Eks"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2025",
+  "section": "Sotsiaalkaitse",
+  "pageRange": "1–5",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel selgitab 2026. aastal jõustuvaid töötuskindlustuse muudatusi, millega senine töötutoetus asendub baasmääras töötuskindlustushüvitisega. Fookuses on süsteemi õiglasemaks muutmine, suurem kaitse töötajatele ning mõju vähenenud töövõimega inimestele.",
+  "tags": [
+    "töötuskindlustus",
+    "töötutoetus",
+    "baasmääras hüvitis",
+    "sotsiaalkaitse",
+    "tööturg",
+    "vähenenud töövõime",
+    "seadusemuudatus"
+  ],
+  "source_type": "file",
+  "source_path": "Töötaja saab edaspidi töötuskindlustusest suurema kaitse.pdf",
+  "document_id": "sotsiaaltoo-4-2025-tootaja-saab-edaspidi-tootuskindlustusest-suurema-kaitse-2025-4",
+  "source_format": "pdf",
+  "source_sha256": "f6d03a71f490aa67191b9cb1447dbd827d6335e48f7ad8d2747cd08a0a76ca6b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2025-tootaja-saab-edaspidi-tootuskindlustusest-suurema-kaitse-2025-4",
+    "previous_source_path": "Töötaja saab edaspidi töötuskindlustusest suurema kaitse.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "f6d03a71f490aa67191b9cb1447dbd827d6335e48f7ad8d2747cd08a0a76ca6b",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

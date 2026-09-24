@@ -1,0 +1,4042 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-mustvee-vald",
+  "document_id": "kov-mustvee-vald",
+  "municipality": "Mustvee vald",
+  "municipality_id": "mustvee_vald",
+  "county": "Jõgevamaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "mustvee_vald_service_koduteenus",
+      "canonical_item_id": "mustvee_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenust osutatakse Mustvee vallas rahvastikuregistri järgi elavatele täisealistele inimestele, kes vajavad kõrvalist abi igapäevaeluga toimetulekul. Teenus sisaldab koduabi ja isikuabi ning selle eesmärk on aidata inimesel koduses keskkonnas toime tulla ja lükata edasi asutusehoolduse vajadust. Teenus on tasuline ja alates 1. augustist 2024 on hind 4 eurot tund.",
+      "sourceKeys": [
+        "koduteenus_page"
+      ],
+      "targetGroup": "Rahvastikuregistri järgi Mustvee vallas elavad täisealised inimesed, kes vajavad igapäevaelus kõrvalist abi.",
+      "conditions": "Teenuse vajadus hinnatakse kodukülastusel; teenust osutatakse personaalse hoolduskava ja lepingu alusel.",
+      "application": {
+        "channels": [
+          "kirjalik koduteenuse taotlus piirkonna sotsiaaltööspetsialistile"
+        ],
+        "steps": [
+          "taotleja esitab koduteenuse taotluse",
+          "sotsiaaltööspetsialist ja sotsiaalhooldustöötaja külastavad taotlejat",
+          "koostatakse hoolduskava ja sõlmitakse teenuse leping"
+        ],
+        "deadline": null
+      },
+      "decisionTime": "kodukülastus 10 kalendripäeva jooksul avalduse esitamisest",
+      "pricing": "4 eurot tund",
+      "amount": null,
+      "officialUrl": "https://mustveevald.kovtp.ee/koduteenused",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_koduteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_anneli_kaasik",
+        "mustvee_vald_contact_maire_vaher",
+        "mustvee_vald_contact_piret_tomson",
+        "mustvee_vald_contact_karin_suur"
+      ],
+      "item_type": "service",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "koduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_service_koduteenus",
+      "document_id": "mustvee_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/koduteenused",
+      "content_hash": "b8dbf4a3e5a5184cf03185da85a70af6605017a1ae64f0217c33871a7152efe2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_service_uldhooldusteenus",
+      "canonical_item_id": "mustvee_vald:service:uldhooldusteenus",
+      "itemType": "service",
+      "title": "Üldhooldusteenus",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatav üldhooldusteenus on mõeldud inimesele, kes vajab ööpäevaringset hooldust ja tuge igapäevaeluga toimetulekul. Mustvee valla leht selgitab hooldereformi põhimõtteid: hoolduskulude osa kaetakse kohaliku omavalitsuse kaudu ning inimesel jäävad tasuda majutus, toitlustus ja isiklikud kulud. Mustvee vallas on ööpäevaringse üldhooldusteenuse tasumise piirmäär 570 eurot.",
+      "sourceKeys": [
+        "uldhooldusteenus_page"
+      ],
+      "targetGroup": "Inimesed, kellel on suur hooldusvajadus ja kelle toimetulekut ei saa tagada kodus.",
+      "conditions": "Teenust sooviv isik või tema esindaja esitab üldhooldusteenuse osalise rahastamise taotluse; seejärel hinnatakse abivajadust.",
+      "application": {
+        "channels": [
+          "kirjalik üldhooldusteenuse osalise rahastamise taotlus"
+        ],
+        "steps": [
+          "esita taotlus",
+          "vallavalitsus hindab abivajadust",
+          "vallavalitsus kontrollib asjaolusid ja otsustab rahastamise"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "piirmäär 570 eurot",
+      "amount": null,
+      "officialUrl": "https://mustveevald.kovtp.ee/uldhooldusteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_uldhooldusteenuse_osalise_rahastamise_taotlus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_anneli_kaasik",
+        "mustvee_vald_contact_maire_vaher",
+        "mustvee_vald_contact_piret_tomson",
+        "mustvee_vald_contact_karin_suur"
+      ],
+      "item_type": "service",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "uldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_service_uldhooldusteenus",
+      "document_id": "mustvee_vald_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/uldhooldusteenus",
+      "content_hash": "e0cc8b65ac80a6a91ef341fddec214a795e6f5678c2863c0b761936c70fab58c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_service_tugiisikuteenus",
+      "canonical_item_id": "mustvee_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus toetab inimest, kes vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu juhendamist ja kõrvalabi. Lapse puhul toetab teenus lapse arengut, suhtlemist ja igapäevaelus toimetulekut ning aitab vähendada lapsevanema hoolduskoormust. Teenuse saajale on teenus tasuta.",
+      "sourceKeys": [
+        "tugiisikuteenus_page"
+      ],
+      "targetGroup": "Lapsed, puudega lapsed ja täiskasvanud, kes vajavad juhendamist ja motiveerimist.",
+      "conditions": "Taotlemisel tuleb esitada sotsiaalteenuse taotlus; vajadusel lisatakse rehabilitatsiooniplaan, Rajaleidja otsus ja spetsialistide arvamused.",
+      "application": {
+        "channels": [
+          "sotsiaalteenuse taotlus"
+        ],
+        "steps": [
+          "esita taotlus ja vajalikud lisadokumendid",
+          "sotsiaaltööspetsialist või lastekaitse spetsialist hindab teenusevajadust",
+          "vallavalitsus otsustab teenuse määramise või keeldumise"
+        ],
+        "deadline": "haridusasutusse taotlemisel vähemalt kaks nädalat enne õppeaasta algust"
+      },
+      "decisionTime": null,
+      "pricing": "teenuse saajale tasuta",
+      "amount": null,
+      "officialUrl": "https://mustveevald.kovtp.ee/tugiisikuteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_svea_auvart",
+        "mustvee_vald_contact_anneli_kaasik",
+        "mustvee_vald_contact_maire_vaher",
+        "mustvee_vald_contact_piret_tomson",
+        "mustvee_vald_contact_karin_suur"
+      ],
+      "item_type": "service",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "tugiisikuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_service_tugiisikuteenus",
+      "document_id": "mustvee_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/tugiisikuteenus",
+      "content_hash": "af725db466697225939f5044e3d2450b6ba4d3ec2954669d18041c2b32d54328",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "mustvee_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hoolduse eesmärk on toetada inimest, kes vaimse või kehalise puude tõttu vajab järelevalvet ja abi oma õiguste teostamiseks ning kohustuste täitmiseks. Hooldus seatakse ja hooldaja määratakse hooldatava ja hooldaja nõusolekul ning hooldajale makstakse hooldajatoetust.",
+      "sourceKeys": [
+        "taisealise_isiku_hooldus_page"
+      ],
+      "targetGroup": "Täisealised vaimse või kehalise puudega inimesed, kes vajavad järelevalvet ja igapäevast abi.",
+      "conditions": "Üldjuhul ei määrata hooldajaks ülalpidamiskohustusega isikut ega raske või sügava puudega inimest; abivajadus hinnatakse kodukülastusel.",
+      "application": {
+        "channels": [
+          "hoolduse seadmise ja hooldajatoetuse taotlus"
+        ],
+        "steps": [
+          "esita taotlus",
+          "sotsiaaltööspetsialist ja sotsiaalhooldusspetsialist teevad kodukülastuse",
+          "hinnatakse kõrvalabi vajadust",
+          "vallavalitsus otsustab hoolduse seadmise ja hooldaja määramise"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://mustveevald.kovtp.ee/taisealise-isiku-hooldus",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_puudega_isikule_hooldaja_maaramise_taotlus",
+        "mustvee_vald_form_puudega_inimese_hooldamise_lopetamise_taotlus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_anneli_kaasik",
+        "mustvee_vald_contact_maire_vaher",
+        "mustvee_vald_contact_piret_tomson",
+        "mustvee_vald_contact_karin_suur"
+      ],
+      "item_type": "service",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "taisealise_isiku_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_service_taisealise_isiku_hooldus",
+      "document_id": "mustvee_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/taisealise-isiku-hooldus",
+      "content_hash": "a3447a1bb8174ce9f14877bfcb555d5bcc5a67285ba3f058136b64dfdb3cbd01",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "mustvee_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus aitab täisealisel puudega inimesel iseseisvalt toime tulla ja ühiskonnaelus osaleda. Isiklik abistaja aitab tegevustes nagu liikumine, söömine, toidu valmistamine, riietumine, hügieen ja majapidamistööd, kuid ei osuta meditsiini-, õigus-, remondi- ega ehitusteenuseid. Teenuse saajale on teenus tasuta.",
+      "sourceKeys": [
+        "isikliku_abistaja_teenus_page"
+      ],
+      "targetGroup": "Täisealised inimesed, kes vajavad puude tõttu füüsilist kõrvalabi ja suudavad abistajat juhendada.",
+      "conditions": "Isiklikuks abistajaks ei määrata teenuse saaja esimese või teise astme sugulast ega sama eluruumi elanikku.",
+      "application": {
+        "channels": [
+          "sotsiaalteenuse taotlus"
+        ],
+        "steps": [
+          "esita taotlus",
+          "sotsiaaltööspetsialist teeb kodukülastuse ja hindab abivajadust",
+          "otsuse alusel sõlmitakse teenuse osutamise leping"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "teenuse saajale tasuta",
+      "amount": null,
+      "officialUrl": "https://mustveevald.kovtp.ee/isikliku-abistaja-teenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_anneli_kaasik",
+        "mustvee_vald_contact_maire_vaher",
+        "mustvee_vald_contact_piret_tomson",
+        "mustvee_vald_contact_karin_suur"
+      ],
+      "item_type": "service",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "isikliku_abistaja_teenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_service_isikliku_abistaja_teenus",
+      "document_id": "mustvee_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/isikliku-abistaja-teenus",
+      "content_hash": "d7c6b71e59e6c7690e6d89f26e658fe04c0149ebf363e423c0ef3df2af1fe5bc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_service_varjupaigateenus",
+      "canonical_item_id": "mustvee_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus on ajutine abimeede täisealisele inimesele, kes ei suuda endale ööbimiskohta leida. Ajutises ööbimiskohas tagatakse voodikoht, pesemisvõimalus ja turvaline keskkond. Teenuse saajale on teenus tasuta.",
+      "sourceKeys": [
+        "varjupaigateenus_page"
+      ],
+      "targetGroup": "Täisealised inimesed, kellel puudub ööbimiskoht.",
+      "conditions": "Varjupaigateenusele saabudes tuleb esitada kehtiv isikut tõendav dokument.",
+      "application": {
+        "channels": [
+          "sotsiaalteenuse taotlus",
+          "pöördumine sotsiaaltööspetsialisti poole"
+        ],
+        "steps": [
+          "esita taotlus või pöördu sotsiaaltööspetsialisti poole",
+          "sotsiaaltööspetsialist selgitab sobiva teenuseosutaja",
+          "isik suunatakse teenusele"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "teenuse saajale tasuta",
+      "amount": null,
+      "officialUrl": "https://mustveevald.kovtp.ee/varjupaigateenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_anneli_kaasik",
+        "mustvee_vald_contact_maire_vaher",
+        "mustvee_vald_contact_piret_tomson",
+        "mustvee_vald_contact_karin_suur"
+      ],
+      "item_type": "service",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "varjupaigateenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_service_varjupaigateenus",
+      "document_id": "mustvee_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/varjupaigateenus",
+      "content_hash": "2c0363ed7e8b44232c44f344ff2b1c9fe75d2024d4cf62341abc791db8602dac",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_service_turvakoduteenus",
+      "canonical_item_id": "mustvee_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenus tagab ajutise eluaseme, turvalise keskkonna ja esmase abi lapsele, lastega perele või lähisuhtevägivalla ohvrile, kellel puudub turvaline koht. Esmase abi raames tagatakse toit, riided, peavari ning vajadusel esmane meditsiiniline või kriisiabi. Teenuse saajale on teenus tasuta.",
+      "sourceKeys": [
+        "turvakoduteenus_page"
+      ],
+      "targetGroup": "Lapsed, lastega pered ja lähisuhtevägivalla ohvrid, kes vajavad turvalist keskkonda.",
+      "conditions": "Teenuse vajaduse üle otsustatakse üldise abivajaduse hindamise raames.",
+      "application": {
+        "channels": [
+          "sotsiaalteenuse taotlus",
+          "pöördumine piirkonna sotsiaaltööspetsialisti poole"
+        ],
+        "steps": [
+          "esita taotlus või pöördu spetsialisti poole",
+          "hinnatakse abivajadust",
+          "korraldatakse turvakoduteenus"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "teenuse saajale tasuta",
+      "amount": null,
+      "officialUrl": "https://mustveevald.kovtp.ee/turvakoduteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_svea_auvart"
+      ],
+      "item_type": "service",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "turvakoduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_service_turvakoduteenus",
+      "document_id": "mustvee_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/turvakoduteenus",
+      "content_hash": "ee014d7a55bc6046d4606dedd010797f6d0091744ddd5d8fc0f1606b77d038a2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "mustvee_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus on mõeldud puudega inimesele, kes ei saa erivajaduse tõttu kasutada ühistransporti või ei suuda iseseisvalt sõita ravi-, rehabilitatsiooni-, abivahendi- või ametiasutusse. Mõjuval põhjusel võib teenust osutada ka teistele abivajajatele. Koolisotsiaaltransporti saavad taotleda puudega laste vanemad, kelle lapsed õpivad erikoolides.",
+      "sourceKeys": [
+        "sotsiaaltransporditeenus_page"
+      ],
+      "targetGroup": "Puudega inimesed, liikumisraskustega inimesed ja erikoolis õppivate puudega laste vanemad.",
+      "conditions": "Maakonna piires tuleb taotlus esitada vähemalt 3 tööpäeva ja maakonnast väljas vähemalt 7 tööpäeva enne sõitu; kiireloomulistel juhtudel võib olla erand perearsti pöördumisel.",
+      "application": {
+        "channels": [
+          "suuline või kirjalik sotsiaalteenuse taotlus",
+          "",
+          ""
+        ],
+        "steps": [
+          "teata sõidu kuupäev, otstarve ja marsruut",
+          "esita taotlus sotsiaaltööspetsialistile",
+          "teenus tellitakse sotsiaalosakonna kaudu"
+        ],
+        "deadline": "maakonna piires vähemalt 3 tööpäeva ja maakonnast väljas vähemalt 7 tööpäeva enne soovitud sõiduaega; koolisotsiaaltranspordil vähemalt üks nädal enne õppeaasta algust"
+      },
+      "decisionTime": null,
+      "pricing": "teenuse hinnakirja kehtestab vallavalitsus",
+      "amount": null,
+      "officialUrl": "https://mustveevald.kovtp.ee/sotsiaaltransporditeenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_helen_metsma"
+      ],
+      "item_type": "service",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "sotsiaaltransporditeenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_service_sotsiaaltransporditeenus",
+      "document_id": "mustvee_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/sotsiaaltransporditeenus",
+      "content_hash": "8f34ec3f9a4ca25ad6a5bfee2b895557524f76dc7be2c262a9d9a672c1cc9180",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_service_eluruumi_tagamine",
+      "canonical_item_id": "mustvee_vald:service:eluruumi_tagamine",
+      "itemType": "service",
+      "title": "Eluruumi tagamine",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenus on mõeldud inimesele, kes ei suuda sotsiaalmajanduslikust olukorrast tulenevalt endale ja perele sobivat eluruumi tagada, kuid tuleb muus osas iseseisvalt toime. Teenust saav inimene tasub üüri ning eluruumiga seotud kõrvalkulud.",
+      "sourceKeys": [
+        "eluruumi_tagamine_page"
+      ],
+      "targetGroup": "Inimesed, kes ei suuda sotsiaalmajanduslikel põhjustel endale sobivat eluruumi tagada.",
+      "conditions": "Sotsiaaltööspetsialist viib inimesega läbi vestluse ja hindab abivajadust.",
+      "application": {
+        "channels": [
+          "sotsiaalteenuse taotlus"
+        ],
+        "steps": [
+          "esita taotlus",
+          "sotsiaaltööspetsialist vestleb taotlejaga",
+          "hinnatakse abivajadust"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://mustveevald.kovtp.ee/eluruumi-tagamine",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_anneli_kaasik",
+        "mustvee_vald_contact_maire_vaher",
+        "mustvee_vald_contact_piret_tomson",
+        "mustvee_vald_contact_karin_suur"
+      ],
+      "item_type": "service",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "eluruumi_tagamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_service_eluruumi_tagamine",
+      "document_id": "mustvee_vald_service_eluruumi_tagamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/eluruumi-tagamine",
+      "content_hash": "aa6f85fea611d16c191f470e253551514f98a1d8980faea31f78098ca0c90b3e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_service_volanoustamisteenus",
+      "canonical_item_id": "mustvee_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus on mõeldud finants-majanduslikku hädaolukorda sattunud inimestele, peredele ja leibkondadele. Teenuse eesmärk on selgitada varaline olukord, pidada võlausaldajaga läbirääkimisi, aidata nõuete rahuldamisel ja ennetada uute võlgnevuste tekkimist. Esimesed kolm tundi on abivajajale tasuta.",
+      "sourceKeys": [
+        "volanoustamisteenus_page"
+      ],
+      "targetGroup": "Majanduslikes raskustes inimesed, pered ja leibkonnad.",
+      "conditions": "Teenuse saamiseks tuleb esitada sotsiaalteenuse taotlus.",
+      "application": {
+        "channels": [
+          "sotsiaalteenuse taotlus"
+        ],
+        "steps": [
+          "esita taotlus",
+          "spetsialist hindab vajadust ja suunab võlanõustamisele"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "esimesed kolm tundi tasuta",
+      "amount": null,
+      "officialUrl": "https://mustveevald.kovtp.ee/volanoustamisteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_anneli_kaasik",
+        "mustvee_vald_contact_maire_vaher",
+        "mustvee_vald_contact_piret_tomson",
+        "mustvee_vald_contact_karin_suur"
+      ],
+      "item_type": "service",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "volanoustamisteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_service_volanoustamisteenus",
+      "document_id": "mustvee_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/volanoustamisteenus",
+      "content_hash": "41807b9c20a76e41e6d1960f45d46d0c32409bf496cae92c87ef770ab6043aab",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_service_puudega_lapse_lapsehoiuteenus",
+      "canonical_item_id": "mustvee_vald:service:puudega_lapse_lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Puudega lapse lapsehoiuteenus",
+      "status": "active",
+      "summary": "Puudega lapse lapsehoiuteenus toetab puudega lapse vanema toimetulekut või töötamist ning tagab lapse hooldamise, arendamise ja turvalisuse. Teenust osutatakse Mustvee valda rahvastikuregistri järgi registreeritud raske või sügava puudega lapsele kuni 18. eluaastani, õppimise korral teatud tingimustel kauem.",
+      "sourceKeys": [
+        "puudega_lapse_lapsehoiuteenus_page"
+      ],
+      "targetGroup": "Raske või sügava puudega lapsed ja nende vanemad või eestkostjad.",
+      "conditions": "Taotlemisel esitatakse sotsiaalteenuse taotlus ning vajadusel rehabilitatsiooniplaan, Rajaleidja otsus ja spetsialistide arvamused.",
+      "application": {
+        "channels": [
+          "sotsiaalteenuse taotlus lapsevanemalt või eestkostjalt"
+        ],
+        "steps": [
+          "esita taotlus ja vajalikud lisadokumendid",
+          "lastekaitse spetsialist hindab teenusevajadust",
+          "vallavalitsus otsustab teenuse määramise või keeldumise"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://mustveevald.kovtp.ee/puudega-lapse-lapsehoiuteenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_svea_auvart"
+      ],
+      "item_type": "service",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "puudega_lapse_lapsehoiuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_service_puudega_lapse_lapsehoiuteenus",
+      "document_id": "mustvee_vald_service_puudega_lapse_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/puudega-lapse-lapsehoiuteenus",
+      "content_hash": "cfc8f3416090782686476cf634af6cbefa52be8f6ae34158b5cb5ccc64a8e197",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_service_asendushooldusteenus",
+      "canonical_item_id": "mustvee_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus tagab lühiajaliselt või pikaajaliselt lapse heaolu ja õigused, loob lapsele peresarnased elutingimused ning valmistab last ette iseseisvaks toimetulekuks täisealisena. Teenuse osutaja võib olla hoolduspere, perekodu või asenduskodu.",
+      "sourceKeys": [
+        "asendushooldusteenus_page"
+      ],
+      "targetGroup": "Kuni 18-aastased lapsed, kelle vanem on surnud, kelle vanema hooldusõigus on piiratud või peatatud, kelle vanem on piiratud teovõime tõttu eestkoste all või kes on vanemast eraldatud.",
+      "conditions": "Teenust võib osutada ka lühiajaliselt vanema nõusolekul kuni 90 päeva.",
+      "application": {
+        "channels": [
+          "koostöö lastekaitse spetsialistiga"
+        ],
+        "steps": [
+          "pöördu lastekaitse spetsialisti poole",
+          "lastekaitse hindab olukorda ja korraldab teenusele suunamise"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://mustveevald.kovtp.ee/asendushooldusteenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_svea_auvart"
+      ],
+      "item_type": "service",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "asendushooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_service_asendushooldusteenus",
+      "document_id": "mustvee_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/asendushooldusteenus",
+      "content_hash": "dc8313b89a1de0151539fb4af59858168a63db40382f96d5c9378c425f39a1c1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "mustvee_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus toetab asendushooldusel kasvanud ja täisealiseks saanud noort õpingute jätkamisel ja iseseisvasse ellu üleminekul. Teenuse raames tagatakse sobiv eluase, isiklike kulude katmiseks vähemalt 240 eurot kuus ja muud vajalikud teenused või toetused.",
+      "sourceKeys": [
+        "jarelhooldusteenus_page"
+      ],
+      "targetGroup": "Asendushooldusel viibinud ja täisealiseks saanud noored, kes jätkavad õpinguid.",
+      "conditions": "Teenust osutatakse õpingute lõpetamiseni või katkestamiseni, kuid mitte kauem kui 25-aastaseks saamiseni.",
+      "application": {
+        "channels": [
+          "koostöö lastekaitse spetsialistiga"
+        ],
+        "steps": [
+          "pöördu lastekaitse spetsialisti poole",
+          "koostatakse noore vajadustele vastav järelhoolduse korraldus"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": "vähemalt 240 eurot kuus isiklike kulude katteks",
+      "officialUrl": "https://mustveevald.kovtp.ee/jarelhooldusteenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_svea_auvart"
+      ],
+      "item_type": "service",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "jarelhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_service_jarelhooldusteenus",
+      "document_id": "mustvee_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/jarelhooldusteenus",
+      "content_hash": "822e472a325a29055e142b60786b9f2b9ced2c294a99ef4e77c3783ebbe01969",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_service_muud_vajaduspohised_sotsiaalteenused",
+      "canonical_item_id": "mustvee_vald:service:muud_vajaduspohised_sotsiaalteenused",
+      "itemType": "service",
+      "title": "Muud vajaduspõhised sotsiaalteenused",
+      "status": "active",
+      "summary": "Muud vajaduspõhised sotsiaalteenused on teenused, mida pakutakse inimese abivajadusest lähtudes, kui konkreetset standardteenust ei ole piisav või sobiv. Mustvee valla lehel nimetatakse selliste näidetena nõustamist ja teraapiat. Teenuse saamiseks tuleb esitada sotsiaalteenuse taotlus ning abivajadus selgitatakse välja vestluse käigus.",
+      "sourceKeys": [
+        "muud_vajaduspohised_teenused_page"
+      ],
+      "targetGroup": "Inimesed, kelle abivajadus vajab individuaalset sotsiaalteenust.",
+      "conditions": "Abivajaduse selgitab välja sotsiaaltööspetsialist või lastekaitse spetsialist.",
+      "application": {
+        "channels": [
+          "sotsiaalteenuse taotlus"
+        ],
+        "steps": [
+          "esita taotlus",
+          "spetsialist hindab abivajadust vestluse käigus"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://mustveevald.kovtp.ee/muud-vajaduspohised-teenused",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_anneli_kaasik",
+        "mustvee_vald_contact_maire_vaher",
+        "mustvee_vald_contact_piret_tomson",
+        "mustvee_vald_contact_karin_suur",
+        "mustvee_vald_contact_svea_auvart"
+      ],
+      "item_type": "service",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "muud_vajaduspohised_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_service_muud_vajaduspohised_sotsiaalteenused",
+      "document_id": "mustvee_vald_service_muud_vajaduspohised_sotsiaalteenused",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/muud-vajaduspohised-teenused",
+      "content_hash": "fce5994a1803f5b297fdd00a82a64cb7ed13042c5e6ba01f795bcec78fea2c14",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_service_noustamine",
+      "canonical_item_id": "mustvee_vald:service:noustamine",
+      "itemType": "service",
+      "title": "Nõustamine",
+      "status": "active",
+      "summary": "Nõustamine on Mustvee valla muude vajaduspõhiste sotsiaalteenuste näitena nimetatud abi, mis aitab leida lahendusi isiklikele probleemidele, inimestevahelistele konfliktidele ja lapse huvisid arvestavate kokkulepete sõlmimisele. Teenus määratakse abivajaduse hindamise tulemusel.",
+      "sourceKeys": [
+        "muud_vajaduspohised_teenused_page"
+      ],
+      "targetGroup": "Inimesed ja pered, kes vajavad probleemide lahendamiseks sotsiaalset või perenõustamist.",
+      "conditions": "Teenusele saamiseks esitatakse sotsiaalteenuse taotlus ja spetsialist hindab abivajadust.",
+      "application": {
+        "channels": [
+          "sotsiaalteenuse taotlus"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://mustveevald.kovtp.ee/muud-vajaduspohised-teenused",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_anneli_kaasik",
+        "mustvee_vald_contact_maire_vaher",
+        "mustvee_vald_contact_piret_tomson",
+        "mustvee_vald_contact_karin_suur",
+        "mustvee_vald_contact_svea_auvart"
+      ],
+      "item_type": "service",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "muud_vajaduspohised_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_service_noustamine",
+      "document_id": "mustvee_vald_service_noustamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/muud-vajaduspohised-teenused",
+      "content_hash": "977caf32254840f0c1601633cb32b2de4c528bf0be64fae15e3fe6207e3b9cb4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_service_teraapia",
+      "canonical_item_id": "mustvee_vald:service:teraapia",
+      "itemType": "service",
+      "title": "Teraapia",
+      "status": "active",
+      "summary": "Teraapia on Mustvee valla muude vajaduspõhiste sotsiaalteenuste näitena nimetatud abi, mille eesmärk on aidata inimesel sobiva terapeudini jõuda või teraapia kättesaadavust toetada. Teenus määratakse individuaalse abivajaduse alusel.",
+      "sourceKeys": [
+        "muud_vajaduspohised_teenused_page"
+      ],
+      "targetGroup": "Inimesed, kelle abivajadus eeldab teraapiat või selle kättesaadavuse toetamist.",
+      "conditions": "Teenusele saamiseks esitatakse sotsiaalteenuse taotlus ja spetsialist hindab abivajadust.",
+      "application": {
+        "channels": [
+          "sotsiaalteenuse taotlus"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": null,
+      "officialUrl": "https://mustveevald.kovtp.ee/muud-vajaduspohised-teenused",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_anneli_kaasik",
+        "mustvee_vald_contact_maire_vaher",
+        "mustvee_vald_contact_piret_tomson",
+        "mustvee_vald_contact_karin_suur",
+        "mustvee_vald_contact_svea_auvart"
+      ],
+      "item_type": "service",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "muud_vajaduspohised_teenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_service_teraapia",
+      "document_id": "mustvee_vald_service_teraapia",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/muud-vajaduspohised-teenused",
+      "content_hash": "8fce521a68dd7c4b4212bc5a949423f730b634650ba5bc65129c9773af22ad57",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_service_vaimse_tervise_teenus",
+      "canonical_item_id": "mustvee_vald:service:vaimse_tervise_teenus",
+      "itemType": "service",
+      "title": "Vaimse tervise teenus",
+      "status": "active",
+      "summary": "Vaimse tervise teenuse eesmärk on toetada inimese psühhosotsiaalset heaolu ja vaimset tervist nõustamise kaudu. Teenus võib hõlmata leinanõustamist, psühhosotsiaalset nõustamist, sõltuvusnõustamist või muud vajalikku nõustamist. Psühhosotsiaalse nõustamise korral määratakse teenust kuni 400 euro ulatuses kalendriaastas.",
+      "sourceKeys": [
+        "vaimse_tervise_teenus_page"
+      ],
+      "targetGroup": "Inimesed, kes vajavad vaimse tervise või psühhosotsiaalset nõustamist.",
+      "conditions": "Enne teenusele suunamist tehtud kulutusi ei kompenseerita; teenuseosutaja peab vastama kutsestandardile ja lastega töötamise nõuetele.",
+      "application": {
+        "channels": [
+          "sotsiaalteenuse taotlus"
+        ],
+        "steps": [
+          "esita sotsiaalteenuse taotlus",
+          "sotsiaaltööspetsialist või lastekaitse spetsialist hindab vajadust",
+          "sotsiaalosakonna juhataja otsustab teenuse määramise"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "amount": "kuni 400 eurot kalendriaastas psühhosotsiaalse nõustamise korral",
+      "officialUrl": "https://mustveevald.kovtp.ee/vaimse-tervise-teenus",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_anneli_kaasik",
+        "mustvee_vald_contact_maire_vaher",
+        "mustvee_vald_contact_piret_tomson",
+        "mustvee_vald_contact_karin_suur",
+        "mustvee_vald_contact_svea_auvart"
+      ],
+      "item_type": "service",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "vaimse_tervise_teenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_service_vaimse_tervise_teenus",
+      "document_id": "mustvee_vald_service_vaimse_tervise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/vaimse-tervise-teenus",
+      "content_hash": "478cd435b9afe815be0cdbae9dcad60c1696246dd3dc570642d422c0fe5c2ca7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_service_peretugevdusteenus",
+      "canonical_item_id": "mustvee_vald:service:peretugevdusteenus",
+      "itemType": "service",
+      "title": "Peretugevdusteenus",
+      "status": "active",
+      "summary": "Peretugevdusteenust osutatakse koostöös SOS Lasteküla Eesti Ühinguga ja see on mõeldud lastega peredele, kes seisavad silmitsi keeruliste olukordadega. Tugitöötaja aitab vanemluse, toimetuleku, tervise, eelarve, kriisiressursside ja pere vaba aja korraldamisega. Teenus on peredele tasuta.",
+      "sourceKeys": [
+        "peretugevdusteenus_page"
+      ],
+      "targetGroup": "Eesti ja vene keelt kõnelevad lastega pered, kes vajavad toimetulekutuge.",
+      "conditions": "Teenusele võib suunata kohaliku omavalitsuse lastekaitsetöötaja, kuid pere võib pöörduda ka ise SOS Lasteküla poole.",
+      "application": {
+        "channels": [
+          "pöördumine lastekaitsespetsialisti poole",
+          "pöördumine SOS Lasteküla peretugevdusteenuse poole"
+        ],
+        "steps": [
+          "pere või lastekaitsetöötaja algatab pöördumise",
+          "tugitöötaja kohtub perega vähemalt kord nädalas",
+          "tehakse kokkulepped pere olukorra parandamiseks"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "peredele tasuta",
+      "amount": null,
+      "officialUrl": "https://mustveevald.kovtp.ee/peretugevdusteenus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_svea_auvart"
+      ],
+      "item_type": "service",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "peretugevdusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_service_peretugevdusteenus",
+      "document_id": "mustvee_vald_service_peretugevdusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/peretugevdusteenus",
+      "content_hash": "0a29569bd4d241ab69c56962d64f6a62ea0c000f4ca843aed14aad157f523442",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "mustvee_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetuse eesmärk on ajutise abimeetmena leevendada abi vajavate inimeste ja perede materiaalset puudust ning tagada minimaalsed vahendid esmavajaduste rahuldamiseks. Toetus arvutatakse eelmise kuu sissetuleku, eluasemekulude ja toimetulekupiiri põhjal. Otsus tehakse viie tööpäeva jooksul pärast kõigi dokumentide esitamist.",
+      "sourceKeys": [
+        "toimetulekutoetus_page"
+      ],
+      "targetGroup": "Üksi elav inimene või pere, kelle netosissetulek pärast eluruumi kulude mahaarvamist jääb alla toimetulekupiiri.",
+      "conditions": "Taotlemisel tuleb esitada taotlus, sissetuleku- ja kuludokumendid ning vajadusel muud andmed.",
+      "application": {
+        "channels": [
+          "kirjalik taotlus vallavalitsusele"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": "5 tööpäeva",
+      "amount": "TT = (EK + TP) - S; 2026. aastal esimesele pereliikmele 220 eurot",
+      "officialUrl": "https://mustveevald.kovtp.ee/toimetulekutoetus",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_toimetulekutoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_anneli_kaasik",
+        "mustvee_vald_contact_maire_vaher",
+        "mustvee_vald_contact_piret_tomson",
+        "mustvee_vald_contact_karin_suur"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_benefit_toimetulekutoetus",
+      "document_id": "mustvee_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/toimetulekutoetus",
+      "content_hash": "a1cc3886d7d9202030a5099debf91968ec786774149e7ea19986c5475373bfcd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_benefit_sunnitoetus",
+      "canonical_item_id": "mustvee_vald:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetust võib taotleda lapsevanem juhul, kui lapse vähemalt ühe vanema elukoht enne lapse sündi on rahvastikuregistri andmetel Mustvee vald ja lapse elukohaks registreeritakse Mustvee vald. Toetus makstakse kahes osas: esimene osa pärast sünni registreerimist ja teine osa kolme kuu jooksul lapse aastaseks saamisest.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaaltoetuste_maarad_file",
+        "sunni_registreerimine_page"
+      ],
+      "targetGroup": "Mustvee valda registreeritud lapse vanem või eestkostja.",
+      "conditions": "Lapse vähemalt ühe vanema elukoht enne sündi peab olema Mustvee vald ja lapse elukoht registreeritakse Mustvee valda.",
+      "application": {
+        "channels": [
+          "sotsiaalosakonna sotsiaaltööspetsialist",
+          "teenuskeskus",
+          "post",
+          "digiallkirjastatult e-postile"
+        ],
+        "steps": null,
+        "deadline": "3 kuu jooksul pärast lapse sündi"
+      },
+      "decisionTime": null,
+      "amount": "kokku 700 eurot: I osa 350 eurot ja II osa 350 eurot",
+      "officialUrl": "https://mustveevald.kovtp.ee/sunni-registreerimine",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_sunnitoetuse_taotlus_i_osa",
+        "mustvee_vald_form_sunnitoetuse_taotlus_ii_osa"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_anneli_kaasik",
+        "mustvee_vald_contact_maire_vaher",
+        "mustvee_vald_contact_piret_tomson",
+        "mustvee_vald_contact_karin_suur"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaaltoetuste_maarad_file",
+        "sunni_registreerimine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_benefit_sunnitoetus",
+      "document_id": "mustvee_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/sunni-registreerimine",
+      "content_hash": "4635af56bc3af7131f810e71e6c4b682bbb1bfd6908112dbc6a7b82f8f2db14f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_benefit_matusetoetus",
+      "canonical_item_id": "mustvee_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on Mustvee valla eelarvest makstav sotsiaaltoetus, mille taotlus on avaldatud vormide lehel. Toetuse määr on 250 eurot.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaaltoetuste_maarad_file"
+      ],
+      "targetGroup": "Isik, kes taotleb matusega seotud kulude toetust Mustvee valla korra alusel.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "matusetoetuse taotlus"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "250 eurot",
+      "officialUrl": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_matusetoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_anneli_kaasik",
+        "mustvee_vald_contact_maire_vaher",
+        "mustvee_vald_contact_piret_tomson",
+        "mustvee_vald_contact_karin_suur"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaaltoetuste_maarad_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_benefit_matusetoetus",
+      "document_id": "mustvee_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "content_hash": "2d1d5145caee7978d44fcd79ac8e085868cd4941d1e21e4e369bd7afa18f345a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_benefit_ranitsatoetus",
+      "canonical_item_id": "mustvee_vald:benefit:ranitsatoetus",
+      "itemType": "benefit",
+      "title": "Ranitsatoetus / esmakordselt kooli mineva lapse toetus",
+      "status": "active",
+      "summary": "Ranitsatoetust on õigus saada Mustvee valla kooli esimesse klassi esmakordselt astuva lapse hooldusõigust omaval isikul sõltumata rahvastikuregistri järgsest elukohast. Nimekiri koostatakse EHIS-e andmete ja lapsevanema taotluse alusel. Taotlusi hakatakse rahuldama alates 10. septembrist, kui koolid on õpilaste nimekirjad kinnitanud.",
+      "sourceKeys": [
+        "forms_page",
+        "parkimiskaart_page",
+        "ranitsatoetus_page",
+        "sotsiaaltoetuste_maarad_file"
+      ],
+      "targetGroup": "Mustvee valla kooli esimesse klassi esmakordselt astuva lapse hooldusõigusega isik.",
+      "conditions": "Taotluses tuleb märkida lapse nimi ja isikukood, kool ning pangakonto number.",
+      "application": {
+        "channels": [
+          "sotsiaaltoetuse taotlus",
+          "1. klassi astuja toetuse vorm"
+        ],
+        "steps": null,
+        "deadline": "taotlusi rahuldatakse alates 10. septembrist"
+      },
+      "decisionTime": null,
+      "amount": "150 eurot lapse kohta",
+      "officialUrl": "https://mustveevald.kovtp.ee/uudised-ja-teated/-/asset_publisher/dp54D2eBFl1x/content/id/",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_sotsiaaltoetuse_taotlus",
+        "mustvee_vald_form_1_klassi_astuja_toetus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_anneli_kaasik",
+        "mustvee_vald_contact_maire_vaher",
+        "mustvee_vald_contact_piret_tomson",
+        "mustvee_vald_contact_karin_suur"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page",
+        "parkimiskaart_page",
+        "ranitsatoetus_page",
+        "sotsiaaltoetuste_maarad_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_benefit_ranitsatoetus",
+      "document_id": "mustvee_vald_benefit_ranitsatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/uudised-ja-teated/-/asset_publisher/dp54D2eBFl1x/content/id/",
+      "content_hash": "f8f706f0a905e861ace5763061bcc83807e1e48b71c2843e30139d7d2a1bf882",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_benefit_laste_prillitoetus",
+      "canonical_item_id": "mustvee_vald:benefit:laste_prillitoetus",
+      "itemType": "benefit",
+      "title": "Laste prillitoetus",
+      "status": "active",
+      "summary": "Laste prillitoetus on Mustvee valla eelarvest makstav toetus, mille määr on 50 eurot aastas. KOV lehel ei ole selles korjes leitud eraldi taotlemise detaillehte, kuid toetus on nimetatud sotsiaaltoetuste määrade all.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaaltoetuste_maarad_file"
+      ],
+      "targetGroup": "Lapsed, kelle prillide ostu toetatakse Mustvee valla korra alusel.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "sotsiaaltoetuse taotlus"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "50 eurot aastas",
+      "officialUrl": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_anneli_kaasik",
+        "mustvee_vald_contact_maire_vaher",
+        "mustvee_vald_contact_piret_tomson",
+        "mustvee_vald_contact_karin_suur"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaaltoetuste_maarad_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_benefit_laste_prillitoetus",
+      "document_id": "mustvee_vald_benefit_laste_prillitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "content_hash": "5a13a5b4124f3943ccac695da11c6434b0e7dde0b4b33ae4cdf7ec1093aacd09",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_benefit_eakate_sunnipaevatoetus",
+      "canonical_item_id": "mustvee_vald:benefit:eakate_sunnipaevatoetus",
+      "itemType": "benefit",
+      "title": "Eakate sünnipäevatoetus",
+      "status": "active",
+      "summary": "Eakate sünnipäevatoetust makstakse rahvastikuregistri andmetel Mustvee vallas elavatele eakatele alates 75. sünnipäevast igal aastal. Toetus kantakse pangakontole või erandjuhul makstakse sularahas; vald palub 75+ elanikel kontonumbrit sotsiaaltöötaja juures kontrollida.",
+      "sourceKeys": [
+        "sotsiaaltoetuste_maarad_file",
+        "sunnipaevatoetus_page"
+      ],
+      "targetGroup": "Mustvee valla 75-aastased ja vanemad elanikud.",
+      "conditions": "Alates 2026. aastast soovib vald vähendada sularahas maksmist ja kanda toetuse sotsiaalosakonnale teatatud pangakontole.",
+      "application": {
+        "channels": [
+          "kontonumbri edastamine piirkonna sotsiaaltöötajale"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "alates 75. eluaastast 30 eurot; alates 100. eluaastast 100 eurot",
+      "officialUrl": "https://mustveevald.kovtp.ee/uudised-ja-teated/-/asset_publisher/dp54D2eBFl1x/content/sotsiaalosakonna-info-sunnipaevatoetus",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_anneli_kaasik",
+        "mustvee_vald_contact_maire_vaher",
+        "mustvee_vald_contact_piret_tomson",
+        "mustvee_vald_contact_karin_suur"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "sotsiaaltoetuste_maarad_file",
+        "sunnipaevatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_benefit_eakate_sunnipaevatoetus",
+      "document_id": "mustvee_vald_benefit_eakate_sunnipaevatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/uudised-ja-teated/-/asset_publisher/dp54D2eBFl1x/content/sotsiaalosakonna-info-sunnipaevatoetus",
+      "content_hash": "8b972af72abc4fe9444c27a2f405b2e95af3973e6d84f0615fd9c4f83795a2ab",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "canonical_item_id": "mustvee_vald:benefit:taisealise_isiku_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Täisealise isiku hooldajatoetus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldajatoetust makstakse hooldajale, kes on määratud täisealise raske või sügava puudega inimese hooldajaks. Teenuse leht ütleb, et hooldajale makstakse hooldajatoetust; 2025. aasta määrade järgi on raske puudega täisealise isiku hooldajale toetus 35 eurot kuus ja sügava puudega isiku hooldajale 50 eurot kuus.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaaltoetuste_maarad_file",
+        "taisealise_isiku_hooldus_page"
+      ],
+      "targetGroup": "Hooldajaks määratud isik, kes hooldab raske või sügava puudega täisealist inimest.",
+      "conditions": "Hooldus seatakse ja hooldaja määratakse abivajaduse hindamise ja haldusakti alusel.",
+      "application": {
+        "channels": [
+          "hooldaja määramise taotlus"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "35 eurot kuus raske puudega täisealise isiku hooldajale; 50 eurot kuus sügava puudega isiku hooldajale",
+      "officialUrl": "https://mustveevald.kovtp.ee/taisealise-isiku-hooldus",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_puudega_isikule_hooldaja_maaramise_taotlus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_anneli_kaasik",
+        "mustvee_vald_contact_maire_vaher",
+        "mustvee_vald_contact_piret_tomson",
+        "mustvee_vald_contact_karin_suur"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaaltoetuste_maarad_file",
+        "taisealise_isiku_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "document_id": "mustvee_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/taisealise-isiku-hooldus",
+      "content_hash": "246607b36677e50b4633563901228681190c585fee46228d3a40fdc712c708b2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_benefit_puudega_lapse_hooldajatoetus",
+      "canonical_item_id": "mustvee_vald:benefit:puudega_lapse_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Puudega lapse hooldajatoetus",
+      "status": "active",
+      "summary": "Puudega lapse hooldajatoetus on Mustvee valla eelarvest makstav toetus lapse hooldajale. 2025. aasta määrade järgi on raske puudega lapse hooldajale toetus 75 eurot kuus ja sügava puudega lapse hooldajale 100 eurot kuus.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaaltoetuste_maarad_file"
+      ],
+      "targetGroup": "Raske või sügava puudega lapse hooldaja.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "sotsiaaltoetuse taotlus või sotsiaalosakonna pöördumine"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "75 eurot kuus raske puudega lapse hooldajale; 100 eurot kuus sügava puudega lapse hooldajale",
+      "officialUrl": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_svea_auvart"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaaltoetuste_maarad_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_benefit_puudega_lapse_hooldajatoetus",
+      "document_id": "mustvee_vald_benefit_puudega_lapse_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "content_hash": "d3db3940775506dfcea1d59b3c0943a6f4f4a8925c4ea11d4825701de3c7c955",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_benefit_valtimatu_abi_toetus",
+      "canonical_item_id": "mustvee_vald:benefit:valtimatu_abi_toetus",
+      "itemType": "benefit",
+      "title": "Vältimatu abi toetus",
+      "status": "active",
+      "summary": "Vältimatu abi toetus on Mustvee valla eelarvest makstav toetus kiireloomulise abivajaduse korral. 2025. aasta määrade järgi võib toetus olla kuni 500 eurot isiku kohta.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaaltoetuste_maarad_file"
+      ],
+      "targetGroup": "Isik, kellel on vältimatu abivajadus.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "sotsiaalosakonda pöördumine"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "kuni 500 eurot isiku kohta",
+      "officialUrl": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_anneli_kaasik",
+        "mustvee_vald_contact_maire_vaher",
+        "mustvee_vald_contact_piret_tomson",
+        "mustvee_vald_contact_karin_suur"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaaltoetuste_maarad_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_benefit_valtimatu_abi_toetus",
+      "document_id": "mustvee_vald_benefit_valtimatu_abi_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "content_hash": "6bb471f82efc28835e747f442a14fa005a84ef974ac60c99852d2eacab902491",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_benefit_alushariduse_toiduraha_toetus",
+      "canonical_item_id": "mustvee_vald:benefit:alushariduse_toiduraha_toetus",
+      "itemType": "benefit",
+      "title": "Alushariduses makstava toiduraha toetus",
+      "status": "active",
+      "summary": "Alushariduses makstava toiduraha toetus on Mustvee valla eelarvest makstav toetus lapse toidupäeva kulude katmiseks. 2025. aasta määrade järgi on toetus 1 euro toidupäeva kohta ühe lapse eest.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaaltoetuste_maarad_file"
+      ],
+      "targetGroup": "Alushariduses osalev laps Mustvee valla toetustingimuste alusel.",
+      "conditions": null,
+      "application": {
+        "channels": null,
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "1 euro toidupäeva kohta ühe lapse eest",
+      "officialUrl": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_anneli_kaasik",
+        "mustvee_vald_contact_maire_vaher",
+        "mustvee_vald_contact_piret_tomson",
+        "mustvee_vald_contact_karin_suur"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaaltoetuste_maarad_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_benefit_alushariduse_toiduraha_toetus",
+      "document_id": "mustvee_vald_benefit_alushariduse_toiduraha_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "content_hash": "442c3c10f2bc35dea28228c93b24f7604eaed7bc435dad90b39f68c00f6d9be4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_benefit_tervisetoetus",
+      "canonical_item_id": "mustvee_vald:benefit:tervisetoetus",
+      "itemType": "benefit",
+      "title": "Tervisetoetus",
+      "status": "active",
+      "summary": "Tervisetoetus on Mustvee valla eelarvest makstav toetus, mille 2025. aasta määr on 50 eurot aastas. Detailseid tingimusi ei ole KOV veebipaketis eraldi kinnitatud.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaaltoetuste_maarad_file"
+      ],
+      "targetGroup": "Abivajajad Mustvee valla toetustingimuste alusel.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "sotsiaaltoetuse taotlus"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "50 eurot aastas",
+      "officialUrl": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_anneli_kaasik",
+        "mustvee_vald_contact_maire_vaher",
+        "mustvee_vald_contact_piret_tomson",
+        "mustvee_vald_contact_karin_suur"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaaltoetuste_maarad_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_benefit_tervisetoetus",
+      "document_id": "mustvee_vald_benefit_tervisetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "content_hash": "e1011be794aa962da5ac1eae6ad08ecefde89932f419f8e84846026b8fd8ce14",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_benefit_kuttepuude_toetus",
+      "canonical_item_id": "mustvee_vald:benefit:kuttepuude_toetus",
+      "itemType": "benefit",
+      "title": "Küttepuude toetus",
+      "status": "active",
+      "summary": "Küttepuude toetus on Mustvee valla eelarvest makstav toetus küttekulude leevendamiseks. 2025. aasta määrade järgi on toetus 150 eurot aastas.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaaltoetuste_maarad_file"
+      ],
+      "targetGroup": "Abivajajad Mustvee valla toetustingimuste alusel.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "sotsiaaltoetuse taotlus"
+        ],
+        "steps": null,
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "150 eurot aastas",
+      "officialUrl": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "relatedTo": [],
+      "relatedForms": [
+        "mustvee_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "mustvee_vald_contact_sotsiaalosakond",
+        "mustvee_vald_contact_anneli_kaasik",
+        "mustvee_vald_contact_maire_vaher",
+        "mustvee_vald_contact_piret_tomson",
+        "mustvee_vald_contact_karin_suur"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaaltoetuste_maarad_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_benefit_kuttepuude_toetus",
+      "document_id": "mustvee_vald_benefit_kuttepuude_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "content_hash": "b35191337e005fa442f432275645c01e06b99450958603f6d782134e398f20dd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_resource_lastekaitse_info",
+      "canonical_item_id": "mustvee_vald:resource:lastekaitse_info",
+      "itemType": "resource",
+      "title": "Lastekaitse ja abivajav laps",
+      "status": "active",
+      "summary": "Lastekaitse leht selgitab lapse heaolu, abivajava lapse ja hädaohus lapse mõisteid ning annab juhised, kuhu pöörduda. Abivajavast lapsest tuleb teatada kohaliku omavalitsuse lastekaitsespetsialistile või ööpäevaringsele lasteabitelefonile; hädaohus lapsest tuleb viivitamata teatada hädaabinumbril.",
+      "sourceKeys": [
+        "lastekaitse_page"
+      ],
+      "officialUrl": "https://mustveevald.kovtp.ee/lastekaitse",
+      "name": null,
+      "address": null,
+      "relatedTo": [
+        "mustvee_vald_service_turvakoduteenus"
+      ],
+      "item_type": "resource",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_resource_lastekaitse_info",
+      "document_id": "mustvee_vald_resource_lastekaitse_info",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/lastekaitse",
+      "content_hash": "a4653c83c8290481176ca1143a5f989900f5396b528eae0310c46d5c4d9ca46e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_resource_lasteabi_telefon",
+      "canonical_item_id": "mustvee_vald:resource:lasteabi_telefon",
+      "itemType": "resource",
+      "title": "Lasteabi",
+      "status": "active",
+      "summary": "Lasteabi on ööpäevaringne tasuta abikanal lapse heaolu ja turvalisusega seotud küsimustes. KOV lehel on nimetatud ka ja lasteabi veebivestluse võimalus.",
+      "sourceKeys": [
+        "kasulikud_lingid_page",
+        "lastekaitse_page"
+      ],
+      "officialUrl": "https://mustveevald.kovtp.ee/lastekaitse",
+      "name": null,
+      "address": null,
+      "relatedTo": [],
+      "item_type": "resource",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "kasulikud_lingid_page",
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_resource_lasteabi_telefon",
+      "document_id": "mustvee_vald_resource_lasteabi_telefon",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/lastekaitse",
+      "content_hash": "ccebcf356c717d6ebccc67bb0c4e48d046fa7dcf896b15d152f4c1089161a06d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_resource_ohvriabi_kriisitelefon",
+      "canonical_item_id": "mustvee_vald:resource:ohvriabi_kriisitelefon",
+      "itemType": "resource",
+      "title": "Ohvriabi kriisitelefon",
+      "status": "active",
+      "summary": "Kasulike linkide lehel on nimetatud ohvriabi kriisitelefon ning ohvriabi ja lepitusteenuse lisainfo. Tegemist on välise abikanaliga, mille sisu ei kontrollitud väljaspool KOV lehte.",
+      "sourceKeys": [
+        "kasulikud_lingid_page"
+      ],
+      "officialUrl": "https://mustveevald.kovtp.ee/kasulikud-lingid",
+      "name": null,
+      "address": null,
+      "relatedTo": [],
+      "item_type": "resource",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "kasulikud_lingid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_resource_ohvriabi_kriisitelefon",
+      "document_id": "mustvee_vald_resource_ohvriabi_kriisitelefon",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/kasulikud-lingid",
+      "content_hash": "7082c22b479a92dd566be6fa52cb68def46825934cd34d58efe9c310e2639e2e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_resource_haedaabinumber",
+      "canonical_item_id": "mustvee_vald:resource:haedaabinumber",
+      "itemType": "resource",
+      "title": "Hädaabinumber",
+      "status": "active",
+      "summary": "Hädaabinumber on KOV lehel nimetatud kiire abi kanalina kiirabi, politsei ja pääste kutsumiseks ning hädaohus olevast lapsest teatamiseks.",
+      "sourceKeys": [
+        "kasulikud_lingid_page",
+        "lastekaitse_page"
+      ],
+      "officialUrl": "https://mustveevald.kovtp.ee/kasulikud-lingid",
+      "name": null,
+      "address": null,
+      "relatedTo": [],
+      "item_type": "resource",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "kasulikud_lingid_page",
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_resource_haedaabinumber",
+      "document_id": "mustvee_vald_resource_haedaabinumber",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/kasulikud-lingid",
+      "content_hash": "dc93164419cbdedf0aba255127f978497862b7903e9ee36fd6da2145711387c9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_resource_riigiinfo_telefon",
+      "canonical_item_id": "mustvee_vald:resource:riigiinfo_telefon",
+      "itemType": "resource",
+      "title": "Riigiinfo",
+      "status": "active",
+      "summary": "Riigiinfo on KOV kasulike linkide lehel nimetatud riiklik infonumber.",
+      "sourceKeys": [
+        "kasulikud_lingid_page"
+      ],
+      "officialUrl": "https://mustveevald.kovtp.ee/kasulikud-lingid",
+      "name": null,
+      "address": null,
+      "relatedTo": [],
+      "item_type": "resource",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "kasulikud_lingid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_resource_riigiinfo_telefon",
+      "document_id": "mustvee_vald_resource_riigiinfo_telefon",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/kasulikud-lingid",
+      "content_hash": "33dc1e6f1b74fe24bfab0590c4a3985182a1e785dbf18136a60144b7b37679ce",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_resource_perearsti_nouandetelefon",
+      "canonical_item_id": "mustvee_vald:resource:perearsti_nouandetelefon",
+      "itemType": "resource",
+      "title": "Perearsti nõuandetelefon 1220",
+      "status": "active",
+      "summary": "Perearsti nõuandetelefon 1220 on üleriigiline ööpäevaringne nõuandetelefon meditsiinilise nõu saamiseks eesti ja vene keeles.",
+      "sourceKeys": [
+        "kasulikud_lingid_page",
+        "perearstikeskused_page"
+      ],
+      "officialUrl": "https://mustveevald.kovtp.ee/perearstikeskused",
+      "name": null,
+      "address": null,
+      "relatedTo": [],
+      "item_type": "resource",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "kasulikud_lingid_page",
+        "perearstikeskused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_resource_perearsti_nouandetelefon",
+      "document_id": "mustvee_vald_resource_perearsti_nouandetelefon",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/perearstikeskused",
+      "content_hash": "5a0f0c7a9e59497a6e06189bb7f70a53f5baed1eb9919b8d80d83782f32902cb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_resource_naisteliin",
+      "canonical_item_id": "mustvee_vald:resource:naisteliin",
+      "itemType": "resource",
+      "title": "Naisteliin 1492",
+      "status": "active",
+      "summary": "Kasulike linkide lehel on nimetatud Naisteliin 1492. Tegemist on välise tugiliiniga, mille praktiline info on KOV lehel piiratud telefoninumbriga.",
+      "sourceKeys": [
+        "kasulikud_lingid_page"
+      ],
+      "officialUrl": "https://mustveevald.kovtp.ee/kasulikud-lingid",
+      "name": null,
+      "address": null,
+      "relatedTo": [],
+      "item_type": "resource",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "kasulikud_lingid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_resource_naisteliin",
+      "document_id": "mustvee_vald_resource_naisteliin",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/kasulikud-lingid",
+      "content_hash": "7cb43be3b8523afecd1713af788d2132cbc61bc1a8d40c377acd5f19559b6161",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_resource_murgistusteabiliin",
+      "canonical_item_id": "mustvee_vald:resource:murgistusteabiliin",
+      "itemType": "resource",
+      "title": "Mürgistusteabiliin 16662",
+      "status": "active",
+      "summary": "Kasulike linkide lehel on nimetatud mürgistusteabiliin 16662.",
+      "sourceKeys": [
+        "kasulikud_lingid_page"
+      ],
+      "officialUrl": "https://mustveevald.kovtp.ee/kasulikud-lingid",
+      "name": null,
+      "address": null,
+      "relatedTo": [],
+      "item_type": "resource",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "kasulikud_lingid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_resource_murgistusteabiliin",
+      "document_id": "mustvee_vald_resource_murgistusteabiliin",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/kasulikud-lingid",
+      "content_hash": "014cac8d4e3181275e1e2a98204ac8188f0274e91d0c65fa5c5c252174e6e054",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_resource_uimasti_hiv_tugitelefon",
+      "canonical_item_id": "mustvee_vald:resource:uimasti_hiv_tugitelefon",
+      "itemType": "resource",
+      "title": "Uimasti ja HIV/aidsi anonüümne tugitelefon 1747",
+      "status": "active",
+      "summary": "Kasulike linkide lehel on nimetatud uimasti ja HIV/aidsi tasuta anonüümne tugitelefon 1747.",
+      "sourceKeys": [
+        "kasulikud_lingid_page"
+      ],
+      "officialUrl": "https://mustveevald.kovtp.ee/kasulikud-lingid",
+      "name": null,
+      "address": null,
+      "relatedTo": [],
+      "item_type": "resource",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "kasulikud_lingid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_resource_uimasti_hiv_tugitelefon",
+      "document_id": "mustvee_vald_resource_uimasti_hiv_tugitelefon",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/kasulikud-lingid",
+      "content_hash": "64d8fe4e8aed14cabba1277258761d5e61a3172e29385cfe6bd3de359c7c7148",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_resource_usaldustelefon",
+      "canonical_item_id": "mustvee_vald:resource:usaldustelefon",
+      "itemType": "resource",
+      "title": "Üle-eestiline usaldustelefon 126 ja 127",
+      "status": "active",
+      "summary": "Kasulike linkide lehel on nimetatud üle-eestiline usaldustelefon 126 eesti keeles ja 127 vene keeles.",
+      "sourceKeys": [
+        "kasulikud_lingid_page"
+      ],
+      "officialUrl": "https://mustveevald.kovtp.ee/kasulikud-lingid",
+      "name": null,
+      "address": null,
+      "relatedTo": [],
+      "item_type": "resource",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "kasulikud_lingid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_resource_usaldustelefon",
+      "document_id": "mustvee_vald_resource_usaldustelefon",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/kasulikud-lingid",
+      "content_hash": "f4f31791764762629952f7faddc2b6d4e1b8de1a63dc4dc7d5d2668db823a141",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_resource_vagivallast_loobumise_tugiliin",
+      "canonical_item_id": "mustvee_vald:resource:vagivallast_loobumise_tugiliin",
+      "itemType": "resource",
+      "title": "Vägivallast loobumise tugiliin",
+      "status": "active",
+      "summary": "Kasulike linkide lehel on nimetatud vägivallast loobumise tugiliin telefonil.",
+      "sourceKeys": [
+        "kasulikud_lingid_page"
+      ],
+      "officialUrl": "https://mustveevald.kovtp.ee/kasulikud-lingid",
+      "name": null,
+      "address": null,
+      "relatedTo": [],
+      "item_type": "resource",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "kasulikud_lingid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_resource_vagivallast_loobumise_tugiliin",
+      "document_id": "mustvee_vald_resource_vagivallast_loobumise_tugiliin",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/kasulikud-lingid",
+      "content_hash": "536d44bbd2e26b4f15b44fe135bd6a41ad5bc3455942a1dd39460d9e0d27ac77",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_resource_hingehoiutelefon",
+      "canonical_item_id": "mustvee_vald:resource:hingehoiutelefon",
+      "itemType": "resource",
+      "title": "Hingehoiutelefon 116 123",
+      "status": "active",
+      "summary": "Kasulike linkide lehel on nimetatud hingehoiutelefon 116 123.",
+      "sourceKeys": [
+        "kasulikud_lingid_page"
+      ],
+      "officialUrl": "https://mustveevald.kovtp.ee/kasulikud-lingid",
+      "name": null,
+      "address": null,
+      "relatedTo": [],
+      "item_type": "resource",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "kasulikud_lingid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_resource_hingehoiutelefon",
+      "document_id": "mustvee_vald_resource_hingehoiutelefon",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/kasulikud-lingid",
+      "content_hash": "e36dbdbc5d18e133443073b23aa3c2ce4835ce17b2622abb7c9a0157ce7eb053",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_resource_noorte_usaldustelefon",
+      "canonical_item_id": "mustvee_vald:resource:noorte_usaldustelefon",
+      "itemType": "resource",
+      "title": "Noorte usaldustelefon",
+      "status": "active",
+      "summary": "Kasulike linkide lehel on nimetatud noorte usaldustelefon.",
+      "sourceKeys": [
+        "kasulikud_lingid_page"
+      ],
+      "officialUrl": "https://mustveevald.kovtp.ee/kasulikud-lingid",
+      "name": null,
+      "address": null,
+      "relatedTo": [],
+      "item_type": "resource",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "kasulikud_lingid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_resource_noorte_usaldustelefon",
+      "document_id": "mustvee_vald_resource_noorte_usaldustelefon",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/kasulikud-lingid",
+      "content_hash": "d0ed089578c826970e4bc80b6c09e25bd0aba1b632295ffc5cbe367277d237c1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_resource_parkimiskaart",
+      "canonical_item_id": "mustvee_vald:resource:parkimiskaart",
+      "itemType": "resource",
+      "title": "Puudega inimese sõiduki parkimiskaart",
+      "status": "active",
+      "summary": "Mustvee valla uudis lehel on viide puudega inimese sõiduki parkimiskaardi taotlemise infole. KOV lehel oli praktiline info napp ning viitas edasi välisele infole.",
+      "sourceKeys": [
+        "parkimiskaart_page",
+        "ranitsatoetus_page"
+      ],
+      "officialUrl": "https://mustveevald.kovtp.ee/uudised-ja-teated/-/asset_publisher/dp54D2eBFl1x/content/id/",
+      "name": null,
+      "address": null,
+      "relatedTo": [],
+      "item_type": "resource",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "parkimiskaart_page",
+        "ranitsatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_resource_parkimiskaart",
+      "document_id": "mustvee_vald_resource_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/uudised-ja-teated/-/asset_publisher/dp54D2eBFl1x/content/id/",
+      "content_hash": "b97a46c757c33c0d282eb690ae75e4107c9d391045b1fa6095a3afb9f78d66da",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_resource_abivahendid_2025",
+      "canonical_item_id": "mustvee_vald:resource:abivahendid_2025",
+      "itemType": "resource",
+      "title": "Abivahendite info 2025 muudatuste lehel",
+      "status": "active",
+      "summary": "Mustvee valla uudis vahendab sotsiaalministeeriumi valdkondade 2025. aasta muudatusi ja nimetab abivahendite riigipoolse soodustuse muutumist. KOV lehel ei ole see valla teenus, vaid infoviide.",
+      "sourceKeys": [
+        "abivahendid_2025_page"
+      ],
+      "officialUrl": "https://mustveevald.kovtp.ee/uudised-ja-teated/-/asset_publisher/dp54D2eBFl1x/content/2025-aasta-tahtsamad-muudatused-sotsiaalministeeriumi-valdkondades",
+      "name": null,
+      "address": null,
+      "relatedTo": [],
+      "item_type": "resource",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "abivahendid_2025_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_resource_abivahendid_2025",
+      "document_id": "mustvee_vald_resource_abivahendid_2025",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/uudised-ja-teated/-/asset_publisher/dp54D2eBFl1x/content/2025-aasta-tahtsamad-muudatused-sotsiaalministeeriumi-valdkondades",
+      "content_hash": "ee8556d76094eaa51362b2dd8b09c94947f8f0dba3dff0c2b2472a20c0581ea4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_resource_eluaseme_kohandamise_projekt",
+      "canonical_item_id": "mustvee_vald:resource:eluaseme_kohandamise_projekt",
+      "itemType": "resource",
+      "title": "Puuetega inimeste eluaseme füüsilise kohandamise projekt",
+      "status": "active",
+      "summary": "KOV veebis on avaldatud projekti info Mustvee valla puuetega inimeste eluaseme füüsilise kohandamise kohta. Projektiperioodiks on märgitud 01.10.2019-31.08.2023 ja eesmärgiks puudega inimeste elamis-, õppimis- ja töötamistingimuste parandamine. Aktiivse taotlusvooru infot selles veebipaketis ei kinnitatud.",
+      "sourceKeys": [
+        "eluaseme_kohandamise_project_page"
+      ],
+      "officialUrl": "https://mustveevald.kovtp.ee/documents/17771826//Mustvee%2Bvalla%2Bpuuetega%2Binimeste%2Beluaseme%2Bf%C3%BC%C3%BCsiline%2Bkohandamine%2BII.pdf/6937c8d7-657a-463c-a07c-34b56c9673f0",
+      "name": null,
+      "address": null,
+      "relatedTo": [],
+      "item_type": "resource",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "eluaseme_kohandamise_project_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_resource_eluaseme_kohandamise_projekt",
+      "document_id": "mustvee_vald_resource_eluaseme_kohandamise_projekt",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/documents/17771826//Mustvee%2Bvalla%2Bpuuetega%2Binimeste%2Beluaseme%2Bf%C3%BC%C3%BCsiline%2Bkohandamine%2BII.pdf/6937c8d7-657a-463c-a07c-34b56c9673f0",
+      "content_hash": "0a7c37894a0f1d35c1763b53ed6e8efadec53244991e52e01a8233ba802b0486",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_resource_avinurme_sotsiaal_ja_turvakeskus",
+      "canonical_item_id": "mustvee_vald:resource:avinurme_sotsiaal_ja_turvakeskus",
+      "itemType": "resource",
+      "title": "Avinurme Sotsiaal- ja Turvakeskus MTÜ",
+      "status": "active",
+      "summary": "Mustvee valla territooriumil tegutsev hoolekandeasutus. KOV lehel on avaldatud aadress, juhataja, telefonid, ja kodulehe viide.",
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "officialUrl": "https://mustveevald.kovtp.ee/hoolekandeasutused",
+      "name": "Avinurme Sotsiaal- ja Turvakeskus MTÜ",
+      "address": "Võidu tn 28, Avinurme alevik, Mustvee vald",
+      "relatedTo": [],
+      "item_type": "resource",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_resource_avinurme_sotsiaal_ja_turvakeskus",
+      "document_id": "mustvee_vald_resource_avinurme_sotsiaal_ja_turvakeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/hoolekandeasutused",
+      "content_hash": "2bfe3aff39832279509828f3f4db04ef56bdf65b42cc1b5e4493a86bfb4483c7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_resource_saare_kodu_kaapa_hooldekeskus",
+      "canonical_item_id": "mustvee_vald:resource:saare_kodu_kaapa_hooldekeskus",
+      "itemType": "resource",
+      "title": "Saare Kodu, Kääpa Hooldekeskus MTÜ",
+      "status": "active",
+      "summary": "Mustvee valla territooriumil tegutsev hoolekandeasutus. KOV lehel on avaldatud aadress, juhataja, telefonid, ja kodulehe viide.",
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "officialUrl": "https://mustveevald.kovtp.ee/hoolekandeasutused",
+      "name": "Saare Kodu, Kääpa Hooldekeskus MTÜ",
+      "address": "Kääpa küla, Mustvee vald, Jõgevamaa 49323",
+      "relatedTo": [],
+      "item_type": "resource",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_resource_saare_kodu_kaapa_hooldekeskus",
+      "document_id": "mustvee_vald_resource_saare_kodu_kaapa_hooldekeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/hoolekandeasutused",
+      "content_hash": "af2ac35da4f48eed9cf637bd5dc40447cf8c07755a3b508f4532a77decf7aad5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_resource_sa_mustvee_tervis",
+      "canonical_item_id": "mustvee_vald:resource:sa_mustvee_tervis",
+      "itemType": "resource",
+      "title": "SA Mustvee Tervis",
+      "status": "active",
+      "summary": "Mustvee valla territooriumil tegutsev hoolekandeasutus. KOV lehel on avaldatud aadress, juhataja, vanemõe kontakt, infotelefon ja.",
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "officialUrl": "https://mustveevald.kovtp.ee/hoolekandeasutused",
+      "name": "SA Mustvee Tervis",
+      "address": "Tartu 59, Mustvee linn, Mustvee vald",
+      "relatedTo": [],
+      "item_type": "resource",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_resource_sa_mustvee_tervis",
+      "document_id": "mustvee_vald_resource_sa_mustvee_tervis",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/hoolekandeasutused",
+      "content_hash": "b80878ce646346a86c9edcd7eb145b0b86e61f49fd9ef61fbf414c7976cf0f20",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_resource_perearstikeskused",
+      "canonical_item_id": "mustvee_vald:resource:perearstikeskused",
+      "itemType": "resource",
+      "title": "Perearstikeskused",
+      "status": "active",
+      "summary": "Mustvee valla perearstikeskuste lehel on esitatud piirkondlik info Mustvee, Lohusuu, Kasepää, Saare ja Avinurme perearstide vastuvõtukohtade, telefonide ja vastuvõtuaegade kohta. Leht sisaldab ka perearsti ööpäevase nõuandetelefoni 1220 infot.",
+      "sourceKeys": [
+        "perearstikeskused_page"
+      ],
+      "officialUrl": "https://mustveevald.kovtp.ee/perearstikeskused",
+      "name": null,
+      "address": null,
+      "relatedTo": [],
+      "item_type": "resource",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "perearstikeskused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_resource_perearstikeskused",
+      "document_id": "mustvee_vald_resource_perearstikeskused",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/perearstikeskused",
+      "content_hash": "4345ecd717025d730757c674056ee8b0f29d9fd40c7e1424cb0761a7a000374a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_contact_sotsiaalosakond",
+      "canonical_item_id": "mustvee_vald:contact:sotsiaalosakond",
+      "itemType": "contact",
+      "title": "Sotsiaalosakond",
+      "status": "active",
+      "summary": "Mustvee Vallavalitsuse sotsiaalosakond võtab vastu teisipäeviti kell 13.00-16.00 ja neljapäeviti kell 9.00-13.00. Osakonna ametnikud tegelevad sotsiaalteenuste, toetuste, lastekaitse ja piirkondliku sotsiaaltöö korraldamisega.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Sotsiaalosakond",
+      "role": "Sotsiaalosakonna üldkontakt",
+      "department": "Sotsiaalosakond",
+      "address": "Tartu tn 28, Mustvee linn, Jõgevamaa 49603",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_contact_sotsiaalosakond",
+      "document_id": "mustvee_vald_contact_sotsiaalosakond",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "6b56711b4c38229f175e74a638d2aad3c34315e77c4262bd5a095b0aa7c88e2d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_contact_helen_metsma",
+      "canonical_item_id": "mustvee_vald:contact:helen_metsma",
+      "itemType": "contact",
+      "title": "Helen Metsma",
+      "status": "active",
+      "summary": "Helen Metsma on Mustvee Vallavalitsuse sotsiaalosakonna juhataja. Ametlikul veebilehel on tema töökoht Tartu tn 28, Mustvee linn.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Helen Metsma",
+      "role": "Sotsiaalosakonna juhataja",
+      "department": "Sotsiaalosakond",
+      "address": "Tartu tn 28, Mustvee linn",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_contact_helen_metsma",
+      "document_id": "mustvee_vald_contact_helen_metsma",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "751dca48e43a660ef2bf6f73b717fd7b9b12d5e6594824afa6e65641684d12c7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_contact_anneli_kaasik",
+      "canonical_item_id": "mustvee_vald:contact:anneli_kaasik",
+      "itemType": "contact",
+      "title": "Anneli Kaasik",
+      "status": "active",
+      "summary": "Anneli Kaasik on Mustvee piirkonna sotsiaaltööspetsialist Mustvee Tervisekeskuses.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Anneli Kaasik",
+      "role": "Sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Kastani tn 40, Mustvee linn",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_contact_anneli_kaasik",
+      "document_id": "mustvee_vald_contact_anneli_kaasik",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "ae5ab3a7a2e2ec10c18a4a7e3690b5ec282523cc0b195d43ae3a46f1ea330e73",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_contact_maire_vaher",
+      "canonical_item_id": "mustvee_vald:contact:maire_vaher",
+      "itemType": "contact",
+      "title": "Maire Vaher",
+      "status": "active",
+      "summary": "Maire Vaher on Avinurme piirkonna sotsiaaltööspetsialist.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Maire Vaher",
+      "role": "Sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Võidu tn 9, Avinurme",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_contact_maire_vaher",
+      "document_id": "mustvee_vald_contact_maire_vaher",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "2ef08ecae98a6f00f8fac2c661907e4c31a6881a369ade205a0527e8465a4d39",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_contact_piret_tomson",
+      "canonical_item_id": "mustvee_vald:contact:piret_tomson",
+      "itemType": "contact",
+      "title": "Piret Tomson",
+      "status": "active",
+      "summary": "Piret Tomson on Kasepää ja Lohusuu piirkonna sotsiaaltööspetsialist. Veebilehel on toodud vastuvõtuajad Kasepääl neljapäeviti ja Lohusuus teisipäeviti.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Piret Tomson",
+      "role": "Sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Sõpruse tn 90, Kasepää / Jõe tn 1, Lohusuu",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_contact_piret_tomson",
+      "document_id": "mustvee_vald_contact_piret_tomson",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "3f3f54e243dd878f10fd521d255d8f49529bf4278b8472d8155ffb3134123956",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_contact_karin_suur",
+      "canonical_item_id": "mustvee_vald:contact:karin_suur",
+      "itemType": "contact",
+      "title": "Karin Suur",
+      "status": "active",
+      "summary": "Karin Suur on Saare piirkonna sotsiaaltööspetsialist. Veebilehel on toodud vastuvõtuajad Kääpal teisipäeviti ja Voorel neljapäeviti.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Karin Suur",
+      "role": "Sotsiaaltööspetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Saare piirkond",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_contact_karin_suur",
+      "document_id": "mustvee_vald_contact_karin_suur",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "c3c2de5b53fa10414d441cda4a6dc16c9bb4559e7512e65d7dc4f35d34ee5490",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_contact_svea_auvart",
+      "canonical_item_id": "mustvee_vald:contact:svea_auvart",
+      "itemType": "contact",
+      "title": "Svea Auväärt",
+      "status": "active",
+      "summary": "Svea Auväärt on Mustvee valla lastekaitsespetsialist. Veebilehel on ametliku kontaktina avaldatud lastekaitse e-posti aadress.",
+      "sourceKeys": [
+        "contacts_page",
+        "lastekaitse_page",
+        "peretugevdusteenus_page"
+      ],
+      "name": "Svea Auväärt",
+      "role": "Lastekaitse spetsialist",
+      "department": "Sotsiaalosakond",
+      "address": "Kastani tn 40, Mustvee Tervisekeskus",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "contacts_page",
+        "lastekaitse_page",
+        "peretugevdusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_contact_svea_auvart",
+      "document_id": "mustvee_vald_contact_svea_auvart",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "dceb190bf399b8732785f8b2141c41aae0bfb701324e150a917b8cfefe586e42",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_contact_tauno_metsalu",
+      "canonical_item_id": "mustvee_vald:contact:tauno_metsalu",
+      "itemType": "contact",
+      "title": "Tauno Metsalu",
+      "status": "active",
+      "summary": "Tauno Metsalu on Avinurme piirkonna sotsiaalhooldustöötaja.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Tauno Metsalu",
+      "role": "Sotsiaalhooldustöötaja",
+      "department": "Sotsiaalosakond",
+      "address": "Avinurme piirkond",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_contact_tauno_metsalu",
+      "document_id": "mustvee_vald_contact_tauno_metsalu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "207dd1b76cbfdda83028c9bbe5b13ebbc096a329beee454e5b4df504647c0869",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_contact_alla_rutin",
+      "canonical_item_id": "mustvee_vald:contact:alla_rutin",
+      "itemType": "contact",
+      "title": "Alla Rutin",
+      "status": "active",
+      "summary": "Alla Rutin on Mustvee piirkonna sotsiaalhooldustöötaja.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Alla Rutin",
+      "role": "Sotsiaalhooldustöötaja",
+      "department": "Sotsiaalosakond",
+      "address": "Mustvee piirkond",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_contact_alla_rutin",
+      "document_id": "mustvee_vald_contact_alla_rutin",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "82c260e2048d955bb02e7c8691c4436ffcab344249d65577b50536dfeb0cf1ea",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_contact_aide_kaio",
+      "canonical_item_id": "mustvee_vald:contact:aide_kaio",
+      "itemType": "contact",
+      "title": "Aide Kaio",
+      "status": "active",
+      "summary": "Aide Kaio on Kasepää piirkonna sotsiaalhooldustöötaja.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Aide Kaio",
+      "role": "Sotsiaalhooldustöötaja",
+      "department": "Sotsiaalosakond",
+      "address": "Kasepää piirkond",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_contact_aide_kaio",
+      "document_id": "mustvee_vald_contact_aide_kaio",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "8cba84bbe83c0b135c1eeb7fa12b61939dcb03386b008f734f89f005a758da09",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_contact_tiiu_metsalu",
+      "canonical_item_id": "mustvee_vald:contact:tiiu_metsalu",
+      "itemType": "contact",
+      "title": "Tiiu Metsalu",
+      "status": "active",
+      "summary": "Tiiu Metsalu on Lohusuu piirkonna sotsiaalhooldustöötaja.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Tiiu Metsalu",
+      "role": "Sotsiaalhooldustöötaja",
+      "department": "Sotsiaalosakond",
+      "address": "Lohusuu piirkond",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_contact_tiiu_metsalu",
+      "document_id": "mustvee_vald_contact_tiiu_metsalu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "59279f949ceefe30683d886d40ec24399111b4ac340f8e31d5460f79f7614337",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_contact_reet_koiv",
+      "canonical_item_id": "mustvee_vald:contact:reet_koiv",
+      "itemType": "contact",
+      "title": "Reet Kõiv",
+      "status": "active",
+      "summary": "Reet Kõiv on Saare piirkonna sotsiaalhooldustöötaja.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Reet Kõiv",
+      "role": "Sotsiaalhooldustöötaja",
+      "department": "Sotsiaalosakond",
+      "address": "Saare piirkond",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_contact_reet_koiv",
+      "document_id": "mustvee_vald_contact_reet_koiv",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "aa809af0af8bf945cf1f9b9060703df3c1384598d4fbfc5b46b08999ec61b7f6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_contact_viktor_kutsar",
+      "canonical_item_id": "mustvee_vald:contact:viktor_kutsar",
+      "itemType": "contact",
+      "title": "Viktor Kutsar",
+      "status": "active",
+      "summary": "Viktor Kutsar on sotsiaalosakonna autojuht.",
+      "sourceKeys": [
+        "contacts_page"
+      ],
+      "name": "Viktor Kutsar",
+      "role": "Autojuht",
+      "department": "Sotsiaalosakond",
+      "address": null,
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_contact_viktor_kutsar",
+      "document_id": "mustvee_vald_contact_viktor_kutsar",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "452e113c38b8599a35b2784dca06d4c055f1a7caee089266d762a3297b7c33d3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_form_sotsiaaltoetuse_taotlus",
+      "canonical_item_id": "mustvee_vald:form:sotsiaaltoetuse_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaaltoetuse taotlus",
+      "status": "active",
+      "summary": "Mustvee valla ametlikul vormide lehel on nimetatud vorm 'Sotsiaaltoetuse taotlus'. Täpne faililink ei ole selles paketis eraldi kinnitatud, seetõttu kasutatakse allikana vormide lehte.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "submissionChannels": [
+        "",
+        "postiga Tartu tn 28, Mustvee linn",
+        "teenuskeskuses või vallavalitsuses kohapeal"
+      ],
+      "relatedTo": [
+        "mustvee_vald_benefit_ranitsatoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_form_sotsiaaltoetuse_taotlus",
+      "document_id": "mustvee_vald_form_sotsiaaltoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "content_hash": "96123884647a44af1b013aeaf6ddb7e34f0afeb97f09065e6b304456aef044a0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_form_puudega_isikule_hooldaja_maaramise_taotlus",
+      "canonical_item_id": "mustvee_vald:form:puudega_isikule_hooldaja_maaramise_taotlus",
+      "itemType": "form",
+      "title": "Puudega isikule hooldaja määramise taotlus",
+      "status": "active",
+      "summary": "Mustvee valla ametlikul vormide lehel on nimetatud vorm 'Puudega isikule hooldaja määramise taotlus'. Täpne faililink ei ole selles paketis eraldi kinnitatud, seetõttu kasutatakse allikana vormide lehte.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "submissionChannels": [
+        "",
+        "postiga Tartu tn 28, Mustvee linn",
+        "teenuskeskuses või vallavalitsuses kohapeal"
+      ],
+      "relatedTo": [
+        "mustvee_vald_service_taisealise_isiku_hooldus",
+        "mustvee_vald_benefit_taisealise_isiku_hooldajatoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_form_puudega_isikule_hooldaja_maaramise_taotlus",
+      "document_id": "mustvee_vald_form_puudega_isikule_hooldaja_maaramise_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "content_hash": "5c937e2ba3b0dce80773a1f3284a5e08eb9f702b9276d2a6094fb45f480a9358",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_form_uldhooldusteenuse_osalise_rahastamise_taotlus",
+      "canonical_item_id": "mustvee_vald:form:uldhooldusteenuse_osalise_rahastamise_taotlus",
+      "itemType": "form",
+      "title": "Üldhooldusteenuse osalise rahastamise taotlus",
+      "status": "active",
+      "summary": "Mustvee valla ametlikul vormide lehel on nimetatud vorm 'Üldhooldusteenuse osalise rahastamise taotlus'. Täpne faililink ei ole selles paketis eraldi kinnitatud, seetõttu kasutatakse allikana vormide lehte.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "submissionChannels": [
+        "",
+        "postiga Tartu tn 28, Mustvee linn",
+        "teenuskeskuses või vallavalitsuses kohapeal"
+      ],
+      "relatedTo": [
+        "mustvee_vald_service_uldhooldusteenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_form_uldhooldusteenuse_osalise_rahastamise_taotlus",
+      "document_id": "mustvee_vald_form_uldhooldusteenuse_osalise_rahastamise_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "content_hash": "05f7c6e04659d9bb10d6037ce8d6905febafa6d326daa67629c562dfa17aa4d5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_form_matusetoetuse_taotlus",
+      "canonical_item_id": "mustvee_vald:form:matusetoetuse_taotlus",
+      "itemType": "form",
+      "title": "Matusetoetuse taotlus",
+      "status": "active",
+      "summary": "Mustvee valla ametlikul vormide lehel on nimetatud vorm 'Matusetoetuse taotlus'. Täpne faililink ei ole selles paketis eraldi kinnitatud, seetõttu kasutatakse allikana vormide lehte.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "submissionChannels": [
+        "",
+        "postiga Tartu tn 28, Mustvee linn",
+        "teenuskeskuses või vallavalitsuses kohapeal"
+      ],
+      "relatedTo": [
+        "mustvee_vald_benefit_matusetoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_form_matusetoetuse_taotlus",
+      "document_id": "mustvee_vald_form_matusetoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "content_hash": "f657eb062e610c414d809a679abf82bc35c257dc6473301d83294396d63edd68",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_form_sunnitoetuse_taotlus_i_osa",
+      "canonical_item_id": "mustvee_vald:form:sunnitoetuse_taotlus_i_osa",
+      "itemType": "form",
+      "title": "Sünnitoetuse taotlus I osa",
+      "status": "active",
+      "summary": "Mustvee valla ametlikul vormide lehel on nimetatud vorm 'Sünnitoetuse taotlus I osa'. Täpne faililink ei ole selles paketis eraldi kinnitatud, seetõttu kasutatakse allikana vormide lehte.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "submissionChannels": [
+        "",
+        "postiga Tartu tn 28, Mustvee linn",
+        "teenuskeskuses või vallavalitsuses kohapeal"
+      ],
+      "relatedTo": [
+        "mustvee_vald_benefit_sunnitoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_form_sunnitoetuse_taotlus_i_osa",
+      "document_id": "mustvee_vald_form_sunnitoetuse_taotlus_i_osa",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "content_hash": "9ab65fb005ef8505c8d03c902fc3cf6b0e8e415ed69e93e6b4f91a3b66d8de9b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_form_sunnitoetuse_taotlus_ii_osa",
+      "canonical_item_id": "mustvee_vald:form:sunnitoetuse_taotlus_ii_osa",
+      "itemType": "form",
+      "title": "Sünnitoetuse taotlus II osa",
+      "status": "active",
+      "summary": "Mustvee valla ametlikul vormide lehel on nimetatud vorm 'Sünnitoetuse taotlus II osa'. Täpne faililink ei ole selles paketis eraldi kinnitatud, seetõttu kasutatakse allikana vormide lehte.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "docx",
+      "officialUrl": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "submissionChannels": [
+        "",
+        "postiga Tartu tn 28, Mustvee linn",
+        "teenuskeskuses või vallavalitsuses kohapeal"
+      ],
+      "relatedTo": [
+        "mustvee_vald_benefit_sunnitoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_form_sunnitoetuse_taotlus_ii_osa",
+      "document_id": "mustvee_vald_form_sunnitoetuse_taotlus_ii_osa",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "content_hash": "56abb9c62a47dcfa1008520ac1c96c82ec45759f579b03278c9dd2740dd64e7d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_form_toimetulekutoetuse_taotlus",
+      "canonical_item_id": "mustvee_vald:form:toimetulekutoetuse_taotlus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse taotlus",
+      "status": "active",
+      "summary": "Mustvee valla ametlikul vormide lehel on nimetatud vorm 'Toimetulekutoetuse taotlus'. Täpne faililink ei ole selles paketis eraldi kinnitatud, seetõttu kasutatakse allikana vormide lehte.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "submissionChannels": [
+        "",
+        "postiga Tartu tn 28, Mustvee linn",
+        "teenuskeskuses või vallavalitsuses kohapeal"
+      ],
+      "relatedTo": [
+        "mustvee_vald_benefit_toimetulekutoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_form_toimetulekutoetuse_taotlus",
+      "document_id": "mustvee_vald_form_toimetulekutoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "content_hash": "30d84cc5df47bba793d16f2ff992a1c13a0793a437d1a76d3923a4a57f4b63f5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_form_sotsiaalteenuse_taotlus",
+      "canonical_item_id": "mustvee_vald:form:sotsiaalteenuse_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaalteenuse taotlus",
+      "status": "active",
+      "summary": "Mustvee valla ametlikul vormide lehel on nimetatud vorm 'Sotsiaalteenuse taotlus'. Täpne faililink ei ole selles paketis eraldi kinnitatud, seetõttu kasutatakse allikana vormide lehte.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "submissionChannels": [
+        "",
+        "postiga Tartu tn 28, Mustvee linn",
+        "teenuskeskuses või vallavalitsuses kohapeal"
+      ],
+      "relatedTo": [
+        "mustvee_vald_service_tugiisikuteenus",
+        "mustvee_vald_service_isikliku_abistaja_teenus",
+        "mustvee_vald_service_varjupaigateenus",
+        "mustvee_vald_service_turvakoduteenus",
+        "mustvee_vald_service_sotsiaaltransporditeenus",
+        "mustvee_vald_service_eluruumi_tagamine",
+        "mustvee_vald_service_volanoustamisteenus",
+        "mustvee_vald_service_puudega_lapse_lapsehoiuteenus",
+        "mustvee_vald_service_muud_vajaduspohised_sotsiaalteenused",
+        "mustvee_vald_service_noustamine",
+        "mustvee_vald_service_teraapia",
+        "mustvee_vald_service_vaimse_tervise_teenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_form_sotsiaalteenuse_taotlus",
+      "document_id": "mustvee_vald_form_sotsiaalteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "content_hash": "7ad351432f7c6591645dff3aac9cdbb368fa15849bbde93e1e7e4e39c1874b5f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_form_puudega_inimese_hooldamise_lopetamise_taotlus",
+      "canonical_item_id": "mustvee_vald:form:puudega_inimese_hooldamise_lopetamise_taotlus",
+      "itemType": "form",
+      "title": "Puudega inimese hooldamise lõpetamise taotlus",
+      "status": "active",
+      "summary": "Mustvee valla ametlikul vormide lehel on nimetatud vorm 'Puudega inimese hooldamise lõpetamise taotlus'. Täpne faililink ei ole selles paketis eraldi kinnitatud, seetõttu kasutatakse allikana vormide lehte.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "doc",
+      "officialUrl": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "submissionChannels": [
+        "",
+        "postiga Tartu tn 28, Mustvee linn",
+        "teenuskeskuses või vallavalitsuses kohapeal"
+      ],
+      "relatedTo": [
+        "mustvee_vald_service_taisealise_isiku_hooldus",
+        "mustvee_vald_benefit_taisealise_isiku_hooldajatoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_form_puudega_inimese_hooldamise_lopetamise_taotlus",
+      "document_id": "mustvee_vald_form_puudega_inimese_hooldamise_lopetamise_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "content_hash": "b72e4ca8faf2e76e1473b76a006b38fde8f827b68dd565b951a22508ae9e2f1c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_form_koduteenuse_taotlus",
+      "canonical_item_id": "mustvee_vald:form:koduteenuse_taotlus",
+      "itemType": "form",
+      "title": "Koduteenuse taotluse vorm",
+      "status": "active",
+      "summary": "Mustvee valla ametlikul vormide lehel on nimetatud vorm 'Koduteenuse taotluse vorm'. Täpne faililink ei ole selles paketis eraldi kinnitatud, seetõttu kasutatakse allikana vormide lehte.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "rtf",
+      "officialUrl": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "submissionChannels": [
+        "",
+        "postiga Tartu tn 28, Mustvee linn",
+        "teenuskeskuses või vallavalitsuses kohapeal"
+      ],
+      "relatedTo": [
+        "mustvee_vald_service_koduteenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_form_koduteenuse_taotlus",
+      "document_id": "mustvee_vald_form_koduteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "content_hash": "d710bf9a0f045ab66a127d429cef39190b385f99a6e5b9607aec6f2c4bb84f2f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "mustvee_vald_form_1_klassi_astuja_toetus",
+      "canonical_item_id": "mustvee_vald:form:1_klassi_astuja_toetus",
+      "itemType": "form",
+      "title": "1. klassi astuja toetus",
+      "status": "active",
+      "summary": "Mustvee valla ametlikul vormide lehel on nimetatud vorm '1. klassi astuja toetus'. Täpne faililink ei ole selles paketis eraldi kinnitatud, seetõttu kasutatakse allikana vormide lehte.",
+      "sourceKeys": [
+        "forms_page"
+      ],
+      "format": "docx",
+      "officialUrl": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "submissionChannels": [
+        "",
+        "postiga Tartu tn 28, Mustvee linn",
+        "teenuskeskuses või vallavalitsuses kohapeal"
+      ],
+      "relatedTo": [
+        "mustvee_vald_benefit_ranitsatoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "mustvee_vald",
+      "municipality_name": "Mustvee vald",
+      "county": "Jõgevamaa",
+      "source_keys": [
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "mustvee_vald_form_1_klassi_astuja_toetus",
+      "document_id": "mustvee_vald_form_1_klassi_astuja_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://mustveevald.kovtp.ee/blanketid-ja-vormid",
+      "content_hash": "9d1bb7bd60eab9a5909379c9da1cd97e1d2711c1bda1fcbe2da6a5a5dcaedb61",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Mustvee vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

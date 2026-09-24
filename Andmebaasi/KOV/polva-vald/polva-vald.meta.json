@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-polva-vald",
+  "document_id": "kov-polva-vald",
+  "municipality": "Põlva vald",
+  "municipality_id": "polva_vald",
+  "county": "Põlvamaa",
+  "checkedAt": "2026-04-29",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-polva-vald",
+  "coverage": {
+    "services": 15,
+    "benefits": 17,
+    "resources": 15,
+    "contacts": 12,
+    "forms": 11,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "polva_vald",
+    "source_register_file": "polva-vald.sources.json",
+    "service_benefit_resource_items": 47,
+    "items_with_source_keys": 47,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 31,
+    "items_without_related_forms": 16,
+    "items_with_related_contacts": 31,
+    "items_without_related_contacts": 16,
+    "form_sources": 12,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Allikapakett keskendub Põlva valla ametliku veebilehe praktilisele sotsiaalvaldkonna infole. Vormide puhul kasutati vormide lehel avaldatud PDF-faile kanoniliste vormiallikatena."
+  ],
+  "unresolvedIssues": [
+    "Osa KOV lehel nimetatud abikanaleid ja teenusepakkujaid on välised riiklikud või partnerressursid; neid kirjeldati ainult KOV lehel avaldatud info ulatuses ja väliseid veebilehti ei kasutatud põhiallikana.",
+    "Mõne toetuse puhul ei avalda KOV veebileht konkreetset maksimaalset summat või hüvitise piirmäära; sellised summaväljad on jäetud nulliks.",
+    "Energiahinna tõusu leevendamise toetuse blankett on KOV blanketilehel sotsiaalosakonna blanketina olemas, kuid vastavat aktiivset toetuse detailkirjeldust ei leitud sotsiaaltoetuste ja teenuste sisulehelt.",
+    "Parkimiskaardi kohta ei leidnud KOV sotsiaalvaldkonna veebikihist eraldi praktilist detailkirjeldust.",
+    "Mõnel teenusel kasutatakse sama üldist sotsiaalteenuse või sotsiaaltoetuse vormi mitme teenuse või toetuse jaoks; seosed on loodud vaid siis, kui KOV teenuse/toetuse või blanketileht nimetab vastava vormi tüüpi."
+  ],
+  "municipality_name": "Põlva vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "polva-vald.sources.json",
+  "sourceCount": 21,
+  "counts": {
+    "services": 15,
+    "benefits": 17,
+    "resources": 15,
+    "contacts": 12,
+    "forms": 11,
+    "regulations": 0
+  },
+  "warnings": [
+    "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

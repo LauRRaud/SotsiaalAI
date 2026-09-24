@@ -1,0 +1,3440 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-rakvere-vald",
+  "document_id": "kov-rakvere-vald",
+  "municipality": "Rakvere vald",
+  "municipality_id": "rakvere_vald",
+  "county": "Lääne-Virumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "rakvere_vald_contact_rakvere_vallavalitsus",
+      "canonical_item_id": "rakvere_vald:contact:rakvere_vallavalitsus",
+      "itemType": "contact",
+      "title": "Rakvere Vallavalitsus",
+      "status": "active",
+      "summary": "Rakvere Vallavalitsuse üldkontakt sotsiaalvaldkonna avalduste ja pöördumiste esitamiseks.",
+      "sourceKeys": [
+        "blanketid_page",
+        "home"
+      ],
+      "name": "Rakvere Vallavalitsus",
+      "role": "üldkontakt",
+      "department": null,
+      "address": "Kooli 2, Sõmeru alevik, Lääne-Virumaa 44305",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "blanketid_page",
+        "home"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_contact_rakvere_vallavalitsus",
+      "document_id": "rakvere_vald_contact_rakvere_vallavalitsus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "a1c03db87e57b1b6f262c874788937ad7f7fa80394937c25b47b67d20c816423",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_contact_anneli_saaber",
+      "canonical_item_id": "rakvere_vald:contact:anneli_saaber",
+      "itemType": "contact",
+      "title": "Anneli Saaber",
+      "status": "active",
+      "summary": "Anneli Saaber tegeleb sotsiaalteenuste, invaparkimiskaartide väljastamise, hooldekodusse paigutamise ja täisealiste isikute eestkostega.",
+      "sourceKeys": [
+        "ametnikud_page"
+      ],
+      "name": "Anneli Saaber",
+      "role": "sotsiaalnõunik",
+      "department": "Sotsiaalhoolekanne ja tervishoid",
+      "address": null,
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "ametnikud_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_contact_anneli_saaber",
+      "document_id": "rakvere_vald_contact_anneli_saaber",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "a5a08d25d54f5c3d4897a2b34139649956d00fc42b172fe6cc2e4ec575afd65f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_contact_einike_einberg_viirok",
+      "canonical_item_id": "rakvere_vald:contact:einike_einberg_viirok",
+      "itemType": "contact",
+      "title": "Einike Einberg-Viirok",
+      "status": "active",
+      "summary": "Einike Einberg-Viirok tegeleb sotsiaaltoetuste ja nõustamisega ning on eraldi nimetatud ühekordse toetuse kontaktina.",
+      "sourceKeys": [
+        "ametnikud_page",
+        "uhekordne_toetus_page"
+      ],
+      "name": "Einike Einberg-Viirok",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Sotsiaalhoolekanne ja tervishoid",
+      "address": null,
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "ametnikud_page",
+        "uhekordne_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_contact_einike_einberg_viirok",
+      "document_id": "rakvere_vald_contact_einike_einberg_viirok",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "9b7c426f2e693642c9c349fafe3777241a1835d8522c66bbd42b7e2a4a326e90",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_contact_kristi_moor",
+      "canonical_item_id": "rakvere_vald:contact:kristi_moor",
+      "itemType": "contact",
+      "title": "Kristi Moor",
+      "status": "active",
+      "summary": "Kristi Moor tegeleb lastekaitsealaste küsimuste ja laste eestkostega ning on lapsele suunatud abilehel nimetatud kontaktina.",
+      "sourceKeys": [
+        "ametnikud_page",
+        "lapsele_page"
+      ],
+      "name": "Kristi Moor",
+      "role": "lapse heaolu spetsialist",
+      "department": "Lastekaitse",
+      "address": null,
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "ametnikud_page",
+        "lapsele_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_contact_kristi_moor",
+      "document_id": "rakvere_vald_contact_kristi_moor",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "050e587829f4c33a50a75310ba35a813e4a5b71dbc2f510f924e64b999af800b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_contact_kadri_lehtsalu",
+      "canonical_item_id": "rakvere_vald:contact:kadri_lehtsalu",
+      "itemType": "contact",
+      "title": "Kadri Lehtsalu",
+      "status": "active",
+      "summary": "Kadri Lehtsalu tegeleb lastekaitsealaste küsimuste ja laste eestkostega.",
+      "sourceKeys": [
+        "ametnikud_page"
+      ],
+      "name": "Kadri Lehtsalu",
+      "role": "lapse heaolu spetsialist",
+      "department": "Lastekaitse",
+      "address": null,
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "ametnikud_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_contact_kadri_lehtsalu",
+      "document_id": "rakvere_vald_contact_kadri_lehtsalu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "c304e93e726028d8879cb62388a065092f3d92f0076040872e4bfb2fea46c08b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_contact_eneli_baumann",
+      "canonical_item_id": "rakvere_vald:contact:eneli_baumann",
+      "itemType": "contact",
+      "title": "Eneli Baumann",
+      "status": "active",
+      "summary": "Eneli Baumann tegeleb valdkondadeülese ennetustöö, projektijuhtimise ja nõustamisega ning võtab vastu vaimse tervise nõustamise avaldusi.",
+      "sourceKeys": [
+        "ametnikud_page",
+        "lapsevanemale_page",
+        "noustamine_page"
+      ],
+      "name": "Eneli Baumann",
+      "role": "ennetustööspetsialist",
+      "department": "Vaimne tervis ja ennetustöö",
+      "address": null,
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "ametnikud_page",
+        "lapsevanemale_page",
+        "noustamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_contact_eneli_baumann",
+      "document_id": "rakvere_vald_contact_eneli_baumann",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "c81d0c095d9f4d91cb41fc6af85c912f15a4845388ff9bcecd2958503874cffc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_contact_lisanne_lindre",
+      "canonical_item_id": "rakvere_vald:contact:lisanne_lindre",
+      "itemType": "contact",
+      "title": "Lisanne Lindre",
+      "status": "active",
+      "summary": "Lisanne Lindre toetab 15–29-aastaseid noori, kes on tööturult kõrvale jäänud või kelle haridustee on katkenud.",
+      "sourceKeys": [
+        "ametnikud_page"
+      ],
+      "name": "Lisanne Lindre",
+      "role": "NEET juhtumikorraldaja",
+      "department": "Vaimne tervis ja ennetustöö",
+      "address": null,
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "ametnikud_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_contact_lisanne_lindre",
+      "document_id": "rakvere_vald_contact_lisanne_lindre",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "30b956e83f08d033ff734dae989ed4a978b556467c5459cd6d84587f18421e09",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_contact_marina_landberg",
+      "canonical_item_id": "rakvere_vald:contact:marina_landberg",
+      "itemType": "contact",
+      "title": "Marina Landberg",
+      "status": "active",
+      "summary": "Marina Landberg on Uhtna Hooldekodu kontaktisik.",
+      "sourceKeys": [
+        "uhtna_hooldekodu_page"
+      ],
+      "name": "Marina Landberg",
+      "role": "Uhtna Hooldekodu juhataja",
+      "department": "Uhtna Hooldekodu",
+      "address": "Laulukaare 3, Uhtna alevik",
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "uhtna_hooldekodu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_contact_marina_landberg",
+      "document_id": "rakvere_vald_contact_marina_landberg",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "da4e762d39191be9f7ab26891fb5727c4e387980aadb92d632f557eda1541373",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_contact_siiri_saarmets",
+      "canonical_item_id": "rakvere_vald:contact:siiri_saarmets",
+      "itemType": "contact",
+      "title": "Siiri Saarmets",
+      "status": "active",
+      "summary": "Siiri Saarmets on Sõmeru päevakeskuse kontaktisik.",
+      "sourceKeys": [
+        "someru_paevakeskus_page"
+      ],
+      "name": "Siiri Saarmets",
+      "role": "kultuurinõunik",
+      "department": "Sõmeru päevakeskus",
+      "address": null,
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "someru_paevakeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_contact_siiri_saarmets",
+      "document_id": "rakvere_vald_contact_siiri_saarmets",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "4e216acfeaec0d46c173b5426b99618084b8716357eb0eb7871836b98b112bef",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_contact_reelika_kirsipuu",
+      "canonical_item_id": "rakvere_vald:contact:reelika_kirsipuu",
+      "itemType": "contact",
+      "title": "Reelika Kirsipuu",
+      "status": "active",
+      "summary": "Reelika Kirsipuu on Sõmeru päevakeskuse kontaktisik.",
+      "sourceKeys": [
+        "someru_paevakeskus_page"
+      ],
+      "name": "Reelika Kirsipuu",
+      "role": "kultuuritöötaja",
+      "department": "Sõmeru päevakeskus",
+      "address": null,
+      "relatedTo": [],
+      "item_type": "contact",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "someru_paevakeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_contact_reelika_kirsipuu",
+      "document_id": "rakvere_vald_contact_reelika_kirsipuu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "98e50fb798f768f516d7576bfed1a50332b0f1676aa5f885d44a61a86e55e255",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_service_koduteenus",
+      "canonical_item_id": "rakvere_vald:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenused toetavad kõrvalabi vajavat inimest kodus, kui tal puuduvad seadusjärgsed ülalpidajad või nad ei saa hooldust tagada. Teenus hõlmab toiduainete ja majapidamistarvetega varustamist, koristamist, kütmist ja asjaajamist. Teenuse saamiseks esitab inimene vallavalitsusele avalduse ja otsus tehakse hiljemalt 10 tööpäeva jooksul.",
+      "sourceKeys": [
+        "koduteenus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/koduteenused",
+      "targetGroup": "Kõrvalabi vajavad Rakvere valla elanikud",
+      "conditions": "Teenust osutatakse inimesele, kellel puuduvad abistavad ülalpidajad või nad ei suuda hooldust tagada.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Esita vallavalitsusele avaldus ja põhjenda kõrvalabi vajadust.",
+          "Valla sotsiaaltöö ametnik hindab abivajadust.",
+          "Otsus tehakse hiljemalt 10 tööpäeva jooksul."
+        ],
+        "deadline": null
+      },
+      "relatedForms": [
+        "rakvere_vald_form_koduteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_anneli_saaber"
+      ],
+      "decisionTime": "10 tööpäeva",
+      "item_type": "service",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "koduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_service_koduteenus",
+      "document_id": "rakvere_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/koduteenused",
+      "content_hash": "f3fb00e162c1b660cba2820090949e5a1fa6daf8b5501e44f9432f7b2528818c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_service_uldhooldusteenus",
+      "canonical_item_id": "rakvere_vald:service:uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Rakvere vallas pakub üldhooldusteenust vallavalitsuse hallatav Uhtna Hooldekodu. Teenus on mõeldud eakatele ja puuetega inimestele ajutiseks või alaliseks elamiseks, hooldamiseks ja põetamiseks. Hooldekodusse asumiseks esitab hooldust vajav inimene või tema lähedane/eestkostja vallavalitsusele avalduse; alates 1. juulist 2025 on kohatasu 1350 eurot kuus, millest vald katab 650 eurot ja omaosalus on 700 eurot kuus.",
+      "sourceKeys": [
+        "uhtna_hooldekodu_page",
+        "uldhooldus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/uldhooldusteenus",
+      "targetGroup": "Eakad ja puuetega inimesed, kes vajavad ööpäevaringset hooldust",
+      "conditions": "Teenust osutatakse eelkõige Rakvere valla elanikele; teiste omavalitsuste elanikele ainult vabade kohtade olemasolul.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Esita hooldekodusse paigutamise avaldus vallavalitsusele.",
+          "Vallavalitsus hindab abivajadust ja korraldab lepingu sõlmimise."
+        ],
+        "deadline": null
+      },
+      "relatedForms": [
+        "rakvere_vald_form_hooldekodu_avaldus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_anneli_saaber",
+        "rakvere_vald_contact_marina_landberg"
+      ],
+      "pricing": {
+        "amount": "1350 eurot kuus; valla osa 650 eurot ja kliendi omaosalus 700 eurot",
+        "currency": "EUR"
+      },
+      "item_type": "service",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "uhtna_hooldekodu_page",
+        "uldhooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_service_uldhooldusteenus",
+      "document_id": "rakvere_vald_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/uldhooldusteenus",
+      "content_hash": "e719a3e62c34a0a4332b4512d8d288f1944bd6936049e1e13ef363c26fd7cf98",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_service_tugiisikuteenus",
+      "canonical_item_id": "rakvere_vald:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus toetab isiku iseseisvat toimetulekut olukorras, kus sotsiaalsed, majanduslikud, psühholoogilised või tervislikud probleemid nõuavad olulist kõrvalabi. Lapsele osutatakse tugiisikuteenust koostöös last kasvatava isikuga lapse arengu toetamiseks ja vajaduse korral hooldustoiminguteks. Teenuse saamiseks esitatakse avaldus.",
+      "sourceKeys": [
+        "tugiisik_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/tugiisiku-teenus",
+      "targetGroup": "Lapsed ja täisealised, kes vajavad juhendamist ja motiveerimist",
+      "conditions": "Teenuse vajadus peab tulenema isiku toimetulekuraskusest või lapse arengu toetamise vajadusest.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Esita vallavalitsusele tugiisikuteenuse avaldus.",
+          "Vald hindab vajaduse ja korraldab teenuse."
+        ],
+        "deadline": null
+      },
+      "relatedForms": [
+        "rakvere_vald_form_tugiisiku_teenus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_kristi_moor",
+        "rakvere_vald_contact_kadri_lehtsalu"
+      ],
+      "item_type": "service",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "tugiisik_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_service_tugiisikuteenus",
+      "document_id": "rakvere_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/tugiisiku-teenus",
+      "content_hash": "5c2db07be30ec55c104cf46465510f6361cf74dc6887fc05a647a8b80125036c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "rakvere_vald:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldus on teenus raske või sügava puudega täisealisele inimesele, kes vajab kõrvalabi ja juhendamist. Hooldaja määratakse hooldatava valikul ja nõusolekul ning hooldusvajadus tehakse kindlaks enne otsust. Hooldajatoetust saab taotleda juhul, kui hooldusel või eestkostel oleva inimese elukoht on rahvastikuregistri järgi Rakvere vald.",
+      "sourceKeys": [
+        "taisealise_hooldus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/hooldus",
+      "targetGroup": "Raske või sügava puudega täisealised Rakvere valla elanikud",
+      "conditions": "Hooldatava elukoht peab olema Rakvere vald ning hooldaja määratakse hooldatava nõusolekul.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Hooldust vajav isik või eestkostja esitab avalduse.",
+          "Vald hindab hooldusvajadust ja hooldaja võimalusi."
+        ],
+        "deadline": null
+      },
+      "relatedForms": [
+        "rakvere_vald_form_hooldaja_maaramine"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_anneli_saaber"
+      ],
+      "item_type": "service",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "taisealise_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_service_taisealise_isiku_hooldus",
+      "document_id": "rakvere_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/hooldus",
+      "content_hash": "3f4fba8663426e5b96bea5ead1319ee88063df5cf582cc196dcbeba56916b97a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "rakvere_vald:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus suurendab puude tõttu füüsilist kõrvalabi vajava täisealise inimese iseseisvat toimetulekut ja osalemist kõigis eluvaldkondades. Abistaja aitab liikumisel, söömisel, toidu valmistamisel, riietumisel, hügieenitoimingutes, majapidamistöödes ja muudes toimingutes. Teenuse saamiseks esitatakse avaldus ja vallavalitsus sõlmib teenuse saajaga lepingu.",
+      "sourceKeys": [
+        "isiklik_abistaja_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/isikliku-abistaja-teenus",
+      "targetGroup": "Täisealised puudega inimesed, kes vajavad füüsilist kõrvalabi",
+      "conditions": "Teenuse vajadus peab tulenema puudest ja füüsilise kõrvalabi vajadusest.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Esita isikliku abistaja teenuse avaldus.",
+          "Vallavalitsus hindab abivajaduse ja sõlmib teenuse lepingu."
+        ],
+        "deadline": null
+      },
+      "relatedForms": [
+        "rakvere_vald_form_isiklik_abistaja"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_anneli_saaber"
+      ],
+      "item_type": "service",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "isiklik_abistaja_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_service_isikliku_abistaja_teenus",
+      "document_id": "rakvere_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/isikliku-abistaja-teenus",
+      "content_hash": "ebf87fe188b837030d6d96f7f6a4f7cf8d5decd64be3e51ce42a9e79b45c65c9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_service_varjupaigateenus",
+      "canonical_item_id": "rakvere_vald:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus on Rakvere Vallavalitsuse korraldatav ajutine ööbimiskoha teenus täisealisele inimesele, kes ei suuda endale ööbimiskohta leida. Teenusega peab olema tagatud voodikoht, pesemisvõimalus ja turvaline keskkond. Teenuse saamiseks esitab inimene vallavalitsusele avalduse.",
+      "sourceKeys": [
+        "varjupaik_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/varjupaigateenus",
+      "targetGroup": "Täisealised inimesed, kellel puudub ajutiselt ööbimiskoht",
+      "conditions": "Isik ei ole võimeline endale ööbimiskohta leidma ja vajab turvalist ajutist keskkonda.",
+      "application": {
+        "channels": [
+          "avaldus vallavalitsusele"
+        ],
+        "steps": [
+          "Pöördu vallavalitsusse ja esita avaldus."
+        ],
+        "deadline": null
+      },
+      "relatedForms": [],
+      "relatedContacts": [
+        "rakvere_vald_contact_rakvere_vallavalitsus"
+      ],
+      "item_type": "service",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "varjupaik_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_service_varjupaigateenus",
+      "document_id": "rakvere_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/varjupaigateenus",
+      "content_hash": "d8d8a402a04368e30f2c1971c589347251c3f64a05f30dc54ccab34e7bee6c6b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_service_turvakoduteenus",
+      "canonical_item_id": "rakvere_vald:service:turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenus tagab ajutise eluaseme, turvalise keskkonna ja esmase abi lapsele või täisealisele inimesele, kes vajab turvalist keskkonda. Esmase abi raames tagatakse vajaduse korral kriisiabi ning teavitatakse muudest abi saamise võimalustest. Teenuse saamiseks esitab inimene vallavalitsusele avalduse.",
+      "sourceKeys": [
+        "turvakodu_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/turvakoduteenus",
+      "targetGroup": "Lapsed ja täisealised, kes vajavad turvalist ajutist keskkonda",
+      "conditions": "Vajadus tuleneb lapse hooldamise puudustest või täisealise isiku turvalise keskkonna vajadusest.",
+      "application": {
+        "channels": [
+          "avaldus vallavalitsusele"
+        ],
+        "steps": [
+          "Pöördu vallavalitsusse ja esita avaldus."
+        ],
+        "deadline": null
+      },
+      "relatedForms": [],
+      "relatedContacts": [
+        "rakvere_vald_contact_rakvere_vallavalitsus",
+        "rakvere_vald_contact_kristi_moor",
+        "rakvere_vald_contact_kadri_lehtsalu"
+      ],
+      "item_type": "service",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "turvakodu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_service_turvakoduteenus",
+      "document_id": "rakvere_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/turvakoduteenus",
+      "content_hash": "f4c5acaff6d5b4dc4af20f318a133336b456157aea21cfcde83dee4bf7971038",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "rakvere_vald:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus võimaldab puudest või tervislikust seisundist tuleneva takistuse korral kasutada vajadustele vastavat transpordivahendit tööle, õppeasutusse või avalike teenuste juurde sõitmiseks. Teenuse saamiseks esitatakse kirjalik või suuline avaldus, kus on isikuandmed, marsruut ja teenuse taotlemise põhjus. Avaldus tuleb esitada vähemalt kolm päeva enne soovitud sõiduaega.",
+      "sourceKeys": [
+        "social_transport_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/sotsiaaltransport",
+      "targetGroup": "Inimesed, kelle puue või tervis takistab isikliku või ühissõiduki kasutamist",
+      "conditions": "Teenust osutatakse üldjuhul tööpäevadel ja Eesti Vabariigi territooriumil.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus",
+          "suuline avaldus"
+        ],
+        "steps": [
+          "Võta ühendust valla sotsiaalnõunikuga.",
+          "Esita isikuandmed, sõidu marsruut ja teenuse taotlemise põhjus vähemalt kolm päeva enne sõitu."
+        ],
+        "deadline": "vähemalt 3 päeva enne soovitud sõiduaega"
+      },
+      "relatedForms": [
+        "rakvere_vald_form_sotsiaaltranspordi_avaldus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_anneli_saaber"
+      ],
+      "item_type": "service",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "social_transport_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_service_sotsiaaltransporditeenus",
+      "document_id": "rakvere_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/sotsiaaltransport",
+      "content_hash": "e825acbd6dc4dab317e14154e533815e72e220a1ab986d7136bd7bf944dee059",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_service_sotsiaaleluruumi_tagamine",
+      "canonical_item_id": "rakvere_vald:service:sotsiaaleluruumi_tagamine",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenuse eesmärk on kindlustada sotsiaalkorteri kasutamise võimalus inimesele, kes ei suuda sotsiaalmajandusliku olukorra tõttu endale ja perele sobivat eluruumi tagada. Sotsiaalkorteri üürile andmise otsustab vallavalitsus avalduse alusel ja inimesega sõlmitakse üürileping. Kui taotleja keeldub talle pakutud sotsiaalkorterist, võib vallavalitsus jätta eluruumi eraldamata.",
+      "sourceKeys": [
+        "social_housing_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/sotsiaaleluruumi-tagamine",
+      "targetGroup": "Inimesed, kes sotsiaalmajandusliku olukorra tõttu ei suuda tagada sobivat eluruumi",
+      "conditions": "Sotsiaalkorteri eraldamine toimub vallavalitsuse otsusel avalduse alusel.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Esita sotsiaaleluruumi taotlemise avaldus.",
+          "Vallavalitsus otsustab sotsiaalkorteri üürile andmise ja sõlmib üürilepingu."
+        ],
+        "deadline": null
+      },
+      "relatedForms": [
+        "rakvere_vald_form_sotsiaaleluruum"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_anneli_saaber"
+      ],
+      "item_type": "service",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "social_housing_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_service_sotsiaaleluruumi_tagamine",
+      "document_id": "rakvere_vald_service_sotsiaaleluruumi_tagamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/sotsiaaleluruumi-tagamine",
+      "content_hash": "274376a5670d46c6515cc9a349018c37279982d2bac92d5ace738840627a92f7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_service_volanoustamisteenus",
+      "canonical_item_id": "rakvere_vald:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab inimesel teha kindlaks varalise olukorra, pidada võlausaldajatega läbirääkimisi, vältida uusi võlgnevusi ja lahendada võlgadega seotud probleeme. Teenus hõlmab nõustamist, juhendamist ja edasiste võlgade ennetamist. Teenuse saamiseks esitab inimene vallavalitsusele avalduse.",
+      "sourceKeys": [
+        "volanoustamine_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/volanoustamine",
+      "targetGroup": "Võlgade või makseraskustega inimesed",
+      "conditions": "Piiratud teovõimega isiku puhul osutatakse teenust tema seaduslikule esindajale taotluse alusel.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Esita vallavalitsusele võlanõustamise teenuse avaldus."
+        ],
+        "deadline": null
+      },
+      "relatedForms": [
+        "rakvere_vald_form_volanoustamine"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_einike_einberg_viirok"
+      ],
+      "item_type": "service",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "volanoustamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_service_volanoustamisteenus",
+      "document_id": "rakvere_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/volanoustamine",
+      "content_hash": "d649cfd13d9e14aabdeeeb4cf72d72b0ad24bcda19bb8a45411e8d7035f3e89a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_service_asendushooldusteenus",
+      "canonical_item_id": "rakvere_vald:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus aitab tagada lapse heaolu, turvalise kasvukeskkonna ja iseseisvaks eluks ettevalmistuse. Teenuse vajadust hindab lapse heaolu spetsialist ja teenust pakutakse hooldusperes, perekodus või asenduskodus. Teenust saavad lapsed, kes on jäänud vanemliku hoolitsuseta või on perest eraldatud.",
+      "sourceKeys": [
+        "asendus_jarelhooldus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/asendus-jarelhooldusteenus",
+      "targetGroup": "Vanemliku hoolitsuseta lapsed või perest eraldatud lapsed",
+      "conditions": "Teenuse vajadust hindab lapse heaolu spetsialist.",
+      "application": {
+        "channels": [
+          "pöördumine vallavalitsuse poole"
+        ],
+        "steps": [
+          "Võta ühendust lapse heaolu spetsialistiga.",
+          "Vald hindab lapse vajadust ja korraldab asendushoolduse."
+        ],
+        "deadline": null
+      },
+      "relatedForms": [],
+      "relatedContacts": [
+        "rakvere_vald_contact_kristi_moor",
+        "rakvere_vald_contact_kadri_lehtsalu"
+      ],
+      "item_type": "service",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "asendus_jarelhooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_service_asendushooldusteenus",
+      "document_id": "rakvere_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/asendus-jarelhooldusteenus",
+      "content_hash": "15e6b6809e1890672bbbd29c7a811796a797e7e7b2e283b2784351789441c20b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "rakvere_vald:service:jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus aitab asendushoolduselt või eestkostelt lahkunud noorel iseseisvalt toime tulla ja õpinguid jätkata. Teenust osutatakse kokkulepitud plaani alusel ning vallavalitsus tagab vajadusel eluaseme, tuge ja toetusi. Teenust rahastatakse valla eelarvest ja osaliselt noore enda sissetulekust.",
+      "sourceKeys": [
+        "asendus_jarelhooldus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/asendus-jarelhooldusteenus",
+      "targetGroup": "Asendushoolduselt või eestkostelt lahkunud noored",
+      "conditions": "Teenust osutatakse kokkulepitud plaani alusel ning see võib jätkuda pärast 18. eluaastat õppimise ajal.",
+      "application": {
+        "channels": [
+          "pöördumine vallavalitsuse poole"
+        ],
+        "steps": [
+          "Võta ühendust lapse heaolu spetsialistiga.",
+          "Koostatakse järelhooldusplaan ja korraldatakse vajalik abi."
+        ],
+        "deadline": null
+      },
+      "relatedForms": [],
+      "relatedContacts": [
+        "rakvere_vald_contact_kristi_moor",
+        "rakvere_vald_contact_kadri_lehtsalu"
+      ],
+      "item_type": "service",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "asendus_jarelhooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_service_jarelhooldusteenus",
+      "document_id": "rakvere_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/asendus-jarelhooldusteenus",
+      "content_hash": "d510948b17bc146db7bc561834b6317ed705a922e5b96a77cd06c83b4fef9ebf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "rakvere_vald:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenuse eesmärk on toetada sügava või raske puudega lapse hooldusõigust omava või last kasvatava inimese toimetulekut või töötamist. Teenuse osutaja tagab lapse hooldamise, arendamise ja turvalisuse. Teenuse saamiseks esitab inimene vallavalitsusele avalduse ja vallavalitsus sõlmib koostöös teenuse vajaja ja teenuseosutajaga halduslepingu.",
+      "sourceKeys": [
+        "lapsehoiu_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/lapsehoiuteenus",
+      "targetGroup": "Sügava või raske puudega lapse hooldusõigusega vanem või last kasvatav inimene",
+      "conditions": "Teenuse vajadusest tulenevad toimingud ning teenuse osutamise aeg ja koht määratakse halduslepingus.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Esita lapsehoiuteenuse avaldus vallavalitsusele.",
+          "Vallavalitsus koostab teenuseosutajaga halduslepingu."
+        ],
+        "deadline": null
+      },
+      "relatedForms": [],
+      "relatedContacts": [
+        "rakvere_vald_contact_kristi_moor",
+        "rakvere_vald_contact_kadri_lehtsalu"
+      ],
+      "item_type": "service",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "lapsehoiu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_service_lapsehoiuteenus",
+      "document_id": "rakvere_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/lapsehoiuteenus",
+      "content_hash": "21fa5e508c4ea932009180249b55a22cd5f4d43bc54ad461131e1dbff42e0229",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_service_muu_teenus",
+      "canonical_item_id": "rakvere_vald:service:muu_teenus",
+      "itemType": "service",
+      "title": "Muu teenus ja vaimse tervise nõustamine",
+      "status": "active",
+      "summary": "Muu teenus hõlmab psühholoogiteenust, pereteraapiat, psühhoteraapiat, mänguteraapiat ning muud teraapia- või nõustamisteenust. Teenust osutatakse ohustava riskikäitumise ennetamiseks ja vähendamiseks alaealistele, täiskasvanutele ning peredele. Vaimse tervise toetusmeetme kaudu saab valla sissekirjutusega inimene pöörduda mänguteraapiasse, paari- ja pereteraapiasse, psühholoogilisele nõustamisele või kriisinõustamisele; avaldus saadetakse Eneli Baumannile.",
+      "sourceKeys": [
+        "muu_teenus_page",
+        "noustamine_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/muu-teenus",
+      "targetGroup": "Alaealised, täiskasvanud ja pered, kes vajavad nõustamist või teraapiat",
+      "conditions": "Teenuse tingimused ja tasu määratakse vallavalitsuse korraldusega; vaimse tervise nõustamine on suunatud Rakvere valla sissekirjutusega inimestele.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus e-postiga"
+        ],
+        "steps": [
+          "Avaldusele märgi teenust sooviva isiku nimi, isikukood ja kontaktandmed.",
+          "Saada allkirjastatud avaldus e-postile."
+        ],
+        "deadline": null
+      },
+      "relatedForms": [],
+      "relatedContacts": [
+        "rakvere_vald_contact_eneli_baumann"
+      ],
+      "item_type": "service",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "muu_teenus_page",
+        "noustamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_service_muu_teenus",
+      "document_id": "rakvere_vald_service_muu_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/muu-teenus",
+      "content_hash": "962e3e79a78f59d32b1a0f4785876511b501c5ac1e9750af4cf0a7d7b40fd3b9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "rakvere_vald:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on riigi abi puudusekannatajatele, mida maksab kohalik omavalitsus. Toetust makstakse isikule või perele, kelle tulud pärast eluasemekulude tasumist jäävad alla kehtestatud toimetulekupiiri. Alates 1. jaanuarist 2026 on toimetulekupiir üksi elavale inimesele või perekonna esimesele liikmele 220 eurot kuus, teisele ja igale järgmisele täisealisele liikmele 176 eurot ning alaealisele liikmele 264 eurot kuus; kõigi alaealiste leibkonna puhul lisandub 15 eurot täiendavat toetust.",
+      "sourceKeys": [
+        "toimetulekutoetus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/toimetulekutoetus",
+      "targetGroup": "Isik või pere, kelle sissetulek pärast eluasemekulusid jääb alla toimetulekupiiri",
+      "conditions": "Taotluses tuleb esitada taotleja ja pereliikmete andmed ning lisada sissetuleku ja eluasemekulude dokumendid.",
+      "application": {
+        "channels": [
+          "kirjalik taotlus"
+        ],
+        "steps": [
+          "Täida toimetulekutoetuse taotlus.",
+          "Lisa eelmise kuu sissetuleku ja vajadusel eluasemekulu tõendid.",
+          "Esita taotlus vallavalitsusele."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "note": "toetuse suurus arvutatakse valemiga: toimetulekupiir + eluruumi alalised kulud – sissetulekud"
+      },
+      "relatedForms": [
+        "rakvere_vald_form_toimetulekutoetus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_einike_einberg_viirok"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_benefit_toimetulekutoetus",
+      "document_id": "rakvere_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/toimetulekutoetus",
+      "content_hash": "95450435bf9ab4aef6a6dc222ab0fde2b0cb9b3bba1ba179e7805366ff88ca56",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_benefit_sunnitoetus",
+      "canonical_item_id": "rakvere_vald:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Lapse sünnitoetus on ühekordne pere sissetulekust sõltumatu toetus. Seda saab taotleda lapse seaduslik esindaja, kelle elukoht rahvastikuregistris on olnud vähemalt üks kuu enne lapse sündi Rakvere vald ja lapse elukohaks registreeritakse samuti Rakvere vald. Taotlus tuleb esitada kolme kuu jooksul pärast lapse sündi ja mitmikute puhul makstakse toetust iga lapse eest.",
+      "sourceKeys": [
+        "sunnitoetus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/sunnitoetus",
+      "targetGroup": "Rakvere valla lapse seaduslik esindaja",
+      "conditions": "Taotleja elukoht peab vähemalt üks kuu enne lapse sündi olema Rakvere vald ja laps peab olema registreeritud Rakvere valda.",
+      "application": {
+        "channels": [
+          "iseteenindus"
+        ],
+        "steps": [
+          "Sisene Rakvere valla iseteenindusse ja esita sünnitoetuse taotlus."
+        ],
+        "deadline": "3 kuu jooksul pärast lapse sündi"
+      },
+      "amount": {
+        "value": 400,
+        "currency": "EUR"
+      },
+      "relatedForms": [
+        "rakvere_vald_form_sunnitoetus_e_teenus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_einike_einberg_viirok"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sunnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_benefit_sunnitoetus",
+      "document_id": "rakvere_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/sunnitoetus",
+      "content_hash": "2d7225805bc8dd5936b0c97de6af55fa36fa9901bc7052b8b95e4f2662db098f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_benefit_matusetoetus",
+      "canonical_item_id": "rakvere_vald:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on ühekordne toetus matuse korraldajale, kui surnud inimese viimane rahvastikuregistrijärgne elukoht oli Rakvere vald. Toetuse suurus on 300 eurot ja selleks esitab matuse korraldaja taotluse iseteeninduses.",
+      "sourceKeys": [
+        "matusetoetus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/matusetoetus",
+      "targetGroup": "Matuse korraldaja",
+      "conditions": "Surnud isiku viimane rahvastikuregistrijärgne elukoht peab olema Rakvere vald.",
+      "application": {
+        "channels": [
+          "iseteenindus"
+        ],
+        "steps": [
+          "Sisene Rakvere valla iseteenindusse ja esita matusetoetuse taotlus."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "value": 300,
+        "currency": "EUR"
+      },
+      "relatedForms": [
+        "rakvere_vald_form_matusetoetus_e_teenus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_einike_einberg_viirok"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "matusetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_benefit_matusetoetus",
+      "document_id": "rakvere_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/matusetoetus",
+      "content_hash": "0d7dff126f8e1262485fb23a52fdb72756a62b9215513006ddae1f45cdeb38c5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_benefit_ranitsatoetus",
+      "canonical_item_id": "rakvere_vald:benefit:ranitsatoetus",
+      "itemType": "benefit",
+      "title": "Ranitsatoetus",
+      "status": "active",
+      "summary": "Ranitsatoetus on ühekordne sissetulekust sõltumatu toetus esmakordselt kooli 1. klassi mineva lapse vanemale, eestkostjale või hooldajale. Toetuse suurus on 150 eurot ja taotlusi saab esitada iseteeninduskeskkonnas alates 1. septembrist.",
+      "sourceKeys": [
+        "ranitsatoetus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/ranitsatoetus",
+      "targetGroup": "1. klassi mineva lapse vanem, eestkostja või hooldaja",
+      "conditions": "Laps läheb esimest korda kooli ja taotlus esitatakse alates 1. septembrist.",
+      "application": {
+        "channels": [
+          "iseteenindus"
+        ],
+        "steps": [
+          "Sisene iseteenindusse ja esita ranitsatoetuse taotlus."
+        ],
+        "deadline": "alates 1. septembrist"
+      },
+      "amount": {
+        "value": 150,
+        "currency": "EUR"
+      },
+      "relatedForms": [
+        "rakvere_vald_form_ranitsatoetus_e_teenus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_einike_einberg_viirok"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "ranitsatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_benefit_ranitsatoetus",
+      "document_id": "rakvere_vald_benefit_ranitsatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/ranitsatoetus",
+      "content_hash": "0e2bf8abc844022649a9307f7c57c9c2feb694506322bba20395ed9fa4d415dc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_benefit_gymnaasiumitoetus",
+      "canonical_item_id": "rakvere_vald:benefit:gymnaasiumitoetus",
+      "itemType": "benefit",
+      "title": "Gümnaasiumitoetus",
+      "status": "active",
+      "summary": "Gümnaasiumitoetust makstakse Rakvere valla eelarvest üldhariduskooli 10., 11. või 12. klassi õpilasele õpingutega seotud kulude katmiseks. Õpilase elukoht peab olema Rakvere vald ja toetust ei maksta kutseõppeasutuse õpilastele. Toetuse ühekordne määr on 65 eurot ja õppeaastas saab kokku 130 eurot.",
+      "sourceKeys": [
+        "gymnaasiumitoetus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/gumnaasiumitoetus",
+      "targetGroup": "Rakvere valla elanikust gümnaasiumiõpilane",
+      "conditions": "Õpilane peab õppima üldhariduskooli 10.–12. klassis; kutseõppes õppijatele toetust ei maksta.",
+      "application": {
+        "channels": [
+          "iseteenindus"
+        ],
+        "steps": [
+          "Õpilane või lapsevanem täidab iseteeninduses taotluse.",
+          "Taotlusi saab esitada alates 1. septembrist."
+        ],
+        "deadline": "alates 1. septembrist"
+      },
+      "amount": {
+        "value": 130,
+        "currency": "EUR",
+        "note": "65 eurot väljamakse kohta; kaks korda õppeaastas"
+      },
+      "relatedForms": [
+        "rakvere_vald_form_gymnaasiumitoetus_e_teenus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_einike_einberg_viirok"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "gymnaasiumitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_benefit_gymnaasiumitoetus",
+      "document_id": "rakvere_vald_benefit_gymnaasiumitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/gumnaasiumitoetus",
+      "content_hash": "768c1e06cf196b1c7152f56785353a3600f3e35111a9529a3e9bcfb5739dbf3f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_benefit_lasteaia_toidusoodustus",
+      "canonical_item_id": "rakvere_vald:benefit:lasteaia_toidusoodustus",
+      "itemType": "benefit",
+      "title": "Lasteaia toidusoodustus",
+      "status": "active",
+      "summary": "Lasteaia toidusoodustus annab Rakvere vallas elavatele lasteaialastele toiduraha soodustuse sõltumata sellest, millises lasteaias laps käib. Rakvere valla munitsipaallasteaedades arvestatakse 50% soodustus automaatselt arvelt maha; väljaspool valda või eralasteaias käiva lapse puhul esitatakse vallale avaldus ja toiduraha arved. 100% vabastust saab taotleda, kui lapsel on puue või pere on vähekindlustatud.",
+      "sourceKeys": [
+        "lasteaia_toidusoodustus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/lasteaia-toidusoodustus",
+      "targetGroup": "Rakvere vallas elavad lasteaialapsed",
+      "conditions": "50% soodustuse saab iga valla lasteaialaps; 100% vabastuse eelduseks on lapse puue või pere vähekindlustatus.",
+      "application": {
+        "channels": [
+          "",
+          "iseteenindus",
+          "vallavalitsus"
+        ],
+        "steps": [
+          "Valla munitsipaallasteaias arvestatakse 50% soodustus automaatselt.",
+          "Väljaspool valda või eralasteaias käiva lapse puhul esita avaldus ja arved.",
+          "100% vabastuse jaoks lisa puude otsus või sissetuleku tõendid."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "note": "50% toiduraha soodustus; puude või vähekindlustatuse korral võimalik 100% vabastus"
+      },
+      "relatedForms": [
+        "rakvere_vald_form_lasteaia_toiduraha_kompenseerimine",
+        "rakvere_vald_form_abivajadusest_soltuv_toetus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_einike_einberg_viirok"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "lasteaia_toidusoodustus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_benefit_lasteaia_toidusoodustus",
+      "document_id": "rakvere_vald_benefit_lasteaia_toidusoodustus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/lasteaia-toidusoodustus",
+      "content_hash": "20f978ed315fdcf3acd135e61420147e280ff995f3be04d540c18e8534fcdc21",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_benefit_uhekordne_toetus",
+      "canonical_item_id": "rakvere_vald:benefit:uhekordne_toetus",
+      "itemType": "benefit",
+      "title": "Ühekordne toetus",
+      "status": "active",
+      "summary": "Ühekordne toetus on valla kaalutlusotsusega määratav abi põhjendatud avalduse alusel. Seda makstakse õnnetusjuhtumi või muu asjaolu tagajärjel tekkinud toimetulekuraskuste ületamiseks või erandkorras toimetulekuprobleemide leevendamiseks. Taotlejal palutakse pöörduda sotsiaaltööspetsialist Einike Einberg-Viiroki poole.",
+      "sourceKeys": [
+        "uhekordne_toetus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/uhekordnetoetus",
+      "targetGroup": "Toimetulekuraskuses isik või pere",
+      "conditions": "Toetuse saamiseks peab olema põhjendatud vajadus ja vallavalitsus otsustab toetuse suuruse kaalutlusotsusega.",
+      "application": {
+        "channels": [
+          "pöördumine sotsiaaltööspetsialisti poole",
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Võta ühendust sotsiaaltööspetsialistiga.",
+          "Esita põhjendatud avaldus ja vajaduse korral kuludokumendid."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "note": "suurus määratakse vallavalitsuse kaalutlusotsusega"
+      },
+      "relatedForms": [
+        "rakvere_vald_form_abivajadusest_soltuv_toetus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_einike_einberg_viirok"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "uhekordne_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_benefit_uhekordne_toetus",
+      "document_id": "rakvere_vald_benefit_uhekordne_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/uhekordnetoetus",
+      "content_hash": "c7d03e67c6da5ec66dd97e58976d37a17fd3ff916747586b092be7739b1428db",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "canonical_item_id": "rakvere_vald:benefit:taisealise_isiku_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Täisealise isiku hooldajatoetus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldajatoetust makstakse raske või sügava puudega täisealise inimese hooldajale, kui hooldaja ja hooldatava elukohad on rahvastikuregistri andmetel Rakvere vald. Sügava puudega inimese hooldamise eest makstakse 50 eurot kuus ja raske puudega inimese hooldamise eest 40 eurot kuus. Ühele hooldajale makstakse toetust kuni kahe isiku hooldamise eest.",
+      "sourceKeys": [
+        "hooldajatoetus_page",
+        "taisealise_hooldus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/hooldajatoetused",
+      "targetGroup": "Raske või sügava puudega täisealise inimese hooldaja",
+      "conditions": "Hooldaja ja hooldatava elukohad peavad olema Rakvere vald; hooldajatoetust ei maksta inimesele, kellele on endale määratud raske või sügav puue.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Esita avaldus hooldaja määramiseks.",
+          "Vald hindab hooldusvajadust ja määrab toetuse."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "value": null,
+        "currency": "EUR",
+        "note": "50 eurot kuus sügava puudega inimese hooldamisel; 40 eurot kuus raske puudega inimese hooldamisel"
+      },
+      "relatedForms": [
+        "rakvere_vald_form_hooldaja_maaramine"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_anneli_saaber"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "hooldajatoetus_page",
+        "taisealise_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "document_id": "rakvere_vald_benefit_taisealise_isiku_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/hooldajatoetused",
+      "content_hash": "05c8cfffb0895dd0bf5dc73878f2d0e81f92d2e6851591e69a5ff8b711e672e6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_benefit_puudega_lapse_hooldajatoetus",
+      "canonical_item_id": "rakvere_vald:benefit:puudega_lapse_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Puudega lapse hooldajatoetus",
+      "status": "active",
+      "summary": "Puudega lapse hooldajatoetust makstakse puudega lapse ühele vanemale või eestkostjale, kes ei saa käia tööl puudega lapse hooldamise tõttu ja kui lapse hooldust ei ole võimalik tagada teiste sotsiaalteenustega. Toetuse suurus on 50 eurot kuus. Toetuse maksmine lõpeb, kui hooldusvajadus lõpeb, toetuse saaja asub tööle või lahkub teise omavalitsusse, või hooldatav sureb.",
+      "sourceKeys": [
+        "hooldajatoetus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/hooldajatoetused",
+      "targetGroup": "Puudega lapse vanem või eestkostja",
+      "conditions": "Lapse hooldusvajadust ei ole võimalik tagada teiste sotsiaalteenustega ning vanem või eestkostja ei saa hooldamise tõttu töötada.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Esita puudega lapse hooldajatoetuse avaldus.",
+          "Lisa vajalikud andmed lapse puude ja hooldusvajaduse kohta."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "value": 50,
+        "currency": "EUR",
+        "note": "kuus"
+      },
+      "relatedForms": [
+        "rakvere_vald_form_puudega_lapse_hooldaja"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_kristi_moor",
+        "rakvere_vald_contact_kadri_lehtsalu"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "hooldajatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_benefit_puudega_lapse_hooldajatoetus",
+      "document_id": "rakvere_vald_benefit_puudega_lapse_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/hooldajatoetused",
+      "content_hash": "c94ef26911c7b7e416c2d61b63ef05f58136421cc544f9175e65f1f80f758fa3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_benefit_kuttetoetus",
+      "canonical_item_id": "rakvere_vald:benefit:kuttetoetus",
+      "itemType": "benefit",
+      "title": "Küttetoetus",
+      "status": "active",
+      "summary": "Küttetoetust makstakse eluruumi küttekulude hüvitamiseks kuni 250 eurot aastas kuludokumentide alusel.",
+      "sourceKeys": [
+        "kuttetoetus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/kuttetoetus",
+      "targetGroup": "Vähekindlustatud isik või pere, kellel on küttekulud",
+      "conditions": "Taotleja peab esitama kuludokumendid ja kasutama abivajadusest sõltuva toetuse taotlust.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Täida abivajadusest sõltuva toetuse taotlus.",
+          "Lisa küttekulu tõendavad dokumendid ja esita vallavalitsusele."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "value": 250,
+        "currency": "EUR",
+        "note": "aastas"
+      },
+      "relatedForms": [
+        "rakvere_vald_form_abivajadusest_soltuv_toetus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_einike_einberg_viirok"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "kuttetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_benefit_kuttetoetus",
+      "document_id": "rakvere_vald_benefit_kuttetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/kuttetoetus",
+      "content_hash": "98694bbaa73eaf087409f377c32c79ef23ea48eae0c6ce51494e7f01fd129abf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_benefit_tervisetoetus",
+      "canonical_item_id": "rakvere_vald:benefit:tervisetoetus",
+      "itemType": "benefit",
+      "title": "Tervisetoetus",
+      "status": "active",
+      "summary": "Tervisetoetust makstakse transpordi, retseptiravimite ja abivahendite kulude hüvitamiseks. Retseptiravimite hüvitis on kuni 50 eurot kaks korda aastas, prilliklaaside hüvitis kuni 80 eurot aastas, abivahendi rent või ost kuni 100 eurot aastas, ratastooli omaosalus kuni 400 eurot ja puudega inimese transpordikulu kuni 50 eurot aastas.",
+      "sourceKeys": [
+        "tervisetoetus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/tervisetoetus",
+      "targetGroup": "Tervise- ja abivahendikuludega vähekindlustatud või puudega inimene",
+      "conditions": "Toetust makstakse kuludokumentide alusel ja taotleja kasutab abivajadusest sõltuva toetuse vormi.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Täida abivajadusest sõltuva toetuse taotlus.",
+          "Lisa kuludokumendid ja esita vallavalitsusele."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "note": "mitu piirmäära: ravimid kuni 50 eurot, prillid kuni 80 eurot, abivahendid kuni 100 eurot, ratastool kuni 400 eurot, transport kuni 50 eurot"
+      },
+      "relatedForms": [
+        "rakvere_vald_form_abivajadusest_soltuv_toetus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_einike_einberg_viirok"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "tervisetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_benefit_tervisetoetus",
+      "document_id": "rakvere_vald_benefit_tervisetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/tervisetoetus",
+      "content_hash": "a42240a68dc3a118e1473146de8d4964675cd8eb15b6b08210c4271f4c6812b7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_benefit_kooli_ja_lasteaiatoetus",
+      "canonical_item_id": "rakvere_vald:benefit:kooli_ja_lasteaiatoetus",
+      "itemType": "benefit",
+      "title": "Kooli- ja lasteaiatoetus",
+      "status": "active",
+      "summary": "Kooli- ja lasteaiatoetust makstakse õppetöös osalemise kulude hüvitamiseks. Toetuse liigid on lapse lasteaiatoidu maksumuse katmine 100% ulatuses, gümnaasiumis või ametikoolis õppiva õpilase õpilaskodu kohamaksukulude katmine 100% ulatuses ning statsionaarses õppes õppiva õpilase kooliga seotud kulude hüvitamine kuni kaks korda aastas, kuni 60 eurot õppiva lapse kohta aastas. Esimesed kaks toetust määratakse õppeaastaks ja kantakse teenuse osutaja kontole.",
+      "sourceKeys": [
+        "kooli_lasteaia_toetus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/kooli-ja-lasteaiatoetus",
+      "targetGroup": "Lapsed ja õpilased, kelle õppetöös osalemiseks on vaja kulu hüvitamist",
+      "conditions": "Punktides 1 ja 2 nimetatud toetus kantakse teenuse osutaja arvelduskontole; kooliga seotud kulude puhul on piirmäär kuni 60 eurot aastas õppiva lapse kohta.",
+      "application": {
+        "channels": [
+          "kirjalik avaldus"
+        ],
+        "steps": [
+          "Täida avalduse vorm.",
+          "Lisa vajalikud kuludokumendid ja esita vallavalitsusele."
+        ],
+        "deadline": null
+      },
+      "amount": {
+        "value": 60,
+        "currency": "EUR",
+        "note": "kooliga seotud kuludele ühe õppiva lapse kohta aastas; teatud kulude puhul 100%"
+      },
+      "relatedForms": [
+        "rakvere_vald_form_abivajadusest_soltuv_toetus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_einike_einberg_viirok"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "kooli_lasteaia_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_benefit_kooli_ja_lasteaiatoetus",
+      "document_id": "rakvere_vald_benefit_kooli_ja_lasteaiatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/kooli-ja-lasteaiatoetus",
+      "content_hash": "649f3b932eebf8e2a4941ff4edba870d14c01c1e528b12a0d13b55926175ab98",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_resource_uhtna_hooldekodu",
+      "canonical_item_id": "rakvere_vald:resource:uhtna_hooldekodu",
+      "itemType": "resource",
+      "title": "Uhtna Hooldekodu",
+      "status": "active",
+      "summary": "Uhtna Hooldekodu on üldtüüpi ööpäevane munitsipaalhooldeasutus eakatele ja puuetega inimestele ajutiseks või alaliseks elamiseks. Hooldekodu asub Uhtna alevikus Laulukaare 3 ja osutab teenuseid eelkõige Rakvere valla elanikele. Kohatasu on 1350 eurot kuus, millest vald katab 650 eurot ja hooldusel oleva isiku omaosalus on 700 eurot kuus.",
+      "sourceKeys": [
+        "uhtna_hooldekodu_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/hooldekodu",
+      "address": "Laulukaare 3, Uhtna alevik, 44202 Lääne-Virumaa",
+      "relatedTo": [
+        "rakvere_vald_service_uldhooldusteenus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_marina_landberg",
+        "rakvere_vald_contact_anneli_saaber"
+      ],
+      "item_type": "resource",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "uhtna_hooldekodu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_resource_uhtna_hooldekodu",
+      "document_id": "rakvere_vald_resource_uhtna_hooldekodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/hooldekodu",
+      "content_hash": "389e11ed2ed7430aecbe4bbec2803c882fae4279f934391a69992ec0fca1fd69",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_resource_someru_paevakeskus",
+      "canonical_item_id": "rakvere_vald:resource:someru_paevakeskus",
+      "itemType": "resource",
+      "title": "Sõmeru päevakeskus",
+      "status": "active",
+      "summary": "Sõmeru päevakeskuses toimuvad loengud, kohtumised ja eakate huvitegevus. Igal esmaspäeval kogunevad valla erivajadustega inimesed. Keskus asub Sõmeru keskusehoones ja on ligipääsetav ratastooliga.",
+      "sourceKeys": [
+        "someru_paevakeskus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/paevakeskused",
+      "address": "Kooli 2, Sõmeru alevik, 44305 Lääne-Virumaa",
+      "relatedTo": [],
+      "relatedContacts": [
+        "rakvere_vald_contact_siiri_saarmets",
+        "rakvere_vald_contact_reelika_kirsipuu"
+      ],
+      "item_type": "resource",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "someru_paevakeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_resource_someru_paevakeskus",
+      "document_id": "rakvere_vald_resource_someru_paevakeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/paevakeskused",
+      "content_hash": "cffbce9cbeb196deb4203c5251b7979eb571f9cdfa12f760804d89f2c0133677",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_resource_invaparkimiskaart",
+      "canonical_item_id": "rakvere_vald:resource:invaparkimiskaart",
+      "itemType": "resource",
+      "title": "Invaparkimiskaart",
+      "status": "active",
+      "summary": "Invaparkimiskaart väljastatakse keskmise, raske või sügava puudele vastava liikumis- või nägemisfunktsiooni kõrvalekaldega inimesele ning ajutise liikumis- või nägemisfunktsiooni kõrvalekalde korral. Kaart antakse puude kehtivuse perioodiks, kuid kuni viieks aastaks; ajutise kõrvalekalde korral kuni kuueks kuuks. Taotlemiseks tuleb pöörduda sotsiaalnõunik Anneli Saaberi poole ja esitada vajaduse korral arstitõend ning 3x4 dokumendifoto.",
+      "sourceKeys": [
+        "invaparkimiskaart_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/invaparkimiskaardid",
+      "address": null,
+      "relatedTo": [],
+      "relatedContacts": [
+        "rakvere_vald_contact_anneli_saaber"
+      ],
+      "item_type": "resource",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "invaparkimiskaart_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_resource_invaparkimiskaart",
+      "document_id": "rakvere_vald_resource_invaparkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/invaparkimiskaardid",
+      "content_hash": "9c2cf96c82694e3b6f672921fd089c0edfd6464615a91c7954f2c066c9372fb1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_resource_perearstikeskus_ja_apteegid",
+      "canonical_item_id": "rakvere_vald:resource:perearstikeskus_ja_apteegid",
+      "itemType": "resource",
+      "title": "Perearstikeskus ja apteegid",
+      "status": "active",
+      "summary": "Rakvere valla tervishoiuinfo leht koondab Viru Perearstid OÜ kontaktid, Sõmeru Südameapteegi ja Põhjakeskuse Apotheka apteegi andmed ning nõuandeliinid 1220, 1599 ja 16662. Viru Perearstid asub Veski tn 7, Aluvere külas, ja.",
+      "sourceKeys": [
+        "perearstikeskus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/perearstikeskus",
+      "address": "Veski tn 7, Aluvere küla; Haljala tee 4, Tõrremäe küla",
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "perearstikeskus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_resource_perearstikeskus_ja_apteegid",
+      "document_id": "rakvere_vald_resource_perearstikeskus_ja_apteegid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/perearstikeskus",
+      "content_hash": "36e97c6f5be986e2370d81d9e5920dbc520b8fd24b1117a41a326211c6b971ea",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_resource_kriisiabi_ja_tugiliinid",
+      "canonical_item_id": "rakvere_vald:resource:kriisiabi_ja_tugiliinid",
+      "itemType": "resource",
+      "title": "Kriisiabi, hädaabinumbrid ja tugiliinid",
+      "status": "active",
+      "summary": "Rakvere valla kriisiabi leht koondab olulised numbrid: hädaabi, riigiinfo, mürgistusteabekeskus 16662, ohvriabi kriisitelefon, perearsti nõuandeliin 1220, lasteabi ja naiste tugiliin 1492. Lehel on ka piirkonnapolitseiniku, usaldustelefoni, vee- ja kütteavariide ning valla infotelefoni kontaktid.",
+      "sourceKeys": [
+        "crisis_numbers_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/kodanikukaitse",
+      "address": null,
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "crisis_numbers_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_resource_kriisiabi_ja_tugiliinid",
+      "document_id": "rakvere_vald_resource_kriisiabi_ja_tugiliinid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/kodanikukaitse",
+      "content_hash": "e24bb5ac4107b32450abb642b42b99d4fa895e69c783ad5f382b6356a413adae",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_resource_ohvriabi",
+      "canonical_item_id": "rakvere_vald:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "Ohvriabi on suunatud inimestele, kes on langenud hooletuse, halva kohtlemise, füüsilise, vaimse või seksuaalse vägivalla ohvriks või kellele on põhjustatud kannatusi või kahju. Valla leht viitab ohvriabi teenusele ja kriisitelefonile ning selgitab, et abi saab ka siis, kui kuritegu ei ole toime pandud või menetlust pole alustatud.",
+      "sourceKeys": [
+        "crisis_numbers_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/kodanikukaitse",
+      "address": null,
+      "relatedTo": [],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "crisis_numbers_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_resource_ohvriabi",
+      "document_id": "rakvere_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/kodanikukaitse",
+      "content_hash": "8aabeb69913f66537aee919f0882f0b543e3af679dc126cb0c1e01cdcf3fe4f8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_resource_lasteabi_ja_abi_lapsele",
+      "canonical_item_id": "rakvere_vald:resource:lasteabi_ja_abi_lapsele",
+      "itemType": "resource",
+      "title": "Lasteabi ja abi lapsele",
+      "status": "active",
+      "summary": "Lapsele mõeldud Rakvere valla leht selgitab, et kooli-, sõbra- või pereprobleemide korral saab laps pöörduda lapse heaolu spetsialisti Kristi Moori poole. Leht juhatab ka lasteabi telefonile ja lasteabi.ee vestlusesse, kuhu saab pöörduda anonüümselt.",
+      "sourceKeys": [
+        "crisis_numbers_page",
+        "lapsele_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/lapsele",
+      "address": null,
+      "relatedTo": [],
+      "relatedContacts": [
+        "rakvere_vald_contact_kristi_moor"
+      ],
+      "item_type": "resource",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "crisis_numbers_page",
+        "lapsele_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_resource_lasteabi_ja_abi_lapsele",
+      "document_id": "rakvere_vald_resource_lasteabi_ja_abi_lapsele",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/lapsele",
+      "content_hash": "ab1c22dc46e46c347ab45a908afc470c363ad87a7bab65ab3088b87652eb0fee",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_resource_erivajadusega_lapse_pere_info",
+      "canonical_item_id": "rakvere_vald:resource:erivajadusega_lapse_pere_info",
+      "itemType": "resource",
+      "title": "Erivajadusega lapse pere info",
+      "status": "active",
+      "summary": "Lapsevanemale mõeldud lehel on erivajadusega laste peredele suunatud info, kuidas pöörduda kohaliku omavalitsuse lastekaitse- või sotsiaaltöötaja poole. Leht viitab teenustele ja toetustele, tugispetsialistidele, perearstile, Sotsiaalkindlustusametile, Rajaleidjale ning vaimse tervise toe allikatele. Valla ennetustööspetsialist Eneli Baumann on nimetatud vaimse tervise toe ja vanemlusprogrammide kontaktina.",
+      "sourceKeys": [
+        "lapsevanemale_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/lapsevanemale",
+      "address": null,
+      "relatedTo": [],
+      "relatedContacts": [
+        "rakvere_vald_contact_eneli_baumann",
+        "rakvere_vald_contact_kristi_moor",
+        "rakvere_vald_contact_kadri_lehtsalu"
+      ],
+      "item_type": "resource",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "lapsevanemale_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_resource_erivajadusega_lapse_pere_info",
+      "document_id": "rakvere_vald_resource_erivajadusega_lapse_pere_info",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/lapsevanemale",
+      "content_hash": "718913544f5251e021723097b762a8e5da6fd68780ad28abadceda730cc4ff0b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_resource_puudega_isiku_eluruumi_abi",
+      "canonical_item_id": "rakvere_vald:resource:puudega_isiku_eluruumi_abi",
+      "itemType": "resource",
+      "title": "Puudega isiku eluruumi kohandamise või sobivama eluruumi abi",
+      "status": "active",
+      "summary": "Rakvere Vallavalitsus abistab puudega inimest eluruumi kohandamisel või sobivama eluruumi saamisel, kui puue põhjustab raskusi eluruumis liikumisel, enesega toimetulekul või suhtlemisel. Info asub eluruumi tagamise teenuse lehel.",
+      "sourceKeys": [
+        "social_housing_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/sotsiaaleluruumi-tagamine",
+      "address": null,
+      "relatedTo": [
+        "rakvere_vald_service_sotsiaaleluruumi_tagamine"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_anneli_saaber"
+      ],
+      "item_type": "resource",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "social_housing_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_resource_puudega_isiku_eluruumi_abi",
+      "document_id": "rakvere_vald_resource_puudega_isiku_eluruumi_abi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/sotsiaaleluruumi-tagamine",
+      "content_hash": "110a0f34ff9125611fa329fe11a7f29900520a6d2d51d2221645a475de3142d9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_form_toimetulekutoetus",
+      "canonical_item_id": "rakvere_vald:form:toimetulekutoetus",
+      "itemType": "form",
+      "title": "Riikliku toimetulekutoetuse taotlus",
+      "status": "active",
+      "summary": "Toimetulekutoetuse taotlusvorm, millega esitatakse taotleja, pereliikmete, sissetulekute, eluruumi ja vara andmed.",
+      "sourceKeys": [
+        "blanketid_page",
+        "form_toimetulek_pdf",
+        "form_toimetulek_rtf",
+        "toimetulekutoetus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/toimetulekutoetus",
+      "format": "rtf/pdf",
+      "submissionChannels": [
+        "digiallkirjastatult",
+        "paberil",
+        "vallavalitsuse vastuvõtus"
+      ],
+      "relatedTo": [
+        "rakvere_vald_benefit_toimetulekutoetus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_einike_einberg_viirok"
+      ],
+      "item_type": "form",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "blanketid_page",
+        "form_toimetulek_pdf",
+        "form_toimetulek_rtf",
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_form_toimetulekutoetus",
+      "document_id": "rakvere_vald_form_toimetulekutoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/toimetulekutoetus",
+      "content_hash": "1c6dfd12c6f4a76e372b481baffa0bfb90ec349f991b417741baabee46ba3341",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_form_abivajadusest_soltuv_toetus",
+      "canonical_item_id": "rakvere_vald:form:abivajadusest_soltuv_toetus",
+      "itemType": "form",
+      "title": "Abivajadusest sõltuva toetuse taotlus",
+      "status": "active",
+      "summary": "Taotlusvorm küttetoetuse, tervisetoetuse ravimitele ja prillidele ning muu ühekordse toetuse taotlemiseks.",
+      "sourceKeys": [
+        "blanketid_page",
+        "form_abivajadusest_soltuv_toetus"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/documents/108607/18450311/abivajadusest%2Bs6ltuva%2Btoetuse%2Btaotlus%2B.rtf/7d7c2754-9ee1-4ceb-93ca-55e63053e9e3",
+      "format": "rtf",
+      "submissionChannels": [
+        "digitaalselt allkirjastatult e-postiga",
+        "postiga",
+        "vallavalitsuses kohapeal"
+      ],
+      "relatedTo": [
+        "rakvere_vald_benefit_kuttetoetus",
+        "rakvere_vald_benefit_tervisetoetus",
+        "rakvere_vald_benefit_uhekordne_toetus",
+        "rakvere_vald_benefit_lasteaia_toidusoodustus",
+        "rakvere_vald_benefit_kooli_ja_lasteaiatoetus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_einike_einberg_viirok"
+      ],
+      "item_type": "form",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "blanketid_page",
+        "form_abivajadusest_soltuv_toetus"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_form_abivajadusest_soltuv_toetus",
+      "document_id": "rakvere_vald_form_abivajadusest_soltuv_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/documents/108607/18450311/abivajadusest%2Bs6ltuva%2Btoetuse%2Btaotlus%2B.rtf/7d7c2754-9ee1-4ceb-93ca-55e63053e9e3",
+      "content_hash": "de6903f260b21a324e98381c996b7e59efa1f15296feb58d79b35e4fd705e433",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_form_ranitsatoetus_e_teenus",
+      "canonical_item_id": "rakvere_vald:form:ranitsatoetus_e_teenus",
+      "itemType": "form",
+      "title": "Ranitsatoetuse e-taotlus",
+      "status": "active",
+      "summary": "E-taotlus ranitsatoetuse taotlemiseks Rakvere valla iseteeninduskeskkonnas.",
+      "sourceKeys": [
+        "blanketid_page",
+        "spoku_social_forms"
+      ],
+      "officialUrl": "https://iseteenindus.rakverevald.ee/index.php?module=208&op=1",
+      "format": "web_form",
+      "submissionChannels": [
+        "iseteenindus"
+      ],
+      "relatedTo": [
+        "rakvere_vald_benefit_ranitsatoetus"
+      ],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "blanketid_page",
+        "spoku_social_forms"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_form_ranitsatoetus_e_teenus",
+      "document_id": "rakvere_vald_form_ranitsatoetus_e_teenus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://iseteenindus.rakverevald.ee/index.php?module=208&op=1",
+      "content_hash": "7fc0228ae4f7de13a1fb6add919cff202880c5ae36ffd1ddf6f6f74b0584f736",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_form_gymnaasiumitoetus_e_teenus",
+      "canonical_item_id": "rakvere_vald:form:gymnaasiumitoetus_e_teenus",
+      "itemType": "form",
+      "title": "Gümnaasiumitoetuse e-taotlus",
+      "status": "active",
+      "summary": "E-taotlus gümnaasiumitoetuse taotlemiseks Rakvere valla iseteeninduskeskkonnas.",
+      "sourceKeys": [
+        "blanketid_page",
+        "spoku_social_forms"
+      ],
+      "officialUrl": "https://iseteenindus.rakverevald.ee/index.php?module=208&op=1",
+      "format": "web_form",
+      "submissionChannels": [
+        "iseteenindus"
+      ],
+      "relatedTo": [
+        "rakvere_vald_benefit_gymnaasiumitoetus"
+      ],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "blanketid_page",
+        "spoku_social_forms"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_form_gymnaasiumitoetus_e_teenus",
+      "document_id": "rakvere_vald_form_gymnaasiumitoetus_e_teenus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://iseteenindus.rakverevald.ee/index.php?module=208&op=1",
+      "content_hash": "e9a43ca704f833e67f91ce03108d6a24461cd7f4424ef50b4953992e3efabbf0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_form_sunnitoetus_e_teenus",
+      "canonical_item_id": "rakvere_vald:form:sunnitoetus_e_teenus",
+      "itemType": "form",
+      "title": "Sünnitoetuse e-taotlus",
+      "status": "active",
+      "summary": "E-taotlus sünnitoetuse taotlemiseks Rakvere valla iseteeninduskeskkonnas.",
+      "sourceKeys": [
+        "blanketid_page",
+        "spoku_social_forms"
+      ],
+      "officialUrl": "https://iseteenindus.rakverevald.ee/index.php?module=208&op=1",
+      "format": "web_form",
+      "submissionChannels": [
+        "iseteenindus"
+      ],
+      "relatedTo": [
+        "rakvere_vald_benefit_sunnitoetus"
+      ],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "blanketid_page",
+        "spoku_social_forms"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_form_sunnitoetus_e_teenus",
+      "document_id": "rakvere_vald_form_sunnitoetus_e_teenus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://iseteenindus.rakverevald.ee/index.php?module=208&op=1",
+      "content_hash": "115659aedc8805b0b0d5dec20499d07fcb38ccb40a246f65167ccb53c86fc0a4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_form_matusetoetus_e_teenus",
+      "canonical_item_id": "rakvere_vald:form:matusetoetus_e_teenus",
+      "itemType": "form",
+      "title": "Matusetoetuse e-taotlus",
+      "status": "active",
+      "summary": "E-taotlus matusetoetuse taotlemiseks Rakvere valla iseteeninduskeskkonnas.",
+      "sourceKeys": [
+        "blanketid_page",
+        "spoku_social_forms"
+      ],
+      "officialUrl": "https://iseteenindus.rakverevald.ee/index.php?module=208&op=1",
+      "format": "web_form",
+      "submissionChannels": [
+        "iseteenindus"
+      ],
+      "relatedTo": [
+        "rakvere_vald_benefit_matusetoetus"
+      ],
+      "relatedContacts": [],
+      "item_type": "form",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "blanketid_page",
+        "spoku_social_forms"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_form_matusetoetus_e_teenus",
+      "document_id": "rakvere_vald_form_matusetoetus_e_teenus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://iseteenindus.rakverevald.ee/index.php?module=208&op=1",
+      "content_hash": "bc9fd9e8bfdc17ec98282fe24b301653233d4db36797c11eef7e145183292d8c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_form_koduteenuse_taotlus",
+      "canonical_item_id": "rakvere_vald:form:koduteenuse_taotlus",
+      "itemType": "form",
+      "title": "Koduteenuse taotlus",
+      "status": "active",
+      "summary": "Koduteenuse taotlusvorm koduteenuse saamiseks ja kõrvalabi vajaduse põhjendamiseks.",
+      "sourceKeys": [
+        "blanketid_page",
+        "form_koduteenuse_taotlus",
+        "koduteenus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/documents/108607/18450311/Koduteenuste%2Bavaldus2025.rtf/3cc73bc4-236e-4ff8-9ef0-1c8b81b2994d",
+      "format": "rtf",
+      "submissionChannels": [
+        "digitaalselt allkirjastatult e-postiga",
+        "postiga",
+        "vallavalitsuses kohapeal"
+      ],
+      "relatedTo": [
+        "rakvere_vald_service_koduteenus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_anneli_saaber"
+      ],
+      "item_type": "form",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "blanketid_page",
+        "form_koduteenuse_taotlus",
+        "koduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_form_koduteenuse_taotlus",
+      "document_id": "rakvere_vald_form_koduteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/documents/108607/18450311/Koduteenuste%2Bavaldus2025.rtf/3cc73bc4-236e-4ff8-9ef0-1c8b81b2994d",
+      "content_hash": "eb24fa21b1b47e2fca7e5a9bbb86610bef1782ecf774717228627e838a874f95",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_form_sotsiaaltranspordi_avaldus",
+      "canonical_item_id": "rakvere_vald:form:sotsiaaltranspordi_avaldus",
+      "itemType": "form",
+      "title": "Sotsiaaltransporditeenuse avaldus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenuse avaldus, kuhu märgitakse teenuse soovija isikuandmed, sõidu marsruut ja taotlemise põhjus.",
+      "sourceKeys": [
+        "blanketid_page",
+        "form_sotsiaaltranspordi_avaldus",
+        "social_transport_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/documents/108607//Sotsiaaltranspordi%2Bavaldus%2B2025.rtf/62ca6a44-9f50-4c16-b697-5bbddd43f2b6",
+      "format": "rtf",
+      "submissionChannels": [
+        "digitaalselt allkirjastatult e-postiga",
+        "postiga",
+        "vallavalitsuses kohapeal"
+      ],
+      "relatedTo": [
+        "rakvere_vald_service_sotsiaaltransporditeenus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_anneli_saaber"
+      ],
+      "item_type": "form",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "blanketid_page",
+        "form_sotsiaaltranspordi_avaldus",
+        "social_transport_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_form_sotsiaaltranspordi_avaldus",
+      "document_id": "rakvere_vald_form_sotsiaaltranspordi_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/documents/108607//Sotsiaaltranspordi%2Bavaldus%2B2025.rtf/62ca6a44-9f50-4c16-b697-5bbddd43f2b6",
+      "content_hash": "860ef69402dae09280979064d54a1e3424595c698deec4ec24a50c50e5e77439",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_form_hooldekodu_avaldus",
+      "canonical_item_id": "rakvere_vald:form:hooldekodu_avaldus",
+      "itemType": "form",
+      "title": "Hooldekodusse paigutamise avaldus",
+      "status": "active",
+      "summary": "Hooldekodusse paigutamise avaldus Uhtna Hooldekodusse või üldhooldusteenusele suunamiseks.",
+      "sourceKeys": [
+        "blanketid_page",
+        "form_hooldekodu_avaldus",
+        "uhtna_hooldekodu_page",
+        "uldhooldus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/documents/108607/18450311/Hooldekodu%2Bavaldus%2B2025.rtf/2eca6e2d-8322-4fd9-ba24-c1633d6a4ea6",
+      "format": "rtf",
+      "submissionChannels": [
+        "digitaalselt allkirjastatult e-postiga",
+        "postiga",
+        "vallavalitsuses kohapeal"
+      ],
+      "relatedTo": [
+        "rakvere_vald_service_uldhooldusteenus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_anneli_saaber"
+      ],
+      "item_type": "form",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "blanketid_page",
+        "form_hooldekodu_avaldus",
+        "uhtna_hooldekodu_page",
+        "uldhooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_form_hooldekodu_avaldus",
+      "document_id": "rakvere_vald_form_hooldekodu_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/documents/108607/18450311/Hooldekodu%2Bavaldus%2B2025.rtf/2eca6e2d-8322-4fd9-ba24-c1633d6a4ea6",
+      "content_hash": "56e350b61c2437bc00ff685ecb662588826e7f1533e545083cb0d7b25245ab87",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_form_hooldaja_maaramine",
+      "canonical_item_id": "rakvere_vald:form:hooldaja_maaramine",
+      "itemType": "form",
+      "title": "Avaldus hooldaja määramiseks",
+      "status": "active",
+      "summary": "Avaldus täisealise isiku hooldaja määramiseks ja täisealise isiku hoolduse alustamiseks.",
+      "sourceKeys": [
+        "blanketid_page",
+        "form_hooldaja_maaramine",
+        "hooldajatoetus_page",
+        "taisealise_hooldus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/documents/108607/18450311/Hooldaja%2Bmaaramise%2Bavaldus.rtf/36583fa6-9349-48f3-b5f8-32a472e32e36",
+      "format": "rtf",
+      "submissionChannels": [
+        "digitaalselt allkirjastatult e-postiga",
+        "postiga",
+        "vallavalitsuses kohapeal"
+      ],
+      "relatedTo": [
+        "rakvere_vald_service_taisealise_isiku_hooldus",
+        "rakvere_vald_benefit_taisealise_isiku_hooldajatoetus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_anneli_saaber"
+      ],
+      "item_type": "form",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "blanketid_page",
+        "form_hooldaja_maaramine",
+        "hooldajatoetus_page",
+        "taisealise_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_form_hooldaja_maaramine",
+      "document_id": "rakvere_vald_form_hooldaja_maaramine",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/documents/108607/18450311/Hooldaja%2Bmaaramise%2Bavaldus.rtf/36583fa6-9349-48f3-b5f8-32a472e32e36",
+      "content_hash": "9d708a5e84ff3a7058d6b5b9416166b8450259dd164a7cbe96c67514d5968a13",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_form_puudega_lapse_hooldaja",
+      "canonical_item_id": "rakvere_vald:form:puudega_lapse_hooldaja",
+      "itemType": "form",
+      "title": "Puudega lapse hooldajatoetuse avaldus",
+      "status": "active",
+      "summary": "Avaldus puudega lapse hooldajatoetuse taotlemiseks.",
+      "sourceKeys": [
+        "blanketid_page",
+        "form_puudega_lapse_hooldaja",
+        "hooldajatoetus_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/documents/108607/18450311/Hooldaja%2Bavaldus%2Bpuudega%2Blapsele.rtf/b90af304-c017-411d-94ba-d4e04e915969",
+      "format": "rtf",
+      "submissionChannels": [
+        "digitaalselt allkirjastatult e-postiga",
+        "postiga",
+        "vallavalitsuses kohapeal"
+      ],
+      "relatedTo": [
+        "rakvere_vald_benefit_puudega_lapse_hooldajatoetus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_kristi_moor",
+        "rakvere_vald_contact_kadri_lehtsalu"
+      ],
+      "item_type": "form",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "blanketid_page",
+        "form_puudega_lapse_hooldaja",
+        "hooldajatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_form_puudega_lapse_hooldaja",
+      "document_id": "rakvere_vald_form_puudega_lapse_hooldaja",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/documents/108607/18450311/Hooldaja%2Bavaldus%2Bpuudega%2Blapsele.rtf/b90af304-c017-411d-94ba-d4e04e915969",
+      "content_hash": "102ac92a56e7202604ca74a57368aba65c22edf21a1e7cdf7b0a6b28bee44285",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_form_tugiisiku_teenus",
+      "canonical_item_id": "rakvere_vald:form:tugiisiku_teenus",
+      "itemType": "form",
+      "title": "Tugiisikuteenuse avaldus",
+      "status": "active",
+      "summary": "Avaldus tugiisikuteenuse taotlemiseks.",
+      "sourceKeys": [
+        "blanketid_page",
+        "form_tugiisiku_teenus",
+        "tugiisik_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/documents/108607/18450311/Tugiisiku%2Bteenuse%2Bavaldus.rtf/50cec257-e24c-4350-8d04-ab978594fc2c",
+      "format": "rtf",
+      "submissionChannels": [
+        "digitaalselt allkirjastatult e-postiga",
+        "postiga",
+        "vallavalitsuses kohapeal"
+      ],
+      "relatedTo": [
+        "rakvere_vald_service_tugiisikuteenus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_kristi_moor",
+        "rakvere_vald_contact_kadri_lehtsalu"
+      ],
+      "item_type": "form",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "blanketid_page",
+        "form_tugiisiku_teenus",
+        "tugiisik_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_form_tugiisiku_teenus",
+      "document_id": "rakvere_vald_form_tugiisiku_teenus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/documents/108607/18450311/Tugiisiku%2Bteenuse%2Bavaldus.rtf/50cec257-e24c-4350-8d04-ab978594fc2c",
+      "content_hash": "cae41f75148e36ad8b540dfb0308bdac434ca7611ac298d5e468aaae15a3c85f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_form_isiklik_abistaja",
+      "canonical_item_id": "rakvere_vald:form:isiklik_abistaja",
+      "itemType": "form",
+      "title": "Isikliku abistaja teenuse avaldus",
+      "status": "active",
+      "summary": "Avaldus isikliku abistaja teenuse taotlemiseks.",
+      "sourceKeys": [
+        "blanketid_page",
+        "form_isiklik_abistaja",
+        "isiklik_abistaja_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/documents/108607/18450311/Isikliku%2Babistaja%2Bteenuse%2Bavaldus.rtf/3c2ac1b6-36b3-4080-a7a6-890e881e74d5",
+      "format": "rtf",
+      "submissionChannels": [
+        "digitaalselt allkirjastatult e-postiga",
+        "postiga",
+        "vallavalitsuses kohapeal"
+      ],
+      "relatedTo": [
+        "rakvere_vald_service_isikliku_abistaja_teenus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_anneli_saaber"
+      ],
+      "item_type": "form",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "blanketid_page",
+        "form_isiklik_abistaja",
+        "isiklik_abistaja_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_form_isiklik_abistaja",
+      "document_id": "rakvere_vald_form_isiklik_abistaja",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/documents/108607/18450311/Isikliku%2Babistaja%2Bteenuse%2Bavaldus.rtf/3c2ac1b6-36b3-4080-a7a6-890e881e74d5",
+      "content_hash": "d5e3d506907fd8a5ad8e32ea6d664320557210b27822ec650e5e15023999f0dc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_form_volanoustamine",
+      "canonical_item_id": "rakvere_vald:form:volanoustamine",
+      "itemType": "form",
+      "title": "Võlanõustamise teenuse avaldus",
+      "status": "active",
+      "summary": "Avaldus võlanõustamisteenuse taotlemiseks.",
+      "sourceKeys": [
+        "blanketid_page",
+        "form_volanoustamine",
+        "volanoustamine_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/documents/108607/18450311/V6lan%C3%B5ustamisteenuse%2Bavaldus.rtf/9a8c1a9a-74d6-4dea-ae0c-448d6dd88411",
+      "format": "rtf",
+      "submissionChannels": [
+        "digitaalselt allkirjastatult e-postiga",
+        "postiga",
+        "vallavalitsuses kohapeal"
+      ],
+      "relatedTo": [
+        "rakvere_vald_service_volanoustamisteenus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_einike_einberg_viirok"
+      ],
+      "item_type": "form",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "blanketid_page",
+        "form_volanoustamine",
+        "volanoustamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_form_volanoustamine",
+      "document_id": "rakvere_vald_form_volanoustamine",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/documents/108607/18450311/V6lan%C3%B5ustamisteenuse%2Bavaldus.rtf/9a8c1a9a-74d6-4dea-ae0c-448d6dd88411",
+      "content_hash": "bffbe4be7522b5a78b725878d803d6ed9eb5804f1a3d0c44e6a66ab0d9f87437",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_form_sotsiaaleluruum",
+      "canonical_item_id": "rakvere_vald:form:sotsiaaleluruum",
+      "itemType": "form",
+      "title": "Sotsiaaleluruumi taotlemise avaldus",
+      "status": "active",
+      "summary": "Avaldus eluruumi tagamise teenuse või sotsiaalkorteri taotlemiseks.",
+      "sourceKeys": [
+        "blanketid_page",
+        "form_sotsiaaleluruum",
+        "social_housing_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/documents/108607/18450311/Eluruumi_tagamise%2Bteenuse%2Bavaldus.rtf/07cd4673-0ad0-4779-a309-49d2f5accf80",
+      "format": "rtf",
+      "submissionChannels": [
+        "digitaalselt allkirjastatult e-postiga",
+        "postiga",
+        "vallavalitsuses kohapeal"
+      ],
+      "relatedTo": [
+        "rakvere_vald_service_sotsiaaleluruumi_tagamine"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_anneli_saaber"
+      ],
+      "item_type": "form",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "blanketid_page",
+        "form_sotsiaaleluruum",
+        "social_housing_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_form_sotsiaaleluruum",
+      "document_id": "rakvere_vald_form_sotsiaaleluruum",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/documents/108607/18450311/Eluruumi_tagamise%2Bteenuse%2Bavaldus.rtf/07cd4673-0ad0-4779-a309-49d2f5accf80",
+      "content_hash": "c453da02226551b931aebd1102da945acc811a082a071061b17685528006ab66",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_form_lasteaia_toiduraha_kompenseerimine",
+      "canonical_item_id": "rakvere_vald:form:lasteaia_toiduraha_kompenseerimine",
+      "itemType": "form",
+      "title": "Avaldus lasteaia toiduraha 50%liseks kompenseerimiseks",
+      "status": "active",
+      "summary": "E-taotlus väljaspool Rakvere valla lasteaeda käiva lapse toiduraha 50% kompenseerimiseks.",
+      "sourceKeys": [
+        "blanketid_page",
+        "lasteaia_toidusoodustus_page",
+        "spoku_social_forms"
+      ],
+      "officialUrl": "https://iseteenindus.rakverevald.ee/index.php?module=208&op=1",
+      "format": "web_form",
+      "submissionChannels": [
+        "iseteenindus"
+      ],
+      "relatedTo": [
+        "rakvere_vald_benefit_lasteaia_toidusoodustus"
+      ],
+      "relatedContacts": [
+        "rakvere_vald_contact_einike_einberg_viirok"
+      ],
+      "item_type": "form",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "blanketid_page",
+        "lasteaia_toidusoodustus_page",
+        "spoku_social_forms"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_form_lasteaia_toiduraha_kompenseerimine",
+      "document_id": "rakvere_vald_form_lasteaia_toiduraha_kompenseerimine",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://iseteenindus.rakverevald.ee/index.php?module=208&op=1",
+      "content_hash": "095473648321b7c8ce94e1e69a3005880b21900a98ad9b3afce38920a0a30a4d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "rakvere_vald_form_teade_abivajav_laps",
+      "canonical_item_id": "rakvere_vald:form:teade_abivajav_laps",
+      "itemType": "form",
+      "title": "Teade abivajava lapse kohta",
+      "status": "active",
+      "summary": "Vorm abivajavast lapsest vallavalitsusele teatamiseks.",
+      "sourceKeys": [
+        "blanketid_page",
+        "form_teade_abivajav_laps",
+        "lapsele_page"
+      ],
+      "officialUrl": "https://www.rakverevald.ee/documents/108607/18450311/Teade%2Babivajavast%2Blapsest.rtf/e0389e5c-0fa0-4c9b-a864-20b782378877",
+      "format": "rtf",
+      "submissionChannels": [
+        "digitaalselt allkirjastatult e-postiga",
+        "postiga",
+        "vallavalitsuses kohapeal"
+      ],
+      "relatedTo": [],
+      "relatedContacts": [
+        "rakvere_vald_contact_kristi_moor",
+        "rakvere_vald_contact_kadri_lehtsalu"
+      ],
+      "item_type": "form",
+      "municipality_id": "rakvere_vald",
+      "municipality_name": "Rakvere vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "blanketid_page",
+        "form_teade_abivajav_laps",
+        "lapsele_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "rakvere_vald_form_teade_abivajav_laps",
+      "document_id": "rakvere_vald_form_teade_abivajav_laps",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.rakverevald.ee/documents/108607/18450311/Teade%2Babivajavast%2Blapsest.rtf/e0389e5c-0fa0-4c9b-a864-20b782378877",
+      "content_hash": "ce34cea4dec3c4fa672454ff2153c5e40c364baa6df1ccf5d3ca1672fa2644f3",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Rakvere vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

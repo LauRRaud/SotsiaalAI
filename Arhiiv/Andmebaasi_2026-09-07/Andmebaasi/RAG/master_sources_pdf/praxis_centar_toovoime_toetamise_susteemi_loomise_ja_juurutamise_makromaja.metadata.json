@@ -1,0 +1,77 @@
+{
+  "source": {
+    "source_id": "praxis_centar_toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromaja",
+    "title": "Töövõime toetamise süsteemi loomise ja juurutamise makromajandusliku mõju hindamine – metoodikaraport",
+    "url": "https://centar.ee/pdf/ee/2022_Toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromajandusliku_moju_hindamine_metoodikaraport.pdf",
+    "normalized_url": "https://centar.ee/pdf/ee/2022_Toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromajandusliku_moju_hindamine_metoodikaraport.pdf",
+    "source_format": "pdf",
+    "source_type": "official_guideline",
+    "resource_type": "method_guidance",
+    "publisher": "Praxis / CentAR",
+    "organization_id": "praxis_centar",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Praxis",
+      "töövõime",
+      "vähenenud töövõime",
+      "töötamine",
+      "tööturuteenused",
+      "abivajaduse hindamine",
+      "hindamisvahend",
+      "spetsialisti juhend"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "high",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "Praxis / CentAR / poliitikauuringud",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 451,
+      "order": 243
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Töövõime toetamise süsteemi loomise ja juurutamise makromajandusliku mõju hindamine – metoodikaraport"
+    ],
+    "collection_hints": [
+      "research_reports"
+    ],
+    "source_types_seen": [
+      "research_report"
+    ],
+    "resource_types_seen": [
+      "research_evidence"
+    ],
+    "publishers_seen": [
+      "Praxis / CentAR"
+    ],
+    "organizations_seen": [
+      "praxis_centar"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Praxis / CentAR / poliitikauuringud",
+        "line": 451,
+        "order": 243
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://centar.ee/pdf/ee/2022_Toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromajandusliku_moju_hindamine_metoodikaraport.pdf"
+  },
+  "final_url": "https://centar.ee/pdf/ee/2022_Toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromajandusliku_moju_hindamine_metoodikaraport.pdf",
+  "redirects": [],
+  "sha256": "e329af5cf462a1534adf114831c555c4cde7f5655866647abc9d5b6cedb17fba",
+  "bytes": 785707,
+  "downloaded_at": "2026-08-14T08:00:48.568Z"
+}

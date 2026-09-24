@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-tapa-vald",
+  "document_id": "kov-tapa-vald",
+  "municipality": "Tapa vald",
+  "municipality_id": "tapa_vald",
+  "county": "Lääne-Virumaa",
+  "checkedAt": "2026-04-29",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-tapa-vald",
+  "coverage": {
+    "services": 14,
+    "benefits": 8,
+    "resources": 9,
+    "contacts": 12,
+    "forms": 8,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "tapa_vald",
+    "source_register_file": "tapa-vald.sources.json",
+    "service_benefit_resource_items": 31,
+    "items_with_source_keys": 31,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 16,
+    "items_without_related_forms": 15,
+    "items_with_related_contacts": 22,
+    "items_without_related_contacts": 9,
+    "form_sources": 8,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Pakett on koostatud kasutaja antud alusfailide põhjal ja täiendatud Tapa valla ametliku veebilehe sotsiaalvaldkonna allikatega.",
+    "Õigusaktide ja Riigi Teataja viited on jäetud paketist välja, sest RT/legal kiht on eraldi."
+  ],
+  "unresolvedIssues": [
+    "Mõned KOV teenuse detail-URL-id suunasid tehniliselt koondlehele või ei olnud eraldi detaillehtedena ligipääsetavad; teenused normaliseeriti Tapa valla sotsiaalteenuste üldinfo lehe põhisisu põhjal.",
+    "Vormi 'Toetuse taotlus.rtf' failitee esineb KOV veebis erinevates kontekstides; paketis kasutati sotsiaalteenuste üldinfo lehel avatud 2026-01 ametlikku faililinki.",
+    "Vältimatu sotsiaalabi puhul esineb nii üldine 'Toetuse taotlus.rtf' kui ka eraldi 'Vältimatu sotsiaalabi toetuse taotlus.rtf'; mõlemad on seotud ainult allikates kinnitatud ulatuses.",
+    "Ranitsatoetuse kohta on info leitav valla teenuste nimekirjast ja eraldi ametlikult lehelt, kuid vormilinki KOV lehelt ei kinnitatud.",
+    "Eaka sünnipäevatoetuse taotlemise kanalit ei avaldatud KOV lehel selgelt; kirjesse ei lisatud oletuslikku taotlusviisi.",
+    "Kõigi väliste abikanalite ja partnerite (nt Sotsiaalkindlustusamet, Eesti Töötukassa, Medi) detailinfot ei kontrollitud välislehtedelt, sest pakett kasutab ainult KOV veebis kinnitatud infot."
+  ],
+  "RT_CANDIDATES_FOR_SEPARATE_MANIFEST": [],
+  "municipality_name": "Tapa vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "tapa-vald.sources.json",
+  "sourceCount": 25,
+  "counts": {
+    "services": 14,
+    "benefits": 8,
+    "resources": 9,
+    "contacts": 12,
+    "forms": 8,
+    "regulations": 0
+  },
+  "warnings": [
+    "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "source": {
+    "source_id": "sotsiaalkindlustusamet_elanikkonna_hoiakud_ja_teadlikkus_perevagivallast",
+    "title": "Elanikkonna hoiakud ja teadlikkus perevägivallast",
+    "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Elanikkonna%20hoiakud%20ja%20teadlikkus%20perev%C3%A4givallast.pdf",
+    "normalized_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Elanikkonna hoiakud ja teadlikkus perevägivallast.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "Sotsiaalkindlustusamet",
+    "organization_id": "sotsiaalkindlustusamet",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Sotsiaalkindlustusamet",
+      "lapsed ja pered",
+      "lapsevanem",
+      "pere",
+      "vanemlus",
+      "infomaterjal",
+      "SKA",
+      "vägivald",
+      "ohvriabi"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "SKA",
+      "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+      "heading_4": null,
+      "line": 495,
+      "order": 263
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Elanikkonna hoiakud ja teadlikkus perevägivallast"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Sotsiaalkindlustusamet"
+    ],
+    "organizations_seen": [
+      "sotsiaalkindlustusamet"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "SKA",
+        "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+        "line": 495,
+        "order": 263
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Elanikkonna hoiakud ja teadlikkus perevägivallast.pdf"
+  },
+  "final_url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Elanikkonna%20hoiakud%20ja%20teadlikkus%20perev%C3%A4givallast.pdf",
+  "redirects": [],
+  "sha256": "7a964e52184cd9380a97a3132eb3da020daaec9859618e244cde19d81a8ac9bf",
+  "bytes": 3664054,
+  "downloaded_at": "2026-08-14T08:00:52.696Z"
+}

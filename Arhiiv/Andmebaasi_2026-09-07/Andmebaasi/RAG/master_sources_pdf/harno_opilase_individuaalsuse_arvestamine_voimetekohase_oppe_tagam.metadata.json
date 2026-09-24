@@ -1,0 +1,75 @@
+{
+  "source": {
+    "source_id": "harno_opilase_individuaalsuse_arvestamine_voimetekohase_oppe_tagam",
+    "title": "Õpilase individuaalsuse arvestamine võimetekohase õppe tagamisel",
+    "url": "https://harno.ee/sites/default/files/documents/2022-01/Individuaalsuse%20arvestamine%20j%C3%B5ukohase%20%C3%B5ppe%20tagamisel%2022.pdf",
+    "normalized_url": "https://harno.ee/sites/default/files/documents/2022-01/Individuaalsuse arvestamine jõukohase õppe tagamisel 22.pdf",
+    "source_format": "pdf",
+    "source_type": "information_material",
+    "resource_type": "information_material",
+    "publisher": "HARNO",
+    "organization_id": "harno",
+    "collection_hint": "information_materials",
+    "evidence_role": "background",
+    "topic_tags": [
+      "Haridus- ja Noorteamet",
+      "infomaterjal",
+      "haridus",
+      "kool",
+      "õpilase toetamine",
+      "tugimeetmed"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "HARNO / HEV / kooli tugimeetmed",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 377,
+      "order": 209
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Õpilase individuaalsuse arvestamine võimetekohase õppe tagamisel"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "HARNO"
+    ],
+    "organizations_seen": [
+      "harno"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "HARNO / HEV / kooli tugimeetmed",
+        "line": 377,
+        "order": 209
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://harno.ee/sites/default/files/documents/2022-01/Individuaalsuse arvestamine jõukohase õppe tagamisel 22.pdf"
+  },
+  "final_url": "https://harno.ee/sites/default/files/documents/2022-01/Individuaalsuse%20arvestamine%20j%C3%B5ukohase%20%C3%B5ppe%20tagamisel%2022.pdf",
+  "redirects": [],
+  "sha256": "f8592e901ea99670d15669ec0c84563234934958a19fda1c4580bd55314bd65d",
+  "bytes": 705091,
+  "downloaded_at": "2026-08-14T08:00:44.804Z"
+}

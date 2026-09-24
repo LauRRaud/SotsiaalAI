@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-4-2024",
+  "issueLabel": "4/2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "enesehoid-uurimus-2024-4",
+  "title": "Sotsiaaltöö spetsialistide enesehoiu arusaamad ja kogemused",
+  "authors": [
+    "Diana Paulberg"
+  ],
+  "section": "Uurimus",
+  "pageRange": "26–32",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "source_path": "sotsiaaltoo_4_2024_web_Part6.pdf",
+  "description": "Süvauurimus sotsiaaltöötajate enesehoiust: enesehoiu tõlgendused, takistused, toimivad praktikad, organisatsiooni mõju ja psühhosotsiaalsed riskid.",
+  "tags": [
+    "enesehoid",
+    "sotsiaaltöötajad",
+    "uurimus",
+    "tööheaolu",
+    "psühhosotsiaalne risk"
+  ],
+  "authors_vana": [
+    "Uurimismeeskond"
+  ],
+  "authors_parandatud": "2026-08-17, A5 pöördsuuna kontroll, kinnitatud lähte-PDF-i autorirea vastu",
+  "document_id": "sotsiaaltoo-4-2024-enesehoid-uurimus-2024-4",
+  "source_format": "pdf",
+  "source_sha256": "300608361322227eec374135a69ad209535d76a9aac25033b75c4dc7a204928e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2024-enesehoid-uurimus-2024-4",
+    "previous_source_path": "sotsiaaltoo_4_2024_web_Part6.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "300608361322227eec374135a69ad209535d76a9aac25033b75c4dc7a204928e",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-poltsamaa-vald",
+  "document_id": "kov-poltsamaa-vald",
+  "municipality": "Põltsamaa vald",
+  "municipality_id": "poltsamaa_vald",
+  "county": "Jõgevamaa",
+  "checkedAt": "2026-04-29",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-poltsamaa-vald",
+  "coverage": {
+    "services": 23,
+    "benefits": 14,
+    "resources": 16,
+    "contacts": 10,
+    "forms": 16,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "poltsamaa_vald",
+    "source_register_file": "poltsamaa-vald.sources.json",
+    "service_benefit_resource_items": 53,
+    "items_with_source_keys": 53,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 34,
+    "items_without_related_forms": 19,
+    "items_with_related_contacts": 37,
+    "items_without_related_contacts": 16,
+    "form_sources": 1,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "3 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Korje aluseks on Põltsamaa valla ametlik veeb, mis suunab ajalooliselt poltsamaavv.kovtp.ee domeenilt kanonilisele aadressile www.poltsamaa.ee.",
+    "RT/õigusakti allikad jäeti veebipaketist välja; õiguskiht on eraldi manifesti teema."
+  ],
+  "unresolvedIssues": [
+    "Mitme vormi puhul on KOV veebis vormi nimi nähtav, kuid otsest faili-URL-i ei õnnestunud kõigi vormide kohta kindlalt eraldada; need on seotud vormilehe või detaillehe allikaga ning märgitud form itemi unresolvedIssues väljal.",
+    "SPOKU e-taotluste otselinke ei eraldatud kõigi teenuste ja toetuste kohta; KOV leht kinnitab SPOKU kasutamise mitmel detaillehel, kuid üldiseks iseteeninduse lingiks jäi menüütasandi viide.",
+    "Põltsamaa valla kontaktileht näitab osade sotsiaalosakonna ametikohtade täitmata seisu; täitmata ametikohti ei loodud eraldi contact itemina.",
+    "Väliste teenusepakkujate ja abikanalite sisulist infot ei kontrollitud välislehtedelt; resource itemid kajastavad ainult Põltsamaa valla lehel avaldatud infot.",
+    "Sõltuvusprobleemide, vaimse tervise abi ja ohvriabi lehed viitavad mitmele välisele teenusepakkujale; KOV lehel avaldatud info on koondatud resource kirjetesse, mitte väliste teenuste täiendavasse kontrolli.",
+    "Noortegarantii tugisüsteem paikneb KOV veebis haridus- ja noorsootöö harus ning seda ei normaliseeritud sotsiaalhoolekande veebipaketi itemiks."
+  ],
+  "RT_CANDIDATES_FOR_SEPARATE_MANIFEST": [
+    "Sotsiaalhoolekandelise abi andmise kord Põltsamaa vallas",
+    "Sotsiaalhoolekande seadus",
+    "Sotsiaalseadustiku üldosa seadus",
+    "Haldusmenetluse seadus",
+    "Liikumispuudega või pimedat inimest teenindava sõiduki parkimiskaardi vorm ja väljaandmise tingimused"
+  ],
+  "municipality_name": "Põltsamaa vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "poltsamaa-vald.sources.json",
+  "sourceCount": 48,
+  "counts": {
+    "services": 23,
+    "benefits": 14,
+    "resources": 16,
+    "contacts": 10,
+    "forms": 16,
+    "regulations": 0
+  },
+  "warnings": [
+    "3 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

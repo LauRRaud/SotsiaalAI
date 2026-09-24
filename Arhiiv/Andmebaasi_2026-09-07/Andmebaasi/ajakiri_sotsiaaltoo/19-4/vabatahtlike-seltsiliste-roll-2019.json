@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-4-2019",
+  "articleId": "vabatahtlike-seltsiliste-roll-2019",
+  "title": "Vabatahtlike seltsiliste roll hoolekandeteenuste täiendamisel",
+  "authors": [
+    "Anu Viltrop",
+    "Eha Paas"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2019",
+  "section": "Projekt",
+  "pageRange": "30-33",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb vabatahtlike seltsiliste rolli ja mõju hoolekandeteenuste süsteemis.",
+  "tags": [
+    "vabatahtlikud",
+    "hoolekanne",
+    "kogukond"
+  ],
+  "source_type": "file",
+  "source_path": "ST4_2019_web_link_Part9.pdf",
+  "mapping_fixed": "20260814-161821",
+  "mapping_note": "Visuaalkontrollis 22.08.2026 parandati lõpplehekülg 33-lt 35-le; artikkel jätkub PDF-i kuuenda leheküljeni.",
+  "document_id": "sotsiaaltoo-4-2019-vabatahtlike-seltsiliste-roll-2019",
+  "source_format": "pdf",
+  "source_sha256": "22e46088eb44549c562f7b1a8d65eeaa34599a7bf7d2e0b8b7fbc75dffab9e7a",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2019-vabatahtlike-seltsiliste-roll-2019",
+    "previous_source_path": "ST4_2019_web_link_Part9.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "22e46088eb44549c562f7b1a8d65eeaa34599a7bf7d2e0b8b7fbc75dffab9e7a",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

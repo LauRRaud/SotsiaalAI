@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-3-2022",
+  "articleId": "kao-tugikeskus-inimnaoline-teenus-2022-3",
+  "title": "Käo Tugikeskus – inimnäoline asutus Tallinnas",
+  "authors": [
+    "Jane Langemets"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2022",
+  "section": "Kogemus",
+  "pageRange": "30-35",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab Käo Tugikeskuse tegevust, mis pakub nii lastele kui täiskasvanutele vajaduspõhiseid erihoolekande- ja rehabilitatsiooniteenuseid. Käsitletakse keskuse ajalugu, töökorraldust, koostööd vanematega, individuaalset lähenemist ning tegevusjuhendajate rolli. Rõhutatakse inimkeskset teenust, kogukonnatööd ning väljakutseid, sealhulgas vajadust ööpäevaringsete teenusekohtade järele.",
+  "tags": [
+    "erihoolekanne",
+    "tugikeskus",
+    "rehabilitatsioon",
+    "erivajadused",
+    "Tallinn",
+    "laste teenused",
+    "täiskasvanute teenused"
+  ],
+  "source_type": "file",
+  "source_path": "2022_3_artikkel_10_kao_tugikeskus.pdf",
+  "document_id": "sotsiaaltoo-3-2022-kao-tugikeskus-inimnaoline-teenus-2022-3",
+  "source_format": "pdf",
+  "source_sha256": "c4c56e93f830e5e02db857e36bbdb2936b1a4e99ab9477743c593840da36eeba",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2022-kao-tugikeskus-inimnaoline-teenus-2022-3",
+    "previous_source_path": "2022_3_artikkel_10_kao_tugikeskus.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "c4c56e93f830e5e02db857e36bbdb2936b1a4e99ab9477743c593840da36eeba",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

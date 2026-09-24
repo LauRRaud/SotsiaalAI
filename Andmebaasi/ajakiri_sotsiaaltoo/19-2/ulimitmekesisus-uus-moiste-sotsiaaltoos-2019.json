@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2019",
+  "articleId": "ulimitmekesisus-uus-moiste-sotsiaaltoos-2019",
+  "title": "Ülimitmekesisus – uus mõiste sotsiaaltöös",
+  "authors": [
+    "Hans van Ewijk"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2019",
+  "section": "Teoreetilised lähte­kohad",
+  "pageRange": "93-97",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Teoreetiline artikkel, mis tutvustab ülimitmekesisuse mõistet ja selle tähendust sotsiaaltöös, rõhutades inimeste erinevuste mitmemõõtmelisust ning standardsete kategooriate piiranguid.",
+  "tags": [
+    "ülimitmekesisus",
+    "mitmekesisus",
+    "sotsiaaltöö teooria",
+    "identiteet",
+    "marginaliseerimine",
+    "kultuuriline mitmekesisus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part18.pdf",
+  "document_id": "sotsiaaltoo-2-2019-ulimitmekesisus-uus-moiste-sotsiaaltoos-2019",
+  "source_format": "pdf",
+  "source_sha256": "7b0e40192ff8f4566ec8fe7a97b5b10fd3e65722074c8e4f828c37ab927d61ff",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2019-ulimitmekesisus-uus-moiste-sotsiaaltoos-2019",
+    "previous_source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part18.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "7b0e40192ff8f4566ec8fe7a97b5b10fd3e65722074c8e4f828c37ab927d61ff",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

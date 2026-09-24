@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-2-2022",
+  "articleId": "laane-harju-vallas-on-esikohal-inimene-ja-tema-keskkond-2022-2",
+  "title": "Lääne-Harju vallas on esikohal inimene ja tema keskkond",
+  "authors": [
+    "Anneli Sert",
+    "Kadri Kauksi"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2022",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "43-48",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Lääne-Harju valla sotsiaalvaldkonna ja rohevalla arengut tutvustav artikkel. Kirjeldatakse piirkondliku hoolekandesüsteemi ülesehitamist pärast haldusreformi, lastekaitsetalituse ja haridusasutuste tugipesade tööd, pere- ja lastetoetavaid teenuseid ning tugikeskuse ja Karjaküla sotsiaalkeskuse rolli. Samuti käsitletakse rohevalla põhimõtteid, ringmajanduse toetamise algatusi ja koostööd kogukonna ning ettevõtjatega, rõhutades inimese heaolu seotust looduskeskkonnaga.",
+  "tags": [
+    "kohalik omavalitsus",
+    "Lääne-Harju vald",
+    "sotsiaalhoolekanne",
+    "lastekaitse",
+    "tugikeskus",
+    "hooldekodu",
+    "rohevald",
+    "ringmajandus"
+  ],
+  "source_type": "file",
+  "source_path": "2022_2_artikkel_9_laane_harju_vald.pdf",
+  "document_id": "sotsiaaltoo-2-2022-laane-harju-vallas-on-esikohal-inimene-ja-tema-keskkond-2022-2",
+  "source_format": "pdf",
+  "source_sha256": "69d80804742bd9654556442f743bbe8c6522f34d2a1465f11b9fb93c354f3a57",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2022-laane-harju-vallas-on-esikohal-inimene-ja-tema-keskkond-2022-2",
+    "previous_source_path": "2022_2_artikkel_9_laane_harju_vald.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "69d80804742bd9654556442f743bbe8c6522f34d2a1465f11b9fb93c354f3a57",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

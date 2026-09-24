@@ -1,0 +1,51 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "eessona-2026-2",
+  "title": "Eessõna",
+  "authors": [
+    "Eike Käsi"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Eessõna",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Numbri eessõna, milles rõhutatakse, et sotsiaaltöö peab arenema koos ühiskonna muutustega, ja tutvustatakse ajakirja rolli teadusartiklite, erialaküsimuste ja praktikute kogemuste sidumisel. Antakse ülevaade numbri keskseist teemadest, sh töötajate turvalisus, noorte üksildus, kriisiabi ja lastekaitse arengud.",
+  "tags": [
+    "eessõna",
+    "sotsiaaltöö areng",
+    "ESTA",
+    "töötajate turvalisus",
+    "noorte heaolu",
+    "kriisiabi",
+    "sotsiaalvaldkond"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-06-25",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/eessona-22026",
+  "source_type": "web",
+  "source_path": "eessona.html",
+  "lead": "„„See, mis meid siia tõi, edasi meid enam ei vii!“ ütles ühes kõnes president Toomas Hendrik Ilves. See kehtib igati ka sotsiaaltöö kohta: edasiliikumiseks ja arenemiseks tuleb nii ühiskonna kui ka valdkonna muutustega kaasas käia, veelgi parem – olla sammukene eespool ja arutleda tulevikuvajaduste üle,“ kirjutab eessõnas ajakirja kolleegiumi liige Eike Käsi.",
+  "mapping_status": "VERIFIED",
+  "mapping_checked": "2026-08-14",
+  "mapping_note": "articleId muudeti 1/2026 eessõnast eristamiseks numbripõhiselt kordumatuks; URL ja täistekst kontrollitud väljaandja veebilehe järgi.",
+  "document_id": "sotsiaaltoo-2-2026-eessona-2026-2",
+  "source_format": "html",
+  "source_sha256": "44f2d4c49dd3d62cf28d3c58d4dc7e08a0ef906e73fc09dc9885795fa47ca318",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-eessona-2026-2",
+    "previous_source_path": "eessona.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ff6bde895374c7710d213e4ed39e0a7a7237cde5ce14b699f850401cff12341d",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "33eed79cd0f5ee462c006a1973f010e672f80ebd1eff20fbb4ae53e4df31d8d7",
+    "observed_web_title": "Eessõna 2/2026"
+  },
+  "retrieved_at": "2026-09-07T19:39:35.590725+00:00"
+}

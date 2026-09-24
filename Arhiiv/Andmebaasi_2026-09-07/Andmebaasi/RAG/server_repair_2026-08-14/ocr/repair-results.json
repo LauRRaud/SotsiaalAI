@@ -1,0 +1,96 @@
+{
+  "ok": true,
+  "repaired": [
+    {
+      "doc_id": "sotsiaalkindlustusamet_seksuaalivakivallan_kriisikeskukset_fin",
+      "inserted": 6,
+      "chunks": 6,
+      "language": "fi",
+      "search_hits": 3,
+      "search_doc_ids": [
+        "sotsiaalkindlustusamet_seksuaalivakivallan_kriisikeskukset_fin",
+        "sotsiaalkindlustusamet_seksuaalivakivallan_kriisikeskukset_fin",
+        "sotsiaalkindlustusamet_seksuaalivakivallan_kriisikeskukset_fin"
+      ],
+      "query_sha256": "351800a2040273d0267c55988cf10b60c850070ed0c93c47fead747e1bb085a5"
+    },
+    {
+      "doc_id": "sotsiaalkindlustusamet_seksuaalsest_ahistamisest_vaba_ooelu_juhend",
+      "inserted": 25,
+      "chunks": 25,
+      "language": "et",
+      "search_hits": 3,
+      "search_doc_ids": [
+        "sotsiaalkindlustusamet_seksuaalsest_ahistamisest_vaba_ooelu_juhend",
+        "sotsiaalkindlustusamet_seksuaalsest_ahistamisest_vaba_ooelu_juhend",
+        "sotsiaalkindlustusamet_seksuaalsest_ahistamisest_vaba_ooelu_juhend"
+      ],
+      "query_sha256": "5f42a3db52f6bd8ac4614e14b18837a970506c47401116add9750fe689307d30"
+    },
+    {
+      "doc_id": "sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est",
+      "inserted": 5,
+      "chunks": 5,
+      "language": "et",
+      "search_hits": 3,
+      "search_doc_ids": [
+        "sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est",
+        "sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est",
+        "sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est"
+      ],
+      "query_sha256": "00b962590fcf3929c87a1e8e0512b2fb8be0ffb777750cc70b0e10c20a5e5cb5"
+    },
+    {
+      "doc_id": "sotsiaalkindlustusamet_sexual_assault_crisis_centre_eng",
+      "inserted": 5,
+      "chunks": 5,
+      "language": "en",
+      "search_hits": 3,
+      "search_doc_ids": [
+        "sotsiaalkindlustusamet_sexual_assault_crisis_centre_eng",
+        "sotsiaalkindlustusamet_sexual_assault_crisis_centre_eng",
+        "sotsiaalkindlustusamet_sexual_assault_crisis_centre_eng"
+      ],
+      "query_sha256": "0c45d7d95a5a584b748e89648fca07f29d88790366d6deee33ace3a80010a2fd"
+    },
+    {
+      "doc_id": "tarkvanem_tooleht_rahunemispaus",
+      "inserted": 4,
+      "chunks": 4,
+      "language": "et",
+      "search_hits": 3,
+      "search_doc_ids": [
+        "tarkvanem_tooleht_rahunemispaus",
+        "tarkvanem_tooleht_rahunemispaus",
+        "tarkvanem_tooleht_rahunemispaus"
+      ],
+      "query_sha256": "acb0022acfe9cc01c33c069d9fb85f070f5e11658dfa65473449e9fd17adf049"
+    },
+    {
+      "doc_id": "sotsiaalkindlustusamet_rus",
+      "inserted": 5,
+      "chunks": 5,
+      "language": "ru",
+      "search_hits": 3,
+      "search_doc_ids": [
+        "sotsiaalkindlustusamet_rus",
+        "sotsiaalkindlustusamet_rus",
+        "sotsiaalkindlustusamet_rus"
+      ],
+      "query_sha256": "b095b43f4c02672e0203f21e7783614783e9490b55130e3d88cf23ed873a1bd8"
+    },
+    {
+      "doc_id": "sotsiaalkindlustusamet_ua",
+      "inserted": 5,
+      "chunks": 5,
+      "language": "uk",
+      "search_hits": 3,
+      "search_doc_ids": [
+        "sotsiaalkindlustusamet_ua",
+        "sotsiaalkindlustusamet_ua",
+        "sotsiaalkindlustusamet_ua"
+      ],
+      "query_sha256": "727afcdcd79d0313e97f3d663afa1b9a0c8150d7d5d6eb281d0540f63d90a6f2"
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "source_path": "riigikontroll_toovoime_vahenemise_ennetamine.pdf",
+  "source_format": "pdf",
+  "sha256": "bc461e44cfd5caa757c948cfa92590863a878c3b06c790db26754c26f1954d78",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/riigikontroll_toovoime_vahenemise_ennetamine.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "riigikontroll_toovoime_vahenemise_ennetamine",
+          "title": "Töövõime vähenemise ennetamine",
+          "url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/18277_RKTR_5564_2-1.4_2308_001-2.pdf",
+          "normalized_url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/18277_RKTR_5564_2-1.4_2308_001-2.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "Riigikontroll",
+          "organization_id": "riigikontroll",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Riigikontroll",
+            "töövõime",
+            "vähenenud töövõime",
+            "töötamine",
+            "tööturuteenused",
+            "audit",
+            "avaliku sektori kontroll",
+            "riigi teenused",
+            "uuring",
+            "raport",
+            "analüüs"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_064",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "Riigikontroll",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 325,
+            "order": 186
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Töövõime vähenemise ennetamine"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Riigikontroll"
+          ],
+          "organizations_seen": [
+            "riigikontroll"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Riigikontroll",
+              "line": 325,
+              "order": 186
+            },
+            {
+              "heading_2": "Riigikontroll",
+              "line": 799,
+              "order": 393
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/18277_RKTR_5564_2-1.4_2308_001-2.pdf"
+        },
+        "final_url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/18277_RKTR_5564_2-1.4_2308_001-2.pdf",
+        "redirects": [],
+        "sha256": "bc461e44cfd5caa757c948cfa92590863a878c3b06c790db26754c26f1954d78",
+        "bytes": 1079835,
+        "downloaded_at": "2026-08-14T08:00:39.496Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "riigikontroll_toovoime_vahenemise_ennetamine",
+      "metadata": {
+        "createdAt": "2026-06-12T03:43:47.122182+00:00",
+        "type": "FILE",
+        "fileName": "18277_RKTR_5564_2-1.4_2308_001-2.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:43:47.056794+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/a103f4182169/18277_RKTR_5564_2-1.4_2308_001-2.pdf",
+        "title": "Töövõime vähenemise ennetamine",
+        "description": "Duplikaadid ühendatud: 1 lisakirjet. Source master headings: Riigikontroll",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2025,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–66",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "riigikontroll_toovoime_vahenemise_ennetamine",
+        "document_id": "riigikontroll_toovoime_vahenemise_ennetamine",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "b4b6c577dcf51b79f40f9a7598e48d47c77197b3a0a11413af5726ec88bcef76",
+        "url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/18277_RKTR_5564_2-1.4_2308_001-2.pdf",
+        "url_canonical": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/18277_RKTR_5564_2-1.4_2308_001-2.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "riigikontroll_toovoime_vahenemise_ennetamine",
+        "updatedAt": "2026-06-12T03:43:47.122206+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

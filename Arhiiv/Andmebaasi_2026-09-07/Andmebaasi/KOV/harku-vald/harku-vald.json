@@ -1,0 +1,3375 @@
+{
+  "municipality": "Harku vald",
+  "county": "Harjumaa",
+  "checkedAt": "2026-04-11",
+  "items": [
+    {
+      "id": "harku_vald_service_koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus aitab Harku valla eakatel ja puudega inimestel kodus toime tulla, kui nad vajavad kõrvalabi igapäevastes toimingutes. Teenus võib hõlmata abi toidu valmistamisel, kütmisel, koristamisel, asjaajamisel ja isiklikus hoolduses. Teenus on tasuline, kuid väikese sissetulekuga inimesele võib see olla tasuta.",
+      "targetGroup": "Harku valla eakad ja puudega inimesed, kes vajavad igapäevaelus kõrvalabi.",
+      "conditions": "Abivajadust hindab sotsiaalhoolekandespetsialist. Tasuta teenust saab inimene, kelle netosissetulek jääb alla Harku valla kehtestatud piiri; puuetega inimeste toetust selle sissetuleku hulka ei arvestata.",
+      "application": "Esita vabas vormis digiallkirjastatud taotlus e-postiga või pöördu paberkandjal Harku Vallavalitsusse. Enne teenuse määramist hindab sotsiaalhoolekandespetsialist abivajadust.",
+      "amount": "4 € tunnis; alla Harku valla kehtestatud sissetulekupiiri jäävale inimesele tasuta.",
+      "deadline": null,
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/eakate-toimetulek",
+      "relatedForms": [],
+      "relatedContacts": [
+        "harku_vald_contact_meeli_vaarpuu",
+        "harku_vald_contact_epp_sona"
+      ],
+      "item_type": "service",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "eakate_toimetulek_page"
+      ],
+      "source_keys": [
+        "eakate_toimetulek_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_service_koduteenus",
+      "document_id": "harku_vald_service_koduteenus",
+      "canonical_item_id": "harku_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/eakate-toimetulek",
+      "content_hash": "f69738d77ff64a90273eab2fc72ce47d2c91d5c78a6fd1ec2af6db29235d509d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_service_uldhooldusteenus",
+      "itemType": "service",
+      "title": "Üldhooldusteenus väljaspool kodu",
+      "status": "active",
+      "summary": "Üldhooldusteenus väljaspool kodu on mõeldud inimesele, kes vanuse, puude või terviseseisundi tõttu ei tule enam kodus iseseisvalt toime ning vajab ööpäevaringset hooldust hooldekodus. Harku vald osaleb hoolduskulu katmises ning väiksema sissetulekuga inimese puhul hüvitab 2026. aastal ka keskmise vanaduspensioni ja isiku sissetuleku vahe.",
+      "targetGroup": "Inimesed, kes vanuse, puude või terviseseisundi tõttu vajavad ööpäevaringset hooldust väljaspool kodu.",
+      "conditions": "Teenuse vajadus selgub abivajaduse hindamisel. Hooldekodu kohamaksumus jaguneb teenust vajava inimese ja kohaliku omavalitsuse vahel.",
+      "application": "Esita digiallkirjastatud taotlus e-postiga või paberkandjal Harku Vallavalitsuses. Lehel on nimetatud üldhooldusteenuse toetuse ja lisatoetuse blanketid.",
+      "amount": "Harku Vallavalitsus tasub 2025. aastal hoolduskulu kuni 700 € kuus. 2026. aastal lähtutakse väiksema sissetuleku hüvitamisel 2025. aasta II kvartali keskmisest vanaduspensionist 826,80 €.",
+      "deadline": null,
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/eakate-toimetulek",
+      "relatedForms": [
+        "harku_vald_form_uldhooldusteenuse_taotlus",
+        "harku_vald_form_uldhooldusteenuse_lisatoetus"
+      ],
+      "relatedContacts": [
+        "harku_vald_contact_meeli_vaarpuu"
+      ],
+      "item_type": "service",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "eakate_toimetulek_page"
+      ],
+      "source_keys": [
+        "eakate_toimetulek_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_service_uldhooldusteenus",
+      "document_id": "harku_vald_service_uldhooldusteenus",
+      "canonical_item_id": "harku_vald_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/eakate-toimetulek",
+      "content_hash": "aacf688bbd4e57ce160249bc2327c92b05c6928b1f72994b9157c7df78b2f601",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_service_sotsiaaltransport",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus pakub liikumisraskustega Harku valla elanikele võimalust jõuda tööle, kooli, arsti juurde või vallavalitsusse. Regulaarne sõit on tasuta, nõudepõhise sõidu puhul tuleb tasuda 0,30 € kilomeetri kohta ja 4 € tunnis. Teenuse saamiseks tuleb esitada põhjendatud taotlus; sotsiaaltöötaja hindab abivajaduse ja teeb otsuse 10 tööpäeva jooksul.",
+      "targetGroup": "Liikumisraskustega või puuetega vallaelanikud, kes vajavad transporti tööle, kooli, arsti juurde või avalike teenuste kasutamiseks",
+      "conditions": "Taotlejal peab olema liikumisraskus või erivajadus; elukoht peab olema Harku vald.",
+      "application": "Esita digiallkirjastatud taotlus e-postiga või paberkandjal Harku Vallavalitsuses. Regulaartranspordi taotlus on soovitatav esitada 30 päeva enne teenuse algust; tellimussõidu vajadusest tuleb teatada vähemalt 3 tööpäeva ette.",
+      "amount": "Regulaarsed sõidud on tasuta; nõudepõhise sõidu hind on 0,30 € kilomeetri kohta ja 4 € tunnis.",
+      "deadline": null,
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/teenused-erivajadusega-inimesele",
+      "relatedForms": [
+        "harku_vald_form_sotsiaaltransport_taotlus"
+      ],
+      "relatedContacts": [
+        "harku_vald_contact_meeli_vaarpuu"
+      ],
+      "item_type": "service",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "erivajadusega_inimesele_page"
+      ],
+      "source_keys": [
+        "erivajadusega_inimesele_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_service_sotsiaaltransport",
+      "document_id": "harku_vald_service_sotsiaaltransport",
+      "canonical_item_id": "harku_vald_service_sotsiaaltransport",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/teenused-erivajadusega-inimesele",
+      "content_hash": "597e9f0215da4b2706b974dbe489422c1932d9046fa55c59f6a511b6f16c7a98",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_service_hairenuputeenus",
+      "itemType": "service",
+      "title": "Häirenuputeenus",
+      "status": "active",
+      "summary": "Häirenuputeenus aitab eakat või muud abivajavat inimest olukorras, kus ta ei saa abi ise kutsuda või ust avada. Teenuse kasutamiseks paigaldatakse häirenupp; igakuise teenustasu maksab vald, kuid paigalduskulu tasub klient või tema lähedane.",
+      "targetGroup": "Eakad ja teised abivajavad inimesed, kellel on kukkumise või terviserikke oht ning kes vajavad kiiret abi kutsumise võimalust.",
+      "conditions": "Teenuse kasutamiseks peab inimesel olema laua- või mobiiltelefon ning teenuseosutajal peab olema võimalus pääseda vajadusel eluruumi.",
+      "application": "Esita vabas vormis digiallkirjastatud taotlus e-postiga või paberkandjal Harku Vallavalitsuses. Enne teenuse määramist hindab sotsiaalhoolekandespetsialist abivajadust kodukülastusel.",
+      "amount": "Vald tasub igakuise teenustasu; seadme paigaldamise kulud kannab klient või tema lähedane.",
+      "deadline": null,
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/muud-toetused-ja-teenused",
+      "relatedForms": [],
+      "relatedContacts": [
+        "harku_vald_contact_meeli_vaarpuu",
+        "harku_vald_contact_epp_sona"
+      ],
+      "item_type": "service",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "muud_toetused_ja_teenused_page"
+      ],
+      "source_keys": [
+        "muud_toetused_ja_teenused_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_service_hairenuputeenus",
+      "document_id": "harku_vald_service_hairenuputeenus",
+      "canonical_item_id": "harku_vald_service_hairenuputeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/muud-toetused-ja-teenused",
+      "content_hash": "215508319abbe940c7850ea150fc3802429b5cade92da6f8d51c3ac18b416257",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_service_eluruumi_teenus",
+      "itemType": "service",
+      "title": "Eluruumi teenus",
+      "status": "active",
+      "summary": "Eluruumi teenus aitab Harku valla elanikku, kes ei suuda füüsiliste piirangute, psüühiliste erivajaduste, sotsiaalse toimetulematuse, madala sissetuleku või vara puudumise tõttu endale ja oma perele sobivat eluruumi ise tagada. Teenuse raames sõlmitakse tähtajaline üürileping ning inimese edasist vajadust hinnatakse lepingu lõppemisel uuesti.",
+      "targetGroup": "Harku valla elanik, kes ei suuda endale ja oma perele ise sobivat eluruumi tagada.",
+      "conditions": "Teenuse saaja peab tasuma eluruumi kasutamisega seotud kõrvalkulud, näiteks kütte-, vee-, elektri-, gaasi-, maamaksu-, kindlustus- ja jäätmeveokulud.",
+      "application": "Esita vabas vormis digiallkirjastatud taotlus e-postiga või paberkandjal Harku Vallavalitsuses. Enne teenuse määramist hindab sotsiaalhoolekandespetsialist abivajadust.",
+      "amount": "Vald võimaldab eluruumi kasutamist; teenuse saaja tasub kõrvalkulud.",
+      "deadline": null,
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/kodu/elukoha-tagamine",
+      "relatedForms": [],
+      "relatedContacts": [
+        "harku_vald_contact_epp_sona"
+      ],
+      "item_type": "service",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "elukoha_tagamine_page"
+      ],
+      "source_keys": [
+        "elukoha_tagamine_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_service_eluruumi_teenus",
+      "document_id": "harku_vald_service_eluruumi_teenus",
+      "canonical_item_id": "harku_vald_service_eluruumi_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/kodu/elukoha-tagamine",
+      "content_hash": "1dd89e2b3de4bf375488b442765ebeb04e1c8d22085724df0d218cbef563f0d4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_service_varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenuse eesmärk on tagada täisealisele inimesele ajutine ööbimiskoht, kui ta ei ole võimeline seda endale ise leidma. Varjupaigas on tagatud voodikoht, pesemisvõimalus ja turvaline keskkond ning vajaduse korral ka hooldus, õendus, toitlustus ja nõustamine, kuni inimene saab liikuda mõnele teisele sobivale teenusele.",
+      "targetGroup": "Täisealine inimene, kes vajab ajutist ööbimiskohta.",
+      "conditions": "Varjupaigas viibimise ajal koostatakse koos sotsiaaltöötajaga tegevusplaan, mis toetab inimese toimetuleku paranemist.",
+      "application": "Varjupaigateenuse saamiseks pöördu Harku valla sotsiaalhoolekandespetsialisti poole.",
+      "amount": "Harku valla elanikele tasuta.",
+      "deadline": null,
+      "decisionTime": null,
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/kodu/elukoha-tagamine",
+      "relatedForms": [],
+      "relatedContacts": [
+        "harku_vald_contact_epp_sona",
+        "harku_vald_contact_meeli_vaarpuu"
+      ],
+      "item_type": "service",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "elukoha_tagamine_page"
+      ],
+      "source_keys": [
+        "elukoha_tagamine_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_service_varjupaigateenus",
+      "document_id": "harku_vald_service_varjupaigateenus",
+      "canonical_item_id": "harku_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/kodu/elukoha-tagamine",
+      "content_hash": "55448655ed174a1ef538db4110a1e00877338938b008e2bd9b425732b193750e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_service_turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenus tagab ajutise eluaseme, turvalise keskkonna ja esmase abi inimesele, kes ei saa turvaliselt oma tavapärases elukohas viibida. Vajaduse korral hõlmab teenus kriisiabi, hooldamist, arendamist ja teavet teiste abi saamise võimaluste kohta.",
+      "targetGroup": "Lapsed, kelle elu, tervis või areng on ohus hooldamises esinevate puuduste tõttu, ning täisealised isikud, kes vajavad turvalist keskkonda.",
+      "conditions": "Laste puhul pöördutakse laste heaolu spetsialisti poole, täiskasvanu puhul sotsiaalhoolekandespetsialisti poole.",
+      "application": "Turvakoduteenuse saamiseks pöördu laste puhul laste heaolu spetsialisti ja täiskasvanu puhul sotsiaalhoolekandespetsialisti poole.",
+      "amount": "Tasuta",
+      "deadline": null,
+      "decisionTime": null,
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/kodu/elukoha-tagamine",
+      "relatedForms": [],
+      "relatedContacts": [
+        "harku_vald_contact_tiia_spitson",
+        "harku_vald_contact_kaja_saat",
+        "harku_vald_contact_ivika_kelder",
+        "harku_vald_contact_heli_tuulik",
+        "harku_vald_contact_maive_riismandel",
+        "harku_vald_contact_meeli_vaarpuu",
+        "harku_vald_contact_epp_sona"
+      ],
+      "item_type": "service",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "elukoha_tagamine_page"
+      ],
+      "source_keys": [
+        "elukoha_tagamine_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_service_turvakoduteenus",
+      "document_id": "harku_vald_service_turvakoduteenus",
+      "canonical_item_id": "harku_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/kodu/elukoha-tagamine",
+      "content_hash": "a335ab613d771bea62d081953cfabc8a6c57accb68606eafa7b7bbe53e7ef80e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_service_vaimse_tervise_noustamine",
+      "itemType": "service",
+      "title": "Vaimse tervise nõustamine",
+      "status": "active",
+      "summary": "Vaimse tervise teenus võimaldab Harku valla elanikel saada kuni kolme tasuta nõustamis- või teraapiaseanssi psühholoogi, terapeudi või nõustaja juures. Teenus on mõeldud inimestele, kes kogevad stressi, suhteprobleeme, leina või muid vaimse tervise muresid. Täiskasvanud pöörduvad sotsiaalhoolekandespetsialisti poole ja laste puhul kontakteerutakse oma piirkonna laste heaolu spetsialistiga, kes hindab vajaduse ja suunab sobivale teenusepakkujale.",
+      "targetGroup": "Harku valla elanikud, kes vajavad psühholoogilist abi või nõustamist",
+      "conditions": "Elanik peab olema Harku valla registreeritud elanik; vald katab kuni kolme nõustamisseansi maksumuse.",
+      "application": "Täiskasvanud pöörduvad sotsiaalhoolekandespetsialisti poole; laste puhul võetakse ühendust piirkonna laste heaolu spetsialistiga, kes hindab vajaduse ja suunab teenusele.",
+      "amount": "Kuni kolme nõustamis- või teraapiaseansi maksumus tasub vald; alates neljandast seansist maksab klient ise.",
+      "deadline": null,
+      "decisionTime": null,
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/vaimne-tervis",
+      "relatedForms": [],
+      "relatedContacts": [
+        "harku_vald_contact_kaja_saat",
+        "harku_vald_contact_ivika_kelder",
+        "harku_vald_contact_heli_tuulik",
+        "harku_vald_contact_maive_riismandel",
+        "harku_vald_contact_meeli_vaarpuu"
+      ],
+      "item_type": "service",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "vaimne_tervis_page"
+      ],
+      "source_keys": [
+        "vaimne_tervis_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_service_vaimse_tervise_noustamine",
+      "document_id": "harku_vald_service_vaimse_tervise_noustamine",
+      "canonical_item_id": "harku_vald_service_vaimse_tervise_noustamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/vaimne-tervis",
+      "content_hash": "eb8aa9d4b041ee64949844757b8075579ad1672579b0e22f55a75eeaed1f3144",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_service_volanoustamise_teenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab finantsraskustes Harku valla elanikel selgitada oma rahalist olukorda ja otsida lahendusi võlgadega toimetulekuks. Taotleja esitab vabas vormis avalduse, mille järel sotsiaalhoolekande osakond hindab olukorda ja otsustab teenuse määramise 10 tööpäeva jooksul. Kui teenus määratakse, suunab vald kliendi MTÜ Võlanõustajad nõustamisele ning katab nõustamise kulud.",
+      "targetGroup": "Harku valla elanikud, kellel on rahalised raskused või võlad ning kes vajavad võlanõustamist",
+      "conditions": "Taotleja peab olema Harku valla elanik ja tal peab olema võlgadega seotud probleem; vajaduse hindab sotsiaaltöötaja.",
+      "application": "Esita vabas vormis taotlus digitaalselt või paberkandjal sotsiaalhoolekandespetsialistile; pärast hindamist suunatakse võlanõustajale.",
+      "amount": "Nõustamise kulu tasub vald.",
+      "deadline": null,
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/volanoustamisteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "harku_vald_contact_meeli_vaarpuu"
+      ],
+      "item_type": "service",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "volanoustamisteenus_page"
+      ],
+      "source_keys": [
+        "volanoustamisteenus_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_service_volanoustamise_teenus",
+      "document_id": "harku_vald_service_volanoustamise_teenus",
+      "canonical_item_id": "harku_vald_service_volanoustamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/volanoustamisteenus",
+      "content_hash": "d093c84bd3b87011651bb19f38d6c7b7daec0272c3fac2c6c30be88cd32daefc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_service_toidupank",
+      "itemType": "service",
+      "title": "Toidupank",
+      "status": "active",
+      "summary": "Toidupanga toiduabi on Harku valla elanikele mõeldud praktiline toiduabi raskes majanduslikus olukorras. Abi koosneb päästetud ja annetatud kauasäilivast toidust ning seda jagatakse Harku vallas igal kolmapäeval.",
+      "targetGroup": "Raskes majanduslikus olukorras Harku valla elanikud, kelle abivajaduse on välja selgitanud sotsiaalhoolekandespetsialist.",
+      "conditions": "Toiduabi saamise otsustab sotsiaalhoolekandespetsialist abivajaduse hindamise põhjal. Toiduabi saab hindamise kuul ja sellele järgneval kolmel kuul; pikema vajaduse korral hinnatakse olukord uuesti üle.",
+      "application": "Esita vabas vormis digiallkirjastatud taotlus e-postiga või paberkandjal Harku Vallavalitsuses. Sotsiaalhoolekandespetsialist hindab majanduslikku olukorda ja selgitab välja abivajaduse.",
+      "amount": "Toiduabipakk päästetud ja annetatud toidust; rahalist toetust ei maksta.",
+      "deadline": null,
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/toiduabi",
+      "relatedForms": [],
+      "relatedContacts": [
+        "harku_vald_contact_epp_sona"
+      ],
+      "item_type": "service",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "toiduabi_page"
+      ],
+      "source_keys": [
+        "toiduabi_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_service_toidupank",
+      "document_id": "harku_vald_service_toidupank",
+      "canonical_item_id": "harku_vald_service_toidupank",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/toiduabi",
+      "content_hash": "ea3a177419d9149a6559e5bbd16aaa9688bfe05e46f7e9d82d323ed35b24f56d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_service_tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus aitab inimesel paremini igapäevaeluga toime tulla, kui ta vajab tervise-, majanduslike või psühholoogiliste raskuste tõttu kõrvalist tuge. Tugiisik juhendab ja julgustab ning aitab inimesel samm-sammult muutuda iseseisvamaks.",
+      "targetGroup": "Erivajadusega lapsed, last kasvatavad või hooldavad inimesed ning täisealised sotsiaalsete, majanduslike, psühholoogiliste või terviseprobleemidega isikud.",
+      "conditions": "Teenusele suunamise otsustab Harku Vallavalitsuse sotsiaal- ja tervishoiuosakond abivajaduse hindamise põhjal.",
+      "application": "Teavita vajadusest laste puhul laste heaolu spetsialisti ja täisealiste puhul sotsiaalhoolekandespetsialisti. KOV lehel on ka iseteeninduse taotlemise link.",
+      "amount": null,
+      "deadline": null,
+      "decisionTime": null,
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/tugiisikuteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "harku_vald_contact_kaja_saat",
+        "harku_vald_contact_ivika_kelder",
+        "harku_vald_contact_heli_tuulik",
+        "harku_vald_contact_maive_riismandel",
+        "harku_vald_contact_meeli_vaarpuu",
+        "harku_vald_contact_epp_sona"
+      ],
+      "item_type": "service",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "tugiisikuteenus_page"
+      ],
+      "source_keys": [
+        "tugiisikuteenus_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_service_tugiisikuteenus",
+      "document_id": "harku_vald_service_tugiisikuteenus",
+      "canonical_item_id": "harku_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/tugiisikuteenus",
+      "content_hash": "5872f2331599c37d22f36f8ee933e8dea6019afb3153d7a25ec6344db6a5039d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_service_isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus on mõeldud täisealisele puudega inimesele, kes vajab igapäevaelus füüsilist abi. Abistaja aitab näiteks liikumisel, söömisel, toidu valmistamisel, riietumisel, hügieenitoimingutes ja majapidamistöödes.",
+      "targetGroup": "Täisealised puudega inimesed, kes vajavad igapäevaelus füüsilist abi.",
+      "conditions": "Teenuse hinda ja tasumise korra kehtestab vallavalitsus. Teenust ei tohi vahetult osutada teenuse saaja lähisugulane, samas eluruumis püsivalt elav isik ega inimene, kelle karistus võib ohtu seada teenuse saaja elu, tervise või vara.",
+      "application": "Esita digiallkirjaga taotlus e-postiga või pöördu paberkandjal Harku Vallavalitsusse. Taotlemisel kasutatakse Pere tulust mittesõltuva toetuse taotlusvormi. Pärast abivajaduse hindamist teavitatakse otsusest kirjalikult ja positiivse otsuse korral sõlmitakse haldusleping.",
+      "amount": null,
+      "deadline": null,
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/teenused-erivajadusega-inimesele",
+      "relatedForms": [
+        "harku_vald_form_pere_tulust_mittesoltuv_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "harku_vald_contact_meeli_vaarpuu"
+      ],
+      "item_type": "service",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "erivajadusega_inimesele_page"
+      ],
+      "source_keys": [
+        "erivajadusega_inimesele_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_service_isikliku_abistaja_teenus",
+      "document_id": "harku_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "harku_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/teenused-erivajadusega-inimesele",
+      "content_hash": "22b59986a7aa8f6f19dfb52fea6e42fd636d22f989da1e51dcf32cb8a0baa500",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_service_taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldus on mõeldud täisealisele inimesele, kes vajab vaimse või füüsilise puude tõttu igapäevaelus kõrvalabi ja juhendamist. Hooldus on pikaajaline ja toetav, et inimene saaks võimalikult kaua elada oma kodus.",
+      "targetGroup": "Täisealised inimesed, kes vajavad puude tõttu igapäevaelus kõrvalabi ja juhendamist.",
+      "conditions": "Hooldust teostab vallavalitsuse sotsiaal- ja tervishoiuosakonna otsusega määratud isik. Hooldaja ja hooldatava rahvastikuregistrijärgne elukoht peab olema Harku vald. Hooldus määratakse tähtajaliselt kuni puude raskusastme lõppemiseni või maksimaalselt viieks aastaks.",
+      "application": "Hoolduse seadmiseks ja hooldaja määramiseks tuleb esitada digiallkirjaga taotlus e-postiga või paberkandjal Harku Vallavalitsuses. Enne otsust hindab sotsiaalhoolekandespetsialist abivajava isiku hooldusvajadust ning hooldajaks sooviva isiku sobivust.",
+      "amount": null,
+      "deadline": null,
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/teenused-erivajadusega-inimesele",
+      "relatedForms": [
+        "harku_vald_form_taotlus_hoolduse_jatkamiseks"
+      ],
+      "relatedContacts": [
+        "harku_vald_contact_meeli_vaarpuu"
+      ],
+      "item_type": "service",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "erivajadusega_inimesele_page"
+      ],
+      "source_keys": [
+        "erivajadusega_inimesele_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_service_taisealise_isiku_hooldus",
+      "document_id": "harku_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "harku_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/teenused-erivajadusega-inimesele",
+      "content_hash": "e889c57deff8b5402944d103d26712e61e50d46f89db08e7a95de5243ce8eaf7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_service_lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenus on mõeldud 1,5 kuni 3-aastase lapse ja kuni 18-aastase raske või sügava puudega lapse hooldusõigust omavale inimesele, et toetada tema toimetulekut ja töötamist. Teenuse eest tasutakse arve ulatuses, kuid mitte rohkem kui 1200 € kalendrikuus.",
+      "targetGroup": "1,5–3-aastase lapse hooldusõigust omavad inimesed ning kuni 18-aastase raske või sügava puudega lapse hooldusõigust omavad inimesed.",
+      "conditions": "Lapsevanem leiab sobiva teenusepakkuja ning lepib kokku teenuse tingimused, perioodi ja hinna. Teenuse osutamise aluseks on juhtumiplaan ja selle põhjal koostatud individuaalne tegevuskava.",
+      "application": "Esita digiallkirjastatud taotlus e-postiga või paberkandjal Harku Vallavalitsuses. Lehel on nimetatud blankett „Raske ja sügava puudega lapse lapsehoiuteenuse ja muu toetava sotsiaalteenuse taotlus“.",
+      "amount": "Kuni 1200 € kalendrikuus arve ulatuses.",
+      "deadline": null,
+      "decisionTime": "10 päeva",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/erivajadusega-laps",
+      "relatedForms": [
+        "harku_vald_form_lapsehoiuteenuse_ja_muu_toetava_teenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "harku_vald_contact_kaja_saat",
+        "harku_vald_contact_ivika_kelder",
+        "harku_vald_contact_heli_tuulik",
+        "harku_vald_contact_maive_riismandel"
+      ],
+      "item_type": "service",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "erivajadusega_laps_page"
+      ],
+      "source_keys": [
+        "erivajadusega_laps_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_service_lapsehoiuteenus",
+      "document_id": "harku_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "harku_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/erivajadusega-laps",
+      "content_hash": "f29a75c36aa787534e21b5f0e482b1123a5d5bd06f58e14f91dd9a21a3e8c72a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_service_asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus on kohaliku omavalitsuse korraldatav sotsiaalteenus olukorras, kus vanemad ei suuda lapsele tagada turvalist perekeskkonda ja vanemlikku hoolt. Teenuse eesmärk on tagada lapse heaolu ja õigused ning pakkuda talle peresarnaseid elutingimusi hooldusperes, perekodus või asenduskodus.",
+      "targetGroup": "Lapsed, kelle vanemad ei suuda tagada neile turvalist perekeskkonda ja vajalikku hoolt.",
+      "conditions": "Lapse teenusele suunamisel eelistatakse hooldusperet ning erandina perekodu või asenduskodu. Lapse isiklike kulude katteks tehakse kulutusi igakuiselt keskmiselt 240 € ulatuses ja vähemalt 2880 € aastas; muud kulud lepitakse kokku kohaliku omavalitsuse ja teenuseosutaja vahel.",
+      "application": "KOV leht ei kirjelda asendushooldusteenusele eraldi taotlusvormi. Lisainfo saamiseks pöördu oma piirkonna laste heaolu spetsialisti poole.",
+      "amount": "Lapse isiklike kulude katmiseks keskmiselt 240 € kuus ja vähemalt 2880 € aastas.",
+      "deadline": null,
+      "decisionTime": null,
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/pere-ja-lapsed/vanemlus-ja-paarisuhe",
+      "relatedForms": [],
+      "relatedContacts": [
+        "harku_vald_contact_kaja_saat",
+        "harku_vald_contact_ivika_kelder",
+        "harku_vald_contact_heli_tuulik",
+        "harku_vald_contact_maive_riismandel"
+      ],
+      "item_type": "service",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "vanemlus_ja_paarisuhe_page"
+      ],
+      "source_keys": [
+        "vanemlus_ja_paarisuhe_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_service_asendushooldusteenus",
+      "document_id": "harku_vald_service_asendushooldusteenus",
+      "canonical_item_id": "harku_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/pere-ja-lapsed/vanemlus-ja-paarisuhe",
+      "content_hash": "d025299e9c3e77f105a739afd5e430881ae5b32789a93106aa6123bbb2f9bfd2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_service_jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus on mõeldud asendushoolduselt või eestkostelt lahkuva noore iseseisva toimetuleku ja õpingute jätkamise toetamiseks. Teenust osutatakse juhtumiplaani alusel ning selle raames tagab kohalik omavalitsus vajaduspõhised tugiteenused, toetused ja vajaduse korral eluaseme.",
+      "targetGroup": "Asendushoolduselt või eestkostelt lahkuvad noored, kes vajavad tuge iseseisvaks toimetulekuks.",
+      "conditions": "Teenust osutatakse lähtuvalt juhtumiplaanist.",
+      "application": "KOV leht ei kirjelda järelhooldusteenusele eraldi taotlusvormi. Lisainfo saamiseks pöördu oma piirkonna laste heaolu spetsialisti poole.",
+      "amount": null,
+      "deadline": null,
+      "decisionTime": null,
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/pere-ja-lapsed/vanemlus-ja-paarisuhe",
+      "relatedForms": [],
+      "relatedContacts": [
+        "harku_vald_contact_kaja_saat",
+        "harku_vald_contact_ivika_kelder",
+        "harku_vald_contact_heli_tuulik",
+        "harku_vald_contact_maive_riismandel"
+      ],
+      "item_type": "service",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "vanemlus_ja_paarisuhe_page"
+      ],
+      "source_keys": [
+        "vanemlus_ja_paarisuhe_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_service_jarelhooldusteenus",
+      "document_id": "harku_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "harku_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/pere-ja-lapsed/vanemlus-ja-paarisuhe",
+      "content_hash": "e0488f2f45c3515749c23d56e240a605f2f80b96f59ce4b6a921edb4cacf2026",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_benefit_ujumisteenuse_toetus",
+      "itemType": "benefit",
+      "title": "Ujumisteenuse toetus",
+      "status": "active",
+      "summary": "Ujumisteenuse toetus võimaldab tasuta ujula kasutust Tabasalu Spordikompleksis Harku valla elanikele, kes kuuluvad toetuse sihtrühma. Vähemalt nelja lapsega perede liikmed saavad käia ujulas üks kord kuus, puudega laps koos saatjaga ja mittetöötav puudega täiskasvanu kuni neli korda kuus ning mittetöötav vanaduspensionär kuni kuus korda kuus tööpäeviti kell 7.00–14.00.",
+      "targetGroup": "Suurperede liikmed (vähemalt neli last), puudega lapsed ja töövõimetud täiskasvanud ning mittetöötavad vanaduspensionärid",
+      "conditions": "Taotleja peab olema Harku valla elanik; külastuste arv sõltub sihtrühmast.",
+      "application": "Esita taotlus valla iseteeninduses või digiallkirjastatult vallavalitsusele, täites Pere tulust mittesõltuva toetuse taotlusvormi.",
+      "amount": "Tasuta ujula kasutus vastavalt kehtestatud külastuste arvule.",
+      "deadline": null,
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/eakate-toimetulek",
+      "relatedForms": [
+        "harku_vald_form_pere_tulust_mittesoltuv_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "harku_vald_contact_kadi_netse"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "eakate_toimetulek_page"
+      ],
+      "source_keys": [
+        "eakate_toimetulek_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_benefit_ujumisteenuse_toetus",
+      "document_id": "harku_vald_benefit_ujumisteenuse_toetus",
+      "canonical_item_id": "harku_vald_benefit_ujumisteenuse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/eakate-toimetulek",
+      "content_hash": "ff72faf8a25a0da2226a5ca95f4479773111000dc4b802bf52631a05100217a4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_benefit_koolitoetus_eestkostel_või_peres_hooldamisel",
+      "itemType": "benefit",
+      "title": "Koolitoetus eestkostel või peres hooldamisel olevale lapsele",
+      "status": "active",
+      "summary": "Koolitoetus makstakse Harku valla eestkostjatele ja hooldusperedele, et toetada lapse koolis käimist. Toetust makstakse 100 € kuus õppeaasta jooksul (1. septembrist 30. juunini) kuni lapse 20‑aastaseks saamiseni. Taotluse esitavad eestkostja või hoolduspere iseteeninduses või digiallkirjastatult, kasutades Pere tulust mittesõltuva toetuse taotlusvormi. Otsus tehakse 10 tööpäeva jooksul ja toetus kantakse pere arvele 30 päeva jooksul.",
+      "targetGroup": "Eestkostel või peres hooldamisel olevad lapsed, kes õpivad põhikoolis, gümnaasiumis või kutseõppeasutuses",
+      "conditions": "Toetust makstakse kuni lapse 20‑aastaseks saamiseni; kui laps saab 20 õppeaasta keskel, makstakse toetust õppeaasta lõpuni.",
+      "application": "Taotluse saab esitada iseteeninduses või digiallkirjastatult e‑postiga, täites Pere tulust mittesõltuva toetuse taotlusvormi.",
+      "amount": "100 € kuus 1. septembrist kuni 30. juunini",
+      "deadline": null,
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/pere-ja-lapsed/toetused-peredele",
+      "relatedForms": [
+        "harku_vald_form_pere_tulust_mittesoltuv_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "harku_vald_contact_kadi_netse"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "toetused_peredele_page"
+      ],
+      "source_keys": [
+        "toetused_peredele_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_benefit_koolitoetus_eestkostel_või_peres_hooldamisel",
+      "document_id": "harku_vald_benefit_koolitoetus_eestkostel_või_peres_hooldamisel",
+      "canonical_item_id": "harku_vald_benefit_koolitoetus_eestkostel_või_peres_hooldamisel",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/pere-ja-lapsed/toetused-peredele",
+      "content_hash": "e75932aae9354890b5404b6f386d33c8d5fd3a77d4de256f51ba99c21bacc9a3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_benefit_joulutoetus",
+      "itemType": "benefit",
+      "title": "Jõulutoetus",
+      "status": "active",
+      "summary": "Jõulutoetus on ühekordne toetus Harku valla elanikele, kes kuuluvad vallavalitsuse igal aastal kehtestatava sihtrühma hulka. KOV lehel on kontrollimise ajal avaldatud 2025. aasta tingimused ja vorm; 2026. aasta jõulutoetuse määrasid ei olnud veel avaldatud.",
+      "targetGroup": "KOV lehel avaldatud 2025. aasta järgi 70-aastased ja vanemad pensioni saavad isikud, 3- ja enamalapselised pered, üksikvanemad, eestkoste- ja kasupered ning puudega lapsega pered.",
+      "conditions": "Toetuse suurus ja taotlemise aeg määratakse vallavalitsuse korraldusega igal kalendriaastal. 2025. aasta info järgi sai taotlusi esitada kuni 15. detsembrini 2025.",
+      "application": "Esita taotlus iseteeninduses või paberkandjal Harku Vallavalitsuses. Kontrollimise ajal oli lehel avaldatud Jõulutoetuse taotluse vorm 2025.",
+      "amount": "2025. aastal: 35 € pensionärile ja üksikvanemaga perele, 40 € eestkoste- ja kasuperele, 45 € puudega lapsega perele ning 50 € 3- ja enamalapselisele perele. 2026. aasta määrad ei olnud veel avaldatud.",
+      "deadline": null,
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/pere-ja-lapsed/toetused-peredele",
+      "relatedForms": [
+        "harku_vald_form_joulutoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "harku_vald_contact_kadi_netse"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "toetused_peredele_page"
+      ],
+      "source_keys": [
+        "toetused_peredele_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_benefit_joulutoetus",
+      "document_id": "harku_vald_benefit_joulutoetus",
+      "canonical_item_id": "harku_vald_benefit_joulutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/pere-ja-lapsed/toetused-peredele",
+      "content_hash": "a938d3ed65a7f7919e403e9922741bbf1769ac1a6497f68136b35de167114875",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_benefit_toidutoetus",
+      "itemType": "benefit",
+      "title": "Toidutoetus vähekindlustatud peredele",
+      "status": "active",
+      "summary": "Toidutoetus aitab vähekindlustatud peresid hüvitades lasteaia ja kooli toitlustuskulud või toetades sissetulekuta inimesi. Lasteaedade ja lapsehoiukohtade toidukulu toetatakse 43 € ulatuses lapse kohta, koolilaste toidukulu 25 € ulatuses ja sissetulekuta inimestele makstakse 60 € suurust toiduabi. Taotlemiseks tuleb esitada digiallkirjastatud avaldus ning lisada pereliikmete viimase kolme kuu pangaväljavõtted ja kuludokumendid. Otsus tehakse 10 tööpäeva jooksul ja toetus makstakse välja 30 päevaga.",
+      "targetGroup": "Vähekindlustatud pered ja isikud, kelle netosissetulek pereliikme kohta on alla Harku valla toimetulekupiiri",
+      "conditions": "Taotleja peab esitama pangaväljavõtted ja kuludokumendid; toetus on vajaduspõhine.",
+      "application": "Esita digiallkirjastatud avaldus e‑postiga või iseteeninduses, kasutades Pere tulust sõltuva toetuse taotlusvormi; lisa viimase kolme kuu pangaväljavõtted.",
+      "amount": "43 € lasteaiakoha või lapsehoiukoha toiduraha, 25 € koolilapse toiduraha, 60 € sissetulekuta inimese toidutoetus.",
+      "deadline": null,
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/toetused-vahekindlustatud-isikutele-ja-peredele",
+      "relatedForms": [
+        "harku_vald_form_pere_tulust_soltuv_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "harku_vald_contact_kadi_netse"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "vahekindlustatud_page"
+      ],
+      "source_keys": [
+        "vahekindlustatud_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_benefit_toidutoetus",
+      "document_id": "harku_vald_benefit_toidutoetus",
+      "canonical_item_id": "harku_vald_benefit_toidutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/toetused-vahekindlustatud-isikutele-ja-peredele",
+      "content_hash": "97fd60a8c6fefd9742b3297f19a4b85907b23d25f224f359ce0d34ad9a31264d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_benefit_koolitoetus_vahemalt_üks_laps",
+      "itemType": "benefit",
+      "title": "Koolitoetus peredele, kus õpib vähemalt üks laps",
+      "status": "active",
+      "summary": "Koolitoetus peredele, kus õpib vähemalt üks laps, on vähekindlustatud peredele mõeldud toetus koolitarvete ja kooliriiete soetamiseks. Toetuse suurus on 100 € pere kohta. Taotlusi võetakse vastu kord aastas 15. augustist 30. novembrini. Taotlemine toimub digitaalselt või paberkandjal; taotlusele lisatakse kõigi pereliikmete viimase kolme kuu pangaväljavõtted. Otsus tehakse 10 tööpäeva jooksul ja toetus makstakse välja 30 päevaga.",
+      "targetGroup": "Vähekindlustatud pered, kus vähemalt üks laps õpib üldhariduskoolis või kutseõppeasutuses",
+      "conditions": "Pereliikmete netosissetulek peab jääma alla valla toimetulekupiiri; taotlus esitatakse kindlaksmääratud ajavahemikus.",
+      "application": "Esita digiallkirjastatud taotlus e‑postiga või iseteeninduses, lisades pereliikmete pangaväljavõtted; kasuta Pere tulust sõltuva toetuse taotlusvormi.",
+      "amount": "100 € pere kohta",
+      "deadline": "15. august – 30. november",
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/toetused-vahekindlustatud-isikutele-ja-peredele",
+      "relatedForms": [
+        "harku_vald_form_pere_tulust_soltuv_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "harku_vald_contact_kadi_netse"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "vahekindlustatud_page"
+      ],
+      "source_keys": [
+        "vahekindlustatud_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_benefit_koolitoetus_vahemalt_üks_laps",
+      "document_id": "harku_vald_benefit_koolitoetus_vahemalt_üks_laps",
+      "canonical_item_id": "harku_vald_benefit_koolitoetus_vahemalt_üks_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/toetused-vahekindlustatud-isikutele-ja-peredele",
+      "content_hash": "c2542590be4cb6e7b35126f79681b6c9ad28d057bb6a1748b819f522315aa970",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_benefit_koolitoetus_vahemalt_kaks_last",
+      "itemType": "benefit",
+      "title": "Koolitoetus peredele, kus õpib vähemalt kaks last",
+      "status": "active",
+      "summary": "See koolitoetus aitab vähekindlustatud peresid, kus õpib vähemalt kaks last, katta koolitarvete ja riiete kulusid. Toetuse suurus on 160 € pere kohta. Taotlusi võetakse vastu kord aastas 15. augustist 30. novembrini, taotlusele lisatakse pangaväljavõtted ning see esitatakse Pere tulust sõltuva toetuse taotlusvormiga. Otsus tehakse 10 tööpäeva jooksul.",
+      "targetGroup": "Vähekindlustatud pered, kus vähemalt kaks last õpivad üldhariduskoolis või kutseõppeasutuses",
+      "conditions": "Pereliikmete netosissetulek peab jääma alla valla toimetulekupiiri; taotlus esitatakse etteantud ajavahemikus.",
+      "application": "Esita digiallkirjastatud taotlus e‑postiga või iseteeninduses, lisades pangaväljavõtted; kasuta Pere tulust sõltuva toetuse taotlusvormi.",
+      "amount": "160 € pere kohta",
+      "deadline": "15. august – 30. november",
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/toetused-vahekindlustatud-isikutele-ja-peredele",
+      "relatedForms": [
+        "harku_vald_form_pere_tulust_soltuv_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "harku_vald_contact_kadi_netse"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "vahekindlustatud_page"
+      ],
+      "source_keys": [
+        "vahekindlustatud_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_benefit_koolitoetus_vahemalt_kaks_last",
+      "document_id": "harku_vald_benefit_koolitoetus_vahemalt_kaks_last",
+      "canonical_item_id": "harku_vald_benefit_koolitoetus_vahemalt_kaks_last",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/toetused-vahekindlustatud-isikutele-ja-peredele",
+      "content_hash": "f6d6a90af12ef3b162610d1589d29e826956f5f55b42de0e0aecc1f37cc6e428",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_benefit_koolitoetus_lopetamisel",
+      "itemType": "benefit",
+      "title": "Koolitoetus põhikooli või gümnaasiumi lõpetamisel",
+      "status": "active",
+      "summary": "Koolitoetus põhikooli või gümnaasiumi lõpetamisel aitab vähekindlustatud peresid katta lõpetamisega seotud kulusid. Toetuse suurus on 150 € pere kohta. Taotlemine toimub digiallkirjastatud taotlusega, lisades perekonna kolme kuu pangaväljavõtted; otsus tehakse 10 tööpäeva jooksul ja toetus makstakse välja 30 päevaga.",
+      "targetGroup": "Vähekindlustatud pered, kelle laps lõpetab põhikooli või gümnaasiumi",
+      "conditions": "Pereliikmete netosissetulek peab jääma alla toimetulekupiiri; toetus on kord aastas makstav.",
+      "application": "Esita digiallkirjastatud taotlus e‑postiga või iseteeninduses, lisades pangaväljavõtted; kasuta Pere tulust sõltuva toetuse taotlusvormi.",
+      "amount": "150 € pere kohta",
+      "deadline": null,
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/toetused-vahekindlustatud-isikutele-ja-peredele",
+      "relatedForms": [
+        "harku_vald_form_pere_tulust_soltuv_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "harku_vald_contact_kadi_netse"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "vahekindlustatud_page"
+      ],
+      "source_keys": [
+        "vahekindlustatud_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_benefit_koolitoetus_lopetamisel",
+      "document_id": "harku_vald_benefit_koolitoetus_lopetamisel",
+      "canonical_item_id": "harku_vald_benefit_koolitoetus_lopetamisel",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/toetused-vahekindlustatud-isikutele-ja-peredele",
+      "content_hash": "695f4988e09f7b677352d99c68a5fa834f5a9d7bacbe3b11e40e731ffa469d13",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_benefit_kultuuri_ja_spordiuritused",
+      "itemType": "benefit",
+      "title": "Koolitoetus kultuuri- ja spordiüritustel osalemiseks",
+      "status": "active",
+      "summary": "See toetus aitab vähekindlustatud perede lapsi osaleda kultuuri- ja spordiüritustel. Toetuse summa sõltub pere sissetulekust ja ürituse maksumusest ning otsus tehakse valla eelarve raames. Taotluse esitamisel tuleb lisada pereliikmete viimase kolme kuu pangaväljavõtted ja ürituse kuludokumendid. Otsus tehakse 10 tööpäeva jooksul ja toetus makstakse välja 30 päevaga.",
+      "targetGroup": "Vähekindlustatud pered, kelle lapsed soovivad osaleda kultuuri- ja spordiüritustel",
+      "conditions": "Pereliikmete netosissetulek peab jääma alla valla toimetulekupiiri; toetus sõltub eelarve võimalustest ja ürituse maksumusest.",
+      "application": "Esita digiallkirjastatud taotlus koos pereliikmete pangaväljavõtete ja ürituse kuludokumentidega; kasuta Pere tulust sõltuva toetuse taotlusvormi.",
+      "amount": "Sõltub pere sissetulekust ja ürituse kuludest",
+      "deadline": null,
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/toetused-vahekindlustatud-isikutele-ja-peredele",
+      "relatedForms": [
+        "harku_vald_form_pere_tulust_soltuv_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "harku_vald_contact_kadi_netse"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "vahekindlustatud_page"
+      ],
+      "source_keys": [
+        "vahekindlustatud_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_benefit_kultuuri_ja_spordiuritused",
+      "document_id": "harku_vald_benefit_kultuuri_ja_spordiuritused",
+      "canonical_item_id": "harku_vald_benefit_kultuuri_ja_spordiuritused",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/toetused-vahekindlustatud-isikutele-ja-peredele",
+      "content_hash": "1d63dd04d9c12dcda23b533191d412cc4f409d9f3cebc402334040a2a419d5d3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_benefit_paljulapselise_pere_toetus",
+      "itemType": "benefit",
+      "title": "Paljulapselise pere toetus",
+      "status": "active",
+      "summary": "Paljulapselise pere toetus on mõeldud peredele, kus kasvab vähemalt kolm last. Toetuse suurus on 90 € lapse kohta aastas ja see makstakse välja kord aastas. Taotlusi võetakse vastu 1. maist 30. juunini. Taotlemine toimub digiallkirjastatud avaldusega, millele lisatakse kolme kuu pangaväljavõtted; otsus tehakse 10 tööpäeva jooksul.",
+      "targetGroup": "Pered, kus kasvab vähemalt kolm last",
+      "conditions": "Netosissetulek peab jääma alla valla toimetulekupiiri; taotlus esitatakse etteantud perioodis.",
+      "application": "Esita digiallkirjastatud taotlus iseteeninduses või e‑postiga ajavahemikus 1. mai–30. juuni; lisa pereliikmete pangaväljavõtted.",
+      "amount": "90 € lapse kohta aastas",
+      "deadline": "1. mai – 30. juuni",
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/toetused-vahekindlustatud-isikutele-ja-peredele",
+      "relatedForms": [
+        "harku_vald_form_pere_tulust_soltuv_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "harku_vald_contact_kadi_netse"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "vahekindlustatud_page"
+      ],
+      "source_keys": [
+        "vahekindlustatud_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_benefit_paljulapselise_pere_toetus",
+      "document_id": "harku_vald_benefit_paljulapselise_pere_toetus",
+      "canonical_item_id": "harku_vald_benefit_paljulapselise_pere_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/toetused-vahekindlustatud-isikutele-ja-peredele",
+      "content_hash": "111eae958b46201f4361e2690de4537b48382c475d814b876bb7590d762fa152",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_benefit_laagritoetus",
+      "itemType": "benefit",
+      "title": "Laagritoetus",
+      "status": "active",
+      "summary": "Laagritoetus aitab vähekindlustatud perede lastel osaleda laagrites, kompenseerides kuni 50 % laagritasu maksumusest (kuid mitte rohkem kui 150 € lapse kohta). Toetust saab taotleda kaks korda aastas. Taotluse esitamiseks tuleb esitada digiallkirjastatud avaldus ja laagri maksedokumendid; otsus tehakse 10 tööpäeva jooksul ja toetus makstakse välja 30 päevaga.",
+      "targetGroup": "Vähekindlustatud pered, kelle lapsed soovivad osaleda laagrites",
+      "conditions": "Pereliikmete sissetulek peab jääma alla toimetulekupiiri; toetus katab kuni poole laagritasust ja seda võib saada kaks korda aastas.",
+      "application": "Esita digiallkirjastatud taotlus e‑postiga või iseteeninduses ning lisa maksedokumendid; kasuta Pere tulust sõltuva toetuse taotlusvormi.",
+      "amount": "Kuni 50 % laagritasust, maksimaalselt 150 € lapse kohta",
+      "deadline": null,
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/toetused-vahekindlustatud-isikutele-ja-peredele",
+      "relatedForms": [
+        "harku_vald_form_pere_tulust_soltuv_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "harku_vald_contact_kadi_netse"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "vahekindlustatud_page"
+      ],
+      "source_keys": [
+        "vahekindlustatud_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_benefit_laagritoetus",
+      "document_id": "harku_vald_benefit_laagritoetus",
+      "canonical_item_id": "harku_vald_benefit_laagritoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/toetused-vahekindlustatud-isikutele-ja-peredele",
+      "content_hash": "f0759a1d7e3536589a35d62200df41c21f49fe8bfdab8b09488d9ae5d9e97dfc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_benefit_nagemise_parandamise_toetus",
+      "itemType": "benefit",
+      "title": "Nägemise parandamise toetus (alla 16‑aastastele)",
+      "status": "active",
+      "summary": "Nägemise parandamise toetus aitab alla 16‑aastastel Harku valla lastel osta prillid või kontaktläätsed. Toetus katab 50 % nägemisabivahendi maksumusest, kuid mitte rohkem kui 100 € aastas, ning seda võib taotleda kord aastas. Taotlusele tuleb lisada prillide või läätsede arve ja pereliikmete viimase kolme kuu pangaväljavõtted. Otsus tehakse 10 tööpäeva jooksul ja toetus makstakse välja 30 päeva jooksul.",
+      "targetGroup": "Alla 16‑aastased Harku valla lapsed, kes vajavad prille või kontaktläätsi",
+      "conditions": "Pereliikmete sissetulek peab olema alla toimetulekupiiri; toetus määratakse kord aastas ja selle suurus on 50 % kuludest kuni 100 €.",
+      "application": "Esita digiallkirjastatud taotlus koos prillide või läätsede ostuarve ja pereliikmete pangaväljavõtetega; kasuta Pere tulust sõltuva toetuse taotlusvormi.",
+      "amount": "50 % abivahendi maksumusest, maksimaalselt 100 € aastas",
+      "deadline": null,
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/toetused-vahekindlustatud-isikutele-ja-peredele",
+      "relatedForms": [
+        "harku_vald_form_pere_tulust_soltuv_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "harku_vald_contact_kadi_netse"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "vahekindlustatud_page"
+      ],
+      "source_keys": [
+        "vahekindlustatud_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_benefit_nagemise_parandamise_toetus",
+      "document_id": "harku_vald_benefit_nagemise_parandamise_toetus",
+      "canonical_item_id": "harku_vald_benefit_nagemise_parandamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/toetused-vahekindlustatud-isikutele-ja-peredele",
+      "content_hash": "b102a5c39e67ac934d4d87b587e9f5b8d3357cfcfe9a826eebcb323576e0e03c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_benefit_rimi_toidukaart",
+      "itemType": "benefit",
+      "title": "Rimi toidukaart",
+      "status": "active",
+      "summary": "Rimi toidukaart on riiklikult ostetud toiduabi, mida jagatakse Harku vallas toidukaardina. Toidukaardile kantakse kvartalis 36 € inimese kohta ning ühe perekonna kohta väljastatakse üks kaart, millele laetakse terve leibkonna toetussumma.",
+      "targetGroup": "Abivajajad, kes on toiduabi jagamisele eelneval kvartalil taotlenud toimetulekutoetust või perekonna sissetulekust sõltuvat või konkreetse teenuse kulu kompenseerimiseks makstavat kohaliku omavalitsuse toetust.",
+      "conditions": "Toimetulekutoetuse saajate puhul arvestatakse abisumma vastavalt leibkonna liikmete arvule; kohaliku omavalitsuse toetuste puhul ainult toetuse saajale.",
+      "application": "KOV leht ei nimeta Rimi toidukaardi jaoks eraldi taotlusvormi. Toidukaardi saajad selguvad eelneval kvartalil esitatud toetustaotluste põhjal. Kaart saab kätte valla sotsiaal- ja tervishoiuosakonnast.",
+      "amount": "36 € inimese kohta kvartalis; kaardiga saab osta toidu- ja esmatarbekaupu kõikidest Rimi kauplustest üle Eesti.",
+      "deadline": null,
+      "decisionTime": null,
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/toiduabi",
+      "relatedForms": [],
+      "relatedContacts": [
+        "harku_vald_contact_kadi_netse"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "toiduabi_page"
+      ],
+      "source_keys": [
+        "toiduabi_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_benefit_rimi_toidukaart",
+      "document_id": "harku_vald_benefit_rimi_toidukaart",
+      "canonical_item_id": "harku_vald_benefit_rimi_toidukaart",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/toiduabi",
+      "content_hash": "a88f367b6986350b7e1d1d1be56b9251f1218807fa5f923f2b678b0f272d9967",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_benefit_toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on riiklik sissetulekutoetus, mida Harku vald maksab peredele ja isikutele, kelle kuusissetulek ei kata minimaalseks toimetulekuks vajalikku kulutust. Toetust arvutatakse riikliku toimetulekupiiri alusel: 220 € esimese pereliikme kohta, 176 € iga täisealuse kohta ja 264 € lapse kohta. Taotlus tuleb esitada iga kuu viimasel tööpäeval koos avalduse ja vajalike dokumentidega (pangaväljavõtted, sissetuleku ja kulude tõendid). Vallavalitsus otsustab taotluse 5 tööpäeva jooksul ning toetus makstakse välja 3 tööpäeva jooksul.",
+      "targetGroup": "Harku valla pered ja isikud, kelle sissetulek jääb alla riikliku toimetulekupiiri",
+      "conditions": "Pereliikmete sissetulek peab olema väiksem kui toimetulekupiir; toetuse suurus sõltub pereliikmete arvust ja sissetulekust.",
+      "application": "Esita digiallkirjastatud taotlus hiljemalt kuu viimaseks tööpäevaks e-postiga või paberkandjal Harku Vallavalitsuses. Taotlusele lisa eelmise kuu netosissetuleku ja makstud elatise dokumendid ning vajaduse korral eluasemelaenu kuludokumendid.",
+      "amount": "220 € esimese pereliikme kohta, 176 € iga täisealuse kohta ja 264 € iga alaealise kohta; pere netosissetulek lahutatakse toetuse arvutamisel.",
+      "deadline": "Iga kuu viimane tööpäev",
+      "decisionTime": "5 tööpäeva (väljamakse 3 tööpäeva jooksul)",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/abi-majandusliku-raskuse-korral",
+      "relatedForms": [
+        "harku_vald_form_toimetulekutoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "harku_vald_contact_epp_sona",
+        "harku_vald_contact_meeli_vaarpuu"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "abi_majandusliku_raskuse_korral_page"
+      ],
+      "source_keys": [
+        "abi_majandusliku_raskuse_korral_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_benefit_toimetulekutoetus",
+      "document_id": "harku_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "harku_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/abi-majandusliku-raskuse-korral",
+      "content_hash": "20a28aba6c42b1ec04a9668b2331c231587aa61c38130541e4b7a5cd1085ad67",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_benefit_uhekordne_toetus",
+      "itemType": "benefit",
+      "title": "Ühekordne toetus",
+      "status": "active",
+      "summary": "Ühekordne toetus on mõeldud Harku valla elanikele, kes on sattunud ootamatusse majanduslikku kriisi (näiteks raske haigus, õnnetus või tulekahju) või kinnipidamiskohast vabanenud isikutele. Toetuse suurus määratakse vallavalitsuse otsusega; kinnipidamiskohast vabanenule makstakse 30 €. Taotlus esitatakse vabas vormis iseteeninduses või paberkandjal. Otsus tehakse 10 tööpäeva jooksul ja toetus makstakse välja 30 päeva jooksul.",
+      "targetGroup": "Elanikud, kes vajavad ootamatu kriisi tõttu erakorralist toetust, ning kinnipidamiskohast vabanenud isikud",
+      "conditions": "Toetus määratakse vallavalitsuse otsusega vastavalt olukorrale; vabanenule makstakse 30 €.",
+      "application": "Esita digiallkirjastatud taotlus e-postiga või paberkandjal Harku Vallavalitsuses. Lehel on taotlemiseks nimetatud Pere tulust mittesõltuva toetuse taotlus.",
+      "amount": "Suurus määratakse vallavalitsuse otsusega; vangist vabanenule makstakse 30 €.",
+      "deadline": null,
+      "decisionTime": "10 tööpäeva (väljamakse 30 päeva jooksul)",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/abi-majandusliku-raskuse-korral",
+      "relatedForms": [
+        "harku_vald_form_pere_tulust_mittesoltuv_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "harku_vald_contact_epp_sona",
+        "harku_vald_contact_meeli_vaarpuu"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "abi_majandusliku_raskuse_korral_page"
+      ],
+      "source_keys": [
+        "abi_majandusliku_raskuse_korral_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_benefit_uhekordne_toetus",
+      "document_id": "harku_vald_benefit_uhekordne_toetus",
+      "canonical_item_id": "harku_vald_benefit_uhekordne_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/abi-majandusliku-raskuse-korral",
+      "content_hash": "52f4185f3ced5c9dc7f1010a2397a195fadab5f66a99b3bee6222eaf92eb55c4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_benefit_matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus makstakse matuse korraldajale, kui surnu oli rahvastikuregistris Harku valla elanik või kui surnul polnud Eestis registreeritud elukohta ja matuse korraldaja elab Harku vallas. Toetuse suurus on 400 € ja taotlus tuleb esitada kuue kuu jooksul surmapäevast. Taotluse saab esitada iseteeninduses või digiallkirjastatult, kasutades Pere tulust mittesõltuva toetuse taotlusvormi. Otsus tehakse 10 tööpäeva jooksul ja toetus makstakse välja 30 päeva jooksul.",
+      "targetGroup": "Matuse korraldaja, kui surnu oli Harku valla elanik või surnul polnud Eestis registreeritud elukohta",
+      "conditions": "Taotlus tuleb esitada kuue kuu jooksul surmapäevast; toetuse saaja peab olema matuse korraldaja.",
+      "application": "Esita taotlus valla iseteeninduses või digiallkirjastatult; paberkandjal kasutatakse Pere tulust mittesõltuva toetuse taotlusvormi.",
+      "amount": "400 €",
+      "deadline": "6 kuu jooksul surmapäevast",
+      "decisionTime": "10 tööpäeva (väljamakse 30 kalendripäeva jooksul)",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/lahedase-surm/matusetoetus",
+      "relatedForms": [
+        "harku_vald_form_pere_tulust_mittesoltuv_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "harku_vald_contact_kadri_kelgo"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "matusetoetus_page"
+      ],
+      "source_keys": [
+        "matusetoetus_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_benefit_matusetoetus",
+      "document_id": "harku_vald_benefit_matusetoetus",
+      "canonical_item_id": "harku_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/lahedase-surm/matusetoetus",
+      "content_hash": "c1094ad1f0d486c0ae6ac22b5523d7bb927a133c1019f3841bb77769089f629f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_benefit_ravi_ja_rehabilitatsioonitoetus",
+      "itemType": "benefit",
+      "title": "Ravi- ja rehabilitatsioonitoetus",
+      "status": "active",
+      "summary": "Ravi- ja rehabilitatsioonitoetus aitab katta invavahendi omaosalust, retseptiravimite kulu ja viipekeele tõlketeenuse kulu. Invavahendi ostmisel või rentimisel hüvitatakse mittetöötavale puudega täiskasvanule kuni 30% omaosalusest. Retseptiravimeid hüvitatakse üle 16-aastasele puudega inimesele ning mittetöötavale töövõimetoetuse ja vanaduspensioni saajale kuni 30% maksumusest, kuid mitte üle 100 € kalendriaastas.",
+      "targetGroup": "Üle 16-aastased puudega inimesed ning mittetöötavad töövõimetoetuse ja vanaduspensioni saajad, kellel on ravi-, abivahendi- või viipekeele tõlketeenuse kulu.",
+      "conditions": "Taotlusele tuleb lisada kulusid tõendavad dokumendid.",
+      "application": "Esita taotlus iseteeninduses, digiallkirjastatult e-postiga või paberkandjal Harku Vallavalitsuses. Kasuta Pere tulust mittesõltuva toetuse taotlusvormi.",
+      "amount": "Invavahendi omaosalus kuni 30%; retseptiravimi kulu kuni 30% maksumusest, kuid mitte üle 100 € kalendriaastas; viipekeele tõlketeenuse kulu hüvitatakse kuludokumendi alusel.",
+      "deadline": null,
+      "decisionTime": "10 tööpäeva (väljamakse 30 kalendripäeva jooksul)",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/eakate-toimetulek",
+      "relatedForms": [
+        "harku_vald_form_pere_tulust_mittesoltuv_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "harku_vald_contact_kadi_netse"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "eakate_toimetulek_page"
+      ],
+      "source_keys": [
+        "eakate_toimetulek_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_benefit_ravi_ja_rehabilitatsioonitoetus",
+      "document_id": "harku_vald_benefit_ravi_ja_rehabilitatsioonitoetus",
+      "canonical_item_id": "harku_vald_benefit_ravi_ja_rehabilitatsioonitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/eakate-toimetulek",
+      "content_hash": "0a7fcd0ffe075e7ec99bcf709940c085506737b1aea8d3ed57bb06dc905b9db9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_benefit_kuttetoetus",
+      "itemType": "benefit",
+      "title": "Küttetoetus",
+      "status": "active",
+      "summary": "Küttetoetus on aastane toetus, mis aitab Harku valla puudega isikutel, vanaduspensionäridel ja töövõimetoetuse saajatel katta eluruumi küttekulusid. Toetuse suurus on kuni 300 € aastas, kui taotleja elab ahiküttega eluruumis, elab üksi või koos teise pensionäriga ning tema sissetulek on alla keskmise vanaduspensioni. Taotlus esitatakse iseteeninduses või digiallkirjastatult ja otsus tehakse 10 tööpäeva jooksul.",
+      "targetGroup": "Puudega isikud, vanaduspensionärid ja töövõimetoetuse saajad, kelle eluruumis on ahiküte",
+      "conditions": "Toetuse saamiseks peab inimene kasutama ahjuküttega eluruumi, elama üksi ning tema sissetulek peab jääma alla eelmise aasta teise kvartali keskmise vanaduspensioni. 2025. aasta II kvartali keskmine vanaduspension oli 826,80 €.",
+      "application": "Esita taotlus iseteeninduses, digiallkirjastatult e-postiga või paberkandjal Harku Vallavalitsuses. Taotlusele tuleb lisada kulude kandmist tõendav dokument.",
+      "amount": "Kuni 300 € aastas",
+      "deadline": null,
+      "decisionTime": "10 tööpäeva (väljamakse 30 kalendripäeva jooksul)",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/eakate-toimetulek",
+      "relatedForms": [
+        "harku_vald_form_pere_tulust_mittesoltuv_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "harku_vald_contact_kadi_netse"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "eakate_toimetulek_page"
+      ],
+      "source_keys": [
+        "eakate_toimetulek_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_benefit_kuttetoetus",
+      "document_id": "harku_vald_benefit_kuttetoetus",
+      "canonical_item_id": "harku_vald_benefit_kuttetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/eakate-toimetulek",
+      "content_hash": "e257b98afcec6f78376597a68ae1fd7d9d2e8e4520c0125dfd77cfd0bdd36daf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_benefit_tahtpaeva_toetus",
+      "itemType": "benefit",
+      "title": "Tähtpäeva toetus",
+      "status": "active",
+      "summary": "Tähtpäeva toetus on sümboolne toetus Harku valla elanikele juubelite ja pulma-aastapäevade puhul. Sünnipäevatoetuse suurus on 50 €; pulma-aastapäeva puhul kingitakse õnnitluskaart, valla meene ja lilled.",
+      "targetGroup": "Harku valla elanikud, kes saavad 70-, 75-, 80- või 85-aastaseks, alates 90. eluaastast igal sünnipäeval, ning paarid, kes tähistavad 50., 55., 60., 65., 70., 75. või 80. pulma-aastapäeva.",
+      "conditions": "Taotlust esitada ei ole vaja; vallavalitsus algatab toetuse automaatselt.",
+      "application": "Taotlust ei esitata; vallavalitsus korraldab toetuse andmise juubelite ja tähtpäevade puhul.",
+      "amount": "50 € sünnipäevatoetus; pulma-aastapäeva puhul õnnitluskaart, valla meene ja lilled.",
+      "deadline": null,
+      "decisionTime": null,
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/eakate-toimetulek",
+      "relatedForms": [],
+      "relatedContacts": [
+        "harku_vald_contact_kadi_netse"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "eakate_toimetulek_page"
+      ],
+      "source_keys": [
+        "eakate_toimetulek_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_benefit_tahtpaeva_toetus",
+      "document_id": "harku_vald_benefit_tahtpaeva_toetus",
+      "canonical_item_id": "harku_vald_benefit_tahtpaeva_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/eakate-toimetulek",
+      "content_hash": "5a506b8131689a6fa2e524c10c0b78a04c536e592b8c4602ad909d5c19329fe2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_benefit_puudega_isiku_transporditoetus",
+      "itemType": "benefit",
+      "title": "Puudega isiku transporditoetus",
+      "status": "active",
+      "summary": "Puudega isiku transporditoetust saab taotleda puudega inimese transportimiseks tööle, kooli- ja koolieelsesse lasteasutusse, rehabilitatsiooniasutusse, päevakeskusesse, puuetega laste laagrisse ja muudel erakorralistel juhtudel, kui ei ole võimalik kasutada sotsiaaltransporditeenust, isiklikku sõidukit ega ühistransporti.",
+      "targetGroup": "Puudega inimesed, kelle transportimiseks ei saa kasutada sotsiaaltransporditeenust, isiklikku sõidukit ega ühistransporti.",
+      "conditions": "Toetust antakse üldjuhul kuni lapse 19-aastaseks saamiseni ja põhjendatud erandjuhul ka vanemale kui 19-aastasele isikule. Enne toetuse määramist hinnatakse abivajadust.",
+      "application": "Esita taotlus iseteeninduses, digiallkirjastatult e-postiga või paberkandjal Harku Vallavalitsuses. Taotlemisel kasutatakse Pere tulust mittesõltuva toetuse taotlusvormi.",
+      "amount": null,
+      "deadline": null,
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/teenused-erivajadusega-inimesele",
+      "relatedForms": [
+        "harku_vald_form_pere_tulust_mittesoltuv_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "harku_vald_contact_meeli_vaarpuu"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "erivajadusega_inimesele_page"
+      ],
+      "source_keys": [
+        "erivajadusega_inimesele_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_benefit_puudega_isiku_transporditoetus",
+      "document_id": "harku_vald_benefit_puudega_isiku_transporditoetus",
+      "canonical_item_id": "harku_vald_benefit_puudega_isiku_transporditoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/teenused-erivajadusega-inimesele",
+      "content_hash": "f8fdc391ba345b0f581b3d191fe9d98ee1aafb93deba8f8cafc60861146703a3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_benefit_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus",
+      "status": "active",
+      "summary": "Hooldajatoetust makstakse Harku vallas määratud hooldajale puudega lapse või täisealise puudega inimese hooldamise eest. 2026. aasta määrad on kehtestatud vallavalitsuse korraldusega.",
+      "targetGroup": "Puudega lapse hooldaja, täisealise puudega isiku hooldaja ning teatud juhtudel täisealise isiku eestkostja või lapse hooldaja.",
+      "conditions": "Hooldajatoetuse suurus sõltub hooldatava vanusest ja puude raskusastmest. Hooldajatoetus makstakse taotluse esitamise kuule järgnevast kuust.",
+      "application": "Esita digiallkirjaga taotlus ja nõusolek e-postiga või paberkandjal Harku Vallavalitsuses. Lehel on eraldi blanketid hooldajatoetuse taotlemiseks, nõusolekuks, täisealise isiku eeskostjale ning lapse hooldajale.",
+      "amount": "2026. aastal: 3–15-aastase keskmise, raske või sügava puudega lapse hooldamisel 110 € kuus; 16–17-aastase raske puudega lapse hooldamisel 90 € kuus; 16–17-aastase sügava puudega lapse hooldamisel 120 € kuus; 18-aastase ja vanema raske puudega isiku hooldamisel 80 € kuus; 18-aastase ja vanema sügava puudega isiku hooldamisel 120 € kuus.",
+      "deadline": null,
+      "decisionTime": "10 tööpäeva",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/teenused-erivajadusega-inimesele",
+      "relatedForms": [
+        "harku_vald_form_hooldajatoetuse_taotlus",
+        "harku_vald_form_nousolek_hooldajaks_asumiseks",
+        "harku_vald_form_hooldajatoetus_taisealise_eestkostjale",
+        "harku_vald_form_hooldajatoetus_lapse_hooldajale"
+      ],
+      "relatedContacts": [
+        "harku_vald_contact_meeli_vaarpuu"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "erivajadusega_inimesele_page"
+      ],
+      "source_keys": [
+        "erivajadusega_inimesele_page"
+      ],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_benefit_hooldajatoetus",
+      "document_id": "harku_vald_benefit_hooldajatoetus",
+      "canonical_item_id": "harku_vald_benefit_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/teenused-erivajadusega-inimesele",
+      "content_hash": "215e405f42493b6b4af4f09500a03feb42e6ecbb2af4c670830ce279030663ed",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_resource_eakate_paevakeskus",
+      "itemType": "resource",
+      "title": "Eakate päevakeskus",
+      "status": "active",
+      "summary": "Eakate päevakeskus on Harku Vallavalitsuse hallatav kohtumis- ja tugikeskus eakatele, puuetega inimestele ja teistele abivajajatele. Päevakeskus pakub sotsiaalhoolekandealast nõustamist, abi dokumentide vormistamisel ja teenuste taotlemisel, tervise ja heaolu toetavaid tegevusi ning huvi- ja seltsitegevust.",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/eakate-toimetulek",
+      "relatedContacts": [],
+      "address": "Teenuste 2, Tabasalu",
+      "targetGroup": "Eakad, puuetega inimesed ja teised abivajajad.",
+      "application": "Päevakeskusesse saab pöörduda otse ning sealt saab abi sotsiaalteenuste kohta info saamisel ja dokumentide vormistamisel.",
+      "item_type": "resource",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "eakate_toimetulek_page"
+      ],
+      "source_keys": [
+        "eakate_toimetulek_page"
+      ],
+      "relatedForms": [],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_resource_eakate_paevakeskus",
+      "document_id": "harku_vald_resource_eakate_paevakeskus",
+      "canonical_item_id": "harku_vald_resource_eakate_paevakeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/eakate-toimetulek",
+      "content_hash": "989842779844bbe70877cc37763fba55de28e541141a13fe99622c08a53c7958",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_resource_harku_sotsiaalkeskus",
+      "itemType": "resource",
+      "title": "Harku Sotsiaalkeskus",
+      "status": "active",
+      "summary": "Harku Sotsiaalkeskus toetab erivajadusega ja teisi abivajavaid inimesi, pakkudes päevahoidu, kogukonnas elamise teenust, nõustamist, koolitusi ja aktiivseid tegevusi. Teenusele saamiseks saab inimene ise või tema eest ühendust võtta ka kohalik omavalitsus või eestkostja; enne alustamist hinnatakse vajadusi ning koostatakse tegevus- või teraapiaplaan.",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/harku-sotsiaalkeskus",
+      "relatedContacts": [],
+      "address": "Aia 5, Harku alevik",
+      "targetGroup": "Erivajadusega inimesed ja teised abivajajad, kes vajavad päevahoidu, kogukonnas elamise teenust, nõustamist või teraapiaid.",
+      "application": "Teenusele saamiseks saab inimene ise, tema eestkostja või kohalik omavalitsus sotsiaalkeskusega ühendust võtta. Enne alustamist selgitatakse vajadus ja koostatakse tegevus- või teraapiaplaan.",
+      "item_type": "resource",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "harku_sotsiaalkeskus_page"
+      ],
+      "source_keys": [
+        "harku_sotsiaalkeskus_page"
+      ],
+      "relatedForms": [],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_resource_harku_sotsiaalkeskus",
+      "document_id": "harku_vald_resource_harku_sotsiaalkeskus",
+      "canonical_item_id": "harku_vald_resource_harku_sotsiaalkeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/harku-sotsiaalkeskus",
+      "content_hash": "56560f69dce8c0d228152cbc2324d9c9cdd426733d749d6fba4a2c2fdcc2bb2c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_resource_parkimiskaart",
+      "itemType": "resource",
+      "title": "Parkimiskaart",
+      "status": "active",
+      "summary": "Parkimiskaart on liikumis- või nägemispuudega inimesele mõeldud tõend, mis võimaldab kasutada puudega juhi või puudega isikut teenindava sõiduki parkimisõigusi. Kaarti saab taotleda ka ajutise liikumis- või nägemisraskuse korral arstitõendi alusel.",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/muud-toetused-ja-teenused",
+      "relatedContacts": [
+        "harku_vald_contact_tiia_spitson"
+      ],
+      "address": "Teenuste 2, Tabasalu",
+      "targetGroup": "Liikumis- või nägemispuudega inimesed ning ajutise liikumis- või nägemisraskusega inimesed, kellele on parkimiskaart põhjendatud.",
+      "conditions": "Kaarti saab taotleda mõõduka, raske või sügava liikumis- või nägemispuude korral ning ajutise liikumis- või nägemisraskuse korral arstitõendi alusel.",
+      "application": "Parkimiskaarti saab taotleda ainult Harku Vallavalitsuses kohapeal. Kaasa tuleb võtta isikut tõendav dokument, 3 × 4 cm foto ja vajaduse korral arstitõend või Sotsiaalkindlustusameti otsus. Otsus tehakse 10 tööpäeva jooksul.",
+      "item_type": "resource",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "muud_toetused_ja_teenused_page"
+      ],
+      "source_keys": [
+        "muud_toetused_ja_teenused_page"
+      ],
+      "relatedForms": [],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_resource_parkimiskaart",
+      "document_id": "harku_vald_resource_parkimiskaart",
+      "canonical_item_id": "harku_vald_resource_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/muud-toetused-ja-teenused",
+      "content_hash": "8e634dd880485f24643c8e30c84c3efa9096b580aef5e36d07cbe78175ebf63e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_resource_viipekeele_tolketeenus",
+      "itemType": "resource",
+      "title": "Viipekeele tõlketeenus",
+      "status": "active",
+      "summary": "Viipekeele tõlketeenus aitab kuulmispuudega Harku valla elanikul suhelda kodustes ja asjaajamise olukordades ning kasutada avalikke teenuseid. KOV leht nimetab teenuse osutajana Viipekeeletõlkide OÜ-d ning toob näiteks tervishoiu-, sotsiaal-, perekonna- ja avalike teenuste asjaajamise.",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/muud-toetused-ja-teenused",
+      "relatedContacts": [
+        "harku_vald_contact_tiia_spitson"
+      ],
+      "address": null,
+      "targetGroup": "Kuulmispuudega Harku valla elanikud, kes kasutavad viipekeelt.",
+      "conditions": "KOV leht toob näidetena tervishoiu- ja sotsiaalteenuste kasutamise, suhtlemise ametiasutustes, perekondlikud sündmused ning hädaolukorrad.",
+      "application": "KOV leht kirjeldab teenuse eesmärki ja nimetab teenuseosutaja Viipekeeletõlkide OÜ, kuid ei kirjelda detailselt taotlemise samme.",
+      "item_type": "resource",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "muud_toetused_ja_teenused_page"
+      ],
+      "source_keys": [
+        "muud_toetused_ja_teenused_page"
+      ],
+      "relatedForms": [],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_resource_viipekeele_tolketeenus",
+      "document_id": "harku_vald_resource_viipekeele_tolketeenus",
+      "canonical_item_id": "harku_vald_resource_viipekeele_tolketeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/muud-toetused-ja-teenused",
+      "content_hash": "a3e05e10c19ace5303cd83b7cfb2c4ba3f955a470212f4541d1451b1cd9d1518",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_resource_erihoolekanne",
+      "itemType": "resource",
+      "title": "Erihoolekanne",
+      "status": "active",
+      "summary": "Erihoolekandeteenus on Sotsiaalkindlustusameti osutatav teenus täisealistele psüühikahäirega inimestele, keda ei ole võimalik aidata teiste sotsiaalhoolekande teenustega. Harku valla leht selgitab teenuse sihtrühma ja suunab taotleja Sotsiaalkindlustusameti poole.",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/teenused-erivajadusega-inimesele",
+      "relatedContacts": [],
+      "address": null,
+      "targetGroup": "Täisealised Eestis elavad psüühikahäirega inimesed, keda ei saa aidata teiste sotsiaalhoolekande teenustega.",
+      "conditions": "Otsuse teenuse kohta teeb Sotsiaalkindlustusamet.",
+      "application": "Teenuse saamiseks tuleb esitada digiallkirjastatud taotlus või pöörduda Sotsiaalkindlustusameti teenindusse. Harku valla leht viitab erihoolekande teenuse taotluse blanketile ja Sotsiaalkindlustusameti lisainfole.",
+      "item_type": "resource",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "erivajadusega_inimesele_page"
+      ],
+      "source_keys": [
+        "erivajadusega_inimesele_page"
+      ],
+      "relatedForms": [],
+      "relatedLegalSources": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_resource_erihoolekanne",
+      "document_id": "harku_vald_resource_erihoolekanne",
+      "canonical_item_id": "harku_vald_resource_erihoolekanne",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/teenused-erivajadusega-inimesele",
+      "content_hash": "904ae516cd1499df29efe341851d16fff05e53465883e9ef2e0bbdc4aef8a502",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_contact_kaja_saat",
+      "itemType": "contact",
+      "title": "Kaja Saat",
+      "status": "active",
+      "summary": "Laste heaolu spetsialist, kelle tööpiirkond on Harku alevik, Laabi, Tiskre ja Vahi külad. Ta nõustab lastekaitse ja peretoetuste küsimustes ning on kontaktiks turvakoduteenuse ja vaimse tervise teenuse saamiseks.",
+      "name": "Kaja Saat",
+      "role": "Laste heaolu spetsialist",
+      "department": "Laste heaolu",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/sotsiaal-ja-tervishoiuosakonna-kontaktid",
+      "item_type": "contact",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "contacts_page",
+        "harku_vald_contact_kaja_saat"
+      ],
+      "source_keys": [
+        "contacts_page",
+        "harku_vald_contact_kaja_saat"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_contact_kaja_saat",
+      "document_id": "harku_vald_contact_kaja_saat",
+      "canonical_item_id": "harku_vald_contact_kaja_saat",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/sotsiaal-ja-tervishoiuosakonna-kontaktid",
+      "content_hash": "75c081cf62fb1fc3eee4d52acbcd67d845d37c676abb3dafea6dfc7e185de379",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_contact_ivika_kelder",
+      "itemType": "contact",
+      "title": "Ivika Kelder",
+      "status": "active",
+      "summary": "Laste heaolu spetsialist, kelle tööpiirkond hõlmab Ilmandu, Humala, Kütke, Naage, Rannamõisa, Suurupi, Sõrve ja Vaila külasid. Ta nõustab peresid lastekaitse, vaimse tervise ja turvakoduteenuse teemadel.",
+      "name": "Ivika Kelder",
+      "role": "Laste heaolu spetsialist",
+      "department": "Laste heaolu",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/sotsiaal-ja-tervishoiuosakonna-kontaktid",
+      "item_type": "contact",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "contacts_page",
+        "harku_vald_contact_ivika_kelder"
+      ],
+      "source_keys": [
+        "contacts_page",
+        "harku_vald_contact_ivika_kelder"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_contact_ivika_kelder",
+      "document_id": "harku_vald_contact_ivika_kelder",
+      "canonical_item_id": "harku_vald_contact_ivika_kelder",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/sotsiaal-ja-tervishoiuosakonna-kontaktid",
+      "content_hash": "3cac3d67e9fed6a8ef679984688324ab68738527c312620432d3953596175226",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_contact_heli_tuulik",
+      "itemType": "contact",
+      "title": "Heli Tuulik",
+      "status": "active",
+      "summary": "Laste heaolu spetsialist, kelle tööpiirkond on Tabasalu alevik. Ta nõustab peresid lastekaitse, vaimse tervise ning turvakodu teemadel ja on kontaktiks lastele ja noortele.",
+      "name": "Heli Tuulik",
+      "role": "Laste heaolu spetsialist",
+      "department": "Laste heaolu",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/sotsiaal-ja-tervishoiuosakonna-kontaktid",
+      "item_type": "contact",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "contacts_page",
+        "harku_vald_contact_heli_tuulik"
+      ],
+      "source_keys": [
+        "contacts_page",
+        "harku_vald_contact_heli_tuulik"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_contact_heli_tuulik",
+      "document_id": "harku_vald_contact_heli_tuulik",
+      "canonical_item_id": "harku_vald_contact_heli_tuulik",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/sotsiaal-ja-tervishoiuosakonna-kontaktid",
+      "content_hash": "0d91c7f28fd5d5f99ae6bc8aeeac00281e4ba87449fa0c31ad9dd684bc2babae",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_contact_maive_riismandel",
+      "itemType": "contact",
+      "title": "Maive Riismandel",
+      "status": "active",
+      "summary": "Laste heaolu spetsialist, kelle tööpiirkond hõlmab Harkujärve, Türisalu, Viti, Vääna ja Vääna‑Jõesuu külasid. Ta nõustab peresid sotsiaaltöö ja rehabilitatsiooni küsimustes ning on kontaktiks turvakoduteenuse ja vaimse tervise teenuse saamiseks.",
+      "name": "Maive Riismandel",
+      "role": "Laste heaolu spetsialist",
+      "department": "Laste heaolu",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/sotsiaal-ja-tervishoiuosakonna-kontaktid",
+      "item_type": "contact",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "contacts_page",
+        "harku_vald_contact_maive_riismandel"
+      ],
+      "source_keys": [
+        "contacts_page",
+        "harku_vald_contact_maive_riismandel"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_contact_maive_riismandel",
+      "document_id": "harku_vald_contact_maive_riismandel",
+      "canonical_item_id": "harku_vald_contact_maive_riismandel",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/sotsiaal-ja-tervishoiuosakonna-kontaktid",
+      "content_hash": "93b2e19757d6ee3960ef337d2c0c55a5c9e793c1a061aae6e654980dc5c2b205",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_contact_annika_rannamets",
+      "itemType": "contact",
+      "title": "Annika Rannamets",
+      "status": "active",
+      "summary": "Noorte heaolu spetsialist, kes tegeleb noorte nõustamisega ning suunab neid sobivatele teenustele. Ta töötab Harku vallavalitsuses ja nõustab vaimse tervise ja sotsiaaltoetuste küsimustes.",
+      "name": "Annika Rannamets",
+      "role": "Noorte heaolu spetsialist",
+      "department": "Noorte heaolu",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/sotsiaal-ja-tervishoiuosakonna-kontaktid",
+      "item_type": "contact",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "contacts_page",
+        "harku_vald_contact_annika_rannamets"
+      ],
+      "source_keys": [
+        "contacts_page",
+        "harku_vald_contact_annika_rannamets"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_contact_annika_rannamets",
+      "document_id": "harku_vald_contact_annika_rannamets",
+      "canonical_item_id": "harku_vald_contact_annika_rannamets",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/sotsiaal-ja-tervishoiuosakonna-kontaktid",
+      "content_hash": "268af07862b7ce6091c8c737e69b7648136c6d1d0565614e2a69d1c72059ffa3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_contact_meeli_vaarpuu",
+      "itemType": "contact",
+      "title": "Meeli Vaarpuu",
+      "status": "active",
+      "summary": "Sotsiaalhoolekandespetsialist, kes nõustab elanikke sotsiaaltranspordi, võlanõustamise ja majandusliku raskuse korral antavate toetuste teemadel. Ta koordineerib erinevaid sotsiaalteenuseid ja teeb otsused toetuste määramiseks.",
+      "name": "Meeli Vaarpuu",
+      "role": "Sotsiaalhoolekandespetsialist",
+      "department": "Sotsiaalhoolekanne",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/sotsiaal-ja-tervishoiuosakonna-kontaktid",
+      "item_type": "contact",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "contacts_page",
+        "harku_vald_contact_meeli_vaarpuu"
+      ],
+      "source_keys": [
+        "contacts_page",
+        "harku_vald_contact_meeli_vaarpuu"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_contact_meeli_vaarpuu",
+      "document_id": "harku_vald_contact_meeli_vaarpuu",
+      "canonical_item_id": "harku_vald_contact_meeli_vaarpuu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/sotsiaal-ja-tervishoiuosakonna-kontaktid",
+      "content_hash": "0ff8674293d8fbc9214827c1fc50d0aea5f4cc0fcf2ea2179d71c426c4f794b8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_contact_epp_sona",
+      "itemType": "contact",
+      "title": "Epp Sõna",
+      "status": "active",
+      "summary": "Sotsiaalhoolekandespetsialist, kes tegeleb toiduabi, eluruumi teenuse ja toimetulekutoetuse taotluste vastuvõtuga ning nõustab inimesi majandusliku raskuse korral. Ta hindab klientide abivajadust ja teeb otsuseid toetuste kohta.",
+      "name": "Epp Sõna",
+      "role": "Sotsiaalhoolekandespetsialist",
+      "department": "Sotsiaalhoolekanne",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/sotsiaal-ja-tervishoiuosakonna-kontaktid",
+      "item_type": "contact",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "contacts_page",
+        "harku_vald_contact_epp_sona"
+      ],
+      "source_keys": [
+        "contacts_page",
+        "harku_vald_contact_epp_sona"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_contact_epp_sona",
+      "document_id": "harku_vald_contact_epp_sona",
+      "canonical_item_id": "harku_vald_contact_epp_sona",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/sotsiaal-ja-tervishoiuosakonna-kontaktid",
+      "content_hash": "fea8aad9bf21444df15b0a900dafec60b5ab63f239e8856598ad76638ac46f9c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_contact_kadri_kelgo",
+      "itemType": "contact",
+      "title": "Kadri Kelgo",
+      "status": "active",
+      "summary": "Andmetöötlusspetsialist, kes menetleb matusetoetuse taotlusi ja teisi sotsiaaltoetuste andmeid. Ta on kontaktiks matusetoetuse taotlejatele.",
+      "name": "Kadri Kelgo",
+      "role": "Andmetöötlusspetsialist",
+      "department": "Sotsiaalhoolekanne",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/sotsiaal-ja-tervishoiuosakonna-kontaktid",
+      "item_type": "contact",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "contacts_page",
+        "harku_vald_contact_kadri_kelgo"
+      ],
+      "source_keys": [
+        "contacts_page",
+        "harku_vald_contact_kadri_kelgo"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_contact_kadri_kelgo",
+      "document_id": "harku_vald_contact_kadri_kelgo",
+      "canonical_item_id": "harku_vald_contact_kadri_kelgo",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/sotsiaal-ja-tervishoiuosakonna-kontaktid",
+      "content_hash": "2d443fbe884f1b507bfdac1b347770768d811a44a06fe3d7185dbcdfdbb0f0bb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_contact_kadi_netse",
+      "itemType": "contact",
+      "title": "Kadi Netse",
+      "status": "active",
+      "summary": "Toetuste spetsialist, kes korraldab ja menetleb Harku valla erinevaid toetusi, sh vähekindlustatud perede toetused, ujumisteenuse toetus, koolitoetused ja jõulutoetus. Ta aitab taotlejaid dokumentide koostamisel ja teeb otsuseid toetuste määramiseks.",
+      "name": "Kadi Netse",
+      "role": "Toetuste spetsialist",
+      "department": "Sotsiaalhoolekanne",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/sotsiaal-ja-tervishoiuosakonna-kontaktid",
+      "item_type": "contact",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "contacts_page",
+        "harku_vald_contact_kadi_netse"
+      ],
+      "source_keys": [
+        "contacts_page",
+        "harku_vald_contact_kadi_netse"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_contact_kadi_netse",
+      "document_id": "harku_vald_contact_kadi_netse",
+      "canonical_item_id": "harku_vald_contact_kadi_netse",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/sotsiaal-ja-tervishoiuosakonna-kontaktid",
+      "content_hash": "dd3f7bb8f0d08201c5430940b9366d5f14e2dda8afa381f9e6c3b60f642dbd75",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_contact_tiia_spitson",
+      "itemType": "contact",
+      "title": "Tiia Spitsõn",
+      "status": "active",
+      "summary": "Sotsiaal- ja tervishoiuosakonna juhataja. Kontakt parkimiskaardi ja teiste keerukamate sotsiaalhoolekande küsimuste korral.",
+      "name": "Tiia Spitsõn",
+      "role": "Sotsiaal- ja tervishoiuosakonna juhataja",
+      "department": "Sotsiaal- ja tervishoiuosakond",
+      "officialUrl": "https://harku.ee/pere-sotsiaal-ja-tervishoid/sotsiaal-ja-tervishoiuosakonna-kontaktid",
+      "item_type": "contact",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "contacts_page",
+        "harku_vald_contact_tiia_spitson"
+      ],
+      "source_keys": [
+        "contacts_page",
+        "harku_vald_contact_tiia_spitson"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_contact_tiia_spitson",
+      "document_id": "harku_vald_contact_tiia_spitson",
+      "canonical_item_id": "harku_vald_contact_tiia_spitson",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/pere-sotsiaal-ja-tervishoid/sotsiaal-ja-tervishoiuosakonna-kontaktid",
+      "content_hash": "fb5e5464f8b6fb9f0ecb2e82c65f951aa6ffde069947f6cd340f7effa78dba0f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_form_sotsiaaltransport_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaaltransporditeenuse taotlus",
+      "status": "active",
+      "summary": "Blankett sotsiaaltransporditeenuse taotlemiseks. Vormil küsitakse taotleja kontakt- ja terviseandmeid ning sõidu põhjendust. Vorm tuleb täita ja esitada digitaalselt või paberkandjal vallavalitsusele.",
+      "format": "pdf",
+      "officialUrl": "https://harku.ee/sites/default/files/documents/2025-08/Sotsiaaltransporditeenuse%20taotlus.pdf",
+      "submissionChannels": [
+        "email",
+        "mail",
+        "in_person"
+      ],
+      "relatedTo": [
+        "harku_vald_service_sotsiaaltransport"
+      ],
+      "item_type": "form",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "sotsiaaltransporditeenuse_taotlus_pdf"
+      ],
+      "source_keys": [
+        "sotsiaaltransporditeenuse_taotlus_pdf"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_form_sotsiaaltransport_taotlus",
+      "document_id": "harku_vald_form_sotsiaaltransport_taotlus",
+      "canonical_item_id": "harku_vald_form_sotsiaaltransport_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/sites/default/files/documents/2025-08/Sotsiaaltransporditeenuse%20taotlus.pdf",
+      "content_hash": "f9fa56a40ffc1965240401a06d80d66f5c4717f06d007ab5199a60a8f30a63d9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_form_pere_tulust_mittesoltuv_toetuse_taotlus",
+      "itemType": "form",
+      "title": "Pere tulust mittesõltuva toetuse taotlus",
+      "status": "active",
+      "summary": "Üldvorm tulust mittesõltuvate toetuste ja mitme erivajadusega inimese teenuse või toetuse taotlemiseks. Vormil märgitakse taotletav toetuse või teenuse liik, taotleja andmed ning lisatakse vajalikud dokumendid.",
+      "format": "pdf",
+      "officialUrl": "https://harku.ee/sites/default/files/documents/2025-08/PERE%20TULUST%20MITTES%C3%95LTUVA%20TOETUSE%20TAOTLUS.pdf",
+      "submissionChannels": [
+        "email",
+        "mail",
+        "in_person"
+      ],
+      "relatedTo": [
+        "harku_vald_benefit_ujumisteenuse_toetus",
+        "harku_vald_benefit_koolitoetus_eestkostel_või_peres_hooldamisel",
+        "harku_vald_benefit_matusetoetus",
+        "harku_vald_benefit_ravi_ja_rehabilitatsioonitoetus",
+        "harku_vald_benefit_kuttetoetus",
+        "harku_vald_benefit_uhekordne_toetus",
+        "harku_vald_benefit_puudega_isiku_transporditoetus",
+        "harku_vald_service_isikliku_abistaja_teenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "pere_tulust_mittesoltava_taotlus_pdf"
+      ],
+      "source_keys": [
+        "pere_tulust_mittesoltava_taotlus_pdf"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_form_pere_tulust_mittesoltuv_toetuse_taotlus",
+      "document_id": "harku_vald_form_pere_tulust_mittesoltuv_toetuse_taotlus",
+      "canonical_item_id": "harku_vald_form_pere_tulust_mittesoltuv_toetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/sites/default/files/documents/2025-08/PERE%20TULUST%20MITTES%C3%95LTUVA%20TOETUSE%20TAOTLUS.pdf",
+      "content_hash": "6876717407da2d0a69263811fa49ac3f87bb3125fbfd5db7e6d7bb7c660ed772",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_form_pere_tulust_soltuv_toetuse_taotlus",
+      "itemType": "form",
+      "title": "Pere tulust sõltuva toetuse taotlus",
+      "status": "active",
+      "summary": "Üldvorm tulust sõltuvate toetuste (vähekindlustatud perede toetused) taotlemiseks. Vormil kogutakse perekonna koosseisu ja sissetuleku andmed ning märgitakse taotletav toetus. Taotlus tuleb esitada koos viimase kolme kuu pangaväljavõtetega.",
+      "format": "pdf",
+      "officialUrl": "https://harku.ee/sites/default/files/documents/2025-06/PERE%20TULUST%20S%C3%95LTUVA%20TOETUSE%20TAOTLUS.pdf",
+      "submissionChannels": [
+        "email",
+        "mail",
+        "in_person"
+      ],
+      "relatedTo": [
+        "harku_vald_benefit_toidutoetus",
+        "harku_vald_benefit_koolitoetus_vahemalt_üks_laps",
+        "harku_vald_benefit_koolitoetus_vahemalt_kaks_last",
+        "harku_vald_benefit_koolitoetus_lopetamisel",
+        "harku_vald_benefit_kultuuri_ja_spordiuritused",
+        "harku_vald_benefit_paljulapselise_pere_toetus",
+        "harku_vald_benefit_laagritoetus",
+        "harku_vald_benefit_nagemise_parandamise_toetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "pere_tulust_soltuva_taotlus_pdf"
+      ],
+      "source_keys": [
+        "pere_tulust_soltuva_taotlus_pdf"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_form_pere_tulust_soltuv_toetuse_taotlus",
+      "document_id": "harku_vald_form_pere_tulust_soltuv_toetuse_taotlus",
+      "canonical_item_id": "harku_vald_form_pere_tulust_soltuv_toetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/sites/default/files/documents/2025-06/PERE%20TULUST%20S%C3%95LTUVA%20TOETUSE%20TAOTLUS.pdf",
+      "content_hash": "09736a83721d88a7bbf7ef2c34fa49b2cd8dec98051bcd025365cc2fbac6566a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_form_joulutoetuse_taotlus",
+      "itemType": "form",
+      "title": "Jõulutoetuse taotlusvorm 2025",
+      "status": "active",
+      "summary": "Erivorm 2025. aasta jõulutoetuse taotlemiseks. Vormil kogutakse taotleja ja pere liikmete andmed ning märgitakse taotluse aluseks olev sihtrühm.",
+      "format": "pdf",
+      "officialUrl": "https://harku.ee/sites/default/files/documents/2025-11/J%C3%B5ulutoetuse%20taotlus%202025_0.pdf",
+      "submissionChannels": [
+        "email",
+        "mail",
+        "in_person"
+      ],
+      "relatedTo": [
+        "harku_vald_benefit_joulutoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "joulutoetuse_taotlus_2025_pdf"
+      ],
+      "source_keys": [
+        "joulutoetuse_taotlus_2025_pdf"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_form_joulutoetuse_taotlus",
+      "document_id": "harku_vald_form_joulutoetuse_taotlus",
+      "canonical_item_id": "harku_vald_form_joulutoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/sites/default/files/documents/2025-11/J%C3%B5ulutoetuse%20taotlus%202025_0.pdf",
+      "content_hash": "d62dab854b10a73e9459e3e16ad539585c8410551d7857d5b88ebbbc1b41885f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_form_uldhooldusteenuse_taotlus",
+      "itemType": "form",
+      "title": "Üldhooldusteenuse toetuse taotlus",
+      "status": "active",
+      "summary": "Blankett hooldekodus elamise toetuse taotlemiseks, kus taotleja esitab oma andmed ning kinnitab vajaduse üldhooldusteenuse järele. Vorm lisatakse taotlusele koos vajalike dokumentidega.",
+      "format": "doc",
+      "officialUrl": "https://harku.ee/sites/default/files/documents/2025-08/%C3%9Cldhooldusteenuse%20toetuse%20taotlus.doc",
+      "submissionChannels": [
+        "email",
+        "mail",
+        "in_person"
+      ],
+      "relatedTo": [
+        "harku_vald_service_uldhooldusteenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "uldhooldusteenuse_taotlus_doc"
+      ],
+      "source_keys": [
+        "uldhooldusteenuse_taotlus_doc"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_form_uldhooldusteenuse_taotlus",
+      "document_id": "harku_vald_form_uldhooldusteenuse_taotlus",
+      "canonical_item_id": "harku_vald_form_uldhooldusteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/sites/default/files/documents/2025-08/%C3%9Cldhooldusteenuse%20toetuse%20taotlus.doc",
+      "content_hash": "d918ab9a25d654e8461278435936b3fedceb2c707176f69f1a429e9255dea846",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_form_uldhooldusteenuse_lisatoetus",
+      "itemType": "form",
+      "title": "Üldhooldusteenuse lisatoetuse taotlus",
+      "status": "active",
+      "summary": "Blankett lisatoetuse taotlemiseks üldhooldusteenuse kulude katmiseks. Täidetakse juhul, kui hooldekodu maksumus ületab valla makstava toetuse ja isikul ei ole piisavat vahendit omaosaluseks.",
+      "format": "doc",
+      "officialUrl": "https://harku.ee/sites/default/files/documents/2025-08/%C3%9Cldhooldusteenuse%20lisatoetuse%20taotlus.doc",
+      "submissionChannels": [
+        "email",
+        "mail",
+        "in_person"
+      ],
+      "relatedTo": [
+        "harku_vald_service_uldhooldusteenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "uldhooldusteenuse_lisatoetuse_taotlus_doc"
+      ],
+      "source_keys": [
+        "uldhooldusteenuse_lisatoetuse_taotlus_doc"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_form_uldhooldusteenuse_lisatoetus",
+      "document_id": "harku_vald_form_uldhooldusteenuse_lisatoetus",
+      "canonical_item_id": "harku_vald_form_uldhooldusteenuse_lisatoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/sites/default/files/documents/2025-08/%C3%9Cldhooldusteenuse%20lisatoetuse%20taotlus.doc",
+      "content_hash": "4878afacbce783b4bf492f458249ce322850cd9272fe610e334cc2b15121ddbf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_form_toimetulekutoetuse_taotlus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse taotlus",
+      "status": "active",
+      "summary": "Vorm riikliku toimetulekutoetuse taotlemiseks. Taotlusele lisatakse dokumendid, mis tõendavad eelmisel kuul saadud netosissetulekuid ja vajaduse korral eluasemekulude andmeid.",
+      "format": "pdf",
+      "officialUrl": "https://harku.ee/sites/default/files/documents/2025-08/Toimetulekutoetuse%20taotlus.pdf",
+      "submissionChannels": [
+        "email",
+        "mail",
+        "in_person"
+      ],
+      "relatedTo": [
+        "harku_vald_benefit_toimetulekutoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "toimetulekutoetuse_taotlus_pdf"
+      ],
+      "source_keys": [
+        "toimetulekutoetuse_taotlus_pdf"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_form_toimetulekutoetuse_taotlus",
+      "document_id": "harku_vald_form_toimetulekutoetuse_taotlus",
+      "canonical_item_id": "harku_vald_form_toimetulekutoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/sites/default/files/documents/2025-08/Toimetulekutoetuse%20taotlus.pdf",
+      "content_hash": "ddbe02d8c34115fba4dbc7620f32c51c4a282c3b247cd766df3f6f551ead4a87",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_form_hooldajatoetuse_taotlus",
+      "itemType": "form",
+      "title": "Hooldajatoetuse taotlus",
+      "status": "active",
+      "summary": "Blankett Harku valla hooldajatoetuse taotlemiseks. Vormil esitatakse hooldaja ja hooldatava andmed ning viidatakse hooldaja määramise otsusele ja hindamistulemusele.",
+      "format": "pdf",
+      "officialUrl": "https://harku.ee/sites/default/files/documents/2025-08/HOOLDAJATOETUSE%20TAOTLUS.pdf",
+      "submissionChannels": [
+        "email",
+        "mail",
+        "in_person"
+      ],
+      "relatedTo": [
+        "harku_vald_benefit_hooldajatoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "hooldajatoetuse_taotlus_pdf"
+      ],
+      "source_keys": [
+        "hooldajatoetuse_taotlus_pdf"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_form_hooldajatoetuse_taotlus",
+      "document_id": "harku_vald_form_hooldajatoetuse_taotlus",
+      "canonical_item_id": "harku_vald_form_hooldajatoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/sites/default/files/documents/2025-08/HOOLDAJATOETUSE%20TAOTLUS.pdf",
+      "content_hash": "89298bb6c717d4731e58896895bfe4a50361eeef3787b84d6fda9dae1726a567",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_form_nousolek_hooldajaks_asumiseks",
+      "itemType": "form",
+      "title": "Nõusolek hooldajaks asumise kohta",
+      "status": "active",
+      "summary": "Vorm hooldajaks asuda sooviva isiku nõusoleku esitamiseks Harku vallale.",
+      "format": "pdf",
+      "officialUrl": "https://harku.ee/sites/default/files/documents/2025-08/N%C3%95USOLEK%20HOOLDAJAKS%20ASUMISE%20KOHTA.pdf",
+      "submissionChannels": [
+        "email",
+        "mail",
+        "in_person"
+      ],
+      "relatedTo": [
+        "harku_vald_benefit_hooldajatoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "nousolek_hooldajaks_asumise_kohta_pdf"
+      ],
+      "source_keys": [
+        "nousolek_hooldajaks_asumise_kohta_pdf"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_form_nousolek_hooldajaks_asumiseks",
+      "document_id": "harku_vald_form_nousolek_hooldajaks_asumiseks",
+      "canonical_item_id": "harku_vald_form_nousolek_hooldajaks_asumiseks",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/sites/default/files/documents/2025-08/N%C3%95USOLEK%20HOOLDAJAKS%20ASUMISE%20KOHTA.pdf",
+      "content_hash": "509de5c396d50be532da2df6d7befc20dbe3a3e9f260f4464e4eaa2028fd0f22",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_form_hooldajatoetus_taisealise_eestkostjale",
+      "itemType": "form",
+      "title": "Hooldajatoetuse taotlus täisealise isiku eeskostjale",
+      "status": "active",
+      "summary": "Eraldi blankett hooldajatoetuse taotlemiseks täisealise isiku eeskostjale.",
+      "format": "pdf",
+      "officialUrl": "https://harku.ee/sites/default/files/documents/2025-08/TAOTLUS%20HOOLDAJATOETUS%20%20T%C3%84ISEALISE%20ISIKU%20EESTKOSTJALE.pdf",
+      "submissionChannels": [
+        "email",
+        "mail",
+        "in_person"
+      ],
+      "relatedTo": [
+        "harku_vald_benefit_hooldajatoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "hooldajatoetus_taisealise_eestkostjale_pdf"
+      ],
+      "source_keys": [
+        "hooldajatoetus_taisealise_eestkostjale_pdf"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_form_hooldajatoetus_taisealise_eestkostjale",
+      "document_id": "harku_vald_form_hooldajatoetus_taisealise_eestkostjale",
+      "canonical_item_id": "harku_vald_form_hooldajatoetus_taisealise_eestkostjale",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/sites/default/files/documents/2025-08/TAOTLUS%20HOOLDAJATOETUS%20%20T%C3%84ISEALISE%20ISIKU%20EESTKOSTJALE.pdf",
+      "content_hash": "f7ccf482e1ced8d5831d9ff57c689dbdda11e238597fd97c2d75067cb6ff7998",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_form_hooldajatoetus_lapse_hooldajale",
+      "itemType": "form",
+      "title": "Hooldajatoetuse taotlus lapse hooldajale",
+      "status": "active",
+      "summary": "Eraldi blankett hooldajatoetuse taotlemiseks lapse hooldajale.",
+      "format": "pdf",
+      "officialUrl": "https://harku.ee/sites/default/files/documents/2025-08/TAOTLUS%20hooldajatoetus%20lapse%20hooldajale.pdf",
+      "submissionChannels": [
+        "email",
+        "mail",
+        "in_person"
+      ],
+      "relatedTo": [
+        "harku_vald_benefit_hooldajatoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "hooldajatoetus_lapse_hooldajale_pdf"
+      ],
+      "source_keys": [
+        "hooldajatoetus_lapse_hooldajale_pdf"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_form_hooldajatoetus_lapse_hooldajale",
+      "document_id": "harku_vald_form_hooldajatoetus_lapse_hooldajale",
+      "canonical_item_id": "harku_vald_form_hooldajatoetus_lapse_hooldajale",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/sites/default/files/documents/2025-08/TAOTLUS%20hooldajatoetus%20lapse%20hooldajale.pdf",
+      "content_hash": "fc3a13b302e6a62adf19d1692e3d40fe4e13de2e720178a1c4291a4add080d36",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_form_taotlus_hoolduse_jatkamiseks",
+      "itemType": "form",
+      "title": "Taotlus hoolduse jätkamiseks",
+      "status": "active",
+      "summary": "Blankett tähtajalise hoolduse jätkamiseks. Vormil esitatakse hooldatava ja hooldaja andmed ning kirjeldatakse hoolduse jätkamise vajadust.",
+      "format": "pdf",
+      "officialUrl": "https://harku.ee/sites/default/files/documents/2025-08/TAOTLUS%20T%C3%84HTAJALISE%20HOOLDUSE%20J%C3%84TKAMISEKS.pdf",
+      "submissionChannels": [
+        "email",
+        "mail",
+        "in_person"
+      ],
+      "relatedTo": [
+        "harku_vald_service_taisealise_isiku_hooldus"
+      ],
+      "item_type": "form",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "taotlus_hoolduse_jatkamiseks_pdf"
+      ],
+      "source_keys": [
+        "taotlus_hoolduse_jatkamiseks_pdf"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_form_taotlus_hoolduse_jatkamiseks",
+      "document_id": "harku_vald_form_taotlus_hoolduse_jatkamiseks",
+      "canonical_item_id": "harku_vald_form_taotlus_hoolduse_jatkamiseks",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/sites/default/files/documents/2025-08/TAOTLUS%20T%C3%84HTAJALISE%20HOOLDUSE%20J%C3%84TKAMISEKS.pdf",
+      "content_hash": "74c524d1aeadbff141a38fc1eb6c4d8e94baa95d5e5438c9d81ee5f09ac5f441",
+      "evidence_allowed": true
+    },
+    {
+      "id": "harku_vald_form_lapsehoiuteenuse_ja_muu_toetava_teenuse_taotlus",
+      "itemType": "form",
+      "title": "Raske ja sügava puudega lapse lapsehoiuteenuse ja muu toetava sotsiaalteenuse taotlus",
+      "status": "active",
+      "summary": "Blankett raske ja sügava puudega lapse lapsehoiuteenuse ja muu toetava sotsiaalteenuse taotlemiseks. Vorm võimaldab märkida lapsehoiuteenuse ning teised toetavad teenused, näiteks transpordi- või tugiisikuteenuse.",
+      "format": "pdf",
+      "officialUrl": "https://harku.ee/sites/default/files/documents/2025-08/Raske%20ja%20s%C3%BCgava%20puudega%20lapse%20lapsehoiuteenuse%20ja%20muu%20toetava%20teenuse%20taotlus.pdf",
+      "submissionChannels": [
+        "email",
+        "mail",
+        "in_person"
+      ],
+      "relatedTo": [
+        "harku_vald_service_lapsehoiuteenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "harku_vald",
+      "municipality_name": "Harku vald",
+      "county": "Harjumaa",
+      "sourceKeys": [
+        "lapsehoiuteenuse_ja_muu_toetava_teenuse_taotlus_pdf"
+      ],
+      "source_keys": [
+        "lapsehoiuteenuse_ja_muu_toetava_teenuse_taotlus_pdf"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "metadata_schema_version": "v2.5",
+      "source_id": "harku_vald_form_lapsehoiuteenuse_ja_muu_toetava_teenuse_taotlus",
+      "document_id": "harku_vald_form_lapsehoiuteenuse_ja_muu_toetava_teenuse_taotlus",
+      "canonical_item_id": "harku_vald_form_lapsehoiuteenuse_ja_muu_toetava_teenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://harku.ee/sites/default/files/documents/2025-08/Raske%20ja%20s%C3%BCgava%20puudega%20lapse%20lapsehoiuteenuse%20ja%20muu%20toetava%20teenuse%20taotlus.pdf",
+      "content_hash": "aafd9130207a89c4d2076555676a3229097c041cb6bd1494292cef71280affe4",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_id": "harku_vald",
+  "municipality_name": "Harku vald",
+  "checked_at": "2026-04-11",
+  "schemaVersion": "v2.5-sourcepackage",
+  "lastMetadataUpgradeAt": "2026-04-28"
+}

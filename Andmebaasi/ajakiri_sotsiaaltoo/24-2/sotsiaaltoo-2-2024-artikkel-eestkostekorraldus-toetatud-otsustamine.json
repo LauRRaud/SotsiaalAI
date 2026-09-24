@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2024",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "eestkostekorralduse-kitsaskohad-ja-voimalused-uleminekuks-toetatud-otsustamisele-2024-2",
+  "title": "Eestkostekorralduse kitsaskohad ja võimalused üleminekuks toetatud otsustamisele",
+  "authors": [
+    "Sabina Trankmann"
+  ],
+  "section": "Analüüs",
+  "pageRange": "59-67",
+  "pdf_start_page": 1,
+  "pdf_end_page": 9,
+  "description": "Uuringupõhine analüüs täisealiste eestkostekorraldusest Eestis ning ettepanekutest liikuda järk-järgult toetatud otsustamise suunas.",
+  "tags": [
+    "eestkoste",
+    "toetatud otsustamine",
+    "inimõigused",
+    "puuetega inimesed",
+    "sotsiaalhoolekanne",
+    "KOV"
+  ],
+  "source_path": "Sotsiaaltoo_2_2024_web_Part15.pdf",
+  "document_id": "sotsiaaltoo-2-2024-eestkostekorralduse-kitsaskohad-ja-voimalused-uleminekuks-toetatud-otsustamisele-2024-2",
+  "source_format": "pdf",
+  "source_sha256": "cf9b284a4619fdbb6ddc9fc263a176d8741723a67494dc48cc76f9d1a0b41b3f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2024-eestkostekorralduse-kitsaskohad-ja-voimalused-uleminekuks-toetatud-otsustamisele-2024-2",
+    "previous_source_path": "Sotsiaaltoo_2_2024_web_Part15.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "cf9b284a4619fdbb6ddc9fc263a176d8741723a67494dc48cc76f9d1a0b41b3f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

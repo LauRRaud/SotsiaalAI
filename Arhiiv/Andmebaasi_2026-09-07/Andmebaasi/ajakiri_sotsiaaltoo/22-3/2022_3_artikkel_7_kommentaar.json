@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-3-2022",
+  "articleId": "kommentaar-sotsiaaltransport-parnumaa-2022-3",
+  "title": "Kommentaar",
+  "authors": [
+    "Priit Ruut",
+    "Tarmo Kurves"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2022",
+  "section": "Projekt",
+  "pageRange": "23",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kommentaaris antakse tagasisidet Pärnumaa sotsiaaltranspordi mudeli toimimisele: kiidetakse tõhusat korraldust, professionaalset meeskonda ja omavalitsuste otsust jätkata teenust ka pärast projektirahastuse lõppu. Sotsiaalministeerium toob esile projektist saadud õppetunde ning vajaduse luua üle-eestiline toimiv mudel.",
+  "tags": [
+    "sotsiaaltransport",
+    "kommentaar",
+    "Pärnumaa",
+    "KOV",
+    "sotsiaalpoliitika",
+    "transpordimudel"
+  ],
+  "source_type": "file",
+  "source_path": "2022_3_artikkel_7_kommentaar_ruut_kurves.pdf",
+  "document_id": "sotsiaaltoo-3-2022-kommentaar-sotsiaaltransport-parnumaa-2022-3",
+  "source_format": "pdf",
+  "source_sha256": "bae4d1a16f4476b92a407f45e58d080ae791daa4781f7aaa29cf4a1f96f82f5c",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2022-kommentaar-sotsiaaltransport-parnumaa-2022-3",
+    "previous_source_path": "2022_3_artikkel_7_kommentaar_ruut_kurves.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "bae4d1a16f4476b92a407f45e58d080ae791daa4781f7aaa29cf4a1f96f82f5c",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

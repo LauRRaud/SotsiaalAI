@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="e1621cbb-a1fe-49c2-83f0-516b80fbd4fa" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Muhu Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2017-02-22</aktikuupaev>
+			<avaldamismarge>
+				<RTosa id="5ccefd22-bb00-468b-8ace-20d22a5c33c5">RT IV</RTosa>
+				<avaldamineKuupaev id="62043ca8-49a9-4ebb-83d3-ddf84a5b2e16">2017-03-09</avaldamineKuupaev>
+				<RTartikkel id="d9bd2529-704a-4c8c-840b-eb927c7d2439">4</RTartikkel>
+				<aktViide id="7155d19d-cf21-4dc7-8b37-84e536d4bef8">409032017004</aktViide>
+			</avaldamismarge>
+			<joustumine>2017-03-12</joustumine>
+			<aktiNr>59</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-03-25</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>41</RTartikkel><aktViide>425032026041</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2026-04-01</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2026-03-23</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>425032026041</globaalID>
+		<metaandmedVersioon>33</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-03-24</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1038168</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2017-02-28</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Ave Toomsalu</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>7</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2017-03-08</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="0caecb69-58c4-4739-8fcd-1966b1498165">
+		<nimi id="4c524410-2026-441a-9d7b-f33850a7ad30">
+			<pealkiri id="0f7ec809-3f12-4aa1-b1c8-00f4184ce4a8">Muhu valla sotsiaalhoolekandelise abi andmise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="43d70acb-b0d1-4dfe-b1bd-64411b1ec3fb">
+		<tavatekst id="3e20620f-0aa7-44b8-acd5-b845634eaee5">Kehtetu</tavatekst>
+		<avaldamismarge id="75bbb02b-558d-493e-9255-eb5555cb91ba">
+			<RTosa id="39afa482-ff4e-4741-8394-1e987326b892">RT IV</RTosa>
+			<avaldamineKuupaev id="deef42ea-6d42-4338-99ae-944c59b86464">2026-03-25</avaldamineKuupaev>
+			<RTartikkel id="34207dd9-52b4-4f66-851b-691468dfe445">14</RTartikkel>
+			<aktViide id="ac202dac-efe3-435f-875c-87b1faeb7b92">425032026014</aktViide>
+		</avaldamismarge>
+		<joustumine id="614686b3-1efd-487c-940a-c18f550f2783">2026-04-01</joustumine>
+	</muutmismarge>
+	<sisu id="02addc5b-e2b8-4c35-9a2f-82e62c9d0edc"/>
+</oigusakt>

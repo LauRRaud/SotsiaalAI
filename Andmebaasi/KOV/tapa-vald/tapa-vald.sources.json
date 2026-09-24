@@ -1,0 +1,1193 @@
+{
+  "schemaVersion": "kov-sources-v2.5-sourcepackage",
+  "docId": "kov-tapa-vald",
+  "document_id": "kov-tapa-vald",
+  "municipality": "Tapa vald",
+  "municipality_id": "tapa_vald",
+  "county": "Lääne-Virumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "sources": [
+    {
+      "source_id": "home",
+      "title": "Tapa valla avaleht",
+      "url": "https://www.tapa.ee",
+      "url_canonical": "https://www.tapa.ee",
+      "normalized_url": "https://www.tapa.ee",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "navigation",
+        "contact",
+        "resource"
+      ],
+      "document_id": "home",
+      "source_key": "home",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "tapa_vald_contact_tapa_vallavalitsus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "cec97a263c7dd3ceda226b96a61640896ccab721c2d64d539debc2609e5a239d",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "home"
+    },
+    {
+      "source_id": "all_services",
+      "title": "Kõik teenused",
+      "url": "https://www.tapa.ee/teenused",
+      "url_canonical": "https://www.tapa.ee/teenused",
+      "normalized_url": "https://www.tapa.ee/teenused",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "navigation",
+        "service",
+        "benefit"
+      ],
+      "document_id": "all_services",
+      "source_key": "all_services",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "627967946315c66010b1f4be706422d826362b12d9986e55401e7ad7e827bd89",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "all_services"
+    },
+    {
+      "source_id": "social_overview",
+      "title": "Sotsiaalteenuste üldinfo",
+      "url": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "normalized_url": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/uldinfo",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "service",
+        "benefit",
+        "resource",
+        "form"
+      ],
+      "document_id": "social_overview",
+      "source_key": "social_overview",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "tapa_vald_benefit_eaka_sunnipaevatoetus",
+        "tapa_vald_benefit_toimetuleku_tagamise_toetus",
+        "tapa_vald_resource_medi_hairenuputeenus",
+        "tapa_vald_service_asendus_ja_jarelhooldusteenus",
+        "tapa_vald_service_isikliku_abistaja_teenus",
+        "tapa_vald_service_koduteenus",
+        "tapa_vald_service_lapsehoiuteenus",
+        "tapa_vald_service_noustamisteenus",
+        "tapa_vald_service_sotsiaaltransporditeenus",
+        "tapa_vald_service_taisealise_isiku_hooldus",
+        "tapa_vald_service_tugiisikuteenus",
+        "tapa_vald_service_turvakoduteenus",
+        "tapa_vald_service_vajaduspohine_sotsiaalteenus",
+        "tapa_vald_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+        "tapa_vald_service_varjupaigateenus",
+        "tapa_vald_service_volanoustamisteenus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "b5207df5a15db73744d03eb8d6cf38c6ce79f821b57565a3658adeed0926faae",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "social_overview"
+    },
+    {
+      "source_id": "synnitoetus_page",
+      "title": "Sünnitoetus",
+      "url": "https://www.tapa.ee/sunnitoetus",
+      "url_canonical": "https://www.tapa.ee/sunnitoetus",
+      "normalized_url": "https://www.tapa.ee/sunnitoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "benefit",
+        "form",
+        "contact"
+      ],
+      "document_id": "synnitoetus_page",
+      "source_key": "synnitoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "tapa_vald_benefit_sunnitoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "48da68929b52a96765d929be12877cff05db175f16ca28b3d1e5775e024abc22",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "synnitoetus_page"
+    },
+    {
+      "source_id": "toimetulekutoetus_page",
+      "title": "Toimetulekutoetus",
+      "url": "https://www.tapa.ee/toimetulekutoetus",
+      "url_canonical": "https://www.tapa.ee/toimetulekutoetus",
+      "normalized_url": "https://www.tapa.ee/toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "benefit",
+        "form",
+        "contact"
+      ],
+      "document_id": "toimetulekutoetus_page",
+      "source_key": "toimetulekutoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "tapa_vald_benefit_toimetulekutoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "f326627d484f607a5ab6a9e8f92bba417066adcadaa302d655905a06291b34f3",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "toimetulekutoetus_page"
+    },
+    {
+      "source_id": "matusetoetus_page",
+      "title": "Matusetoetus",
+      "url": "https://www.tapa.ee/toiming/matusetoetus",
+      "url_canonical": "https://www.tapa.ee/toiming/matusetoetus",
+      "normalized_url": "https://www.tapa.ee/toiming/matusetoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "benefit",
+        "form",
+        "contact"
+      ],
+      "document_id": "matusetoetus_page",
+      "source_key": "matusetoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "tapa_vald_benefit_matusetoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "c3e79635cd8754e9a3fb704d757bfa62d891d6a71e39415ec92f139cb4f9cf32",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "matusetoetus_page"
+    },
+    {
+      "source_id": "valtimatu_sotsiaalabi_page",
+      "title": "Vältimatu sotsiaalabi",
+      "url": "https://www.tapa.ee/toiming/valtimatu-sotsiaalabi",
+      "url_canonical": "https://www.tapa.ee/toiming/valtimatu-sotsiaalabi",
+      "normalized_url": "https://www.tapa.ee/toiming/valtimatu-sotsiaalabi",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "benefit",
+        "form",
+        "contact"
+      ],
+      "document_id": "valtimatu_sotsiaalabi_page",
+      "source_key": "valtimatu_sotsiaalabi_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "tapa_vald_benefit_valtimatu_sotsiaalabi"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "521fa4537028ca47696bf22db82edcabe81ec93fee7f7dc4aa6a178e9065cbc7",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "valtimatu_sotsiaalabi_page"
+    },
+    {
+      "source_id": "hooldajatoetus_page",
+      "title": "Hooldajatoetus",
+      "url": "https://www.tapa.ee/toiming/hooldajatoetus",
+      "url_canonical": "https://www.tapa.ee/toiming/hooldajatoetus",
+      "normalized_url": "https://www.tapa.ee/toiming/hooldajatoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "benefit",
+        "form",
+        "contact"
+      ],
+      "document_id": "hooldajatoetus_page",
+      "source_key": "hooldajatoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "tapa_vald_benefit_hooldajatoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "528e9a28bd32a46ef8aa12e739f81e836576892fbedbdf0778063e5ab16116f6",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "hooldajatoetus_page"
+    },
+    {
+      "source_id": "eluruumi_tagamine_page",
+      "title": "Eluruumi tagamine",
+      "url": "https://www.tapa.ee/toiming/eluruumi-tagamine",
+      "url_canonical": "https://www.tapa.ee/toiming/eluruumi-tagamine",
+      "normalized_url": "https://www.tapa.ee/toiming/eluruumi-tagamine",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "service",
+        "form",
+        "contact"
+      ],
+      "document_id": "eluruumi_tagamine_page",
+      "source_key": "eluruumi_tagamine_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "tapa_vald_service_eluruumi_tagamine"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "63816dda98ffe781161a0c9d968c4285c58d06bf9be052d36ac6bbfa6a947ae2",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "eluruumi_tagamine_page"
+    },
+    {
+      "source_id": "ranitsatoetus_page",
+      "title": "Ranitsatoetus",
+      "url": "https://www.tapa.ee/ranitsatoetus",
+      "url_canonical": "https://www.tapa.ee/ranitsatoetus",
+      "normalized_url": "https://www.tapa.ee/ranitsatoetus",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "benefit",
+        "contact"
+      ],
+      "document_id": "ranitsatoetus_page",
+      "source_key": "ranitsatoetus_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "tapa_vald_benefit_ranitsatoetus"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "68a06194c66cea2b2a5e856f3b1ecf63f2edd57b51c5da94b9f2b351dbdb9f9a",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "ranitsatoetus_page"
+    },
+    {
+      "source_id": "muud_tugiteenused_page",
+      "title": "Muud tugiteenused",
+      "url": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/muud-tugiteenused",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/muud-tugiteenused",
+      "normalized_url": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/muud-tugiteenused",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "resource"
+      ],
+      "document_id": "muud_tugiteenused_page",
+      "source_key": "muud_tugiteenused_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "tapa_vald_resource_isikliku_abivahendikaart",
+        "tapa_vald_resource_naiste_tugikeskus",
+        "tapa_vald_resource_parkimiskaart",
+        "tapa_vald_resource_tootukassa_rakvere_buroo"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "0124980ff8c06aa0f1e07e7d2c207fae63f337d7d6dbd4a25b07c4cd20a11479",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "muud_tugiteenused_page"
+    },
+    {
+      "source_id": "hoolekandeasutused_page",
+      "title": "Hoolekandeasutused",
+      "url": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/hoolekandeasutused",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/hoolekandeasutused",
+      "normalized_url": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/sotsiaalteenused/hoolekandeasutused",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "service",
+        "resource"
+      ],
+      "document_id": "hoolekandeasutused_page",
+      "source_key": "hoolekandeasutused_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "tapa_vald_resource_tapa_valla_hooldekodu"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "0331d026fc1e30c8763d65d9cafe8c0ff4f87c234cb263c7b88841e0e44b1d2f",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "hoolekandeasutused_page"
+    },
+    {
+      "source_id": "lastekaitse_page",
+      "title": "Lastekaitse",
+      "url": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/lastekaitse",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/lastekaitse",
+      "normalized_url": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/lastekaitse",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "resource",
+        "contact"
+      ],
+      "document_id": "lastekaitse_page",
+      "source_key": "lastekaitse_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "tapa_vald_resource_lastekaitse_info"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "44b78616b37d8f71ffa9340307ec9397855e0a1551f79447a051bf5d7e7d5f7d",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "lastekaitse_page"
+    },
+    {
+      "source_id": "lahisuhtevagivald_ohvriabi_page",
+      "title": "Lähisuhtevägivald ja ohvriabi",
+      "url": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/lahisuhtevagivald-ohvriabi",
+      "url_canonical": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/lahisuhtevagivald-ohvriabi",
+      "normalized_url": "https://www.tapa.ee/pere-sotsiaalabi-ja-tervishoid/laste-ja-perede-heaolu/lahisuhtevagivald-ohvriabi",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "resource"
+      ],
+      "document_id": "lahisuhtevagivald_ohvriabi_page",
+      "source_key": "lahisuhtevagivald_ohvriabi_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "tapa_vald_resource_lahisuhtevagivald_ohvriabi"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "684978029de3679bdfe1e52837d25c158382850be70179afc44c0f6e8d395311",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "lahisuhtevagivald_ohvriabi_page"
+    },
+    {
+      "source_id": "olulised_telefoninumbrid_page",
+      "title": "Olulised telefoninumbrid",
+      "url": "https://www.tapa.ee/vald-uudised-kontakt/kontakt/olulised-telefoninumbrid",
+      "url_canonical": "https://www.tapa.ee/vald-uudised-kontakt/kontakt/olulised-telefoninumbrid",
+      "normalized_url": "https://www.tapa.ee/vald-uudised-kontakt/kontakt/olulised-telefoninumbrid",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "resource"
+      ],
+      "document_id": "olulised_telefoninumbrid_page",
+      "source_key": "olulised_telefoninumbrid_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "tapa_vald_resource_olulised_abi_ja_kriisitelefonid"
+      ],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "111a0fa7618420a912876fa57ec39ae686f4e42fd8cf8ec49a5ca6df0dc3722f",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "olulised_telefoninumbrid_page"
+    },
+    {
+      "source_id": "elanikkonnakaitse_olulised_kontaktid_page",
+      "title": "Olulised kontaktid",
+      "url": "https://www.tapa.ee/vald-uudised-kontakt/elanikkonnakaitse/olulised-kontaktid",
+      "url_canonical": "https://www.tapa.ee/vald-uudised-kontakt/elanikkonnakaitse/olulised-kontaktid",
+      "normalized_url": "https://www.tapa.ee/vald-uudised-kontakt/elanikkonnakaitse/olulised-kontaktid",
+      "source_type": "kov_service_info",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "resource"
+      ],
+      "document_id": "elanikkonnakaitse_olulised_kontaktid_page",
+      "source_key": "elanikkonnakaitse_olulised_kontaktid_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [],
+      "sections_present": [
+        "description",
+        "eligibility",
+        "application"
+      ],
+      "content_hash": "bba93bfbf897c242ce79fc98b81d94283aae085c651a2604c219d7276f0adcf6",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "elanikkonnakaitse_olulised_kontaktid_page"
+    },
+    {
+      "source_id": "contact_page",
+      "title": "Üldkontaktid, teenistujad",
+      "url": "https://www.tapa.ee/kontakt",
+      "url_canonical": "https://www.tapa.ee/kontakt",
+      "normalized_url": "https://www.tapa.ee/kontakt",
+      "source_type": "contact_page",
+      "source_format": "html",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "contact"
+      ],
+      "document_id": "contact_page",
+      "source_key": "contact_page",
+      "resource_type": "service_page",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "tapa_vald_contact_arina_murk",
+        "tapa_vald_contact_helen_ruberg",
+        "tapa_vald_contact_kai_puhasmets",
+        "tapa_vald_contact_kairi_kruusamae",
+        "tapa_vald_contact_katrin_merila",
+        "tapa_vald_contact_kristi_ale",
+        "tapa_vald_contact_martin_kesamaa",
+        "tapa_vald_contact_pille_eevardi",
+        "tapa_vald_contact_ragni_nikiforova",
+        "tapa_vald_contact_tamsalu_teeninduskeskus",
+        "tapa_vald_contact_teele_paas"
+      ],
+      "sections_present": [],
+      "content_hash": "5071d8333f998822a00ec4adc44b5d3f02b16997fc57d1ea78db3c801f627f29",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "contact_page"
+    },
+    {
+      "source_id": "form_teenuse_taotlus",
+      "title": "Teenuse taotlus.rtf",
+      "url": "https://www.tapa.ee/sites/default/files/documents/2026-01/Teenuse%20taotlus.rtf",
+      "url_canonical": "https://www.tapa.ee/sites/default/files/documents/2026-01/Teenuse%20taotlus.rtf",
+      "normalized_url": "https://www.tapa.ee/sites/default/files/documents/2026-01/Teenuse%20taotlus.rtf",
+      "source_type": "application_form",
+      "source_format": "rtf",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "form_teenuse_taotlus",
+      "source_key": "form_teenuse_taotlus",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "tapa_vald_form_teenuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "2e488ddd12f33453a682e614470ff9ad90daf2c1b06c91afdd3a22aa4d3e47a7",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_teenuse_taotlus"
+    },
+    {
+      "source_id": "form_toetuse_taotlus",
+      "title": "Toetuse taotlus.rtf",
+      "url": "https://www.tapa.ee/sites/default/files/documents/2026-01/Toetuse%20taotlus.rtf",
+      "url_canonical": "https://www.tapa.ee/sites/default/files/documents/2026-01/Toetuse%20taotlus.rtf",
+      "normalized_url": "https://www.tapa.ee/sites/default/files/documents/2026-01/Toetuse%20taotlus.rtf",
+      "source_type": "application_form",
+      "source_format": "rtf",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "form_toetuse_taotlus",
+      "source_key": "form_toetuse_taotlus",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "tapa_vald_form_toetuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "9c9803579ec48974c8790e9ebca0b7d79aa7b1b0a86c8cebb1c33cb8720c12de",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_toetuse_taotlus"
+    },
+    {
+      "source_id": "form_synnitoetuse_taotlus",
+      "title": "Sünnitoetuse taotlus.rtf",
+      "url": "https://www.tapa.ee/sites/default/files/documents/2025-11/S%C3%BCnnitoetuse%20taotlus.rtf",
+      "url_canonical": "https://www.tapa.ee/sites/default/files/documents/2025-11/S%C3%BCnnitoetuse%20taotlus.rtf",
+      "normalized_url": "https://www.tapa.ee/sites/default/files/documents/2025-11/S%C3%BCnnitoetuse%20taotlus.rtf",
+      "source_type": "application_form",
+      "source_format": "rtf",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "form_synnitoetuse_taotlus",
+      "source_key": "form_synnitoetuse_taotlus",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "tapa_vald_form_synnitoetuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "70246a72a369a17ffce48f20c03c95999b79de8aea0b3acefe95039079ff5c85",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_synnitoetuse_taotlus"
+    },
+    {
+      "source_id": "form_matusetoetuse_taotlus",
+      "title": "Matusetoetuse taotlus.rtf",
+      "url": "https://tapa.ee/sites/default/files/documents/2025-12/Matusetoetuse%20taotlus.rtf",
+      "url_canonical": "https://tapa.ee/sites/default/files/documents/2025-12/Matusetoetuse%20taotlus.rtf",
+      "normalized_url": "https://tapa.ee/sites/default/files/documents/2025-12/Matusetoetuse%20taotlus.rtf",
+      "source_type": "application_form",
+      "source_format": "rtf",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "form_matusetoetuse_taotlus",
+      "source_key": "form_matusetoetuse_taotlus",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "tapa_vald_form_matusetoetuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "78218aa860c99553a52b63375ec5516514f8473f3a29de85e9d438d88056f70c",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_matusetoetuse_taotlus"
+    },
+    {
+      "source_id": "form_toimetulekutoetuse_taotlus",
+      "title": "Lisa 1. Toimetulekutoetuse taotlus, täidetav.pdf",
+      "url": "https://www.tapa.ee/sites/default/files/documents/2026-01/Lisa%201.%20Toimetulekutoetuse%20taotlus%2C%20t%C3%A4idetav.pdf",
+      "url_canonical": "https://www.tapa.ee/sites/default/files/documents/2026-01/Lisa%201.%20Toimetulekutoetuse%20taotlus%2C%20t%C3%A4idetav.pdf",
+      "normalized_url": "https://www.tapa.ee/sites/default/files/documents/2026-01/Lisa%201.%20Toimetulekutoetuse%20taotlus%2C%20t%C3%A4idetav.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "form_toimetulekutoetuse_taotlus",
+      "source_key": "form_toimetulekutoetuse_taotlus",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "tapa_vald_form_toimetulekutoetuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "9c711cf2a48b2ec7ed4f2cd7b13dc3c94f187e76a2d7782f547f97e57cdc8288",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_toimetulekutoetuse_taotlus"
+    },
+    {
+      "source_id": "form_perekonna_varade_loetelu",
+      "title": "Lisa 2. Loetelu vorm perekonna varade kohta, täidetav.pdf",
+      "url": "https://www.tapa.ee/sites/default/files/documents/2026-01/Lisa%202.%20Loetelu%20vorm%20perekonna%20varade%20kohta%2C%20t%C3%A4idetav.pdf",
+      "url_canonical": "https://www.tapa.ee/sites/default/files/documents/2026-01/Lisa%202.%20Loetelu%20vorm%20perekonna%20varade%20kohta%2C%20t%C3%A4idetav.pdf",
+      "normalized_url": "https://www.tapa.ee/sites/default/files/documents/2026-01/Lisa%202.%20Loetelu%20vorm%20perekonna%20varade%20kohta%2C%20t%C3%A4idetav.pdf",
+      "source_type": "pdf_form",
+      "source_format": "pdf",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "form_perekonna_varade_loetelu",
+      "source_key": "form_perekonna_varade_loetelu",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "tapa_vald_form_perekonna_varade_loetelu"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "12eea43c372381ea51c0b7a63b96000626a20167df2aced1fcaf24e365d38dbb",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_perekonna_varade_loetelu"
+    },
+    {
+      "source_id": "form_valtimatu_sotsiaalabi",
+      "title": "Vältimatu sotsiaalabi toetuse taotlus.rtf",
+      "url": "https://www.tapa.ee/sites/default/files/documents/2026-02/V%C3%A4ltimatu%20sotsiaalabi%20toetuse%20taotlus.rtf",
+      "url_canonical": "https://www.tapa.ee/sites/default/files/documents/2026-02/V%C3%A4ltimatu%20sotsiaalabi%20toetuse%20taotlus.rtf",
+      "normalized_url": "https://www.tapa.ee/sites/default/files/documents/2026-02/V%C3%A4ltimatu%20sotsiaalabi%20toetuse%20taotlus.rtf",
+      "source_type": "application_form",
+      "source_format": "rtf",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "form_valtimatu_sotsiaalabi",
+      "source_key": "form_valtimatu_sotsiaalabi",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "tapa_vald_form_valtimatu_sotsiaalabi_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "49df600a558ca5db2cc59712640fc535e82fe551d71c4e5cab05a37b501577c0",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_valtimatu_sotsiaalabi"
+    },
+    {
+      "source_id": "form_eluruumi_teenus",
+      "title": "Eluruumi teenuse taotlus.rtf",
+      "url": "https://www.tapa.ee/sites/default/files/documents/2026-02/Eluruumi%20teenuse%20taotlus.rtf",
+      "url_canonical": "https://www.tapa.ee/sites/default/files/documents/2026-02/Eluruumi%20teenuse%20taotlus.rtf",
+      "normalized_url": "https://www.tapa.ee/sites/default/files/documents/2026-02/Eluruumi%20teenuse%20taotlus.rtf",
+      "source_type": "application_form",
+      "source_format": "rtf",
+      "collection_id": "kov_services",
+      "authority": "official",
+      "language": "et",
+      "source_status": "accessible",
+      "used_for": [
+        "form"
+      ],
+      "document_id": "form_eluruumi_teenus",
+      "source_key": "form_eluruumi_teenus",
+      "resource_type": "form",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "municipality": "Tapa vald",
+      "municipality_id": "tapa_vald",
+      "municipality_name": "Tapa vald",
+      "county": "Lääne-Virumaa",
+      "jurisdiction_level": "MUNICIPALITY",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "evidence_allowed": true,
+      "relatedCanonicalItemIds": [
+        "tapa_vald_form_eluruumi_teenuse_taotlus"
+      ],
+      "sections_present": [
+        "forms"
+      ],
+      "content_hash": "7b125e326dea9d51453f6e618b37ab7e94010a521f1b9a002008c8011e29dcf0",
+      "metadata_schema_version": "v2.5",
+      "canonical_source_id": "form_eluruumi_teenus"
+    }
+  ],
+  "municipality_name": "Tapa vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

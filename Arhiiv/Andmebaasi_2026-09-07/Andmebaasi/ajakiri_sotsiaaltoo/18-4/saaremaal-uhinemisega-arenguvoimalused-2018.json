@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-4-2018",
+  "articleId": "saaremaal-on-uhinemisega-saadud-arenguvoimalused-hasti-ara-kasutatud-2018",
+  "title": "Saaremaal on ühinemisega saadud arenguvõimalused hästi ära kasutatud",
+  "authors": [
+    "Kairit Lindmäe"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2018",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "25-28",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Saaremaa valla näitel kirjeldatakse haldusreformi järel tekkinud ühtse omavalitsuse võimalusi sotsiaalhoolekande korraldamisel: liikumist toetustepõhiselt hinnatud abivajadusest lähtuvatele teenustele, ühtseid sotsiaalteenuseid kogu valla territooriumil, spetsialiseerumist ja uute teenuste (koduteenus, intervallhooldus, päevahoid) arendamist.",
+  "tags": [
+    "haldusreform",
+    "Saaremaa vald",
+    "kohalik omavalitsus",
+    "sotsiaalhoolekanne",
+    "sotsiaalteenused",
+    "koduteenus",
+    "intervallhooldus",
+    "päevahoid",
+    "hooldajatoetus",
+    "teenuste arendamine"
+  ],
+  "source_type": "file",
+  "source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part7.pdf",
+  "document_id": "sotsiaaltoo-4-2018-saaremaal-on-uhinemisega-saadud-arenguvoimalused-hasti-ara-kasutatud-2018",
+  "source_format": "pdf",
+  "source_sha256": "d6393627f2ee79915a6afd8939cbc0982a8b56fbcc6615a3056227b68dae7906",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2018-saaremaal-on-uhinemisega-saadud-arenguvoimalused-hasti-ara-kasutatud-2018",
+    "previous_source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part7.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d6393627f2ee79915a6afd8939cbc0982a8b56fbcc6615a3056227b68dae7906",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

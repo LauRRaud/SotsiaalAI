@@ -1,0 +1,89 @@
+{
+  "docId": "sotsiaaltoo-2-2017",
+  "articleId": "tsehhi-suundumused-2017-2",
+  "title": "Sotsiaaltöö suundumused Tšehhi Vabariigis",
+  "authors": [
+    "Libor Musil"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2017",
+  "section": "Uued suunad Euroopas",
+  "pageRange": "83-86",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Masaryki Ülikooli professori ülevaade sotsiaaltöö suundumustest Tšehhi Vabariigis alates 1990. aastate algusest — mõtteviisis, praktikas, hariduses ja erialaühingute tegevuses. Autor nimetab Tšehhi ühiskonda postmodernistlikult killustatuks ja seob sotsiaaltöö uue alguse Tšehhi Vabariigi asutamisega 1993. aastal, millele eelnes kolmkümmend aastat, mil sotsiaaltööga tegeldi äärmiselt vähe ja sellealast haridust ei antud.",
+  "tags": [
+    "Tšehhi",
+    "rahvusvaheline võrdlus",
+    "sotsiaaltöö areng",
+    "sotsiaaltööharidus",
+    "postsotsialistlik"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2-2017_veebi_link_Part24.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2017-tsehhi-suundumused-2017-2",
+  "source_sha256": "c62217acf6758db73f9947f94ed403a3b0f052a3bd288651865914307edb0695",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2017-tsehhi-suundumused-2017-2",
+    "previous_source_path": "Sotsiaaltoo_2-2017_veebi_link_Part24.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2-2017_veebi_link_Part24.pdf",
+    "reference_stored_source_sha256": "8068e63bf7324027e83733f7dafd3a1104ee5ad6d098b04e7412dfb7d2c9ea3a",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf",
+      "source_sha256": "609af110244e684ccbb68aea9504f2490fce2852b1e7caa7bedacb621d661a8a",
+      "pdf_start_page": 85,
+      "pdf_end_page": 88,
+      "printed_page_range": "83-86",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 88,
+      "source_regions": [
+        {
+          "source_pdf_page": 85,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 86,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 87,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 88,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "83-86"
+    },
+    "server_page_range": "83-86"
+  }
+}

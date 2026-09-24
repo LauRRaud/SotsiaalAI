@@ -1,0 +1,282 @@
+{
+  "docId": "sotsiaaltoo-eri-2022",
+  "articleId": "akadeemilise-koolituse-kujunemine-2022-eri",
+  "title": "Akadeemilise sotsiaaltöökoolituse kujunemine Tallinna Ülikoolis: retrospektiivne vaade",
+  "authors": [
+    "Taimi Tulva",
+    "Anne Tiko",
+    "Lauri Leppik"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö (erinumber)",
+  "issueLabel": "Eri/2022",
+  "section": "30 aastat õpetamist",
+  "pageRange": "3-27",
+  "pdf_start_page": 1,
+  "pdf_end_page": 25,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Erinumbri põhiartikkel: retrospektiivne tagasivaade sotsiaaltöö eriala kujunemisele Tallinna Ülikoolis kolmekümne aasta jooksul (1991–2021), toetudes dokumentatsioonile, varasematele artiklitele ning kolleegide ja vilistlaste meenutustele. Seob eriala tekke taasiseseisvunud Eesti ühiskondlike muutustega, mis tõid kaasa sotsiaalsete probleemide laiema tunnistamise ja vajaduse koolitatud sotsiaaltöötajate järele. Korpuse kõige põhjalikum ülevaade Eesti sotsiaaltöö kõrghariduse ajaloost.",
+  "tags": [
+    "sotsiaaltööharidus",
+    "Tallinna Ülikool",
+    "sotsiaaltöö ajalugu",
+    "õppekavad",
+    "sotsiaaltööteadus",
+    "retrospektiiv"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo-ERINUMBER_2022_Part3.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-eri-2022-akadeemilise-koolituse-kujunemine-2022-eri",
+  "source_sha256": "93c3556e033901dda0c23970ca4e5febec2cae50ad882fb98238447c5af94a04",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-eri-2022-akadeemilise-koolituse-kujunemine-2022-eri",
+    "previous_source_path": "Sotsiaaltoo-ERINUMBER_2022_Part3.txt",
+    "previous_source_original_path": "Sotsiaaltoo-ERINUMBER_2022_Part3.pdf",
+    "reference_stored_source_sha256": "83dccefa644ec891388686e9761fef45eaa0dccd0c39c5c5610e2f4446e1f252",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo-ERINUMBER_2022.pdf",
+      "source_sha256": "807b48240fe049838a94b8cffd3e1b388f778591bddb0ad5cb542d3cd6ff73b1",
+      "pdf_start_page": 5,
+      "pdf_end_page": 29,
+      "printed_page_range": "3-27",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 29,
+      "source_regions": [
+        {
+          "source_pdf_page": 5,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 6,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 7,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 8,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 9,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 10,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 11,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 12,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 13,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 14,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 15,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 16,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 17,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 18,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 19,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 20,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 21,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 22,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 23,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 24,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 25,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 26,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 27,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 28,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 29,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "3-27",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo-ERINUMBER_2022.pdf"
+    },
+    "server_page_range": "3-27"
+  }
+}

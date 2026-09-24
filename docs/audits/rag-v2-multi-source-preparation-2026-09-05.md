@@ -230,3 +230,107 @@ Sama 84 rea võrguta kordushindamine säilitas kõik v1 read, teksti, järjekorr
 Vanades otsustes oli 139 ootel kirjet ja 0 kinnitust. Vanu kirjeid ega assistendi arvamuse JSON-i uude kinnituste faili ei imporditud. Uues failis on 142 ootel kirjet (15 definitsiooni, 37 vastendust, 15 korpuse ja 75 konteksti otsust), kõik `reviewed_by=null`. Lõpphinnang jääb kõigil 84 real `needs_review`, kvaliteediprotsent `null`.
 
 Kontrollid: **10 pass, 0 fail, 0 skip** käsuga `node --test tests/rag-v2-rubric.test.mjs`; lint, `git diff --check` ja tootmisbuild koos i18n-ga läbisid. Uus sihttest kontrollib, et 20 projekti alternatiiv toimib ilma 52-ta, mõlemad lk 3 osalised komplektid leiduvad päris leksikaalses/struktuurilises kontekstis, mõõdetud tulemused jäävad kohustuslikuks ning EKA eelvaateroll säilib ekspordis. Omaniku järgneval käsul saadeti täpsustused, test ja dokumentatsioon GitHubi; privaatsed raportid ja otsusefailid jäid kohalikuks. Uusi mudelikutseid, otsingut, indekseerimist ega deploy'd ei tehtud. Järgmine samm on tegeliku omaniku või sisulise inimülevaataja otsused.
+
+### Omaniku rubriigikinnitus
+
+05.09 omanik kinnitas otseselt „mina kinnitan” rubriigi `2.0-proposal-2` nõuete ja tõendusvastenduste kasutamise hindamise alusena, jättes konteksti- ning korpuseotsused eraldi ülevaatusse. [Privaatne vastuvõtukirje](../../tmp/rag-v2-m2-3/rubric-v2-owner-acceptance.json) seob kinnituse rubriigi muutumatu räsiga `266f2abc39662a4f580ca3407513231a1cf0d5d53189604039a8250c4fba3e35`. 15 definitsiooni ja 37 vastendust on `approved`; `reviewed_by.role=owner`, nimeväli tuvastab selle vestluse projekti omaniku. Alus kirjeldab omaniku otsust assistendi koostatud ja üle vaadatud materjali põhjal, mitte sõltumatut pimedat inimhindamist. Algne rubriigiettepanek ja vana ootel otsusefail säilivad muutmata.
+
+Kinnitatud on hindamise leping, mitte 75 konteksti ammendav lugemine ega kogu korpuse katvus: 75 konteksti ja 15 korpuseotsust jäid algse failiga täpselt võrdseks ja `pending`. [Uue kordushindamise raport](../../tmp/rag-v2-m2-3/rubric-v2-owner-accepted/report.html), [masinloetav tulemus](../../tmp/rag-v2-m2-3/rubric-v2-owner-accepted/regrade-results.json) ning [jooksukirje](../../tmp/rag-v2-m2-3/rubric-v2-owner-accepted/run.json) kinnitavad 84 v1 rea teksti, järjekorra ja tokenite säilimist, muutumatuid sisendiräsisid ning 0 võrgu-/otsingukutset. Kõik definitsioonid on nüüd hindajas kinnitatud, kuid lõpphinnang on endiselt `needs_review=84`, kvaliteediprotsent `null`, sest kontekstiülevaatus on eraldi ootel. Otsusefaili normaliseeritud räsi on `a63091e33730984d814211160364f2b3b09e46ab6964f377d99a29db48822f79`.
+
+Vastuvõtukirje ja selle dokumentatsioon on kohalikud; uut rubriigiversiooni, koodimuudatust, push'i ega deploy'd ei tehtud. Järgmine samm on korpuse ja kontekstide sisulised otsused perekondade kaupa. Teste ega build'i ei korratud andme-/dokumendikirje pärast.
+
+### Esimese perekonna kontekstiotsuste ettevalmistus
+
+Tööandja vastutuse perekonna kõik neli salvestatud konteksti (13 unikaalset tekstiosa) loeti kinnitatud nõuete järgi läbi. [Otsustusleht](../../tmp/rag-v2-m2-3/employer-review.md) sisaldab meetoditeta tähiseid A–D, täielikke kontekste, päritolu ja korpuses leiduvat lk 5 täistuge; [assistendi ettepanek](../../tmp/rag-v2-m2-3/employer-review-proposal.json) on formaalsest otsusefailist eraldi.
+
+Ettepanek: A ja D riskivastutus `partial`, järeltoe nõue `full`; B ja C mõlemad nõuded `partial`; kogu küsimuse katvus kõigis neljas `partial`. Vastandväidet nõuetele ei tuvastatud. Korpuses on mõlema nõude täielik tugi kinnitatud lk 5 komplektidena olemas; see on positiivse olemasolu tõend, mitte kogu korpuse ammendava lugemise väide. Formaalseid konteksti- ega korpuseotsuseid enne omaniku kinnitust ei muudetud. Ülevaatus on assistendi ettevalmistus, millele omanik saab oma otsuses tugineda.
+
+### Tööandja perekonna otsused vastu võetud
+
+05.09 omanik nõustus A–D terviktekstide ja kinnitatud rubriigi alusel kõigi nelja kontekstiotsusega, mõlema nõude täieliku toe olemasoluga korpuses ning vastandväite puudumisega. Omanik lubas nõusoleku lisada otsuste alusesse. [Jätkuv privaatne otsusefail](../../tmp/rag-v2-m2-3/review-decisions-employer-accepted.json) säilitab kõik 52 varasemat definitsiooni/vastenduse kinnitust ja lisab täpselt viis otsust: neli konteksti ning ühe perekonna korpusekatvuse. Muud otsused ei muutunud. Päritolu on selle vestluse omaniku retrospektiivne vastuvõtt assistendi koostatud materjali põhjal, mitte sõltumatu pime inimhindamine. Korpuse `full/full` on positiivse tõendi olemasolu otsus, mitte ülejäänud korpuse ammendava lugemise või kehtiva õiguse kontrolli kinnitus.
+
+[Võrguta kordushindamine](../../tmp/rag-v2-m2-3/employer-accepted/report.html) andis kõigile neljale tööandja reale `partial`. A/D ehk vektori/hübriidi riskivastutus on `partial` ja järeltoe nõue `full`; B/C ehk struktuuri/leksikaalse raja mõlemad nõuded on `partial`. Kõigi nelja vastuoluväli on `none`. V1 read, tekstid, järjestus ja tokenid säilisid; võrgu- ja otsingukutseid oli 0. Kogu 84 rea koond: 4 kinnitatud `partial`, 80 `needs_review`, 0 `full`, 0 `absent`, kvaliteediprotsent `null`. Ootel on 71 unikaalset konteksti ja 14 korpusekatvuse otsust. Otsusefaili normaliseeritud räsi: `4dac47e331694d0fec3c94001fa005acf468ccdc91f05c1d844a87bff4f2ed18`.
+
+Selle perekonna rubriigiparandust pole vaja. Vajalik üldise tööandja riskivastutuse teadmine on korpuses, kuid ei jõudnud tervikuna ühtegi neljast valikust; otsingu edasine siht oleks vastutusseose leidmine, mitte lehe sunniviisiline eelistamine. Järgmine ülevaatusperekond on inimsuhted ja arendustingimused. Muudatused on kohalikud, koodi ega serverit ei muudetud, push'i ega deploy'd ei tehtud.
+
+### Inimsuhete ja arendustingimuste otsustusleht
+
+05.09 loeti järgmise perekonna kõik neli salvestatud konteksti (10 unikaalset tekstiosa). [Otsustusleht](../../tmp/rag-v2-m2-3/relationships-review.md) sisaldab nõudeid, põhjendusi, kõiki A–D terviktekste ja päritolu; [assistendi ettepanek](../../tmp/rag-v2-m2-3/relationships-review-proposal.json) säilitab sidumise muutumatu rubriigi ja kontekstiräsidega. Meetodid ja skoorid on peidetud; tegu on retrospektiivse ettevalmistusega.
+
+Ettepanek: B/C inimsuhete piir `full`, üldised arendustingimused `partial`; D mõlemad `full`. B lk 6–7 eakate/hooldajate osalus on sisuline lisatugi, kuid hooldusvaldkonna näide ei kinnita automaatselt kogu üldist tingimust. A jääb `needs_review`: lk 6 inimkesksed väärtused ning lk 3–4 Hesteri näide sisaldavad võimalikku seni vastendamata osatuge, mistõttu `no_mapped_support` ei teisendata `absent`-iks. Koolitusmaterjal ei asenda küsimuses nõutud artikli käsitlust. Vastandväidet nõuetele ei tuvastatud. Korpuses on mõlemale nõudele täistugi kinnitatud `relationship-limit` (lk 8) ja `general-conclusion` (lk 12) komplektides; see on positiivse olemasolu tõend.
+
+B–D ja korpuse otsused ootavad omaniku sisulist vastuvõttu; A vajab eraldi hinnangut. Formaalseid otsuseid, rubriiki ega varasemaid vastuvõtukirjeid ei muudetud. Koodi-, võrgu-, otsingu-, DB-, push- ega deploy-toiminguid ei tehtud. Andme-/dokumendimuudatus ei vajanud uut testi ega build'i; kontrolliti otsustuslehe tekstide ja räsiseoste vastavust olemasolevale paketile ning `git diff --check` tulemust.
+
+### Inimsuhete B–D ja korpuse otsused vastu võetud
+
+05.09 omanik kinnitas B–D terviktekstide lugemise järel B/C `full/partial` ja D `full/full`, nendes kolmes vastandväidete puudumise ning mõlema nõude `full` korpusekatvuse. A jäeti sõnaselgelt eraldi ülevaatusse. [Uus privaatne otsusefail](../../tmp/rag-v2-m2-3/review-decisions-relationships-accepted.json) lisab täpselt neli vastuvõttu: B, C, D ja perekonna korpusekatvus; ülejäänud 138 kirjet, sealhulgas A, 52 rubriigikinnitust ja viis tööandja otsust, säilivad muutmata. Alus sisaldab omaniku hinnangu kasutusluba, terviktekstide lugemist ning retrospektiivse vastuvõtu piiri.
+
+B põhjendus tunnustab eakate/hooldajate kaasamist väljatöötamisse, autonoomiat, andmekaitset, jälgitavust ja spetsialistidega koostööd. B/C osalisus tuleneb spetsialistide ja teenusekasutajate sisulise arendusotsustes osalemise kogu ulatuse ebapiisavast tõendist, mitte lehe või fraasi puudumisest. Nende `no_other_support_for` sisaldab ainult `general-development` ning põhjendus täpsustab, et lisatugi ei anna tugevamat ehk täielikku katvust; osatuge ei eitata. D säilitab artikli tingimusliku järelduse, mitte garanteeritud või mõõdetud mõju. Korpusekatvus on positiivse allikatõendi olemasolu, mitte ülejäänud korpuse ammendava lugemise kinnitus.
+
+[Võrguta kordushindamine](../../tmp/rag-v2-m2-3/relationships-accepted/report.html) kinnitab A `needs_review`, B/C `partial` ja D `full`; A vastuoluotsus on endiselt ootel, B–D `none`. Kõigi 84 rea koond on **1 full, 6 partial, 0 absent, 77 needs_review**, kvaliteediprotsent `null`. Ootel on 68 unikaalset konteksti ja 13 korpuseotsust. [Jooksukirje](../../tmp/rag-v2-m2-3/relationships-accepted/run.json) normaliseeritud otsuseräsi on `219ee76f6391f409ec4f6cc0e976210507e50f308e41201fd3b80b3bf59593ec`; sisendid säilisid, võrgu- ja otsingukutseid oli 0. Readback võrdles kõigi v1 ridade täielikku sisu ja tokeniarvestust eelmise jooksuga ning kinnitas täpselt nelja otsuse muutuse ja A puutumatuse.
+
+Järgmine samm on A võimaliku osatoe eraldi sisuline hinnang. Rubriiki, otsingut, koodi, andmebaase ega serverit ei muudetud. Teste ega build'i andme-/dokumendikirje tõttu ei korratud; `git diff --check` läbis. Kõik uued otsusekirjed ja dokumentatsioon on kohalikud, push'i ega deploy'd ei tehtud.
+
+### Kõigi ülejäänud otsuste koondpakett
+
+05.09 omanik ütles, et tal pole aega üksikute juhtumite kaupa hinnata, ning palus teha hindamise korraga. Valmis [üks otsustusleht](../../tmp/rag-v2-m2-3/batch-review.md), [täistekstidega tõendivaade](../../tmp/rag-v2-m2-3/batch-review-evidence.html), [masinloetav ettepanek](../../tmp/rag-v2-m2-3/batch-review-proposal.json) ja [artefaktide räsimanifest](../../tmp/rag-v2-m2-3/batch-review-manifest.json). Kaks sõltumatut read-only ülevaatuskatset ei käivitunud kasutuslimiidi tõttu; lõpliku sisulise ülevaatuse tegi põhiassistent. Seda ei esitata sõltumatu mitme hindaja ega inimese auditina.
+
+Läbi vaadati kõigi 68 ootel konteksti 58 unikaalset tekstiosa ning võeti arvesse varasemas voorus loetud allikaosi. Korpuse kontrolliks vaadati lisaks üle kontekstides puudunud kaheksa lühikest tekstiosa; kaheksa dokumendi 69 normaliseeritud tekstiosa sisu oli seega läbi loetud. PDF-e ei renderdatud uuesti ja parseri piirangud säilivad. Korpuse negatiivsed ettepanekud piirduvad selle snapshot'iga: EKA projektikajastus ei sisalda nende projektide saavutatud mõõdetud mõju; korpuses pole määramata valla 2026 koduteenuse hinnamäära ega määramise tähtaega. Positiivsed korpuseotsused toetuvad kinnitatud täielikele allikakomplektidele.
+
+Ettepanekute jaotus 68 unikaalsel kontekstil: **41 full, 8 partial, 12 absent, 7 needs_review**. Ühe vastuvõtuga saab kinnitada 61 konteksti ja 13 korpuseotsust. Lahtiseks jäävad K13/K42/K67 (turvalisuse arutelu võimalik osatugi eetilisele kolleegiarutelule), K21/K41 (intsidendikorra tundmise võimalik osatugi teatamisnõudele), K24 (varasem inimsuhete A) ja K45 (H2 töölehe võimalik tugevam detaili-ülesande seos). Neid ei teisendata automaatselt puuduvaks toeks. Uut rubriigiversiooni ega vastendust selles paketis ei lisatud.
+
+Kui omanik võtab kõik selged ettepanekud vastu, oleks kõigi 84 tulemuserivi prognoos **50 full, 14 partial, 13 absent, 7 needs_review**. See on ettepanekute mehaaniline projektsioon, mitte kordushindamise ametlik tulemus ega otsingu paranemine. Praegused formaalsed otsused ja ametlik koond **1 full / 6 partial / 77 needs_review** säilivad muutmata. Koondvastuvõtu sõnastus lubab omanikul tugineda assistendi paketile, väitmata kõigi terviktekstide isiklikku lugemist; lubatud on üks koondnõusolek koos eranditega.
+
+Tehniline readback kontrollis kõigi 68 konteksti olemasolu, sisuräsiseoseid, iga täisteksti leidumist tõendivaates, 61 selge ettepaneku kooskõla olemasolevate vastendustega ja formaalsete otsusefailide muutumatust. `git diff --check` läbis. Teste ega build'i ei korratud, otsingut ja andmebaase ei puudutatud ning väliskutseid, push'i ega deploy'd ei tehtud. Järgmine samm on üks omaniku koondotsus, seejärel üks võrguta kordushindamine ja ühe allesjäänud otsinguvaliku puudujäägi valimine; iga lahtise konteksti jaoks uut üksikkinnituse ringi ei alustata.
+
+### Koondjärelhinnang ja nelja põhjenduse lisa
+
+05.09 loeti omaniku lisatud [KOOND_JARELHINNANG.md](../KOOND_JARELHINNANG.md) ja [batch-review-assistant-check.json](../batch-review-assistant-check.json). Need on ChatGPT assistendi retrospektiivne järelülevaatus, mitte omaniku otsus ega sõltumatu inimhindamine. Järelülevaatus toetab 61 valmis konteksti ja 13 korpuseotsust ning säilitab seitse erandit. Tema lugemisulatus on 58 esitatud unikaalset tekstiosa; 69 kanoonilise korpuseüksuse läbivaatuse väide pärineb algpaketi koostajalt. V1 kogu payload'i ja formaalse baastaseme räsi sõltumatut kontrolli järelülevaataja ei väitnud.
+
+Kohalik võrdlus kinnitas järelülevaatuse kolme failiräsi, 61 valmis tähise, 13 korpuseperekonna, seitsme erandi ning nõudepõhiste ettepanekute vastavuse algpaketile. Leid K22/K47/K50/K65 puuduva `reason` kohta osutus õigeks: sama puudus oli HTML-i põhjenduskohtades. Varasem tehniline kontroll tõendas tekstide ja vastenduste säilimist, kuid ei kontrollinud iga põhjenduse mittetühjust.
+
+[Eraldi põhjenduste lisa](../../tmp/rag-v2-m2-3/batch-review-rationale-supplement.json) seob neli põhjendust muutumatute konteksti- ja sisuräsidega ning sisaldab mõlema järelülevaatusfaili baidiräsi. K22/K47/K50 eristavad EKA rolli olemasolu ja nõutud Tehnopoli allikakoha puudumist (`absent/full`, koond `partial`); K65 sisaldab mõlemat (`full/full`). Rubriiki ega hinnanguid ei muudetud, algpaketi kolm manifestiräsi säilivad. Formaalsetesse otsustesse assistendi hinnangut ei imporditud ja kordushindamist ei tehtud. Ametlik tulemus jääb **1 full / 6 partial / 77 needs_review**; **50/14/13/7** on endiselt omaniku koondvastuvõtust sõltuv prognoos. `git diff --check` läbis; koodi, serverit, push'i ega deploy'd ei puudutatud.
+
+## M2.3 koondvastuvõtt ja põhileidude eelisjärjekorraga profiil
+
+05.09 omaniku esitatud `CODEX_M2_3_KONTEKSTIVALIK_v0_1.md` §2 ja sama töövooru lisatud juhis kinnitasid tegeliku koondvastuvõtu aluse ning andsid loa piiratud valikukatseks. [Salvestatud otsusefail](../../tmp/rag-v2-m2-3/review-decisions-batch-accepted.json) lisab täpselt **61 konteksti ja 13 korpuseotsust**. Ülejäänud 68 otsusekirjet säilisid; nende hulgas on kõik varasemad kinnitused ja seitse lahtist konteksti. K22/K47/K50/K65 põhjendused tulid muutumatu algpaketi eraldi lisast. `reviewed_by` on senise vastuvõturaja projekti omanik, mitte järelülevaatuse assistent. `reviewed_at=2026-09-05T19:54:58.291Z` on salvestamise aeg; vahendatud varasema kinnituse täpne kellaaeg on teadmata ja seda ei leiutatud. Alus säilitab assistentide tööle tugineva omaniku vastuvõtu ning 58 eksporditud / 69 kanoonilise üksuse läbivaatuste erinevuse.
+
+[Üks ametlik võrguta kordushindamine](../../tmp/rag-v2-m2-3/batch-accepted/report.html) andis **50 full / 14 partial / 13 absent / 7 needs_review** kõigil 84 küsimuse-/meetodireal. Need pole 68 unikaalse konteksti arvud ega süsteemi täpsusprotsent. Otsuste normaliseeritud räsi on `1adaac767a11d7714b12d27d76afcc5c98418fb997d374cc98dcaf1806305987`; rubriik, v1 payload, korpus ja algpakett säilivad. Korpuse mõõdetud projektimõju ning määramata valla teenuse hinna/tähtaja nõuded on endiselt piiratud valimi `absent`.
+
+| Ametlik meetod | full | partial | absent | needs_review |
+| --- | ---: | ---: | ---: | ---: |
+| Leksikaalne | 8 | 3 | 8 | 2 |
+| Vektor | 16 | 2 | 1 | 2 |
+| Hübriid | 14 | 5 | 1 | 1 |
+| Ajalooline 3+2 struktuur | 12 | 4 | 3 | 2 |
+
+### Teostus ja võrdlus
+
+Koodikontroll näitas, et `retrieve()` juba lisab põhileiud enne naabreid. Seetõttu lisati **olemasoleva võimekuse eksplitsiitsed profiilid**, mitte teine valikualgoritm: `lib/rag-v2/search/profiles.js` annab versioonitud `ranked-first-nondisplacing-v1` poliitika, `topK=finalLimit=5`, 40 kandidaati kanalis, 6000 tegelikku kompaktset tokenit, sama kuni viie üksuse dokumendipiiri ning struktuuri vaikimisi väljas. Naabritega nimeline profiil lubab kuni kaheksa sammu ja kaks lisandust ainult tegelikult vabasse mahtu. Ajalooline `hybrid_structure`, RRF, leksikaalne otsing, parser, tükeldus, mudel ja indeksid säilisid. Leping ja kasutus on [ADR-005-s](../rag-v2/adr-005-ranked-first-profiles.md).
+
+`scripts/rag-v2-selection-compare.mjs` kasutab salvestatud pärisvektoreid ja kandidaatide nimekirju ning käivitab muutmata tootmisvalikufunktsiooni read-only mälus olevate adapteritega. [Võrdlusraport](../../tmp/rag-v2-m2-3/selection-ranked-first-v1/report.html), [kõik tulemused](../../tmp/rag-v2-m2-3/selection-ranked-first-v1/comparison-results.json) ja [jooksukirje](../../tmp/rag-v2-m2-3/selection-ranked-first-v1/run.json) tõendavad **63/63 ajaloolise rea** täpset teksti, järjekorra ja tokenite reproduktsiooni. Kokku tehti 84 runtime'i kordusesitust ja 84 salvestatud päringuvektori lugemist; uusi välismudeli-, PostgreSQL-i või Qdranti teenusekutseid, indeksi aktiveerimisi ega genereerivaid kutseid oli 0.
+
+Uus naabritega profiil oli **21/21 küsimusel struktuurita hübriidiga täpselt sama**: kõik viis kohta täitusid põhileidudega. See on võrdsus, mitte graafi võit. Kõik uue profiili kontekstid olid olemasolevate otsustega seotud tekstikogumid; uusi unikaalseid kontekste ja uut kinnitusringi ei tekkinud. Olemasolev lahtine hübriidkontekst jäi lahtiseks.
+
+| Muutus vana 3+2 raja suhtes | Tõend |
+| --- | --- |
+| Kaks võitu sama perekonna EN/RU tõlkeridadel | Rahastamise nõutud Tehnopoli lk 2 tuli tagasi: `absent → full`. Need pole kaks sõltumatut sisulist olukorda. |
+| Üks kaotus | Andmeminimeerimisel kadus kasulik osalejapaketi lk 7 naaber; mõlemad nõuded muutusid `full → partial`. |
+| 16 võrdse kinnitatud katvusega rida | Sisu võis muutuda, kuid kinnitatud koondkatvus säilis. |
+| Kaks lahendamata võrdlust | Intsidendil tuli lk 11 täielik tugi tagasi ja uus kontekst on varem kinnitatud `full`, kuid vana 3+2 kontekst jääb `needs_review`; seda ei loeta kinnitatud võiduks. Eetilise arutelu mõlemad kontekstid jäävad lahti. |
+
+Nõuete lisandunud/kadunud komplektid, täistekstid, päritolu, valikupõhjused ja kestused on raportis. Kõigis võrreldud meetodites oli viis üksust. Vektori tokenivahemik oli 2507–5450 (keskmine 3943), hübriidil ja uuel profiilil 3107–5889 (4606), vanal 3+2 rajal 2818–5111 (4022). Mõõdetud valikuaeg ei sisalda päristeenuste latentsust. Tegelik PostgreSQL/Qdrant integratsioon selles plokis `not_run`; aktiivset pärisindeksit ei puudutatud.
+
+### Profiilikandidaat ja M4 järg
+
+Järgmise piiratud M4 sisepiloodi ettepanek on **[vector-ranked-first-v1](../../tmp/rag-v2-m2-3/selection-ranked-first-v1/m4-profile-candidate.json)**, struktuur väljas; kontrollitud alternatiiv on `hybrid-ranked-first-v1`. Põhjus on selle valimi 16 vs 14 täieliku toega rida ja väiksem kontekst, kuid ootel ridu ei peideta ega vektori universaalset paremust väideta. Helperi hübriidne vaikimisi profiil ei aktiveeri M4 kandidaati: ühendus peab valima profiili nimeliselt. Naabritega variant jääb katseprofiiliks.
+
+[Uue kontrollkogumi ettepanek](../../tmp/rag-v2-m2-3/selection-ranked-first-v1/future-control-proposal.json) sisaldab kuut uut sisulist ET/EN/RU juhtumit: Hesteri andmete elutsükkel ja inimese abi, olemasoleva tehnoloogia kohandamise nõue, õppeotsuse vaiderada, kommentaaride eri autorite seisukohad, Kataloonia/Tamil Nadu kujundusnäidete võrdlus ning tänase vooruseisu eristamine ajaloolisest snapshot'ist. Küsimusi pole käivitatud ega häälestamiseks kasutatud. Enne valideerimist fikseeritakse lõplik profiili-, küsimuste-, nõuete- ja korpuseräsi; pärisembedding ja Luna vajavad üht selget materjali-/kuluplaani.
+
+M4 järgmine töö on uue küsimuse embedding, serverisessioonist tuletatud õigused, nimeline otsinguprofiil ja kompaktne kontekst, ühe vastaja adapter, kanooniliste viidete avamine ning salvestamise/taastatavuse leping. M4 teostust ei alustatud. Seitse lahtist hinnangut ega kogu M3 sõltuvusgraaf ei blokeeri seda piiratud ettevalmistust; M3, M5 ja suure korpuse päringutöö vähendamine jäävad oma töödeks.
+
+### Kontrollid ja kohaliku töö piir
+
+Uus `tests/rag-v2-selection.test.mjs`: **7 pass / 0 fail / 0 skip**. Mõjutatud RAG-regressioon (`rag-v2-search`, `rag-v2-rubric`, `rag-v2-pilot`): **32 pass / 0 fail / 0 skip**; kokku **39/0/0**. Kontrolliti viienda põhileiu säilimist, vabade kohtade kasutamist, tegelikke kompaktseid tokeneid, nähtavaid piiripõhjuseid, duplikaate, puuduvat/valet versiooni, ligipääsu tühistamist, determinismi, puuduvat vektorivahemälu, hindaja eraldatust ja vana kinnituse mitteülekandmist uuele kontekstile. Muudetud koodi lint, `git diff --check` ja üks lõpliku koodipuu tootmisbuild koos i18n-ga läbisid. Skeemi ega tõlkeid ei muudetud.
+
+Lähte-HEAD on `0873f148b`; profiil, võrdluskäsk, test ja dokumentatsioon on kohalikud muudatused. Vanad rapordid ja kinnituste ajalugu säilivad eraldi väljundites. Avaliku chati `generationAvailable=false`, Luna, teenused ja server jäid puutumata. Push'i ega deploy'd ei tehtud.

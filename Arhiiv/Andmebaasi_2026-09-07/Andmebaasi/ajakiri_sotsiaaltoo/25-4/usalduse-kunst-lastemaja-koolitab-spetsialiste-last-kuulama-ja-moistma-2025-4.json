@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2025",
+  "articleId": "usalduse-kunst-lastemaja-koolitab-spetsialiste-last-kuulama-ja-moistma-2025-4",
+  "title": "Usalduse kunst: Lastemaja koolitab spetsialiste last kuulama ja mõistma",
+  "authors": [
+    "Maria Viidebaum"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2025",
+  "section": "Lastekaitse",
+  "pageRange": "1–4",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab lastemaja traumateadlikku ja lapsesõbralikku töökorraldust ning selgitab, kuidas spetsialiste koolitatakse lapsega turvalise kontakti loomiseks. Fookuses on seksuaalselt väärkoheldud või selle kahtlusega laste toetamine ning ennetustegevus.",
+  "tags": [
+    "lastemaja",
+    "lastekaitse",
+    "traumateadlikkus",
+    "lapsesõbralik lähenemine",
+    "seksuaalvägivald",
+    "spetsialistide koolitus",
+    "Barnahus"
+  ],
+  "source_type": "file",
+  "source_path": "Usalduse kunst_Lastemaja koolitab spetsialiste last kuulama ja mõistma.pdf",
+  "document_id": "sotsiaaltoo-4-2025-usalduse-kunst-lastemaja-koolitab-spetsialiste-last-kuulama-ja-moistma-2025-4",
+  "source_format": "pdf",
+  "source_sha256": "35f5faa236d8203ec682ec8224a822122716f768c59ea36ba53764c5f7662480",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2025-usalduse-kunst-lastemaja-koolitab-spetsialiste-last-kuulama-ja-moistma-2025-4",
+    "previous_source_path": "Usalduse kunst_Lastemaja koolitab spetsialiste last kuulama ja mõistma.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "35f5faa236d8203ec682ec8224a822122716f768c59ea36ba53764c5f7662480",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

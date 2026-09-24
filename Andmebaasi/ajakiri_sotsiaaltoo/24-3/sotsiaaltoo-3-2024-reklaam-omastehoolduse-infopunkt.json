@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-3-2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2024",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "section": "Reklaam",
+  "pageRange": "—",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "is_ad": true,
+  "source_path": "sotsiaaltoo_3_2024_web_Part182.pdf",
+  "articleId": "omastehoolduse-infopunkt-2024-3",
+  "title": "Uus omastehoolduse infopunkt nõustab ja pakub abi",
+  "authors": [],
+  "description": "Lühike infotekst, mis tutvustab Eesti Puuetega Inimeste Koja eestvedamisel loodud omastehoolduse veebikeskkonda omastehooldusest.ee. Selgitatakse, kellele portaal on mõeldud, millist infot ja tuge sealt leiab (õigused, teenused, toetused, vaimne tervis, tugigrupid, kogemusnõustamine) ning kuidas infopunkt aitab vähendada killustatust ja suurendada teadlikkust omastehoolduse valdkonnas.",
+  "tags": [
+    "omastehooldus",
+    "omastehooldusest.ee",
+    "omastehooldaja",
+    "infopunkt",
+    "Eesti Puuetega Inimeste Koda",
+    "pikaajaline hooldus"
+  ],
+  "document_id": "sotsiaaltoo-3-2024-omastehoolduse-infopunkt-2024-3",
+  "source_format": "pdf",
+  "source_sha256": "4c65b51167ca7359d57f88ce96e8da5d8c8434fd8c958dc6d34b14cd33c0d5d8",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2024-omastehoolduse-infopunkt-2024-3",
+    "previous_source_path": "sotsiaaltoo_3_2024_web_Part182.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "4c65b51167ca7359d57f88ce96e8da5d8c8434fd8c958dc6d34b14cd33c0d5d8",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

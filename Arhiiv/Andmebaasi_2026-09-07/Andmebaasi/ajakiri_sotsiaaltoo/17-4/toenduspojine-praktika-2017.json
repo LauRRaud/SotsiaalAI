@@ -1,0 +1,37 @@
+{
+  "docId": "sotsiaaltoo-4-2017",
+  "articleId": "toenduspojine-praktika-2017",
+  "title": "Tõenduspõhine praktika ja selle rakendamine",
+  "authors": [
+    "Karin Streimann"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2017",
+  "section": "Sotsiaaltöö meetodid",
+  "pageRange": "64-70",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb tõenduspõhise praktika olemust ja rakendamist sotsiaaltöös.",
+  "tags": [
+    "tõenduspõhine praktika",
+    "sekkumised",
+    "sotsiaaltöö meetodid"
+  ],
+  "source_type": "file",
+  "source_path": "Tõenduspõhine praktika ja selle rakendamine.pdf",
+  "document_id": "sotsiaaltoo-4-2017-toenduspojine-praktika-2017",
+  "source_format": "pdf",
+  "source_sha256": "48c7a8617d00ee1fb620f82625217bd660d88b49e84184d7bd611f413681074e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2017-toenduspojine-praktika-2017",
+    "previous_source_path": "Tõenduspõhine praktika ja selle rakendamine.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "48c7a8617d00ee1fb620f82625217bd660d88b49e84184d7bd611f413681074e",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

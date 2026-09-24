@@ -1,0 +1,4973 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-keila-linn",
+  "document_id": "kov-keila-linn",
+  "municipality": "Keila linn",
+  "municipality_id": "keila_linn",
+  "county": "Harjumaa",
+  "checkedAt": "2026-04-29",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "keila_linn_contact_keila_linnavalitsus",
+      "canonical_item_id": "keila_linn:contact:keila_linnavalitsus",
+      "itemType": "contact",
+      "title": "Keila Linnavalitsus",
+      "status": "active",
+      "summary": "Keila Linnavalitsuse üldkontakt ja vastuvõtuinfo. Sobib pöördumiseks, kui konkreetset sotsiaalvaldkonna spetsialisti ei ole teada.",
+      "sourceKeys": [
+        "home"
+      ],
+      "name": "Keila Linnavalitsus",
+      "role": "üldkontakt",
+      "department": "Keila Linnavalitsus",
+      "address": "Keskväljak 11, Keila 76608",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "officialUrl": null,
+      "unresolvedIssues": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email"
+      ],
+      "item_type": "contact",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "home"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_contact_keila_linnavalitsus",
+      "document_id": "keila_linn_contact_keila_linnavalitsus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "61957dfbe7d8fd493731304370d46e23fe1cafe6bfbe743edbadd6ed620c115b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_contact_janne_sirel",
+      "canonical_item_id": "keila_linn:contact:janne_sirel",
+      "itemType": "contact",
+      "title": "Janne Sirel",
+      "status": "active",
+      "summary": "Haridus-, kultuuri- ja sotsiaaltöö valdkonna poliitiline vastutaja Keila linnavalitsuses.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Janne Sirel",
+      "role": "abilinnapea haridus-, kultuuri- ja sotsiaaltöö alal",
+      "department": "Keila Linnavalitsus",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "officialUrl": null,
+      "unresolvedIssues": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email"
+      ],
+      "item_type": "contact",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_contact_janne_sirel",
+      "document_id": "keila_linn_contact_janne_sirel",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "dd0506c0d322024021a773929c306ee0ec166a096ab27761c50896cdeb4a7d4b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_contact_piia_peterson",
+      "canonical_item_id": "keila_linn:contact:piia_peterson",
+      "itemType": "contact",
+      "title": "Piia Peterson",
+      "status": "active",
+      "summary": "Keila sotsiaalosakonna juht, kelle kontakt on avaldatud sotsiaalteenuste ja toetuste juures.",
+      "sourceKeys": [
+        "all_contacts_page",
+        "social_contacts_page"
+      ],
+      "name": "Piia Peterson",
+      "role": "sotsiaalosakonna juht",
+      "department": "Keila Linnavalitsus",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "officialUrl": null,
+      "unresolvedIssues": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email"
+      ],
+      "item_type": "contact",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "all_contacts_page",
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_contact_piia_peterson",
+      "document_id": "keila_linn_contact_piia_peterson",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "54343b59724bbf2b2cd11f27c80245ce7d5211b93c3fc39cae3dd9332bfe2be6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_contact_ele_reet_ehelaid",
+      "canonical_item_id": "keila_linn:contact:ele_reet_ehelaid",
+      "itemType": "contact",
+      "title": "Ele-Reet Ehelaid",
+      "status": "active",
+      "summary": "Sotsiaaltööspetsialist, kelle poole saab pöörduda sotsiaaltoetuste, toimetulekutoetuse ja matusetoetuse küsimustes.",
+      "sourceKeys": [
+        "all_contacts_page",
+        "social_contacts_page"
+      ],
+      "name": "Ele-Reet Ehelaid",
+      "role": "sotsiaaltööspetsialist",
+      "department": "Keila Linnavalitsus",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "officialUrl": null,
+      "unresolvedIssues": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email"
+      ],
+      "item_type": "contact",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "all_contacts_page",
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_contact_ele_reet_ehelaid",
+      "document_id": "keila_linn_contact_ele_reet_ehelaid",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "5f2e49137da1d048648890db71f953da109a957a2f2fab9aee27a35e526602ee",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_contact_ene_ellik",
+      "canonical_item_id": "keila_linn:contact:ene_ellik",
+      "itemType": "contact",
+      "title": "Ene Ellik",
+      "status": "active",
+      "summary": "Sotsiaaltöö juhtivspetsialist, kelle kontakt on seotud paljude sotsiaalteenuste ning toetustega.",
+      "sourceKeys": [
+        "all_contacts_page",
+        "social_contacts_page",
+        "sotsiaalteenused_page",
+        "sotsiaaltoetused_page"
+      ],
+      "name": "Ene Ellik",
+      "role": "sotsiaaltöö juhtivspetsialist",
+      "department": "Keila Linnavalitsus",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "officialUrl": null,
+      "unresolvedIssues": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email"
+      ],
+      "item_type": "contact",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "all_contacts_page",
+        "social_contacts_page",
+        "sotsiaalteenused_page",
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_contact_ene_ellik",
+      "document_id": "keila_linn_contact_ene_ellik",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "99621b62e0387fb611ff015d81794f3996fb4d61684ed5489c765f15bc40f046",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_contact_janne_sutting",
+      "canonical_item_id": "keila_linn:contact:janne_sutting",
+      "itemType": "contact",
+      "title": "Janne Sutting",
+      "status": "active",
+      "summary": "Eestkostetöö korraldamise sotsiaaltööspetsialist ja eestkoste lehe peamine kontakt.",
+      "sourceKeys": [
+        "all_contacts_page",
+        "eestkoste_page",
+        "social_contacts_page"
+      ],
+      "name": "Janne Sutting",
+      "role": "sotsiaaltööspetsialist, eestkostetöö korraldamine",
+      "department": "Keila Linnavalitsus",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "officialUrl": null,
+      "unresolvedIssues": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email"
+      ],
+      "item_type": "contact",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "all_contacts_page",
+        "eestkoste_page",
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_contact_janne_sutting",
+      "document_id": "keila_linn_contact_janne_sutting",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "b85bd7e6c907ffbec038d503df572dfd38ec0711390e01caf3210e62edfd201d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_contact_liina_koiv",
+      "canonical_item_id": "keila_linn:contact:liina_koiv",
+      "itemType": "contact",
+      "title": "Liina Kõiv",
+      "status": "active",
+      "summary": "Laste heaolu juhtivspetsialist, kelle kontakt on avaldatud lastekaitse ja lastega seotud teenuste juures.",
+      "sourceKeys": [
+        "child_welfare_contacts_page",
+        "social_contacts_page"
+      ],
+      "name": "Liina Kõiv",
+      "role": "laste heaolu juhtivspetsialist",
+      "department": "Keila Linnavalitsus",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "officialUrl": null,
+      "unresolvedIssues": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email"
+      ],
+      "item_type": "contact",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "child_welfare_contacts_page",
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_contact_liina_koiv",
+      "document_id": "keila_linn_contact_liina_koiv",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "3fce93a8649fd996d96fe5aabbe723e94e03d6a67b889b9b5c6ea9d5a5fcc914",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_contact_erki_uus",
+      "canonical_item_id": "keila_linn:contact:erki_uus",
+      "itemType": "contact",
+      "title": "Erki Uus",
+      "status": "active",
+      "summary": "Laste heaolu spetsialist, kelle kontakt on avaldatud lastekaitse ja lastega seotud teenuste juures.",
+      "sourceKeys": [
+        "child_welfare_contacts_page",
+        "social_contacts_page"
+      ],
+      "name": "Erki Uus",
+      "role": "laste heaolu spetsialist",
+      "department": "Keila Linnavalitsus",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "officialUrl": null,
+      "unresolvedIssues": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email"
+      ],
+      "item_type": "contact",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "child_welfare_contacts_page",
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_contact_erki_uus",
+      "document_id": "keila_linn_contact_erki_uus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "7083e4bcdcb3a1f3ab9a517ce19215e9783a4555091dc4f1cb8c916ecf2626db",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_contact_leenu_leomar",
+      "canonical_item_id": "keila_linn:contact:leenu_leomar",
+      "itemType": "contact",
+      "title": "Leenu Leomar",
+      "status": "active",
+      "summary": "Laste heaolu spetsialist, kelle kontakt on avaldatud lastekaitse ja lastega seotud teenuste juures.",
+      "sourceKeys": [
+        "child_welfare_contacts_page",
+        "social_contacts_page"
+      ],
+      "name": "Leenu Leomar",
+      "role": "laste heaolu spetsialist",
+      "department": "Keila Linnavalitsus",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "officialUrl": null,
+      "unresolvedIssues": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email"
+      ],
+      "item_type": "contact",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "child_welfare_contacts_page",
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_contact_leenu_leomar",
+      "document_id": "keila_linn_contact_leenu_leomar",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "186fff1a14559e60eeae2a46a16c2a504bfe334904f472b64c0dfc9e337a521b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_contact_liisi_jurisoo",
+      "canonical_item_id": "keila_linn:contact:liisi_jurisoo",
+      "itemType": "contact",
+      "title": "Liisi Jürisoo",
+      "status": "active",
+      "summary": "Noorte heaolu spetsialist Keila haridus-, kultuuri- ja sotsiaalteenistuses.",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "name": "Liisi Jürisoo",
+      "role": "noorte heaolu spetsialist",
+      "department": "Keila Linnavalitsus",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "officialUrl": null,
+      "unresolvedIssues": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email"
+      ],
+      "item_type": "contact",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_contact_liisi_jurisoo",
+      "document_id": "keila_linn_contact_liisi_jurisoo",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "95a7cd84312e0924a0bb1b500f6bd4c78cc4bc873077b0380db9a4e1a9434721",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_contact_terje_rammel",
+      "canonical_item_id": "keila_linn:contact:terje_rammel",
+      "itemType": "contact",
+      "title": "Terje Rämmel",
+      "status": "active",
+      "summary": "Haridusnõunik, kelle kontakt on seotud koduse lapse toetuse ja esmakordselt kooli mineva lapse toetusega.",
+      "sourceKeys": [
+        "social_contacts_page",
+        "sotsiaaltoetused_page"
+      ],
+      "name": "Terje Rämmel",
+      "role": "haridusnõunik",
+      "department": "Keila Linnavalitsus",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "officialUrl": null,
+      "unresolvedIssues": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email"
+      ],
+      "item_type": "contact",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "social_contacts_page",
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_contact_terje_rammel",
+      "document_id": "keila_linn_contact_terje_rammel",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "a67f59fdfe87718ae1f413ecae805f2d6e31a26548c5acdb7dc43242585a8aa4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_contact_olga_oksner",
+      "canonical_item_id": "keila_linn:contact:olga_oksner",
+      "itemType": "contact",
+      "title": "Olga Oksner",
+      "status": "active",
+      "summary": "Keila Sotsiaalkeskuse avahooldusspetsialist ja koduteenuse praktiline kontakt.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "name": "Olga Oksner",
+      "role": "Keila Sotsiaalkeskuse avahooldusspetsialist",
+      "department": "Keila Sotsiaalkeskus",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "officialUrl": null,
+      "unresolvedIssues": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email"
+      ],
+      "item_type": "contact",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_contact_olga_oksner",
+      "document_id": "keila_linn_contact_olga_oksner",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "4cf96d6414b5b1a17467327d86fa2f6099cd726ebaf169572482e102307ea2de",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_contact_jaane_poldme",
+      "canonical_item_id": "keila_linn:contact:jaane_poldme",
+      "itemType": "contact",
+      "title": "Jaane Põldme",
+      "status": "active",
+      "summary": "Keila Sotsiaalkeskuse infosekretär, kelle kontakt on avaldatud sotsiaaltransporditeenuse juures.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "name": "Jaane Põldme",
+      "role": "Keila Sotsiaalkeskuse infosekretär",
+      "department": "Keila Sotsiaalkeskus",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "officialUrl": null,
+      "unresolvedIssues": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email"
+      ],
+      "item_type": "contact",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_contact_jaane_poldme",
+      "document_id": "keila_linn_contact_jaane_poldme",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "9a13eb7811ca7c9406965d1b98661edd1decebca0ff251132bb4e3374d836a5e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_contact_riina_sippol",
+      "canonical_item_id": "keila_linn:contact:riina_sippol",
+      "itemType": "contact",
+      "title": "Riina Sippol",
+      "status": "active",
+      "summary": "Keila Sotsiaalkeskuse juhataja, kelle kontakt on avaldatud varjupaigateenuse juures.",
+      "sourceKeys": [
+        "sotsiaalteenused_page"
+      ],
+      "name": "Riina Sippol",
+      "role": "Keila Sotsiaalkeskuse juhataja",
+      "department": "Keila Sotsiaalkeskus",
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "officialUrl": null,
+      "unresolvedIssues": [],
+      "sections_present": [
+        "name",
+        "role",
+        "phone",
+        "email"
+      ],
+      "item_type": "contact",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_contact_riina_sippol",
+      "document_id": "keila_linn_contact_riina_sippol",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "3c64404675536102855a60bcdffefc28985fe251643aae5e108cd995535ef48d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_form_synnitoetuse_taotlus",
+      "canonical_item_id": "keila_linn:form:synnitoetuse_taotlus",
+      "itemType": "form",
+      "title": "Sünnitoetuse taotlus",
+      "status": "active",
+      "summary": "E-taotlus ja paberblankett Keila linna sünnitoetuse taotlemiseks. Vorm on seotud lapse sünni puhul makstava toetusega.",
+      "sourceKeys": [
+        "forms_page",
+        "synnitoetus_file"
+      ],
+      "officialUrl": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "eApplicationUrl": "https://piksel.ee/spoku/keila/sunnitoetus/ylevaade?toetus=484",
+      "fileUrl": "https://keila.ee/wp-content/uploads/2020/08/Sunnitoetuse-avaldus.rtf",
+      "format": "e-form + rtf",
+      "submissionChannels": [
+        "e-application",
+        "paper_form"
+      ],
+      "relatedTo": [
+        "keila_linn_benefit_synnitoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "keila_linn_contact_ele_reet_ehelaid",
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "format",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "item_type": "form",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "synnitoetus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_form_synnitoetuse_taotlus",
+      "document_id": "keila_linn_form_synnitoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "content_hash": "17d610ca2fd62c8dab660d5757475d0a103e669d8e16b9aa5a97381f65dcba88",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_form_erivajadusega_lapse_koolitranspordi_toetus",
+      "canonical_item_id": "keila_linn:form:erivajadusega_lapse_koolitranspordi_toetus",
+      "itemType": "form",
+      "title": "Erivajadusega lapse koolitranspordi toetuse taotlus",
+      "status": "active",
+      "summary": "Taotlus erivajadusega lapse ja õpilase õppeasutusse või lasteasutusse sõidukulude osaliseks kompenseerimiseks.",
+      "sourceKeys": [
+        "erivajadusega_lapse_transport_file",
+        "forms_page"
+      ],
+      "officialUrl": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "eApplicationUrl": "https://piksel.ee/spoku/keila/transporditoetus/ylevaade?toetus=473",
+      "fileUrl": "https://keila.ee/wp-content/uploads/2020/08/Erivajadusega-lapse-transporditoetus-5.rtf",
+      "format": "e-form + rtf",
+      "submissionChannels": [
+        "e-application",
+        "paper_form"
+      ],
+      "relatedTo": [
+        "keila_linn_benefit_erivajadusega_lapse_transport"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "keila_linn_contact_ele_reet_ehelaid",
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "format",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "item_type": "form",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "erivajadusega_lapse_transport_file",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_form_erivajadusega_lapse_koolitranspordi_toetus",
+      "document_id": "keila_linn_form_erivajadusega_lapse_koolitranspordi_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "content_hash": "713d89a2381578212fd1d6c8461e243ec38c356133f20de7a83b7838a2ad7e32",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_form_vaimse_tervise_teenuse_huvitamine",
+      "canonical_item_id": "keila_linn:form:vaimse_tervise_teenuse_huvitamine",
+      "itemType": "form",
+      "title": "Vaimse tervise teenuse osalise hüvitamise avaldus",
+      "status": "active",
+      "summary": "Taotlus psühholoogilise nõustamise, perenõustamise või loovteraapia kulude osaliseks hüvitamiseks Keila linnas.",
+      "sourceKeys": [
+        "forms_page",
+        "vaimse_tervise_file"
+      ],
+      "officialUrl": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "eApplicationUrl": "https://piksel.ee/spoku/keila/vaimnetervis_uus/sisu?toetus=586",
+      "fileUrl": "https://keila.ee/wp-content/uploads/2025/04/VAIMSE-TERVISE-TEENUSE-avaldus.rtf",
+      "format": "e-form + rtf",
+      "submissionChannels": [
+        "e-application",
+        "paper_form"
+      ],
+      "relatedTo": [
+        "keila_linn_service_vaimse_tervise_teenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "keila_linn_contact_ene_ellik",
+        "keila_linn_contact_liina_koiv",
+        "keila_linn_contact_erki_uus",
+        "keila_linn_contact_leenu_leomar"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "format",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "item_type": "form",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "vaimse_tervise_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_form_vaimse_tervise_teenuse_huvitamine",
+      "document_id": "keila_linn_form_vaimse_tervise_teenuse_huvitamine",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "content_hash": "619e83e31ec7b7998c3287601b72f33e04be73d4f87d74bdbe5cad2367c2b492",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_form_eestkostel_oleva_lapse_toetus",
+      "canonical_item_id": "keila_linn:form:eestkostel_oleva_lapse_toetus",
+      "itemType": "form",
+      "title": "Eestkostel oleva lapse toetuse taotlus",
+      "status": "active",
+      "summary": "Taotlus eestkostel oleva lapse igakuise toetuse saamiseks.",
+      "sourceKeys": [
+        "eestkostel_lapse_toetus_file",
+        "forms_page"
+      ],
+      "officialUrl": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "eApplicationUrl": "https://piksel.ee/spoku/keila/eestkostellapsetoetus/ylevaade?_andl_id=1",
+      "fileUrl": "https://keila.ee/wp-content/uploads/2020/08/Eestkostel-oleva-lapse-toetuse-avaldus.rtf",
+      "format": "e-form + rtf",
+      "submissionChannels": [
+        "e-application",
+        "paper_form"
+      ],
+      "relatedTo": [
+        "keila_linn_benefit_eestkostel_lapse_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "keila_linn_contact_ele_reet_ehelaid",
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "format",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "item_type": "form",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eestkostel_lapse_toetus_file",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_form_eestkostel_oleva_lapse_toetus",
+      "document_id": "keila_linn_form_eestkostel_oleva_lapse_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "content_hash": "52c80afce6b42c171710d2d89a7782fd4ae6b9d416286c8c12d8fac84e5c0356",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_form_puudega_lapse_hooldajatoetus",
+      "canonical_item_id": "keila_linn:form:puudega_lapse_hooldajatoetus",
+      "itemType": "form",
+      "title": "Puudega lapse hooldajatoetuse taotlus",
+      "status": "active",
+      "summary": "Taotlus 3–18-aastase puudega lapse hooldajale makstava hooldajatoetuse saamiseks.",
+      "sourceKeys": [
+        "forms_page",
+        "puudega_lapse_hooldajatoetus_file"
+      ],
+      "officialUrl": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "eApplicationUrl": "https://piksel.ee/spoku/keila/hooldajalapsele/sisu?toetus=591",
+      "fileUrl": "https://keila.ee/wp-content/uploads/2020/08/Avaldus-puudega-lapse-hooldajatoetus.rtf",
+      "format": "e-form + rtf",
+      "submissionChannels": [
+        "e-application",
+        "paper_form"
+      ],
+      "relatedTo": [
+        "keila_linn_benefit_hooldajatoetus_puudega_lapse_hooldajale"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "format",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "item_type": "form",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "puudega_lapse_hooldajatoetus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_form_puudega_lapse_hooldajatoetus",
+      "document_id": "keila_linn_form_puudega_lapse_hooldajatoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "content_hash": "70c4ccb763c32fd3449d68a6b4fad2d2505ee059128e8869c0c0b2a7f8c2acfb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_form_taisealise_puudega_isiku_hooldaja_hooldajatoetus",
+      "canonical_item_id": "keila_linn:form:taisealise_puudega_isiku_hooldaja_hooldajatoetus",
+      "itemType": "form",
+      "title": "Täisealise puudega isiku hooldajaks ja hooldajatoetuse määramise taotlus",
+      "status": "active",
+      "summary": "Taotlus täisealise puudega isiku hooldajaks määramiseks ja hooldajatoetuse saamiseks.",
+      "sourceKeys": [
+        "forms_page",
+        "taisealise_hooldaja_file"
+      ],
+      "officialUrl": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "eApplicationUrl": "https://piksel.ee/spoku/keila/hooldaja/sisu?toetus=590",
+      "fileUrl": "https://keila.ee/wp-content/uploads/2020/08/Taisealise-isiku-hoodajaks-ja-hooldajatoetuse-maaramiseks-avaldus.rtf",
+      "format": "e-form + rtf",
+      "submissionChannels": [
+        "e-application",
+        "paper_form"
+      ],
+      "relatedTo": [
+        "keila_linn_service_taisealise_isiku_hooldus",
+        "keila_linn_benefit_hooldajatoetus_taisealise_isiku_hooldajale"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "format",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "item_type": "form",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "taisealise_hooldaja_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_form_taisealise_puudega_isiku_hooldaja_hooldajatoetus",
+      "document_id": "keila_linn_form_taisealise_puudega_isiku_hooldaja_hooldajatoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "content_hash": "aff06fbc8dbcf121bd3e1975c4e419d57714bc7290c2399a59835062e719904e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_form_kodus_elamist_toetavad_sotsiaalteenused",
+      "canonical_item_id": "keila_linn:form:kodus_elamist_toetavad_sotsiaalteenused",
+      "itemType": "form",
+      "title": "Kodus elamist toetavate sotsiaalteenuste taotlus",
+      "status": "active",
+      "summary": "Taotlus kodus elamist toetavate sotsiaalteenuste, eeskätt koduteenuse ja päevahoiuteenuse taotlemiseks.",
+      "sourceKeys": [
+        "forms_page",
+        "kodus_elamist_toetavad_file"
+      ],
+      "officialUrl": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "eApplicationUrl": "https://piksel.ee/spoku/keila/koduteenus/sisu?toetus=584",
+      "fileUrl": "https://keila.ee/wp-content/uploads/2026/01/Kodus-elamist-toetavate-sotsiaalteenuste-taotlus.docx",
+      "format": "e-form + docx",
+      "submissionChannels": [
+        "e-application",
+        "paper_form"
+      ],
+      "relatedTo": [
+        "keila_linn_service_koduteenus",
+        "keila_linn_service_paevahoiuteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "keila_linn_contact_ene_ellik",
+        "keila_linn_contact_olga_oksner"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "format",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "item_type": "form",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "kodus_elamist_toetavad_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_form_kodus_elamist_toetavad_sotsiaalteenused",
+      "document_id": "keila_linn_form_kodus_elamist_toetavad_sotsiaalteenused",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "content_hash": "cd9c7c9eba233e248d1bb4c43c32eb5f3d1fe2e2d0d6e1520087811f9f9b4f74",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_form_sotsiaalteenuse_taotlus",
+      "canonical_item_id": "keila_linn:form:sotsiaalteenuse_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaalteenuse taotlus",
+      "status": "active",
+      "summary": "Üldine sotsiaalteenuse taotlus, mida Keila linn seostab tugiisiku-, isikliku abistaja, sotsiaaltranspordi, varjupaiga, võlanõustamise, lapsehoiu ja muude teenustega.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaalteenuste_taotlemise_file"
+      ],
+      "officialUrl": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "eApplicationUrl": "https://piksel.ee/spoku/keila/sotsiaalteenus/sisu?toetus=589",
+      "fileUrl": "https://keila.ee/wp-content/uploads/2026/01/Sotsiaalteenuste-taotlemise-avaldus.rtf",
+      "format": "e-form + rtf",
+      "submissionChannels": [
+        "e-application",
+        "paper_form"
+      ],
+      "relatedTo": [
+        "keila_linn_service_tugiisikuteenus",
+        "keila_linn_service_isikliku_abistaja_teenus",
+        "keila_linn_service_sotsiaaltransporditeenus",
+        "keila_linn_service_varjupaigateenus",
+        "keila_linn_service_voulanoustamisteenus",
+        "keila_linn_service_lapsehoiuteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "keila_linn_contact_ene_ellik",
+        "keila_linn_contact_liina_koiv",
+        "keila_linn_contact_erki_uus",
+        "keila_linn_contact_leenu_leomar",
+        "keila_linn_contact_jaane_poldme",
+        "keila_linn_contact_piia_peterson",
+        "keila_linn_contact_riina_sippol"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "format",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "item_type": "form",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaalteenuste_taotlemise_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_form_sotsiaalteenuse_taotlus",
+      "document_id": "keila_linn_form_sotsiaalteenuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "content_hash": "7fe0ed565452370dab771c2536bed5f0cad378ee695e6e42ac76f6fba1be8b4f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_form_uldhooldusteenuse_toetuse_taotlus",
+      "canonical_item_id": "keila_linn:form:uldhooldusteenuse_toetuse_taotlus",
+      "itemType": "form",
+      "title": "Väljaspool kodu osutatava üldhooldusteenuse toetuse taotlus",
+      "status": "active",
+      "summary": "Taotlus ööpäevaringse üldhooldusteenuse kulude katmiseks või toetuse saamiseks.",
+      "sourceKeys": [
+        "forms_page",
+        "uldhooldusteenus_file"
+      ],
+      "officialUrl": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "eApplicationUrl": "https://piksel.ee/spoku/keila/yldhooldusteenus_uus/sisu?toetus=583",
+      "fileUrl": "https://keila.ee/wp-content/uploads/2020/08/oopaevaringse-uldhooldusteenuse-avaldus-2025.rtf",
+      "format": "e-form + rtf",
+      "submissionChannels": [
+        "e-application",
+        "paper_form"
+      ],
+      "relatedTo": [
+        "keila_linn_service_uldhooldusteenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "keila_linn_contact_ene_ellik",
+        "keila_linn_contact_piia_peterson"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "format",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "item_type": "form",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "uldhooldusteenus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_form_uldhooldusteenuse_toetuse_taotlus",
+      "document_id": "keila_linn_form_uldhooldusteenuse_toetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "content_hash": "8040a799849b3e5436440b31af137a2b50d999ec70c7207c2296a6d044a5a08e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_form_toimetulekutoetus",
+      "canonical_item_id": "keila_linn:form:toimetulekutoetus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse taotlus",
+      "status": "active",
+      "summary": "Taotlus toimetulekutoetuse saamiseks koos sissetulekute ja eluasemekulude dokumentidega.",
+      "sourceKeys": [
+        "forms_page",
+        "toimetulekutoetus_file"
+      ],
+      "officialUrl": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "eApplicationUrl": "https://piksel.ee/spoku/keila/toimetulekutoetus/ylevaade?_andl_id=1",
+      "fileUrl": "https://keila.ee/wp-content/uploads/2020/08/Toimetulekutoetuse-avaldus.rtf",
+      "format": "e-form + rtf",
+      "submissionChannels": [
+        "e-application",
+        "paper_form"
+      ],
+      "relatedTo": [
+        "keila_linn_benefit_toimetulekutoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "keila_linn_contact_ele_reet_ehelaid",
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "format",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "item_type": "form",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "toimetulekutoetus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_form_toimetulekutoetus",
+      "document_id": "keila_linn_form_toimetulekutoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "content_hash": "86bda5359f728e07c194f9575a53ec5a9783dc490e0d00906565157f0b0fa3d7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_form_sissetulekust_soltuv_sotsiaaltoetus",
+      "canonical_item_id": "keila_linn:form:sissetulekust_soltuv_sotsiaaltoetus",
+      "itemType": "form",
+      "title": "Sissetulekust sõltuva sotsiaaltoetuse taotlus",
+      "status": "active",
+      "summary": "Ühine taotlus sissetulekust sõltuvate sotsiaaltoetuste, sh lastega pere toetuse, huviringi ja laagritoetuse ning muudel põhjendatud juhtudel eraldatava toetuse taotlemiseks.",
+      "sourceKeys": [
+        "forms_page",
+        "sissetulekust_soltuv_sotsiaaltoetus_file"
+      ],
+      "officialUrl": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "eApplicationUrl": "https://piksel.ee/spoku/keila/sotsiaaltoetus/ylevaade?_andl_id=1",
+      "fileUrl": "https://keila.ee/wp-content/uploads/2020/08/Avaldus-sissetulekust-soltuva-sotsiaaltoetuse-taotlemiseks.rtf",
+      "format": "e-form + rtf",
+      "submissionChannels": [
+        "e-application",
+        "paper_form"
+      ],
+      "relatedTo": [
+        "keila_linn_benefit_lastega_pere_toetus",
+        "keila_linn_benefit_huviringi_laagritoetus",
+        "keila_linn_benefit_muudel_pohjendatud_juhtudel"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "keila_linn_contact_ele_reet_ehelaid",
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "format",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "item_type": "form",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sissetulekust_soltuv_sotsiaaltoetus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_form_sissetulekust_soltuv_sotsiaaltoetus",
+      "document_id": "keila_linn_form_sissetulekust_soltuv_sotsiaaltoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "content_hash": "b0ca2cc1dcf2dbb1b39e61afb80920c62ca2a0f631ae35c35e05db8a0599a0f6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_form_muu_taiendava_vajaduspohise_sotsiaalteenuse_huvitamine",
+      "canonical_item_id": "keila_linn:form:muu_taiendava_vajaduspohise_sotsiaalteenuse_huvitamine",
+      "itemType": "form",
+      "title": "Muu täiendava vajaduspõhise sotsiaalteenuse hüvitamise taotlus",
+      "status": "active",
+      "summary": "Taotlus muu täiendava vajaduspõhise sotsiaalteenuse hüvitamiseks.",
+      "sourceKeys": [
+        "forms_page",
+        "muu_taiendav_sotsiaalteenus_file"
+      ],
+      "officialUrl": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "eApplicationUrl": "https://piksel.ee/spoku/keila/muutaiendvajadus/sisu?toetus=588",
+      "fileUrl": "https://keila.ee/wp-content/uploads/2020/08/Muu-taiendava-vajaduspohise-sotsiaalteenuse-avaldus.rtf",
+      "format": "e-form + rtf",
+      "submissionChannels": [
+        "e-application",
+        "paper_form"
+      ],
+      "relatedTo": [
+        "keila_linn_service_taiendavad_vajaduspohised_sotsiaalteenused",
+        "keila_linn_benefit_koolieelse_lasteasutuse_osalustasu_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "keila_linn_contact_ene_ellik",
+        "keila_linn_contact_ele_reet_ehelaid"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "format",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "item_type": "form",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "muu_taiendav_sotsiaalteenus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_form_muu_taiendava_vajaduspohise_sotsiaalteenuse_huvitamine",
+      "document_id": "keila_linn_form_muu_taiendava_vajaduspohise_sotsiaalteenuse_huvitamine",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "content_hash": "6aafe8db5694e4cb09767b51e2057338c02f67aa36f797dac3832ed1c6fd6576",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_form_eluruumi_tagamise_teenus",
+      "canonical_item_id": "keila_linn:form:eluruumi_tagamise_teenus",
+      "itemType": "form",
+      "title": "Eluruumi tagamise teenuse taotlus",
+      "status": "active",
+      "summary": "Taotlus eluruumi tagamise teenuse saamiseks Keila linnas.",
+      "sourceKeys": [
+        "eluruumi_tagamine_file",
+        "forms_page"
+      ],
+      "officialUrl": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "eApplicationUrl": "https://piksel.ee/spoku/keila/sotsiaalteenusetaotlus/ylevaade?_andl_id=1",
+      "fileUrl": "https://keila.ee/wp-content/uploads/2020/08/Eluruumi-tagamise-teenuse-avaldus.rtf",
+      "format": "e-form + rtf",
+      "submissionChannels": [
+        "e-application",
+        "paper_form"
+      ],
+      "relatedTo": [
+        "keila_linn_service_eluruumi_tagamise_teenus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "keila_linn_contact_piia_peterson",
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "format",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "item_type": "form",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eluruumi_tagamine_file",
+        "forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_form_eluruumi_tagamise_teenus",
+      "document_id": "keila_linn_form_eluruumi_tagamise_teenus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "content_hash": "1b0931376aced7a9e1f3872bac898fbba57b99b67be1063e28d9584007b2bce8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_form_matusetoetus",
+      "canonical_item_id": "keila_linn:form:matusetoetus",
+      "itemType": "form",
+      "title": "Matusetoetuse taotlus",
+      "status": "active",
+      "summary": "Taotlus Keila linna elaniku surma korral matuse korraldajale makstava matusetoetuse saamiseks.",
+      "sourceKeys": [
+        "forms_page",
+        "matusetoetus_file"
+      ],
+      "officialUrl": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "eApplicationUrl": "https://piksel.ee/spoku/keila/matusetoetus/ylevaade?_andl_id=1",
+      "fileUrl": "https://keila.ee/wp-content/uploads/2020/08/Matusetoetuse-avaldus.rtf",
+      "format": "e-form + rtf",
+      "submissionChannels": [
+        "e-application",
+        "paper_form"
+      ],
+      "relatedTo": [
+        "keila_linn_benefit_matusetoetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "keila_linn_contact_ele_reet_ehelaid",
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "format",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "item_type": "form",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "matusetoetus_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_form_matusetoetus",
+      "document_id": "keila_linn_form_matusetoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/taotlused/sotsiaal_tervis/",
+      "content_hash": "c7f5876e7347af40170521a8eb13085c04270abbc6014ee8b22d8b38564dc765",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_form_esmakordselt_kooli_mineva_lapse_toetus",
+      "canonical_item_id": "keila_linn:form:esmakordselt_kooli_mineva_lapse_toetus",
+      "itemType": "form",
+      "title": "Esmakordselt kooli mineva lapse toetuse taotlus",
+      "status": "active",
+      "summary": "Taotlus esmakordselt kooli mineva lapse toetuse saamiseks. Keila lehel on märgitud, et e-taotlus avaneb 1. augustil.",
+      "sourceKeys": [
+        "education_forms_page",
+        "esmakordselt_kooli_file"
+      ],
+      "officialUrl": "https://keila.ee/taotlused/lastehoid-lasteaed-ja-kool/",
+      "eApplicationUrl": "https://piksel.ee/spoku/keila/esmakordseltkooliminevalapsetoetus/ylevaade?_andl_id=1",
+      "fileUrl": "https://keila.ee/wp-content/uploads/2020/07/Esmakordselt-koolimineva-lapse-toetus.rtf",
+      "format": "e-form + rtf",
+      "submissionChannels": [
+        "e-application",
+        "paper_form"
+      ],
+      "relatedTo": [
+        "keila_linn_benefit_esmakordselt_kooli_mineva_lapse_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "keila_linn_contact_terje_rammel"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "format",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "item_type": "form",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "education_forms_page",
+        "esmakordselt_kooli_file"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_form_esmakordselt_kooli_mineva_lapse_toetus",
+      "document_id": "keila_linn_form_esmakordselt_kooli_mineva_lapse_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/taotlused/lastehoid-lasteaed-ja-kool/",
+      "content_hash": "25aeb33561b475c87947d741da094214d000e663917f92b5e6c4fad67b303427",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_form_koduse_lapse_toetus",
+      "canonical_item_id": "keila_linn:form:koduse_lapse_toetus",
+      "itemType": "form",
+      "title": "Koduse lapse toetuse taotlus",
+      "status": "active",
+      "summary": "E-taotlus koduse lapse toetuse saamiseks SPOKU keskkonnas.",
+      "sourceKeys": [
+        "education_forms_page"
+      ],
+      "officialUrl": "https://keila.ee/taotlused/lastehoid-lasteaed-ja-kool/",
+      "eApplicationUrl": "https://piksel.ee/spoku/keila/koduselapsetoetus/ylevaade?toetus=516",
+      "fileUrl": null,
+      "format": "e-form",
+      "submissionChannels": [
+        "e-application"
+      ],
+      "relatedTo": [
+        "keila_linn_benefit_koduse_lapse_toetus"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "keila_linn_contact_terje_rammel"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "format",
+        "submissionChannels",
+        "relatedTo"
+      ],
+      "item_type": "form",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "education_forms_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_form_koduse_lapse_toetus",
+      "document_id": "keila_linn_form_koduse_lapse_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/taotlused/lastehoid-lasteaed-ja-kool/",
+      "content_hash": "55b0e997645ac1d884a174ca61a72e121ab5014f23b718334c03ca0aaf98df6c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_service_koduteenus",
+      "canonical_item_id": "keila_linn:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenuse eesmärk on täisealise isiku iseseisva ja turvalise toimetuleku tagamine kodustes tingimustes. Teenus aitab säilitada ja parandada inimese elukvaliteeti ning toimingud määratakse iga taotleja vajaduste järgi hooldusplaanis. Koduteenust osutab Keila Sotsiaalkeskus ja see on teenusesaajale tasuline.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Täisealine isik, kes rahvastikuregistri järgi elab Keila linnas ja vajab kodus toimetulekuks kõrvalabi.",
+      "conditions": null,
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita avaldus e-taotluste keskkonnas või paberblanketil",
+          "Linn hindab abivajadust ja määrab teenuse mahu",
+          "Teenusele suunamise otsuse järel sõlmitakse teenuse saaja ja teenuseosutaja vahel koostööleping"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenusesaajale tasuline.",
+      "officialUrl": "https://keila.ee/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_kodus_elamist_toetavad_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_ene_ellik",
+        "keila_linn_contact_olga_oksner"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "application",
+        "pricing",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "service",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_service_koduteenus",
+      "document_id": "keila_linn_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaalteenused/",
+      "content_hash": "fe54f1c3679dd9e935dfed9665161c24422a7f3f1aa6572778a7db407f15bef0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_service_eluruumi_tagamise_teenus",
+      "canonical_item_id": "keila_linn:service:eluruumi_tagamise_teenus",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenus on eluruumi kasutamise võimaluse kindlustamine inimesele, kes ei suuda enda või oma pere vajadustele vastavat eluruumi tagada. Teenus sobib ka inimesele, kellel on puudest tingitud raskusi oma eluruumis liikumise või toimetulekuga. Eluruumi eraldamise otsustab Keila Linnavalitsus eluasemekomisjoni ettepanekul ja kasutamiseks sõlmitakse üürileping.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Keila linna elanik, kes ei suuda sotsiaalmajandusliku olukorra või puudest tingitud raskuste tõttu sobivat eluruumi tagada.",
+      "conditions": "Eluruumi eraldamise otsustab linnavalitsus eluasemekomisjoni ettepanekul; vajadust hinnatakse taotleja tegevusvõime ja elukeskkonna alusel.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita avaldus e-taotluste keskkonnas või paberblanketil",
+          "Linnavalitsus hindab abivajadust ja võib küsida sissetuleku- ning eluasemekulude dokumente",
+          "Eluasemekomisjoni ettepaneku alusel tehakse otsus"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://keila.ee/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_eluruumi_tagamise_teenus"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_piia_peterson",
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "service",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_service_eluruumi_tagamise_teenus",
+      "document_id": "keila_linn_service_eluruumi_tagamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaalteenused/",
+      "content_hash": "a433aaa00c3281544746c78220e67edb7fb14cc0db80aa0ff97fcf241429bc56",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_service_uldhooldusteenus",
+      "canonical_item_id": "keila_linn:service:uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatav üldhooldusteenus tagab turvalise keskkonna ja toimetuleku täisealisele inimesele, kes ei suuda kodustes tingimustes ajutiselt või püsivalt iseseisvalt toime tulla. Teenuse kohamaksumus jaguneb teenust vajava inimese ja kohaliku omavalitsuse vahel. Keila linn tasub hoolduspersonali kulusid kehtestatud piirmäära ulatuses.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Keila linna elanik, kelle vajalikku abi ei ole võimalik tagada muude sotsiaalteenustega.",
+      "conditions": "Teenuse vajadust hinnatakse personaalse tegevusvõime, füüsilise ja sotsiaalse elukeskkonna ning majandusliku olukorra järgi.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita avaldus e-taotluste keskkonnas või paberblanketil",
+          "Lisa vajadusel perekonna sissetulekut ja eluasemekulusid tõendavad dokumendid",
+          "Linnavalitsus hindab abivajadust ja maksevõimet"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Keila linn tasub alates 01.07.2023 hoolduspersonali kulude piirmäärana kuni 700 eurot ühe teenusesaaja kohta kuus; inimene tasub majutuse, toitlustuse ja isiklike vajaduste kulud.",
+      "officialUrl": "https://keila.ee/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_uldhooldusteenuse_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_ene_ellik",
+        "keila_linn_contact_piia_peterson"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "service",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_service_uldhooldusteenus",
+      "document_id": "keila_linn_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaalteenused/",
+      "content_hash": "439f0e58e1ad7d0ba7b7758c37bf5d42acb360f9a26ff0536534ac310ee32c62",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_service_tugiisikuteenus",
+      "canonical_item_id": "keila_linn:service:tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenuse eesmärk on toetada iseseisvat toimetulekut olukorras, kus inimene vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu olulist kõrvalabi. Tugiisik juhendab, motiveerib ja aitab suurendada inimese iseseisvust. Lapsele tugiisikuteenuse osutamisel toetatakse lapse arengut ja vajadusel puudega lapse hooldustoiminguid.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Keila linna elanik, sh laps või last kasvatav isik, kes vajab juhendamist ja kõrvalabi iseseisvaks toimetulekuks.",
+      "conditions": "Teenuse vajadust hinnatakse abivajaja tegevusvõime ja elukeskkonna alusel.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita avaldus e-taotluste keskkonnas või paberblanketil",
+          "Linnavalitsus hindab, millist teenust ja mis mahus inimene vajab"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenusesaajale tasuta.",
+      "officialUrl": "https://keila.ee/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_ene_ellik",
+        "keila_linn_contact_liina_koiv",
+        "keila_linn_contact_erki_uus",
+        "keila_linn_contact_leenu_leomar"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "service",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_service_tugiisikuteenus",
+      "document_id": "keila_linn_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaalteenused/",
+      "content_hash": "10da58008a5df767d18c61dc01cffe28b52663f95817a4eb68cebe4e802fc248",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "keila_linn:service:taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hoolduse eesmärk on tagada abi täisealisele inimesele, kes vajab vaimse või kehalise puude tõttu abi oma õiguste teostamiseks ja kohustuste täitmiseks. Hooldus seatakse ja hooldaja määratakse hooldatava nõusolekul ning hooldaja ülesanded määratakse kindlaks. Hooldus seatakse tähtajaliselt kuni kolmeks aastaks ja seejärel otsustatakse hoolduse jätkuvuse vajadus.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Keila linna elanikust täisealine inimene, kes vajab puude tõttu abi õiguste ja kohustuste täitmisel.",
+      "conditions": "Hooldus seatakse hooldatava nõusolekul; vajadust hinnatakse taotleja tegevusvõime ja elukeskkonna alusel.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita avaldus e-taotluste keskkonnas või paberblanketil",
+          "Linnavalitsus hindab vajadust ja määrab hooldaja ülesanded"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Hooldatavale tasuta.",
+      "officialUrl": "https://keila.ee/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_taisealise_puudega_isiku_hooldaja_hooldajatoetus"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "service",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_service_taisealise_isiku_hooldus",
+      "document_id": "keila_linn_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaalteenused/",
+      "content_hash": "d60b44422f6764a1c1a74834162e7506c8dc88792d519ac20d555833f26e6e12",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "keila_linn:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenuse eesmärk on suurendada puude tõttu füüsilist kõrvalabi vajava täisealise inimese iseseisvat toimetulekut ja osalemist kõigis eluvaldkondades. Abistaja aitab liikumisel, söömisel, riietumisel, hügieenitoimingutes, majapidamistöödes ja muudes toimingutes. Teenuse saajal on õigus valida teenust vahetult osutav isik.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Keila linna elanikust täisealine inimene, kes vajab puude tõttu füüsilist kõrvalabi.",
+      "conditions": "Teenuse vajadust hinnatakse inimese tegevusvõime ja elukeskkonna alusel.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita avaldus e-taotluste keskkonnas või paberblanketil",
+          "Linnavalitsus hindab abivajadust ning teenuse mahu"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenusesaajale tasuta.",
+      "officialUrl": "https://keila.ee/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "service",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_service_isikliku_abistaja_teenus",
+      "document_id": "keila_linn_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaalteenused/",
+      "content_hash": "fcd0266e9e3b17df6dc4f3a91b8d3d7738f9b89a8d5360fc2c5778a5a9b0887c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "keila_linn:service:sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus võimaldab puudega inimesel, kelle puue takistab isikliku või ühissõiduki kasutamist, kasutada vajadusele vastavat transpordivahendit. Teenust kasutatakse tööle, õppeasutusse või avalikele teenustele sõitmiseks. Teenust osutab Keila Sotsiaalkeskus või linnaga lepingus olev teenuseosutaja.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Puudega inimene, sh erivajadusega laps, kelle rahvastikuregistri järgne elukoht on Keila linn ja kelle puue takistab tavalise transpordi kasutamist.",
+      "conditions": "Esmakordsel taotlemisel tuleb esitada põhjendus, miks ühistransporti ei saa kasutada, ning võimalusel transpordi lähte- ja sihtkoht.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita avaldus e-taotluste keskkonnas või paberblanketil",
+          "Lisa esmakordsel taotlusel ühistranspordi kasutamist takistavad põhjendused"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenusesaajale tasuline, välja arvatud erivajadusega lastele.",
+      "officialUrl": "https://keila.ee/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_jaane_poldme",
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "service",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_service_sotsiaaltransporditeenus",
+      "document_id": "keila_linn_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaalteenused/",
+      "content_hash": "7347b50e1cfba509bfa4d6040815847d53066cb53119f7603166b61cc3c0eb2b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_service_varjupaigateenus",
+      "canonical_item_id": "keila_linn:service:varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus tagab ajutise ööbimiskoha täisealisele inimesele, kes ei ole võimeline endale ööbimiskohta leidma. Ajutises ööbimiskohas peab olema tagatud voodikoht, pesemisvõimalus ja turvaline keskkond. Teenust osutab Keila Sotsiaalkeskus.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Täisealine Keila linna elanik, kes ei suuda endale ajutist ööbimiskohta leida.",
+      "conditions": "Teenuse vajadust hinnatakse taotleja toimetuleku ja elukeskkonna alusel.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita avaldus e-taotluste keskkonnas või paberblanketil",
+          "Linnavalitsus hindab abivajadust"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Tasuline teenus.",
+      "officialUrl": "https://keila.ee/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_piia_peterson",
+        "keila_linn_contact_riina_sippol"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "service",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_service_varjupaigateenus",
+      "document_id": "keila_linn_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaalteenused/",
+      "content_hash": "b6a6e220b3696dfb58927ba555812926df865ca9fb57f2594fea86c0b656c542",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_service_voulanoustamisteenus",
+      "canonical_item_id": "keila_linn:service:voulanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab kindlaks teha inimese varalist olukorda, pidada läbirääkimisi võlausaldajatega, rahuldada nõudeid ja ennetada uusi võlgnevusi. Teenus hõlmab nõustamist, juhendamist ja edasiste võlgade tekkimise ennetamist.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Keila linna elanik, kellel on võlgade või rahalise toimetulekuga seotud probleemid.",
+      "conditions": "Teenuse vajadust hinnatakse taotleja olukorra alusel.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita avaldus e-taotluste keskkonnas või paberblanketil",
+          "Linnavalitsus hindab, millist abi on vaja"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenusesaajale tasuta.",
+      "officialUrl": "https://keila.ee/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "service",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_service_voulanoustamisteenus",
+      "document_id": "keila_linn_service_voulanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaalteenused/",
+      "content_hash": "1c6d6ebc8a4e84ef1f1730ee0a54e38556960dac344b8ddc770b097bf066dfd5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_service_lapsehoiuteenus",
+      "canonical_item_id": "keila_linn:service:lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenuse eesmärk on toetada last kasvatava isiku toimetulekut või töötamist ja vähendada lapse erivajadusest tulenevat hoolduskoormust. Teenust osutatakse raske ja sügava puudega lastele. Teenuse määramisel lähtutakse lapse hooldusvajadusest ja teiste teenuste mahust.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Raske või sügava puudega laps ja tema pere Keila linnas.",
+      "conditions": "Teenust osutatakse raske ja sügava puudega lastele; vajadust hinnatakse lapse hooldusvajaduse ja muude teenuste mahu järgi.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita avaldus e-taotluste keskkonnas või paberblanketil",
+          "Linnavalitsus hindab lapse abivajadust"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenusesaajale tasuta.",
+      "officialUrl": "https://keila.ee/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_erki_uus",
+        "keila_linn_contact_liina_koiv",
+        "keila_linn_contact_leenu_leomar"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "service",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_service_lapsehoiuteenus",
+      "document_id": "keila_linn_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaalteenused/",
+      "content_hash": "5b19bbe2c90f1d12e25a2106ff5168f67b617e750feb771fd5b000a32a8f362c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_service_paevahoiuteenus",
+      "canonical_item_id": "keila_linn:service:paevahoiuteenus",
+      "itemType": "service",
+      "title": "Päevahoiuteenus",
+      "status": "active",
+      "summary": "Päevahoiuteenuse eesmärk on tagada turvaline keskkond ja toimetulek täisealisele inimesele, kes terviseseisundi, tegevusvõime või elukeskkonna tõttu ei suuda ajutiselt või püsivalt kodus iseseisvalt toime tulla. Teenust osutab üldjuhul Keila Sotsiaalkeskus.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Keila linna elanikust täisealine inimene, kes vajab päevast hooldust või järelevalvet.",
+      "conditions": "Taotleja peab olema Keila linna elanik ja vajama päevahoiuteenust.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita avaldus e-taotluste keskkonnas või paberblanketil",
+          "Linnavalitsus hindab vajadust"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Teenusesaajale tasuline.",
+      "officialUrl": "https://keila.ee/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_kodus_elamist_toetavad_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "service",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_service_paevahoiuteenus",
+      "document_id": "keila_linn_service_paevahoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaalteenused/",
+      "content_hash": "57f97e05ce3e9b1a35f38889f9c2a12571dbfacf10544d69235ce174fc1307af",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_service_taiendavad_vajaduspohised_sotsiaalteenused",
+      "canonical_item_id": "keila_linn:service:taiendavad_vajaduspohised_sotsiaalteenused",
+      "itemType": "service",
+      "title": "Muud täiendavad vajaduspõhised sotsiaalteenused",
+      "status": "active",
+      "summary": "Täiendavate vajaduspõhiste sotsiaalteenuste eesmärk on osutada abivajajatele muid toetavaid sotsiaalteenuseid, mis tulenevad inimese tegelikust vajadusest. Linnavalitsus võib küsida sissetulekut ja eluasemekulusid tõendavaid dokumente ning hindab, millist teenust ja mis mahus inimene vajab.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Keila linna elanik, kelle abivajadust ei kata mõni muu nimetatud teenus.",
+      "conditions": "Teenuse vajadust ja taotleja majanduslikku olukorda hinnatakse individuaalselt.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita avaldus e-taotluste keskkonnas või paberblanketil",
+          "Lisa vajadusel sissetuleku ja eluasemekulude tõendid",
+          "Linnavalitsus hindab vajadust ja teenuse mahtu"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://keila.ee/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_muu_taiendava_vajaduspohise_sotsiaalteenuse_huvitamine",
+        "keila_linn_form_sotsiaalteenuse_taotlus"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "service",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_service_taiendavad_vajaduspohised_sotsiaalteenused",
+      "document_id": "keila_linn_service_taiendavad_vajaduspohised_sotsiaalteenused",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaalteenused/",
+      "content_hash": "30eb8413ffd713d59839cdce5932c2002a536d349eb5be05296e3d23cb8271c8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_service_vaimse_tervise_teenus",
+      "canonical_item_id": "keila_linn:service:vaimse_tervise_teenus",
+      "itemType": "service",
+      "title": "Vaimse tervise teenus",
+      "status": "active",
+      "summary": "Vaimse tervise teenus toetab ja parandab mitmekülgse abivajadusega inimese või perekonna psühhosotsiaalset heaolu. Teenusteks on psühholoogiline nõustamine, perenõustamine ja loovteraapia. Keila linn hüvitab teenust osaliselt üldjuhul 50 eurot nõustamiskorra kohta ning teenusemaht on kuni viis korda aastas inimese või pere kohta.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "targetGroup": "Keila linna elanik või pere, kes vajab vaimse tervise tuge.",
+      "conditions": "Teenuseosutaja valib inimene ise; linn võib nõuda sissetuleku ja eluasemekulude dokumente.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita avaldus e-taotluste keskkonnas või paberblanketil",
+          "Vali asjakohase ettevalmistusega teenuseosutaja",
+          "Linnavalitsus hindab abivajadust"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": "Üldjuhul hüvitatakse 50 eurot nõustamiskorra kohta; kuni 5 korda aastas inimese või pere kohta.",
+      "officialUrl": "https://keila.ee/sotsiaalteenused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_vaimse_tervise_teenuse_huvitamine"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_ene_ellik",
+        "keila_linn_contact_liina_koiv",
+        "keila_linn_contact_erki_uus",
+        "keila_linn_contact_leenu_leomar"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "pricing",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "service",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_service_vaimse_tervise_teenus",
+      "document_id": "keila_linn_service_vaimse_tervise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaalteenused/",
+      "content_hash": "0ab2c14806466438cbd33424ab899c670b0a94f112ec4634492b38f7c64a47fb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_service_asendushooldusteenus",
+      "canonical_item_id": "keila_linn:service:asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus on kohaliku omavalitsuse korraldatav sotsiaalteenus lapse heaolu ja õiguste tagamiseks. Teenuse eesmärk on pakkuda lapsele peresarnaseid elutingimusi, turvalist ja arengut soodustavat keskkonda ning ettevalmistust täisealisena toimetulekuks. Teenust osutatakse hooldusperes, perekodus või asenduskodus.",
+      "sourceKeys": [
+        "child_welfare_contacts_page",
+        "lastekaitse_page"
+      ],
+      "targetGroup": "Laps, kelle vanem on surnud, kelle vanemal on piiratud teovõime, kelle vanema hooldusõigus on peatatud, piiratud või ära võetud, kes on vanemast eraldatud või kelle puhul on vaja lühiajalist asendushooldust.",
+      "conditions": "Teenust võib osutada pikaajaliselt või lühiajaliselt vanema nõusolekul perioodiliselt või ajutiselt kuni 90 päeva.",
+      "application": {
+        "channels": [
+          "contact"
+        ],
+        "steps": [
+          "Pöördu Keila linna laste heaolu spetsialistide poole",
+          "Linn hindab lapse abivajadust ja teenuse sobivat vormi"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "pricing": null,
+      "officialUrl": "https://keila.ee/lastekaitse/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "keila_linn_contact_liina_koiv",
+        "keila_linn_contact_erki_uus",
+        "keila_linn_contact_leenu_leomar"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "relatedContacts"
+      ],
+      "item_type": "service",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "child_welfare_contacts_page",
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_service_asendushooldusteenus",
+      "document_id": "keila_linn_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/lastekaitse/",
+      "content_hash": "f2c74f47aecd830932b90769f4c251c66d2826a4bfe5d4770f826538c2fce303",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_benefit_synnitoetus",
+      "canonical_item_id": "keila_linn:benefit:synnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetust makstakse lapse sünni puhul lapsevanemale, eestkostjale või hoolduspere vanemale. Toetus makstakse kahes osas: 60% kolme kuu jooksul pärast sündi ja 40% lapse üheaastaseks saamisel. Toetuse suurus on 500 eurot lapse kohta.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Lapsevanem, eestkostja või hoolduspere vanem, kui lapse ja vanema elukoht vastab Keila linna tingimustele.",
+      "conditions": "Keila linn peab olema mõlema lapsevanema või üksikvanema/eestkostja elukoht rahvastikuregistris lapse sündimise aasta 1. jaanuari seisuga ning lapse elukoht peab olema Keila linn alates sünni registreerimisest. Kui Keila linna elanik on laps ja üks vanem, makstakse pool toetuse määrast.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita taotlus e-taotluste keskkonnas või paberblanketil"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "500 eurot lapse kohta; makstakse kahes osas 60% ja 40%.",
+      "officialUrl": "https://keila.ee/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_synnitoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_ele_reet_ehelaid",
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "amount",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_benefit_synnitoetus",
+      "document_id": "keila_linn_benefit_synnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaaltoetused/",
+      "content_hash": "6b28224d2fd5b0f9201099ca4c6fa7f0b855d8afa3fca7313589d0804dcaedf9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_benefit_koolieelse_lasteasutuse_osalustasu_toetus",
+      "canonical_item_id": "keila_linn:benefit:koolieelse_lasteasutuse_osalustasu_toetus",
+      "itemType": "benefit",
+      "title": "Koolieelse lasteasutuse osalustasu toetus",
+      "status": "active",
+      "summary": "Koolieelse lasteasutuse osalustasu toetus on sissetulekust sõltuv toetus, millega kompenseeritakse koolieelse munitsipaal- või eralasteasutuse vanema poolt kaetavat osa. Toetus makstakse üldjuhul lasteasutuse teenuse osutajale arve alusel või lapsevanemale kuludokumentide alusel. 2026. aastal on määr kuni 120 eurot lapse kohta kuus.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Pere, kelle sissetulek jääb pärast eluasemekulude lahutamist alla Keila linna kriteeriumi.",
+      "conditions": "Õigus tekib, kui pere eelmise kuu netosissetulekust lahutatud jooksva kuu eluasemekulude järel jääb iga pereliikme kohta alla 400 euro.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita taotlus e-taotluste keskkonnas",
+          "Lisa sissetuleku ja eluasemekulude tõendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Kuni 120 eurot lapse kohta kuus 2026. aastal.",
+      "officialUrl": "https://keila.ee/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_muu_taiendava_vajaduspohise_sotsiaalteenuse_huvitamine"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_ele_reet_ehelaid",
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "amount",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_benefit_koolieelse_lasteasutuse_osalustasu_toetus",
+      "document_id": "keila_linn_benefit_koolieelse_lasteasutuse_osalustasu_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaaltoetused/",
+      "content_hash": "a9722efba811915f5e922e4f1bc003a295fc10d11829305b24fd14ec7d3c4ba5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_benefit_koduse_lapse_toetus",
+      "canonical_item_id": "keila_linn:benefit:koduse_lapse_toetus",
+      "itemType": "benefit",
+      "title": "Koduse lapse toetus",
+      "status": "active",
+      "summary": "Koduse lapse toetuse eesmärk on toetada Keila peresid, kus kasvab 1,5–3-aastane laps, kellele ei ole pakutud Keila linnas lasteaiakohta ja kes ei kasuta eralapsehoiu kohta. Toetuse suurus on 350 eurot kuus.",
+      "sourceKeys": [
+        "education_forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Keila pere, kus kasvab 1,5–3-aastane laps, kellele pole pakutud lasteaiakohta.",
+      "conditions": "Laps ja mõlemad lapsevanemad või üksikvanem peavad olema rahvastikuregistrijärgselt Keila linna elanikud toetuse maksmise aasta 1. jaanuari seisuga ja kogu maksmise perioodil; laps peab olema Keila lasteaia järjekorras ning ei tohi kasutada eralapsehoiuteenust.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita taotlus SPOKU keskkonnas toetuse maksmisele eelneval kuul"
+        ],
+        "deadline": "Toetuse maksmisele eelnev kuu."
+      },
+      "decisionTime": null,
+      "amount": "350 eurot kuus.",
+      "officialUrl": "https://keila.ee/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_koduse_lapse_toetus"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_terje_rammel"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "amount",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "education_forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_benefit_koduse_lapse_toetus",
+      "document_id": "keila_linn_benefit_koduse_lapse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaaltoetused/",
+      "content_hash": "3ad5b311d20b25fe6910905ff147f7059bc99e8ea3dae925df50e14e09f46f99",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_benefit_esmakordselt_kooli_mineva_lapse_toetus",
+      "canonical_item_id": "keila_linn:benefit:esmakordselt_kooli_mineva_lapse_toetus",
+      "itemType": "benefit",
+      "title": "Esmakordselt kooli mineva lapse toetus",
+      "status": "active",
+      "summary": "Esmakordselt kooli mineva lapse toetus makstakse ühele lapse vanematest, eestkostjale või üksikvanemale lapse koolitee alguse toetamiseks. 2026. aastal on toetuse määr 170 eurot lapse kohta. Avaldust saab esitada koolimineku aastal 1. augustist kuni 30. oktoobrini.",
+      "sourceKeys": [
+        "education_forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Keila linna lapsevanem, eestkostja või üksikvanem, kelle laps läheb esimest korda kooli.",
+      "conditions": "Laps ja mõlemad vanemad, eestkostja või üksikvanem peavad olema Keila linna elanikud vähemalt jooksva aasta 1. jaanuarist enne kooliminekut; kui elanik on laps ja üks vanem, makstakse pool määrast; vanematel ei tohi olla täitmata rahalisi kohustusi ametiasutuse ees.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita taotlus e-taotluste keskkonnas või paberblanketil"
+        ],
+        "deadline": "30. oktoober koolimineku aastal."
+      },
+      "decisionTime": null,
+      "amount": "170 eurot lapse kohta 2026. aastal.",
+      "officialUrl": "https://keila.ee/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_esmakordselt_kooli_mineva_lapse_toetus"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_terje_rammel"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "amount",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "education_forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_benefit_esmakordselt_kooli_mineva_lapse_toetus",
+      "document_id": "keila_linn_benefit_esmakordselt_kooli_mineva_lapse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaaltoetused/",
+      "content_hash": "440d87b14e318cb7c25cbb893a9544f55ef8de84f1769b59bcf70895a5fe5b4b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_benefit_lastega_pere_toetus",
+      "canonical_item_id": "keila_linn:benefit:lastega_pere_toetus",
+      "itemType": "benefit",
+      "title": "Lastega pere toetus",
+      "status": "active",
+      "summary": "Lastega pere toetus on sissetulekust sõltuv toetus lapsele vajalike koolitarvete, riiete ja muude põhjendatud kulude hüvitamiseks. Toetust makstakse lapse vanemale, eestkostjale või lepingulisele hooldajale. Toetuse määr on kuni 200 eurot lapse kohta aastas.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Keila linna pere lapsevanem, eestkostja või lepinguline hooldaja, kelle pere sissetulek vastab piirmäärale.",
+      "conditions": "Õigus tekib, kui pere eelmise kuu netosissetulekust lahutatud jooksva kuu eluasemekulude järel jääb iga pereliikme kohta alla 400 euro.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita avaldus e-taotluste keskkonnas või paberblanketil",
+          "Lisa sissetuleku ja kulude dokumendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Kuni 200 eurot lapse kohta aastas.",
+      "officialUrl": "https://keila.ee/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_sissetulekust_soltuv_sotsiaaltoetus"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_ele_reet_ehelaid",
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "amount",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_benefit_lastega_pere_toetus",
+      "document_id": "keila_linn_benefit_lastega_pere_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaaltoetused/",
+      "content_hash": "16687348b4b023b3811526783a4a3aefb30ba5b0323c9a3d4ceaaf753ccdb58c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_benefit_huviringi_laagritoetus",
+      "canonical_item_id": "keila_linn:benefit:huviringi_laagritoetus",
+      "itemType": "benefit",
+      "title": "Lapse huviringi ja laagritoetus",
+      "status": "active",
+      "summary": "Lapse huviringi ja laagritoetus on sissetulekust sõltuv toetus lapse huviringi ja laagri kulude osaliseks hüvitamiseks. Keila lehel avaldatud tekstis on toetuse määr märgitud 2025. aasta kohta kuni 200 eurot lapse kohta aastas.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Keila linna pere, kelle sissetulek vastab sissetulekust sõltuva abi tingimustele.",
+      "conditions": "Õigus tekib, kui pere eelmise kuu netosissetulekust lahutatud jooksva kuu eluasemekulude järel jääb iga pereliikme kohta alla 400 euro.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita avaldus e-taotluste keskkonnas või paberblanketil",
+          "Lisa sissetuleku ja kulude dokumendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Kuni 200 eurot lapse kohta aastas (lehel märgitud 2025. aasta määr).",
+      "officialUrl": "https://keila.ee/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_sissetulekust_soltuv_sotsiaaltoetus"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_ele_reet_ehelaid",
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "amount",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_benefit_huviringi_laagritoetus",
+      "document_id": "keila_linn_benefit_huviringi_laagritoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaaltoetused/",
+      "content_hash": "e4d66fd88c10db26ff9d1d2cb6ee56591299d50883e54246718575974953f6d6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_benefit_eestkostel_lapse_toetus",
+      "canonical_item_id": "keila_linn:benefit:eestkostel_lapse_toetus",
+      "itemType": "benefit",
+      "title": "Eestkostel oleva lapse toetus",
+      "status": "active",
+      "summary": "Eestkostel oleva lapse toetust makstakse vanemliku hoolitsuseta alaealise lapse eestkostjale, kui laps elab rahvastikuregistri järgi Keila linnas. Kui laps jätkab õppimist, makstakse toetust kuni 19-aastaseks saamiseni ning vajadusel õppeaasta lõpuni. Toetuse määr on 50 eurot lapse kohta kuus.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Eestkostja, kelle eestkostel olev laps elab Keila linnas.",
+      "conditions": "Laps peab elama rahvastikuregistri järgi Keila linnas; toetuse taotlemiseks esitab eestkostja ühekordse avalduse.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita ühekordne avaldus e-taotluste keskkonnas või paberblanketil"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "50 eurot lapse kohta kuus.",
+      "officialUrl": "https://keila.ee/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_eestkostel_oleva_lapse_toetus"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_ele_reet_ehelaid",
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "amount",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_benefit_eestkostel_lapse_toetus",
+      "document_id": "keila_linn_benefit_eestkostel_lapse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaaltoetused/",
+      "content_hash": "d25b0b6b7086404e804d9e1ae17ef32b4087cc1f8d9d08928cb1986456e77bb9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_benefit_erivajadusega_lapse_transport",
+      "canonical_item_id": "keila_linn:benefit:erivajadusega_lapse_transport",
+      "itemType": "benefit",
+      "title": "Erivajadusega lapse transporditoetus",
+      "status": "active",
+      "summary": "Erivajadusega lapse transporditoetus hüvitab erivajadusega lapse ja õpilase õppeasutusse või koolieelsesse lasteasutusse ja tagasi sõiduks tehtud kulud. Isikliku sõiduauto kasutamisel hüvitatakse 0,3 eurot kilomeetri kohta, kuid mitte üle 180 euro kuus. Ühistranspordi puhul esitatakse sõidukulusid tõendavad dokumendid.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Keila linna erivajadusega laps või õpilane kuni 24-aastaseks saamiseni; 24-aastaseks saamisel kuni jooksva õppeaasta lõpuni.",
+      "conditions": "Isikliku auto kasutamisel esitatakse igakuiselt avaldus, läbitud kilomeetrid ja koolis käidud päevade arv; ühistranspordi korral lisatakse sõidukulusid tõendavad dokumendid.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita igakuine taotlus e-taotluste keskkonnas või paberblanketil",
+          "Lisa läbitud kilomeetrid või sõidukulude tõendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "0,3 eurot kilomeetri kohta, kuid mitte üle 180 euro kuus; ühistranspordi puhul kuni 180 eurot kuus.",
+      "officialUrl": "https://keila.ee/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_erivajadusega_lapse_koolitranspordi_toetus"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_ele_reet_ehelaid",
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "amount",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_benefit_erivajadusega_lapse_transport",
+      "document_id": "keila_linn_benefit_erivajadusega_lapse_transport",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaaltoetused/",
+      "content_hash": "0906dff8853d1489d9c5503f7919ddab5a7b3645cf14eb9e78be082e1d320c22",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_benefit_juubelitoetus",
+      "canonical_item_id": "keila_linn:benefit:juubelitoetus",
+      "itemType": "benefit",
+      "title": "Juubelitoetus",
+      "status": "active",
+      "summary": "Juubelitoetust makstakse Keila linna elanikele alates 75. sünnipäevast ja iga järgneva 0 või 5-ga lõppeva sünnipäeva puhul rahvastikuregistri andmete põhjal. Toetus makstakse pärast toetuse saaja pangakonto numbri esitamist. Toetuse suurus on 50 eurot juubilari kohta.",
+      "sourceKeys": [
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Keila linna elanik alates 75. sünnipäevast ning järgmistel 0 või 5-ga lõppevatel sünnipäevadel.",
+      "conditions": "Toetuse saaja peab esitama ametiasutusele pangakonto numbri.",
+      "application": {
+        "channels": [
+          "e-application"
+        ],
+        "steps": [
+          "Esita pangakonto number ametiasutusele"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "50 eurot juubilari kohta.",
+      "officialUrl": "https://keila.ee/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "keila_linn_contact_ele_reet_ehelaid",
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "amount",
+        "relatedContacts"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_benefit_juubelitoetus",
+      "document_id": "keila_linn_benefit_juubelitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaaltoetused/",
+      "content_hash": "9c31135b40acd82d275d1e846f4d9bb4c9e07bb0872d5f73d4423f14a8c777e2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_benefit_hooldajatoetus_puudega_lapse_hooldajale",
+      "canonical_item_id": "keila_linn:benefit:hooldajatoetus_puudega_lapse_hooldajale",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus puudega lapse hooldajale",
+      "status": "active",
+      "summary": "Hooldajatoetust puudega lapse hooldajale makstakse 3–18-aastase puudega lapse hooldamise eest seaduslikule esindajale või perekonnas hooldajale, kes ei saa töötada lapse hooldamise tõttu. Toetus makstakse välja igakuiselt. Toetuse määr on 70 eurot kuus.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "3–18-aastase puudega lapse seaduslik esindaja või perekonnas hooldaja, kes ei saa töötada lapse hooldamise tõttu.",
+      "conditions": "Taotleja peab olema lapse seaduslik esindaja või perekonnas hooldaja ning ei saa töötada puudega lapse hooldamise tõttu; avaldus esitatakse ühekordselt.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita ühekordne avaldus e-taotluste keskkonnas või paberblanketil"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "70 eurot kuus.",
+      "officialUrl": "https://keila.ee/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_puudega_lapse_hooldajatoetus"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "amount",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_benefit_hooldajatoetus_puudega_lapse_hooldajale",
+      "document_id": "keila_linn_benefit_hooldajatoetus_puudega_lapse_hooldajale",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaaltoetused/",
+      "content_hash": "d6d2296990c0f40322f45bc026b540dedb4a0a3c31bbfbc1fa0920ffbcc2989a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_benefit_hooldajatoetus_taisealise_isiku_hooldajale",
+      "canonical_item_id": "keila_linn:benefit:hooldajatoetus_taisealise_isiku_hooldajale",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus täisealise isiku hooldajale",
+      "status": "active",
+      "summary": "Hooldajatoetust makstakse täisealisele isikule määratud hooldajale. Hooldajatoetuse taotleja ei pea olema rahvastikuregistri järgi Keila linna elanik. Toetus makstakse igakuiselt ja määr on 70 eurot kuus.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Täisealisele isikule määratud hooldaja.",
+      "conditions": "Hooldajaks määratud isiku elukoht ei pea olema Keila linn; toetust makstakse igakuiselt.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita taotlus e-taotluste keskkonnas või paberblanketil"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "70 eurot kuus.",
+      "officialUrl": "https://keila.ee/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_taisealise_puudega_isiku_hooldaja_hooldajatoetus"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "amount",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_benefit_hooldajatoetus_taisealise_isiku_hooldajale",
+      "document_id": "keila_linn_benefit_hooldajatoetus_taisealise_isiku_hooldajale",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaaltoetused/",
+      "content_hash": "cf52ff2d2298048f0c0f65880a39fc86de5a76f3438e2b91de36228d0b2cd281",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_benefit_toimetulekutoetus",
+      "canonical_item_id": "keila_linn:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on riigi rahaline abi puuduses inimestele ja seda maksab kohalik omavalitsus. Toetuse arvestamise aluseks on perekonna eelmise kuu netosissetulek, jooksva kuu eluasemekulud ja toimetulekupiir. 2026. aastal on toimetulekupiir üksi elavale inimesele või perekonna esimesele liikmele 220 eurot kuus, järgmisele täisealisele liikmele 176 eurot ja igale alaealisele liikmele 264 eurot.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Puuduses inimene või perekond, kelle rahalised vahendid jäävad alla toimetulekupiiri.",
+      "conditions": "Avaldusele tuleb lisada eelmise kuu ja käesoleva kuu kontoväljavõtted, jooksva kuu eluasemekulude arved ning korduva taotlemise korral tõend kulude tasumise kohta.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita avaldus e-taotluste keskkonnas või paberblanketil",
+          "Lisa kontoväljavõtted, eluasemekulude arved ja vajadusel tasumise tõendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": null,
+      "officialUrl": "https://keila.ee/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_toimetulekutoetus"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_ele_reet_ehelaid",
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_benefit_toimetulekutoetus",
+      "document_id": "keila_linn_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaaltoetused/",
+      "content_hash": "843e46255f46cfaeb0a7d51e6941a45623a3982a3f0e13a09ddfe55397fe2787",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_benefit_matusetoetus",
+      "canonical_item_id": "keila_linn:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetust makstakse Keila linna elaniku surma korral matuse korraldajale. Taotlus tuleb esitada kuue kuu jooksul pärast surma registreerimist rahvastikuregistris. 2026. aastal on toetuse määr 240 eurot.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Keila linna elaniku matuse korraldaja.",
+      "conditions": "Toetust ei maksta, kui matuse korraldas ja kulud kattis kohalik omavalitsus või kui matmiseks on saadud toetust teisest kohaliku omavalitsuse üksusest.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita taotlus e-taotluste keskkonnas või paberblanketil"
+        ],
+        "deadline": "Kuue kuu jooksul pärast surma registreerimist rahvastikuregistris."
+      },
+      "decisionTime": null,
+      "amount": "240 eurot 2026. aastal.",
+      "officialUrl": "https://keila.ee/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_matusetoetus"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_ele_reet_ehelaid",
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "amount",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_benefit_matusetoetus",
+      "document_id": "keila_linn_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaaltoetused/",
+      "content_hash": "b8540eb02bc54004611ce2620af0a09ec7c33a9fcd08e65022507e1700a6b5fb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_benefit_muudel_pohjendatud_juhtudel",
+      "canonical_item_id": "keila_linn:benefit:muudel_pohjendatud_juhtudel",
+      "itemType": "benefit",
+      "title": "Muudel põhjendatud juhtudel eraldatav sotsiaaltoetus",
+      "status": "active",
+      "summary": "Muudel põhjendatud juhtudel eraldatav sotsiaaltoetus on sissetulekust sõltuv toetus muude põhjendatud kulude hüvitamiseks. Linnavalitsus võib küsida sissetulekut, eluasemekulusid ja muud vajalikkust tõendavaid dokumente. Toetuse määr on kuni 400 eurot aastas.",
+      "sourceKeys": [
+        "forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "targetGroup": "Keila linna elanik või pere, kelle sissetulek vastab sissetulekust sõltuva toetuse tingimustele.",
+      "conditions": "Õigus tekib, kui pere eelmise kuu netosissetulekust lahutatud jooksva kuu eluasemekulude järel jääb iga pereliikme kohta alla 400 euro.",
+      "application": {
+        "channels": [
+          "e-application",
+          "paper_form"
+        ],
+        "steps": [
+          "Esita avaldus e-taotluste keskkonnas või paberblanketil",
+          "Lisa sissetuleku ja põhjendatud kulude tõendid"
+        ],
+        "deadline": null
+      },
+      "decisionTime": null,
+      "amount": "Kuni 400 eurot aastas.",
+      "officialUrl": "https://keila.ee/sotsiaaltoetused/",
+      "relatedTo": [],
+      "relatedForms": [
+        "keila_linn_form_sissetulekust_soltuv_sotsiaaltoetus"
+      ],
+      "relatedContacts": [
+        "keila_linn_contact_ele_reet_ehelaid",
+        "keila_linn_contact_ene_ellik"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "targetGroup",
+        "conditions",
+        "application",
+        "amount",
+        "relatedForms",
+        "relatedContacts"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "forms_page",
+        "sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_benefit_muudel_pohjendatud_juhtudel",
+      "document_id": "keila_linn_benefit_muudel_pohjendatud_juhtudel",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/sotsiaaltoetused/",
+      "content_hash": "bafdf6188116f8c60d098f2f9850d24394e6a4a98d85b902af803cdf2e5dd565",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_resource_ohvriabi",
+      "canonical_item_id": "keila_linn:resource:ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "Ohvriabiteenus pakub tuge kuriteo, vägivalla või kriisijuhtumi tõttu kannatanud inimestele. Keila leht suunab tutvuma ohvriabi võimalustega ja ohvriabi tutvustavate materjalidega; tähtsate kontaktide lehel on ohvriabi kriisitelefon märgitud ööpäevaringseks kontaktiks.",
+      "sourceKeys": [
+        "important_contacts_page",
+        "ohvriabi_page"
+      ],
+      "officialUrl": "https://keila.ee/ohvriabi/",
+      "name": "Ohvriabi",
+      "role": null,
+      "department": null,
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "phone"
+      ],
+      "item_type": "resource",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "important_contacts_page",
+        "ohvriabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_resource_ohvriabi",
+      "document_id": "keila_linn_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/ohvriabi/",
+      "content_hash": "79e10fd096f4954e9a74983fea994763b643ec9ec66cc1719bfc5928ba9b6c7d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_resource_kriisi_ja_hadaabikontaktid",
+      "canonical_item_id": "keila_linn:resource:kriisi_ja_hadaabikontaktid",
+      "itemType": "resource",
+      "title": "Kriisi- ja hädaabikontaktid",
+      "status": "active",
+      "summary": "Keila tähtsate kontaktide lehel on avaldatud hädaabi, päästeala infotelefon, ohvriabi kriisitelefon ja muud abinumbrid. Neid kasutatakse olukorras, kus on vaja kiiret abi, kriisinõustamist või päästevaldkonna infot.",
+      "sourceKeys": [
+        "important_contacts_page"
+      ],
+      "officialUrl": "https://keila.ee/tahtsad-kontaktid/",
+      "name": "Kriisi- ja hädaabikontaktid",
+      "role": null,
+      "department": null,
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "phone"
+      ],
+      "item_type": "resource",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "important_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_resource_kriisi_ja_hadaabikontaktid",
+      "document_id": "keila_linn_resource_kriisi_ja_hadaabikontaktid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/tahtsad-kontaktid/",
+      "content_hash": "b7e1779720d3ba72edac8e39deb09ac5773516945fd576ce934205ec7037e1e8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_resource_lasteabi",
+      "canonical_item_id": "keila_linn:resource:lasteabi",
+      "itemType": "resource",
+      "title": "Lasteabi",
+      "status": "active",
+      "summary": "Lastekaitse lehel on kirjas, et lasteabitelefon töötab ööpäevaringselt, kõned on kõigile tasuta ja vajadusel tehakse koostööd politsei, Sotsiaalkindlustusameti ja lastekaitsetöötajaga. Lasteabi poole saab pöörduda abivajava lapse või lapse turvalisusega seotud mure korral.",
+      "sourceKeys": [
+        "important_contacts_page",
+        "lastekaitse_page"
+      ],
+      "officialUrl": "https://keila.ee/lastekaitse/",
+      "name": "Lasteabi",
+      "role": null,
+      "department": null,
+      "address": [
+        "keila_linn_contact_liina_koiv",
+        "keila_linn_contact_erki_uus",
+        "keila_linn_contact_leenu_leomar"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "phone",
+        "email",
+        "address"
+      ],
+      "item_type": "resource",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "important_contacts_page",
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_resource_lasteabi",
+      "document_id": "keila_linn_resource_lasteabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/lastekaitse/",
+      "content_hash": "4c281c0399348db44e50c928cdf81d51674f949883d06fa81f319a688ac3f17a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_resource_kadunud_laste_telefon",
+      "canonical_item_id": "keila_linn:resource:kadunud_laste_telefon",
+      "itemType": "resource",
+      "title": "Kadunud laste 116 000",
+      "status": "active",
+      "summary": "Kadunud laste annab esmased juhised, pakub vajadusel kriisinõustamist ja emotsionaalset tuge nii täiskasvanutele, kelle lapsed on kaduma läinud, kui ka noortele, kes on kodust lahkunud või eksinud. töötab 24/7 ja on tasuta.",
+      "sourceKeys": [
+        "important_contacts_page",
+        "lastekaitse_page"
+      ],
+      "officialUrl": "https://keila.ee/lastekaitse/",
+      "name": "Kadunud laste 116 000",
+      "role": null,
+      "department": null,
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "phone"
+      ],
+      "item_type": "resource",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "important_contacts_page",
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_resource_kadunud_laste_telefon",
+      "document_id": "keila_linn_resource_kadunud_laste_telefon",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/lastekaitse/",
+      "content_hash": "51a197daf5527eb72cab1654c3ccb58ec41471d861a8b77d18c403b282a5657f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_resource_lastemaja",
+      "canonical_item_id": "keila_linn:resource:lastemaja",
+      "itemType": "resource",
+      "title": "Lastemaja",
+      "status": "active",
+      "summary": "Lastemaja tegeleb seksuaalselt väärkoheldud ja selle kahtlusega laste juhtumitega. Lastemaja meeskond hindab lapse tervislikku ja sotsiaalset olukorda, viib läbi juhtumi lahendamiseks vajalikke toiminguid ning pakub lapsele ja perele abi.",
+      "sourceKeys": [
+        "lastekaitse_page"
+      ],
+      "officialUrl": "https://keila.ee/lastekaitse/",
+      "name": "Lastemaja",
+      "role": null,
+      "department": null,
+      "address": [
+        "keila_linn_contact_liina_koiv",
+        "keila_linn_contact_erki_uus",
+        "keila_linn_contact_leenu_leomar"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "phone",
+        "email",
+        "address"
+      ],
+      "item_type": "resource",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_resource_lastemaja",
+      "document_id": "keila_linn_resource_lastemaja",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/lastekaitse/",
+      "content_hash": "ebcee4882cd72d9d14b5dcf2b3e2febfa2186e293b9e88287a5a1e6754ae8cb5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_resource_abivajav_voi_hadaohus_laps",
+      "canonical_item_id": "keila_linn:resource:abivajav_voi_hadaohus_laps",
+      "itemType": "resource",
+      "title": "Abivajav või hädaohus olev laps",
+      "status": "active",
+      "summary": "Keila lastekaitse leht selgitab, et abivajavast lapsest tuleb teatada kohalikule omavalitsusele või lasteabitelefonil. Hädaohus olevast lapsest tuleb viivitamata teatada hädaabinumbril. Tööpäevadel teavitatakse abivajavast lapsest Keila Linnavalitsuse laste heaolu spetsialiste.",
+      "sourceKeys": [
+        "child_welfare_contacts_page",
+        "lastekaitse_page"
+      ],
+      "officialUrl": "https://keila.ee/lastekaitse/",
+      "name": "Abivajav või hädaohus olev laps",
+      "role": null,
+      "department": null,
+      "address": [
+        "keila_linn_contact_liina_koiv",
+        "keila_linn_contact_erki_uus",
+        "keila_linn_contact_leenu_leomar"
+      ],
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "phone",
+        "email",
+        "address"
+      ],
+      "item_type": "resource",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "child_welfare_contacts_page",
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_resource_abivajav_voi_hadaohus_laps",
+      "document_id": "keila_linn_resource_abivajav_voi_hadaohus_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/lastekaitse/",
+      "content_hash": "5e4e7f7f9a1fafafe930a4460d18e27e2014f8c5ff3544efdb7b3d9cbbb39ec8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_resource_eestkoste_info",
+      "canonical_item_id": "keila_linn:resource:eestkoste_info",
+      "itemType": "resource",
+      "title": "Eestkoste info",
+      "status": "active",
+      "summary": "Eestkoste leht selgitab, kuidas algatada eestkoste täisealise või alaealise üle ning millal pöördub kohtusse kohalik omavalitsus. Küsimuste korral suunab Keila linn pöörduma eestkostespetsialisti poole, kes nõustab ning aitab avalduste ja aruannetega kohtule.",
+      "sourceKeys": [
+        "eestkoste_page"
+      ],
+      "officialUrl": "https://keila.ee/eestkoste/",
+      "name": "Eestkoste info",
+      "role": null,
+      "department": null,
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "keila_linn_contact_janne_sutting"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "phone",
+        "email",
+        "relatedContacts"
+      ],
+      "item_type": "resource",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "eestkoste_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_resource_eestkoste_info",
+      "document_id": "keila_linn_resource_eestkoste_info",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/eestkoste/",
+      "content_hash": "e9c738aae97acb4347d35b17a9494a18649cb696d74f6e922f3baadc741abdae",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_resource_lapsesse_puutuvad_vaidlused",
+      "canonical_item_id": "keila_linn:resource:lapsesse_puutuvad_vaidlused",
+      "itemType": "resource",
+      "title": "Lapsesse puutuvate vaidluste lahendamine",
+      "status": "active",
+      "summary": "Keila linna lapsesse puutuvates vaidlustes kaasab kohus Keila linnavalitsuse eestkosteasutusena arvamuse andmiseks. Lastekaitsespetsialist suhtleb lapse, vanemate ja lähedastega ning teeb lapse heaolu kaitseks koostööd teiste spetsialistidega.",
+      "sourceKeys": [
+        "child_welfare_contacts_page",
+        "lastekaitse_page"
+      ],
+      "officialUrl": "https://keila.ee/lastekaitse/",
+      "name": "Lapsesse puutuvate vaidluste lahendamine",
+      "role": null,
+      "department": null,
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "keila_linn_contact_liina_koiv",
+        "keila_linn_contact_erki_uus",
+        "keila_linn_contact_leenu_leomar"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "relatedContacts"
+      ],
+      "item_type": "resource",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "child_welfare_contacts_page",
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_resource_lapsesse_puutuvad_vaidlused",
+      "document_id": "keila_linn_resource_lapsesse_puutuvad_vaidlused",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/lastekaitse/",
+      "content_hash": "05c87d2531e2faa1ca7a5b649e9d8d0df6dbc6e10fa488172ac11847436a6069",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_resource_erivajadusega_lapsed",
+      "canonical_item_id": "keila_linn:resource:erivajadusega_lapsed",
+      "itemType": "resource",
+      "title": "Erivajadusega lapsed",
+      "status": "active",
+      "summary": "Erivajadusega laste leht suunab peresid laste heaolu spetsialistide kontaktide juurde. See on KOV veebis avaldatud praktiline suunamine erivajadusega lapse küsimustes nõustamise saamiseks.",
+      "sourceKeys": [
+        "child_welfare_contacts_page",
+        "erivajadusega_lapsed_page"
+      ],
+      "officialUrl": "https://keila.ee/erivajadusega-lapsed/",
+      "name": "Erivajadusega lapsed",
+      "role": null,
+      "department": null,
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "keila_linn_contact_liina_koiv",
+        "keila_linn_contact_erki_uus",
+        "keila_linn_contact_leenu_leomar"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "relatedContacts"
+      ],
+      "item_type": "resource",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "child_welfare_contacts_page",
+        "erivajadusega_lapsed_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_resource_erivajadusega_lapsed",
+      "document_id": "keila_linn_resource_erivajadusega_lapsed",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/erivajadusega-lapsed/",
+      "content_hash": "83088f33803582960662bf5f45fcb8e32ab4b23bbdb08bf39765be7cc92e1a37",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_resource_keila_sotsiaalkeskus",
+      "canonical_item_id": "keila_linn:resource:keila_sotsiaalkeskus",
+      "itemType": "resource",
+      "title": "Keila Sotsiaalkeskus",
+      "status": "active",
+      "summary": "Keila Sotsiaalkeskus on Keila linna sotsiaalasutus, mille tööajad on avaldatud tervishoiu- ja sotsiaalasutuste lehel. Sotsiaalkeskus osutab mitut Keila linna sotsiaalteenust, sh koduteenust, sotsiaaltransporti ja varjupaigateenust.",
+      "sourceKeys": [
+        "asutused_page",
+        "sotsiaalteenused_page"
+      ],
+      "officialUrl": "https://keila.ee/asutused/",
+      "name": "Keila Sotsiaalkeskus",
+      "role": null,
+      "department": null,
+      "address": "Männipargi 1-3, Keila 76607",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [
+        "keila_linn_contact_olga_oksner",
+        "keila_linn_contact_jaane_poldme",
+        "keila_linn_contact_riina_sippol"
+      ],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "address",
+        "relatedContacts"
+      ],
+      "item_type": "resource",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "asutused_page",
+        "sotsiaalteenused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_resource_keila_sotsiaalkeskus",
+      "document_id": "keila_linn_resource_keila_sotsiaalkeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/asutused/",
+      "content_hash": "964f05e3f4e07b0be55cc648f0de3fb41cacb97acb86aa3a588dc69d03b86ed2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_resource_merelahe_keila_filiaal",
+      "canonical_item_id": "keila_linn:resource:merelahe_keila_filiaal",
+      "itemType": "resource",
+      "title": "Merelahe Keila filiaal",
+      "status": "active",
+      "summary": "Merelahe Keila filiaal on Keila Vesiveski keskuses tegutsev perearstikeskus. Keila lehel on avaldatud kontaktandmed, vastuvõtule registreerimise ja korduvretseptide tellimise viide ning perearstide ja pereõdede nimed.",
+      "sourceKeys": [
+        "asutused_page"
+      ],
+      "officialUrl": "https://keila.ee/asutused/",
+      "name": "Merelahe Keila filiaal",
+      "role": null,
+      "department": null,
+      "address": "Tallinna mnt 18, Keila",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "phone",
+        "email",
+        "address"
+      ],
+      "item_type": "resource",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "asutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_resource_merelahe_keila_filiaal",
+      "document_id": "keila_linn_resource_merelahe_keila_filiaal",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/asutused/",
+      "content_hash": "eca3a55cbf8e9250ff5c61fbc97b0554ad3344032c79b4e6936a4a13b494f495",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_resource_keila_perearstikeskus",
+      "canonical_item_id": "keila_linn:resource:keila_perearstikeskus",
+      "itemType": "resource",
+      "title": "Keila Perearstikeskus",
+      "status": "active",
+      "summary": "Keila Perearstikeskus asub Keskväljak 12a aadressil ja on avatud tööpäeviti. Keila leht suunab täpsema info saamiseks perearstikeskuse kodulehele ja märgib Keila haigla hoone perearstide nimistu liikumise Keila Perearstikeskuse koosseisu.",
+      "sourceKeys": [
+        "asutused_page"
+      ],
+      "officialUrl": "https://keila.ee/asutused/",
+      "name": "Keila Perearstikeskus",
+      "role": null,
+      "department": null,
+      "address": "Keskväljak 12a, Keila, 76607",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "phone",
+        "address"
+      ],
+      "item_type": "resource",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "asutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_resource_keila_perearstikeskus",
+      "document_id": "keila_linn_resource_keila_perearstikeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/asutused/",
+      "content_hash": "3976560c807aa1cdacf21861c921502b33ba72c691504e30f3773fa537345ed2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_resource_aisu_perearstikeskus",
+      "canonical_item_id": "keila_linn:resource:aisu_perearstikeskus",
+      "itemType": "resource",
+      "title": "Aisu Perearstikeskus OÜ",
+      "status": "active",
+      "summary": "Aisu Perearstikeskus OÜ asub Männipargi 1 hoones ning Keila lehel on avaldatud arsti ja pereõdede vastuvõtuajad. Keskuse ja on avaldatud tervishoiu- ja sotsiaalasutuste lehel.",
+      "sourceKeys": [
+        "asutused_page"
+      ],
+      "officialUrl": "https://keila.ee/asutused/",
+      "name": "Aisu Perearstikeskus OÜ",
+      "role": null,
+      "department": null,
+      "address": "Männipargi 1, Keila",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "phone",
+        "email",
+        "address"
+      ],
+      "item_type": "resource",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "asutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_resource_aisu_perearstikeskus",
+      "document_id": "keila_linn_resource_aisu_perearstikeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/asutused/",
+      "content_hash": "961682ee5c4f23c230b2236d518d464b349bc94d064beff4f8d77e56ef8f786d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_resource_pargi_perearstikeskus",
+      "canonical_item_id": "keila_linn:resource:pargi_perearstikeskus",
+      "itemType": "resource",
+      "title": "Pargi Perearstikeskus OÜ",
+      "status": "active",
+      "summary": "Pargi Perearstikeskus tegutseb Männipargi tn 1 aadressil ja võtab meditsiinilisi pöördumisi vastu e-Perearstikeskuse kaudu või telefoni teel. Keila lehel on avaldatud perearsti ja pereõdede vastuvõtuajad.",
+      "sourceKeys": [
+        "asutused_page"
+      ],
+      "officialUrl": "https://keila.ee/asutused/",
+      "name": "Pargi Perearstikeskus OÜ",
+      "role": null,
+      "department": null,
+      "address": "Männipargi tn 1, Keila 76607",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "phone",
+        "email",
+        "address"
+      ],
+      "item_type": "resource",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "asutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_resource_pargi_perearstikeskus",
+      "document_id": "keila_linn_resource_pargi_perearstikeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/asutused/",
+      "content_hash": "c3185d1a40aea056234899e9308d526ebb888280e12e1a41ecac2d842679b3ef",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_resource_elora_keila_haigla",
+      "canonical_item_id": "keila_linn:resource:elora_keila_haigla",
+      "itemType": "resource",
+      "title": "Elora Keila haigla AS",
+      "status": "active",
+      "summary": "Elora Keila haigla AS on Keila haigla Männipargi 1 aadressil. Keila lehel on avaldatud haigla ja e-posti aadress.",
+      "sourceKeys": [
+        "asutused_page"
+      ],
+      "officialUrl": "https://keila.ee/asutused/",
+      "name": "Elora Keila haigla AS",
+      "role": null,
+      "department": null,
+      "address": "Männipargi 1, 76607 Keila",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "phone",
+        "email",
+        "address"
+      ],
+      "item_type": "resource",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "asutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_resource_elora_keila_haigla",
+      "document_id": "keila_linn_resource_elora_keila_haigla",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/asutused/",
+      "content_hash": "7c5d26868bd25abba62ab124dba9757c159550dfece73254bd415273d945ebd2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_resource_pohja_eesti_taastusravikeskus",
+      "canonical_item_id": "keila_linn:resource:pohja_eesti_taastusravikeskus",
+      "itemType": "resource",
+      "title": "Põhja-Eesti Taastusravikeskus",
+      "status": "active",
+      "summary": "Põhja-Eesti Taastusravikeskus on tervishoiu- ja sotsiaalasutuste lehel avaldatud taastusravikeskus. Keila leht annab aadressi, telefoni ja e-posti.",
+      "sourceKeys": [
+        "asutused_page"
+      ],
+      "officialUrl": "https://keila.ee/asutused/",
+      "name": "Põhja-Eesti Taastusravikeskus",
+      "role": null,
+      "department": null,
+      "address": "Sõle 16, Tallinn",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "phone",
+        "email",
+        "address"
+      ],
+      "item_type": "resource",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "asutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_resource_pohja_eesti_taastusravikeskus",
+      "document_id": "keila_linn_resource_pohja_eesti_taastusravikeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/asutused/",
+      "content_hash": "d8a5ef67fcb5d7893760a3ae4c747c092bc6791dbfa939a277327126f445055a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_resource_keila_teraapiakeskus",
+      "canonical_item_id": "keila_linn:resource:keila_teraapiakeskus",
+      "itemType": "resource",
+      "title": "Keila Teraapiakeskus",
+      "status": "active",
+      "summary": "Keila Teraapiakeskus on Keila tervishoiu- ja sotsiaalasutuste lehel avaldatud teraapiakeskus. Lehel on toodud Keskväljak 17 aadress, ja e-posti aadress.",
+      "sourceKeys": [
+        "asutused_page"
+      ],
+      "officialUrl": "https://keila.ee/asutused/",
+      "name": "Keila Teraapiakeskus",
+      "role": null,
+      "department": null,
+      "address": "Keskväljak 17, Keila",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "phone",
+        "email",
+        "address"
+      ],
+      "item_type": "resource",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "asutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_resource_keila_teraapiakeskus",
+      "document_id": "keila_linn_resource_keila_teraapiakeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/asutused/",
+      "content_hash": "2130031a5c8638bf342caef76e71ec99d3365b8b11bc58235d7922212e480e5c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_resource_apteegid",
+      "canonical_item_id": "keila_linn:resource:apteegid",
+      "itemType": "resource",
+      "title": "Apteegid Keilas",
+      "status": "active",
+      "summary": "Keila tervishoiu- ja sotsiaalasutuste lehel on avaldatud Keila Raeapteegi, Keila Selveri Apteegi, Keila Rõõmu Apteegi ja Keila Vesiveski Keskuse Benu Apteegi kontaktid ja lahtiolekuajad.",
+      "sourceKeys": [
+        "asutused_page"
+      ],
+      "officialUrl": "https://keila.ee/asutused/",
+      "name": "Apteegid Keilas",
+      "role": null,
+      "department": null,
+      "address": null,
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "sections_present": [],
+      "item_type": "resource",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "asutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_resource_apteegid",
+      "document_id": "keila_linn_resource_apteegid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/asutused/",
+      "content_hash": "c9717f564ca6e6d8a1bee810ac77ae1153d73a0fc574b87baa7a331679e018d9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "keila_linn_resource_itak_abivahendid",
+      "canonical_item_id": "keila_linn:resource:itak_abivahendid",
+      "itemType": "resource",
+      "title": "ITAK Terviseabivahendid Keila",
+      "status": "active",
+      "summary": "ITAK Terviseabivahendid on Keila lehel avaldatud abivahendite kauplus. Lehel on toodud aadress, lahtiolekuajad, ning loetletud abivahendite kategooriad, sh liikumisabivahendid, põetus- ja hooldusabivahendid ning uriinipidamatuse tooted.",
+      "sourceKeys": [
+        "asutused_page"
+      ],
+      "officialUrl": "https://keila.ee/asutused/",
+      "name": "ITAK Terviseabivahendid Keila",
+      "role": null,
+      "department": null,
+      "address": "Ülesõidu 1, Keila",
+      "relatedTo": [],
+      "relatedForms": [],
+      "relatedContacts": [],
+      "unresolvedIssues": [],
+      "sections_present": [
+        "phone",
+        "email",
+        "address"
+      ],
+      "item_type": "resource",
+      "municipality_id": "keila_linn",
+      "municipality_name": "Keila linn",
+      "county": "Harjumaa",
+      "source_keys": [
+        "asutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "keila_linn_resource_itak_abivahendid",
+      "document_id": "keila_linn_resource_itak_abivahendid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-29",
+      "last_checked": "2026-04-29",
+      "retrieved_at": "2026-04-29",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://keila.ee/asutused/",
+      "content_hash": "44cd44488ae16f92b916640836838044c5b4d447325f80cce5d0cfa668ee1a41",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Keila linn",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-1-2018",
+  "articleId": "sotsiaalsem-euroopa-sai-eesti-eesistumise-ajal-margilise-pitsri-2018",
+  "title": "Sotsiaalsem Euroopa sai Eesti eesistumise ajal märgilise pitseri",
+  "authors": [
+    "Kati Keel"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2018",
+  "section": "Sotsiaalpoliitika",
+  "pageRange": "7-9",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Analüüs Euroopa sotsiaalõiguste sambast kui väärtuspõhisest kokkuleppest, mis koondab 20 põhimõtet sotsiaalse kaitse, tööturu võrdsete võimaluste ja õiglaste töötingimuste valdkonnast, ning Eesti rollist samba proklameerimisel eesistujariigina.",
+  "tags": [
+    "Euroopa Liit",
+    "Euroopa sotsiaalõiguste sammas",
+    "Eesti EL eesistumine",
+    "sotsiaalpoliitika",
+    "töötingimused",
+    "pikaajaline hooldus",
+    "töö ja pereelu ühitamine",
+    "sotsiaalne kaitse",
+    "sotsiaalne kaasatus"
+  ],
+  "source_type": "file",
+  "source_path": "Part4_155619647682_ST1_2018_link.pdf",
+  "document_id": "sotsiaaltoo-1-2018-sotsiaalsem-euroopa-sai-eesti-eesistumise-ajal-margilise-pitsri-2018",
+  "source_format": "pdf",
+  "source_sha256": "60e15cfc9d09ec0bc7ea57b8462af6db71f776b6dbdf411c9caf92e6f86a8450",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2018-sotsiaalsem-euroopa-sai-eesti-eesistumise-ajal-margilise-pitsri-2018",
+    "previous_source_path": "Part4_155619647682_ST1_2018_link.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "60e15cfc9d09ec0bc7ea57b8462af6db71f776b6dbdf411c9caf92e6f86a8450",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

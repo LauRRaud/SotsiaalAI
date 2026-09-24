@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2022",
+  "articleId": "ei-voi-koroona-parast-koduvaravastki-valja-minna-pandeemia-moju-noorte-vaimsele-tervisele-ja-kuidas-neid-toetada-2022-2",
+  "title": "Ei või koroona pärast koduväravastki välja minna. Pandeemia mõju noorte vaimsele tervisele ja kuidas neid toetada",
+  "authors": [
+    "Karin Streimann"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2022",
+  "section": "Vaimne tervis",
+  "pageRange": "61-68",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaateartikkel käsitleb COVID-19 pandeemia mõju noorte vaimsele tervisele, tuginedes Eesti ja rahvusvahelistele uuringutele. Autor analüüsib murdeealiste eripära, digiõppe ja piirangute mõju heaolule, sotsiaalsetele suhetele, koolimeeldivusele ja riskikäitumisele, sh uimastitarvitamisele ning nutivahendite liigkasutamisega seotud uneprobleemidele. Kirjeldatakse noorte üksilduse ja koolistressi kasvu ning vaimse tervise probleemide sagenemist, eriti tüdrukute seas. Artikkel pakub universaalseid ennetus- ja toetusmeetmeid koolidele, peredele ja spetsialistidele, rõhutades hooliva suhte, eluoskuste arendamise ning süsteemse koostöö olulisust noorte vaimse tervise toetamisel.",
+  "tags": [
+    "noorte vaimne tervis",
+    "COVID-19 pandeemia",
+    "kaugõpe",
+    "koolistress",
+    "üksildus",
+    "riskikäitumine",
+    "ennetustegevus",
+    "eluoskused"
+  ],
+  "source_type": "file",
+  "source_path": "2022_2_artikkel_12_noorte_vaimne_tervis.pdf",
+  "document_id": "sotsiaaltoo-2-2022-ei-voi-koroona-parast-koduvaravastki-valja-minna-pandeemia-moju-noorte-vaimsele-tervisele-ja-kuidas-neid-toetada-2022-2",
+  "source_format": "pdf",
+  "source_sha256": "75f9a6f3fdb0cfb783cf28432451bb3b71ed8ccbaab98c445485724e2f688f15",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2022-ei-voi-koroona-parast-koduvaravastki-valja-minna-pandeemia-moju-noorte-vaimsele-tervisele-ja-kuidas-neid-toetada-2022-2",
+    "previous_source_path": "2022_2_artikkel_12_noorte_vaimne_tervis.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "75f9a6f3fdb0cfb783cf28432451bb3b71ed8ccbaab98c445485724e2f688f15",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

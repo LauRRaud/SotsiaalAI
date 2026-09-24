@@ -1,0 +1,119 @@
+{
+  "docId": "sotsiaaltoo-3-2018",
+  "articleId": "hev-laste-toetamine-pgs-2018",
+  "title": "Hariduslike erivajadustega laste toetamine: muudatused põhikooli- ja gümnaasiumiseaduses",
+  "authors": [
+    "Piret Liba",
+    "Nele Labi"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2018",
+  "section": "Seadus",
+  "pageRange": "38-44",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Haridus- ja teadusministeeriumi nõuniku ning SA Innove hariduse tugiteenuste agentuuri juhi ülevaade 2018. aasta veebruaris jõustunud põhikooli- ja gümnaasiumiseaduse muudatustest, mis muutsid hariduslike erivajadustega õpilaste õppekorraldust. Uus regulatsioon lähtub õpilase toe vajadusest ja mahust, mitte meditsiinilisest diagnoosist või määratud puudest; eristatakse üldist tuge, tõhustatud tuge ja erituge. Muudatustele eelnes 2016. aasta kaasava hariduse uuring, mis näitas, et rakendamist takistavad hoiakud, puudulikud teadmised ja ressursid ning et diagnoosipõhine kategoriseerimine ei toeta kaasava hariduse juhtmõtteid. Artikli lõpus on Eesti Puuetega Inimeste Koja tegevjuhi Anneli Habichti kommentaar, mis loetleb kuus takistust: eripedagoogide ja tugispetsialistide karjuv puudus, õpetajate vähesed oskused, abiõpetaja ameti defineerimatus, suured klassid, haridus-, sotsiaal- ja tervishoiusüsteemi sidumata andmebaasid ning teiste vanemate tõrjuvad hoiakud.",
+  "tags": [
+    "hariduslikud erivajadused",
+    "kaasav haridus",
+    "põhikooli- ja gümnaasiumiseadus",
+    "tugispetsialistid",
+    "tõhustatud tugi",
+    "eritugi",
+    "EPIKoda"
+  ],
+  "source_type": "file",
+  "source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part11.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2018-hev-laste-toetamine-pgs-2018",
+  "source_sha256": "2a223532fdf0dbe0dc2e5ab84fc9f554110024b512ca38d5fe53f0166d16dd04",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2018-hev-laste-toetamine-pgs-2018",
+    "previous_source_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part11.txt",
+    "previous_source_original_path": "155619680390_Sotsiaaltoo_nr3_2018_veebi_link_Part11.pdf",
+    "reference_stored_source_sha256": "3d1fd2f67feaff97e853cfc8b0f9d0e503b2e0a12d72aebb15855ff2d7c883f0",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\18-3\\155619680390_Sotsiaaltoo_nr3_2018_veebi_link.pdf",
+      "source_sha256": "45eac17c335ef472708d0eb485f916c201e5db46ac64163cc7aeeb1f47dd10a9",
+      "pdf_start_page": 40,
+      "pdf_end_page": 46,
+      "printed_page_range": "38-44",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 46,
+      "source_regions": [
+        {
+          "source_pdf_page": 40,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 41,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 42,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 43,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 44,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 45,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 46,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "38-44"
+    },
+    "server_page_range": "38-44"
+  }
+}

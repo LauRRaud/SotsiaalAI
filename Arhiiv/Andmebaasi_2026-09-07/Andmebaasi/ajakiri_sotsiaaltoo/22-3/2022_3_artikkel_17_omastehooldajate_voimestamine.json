@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-3-2022",
+  "articleId": "dementsusega-inimeste-omastehooldajate-voimestamine-tugigruppide-abil-2022-3",
+  "title": "Dementsusega inimeste omastehooldajate võimestamine tugigruppide abil",
+  "authors": [
+    "Merle Varik"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2022",
+  "section": "UURIMUS",
+  "pageRange": "75-82",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimus käsitleb dementsusega inimeste omastehooldajate toimetulekut ja tugigruppide rolli nende võimestamisel.\nTutvustatakse dementsuse kui rahvatervise väljakutse tausta ning lähedaste hoolduskoormust, sh füüsilisi, vaimseid,\nsotsiaalseid ja majanduslikke raskusi. Osalustegevusuuringu raames loodi MTÜ Elu Dementsusega eestvedamisel üle Eesti\nvabatahtlike juhitud tugigrupid, mille kaudu koguti hooldajate kogemusi ja ootusi. Artikkel kirjeldab tugigruppide\nformaati, võimestamise kontseptsiooni mikro-, meso- ja makrotasandil ning analüüsib, kuidas tugigrupid pakuvad\npsühhohariduslikku tuge, vähendavad üksijäetuse tunnet, toetavad hooldaja heaolu ja tõstavad dementsust mõistva kogukonna teadlikkust.",
+  "tags": [
+    "dementsus",
+    "omastehooldus",
+    "omastehooldajad",
+    "tugigrupid",
+    "psühhohariduslik tugi",
+    "võimestamine",
+    "MTÜ Elu Dementsusega",
+    "pikaajaline hooldus",
+    "peresuhted",
+    "sotsiaalpoliitika"
+  ],
+  "source_type": "file",
+  "source_path": "2022_3_artikkel_17_omastehooldajate_voimestamine.pdf",
+  "document_id": "sotsiaaltoo-3-2022-dementsusega-inimeste-omastehooldajate-voimestamine-tugigruppide-abil-2022-3",
+  "source_format": "pdf",
+  "source_sha256": "905bac01eeac7c0eb6fa9cd04d18a71aef397002cc91627cafa79854d6237e22",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2022-dementsusega-inimeste-omastehooldajate-voimestamine-tugigruppide-abil-2022-3",
+    "previous_source_path": "2022_3_artikkel_17_omastehooldajate_voimestamine.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "905bac01eeac7c0eb6fa9cd04d18a71aef397002cc91627cafa79854d6237e22",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

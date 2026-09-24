@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "uus-hindamismeetod-aitab-saada-lapse-kahjustavast-seksuaalkaitumisest-laiema-pildi-2025-2",
+  "title": "Uus hindamismeetod aitab saada lapse kahjustavast seksuaalkäitumisest laiema pildi",
+  "authors": [
+    "Maria Viidebaum"
+  ],
+  "section": "Metoodika",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "description": "Artikkel tutvustab AIM (Assessment, Intervention, Moving on) hindamismeetodit, mis aitab spetsialistidel süstemaatiliselt analüüsida lapse kahjulikku seksuaalkäitumist. Selgitatakse, milliseid tegureid AIM käsitleb – lapse areng, trauma, perekondlik ja sotsiaalne kontekst, riskid ja kaitsvad tegurid – ning kuidas see erineb varasematest vähemstruktureeritud lähenemistest. Käsitletakse meeskonnapõhist tööd, koolitusvajadust ja metoodika rakendamist Eesti praktikas. Eesmärk on toetada lapsi ja peresid viisil, mis vähendab korduvate juhtumite riski ning aitab kujundada turvalisi suhteid ja seksuaalkäitumist.",
+  "tags": [
+    "AIM hindamismeetod",
+    "kahjulik seksuaalkäitumine",
+    "lapsed",
+    "hindamine",
+    "risk ja kaitsvad tegurid",
+    "metoodika",
+    "meeskonnatöö"
+  ],
+  "source_path": "Uus hindamismeetod aitab saada lapse kahjustavast seksuaalkäitumisest laiema pildi_2_2025.pdf",
+  "pageRange": "1–5",
+  "document_id": "sotsiaaltoo-2-2025-uus-hindamismeetod-aitab-saada-lapse-kahjustavast-seksuaalkaitumisest-laiema-pildi-2025-2",
+  "source_format": "pdf",
+  "source_sha256": "17b7046685ce1cc50fd2c3915669781f10f3b72260d086c32dc2702bfb773925",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2025-uus-hindamismeetod-aitab-saada-lapse-kahjustavast-seksuaalkaitumisest-laiema-pildi-2025-2",
+    "previous_source_path": "Uus hindamismeetod aitab saada lapse kahjustavast seksuaalkäitumisest laiema pildi_2_2025.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "17b7046685ce1cc50fd2c3915669781f10f3b72260d086c32dc2702bfb773925",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

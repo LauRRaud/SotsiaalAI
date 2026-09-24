@@ -1,0 +1,2046 @@
+{
+  "municipality": "Haljala vald",
+  "county": "Lääne-Virumaa",
+  "checkedAt": "2026-04-11",
+  "items": [
+    {
+      "id": "haljala_vald_service_koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus aitab inimesel turvaliselt kodus toime tulla, kui ta vajab kõrvalabi igapäevastes toimingutes. Teenus võib hõlmata näiteks kütmist, eluruumide korrastamist, abi toiduainete ja esmatarbekaupade hankimisel, asjaajamist ning hügieenitoimingutes abistamist.",
+      "targetGroup": "Isikud, kes kõrvalabi vajaduse tõttu ei tule kodustes tingimustes iseseisvalt toime.",
+      "conditions": "Abivajadust hindab sotsiaaltööspetsialist ning sotsiaalteenuste ja -toetuste komisjon otsustab teenuse sisu ja mahu. Teenus on üldjuhul tasuline.",
+      "application": "Taotlus esitatakse Haljala vallale sotsiaalteenuste taotlusega iseteeninduses või muul Haljala valla lubatud viisil.",
+      "officialUrl": "https://haljala.ee/koduteenus",
+      "sourceKeys": [
+        "koduteenus_page"
+      ],
+      "relatedForms": [
+        "haljala_vald_form_sotsiaalteenuste_taotlus"
+      ],
+      "relatedContacts": [
+        "haljala_vald_contact_sirle_nukk"
+      ],
+      "item_type": "service",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "koduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_service_koduteenus",
+      "document_id": "haljala_vald_service_koduteenus",
+      "canonical_item_id": "haljala_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/koduteenus",
+      "content_hash": "2784505199116f7ba01bf338b218e336d3ef0bd772bde0be4d2500c020a96e22",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_service_hooldusteenus_valjaspool_kodu",
+      "itemType": "service",
+      "title": "Hooldusteenus väljaspool kodu",
+      "status": "active",
+      "summary": "Hooldusteenus väljaspool kodu tagab täisealisele inimesele turvalise elukeskkonna ja hoolduse väljaspool tema kodu. Teenust võib kasutada ajutiselt või pikaajaliselt.",
+      "targetGroup": "Täisealised inimesed, kes ei ole võimelised kodus toime tulema ja vajavad ööpäevaringset hooldust või järelevalvet väljaspool kodu.",
+      "conditions": "Abivajadust hindab sotsiaaltööspetsialist ning teenuse määramise otsustab sotsiaalteenuste ja -toetuste komisjon. Haljala vald tasub hoolduskulude osa kuni 650 eurot kuus. Teenust saava inimese kanda jäävad majutus-, toitlustus- ja isiklikud kulud. Kui inimese sissetulek on väiksem kui riiklik keskmine vanaduspension, võib vald kompenseerida majutus- ja toitlustuskulu osaliselt kuni sissetuleku ja keskmise vanaduspensioni vahe ulatuses.",
+      "application": "Taotlus esitatakse Haljala vallale sotsiaalteenuste taotlusega. Pärast abivajaduse hindamist korraldab vald teenuse osutamise.",
+      "amount": "Haljala vald tasub hoolduskulude osa kuni 650 eurot kuus; inimese kanda jäävad majutus-, toitlustus- ja isiklikud kulud.",
+      "officialUrl": "https://haljala.ee/hooldusteenus-valjaspool-kodu",
+      "sourceKeys": [
+        "hooldusteenus_valjaspool_kodu_page"
+      ],
+      "relatedForms": [
+        "haljala_vald_form_sotsiaalteenuste_taotlus"
+      ],
+      "relatedContacts": [
+        "haljala_vald_contact_sirle_nukk"
+      ],
+      "item_type": "service",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "hooldusteenus_valjaspool_kodu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_service_hooldusteenus_valjaspool_kodu",
+      "document_id": "haljala_vald_service_hooldusteenus_valjaspool_kodu",
+      "canonical_item_id": "haljala_vald_service_hooldusteenus_valjaspool_kodu",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/hooldusteenus-valjaspool-kodu",
+      "content_hash": "a9d62472228e409202a188ba651dbb8fab7013d27c4d8eb1813d15d74730d623",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_service_tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus aitab last, täisealist inimest või peret olukorras, kus on vaja kõrvalabi, juhendamist või motiveerimist igapäevaelus toimetulekuks. Teenust osutatakse lapsele, täisealisele inimesele või perele vastavalt abivajadusele ning teenus on kasutajale tasuta.",
+      "targetGroup": "Lapsed, kes vajavad abi psüühiliste või käitumisprobleemide tõttu; täisealised inimesed, kes vajavad abi igapäevases toimetulekus; pered, kes vajavad toetust lapse hooldamisel ja kasvatamisel.",
+      "conditions": "Tugiisikuteenuse vajaduse võib algatada inimene ise või vajaduse tuvastamisel kohalik omavalitsus. Teenuse sisu ja mahu otsustab sotsiaalteenuste ja -toetuste komisjon. Tugiisiku leiab pere või inimene ise, vajadusel abistab kohalik omavalitsus.",
+      "application": "Taotlus esitatakse Haljala vallale sotsiaalteenuste taotlusega. Avalduses kirjeldatakse olukordi, milles tuge vajatakse, ja soovitud abi mahtu.",
+      "officialUrl": "https://haljala.ee/tugiisikuteenus",
+      "sourceKeys": [
+        "tugiisikuteenus_page"
+      ],
+      "relatedForms": [
+        "haljala_vald_form_sotsiaalteenuste_taotlus"
+      ],
+      "relatedContacts": [
+        "haljala_vald_contact_margit_kukor",
+        "haljala_vald_contact_airi_oosalu",
+        "haljala_vald_contact_sirle_nukk"
+      ],
+      "item_type": "service",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "tugiisikuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_service_tugiisikuteenus",
+      "document_id": "haljala_vald_service_tugiisikuteenus",
+      "canonical_item_id": "haljala_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/tugiisikuteenus",
+      "content_hash": "03e515ef7158bbd1cd8f59d53e40421fbcb63b115843b5ee1c5646b54277338a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_service_hoolduse_seadmine",
+      "itemType": "service",
+      "title": "Hoolduse seadmine",
+      "status": "active",
+      "summary": "Hoolduse seadmine tähendab hooldaja määramist inimesele, kes vajab igapäevases toimetulekus püsivat abi, juhendamist või järelevalvet.",
+      "targetGroup": "Täisealised raske või sügava puudega inimesed ning lapsed, kelle hooldust ei ole võimalik tagada muude sotsiaal- või haridusteenustega.",
+      "conditions": "Täisealisele seatakse hooldus, kui tal on raske või sügav puue ning talle ei osutata väljaspool kodu üldhooldusteenust ega koduteenust. Lapse hooldus seatakse siis, kui lapse hooldust ei ole võimalik tagada teiste meetmetega. Taotlusele lisatakse hooldust vajava isiku nõusolek ning andmed ülalpidajate ja perekonna majandusliku olukorra kohta. Hooldajaks võib erandkorras määrata ka ülalpidamiskohustusega pereliikme.",
+      "application": "Taotlus esitatakse Haljala vallale sotsiaalteenuste taotlusega koos vajalike lisadega.",
+      "officialUrl": "https://haljala.ee/hoolduse-seadmine",
+      "sourceKeys": [
+        "hoolduse_seadmine_page"
+      ],
+      "relatedForms": [
+        "haljala_vald_form_sotsiaalteenuste_taotlus"
+      ],
+      "relatedContacts": [
+        "haljala_vald_contact_sirle_nukk"
+      ],
+      "item_type": "service",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "hoolduse_seadmine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_service_hoolduse_seadmine",
+      "document_id": "haljala_vald_service_hoolduse_seadmine",
+      "canonical_item_id": "haljala_vald_service_hoolduse_seadmine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/hoolduse-seadmine",
+      "content_hash": "d9aa7a4ff3ec10593acdcc1248d0f038108ff1403e591440e58164b3ef09256e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_service_isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus pakub puudega täisealisele inimesele füüsilist kõrvalabi tegevustes, mida inimene ise teha ei saa, kuid suudab juhtida ja otsustada.",
+      "targetGroup": "Täisealised puudega inimesed, kes vajavad füüsilist kõrvalabi igapäevaelus, õppimisel, töötamisel või ühiskonnaelus osalemisel.",
+      "conditions": "Taotluses kirjeldatakse tegevused, milles abi vajatakse, ja soovitud abi maht. Abivajaduse hindab sotsiaaltööspetsialist ning teenuse mahu otsustab sotsiaalteenuste ja -toetuste komisjon. Teenus on kasutajale tasuta.",
+      "application": "Taotlus esitatakse Haljala vallale sotsiaalteenuste taotlusega.",
+      "officialUrl": "https://haljala.ee/isikliku-abistaja-teenus",
+      "sourceKeys": [
+        "isikliku_abistaja_teenus_page"
+      ],
+      "relatedForms": [
+        "haljala_vald_form_sotsiaalteenuste_taotlus"
+      ],
+      "relatedContacts": [
+        "haljala_vald_contact_sirle_nukk"
+      ],
+      "item_type": "service",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "isikliku_abistaja_teenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_service_isikliku_abistaja_teenus",
+      "document_id": "haljala_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "haljala_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/isikliku-abistaja-teenus",
+      "content_hash": "bfabbebb79db7b45657754ccbf4cc8121c5bf43f3b2aa7c5de626063275be55e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_service_sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenuse eesmärk on võimaldada inimesel kasutada tema vajadustele vastavat transpordivahendit eelkõige avalike teenuste kasutamiseks, kui ta ei saa terviseseisundi tõttu kasutada ühistransporti.",
+      "targetGroup": "Inimesed, kes vajavad transporditeenust tervishoiuteenuse, haridusteenuse, panga, posti või muu avaliku teenuse kasutamiseks ning kelle terviseseisund ei võimalda kasutada ühistransporti.",
+      "conditions": "Sõit tuleb tellida vähemalt viis tööpäeva enne soovitud sõiduaega, välja arvatud erakorraliste sõitude korral. Haljala valla piires maksab sõit ilma saatja teenuseta 5 eurot ja saatja teenusega 6 eurot. Väljaspool valda maksab teenus 0,40 eurot kilomeetri kohta ning saatja teenus 5 eurot korra eest. Tasuta teenust saavad toimetulekutoetuse saajad, inimene, kelle netosissetulek pärast eluasemekulusid on alla 50% riiklikust miinimumpalgast ja kellel puuduvad seadusjärgsed ülalpidajad, ning regulaarset ravi vajav pikaajalise haigusega inimene.",
+      "application": "Teenuse tellimiseks tuleb võtta ühendust sotsiaaltöö- ja tervisedendusspetsialistiga.",
+      "amount": "Haljala valla piires 5 eurot sõit ilma saatjata ja 6 eurot sõit saatja teenusega; väljaspool valda 0,40 eurot/km ning saatja teenus 5 eurot korra eest.",
+      "officialUrl": "https://www.haljala.ee/sotsiaaltransporditeenus",
+      "sourceKeys": [
+        "sotsiaaltransporditeenus_page"
+      ],
+      "relatedForms": [
+        "haljala_vald_form_sotsiaalteenuste_taotlus"
+      ],
+      "relatedContacts": [
+        "haljala_vald_contact_liis_kytt"
+      ],
+      "item_type": "service",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sotsiaaltransporditeenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_service_sotsiaaltransporditeenus",
+      "document_id": "haljala_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "haljala_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.haljala.ee/sotsiaaltransporditeenus",
+      "content_hash": "38eb15b7e867417867f0fd850df2c385f602e6df6bd8c213ed3404ca46955d35",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_service_eluruumi_tagamise_teenus",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenus aitab inimest või perekonda, kes ei suuda ise endale eluruumi tagada. Teenust osutatakse eelkõige sotsiaalkorteri võimaldamisega, erandjuhtudel aidatakse leida üüripinda vabalt turult.",
+      "targetGroup": "Haljala valla elanikud, kes ei saa erivajaduse, väikese sissetuleku või kriisiolukorra tõttu endale eluruumi tagada.",
+      "conditions": "Teenust võivad vajada üksi elavad puuetega inimesed, abivajavad inimesed, pered, kelle eluruum on hävinud või muutunud elamiskõlbmatuks, lastega pered, kelle suhtes toimub väljatõstmine, vähekindlustatud pered ning asendus- või järelhoolduselt või vanglast naasvad inimesed, kelle varasem elukoht oli Haljala vald. Avaldusele kirjutavad alla kõik täisealised pereliikmed, kes soovivad sama eluruumi kasutada. Eluruumi kasutaja tasub üüri ja kommunaalkulud. Erandjuhul võib vald tasuda tagatisraha ja esimese kuu üüri.",
+      "application": "Taotlus esitatakse Haljala vallale sotsiaalteenuste taotlusega.",
+      "officialUrl": "https://haljala.ee/eluruumi-tagamise-teenus",
+      "sourceKeys": [
+        "eluruumi_tagamise_teenus_page"
+      ],
+      "relatedForms": [
+        "haljala_vald_form_sotsiaalteenuste_taotlus"
+      ],
+      "relatedContacts": [
+        "haljala_vald_contact_airi_oosalu"
+      ],
+      "item_type": "service",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "eluruumi_tagamise_teenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_service_eluruumi_tagamise_teenus",
+      "document_id": "haljala_vald_service_eluruumi_tagamise_teenus",
+      "canonical_item_id": "haljala_vald_service_eluruumi_tagamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/eluruumi-tagamise-teenus",
+      "content_hash": "14482a22a8ab1dbf2bbab14d307fd503fb3d90c2f37af3c5f8e6bfaaa221a30d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_service_volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Haljala valla ametlik sotsiaalteenuste taotluse leht nimetab võlanõustamisteenust sotsiaalteenusena, mille taotlust saab Haljala vallale esitada.",
+      "application": "Taotlus esitatakse Haljala valla iseteeninduskeskkonnas SPOKU sotsiaalteenuste taotluse kaudu.",
+      "officialUrl": "https://haljala.ee/toiming/sotsiaalteenuste-taotlus",
+      "sourceKeys": [
+        "sotsiaalteenuste_taotlus_page"
+      ],
+      "relatedForms": [
+        "haljala_vald_form_sotsiaalteenuste_taotlus"
+      ],
+      "relatedContacts": [
+        "haljala_vald_contact_airi_oosalu"
+      ],
+      "item_type": "service",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sotsiaalteenuste_taotlus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_service_volanoustamisteenus",
+      "document_id": "haljala_vald_service_volanoustamisteenus",
+      "canonical_item_id": "haljala_vald_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/toiming/sotsiaalteenuste-taotlus",
+      "content_hash": "791d3fddca692020f9dae157cc8a9cd79e224d4ea2d446ea4f576637925fab38",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_service_varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Haljala valla ametlik sotsiaalteenuste taotluse leht nimetab varjupaigateenust sotsiaalteenusena, mille taotlust saab Haljala vallale esitada.",
+      "application": "Taotlus esitatakse Haljala valla iseteeninduskeskkonnas SPOKU sotsiaalteenuste taotluse kaudu.",
+      "officialUrl": "https://haljala.ee/toiming/sotsiaalteenuste-taotlus",
+      "sourceKeys": [
+        "sotsiaalteenuste_taotlus_page"
+      ],
+      "relatedForms": [
+        "haljala_vald_form_sotsiaalteenuste_taotlus"
+      ],
+      "relatedContacts": [
+        "haljala_vald_contact_airi_oosalu"
+      ],
+      "item_type": "service",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sotsiaalteenuste_taotlus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_service_varjupaigateenus",
+      "document_id": "haljala_vald_service_varjupaigateenus",
+      "canonical_item_id": "haljala_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/toiming/sotsiaalteenuste-taotlus",
+      "content_hash": "79bd0969b06071611f537d979586f4d17660010893c421342a9f9753795511a4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_service_turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Haljala valla ametlik sotsiaalteenuste taotluse leht nimetab turvakoduteenust sotsiaalteenusena, mille taotlust saab Haljala vallale esitada.",
+      "application": "Taotlus esitatakse Haljala valla iseteeninduskeskkonnas SPOKU sotsiaalteenuste taotluse kaudu.",
+      "officialUrl": "https://haljala.ee/toiming/sotsiaalteenuste-taotlus",
+      "sourceKeys": [
+        "sotsiaalteenuste_taotlus_page"
+      ],
+      "relatedForms": [
+        "haljala_vald_form_sotsiaalteenuste_taotlus"
+      ],
+      "relatedContacts": [
+        "haljala_vald_contact_airi_oosalu"
+      ],
+      "item_type": "service",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sotsiaalteenuste_taotlus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_service_turvakoduteenus",
+      "document_id": "haljala_vald_service_turvakoduteenus",
+      "canonical_item_id": "haljala_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/toiming/sotsiaalteenuste-taotlus",
+      "content_hash": "1f1054356434736da6e2a22e2716985644a872492a465a273881c87e32a74f06",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_benefit_sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus on Haljala valla toetus lapse sünni puhul. Toetus määratakse juhul, kui vähemalt ühe lapsevanema ja lapse elukoht on rahvastikuregistri järgi Haljala vald.",
+      "targetGroup": "Lapse vanem, eestkostja või hooldaja, kelle lapse ja vähemalt ühe vanema elukoht vastab Haljala valla tingimustele.",
+      "conditions": "Toetus makstakse kahes osas. Esimese osa saab taotleda kolme kuu jooksul alates lapse sünnist. Teise osa saab taotleda kolme kuu jooksul alates lapse üheaastaseks saamisest, kui laps ja vähemalt üks vanem on rahvastikuregistri andmetel elanud katkematult Haljala vallas lapse sünnist kuni toetuse taotlemise päevani. Mitmike sünni puhul määratakse toetus iga lapse eest eraldi.",
+      "application": "Taotlus esitatakse Haljala valla iseteeninduskeskkonnas SPOKU.",
+      "deadline": "Esimene osa kolme kuu jooksul alates lapse sünnist; teine osa kolme kuu jooksul alates lapse üheaastaseks saamisest.",
+      "officialUrl": "https://haljala.ee/toiming/sunnitoetus",
+      "sourceKeys": [
+        "sunnitoetus_page"
+      ],
+      "relatedForms": [
+        "haljala_vald_form_sunnitoetus"
+      ],
+      "relatedContacts": [
+        "haljala_vald_contact_margit_kukor"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sunnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_benefit_sunnitoetus",
+      "document_id": "haljala_vald_benefit_sunnitoetus",
+      "canonical_item_id": "haljala_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/toiming/sunnitoetus",
+      "content_hash": "6140c6951ea401a6c1ad9c0a05117a42d5be4e132cd55a5b60b44ffd350c2230",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_benefit_matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on matuse kulude osaliseks kompenseerimiseks matusekorraldajale makstav ühekordne sotsiaaltoetus.",
+      "targetGroup": "Matusekorraldaja, kui lahkunu rahvastikuregistrijärgne elukoht oli surma hetkel Haljala vald.",
+      "conditions": "Matusetoetust ei maksta kohtu poolt isiku surnuks tunnistamise korral ega siis, kui matusekorraldajaks on ametiasutus. Toetust on võimalik taotleda kuni kolme kuu jooksul pärast surmakande koostamist.",
+      "application": "Taotluse saab esitada Haljala valla iseteeninduskeskkonnas SPOKU või paberkandjal digiallkirjastatult e-posti teel või vallamajja tuues.",
+      "deadline": "Taotlus tuleb esitada kuni kolme kuu jooksul pärast surmakande koostamist.",
+      "officialUrl": "https://haljala.ee/toiming/matusetoetus",
+      "sourceKeys": [
+        "matusetoetus_page"
+      ],
+      "relatedForms": [
+        "haljala_vald_form_matusetoetus"
+      ],
+      "relatedContacts": [
+        "haljala_vald_contact_liis_kytt"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "matusetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_benefit_matusetoetus",
+      "document_id": "haljala_vald_benefit_matusetoetus",
+      "canonical_item_id": "haljala_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/toiming/matusetoetus",
+      "content_hash": "d5f96ce117180acc38aabd6f9e01ccbd0b1c99dc803c6b3bc07dfb3ddcd379ec",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_benefit_hooldajatoetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus",
+      "status": "active",
+      "summary": "Hooldajatoetus on igakuine toetus hooldajale, kes hooldab rasket või sügavat puudega täisealist inimest või 1,5–15-aastast puudega last.",
+      "targetGroup": "Täisealised hooldajad, kes hooldavad rasket või sügavat puudega täisealist inimest või 1,5–15-aastast puudega last.",
+      "conditions": "Hooldajatoetus määratakse tähtajaliselt puude raskusastme kehtivuse lõpptähtajani või tähtajalise elamisloa kehtivuse lõpuni. Toetust ei määrata, kui taotleja töötab, taotlejale endale on määratud raske või sügav puue või hooldus on tagatud teiste teenuste või abimeetmetega. Hooldajatoetuse maksmine peatatakse, kui hooldaja või hooldatav viibib järjest vähemalt 30 kalendripäeva haiglaravil.",
+      "application": "Taotlus esitatakse Haljala vallale.",
+      "amount": "50 eurot kuus raske puudega lapse või täisealise isiku hooldajale ning 100 eurot kuus sügava puudega lapse või täisealise isiku hooldajale.",
+      "officialUrl": "https://www.haljala.ee/hooldajatoetus",
+      "sourceKeys": [
+        "hooldajatoetus_page"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "haljala_vald_contact_sirle_nukk"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "hooldajatoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_benefit_hooldajatoetus",
+      "document_id": "haljala_vald_benefit_hooldajatoetus",
+      "canonical_item_id": "haljala_vald_benefit_hooldajatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.haljala.ee/hooldajatoetus",
+      "content_hash": "9b49a7d24117496ca52b041d3befc2fbf272656a8f52db71fd99f496ed826822",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_benefit_toetus_onnetusjuhtumi_korral",
+      "itemType": "benefit",
+      "title": "Toetus õnnetusjuhtumi korral",
+      "status": "active",
+      "summary": "Toetus õnnetusjuhtumi korral on ühekordne abi inimesele või perele, kes on kriisiolukorras tulekahju, üleujutuse või muu õnnetuse tõttu ning on kaotanud osaliselt või täielikult vara ja esmased elatusvahendid.",
+      "targetGroup": "Inimesed ja pered, kes vajavad abi tulekahju, üleujutuse või muu õnnetuse tagajärjel tekkinud kriisiolukorras.",
+      "conditions": "Toetuse suuruse otsustab vald konkreetse juhtumi ja kahju ulatuse alusel.",
+      "application": "Taotlus esitatakse Haljala vallale.",
+      "amount": "Kuni 5000 eurot.",
+      "officialUrl": "https://www.haljala.ee/toetus-onnetusjuhtumi-korral",
+      "sourceKeys": [
+        "toetus_onnetusjuhtumi_korral_page"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "haljala_vald_contact_liis_kytt"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "toetus_onnetusjuhtumi_korral_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_benefit_toetus_onnetusjuhtumi_korral",
+      "document_id": "haljala_vald_benefit_toetus_onnetusjuhtumi_korral",
+      "canonical_item_id": "haljala_vald_benefit_toetus_onnetusjuhtumi_korral",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.haljala.ee/toetus-onnetusjuhtumi-korral",
+      "content_hash": "63ca3ee603abb50f9374f823356a9ba33f157610370b0558b5305ad661a61d91",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_benefit_abivajadusest_soltuvad_toetused",
+      "itemType": "benefit",
+      "title": "Abivajadusest sõltuva toetus",
+      "status": "active",
+      "summary": "Abivajadusest sõltuva toetuse määramise aluseks on üksi elava inimese või perekonna kõigi liikmete eelmisel kuul saadud netosissetulek, millest arvestatakse maha makstud elatis ja jooksval kuul tasumisele kuuluvad eluasemekulud.",
+      "targetGroup": "Üksi elavad inimesed ja pered, kelle sissetulek ei võimalda katta vältimatuid kulusid.",
+      "conditions": "Sissetulekute hulka ei arvestata mitut seaduses nimetatud toetust, näiteks ühekordseid toetusi, puuetega inimeste sotsiaaltoetusi (v.a puudega vanema toetus), riigi tagatisel õppelaenu ning mitmeid õppetoetusi. Eluasemekuludena saab arvesse võtta muu hulgas üüri, eluasemelaenu tagasimakseid koos intressiga, kindlustusmakseid, haldus- ja remondikulusid, vee- ja kanalisatsioonikulu ning kütte- ja soojaveekulu.",
+      "application": "Taotlus esitatakse Haljala valla iseteeninduskeskkonnas SPOKU.",
+      "officialUrl": "https://www.haljala.ee/toiming/abivajadusest-soltuva-toetus",
+      "sourceKeys": [
+        "abivajadusest_soltuva_toetus_page",
+        "abivajadusest_soltuvad_toetused_page"
+      ],
+      "relatedForms": [
+        "haljala_vald_form_abivajadusest_soltuv_toetus"
+      ],
+      "relatedContacts": [
+        "haljala_vald_contact_liis_kytt"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "abivajadusest_soltuva_toetus_page",
+        "abivajadusest_soltuvad_toetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_benefit_abivajadusest_soltuvad_toetused",
+      "document_id": "haljala_vald_benefit_abivajadusest_soltuvad_toetused",
+      "canonical_item_id": "haljala_vald_benefit_abivajadusest_soltuvad_toetused",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.haljala.ee/toiming/abivajadusest-soltuva-toetus",
+      "content_hash": "d9e97570c8b5a5d37ff28fdd3ee20cce91e3cdee706e04b13ae40352daa80a33",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_benefit_taiendav_sotsiaaltoetus",
+      "itemType": "benefit",
+      "title": "Täiendav sotsiaaltoetus toimetuleku tagamiseks",
+      "status": "active",
+      "summary": "Täiendav sotsiaaltoetus toimetuleku tagamiseks aitab madala sissetulekuga inimesel või perel katta kulutusi, mida muud toetusmeetmed ei kata.",
+      "targetGroup": "Madala sissetulekuga inimesed ja pered, kes vajavad abi erakorraliste või vältimatute kulude katmisel.",
+      "conditions": "Toetust makstakse kuni 300 euro ulatuses aastas. Toetusega võib katta näiteks retseptiravimite omaosalust, sõidukulu arsti või rehabilitatsiooniteenusele, isikut tõendava dokumendi taotlemist, laste prille, küttepuid, haigla voodipäevatasu ja muid vältimatuid kulusid.",
+      "application": "Taotluse saab esitada Haljala valla iseteeninduskeskkonnas SPOKU.",
+      "amount": "Kuni 300 eurot aastas.",
+      "officialUrl": "https://www.haljala.ee/taiendav-sotsiaaltoetus-toimetuleku-tagamiseks",
+      "sourceKeys": [
+        "taiendav_sotsiaaltoetus_page"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "haljala_vald_contact_liis_kytt"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "taiendav_sotsiaaltoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_benefit_taiendav_sotsiaaltoetus",
+      "document_id": "haljala_vald_benefit_taiendav_sotsiaaltoetus",
+      "canonical_item_id": "haljala_vald_benefit_taiendav_sotsiaaltoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.haljala.ee/taiendav-sotsiaaltoetus-toimetuleku-tagamiseks",
+      "content_hash": "1103d0b78973a34deaa5adca63e325d935c80951f2f90229b18d36335cf4f6f8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_benefit_lasteaia_ja_koolitoidu_toetus",
+      "itemType": "benefit",
+      "title": "Lasteaia- ja koolitoidu toetus",
+      "status": "active",
+      "summary": "Lasteaia- ja koolitoidu toetus kompenseerib vähekindlustatud perede laste toitlustuskulusid Haljala valla lasteaedades või valla üldhariduskoolide pikapäevarühmas.",
+      "targetGroup": "Vähekindlustatud perede lapsed, kes käivad Haljala valla lasteaias või valla üldhariduskoolis.",
+      "conditions": "Taotlus esitatakse kaks korda aastas: sügissemestriks hiljemalt 15. septembril ja kevadsemestriks hiljemalt 15. jaanuaril. Toetus määratakse mitterahaliselt.",
+      "application": "Taotlus esitatakse Haljala vallale koos pere sissetulekut tõendavate dokumentidega.",
+      "officialUrl": "https://www.haljala.ee/lasteaia-ja-koolitoidu-toetus",
+      "sourceKeys": [
+        "lasteaia_ja_koolitoidu_page"
+      ],
+      "relatedForms": [],
+      "relatedContacts": [
+        "haljala_vald_contact_liis_kytt"
+      ],
+      "deadline": "Sügissemestriks hiljemalt 15. septembril ja kevadsemestriks hiljemalt 15. jaanuaril.",
+      "item_type": "benefit",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "lasteaia_ja_koolitoidu_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_benefit_lasteaia_ja_koolitoidu_toetus",
+      "document_id": "haljala_vald_benefit_lasteaia_ja_koolitoidu_toetus",
+      "canonical_item_id": "haljala_vald_benefit_lasteaia_ja_koolitoidu_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.haljala.ee/lasteaia-ja-koolitoidu-toetus",
+      "content_hash": "c97b20fa4fa878930548c1f74cff36c82374b554c4013987fb2ac215674d30e0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_benefit_toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on ajutine sotsiaalabi, mis aitab leevendada materiaalse puuduse olukorda ja tagada minimaalsed vahendid esmavajaduste rahuldamiseks.",
+      "targetGroup": "Üksi elavad inimesed ja pered, kelle sissetulek pärast arvestatavate eluasemekulude mahaarvamist jääb alla toimetulekupiiri.",
+      "conditions": "Toimetulekupiir on üksi elavale inimesele või perekonna esimesele liikmele 200 eurot kuus, perekonna teisele ja igale järgmisele täisealisele liikmele 160 eurot kuus ning igale alaealisele liikmele 240 eurot kuus. Arvestuse aluseks on eelmise kuu netosissetulek, millest arvestatakse maha makstud elatis ja jooksval kuul tasumisele kuuluvad eluasemekulud.",
+      "application": "Taotluse saab esitada Haljala valla iseteeninduskeskkonnas SPOKU või paberkandjal.",
+      "officialUrl": "https://haljala.ee/toiming/toimetulekutoetus",
+      "sourceKeys": [
+        "toimetulekutoetus_page"
+      ],
+      "relatedForms": [
+        "haljala_vald_form_toimetulekutoetus"
+      ],
+      "relatedContacts": [
+        "haljala_vald_contact_liis_kytt"
+      ],
+      "deadline": "Jooksva kuu eest tuleb taotlus esitada hiljemalt kuu viimaseks tööpäevaks.",
+      "item_type": "benefit",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_benefit_toimetulekutoetus",
+      "document_id": "haljala_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "haljala_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/toiming/toimetulekutoetus",
+      "content_hash": "72ee98a49efbe572b9f40c9146690277ea59f5de0902deca619371a6b4c13207",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_resource_uldinfo",
+      "itemType": "resource",
+      "title": "Üldinfo sotsiaalteenuste tasustamise kohta",
+      "status": "active",
+      "summary": "Üldinfo leht selgitab, et Haljala vald korraldab või osutab sotsiaalteenuseid ning teenused on üldjuhul tasulised. Kui teenust osutab Haljala vald, kehtestab hinna vallavalitsus; kui teenust osutab muu teenusepakkuja, kujundab hinna teenuse osutaja.",
+      "officialUrl": "https://haljala.ee/uldinfo",
+      "sourceKeys": [
+        "uldinfo_page"
+      ],
+      "relatedContacts": [
+        "haljala_vald_contact_sirle_nukk"
+      ],
+      "item_type": "resource",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "uldinfo_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_resource_uldinfo",
+      "document_id": "haljala_vald_resource_uldinfo",
+      "canonical_item_id": "haljala_vald_resource_uldinfo",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/uldinfo",
+      "content_hash": "7ff3a71bc900a10d1089d1d17e3dc16561b5ac802182629bb02936111105b607",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_resource_parkimiskaart",
+      "itemType": "resource",
+      "title": "Parkimiskaart",
+      "status": "active",
+      "summary": "Parkimiskaart võimaldab liikumis- või nägemispuudega inimesel kasutada puudega inimese sõiduki parkimiskaarti ja parkimiskohti. Kaart antakse puuet tõendavale dokumendile märgitud puude raskusastme kehtivuse perioodiks, kuid mitte kauemaks kui viieks aastaks.",
+      "targetGroup": "Inimesed, kellel on keskmisele, raskele või sügavale puudele vastav liikumis- või nägemisfunktsiooni kõrvalekalle, samuti ajutise liikumis- või nägemisfunktsiooni kõrvalekaldega inimesed.",
+      "conditions": "Taotlemisel tuleb pöörduda elukohajärgse omavalitsuse poole. Esitada tuleb kehtiv isikut tõendav dokument ja 3 x 4 cm foto. Puude raskusastmega lastel ja vanaduspensioniealistel ei ole eraldi pere- või eriarsti tõendit vaja.",
+      "application": "Taotlus esitatakse Haljala vallale koos nõutud dokumentidega.",
+      "officialUrl": "https://www.haljala.ee/parkimiskaart",
+      "sourceKeys": [
+        "parkimiskaart_page"
+      ],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "parkimiskaart_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_resource_parkimiskaart",
+      "document_id": "haljala_vald_resource_parkimiskaart",
+      "canonical_item_id": "haljala_vald_resource_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.haljala.ee/parkimiskaart",
+      "content_hash": "d330da72fe73d0770665e49927d0c9685fd9e4d0c033fe677daed4dda6e72251",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_resource_tervisedendus",
+      "itemType": "resource",
+      "title": "Tervisedendus Haljala vallas",
+      "status": "active",
+      "summary": "Tervisedenduse leht kirjeldab Haljala valla tegevusi elanike tervise toetamisel. Vald kujundab terviseprofiili, soodustab liikumisharrastust, arendab tervise- ja spordirajatisi ning toetab tervislikke eluviise.",
+      "officialUrl": "https://www.haljala.ee/tervisedendus",
+      "sourceKeys": [
+        "tervisedendus_page"
+      ],
+      "relatedContacts": [
+        "haljala_vald_contact_liis_kytt"
+      ],
+      "item_type": "resource",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "tervisedendus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_resource_tervisedendus",
+      "document_id": "haljala_vald_resource_tervisedendus",
+      "canonical_item_id": "haljala_vald_resource_tervisedendus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.haljala.ee/tervisedendus",
+      "content_hash": "a023762f49e43e6647fa14874952fd394a5ba8e3b6b7cad78d0b9287ac637f26",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_resource_lastekaitse",
+      "itemType": "resource",
+      "title": "Lastekaitse",
+      "status": "active",
+      "summary": "Lastekaitse leht selgitab, et lapsega seotud otsustes tuleb lähtuda lapse parimatest huvidest ning vajaduse korral tuleb lapse heaolu kaitseks abi otsida ja sekkuda.",
+      "officialUrl": "https://haljala.ee/lastekaitse",
+      "sourceKeys": [
+        "lastekaitse_page"
+      ],
+      "relatedContacts": [
+        "haljala_vald_contact_margit_kukor"
+      ],
+      "item_type": "resource",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "lastekaitse_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_resource_lastekaitse",
+      "document_id": "haljala_vald_resource_lastekaitse",
+      "canonical_item_id": "haljala_vald_resource_lastekaitse",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/lastekaitse",
+      "content_hash": "1bf2c78bbd25a4d742f36506c7bdba9e69d467c9cc33992887d816eb803a96dd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_resource_erivajadusega_laps",
+      "itemType": "resource",
+      "title": "Erivajadusega laps",
+      "status": "active",
+      "summary": "Erivajadusega lapse leht selgitab, et laps võib vajada lisatuge terviseseisundi, puude, käitumise või arenguliste eripärade tõttu. Kui lapsele määratakse puue, jõuab info kohalikku omavalitsusse ning lastekaitsespetsialist annab perele esmase nõu toe ja teenuste kohta.",
+      "officialUrl": "https://haljala.ee/erivajadusega-laps",
+      "sourceKeys": [
+        "erivajadusega_laps_page"
+      ],
+      "relatedContacts": [
+        "haljala_vald_contact_margit_kukor"
+      ],
+      "item_type": "resource",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "erivajadusega_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_resource_erivajadusega_laps",
+      "document_id": "haljala_vald_resource_erivajadusega_laps",
+      "canonical_item_id": "haljala_vald_resource_erivajadusega_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/erivajadusega-laps",
+      "content_hash": "0523ad1504f7fae0ace1d320cbebb387a74a8f859eea397cde6dceec88197991",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_resource_hadaohus_abivajav_laps",
+      "itemType": "resource",
+      "title": "Hädaohus ja abivajav laps",
+      "status": "active",
+      "summary": "Kui laps on hädaohus või abivajav, tuleb sellest kohe teada anda. Vahetu ohu korral tuleb helistada numbril. Nõu ja abi saab ööpäevaringselt lasteabitelefonilt ning kadunud laste puhul numbrilt 116 000.",
+      "officialUrl": "https://haljala.ee/hadaohus-ja-abivajav-laps",
+      "sourceKeys": [
+        "hadaohus_ja_abivajav_laps_page"
+      ],
+      "relatedContacts": [
+        "haljala_vald_contact_margit_kukor"
+      ],
+      "item_type": "resource",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "hadaohus_ja_abivajav_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_resource_hadaohus_abivajav_laps",
+      "document_id": "haljala_vald_resource_hadaohus_abivajav_laps",
+      "canonical_item_id": "haljala_vald_resource_hadaohus_abivajav_laps",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/hadaohus-ja-abivajav-laps",
+      "content_hash": "367ac6d2d9af1d75d4fc20a923b3a1eb10c3675cb373787e2c3b9a3cfe2c9650",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_resource_vanemlus",
+      "itemType": "resource",
+      "title": "Vanemlus",
+      "status": "active",
+      "summary": "Vanemluse leht koondab infot vanema õiguste ja kohustuste kohta ning viitab peresuhteid toetavatele võimalustele, näiteks vanemlusprogrammidele ja perelepitusele.",
+      "officialUrl": "https://haljala.ee/vanemlus",
+      "sourceKeys": [
+        "vanemlus_page"
+      ],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "vanemlus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_resource_vanemlus",
+      "document_id": "haljala_vald_resource_vanemlus",
+      "canonical_item_id": "haljala_vald_resource_vanemlus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/vanemlus",
+      "content_hash": "f1131c703b88ef01400160a9804fd1c28017a937adcf7f2a87450a7c852dc0cc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_resource_lahisuhtevagivald",
+      "itemType": "resource",
+      "title": "Lähisuhtevägivald",
+      "status": "active",
+      "summary": "Lähisuhtevägivalla leht kirjeldab füüsilise, vaimse, seksuaalse ja majandusliku vägivalla vorme ning koondab abiandvad kontaktid: naiste tugitelefon 1492, ohvriabi kriisitelefon, lasteabi, emotsionaalse toe ja hingehoiu 116 123 ning Virumaa Naiste Tugikeskus",
+      "officialUrl": "https://haljala.ee/lahisuhtevagivald",
+      "sourceKeys": [
+        "lahisuhtevagivald_page"
+      ],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "lahisuhtevagivald_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_resource_lahisuhtevagivald",
+      "document_id": "haljala_vald_resource_lahisuhtevagivald",
+      "canonical_item_id": "haljala_vald_resource_lahisuhtevagivald",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/lahisuhtevagivald",
+      "content_hash": "4ec2b22e43cbb0a5e039a9de9048d0cc361ebb85e3d2b1c4ab8002d542c2e1e2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_resource_kasulikud_lingid",
+      "itemType": "resource",
+      "title": "Kasulikud lingid ja abimaterjalid",
+      "status": "active",
+      "summary": "Kasulike linkide leht koondab ametlikke ja abistavaid viiteid lastele, peredele ning abi vajavatele inimestele, sealhulgas riigiasutuste ja tugiorganisatsioonide veebilehti.",
+      "officialUrl": "https://haljala.ee/kasulikud-lingid-ja-abimaterjalid",
+      "sourceKeys": [
+        "kasulikud_lingid_page"
+      ],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "kasulikud_lingid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_resource_kasulikud_lingid",
+      "document_id": "haljala_vald_resource_kasulikud_lingid",
+      "canonical_item_id": "haljala_vald_resource_kasulikud_lingid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/kasulikud-lingid-ja-abimaterjalid",
+      "content_hash": "8bdbb092da8692d1bfa408f56977d9e417b28c00761f99190e6e20d9ad352f99",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_resource_lahedase_surm",
+      "itemType": "resource",
+      "title": "Lähedase surm ja matusekorraldus",
+      "status": "active",
+      "summary": "Lähedase surma leht selgitab, et alates 01.07.2019 edastab tervishoiuteenuse osutaja surma kohta info rahvastikuregistrisse elektroonselt ning lähedastel ei ole üldjuhul vaja surma kohalikus omavalitsuses eraldi registreerida. Esmane surmatõend väljastatakse tervishoiuteenuse osutaja juures ning see on vajalik matmistoimingute korraldamiseks.",
+      "officialUrl": "https://haljala.ee/lahedase-surm",
+      "sourceKeys": [
+        "lahedase_surm_page",
+        "matusetoetus_page"
+      ],
+      "relatedContacts": [
+        "haljala_vald_contact_liis_kytt"
+      ],
+      "item_type": "resource",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "lahedase_surm_page",
+        "matusetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_resource_lahedase_surm",
+      "document_id": "haljala_vald_resource_lahedase_surm",
+      "canonical_item_id": "haljala_vald_resource_lahedase_surm",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/lahedase-surm",
+      "content_hash": "6e61c9778588cfaaf5ccd9fc4616442b550e2b399d287180858e63e833c7040e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_resource_perearst_merilin_kytt",
+      "itemType": "resource",
+      "title": "Perearst Merilin Kütt OÜ",
+      "status": "active",
+      "summary": "Perearst Merilin Kütt OÜ osutab üldarstiabi Haljalas aadressil Rakvere mnt 12, Haljala.",
+      "officialUrl": "https://www.haljala.ee/pere-sotsiaal-ja-tervishoid/tervis/perearstid",
+      "sourceKeys": [
+        "perearstid_page"
+      ],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "perearstid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_resource_perearst_merilin_kytt",
+      "document_id": "haljala_vald_resource_perearst_merilin_kytt",
+      "canonical_item_id": "haljala_vald_resource_perearst_merilin_kytt",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.haljala.ee/pere-sotsiaal-ja-tervishoid/tervis/perearstid",
+      "content_hash": "1e53d262be7afee85ab2c046030e16bfbd41ecae614f60cfef3e3498ea15628f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_resource_perearst_katrin_kivisto",
+      "itemType": "resource",
+      "title": "Perearst Katrin Kivisto OÜ",
+      "status": "active",
+      "summary": "Perearst Katrin Kivisto OÜ osutab üldarstiabi Rakveres aadressil Vilde 2a/1, kabinet 211.",
+      "officialUrl": "https://www.haljala.ee/pere-sotsiaal-ja-tervishoid/tervis/perearstid",
+      "sourceKeys": [
+        "perearstid_page"
+      ],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "perearstid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_resource_perearst_katrin_kivisto",
+      "document_id": "haljala_vald_resource_perearst_katrin_kivisto",
+      "canonical_item_id": "haljala_vald_resource_perearst_katrin_kivisto",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.haljala.ee/pere-sotsiaal-ja-tervishoid/tervis/perearstid",
+      "content_hash": "6273373f75aaa4322631fd9738f748726283ff4ac99d42ec27d3563ddb215c17",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_resource_perearst_angela_reimal",
+      "itemType": "resource",
+      "title": "Võsu perearst Angela Reimal",
+      "status": "active",
+      "summary": "Võsu perearst Angela Reimal võtab vastu aadressil Mere 43, Võsu alevik. Perearsti praksises töötab ka pereõde Mirjam Kulla ning vastuvõtule tuleb ette registreerida.",
+      "officialUrl": "https://www.haljala.ee/pere-sotsiaal-ja-tervishoid/tervis/perearstid",
+      "sourceKeys": [
+        "perearstid_page"
+      ],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "perearstid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_resource_perearst_angela_reimal",
+      "document_id": "haljala_vald_resource_perearst_angela_reimal",
+      "canonical_item_id": "haljala_vald_resource_perearst_angela_reimal",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.haljala.ee/pere-sotsiaal-ja-tervishoid/tervis/perearstid",
+      "content_hash": "e888350c1c8a949286b4518d8d9dcd65a7c5210ebb54ea9efbad535fc6d87fba",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_resource_haljala_benu_apteek",
+      "itemType": "resource",
+      "title": "Haljala BENU apteek",
+      "status": "active",
+      "summary": "Haljala BENU apteek asub aadressil Võsu mnt 5, Haljala.",
+      "officialUrl": "https://www.haljala.ee/pere-sotsiaal-ja-tervishoid/tervis/apteegid",
+      "sourceKeys": [
+        "apteegid_page"
+      ],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "apteegid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_resource_haljala_benu_apteek",
+      "document_id": "haljala_vald_resource_haljala_benu_apteek",
+      "canonical_item_id": "haljala_vald_resource_haljala_benu_apteek",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.haljala.ee/pere-sotsiaal-ja-tervishoid/tervis/apteegid",
+      "content_hash": "bc419a645342c2cd286970523db588408e0119948616274ae877c168749fba76",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_resource_loksa_benu_apteek",
+      "itemType": "resource",
+      "title": "Loksa BENU apteek",
+      "status": "active",
+      "summary": "Loksa BENU apteek asub aadressil Tallinna mnt 36, Loksa.",
+      "officialUrl": "https://www.haljala.ee/pere-sotsiaal-ja-tervishoid/tervis/apteegid",
+      "sourceKeys": [
+        "apteegid_page"
+      ],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "apteegid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_resource_loksa_benu_apteek",
+      "document_id": "haljala_vald_resource_loksa_benu_apteek",
+      "canonical_item_id": "haljala_vald_resource_loksa_benu_apteek",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.haljala.ee/pere-sotsiaal-ja-tervishoid/tervis/apteegid",
+      "content_hash": "71da395abb3a291bf13a16b45a0eee4a294d530618986bce3e715b8387762987",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_resource_kunda_benu_apteek",
+      "itemType": "resource",
+      "title": "Kunda BENU apteek",
+      "status": "active",
+      "summary": "Kunda BENU apteek teenindab kliente aadressidel Kasemäe 12 ja Pargi tn 26, Kunda.",
+      "officialUrl": "https://www.haljala.ee/pere-sotsiaal-ja-tervishoid/tervis/apteegid",
+      "sourceKeys": [
+        "apteegid_page"
+      ],
+      "relatedContacts": [],
+      "item_type": "resource",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "apteegid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_resource_kunda_benu_apteek",
+      "document_id": "haljala_vald_resource_kunda_benu_apteek",
+      "canonical_item_id": "haljala_vald_resource_kunda_benu_apteek",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.haljala.ee/pere-sotsiaal-ja-tervishoid/tervis/apteegid",
+      "content_hash": "c06578b0969f41a2ff8064c26c674f5d639310b5c84122258ba8861416751db1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_contact_sirle_nukk",
+      "itemType": "contact",
+      "name": "Sirle Nukk",
+      "role": "sotsiaaltööspetsialist",
+      "department": null,
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "relatedTo": [
+        "haljala_vald_service_koduteenus",
+        "haljala_vald_service_hooldusteenus_valjaspool_kodu",
+        "haljala_vald_service_tugiisikuteenus",
+        "haljala_vald_service_hoolduse_seadmine",
+        "haljala_vald_service_isikliku_abistaja_teenus",
+        "haljala_vald_benefit_hooldajatoetus"
+      ],
+      "item_type": "contact",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_contact_sirle_nukk",
+      "document_id": "haljala_vald_contact_sirle_nukk",
+      "canonical_item_id": "haljala_vald_contact_sirle_nukk",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "0e35b24599cc110cbc29c68a7aa441d078d7530c0fe04404d78a340bbbe43512",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_contact_liis_kytt",
+      "itemType": "contact",
+      "name": "Liis Kütt",
+      "role": "sotsiaaltöö- ja tervisedendusspetsialist",
+      "department": null,
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "relatedTo": [
+        "haljala_vald_service_sotsiaaltransporditeenus",
+        "haljala_vald_benefit_matusetoetus",
+        "haljala_vald_benefit_toetus_onnetusjuhtumi_korral",
+        "haljala_vald_benefit_abivajadusest_soltuvad_toetused",
+        "haljala_vald_benefit_taiendav_sotsiaaltoetus",
+        "haljala_vald_benefit_lasteaia_ja_koolitoidu_toetus",
+        "haljala_vald_benefit_toimetulekutoetus",
+        "haljala_vald_resource_tervisedendus",
+        "haljala_vald_resource_lahedase_surm"
+      ],
+      "item_type": "contact",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_contact_liis_kytt",
+      "document_id": "haljala_vald_contact_liis_kytt",
+      "canonical_item_id": "haljala_vald_contact_liis_kytt",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "4b489a99050f746d9b19fcf2ebaf7f29915567dc41f7334085bc6894d1dc339f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_contact_margit_kukor",
+      "itemType": "contact",
+      "name": "Margit Kukor",
+      "role": "lastekaitsespetsialist",
+      "department": null,
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "relatedTo": [
+        "haljala_vald_service_tugiisikuteenus",
+        "haljala_vald_benefit_sunnitoetus",
+        "haljala_vald_resource_lastekaitse",
+        "haljala_vald_resource_erivajadusega_laps",
+        "haljala_vald_resource_hadaohus_abivajav_laps"
+      ],
+      "item_type": "contact",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_contact_margit_kukor",
+      "document_id": "haljala_vald_contact_margit_kukor",
+      "canonical_item_id": "haljala_vald_contact_margit_kukor",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "8457b114babd2548d4b739702032826413289c019a35a9d6322f5a8b9aa6ee3b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_contact_airi_oosalu",
+      "itemType": "contact",
+      "name": "Airi Öösalu",
+      "role": "sotsiaaltöö juht",
+      "department": null,
+      "sourceKeys": [
+        "contact_page"
+      ],
+      "relatedTo": [
+        "haljala_vald_service_tugiisikuteenus",
+        "haljala_vald_service_eluruumi_tagamise_teenus",
+        "haljala_vald_service_volanoustamisteenus",
+        "haljala_vald_service_varjupaigateenus",
+        "haljala_vald_service_turvakoduteenus"
+      ],
+      "item_type": "contact",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "contact_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_contact_airi_oosalu",
+      "document_id": "haljala_vald_contact_airi_oosalu",
+      "canonical_item_id": "haljala_vald_contact_airi_oosalu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": null,
+      "content_hash": "083f69475c3c4db008339dfd00759bc45cf3e97547371b5358422345910d3126",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_form_sotsiaalteenuste_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaalteenuste taotlus",
+      "status": "active",
+      "summary": "Haljala valla ametlik taotlus sotsiaalteenuste taotlemiseks. Selle kaudu saab esitada täisealise isiku hoolduse, väljaspool kodu osutatava üldhooldusteenuse, eluruumi tagamise teenuse, võlanõustamisteenuse, koduteenuse, tugiisikuteenuse, isikliku abistaja teenuse, varjupaigateenuse, turvakoduteenuse ja sotsiaaltransporditeenuse taotluse.",
+      "format": "e-form",
+      "officialUrl": "https://haljala.ee/toiming/sotsiaalteenuste-taotlus",
+      "submissionChannels": [
+        "e-teenus"
+      ],
+      "sourceKeys": [
+        "sotsiaalteenuste_taotlus_page"
+      ],
+      "relatedTo": [
+        "haljala_vald_service_hoolduse_seadmine",
+        "haljala_vald_service_hooldusteenus_valjaspool_kodu",
+        "haljala_vald_service_eluruumi_tagamise_teenus",
+        "haljala_vald_service_volanoustamisteenus",
+        "haljala_vald_service_koduteenus",
+        "haljala_vald_service_tugiisikuteenus",
+        "haljala_vald_service_isikliku_abistaja_teenus",
+        "haljala_vald_service_varjupaigateenus",
+        "haljala_vald_service_turvakoduteenus",
+        "haljala_vald_service_sotsiaaltransporditeenus"
+      ],
+      "item_type": "form",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sotsiaalteenuste_taotlus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_form_sotsiaalteenuste_taotlus",
+      "document_id": "haljala_vald_form_sotsiaalteenuste_taotlus",
+      "canonical_item_id": "haljala_vald_form_sotsiaalteenuste_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/toiming/sotsiaalteenuste-taotlus",
+      "content_hash": "185fc59fd9c839976c13fea250fd2449820cb6ebc546f9c7d4ee35d542218853",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_form_abivajadusest_soltuv_toetus",
+      "itemType": "form",
+      "title": "Abivajadusest sõltuva toetuse avaldus",
+      "status": "active",
+      "summary": "Haljala valla ametlik taotlus abivajadusest sõltuva toetuse taotlemiseks.",
+      "format": "e-form",
+      "officialUrl": "https://www.haljala.ee/toiming/abivajadusest-soltuva-toetus",
+      "submissionChannels": [
+        "e-teenus"
+      ],
+      "sourceKeys": [
+        "abivajadusest_soltuva_toetus_page"
+      ],
+      "relatedTo": [
+        "haljala_vald_benefit_abivajadusest_soltuvad_toetused"
+      ],
+      "item_type": "form",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "abivajadusest_soltuva_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_form_abivajadusest_soltuv_toetus",
+      "document_id": "haljala_vald_form_abivajadusest_soltuv_toetus",
+      "canonical_item_id": "haljala_vald_form_abivajadusest_soltuv_toetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.haljala.ee/toiming/abivajadusest-soltuva-toetus",
+      "content_hash": "19d0d2502e9d486122f3fa57fd96c51cff5644bbfbd73b597a10d3096c774f1f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_form_sunnitoetus",
+      "itemType": "form",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Haljala valla ametlik taotlus sünnitoetuse taotlemiseks.",
+      "format": "e-form",
+      "officialUrl": "https://haljala.ee/toiming/sunnitoetus",
+      "submissionChannels": [
+        "e-teenus"
+      ],
+      "sourceKeys": [
+        "sunnitoetus_page"
+      ],
+      "relatedTo": [
+        "haljala_vald_benefit_sunnitoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "sunnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_form_sunnitoetus",
+      "document_id": "haljala_vald_form_sunnitoetus",
+      "canonical_item_id": "haljala_vald_form_sunnitoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/toiming/sunnitoetus",
+      "content_hash": "13d54f450e4b94545d7b7b490f8d37c2c42928cec2d0c52aff3c251db1a66869",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_form_matusetoetus",
+      "itemType": "form",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Haljala valla ametlik taotlus matusetoetuse taotlemiseks.",
+      "format": "e-form",
+      "officialUrl": "https://haljala.ee/toiming/matusetoetus",
+      "submissionChannels": [
+        "e-teenus",
+        "",
+        "kohapeal"
+      ],
+      "sourceKeys": [
+        "matusetoetus_page"
+      ],
+      "relatedTo": [
+        "haljala_vald_benefit_matusetoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "matusetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_form_matusetoetus",
+      "document_id": "haljala_vald_form_matusetoetus",
+      "canonical_item_id": "haljala_vald_form_matusetoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/toiming/matusetoetus",
+      "content_hash": "1f9a9e8abe5990522f64f7d9913ed00f7e6298fc942b5651f74afeb907851163",
+      "evidence_allowed": true
+    },
+    {
+      "id": "haljala_vald_form_toimetulekutoetus",
+      "itemType": "form",
+      "title": "Toimetulekutoetuse taotlus",
+      "status": "active",
+      "summary": "Haljala valla ametlik taotlus toimetulekutoetuse taotlemiseks.",
+      "format": "e-form",
+      "officialUrl": "https://haljala.ee/toiming/toimetulekutoetus",
+      "submissionChannels": [
+        "e-teenus",
+        "",
+        "kohapeal"
+      ],
+      "sourceKeys": [
+        "toimetulekutoetus_page"
+      ],
+      "relatedTo": [
+        "haljala_vald_benefit_toimetulekutoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "haljala_vald",
+      "municipality_name": "Haljala vald",
+      "county": "Lääne-Virumaa",
+      "source_keys": [
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "haljala_vald_form_toimetulekutoetus",
+      "document_id": "haljala_vald_form_toimetulekutoetus",
+      "canonical_item_id": "haljala_vald_form_toimetulekutoetus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-11",
+      "last_checked": "2026-04-11",
+      "retrieved_at": "2026-04-11",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://haljala.ee/toiming/toimetulekutoetus",
+      "content_hash": "8eeccb7852f91756d78245dd80e703ca8b271b007f0ecce80fedd107e1caddf8",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_id": "haljala_vald",
+  "municipality_name": "Haljala vald",
+  "checked_at": "2026-04-11",
+  "schemaVersion": "v2.5-sourcepackage",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

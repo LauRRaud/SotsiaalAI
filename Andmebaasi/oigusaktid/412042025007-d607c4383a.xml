@@ -1,0 +1,1670 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="a7457ef9-38c7-479a-811d-15734b3131d3" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Tallinna Linnavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2021-10-07</aktikuupaev>
+			<avaldamismarge>
+				<RTosa id="fb0d456c-61b7-4599-8964-173e73e03e4f">RT IV</RTosa>
+				<avaldamineKuupaev id="3a727efa-ac2b-4bec-b586-55663cc6cd1b">2021-10-07</avaldamineKuupaev>
+				<RTartikkel id="ae5f3b59-3b59-4484-b4f5-a243b799dfea">4</RTartikkel>
+				<aktViide id="c02986f1-cced-4071-8206-753c6a7dd745">415102021004</aktViide>
+			</avaldamismarge>
+			<joustumine>2022-01-01</joustumine>
+			<aktiNr>24</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-04-12</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>7</RTartikkel><aktViide>412042025007</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2025-05-01</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2025-04-09</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>412042025007</globaalID>
+		<metaandmedVersioon>22</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2025-04-11</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1052751</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>17</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2024-04-10</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="a1cf8b54-1766-4bbc-a010-a44191173444">
+		<nimi id="4f6990b6-e88d-414b-b77d-133be8fdcd1f">
+			<pealkiri id="86932895-4037-4b0a-ae16-2d0b113bf042">Sotsiaalhoolekandelise abi andmise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="1d0c3bdb-7a6a-4916-b0bd-a4653189e22d">
+		<aktikuupaev id="9e980cae-2053-49d6-9c50-e0533e6a42e7">2022-12-15</aktikuupaev>
+		<avaldamismarge id="d1edc0fc-f418-45e2-8e23-af179b55535a">
+			<RTosa id="bc5b8480-e5da-4031-88d4-3b66b58f327d">RT IV</RTosa>
+			<avaldamineKuupaev id="449080da-1d05-43de-8e09-44ef1a487a85">2022-12-22</avaldamineKuupaev>
+			<RTartikkel id="4e9a1ef8-206c-43b3-9a20-a0d5f664df15">5</RTartikkel>
+			<aktViide id="c6ef284b-b87d-481f-be99-ca9d8b58287c">422122022005</aktViide>
+		</avaldamismarge>
+		<joustumine id="b07ef1bd-ac87-4024-a049-ab9d6b937fff">2023-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="64054b96-0deb-4763-b757-64744102cbfe">
+		<aktikuupaev id="b09548af-1881-4118-9bca-f8e73eec0cba">2023-04-20</aktikuupaev>
+		<avaldamismarge id="8afa0286-d600-45fd-a27d-1f5980b8023a">
+			<RTosa id="66f694d9-d1c4-4e70-887f-75d5877105e8">RT IV</RTosa>
+			<avaldamineKuupaev id="20313565-20fa-4c43-98a1-f33b8b1c4cde">2023-04-27</avaldamineKuupaev>
+			<RTartikkel id="1b6cc366-2836-4b31-8a2d-dfb6bda13634">10</RTartikkel>
+			<aktViide id="2147d18c-00c3-4bd2-b75a-a078f285ee26">427042023010</aktViide>
+		</avaldamismarge>
+		<joustumine id="305ec735-4d5e-4054-b3c1-57e8549e919f">2023-04-30</joustumine>
+		<tavatekst id="3ea7f1d0-4141-41cc-8569-f2a6a15f77e9">, rakendatakse osaliselt alates 01.04.2023
+</tavatekst>
+	</muutmismarge>
+	<muutmismarge id="1b7fda93-fd3e-4b90-92bf-983af694a20f">
+		<aktikuupaev id="bc32e0b2-537f-4852-b45b-28559bc10d2d">2024-04-04</aktikuupaev>
+		<avaldamismarge id="bf9353de-6664-4616-8884-a98611f29b6c">
+			<RTosa id="4e067677-c66e-4e52-a5fe-3777b34f80e4">RT IV</RTosa>
+			<avaldamineKuupaev id="43c54aa9-4531-45e6-bcce-263fc59dadd2">2024-04-12</avaldamineKuupaev>
+			<RTartikkel id="f708df53-6509-4e3e-8981-cb77960291d2">2</RTartikkel>
+			<aktViide id="abd726fa-1c72-4682-8511-6f180cce923f">412042024002</aktViide>
+		</avaldamismarge>
+		<joustumine id="917ce29c-cd0e-4a58-861c-dddb4680124d">2024-04-15</joustumine>
+	</muutmismarge>
+	<muutmismarge id="9c49998d-f662-4734-848d-54f6b39c2c2d">
+		<aktikuupaev id="a11da8e5-30fb-4370-a06f-05ea84f61608">2025-04-03</aktikuupaev>
+		<avaldamismarge id="d97ade9a-79c6-49ce-b091-8372ed754547">
+			<RTosa id="7a241109-3b50-483c-bbee-bab1a8d93903">RT IV</RTosa>
+			<avaldamineKuupaev id="a29cd656-bddf-4e81-80b6-adaf6efae045">2025-04-12</avaldamineKuupaev>
+			<RTartikkel id="a9e1c055-6333-40a2-85b0-efe87bcff87f">1</RTartikkel>
+			<aktViide id="4b5979b5-f8c4-4227-9162-885451b778fb">412042025001</aktViide>
+		</avaldamismarge>
+		<joustumine id="b8f53960-386b-43bf-92b0-dc644aca6ea2">2025-05-01</joustumine>
+	</muutmismarge>
+	<sisu id="4a38e5f1-305b-4d6c-8dc0-7c58505e1ea8">
+		<preambul id="66aedb37-4593-4177-a551-ae7aa2e12ba8">
+			<tavatekst id="48a6b98d-5cbc-4801-8cc1-13be987c2f24">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lg 1 p 5 ja sotsiaalhoolekande seaduse § 14 alusel.</tavatekst>
+		</preambul>
+		<peatykk id="pt1">
+			<peatykkNr id="d31328dd-21a9-4fdf-be44-fed148b7f3f2">1</peatykkNr>
+			<kuvatavNr id="03de1dc4-ee98-46ac-9a6b-14c7872f0acb"><![CDATA[1. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="9a13671a-a73d-46bb-8144-a625072268d4">Üldsätted</peatykkPealkiri>
+			<paragrahv id="para1">
+				<paragrahvNr id="7970325f-8bd8-472a-835c-73381fd4ebcb">1</paragrahvNr>
+				<kuvatavNr id="88939ca5-06ed-4592-8493-17e844e764cd"><![CDATA[§ 1. ]]></kuvatavNr>
+				<paragrahvPealkiri id="eb17afb7-bd26-4202-aee3-a2c77deccd70">Reguleerimisala</paragrahvPealkiri>
+				<loige id="para1lg1">
+					<loigeNr id="c60549e6-2b9f-4f42-934a-d210ec069e41">1</loigeNr>
+					<kuvatavNr id="b9e587f6-ae4c-40f3-af67-45fa801d6b71"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="5698f99d-e7ea-4a0f-845c-c901a1ed7423">
+						<tavatekst id="20280d01-5a71-4ac4-a4ce-d1d0fb1a3839">Sotsiaalhoolekandelise abi andmise korras (edaspidi <i>kord</i>) esitatakse Tallinna linnas
+osutatavate sotsiaalteenuste ja makstavate sotsiaaltoetuste (edaspidi koos <i>abi</i>) üldine
+kirjeldus ning sätestatakse abi rahastamise, taotlemise ja määramise tingimused ja
+kord. </tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para1lg2">
+					<loigeNr id="275d1a61-2e75-490f-9b36-fe9a4e9d1746">2</loigeNr>
+					<kuvatavNr id="27ed6072-4992-4fd1-bda0-e15512f48d87"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="13e76d50-4b43-4f07-addf-866ab07c20f3">
+						<tavatekst id="ca937942-a8ea-4308-a7a6-8f2e08a0b7bb">Korda kohaldatakse koos riigi ja Tallinna linna õigusaktidega, sealhulgas abi
+andmist täpsemalt reguleerivate linna õigusaktidega.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para2">
+				<paragrahvNr id="26685ccd-dc7c-42d8-a8bf-98f63450a39a">2</paragrahvNr>
+				<kuvatavNr id="dcb795f5-dbcf-4fa1-a1a8-a53406a8f1be"><![CDATA[§ 2. ]]></kuvatavNr>
+				<paragrahvPealkiri id="024a50e9-636e-4477-8d2a-0b8925c10f1d">Abi korraldamise põhimõtted</paragrahvPealkiri>
+				<loige id="para2lg1">
+					<loigeNr id="d63e934a-059b-4874-900c-3e2608d5e504">1</loigeNr>
+					<kuvatavNr id="ac04867a-8351-4a3e-aa59-e45565170066"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="bc93bfc9-afa5-4e8e-885b-c29c1bbce21f">
+						<tavatekst id="88d73af3-fae7-4c96-b400-cb26afe4a4a8">Abi andmisel rakendatakse lähimuspõhimõtet: abi antakse abi vajavale inimesele võimalikult lähedal ja madalaimal võimalikul haldustasandil.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2lg2">
+					<loigeNr id="3454389f-047d-4811-a123-01efae027fae">2</loigeNr>
+					<kuvatavNr id="a3974229-5424-43cc-9a12-2a6b8fe21555"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="7b0c865e-3ff7-4d6e-b018-33df004fab02">
+						<tavatekst id="5836f41d-52ec-4716-90b9-82061ae60b62">Sotsiaalkaitse
+korraldamisel on aluseks sotsiaalseadustiku üldosa seaduses ja
+sotsiaalhoolekande seaduses sätestatud põhimõtted, arvestades sotsiaalhoolekande
+tagamisega seotud eriseadustes ning riigi ja Tallinna linna õigusaktides sätestatud
+erisusi.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2lg3">
+					<loigeNr id="81ce8e95-9d07-4962-b5ea-eb891bd0a7ae">3</loigeNr>
+					<kuvatavNr id="8fdc9518-0916-4a49-a0b5-42896490fc15"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="1813e893-1f48-4fa0-92fe-b60229c1e389">
+						<tavatekst id="0b50b4b6-101a-4a40-a146-fa2da55ce7de">Tallinna Linnavolikogu täidab sotsiaalhoolekande korraldamise või tagamisega seotud ülesandeid, mis kohaliku omavalitsuse korralduse seadusest tulenevalt on volikogu ainupädevuses. Tallinna Linnavolikogu kehtestab abi andmise täpsemaks reguleerimiseks sotsiaalteenuste osutamise tingimused ja korra ning sotsiaaltoetuste maksmise tingimused ja korra.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2lg4">
+					<loigeNr id="1c9fe4bb-6006-41aa-a293-0700a8698cda">4</loigeNr>
+					<kuvatavNr id="0f965801-3e4c-4a3a-95b3-d83c9a4be05a"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="659ec577-4aef-4bc8-ab97-04e778676770">
+						<tavatekst id="58e9871d-6f96-442f-99d5-834a67224c19">Tallinna Sotsiaal- ja Tervishoiuamet (edaspidi <i>sotsiaal- ja tervishoiuamet</i>) koordineerib abi andmist, annab abi andvatele ja korraldavatele asutustele asjaomaseid juhiseid ning korraldab õigusaktiga antud volituste piires sotsiaalteenuste osutamist ja sotsiaaltoetuste maksmist.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="c305bbf9-0ff0-4db5-83eb-f52cd8bf3ed7">
+						<avaldamismarge id="47a1cbeb-c76f-41ac-a0f6-384233414b0d">
+							<RTosa id="52051607-cc5c-45da-ac78-19c0a49a02a1">RT IV</RTosa>
+							<avaldamineKuupaev id="eb596e31-66ec-46bc-8cfa-d2e2d58d8b9c">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="f37c22b9-5aaf-4d3c-89a4-bee05f54c780">1</RTartikkel>
+							<aktViide id="04097083-d0bd-452d-84ba-1ea0426f321e">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="5c755cf2-863b-432e-bff6-dd3487fa2490">2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para2lg5">
+					<loigeNr id="8e5c2fb5-5a31-4f2a-a696-098bd097d286">5</loigeNr>
+					<kuvatavNr id="c60775e9-185d-4a53-9c33-e90c7e5eb61a"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="0780b534-e8bf-4c20-8562-721527ec87e2">
+						<tavatekst id="7905a59f-ddc7-4082-9785-0eeb2dba3f83">Sotsiaalteenuste (edaspidi <i>teenus</i>) osutamist ja sotsiaaltoetuste (edaspidi <i>toetus</i>) maksmist korraldavad linnaosade valitsused, kui valdkonna õigusaktis ei ole sätestatud teisiti.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2lg6">
+					<loigeNr id="1552c0cd-0018-4d92-a651-71d9cf9f4536">6</loigeNr>
+					<kuvatavNr id="ebc60e60-794d-4808-87b5-db5195ac94cf"><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst id="5944756c-a000-47b3-9acd-35cd66eebd65">
+						<tavatekst id="e3569a63-efa5-4976-9b40-59383a5b53bd">Sotsiaalteenuste ja -toetuste andmeregistrisse esitab nõuetekohased andmed vastavalt volitusele kas linnaosa valitsuse sotsiaalhoolekande osakond, sotsiaal- ja tervishoiuamet või muu õigusaktis volitatud üksus.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="9e3dbc9d-7387-445f-8ce4-fa6157357833">
+						<avaldamismarge id="0abc8a74-edda-438c-8a60-31b846364844">
+							<RTosa id="6a3d658f-c2b4-4407-9ce8-7825899ed37b">RT IV</RTosa>
+							<avaldamineKuupaev id="926a2eff-ecc2-440b-825e-05181925fb5f">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="d1e1f699-537f-44b3-9c6a-ab1461067ca3">1</RTartikkel>
+							<aktViide id="43a9e882-ddc1-4260-b3a1-d18e7e23200a">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="e299199d-951a-4ffa-863b-49f4d0746c9e">2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para2lg7">
+					<loigeNr id="49d1f1c0-c1aa-4d20-a09a-406a9f81ed61">7</loigeNr>
+					<kuvatavNr id="c4800a62-fde6-4350-b455-460a7c904ed7"><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst id="33735031-b249-42f8-b5c8-a49410585123">
+						<tavatekst id="d211ffdc-a8fb-47dc-bd23-0fb950192647">Sotsiaalhoolekandealaste statistiliste aruannete jaoks kogub andmeid ja nõuetekohased aruanded esitab Sotsiaalkindlustusametile sotsiaal- ja tervishoiuamet.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="c6a59074-071e-4cd0-a331-7cc005350fa5">
+						<avaldamismarge id="aed0ecc3-0395-4f31-acb9-27d5ab0cc430">
+							<RTosa id="dbf99879-ddad-47ea-85e7-d30e1bf32ce6">RT IV</RTosa>
+							<avaldamineKuupaev id="4ded4d4d-0598-4b10-a997-90cf563ba2b3">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="a142014c-0671-4e73-9472-3738b07a246d">1</RTartikkel>
+							<aktViide id="5fbcf056-af67-42be-be28-a0f4d8074dab">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="76ae486d-1970-478d-ba27-12783c447c5b">2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para3">
+				<paragrahvNr id="68628081-a5f3-4e3e-9136-75cc0d287b76">3</paragrahvNr>
+				<kuvatavNr id="c415d34e-da0e-4053-b000-bb7b6b53a5ee"><![CDATA[§ 3. ]]></kuvatavNr>
+				<paragrahvPealkiri id="f44ae56d-9c2c-4ac1-bdc1-7935c731599e">Terminid</paragrahvPealkiri>
+				<loige id="para3lg1">
+					<sisuTekst id="13a5bcea-6706-4a55-a0f6-81a65e0c0b42">
+						<tavatekst id="02cfa630-279a-4f31-9bf7-4ba10c19b210">Käesolevas korras kasutatakse termineid järgmises tähenduses:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para3lg1p1">
+						<alampunktNr id="5dcd1526-e15b-490a-8376-3910cd516146">1</alampunktNr>
+						<kuvatavNr id="19f6dcb2-cdb1-47e0-aafe-5feef97b4e6b"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="54689f7b-22ec-486c-9c04-2f17c1087ef8">
+							<tavatekst id="62f1a17b-4131-4655-883c-d226513cc2f0">perekond – vanem või vanemad ja alaealine
+laps või lapsed. Perekonnaks loetakse muu hulgas üksikvanem ja tema
+laps; laps, tema vanemad ja kummagi abikaasa. Perekonna hulka ei loeta lapse
+vanema elukaaslast;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para3lg1p2">
+						<alampunktNr id="13b3a012-98e9-4b1a-bfd6-045658a471bb">2</alampunktNr>
+						<kuvatavNr id="ea44f3ec-8489-4d31-8cda-528f760e27c0"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="7a13b81a-9694-4e63-bd93-9dc5483168b7">
+							<tavatekst id="afe92601-1c38-4262-8309-9a2b5f1ef2d6">laps – alla 18-aastane inimene. Kui inimese
+vanus ei ole teada ja on põhjust arvata, et ta on alla 18-aastane, käsitatakse inimest
+lapsena, kuni ei ole tõendatud vastupidine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para3lg1p3">
+						<alampunktNr id="9f2d02c3-2f72-47f0-a9df-a3dfe2d372d9">3</alampunktNr>
+						<kuvatavNr id="b82fcdf7-3b4f-4d96-901e-980235e6b6c6"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="bf78c0c0-7a9e-4f33-b222-e87646273fd4">
+							<tavatekst id="d5411889-95fd-461a-9cdf-2e6d89b14623">toimetulek – inimese või perekonna oskus ja võime igapäevaeluga toime tulla;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para3lg1p4">
+						<alampunktNr id="ffdb33ec-7241-45e9-bc9c-aee356ba4eec">4</alampunktNr>
+						<kuvatavNr id="7237ec43-b121-42f0-9bf8-33be22ac7264"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="2be28b2a-21e4-4892-ad47-2cba62960068">
+							<tavatekst id="36c129cd-c0ae-4ee1-ac9b-94bf051a027f">abi vajav inimene – inimene, kes
+ei tule eluga iseseisvalt toime näiteks sotsiaal-majanduslikel põhjustel, puude või
+erivajaduse tõttu;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para3lg1p5">
+						<alampunktNr id="e273f251-37cc-4198-ad93-9c300a6bc5ca">5</alampunktNr>
+						<kuvatavNr id="2c773697-50de-485e-87ba-f110648c73ef"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="04752b36-2c2e-42f5-9105-6fce34c35735">
+							<tavatekst id="d450aebe-8ea8-4bdf-94ff-effd7b635fb3">taotleja – inimene, kes esitab abivajaduse väljaselgitamise taotluse oma rahvastikuregistrisse kantud elukoha järgsele linnaosa valitsusele või õigusaktis sätestatud juhtudel sotsiaal- ja tervishoiuametile või muule volitatud üksusele. Taotluse võib esitada nii abi vajav inimene ise kui ka tema seaduslik esindaja;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="b65f8224-d4da-4a3b-bb63-c73700e6c3af">
+							<avaldamismarge id="29ee6a0b-8b36-4e70-a7d1-b52f76bc1f7b">
+								<RTosa id="6582a086-ad88-47c7-8cbc-9cd6c24eb9cd">RT IV</RTosa>
+								<avaldamineKuupaev id="31071ac5-f671-47fb-a6ed-e6b3cadfdfd4">2025-04-12</avaldamineKuupaev>
+								<RTartikkel id="8f51cd99-29b0-421e-a459-1434a5862fb2">1</RTartikkel>
+								<aktViide id="644a13a7-e9d3-4a15-84d0-7f7a87456a6a">412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="730f476c-a227-4b1c-b386-c3230fc3ecb0">2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para3lg1p6">
+						<alampunktNr id="647674ec-14ea-4a4a-ae5a-0ce93d8a43e4">6</alampunktNr>
+						<kuvatavNr id="7484a17b-f89c-4ec7-9c45-4800ed3e1031"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="78d42fb0-bd20-4eb1-8272-633ea6f22618">
+							<tavatekst id="871cf633-da40-4008-a5c5-2ece128965ad">vältimatu sotsiaalabi – inimesele (sh ajutiselt Eestis viibivale välismaalasele) hädavajaliku toidu, riietuse, ajutise majutuse, sotsiaalnõustamise, transpordi ja muu põhjendatud abi tagamine, kui inimene on elatusvahendite kaotuse või puudumise või eluaseme ootamatult kasutuskõlbmatuks muutumise tõttu sotsiaalselt abitus olukorras;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="43ea7118-9d7f-42cf-8c85-389edef3b780">
+							<aktikuupaev id="42321ba9-482e-4a7a-8b64-9206a533e3d6">2022-12-15</aktikuupaev>
+							<avaldamismarge id="d8fd6e6b-553b-4e2f-991b-87727e19180c">
+								<RTosa id="d49a8219-5404-4fcd-bed1-32d174c2f4ff">RT IV</RTosa>
+								<avaldamineKuupaev id="b8962e21-12c3-4a09-aa51-1fa2a5ab149a">2022-12-22</avaldamineKuupaev>
+								<RTartikkel id="3acaa8bb-d735-4e13-8590-acd75ddf196d">5</RTartikkel>
+								<aktViide id="b2e0b5cd-eb47-46bd-b134-716ce819f8a7">422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine id="4783f784-ef73-4846-958f-934e91b0c03a">2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para3lg1p7">
+						<alampunktNr id="50d0455a-a9e1-48bd-b0e6-c1ba077b5fa8">7</alampunktNr>
+						<kuvatavNr id="9e66264e-2f8e-4b95-ad3a-97ba6eab8c33"><![CDATA[7) ]]></kuvatavNr>
+						<sisuTekst id="c2fbf29b-b1b9-4c4f-8118-61b2cc3001bd">
+							<tavatekst id="da2382cc-897e-4431-bfd6-88f00d977397">sissetulekupiir – rahasumma, mis peab inimesele või perekonnale jääma elamiseks kätte vastavalt käesolevas määruses sätestatud tingimustele pärast rahvastikuregistrisse kantud eluasemega seotud kulude katmist. Sissetulekupiiri suurus kehtestatakse Tallinna Linnavalitsuse määrusega;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="9cde6cdd-1a37-425d-b2e8-389ca85900b4">
+							<avaldamismarge id="e4fdd753-7204-4ce2-ba0d-ffc5e833fd1c">
+								<RTosa id="19071f5e-969c-4b48-9988-397e8119cbeb">RT IV</RTosa>
+								<avaldamineKuupaev id="a5690ac9-1f8b-483d-803d-ea85c0d3a018">2025-04-12</avaldamineKuupaev>
+								<RTartikkel id="2fd83a1e-a6c4-4693-9504-d079ff3bf34f">1</RTartikkel>
+								<aktViide id="6e64bca7-5131-48a1-84b9-efe10ae06850">412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="54a914b5-8355-4f15-a4b6-ed45abc4e645">2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para3lg1p8">
+						<alampunktNr id="17c22695-c517-469d-be16-4449dd090b8e">8</alampunktNr>
+						<kuvatavNr id="85ac5166-3366-4744-ba61-51943fab2de9"><![CDATA[8) ]]></kuvatavNr>
+						<sisuTekst id="380a167f-044c-4038-b9ce-47db241d5240">
+							<tavatekst id="5797540a-a4a4-4fa8-9da8-846ab8a5997d">abi korraldaja – inimese rahvastikuregistrisse kantud elukoha järgne linnaosa valitsus või õigusaktis sätestatud juhtudel sotsiaal- ja tervishoiuamet.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="ff29c119-cb6b-49e4-ad93-56c48fd29415">
+							<avaldamismarge id="074f35a8-3290-4fbb-aa3d-1370c41ef0d8">
+								<RTosa id="5142652f-db05-41ee-af33-485c30012200">RT IV</RTosa>
+								<avaldamineKuupaev id="2ab62c7a-3ca6-4333-9f2e-19d038b5d1de">2025-04-12</avaldamineKuupaev>
+								<RTartikkel id="6ac9cc5b-1010-4cae-922d-fb750fb814e5">1</RTartikkel>
+								<aktViide id="bc094c0a-7a88-44ba-83b8-4babf227e1c1">412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="f85a7e29-760f-4563-b467-cd226ad2731e">2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para4">
+				<paragrahvNr id="8fdd61ae-32cb-4569-b19c-1dfc0cd1a198">4</paragrahvNr>
+				<kuvatavNr id="c13d0c7a-d7ec-40cc-872f-7264f18affa3"><![CDATA[§ 4. ]]></kuvatavNr>
+				<paragrahvPealkiri id="edbf698e-bcc7-4a5c-a282-ff14d5991f27">Abi saajad</paragrahvPealkiri>
+				<loige id="para4lg1">
+					<loigeNr id="d7c48e16-58d2-4af4-8b76-6f5509e1a8a4">1</loigeNr>
+					<kuvatavNr id="ae70a2f5-50e0-4020-a8eb-d19f4a6b627b"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="33ec9099-fc87-4abc-9ef2-76b9788d3179">
+						<tavatekst id="53a1fce3-9fe0-4641-baa1-200c14d2f4cf">Abi on õigus saada inimesel, kelle tegelik ja rahvastikuregistrisse kantud elukoht on Tallinna linn. Inimesele, kelle
+rahvastikuregistrisse kantud elukoht ei ole Tallinna linnas, võib abi anda kooskõlastatult
+tema rahvastikuregistrisse kantud elukoha järgse kohaliku omavalitsuse
+üksusega. Inimesele, kelle tegelik elukoht ei ole Tallinna linn, võib abi anda kooskõlastatult tema tegeliku elukoha järgse kohaliku omavalitsuse üksusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg2">
+					<loigeNr id="8b40f97a-54ec-4aec-a536-43694eb53a9c">2</loigeNr>
+					<kuvatavNr id="549b8a1d-d9c6-45f7-b396-8f9e55cacf50"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="56d346f6-84f4-4973-8579-14f592aa998f">
+						<tavatekst id="e79a44db-9bc8-41d3-a944-e0d289a9c600">Vältimatut
+sotsiaalabi on inimesel õigus saada rahvastikuregistrisse kantud elukohast
+olenemata.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg3">
+					<loigeNr id="6b4c1132-1cd6-4714-b9e3-36973c407657">3</loigeNr>
+					<kuvatavNr id="f815edd1-994b-4a5f-af6e-e39b9bd8bc21"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="7ade8253-7420-468c-bdd7-f69bcac3be15">
+						<tavatekst id="9ee63d98-8c74-45ad-a81b-625f32028bab">Abi andmist
+täpsemalt reguleerivas õigusaktis võib sätestada erandi abi andmise kohta
+muudele inimestele.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para5">
+				<paragrahvNr id="78c0c707-6ac6-4919-9fbb-0c1ce359c25d">5</paragrahvNr>
+				<kuvatavNr id="cdfb3a40-e744-4fbc-9b1d-f81dc78b4de3"><![CDATA[§ 5. ]]></kuvatavNr>
+				<paragrahvPealkiri id="2a9137e8-d86d-4b48-8c9e-7c32b07bf1f1">Abi rahastamine</paragrahvPealkiri>
+				<loige id="para5lg1">
+					<sisuTekst id="ca6e0547-4f57-4dec-b3a3-32f8eb450f72">
+						<tavatekst id="c7de704e-c6c4-401a-89bf-07454eeb6447">Abi andmist
+rahastatakse riigieelarvest, linnaeelarvest, välisrahastusest ja annetustest.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para6">
+				<paragrahvNr id="cf1cd524-04cd-452f-9b71-b73f3cfbebc3">6</paragrahvNr>
+				<kuvatavNr id="4741fea1-393b-483f-8ff5-5bed7a80d121"><![CDATA[§ 6. ]]></kuvatavNr>
+				<paragrahvPealkiri id="2f80b13a-d004-4891-9793-2da2c27dac33">Vältimatu sotsiaalabi</paragrahvPealkiri>
+				<loige id="para6lg1">
+					<loigeNr id="8335ed21-9306-4987-8562-8f5c431bc69b">1</loigeNr>
+					<kuvatavNr id="7ef435db-4d25-458d-8eb6-563085beeccb"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="ac5b8c90-e59e-44fe-a3f3-454cfa3aea3e">
+						<tavatekst id="a6a9f176-f19d-485f-bc71-d526ac1ec458">Vältimatut sotsiaalabi osutatakse sotsiaalselt abitus olukorras inimesele hädavajaliku toidu, riietuse, ajutise majutuse, sotsiaalnõustamise, transpordi ja muu põhjendatud abi tagamiseks seni, kuni ta ei ole enam elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitus olukorras või tema toimetulek tagatakse muu abiga.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="a785e6a8-f467-4449-9764-c42e7428a3dc">
+						<aktikuupaev id="1c605767-8530-4524-9927-a1a58885d86f">2022-12-15</aktikuupaev>
+						<avaldamismarge id="bc0dc86d-d93c-4512-a726-59810ade2660">
+							<RTosa id="2a7a7e94-778d-40d4-82f8-793bace50eba">RT IV</RTosa>
+							<avaldamineKuupaev id="97b9aeb7-331b-4b4b-8e5c-3998c6ab5cb9">2022-12-22</avaldamineKuupaev>
+							<RTartikkel id="3a255c24-8f11-4311-9c4e-6c258bc6ba99">5</RTartikkel>
+							<aktViide id="1ca63eba-bce1-425b-9e97-c9c5c2ba45d9">422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine id="a05a0d11-ef20-4697-8c82-b86466024445">2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para6lg2">
+					<loigeNr id="b5e2425c-e16a-4f6a-b7aa-ae5ae5196427">2</loigeNr>
+					<kuvatavNr id="ce3f1e11-d5bb-4537-9ca2-15eba6b7cde2"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="9cab748f-8550-4fa0-996b-cc1e8186fc01">
+						<tavatekst id="288e1ea6-beae-4445-beae-e104adcef6bd">Vältimatu sotsiaalabi saamiseks võib inimene pöörduda teenuse osutaja poole abi korraldaja haldusaktita. Teenust osutatakse toiminguna.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="0694d220-5cda-4959-8cd3-ad526016e8e0">
+						<avaldamismarge id="e925e625-d3be-40e2-adb3-4864145d8479">
+							<RTosa id="5e753b3a-5f70-4b73-8131-85cf186c1696">RT IV</RTosa>
+							<avaldamineKuupaev id="3e8964e1-4018-487d-a234-ad90d45ed7a7">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="95b1a9f6-9d89-484b-bc48-bbea06d50700">1</RTartikkel>
+							<aktViide id="da74921d-bf3c-4efb-8ba6-c295a1dfd361">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="e0699f3d-2924-430c-bbd4-48bb1e941dfb">2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="pt2">
+			<peatykkNr id="3fbe0aee-e10a-48df-86d9-1f2cc37792ce">2</peatykkNr>
+			<kuvatavNr id="21f36d7f-6c4c-476e-bfdd-204b100bfc29"><![CDATA[2. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="d7d8dc0e-de34-4b6d-bd8a-628306fc57a4">Abi liigid</peatykkPealkiri>
+			<paragrahv id="para7">
+				<paragrahvNr id="90fd8525-16e1-48d4-9656-587a29bc6952">7</paragrahvNr>
+				<kuvatavNr id="877c07a9-01c6-40dc-9c6f-d22f93520087"><![CDATA[§ 7. ]]></kuvatavNr>
+				<paragrahvPealkiri id="4daa63c7-53d4-4fa7-83d2-6af8d8177aa8">Korraldatava abi liigid ja eesmärk</paragrahvPealkiri>
+				<loige id="para7lg1">
+					<loigeNr id="43d8d42a-ef50-4f85-9389-3231e301c6da">1</loigeNr>
+					<kuvatavNr id="8f106801-2e32-4747-b1d2-07e03e7bca40"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="dc5957a7-f3b1-4310-8e20-f1f7b1db07ab">
+						<tavatekst id="5c75ce7a-610f-4907-be42-19042962367c">Abi osutatakse toetuste ja teenustena.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg2">
+					<loigeNr id="c24c981c-b505-4323-805b-0ca1444e0288">2</loigeNr>
+					<kuvatavNr id="b762b79f-e6cc-4b74-b815-6c574690724b"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="e3020db5-29fd-4546-b78a-a45a7b8b1350">
+						<tavatekst id="a537a0dc-6351-4d65-88f6-7b73269c34b1">Toetuste liigid on nende eesmärgist olenevalt järgmised:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para7lg2p1">
+						<alampunktNr id="30e24359-dcc3-4e28-919d-8078311322e8">1</alampunktNr>
+						<kuvatavNr id="57d6dd38-8f6b-412c-a8eb-5bcae72d17ef"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="b1939b2f-4e05-4b9a-8285-391d98ed015d">
+							<tavatekst id="30d5c6c4-b51d-4bd9-ae68-90b512d83511">linna eelarvest makstavad sissetulekust sõltumatud universaaltoetused, mille eesmärk on väärtustada linnaelanikuks olemist;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="fad79e89-08cb-478e-a1cb-f11ca27a3e3f">
+							<aktikuupaev id="a36a05af-0c4e-415f-9c39-7b99a69fa006">2023-04-20</aktikuupaev>
+							<avaldamismarge id="0f9f89ad-c286-4d0f-bc49-d386d01e9fae">
+								<RTosa id="646b9deb-a726-4aa0-ad94-ea17a4a5b86f">RT IV</RTosa>
+								<avaldamineKuupaev id="ccbae987-01d9-4c25-addf-80244dfb500d">2023-04-27</avaldamineKuupaev>
+								<RTartikkel id="3a3cb91d-f134-47df-a6c3-2664e36d752b">10</RTartikkel>
+								<aktViide id="aca7fb10-12bb-4c5f-908e-d6e1f0a6e752">427042023010</aktViide>
+							</avaldamismarge>
+							<joustumine id="c7f49801-a0db-4d69-838b-1bc052e07d03">2023-04-30</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para7lg2p2">
+						<alampunktNr id="e5b9503d-f398-4997-a516-eb82c63132f5">2</alampunktNr>
+						<kuvatavNr id="96d0bbcc-7dee-4dfc-bc32-e1f4f276a4a2"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="d0dfe902-e39e-4732-b0fe-02a29ea19058">
+							<tavatekst id="54ec3ab5-0790-49cc-934f-a6322609bbfe">linna eelarvest makstavad sissetulekust sõltuvad universaaltoetused, millega hüvitatakse täielikult või osaliselt toimetuleku soodustamiseks vajalikud kulud;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="943f5a92-7b6b-4c8c-a4a4-e438764b2fcf">
+							<aktikuupaev id="58b475a5-3b79-440e-b5d1-94791abb5c4a">2023-04-20</aktikuupaev>
+							<avaldamismarge id="9f3e1913-c76d-4020-aee7-91e91d271144">
+								<RTosa id="78a04bac-b135-4332-aaf2-07ea83961cb4">RT IV</RTosa>
+								<avaldamineKuupaev id="11d96292-fdcb-4071-abdc-9f720a749b35">2023-04-27</avaldamineKuupaev>
+								<RTartikkel id="b5d23f01-bd7c-48e0-81f9-a42eab40cb64">10</RTartikkel>
+								<aktViide id="b850f67f-f3b6-4fb6-8b20-2906f9a289dc">427042023010</aktViide>
+							</avaldamismarge>
+							<joustumine id="7097793e-fc3a-43d0-8ef9-234727c95728">2023-04-30</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para7lg2p3">
+						<alampunktNr id="efe9219a-2aa5-4677-8e5b-ac30d93e87f8">3</alampunktNr>
+						<kuvatavNr id="be11925c-9533-49d1-bb4d-718839d85b84"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="ea4fc4aa-b65c-44ba-8b45-f136967c0a40">
+							<tavatekst id="62867ad4-2dae-4884-8f7f-e20f85c40f2c">riiklik toimetulekutoetus, mille eesmärk on inimese iseseisvat toimetulekut soodustava ajutise abimeetmena leevendada abi vajava inimese ja/või perekonna materiaalset puudust, tagades minimaalsed vahendid esmavajaduste rahuldamiseks.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para7lg3">
+					<loigeNr id="2c84ff52-b4f9-4928-8a0d-c547d888098c">3</loigeNr>
+					<kuvatavNr id="2d4ab54c-b9bb-4a7f-a3d2-f11aacce696c"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="3ff27e0e-71f1-4666-addd-0fdfe5869c40">
+						<tavatekst id="e51eb689-62ce-45ae-9c48-6e0e2d4c83ea">Teenuste eesmärk on toetada abi vajava inimese toimetulekut, lähtudes tema tegelikest vajadustest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg4">
+					<loigeNr id="3e42d809-3c64-4c9f-b456-066b021e3b7e">4</loigeNr>
+					<kuvatavNr id="9f2e0a1e-d0b9-49a1-a90a-573f57d87e27"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="e69ead63-9d46-4fe8-9acb-8a977d235fb9">
+						<tavatekst id="a9b6bd44-931b-46c9-bd9e-3a021f0f29c8">Abi, mis
+hõlmab nii rahasumma maksmist kui ka teenuste osutamist, loetakse toetuseks või
+teenuseks abi peamisest sisust lähtudes.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="pt3">
+			<peatykkNr id="c701d662-a5db-4a19-8aab-3cf410458874">3</peatykkNr>
+			<kuvatavNr id="dbca6ce8-d73f-437e-88c4-03a2e507313a"><![CDATA[3. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="451bd759-ac97-41c4-acb0-838043884752">Abi taotlemine ja määramine</peatykkPealkiri>
+			<paragrahv id="para8">
+				<paragrahvNr id="a40d7d25-c374-4b1f-8f7d-c87395de63a1">8</paragrahvNr>
+				<kuvatavNr id="7aacb634-a0b5-43db-976a-28a762fd6bfc"><![CDATA[§ 8. ]]></kuvatavNr>
+				<paragrahvPealkiri id="094d9ce6-b64f-4b97-a5fa-40a02c93349a">Abi taotlemine</paragrahvPealkiri>
+				<loige id="para8lg1">
+					<loigeNr id="9edf6ea2-a7cc-430f-9d2d-9706628ef90f">1</loigeNr>
+					<kuvatavNr id="f2bf1280-94e5-4eb1-b41f-00f57d6c87db"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="acd75951-be94-43e8-97b4-f827a40e909e">
+						<tavatekst id="435f5890-bb2a-4e60-b73a-53b57ad02495">Abi saamiseks esitab taotleja abi korraldajale taotluse, milles kirjeldab abivajadust. Taotlusele tuleb lisada abi korraldaja nõutavad tõendid, mida on vaja abivajaduse hindamiseks.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="4e84ee98-c110-4c87-9f2f-703f7ad5de67">
+						<avaldamismarge id="5c1a7cf0-b34f-4f72-9ccc-22fb8425e3a5">
+							<RTosa id="a3866e65-96fd-4f20-8b5e-f726fa507cf0">RT IV</RTosa>
+							<avaldamineKuupaev id="1625982f-1762-45f5-9fbb-3b8b448b251c">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="69bb6114-742f-4d6c-be75-ac6f825816f8">1</RTartikkel>
+							<aktViide id="629837d2-b78a-4f02-b793-f085237e2f2a">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="01d07ac0-e3aa-44a3-a5ee-0567a0e44367">2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para8lg2">
+					<loigeNr id="3ff9801e-0e71-4794-b459-bf308790c633">2</loigeNr>
+					<kuvatavNr id="0e84f2f8-c6f6-47c8-a49c-808b16290a98"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="ed88e8ad-046b-49b6-a0af-8998b1617dac">
+						<tavatekst id="8763b831-1980-4d90-8d7f-a4abe843ff7b">Sissetulekust sõltumatu universaaltoetuse
+saamiseks esitatakse taotlus Tallinna e-teeninduses, digitaalselt allkirjastatuna e-posti teel või allkirjastatuna paberil.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="88930dd0-3f24-4d4e-8226-fda2d794950d">
+						<aktikuupaev id="a8f3db7e-e8cb-4aa3-b62d-7e745a6d3eea">2023-04-20</aktikuupaev>
+						<avaldamismarge id="b26b34b1-7a2f-490f-b6ea-df8203739f45">
+							<RTosa id="d2d15525-064f-4b41-b376-b2eff5922d62">RT IV</RTosa>
+							<avaldamineKuupaev id="a084700b-644f-41d0-89e6-22c1c406ebcf">2023-04-27</avaldamineKuupaev>
+							<RTartikkel id="e7e1d242-c156-4c5c-81c5-37c0f5e897d1">10</RTartikkel>
+							<aktViide id="39b6d13b-a880-4a7d-8e10-7ebc1f3728fe">427042023010</aktViide>
+						</avaldamismarge>
+						<joustumine id="aad13b11-ce5d-4ed2-bfc8-0e307c59d9eb">2023-04-30</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para8lg3">
+					<loigeNr id="c7bf4bc9-331b-4881-a8c2-621d45b8c7ec">3</loigeNr>
+					<kuvatavNr id="a4e38306-0d52-43c3-93d9-5a70be435d3f"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="73b93c78-926a-4b8b-9f5c-4410a73f832f">
+						<tavatekst id="916127b5-0b75-4f2b-acc1-aa42cc1b68f5">Abi korraldaja nõustab ja vajaduse korral abistab taotlejat taotluse esitamisel.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="25c3aea0-b489-474d-a28d-a56332706260">
+						<avaldamismarge id="7b01b15b-b220-4a55-af7b-5a5848dce927">
+							<RTosa id="766f9cbe-116a-41ce-902d-efceb466942b">RT IV</RTosa>
+							<avaldamineKuupaev id="53938f5f-014b-4d5f-8d81-af9f81c2837f">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="6a17cec6-c6f4-48e4-8f0a-bd0295323e09">1</RTartikkel>
+							<aktViide id="209ab025-2a5a-4029-a03e-e3243aafdbd0">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="af8d642f-93d7-4dc1-9283-c0ca0d36f8ff">2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para8lg4">
+					<loigeNr id="2b600a09-4f8f-4dc8-89fa-174abf19a8f4">4</loigeNr>
+					<kuvatavNr id="74e5dc6b-4888-4a44-816a-ab136896ae90"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="0fb0c445-b7f3-49c6-be8b-53c202d39e32">
+						<tavatekst id="28b1fd3c-3abf-466d-8594-ae50c8b0183a">Abi korraldaja võib jätta taotluse läbi vaatamata, kui:</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="e8f7041b-687b-4db3-b8f9-e2931790053e">
+						<avaldamismarge id="3b7034d7-126a-4e48-8b7b-eafa546ee264">
+							<RTosa id="96835293-25d9-4b26-b6ec-36231db75a7f">RT IV</RTosa>
+							<avaldamineKuupaev id="528566d8-edd0-4cbe-9514-175e0130719b">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="7d233953-ce68-43ea-858f-24a8b21c3555">1</RTartikkel>
+							<aktViide id="5bb8b0be-2fca-4514-9702-384f75dc766b">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="fbcb018d-7e99-457e-b878-21fd9ed56a3f">2025-05-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para8lg4p1">
+						<alampunktNr id="41cf2511-877d-4eb9-9ec6-37ec064c7d46">1</alampunktNr>
+						<kuvatavNr id="a0ecdd0f-fa5c-4263-9595-1c0734fde214"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="0856ce8a-c0ed-4e58-bb4d-ddd7b5c6804e">
+							<tavatekst id="2b614faa-b0e8-4423-b911-bae57588c30c">taotleja ei võimalda taotluse aluseks olevaid asjaolusid kontrollida abi korraldaja nimetatud tähtaja jooksul;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="bb11eb52-2a6a-421e-b68b-76dd35ce0ddc">
+							<avaldamismarge id="98af375e-3eeb-4088-b5fd-e235b329b9cd">
+								<RTosa id="468eb1b6-3562-4406-acc5-8814754defab">RT IV</RTosa>
+								<avaldamineKuupaev id="1ed24fa8-8ba2-44a5-a3e8-35d46e80e727">2025-04-12</avaldamineKuupaev>
+								<RTartikkel id="7362989c-1fb8-4473-ba6f-343ed8ab6c22">1</RTartikkel>
+								<aktViide id="3553ced7-eeff-43f3-b2de-93653c8c08b4">412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="dcc63df1-9ee8-43e3-a0f1-9a9348ed99f0">2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para8lg4p2">
+						<alampunktNr id="738fb2d1-32e6-4010-88b0-e7461cb8b9f4">2</alampunktNr>
+						<kuvatavNr id="f80cbfbe-9567-4c8f-aa5c-26db075dc72b"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="917cd59e-0577-4962-8578-77b95d90028a">
+							<tavatekst id="bee42174-9fab-4547-b82b-c8ae06ab98be">taotluse esitamise tähtaeg on möödas ja tähtaega ei ennistata;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para8lg4p3">
+						<alampunktNr id="ce33290b-2049-4617-b13b-9e6419791105">3</alampunktNr>
+						<kuvatavNr id="5fc5c2fe-803e-4a56-aba1-36662232c8de"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="d71a8b7e-6e91-4b81-b1a3-2b660f401024">
+							<tavatekst id="a0f924e7-3f2d-4020-ab19-37aa5b308a28">taotleja ei esita nõutavaid lisadokumente või jätab mõjuva põhjuseta taotluse puudused etteantud tähtajaks kõrvaldamata.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para9">
+				<paragrahvNr id="d420f1d1-f8e5-4ae4-b28d-2d53f629b2b6">9</paragrahvNr>
+				<kuvatavNr id="cb0fe59c-8ecc-43da-9094-14c890df6c5f"><![CDATA[§ 9. ]]></kuvatavNr>
+				<paragrahvPealkiri id="38d2577f-fc0e-4475-93ad-10997ac96e78">Abivajaduse hindamine</paragrahvPealkiri>
+				<loige id="para9lg1">
+					<loigeNr id="0cec141d-ec64-42ec-a22f-148b0d86ff25">1</loigeNr>
+					<kuvatavNr id="348b8f08-f27d-4d35-99a6-9d9e3fb57193"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="a0a22b9a-5c02-4142-88de-0093d9f05c5e">
+						<tavatekst id="5fabaea0-1057-4038-be98-86bfb7c48b21">Abi korraldaja hindab abi vajava inimese või perekonna abivajadust, sealhulgas sotsiaal-majanduslikku olukorda, selgitab välja sobivaima abi ja selle ulatuse, kaalub võimalike sekkumisviiside tulemuslikkust lühi- ja pikaajalises perspektiivis ning korraldab abi andmise. Abi vajava lapse või abi vajava lapsega seotud perekonna abivajadust hindab sotsiaal- ja tervishoiuameti lapse heaolu spetsialist. Kui abivajadus on tuvastatud, tuleb abi osutada. Abivajadust ei hinnata sissetulekust sõltumatute universaaltoetuste taotlemisel.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="e3a90d69-5de1-479a-8a96-7a5f1ebf3ffd">
+						<avaldamismarge id="f11c2993-1e15-466d-b41a-30c02a318d59">
+							<RTosa id="165650a7-925b-4f73-8eb1-398a5d977575">RT IV</RTosa>
+							<avaldamineKuupaev id="995d8ce7-30bb-461f-ac29-23d272db6a33">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="7e44e0e2-665a-42e7-a9cb-c92ed88c5277">1</RTartikkel>
+							<aktViide id="2f45e0bb-7184-454d-ba1f-74c4c4b3358b">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="69602819-ac60-4633-a780-434e75cd1cd2">2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para9lg2">
+					<loigeNr id="c0104c04-4add-4719-bffc-cebb868cdc21">2</loigeNr>
+					<kuvatavNr id="e1d155d5-a1b2-42de-90e3-d0f48f544f08"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="07d1f4fa-9b0a-49bc-80a1-35ba61534b0d">
+						<tavatekst id="2bd5a731-f9d2-4ddb-9df6-0c7f5ce45081">Abivajaduse hindaja:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para9lg2p1">
+						<alampunktNr id="b93d89cb-822c-4852-ab2c-fa8296aa541d">1</alampunktNr>
+						<kuvatavNr id="e72cf39a-0156-43d3-9653-37dc03dd1300"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="93f1c710-252c-43b7-b00e-fc2c5668930d">
+							<tavatekst id="a3cd5a24-4b3f-4155-8ae7-5f986476d94b">lähtub taotleja esitatud dokumentidest ja klienditöö käigus kogutud teabest;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg2p1b1">
+						<alampunktNr id="308b0596-ec25-496d-b0b8-e68b0d1c74eb" ylaIndeks="1">1</alampunktNr>
+						<kuvatavNr id="8360f1e6-1ef6-4336-b06c-93fa19f72b58"><![CDATA[1<sup>1</sup>) ]]></kuvatavNr>
+						<sisuTekst id="f234152a-ac92-446d-ac08-197a192c30f4">
+							<tavatekst id="d903f055-1df7-476e-8247-e0fe96c903ab">kohustab abivajajat esitama tema ja pereliikmete sissetuleku ja vara kohta tõendid ja dokumendid, mis ei ole kättesaadavad riiklikest andmeregistritest;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="e4722c85-c3d4-4233-a083-221fedffb057">
+							<aktikuupaev id="08de1700-d03c-41f9-8104-5b9682355ce4">2022-12-15</aktikuupaev>
+							<avaldamismarge id="c418fe1d-b9f2-43ff-ae87-53da4c1a13b1">
+								<RTosa id="d6b6837c-65a5-4ec4-8eda-208194e198d6">RT IV</RTosa>
+								<avaldamineKuupaev id="7b66b917-a1e4-4974-be8d-6357bcae2aee">2022-12-22</avaldamineKuupaev>
+								<RTartikkel id="11849003-8816-40d2-a93f-8c7bf2bc87bb">5</RTartikkel>
+								<aktViide id="130e5ac7-b7f8-4d74-8ce2-cc17e63138ba">422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine id="3569d00f-9953-49fd-a593-777b3b7e3d3c">2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para9lg2p2">
+						<alampunktNr id="60fed5ca-331f-4029-8872-9e6d36642b5c">2</alampunktNr>
+						<kuvatavNr id="5776431c-268d-405d-85f8-e4de7aefa870"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="24c9f3ab-97b1-40ad-8c01-12f90cd4a2ba">
+							<tavatekst id="e6d0c0d9-b6e1-458c-a77e-9bd194740e7e">palub vajaduse korral taotlejalt lisateavet, sealhulgas toimetulekut ja arengut käsitlevaid eksperdihinnanguid ja nõustamiskokkuvõtteid, mis ei ole kättesaadavad riiklikest andmeregistritest;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="2feb0a49-3e13-4055-80a4-e26a42020ea3">
+							<aktikuupaev id="e8c82bc8-6682-4f59-b405-966c489a6d79">2022-12-15</aktikuupaev>
+							<avaldamismarge id="5f8031e5-34c5-4478-b74e-7bb331599399">
+								<RTosa id="04c1cda0-c5a9-4cae-b310-faef327aaf47">RT IV</RTosa>
+								<avaldamineKuupaev id="de7726c3-0246-4dee-b69e-e08aff7ea40a">2022-12-22</avaldamineKuupaev>
+								<RTartikkel id="3d03e15c-553f-4d73-98f3-5539dac9c370">5</RTartikkel>
+								<aktViide id="725bb87b-f505-433a-ab8b-cfe86010681e">422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine id="bd1da3ac-afe9-455a-a1d4-8a58d681b5a1">2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para9lg2p3">
+						<alampunktNr id="a61651e2-edf2-4e37-9501-5c9fec3f6f0e">3</alampunktNr>
+						<kuvatavNr id="cff9428f-7ee2-476b-ba9d-1de26c637023"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="301c6161-b2b8-44ed-9ce6-c04ea2914f1a">
+							<tavatekst id="2f08ae31-076e-4443-9024-e5e810f9f34b">külastab vajaduse korral abi vajavat inimest tema tavapärases keskkonnas, et selgitada välja tema toimetulekuvõime, abi- või hooldusvajadus ning sobivaim abi.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para9lg3">
+					<loigeNr id="baea6192-e7d7-4143-aa4f-20294d08dd79">3</loigeNr>
+					<kuvatavNr id="581f026c-52ee-4252-adff-c2560e2a09e3"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="275a64af-2c87-41fb-aabb-6e3887425f71">
+						<tavatekst id="61576681-ef15-44a0-9a4b-da25a5447be6">Teenuse saaja on kohustatud viivitamata teavitama abi korraldajat, kui tema kõrvalabi vajadus on teenuse saamise ajal muutunud terviseseisundi või elukeskkonna muutumise tõttu või muul põhjusel. Abi korraldaja hindab teenuse saaja abivajadust ning otsustab abi osutamise jätkamise või muutmise.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="8d0afe9c-9f49-4495-b6d4-c41f971e7e2b">
+						<avaldamismarge id="aa5ac896-9419-4c0c-b5aa-23b93f6f2163">
+							<RTosa id="26a30e56-470b-4ba7-8e00-6f2b037282b8">RT IV</RTosa>
+							<avaldamineKuupaev id="e83e9a03-3caa-4350-b594-0daee8c207f3">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="4f65ea2c-03cb-4f5b-a235-408d72f7268b">1</RTartikkel>
+							<aktViide id="df28ff19-27aa-496f-b6a3-543bc0ea8cc8">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="fb6ecc8d-0ee6-4b8e-96fd-5eee05dbbf90">2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para9lg4">
+					<loigeNr id="3b98b0c7-d365-4831-bd51-b1711275b196">4</loigeNr>
+					<kuvatavNr id="c3e31696-5346-4ed1-8dc8-f340f56ad8be"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="56571d89-6226-4dd4-8dd0-7e45970fac45">
+						<tavatekst id="e7a2be2f-0d83-4739-bac9-820e09c0f2d9">Abivajadus vaadatakse üle regulaarselt, vähemalt üks kord aastas.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9lg5">
+					<loigeNr id="9fb05a5e-1704-49d5-89c3-489e1d88bd8e">5</loigeNr>
+					<kuvatavNr id="f585b994-9943-4011-8c54-4c9077c5a60c"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="c0532bad-c6c4-46df-abc1-8807c1a57557">
+						<tavatekst id="06fb01a4-305f-4334-a017-5348afb01e4b">Sotsiaal- ja tervishoiuameti lapse heaolu spetsialist hindab lapse sotsiaalse rehabilitatsiooni teenuse vajadust, lähtudes sellekohasest sotsiaalhoolekande seaduse nõudest.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="4ed74b1b-a970-4b59-b274-fdb1ef806882">
+						<avaldamismarge id="88112bd6-692c-405a-a292-7ab7e6246951">
+							<RTosa id="eba63445-4254-47e4-ba84-2a064aa7ece3">RT IV</RTosa>
+							<avaldamineKuupaev id="a1dd4636-3385-4e26-97e5-3ec656c3d0c7">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="a8595edb-4a77-4e25-ac01-4311a8bc8aee">1</RTartikkel>
+							<aktViide id="1ec3f06d-ecd0-49af-b6d4-d064563a9258">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="2fcd74c7-7bfb-4517-b3ea-1ea6895c4e48">2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para10">
+				<paragrahvNr id="ceed75d0-159d-4785-b3af-10e705a11ded">10</paragrahvNr>
+				<kuvatavNr id="f52f07c0-d4f2-4d1f-a1a1-4c2fa2d40d34"><![CDATA[§ 10. ]]></kuvatavNr>
+				<paragrahvPealkiri id="46d88099-f2eb-4a57-9755-c99019cd422c">Abi määramise või määramisest keeldumise üldtingimused</paragrahvPealkiri>
+				<loige id="para10lg1">
+					<loigeNr id="57118ad8-75d8-4e28-ab28-d50e2e8c5b50">1</loigeNr>
+					<kuvatavNr id="61c7ac4b-61f1-43b2-8a43-099de6a83309"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="1b26b9db-d1be-4496-bede-c0f575bd4e01">
+						<tavatekst id="b6b97c49-b5e2-4c9e-bb29-1b95933dd35e">Abi määramise otsustab:</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="569d6bd8-7d11-462c-9e79-a13218d51963">
+						<aktikuupaev id="8618aa49-0378-4661-a6bd-e8e873ba647d">2024-04-04</aktikuupaev>
+						<avaldamismarge id="d5263efe-c332-441f-a9df-cb4433c70927">
+							<RTosa id="a45d4650-21c6-45c9-9863-1105b038a50c">RT IV</RTosa>
+							<avaldamineKuupaev id="e0f7b618-a8e1-4f04-ba6d-2b8e32da7361">2024-04-12</avaldamineKuupaev>
+							<RTartikkel id="5566e26d-7119-4f42-b8ff-fdd00bf9754a">2</RTartikkel>
+							<aktViide id="6a5a79ac-a949-418d-8d3a-dc7ce60b5ede">412042024002</aktViide>
+						</avaldamismarge>
+						<joustumine id="1f1f3edd-4113-4af8-95b7-1f5117171d65">2024-04-15</joustumine>
+					</muutmismarge>
+					<alampunkt id="para10lg1p1">
+						<alampunktNr id="680541e3-e576-4b53-8552-424f3d4e57fb">1</alampunktNr>
+						<kuvatavNr id="a535e1d6-6618-450b-a288-c46a6d707487"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="d623fabd-e4b0-4d9c-809a-bb42c94f6f1e">
+							<tavatekst id="e9654ccd-3d70-40d2-be4a-b2db75b0a81e">sotsiaalhoolekandelise abi korral rahvastikuregistrisse kantud elukoha järgne linnaosa valitsus ja abi vajava lapsega seotud sotsiaalhoolekandelise abi korral sotsiaal- ja tervishoiuamet;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="ef91f0dd-cdd8-4c8d-b287-feda152b355b">
+							<avaldamismarge id="88367c0f-7e46-4ce1-9180-ff2df24faf32">
+								<RTosa id="aac1b575-11bc-4332-90e7-03cb738236d2">RT IV</RTosa>
+								<avaldamineKuupaev id="0da7e331-fb8f-4623-8e78-96e7bd22f160">2025-04-12</avaldamineKuupaev>
+								<RTartikkel id="7847ac23-458d-4200-af46-a7c4027ea1b5">1</RTartikkel>
+								<aktViide id="8dfea3c2-29f7-4ce3-a691-4bbba4b75019">412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="7e8138e8-6f2e-44dc-9c95-3e574faaad28">2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para10lg1p2">
+						<alampunktNr id="08530402-b22b-43f1-ac64-72cca8b80424">2</alampunktNr>
+						<kuvatavNr id="14af84c5-4447-4c09-851c-c4986620fa72"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="0ff0a8e1-41d5-45de-8bc8-f93cecabf534">
+							<tavatekst id="29cf31f3-ff21-4e90-bd13-c2b0e1db9a33">vältimatu sotsiaalabi osutamise korral teenuse osutaja;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="a24dcd7c-6c12-4e85-828d-809a3a8604f2">
+							<aktikuupaev id="2505009f-5b0c-4743-828d-b540484bd8dc">2024-04-04</aktikuupaev>
+							<avaldamismarge id="c127d956-cc22-45ad-928b-3b24311d57bd">
+								<RTosa id="e36be7de-2241-4768-b2d4-3408ec97ea07">RT IV</RTosa>
+								<avaldamineKuupaev id="c11c071d-a753-46b4-abea-e921b318cd96">2024-04-12</avaldamineKuupaev>
+								<RTartikkel id="2c936d11-7a12-464a-af58-c9c9d4dba7f6">2</RTartikkel>
+								<aktViide id="872991f3-1c3b-4559-a29f-5559c86753b7">412042024002</aktViide>
+							</avaldamismarge>
+							<joustumine id="8a03b32e-8bc6-4c1a-b72d-2ffd92dd4b16">2024-04-15</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para10lg1p3">
+						<alampunktNr id="3274742b-861c-465d-a38e-e24d500948f2">3</alampunktNr>
+						<kuvatavNr id="c4d4b73d-341d-4494-a76c-49c1ad11b9d5"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="60e21a94-92c9-4af5-9519-0445aeaef00a">
+							<tavatekst id="978252ff-89fb-4b7d-ac87-d836c9a3f644">sünnitoetuse korral Tallinna Perekonnaseisuamet;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="195893d7-f017-41ad-9b26-275d51057271">
+							<aktikuupaev id="5be592b9-b774-4adf-ba7c-a112bc9c1637">2024-04-04</aktikuupaev>
+							<avaldamismarge id="7e45c77a-8f71-4dee-985b-dc311609a281">
+								<RTosa id="a1c45115-b418-4dd0-9faa-85da4f8fbc9f">RT IV</RTosa>
+								<avaldamineKuupaev id="ffbb5d70-f7e6-4504-9be9-a5e784fb2b88">2024-04-12</avaldamineKuupaev>
+								<RTartikkel id="0cb8caf0-9d7f-4ed8-92ab-e8e7176e1228">2</RTartikkel>
+								<aktViide id="ea2af247-8c13-4191-b7de-b33bc34fd32f">412042024002</aktViide>
+							</avaldamismarge>
+							<joustumine id="284c41fd-80f8-40db-a8ce-801defd6e0b3">2024-04-15</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para10lg1p4">
+						<alampunktNr id="c0f6567c-9258-460e-9c6d-e775667a934a">4</alampunktNr>
+						<kuvatavNr id="c0a55585-e93a-41b8-8701-9a995f51f6ca"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="4dfbe93e-cf5a-464f-beab-550166c99932">
+							<tavatekst id="87fb9efc-0f4c-4c69-aa6a-7242733dc15e">õppeaasta alguse toetuse korral Tallinna Haridusamet;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="f6418f5d-753b-484a-9aec-bbbcbace3be9">
+							<avaldamismarge id="52960904-12f6-4fd5-bb93-4dac4e1a145d">
+								<RTosa id="d0b6e9d1-bb82-4727-8978-0d0db8ee7311">RT IV</RTosa>
+								<avaldamineKuupaev id="85e7783b-f5a7-4141-bfb6-d0d4d2c9134a">2025-04-12</avaldamineKuupaev>
+								<RTartikkel id="5e71c665-7632-4dcc-9ad7-e7966f1e061f">1</RTartikkel>
+								<aktViide id="e289b6c7-4c14-4886-9bf7-fbf2548ae25a">412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="7c09e579-0a3d-405f-8e7b-37febeabee8c">2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para10lg1p5">
+						<alampunktNr id="8fe53b42-814e-42e6-9c62-808ea8e1f85f">5</alampunktNr>
+						<kuvatavNr id="c49adae8-80f5-4c2d-a1dc-27931c0b62d7"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="646d15dc-26cf-4f9c-b8c8-f3f9133a33de">
+							<tavatekst id="3df519d1-15ac-42f7-9a46-751d8c57a3ce">õigusaktis sätestatud juhtudel muu volitatud üksus.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="973c3f57-99e3-4f6f-87d6-f04dee90ec9e">
+							<avaldamismarge id="a474bb08-85f0-4f09-aa54-7548f15eff69">
+								<RTosa id="d9ab1c36-e5be-4fd4-9f86-2e7a83891dd3">RT IV</RTosa>
+								<avaldamineKuupaev id="3fe70c5a-942b-4484-b579-a6187b6c633b">2025-04-12</avaldamineKuupaev>
+								<RTartikkel id="a59ab77e-d36b-4a5b-85e0-75985ded3f86">1</RTartikkel>
+								<aktViide id="30acc054-c8b6-4e43-918b-b5e7fae994fc">412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="8e9a08d4-ffe0-4aa0-bfba-009109952963">2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para10lg2">
+					<loigeNr id="0f61b916-7154-4e32-af5b-33d6763e335a">2</loigeNr>
+					<kuvatavNr id="3c1167fb-e9a8-463d-820a-6dc62fdf6d96"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="cc938ca4-e031-48cc-a7f3-79b0e287c93f">
+						<tavatekst id="90781617-8453-448e-875a-85591b8b31fa">Juhtudel, mida ei ole korras ja muudes õigusaktides ette nähtud, on kaalutlusotsusega õigus abi määrata:</tavatekst>
+					</sisuTekst>
+					<sisuTekst id="80ec74ca-32eb-4345-adf9-d51ca1cbedd2">
+						<tavatekst id="f7b51f97-eea5-4b15-b676-ad82081d8a87"/>
+					</sisuTekst>
+					<muutmismarge id="b525bd13-786e-4935-801f-c30af532eec7">
+						<avaldamismarge id="fbba2b4e-dc67-4a9a-92f7-9937a640cf59">
+							<RTosa id="459e8132-ca6d-4ecf-8510-b65dd84bfec4">RT IV</RTosa>
+							<avaldamineKuupaev id="f76ce637-d6d8-4dcc-b496-9c001ad9bb46">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="c1a71b32-4477-4efd-83c1-c981da75a734">1</RTartikkel>
+							<aktViide id="685e6ace-e473-454f-ba4c-f31e2a7b6a51">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="3585a13d-7aa8-4e1d-a901-31387618a2f5">2025-05-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para10lg2p1">
+						<alampunktNr id="a4a032ff-da82-4045-8a60-2d67edf99fe8">1</alampunktNr>
+						<kuvatavNr id="a4c201d4-be8c-473d-b505-1554b36e3b5f"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="a2f8f88f-d6aa-465e-acfe-ba5012619cd0">
+							<tavatekst id="ff7ad919-c288-47fe-ab7f-7a2d9968dafc">linnaosa valitsusel;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="b429909b-ec71-4bb5-b056-ad326cba8af6">
+							<avaldamismarge id="03c9e175-0896-49d4-b2f5-6e5a6dc15a90">
+								<RTosa id="0c5af6f1-7d5a-400c-8087-4ba56c8952de">RT IV</RTosa>
+								<avaldamineKuupaev id="a2e69772-2192-432b-a6fc-c860b67ee6ed">2025-04-12</avaldamineKuupaev>
+								<RTartikkel id="99adfcb2-92fc-4330-88cf-3a06e5d6f2e2">1</RTartikkel>
+								<aktViide id="c872e2b3-2749-4090-b310-a354c4b8ae3f">412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="d46d1852-3f2b-4669-b47d-65febb1d692a">2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para10lg2p2">
+						<alampunktNr id="7dab1aa7-cee5-472b-a99f-43f73afa4cb0">2</alampunktNr>
+						<kuvatavNr id="69b1d9df-2ac4-45e0-aac9-127bd118e3f3"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="be250dca-f419-461f-88ff-bd67d1d7a254">
+							<tavatekst id="10376b4d-da7a-40ab-a7b0-e3b4f4b611bd">sotsiaal- ja tervishoiuameti laste heaolu osakonna sektori juhil või teda asendaval ametnikul abi määramisel abi vajavale lapsele või lapse perekonnale.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="4e66163e-c054-4d88-a507-cb0fcc290c78">
+							<avaldamismarge id="3b82001f-97e2-4d1a-8d0b-16fa9c6f9b9b">
+								<RTosa id="04645908-ff84-4bf1-8eb9-920abc5c49a4">RT IV</RTosa>
+								<avaldamineKuupaev id="46da56c9-4af7-4c4a-90e7-6946bd4ee631">2025-04-12</avaldamineKuupaev>
+								<RTartikkel id="725a0973-32e7-48f3-8adb-888ad51144bf">1</RTartikkel>
+								<aktViide id="d8946b28-4672-4071-b824-6df9cb72ddad">412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="e4f6716c-9a2f-470d-9784-0555710f5314">2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para10lg3">
+					<loigeNr id="79a2e31d-1e88-42a5-94c7-b7d83f3efbdd">3</loigeNr>
+					<kuvatavNr id="2d89bf17-4a58-43ca-b19d-f1562de17015"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="b7d1e1da-403e-44e1-8147-7efcc0187ab1">
+						<tavatekst id="505a08e7-e660-4b54-8c6d-7dfda0cfaae2">Abi määramisest võib keelduda, kui esineb vähemalt üks järgmistest asjaoludest:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para10lg3p1">
+						<alampunktNr id="bc4ee66d-7a13-4f08-b244-38a520e2d358">1</alampunktNr>
+						<kuvatavNr id="2662736c-e8b6-4b5a-afd8-80479f3fd61e"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="bea79243-04cd-4724-9d68-d13fb38b960f">
+							<tavatekst id="5cd6b089-5d15-45ad-991e-10c9cffd8d78">taotluses on tahtlikult esitatud ebaõigeid andmeid;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg3p2">
+						<alampunktNr id="2967db9c-cefc-4169-8a3c-4ae01e53415d">2</alampunktNr>
+						<kuvatavNr id="7d6ed9c0-237f-41fb-b503-2bcae1fea22c"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="e2c3c6bc-f3f4-4181-a3b3-f57b1c3c7c03">
+							<tavatekst id="dd1b736a-7b2c-4d88-9dce-2d5dd0910ad5">inimene ei vasta abi andmist täpsemalt reguleerivas õigusaktis sätestatud tingimustele;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg3p3">
+						<alampunktNr id="ae1156e1-991b-4cd0-862f-dad7029a5255">3</alampunktNr>
+						<kuvatavNr id="545e6c14-2707-46ba-8758-b4e2a4c16dcb"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="00543eda-dd35-44b7-951e-fed75334e896">
+							<tavatekst id="cac5ed73-5fbf-4f66-84f8-9c0ff7a39f13">inimene
+keeldub mõjuva põhjuseta abivajaduse hindamisest ja/või koostööst, sealhulgas kodukülastusest ja/või lisateabe esitamisest;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg3p4">
+						<alampunktNr id="209ba08a-b04b-4788-accb-ec9874e59557">4</alampunktNr>
+						<kuvatavNr id="89ea2865-f8bd-4763-b7ec-b3331c0d8c9b"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="c7c9c986-56a3-46b3-b57c-7fde12cd3da4">
+							<tavatekst id="fb45bc78-d5b1-4cf4-8f26-d9c844bfd2c0">taotlejal või temaga koos elaval ülalpidamist saama õigustatud lapsel või muul abi vajaval alanejal või ülenejal sugulasel, kes ei ole võimeline ennast ise ülal pidama, on õigus saada elatist, kuid taotleja keeldub elatise saamise kohta dokumenti esitamast või elatist sisse nõudmast;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg3p5">
+						<alampunktNr id="21814692-432b-4700-935d-9185ae6fe5a6">5</alampunktNr>
+						<kuvatavNr id="b6e9d5cd-7b9a-4908-b78c-122d76770460"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="05b95509-b1d3-4704-a3d6-1e51010e424f">
+							<tavatekst id="4f419605-b47d-4186-8c8c-738ac17770c4">taotleja või tema perekonna omandis või kasutuses olevate vahendite abil on võimalik tagada tema või perekonna toimetulek;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg3p6">
+						<alampunktNr id="94cc2f10-7492-4d2d-bd36-a175ac469175">6</alampunktNr>
+						<kuvatavNr id="f7a91065-7025-47c5-91ae-95cc428fde63"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="9e757b12-18dc-424b-9684-3e8fdb3bb3fa">
+							<tavatekst id="26fc4a35-6cc9-448f-804f-0177894e2de8">abivajaduse
+katab riigi toetus või teenus või linna muu toetus või teenus.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para10lg4">
+					<loigeNr id="1d7962f6-c7e4-47ab-b2d6-2c5c25a0793b">4</loigeNr>
+					<kuvatavNr id="18e4e6a2-432d-4aa6-9097-2e259047adbe"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="f28c959b-666c-435c-8923-5d271ea4c0ad">
+						<tavatekst id="cb7dc499-ebca-4289-ba57-331f72353b3e">Abi määramine või määramisest keeldumine vormistatakse linnaosa valitsuse sotsiaalhoolekande osakonna juhataja või tema volitatud ametniku haldusaktiga ning abi vajava lapsega seotud menetluses sotsiaal- ja tervishoiuameti lapse heaolu spetsialisti haldusaktiga, kui abi andmist täpsemalt reguleerivas õigusaktis ei ole sätestatud teisiti. Haldusakti kehtivusaja võib piirata teenuse saaja ja/või teenust vahetult osutava inimese tähtajalise elamisloa kehtivusajaga. Haldusakti maksimaalne kehtivusaeg on kolm aastat.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="c1d1afb5-6653-4ebd-920a-0241f58cfe1d">
+						<avaldamismarge id="3a2cb4d1-c29c-4036-a449-324b3fd48d0d">
+							<RTosa id="d44c3e48-5d14-4e5f-8674-9469bb5ad66d">RT IV</RTosa>
+							<avaldamineKuupaev id="323652a4-6d94-4a32-9c68-f7ab7e4ba664">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="4b7f6546-84dd-470c-9ec4-f943396116ae">1</RTartikkel>
+							<aktViide id="811025e5-7437-4ef4-a49c-1631aa839f63">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="cf6742c0-dbaa-4150-ab12-5258ac9b07bc">2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para10lg5">
+					<loigeNr id="3dadf0c0-b0ab-4eba-82d6-44d415558508">5</loigeNr>
+					<kuvatavNr id="6005f67e-68a4-43d0-a434-6ccd5afc0c21"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="527bfe71-d552-491f-90bc-d9be65afccd8">
+						<tavatekst id="9155c7e9-f4ef-436c-a384-e05f5feba207">Kui taotleja ei nõustu abi korraldamisel tehtud otsuse või toiminguga, on tal õigus esitada haldusakti andnud või toimingu sooritanud haldusorgani kaudu linnavalitsusele vaie või kaebus halduskohtule. Vaie tuleb esitada 30 päeva jooksul päevast, kui taotleja sai haldusaktist või toimingust teada või oleks pidanud sellest teada saama. Kaebus tuleb esitada halduskohtule halduskohtumenetluse seadustikus sätestatud korras 30 päeva jooksul otsuse teatavakstegemisest.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para11">
+				<paragrahvNr id="1c15d705-9d07-423d-a2a8-ff1844e02d48">11</paragrahvNr>
+				<kuvatavNr id="782a86bb-9ee1-4380-9466-d59ec75641be"><![CDATA[§ 11. ]]></kuvatavNr>
+				<paragrahvPealkiri id="d32f7073-07cb-4482-923d-ae23238a5927">Abi osutamise peatamine või lõpetamine ja alusetult tehtud kulutuste tagasinõudmine</paragrahvPealkiri>
+				<loige id="para11lg1">
+					<loigeNr id="7f142c01-de63-4ebc-ba48-45bb680f1e88">1</loigeNr>
+					<kuvatavNr id="4db85657-029f-478e-b931-5cfec16cfacb"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="f2149f91-8576-4a17-850e-b0b410c72ff6">
+						<tavatekst id="4c80fbeb-f0c6-490a-99b8-50d52e7e0b42">Teenuse osutamine peatatakse või lõpetatakse:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para11lg1p1">
+						<alampunktNr id="4b79d48f-ed55-456c-8971-6838b18c6c8f">1</alampunktNr>
+						<kuvatavNr id="6a626b53-b179-4791-98be-10c3806d48b6"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="3d44a862-980d-465a-a47d-d088c1975f48">
+							<tavatekst id="abded65b-aa28-414f-8d00-90e149f8b47c">teenuse saaja taotluse alusel;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11lg1p2">
+						<alampunktNr id="4f713bc6-992f-4e26-b59d-ebc7251748c1">2</alampunktNr>
+						<kuvatavNr id="4f0ac6f1-d802-476d-8cdd-e34a2a044713"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="b297a847-1cf9-490a-aa71-9667a5379796">
+							<tavatekst id="ab602bb3-df4d-4d84-a2fc-d199de435614">kui teenuse eesmärk on täidetud ja/või teenuse vajadus on ära langenud;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11lg1p3">
+						<alampunktNr id="f459c6fb-86e3-4d90-9170-f48c9703c377">3</alampunktNr>
+						<kuvatavNr id="88e4709e-1b58-4409-bad8-515999bb7ed6"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="9705fec8-749d-44b6-a828-3c37aa9e67e2">
+							<tavatekst id="92fbbe5e-0472-4929-85b9-cced6262eb19">kui teenuse saaja on mõjuva põhjuseta jätnud abi korraldaja teavitamata asjaoludest, mis mõjutavad teenuse saamise õigust ja teenuse määramist, või nende asjaolude muutumisest;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="3c4b6884-2232-4009-a169-4376bf27b289">
+							<avaldamismarge id="59bcf163-b5a2-477d-b9af-ce231fa3b1cd">
+								<RTosa id="82d09cbf-8293-4c51-93d4-8c3a8dd43fe7">RT IV</RTosa>
+								<avaldamineKuupaev id="e9b12be2-bf5a-43b1-a491-7e2d1be4c3b5">2025-04-12</avaldamineKuupaev>
+								<RTartikkel id="03d083f7-5f5a-476b-9c62-336079e3bb35">1</RTartikkel>
+								<aktViide id="ed79e310-e03b-4f0c-932b-9e7f5e34b98f">412042025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="d68500b1-9f4c-4411-ac61-87d94210d0de">2025-05-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para11lg1p4">
+						<alampunktNr id="ae330c00-da08-437b-b65b-da057816faf6">4</alampunktNr>
+						<kuvatavNr id="6b33df5e-53a4-4683-9952-83811e8e68cc"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="8655d25c-d41c-4257-886d-ac7c0912c45b">
+							<tavatekst id="da6e4ab2-33d8-4377-8f11-6f60b07d565d">kui teenuse saaja on mõjuva põhjuseta loobunud teenuse kasutamisest ühe kuu jooksul alates lepingu sõlmimisest;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11lg1p5">
+						<alampunktNr id="9bee2f19-d864-45d8-bb18-670545150dc5">5</alampunktNr>
+						<kuvatavNr id="cf992ee5-f33f-445a-901b-44a493fa9a11"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="0ab668c6-d370-4952-aed8-3a57f0831d3c">
+							<tavatekst id="aed87388-71a7-4643-a356-e4f3256b0f75">kui teenuse saaja jätab mõjuva põhjuseta täitmata lepingu ja/või juhtumi- või tegevusplaani;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11lg1p6">
+						<alampunktNr id="a8c7899b-204f-42b9-b167-bde6ea1926c7">6</alampunktNr>
+						<kuvatavNr id="27d0ed43-fca7-4f29-b4cb-2b3bfba61b73"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="7d2a7c42-470e-4a6a-87af-7114d1f5464b">
+							<tavatekst id="a2297a56-f073-4b22-9fa3-4bb3d1e13ca9">teenuse saaja käitumine või tema isikust tulenev muu objektiivne
+põhjus muudab teenuse osutamise võimatuks ja/või ohustab teisi inimesi
+ja/või nende vara;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11lg1p7">
+						<alampunktNr id="182d01ee-9a5f-4704-b21b-ed6a04c2d266">7</alampunktNr>
+						<kuvatavNr id="52d2e19d-b1e2-4a81-880f-d09c64067268"><![CDATA[7) ]]></kuvatavNr>
+						<sisuTekst id="33fc80a3-39ce-4bb5-90b5-34aa0ff75042">
+							<tavatekst id="bfb8122f-c2cb-4291-bcb4-98d57174b302">kui esineb sotsiaalseadustiku üldosa seaduses,
+sotsiaalhoolekande seaduses või käesolevas korras sätestatud asjaolu, mille
+alusel inimese teenuse saamise õigus peatub või lõpeb; </tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11lg1p8">
+						<alampunktNr id="cd1528b1-22a5-44de-beb5-1b54b861ebb5">8</alampunktNr>
+						<kuvatavNr id="d8c57a9f-9599-4410-8d0f-e10a452028f7"><![CDATA[8) ]]></kuvatavNr>
+						<sisuTekst id="c73a51fe-eb0c-4ee5-959d-815578e70241">
+							<tavatekst id="e3849d91-e022-4974-8664-a56fe67f2fe7">teenuse saaja surma korral.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para11lg2">
+					<loigeNr id="996313b6-aaac-408a-a3fe-aa71dab4ab87">2</loigeNr>
+					<kuvatavNr id="dd4ed87c-9632-42e9-ad6a-a8286fbdb69b"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="99cb5aac-727c-475b-9bfd-b9c682758e5f">
+						<tavatekst id="58e7872a-53fb-40bb-96ff-453d33cf51d8">Toetuse maksmine lõpetatakse:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para11lg2p1">
+						<alampunktNr id="bc0a5a79-7e72-464b-8eda-74a5630ac4ac">1</alampunktNr>
+						<kuvatavNr id="74659f68-163b-4a94-87d2-0886fb9731d2"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="d1bbeb0a-e79a-4bce-9e16-d77c8c54d6f2">
+							<tavatekst id="5307f1b5-d62b-4ec3-b2ea-883bfb3f1440">kui toetuse saaja ei vasta abi andmist täpsemalt reguleerivas
+õigusaktis kehtestatud nõuetele;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11lg2p2">
+						<alampunktNr id="e745a07e-b7f2-48d3-8899-77615030730b">2</alampunktNr>
+						<kuvatavNr id="f7346aed-c614-484a-81c9-409e7dbc5738"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="963d502e-b341-4d11-9005-8a3f4b17434f">
+							<tavatekst id="759dc024-439c-4e90-ae5b-e20883d9c11a">toetuse saaja surma korral.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para11lg3">
+					<loigeNr id="3703c242-8038-4038-973b-b1e0a733c1a3">3</loigeNr>
+					<kuvatavNr id="4efc79d8-dc72-446f-882a-b4d34bd1519f"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="5563daff-116a-434c-bc79-89ba3be17610">
+						<tavatekst id="c2ab4830-df3d-403a-a0cf-fe9c779a929e">Abi osutamisel linna poolt alusetult tehtud kulutuste osaliseks või täielikuks tagasinõudmiseks teeb abi korraldaja, keda esindab linnaosa vanem või sotsiaal- ja tervishoiuameti juhataja, inimesele seaduses sätestatud juhul ettekirjutuse. Kui inimene jätab talle tehtud ettekirjutuse täitmata, on linnaosa vanemal või sotsiaal- ja tervishoiuameti juhatajal õigus algatada ettekirjutuse sundtäitmine täitemenetluse seadustikus sätestatud korras.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="98cba779-4a32-46e3-a9ff-a49a0efe3cd1">
+						<avaldamismarge id="6c78b58f-30c7-48c2-88f6-4873d002bc4b">
+							<RTosa id="e6a0feed-61c7-4114-90ed-47cead9f783d">RT IV</RTosa>
+							<avaldamineKuupaev id="87a14368-e0b6-4ade-a0b8-3b2272009b6f">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="3fc7edd9-8c07-4ea8-85fb-f08ea3ec4be6">1</RTartikkel>
+							<aktViide id="5035a982-64b3-469a-9046-3a83a83f7b9b">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="8bd49b91-77fe-4b9b-a738-f6d22bc1aa45">2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="pt4">
+			<peatykkNr id="41f4e283-5fa2-48d7-84f9-9f580ce875e4">4</peatykkNr>
+			<kuvatavNr id="92f8dc39-ddf7-4592-bef7-5ddd6ae72ff3"><![CDATA[4. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="215443a5-5d1a-4d5a-9e48-6a651c35d6f1">Teenuse maksumus ja toetuse määramise alused</peatykkPealkiri>
+			<paragrahv id="para12">
+				<paragrahvNr id="dd4309b5-cc6f-46c2-86b9-2ab16e822a96">12</paragrahvNr>
+				<kuvatavNr id="735ce85d-12b0-415a-bb2f-a62cb64dad73"><![CDATA[§ 12. ]]></kuvatavNr>
+				<paragrahvPealkiri id="d688fb68-6d1b-49e3-b50b-16cefc08bc71">Teenuse eest võetav tasu</paragrahvPealkiri>
+				<loige id="para12lg1">
+					<loigeNr id="a274e7c2-708f-43e4-9d41-1fc1b7979c6e">1</loigeNr>
+					<kuvatavNr id="35cf9eee-4cf3-4daa-8d7b-63242da75e17"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="6753db74-f07c-43c7-b5a8-8e9078ae7d06">
+						<tavatekst id="ec425411-b465-4670-813b-3b7139d7b6de">Teenuse eest
+võib võtta tasu. Tasu suurus määratakse kindlaks käesolevas õigusaktis
+sätestatud alustel, kui abi andmist täpsemalt reguleerivas õigusaktis ei ole
+sätestatud teisiti.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para12lg2">
+					<loigeNr id="037a7298-c420-440d-a2aa-544407f83a1a">2</loigeNr>
+					<kuvatavNr id="8f2f86a9-3c07-403e-95f5-1b7d3344b31a"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="3cce2584-6dd1-4231-aaba-785fbc99ca13">
+						<tavatekst id="8269fcff-bfcc-4f92-90e7-4e5de895b3ea">Vältimatut sotsiaalabi osutatakse inimesele tasuta.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para12lg3">
+					<loigeNr id="be01dad5-11ca-4104-a0f0-27980dab4a38">3</loigeNr>
+					<kuvatavNr id="b36732f9-ee99-4f27-8531-298255e821b2"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="53cd36bc-3907-481c-accc-9a56f0237d58">
+						<tavatekst id="0e351b1c-cad8-4151-ac93-92307fe75570">Sotsiaal- ja tervishoiuamet kehtestab sotsiaalteenuse eest tasu võtmise rakendamise alused ja juhendi, mis avaldatakse linna veebilehel. Linna asutuse osutatavate teenuste hinnad kehtestatakse linnavalitsuse sätestatud korras. Hangitava teenuse hind tuleneb riigihanke tulemusena sõlmitavast hankelepingust.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="2f366d1e-8557-4ed8-8c03-19a0afdf96ef">
+						<avaldamismarge id="3f0f6864-5449-402d-ae60-da74bfd353ae">
+							<RTosa id="89253f2d-bc37-4ab2-b5df-9bb5abe03232">RT IV</RTosa>
+							<avaldamineKuupaev id="fcf50c7a-c8b5-4f5c-b407-4743578c837e">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="f0d48cfd-999f-4c2c-ae96-db9de96fb70c">1</RTartikkel>
+							<aktViide id="23b079df-4fb9-4e7d-a37d-6100b87e32b2">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="8f751355-26a0-4a04-b352-209af910bbcb">2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para12lg4">
+					<loigeNr id="6e6a3974-44cc-40bd-af47-794a856d08c1">4</loigeNr>
+					<kuvatavNr id="98899b1b-2374-4c83-b441-2f5c618214f8"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="9abfa920-a104-4ff3-8edc-dc4d7260f0e6">
+						<tavatekst id="0b070386-17fc-4a1d-8fc8-3348b8106ee1">Teenuste täishinnad kehtestatakse teenuse osutaja tegelike kulude või turuhindade põhjal, mis võib hõlmata teenuse jätkusuutlikkuse tagamist.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para12lg5">
+					<loigeNr id="af06fc3f-f6d0-4ca4-bacc-bf9eecd4eb88">5</loigeNr>
+					<kuvatavNr id="8993c51b-7b56-4bff-992c-7b0576e39783"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="af61ccad-0515-49ca-94a6-eaf2be26c330">
+						<tavatekst id="69f86150-01f3-4824-9ebf-e0e76977dda4">Teenuse eest
+tasub ennekõike teenuse saaja või inimene, kellel on perekonnaseaduse järgi teenuse
+saaja ülalpidamise kohustus.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para13">
+				<paragrahvNr id="d8e6adba-3eab-417e-9348-e9ff30c57237">13</paragrahvNr>
+				<kuvatavNr id="51185582-ab60-429f-96f7-5a182499623c"><![CDATA[§ 13. ]]></kuvatavNr>
+				<paragrahvPealkiri id="25003e53-91f3-4a89-bd8b-f129bee86e09">Teenuse eest tasu maksmise ülevõtmise ja toetuse määramise alused</paragrahvPealkiri>
+				<loige id="para13lg1">
+					<loigeNr id="0301def1-9a01-4d77-884e-7869641fa8ab">1</loigeNr>
+					<kuvatavNr id="3fc8fc77-0d2c-407f-951b-903a01932320"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="272e4700-9858-4b60-884a-df749f9c60ed">
+						<tavatekst id="1fec93d9-2f9a-401f-baf8-8ca238bffde7">Kui abi
+vajava inimese või tema ülalpidamiskohustuslaste majanduslik olukord ei võimalda tal teenuse eest täies ulatuses
+tasuda, võib Tallinna linn võtta temalt teenuse eest tasu maksmise kohustuse osaliselt
+või täielikult üle. </tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para13lg2">
+					<loigeNr id="a84014ee-707f-4402-ad74-c55857f977fb">2</loigeNr>
+					<kuvatavNr id="bb474b5f-9c92-42af-bed4-03a84ae5008f"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="c029d1fe-85af-416f-bee8-ab11bf383126">
+						<tavatekst id="bad95587-4e7a-4d87-94d9-0c514fb252e2">Kui Tallinna linn on teenuse eest tasu maksmise kohustuse teenuse saajalt osaliselt üle võtnud, kuid teenuse saaja majanduslik olukord halveneb teenuse kasutamise ajal nii, et tal ei ole enam võimalik teenuse eest maksta, võib tasu ülevõetavat osa suurendada. Abi korraldajana võib linnaosa valitsuse sotsiaalhoolekande osakonna juhataja või teda asendav ametnik või sotsiaal- ja tervishoiuameti laste heaolu osakonna sektori juht või teda asendav ametnik otsustada tasu ülevõetavat osa suurendada teenuse saaja põhjendatud ja tõendatud taotluse alusel.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="d5fa08a8-d85a-4f4e-91a3-2a3381178de0">
+						<avaldamismarge id="6540973c-5a14-400c-9be0-30d9250c748a">
+							<RTosa id="42ca67f0-b1a0-4295-b7c5-31617c7b3c96">RT IV</RTosa>
+							<avaldamineKuupaev id="cd775c18-2ebd-4eb9-b750-cc1ca83968d8">2025-04-12</avaldamineKuupaev>
+							<RTartikkel id="77cec457-ed1e-4df8-8053-5ee7eb266923">1</RTartikkel>
+							<aktViide id="e65901d4-f77d-45b5-b134-734837762558">412042025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="10fc1270-9af4-422f-8ae5-13ed13e74942">2025-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para13lg3">
+					<loigeNr id="80322c1d-48fe-436d-8c01-cb176586dfde">3</loigeNr>
+					<kuvatavNr id="62e3d4ed-2e3f-4658-9897-e3ce7477125c"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="2f740d10-5215-4e6b-9dfd-1cf30117ebd9">
+						<tavatekst id="e9855664-98be-405f-b128-f72b2a710f01">Kui pärast käesoleva paragrahvi lõikes 5 nimetatud kulude mahaarvestamist on inimese või perekonna kasutada rahalised vahendid, mis jäävad alla sissetulekupiiri, võtab linn inimese või perekonna abivajadusest lähtudes osaliselt või täielikult üle teenuse eest tasu maksmise kohustuse ja/või maksab sissetulekust sõltuvat universaaltoetust.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="60254d49-82ee-423f-8006-aeded44d1ab2">
+						<aktikuupaev id="5d5986a1-daa3-4600-9564-d3f1840fa76b">2023-04-20</aktikuupaev>
+						<avaldamismarge id="a557c73f-d86f-4fd8-a6b3-974b683a980a">
+							<RTosa id="50cc5375-a0ca-41c5-9eac-4662dbf4dffb">RT IV</RTosa>
+							<avaldamineKuupaev id="d85994e8-9c94-49d1-8c89-c8a47fd3228f">2023-04-27</avaldamineKuupaev>
+							<RTartikkel id="45f68cfd-99f5-4438-8290-87966adb7c38">10</RTartikkel>
+							<aktViide id="40c78fc7-acce-43f3-8e49-68774906916f">427042023010</aktViide>
+						</avaldamismarge>
+						<joustumine id="23e5e52d-2abf-4bc0-a730-96fe822999dd">2023-04-30</joustumine>
+						<tavatekst id="8f8a0619-6c2c-4e13-b8fc-0b291b49e9de">, rakendatakse alates 01.04.2023</tavatekst>
+					</muutmismarge>
+				</loige>
+				<loige id="para13lg4">
+					<loigeNr id="28df8ad6-21df-4ff7-9581-808776bee972">4</loigeNr>
+					<kuvatavNr id="79238c13-901a-4dc4-b88c-45b8dc945f62"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="66328d2e-a018-410c-8e7f-12c2f3fe6ae3">
+						<tavatekst id="7d785158-8a63-4881-973f-f1fb695ea6fa">Tasu ülevõetava osa ja sissetulekust sõltuva universaaltoetuse arvestamisel võetakse
+inimese või perekonna sissetulekuna aluseks maksustatav tulu, saadud elatis ja perioodilised
+toetused, lähtudes järgmisest:</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="cb400954-800e-4372-893c-b3b9bfe3738a">
+						<aktikuupaev id="075cf138-9191-4c4c-a2a5-d210a5f99edb">2023-04-20</aktikuupaev>
+						<avaldamismarge id="84f283ca-182c-48d7-b7c9-7f12824cc8e6">
+							<RTosa id="524444e1-036e-40c6-9b10-54ec146225dd">RT IV</RTosa>
+							<avaldamineKuupaev id="03c48c1a-35e4-4477-a188-0a02d9f3e46f">2023-04-27</avaldamineKuupaev>
+							<RTartikkel id="081fd718-d698-4f05-9aa6-99201ebf9a26">10</RTartikkel>
+							<aktViide id="a3b1a433-c1fe-412f-ad6c-76993f3e2f1a">427042023010</aktViide>
+						</avaldamismarge>
+						<joustumine id="92fb09a8-0d40-45f0-8e75-68366a8d9e14">2023-04-30</joustumine>
+						<tavatekst id="74686fe5-7c89-41c4-b201-9a121ae4f6f7">, rakendatakse alates 01.04.2023</tavatekst>
+					</muutmismarge>
+					<alampunkt id="para13lg4p1">
+						<alampunktNr id="892af260-7006-41cc-9f08-54d20465e1e7">1</alampunktNr>
+						<kuvatavNr id="e9106b06-6ac5-4d87-8beb-315fcb6323ce"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="14403af8-8f10-4840-8cae-b2f7b0753e72">
+							<tavatekst id="2249dd77-1b02-479f-963c-e75aee068a66">perekonna sissetuleku hulka arvestatakse eelmisel kuul laekunud netosissetulek, ebaregulaarse sissetuleku puhul eelneva kuue kuu keskmine netosissetulek;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="7009674a-6cf8-4429-80a9-b115e0bf2888">
+							<aktikuupaev id="d9288617-8a59-4484-8847-db1f42df12a4">2022-12-15</aktikuupaev>
+							<avaldamismarge id="8129d62e-b076-4ff5-a52d-7828b7a6cc94">
+								<RTosa id="d20c0633-2a99-4700-87e3-a625b939162d">RT IV</RTosa>
+								<avaldamineKuupaev id="cd91a6df-51e5-4cf5-a78a-0595eb4ec866">2022-12-22</avaldamineKuupaev>
+								<RTartikkel id="9814a9fb-e987-4a07-bfa5-89002b6fa9d8">5</RTartikkel>
+								<aktViide id="2dd12895-f7e2-4ed2-809c-187289004be0">422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine id="0ad99907-b42a-44a3-b050-3e85634175cb">2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para13lg4p2">
+						<alampunktNr id="d804d33e-e282-447e-aa76-88051fdb698f">2</alampunktNr>
+						<kuvatavNr id="ad98e7c0-d439-4c9c-8674-4534c2c3e3f8"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="b4665305-1c32-46cc-bbee-fb424b63f6f0">
+							<tavatekst id="5b009ba6-78fd-4be8-8c65-52ed44d5fdec">perekonna netosissetuleku hulka arvestatakse ka taotlejast eraldi elava perekonnaliikme netosissetulek juhul, kui see perekonnaliige on abielus kas taotlejaga või taotlejaga koos elava perekonnaliikmega või on perekonnaseaduse järgi kohustatud ülal pidama taotleja alaealisi lapsi või taotlejaga koos elava perekonnaliikme alaealisi lapsi;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para13lg4p3">
+						<alampunktNr id="7dd5ee80-c11a-453b-aad6-932930d2bbba">3</alampunktNr>
+						<kuvatavNr id="c74754ec-fcb6-4e87-a523-389f9f4b53aa"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="93551479-dd50-430a-ba8f-0d6b9d3d70ee">
+							<tavatekst id="eefa9a28-29a1-4a59-a0bd-011572792777">inimese või perekonna netosissetuleku hulka ei arvestata sotsiaalhoolekande seaduses toimetulekutoetuse arvestamise aluseid sätestavas üldnormis loetletud toetusi ja sissetulekuid.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para13lg5">
+					<loigeNr id="720a9ddb-9e45-4a93-ae4d-6aa720d07aa5">5</loigeNr>
+					<kuvatavNr id="a27c884c-ff1e-4c92-82ff-1f60fd735e40"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="d46468b4-9cd5-49c7-9cb5-cf78b4cbf52f">
+						<tavatekst id="88b52a16-f90f-4055-bc07-2fd18831e978">Inimese või perekonna netosissetulekust
+arvestatakse maha rahvastikuregistrisse kantud elukoha jooksval kuul tasumisele
+kuuluvad eluasemekulud (sh<b> </b>üür või
+eluaseme soetamiseks võetud laenu tagasimakse koos laenu intressi ja
+kohustusliku eluasemekindlustuse maksega ning jooksval kuul tasumisele kuuluvad
+eluaseme kõrvalkulud), makstud elatis, täitemenetluse seadustiku
+§-de 131 ja 132 kohaselt täitemenetluses kinnipeetud summad ning abi osutamise tinginud põhjendatud kulud (sh juba
+sotsiaalteenuse eest tasutav omaosalus).</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="8bbdd795-d772-4286-941a-81f6c26b8f01">
+						<aktikuupaev id="886ec3bb-2019-4b7f-86cc-080bd42eca61">2023-04-20</aktikuupaev>
+						<avaldamismarge id="34e5b013-1c89-4c92-8c5b-365546b0bf93">
+							<RTosa id="254831cf-56ce-42c3-a2bf-60b12b59d077">RT IV</RTosa>
+							<avaldamineKuupaev id="aea87d52-aefc-495c-a4e0-aa18f14eaf0f">2023-04-27</avaldamineKuupaev>
+							<RTartikkel id="af88a59b-7176-4ee4-b5df-172da2635596">10</RTartikkel>
+							<aktViide id="5be2ce09-13b0-41fe-8a9d-a86a4c49cdf7">427042023010</aktViide>
+						</avaldamismarge>
+						<joustumine id="9ad6eb01-5017-44c1-8949-aae56510b6e3">2023-04-30</joustumine>
+						<tavatekst id="c049f05b-313c-4a47-9b43-f7c9604d8da6">, rakendatakse alates 01.04.2023</tavatekst>
+					</muutmismarge>
+				</loige>
+				<loige id="para13lg6">
+					<loigeNr id="04540b21-f1f8-4a2d-bcf5-bd170bda0684">6</loigeNr>
+					<kuvatavNr id="4c70571d-21a9-47dd-b135-115356472fd7"><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst id="decdc55a-eba0-4979-809a-2d5825347a90">
+						<tavatekst id="bc5f4ba3-8535-4a98-82de-130fe05a3ca5">Eluruumiga seotud kulude mahaarvestamisel lähtutakse eluruumi sotsiaalselt põhjendatud normist ja kohaliku omavalitsuse kehtestatud eluasemekulude piirmääradest.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="34df1ef2-0529-45b3-8546-6d6e7945b6ad">
+						<aktikuupaev id="9135462e-5a90-48d7-81c3-ca4bb15d6eb4">2022-12-15</aktikuupaev>
+						<avaldamismarge id="52904b36-3614-4237-84c9-17fc7ffa107d">
+							<RTosa id="33514948-1779-4ea4-8782-f49e76f37358">RT IV</RTosa>
+							<avaldamineKuupaev id="e0d2834e-a3da-4efa-a2d0-b08ab48d4298">2022-12-22</avaldamineKuupaev>
+							<RTartikkel id="37c7a537-423c-4fba-9d08-ae2b55994968">5</RTartikkel>
+							<aktViide id="a892a60a-d8cc-42c3-9bf5-108b27b4c5a7">422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine id="fa748536-f2f3-41bf-99c2-ff3f96e7e91f">2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para13lg7">
+					<loigeNr id="eaaccd5f-b35f-4a4c-9952-a98f190f86f5">7</loigeNr>
+					<kuvatavNr id="a20ec3b8-f780-48d6-a2f9-723d8a900fe6"><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst id="14049fa3-9bb5-4071-9b67-9b94238b9465">
+						<tavatekst id="5f737997-d748-4be6-be7b-e5613375b00d">Eluruumi sotsiaalselt põhjendatud normi arvestamisel lähtutakse järgmisest:</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="412e7f03-3adf-4941-b93e-8bd827c52ccb">
+						<aktikuupaev id="046248cc-44c3-4431-8a6c-0d062f3db53c">2022-12-15</aktikuupaev>
+						<avaldamismarge id="c9734fdd-f4f6-482b-96f4-61884f4fbfa3">
+							<RTosa id="a652cbb6-467d-42de-aa5e-f4cf811afc09">RT IV</RTosa>
+							<avaldamineKuupaev id="4cdaa372-82b0-45fc-8e80-dd72411889ee">2022-12-22</avaldamineKuupaev>
+							<RTartikkel id="70001439-3f49-4bb5-b6a0-3d619406e361">5</RTartikkel>
+							<aktViide id="1564c066-acbb-4fcb-9acd-b8d1cbe6b7fb">422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine id="fed5c205-ba8a-440a-bb95-a02605cb1ac8">2023-01-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para13lg7p1">
+						<alampunktNr id="aadca8bd-c08f-4e6f-bc66-d4009a89a055">1</alampunktNr>
+						<kuvatavNr id="3a0138e3-08b7-4ba9-b0ba-0da6c6c64f73"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="59ef65b4-300a-4258-85d3-a6178e268f6c">
+							<tavatekst id="3b64e66a-78f8-45ed-a3f5-af122cd2dd47">eluruumi sotsiaalselt põhjendatud norm igale pereliikmele on 18 m<sup>2</sup>, millele lisandub 15 m<sup>2</sup> kogu pere kohta;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="f32d5168-9358-484c-91d5-6e4094b966ee">
+							<aktikuupaev id="a8c780ab-187c-4633-9638-cfe026be50eb">2022-12-15</aktikuupaev>
+							<avaldamismarge id="5b755a7c-7672-4a02-b131-8eee0ab663e8">
+								<RTosa id="5993dd60-9f34-4a14-accc-adcc4b22d85e">RT IV</RTosa>
+								<avaldamineKuupaev id="3952364d-f45c-4d74-b02c-2562d8039350">2022-12-22</avaldamineKuupaev>
+								<RTartikkel id="203ec4c0-024f-4fdc-a497-d07210987e16">5</RTartikkel>
+								<aktViide id="d4b19a63-1e54-48df-ab80-c1b4f3360225">422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine id="55edc217-9192-40f2-97ff-7ea03c2c5b12">2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para13lg7p2">
+						<alampunktNr id="06420a01-8e46-44b2-b620-3aa0212f1d6d">2</alampunktNr>
+						<kuvatavNr id="1d4be8bc-3829-4c6a-9be7-7fd3ed611b45"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="5706fa53-0be4-490f-9d93-9401d1545fc8">
+							<tavatekst id="c1ec623b-ecee-41fb-8ede-6dcf8833f5d5">üksinda elava pensionäri ning osalise ja puuduva töövõimega inimese puhul võib abi määramisel arvestada eluruumi sotsiaalselt põhjendatud normiks kuni 51 m<sup>2</sup>.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="f83aa5e1-e800-45f8-abf8-121af561bccd">
+							<aktikuupaev id="11ad129f-511d-4940-8ed8-0df0b4478209">2022-12-15</aktikuupaev>
+							<avaldamismarge id="7b244367-6cf2-471e-9a85-8d9193e19e30">
+								<RTosa id="5c68db90-9cfd-489c-99aa-52d51bed7af2">RT IV</RTosa>
+								<avaldamineKuupaev id="551901cb-7b0f-4098-8775-2b037f257d4b">2022-12-22</avaldamineKuupaev>
+								<RTartikkel id="54ce3106-90c4-4ba0-ba5a-8b7d23282a07">5</RTartikkel>
+								<aktViide id="f893925e-626f-47cf-8b64-92a7e5a3cc93">422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine id="28701172-8763-4a19-b7b0-b39fdd8a8172">2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para13lg8">
+					<loigeNr id="f573dcd6-0457-4496-adb3-6bdb378e1b84">8</loigeNr>
+					<kuvatavNr id="6fe0e26f-e28c-4571-a3b2-3ff8be551066"><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst id="c7be02df-35e5-45b8-8f84-991561e3a077">
+						<tavatekst id="adca07a3-7ee8-4e72-9f61-21d4ac4d1106">Eluaseme soetamiseks võetud laenu tagasimakseid käsitletakse inimese või perekonna netosissetulekust maha arvestamisel üüriga sarnastel alustel.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="dc95a770-8d94-409a-9d12-03e008ae402a">
+						<aktikuupaev id="973f0a83-6e81-401a-9898-ee863c0ecb15">2022-12-15</aktikuupaev>
+						<avaldamismarge id="aae9ef91-d27a-40d9-b125-88713f6844fe">
+							<RTosa id="95f0b2e5-0afa-4a64-a7e1-9fbe0ce55d7f">RT IV</RTosa>
+							<avaldamineKuupaev id="e81f8518-7431-45b9-80eb-1fc25da0d1fd">2022-12-22</avaldamineKuupaev>
+							<RTartikkel id="58307416-5e22-4d0b-b291-dea71ada9b20">5</RTartikkel>
+							<aktViide id="525ccb4f-d3a7-4bab-8f38-82dd1c88f626">422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine id="5a3f06d5-3417-448c-ac72-bee170319361">2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para13lg9">
+					<loigeNr id="2a4c9c69-8d46-40b1-bee2-b776cb1142ef">9</loigeNr>
+					<kuvatavNr id="b6c47a9e-30e1-4c46-a870-8b12130c4293"><![CDATA[(9)]]></kuvatavNr>
+					<sisuTekst id="c87d0518-7b38-4fe8-b269-333b9e899763">
+						<tavatekst id="bb262581-ac28-4664-a696-08b189674257">Abi andmisel võetakse eluasemega seotud kulud aluseks ainult juhul, kui inimene esitab taotlemisel tõendid, mis tõendavad:</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="a0bd320f-a68d-4631-8685-89966b13d52f">
+						<aktikuupaev id="5a98c2ae-20e8-4c58-a58c-f52fb3d03e14">2022-12-15</aktikuupaev>
+						<avaldamismarge id="102a5fea-accd-46c1-b295-64b8f243f320">
+							<RTosa id="629c9025-14e8-457a-ad49-581a7733ef2e">RT IV</RTosa>
+							<avaldamineKuupaev id="5f012aa4-1526-4ea5-934e-92a617d6b6be">2022-12-22</avaldamineKuupaev>
+							<RTartikkel id="0dc8d042-7b44-4f4e-b20f-d0ceb2494570">5</RTartikkel>
+							<aktViide id="3a075c54-e8b9-4366-ada8-0313229e61d0">422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine id="254cc9bc-b419-4ce2-8b1c-6cd975849f7e">2023-01-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para13lg9p1">
+						<alampunktNr id="51a02396-1166-4e9b-be35-a011875a9d67">1</alampunktNr>
+						<kuvatavNr id="657445e1-0fe4-4193-b2a7-218af892e773"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="c975036a-a814-4b96-a663-4655182d3409">
+							<tavatekst id="d1241bff-0c83-4dda-8a80-5c076ba0c9c4">eluruumi kasutamise õigust – need esitatakse esmapöördumisel ning eluruumi kasutamise õigusliku aluse muutumisel;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="0d5a5cc4-7d18-4422-a821-17465d60d378">
+							<aktikuupaev id="139bc0c8-ec3a-4ee2-bcae-f8de9d53a626">2022-12-15</aktikuupaev>
+							<avaldamismarge id="9dc0ccaa-cbff-4aa6-92b2-57a733eca889">
+								<RTosa id="c9c99161-ae1d-47fe-a029-03a2310c902f">RT IV</RTosa>
+								<avaldamineKuupaev id="846ef6d0-1cd6-457b-87d0-975b26c36461">2022-12-22</avaldamineKuupaev>
+								<RTartikkel id="47181054-85b6-4e50-8e69-57fe6f93a1cc">5</RTartikkel>
+								<aktViide id="48dea85d-cade-4569-a0c5-11ebe2246048">422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine id="23f79f30-3aae-482d-890a-cbbad9454b26">2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para13lg9p2">
+						<alampunktNr id="35e56b6c-7105-4261-a7d0-474bc50b9041">2</alampunktNr>
+						<kuvatavNr id="21a74171-fa00-4c27-a61e-120d96c1c8f3"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="c3d91e59-b727-4171-bcb4-2402fb3b4b6e">
+							<tavatekst id="fb2e05bd-0c28-4bb0-a651-6a48147cd9c0">jooksval kuul tasumisele kuuluvaid eluasemekulusid.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="b0d595b9-de31-4cff-97df-dbc0122c5563">
+							<aktikuupaev id="cda92c18-5436-45de-a80d-b4ff1e1f01eb">2022-12-15</aktikuupaev>
+							<avaldamismarge id="fd446f12-a208-466a-ac99-043a77ffd307">
+								<RTosa id="5c6dca09-5e44-46cc-a94a-87bbd8126a6c">RT IV</RTosa>
+								<avaldamineKuupaev id="03249ac2-b94d-4199-868d-0d201105e4c7">2022-12-22</avaldamineKuupaev>
+								<RTartikkel id="e049aeac-1d7c-43ef-88ed-a9a6ca4be081">5</RTartikkel>
+								<aktViide id="8461b751-7d0e-4e78-b246-97f06e66095e">422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine id="ca52e205-e737-472a-99f4-4f04124638cb">2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para13lg10">
+					<loigeNr id="fa349ef3-807c-4ba9-94a7-14556909dcc0">10</loigeNr>
+					<kuvatavNr id="d9eb89b3-bbbb-42ea-8e5a-00685879a81c"><![CDATA[(10)]]></kuvatavNr>
+					<sisuTekst id="e1530396-e5dd-414c-afe8-8bbb6acdca17">
+						<tavatekst id="299333ae-2a1f-4c63-adf0-269da791ad67">Kui taotleja soovib, et abi määramisel võetakse eluasemega seotud kuluna arvesse rahvastikuregistrisse kantud eluaseme soetamiseks võetud laenu tagasimakse, lisab ta esmapöördumisel või laenulepingu muutmisel taotlusele dokumendid, mis tõendavad:</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="eccc2bb9-3a84-440d-ba59-644ab2945cd6">
+						<aktikuupaev id="2af0cb05-9097-44f2-8fe1-4c7c594e93dd">2022-12-15</aktikuupaev>
+						<avaldamismarge id="3cadbe30-cb77-4028-ba47-322c1a5bfce1">
+							<RTosa id="631d8373-1ae9-49cf-86e5-00c5c4e12b98">RT IV</RTosa>
+							<avaldamineKuupaev id="37ceb77f-e172-46de-a0b3-e38b0ee81e6b">2022-12-22</avaldamineKuupaev>
+							<RTartikkel id="d06fc0cd-98f6-4df0-8e3e-9b92d2088e8a">5</RTartikkel>
+							<aktViide id="c45a9ab8-e220-4e6c-8bc3-57ceab7db9a4">422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine id="fcee48b2-0032-400b-a1f2-36bbcabe319f">2023-01-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para13lg10p1">
+						<alampunktNr id="54a707c9-8760-48e5-9cfc-96cbce6f0416">1</alampunktNr>
+						<kuvatavNr id="c8d8ade6-0b7b-418c-89cf-9db6eb7610b8"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="0b375faf-ef72-4e46-b760-be21e7dd987d">
+							<tavatekst id="5e5f08f3-6e5b-4ccd-ad6f-21e58822fcca">eluaseme soetamiseks laenu võtmist ja kohustusliku eluasemekindlustuse lepingu sõlmimist;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="233d2d1a-9117-433a-9033-2738559f4a45">
+							<aktikuupaev id="94eb3590-3bbe-4b31-bded-c8a51075a2c3">2022-12-15</aktikuupaev>
+							<avaldamismarge id="6ad67607-f6fd-4380-b659-35e1f9d680e8">
+								<RTosa id="e4ddbfb2-e858-431f-a60e-7063bfdebef3">RT IV</RTosa>
+								<avaldamineKuupaev id="26bc7210-ac20-4067-9844-7d6b27a5dbbf">2022-12-22</avaldamineKuupaev>
+								<RTartikkel id="d60b48a3-fc04-4f79-9cc9-56f0df360970">5</RTartikkel>
+								<aktViide id="05ee80e0-af4a-4848-8b69-3fae2b93870f">422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine id="c526ea51-3ca4-4a90-a11f-ec611a60baba">2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para13lg10p2">
+						<alampunktNr id="ba1276f4-5314-4683-ba40-7b31b486f15f">2</alampunktNr>
+						<kuvatavNr id="b1d44fc1-f1f9-465a-9c51-b7bc6fcfda46"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="93e3f01b-1b6e-421f-a0d7-fdf538d7e371">
+							<tavatekst id="a61330bb-d99f-4cf1-9522-fac2cb017ce7">laenu võtja on abi taotleja ise või tema pereliige;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="c7dc46e4-e381-44b2-886d-3d94f0f2f16a">
+							<aktikuupaev id="070c7cd4-5347-4ff2-9c9f-82e596350980">2022-12-15</aktikuupaev>
+							<avaldamismarge id="84c4f5e6-c7b0-42b1-8bfe-61c5a6d9a0d8">
+								<RTosa id="d81c1e2a-2337-4437-9bf7-6e42bb77a32e">RT IV</RTosa>
+								<avaldamineKuupaev id="5a1aa5b7-0702-40af-a783-af545fd9a802">2022-12-22</avaldamineKuupaev>
+								<RTartikkel id="78d742ba-53df-4ed4-90e0-01fc3dface9b">5</RTartikkel>
+								<aktViide id="0e841afa-05c3-4861-80ff-79d1b7ada5b0">422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine id="c03edeeb-4ae0-4fa1-8f2b-a12393ba5f1b">2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para13lg10p3">
+						<alampunktNr id="382f4016-1d0f-49e9-820a-5c40900d9977">3</alampunktNr>
+						<kuvatavNr id="79719929-0104-42fe-a7c8-c27f964d47cd"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="7f704426-cbad-4b92-921e-5c20751b1166">
+							<tavatekst id="4830db78-db5f-474a-8613-e04545793f5a">maksepuhkuse kasutamist või maksepuhkuse andmisest keeldumist;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="d502c259-efae-4c85-9875-432bd9437938">
+							<aktikuupaev id="88ed0f77-f417-4d21-99c9-9136071424be">2022-12-15</aktikuupaev>
+							<avaldamismarge id="282e5a68-02d0-4a3c-8bd0-3233e9fd43e8">
+								<RTosa id="8510c3e8-c164-49c3-b640-e24f5a0966e9">RT IV</RTosa>
+								<avaldamineKuupaev id="73b4c581-4f4f-4f95-b784-e76bc70ba2d8">2022-12-22</avaldamineKuupaev>
+								<RTartikkel id="ea66efb4-c86d-4acd-8df2-3cdaeda5daf3">5</RTartikkel>
+								<aktViide id="978147d9-46a5-479a-94c5-5bb5719dd026">422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine id="0b91af2b-1665-415b-9fb4-4839fb05ec60">2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para13lg10p4">
+						<alampunktNr id="379ddad2-13bd-4c39-9f88-447e0607be6d">4</alampunktNr>
+						<kuvatavNr id="493ff084-42ec-41b0-af49-c68a93737cef"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="d710c47a-732f-4b54-8ff3-d9faede36f4d">
+							<tavatekst id="9ccdacba-989b-413f-ab39-614236f339ed">vabatahtliku kindlustuse olemasolu ning seda, kas see katab täies ulatuses eluaseme soetamiseks võetud laenu tagasimakset.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="af148694-d10b-4425-aba9-a012748bf00d">
+							<aktikuupaev id="e3e971ef-d9ba-41c2-9e73-888395aa2806">2022-12-15</aktikuupaev>
+							<avaldamismarge id="5a64b07c-abd4-4fa9-9a2d-337c6f9e2934">
+								<RTosa id="1ed7a64b-b06d-4295-b4a3-8dd0eccd7454">RT IV</RTosa>
+								<avaldamineKuupaev id="e5ca4e00-51ae-4ccd-95d6-e3fa1a1b5aec">2022-12-22</avaldamineKuupaev>
+								<RTartikkel id="26409971-77e0-4644-b68d-86bb3f562b15">5</RTartikkel>
+								<aktViide id="fa069ef1-753d-4720-b024-ad5ccec16c89">422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine id="a03d61fe-8ba8-44be-8139-0c9cf9436364">2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para13lg11">
+					<loigeNr id="6c29b81c-3dd2-4f44-a02f-ace5e762afb4">11</loigeNr>
+					<kuvatavNr id="c4338676-35d4-4fda-a09d-58bb5fc3e6e1"><![CDATA[(11)]]></kuvatavNr>
+					<sisuTekst id="382346d8-7085-4a89-b61d-4893fcc0e2f6">
+						<tavatekst id="f58d62c1-76ff-415e-94f3-a4570124e396">Abi määramisel ei võeta eluasemega seotud kuluna arvesse üüri, kui üürile andja ja üürnik on omavahel abielus või esimese ja teise astme alanejad ja ülenejad sugulased.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="6712f075-1dd2-4c51-8739-f4b07957fc0a">
+						<aktikuupaev id="6308b296-b56b-48a2-9798-5ad840255105">2022-12-15</aktikuupaev>
+						<avaldamismarge id="9c8f936d-f926-4927-a0f3-3a3c608a59d1">
+							<RTosa id="4bb0691f-1c75-487e-a585-bdc1eb081f34">RT IV</RTosa>
+							<avaldamineKuupaev id="4b2ad9e3-cf0f-4056-9d2d-380eb70e4c52">2022-12-22</avaldamineKuupaev>
+							<RTartikkel id="003fe61a-bb36-40c2-8f2a-9bc053fb8907">5</RTartikkel>
+							<aktViide id="71484a88-7c23-471d-b57a-3a4a468bcce4">422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine id="ba4a1471-3200-4e34-a153-a1b4e0c201a8">2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="pt5">
+			<peatykkNr id="a14cec97-b3b6-432d-918d-c0ccdb5ce127">5</peatykkNr>
+			<kuvatavNr id="cd6e93d7-8f71-4903-8e22-5b295a65b6de"><![CDATA[5. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="539dbc5b-feac-4c80-b04b-7b8e31440af3">Rakendussätted</peatykkPealkiri>
+			<paragrahv id="para14">
+				<paragrahvNr id="14cc3200-ef25-4e2c-b710-b5b7b27a74b4">14</paragrahvNr>
+				<kuvatavNr id="872553d8-b402-48f6-9e4f-fcdc35d16bc3"><![CDATA[§ 14. ]]></kuvatavNr>
+				<paragrahvPealkiri id="15c063a3-074f-40ad-ad4a-8e9101145a5f">Rakendussätted</paragrahvPealkiri>
+				<loige id="para14lg1">
+					<loigeNr id="b34568e7-c159-4c9d-b770-aabc797964f7">1</loigeNr>
+					<kuvatavNr id="b514e953-09fc-4736-b7c3-e8718be2e2d8"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="311da5e7-0347-4e97-8273-ba196d6461c3">
+						<tavatekst id="fbb73ab8-dc61-454d-a619-294f1bf03ab9">Abi andmist täpsemalt
+reguleerivate õigusaktide ning teenuste hindade kehtestamiseni rakendatakse sotsiaalteenuste
+osutamist ja sotsiaaltoetuste maksmist reguleerivaid linna õigusakte ulatuses,
+mis ei ole vastuolus korraga. Enne korra jõustumist antud haldusaktid ja
+sõlmitud teenuse osutamise lepingud kehtivad teenuse osutamise lõppemiseni või
+määratud tähtajani.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para14lg2">
+					<loigeNr id="af1eca13-4a69-4859-ac94-7ceb619e69a6">2</loigeNr>
+					<kuvatavNr id="6390fd7e-c9ba-40e1-831b-9cbf9b397d50"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="d0540eb7-7c44-4bc2-b96d-c1b090d3f33b">
+						<tavatekst id="cb3e684b-ae8e-438f-bd33-947efd25f254">Sissetulekust sõltuvat toetust toimetuleku tagamiseks määratakse kuni 1. aprillini 2023 järgmistel tingimustel:</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="993cc47e-20d5-4019-af49-2fe4d07b0117">
+						<aktikuupaev id="254b3042-7b75-458d-bbde-049b3d6228bf">2022-12-15</aktikuupaev>
+						<avaldamismarge id="cbc960d7-6eb7-4f98-869e-1ba810953b25">
+							<RTosa id="e725ca6e-d817-450d-8bf0-4bfbb3616dee">RT IV</RTosa>
+							<avaldamineKuupaev id="ce8637c8-a34d-4db9-82e5-0dc858a2ed44">2022-12-22</avaldamineKuupaev>
+							<RTartikkel id="e9d35c85-a2f9-4dab-adfb-94e30168227b">5</RTartikkel>
+							<aktViide id="d6fa2619-4bbb-4bed-809b-bf75ce42ad37">422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine id="fa340a17-2b11-482c-8bf5-5344a5b9072f">2023-01-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para14lg2p1">
+						<alampunktNr id="af5e067e-5210-45cd-b121-1748cb4dde67">1</alampunktNr>
+						<kuvatavNr id="af83df99-ae28-4180-8381-86e5d6976aaf"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="98eb1ed0-2dff-467f-8388-a9fafaea3fc3">
+							<tavatekst id="a4252014-6c50-430d-b95c-5e57f9e851cc">toetust on õigus saada juhul, kui perekonna netosissetulek esimese pereliikme kohta on väiksem kehtivast töötasu alammäärast kuus ja iga järgmise pereliikme kohta väiksem kui 80% kehtivast töötasu alammäärast kuus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para14lg2p2">
+						<alampunktNr id="0889a006-cf46-48a1-a886-895e04dee1a9">2</alampunktNr>
+						<kuvatavNr id="2d6e1a10-5645-48c1-beb6-c30416511231"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="ad9c9799-54e3-43e1-bb92-95650f234401">
+							<tavatekst id="c7e1ee66-75ed-4b72-9ed6-0e79535ee37d">perekonna sissetulekuna võetakse arvesse taotlusele eelnenud kuul laekunud netosissetulek, ebaregulaarse sissetuleku puhul võetakse arvesse taotlusele eelnenud kuue kuu keskmine netosissetulek;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="ec00e41b-40eb-438d-b7b0-9dc71a74fcc8">
+							<aktikuupaev id="fdfe4c39-490b-48ff-a11a-3f6e092fa32a">2022-12-15</aktikuupaev>
+							<avaldamismarge id="0bf8212f-9414-4dba-a74e-5e6dcf1a9790">
+								<RTosa id="4cab8c2b-cd96-4276-b559-c7e15a02d549">RT IV</RTosa>
+								<avaldamineKuupaev id="ccf2f107-2d0c-4915-953d-889460f352e3">2022-12-22</avaldamineKuupaev>
+								<RTartikkel id="347843db-d01a-4f52-b4ed-00a348f4a955">5</RTartikkel>
+								<aktViide id="9680e3ac-9c2a-41ed-939a-cd0d2c331d69">422122022005</aktViide>
+							</avaldamismarge>
+							<joustumine id="3fe01966-6aa9-4a2f-8030-baf44e22ccd3">2023-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para14lg2p3">
+						<alampunktNr id="e9f2f2c1-9d6b-470a-8ee4-6b66d590a3d1">3</alampunktNr>
+						<kuvatavNr id="9e34d6c5-17fe-4247-bc8a-ddc4f0eefd5b"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="ce36535c-80d3-437a-a1b3-2de6803a0410">
+							<tavatekst id="9fce117f-768e-4845-bbb5-f87127d6bff7">perekonna sissetuleku hulka arvestatakse ka taotlejast eraldi elava perekonnaliikme sissetulekud juhul, kui ta on taotlejaga või taotlejaga koos elava perekonnaliikmega abielus või on perekonnaseaduse järgi kohustatud ülal pidama taotleja või taotlejaga koos elava perekonnaliikme alaealisi lapsi;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para14lg2p4">
+						<alampunktNr id="044fbfaf-0140-4c92-a5c8-159d1086a0c4">4</alampunktNr>
+						<kuvatavNr id="5b6f0211-5b95-43ba-8dd6-7b2d11daa77a"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="4f692586-7c70-41bf-9684-778f269bc4a6">
+							<tavatekst id="1537a3a2-6c63-4e53-a178-b1121fdfa042">perekonna sissetuleku hulka ei arvata riigi- ja linnaeelarve vahenditest makstavaid ühekordseid sotsiaaltoetusi.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para14lg2b1">
+					<loigeNr id="4a8de0a7-1a86-439f-b07d-ad9614edf2c2" ylaIndeks="1">2</loigeNr>
+					<kuvatavNr id="1b858bc8-ed6b-4851-874d-f0f2b736c41e"><![CDATA[(2<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst id="becae160-22f1-43d6-a6b6-0bdd9ec687a9">
+						<tavatekst id="958903c5-345b-4512-9827-93ef99fae83e">Alates 1. aprillist 2023 määratakse sissetulekust sõltuvat toetust toimetuleku tagamiseks, lähtudes käesoleva määruse §-s 13 sätestatust ja sotsiaaltoetuste maksmist reguleerivas õigusaktis toodud erisustest.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="47ae2f6c-4a55-45f0-9c84-2867b02ec3b7">
+						<aktikuupaev id="52b82f72-0490-4ddc-8748-1ceb9e30ab08">2022-12-15</aktikuupaev>
+						<avaldamismarge id="566baefa-35ec-4da6-9dda-b08d9718f30d">
+							<RTosa id="c1a4bf87-553a-44a0-9c23-b378232adee1">RT IV</RTosa>
+							<avaldamineKuupaev id="d742df1e-03ab-4063-8f2a-ba83320cd240">2022-12-22</avaldamineKuupaev>
+							<RTartikkel id="97598437-254f-409b-bac2-47fa86881252">5</RTartikkel>
+							<aktViide id="fe826893-de27-4024-9208-0aa444c4c92f">422122022005</aktViide>
+						</avaldamismarge>
+						<joustumine id="95022143-396f-48b0-affc-ce5983e5b06d">2023-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para14lg3">
+					<loigeNr id="97746a15-1cb1-4f9c-8fa7-c9398de2aa5c">3</loigeNr>
+					<kuvatavNr id="1705a3ad-73ea-4ae8-b5f4-a8aa46621acf"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="7dc7e2cb-2eed-4f31-a4aa-734681845620">
+						<tavatekst id="e693ef9b-d852-43aa-b0e7-2afd673ca6bc">Linnavalitsus kehtestab:</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="07596b90-5c7e-4b1d-aec1-236b47d694bf">
+						<aktikuupaev id="f4c2bf0a-1cd9-434a-a6b4-52642c6e3f9e">2023-04-20</aktikuupaev>
+						<avaldamismarge id="225b9f79-7cc6-4094-9da7-df49f87f8724">
+							<RTosa id="08af9009-7050-415c-8b85-e0d921c5c72a">RT IV</RTosa>
+							<avaldamineKuupaev id="3c1706ee-6a6a-4a68-80b6-c7091c27c202">2023-04-27</avaldamineKuupaev>
+							<RTartikkel id="c09120a5-8369-4459-9cfd-e00ba2890a54">10</RTartikkel>
+							<aktViide id="a5412dab-8300-4bc4-b612-40be768020a1">427042023010</aktViide>
+						</avaldamismarge>
+						<joustumine id="3398427a-d0d3-483a-ae6b-0d4e4fb24ecc">2023-04-30</joustumine>
+					</muutmismarge>
+					<alampunkt id="para14lg3p1">
+						<alampunktNr id="ac53464b-8061-4748-86ce-495b1421fd5f">1</alampunktNr>
+						<kuvatavNr id="d4125b01-0de3-4758-b237-02bb82614199"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="3c29fca2-3d6a-416b-bcfe-6cac65671dfb">
+							<tavatekst id="e7abb8a1-346a-42bf-9068-cae850cc941c">sissetulekust sõltumatute universaaltoetuste määrad;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="5c7ba723-10d0-4fd2-80f2-41d0afa577c4">
+							<aktikuupaev id="ccd5f337-737b-4129-bc03-bc0bcd473d62">2023-04-20</aktikuupaev>
+							<avaldamismarge id="29bcb96e-7911-47bf-a85d-a58ed9264fdd">
+								<RTosa id="ef546f7b-4c73-4be9-89c7-85e31acafc9b">RT IV</RTosa>
+								<avaldamineKuupaev id="f616b0ca-3b80-4431-8d3e-e3350f79dbc7">2023-04-27</avaldamineKuupaev>
+								<RTartikkel id="72c7cf57-00d4-4ee4-9bba-06ddad7970dc">10</RTartikkel>
+								<aktViide id="e7010b57-9e6d-47dd-98ff-52812d02003c">427042023010</aktViide>
+							</avaldamismarge>
+							<joustumine id="55d289c1-a924-45e4-b23b-13cc94da8b1e">2023-04-30</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para14lg3p2">
+						<alampunktNr id="d978e054-95b0-409f-afc9-8efdcc3e3420">2</alampunktNr>
+						<kuvatavNr id="9d319afe-2829-49ec-bbce-95626f1c7ed5"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="952888ea-9501-466e-be8f-d8b1e3b751e4">
+							<tavatekst id="67f9ae13-abaa-4e51-a183-7f2158f6783f">sissetulekust sõltuvate universaaltoetuste maksimaalmäärad kalendriaastaks.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="f1966f6b-7580-45e3-a974-d0b06d4e5497">
+							<aktikuupaev id="14a3afe4-50fb-477b-a1f0-3e35d24f6a47">2023-04-20</aktikuupaev>
+							<avaldamismarge id="7613076c-d99b-4f2e-b871-c18bd80fedd7">
+								<RTosa id="81500505-2bda-4c52-a1de-3ee37c0fb989">RT IV</RTosa>
+								<avaldamineKuupaev id="f4d51161-7798-4c71-b3b0-7584565132cb">2023-04-27</avaldamineKuupaev>
+								<RTartikkel id="851c4c7c-40ab-4743-ba9d-36e69c76dd9d">10</RTartikkel>
+								<aktViide id="404b5a15-2109-47a6-9fd6-de53102b0735">427042023010</aktViide>
+							</avaldamismarge>
+							<joustumine id="c36079b2-674b-4635-835b-cdfa1e9e89a3">2023-04-30</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para14lg4">
+					<loigeNr id="698480e4-85c0-4123-bdcf-ae388ddb4e6d">4</loigeNr>
+					<kuvatavNr id="1a948809-39d9-440d-8ecc-797f777d2e0f"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="daea59e3-c0de-47e8-89fc-f11709889770">
+						<tavatekst id="27ccd076-a6d1-4315-a3a0-1796f639bded">Tallinna Sotsiaal- ja Tervishoiuamet kehtestab sotsiaalhoolekandelise abi taotluse ja sissetulekust sõltumatute universaaltoetuste taotluse andmekoosseisu.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="389c0921-6a8d-4b22-ade9-b92f1f82d7cb">
+						<aktikuupaev id="700c90b7-0b36-414e-bc20-bf7bb551714a">2023-04-20</aktikuupaev>
+						<avaldamismarge id="a629584f-ee25-427b-bdaf-c34fa7aca0df">
+							<RTosa id="1f7d91de-2118-4509-b1d6-a15e56939d2f">RT IV</RTosa>
+							<avaldamineKuupaev id="26f7d7c7-77d8-4a00-b0ed-5ef7a496717c">2023-04-27</avaldamineKuupaev>
+							<RTartikkel id="20ac0f13-f70b-430b-90f9-4a5c9bef2732">10</RTartikkel>
+							<aktViide id="0c91b73e-6b05-4c0d-908c-95b992efe54c">427042023010</aktViide>
+						</avaldamismarge>
+						<joustumine id="2eb2a8cb-7b46-4db4-b2c9-0109add33265">2023-04-30</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para15">
+				<paragrahvNr id="ec3de6a6-e498-4d55-aaf3-fe98fc33ef1c">15</paragrahvNr>
+				<kuvatavNr id="c2fa589d-8be1-4309-9b97-297b884a8c42"><![CDATA[§ 15. ]]></kuvatavNr>
+				<paragrahvPealkiri id="2d9f171f-e2dd-4381-a1e9-06b0caace2d3">Määruste kehtetuks tunnistamine</paragrahvPealkiri>
+				<loige id="para15lg1">
+					<sisuTekst id="4e43d4da-9db3-45b1-86b1-5298b9ad0ac4">
+						<tavatekst id="68df3b72-e34c-4379-ab88-7f4f6c76ffa5">[Käesolevast tekstist välja jäetud.]</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para16">
+				<paragrahvNr id="ca5821ab-3b1e-436b-92f3-a077dd97a7fa">16</paragrahvNr>
+				<kuvatavNr id="bc88b5f8-38ad-4612-990b-4ad02330e100"><![CDATA[§ 16. ]]></kuvatavNr>
+				<paragrahvPealkiri id="44a2e382-b0e4-4cce-894b-d220dde8dc10">Määruse jõustumine</paragrahvPealkiri>
+				<loige id="para16lg1">
+					<loigeNr id="4a9dff58-5d76-43b4-8ae1-69ee6678eaf6">1</loigeNr>
+					<kuvatavNr id="f18ed697-485f-4b7d-b8de-f734fafa0b0b"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="b4efcc5a-a0e9-4c70-a87a-ce19d2d10819">
+						<tavatekst id="2ec3b8a0-685d-4f17-a700-9773437acfcb">Määrus jõustub 1. jaanuaril 2022.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para16lg2">
+					<loigeNr id="b5d53465-ec63-4f05-bf82-dc99e4c65d0e">2</loigeNr>
+					<kuvatavNr id="50ee5873-61c5-4f0e-9ebd-f8f6587c206a"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="026d493a-f371-42e4-932b-c146fb58df8f">
+						<tavatekst id="2c911c45-3ea9-4b80-ae6d-bf49cf8b11e3">Käesoleva
+määruse § 9 jõustub 1. juulil 2022.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para16lg3">
+					<loigeNr id="fcff5da3-196f-4b61-a1ef-2988b40523b0">3</loigeNr>
+					<kuvatavNr id="6ae90f81-f71e-4c72-94fb-29ecc9feadcd"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="fcbfca4a-678b-4a06-9eb7-fe6801de671e">
+						<tavatekst id="95367a32-027e-4ab0-9074-fbbaf324ab5e">Käesoleva määruse § 13 jõustub 1. jaanuaril 2023. </tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+	</sisu>
+</oigusakt>

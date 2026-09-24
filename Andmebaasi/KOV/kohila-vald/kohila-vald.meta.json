@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-kohila-vald",
+  "document_id": "kov-kohila-vald",
+  "municipality": "Kohila vald",
+  "municipality_id": "kohila_vald",
+  "county": "Raplamaa",
+  "checkedAt": "2026-04-29",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-kohila-vald",
+  "coverage": {
+    "services": 8,
+    "benefits": 18,
+    "resources": 28,
+    "contacts": 6,
+    "forms": 11,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "kohila_vald",
+    "source_register_file": "kohila-vald.sources.json",
+    "service_benefit_resource_items": 54,
+    "items_with_source_keys": 54,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 8,
+    "items_without_related_forms": 46,
+    "items_with_related_contacts": 27,
+    "items_without_related_contacts": 27,
+    "form_sources": 1,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Kogumine algas Kohila valla avalehelt ning sotsiaalvaldkonna peamine menüüharu oli „Pere, sotsiaal ja tervishoid“.",
+    "RT ja õigusaktide lingid jäeti KOV veebipaketist välja ning need kuuluvad eraldi RT/legal kihti."
+  ],
+  "unresolvedIssues": [
+    "Kohila valla sotsiaalteenuste lehel ei leitud eraldi kinnitatud praktilist infot isikliku abistaja teenuse, varjupaigateenuse, turvakoduteenuse, võlanõustamisteenuse, täisealise isiku hoolduse ja vältimatu sotsiaalabi kui teenuse kohta.",
+    "Hooldajatoetus, hooldusperetoetus, järelhooldustoetus ja vältimatu sotsiaaltoetus on KOV veebis nimetatud, kuid samal lehel puuduvad üksikasjalikud tingimused, summad ja menetluskäik.",
+    "Saunapileti soodustus on kinnitatud vormide lehel oleva avalduse kaudu; toetuse tingimused ja summa ei olnud KOV veebis avaldatud.",
+    "Mitme e-vormi link viib välisesse SPOKU keskkonda; välist SPOKU sisu ei kasutatud allikana ning allikaks jäeti KOV vormide leht.",
+    "Sotsiaalvaldkonna kontaktide e-posti aadressid on KOV veebis varjestatud kujul „**“; neid ei taastatud oletuse põhjal.",
+    "DOCX-vormide faililingid tuvastati KOV vormide lehelt, kuid failide sisu ei kasutatud tingimuste või summade täiendamiseks.",
+    "Väliste teenusepakkujate ja abikanalite veebilehti ei kasutatud allikana; andmed pärinevad KOV lehel avaldatud tekstist.",
+    "Parkimiskaardi, eluruumi kohandamise toetuse ja puudega täisealise inimese eraldi toetuse kohta ei leitud KOV sotsiaalvaldkonna veebikihist eraldi praktilist kinnitust."
+  ],
+  "municipality_name": "Kohila vald",
+  "checked_at": "2026-04-29",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "kohila-vald.sources.json",
+  "sourceCount": 17,
+  "counts": {
+    "services": 8,
+    "benefits": 18,
+    "resources": 28,
+    "contacts": 6,
+    "forms": 11,
+    "regulations": 0
+  },
+  "warnings": [
+    "2 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

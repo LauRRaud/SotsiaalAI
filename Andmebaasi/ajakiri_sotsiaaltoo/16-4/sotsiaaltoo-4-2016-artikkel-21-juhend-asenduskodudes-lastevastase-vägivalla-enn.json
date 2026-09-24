@@ -1,0 +1,82 @@
+{
+  "docId": "sotsiaaltoo-4-2016",
+  "articleId": "sotsiaaltoo-4-2016-artikkel-21-juhend-asenduskodudes-lastevastase-vägivalla-enn",
+  "title": "Juhend asenduskodudes lastevastase vägivalla ennetamiseks ja vähendamiseks",
+  "authors": [
+    "Julia Kovalenko"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2016",
+  "section": "Projekt/koolitus",
+  "pageRange": "105-107",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "SOS Lasteküla Eesti Ühingu lapse õiguste nõunik Julia Kovalenko tutvustab sotsiaalministeeriumi 2015. aasta hanke tulemusena valminud juhendit lastevastase vägivalla ennetamiseks ja vähendamiseks asenduskodudes. Neljast osast koosnev juhend tugineb lastekaitseseaduse §-le 24, ÜRO lapse õiguste konventsioonile ja asendushoolduse juhistele ning ühingu 2013. aasta uuringule „ÜRO asendushoolduse juhiste rakendamine Eestis”, mis näitas, et laste omavaheline vägivald on üsna levinud ja kasvatusala töötajad ei märka seda alati. Juhendi tutvustamiseks korraldati neli seminari ligi 70 osalejale.",
+  "tags": [
+    "projekt",
+    "asenduskodu",
+    "lastevastane vägivald",
+    "ennetus",
+    "sos lasteküla",
+    "juhend"
+  ],
+  "source_type": "file",
+  "source_path": "2016_4_artikkel_21_juhend_asenduskodudes_lastevastase_vagivalla_ennetam.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-21-juhend-asenduskodudes-lastevastase-v-givalla-enn",
+  "source_sha256": "1740514bcae0c3ae310835e20d4b9c686c894dfed233fd5767f1c33d5ffffa3d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-21-juhend-asenduskodudes-lastevastase-v-givalla-enn",
+    "previous_source_path": "2016_4_artikkel_21_juhend_asenduskodudes_lastevastase_vagivalla_ennetam.txt",
+    "previous_source_original_path": "4-2016.pdf",
+    "reference_stored_source_sha256": "f2e000d61de9529813eaaf59b15843441bfc61f674d2d853ec425a201ed7b899",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf",
+      "source_sha256": "0f07da03ffde36588435e96f8dda0f52a8140fbf9cc4201bb95e85b594e03fc9",
+      "pdf_start_page": 107,
+      "pdf_end_page": 109,
+      "printed_page_range": "105-108",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 110,
+      "source_regions": [
+        {
+          "source_pdf_page": 107,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 108,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 109,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "105-107",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf"
+    },
+    "server_page_range": "105-108"
+  }
+}

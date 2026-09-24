@@ -1,0 +1,80 @@
+{
+  "docId": "sotsiaaltoo-erinumber-2016",
+  "articleId": "sotsiaaltoo-erinumber-2016-artikkel-14-muudatused-rehabilitatsioonisusteemis-kuidas-tuua-vajalikud",
+  "title": "Muudatused rehabilitatsioonisüsteemis: kuidas tuua vajalikud teenused õigel ajal õige inimeseni?",
+  "authors": [
+    "Gerli Aavik"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "erinumber 2016",
+  "section": "Elukeskkond ja teenused",
+  "pageRange": "49-51",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalministeeriumi projektijuht kirjeldab rehabilitatsioonisüsteemi muudatusi: 2016. aasta jaanuarist muutus täiskasvanute rehabilitatsiooniteenus vajaduspõhiseks, ehk lisaks puudele või töövõimetusele hinnatakse ka seda, kas teenus inimest tegelikult aitab.",
+  "tags": [
+    "rehabilitatsioon",
+    "vajaduspõhisus",
+    "töövõimereform",
+    "teenuste korraldus"
+  ],
+  "source_type": "file",
+  "source_path": "2016_eri_artikkel_14_muudatused_rehabilitatsioonisusteemis_kuidas_tuua_va.pdf",
+  "added": "2026-08-18",
+  "fulltext_note": "Erinumber „Sotsiaaltöö ; erinumber 2016\" (DIGAR nlib-digar:390083), pühendatud heaolu arengukavale 2016–2023. Lisatud korpusesse 18.08.2026.",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-14-muudatused-rehabilitatsioonisusteemis-kuidas-tuua-vajalikud",
+  "source_sha256": "452acb6ae93b98dab1c08257f6f24dbbcdff780bf96a64ed24d7ee64a4d7dc96",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-erinumber-2016-sotsiaaltoo-erinumber-2016-artikkel-14-muudatused-rehabilitatsioonisusteemis-kuidas-tuua-vajalikud",
+    "previous_source_path": "2016_eri_artikkel_14_muudatused_rehabilitatsioonisusteemis_kuidas_tuua_va.txt",
+    "previous_source_original_path": "2016_erinumber.pdf",
+    "reference_stored_source_sha256": "7e87cb5d09eb9453e115bcd434daa8339b66784865e0d95ed02f2c320279346e",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2016_erinumber.pdf",
+      "source_sha256": "ae3bbf0a621beae80ae1e05a13206ffa00c6811806397ee8ac925f3762d93c70",
+      "pdf_start_page": 51,
+      "pdf_end_page": 53,
+      "printed_page_range": "49-51",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 53,
+      "source_regions": [
+        {
+          "source_pdf_page": 51,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 52,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 53,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "49-51"
+    },
+    "server_page_range": "49-51"
+  }
+}

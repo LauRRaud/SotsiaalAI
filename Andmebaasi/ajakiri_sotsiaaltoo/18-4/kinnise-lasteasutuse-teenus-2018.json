@@ -1,0 +1,46 @@
+{
+  "docId": "sotsiaaltoo-4-2018",
+  "articleId": "kinnise-lasteasutuse-teenus-2018",
+  "title": "Kinnise lasteasutuse teenus",
+  "authors": [
+    "Egle Välba",
+    "Pille Vaiksaar",
+    "Monika Feofanova"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2018",
+  "section": "Sotsiaaltöö praktika",
+  "pageRange": "41-43",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel selgitab kinnise lasteasutuse teenust viimase abinõuna lastele, kelle käitumine ohustab tõsiselt nende enda või teiste elu ja tervist. Käsitletakse seaduslikke aluseid, teenusele suunamise protsessi, Sotsiaalkindlustusameti rolli, teenuse sihtrühma ning Maarjamaa Hariduskolleegiumi ja Imastu Koolkodu kogemust.",
+  "tags": [
+    "kinnine lasteasutus",
+    "lastekaitse",
+    "riskikäitumine",
+    "õigusrikkumised",
+    "sotsiaalhoolekanne",
+    "Sotsiaalkindlustusamet",
+    "Maarjamaa Hariduskolleegium",
+    "Imastu Koolkodu",
+    "kohtu luba",
+    "peretöö"
+  ],
+  "source_type": "file",
+  "source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part11.pdf",
+  "document_id": "sotsiaaltoo-4-2018-kinnise-lasteasutuse-teenus-2018",
+  "source_format": "pdf",
+  "source_sha256": "0c44c61fdd6b6c4f98aec5b0a72c9b09f5b195e73781a94f0eb92fe14b206881",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2018-kinnise-lasteasutuse-teenus-2018",
+    "previous_source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part11.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "0c44c61fdd6b6c4f98aec5b0a72c9b09f5b195e73781a94f0eb92fe14b206881",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

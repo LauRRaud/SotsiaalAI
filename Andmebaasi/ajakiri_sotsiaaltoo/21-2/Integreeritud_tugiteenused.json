@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-2-2021",
+  "articleId": "integreeritud-tugiteenused-lastele-2021-2",
+  "title": "Integreeritud tugiteenused lastele – ülevaade projekti tulemustest",
+  "authors": [
+    "Eva Liina Kliiman",
+    "Alice Juurik",
+    "Marge Hindriks",
+    "Liina Lokko"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2021",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "11-15",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel võtab kokku pilootprojekti tulemused, kus katsetati erivajadustega lastele suunatud integreeritud tugiteenuste korraldusmudelit. Kirjeldatakse juhtumikorraldaja rolli, valdkondadeülese meeskonnatöö (haridus, sotsiaal, tervis) korraldamist, hindamisprotsessi ja tugiplaani koostamist. Autorid esitavad projekti käigus ilmnenud tugevused ja kitsaskohad, toovad välja lapse- ja peresõbraliku lähenemise eelised ning annavad soovitusi mudeli laiemaks rakendamiseks omavalitsustes.",
+  "tags": [
+    "integreeritud teenused",
+    "laste tugiteenused",
+    "erivajadusega lapsed",
+    "juhtumikorraldus",
+    "võrgustikutöö",
+    "kohalik omavalitsus",
+    "pilootprojekt"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2021_web_link_Part5.pdf",
+  "document_id": "sotsiaaltoo-2-2021-integreeritud-tugiteenused-lastele-2021-2",
+  "source_format": "pdf",
+  "source_sha256": "6b01ba18f4a5f6b625ad57a76e55b2ebc72f1e3145fc87858e62f46d20f647da",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2021-integreeritud-tugiteenused-lastele-2021-2",
+    "previous_source_path": "Sotsiaaltoo_2_2021_web_link_Part5.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "6b01ba18f4a5f6b625ad57a76e55b2ebc72f1e3145fc87858e62f46d20f647da",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

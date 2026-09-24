@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-2-2021",
+  "articleId": "covid-19-mojust-sotsiaaltoo-valdkonna-toojou-ja-oskuste-vajadusele-2021-2",
+  "title": "COVID-19 mõjust sotsiaaltöö valdkonna tööjõu ja oskuste vajadusele",
+  "authors": [
+    "Ave Ungro",
+    "Rain Leoma"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2021",
+  "section": "Analüüs",
+  "pageRange": "93-96",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "OSKA eriuuringul põhinev analüüs COVID-19 kriisi mõjust sotsiaaltöö valdkonna tööjõu- ja oskuste vajadusele. Artikkel käsitleb, kuidas pandeemia mõjutas teenuste korraldust, millised sotsiaaltöö valdkonnad olid kõige suurema surve all ning milliseid uusi oskusi (digipädevus, kriisijuhtimine, paindlik töökorraldus, koostöö tervishoiu ja haridusega) hakati senisest enam väärtustama. Kirjeldatakse lühiajaliselt kasvanud töökoormust, emotsionaalset läbipõlemise riski ning vajadust süsteemse täienduskoolituse, supervisiooni ja parema palgataseme järele. Uuringu põhjal antakse soovitusi poliitikakujundajatele ja tööandjatele, kuidas valmistuda tulevikukriisideks ning tagada sotsiaaltöötajate järelkasv ja motiveeritus.",
+  "tags": [
+    "COVID-19",
+    "tööjõuvajadus",
+    "oskuste vajadus",
+    "OSKA",
+    "sotsiaaltöö",
+    "täienduskoolitus",
+    "digipädevus",
+    "läbipõlemine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2021_web_link_Part20.pdf",
+  "document_id": "sotsiaaltoo-2-2021-covid-19-mojust-sotsiaaltoo-valdkonna-toojou-ja-oskuste-vajadusele-2021-2",
+  "source_format": "pdf",
+  "source_sha256": "19ee0ba947579c8cc247aa607c55fa913f25fded1400c3f4e86c2dae431f162d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2021-covid-19-mojust-sotsiaaltoo-valdkonna-toojou-ja-oskuste-vajadusele-2021-2",
+    "previous_source_path": "Sotsiaaltoo_2_2021_web_link_Part20.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "19ee0ba947579c8cc247aa607c55fa913f25fded1400c3f4e86c2dae431f162d",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

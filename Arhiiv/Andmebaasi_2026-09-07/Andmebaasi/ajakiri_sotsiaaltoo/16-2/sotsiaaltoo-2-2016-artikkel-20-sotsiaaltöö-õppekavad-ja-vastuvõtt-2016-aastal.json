@@ -1,0 +1,65 @@
+{
+  "docId": "sotsiaaltoo-2-2016",
+  "articleId": "sotsiaaltoo-2-2016-artikkel-20-sotsiaaltöö-õppekavad-ja-vastuvõtt-2016-aastal",
+  "title": "Sotsiaaltöö õppekavad ja vastuvõtt 2016. aastal",
+  "authors": [],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2016",
+  "section": "Haridus",
+  "pageRange": "82",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ajakirja koostatud koondtabel Eesti sotsiaaltööalastest õppekavadest ja 2016. aasta vastuvõtukohtadest viies kõrgkoolis. Tallinna Ülikooli ühiskonnateaduste instituut: sotsiaaltöö bakalaureuseõpe 70 kohta (30 päevaõppes, 40 tsükliõppes), magistriõpe 35 kohta, doktoriõpe 2 kohta. Tallinna Ülikooli Rakvere kolledž: sotsiaalpedagoogika ja lastekaitse 35 kohta. Tartu Ülikooli ühiskonnateaduste instituut: sotsioloogia, sotsiaaltöö ja sotsiaalpoliitika bakalaureuseõpe 30 kohta, magistriõpe 20 kohta. Tartu Ülikooli Pärnu kolledž: sotsiaaltöö ja rehabilitatsiooni korraldus, rakenduskõrgharidusõpe 50 kohta. Lääne-Viru Rakenduskõrgkool Mõdrikul: sotsiaaltöö 75 kohta ja hooldustöötaja kutseõpe 15 kohta. Tabelis on ka õppevormid, sessioonide korraldus ja vastuvõtu kontaktid. **Allikaväärtus:** see on korpuse üks väheseid kohti, kus sotsiaaltööhariduse pakkumine on ühel aastal arvuliselt kokku loetud.",
+  "tags": [
+    "sotsiaaltöö haridus",
+    "õppekava",
+    "vastuvõtt",
+    "üliõpilaskohad",
+    "tallinna ülikool",
+    "tartu ülikool",
+    "lääne-viru rakenduskõrgkool",
+    "hooldustöötaja",
+    "kutseõpe",
+    "statistika"
+  ],
+  "source_type": "file",
+  "source_path": "2016_2_artikkel_20_sotsiaaltoo_oppekavad_ja_vastuvott_2016.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-20-sotsiaalt-ppekavad-ja-vastuv-tt-2016-aastal",
+  "source_sha256": "87a4c6c703e7f1e70ffabfa874669c0319e30cca97aae894f4f719f7b5fc5104",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2016-sotsiaaltoo-2-2016-artikkel-20-sotsiaalt-ppekavad-ja-vastuv-tt-2016-aastal",
+    "previous_source_path": "2016_2_artikkel_20_sotsiaaltoo_oppekavad_ja_vastuvott_2016.txt",
+    "previous_source_original_path": "2-2016.pdf",
+    "reference_stored_source_sha256": "ad2fc47366f32c522d971fc6eec40c63d4834e2c89455d3d1d90e9f07e824acc",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2-2016.pdf",
+      "source_sha256": "cf45b61607b21a62a1003f99c97d65180c4fb4f591a874c983c4b63e5c804a36",
+      "pdf_start_page": 84,
+      "pdf_end_page": 84,
+      "printed_page_range": "82",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 84,
+      "source_regions": [
+        {
+          "source_pdf_page": 84,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "82"
+    },
+    "server_page_range": "82"
+  }
+}

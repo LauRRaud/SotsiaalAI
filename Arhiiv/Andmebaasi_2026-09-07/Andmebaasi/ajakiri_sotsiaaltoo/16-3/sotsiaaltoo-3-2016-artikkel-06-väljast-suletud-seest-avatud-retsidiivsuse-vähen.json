@@ -1,0 +1,100 @@
+{
+  "docId": "sotsiaaltoo-3-2016",
+  "articleId": "sotsiaaltoo-3-2016-artikkel-06-väljast-suletud-seest-avatud-retsidiivsuse-vähen",
+  "title": "Väljast suletud, seest avatud: retsidiivsuse vähendamine noortele mõeldud kinniste asutuste abil",
+  "authors": [
+    "Jako Salla"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2016",
+  "section": "Taasühiskonnastamine vanglas",
+  "pageRange": "20-24",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Salla tutvustab justiitsministeeriumi rühmakliima uuringut, mis tugineb Leideni kõrgkooli Peer van der Helmi töörühma metoodikale ja mõõdab nelja dimensiooni – toetus, areng, allasurutus ja õhkkond – 37 väitega viiepunktisel Likerti skaalal. Küsitleti noori Viru vangla noorteüksuses, Maarjamaa hariduskolleegiumi Tapa ja Kaagvere õppekeskustes, Tallinna Laste Turvakeskuses ning Harku vanglas. 2015. aasta detsembris oli rühmakliima koondnäitaja 2,58, allasurutus 3,64 ja toetus 2,61 ehk elukeskkond on pigem suletud ning Hollandi keskmisest kehvem kõigis dimensioonides.",
+  "tags": [
+    "kinnised asutused",
+    "rühmakliima",
+    "retsidiivsus",
+    "uurimus",
+    "erikoolid",
+    "viru vangla",
+    "riskilapsed ja -noored"
+  ],
+  "source_type": "file",
+  "source_path": "2016_3_artikkel_06_valjast_suletud_seest_avatud_retsidiivsuse_vahendami.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2016-sotsiaaltoo-3-2016-artikkel-06-v-ljast-suletud-seest-avatud-retsidiivsuse-v-hen",
+  "source_sha256": "8e4d92ebd1da7c2de17c3ed35ab1248011e94e43a551aa25dd43a3fce720dee9",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2016-sotsiaaltoo-3-2016-artikkel-06-v-ljast-suletud-seest-avatud-retsidiivsuse-v-hen",
+    "previous_source_path": "2016_3_artikkel_06_valjast_suletud_seest_avatud_retsidiivsuse_vahendami.txt",
+    "previous_source_original_path": "3-2016.pdf",
+    "reference_stored_source_sha256": "cd29ebcf34dd71e136a88a11f79bbdf8d5ba066bfbf4dfc106ed9a51ddd9c65a",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\3-2016.pdf",
+      "source_sha256": "7a9be30ca3f1a959b3d48a3f12065bc9c37d0f618f6cbb71e681f6e83199aacc",
+      "pdf_start_page": 22,
+      "pdf_end_page": 26,
+      "printed_page_range": "20-25",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 27,
+      "source_regions": [
+        {
+          "source_pdf_page": 22,
+          "bounds": [
+            0,
+            123.665,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 23,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 24,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 25,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 26,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "20-24"
+    },
+    "server_page_range": "20-25"
+  }
+}

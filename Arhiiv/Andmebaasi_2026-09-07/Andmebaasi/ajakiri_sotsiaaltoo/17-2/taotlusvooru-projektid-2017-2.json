@@ -1,0 +1,97 @@
+{
+  "docId": "sotsiaaltoo-2-2017",
+  "articleId": "taotlusvooru-projektid-2017-2",
+  "title": "Näiteid hoolekandeteenuste arendamise esimese avatud taotlusvooru projektidest",
+  "authors": [],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2017",
+  "section": "Projekt",
+  "pageRange": "75-79",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade hoolekandeteenuste arendamise esimese avatud taotlusvooru projektidest. Meetme „Tööturul osalemist toetavad hoolekandeteenused” esimesest voorust eraldatakse Euroopa Sotsiaalfondi toetust ligi 2,4 miljonit eurot; tegevust alustab 11 projekti, millega pakutakse hoolekandeteenuseid ligi 1800 inimesele. Toetatakse koduteenust, tugiisikuteenust, isikliku abistaja teenust ja väljaspool kodu osutatavat üldhooldusteenust. Artikkel esitab näiteid üksikprojektidest, sh Järvamaa omavalitsuste koostööst.",
+  "tags": [
+    "ESF",
+    "hoolekandeteenused",
+    "taotlusvoor",
+    "koduteenus",
+    "tugiisik",
+    "hoolduskoormus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2-2017_veebi_link_Part22.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2017-taotlusvooru-projektid-2017-2",
+  "source_sha256": "22b92384e2cb9ccf93baa9268a5ac4038cd00f2c740984809dce246b9a750f07",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2017-taotlusvooru-projektid-2017-2",
+    "previous_source_path": "Sotsiaaltoo_2-2017_veebi_link_Part22.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2-2017_veebi_link_Part22.pdf",
+    "reference_stored_source_sha256": "424ef1d0afa15223c67b272779a0cf24edbad8fc73e4d437a96e235d4473d27a",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf",
+      "source_sha256": "609af110244e684ccbb68aea9504f2490fce2852b1e7caa7bedacb621d661a8a",
+      "pdf_start_page": 77,
+      "pdf_end_page": 81,
+      "printed_page_range": "75-79",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 81,
+      "source_regions": [
+        {
+          "source_pdf_page": 77,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 78,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 79,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 80,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 81,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "75-79"
+    },
+    "server_page_range": "75-79"
+  }
+}

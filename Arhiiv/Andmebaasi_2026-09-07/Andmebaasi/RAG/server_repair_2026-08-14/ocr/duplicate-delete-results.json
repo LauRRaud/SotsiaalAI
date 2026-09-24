@@ -1,0 +1,78 @@
+{
+  "ok": true,
+  "deleted": [
+    {
+      "canonical": "paasteamet_hoolekande_ja_tervishoiuasutuste_tuleohutus_pdf",
+      "deleted": "paasteamet-hoolekande-ja-tervishoiuasutuste-tuleohutus",
+      "source_sha256": "3eab944a784e5260f636cff5778f08f6be3623fe970cbfee72536cf794dbef8a",
+      "source_bytes": 1378497,
+      "delete_response": {
+        "already_deleted": true
+      },
+      "deleted_status": "DELETED",
+      "deleted_chunks": 0,
+      "deleted_source_status": 404,
+      "canonical_chunks_after": 35
+    },
+    {
+      "canonical": "harno_opitulemuste_vahendamine_asendamine_ja_kohustusliku_oppeaine",
+      "deleted": "harno-opitulemuste-vahendamine-asendamine-ja-oppeainest-vabastamine",
+      "source_sha256": "3c36e2568123e883308855fa62047399b863006d0745db2dcaaab6200c21d172",
+      "source_bytes": 1413642,
+      "delete_response": {
+        "ok": true,
+        "deleted": "harno-opitulemuste-vahendamine-asendamine-ja-oppeainest-vabastamine",
+        "hadEntry": true
+      },
+      "deleted_status": "DELETED",
+      "deleted_chunks": 0,
+      "deleted_source_status": 404,
+      "canonical_chunks_after": 69
+    },
+    {
+      "canonical": "peaasi_ee_koolilaste_ja_noorte_vaimne_tervis",
+      "deleted": "peaasi-ee-koolilaste-ja-noorte-vaimne-tervis",
+      "source_sha256": "9fc1e42ef514df9036bef7ca14c97c766ca7720d512cb86e922fad94a6fc5667",
+      "source_bytes": 443383,
+      "delete_response": {
+        "ok": true,
+        "deleted": "peaasi-ee-koolilaste-ja-noorte-vaimne-tervis",
+        "hadEntry": true
+      },
+      "deleted_status": "DELETED",
+      "deleted_chunks": 0,
+      "deleted_source_status": 404,
+      "canonical_chunks_after": 32
+    },
+    {
+      "canonical": "sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est",
+      "deleted": "ska-seksuaalvagivalla-kriisiabikeskusi-tutvustav-voldik-est",
+      "source_sha256": "72bcb2ccd145ef6db931f20ecef8fab002e3c9c5e8481a6464ea6626648a9a49",
+      "source_bytes": 1091480,
+      "delete_response": {
+        "ok": true,
+        "deleted": "ska-seksuaalvagivalla-kriisiabikeskusi-tutvustav-voldik-est",
+        "hadEntry": true
+      },
+      "deleted_status": "DELETED",
+      "deleted_chunks": 0,
+      "deleted_source_status": 404,
+      "canonical_chunks_after": 5
+    },
+    {
+      "canonical": "tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega",
+      "deleted": "tarkvanem-tooleht-abikusimused-vestluseks-algkoolilapsega",
+      "source_sha256": "e45924e05c1c71324f8def556ba3fe5db00e93a6baceb4fd05698e3dca0319a2",
+      "source_bytes": 104285,
+      "delete_response": {
+        "ok": true,
+        "deleted": "tarkvanem-tooleht-abikusimused-vestluseks-algkoolilapsega",
+        "hadEntry": true
+      },
+      "deleted_status": "DELETED",
+      "deleted_chunks": 0,
+      "deleted_source_status": 404,
+      "canonical_chunks_after": 2
+    }
+  ]
+}

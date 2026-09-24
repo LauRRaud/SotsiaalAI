@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2021",
+  "articleId": "anu-lii-jurman-elus-tuleb-pakkumised-vastu-votta-oigel-ajal-2021-1",
+  "title": "Anu-Lii Jürman: elus tuleb pakkumised vastu võtta õigel ajal",
+  "authors": [
+    "Meelike Tammemägi"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2021",
+  "section": "Persoon",
+  "pageRange": "3-9",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu Valga Töötute Aktiviseerimiskeskuse juhataja Anu-Lii Jürmaniga. Intervjuus räägib ta oma teekonnast sotsiaalvaldkonnas – algusest Lihula külanõukogu sotsiaalnõunikuna kuni aktiviseerimiskeskuse vedamiseni Valgas. Juttu on välispraktikast Taanis, kogemustest omavalitsusjuhina, töötamisest Soomes ning sellest, kuidas toimetulekuõpe ja aktiviseerimine aitavad pikaajalisi töötuid, sõltuvusprobleemidega inimesi ja teisi haavatavaid sihtrühmi oma elu uuesti käima saada.",
+  "tags": [
+    "persoonilugu",
+    "töötute aktiviseerimine",
+    "toimetulekuõpe",
+    "Valga",
+    "pikaajaline töötus",
+    "sotsiaaltöö praktika",
+    "omavalitsus"
+  ],
+  "source_type": "file",
+  "source_path": "artikkel_2_persoon_anu-lii_jurman_korrigeeritud.pdf",
+  "document_id": "sotsiaaltoo-1-2021-anu-lii-jurman-elus-tuleb-pakkumised-vastu-votta-oigel-ajal-2021-1",
+  "source_format": "pdf",
+  "source_sha256": "399f12aa3645783a579777c2e631966a721dc1652c581dbbf97f85e343dd6ca3",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2021-anu-lii-jurman-elus-tuleb-pakkumised-vastu-votta-oigel-ajal-2021-1",
+    "previous_source_path": "artikkel_2_persoon_anu-lii_jurman_korrigeeritud.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "399f12aa3645783a579777c2e631966a721dc1652c581dbbf97f85e343dd6ca3",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

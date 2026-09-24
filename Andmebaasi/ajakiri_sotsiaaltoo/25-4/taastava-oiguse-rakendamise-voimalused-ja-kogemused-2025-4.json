@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-4-2025",
+  "articleId": "taastava-oiguse-rakendamise-voimalused-ja-kogemused-2025-4",
+  "title": "Taastava õiguse rakendamise võimalused ja kogemused",
+  "authors": [
+    "Liisi Truumets",
+    "Rauni Rohuniit"
+  ],
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2025",
+  "section": "Taastav õigus",
+  "pageRange": "1–6",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel annab ülevaate taastava õiguse põhimõtetest, kujunemisest ja rakendamisest Eestis, rõhutades ohvri vajaduste, dialoogi ja kahju heastamise tähtsust. Käsitletakse SKA ja PPA koostööd, vahendusmenetluse arengut ning taastava õiguse edasisi sihte.",
+  "tags": [
+    "taastav õigus",
+    "vahendusmenetlus",
+    "ohvriabi",
+    "kahju heastamine",
+    "dialoog",
+    "PPA",
+    "SKA"
+  ],
+  "source_type": "file",
+  "source_path": "Taastava õiguse rakendamise võimalused ja kogemused.pdf",
+  "document_id": "sotsiaaltoo-4-2025-taastava-oiguse-rakendamise-voimalused-ja-kogemused-2025-4",
+  "source_format": "pdf",
+  "source_sha256": "d83e0fde3a2b1dc61cc8c3d13453287742bd88e2296ba864eb723a1bda617e03",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2025-taastava-oiguse-rakendamise-voimalused-ja-kogemused-2025-4",
+    "previous_source_path": "Taastava õiguse rakendamise võimalused ja kogemused.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d83e0fde3a2b1dc61cc8c3d13453287742bd88e2296ba864eb723a1bda617e03",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

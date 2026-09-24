@@ -1,0 +1,100 @@
+{
+  "docId": "sotsiaaltoo-4-2016",
+  "articleId": "sotsiaaltoo-4-2016-artikkel-08-kokkuvõte-kordusuuringust-lapse-osalemine-pereel",
+  "title": "Kokkuvõte kordusuuringust „Lapse osalemine pereelus”",
+  "authors": [
+    "Helika Saar",
+    "Helen Karu"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2016",
+  "section": "Uurimus",
+  "pageRange": "44-48",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Helika Saar ja Helen Karu esitavad MTÜ Lastekaitse Liidu 2015. aasta mais–oktoobris tehtud kordusuuringu tulemused: küsitleti 500 13–14aastast last, neist 338 eesti ja 162 vene emakeelega, ning tulemusi võrreldi 2008. aasta arvamusküsitlusega. Nüüd leiab 72% lastest, et nende arvamusega arvestatakse peres sageli või väga sageli, 2008. aastal oli see 52%. Samas vähenes perede osa, kus reeglid lepitakse kokku ühiselt (45%-lt 39%-le); karistusviisidest kasutatakse enim interneti piiramist (48%) ja nurka saadetute osakaal tõusis 15%-lt 20%-le.",
+  "tags": [
+    "uurimus",
+    "lapse osalus",
+    "pereelu",
+    "kasvatuspraktikad",
+    "füüsiline karistamine",
+    "lastekaitse liit"
+  ],
+  "source_type": "file",
+  "source_path": "2016_4_artikkel_08_kokkuvote_kordusuuringust_lapse_osalemine_pereelus.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-08-kokkuv-te-kordusuuringust-lapse-osalemine-pereel",
+  "source_sha256": "4f12d95075512406fe8235dc4cd2309c53d8117fd15e426042a5dd98aaf3ae7b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-08-kokkuv-te-kordusuuringust-lapse-osalemine-pereel",
+    "previous_source_path": "2016_4_artikkel_08_kokkuvote_kordusuuringust_lapse_osalemine_pereelus.txt",
+    "previous_source_original_path": "4-2016.pdf",
+    "reference_stored_source_sha256": "cb89b5cc8fb899abfea9ca8dac96a5aa5366c4f8018290a849fd06ad7e74aa00",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf",
+      "source_sha256": "0f07da03ffde36588435e96f8dda0f52a8140fbf9cc4201bb95e85b594e03fc9",
+      "pdf_start_page": 46,
+      "pdf_end_page": 50,
+      "printed_page_range": "44-49",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 51,
+      "source_regions": [
+        {
+          "source_pdf_page": 46,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 47,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 48,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 49,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 50,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "44-48"
+    },
+    "server_page_range": "44-49"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "docId": "sotsiaaltoo-3-2019",
+  "articleId": "uleilmne-laste-heaolukonverents-tartus-2019",
+  "title": "Üleilmne laste heaolukonverents Tartus",
+  "authors": [
+    "Dagmar Kutsar"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2019",
+  "section": "Sündmus",
+  "pageRange": "102-104",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade ISCI rahvusvahelisest laste heaolu konverentsist, peaettekannetest ja aruteludest.",
+  "tags": [
+    "laste heaolu",
+    "konverents",
+    "ISCI"
+  ],
+  "source_type": "file",
+  "source_path": "ST3_2019_veeb_link_Part22.pdf",
+  "document_id": "sotsiaaltoo-3-2019-uleilmne-laste-heaolukonverents-tartus-2019",
+  "source_format": "pdf",
+  "source_sha256": "bea1051282da2c0b672e6bff074db07237741d1d9aa3c1b103ff9a22eef4c965",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2019-uleilmne-laste-heaolukonverents-tartus-2019",
+    "previous_source_path": "ST3_2019_veeb_link_Part22.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "bea1051282da2c0b672e6bff074db07237741d1d9aa3c1b103ff9a22eef4c965",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

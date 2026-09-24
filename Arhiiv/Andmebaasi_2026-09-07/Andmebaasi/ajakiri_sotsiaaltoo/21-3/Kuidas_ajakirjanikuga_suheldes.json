@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-3-2021",
+  "articleId": "kuidas-ajakirjanikuga-suheldes-ellu-jaada-2021-3",
+  "title": "Kuidas ajakirjanikuga suheldes ellu jääda?",
+  "authors": [
+    "Tuuli-Brit Vaga",
+    "Kristi Roost"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2021",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "53-56",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Praktiline juhend sotsiaaltöötajatele meediaga suhtlemiseks. Autorid selgitavad, kuidas valmistuda intervjuudeks, hoida fookust, esitada keerulist teavet selgelt ning vältida levinud vigu kriisiolukorras. Rõhutatakse organisatsiooni kommunikatsioonipõhimõtteid ja selget rollijaotust, samuti oskust kaitsta klientide privaatsust ning hoida tasakaal professionaalsuse ja inimlikkuse vahel.",
+  "tags": [
+    "meediakommunikatsioon",
+    "intervjuu",
+    "kriisikommunikatsioon",
+    "privaatsus",
+    "sotsiaaltöö professionaalsus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2021_web_link_Part12.pdf",
+  "document_id": "sotsiaaltoo-3-2021-kuidas-ajakirjanikuga-suheldes-ellu-jaada-2021-3",
+  "source_format": "pdf",
+  "source_sha256": "d31c6938968acea78d122083df59572e701a48c422021eb92b494e743898fd3f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2021-kuidas-ajakirjanikuga-suheldes-ellu-jaada-2021-3",
+    "previous_source_path": "Sotsiaaltoo_3_2021_web_link_Part12.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "d31c6938968acea78d122083df59572e701a48c422021eb92b494e743898fd3f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

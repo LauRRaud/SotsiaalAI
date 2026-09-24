@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2021",
+  "articleId": "eessona-2021-2",
+  "title": "EESSÕNA",
+  "authors": [
+    "Signe Riisalo"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2021",
+  "section": "Eessõna",
+  "pageRange": "2-2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalminister Signe Riisalo avab ajakirjanumbri sissejuhatusega, milles ta käsitleb COVID-19 kriisi kogemusi, Eesti sotsiaalsüsteemi tugevusi ja kitsaskohti ning heaolu arengukava 2030 eesmärke. Eessõnas rõhutatakse vajadust panustada haavatavate rühmade toetamisele, arendada hoolekande- ja tugiteenuseid ning tugevdada koostööd riigi, kohalike omavalitsuste ja kogukondade vahel, et tagada inimeste turvalisus ja toimetulek muutuste ajal.",
+  "tags": [
+    "sotsiaalminister",
+    "heaolu arengukava",
+    "COVID-19",
+    "sotsiaalpoliitika",
+    "haavatavad rühmad",
+    "hoolekanne",
+    "kohalik omavalitsus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2021_web_link_Part2.pdf",
+  "document_id": "sotsiaaltoo-2-2021-eessona-2021-2",
+  "source_format": "pdf",
+  "source_sha256": "99f9a0c1836dd3987d4c4405690ca94e2694435328c994e62c590025af99e1d2",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2021-eessona-2021-2",
+    "previous_source_path": "Sotsiaaltoo_2_2021_web_link_Part2.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "99f9a0c1836dd3987d4c4405690ca94e2694435328c994e62c590025af99e1d2",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

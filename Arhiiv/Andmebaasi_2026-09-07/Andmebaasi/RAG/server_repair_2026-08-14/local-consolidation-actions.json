@@ -1,0 +1,130 @@
+{
+  "created_at": "2026-08-14T12:16:22.6128975+03:00",
+  "target": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas",
+  "actions": [
+    {
+      "action": "move_tree",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\ajakiri_sotsiaaltoo",
+      "destination": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\ajakiri_sotsiaaltoo"
+    },
+    {
+      "action": "move_tree",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\KOV",
+      "destination": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\KOV"
+    },
+    {
+      "action": "move_tree",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Seadused_rt",
+      "destination": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\Seadused_rt"
+    },
+    {
+      "action": "move_tree",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\RAG andmebaas",
+      "destination": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG"
+    },
+    {
+      "action": "move_tree",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaasi\\Admebaasi-materjali-lisa",
+      "destination": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\allikaregister"
+    },
+    {
+      "action": "move_tree",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaasi\\organisatsioonid",
+      "destination": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\organisatsioonid"
+    },
+    {
+      "action": "move_tree",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaasi\\uuringud ja juhendid",
+      "destination": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\uuringud ja juhendid"
+    },
+    {
+      "action": "move_unique_metadata",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaasi\\ajakiri\\sotsiaaltoo-2-2025-artikkel-07-hea-too-ei-sunni-excelis.json",
+      "destination": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\legacy_metadata\\ajakiri\\sotsiaaltoo-2-2025-artikkel-07-hea-too-ei-sunni-excelis.json"
+    },
+    {
+      "action": "move_unique_metadata",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaasi\\ajakiri\\sotsiaaltoo-2-2025-artikkel-12-tehisintellekt-sotsiaaltoos.json",
+      "destination": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\legacy_metadata\\ajakiri\\sotsiaaltoo-2-2025-artikkel-12-tehisintellekt-sotsiaaltoos.json"
+    },
+    {
+      "action": "move_unique_metadata",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaasi\\lisatest\\harno-opitulemuste-vahendamine-asendamine-ja-oppeainest-vabastamine.json",
+      "destination": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\legacy_metadata\\lisatest\\harno-opitulemuste-vahendamine-asendamine-ja-oppeainest-vabastamine.json"
+    },
+    {
+      "action": "move_unique_metadata",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaasi\\lisatest\\paasteamet-hoolekande-ja-tervishoiuasutuste-tuleohutus.json",
+      "destination": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\legacy_metadata\\lisatest\\paasteamet-hoolekande-ja-tervishoiuasutuste-tuleohutus.json"
+    },
+    {
+      "action": "move_unique_metadata",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaasi\\lisatest\\peaasi-ee-koolilaste-ja-noorte-vaimne-tervis.json",
+      "destination": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\legacy_metadata\\lisatest\\peaasi-ee-koolilaste-ja-noorte-vaimne-tervis.json"
+    },
+    {
+      "action": "move_unique_metadata",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaasi\\lisatest\\ska-seksuaalvagivalla-kriisiabikeskusi-tutvustav-voldik-est.json",
+      "destination": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\legacy_metadata\\lisatest\\ska-seksuaalvagivalla-kriisiabikeskusi-tutvustav-voldik-est.json"
+    },
+    {
+      "action": "move_unique_metadata",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaasi\\lisatest\\tarkvanem-tooleht-abikusimused-vestluseks-algkoolilapsega.json",
+      "destination": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\legacy_metadata\\lisatest\\tarkvanem-tooleht-abikusimused-vestluseks-algkoolilapsega.json"
+    },
+    {
+      "action": "move_canonical_pdf",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaasi\\lisatest\\V2hendamine_2022.pdf",
+      "destination": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\master_sources_pdf\\harno_opitulemuste_vahendamine_asendamine_ja_kohustusliku_oppeaine.pdf",
+      "sha256": "3c36e2568123e883308855fa62047399b863006d0745db2dcaaab6200c21d172"
+    },
+    {
+      "action": "move_canonical_pdf",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaasi\\lisatest\\2024-03-03-hoolekande-ja-tervishoiuasutuste-tuleohutus.pdf",
+      "destination": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\master_sources_pdf\\paasteamet_hoolekande_ja_tervishoiuasutuste_tuleohutus_pdf.pdf",
+      "sha256": "3eab944a784e5260f636cff5778f08f6be3623fe970cbfee72536cf794dbef8a"
+    },
+    {
+      "action": "move_canonical_pdf",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaasi\\lisatest\\Ohvriabi infovoldik SAK EST+bleed3mm.pdf",
+      "destination": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\master_sources_pdf\\sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est.pdf",
+      "sha256": "72bcb2ccd145ef6db931f20ecef8fab002e3c9c5e8481a6464ea6626648a9a49"
+    },
+    {
+      "action": "move_canonical_pdf",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaasi\\lisatest\\Laste-vaimne-tervis-koolis.pdf",
+      "destination": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\master_sources_pdf\\peaasi_ee_koolilaste_ja_noorte_vaimne_tervis.pdf",
+      "sha256": "9fc1e42ef514df9036bef7ca14c97c766ca7720d512cb86e922fad94a6fc5667"
+    },
+    {
+      "action": "move_canonical_pdf",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaasi\\lisatest\\Tark_Vanem_tooleht_abikysimused_vestluseks_algkoolilapsega.pdf",
+      "destination": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\RAG\\master_sources_pdf\\tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega.pdf",
+      "sha256": "e45924e05c1c71324f8def556ba3fe5db00e93a6baceb4fd05698e3dca0319a2"
+    },
+    {
+      "action": "remove_duplicate_file",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaasi\\ajakiri\\Hea töö ei sünni Excelis – lastekaitsetöötajad ootavad järelevalvelt selgust ja tuge_2_2025.pdf",
+      "canonical": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\ajakiri_sotsiaaltoo\\25-2\\Hea töö ei sünni Excelis – lastekaitsetöötajad ootavad järelevalvelt selgust ja tuge_2_2025.pdf",
+      "sha256": "927ff4e8af655ebb3d8a5772a9d7cfdfde423d518c75dcc30c835e8f8598257b"
+    },
+    {
+      "action": "remove_duplicate_file",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaasi\\ajakiri\\Tehisintellekt sotsiaaltöös_2_2025.pdf",
+      "canonical": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaas\\ajakiri_sotsiaaltoo\\25-2\\Tehisintellekt sotsiaaltöös_2_2025.pdf",
+      "sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b"
+    },
+    {
+      "action": "remove_empty_directory",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaasi\\ajakiri"
+    },
+    {
+      "action": "remove_empty_directory",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaasi\\lisatest"
+    },
+    {
+      "action": "remove_empty_directory",
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\docs\\Andmebaasi"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "source": {
+    "source_id": "vordoigusvolinik_juhendmaterjal_karjaarispetsialistidele",
+    "title": "Juhendmaterjal karjäärispetsialistidele",
+    "url": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2024-02/BREAK-KARJA%CC%88A%CC%88RISPETS-44lk_A4_EST.pdf",
+    "normalized_url": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2024-02/BREAK-KARJÄÄRISPETS-44lk_A4_EST.pdf",
+    "source_format": "pdf",
+    "source_type": "official_guideline",
+    "resource_type": "method_guidance",
+    "publisher": "Võrdõigusvolinik",
+    "organization_id": "vordoigusvolinik",
+    "collection_hint": "guidance_and_methods",
+    "evidence_role": "practice_guidance",
+    "topic_tags": [
+      "Võrdõigusvolinik",
+      "spetsialisti juhend",
+      "karjäärinõustamine",
+      "karjäärispetsialist",
+      "tööalane võrdne kohtlemine"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "high",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_067",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+    "source_context": {
+      "heading_2": "Võrdõigusvolinik",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 333,
+      "order": 189
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "Juhendmaterjal karjäärispetsialistidele"
+    ],
+    "collection_hints": [
+      "organization_guidelines"
+    ],
+    "source_types_seen": [
+      "methodology_material"
+    ],
+    "resource_types_seen": [
+      "best_practice_guidance"
+    ],
+    "publishers_seen": [
+      "Võrdõigusvolinik"
+    ],
+    "organizations_seen": [
+      "vordoigusvolinik"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Võrdõigusvolinik",
+        "line": 333,
+        "order": 189
+      },
+      {
+        "heading_2": "Võrdõigusvolinik",
+        "line": 807,
+        "order": 396
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2024-02/BREAK-KARJÄÄRISPETS-44lk_A4_EST.pdf"
+  },
+  "final_url": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2024-02/BREAK-KARJA%CC%88A%CC%88RISPETS-44lk_A4_EST.pdf",
+  "redirects": [],
+  "sha256": "2010313af549b1679cd6559eb044af1be3dfd49fa975d3574507e2292c7773fa",
+  "bytes": 6284868,
+  "downloaded_at": "2026-08-14T08:00:40.378Z"
+}

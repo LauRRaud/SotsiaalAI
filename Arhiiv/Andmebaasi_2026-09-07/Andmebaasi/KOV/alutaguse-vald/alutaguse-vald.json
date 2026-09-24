@@ -1,0 +1,2712 @@
+{
+  "municipality": "Alutaguse vald",
+  "county": "Ida-Virumaa",
+  "checkedAt": "2026-04-12",
+  "items": [
+    {
+      "id": "alutaguse_vald_service_asendushooldusteenus",
+      "itemType": "service",
+      "title": "Asendushooldusteenus",
+      "status": "active",
+      "summary": "Asendushooldusteenus tagab lapsele hooldusperes või asenduskodus hooldamise kuni täisealiseks saamiseni, kui tema vanem on surnud, piiratud teovõimega või kui vanema hooldusõigust on piiratud või lõpetatud. Lapse kasvatamisega seotud kulud kaetakse valla eelarvest ja lapse sissetulekutest.",
+      "targetGroup": "Lapsed, kes on jäänud ilma vanemliku hoolitsuseta seoses vanema surma, piiratud teovõime või hooldusõiguse peatamisega.",
+      "conditions": "Laps paigutatakse asendushooldusele kuni 18. eluaastani. Kulud katab vald ja lapse sissetulekud.",
+      "application": "Lapse asendushoolduse korraldab lastekaitsetöötaja; vanemate või hooldajate taotlust tavaliselt ei nõuta.",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/asendushooldusteenus",
+      "sourceKeys": [
+        "asendushooldusteenus_page",
+        "social_services_overview"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_teenuse_taotlus_abivajaduse_korral"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "service",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "asendushooldusteenus_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_service_asendushooldusteenus",
+      "document_id": "alutaguse_vald_service_asendushooldusteenus",
+      "canonical_item_id": "alutaguse_vald_service_asendushooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/asendushooldusteenus",
+      "content_hash": "46160346f68b9426e071b853f1d9bdf5d477ee2ec27256bf69499f0bc3cd8f13",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_service_eluruumi_tagamise_teenus",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenus aitab eluruumi puuduse või erivajaduse korral leida ajutise munitsipaaleluruumi. Teenus on mõeldud inimestele, kes ei suuda oma elamistingimusi sotsiaal-majanduslike raskuste või puudega toimetuleku tõttu tagada. Teenuse saajad peavad tasuma kõrvalkulud ja kasutustasu ning vald võib kasutusõiguse lõpetada, kui lepingutingimusi rikutakse või tasud jäävad maksmata.",
+      "targetGroup": "Isikud, kellel puudub sobiv eluruum sotsiaal-majanduslikel põhjustel või kelle puue raskendab senises elamises hakkamasaamist.",
+      "conditions": "Abi saamiseks hinnatakse vajadust ning taotleja esitab andmed leibkonna koosseisu ja sissetulekute kohta. Kasutusõigus võib lõppeda korduvate rikkumiste või võlgnevuse korral.",
+      "application": "Taotlus koos põhjenduse, leibkonna koosseisu ja sissetuleku andmetega esitatakse sotsiaaltöötajale. Sotsiaalosakond otsustab eluruumi eraldamise.",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/eluruumi-tagamise-teenus",
+      "sourceKeys": [
+        "eluruumi_tagamise_teenus_page",
+        "social_services_overview"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "service",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "eluruumi_tagamise_teenus_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_service_eluruumi_tagamise_teenus",
+      "document_id": "alutaguse_vald_service_eluruumi_tagamise_teenus",
+      "canonical_item_id": "alutaguse_vald_service_eluruumi_tagamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/eluruumi-tagamise-teenus",
+      "content_hash": "29a278fe26233641f7e5c847882e02fb929770614995f7423f43ea5b399e843f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_service_isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus aitab puudega täiskasvanutel suurendada iseseisvust, pakkudes abi liikumisel, söömisel, toidu valmistamisel, riietumisel, hügieenis ja majapidamistöödes. Abistaja ei tohi olla esimese või teise astme sugulane ega elada taotlejaga samas majapidamises. Teenuse vajadus ja maht määratakse hindamise käigus.",
+      "targetGroup": "Puudega täiskasvanud, kes vajavad igapäevatoimingutes füüsilist abi.",
+      "conditions": "Abistaja peab olema isik, kes ei ole lähedane sugulane ega ela taotlejaga koos. Taotluses tuleb kirjeldada tegevused, kus abi vajatakse.",
+      "application": "Taotlus koos põhjenduste ja soovitava abistaja andmetega esitatakse sotsiaaltöötajale. Sotsiaalosakond hindab vajaduse ja määrab teenuse mahu.",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/isikliku-abistaja-teenus",
+      "sourceKeys": [
+        "isikliku_abistaja_teenus_page",
+        "social_services_overview"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_teenuse_taotlus_abivajaduse_korral"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "service",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "isikliku_abistaja_teenus_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_service_isikliku_abistaja_teenus",
+      "document_id": "alutaguse_vald_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "alutaguse_vald_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/isikliku-abistaja-teenus",
+      "content_hash": "350a23dcbfbaaf9e3f9fa3d962a2d9a4c1fc2951f4e537eaac74aec5a42e343a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_service_jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Järelhooldusteenus",
+      "status": "active",
+      "summary": "Järelhooldusteenus aitab asendushoolduselt või eestkostelt lahkuvaid noori iseseisvasse ellu astumisel. Teenus toetab eluaseme leidmist, igapäevast toimetulekut, õpingute jätkamist ja tööle asumist. Teenus võidakse pakkuda ka ilma taotluseta.",
+      "targetGroup": "Noored, kes on üles kasvanud asendushooldusel või eestkostel ja vajavad iseseisvasse ellu siirdumiseks tuge.",
+      "conditions": "Teenust osutatakse kuni noor saab iseseisvaks ja suudab õppida või töötada.",
+      "application": "Taotluse võivad esitada teenusele õigustatud isik ise, tema haridusasutus või varasem hoolduspere; teenuse võib algatada ka vald.",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/jarelhooldusteenus",
+      "sourceKeys": [
+        "jarelhooldusteenus_page",
+        "social_services_overview"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_teenuse_taotlus_abivajaduse_korral"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "service",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "jarelhooldusteenus_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_service_jarelhooldusteenus",
+      "document_id": "alutaguse_vald_service_jarelhooldusteenus",
+      "canonical_item_id": "alutaguse_vald_service_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/jarelhooldusteenus",
+      "content_hash": "bb142d4f79a28fa1eeccc78dd8da9a57916d18638eacb0e52a31c67d906bd098",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_service_koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenus toetab täiskasvanud abivajajaid, võimaldades neil oma kodus jätkata iseseisvat elu. Teenuse raames aidatakse soojendamise, toiduvalmistamise ja koristamisega, tuuakse koju toiduaineid või ravimeid ning tehakse vajalikke asjaajamisi. Abivajadus ja mahu määrab sotsiaaltöötaja ning teenus on tasuline vastavalt valla hinnakirjale.",
+      "targetGroup": "Täiskasvanud inimesed, kes vajavad abi igapäevaelus, et jätkata elamist oma kodus.",
+      "conditions": "Teenust osutatakse, kui taotleja ei tule iseseisvalt toime ja teised sotsiaalteenused ei ole piisavad. Sotsiaaltöötaja hindab vajadust ja teenuse mahtu.",
+      "application": "Taotlus esitatakse valla sotsiaaltöötajale, kes viib läbi abivajaduse hindamise ja korraldab teenuse. Taotluse jaoks on soovituslik vorm.",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/koduteenus-0",
+      "sourceKeys": [
+        "koduteenus_page",
+        "social_services_overview"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_teenuse_taotlus_abivajaduse_korral"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik",
+        "alutaguse_vald_contact_merike_linder",
+        "alutaguse_vald_contact_kaarel_treimann"
+      ],
+      "item_type": "service",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "koduteenus_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_service_koduteenus",
+      "document_id": "alutaguse_vald_service_koduteenus",
+      "canonical_item_id": "alutaguse_vald_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/koduteenus-0",
+      "content_hash": "b620f912eb61638445abe30ca7d2533d10af70f55ee28a623535dbb52f5f92d0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_service_lapsehoiuteenus",
+      "itemType": "service",
+      "title": "Lapsehoiuteenus",
+      "status": "active",
+      "summary": "Lapsehoiuteenus toetab erivajadusega lapse hooldaja töövõimet ja vähendab hoolduskoormust. Teenus on mõeldud ajaks, mil laps ei viibi haridusasutuses. Raske puudega lapse puhul hindab vald teenusevajaduse ja nõustab teenusepakkuja valikul. Teenuse maht, aeg, koht ja rahastamine lepitakse kokku teenuslepingus.",
+      "targetGroup": "Lapsed erivajadusega, kes vajavad hooldaja kõrval hooldust, ja nende hooldajad.",
+      "conditions": "Teenust saab kasutada ajal, mil laps ei viibi haridusasutuses. Teenusevajadus määratakse hindamise käigus ja raskelt puudega lapse puhul kooskõlastatakse teenusepakkuja.",
+      "application": "Hooldaja esitab kirjaliku taotluse valla sotsiaalosakonnale. Pärast vajaduse hindamist sõlmitakse teenusepakkujaga leping.",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/lapsehoiuteenus",
+      "sourceKeys": [
+        "lapsehoiuteenus_page",
+        "social_services_overview"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_teenuse_taotlus_abivajaduse_korral"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "service",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "lapsehoiuteenus_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_service_lapsehoiuteenus",
+      "document_id": "alutaguse_vald_service_lapsehoiuteenus",
+      "canonical_item_id": "alutaguse_vald_service_lapsehoiuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/lapsehoiuteenus",
+      "content_hash": "a6ef9d9c67d2bd657852747fc9028185c13e704a286424625e3872c148f0b714",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_service_psuhholoogiline_noustamine",
+      "itemType": "service",
+      "title": "Psühholoogiline nõustamine",
+      "status": "active",
+      "summary": "Psühholoogiline nõustamine parandab vähese sissetulekuga täiskasvanute ja alaealiste ning nende pereliikmete heaolu ja toimetulekut. Teenus aitab suurendada enesehinnangut ja kohanemisvõimet, analüüsida probleeme ning leida lahendusi. Nõustaja hindab inimese psühholoogilist olukorda ja motiveerib ka pereliikmeid. Teenus on rahastatud riikliku toetuse kaudu.",
+      "targetGroup": "Tööealised isikud (alates 16. eluaastast) ja nende lähedased, kes vajavad psühholoogilist tuge toimetulekuks.",
+      "conditions": "Teenust pakutakse inimestele, kelle sissetulek on väike ja kes vajavad psühholoogilist abi. Teenust rahastatakse riiklikust programmist ja otsuse teenuse saamiseks teeb sotsiaalkomisjon.",
+      "application": "Isik esitab põhjendatud taotluse sotsiaaltöötajale. Sotsiaalkomisjon otsustab teenuse ja suunab kliendi koostööpartneri juurde.",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/muud-vajaduspohised-sotsiaalteenused",
+      "sourceKeys": [
+        "psuhholoogiline_noustamine_page",
+        "social_services_overview",
+        "soltuvusnoustamine_page"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_teenuse_taotlus_abivajaduse_korral"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_mari_liis_are"
+      ],
+      "item_type": "service",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "psuhholoogiline_noustamine_page",
+        "social_services_overview",
+        "soltuvusnoustamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_service_psuhholoogiline_noustamine",
+      "document_id": "alutaguse_vald_service_psuhholoogiline_noustamine",
+      "canonical_item_id": "alutaguse_vald_service_psuhholoogiline_noustamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/muud-vajaduspohised-sotsiaalteenused",
+      "content_hash": "6fc583c2fc1090968eb5162424196a8e7ab12c72bfa2c8c5d4244ed71fd267f8",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_service_sotsiaaltransporditeenus",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus",
+      "status": "active",
+      "summary": "Sotsiaaltransporditeenus võimaldab sotsiaal-, majandus- või terviseprobleemidega inimestel liikuda valla piires või vajadusel Eestis, et kasutada teenuseid, käia tööl või haridusasutuses ja teha igapäevatoimetusi. Teenus on tasuline vastavalt hinnakirjale: Ida-Virumaal 8 eurot sõidu eest ja väljaspool maakonda 0,30 eurot kilomeetri kohta; mittresidentidele on hinnad kaks korda kõrgemad. Vajalikele inimestele võib vald kulud hüvitada.",
+      "targetGroup": "Isikud, kelle tervislik või sotsiaalne olukord takistab kasutamast isiklikku või ühistransporti ning kes vajavad liikumiseks abi.",
+      "conditions": "Teenust saab kasutada, kui teised transpordivõimalused puuduvad. Sõidu eest tuleb tasuda kehtiva hinnakirja alusel, kuid majanduslikult raskes olukorras võib taotleda kulude osalist või täielikku hüvitamist.",
+      "application": "Taotlus esitatakse suuliselt või kirjalikult sotsiaaltöötajale vähemalt viis tööpäeva enne sõitu. Taotluses märgitakse sõidu põhjus, marsruut, vajadusel abistaja ja sõitude sagedus.",
+      "amount": "8 € Ida-Virumaal; 0,30 €/km väljaspool maakonda; mittresidentidele 16 € Ida-Virumaal ja 0,60 €/km väljaspool maakonda; ootetunni tasu 4 € (püsielanikele) ja 8 € (mittresidentidele).",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/sotsiaaltranspordi-teenus",
+      "sourceKeys": [
+        "social_services_overview",
+        "sotsiaaltransporditeenus_page"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "service",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_overview",
+        "sotsiaaltransporditeenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_service_sotsiaaltransporditeenus",
+      "document_id": "alutaguse_vald_service_sotsiaaltransporditeenus",
+      "canonical_item_id": "alutaguse_vald_service_sotsiaaltransporditeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/sotsiaaltranspordi-teenus",
+      "content_hash": "51627e2d8de7e17daca48b7e3f39a78c6f94d65f90f35e3d3b21cb5d82e14249",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_service_soltuvusnoustamine",
+      "itemType": "service",
+      "title": "Sõltuvusnõustamine",
+      "status": "active",
+      "summary": "Sõltuvusnõustamine pakub tuge sõltuvusprobleemiga tööealistele inimestele, kes soovivad sõltuvusest vabaneda või seda paremini kontrolli all hoida. Nõustaja aitab leida lahendusi pingetele ja probleemidele, et parandada toimetulekut ning toetada töö leidmist või hoidmist.",
+      "targetGroup": "Sõltuvusprobleemiga toimetulekuraskustes tööealised inimesed.",
+      "conditions": "Teenuse kasutamine eeldab abivajaduse hindamist ning vallavalitsuse otsust teenuse määramise või mittemääramise kohta. Teenusele suunamisel määratakse teenuse saaja, teenuse osutaja ja teenuse maht.",
+      "application": "Teenuse saamiseks tasub pöörduda vallavalitsuse sotsiaaltöötaja poole ja esitada põhjendatud taotlus. Klient suunatakse teenust saama vallavalitsuse koostööpartneri juurde.",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/muud-vajaduspohised-sotsiaalteenused",
+      "sourceKeys": [
+        "psuhholoogiline_noustamine_page",
+        "social_services_overview",
+        "soltuvusnoustamine_page"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_teenuse_taotlus_abivajaduse_korral"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "service",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "psuhholoogiline_noustamine_page",
+        "social_services_overview",
+        "soltuvusnoustamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_service_soltuvusnoustamine",
+      "document_id": "alutaguse_vald_service_soltuvusnoustamine",
+      "canonical_item_id": "alutaguse_vald_service_soltuvusnoustamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/muud-vajaduspohised-sotsiaalteenused",
+      "content_hash": "8237dc4c55365ed1e9b3c7ae895196e21abbea63fb1d6b85171fc38286773e90",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_service_tugiisikuteenus",
+      "itemType": "service",
+      "title": "Tugiisikuteenus",
+      "status": "active",
+      "summary": "Tugiisikuteenus toetab inimesi ja peresid, kelle iseseisev toimetulek on sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu raskendatud. Tugiisik juhendab ja motiveerib, abistab laste hooldamisel, toetab erivajadusega lapsi ja aitab noori iseseisvasse ellu siirdumisel. Teenus on abivajajale tasuta.",
+      "targetGroup": "Isikud ja pered, kelle toimetulekut raskendavad sotsiaalsed, majanduslikud, psühholoogilised või terviseprobleemid, sealhulgas lapsevanemad ja erivajadusega lapsed.",
+      "conditions": "Teenust osutatakse, kui see on vajalik iseseisva toimetuleku taastamiseks või säilitamiseks ning teised teenused ei ole piisavad. Maht ja eesmärk määratakse abivajaduse hindamisel.",
+      "application": "Taotleja esitab põhjendatud taotluse sotsiaaltöötajale. Sotsiaaltöötaja ja sotsiaalkomisjon otsustavad teenuse osutamise ning teenuse mahud.",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/tugiisikuteenus",
+      "sourceKeys": [
+        "social_services_overview",
+        "tugiisikuteenus_page"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_teenuse_taotlus_abivajaduse_korral"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "service",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_overview",
+        "tugiisikuteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_service_tugiisikuteenus",
+      "document_id": "alutaguse_vald_service_tugiisikuteenus",
+      "canonical_item_id": "alutaguse_vald_service_tugiisikuteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/tugiisikuteenus",
+      "content_hash": "0855ab5a5a9c12af296b77f8e091403dac6cd1816191ffd5fd6877f6688a5951",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_service_turvakoduteenus",
+      "itemType": "service",
+      "title": "Turvakoduteenus",
+      "status": "active",
+      "summary": "Turvakoduteenus on mõeldud lastele ja täiskasvanutele, kelle elu, tervis või areng on ohus ning kes vajavad ajutist turvalist elukeskkonda väljaspool kodu. Teenust osutatakse nii kaua, kuni on tagatud teenusesaaja ohutus ja korraldatud edasine elu. Teenuse osutamise võib algatada isik ise või sotsiaalosakond.",
+      "targetGroup": "Lapsed ja täiskasvanud, kelle elu, tervis või areng on ohus.",
+      "conditions": "Teenust osutatakse hädavajaduse korral ja see on ajutine. Otsus võib sündida ka ilma taotluseta.",
+      "application": "Teenust saab taotleda isik ise või algatab selle sotsiaalosakond; suunatakse turvakodusse vastavalt vajadusele.",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/turvakoduteenus",
+      "sourceKeys": [
+        "social_services_overview",
+        "turvakoduteenus_page"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "service",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_overview",
+        "turvakoduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_service_turvakoduteenus",
+      "document_id": "alutaguse_vald_service_turvakoduteenus",
+      "canonical_item_id": "alutaguse_vald_service_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/turvakoduteenus",
+      "content_hash": "f836cdf96312bb62813bb83bfc4edca4e71763d6f440c00b9a474c22f2ff8e86",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_service_taisealise_isiku_hooldus",
+      "itemType": "service",
+      "title": "Täisealise isiku hooldus",
+      "status": "active",
+      "summary": "Täisealise isiku hooldus aitab tagada abi täiskasvanule, kes vaimse või füüsilise puude tõttu vajab abi oma õiguste, kohustuste ja igapäevaasjade korraldamisel. Enne hoolduse seadmist hindab vald, kas inimese vajadusi saaks katta teiste teenustega. Hoolduse korraldamisel on vaja nii hooldatava kui ka pakutud hooldaja nõusolekut.",
+      "targetGroup": "Täisealised isikud, kelle vaimne või füüsiline puue takistab neil oma õigusi ja kohustusi teostamast.",
+      "conditions": "Hoolduse korraldamisel hinnatakse esmalt, kas abi on võimalik tagada teiste teenustega. Hooldaja kandidaat peab olema nõus abi osutama ning võimeline hooldusülesandeid täitma.",
+      "application": "Taotlus esitatakse sotsiaaltöötajale ja selles märgitakse pakutava hooldaja andmed ning tema nõusolek. Vallavalitsus hindab abivajadust ja otsustab hoolduse korraldamise.",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/taisealise-isiku-hooldus",
+      "sourceKeys": [
+        "social_services_overview",
+        "taisealise_isiku_hooldus_page"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_teenuse_taotlus_abivajaduse_korral"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "service",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_overview",
+        "taisealise_isiku_hooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_service_taisealise_isiku_hooldus",
+      "document_id": "alutaguse_vald_service_taisealise_isiku_hooldus",
+      "canonical_item_id": "alutaguse_vald_service_taisealise_isiku_hooldus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/taisealise-isiku-hooldus",
+      "content_hash": "cd5d96e1747ef1088bcdb294561e458bbdcdd0393b86e83a2e028419df2a7c0a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_service_varjupaigateenus",
+      "itemType": "service",
+      "title": "Varjupaigateenus",
+      "status": "active",
+      "summary": "Varjupaigateenus pakub ajutist ööbimis- ja pesemisvõimalust inimestele, kellel puudub elukoht ja võimalus endale peavarju leida. Teenus ennetab kodutust ja aitab taastada iseseisva toimetuleku. Teenuse kasutamine on abivajajale tasuta ning seda võidakse pakkuda ka ilma taotluseta.",
+      "targetGroup": "Inimesed, kellel puudub peavarju ja kelle majanduslik seis ei võimalda eluaset tagada.",
+      "conditions": "Teenust osutatakse ajutiselt kuni inimese toimetuleku taastumiseni.",
+      "application": "Taotlus esitatakse sotsiaaltöötajale või suunatakse isik teenusele ka ilma taotluseta, kui see on vältimatu.",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/varjupaigateenus",
+      "sourceKeys": [
+        "social_services_overview",
+        "varjupaigateenus_page"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "service",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_overview",
+        "varjupaigateenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_service_varjupaigateenus",
+      "document_id": "alutaguse_vald_service_varjupaigateenus",
+      "canonical_item_id": "alutaguse_vald_service_varjupaigateenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/varjupaigateenus",
+      "content_hash": "5f531eea6e3d268718391584d114bac07ba89e94f5fc400eb998fa5482505d56",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_service_valtimatu_sotsiaalabi",
+      "itemType": "service",
+      "title": "Vältimatu sotsiaalabi",
+      "status": "active",
+      "summary": "Vältimatu sotsiaalabi pakub hädaolukorras toiduabi, kasutatud rõivaid, ajutist peavarju ja muud materiaalset abi inimestele, kellel puuduvad esmavajaduste rahuldamiseks vajalikud vahendid. Abi osutatakse kuni inimese toimetulek paraneb.",
+      "targetGroup": "Isikud, kes on kaotanud oma toimetulekuvõimalused ja vajavad kohest abi.",
+      "conditions": "Abi hõlmab toitu, riideid, ajutist majutust ja vajaduse korral rahalist toetust dokumentide või õnnetusjuhtumite korral.",
+      "application": "Taotlus esitatakse sotsiaaltöötajale. Abi antakse kuni inimene suudab jälle ise oma vajadusi rahuldada.",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/valtimatu-sotsiaalabi",
+      "sourceKeys": [
+        "social_services_overview",
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_teenuse_taotlus_abivajaduse_korral"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "service",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_overview",
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_service_valtimatu_sotsiaalabi",
+      "document_id": "alutaguse_vald_service_valtimatu_sotsiaalabi",
+      "canonical_item_id": "alutaguse_vald_service_valtimatu_sotsiaalabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/valtimatu-sotsiaalabi",
+      "content_hash": "7d2d1b911ba6c8aa83fccd1bc259d5e182af2c46244713d9840b6817eead3fcc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_service_volanoustamine",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus aitab inimestel hinnata oma majanduslikku olukorda, pidada läbirääkimisi võlausaldajatega ja vältida uute võlgade tekkimist. Õigus teenusele on inimestel, kellel on täitmisele pööratud rahalised kohustused, mida nad ise täita ei suuda. Teenus on tasuta ja klient suunatakse koostööpartneri juurde.",
+      "targetGroup": "Inimesed, kellel on täitmisele pööratud võlakohustusi ja kes ei suuda neid täita.",
+      "conditions": "Teenust pakutakse võlgadesse sattunud isikutele, et parandada nende toimetulekut ja ennetada uute võlgade tekkimist.",
+      "application": "Võlanõustamisteenuse saamiseks esitab isik vallavalitsuse sotsiaaltöötajale põhjendatud taotluse. Otsuse teenuse määramise või mittemääramise kohta teeb vallavalitsuse sotsiaalkomisjon ning klient suunatakse vallavalitsuse koostööpartneri juurde. Teenus on tasuta.",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/volanoustamisteenus",
+      "sourceKeys": [
+        "social_services_overview",
+        "volanoustamine_page",
+        "volanoustamisteenus_page"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_teenuse_taotlus_abivajaduse_korral"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "service",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_overview",
+        "volanoustamine_page",
+        "volanoustamisteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_service_volanoustamine",
+      "document_id": "alutaguse_vald_service_volanoustamine",
+      "canonical_item_id": "alutaguse_vald_service_volanoustamine",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/volanoustamisteenus",
+      "content_hash": "786db58484ef7158ab22e88a718f0d44368bed33c6bc1930fbb7f78751208b9e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_service_uldhooldusteenus",
+      "itemType": "service",
+      "title": "Üldhooldusteenus",
+      "status": "active",
+      "summary": "Üldhooldusteenus tagab eakatele või puudega inimestele elamise hooldekodus, kui nad ei saa enam iseseisvalt kodus hakkama. Omavalitsus katab hooldekodu töötajate kulud ja teenusekasutaja või tema lähedased maksavad majutuse ja toitlustuse eest kuni omavalitsuse kehtestatud piirmäärani (alates 1. maist 2025 on piirmäär 670 eurot kuus). Madala sissetulekuga inimestele võib vald tasuda suurema osa hooldekodu kulust.",
+      "targetGroup": "Eakad või puudega inimesed, kes ei tule iseseisvalt kodus toime ja vajavad hooldekodus elamist.",
+      "conditions": "Teenusele suunatakse pärast abivajaduse hindamist, kui muud teenused ei ole piisavad. Hooldekodu valikul arvestatakse inimese vajadusi ja võimalusi.",
+      "application": "Teenuse saamiseks pöördutakse sotsiaaltöötaja poole ning esitatakse taotlus. Sotsiaaltöötaja hindab vajaduse ja abivajaduse ulatuse.",
+      "amount": "Kasutaja või tema lähedased tasuvad hooldekodu majutuse ja toitlustuse eest kuni 670 eurot kuus (alates 1.05.2025). Omavalitsus katab personali kulu ja vajadusel lisatoetuse.",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/valjaspool-kodu-osutatav-uldhooldusteenus",
+      "sourceKeys": [
+        "social_services_overview",
+        "yldhooldusteenus_page"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_teenuse_taotlus_abivajaduse_korral"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "service",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_services_overview",
+        "yldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_service_uldhooldusteenus",
+      "document_id": "alutaguse_vald_service_uldhooldusteenus",
+      "canonical_item_id": "alutaguse_vald_service_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/valjaspool-kodu-osutatav-uldhooldusteenus",
+      "content_hash": "619785213b004b5a90799849dff155b10f4583b0857e5cdc56c0f57f15b86de7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_benefit_eakate_sunnipaevatoetus",
+      "itemType": "benefit",
+      "title": "Eakate sünnipäevatoetus",
+      "status": "active",
+      "summary": "Eakate sünnipäevatoetus on rahaline toetus Alutaguse valla eakatele juubilaridele. Toetuse määr on 50 eurot ning seda makstakse 75., 80., 85. ja järgmistel juubeliaastatel.",
+      "targetGroup": "Alutaguse valla eakad elanikud, kelle rahvastikuregistrijärgne elukoht on olnud Alutaguse vallas vähemalt üks aasta ja kes tegelikult alaliselt vallas elavad.",
+      "conditions": "Toetusele on õigus isikul, kelle rahvastikuregistrijärgne elukoht on Alutaguse vallas vähemalt üks aasta ning kes tegelikult alaliselt Alutaguse vallas elab.",
+      "amount": "50 €",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/eakate-sunnipaevatoetus",
+      "sourceKeys": [
+        "eakate_sunnipaevatoetus_page",
+        "social_services_overview"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "eakate_sunnipaevatoetus_page",
+        "social_services_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_benefit_eakate_sunnipaevatoetus",
+      "document_id": "alutaguse_vald_benefit_eakate_sunnipaevatoetus",
+      "canonical_item_id": "alutaguse_vald_benefit_eakate_sunnipaevatoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/eakate-sunnipaevatoetus",
+      "content_hash": "1f8fa1dd59956a0fbc9fc4c5cbd2d780030e6eceac5902c31263057b586a9437",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_benefit_erakorraline_toetus",
+      "itemType": "benefit",
+      "title": "Erakorraline toetus",
+      "status": "active",
+      "summary": "Erakorraline toetus on mõeldud leibkondadele, kelle elukoht on olnud Alutaguse vallas vähemalt aasta ja kes on ajutistes majanduslikes raskustes. Toetus aitab ületada ootamatut rahalist kriisi ning katta esmaseid sotsiaal-majanduslikke vajadusi. Toetuse suurust määratakse juhtumipõhiselt.",
+      "targetGroup": "Valla elanikest leibkonnad, kes on ajutises rahalises kitsikuses.",
+      "conditions": "Taotleja peab kirjeldama majandusliku raskuse põhjuseid ja esitama taotluse. Toetuse suurus sõltub konkreetse olukorra raskusest.",
+      "application": "Taotlus esitatakse sotsiaalosakonnale. Vajadusel võib sotsiaaltöötaja küsida lisadokumente.",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/erakorraline-toetus",
+      "sourceKeys": [
+        "erakorraline_toetus_page"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "erakorraline_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_benefit_erakorraline_toetus",
+      "document_id": "alutaguse_vald_benefit_erakorraline_toetus",
+      "canonical_item_id": "alutaguse_vald_benefit_erakorraline_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/erakorraline-toetus",
+      "content_hash": "c4b83d6c9b6d32a7554834170f911d21424f09897108096e98f319f2b9e309cd",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_benefit_esmakordselt_kooli_mineva_lapse_toetus",
+      "itemType": "benefit",
+      "title": "Esmakordselt kooli mineva lapse toetus",
+      "status": "active",
+      "summary": "Esmakordselt kooli mineva lapse toetus aitab katta esimesse klassi mineva lapse kooliminekuga seotud kulusid. Toetuse suurus on 100 eurot ning selle saamiseks tuleb lapsevanemal esitada taotlus kuni 31. oktoobrini. Toetust saavad Alutaguse valla lapsed, kes asuvad õppima valla üldhariduskoolis või erivajaduse tõttu mujal.",
+      "targetGroup": "Lapsed, kes alustavad esimest kooliaastat ning kelle elukoht on Alutaguse vallas.",
+      "conditions": "Laps peab minema esmakordselt kooli. Kui laps õpib erivajaduse tõttu väljaspool valda, on toetust samuti võimalik taotleda.",
+      "application": "Kirjalik taotlus tuleb esitada hiljemalt 31. oktoobril samal aastal, kui laps alustab kooliteed.",
+      "amount": "100 €",
+      "deadline": "31. oktoober",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/esmakordselt-kooli-mineva-lapse-toetus",
+      "sourceKeys": [
+        "esmakordselt_kooli_mineva_lapse_toetus_page"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "esmakordselt_kooli_mineva_lapse_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_benefit_esmakordselt_kooli_mineva_lapse_toetus",
+      "document_id": "alutaguse_vald_benefit_esmakordselt_kooli_mineva_lapse_toetus",
+      "canonical_item_id": "alutaguse_vald_benefit_esmakordselt_kooli_mineva_lapse_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/esmakordselt-kooli-mineva-lapse-toetus",
+      "content_hash": "83df258d485b9f07f630e55dfe1d88625617a525a11a5fb82a898d620e25ee1f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_benefit_hooldust_vajava_taiskasvanu_toetus",
+      "itemType": "benefit",
+      "title": "Hooldust vajava täiskasvanu toetus",
+      "status": "active",
+      "summary": "Hooldust vajava täiskasvanu toetus toetab raske või keskmise hooldusvajadusega täiskasvanuid hooldavat isikut. Kui inimene vajab igapäevastes toimingutes järelevalvet ja abi, makstakse hooldajale 50 eurot kuus; kui inimene ei suuda ise hakkama saada, on toetuse suurus 100 eurot kuus. Taotleja peab olema olnud Alutaguse valla elanik vähemalt aasta ja hooldusvajadus peab olema sotsiaaltöötaja poolt hinnatud.",
+      "targetGroup": "Täiskasvanute hooldajad, kelle hooldatavad vajavad igapäevastes toimingutes tuge ja järelevalvet.",
+      "conditions": "Taotleja peab olema valla elanik vähemalt üks aasta ja hooldusvajadus peab olema hinnatud sotsiaaltöötaja poolt. Toetus määratakse vastavalt hooldusvajaduse raskusastmele.",
+      "application": "Taotlus koos hooldusvajaduse hindamisega esitatakse sotsiaalosakonnale.",
+      "amount": "50 € kuus (kui vaja järelevalvet ja abi igapäevatoimingutes); 100 € kuus (kui inimene ei suuda iseseisvalt hakkama saada)",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/hooldust-vajava-taiskasvanu-toetus",
+      "sourceKeys": [
+        "hooldust_vajava_taiskasvanu_toetus_page"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_abivajadusest_soltuva_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "hooldust_vajava_taiskasvanu_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_benefit_hooldust_vajava_taiskasvanu_toetus",
+      "document_id": "alutaguse_vald_benefit_hooldust_vajava_taiskasvanu_toetus",
+      "canonical_item_id": "alutaguse_vald_benefit_hooldust_vajava_taiskasvanu_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/hooldust-vajava-taiskasvanu-toetus",
+      "content_hash": "5a504eca690d3f0660caf6772733a6b2f5b55f204c5b54b4a092160bbee8988a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_benefit_hobby_education_support",
+      "itemType": "benefit",
+      "title": "Huvihariduse ja huvitegevuse toetus",
+      "status": "active",
+      "summary": "Huvihariduse ja huvitegevuse toetus hüvitab huvihariduse õppemaksu või huvitegevuse osalustasud. Taotleja peab olema olnud Alutaguse valla elanik vähemalt kuus kuud ning tal ei tohi olla võlgnevusi vallale. Valla asutuses õppemaks tasutakse täies mahus; väljaspool valda hüvitatakse ühe huvikooli või ringi tasu kuni 100% ulatuses. Alates 1. septembrist 2025 hüvitatakse õppemaksu ja osalustasu kuni 25 eurot kuus või 250 eurot kalendriaastas.",
+      "targetGroup": "Õpilased ja nende vanemad, kelle elukoht on Alutaguse vallas ning kes osalevad huvihariduses või huvitegevuses.",
+      "conditions": "Taotleja ja vähemalt üks vanem/vanemahooldaja peavad olema Alutaguse valla elanikud minimaalselt kuus kuud. Hüvitist saab ühe huvikooli või -ringi kohta ning taotlejal ei tohi olla vallale võlgnevusi. Kuludokumente tuleb esitada.",
+      "application": "Taotlus koos kuludokumentidega tuleb esitada hiljemalt 21. detsembriks. Väljamaksed toimuvad kahes osas: sügissemestril ja kevadsemestril.",
+      "amount": "Kuni 25 € kuus või 250 € kalendriaastas (alates 1.09.2025)",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/huvihariduse-ja-huvitegevuse-toetus",
+      "sourceKeys": [
+        "hobby_education_support_page"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_huvihariduse_ja_huvitegevuse_taotlus"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "hobby_education_support_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_benefit_hobby_education_support",
+      "document_id": "alutaguse_vald_benefit_hobby_education_support",
+      "canonical_item_id": "alutaguse_vald_benefit_hobby_education_support",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/huvihariduse-ja-huvitegevuse-toetus",
+      "content_hash": "df45a6ff79d672eba8078ab4b0528a10ad76aaac8f4b3674177d53b8db44158a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_benefit_kindlustamata_isiku_ravikulude_katmine",
+      "itemType": "benefit",
+      "title": "Kindlustamata isiku ravikulude katmine",
+      "status": "active",
+      "summary": "Alutaguse valla e-taotluste lehe järgi saab sotsiaaltoetuse taotlust esitada ka kindlustamata isiku ravikulude katmiseks.",
+      "officialUrl": "https://www.alutagusevald.ee/e-taotlused",
+      "sourceKeys": [
+        "e_applications_page"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "e_applications_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_benefit_kindlustamata_isiku_ravikulude_katmine",
+      "document_id": "alutaguse_vald_benefit_kindlustamata_isiku_ravikulude_katmine",
+      "canonical_item_id": "alutaguse_vald_benefit_kindlustamata_isiku_ravikulude_katmine",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/e-taotlused",
+      "content_hash": "26086c436e8e32d97324681d53ebf918435b0a038621705cdabf870d99bbc66c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_benefit_koolitarvete_kooliriiete_toetus",
+      "itemType": "benefit",
+      "title": "Koolitarvete ja kooliriiete toetus",
+      "status": "active",
+      "summary": "Koolitarvete ja kooliriiete toetus aitab koolilastel soetada õppevahendeid ja riideid. Toetust saab taotleda pere, kelle elukoht on Alutaguse vallas vähemalt aasta ning kellele makstakse toimetulekutoetust. Toetuse määr on kuni 100 eurot lapse kohta aastas ning hüvitatakse tegelike kulude alusel.",
+      "targetGroup": "Pered, kes saavad toimetulekutoetust ja kelle lapsed õpivad üldhariduskoolis.",
+      "conditions": "Taotleja ja tema pere peavad olema valla elanikud vähemalt ühe aasta ning taotleja peab olema saanud toimetulekutoetust. Hüvitatakse kulud õppevahenditele ja kooliriietele vastavate kuludokumentide alusel.",
+      "application": "Taotlus esitatakse ning toetuse saamiseks tuleb esitada kuludokumendid.",
+      "amount": "Kuni 100 € lapse kohta kalendriaastas",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/koolitarvete-ja-kooliriiete-toetus",
+      "sourceKeys": [
+        "koolitarvete_kooliriiete_toetus_page"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "koolitarvete_kooliriiete_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_benefit_koolitarvete_kooliriiete_toetus",
+      "document_id": "alutaguse_vald_benefit_koolitarvete_kooliriiete_toetus",
+      "canonical_item_id": "alutaguse_vald_benefit_koolitarvete_kooliriiete_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/koolitarvete-ja-kooliriiete-toetus",
+      "content_hash": "9e299fd32ea3adefb96a112b7e10a2992e9860fc0438b1abdaa00786af67ce14",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_benefit_matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus aitab katta matuse korraldamise kulusid. Toetuse suurus on 350 eurot ning seda võivad taotleda inimesed, kes korraldavad Alutaguse vallas elanud isiku matust. Taotlus tuleb esitada kolme kuu jooksul pärast surma ning sellele lisatakse andmed lahkunu ja matuse korraldaja kohta.",
+      "targetGroup": "Isikud, kes korraldavad Alutaguse vallas elanud inimese matust.",
+      "conditions": "Toetust saab taotleda, kui lahkunu oli valla elanik. Taotlus tuleb esitada kolme kuu jooksul pärast surma.",
+      "application": "Taotlus koos nõutud andmetega esitatakse sotsiaalosakonnale.",
+      "amount": "350 €",
+      "deadline": "3 kuud pärast surma",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/matusetoetus-0",
+      "sourceKeys": [
+        "matusetoetus_page"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "matusetoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_benefit_matusetoetus",
+      "document_id": "alutaguse_vald_benefit_matusetoetus",
+      "canonical_item_id": "alutaguse_vald_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/matusetoetus-0",
+      "content_hash": "f3ab7995b5b2679f878561f6f6c1e0c49940b4eb3220e7767f4d221fd36c8364",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_benefit_prillid_abivahendid_toetus",
+      "itemType": "benefit",
+      "title": "Prillide ja abivahendite ostmise või laenutamise toetus",
+      "status": "active",
+      "summary": "Prillide ja abivahendite toetus aitab katta abivahendite või prillide soetamise või laenutamise kulud. Taotleja peab olema olnud Alutaguse valla elanik vähemalt aasta ja olema mittetöötav pensionär või osalise/puudega töövõimega inimene, kes saab toimetulekutoetust, või olema kooliealise lapse vanem või eestkostja, kellel on arstitõend lapse abivajaduse kohta. Prillide ostu toetatakse kuni 100 euro ulatuses iga kahe aasta järel ning abivahendite kulusid kuni 100 eurot kalendriaastas.",
+      "targetGroup": "Mittetöötavad pensionärid, osalise või puuduva töövõimega inimesed ning kooliealiste laste vanemad/eestkostjad, kes on Alutaguse valla elanikud.",
+      "conditions": "Taotleja peab saama toimetulekutoetust (v.a lapsevanemad) ja esitama arstitõendi. Prillide ostu toetatakse kord kahe aasta jooksul ja abivahendite ostu või laenutuse kuni 100 eurot aastas.",
+      "application": "Taotlus koos arstitõendi ja kuludokumentidega tuleb esitada hiljemalt 21. detsembriks.",
+      "amount": "Prillid: kuni 100 € iga kahe aasta järel; abivahendid: kuni 100 € kalendriaastas",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/prillide-ja-invatehniliste-abivahendite-toetus",
+      "sourceKeys": [
+        "prillide_abivahendite_toetus_page"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "prillide_abivahendite_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_benefit_prillid_abivahendid_toetus",
+      "document_id": "alutaguse_vald_benefit_prillid_abivahendid_toetus",
+      "canonical_item_id": "alutaguse_vald_benefit_prillid_abivahendid_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/prillide-ja-invatehniliste-abivahendite-toetus",
+      "content_hash": "7f348eb138b4cbb1a2ad25397878d5452aa045c1257db1b21f6ed40e4070f241",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_benefit_puudega_lapse_hooldaja_toetus",
+      "itemType": "benefit",
+      "title": "Puudega lapse hooldaja toetus",
+      "status": "active",
+      "summary": "Puudega lapse hooldaja toetus aitab katta raske või sügava puudega lapse hooldamisest tulenevaid kulusid. Raske puudega lapse hooldajale makstakse 50 eurot kuus ja sügava puudega lapse hooldajale 100 eurot kuus. Toetust võivad taotleda lapsevanemad või eestkostjad, kes on olnud Alutaguse valla elanikud vähemalt aasta.",
+      "targetGroup": "Raske või sügava puudega lapse vanemad ja eestkostjad.",
+      "conditions": "Taotleja peab olema valla elanik vähemalt aasta. Lapsel peab olema raske või sügav puue.",
+      "application": "Taotlus esitatakse sotsiaalosakonnale. Taotlusele tuleb lisada lapse puude tuvastamise otsus ja hooldaja andmed.",
+      "amount": "Raske puudega lapse hooldajale 50 € kuus; sügava puudega lapse hooldajale 100 € kuus",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/puudega-lapse-hooldajatoetus",
+      "sourceKeys": [
+        "puudega_lapse_hooldaja_toetus_page"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_abivajadusest_soltuva_toetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "puudega_lapse_hooldaja_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_benefit_puudega_lapse_hooldaja_toetus",
+      "document_id": "alutaguse_vald_benefit_puudega_lapse_hooldaja_toetus",
+      "canonical_item_id": "alutaguse_vald_benefit_puudega_lapse_hooldaja_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/puudega-lapse-hooldajatoetus",
+      "content_hash": "8c4ea31cf6aadb1060065bb6d466784cd34dd3311c9dd8ab852f3031086f3c03",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_benefit_retseptiravimite_toetus",
+      "itemType": "benefit",
+      "title": "Retseptiravimite ostmise toetus",
+      "status": "active",
+      "summary": "Retseptiravimite ostmise toetus katab kuni 150 eurot kalendriaastas retseptiravimite ostmiseks. Taotleja peab olema olnud Alutaguse valla elanik vähemalt aasta ja kas olema mittetöötav pensionär või osalise/töövõimetu töövõimega inimene, kes saab toimetulekutoetust, või olema puudega lapse hooldaja. Kulusid hüvitatakse esitatud retseptide alusel.",
+      "targetGroup": "Mittetöötavad pensionärid, osalise või puuduva töövõimega inimesed ning puudega lapse hooldajad, kes on Alutaguse vallas elanud vähemalt aasta.",
+      "conditions": "Taotleja peab lisaks olema toimetulekutoetuse saaja (välja arvatud puudega lapse hooldajad) ja esitama ravimiostu kviitungid. Toetust makstakse kuni 150 eurot kalendriaastas.",
+      "application": "Taotlus tuleb esitada ja kuludokumente esitada hiljemalt 21. detsembriks.",
+      "amount": "Kuni 150 € kalendriaastas",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/retseptiravimite-ostmise-toetus",
+      "sourceKeys": [
+        "retseptiravimite_ostmise_toetus_page"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "retseptiravimite_ostmise_toetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_benefit_retseptiravimite_toetus",
+      "document_id": "alutaguse_vald_benefit_retseptiravimite_toetus",
+      "canonical_item_id": "alutaguse_vald_benefit_retseptiravimite_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/retseptiravimite-ostmise-toetus",
+      "content_hash": "f22f7fdeb4b3c6eeb1e38420a94746dda2b287878f6aa912c83c768d2dd344ad",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_benefit_sunnitoetus",
+      "itemType": "benefit",
+      "title": "Sünnitoetus",
+      "status": "active",
+      "summary": "Sünnitoetus on rahaline toetus lapse sünni puhul, mille eesmärk on toetada lapsevanemaid. Toetuse suurus on 1000 eurot, mis makstakse kahes osas: 500 eurot pärast lapse sündi ja 500 eurot lapse aastaseks saamisel. Toetust saavad taotleda lapsevanemad või lapse hooldaja, kelle elukoht on Alutaguse vallas vähemalt aasta ning laps elab taotlejaga koos.",
+      "targetGroup": "Lapsevanemad ja üksikvanemad, kelle laps on sündinud ja elab koos taotlejaga Alutaguse vallas.",
+      "conditions": "Taotleja peab olema olnud Alutaguse valla elanik vähemalt üks aasta ning laps peab olema valla elanik ja elama taotlejaga koos. Kui vanem ei täida lapse ülalpidamise kohustust, võib toetust taotleda lapse hooldaja.",
+      "application": "Taotlus tuleb esitada kolme kuu jooksul pärast lapse sündi. Toetus makstakse kahes osas.",
+      "amount": "1000 € (500 € kohe pärast sündi ja 500 € lapse aastaseks saamisel)",
+      "officialUrl": "https://www.alutagusevald.ee/sunnitoetus",
+      "sourceKeys": [
+        "synnitoetus_page"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_sotsiaaltoetuse_taotlus"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "synnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_benefit_sunnitoetus",
+      "document_id": "alutaguse_vald_benefit_sunnitoetus",
+      "canonical_item_id": "alutaguse_vald_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/sunnitoetus",
+      "content_hash": "73284142891348020bec0ed8db4675109eddd3a3c0fe759ff0ee01fa28881250",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_benefit_toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on riiklik rahaline abi peredele, kelle sissetulekud jäävad alla toimetulekupiiri pärast eluasemekulude arvestamist. 2026. aastal on toimetulekupiir üksikule inimesele 220 eurot kuus; kui kõik pereliikmed on alaealised, lisandub peretoetusele 15 eurot. Taotleja peab esitama sissetulekute ja kulude kohta dokumendid ning täitma taotluse.",
+      "targetGroup": "Leibkonnad, kelle netosissetulekud on pärast eluasemekulusid madalamad kui riiklik toimetulekupiir.",
+      "conditions": "Abikõlblikkus hinnatakse sissetulekute ja eluasemekulude alusel; taotleja peab esitama pangakontode väljavõtteid, üürilepinguid ja muud vajalikku. Toetus on riiklik.",
+      "application": "Taotleja pöördub sotsiaalosakonda, täidab taotluse ja esitab kõik sissetuleku- ja kuludokumendid. Vormide ja juhiste saamiseks tuleb võtta ühendust sotsiaaltöötajaga.",
+      "amount": "Toetuse suurus arvutatakse individuaalselt, arvestades riiklikku toimetulekupiiri 220 € kuus (2026).",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/toimetulekutoetus",
+      "sourceKeys": [
+        "toimetulekutoetus_page"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_toimetuleku_taotlus"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_benefit_toimetulekutoetus",
+      "document_id": "alutaguse_vald_benefit_toimetulekutoetus",
+      "canonical_item_id": "alutaguse_vald_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/toimetulekutoetus",
+      "content_hash": "fb307a04892af21116173e2a5b1d4e02dc886c3264bf4c5b6564a0d88fd7200b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_benefit_opilaste_soidukulude_huvitamine",
+      "itemType": "benefit",
+      "title": "Õpilaste sõidukulude hüvitamine",
+      "status": "active",
+      "summary": "Õpilaste sõidukulude hüvitamine kompenseerib koolilaste liikumisega seotud kulud. Valla koolibussid ja maakonna ühistransport tagavad enamasti transpordi, kuid vajaduse korral hüvitatakse ühistranspordi piletite maksumus või isikliku sõiduki kulud. Kulutused hüvitatakse kuni lähima sobiva kooli sõidukuluni.",
+      "targetGroup": "Alutaguse valla õpilased, kes vajavad kooli jõudmiseks transpordikulu hüvitamist.",
+      "conditions": "Kui ühistransporti ei ole või see ei võimalda vajalikku sõitu, võib hüvitada isikliku sõiduki kulud valla kehtestatud tariifide alusel. Kui õpilane õpib mujal kui lähimas sobivas koolis, hüvitatakse kulud vaid lähimale koolile vastavas mahus.",
+      "application": "Taotlus koos piletite või sõidukulu dokumentidega tuleb esitada iga kuu 10. kuupäevaks. Üle kahe kuu vanu pileteid ei hüvitata.",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/opilaste-soidukulude-huvitamise-taotlus",
+      "sourceKeys": [
+        "form_soidupiletite_huvitamise_avaldus_pdf",
+        "soidukulude_huvitamine_page"
+      ],
+      "relatedForms": [
+        "alutaguse_vald_form_soidupiletite_huvitamise_avaldus"
+      ],
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_soidupiletite_huvitamise_avaldus_pdf",
+        "soidukulude_huvitamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_benefit_opilaste_soidukulude_huvitamine",
+      "document_id": "alutaguse_vald_benefit_opilaste_soidukulude_huvitamine",
+      "canonical_item_id": "alutaguse_vald_benefit_opilaste_soidukulude_huvitamine",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/opilaste-soidukulude-huvitamise-taotlus",
+      "content_hash": "277a668ee285fb8d05d40d87571bd29651fca2f030e4ef8d6470037826a724c5",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_resource_kiikla_lastekodu",
+      "itemType": "resource",
+      "title": "Avatud Värav MTÜ Kiikla Lastekodu",
+      "status": "active",
+      "summary": "Kiikla Lastekodu, mille teenusepakkuja on Avatud Värav MTÜ, tegutseb Kiikla külas. Lastekodu on ja.",
+      "officialUrl": "https://www.alutagusevald.ee/asenduskodud",
+      "sourceKeys": [
+        "asenduskodud_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "asenduskodud_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_resource_kiikla_lastekodu",
+      "document_id": "alutaguse_vald_resource_kiikla_lastekodu",
+      "canonical_item_id": "alutaguse_vald_resource_kiikla_lastekodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/asenduskodud",
+      "content_hash": "eddd41b976d6d451207fb59df8248f01b13fdc14c1fba45489cb7d990d76107e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_resource_medi_hairenuputeenus",
+      "itemType": "resource",
+      "title": "MEDI häirenuputeenus",
+      "status": "active",
+      "summary": "MEDI häirenuputeenus on välisteenuse pakkuja telehoolekandeteenus, mille korral kasutaja kannab häirenuppu ja saab hädaolukorras ühendust Medi kutsungikeskusega. Keskus hindab olukorda ja kutsub vajadusel usaldusisiku, hooldaja või kiirabi. Teenuse saamiseks tuleb kontakteeruda valla sotsiaalosakonnaga, et vajalikud abivahendid saada.",
+      "officialUrl": "https://www.alutagusevald.ee/medi-hairenuputeenus",
+      "sourceKeys": [
+        "medi_hairenuputeenus_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "medi_hairenuputeenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_resource_medi_hairenuputeenus",
+      "document_id": "alutaguse_vald_resource_medi_hairenuputeenus",
+      "canonical_item_id": "alutaguse_vald_resource_medi_hairenuputeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/medi-hairenuputeenus",
+      "content_hash": "b105befbd67511fca136208ce61b706a3d598f47e6e13e7f1f7321eac148bab1",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_resource_ohvriabi",
+      "itemType": "resource",
+      "title": "Ohvriabi",
+      "status": "active",
+      "summary": "Ohvriabi on ametlik infokeskkond inimesele, kes ise või kelle lähedane on langenud hooletuse, halva kohtlemise, füüsilise, vaimse või seksuaalse vägivalla ohvriks. Abi saamise eelduseks ei ole kriminaalasja olemasolu; pöörduda võib ka siis, kui inimene on näinud õnnetust või kellegi teise halba kohtlemist ega tea, kust abi saada.",
+      "officialUrl": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/lapsele-ja-perele/ohvriabi",
+      "sourceKeys": [
+        "victim_support_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "victim_support_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_resource_ohvriabi",
+      "document_id": "alutaguse_vald_resource_ohvriabi",
+      "canonical_item_id": "alutaguse_vald_resource_ohvriabi",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/lapsele-ja-perele/ohvriabi",
+      "content_hash": "c21b5e8146a8f39cecbddffb8f06c5fc5011c0f2b09e1a611b69fe95aa58ad31",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_resource_olulised_nouandeliinid",
+      "itemType": "resource",
+      "title": "Olulised nõuandeliinid",
+      "status": "active",
+      "summary": "Alutaguse valla ametlik nõuandeliinide leht koondab abitelefonid ja nõustamisliinid, mida saab kasutada eri kriiside, vaimse tervise murede, pereprobleemide, dementsuse, lastega seotud küsimuste ja muu abivajaduse korral.",
+      "officialUrl": "https://www.alutagusevald.ee/olulised-nouandeliinid",
+      "sourceKeys": [
+        "important_hotlines_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "important_hotlines_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_resource_olulised_nouandeliinid",
+      "document_id": "alutaguse_vald_resource_olulised_nouandeliinid",
+      "canonical_item_id": "alutaguse_vald_resource_olulised_nouandeliinid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/olulised-nouandeliinid",
+      "content_hash": "e4d07c25ac5ca2ea9e54323615f677626d990ee0a784b15fbf4f57e9072bde22",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_resource_parkimiskaart",
+      "itemType": "resource",
+      "title": "Parkimiskaardid",
+      "status": "active",
+      "summary": "Parkimiskaart väljastatakse Alutaguse valla elanikule, kellel on keskmisele, raskele või sügavale puude raskusastmele vastav liikumis- või nägemisfunktsiooni kõrvalekalle või ajutine liikumis- või nägemisfunktsiooni kõrvalekalle. Kaart antakse välja puude raskusastme kehtivuse ajaks, kuid mitte kauemaks kui viieks aastaks; ajutise kõrvalekalde korral kuni kuueks kuuks.",
+      "officialUrl": "https://www.alutagusevald.ee/parkimiskaardid",
+      "sourceKeys": [
+        "parkimiskaardid_page",
+        "parkimiskaart_page"
+      ],
+      "conditions": "Taotleja esitab isikut tõendava dokumendi, dokumendifoto, Sotsiaalkindlustusameti puude raskusastme otsuse ning vajadusel pere- või eriarsti teatise.",
+      "relatedContacts": [
+        "alutaguse_vald_contact_aita_murdsalu",
+        "alutaguse_vald_contact_heli_smigelskene",
+        "alutaguse_vald_contact_inna_zahhalina",
+        "alutaguse_vald_contact_anu_kljutsnik"
+      ],
+      "item_type": "resource",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "parkimiskaardid_page",
+        "parkimiskaart_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_resource_parkimiskaart",
+      "document_id": "alutaguse_vald_resource_parkimiskaart",
+      "canonical_item_id": "alutaguse_vald_resource_parkimiskaart",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/parkimiskaardid",
+      "content_hash": "70bad86dbb96114d5cbb153171258784109ab25e65699a0f03f81f5163dc1477",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_resource_sa_alutaguse_hoolekeskus",
+      "itemType": "resource",
+      "title": "SA Alutaguse Hoolekeskus",
+      "status": "active",
+      "summary": "Sihtasutus Alutaguse Hoolekeskus pakub hooldekoduteenuseid Mäetaguse alevikus, aadressil Kooli 25. Hoolekeskuse juhatuse liige on Kristiina Ets. Kontakttelefonid on ja ning e-posti aadress.",
+      "officialUrl": "https://www.alutagusevald.ee/hoolekandeasutused",
+      "sourceKeys": [
+        "hoolekandeasutused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "hoolekandeasutused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_resource_sa_alutaguse_hoolekeskus",
+      "document_id": "alutaguse_vald_resource_sa_alutaguse_hoolekeskus",
+      "canonical_item_id": "alutaguse_vald_resource_sa_alutaguse_hoolekeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/hoolekandeasutused",
+      "content_hash": "d83ea4d8a75f6ffd38ff3f3f4edd269087cc42ccb730d1553a35108485c27adb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_resource_tudulinna_asenduskodu",
+      "itemType": "resource",
+      "title": "Tudulinna Asenduskodu (MTÜ Maria ja Lapsed)",
+      "status": "active",
+      "summary": "Tudulinna Asenduskodu, mida haldab MTÜ Maria ja Lapsed, pakub asendushooldusteenust aadressil Kooli 3, Tudulinna küla. Kontaktisik on Karis Mugamäe, ja.",
+      "officialUrl": "https://www.alutagusevald.ee/asenduskodud",
+      "sourceKeys": [
+        "asenduskodud_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "asenduskodud_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_resource_tudulinna_asenduskodu",
+      "document_id": "alutaguse_vald_resource_tudulinna_asenduskodu",
+      "canonical_item_id": "alutaguse_vald_resource_tudulinna_asenduskodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/asenduskodud",
+      "content_hash": "afcc52076404554a6f500d18276744bd25635cc716a41a5265860307dce5be09",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_contact_aita_murdsalu",
+      "itemType": "contact",
+      "title": "Aita Murdsalu",
+      "status": "active",
+      "name": "Aita Murdsalu",
+      "role": "Sotsiaaltöötaja",
+      "department": "Sotsiaalosakond",
+      "summary": "Aita Murdsalu on sotsiaaltöötaja, kelle vastuvõtt toimub Mäetaguse teenuskeskuses kindlatel nädalapäevadel ja kellaaegadel.",
+      "officialUrl": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_contact_aita_murdsalu",
+      "document_id": "alutaguse_vald_contact_aita_murdsalu",
+      "canonical_item_id": "alutaguse_vald_contact_aita_murdsalu",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "f8e9c66b83d3b72b6bd4dc19bccb6a45abdfb0757837c5f791f209067516f14d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_contact_anu_kljutsnik",
+      "itemType": "contact",
+      "title": "Anu Kljutšnik",
+      "status": "active",
+      "name": "Anu Kljutšnik",
+      "role": "Sotsiaaltöötaja",
+      "department": "Sotsiaalosakond",
+      "summary": "Anu Kljutšnik töötab sotsiaaltöötajana ja võtab vastu Iisaku ja Mäetaguse teenuskeskustes vastavalt graafikule.",
+      "officialUrl": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_contact_anu_kljutsnik",
+      "document_id": "alutaguse_vald_contact_anu_kljutsnik",
+      "canonical_item_id": "alutaguse_vald_contact_anu_kljutsnik",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "de13fba4d6bf14efbe6647352d6a430636f343ec2b3cda9a8b7068bdbb5a769a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_contact_heidi_kruut",
+      "itemType": "contact",
+      "title": "Heidi Kruut",
+      "status": "active",
+      "name": "Heidi Kruut",
+      "role": "Registri- ja personalitöötaja",
+      "department": "Sotsiaalosakond",
+      "summary": "Heidi Kruut tegeleb registrite ja isikkoosseisu küsimustega ning võtab vastu kindlaksmääratud aegadel teenuskeskustes.",
+      "officialUrl": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_contact_heidi_kruut",
+      "document_id": "alutaguse_vald_contact_heidi_kruut",
+      "canonical_item_id": "alutaguse_vald_contact_heidi_kruut",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "2af58d71f50fb70f957f732e5c0a3e62603199f13d87f94ffeeeb54c2db202e9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_contact_heli_smigelskene",
+      "itemType": "contact",
+      "title": "Heli Šmigelskene",
+      "status": "active",
+      "name": "Heli Šmigelskene",
+      "role": "Sotsiaalabitöötaja",
+      "department": "Sotsiaalosakond",
+      "summary": "Heli Šmigelskene nõustab sotsiaalküsimustes. Tema vastuvõtud toimuvad Tudulinna ja Iisaku teenuskeskustes kindlatel aegadel.",
+      "officialUrl": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_contact_heli_smigelskene",
+      "document_id": "alutaguse_vald_contact_heli_smigelskene",
+      "canonical_item_id": "alutaguse_vald_contact_heli_smigelskene",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "93bc98c31378e3fcca9da9f75d9e946ade21953ce7f7171219eb21fbdde5e411",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_contact_inna_zahhalina",
+      "itemType": "contact",
+      "title": "Inna Zahhalina",
+      "status": "active",
+      "name": "Inna Zahhalina",
+      "role": "Sotsiaaltöötaja",
+      "department": "Sotsiaalosakond",
+      "summary": "Inna Zahhalina nõustab ja teenindab Iisaku, Alajõe ja Kurtna piirkondade elanikke. Tal on vastuvõtuajad vastavalt teenuskeskuste graafikule.",
+      "officialUrl": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_contact_inna_zahhalina",
+      "document_id": "alutaguse_vald_contact_inna_zahhalina",
+      "canonical_item_id": "alutaguse_vald_contact_inna_zahhalina",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "bfb6561b14ac324bc12474d2fdeda497809ab0b2079db0d0843fe5c75f2e4dac",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_contact_kaarel_treimann",
+      "itemType": "contact",
+      "title": "Kaarel Treimann",
+      "name": "Kaarel Treimann",
+      "status": "active",
+      "summary": "Kaarel Treimann on Alutaguse valla koduhooldustöötaja.",
+      "role": "Koduhooldustöötaja",
+      "department": "Haridus-, kultuuri- ja sotsiaalteenistus",
+      "officialUrl": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_contact_kaarel_treimann",
+      "document_id": "alutaguse_vald_contact_kaarel_treimann",
+      "canonical_item_id": "alutaguse_vald_contact_kaarel_treimann",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "a549cb69ca009870364d2364b31ad370a35671211245d06beff122cfe83bac9f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_contact_kairi_hobemeri",
+      "itemType": "contact",
+      "title": "Kairi Hõbemeri",
+      "status": "active",
+      "name": "Kairi Hõbemeri",
+      "role": "Abivallavanem",
+      "department": "Sotsiaalosakond",
+      "summary": "Kairi Hõbemeri on Alutaguse valla abivallavanem. Vastuvõtt toimub kokkuleppel.",
+      "officialUrl": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_contact_kairi_hobemeri",
+      "document_id": "alutaguse_vald_contact_kairi_hobemeri",
+      "canonical_item_id": "alutaguse_vald_contact_kairi_hobemeri",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "ea9d15941c5d7768532c9faf74eba1d054943bc178bbaf24297823561d8317cf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_contact_mari_liis_are",
+      "itemType": "contact",
+      "title": "Mari-Liis Are",
+      "status": "active",
+      "name": "Mari‑Liis Are",
+      "role": "Psühholoog (0,5)",
+      "department": "Sotsiaalosakond",
+      "summary": "Mari-Liis Are töötab Alutaguse vallas psühholoogina osakoormusega. Vastuvõtt toimub kokkuleppel.",
+      "officialUrl": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_contact_mari_liis_are",
+      "document_id": "alutaguse_vald_contact_mari_liis_are",
+      "canonical_item_id": "alutaguse_vald_contact_mari_liis_are",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "4d185105cab29d4e66c054b0180e23b91ac6788d9e1e90fea6e66ebce7a27d63",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_contact_merike_linder",
+      "itemType": "contact",
+      "title": "Merike Linder",
+      "name": "Merike Linder",
+      "status": "active",
+      "summary": "Merike Linder on Alutaguse valla koduhooldustöötaja.",
+      "role": "Koduhooldustöötaja",
+      "department": "Haridus-, kultuuri- ja sotsiaalteenistus",
+      "officialUrl": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_contact_merike_linder",
+      "document_id": "alutaguse_vald_contact_merike_linder",
+      "canonical_item_id": "alutaguse_vald_contact_merike_linder",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "29bf8562495b49587b0b73e2226b9b839ef2757729a27914a6259739a4eefe51",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_contact_nelli_kuldmaa",
+      "itemType": "contact",
+      "title": "Nelli Kuldmaa",
+      "status": "active",
+      "name": "Nelli Kuldmaa",
+      "role": "Haridus- ja noorsootööspetsialist",
+      "department": "Sotsiaalosakond",
+      "summary": "Nelli Kuldmaa tegeleb hariduse ja noorsootööga ning annab nõu kokkuleppel.",
+      "officialUrl": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_contact_nelli_kuldmaa",
+      "document_id": "alutaguse_vald_contact_nelli_kuldmaa",
+      "canonical_item_id": "alutaguse_vald_contact_nelli_kuldmaa",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "789f44a51d89b1c8d04ce1517d15a89ce9520d28042926ba3bd351118cc4f335",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_contact_zlata_hollat",
+      "itemType": "contact",
+      "title": "Zlata Hollat",
+      "status": "active",
+      "name": "Zlata Hollat",
+      "role": "Lastekaitsetöötaja",
+      "department": "Sotsiaalosakond",
+      "summary": "Zlata Hollat tegeleb lastekaitse juhtumitega ning võtab abivajajaid vastu kokkuleppel.",
+      "officialUrl": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "sourceKeys": [
+        "social_contacts_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "social_contacts_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_contact_zlata_hollat",
+      "document_id": "alutaguse_vald_contact_zlata_hollat",
+      "canonical_item_id": "alutaguse_vald_contact_zlata_hollat",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/pere-sotsiaal-ja-tervishoid/kontaktid/sotsiaalvaldkonna-kontaktid",
+      "content_hash": "c4e9d75c1dd329a99c99bbc0979de0a7ee20fc68c8cfe7023291a6950e884be4",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_form_abivajadusest_soltuva_toetuse_taotlus",
+      "itemType": "form",
+      "title": "Avaldus abivajadusest sõltuva toetuse taotlemiseks",
+      "status": "active",
+      "summary": "Ametlik blankett abivajadusest sõltuva toetuse taotlemiseks.",
+      "officialUrl": "https://www.alutagusevald.ee/sites/default/files/documents/2026-02/Avaldus%20abivajadusest%20s%C3%B5ltuva%20toetuse%20taotlemiseks%20%281%29.docx",
+      "sourceKeys": [
+        "form_abivajadusest_soltuva_toetuse_taotlus_pdf",
+        "social_rules_page"
+      ],
+      "relatedTo": [
+        "alutaguse_vald_benefit_puudega_lapse_hooldaja_toetus",
+        "alutaguse_vald_benefit_hooldust_vajava_taiskasvanu_toetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_abivajadusest_soltuva_toetuse_taotlus_pdf",
+        "social_rules_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_form_abivajadusest_soltuva_toetuse_taotlus",
+      "document_id": "alutaguse_vald_form_abivajadusest_soltuva_toetuse_taotlus",
+      "canonical_item_id": "alutaguse_vald_form_abivajadusest_soltuva_toetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/sites/default/files/documents/2026-02/Avaldus%20abivajadusest%20s%C3%B5ltuva%20toetuse%20taotlemiseks%20%281%29.docx",
+      "content_hash": "9efbc4346b64b580849d22e870fe9bf75df0a8d7b31876315f9dc84afb6dda97",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_form_sotsiaaltoetuse_taotlus",
+      "itemType": "form",
+      "title": "Avaldus sotsiaaltoetuse taotlemiseks",
+      "status": "active",
+      "summary": "Ametlik blankett sotsiaaltoetuste taotlemiseks. Blanketi valikutest on näha, et seda kasutatakse sünnitoetuse, esmakordselt kooli mineva lapse toetuse, prillide ja abivahendite toetuse, retseptiravimite toetuse, koolitarvete ja kooliriiete toetuse, matusetoetuse ning erakorralise toetuse taotlemiseks.",
+      "officialUrl": "https://www.alutagusevald.ee/sites/default/files/documents/2026-02/Sotsiaaltoetuse%20taotlemise%20vorm.docx",
+      "sourceKeys": [
+        "form_sotsiaaltoetuse_taotlus_pdf",
+        "social_rules_page"
+      ],
+      "relatedTo": [
+        "alutaguse_vald_benefit_sunnitoetus",
+        "alutaguse_vald_benefit_esmakordselt_kooli_mineva_lapse_toetus",
+        "alutaguse_vald_benefit_koolitarvete_kooliriiete_toetus",
+        "alutaguse_vald_benefit_retseptiravimite_toetus",
+        "alutaguse_vald_benefit_prillid_abivahendid_toetus",
+        "alutaguse_vald_benefit_erakorraline_toetus",
+        "alutaguse_vald_benefit_matusetoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_sotsiaaltoetuse_taotlus_pdf",
+        "social_rules_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_form_sotsiaaltoetuse_taotlus",
+      "document_id": "alutaguse_vald_form_sotsiaaltoetuse_taotlus",
+      "canonical_item_id": "alutaguse_vald_form_sotsiaaltoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/sites/default/files/documents/2026-02/Sotsiaaltoetuse%20taotlemise%20vorm.docx",
+      "content_hash": "478a9fc07cbd17f36df82dbd41bd222bac62bc40f7b718b87e8a566337feb72c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_form_teenuse_taotlus_abivajaduse_korral",
+      "itemType": "form",
+      "title": "Avaldus teenuse taotlemiseks abivajaduse korral",
+      "status": "active",
+      "summary": "Ametlik blankett teenuse taotlemiseks abivajaduse korral.",
+      "officialUrl": "https://www.alutagusevald.ee/sites/default/files/documents/2026-02/Avaldus%20teenuse%20taotlemiseks%20abivajaduse%20korral%20%282%29.docx",
+      "sourceKeys": [
+        "form_teenuse_taotlus_pdf",
+        "social_rules_page"
+      ],
+      "relatedTo": [
+        "alutaguse_vald_service_koduteenus",
+        "alutaguse_vald_service_uldhooldusteenus",
+        "alutaguse_vald_service_tugiisikuteenus",
+        "alutaguse_vald_service_taisealise_isiku_hooldus",
+        "alutaguse_vald_service_isikliku_abistaja_teenus",
+        "alutaguse_vald_service_lapsehoiuteenus",
+        "alutaguse_vald_service_asendushooldusteenus",
+        "alutaguse_vald_service_jarelhooldusteenus",
+        "alutaguse_vald_service_valtimatu_sotsiaalabi",
+        "alutaguse_vald_service_psuhholoogiline_noustamine",
+        "alutaguse_vald_service_soltuvusnoustamine",
+        "alutaguse_vald_service_volanoustamine"
+      ],
+      "item_type": "form",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_teenuse_taotlus_pdf",
+        "social_rules_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_form_teenuse_taotlus_abivajaduse_korral",
+      "document_id": "alutaguse_vald_form_teenuse_taotlus_abivajaduse_korral",
+      "canonical_item_id": "alutaguse_vald_form_teenuse_taotlus_abivajaduse_korral",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/sites/default/files/documents/2026-02/Avaldus%20teenuse%20taotlemiseks%20abivajaduse%20korral%20%282%29.docx",
+      "content_hash": "1fa67c0217836b134a2a44c031b308685fccb7558b8a58ad38fd9b2618cc73c6",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_form_toimetuleku_taotlus",
+      "itemType": "form",
+      "title": "Avaldus toimetuleku taotlemiseks",
+      "status": "active",
+      "summary": "Ametlik blankett toimetulekutoetuse taotlemiseks.",
+      "officialUrl": "https://www.alutagusevald.ee/sites/default/files/documents/2026-02/Avaldus%20toimetuleku%20taotlemiseks.docx",
+      "sourceKeys": [
+        "form_toimetuleku_taotlus_pdf",
+        "social_rules_page"
+      ],
+      "relatedTo": [
+        "alutaguse_vald_benefit_toimetulekutoetus"
+      ],
+      "item_type": "form",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_toimetuleku_taotlus_pdf",
+        "social_rules_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_form_toimetuleku_taotlus",
+      "document_id": "alutaguse_vald_form_toimetuleku_taotlus",
+      "canonical_item_id": "alutaguse_vald_form_toimetuleku_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/sites/default/files/documents/2026-02/Avaldus%20toimetuleku%20taotlemiseks.docx",
+      "content_hash": "0e549b6133c1602c4293132845f706e41529f1cd03c843bb453ed8e1ca80d564",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_form_huvihariduse_ja_huvitegevuse_taotlus",
+      "itemType": "form",
+      "title": "Huvihariduse ja huvitegevuse taotlus",
+      "status": "active",
+      "summary": "Ametlik blankett huvihariduse ja huvitegevuse toetuse taotlemiseks.",
+      "officialUrl": "https://www.alutagusevald.ee/sites/default/files/documents/2026-04/Huvihariduse%20ja%20huvitegevuse%20taotlus%20.docx",
+      "sourceKeys": [
+        "form_huviharidus_huvitegevus_pdf",
+        "social_rules_page"
+      ],
+      "relatedTo": [
+        "alutaguse_vald_benefit_hobby_education_support"
+      ],
+      "item_type": "form",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_huviharidus_huvitegevus_pdf",
+        "social_rules_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_form_huvihariduse_ja_huvitegevuse_taotlus",
+      "document_id": "alutaguse_vald_form_huvihariduse_ja_huvitegevuse_taotlus",
+      "canonical_item_id": "alutaguse_vald_form_huvihariduse_ja_huvitegevuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/sites/default/files/documents/2026-04/Huvihariduse%20ja%20huvitegevuse%20taotlus%20.docx",
+      "content_hash": "eb1b39fbd05db58918d50d11d6803636e03ee9940f0739e79510b4452d1e00f0",
+      "evidence_allowed": true
+    },
+    {
+      "id": "alutaguse_vald_form_soidupiletite_huvitamise_avaldus",
+      "itemType": "form",
+      "title": "Sõidupiletite hüvitamise avaldus",
+      "status": "active",
+      "summary": "Ametlik blankett õpilaste sõidukulude hüvitamise taotlemiseks.",
+      "officialUrl": "https://www.alutagusevald.ee/toiming/opilaste-soidukulude-huvitamise-taotlus",
+      "sourceKeys": [
+        "form_soidupiletite_huvitamise_avaldus_pdf",
+        "social_rules_page",
+        "soidukulude_huvitamine_page"
+      ],
+      "relatedTo": [
+        "alutaguse_vald_benefit_opilaste_soidukulude_huvitamine"
+      ],
+      "item_type": "form",
+      "municipality_id": "alutaguse_vald",
+      "municipality_name": "Alutaguse vald",
+      "county": "Ida-Virumaa",
+      "source_keys": [
+        "form_soidupiletite_huvitamise_avaldus_pdf",
+        "social_rules_page",
+        "soidukulude_huvitamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "alutaguse_vald_form_soidupiletite_huvitamise_avaldus",
+      "document_id": "alutaguse_vald_form_soidupiletite_huvitamise_avaldus",
+      "canonical_item_id": "alutaguse_vald_form_soidupiletite_huvitamise_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-12",
+      "last_checked": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.alutagusevald.ee/toiming/opilaste-soidukulude-huvitamise-taotlus",
+      "content_hash": "acab1f574e28858b7becb865bd510b87c91d6c244b15352b7736beb286245553",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_id": "alutaguse_vald",
+  "municipality_name": "Alutaguse vald",
+  "checked_at": "2026-04-12",
+  "schemaVersion": "v2.5-sourcepackage",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

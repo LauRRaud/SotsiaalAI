@@ -1,0 +1,141 @@
+{
+  "source_path": "sotsiaalministeerium_puude_toetus_ja_lisa_toetus_2025_aastal.pdf",
+  "source_format": "pdf",
+  "sha256": "2b8263a5d8773ecb0c26ce4349e663454ea33cdc35b33d9dc5b1b5d1c1efda16",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/sotsiaalministeerium_puude_toetus_ja_lisa_toetus_2025_aastal.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "sotsiaalministeerium_puude_toetus_ja_lisa_toetus_2025_aastal",
+          "title": "Puude-toetus ja lisa-toetus 2025. aastal",
+          "url": "https://www.sm.ee/sites/default/files/documents/2024-12/puudetoetus%20ja%20lisatoetus%202025_KM.pdf",
+          "normalized_url": "https://www.sm.ee/sites/default/files/documents/2024-12/puudetoetus ja lisatoetus 2025_KM.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "Sotsiaalministeerium",
+          "organization_id": "sotsiaalministeerium",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Sotsiaalministeerium",
+            "puue",
+            "puudega inimene",
+            "erivajadus",
+            "infomaterjal"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Sotsiaalministeerium",
+            "heading_3": "Puue, töövõime, ligipääsetavus",
+            "heading_4": null,
+            "line": 517,
+            "order": 271
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Puude-toetus ja lisa-toetus 2025. aastal"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Sotsiaalministeerium"
+          ],
+          "organizations_seen": [
+            "sotsiaalministeerium"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Sotsiaalministeerium",
+              "heading_3": "Puue, töövõime, ligipääsetavus",
+              "line": 517,
+              "order": 271
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.sm.ee/sites/default/files/documents/2024-12/puudetoetus ja lisatoetus 2025_KM.pdf"
+        },
+        "final_url": "https://www.sm.ee/sites/default/files/documents/2024-12/puudetoetus%20ja%20lisatoetus%202025_KM.pdf",
+        "redirects": [],
+        "sha256": "2b8263a5d8773ecb0c26ce4349e663454ea33cdc35b33d9dc5b1b5d1c1efda16",
+        "bytes": 272329,
+        "downloaded_at": "2026-08-14T08:00:53.666Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "sotsiaalministeerium_puude_toetus_ja_lisa_toetus_2025_aastal",
+      "metadata": {
+        "createdAt": "2026-06-12T03:58:05.957028+00:00",
+        "type": "FILE",
+        "fileName": "puudetoetus ja lisatoetus 2025_KM.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:58:05.886228+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/7102a43994f0/puudetoetus ja lisatoetus 2025_KM.pdf",
+        "title": "Puude-toetus ja lisa-toetus 2025. aastal",
+        "description": "Source master headings: Sotsiaalministeerium; Puue, töövõime, ligipääsetavus",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2025,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–2",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "sotsiaalministeerium_puude_toetus_ja_lisa_toetus_2025_aastal",
+        "document_id": "sotsiaalministeerium_puude_toetus_ja_lisa_toetus_2025_aastal",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "b32c333cfce985774212fb73bfb2cf61d2b3460852be4e6dacefe838acb7cceb",
+        "url": "https://www.sm.ee/sites/default/files/documents/2024-12/puudetoetus%20ja%20lisatoetus%202025_KM.pdf",
+        "url_canonical": "https://www.sm.ee/sites/default/files/documents/2024-12/puudetoetus ja lisatoetus 2025_KM.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "sotsiaalministeerium_puude_toetus_ja_lisa_toetus_2025_aastal",
+        "updatedAt": "2026-06-12T03:58:05.957051+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

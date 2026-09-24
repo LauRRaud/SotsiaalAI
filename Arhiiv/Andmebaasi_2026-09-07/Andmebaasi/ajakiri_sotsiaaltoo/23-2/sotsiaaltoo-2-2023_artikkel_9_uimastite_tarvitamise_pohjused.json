@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-2-2023",
+  "articleId": "uimastite-tarvitamise-pohjused-ja-levimus-2023-2",
+  "title": "Uimastite tarvitamise põhjused ja levimus",
+  "authors": [
+    "Marin Vaher",
+    "Mikk Oja",
+    "Katri Abel-Ollo",
+    "Aljona Kurbatova"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2023",
+  "section": "Vaimne tervis",
+  "pageRange": "30-35",
+  "pdf_start_page": 1,
+  "pdf_end_page": 6,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel annab ülevaate uimastite tarvitamise peamistest põhjustest ja levimusest Eesti elanike seas, toetudes\nTervise Arengu Instituudi uuringutele. Selgitatakse, millised ained on sagedamini kasutusel, millised riskitegurid\nsoodustavad tarvitamist ning kuidas mõjutavad uimastid inimeste tervist ja igapäevaelu. Lisaks kirjeldatakse,\nkust saavad nii tarvitajad kui ka nende lähedased infot ja abi, sh nõustamisteenustest ja tugiliinidest, ning\nrõhutatakse stigma vähendamise ja avatud arutelu olulisust.",
+  "tags": [
+    "uimastite tarvitamine",
+    "uimastite levimus",
+    "Tervise Arengu Instituut",
+    "vaimne tervis",
+    "riskikäitumine",
+    "nõustamine",
+    "tugiteenused"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2023_web_par_Part10.pdf",
+  "document_id": "sotsiaaltoo-2-2023-uimastite-tarvitamise-pohjused-ja-levimus-2023-2",
+  "source_format": "pdf",
+  "source_sha256": "057a2333ce2d5eefaa6c3ef819af0e0a625446151105a8b2297659b89fd0e1d7",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2023-uimastite-tarvitamise-pohjused-ja-levimus-2023-2",
+    "previous_source_path": "Sotsiaaltoo_2_2023_web_par_Part10.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "057a2333ce2d5eefaa6c3ef819af0e0a625446151105a8b2297659b89fd0e1d7",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

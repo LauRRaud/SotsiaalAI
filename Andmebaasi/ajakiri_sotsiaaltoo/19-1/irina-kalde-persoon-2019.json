@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-1-2019",
+  "articleId": "irina-kalde-iga-klient-ja-iga-tootaja-on-meil-tahtsad-2019",
+  "title": "Irina Kalde: Iga klient ja iga töötaja on meil tähtsad",
+  "authors": [
+    "Regina Lind"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2019",
+  "section": "Persoon",
+  "pageRange": "3-7",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu Tugikeskus Juksi juhist Irina Kaldes, tema juhtimisfilosoofiast, erivajadustega täiskasvanute toetamisest, loomingulisest keskkonnast ja pikaajalisest koostööst klientide ning töötajatega.",
+  "tags": [
+    "persoonilugu",
+    "Irina Kalde",
+    "Tugikeskus Juks",
+    "intellektipuudega inimesed",
+    "päevakeskus",
+    "täiskasvanute hoolekanne",
+    "organisatsiooni juhtimine",
+    "töötajate motiveerimine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part3.pdf",
+  "document_id": "sotsiaaltoo-1-2019-irina-kalde-iga-klient-ja-iga-tootaja-on-meil-tahtsad-2019",
+  "source_format": "pdf",
+  "source_sha256": "5bb6c6a8a73d1e77cb780ef58cc440bff4a32c3799d8411e1208f19a5c87d2b3",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2019-irina-kalde-iga-klient-ja-iga-tootaja-on-meil-tahtsad-2019",
+    "previous_source_path": "Sotsiaaltoo_nr1_2019_veeb_link_Part3.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "5bb6c6a8a73d1e77cb780ef58cc440bff4a32c3799d8411e1208f19a5c87d2b3",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

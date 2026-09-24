@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metaandmed>
+    <valjaandja>Tallinna Linnavalitsus</valjaandja>
+    <dokumentLiik>määrus</dokumentLiik>
+    <tekstiliik>algtekst-terviktekst</tekstiliik>
+    <dokumentEtapp>avaldamine</dokumentEtapp>
+    <dokumentStaatus>avaldatud</dokumentStaatus>
+    <vastuvoetud>
+      <aktikuupaev>2024-12-17</aktikuupaev>
+      <aktiNr>41</aktiNr>
+    </vastuvoetud>
+    <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2024-12-28</avaldamineKuupaev><RTaasta>2024</RTaasta><RTartikkel>33</RTartikkel><aktViide>428122024033</aktViide></avaldamismarge><kehtivus>
+      <kehtivuseAlgus>2025-01-01+02:00</kehtivuseAlgus>
+    </kehtivus>
+    <versioon>
+      <dokumentVersioon>1</dokumentVersioon>
+      <dokumentVersioonKuupaev>2024-12-18</dokumentVersioonKuupaev>
+    </versioon>
+    <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+    <globaalID>428122024033</globaalID>
+    <metaandmedVersioon>5</metaandmedVersioon>
+    <metaandmedVersioonKuupaev>2024-12-20</metaandmedVersioonKuupaev>
+    <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+  <terviktekstiGrupiID>1060128</terviktekstiGrupiID></metaandmed>
+  <aktinimi>
+    <nimi>
+      <pealkiri> Tallinna Lastekodu põhimäärus</pealkiri>
+    </nimi>
+  </aktinimi>
+  <sisu>
+    <preambul>
+      <tavatekst>Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 35 lg 2, Tallinna põhimääruse § 52 lg 7, Tallinna Linnavolikogu 19. juuni 2003 määrusega nr 39 kinnitatud „Ametiasutuste hallatavate asutuste asutamise, haldamise, ümberkorraldamise ja lõpetamise korra“ p 2.6, 21. septembri 2000 otsuse nr 296 „Linna lastekodude ümberkorraldamine Tallinna Lastekoduks“ ja 17. oktoobri 2024 otsuse nr 136 „Tallinna Sotsiaal- ja Tervishoiuameti hallatavate asutuste ümberkorraldamine“ alusel.</tavatekst>
+    </preambul>
+    <paragrahv id="para1">
+      <paragrahvNr>1</paragrahvNr>
+      <kuvatavNr><![CDATA[§ 1.]]></kuvatavNr>
+      <paragrahvPealkiri>Üldsätted</paragrahvPealkiri>
+      <loige id="para1lg1">
+        <loigeNr>1</loigeNr>
+        <kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Tallinna Lastekodu (edaspidi <i>asutus</i>) on Tallinna Sotsiaal- ja Tervishoiuameti (edaspidi <i>ametiasutus</i>) hallatav asutus, mille tegevuse eesmärk on osutada ja arendada lastele, noortele ja lastega peredele mõeldud sotsiaalteenuseid.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para1lg2">
+        <loigeNr>2</loigeNr>
+        <kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Asutuse nimetuse ametlik tõlge on inglise keeles Tallinn Children's Home.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para1lg3">
+        <loigeNr>3</loigeNr>
+        <kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Asutus asub Tallinnas. Asutuse postiaadress avalikustatakse linna veebilehel.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para1lg4">
+        <loigeNr>4</loigeNr>
+        <kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Asutusel on oma eelarve.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para1lg5">
+        <loigeNr>5</loigeNr>
+        <kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Asutusel võivad olla oma sümbolid.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para1lg6">
+        <loigeNr>6</loigeNr>
+        <kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Asutuse põhimääruse kehtestab ja seda muudab Tallinna Linnavalitsus (edaspidi <i>linnavalitsus</i>) ametiasutuse ettepanekul.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para1lg7">
+        <loigeNr>7</loigeNr>
+        <kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Asutus juhindub oma tegevuses riigi ja Tallinna õigusaktidest, ametiasutuse haldusaktidest ning käesolevast põhimäärusest.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para2">
+      <paragrahvNr>2</paragrahvNr>
+      <kuvatavNr><![CDATA[§ 2.]]></kuvatavNr>
+      <paragrahvPealkiri>Struktuur</paragrahvPealkiri>
+      <loige id="para2lg1">
+        <loigeNr>1</loigeNr>
+        <kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Oma ülesannete täitmiseks on asutusel ametiga kooskõlastatult õigus moodustada struktuuriüksusi.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para2lg2">
+        <loigeNr>2</loigeNr>
+        <kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Struktuuriüksuste tööd korraldavad üksuste juhid, kes alluvad asutuse juhatajale.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para3">
+      <paragrahvNr>3</paragrahvNr>
+      <kuvatavNr><![CDATA[§ 3.]]></kuvatavNr>
+      <paragrahvPealkiri>Tegevusvaldkond ja ülesanded</paragrahvPealkiri>
+      <loige id="para3lg1">
+        <loigeNr>1</loigeNr>
+        <kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Asutuse tegevusvaldkond on laste, noorte ja perede sotsiaalhoolekanne.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para3lg2">
+        <loigeNr>2</loigeNr>
+        <kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Tegevusvaldkonnast tulenevalt täidab asutus järgmisi ülesandeid:</tavatekst>
+        </sisuTekst>
+        <alampunkt id="para3lg2p1">
+          <alampunktNr>1</alampunktNr>
+          <kuvatavNr><![CDATA[1)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>asendus- ja järelhooldusteenuse, turvakodu-, lapsehoiu- ja rehabilitatsiooniteenuste ning muude laste, noorte ja lastega perede heaolu tagavate teenuste osutamine;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para3lg2p2">
+          <alampunktNr>2</alampunktNr>
+          <kuvatavNr><![CDATA[2)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>asendushooldusteenuse osutamine lastele ja noortele ning noorte nõustamine ja toetamine iseseisvasse ellu astumisel;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para3lg2p3">
+          <alampunktNr>3</alampunktNr>
+          <kuvatavNr><![CDATA[3)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>järelhooldusteenuse osutamine asendus- ja perekodus;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para3lg2p4">
+          <alampunktNr>4</alampunktNr>
+          <kuvatavNr><![CDATA[4)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>järelhooldusteenuse osutamine asendushoolduselt või eestkostelt lahkunud täisealistele noortele;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para3lg2p5">
+          <alampunktNr>5</alampunktNr>
+          <kuvatavNr><![CDATA[5)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>turvakoduteenuse osutamine kuni 7-aastastele (k.a) lastele ja vanematele koos lastega;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para3lg2p6">
+          <alampunktNr>6</alampunktNr>
+          <kuvatavNr><![CDATA[6)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>ööpäevaringse lapsehoiuteenuse osutamine raske ja sügava puudega lastele;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para3lg2p7">
+          <alampunktNr>7</alampunktNr>
+          <kuvatavNr><![CDATA[7)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>rehabilitatsiooni- ja nõustamisteenuste osutamine eelkõige traumakogemusega lastele, noortele ja nende peredele;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para3lg2p8">
+          <alampunktNr>8</alampunktNr>
+          <kuvatavNr><![CDATA[8)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>valdkondlik teavitustöö, nõustamine ja koolitamine ning koostöö arendamine teiste samalaadsete asutuste ja organisatsioonidega Eestis ja välismaal;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para3lg2p9">
+          <alampunktNr>9</alampunktNr>
+          <kuvatavNr><![CDATA[9)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>asutuse tegevusvaldkondade arendamine ja arendusprojektides osalemine;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para3lg2p10">
+          <alampunktNr>10</alampunktNr>
+          <kuvatavNr><![CDATA[10)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>asutuse asjaajamise, teabehalduse, finantsalase töö ja hankemenetluste korraldamine ning personalitöö korraldamine ja arendamine;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para3lg2p11">
+          <alampunktNr>11</alampunktNr>
+          <kuvatavNr><![CDATA[11)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>asutuse kinnisvara haldamine ja seadmete korrashoiu korraldamine ja tagamine.</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+      </loige>
+      <loige id="para3lg3">
+        <loigeNr>3</loigeNr>
+        <kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Asutusel on õigus osutada oma tegevusvaldkonnaga seotud muid teenuseid, mis kooskõlastatakse ametiasutusega ning mille hinnad kehtestatakse riigi ja Tallinna õigusaktides sätestatud korras.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para4">
+      <paragrahvNr>4</paragrahvNr>
+      <kuvatavNr><![CDATA[§ 4.]]></kuvatavNr>
+      <paragrahvPealkiri>Vara, vahendid ja eelarve</paragrahvPealkiri>
+      <loige id="para4lg1">
+        <loigeNr>1</loigeNr>
+        <kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Asutus valdab, kasutab ja käsutab oma valduses olevat linnavara seda valitsema volitatud asutusena, lähtudes riigi ja Tallinna õigusaktidest ning käesolevast põhimäärusest. Asutuse valduses oleva linnavara üle peetakse arvestust Tallinna õigusaktides kehtestatud korras.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para4lg2">
+        <loigeNr>2</loigeNr>
+        <kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Asutus võib sihtasutustelt, äriühingutelt, mittetulundusühingutelt ja üksikisikutelt vastu võtta eraldisi ja annetusi, mis võetakse arvele riigi ja Tallinna õigusaktides kehtestatud korras. Eraldatud või annetatud vahendite kasutamisel tuleb järgida annetaja soovi. Eraldistest ja annetustest peab asutus teavitama ametiasutust ning tagama nende kasutamise arvestuse. </tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para4lg3">
+        <loigeNr>3</loigeNr>
+        <kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Ametiasutus kinnitab asutuse eelarve, lähtudes Tallinna Linnavolikogu (edaspidi <i>linnavolikogu</i>) kinnitatud linna eelarvest ja asutuse ettepanekutest. Asutuse kulud kaetakse eelarve alusel.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para5">
+      <paragrahvNr>5</paragrahvNr>
+      <kuvatavNr><![CDATA[§ 5.]]></kuvatavNr>
+      <paragrahvPealkiri>Juhtimine</paragrahvPealkiri>
+      <loige id="para5lg1">
+        <loigeNr>1</loigeNr>
+        <kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Asutust juhib juhataja, kelle kinnitab Tallinna õigusaktides kehtestatud korras ametisse ja vabastab ametist linnavalitsus linnapea ettepanekul.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para5lg2">
+        <loigeNr>2</loigeNr>
+        <kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Asutuse juhatajaga sõlmib ja lõpetab töölepingu ning teostab teisi tööandja õigusi ja täidab kohustusi ametiasutuse juht.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para5lg3">
+        <loigeNr>3</loigeNr>
+        <kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Juhataja:</tavatekst>
+        </sisuTekst>
+        <alampunkt id="para5lg3p1">
+          <alampunktNr>1</alampunktNr>
+          <kuvatavNr><![CDATA[1)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>juhib asutust, tagades põhimääruses ette nähtud ülesannete täitmise;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para5lg3p2">
+          <alampunktNr>2</alampunktNr>
+          <kuvatavNr><![CDATA[2)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>korraldab asutuse valduses oleva vara valdamist, kasutamist ja käsutamist, juhib asutuse majandustegevust, tagab asutuse tulemusliku töö ning vastutab asutuse üldseisundi ja arengu, linnavara säilimise ja eelarvevahendite õiguspärase, sihipärase ja otstarbeka kasutamise eest asutuse eelarve piires;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para5lg3p3">
+          <alampunktNr>3</alampunktNr>
+          <kuvatavNr><![CDATA[3)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>teeb põhimääruses sätestatud ülesannete täitmiseks linna nimel tehinguid eelarves selleks ette nähtud kulutuste piires ja üksnes Tallinna õigusaktides sätestatud juhtudel ja korras, tagades eelarves kavandatud tulude täitmise ja laekumise;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para5lg3p4">
+          <alampunktNr>4</alampunktNr>
+          <kuvatavNr><![CDATA[4)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>tagab finantsdistsipliinist kinnipidamise ning kannab seaduses ette nähtud korras isiklikku vastutust asutuse finantstegevuse seaduslikkuse ja otstarbekuse eest;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para5lg3p5">
+          <alampunktNr>5</alampunktNr>
+          <kuvatavNr><![CDATA[5)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>tagab asutuse eelarve projekti koostamise, kooskõlastamise ja esitamise ametiasutusele Tallinna õigusaktides kehtestatud korra kohaselt; jälgib pidevalt eelarve täitmist ja esitab vajaduse korral ametiasutusele eelarve muutmise ettepanekuid;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para5lg3p6">
+          <alampunktNr>6</alampunktNr>
+          <kuvatavNr><![CDATA[6)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>vastutab asutust teenindavale raamatupidamisüksusele tööks vajalike dokumentide ja teabe õigeaegse edastamise eest;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para5lg3p7">
+          <alampunktNr>7</alampunktNr>
+          <kuvatavNr><![CDATA[7)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>tagab riigi ja Tallinna õigusaktides ning lepingutes ette nähtud dokumentide ja aruannete koostamise ja tähtaegse esitamise;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para5lg3p8">
+          <alampunktNr>8</alampunktNr>
+          <kuvatavNr><![CDATA[8)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>tegutseb asutuse nimel ja esindab seda ilma lisavolitusteta kõigis riigi- ja omavalitsusorganites ja -asutustes ning suhetes teiste juriidiliste ja füüsiliste isikutega või volitab selleks teisi isikuid, v.a juhul, kui riigi või Tallinna õigusaktides on sätestatud teisiti;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para5lg3p9">
+          <alampunktNr>9</alampunktNr>
+          <kuvatavNr><![CDATA[9)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>kinnitab kooskõlastatult ametiasutuse juhiga asutuse struktuuri ja töötajate koosseisu ning töö tasustamise korra;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para5lg3p10">
+          <alampunktNr>10</alampunktNr>
+          <kuvatavNr><![CDATA[10)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>kinnitab töötajate ametijuhendid, sõlmib ja lõpetab töötajatega töölepingud ja teostab teisi tööandja õigusi ja täidab kohustusi töösuhteid reguleerivate õigusaktide alusel;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para5lg3p11">
+          <alampunktNr>11</alampunktNr>
+          <kuvatavNr><![CDATA[11)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>kehtestab asutuse asjaajamiskorra ja töökorralduse reeglid;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para5lg3p12">
+          <alampunktNr>12</alampunktNr>
+          <kuvatavNr><![CDATA[12)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>annab oma pädevuse piires asutuse töö sisemiseks korraldamiseks käskkirju ja kontrollib nende täitmist;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para5lg3p13">
+          <alampunktNr>13</alampunktNr>
+          <kuvatavNr><![CDATA[13)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>korraldab asutusele saabunud märgukirjadele, selgitustaotlustele ja teabenõuetele vastamist;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para5lg3p14">
+          <alampunktNr>14</alampunktNr>
+          <kuvatavNr><![CDATA[14)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>korraldab asutuse ja tema struktuuriüksuste sisehindamist;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para5lg3p15">
+          <alampunktNr>15</alampunktNr>
+          <kuvatavNr><![CDATA[15)]]></kuvatavNr>
+          <sisuTekst>
+            <tavatekst>täidab muid ülesandeid.</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+      </loige>
+      <loige id="para5lg4">
+        <loigeNr>4</loigeNr>
+        <kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Asutuse juhatajat asendab tema ametijuhendis määratud kohusetäitja või ametiasutuse juhi käskkirjaga määratud isik.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para6">
+      <paragrahvNr>6</paragrahvNr>
+      <kuvatavNr><![CDATA[§ 6.]]></kuvatavNr>
+      <paragrahvPealkiri>Aruandlus ja kontroll</paragrahvPealkiri>
+      <loige id="para6lg1">
+        <loigeNr>1</loigeNr>
+        <kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Asutuse raamatupidamisarvestust ja -aruandlust korraldatakse riigi ja Tallinna õigusaktide kohaselt. Asutus esitab aruandeid riigi ja Tallinna õigusaktides kehtestatud korras ja tähtajaks.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para6lg2">
+        <loigeNr>2</loigeNr>
+        <kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Asutuse juhtimist ja tegevust kontrollib ametiasutus.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para6lg3">
+        <loigeNr>3</loigeNr>
+        <kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Teenistuslikku järelevalvet asutuse tegevuse seaduslikkuse ja otstarbekuse üle teeb linnavalitsus.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para7">
+      <paragrahvNr>7</paragrahvNr>
+      <kuvatavNr><![CDATA[§ 7.]]></kuvatavNr>
+      <paragrahvPealkiri>Ümberkorraldamine ja tegevuse lõpetamine</paragrahvPealkiri>
+      <loige id="para7lg1">
+        <loigeNr>1</loigeNr>
+        <kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Asutuse ümberkorraldamise ja tegevuse lõpetamise otsustab linnavolikogu linnavalitsuse ettepanekul.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para7lg2">
+        <loigeNr>2</loigeNr>
+        <kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Kui asutuse ümberkorraldamise otsuses ei ole kindlaks määratud teisiti, lähevad asutuse ümberkorraldamisel tema õigused ja kohustused üle tema õigusjärglasele, selle puudumisel aga ametiasutusele.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para7lg3">
+        <loigeNr>3</loigeNr>
+        <kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+        <sisuTekst>
+          <tavatekst>Asutuse tegevus lõpetatakse likvideerimise teel.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para8">
+      <paragrahvNr>8</paragrahvNr>
+      <kuvatavNr><![CDATA[§ 8.]]></kuvatavNr>
+      <paragrahvPealkiri>Määruste kehtetuks tunnistamine</paragrahvPealkiri>
+      <loige id="para8lg1">
+        <sisuTekst>
+          <tavatekst>Määrusega tunnistatakse kehtetuks Tallinna Linnavalitsuse 25. augusti 2010 määrus nr 67 „Tallinna Lastekodu põhimäärus“.</tavatekst>
+        </sisuTekst>
+        <sisuTekst/>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para9">
+      <paragrahvNr>9</paragrahvNr>
+      <kuvatavNr><![CDATA[§ 9.]]></kuvatavNr>
+      <paragrahvPealkiri>Määruse jõustumine</paragrahvPealkiri>
+      <loige id="para9lg1">
+        <sisuTekst>
+          <tavatekst>Määrus jõustub 1. jaanuaril 2025.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+  </sisu>
+  <allkiri>
+    <allkirjastaja>
+      <ametinimetus>Linnapea</ametinimetus>
+      <eesnimi>Jevgeni</eesnimi>
+      <perekonnanimi>Ossinovski</perekonnanimi>
+    </allkirjastaja>
+  </allkiri>
+  <allkiri>
+    <allkirjastaja>
+      <ametinimetus>Linnasekretär</ametinimetus>
+      <eesnimi>Priit</eesnimi>
+      <perekonnanimi>Lello</perekonnanimi>
+    </allkirjastaja>
+  </allkiri>
+</oigusakt>

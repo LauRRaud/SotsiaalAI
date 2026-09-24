@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2021",
+  "articleId": "pere-lahendusring-annab-pohivastutuse-tagasi-perele-2021-2",
+  "title": "Pere lahendusring annab põhivastutuse tagasi perele",
+  "authors": [
+    "Elo Lättemägi"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2021",
+  "section": "Metoodika",
+  "pageRange": "28-31",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel tutvustab pere lahendusringi meetodit kui taastava õiguse lähenemist, mis aitab ennetada peres probleemide süvenemist ning parandada peresuhteid. Kirjeldatakse, kuidas pere lahendusring (family group conference) annab põhirolli otsuste tegemisel perele endale, kaasates lapse, vanemad ja teised lähedased ning vajadusel spetsialistid. Selgitatakse protsessi etappe, koordinaatori rolli, võimalikke rakendusvaldkondi (nt lastekaitse, kool, sotsiaalhoolekanne) ning jagatakse Eesti omavalitsuste kogemusi meetodi kasutamisel.",
+  "tags": [
+    "pere lahendusring",
+    "taastav õigus",
+    "perepõhine sekkumine",
+    "laste heaolu",
+    "võrgustikutöö",
+    "lastekaitse",
+    "family group conference"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2021_web_link_Part8.pdf",
+  "document_id": "sotsiaaltoo-2-2021-pere-lahendusring-annab-pohivastutuse-tagasi-perele-2021-2",
+  "source_format": "pdf",
+  "source_sha256": "bcf232077ed901d7ae0541ed1d3e54b1844170637736ef20669aa5c5b3217d07",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2021-pere-lahendusring-annab-pohivastutuse-tagasi-perele-2021-2",
+    "previous_source_path": "Sotsiaaltoo_2_2021_web_link_Part8.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "bcf232077ed901d7ae0541ed1d3e54b1844170637736ef20669aa5c5b3217d07",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

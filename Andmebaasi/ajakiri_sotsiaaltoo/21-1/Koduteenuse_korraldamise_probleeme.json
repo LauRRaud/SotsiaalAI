@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-1-2021",
+  "articleId": "koduteenuse-korraldamise-probleeme-kohalikes-omavalitsustes-2021-1",
+  "title": "Koduteenuse korraldamise probleeme kohalikes omavalitsustes",
+  "authors": [
+    "Hilje Arukuusk",
+    "Ilona Säde"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2021",
+  "section": "Õigus",
+  "pageRange": "31-37",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel analüüsib kohalike omavalitsuste koduteenust reguleerivaid määrusi ning toob esile levinumad kitsaskohad, mis piiravad teenuse kättesaadavust. Vaadeldakse, kas ja kuidas on määrustes järgitud sotsiaalhoolekande seaduse, sotsiaalseadustiku üldosa seaduse ja teiste seaduste nõudeid, millised on levinumad vead volitusnormide, eesmärgi, sisu ja teenuse saajate ringi määratlemisel ning kuidas ekslikult pannakse kohaliku omavalitsuse kohustusi ülalpidajate õlgadele. Autorid annavad praktilisi soovitusi, kuidas õigusakte korrastada, et koduteenus oleks abi vajavatele inimestele tegelikult kättesaadav.",
+  "tags": [
+    "koduteenus",
+    "kohalik omavalitsus",
+    "sotsiaalteenuste kättesaadavus",
+    "õigusselgus",
+    "sotsiaalhoolekande seadus",
+    "määruste analüüs",
+    "õigusnõustamine"
+  ],
+  "source_type": "file",
+  "source_path": "artikkel_6_koduteenuse_korraldamine.pdf",
+  "document_id": "sotsiaaltoo-1-2021-koduteenuse-korraldamise-probleeme-kohalikes-omavalitsustes-2021-1",
+  "source_format": "pdf",
+  "source_sha256": "96aa5d530822909f6f4dbdb7a6ef3156ae572eb31d7339b0dff64b857dc1aca2",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2021-koduteenuse-korraldamise-probleeme-kohalikes-omavalitsustes-2021-1",
+    "previous_source_path": "artikkel_6_koduteenuse_korraldamine.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "96aa5d530822909f6f4dbdb7a6ef3156ae572eb31d7339b0dff64b857dc1aca2",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

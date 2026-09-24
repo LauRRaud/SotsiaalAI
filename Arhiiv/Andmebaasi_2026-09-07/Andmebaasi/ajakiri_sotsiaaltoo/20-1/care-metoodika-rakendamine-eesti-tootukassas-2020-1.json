@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-1-2020",
+  "articleId": "care-metoodika-rakendamine-eesti-tootukassas-2020-1",
+  "title": "CARe metoodika rakendamine Eesti Töötukassas",
+  "authors": [
+    "Kadi Roosipuu"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2020",
+  "section": "Taastumist toetavad meetodid",
+  "pageRange": "23-24",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "SOCIAL_WORKER",
+  "language": "et",
+  "description": "Praktiline ülevaade sellest, kuidas CARe metoodika põhimõtted lõimiti Eesti Töötukassa töökeskse nõustamise süsteemi, kirjeldades pilootkoolitusi, nõustajate kogemusi ja metoodika mõju töövõimereformi sihtrühmade toetamisel.",
+  "tags": [
+    "CARe metoodika",
+    "Töötukassa",
+    "töövõimereform",
+    "töökeskne nõustamine",
+    "rehabilitatsioon"
+  ],
+  "source_type": "file",
+  "source_path": "ST1_2020_web_link_Part6.pdf",
+  "document_id": "sotsiaaltoo-1-2020-care-metoodika-rakendamine-eesti-tootukassas-2020-1",
+  "source_format": "pdf",
+  "source_sha256": "ef60b6fd7c5076f61f6a0171e0657cdf0fbc4cb007d0ddfac2d6bb19c72f6e46",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2020-care-metoodika-rakendamine-eesti-tootukassas-2020-1",
+    "previous_source_path": "ST1_2020_web_link_Part6.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "ef60b6fd7c5076f61f6a0171e0657cdf0fbc4cb007d0ddfac2d6bb19c72f6e46",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

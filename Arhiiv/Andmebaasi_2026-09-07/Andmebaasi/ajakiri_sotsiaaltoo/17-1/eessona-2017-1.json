@@ -1,0 +1,62 @@
+{
+  "docId": "sotsiaaltoo-1-2017",
+  "articleId": "eessona-2017-1",
+  "title": "Eessõna",
+  "authors": [
+    "Kaia Iva"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2017",
+  "section": "Eessõna",
+  "pageRange": "2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Sotsiaalkaitseminister Kaia Iva alustab numbrit meenutusega oma esimesest tööpäevast Türi linnapeana 2002. aastal, kus üks kirjaviga abitaotluses õpetas teda esmamuljet mitte usaldama. Ta kõrvutab seda Türi valla sünniga neljast omavalitsusest ja väidab, et üle kümne aasta kestnud jälgimine kinnitab: praeguste ühinejate mured sarnanevad toonastega, ent inimeste ootused on vahepeal kasvanud. Iva teatab, et riik kavatseb anda omavalitsustele koos eelarvega üle esmatasandil korraldatavad ülesanded, ning rõhutab omavalitsuse, riigi ning sotsiaal- ja tervishoiuvaldkonna koostöö vajadust.",
+  "tags": [
+    "eessõna",
+    "haldusreform",
+    "kohalik omavalitsus",
+    "sotsiaalteenused",
+    "esmatasand"
+  ],
+  "source_type": "file",
+  "source_path": "2017_1_Part1.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2017-eessona-2017-1",
+  "source_sha256": "5f014854efd930ea7d09c89d4b0c0a7d6e59495d3bb18f53cd5445db5536f974",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2017-eessona-2017-1",
+    "previous_source_path": "2017_1_Part1.txt",
+    "previous_source_original_path": "2017_1.pdf",
+    "reference_stored_source_sha256": "1f33f95f29e656dde75d768be62de238bec6b7c6be239be8aea9bd4ded6b2247",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf",
+      "source_sha256": "335f81467a555f12c55d0e8bf60122a178c5267567cf79607448a5d987629e50",
+      "pdf_start_page": 4,
+      "pdf_end_page": 4,
+      "printed_page_range": "2-2",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 4,
+      "source_regions": [
+        {
+          "source_pdf_page": 4,
+          "bounds": [
+            0,
+            0,
+            496,
+            709
+          ]
+        }
+      ],
+      "effective_printed_page_range": "2"
+    },
+    "server_page_range": "2-2"
+  }
+}

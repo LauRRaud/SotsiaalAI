@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2023",
+  "articleId": "kohtla-jarve-sotsiaaltoos-on-palju-erinevaid-tahke-2023-2",
+  "title": "Kohtla-Järve sotsiaaltöös on palju erinevaid tahke",
+  "authors": [
+    "Kairiin Nuudi"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2023",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "25-29",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Intervjuus kirjeldavad Kohtla-Järve sotsiaaltöö peaspetsialist ja sotsiaalhoolekandekeskuse projektijuht linna\nsotsiaaltöö eri tahke olukorras, kus elanikkond on mitmekeelne ja sotsiaalmajanduslikud väljakutsed suured.\nJuttu on kodu- ja koduhooldusteenustest, laste turvakodust, psüühiliste erivajadustega inimeste päevakeskusest\nning koostööst teiste Ida-Virumaa omavalitsuste ja partneritega. Rõhutatakse kogukonnatunnet, info liikumise\ntähtsust ning töötajate pühendumust keerulistes oludes.",
+  "tags": [
+    "Kohtla-Järve",
+    "kohalik omavalitsus",
+    "sotsiaaltöö korraldus",
+    "koduhooldus",
+    "turvakodu",
+    "päevakeskus",
+    "Ida-Virumaa",
+    "kogukond"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2023_web_par_Part9.pdf",
+  "document_id": "sotsiaaltoo-2-2023-kohtla-jarve-sotsiaaltoos-on-palju-erinevaid-tahke-2023-2",
+  "source_format": "pdf",
+  "source_sha256": "a0a038ce04b777b6617fd2861bb4b6b1414fc0ad21048ce43203c379ecf5908f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2023-kohtla-jarve-sotsiaaltoos-on-palju-erinevaid-tahke-2023-2",
+    "previous_source_path": "Sotsiaaltoo_2_2023_web_par_Part9.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "a0a038ce04b777b6617fd2861bb4b6b1414fc0ad21048ce43203c379ecf5908f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

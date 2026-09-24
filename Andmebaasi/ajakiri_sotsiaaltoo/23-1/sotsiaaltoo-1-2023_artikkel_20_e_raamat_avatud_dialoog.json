@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-1-2023",
+  "articleId": "e-raamat-avatud-dialoog-2023-1",
+  "title": "E-raamat „Avatud Dialoog“",
+  "authors": [
+    "Dagmar Narusson"
+  ],
+  "year": 2023,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2023",
+  "section": "Metoodika",
+  "pageRange": "95-96",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Lühitutvustus e-raamatust, mis avab Avatud Dialoogi põhimõtteid psühhosotsiaalses töös ning selle rakendusvõimalusi erinevates kontekstides. Kirjeldatakse, kuidas digitaalne juhendmaterjal toetab spetsialiste metoodika kasutamisel.",
+  "tags": [
+    "Avatud Dialoog",
+    "e-raamat",
+    "metoodika",
+    "rehabilitatsioon",
+    "psühhosotsiaalne tugi"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_1_2023_web_Part20.pdf",
+  "document_id": "sotsiaaltoo-1-2023-e-raamat-avatud-dialoog-2023-1",
+  "source_format": "pdf",
+  "source_sha256": "db36fe7767535304a39ae302ee717f0a2787b7397a0ca632bf58b2758a652afe",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2023-e-raamat-avatud-dialoog-2023-1",
+    "previous_source_path": "Sotsiaaltoo_1_2023_web_Part20.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "db36fe7767535304a39ae302ee717f0a2787b7397a0ca632bf58b2758a652afe",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

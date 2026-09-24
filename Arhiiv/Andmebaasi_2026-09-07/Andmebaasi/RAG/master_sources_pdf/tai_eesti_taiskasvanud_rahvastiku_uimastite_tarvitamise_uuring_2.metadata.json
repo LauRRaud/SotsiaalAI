@@ -1,0 +1,84 @@
+{
+  "source": {
+    "source_id": "tai_eesti_taiskasvanud_rahvastiku_uimastite_tarvitamise_uuring_2",
+    "title": "Eesti täiskasvanud rahvastiku uimastite tarvitamise uuring 2023",
+    "url": "https://www.tai.ee/sites/default/files/2024-06/tuku_2023.pdf",
+    "normalized_url": "https://www.tai.ee/sites/default/files/2024-06/tuku_2023.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "TAI",
+    "organization_id": "tai",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "Tervise Arengu Instituut",
+      "sõltuvus",
+      "uimastid",
+      "narkootikumid",
+      "ennetustöö",
+      "riskikäitumine",
+      "uuring",
+      "raport",
+      "analüüs",
+      "TAI"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_013",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+    "source_context": {
+      "heading_2": "TAI",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 207,
+      "order": 135
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "Eesti täiskasvanud rahvastiku uimastite tarvitamise uuring 2023"
+    ],
+    "collection_hints": [
+      "research_reports"
+    ],
+    "source_types_seen": [
+      "research_report"
+    ],
+    "resource_types_seen": [
+      "research_evidence"
+    ],
+    "publishers_seen": [
+      "TAI"
+    ],
+    "organizations_seen": [
+      "tai"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "TAI",
+        "line": 207,
+        "order": 135
+      },
+      {
+        "heading_2": "TAI",
+        "line": 681,
+        "order": 342
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.tai.ee/sites/default/files/2024-06/tuku_2023.pdf"
+  },
+  "final_url": "https://www.tai.ee/sites/default/files/2024-06/tuku_2023.pdf",
+  "redirects": [],
+  "sha256": "f18c37071ba9894bca399125514d602ea3e45312a881035cd8ca606bb30f47fe",
+  "bytes": 1137148,
+  "downloaded_at": "2026-08-14T08:00:35.371Z"
+}

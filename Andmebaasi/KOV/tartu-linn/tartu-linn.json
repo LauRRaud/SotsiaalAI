@@ -1,0 +1,3550 @@
+{
+  "schemaVersion": "kov-data-v2.5-sourcepackage",
+  "docId": "kov-tartu-linn",
+  "document_id": "kov-tartu-linn",
+  "municipality": "Tartu linn",
+  "municipality_id": "tartu_linn",
+  "county": "Tartumaa",
+  "checkedAt": "2026-04-30",
+  "collection_id": "kov_services",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "items": [
+    {
+      "id": "tartu_linn_benefit_sunnitoetus",
+      "canonical_item_id": "tartu_linn:benefit:sunnitoetus",
+      "itemType": "benefit",
+      "title": "Tartu linna täiendav sünnitoetus",
+      "status": "active",
+      "summary": "Tartu linna täiendav sünnitoetus on lapse sünniga seotud kohalik toetus, mida makstakse kolmes osas: pärast lapse sündi ning lapse ühe- ja kaheaastaseks saamisel. Toetuse saaja peab saama sama lapse eest riiklikke peretoetusi ning olema lapse sünnile, ühe- ja kaheaastaseks saamisele eelneval kuuel kuul rahvastikuregistri järgi Tartu linna elanik. Ka lapse elukoht peab olema Tartu linn. Taotlus esitatakse linnaportaali kaudu, digitaalselt allkirjastatult või piirkonnakeskuse lapse heaolu spetsialistile.",
+      "targetGroup": "Tartu linnas registreeritud lapsevanem või muu riiklike peretoetuste saaja, kelle lapse rahvastikuregistrijärgne elukoht on Tartu linn",
+      "conditions": "Toetuse saaja peab saama lapse eest riiklikke peretoetusi ning olema vähemalt kuus kuud enne lapse sündi, üheaastaseks saamist ja kaheaastaseks saamist Tartu linna elanik; lapse elukoht peab samuti olema Tartu linn.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "in_person"
+        ],
+        "steps": "Esita taotlus linnaportaali kaudu, digitaalselt allkirjastatult sotsiaal- ja tervishoiuosakonnale või piirkonnakeskuse lapse heaolu spetsialistile.",
+        "deadline": null
+      },
+      "amount": null,
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/tartu-linna-taiendav-sunnitoetus",
+      "relatedForms": [
+        "tartu_linn_form_linnaportaal_sotsiaalteenused",
+        "tartu_linn_form_uldtaotlus"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_anne_44_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "linnaportaal",
+        "sunnitoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "linnaportaal",
+        "sunnitoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_benefit_sunnitoetus",
+      "document_id": "tartu_linn_benefit_sunnitoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/tartu-linna-taiendav-sunnitoetus",
+      "content_hash": "ba6bad2aa68ae9e4e3ff36c24f6b78a3687a53fa8adb6febececec478bc9c498",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_benefit_lasteaia_osalustasu_ja_toidukulu_toetus",
+      "canonical_item_id": "tartu_linn:benefit:lasteaia_osalustasu_ja_toidukulu_toetus",
+      "itemType": "benefit",
+      "title": "Lasteaia osalustasu ja toidukulu toetus",
+      "status": "active",
+      "summary": "Lasteaia osalustasu ja toidukulu toetus on Tartu linna vajaduspõhine toetus, mis hüvitab lapse lasteasutuse osalustasu ja toidukulu. Toetus määratakse kuni kuueks kuuks ning makstakse otse lasteasutusele või lastehoiuteenuse osutajale. Toetus on mõeldud perele, kelle netosissetulek pärast eluasemekulude mahaarvamist jääb alla 300 euro pereliikme kohta. Lapse ja taotleja elukoht peab rahvastikuregistri järgi olema Tartu linn ning nad peavad Tartu linnas tegelikult elama.",
+      "targetGroup": "Tartu linnas elavad lastega pered, kelle netosissetulek pärast eluasemekulude mahaarvamist jääb alla 300 euro pereliikme kohta",
+      "conditions": "Taotleja ja lapse rahvastikuregistrijärgne ning tegelik elukoht peab olema Tartu linn. Perekonna netosissetulek pärast eluasemekulude mahaarvamist ei tohi ületada 300 eurot pereliikme kohta.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "in_person"
+        ],
+        "steps": "Pöördu piirkonnakeskuse lapse heaolu spetsialisti poole või esita taotlus linnaportaali kaudu. Avaldusele lisatakse sissetulekut ja eluasemekulusid tõendavad dokumendid.",
+        "deadline": null
+      },
+      "amount": "100% lapse lasteasutuse osalustasust ja toidukulust kuni kuueks kuuks; makstakse otse lasteasutusele või lastehoiuteenuse osutajale",
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/kohamaksu-toetus-lasteaias",
+      "relatedForms": [
+        "tartu_linn_form_uldtaotlus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_anne_44_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "lasteaia_toetus_page",
+        "linnaportaal",
+        "taiendavad_sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "lasteaia_toetus_page",
+        "linnaportaal",
+        "taiendavad_sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_benefit_lasteaia_osalustasu_ja_toidukulu_toetus",
+      "document_id": "tartu_linn_benefit_lasteaia_osalustasu_ja_toidukulu_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/kohamaksu-toetus-lasteaias",
+      "content_hash": "44095f2eb8bf33ec4f38948b7d08212c5ffe736131192b98f756e804a29ebdde",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_benefit_lapse_hooldaja_toetus",
+      "canonical_item_id": "tartu_linn:benefit:lapse_hooldaja_toetus",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus puudega lapse hooldajale",
+      "status": "active",
+      "summary": "Hooldajatoetus puudega lapse hooldajale on perioodiline toetus lapse hooldajale, kes ei saa töötada suure hooldus- ja abivajadusega lapse hooldamise tõttu. Toetust makstakse hooldaja pangakontole jooksva kuu eest. Hooldaja ja laps peavad olema Tartu linna elanikud ning laps peab elama hooldajaga samal aadressil. Lapse hooldusvajaduse hindab piirkonnakeskuse lapse heaolu spetsialist.",
+      "targetGroup": "Tartu linnas elavad puudega lapse hooldajad, kes ei saa lapse hooldamise tõttu töötada",
+      "conditions": "Laps ja hooldaja peavad rahvastikuregistri järgi elama Tartu linnas samal aadressil. Hooldaja ei saa töötada lapse suure hooldus- ja abivajaduse tõttu. Taotlusele lisatakse lapse rehabilitatsiooniplaan ja puude raskusastme tuvastamise otsus.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "in_person"
+        ],
+        "steps": "Esita taotlus piirkonnakeskuse lapse heaolu spetsialistile, digitaalselt allkirjastatud e-kirjana või linnaportaali kaudu. Spetsialist hindab lapse hooldusvajadust ja teeb otsuse.",
+        "deadline": "Avaldus tuleb esitada hiljemalt kuue kuu jooksul õiguse tekkimisest."
+      },
+      "amount": "100 eurot kuus; alates 1. juulist 2026 on toetuse suurus 150 eurot kuus",
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/hooldeajatoetus-puudega-lapse-hooldajale",
+      "relatedForms": [
+        "tartu_linn_form_uldtaotlus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_anne_44_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "lapse_hooldaja_toetus_page",
+        "linnaportaal"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "lapse_hooldaja_toetus_page",
+        "linnaportaal"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_benefit_lapse_hooldaja_toetus",
+      "document_id": "tartu_linn_benefit_lapse_hooldaja_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/hooldeajatoetus-puudega-lapse-hooldajale",
+      "content_hash": "d83f2154f27392419a4bd9bc634ca9dbd6436290f10dbdc8c21525ed6ea9fdab",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_benefit_hooldajatoetus_taisealise_isiku_hooldamise_eest",
+      "canonical_item_id": "tartu_linn:benefit:hooldajatoetus_taisealise_isiku_hooldamise_eest",
+      "itemType": "benefit",
+      "title": "Hooldajatoetus täisealise isiku hooldamise eest",
+      "status": "active",
+      "summary": "Täisealise isiku hooldamisega seotud hooldajatoetus on seotud hooldaja määramisega. Hooldus seatakse täisealisele inimesele, kes vaimse või kehalise puude tõttu vajab kõrvalabi, juhendamist või järelevalvet. Hooldaja ja hooldatav peavad olema Tartu linna elanikud ning tegelikult samal aadressil elama. Piirkonnakeskuse sotsiaaltöö spetsialist hindab hooldatava abivajadust kodukülastuse ja dokumentide põhjal.",
+      "targetGroup": "Tartu linnas elavad täisealised abivajajad ja nende hooldajad",
+      "conditions": "Hooldatava ja hooldaja rahvastikuregistrijärgne ja tegelik elukoht peab olema Tartu linnas samal aadressil. Hooldaja peab olema täisealine. Hooldusvajaduse ja toetuse suuruse hindab piirkonnakeskuse sotsiaaltöö spetsialist.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "in_person"
+        ],
+        "steps": "Hooldatav ja hooldaja esitavad ühise hooldaja määramise avalduse või üldavalduse piirkonnakeskuse sotsiaaltöö spetsialistile või linnaportaali kaudu. Lisatakse hooldatava terviseandmed ja vajalikud dokumendid.",
+        "deadline": null
+      },
+      "amount": "Toetuse suurus sõltub hinnatud hooldusvajadusest.",
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/hooldaja-maaramine",
+      "relatedForms": [
+        "tartu_linn_form_hooldaja_maaramise_avaldus",
+        "tartu_linn_form_uldtaotlus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_kaunase_22_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "hooldaja_maaramine_page",
+        "hooldaja_maaramise_application_pdf",
+        "linnaportaal"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "hooldaja_maaramine_page",
+        "hooldaja_maaramise_application_pdf",
+        "linnaportaal"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_benefit_hooldajatoetus_taisealise_isiku_hooldamise_eest",
+      "document_id": "tartu_linn_benefit_hooldajatoetus_taisealise_isiku_hooldamise_eest",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/hooldaja-maaramine",
+      "content_hash": "a4c4e7f6ab7f9843b2926a51174ae9211d9b666d6a9ae0a3da114b3534ed6c2d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_benefit_erakorraline_toetus",
+      "canonical_item_id": "tartu_linn:benefit:erakorraline_toetus",
+      "itemType": "benefit",
+      "title": "Erakorraline toetus",
+      "status": "active",
+      "summary": "Erakorraline toetus on vajaduspõhine täiendav sotsiaaltoetus ootamatu või erakorralise sündmusega seotud väljaminekute katmiseks. Toetust saab taotleda näiteks õnnetusjuhtumi, tulekahju, varguse, haiguse, surma või muu ettenägematu olukorra tõttu tekkinud kulude leevendamiseks. Toetuse ülempiir on 600 eurot kalendriaastas. Taotlus tuleb üldjuhul esitada ühe kuu jooksul pärast kulutuse tegemist või sündmuse toimumist.",
+      "targetGroup": "Tartu linna elanikud ja pered, kelle netosissetulek pärast eluasemekulude mahaarvamist jääb alla 300 euro pereliikme kohta ja kellel tekkis erakorraline kulu",
+      "conditions": "Taotleja peab olema Tartu linna elanik ja tema pere netosissetulek pärast eluasemekulude mahaarvamist peab jääma alla 300 euro pereliikme kohta. Kulutus peab olema põhjendatud ja seotud erakorralise juhtumiga.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "in_person"
+        ],
+        "steps": "Esita vabas vormis avaldus või üldtaotlus koos kuludokumentide ja sissetulekut tõendavate andmetega piirkonnakeskuse sotsiaaltöö spetsialistile või linnaportaali kaudu.",
+        "deadline": "Üldjuhul ühe kuu jooksul pärast kulutuse tegemist või sündmuse toimumist."
+      },
+      "amount": "Kuni 600 eurot kalendriaastas",
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/taiendavate-sotsiaaltoetuste-taotlemine",
+      "relatedForms": [
+        "tartu_linn_form_uldtaotlus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_kaunase_22_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "taiendavad_sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "taiendavad_sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_benefit_erakorraline_toetus",
+      "document_id": "tartu_linn_benefit_erakorraline_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/taiendavate-sotsiaaltoetuste-taotlemine",
+      "content_hash": "961ca03a785dc91aad6493de57ff2edf6d261646289ec2b8f0d06ed8b06f6ad7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_benefit_erakorraline_tervisetoetus",
+      "canonical_item_id": "tartu_linn:benefit:erakorraline_tervisetoetus",
+      "itemType": "benefit",
+      "title": "Erakorraline tervisetoetus",
+      "status": "active",
+      "summary": "Erakorraline tervisetoetus on vajaduspõhine täiendav sotsiaaltoetus tervisega seotud ootamatute või vajalike kulude katmiseks. Toetust saab kasutada abivahendite, retseptiravimite, tervishoiuteenuste või muude terviseseisundist tingitud vajalike kulude osaliseks hüvitamiseks. Toetus võib katta kuni 50% kulust, kuid mitte rohkem kui 600 eurot kalendriaastas. Taotleja peab esitama kuludokumendid ja sissetulekut tõendavad andmed.",
+      "targetGroup": "Tartu linna elanikud, kelle tervisekulud ületavad nende majanduslikku suutlikkust ja kelle netosissetulek jääb alla 300 euro pereliikme kohta",
+      "conditions": "Taotleja peab olema Tartu linna elanik. Pere netosissetulek pärast eluasemekulude mahaarvamist peab jääma alla 300 euro pereliikme kohta. Hüvitatavad kulud peavad olema tervisega seotud ja dokumentaalselt tõendatud.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "in_person"
+        ],
+        "steps": "Esita üldtaotlus või vabas vormis avaldus koos kuludokumentide, sissetulekut tõendavate andmete ja vajadusel meditsiinilise põhjendusega piirkonnakeskuse sotsiaaltöö spetsialistile või linnaportaali kaudu.",
+        "deadline": "Üldjuhul ühe kuu jooksul pärast kulutuse tegemist."
+      },
+      "amount": "Kuni 50% kulust, kuid mitte rohkem kui 600 eurot kalendriaastas",
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/taiendavate-sotsiaaltoetuste-taotlemine",
+      "relatedForms": [
+        "tartu_linn_form_uldtaotlus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_kaunase_22_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "taiendavad_sotsiaaltoetused_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "taiendavad_sotsiaaltoetused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_benefit_erakorraline_tervisetoetus",
+      "document_id": "tartu_linn_benefit_erakorraline_tervisetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/taiendavate-sotsiaaltoetuste-taotlemine",
+      "content_hash": "0a7b1f499de1a065b3b552abec63f60f38b7dbd258cb3dca4e06705621769a1f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_benefit_toimetulekutoetus",
+      "canonical_item_id": "tartu_linn:benefit:toimetulekutoetus",
+      "itemType": "benefit",
+      "title": "Toimetulekutoetus",
+      "status": "active",
+      "summary": "Toimetulekutoetus on ajutine abimeede, mis aitab katta esmavajadusi ja eluasemekulusid, kui inimese või perekonna sissetulek pärast eluasemekulude arvestamist jääb alla kehtestatud toimetulekupiiri. Toetuse arvestamisel kasutatakse eelmise kuu netosissetulekut, eluasemekulusid ja perekonna koosseisu. Tartu linna lehel on märgitud toimetulekupiirid: esimesele perekonnaliikmele 220 eurot, alaealisele lapsele 264 eurot ja igale järgnevale täisealisele pereliikmele 176 eurot kuus. Avaldus tuleb esitada hiljemalt kuu viimaseks tööpäevaks piirkonnakeskuse sotsiaaltöö spetsialistile või linnaportaali kaudu.",
+      "targetGroup": "Tartu linna elanikud ja perekonnad, kelle sissetulek pärast eluasemekulude arvestamist jääb alla toimetulekupiiri",
+      "conditions": "Toetuse saamiseks tuleb esitada andmed perekonna koosseisu, sissetulekute ja eluasemekulude kohta. Arvesse võetakse eelmise kuu netosissetulek ja jooksva kuu eluasemekulud piirmäärade ning normpinna ulatuses.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "in_person"
+        ],
+        "steps": "Täida toimetulekutoetuse avaldus, lisa sissetulekuid ja eluasemekulusid tõendavad dokumendid ning esita taotlus piirkonnakeskuse sotsiaaltöö spetsialistile või linnaportaali kaudu.",
+        "deadline": "Avaldus tuleb esitada hiljemalt kuu viimaseks tööpäevaks."
+      },
+      "amount": null,
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/toimetulekutoetus",
+      "relatedForms": [
+        "tartu_linn_form_toimetulekutoetuse_avaldus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_kaunase_22_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "linnaportaal",
+        "toimetulekutoetus_application_pdf",
+        "toimetulekutoetus_page"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "linnaportaal",
+        "toimetulekutoetus_application_pdf",
+        "toimetulekutoetus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_benefit_toimetulekutoetus",
+      "document_id": "tartu_linn_benefit_toimetulekutoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/toimetulekutoetus",
+      "content_hash": "4a47eaeb9b37db710d6164a6de6d4fff594eee2fb3507a5c818011fb32596f39",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_benefit_eluruumi_kohandamise_toetus",
+      "canonical_item_id": "tartu_linn:benefit:eluruumi_kohandamise_toetus",
+      "itemType": "benefit",
+      "title": "Eluruumi kohandamise toetus",
+      "status": "active",
+      "summary": "Eluruumi kohandamise toetus aitab kohandada või renoveerida Tartu linna elanikule kuuluvat või kasutuses olevat eluruumi, kui kohandamine on vajalik puudest või erivajadusest tuleneva iseseisva toimetuleku parandamiseks. Toetus võib katta kuni 85% kohandamise maksumusest, kuid mitte rohkem kui 1800 eurot kalendriaastas. Taotleja omaosalus on eelduslikult vähemalt 15%. Toetuse vajadust hindab piirkonnakeskuse sotsiaaltöötaja ning vajadusel tehakse kodukülastus.",
+      "targetGroup": "Tartu linna puudega või erivajadusega elanikud, kelle tegelik ja rahvastikuregistrijärgne elukoht vajab kohandamist",
+      "conditions": "Kohandatav eluruum peab olema taotleja tegelik ja rahvastikuregistrijärgne elukoht. Taotleja peab esitama põhjenduse, hinnapakkumised ning vajadusel terviseandmed. Taotleja omaosalus on vähemalt 15%.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "in_person"
+        ],
+        "steps": "Esita üldtaotlus või linnaportaali taotlus koos hinnapakkumiste ja meditsiiniliste dokumentidega piirkonnakeskuse sotsiaaltöötajale. Sotsiaaltöötaja hindab vajadust, vajadusel külastab kodu ja pärast otsust sõlmitakse tööde tegemiseks leping.",
+        "deadline": null
+      },
+      "amount": "Kuni 85% kohandamise maksumusest, kuid mitte rohkem kui 1800 eurot kalendriaastas",
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/eluruumi-kohandamine",
+      "relatedForms": [
+        "tartu_linn_form_uldtaotlus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_kaunase_22_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "eluruumi_kohandamine_page",
+        "linnaportaal"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "eluruumi_kohandamine_page",
+        "linnaportaal"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_benefit_eluruumi_kohandamise_toetus",
+      "document_id": "tartu_linn_benefit_eluruumi_kohandamise_toetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/eluruumi-kohandamine",
+      "content_hash": "b0da295b6675ea095a615d1afa25646b4d31a2c956bc4793a8a6ce0aeb0a4cfa",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_benefit_matusetoetus",
+      "canonical_item_id": "tartu_linn:benefit:matusetoetus",
+      "itemType": "benefit",
+      "title": "Matusetoetus",
+      "status": "active",
+      "summary": "Matusetoetus on ühekordne Tartu linna toetus, mis aitab osaliselt katta Tartu linna elanikuna surnud inimese matusekulusid. Toetuse suurus on 250 eurot. Taotleja peab esitama avalduse, surmatõendi või meditsiinilise surmateatise ja vajadusel kuludokumendid. Toetus kantakse taotleja pangakontole 30 päeva jooksul pärast avalduse registreerimist.",
+      "targetGroup": "Isik, kes korraldab matuseid inimesele, kelle rahvastikuregistrijärgne elukoht oli surma hetkel Tartu linn",
+      "conditions": "Lahkunu rahvastikuregistrijärgne elukoht peab surma hetkel olema Tartu linn. Avaldus tuleb esitada hiljemalt kuue kuu jooksul pärast surma.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "in_person"
+        ],
+        "steps": "Esita avaldus linnaportaali kaudu, digitaalselt allkirjastatult sotsiaal- ja tervishoiuosakonnale või too avaldus osakonda. Lisa surmatõend või meditsiiniline surmateatis.",
+        "deadline": "Hiljemalt kuue kuu jooksul pärast isiku surma."
+      },
+      "amount": "250 eurot",
+      "decisionTime": "Toetus kantakse arvelduskontole 30 päeva jooksul pärast avalduse registreerimist.",
+      "officialUrl": "https://www.tartu.ee/et/matusetoetus",
+      "relatedForms": [
+        "tartu_linn_form_matusetoetuse_taotlus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond"
+      ],
+      "sourceKeys": [
+        "linnaportaal",
+        "matusetoetus_page",
+        "matusetoetuse_application_pdf"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "linnaportaal",
+        "matusetoetus_page",
+        "matusetoetuse_application_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_benefit_matusetoetus",
+      "document_id": "tartu_linn_benefit_matusetoetus",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/matusetoetus",
+      "content_hash": "93b418a7a88e48bb05ccc07bd249742f73813ba9caa63160ac2a12dd64d71882",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_benefit_ukraina_sojapogenike_uurihuvitis",
+      "canonical_item_id": "tartu_linn:benefit:ukraina_sojapogenike_uurihuvitis",
+      "itemType": "benefit",
+      "title": "Ukraina sõjapõgenike üürihüvitis",
+      "status": "inactive",
+      "summary": "Tartu linna sotsiaalvaldkonna koondlehel on märgitud Ukraina sõjapõgenike üürihüvitis eraldi toetusena, kuid samal lehel on kirjas, et hüvitist maksti kuni 18. juulini 2025. Seetõttu on see kirje märgitud mitteaktiivseks ning seda ei käsitleta jooksva taotletava toetusena. Täpsemat taotlemise korda ei ole selles veebipaketis kinnitatud.",
+      "targetGroup": "Ukraina sõjapõgenikud; täpsem sihtrühm ei ole selles paketis kinnitatud",
+      "conditions": null,
+      "application": {
+        "channels": [],
+        "steps": null,
+        "deadline": null
+      },
+      "amount": null,
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/ToetusedTeenused",
+      "relatedForms": [],
+      "relatedContacts": [],
+      "sourceKeys": [
+        "social_overview"
+      ],
+      "item_type": "benefit",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_benefit_ukraina_sojapogenike_uurihuvitis",
+      "document_id": "tartu_linn_benefit_ukraina_sojapogenike_uurihuvitis",
+      "source_type": "kov_service_info",
+      "resource_type": "benefit",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "inactive",
+      "url_canonical": "https://www.tartu.ee/et/ToetusedTeenused",
+      "content_hash": "888f6f0026574f5b0991527cb350774d16984d78ca75a673a32b21dd6208df67",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_service_tugiisikuteenus_puudega_lapsele",
+      "canonical_item_id": "tartu_linn:service:tugiisikuteenus_puudega_lapsele",
+      "itemType": "service",
+      "title": "Tugiisikuteenus puudega lapsele",
+      "status": "active",
+      "summary": "Puudega lapse tugiisikuteenus toetab lapse arengut koostöös last kasvatava isikuga. Tugiisik juhendab, motiveerib ja aitab last arendavates tegevustes, igapäevaelus toimetulekul, suhtlemisel pereliikmetega või väljaspool kodu. Teenus on mõeldud lapsele, kelle elukoht on rahvastikuregistri järgi ja tegelikult Tartu linn. Teenust määratakse korraga kuni 400 tundi.",
+      "targetGroup": "Tartu linnas elavad puudega lapsed ja nende pered",
+      "conditions": "Laps peab rahvastikuregistri järgi ja tegelikult elama Tartu linnas. Teenuse vajaduse hindab piirkonnakeskuse lapse heaolu spetsialist.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "in_person"
+        ],
+        "steps": "Pöördu piirkonnakeskuse lapse heaolu spetsialisti poole, saada digitaalselt allkirjastatud avaldus või kasuta linnaportaali taotlust. Taotlusele lisatakse lapse vajadust tõendavad dokumendid.",
+        "deadline": null
+      },
+      "pricing": "Tartu linna veebilehel on teenuse mahuks märgitud kuni 400 tundi; kasutaja omaosalust ei ole sellel lehel eraldi nimetatud.",
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/tugiisikuteenus-puudega-lapsele",
+      "relatedForms": [
+        "tartu_linn_form_uldtaotlus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_anne_44_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "linnaportaal",
+        "tugiisik_laps_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "linnaportaal",
+        "tugiisik_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_service_tugiisikuteenus_puudega_lapsele",
+      "document_id": "tartu_linn_service_tugiisikuteenus_puudega_lapsele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/tugiisikuteenus-puudega-lapsele",
+      "content_hash": "f68904d9e524213e998bc538ccaad69ad72fd53e7c17c75a060fa74d9de3653b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_service_lapsehoiuteenus_puudega_lapsele",
+      "canonical_item_id": "tartu_linn:service:lapsehoiuteenus_puudega_lapsele",
+      "itemType": "service",
+      "title": "Lapse hoiuteenus puudega lapsele",
+      "status": "active",
+      "summary": "Lapse hoiuteenuse eesmärk on toetada suure hooldus- ja abivajadusega lapse vanema või hooldaja toimetulekut ja töötamist ning tagada lapsele hooldamine ja arendav tegevus. Teenus on mõeldud lapsele, kelle elukoht on Tartu linn ja kes on vanuses, mil tal on õigus saada lapsetoetust. Teenuse vajadust hindab piirkonnakeskuse lapse heaolu spetsialist.",
+      "targetGroup": "Tartu linnas elavad puudega lapsed ja nende pered",
+      "conditions": "Laps peab rahvastikuregistri järgi ja tegelikult elama Tartu linnas ning olema lapsetoetuse saamise eas. Taotlemisel tuleb esitada lapse vajadust tõendavad dokumendid.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "in_person"
+        ],
+        "steps": "Pöördu piirkonnakeskuse lapse heaolu spetsialisti poole, esita digitaalselt allkirjastatud avaldus või kasuta linnaportaali taotlust. Spetsialist hindab teenuse vajadust.",
+        "deadline": null
+      },
+      "pricing": null,
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/lapsehoiuteenus-puudega-lapsele",
+      "relatedForms": [
+        "tartu_linn_form_uldtaotlus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_anne_44_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "lapsehoiuteenus_page",
+        "linnaportaal"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "lapsehoiuteenus_page",
+        "linnaportaal"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_service_lapsehoiuteenus_puudega_lapsele",
+      "document_id": "tartu_linn_service_lapsehoiuteenus_puudega_lapsele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/lapsehoiuteenus-puudega-lapsele",
+      "content_hash": "cdb53b7015bf02feeba13f873e44f1885cd831b27b42d8780c8bd9687ec0b04d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_service_sotsiaaltransporditeenus_puudega_lapsele",
+      "canonical_item_id": "tartu_linn:service:sotsiaaltransporditeenus_puudega_lapsele",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus puudega lapsele",
+      "status": "active",
+      "summary": "Puudega lapse sotsiaaltransporditeenus võimaldab lapsel kasutada tema erivajadusele vastavat sõidukit haridusasutusse või avalike teenuste juurde jõudmiseks, kui puue takistab isikliku või ühissõiduki kasutamist. Teenust määratakse õppeaastaks ja vajadusel avalike teenuste kasutamiseks. Tartu linna lehel on märgitud, et teenus on määratud mahus tasuta.",
+      "targetGroup": "Tartu linnas elavad puudega lapsed, kes ei saa puudest tingituna kasutada isiklikku või ühistransporti",
+      "conditions": "Laps peab rahvastikuregistri järgi ja tegelikult elama Tartu linnas. Teenuse vajaduse hindab piirkonnakeskuse lapse heaolu spetsialist ja teenus määratakse üldjuhul õppeaastaks.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "in_person"
+        ],
+        "steps": "Täida sotsiaaltranspordi taotlus või linnaportaali taotlus ning lisa lapse erivajadust tõendavad dokumendid. Esita taotlus piirkonnakeskuse lapse heaolu spetsialistile.",
+        "deadline": null
+      },
+      "pricing": "Määratud mahus tasuta",
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/sotsiaaltransporditeenus-puudega-lapsele",
+      "relatedForms": [
+        "tartu_linn_form_sotsiaaltranspordi_taotlus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_anne_44_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "linnaportaal",
+        "sotsiaaltranspordi_application_pdf",
+        "sotsiaaltransport_laps_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "linnaportaal",
+        "sotsiaaltranspordi_application_pdf",
+        "sotsiaaltransport_laps_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_service_sotsiaaltransporditeenus_puudega_lapsele",
+      "document_id": "tartu_linn_service_sotsiaaltransporditeenus_puudega_lapsele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/sotsiaaltransporditeenus-puudega-lapsele",
+      "content_hash": "d5c3dbea4a8036906084cb313668a49335db762f5aebd58bf4af09833cc054d3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_service_asendus_ja_jarelhooldusteenus",
+      "canonical_item_id": "tartu_linn:service:asendus_ja_jarelhooldusteenus",
+      "itemType": "service",
+      "title": "Asendus- ja järelhooldusteenus",
+      "status": "active",
+      "summary": "Asendus- ja järelhooldusteenus on kohaliku omavalitsuse korraldatav teenus lastele ja noortele, kes vajavad hooldust väljaspool oma sünniperet või kes lahkuvad asendushoolduselt. Teenuse eesmärk on tagada lapse heaolu, õigused, turvaline ja arengut toetav elukeskkond ning võimalikult peresarnased elutingimused. Järelhooldus aitab noorel iseseisvuda ja toime tulla pärast asendushooldust. Tartu linna lehel on märgitud, et teenus on lapsele või noorele tasuta.",
+      "targetGroup": "Lapsed ja noored, kes vajavad asendushooldust või lahkuvad asendus- või perekonnahoolduselt",
+      "conditions": "Teenuse vajadus selgitatakse lapse heaolu ja lastekaitse menetluse käigus. Teenus võib hõlmata perepõhist asendushooldust, asenduskodu teenust või järelhooldust kuni noore iseseisvumiseni.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": "Pöörduda tuleb Tartu linna piirkonnakeskuse lapse heaolu spetsialisti poole. Teenuse korraldamine toimub lastekaitsetöö raames.",
+        "deadline": null
+      },
+      "pricing": "Lapsele või noorele tasuta",
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/asendus-ja-jarelhooldusteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_anne_44_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "asendus_jarelhooldus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "asendus_jarelhooldus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_service_asendus_ja_jarelhooldusteenus",
+      "document_id": "tartu_linn_service_asendus_ja_jarelhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/asendus-ja-jarelhooldusteenus",
+      "content_hash": "b245aaad3820630d1e4c64f2df20952f69f920282a42338e11fe4e88251279b9",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_service_turvakoduteenus_lastele_ja_peredele",
+      "canonical_item_id": "tartu_linn:service:turvakoduteenus_lastele_ja_peredele",
+      "itemType": "service",
+      "title": "Turvakoduteenus lastele ja peredele",
+      "status": "active",
+      "summary": "Turvakoduteenus tagab lapsele ja vajadusel lapsega koos olevale vanemale ajutise turvalise majutuse, esmase abi, kriisiabi ja info edasiste abivõimaluste kohta. Teenus on mõeldud olukorras, kus laps või pere ei saa kodus viibida või puudub turvaline elukoht. Tartu linna lehel on teenuse osutajana nimetatud Tartu Perekeskus aadressil Tiigi 55. Teenusele võib pöörduda lapse või vanema enda algatusel või spetsialistide suunamisel.",
+      "targetGroup": "Kuni 18-aastased lapsed ja lapsega koos teenust vajavad vanemad või hooldajad",
+      "conditions": "Teenust kasutatakse ohu, kriisi või kodus viibimise võimatuse korral. Pöördumine võib toimuda lapse, vanema, lapse heaolu spetsialisti, Sotsiaalkindlustusameti või Politsei- ja Piirivalveameti kaudu.",
+      "application": {
+        "channels": [
+          "in_person",
+          "phone",
+          "email"
+        ],
+        "steps": "Kriisiolukorras tuleb pöörduda Tartu Perekeskuse, lapse heaolu spetsialisti, Sotsiaalkindlustusameti või politsei poole. Hädaohu korral helistada.",
+        "deadline": null
+      },
+      "pricing": null,
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/turvakoduteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_anne_44_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "turvakoduteenus_laps_pere_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "turvakoduteenus_laps_pere_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_service_turvakoduteenus_lastele_ja_peredele",
+      "document_id": "tartu_linn_service_turvakoduteenus_lastele_ja_peredele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/turvakoduteenus",
+      "content_hash": "dc96482abf57bbfdb558306081093fd2d691a5927edfe0d49e0d560baa7c1a52",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_service_eluruumi_tagamise_teenus",
+      "canonical_item_id": "tartu_linn:service:eluruumi_tagamise_teenus",
+      "itemType": "service",
+      "title": "Eluruumi tagamise teenus",
+      "status": "active",
+      "summary": "Eluruumi tagamise teenuse eesmärk on tagada eluruumi kasutamise võimalus inimesele või perele, kes ei suuda oma sotsiaalmajandusliku olukorra, erivajaduse, vaimse või kehalise eripära või muu toimetulekuraskuse tõttu endale sobivat eluaset tagada. Teenus võib hõlmata munitsipaaleluruumi või muu eluruumi kasutamise korraldamist. Teenuse saaja peab tasuma eluruumiga seotud kõrvalkulud ja muud kokkulepitud kulud.",
+      "targetGroup": "Tartu linna elanikud ja pered, kes ei suuda endale sobivat eluruumi tagada",
+      "conditions": "Teenust saab taotleda inimene või pere, kelle rahvastikuregistrijärgne elukoht on Tartu linn ja kelle vajadust hindab piirkonnakeskuse sotsiaaltöö spetsialist.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "in_person"
+        ],
+        "steps": "Esita üldtaotlus või linnaportaali taotlus piirkonnakeskuse sotsiaaltöö spetsialistile. Spetsialist hindab eluruumi vajadust ja teenuse sobivust.",
+        "deadline": null
+      },
+      "pricing": "Teenuse saaja tasub eluruumi kasutamisega seotud kõrvalkulud ja muud kokkulepitud kulud.",
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/eluruumi-tagamise-teenus",
+      "relatedForms": [
+        "tartu_linn_form_uldtaotlus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_kaunase_22_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "eluruumi_tagamine_page",
+        "linnaportaal"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "eluruumi_tagamine_page",
+        "linnaportaal"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_service_eluruumi_tagamise_teenus",
+      "document_id": "tartu_linn_service_eluruumi_tagamise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/eluruumi-tagamise-teenus",
+      "content_hash": "cbf4e5758be4cecca0a48a6061801c3603923f32877b46fe02938a31a48059cb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_service_sotsiaalmajutusteenus",
+      "canonical_item_id": "tartu_linn:service:sotsiaalmajutusteenus",
+      "itemType": "service",
+      "title": "Sotsiaalmajutusteenus",
+      "status": "active",
+      "summary": "Sotsiaalmajutusteenus annab ajutise elukoha inimesele või perele, kellel puudub eluruum ja kes vajab iseseisva toimetuleku taastamiseks või säilitamiseks individuaalset nõustamist, juhendamist ja tuge. Üksi elavate täisealiste isikute sotsiaalmajutusteenust osutab Tartu Varjupaik aadressil Peetri 16c. Teenuse juurde kuulub voodikoht, ühiskasutatavad ruumid ja tegevuskava. Perede majutusteenus on Tartu linna sotsiaalvaldkonna koondlehel märgitud eraldi teenusena.",
+      "targetGroup": "Tartu linna elanikud või pered, kellel puudub eluruum ja kes vajavad toetatud majutust",
+      "conditions": "Teenuse kasutamiseks peab inimesel või perel puuduma eluruum ning olema vajadus nõustamise, juhendamise ja toetatud toimetuleku järele. Teenuse vajaduse hindab piirkonnakeskuse sotsiaaltöö spetsialist.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email"
+        ],
+        "steps": "Pöördu piirkonnakeskuse sotsiaaltöö spetsialisti poole. Spetsialist hindab abivajadust ja vajadusel suunab teenusele.",
+        "deadline": null
+      },
+      "pricing": null,
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/sotsiaalmajutusteenus",
+      "relatedForms": [
+        "tartu_linn_form_uldtaotlus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_kaunase_22_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "social_overview",
+        "sotsiaalmajutusteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_overview",
+        "sotsiaalmajutusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_service_sotsiaalmajutusteenus",
+      "document_id": "tartu_linn_service_sotsiaalmajutusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/sotsiaalmajutusteenus",
+      "content_hash": "9e95ef134742e0a47e26aa93722c5ec47246a6adcfedc48a2ed2b1423dd4e135",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_service_taisealise_isiku_turvakoduteenus",
+      "canonical_item_id": "tartu_linn:service:taisealise_isiku_turvakoduteenus",
+      "itemType": "service",
+      "title": "Täisealise isiku turvakoduteenus",
+      "status": "active",
+      "summary": "Täisealise isiku turvakoduteenus pakub ajutist turvalist majutust, esmast abi, kriisiabi ja infot edasiste abivõimaluste kohta. Teenus on suunatud täisealisele inimesele, kes vajab turvalist keskkonda vägivalla, kriisi või muu ohu tõttu. Tartu linna veebilehel on teenuse osutajatena nimetatud MTÜ Naiste Tugi- ja Teabekeskus ning Tähtvere Avatud Naistekeskus. Teenus võib hõlmata kriisinõustamist ja turvalise koha leidmist.",
+      "targetGroup": "Täisealised inimesed, kes vajavad kriisi või vägivalla tõttu ajutist turvalist kohta",
+      "conditions": "Teenust kasutatakse kriisi-, vägivalla- või ohusituatsioonis, kus inimesel ei ole võimalik turvaliselt tavapärases elukohas viibida.",
+      "application": {
+        "channels": [
+          "phone",
+          "email"
+        ],
+        "steps": "Võta ühendust Tartu linna veebilehel nimetatud teenuseosutajaga või sotsiaal- ja tervishoiuosakonnaga. Ohu korral helistada.",
+        "deadline": null
+      },
+      "pricing": null,
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/taisealise-isiku-turvakoduteenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond"
+      ],
+      "sourceKeys": [
+        "turvakoduteenus_taisealisele_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "turvakoduteenus_taisealisele_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_service_taisealise_isiku_turvakoduteenus",
+      "document_id": "tartu_linn_service_taisealise_isiku_turvakoduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/taisealise-isiku-turvakoduteenus",
+      "content_hash": "543778c4ab81871eb8c8b305933711059465d4fd9de2f8b57662e03c3c01e9ea",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_service_varjupaigateenus_ja_kodutute_paevakeskus",
+      "canonical_item_id": "tartu_linn:service:varjupaigateenus_ja_kodutute_paevakeskus",
+      "itemType": "service",
+      "title": "Varjupaigateenus ja kodutute päevakeskus",
+      "status": "active",
+      "summary": "Varjupaigateenus tagab ajutise ööbimiskoha täisealisele inimesele, kellel ei ole võimalik endale ööbimiskohta leida. Teenus hõlmab voodikohta, pesemisvõimalust ja turvalist keskkonda. Tartu Varjupaik tegutseb aadressil Peetri 16c. Tartu linna veebilehel on märgitud, et tartlastele on teenus tasuta, kuid alates 1. aprillist 2026 on eraldi kirjeldatud tasuta ööde ja hilisema 3-eurose öö hinna kord.",
+      "targetGroup": "Täisealised inimesed, kellel puudub ajutiselt ööbimiskoht",
+      "conditions": "Teenust saab kasutada inimene, kellel ei ole võimalik endale ööbimiskohta tagada. Teenuse vajadust ja tasuta kasutamise mahtu hinnatakse sotsiaalteenuse määramise menetluses.",
+      "application": {
+        "channels": [
+          "in_person",
+          "phone"
+        ],
+        "steps": "Pöördu Tartu Varjupaika aadressil Peetri 16c või Tartu linna piirkonnakeskuse sotsiaaltöö spetsialisti poole.",
+        "deadline": null
+      },
+      "pricing": "Tartlastele tasuta määratud mahus; alates 1. aprillist 2026 on teenuse lehel kirjeldatud tasuta ööde ja hilisema 3-eurose öö hinna kord.",
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/varjupaigateenus-ja-kodutute-paevakeskus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond"
+      ],
+      "sourceKeys": [
+        "varjupaigateenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "varjupaigateenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_service_varjupaigateenus_ja_kodutute_paevakeskus",
+      "document_id": "tartu_linn_service_varjupaigateenus_ja_kodutute_paevakeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/varjupaigateenus-ja-kodutute-paevakeskus",
+      "content_hash": "78f798fb7d2515f6fa3cb1941d4def86d0b1a9d2c0cbbe95c417e5eca9d68da3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_service_valtimatu_sotsiaalabi_toidu_ja_riideabi",
+      "canonical_item_id": "tartu_linn:service:valtimatu_sotsiaalabi_toidu_ja_riideabi",
+      "itemType": "service",
+      "title": "Toidu- ja riideabi ning vältimatu sotsiaalabi",
+      "status": "active",
+      "summary": "Vältimatu sotsiaalabi, toiduabi ja riideabi on mõeldud inimesele, kes on sotsiaalselt abitus olukorras elatusvahendite kaotuse või puudumise tõttu. Abi võib hõlmata toitu, riideid ja ajutist majutust. Tartu Varjupaigas Peetri 16c jagatakse tööpäeviti sooja toitu ning nädalavahetustel ja pühadel toidupakke. Riideabi antakse hooajale ja vajadusele vastavalt.",
+      "targetGroup": "Toimetulekuraskustes või sotsiaalselt abitus olukorras inimesed, kelle elukoht on Tartu linn või kes viibivad abi vajamise hetkel Tartus",
+      "conditions": "Abi antakse vältimatus olukorras elatusvahendite kaotuse või puudumise tõttu. Taotleja peab esitama isikut tõendava dokumendi, kui see on võimalik.",
+      "application": {
+        "channels": [
+          "in_person"
+        ],
+        "steps": "Pöördu piirkonnakeskuse sotsiaaltöö spetsialisti poole või Tartu Varjupaika Peetri 16c. Hädaolukorras tuleb pöörduda viivitamatult abi saamiseks.",
+        "deadline": null
+      },
+      "pricing": "Tasuta",
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/toidu-ja-riideabi-valtimatu-sotsiaalabi",
+      "relatedForms": [
+        "tartu_linn_form_uldtaotlus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_kaunase_22_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "valtimatu_sotsiaalabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_service_valtimatu_sotsiaalabi_toidu_ja_riideabi",
+      "document_id": "tartu_linn_service_valtimatu_sotsiaalabi_toidu_ja_riideabi",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/toidu-ja-riideabi-valtimatu-sotsiaalabi",
+      "content_hash": "2912e1e39f88c43b760e60243af2af33046393290aa126c9e3d620747fec4b44",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_service_isikliku_abistaja_teenus",
+      "canonical_item_id": "tartu_linn:service:isikliku_abistaja_teenus",
+      "itemType": "service",
+      "title": "Isikliku abistaja teenus",
+      "status": "active",
+      "summary": "Isikliku abistaja teenus suurendab puudest tingitud füüsilise kõrvalabi vajadusega täisealise inimese iseseisvat toimetulekut ja osalemist ühiskonnaelus. Abistaja aitab igapäevastes tegevustes, kus inimene vajab füüsilist abi või juhendamist, näiteks liikumisel, riietumisel, söömisel või asjaajamisel. Teenus ei hõlma tervishoiuteenuseid, tõlketeenust, nõustamist ega kodu remonti. Teenus vähendab ka pereliikmete ja hooldajate hoolduskoormust.",
+      "targetGroup": "Tartu linnas elavad täisealised puudega inimesed, kes vajavad füüsilist kõrvalabi",
+      "conditions": "Taotleja vajab puudest tulenevalt füüsilist abi igapäevaelus ja teenuse vajaduse hindab piirkonnakeskuse sotsiaaltöö spetsialist.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "in_person"
+        ],
+        "steps": "Pöördu piirkonnakeskuse sotsiaaltöö spetsialisti poole või esita üldtaotlus/linnaportaali taotlus. Spetsialist hindab teenuse vajadust.",
+        "deadline": null
+      },
+      "pricing": null,
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/isikliku-abistaja-teenus",
+      "relatedForms": [
+        "tartu_linn_form_uldtaotlus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_kaunase_22_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "isiklik_abistaja_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "isiklik_abistaja_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_service_isikliku_abistaja_teenus",
+      "document_id": "tartu_linn_service_isikliku_abistaja_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/isikliku-abistaja-teenus",
+      "content_hash": "841838a7befb3ba36379f81d27e99515d33706108b3e8843212c7acf6ae6317a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_service_vaimse_tervise_teenus",
+      "canonical_item_id": "tartu_linn:service:vaimse_tervise_teenus",
+      "itemType": "service",
+      "title": "Psühholoogiline ja psühhosotsiaalne abi",
+      "status": "active",
+      "summary": "Psühholoogilise ja psühhosotsiaalse abi eesmärk on toetada Tartu linna elaniku vaimset tervist ja psühhosotsiaalset heaolu. Teenused hõlmavad näiteks leinanõustamist alaealistele, psühhosotsiaalset nõustamist, sõltuvusnõustamist alaealistele ning muid nõustamisi vastavalt vajadusele. Psühhosotsiaalset nõustamist võimaldatakse kuni viis kohtumist kalendriaastas. Teenus on tasuta tegevuskavas või otsuses määratud mahus.",
+      "targetGroup": "Tartu linnas rahvastikuregistri järgi ja tegelikult elavad inimesed ja pered, kellel on vaimse tervise või psühhosotsiaalse toe vajadus",
+      "conditions": "Teenuse vajadust hindab piirkonnakeskuse sotsiaaltöö spetsialist või lapse heaolu spetsialist. Teenuse maht määratakse tegevuskavas või teenuseotsuses.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "in_person"
+        ],
+        "steps": "Pöördu esmalt piirkonnakeskuse sotsiaaltöö või lapse heaolu spetsialisti poole. Vajadusel esita üldtaotlus või linnaportaali taotlus.",
+        "deadline": null
+      },
+      "pricing": "Tasuta tegevuskavas või otsuses määratud mahus; psühhosotsiaalset nõustamist kuni viis kohtumist kalendriaastas",
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/psuhholoogiline-ja-psuhhosotsiaalne-abi-tartu-linna-elanikele",
+      "relatedForms": [
+        "tartu_linn_form_uldtaotlus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_anne_44_piirkonnakeskus",
+        "tartu_linn_contact_kaunase_22_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "vaimse_tervise_teenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "vaimse_tervise_teenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_service_vaimse_tervise_teenus",
+      "document_id": "tartu_linn_service_vaimse_tervise_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/psuhholoogiline-ja-psuhhosotsiaalne-abi-tartu-linna-elanikele",
+      "content_hash": "198c22be97c287cd1b2aad3e1cf7983095834d5708279fa6a0bad746e2760e1e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_service_sotsiaaltransporditeenus_taisealistele",
+      "canonical_item_id": "tartu_linn:service:sotsiaaltransporditeenus_taisealistele",
+      "itemType": "service",
+      "title": "Sotsiaaltransporditeenus täisealistele",
+      "status": "active",
+      "summary": "Täisealiste sotsiaaltransporditeenus võimaldab puudega inimesel, kelle puue takistab isikliku või ühistranspordi kasutamist, sõita tööle, õppeasutusse, avalike teenuste juurde, tervishoiu- või rehabilitatsiooniteenusele ning hooldusasutusse. Teenuse osutajaks on Tartu linna lehel nimetatud OÜ Tartaline. Teenus on omaosalusega ja kasutaja tasub osa sõidukulust. Teenuse vajaduse hindab piirkonnakeskuse sotsiaaltöö spetsialist.",
+      "targetGroup": "Tartu linnas elavad täisealised puudega inimesed, kes ei saa puudest tingituna kasutada isiklikku või ühistransporti",
+      "conditions": "Taotleja peab olema Tartu linna elanik. Taotlemisel esitatakse arsti tõend ja vajadusel tööandja või õppeasutuse kinnitus. Teenuse maht määratakse kuni puudeotsuse kehtivuseni või kuni kaheks aastaks.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "in_person"
+        ],
+        "steps": "Täida sotsiaaltranspordi taotlus või linnaportaali taotlus, lisa nõutud tõendid ning esita piirkonnakeskuse sotsiaaltöö spetsialistile.",
+        "deadline": null
+      },
+      "pricing": "Omaosalusega teenus; Tartu linna lehel on kirjeldatud sõidu kilomeetrihind, starditasu ja ooteaja tasu ning linna rahastatav osa.",
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/sotsiaaltransporditeenus-taisealistele",
+      "relatedForms": [
+        "tartu_linn_form_sotsiaaltranspordi_taotlus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_kaunase_22_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "linnaportaal",
+        "sotsiaaltranspordi_application_pdf",
+        "sotsiaaltransport_taisealised_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "linnaportaal",
+        "sotsiaaltranspordi_application_pdf",
+        "sotsiaaltransport_taisealised_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_service_sotsiaaltransporditeenus_taisealistele",
+      "document_id": "tartu_linn_service_sotsiaaltransporditeenus_taisealistele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/sotsiaaltransporditeenus-taisealistele",
+      "content_hash": "04ed168dd0226f7f68fb945290f848edf2af6f90b7781690e05dfcb2903a0969",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_service_tugiisikuteenus_taisealistele",
+      "canonical_item_id": "tartu_linn:service:tugiisikuteenus_taisealistele",
+      "itemType": "service",
+      "title": "Tugiisikuteenus täisealisele",
+      "status": "active",
+      "summary": "Täisealise inimese tugiisikuteenus toetab iseseisvat toimetulekut olukorras, kus inimene vajab sotsiaalsete, majanduslike, psühholoogiliste või terviseprobleemide tõttu olulisel määral kõrvalabi oma kohustuste täitmisel ja õiguste teostamisel. Tugiisik juhendab, motiveerib ja toetab inimese suuremat iseseisvust ning omavastutust. Teenus on Tartu linna elanikele tasuta. Teenuse vajaduse hindab piirkonnakeskuse sotsiaaltöö spetsialist.",
+      "targetGroup": "Tartu linnas elavad täisealised inimesed, kes vajavad juhendamist ja kõrvalabi igapäevaelus või asjaajamisel",
+      "conditions": "Taotleja peab olema Tartu linna elanik ja vajama tugiisiku abi. Teenuse vajadus selgitatakse abivajaduse hindamisel.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "in_person"
+        ],
+        "steps": "Pöördu piirkonnakeskuse sotsiaaltöö spetsialisti poole või esita üldtaotlus/linnaportaali taotlus. Spetsialist hindab vajadust ja korraldab teenuse.",
+        "deadline": null
+      },
+      "pricing": "Tasuta",
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/tugiisikuteenus",
+      "relatedForms": [
+        "tartu_linn_form_uldtaotlus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_kaunase_22_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "tugiisik_taisealised_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "tugiisik_taisealised_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_service_tugiisikuteenus_taisealistele",
+      "document_id": "tartu_linn_service_tugiisikuteenus_taisealistele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/tugiisikuteenus",
+      "content_hash": "55770f2c9cd804bc42d6c14ff862fa1032e95e3c2706ac46524fbceb6d7b1861",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_service_viipekeele_tolketeenus",
+      "canonical_item_id": "tartu_linn:service:viipekeele_tolketeenus",
+      "itemType": "service",
+      "title": "Viipekeele tõlketeenus",
+      "status": "active",
+      "summary": "Viipekeele tõlketeenus aitab kuulmispuude või kuulmislangusega inimesel suhelda koduses asjaajamises, ametiasutustes ja teenuste kasutamisel. Teenus on mõeldud Tartu linnas elavale täisealisele inimesele, kellel on raske või sügav kuulmispuue või kuulmislangus. Tartu linn rahastab keskmiselt kuni kolm tundi tõlketeenust kuus inimese kohta. Teenus on määratud mahus tasuta.",
+      "targetGroup": "Tartu linnas elavad täisealised kuulmispuude või kuulmislangusega inimesed",
+      "conditions": "Taotleja peab olema Tartu linna elanik ja vajama viipekeele tõlget igapäevases asjaajamises või teenuste kasutamisel. Teenuse vajaduse hindab piirkonnakeskuse sotsiaaltöö spetsialist.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "in_person"
+        ],
+        "steps": "Esita taotlus piirkonnakeskuse sotsiaaltöö spetsialistile või linnaportaali kaudu. Spetsialist hindab vajadust ja määrab teenuse mahu.",
+        "deadline": null
+      },
+      "pricing": "Määratud mahus tasuta; Tartu linn rahastab keskmiselt kuni kolm tundi kuus inimese kohta.",
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/viipekeele-tolketeenus",
+      "relatedForms": [
+        "tartu_linn_form_uldtaotlus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_kaunase_22_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "viipekeele_tolketeenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "viipekeele_tolketeenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_service_viipekeele_tolketeenus",
+      "document_id": "tartu_linn_service_viipekeele_tolketeenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/viipekeele-tolketeenus",
+      "content_hash": "da9abb3a97554602be606b1d3aaca483a87612ad993fefebc8331cfa885f1c6e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_service_volanoustamisteenus",
+      "canonical_item_id": "tartu_linn:service:volanoustamisteenus",
+      "itemType": "service",
+      "title": "Võlanõustamisteenus",
+      "status": "active",
+      "summary": "Võlanõustamisteenus on sotsiaalteenus, mille eesmärk on parandada rahalistesse raskustesse sattunud inimese toimetulekuvõimet. Teenus aitab selgitada võlgade ulatust, kavandada võlgnevuste lahendamist, suhelda võlausaldajatega ning ennetada uute võlgade tekkimist. Teenus on nõustamisteenus ega ole materiaalne abi. Teenuse vajadus selgitatakse tervikliku abivajaduse hindamise kaudu.",
+      "targetGroup": "Tartu linnas elavad inimesed, kellel on võlgnevustest tulenevad toimetuleku- või sotsiaalsed probleemid",
+      "conditions": "Taotleja peab olema Tartu linna elanik ning võlgnevus peab mõjutama tema sotsiaalset toimetulekut. Teenuse vajadus selgitatakse abivajaduse hindamisel.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "in_person"
+        ],
+        "steps": "Pöördu piirkonnakeskuse sotsiaaltöö spetsialisti poole või esita üldtaotlus/linnaportaali taotlus. Vajadusel suunatakse võlanõustaja juurde.",
+        "deadline": null
+      },
+      "pricing": null,
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/volanoustamine",
+      "relatedForms": [
+        "tartu_linn_form_uldtaotlus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_kaunase_22_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "volanoustamine_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "volanoustamine_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_service_volanoustamisteenus",
+      "document_id": "tartu_linn_service_volanoustamisteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/volanoustamine",
+      "content_hash": "6ebdee372994c73d23d0e2de2a58ec224a4ef93c125516fb7ca0f761138723e7",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_service_paevahoiuteenus_maluprobleemiga_eakatele",
+      "canonical_item_id": "tartu_linn:service:paevahoiuteenus_maluprobleemiga_eakatele",
+      "itemType": "service",
+      "title": "Päevahoiuteenus mäluprobleemiga eakatele",
+      "status": "active",
+      "summary": "Päevahoiuteenus on suunatud mäluprobleemiga eakatele ning seda osutab SA Tartu Vaimse Tervise Hooldekeskuse Annelinna eakate päevahoid Kaunase puiestee 22 esimesel korrusel. Teenus aitab eakal päevasel ajal turvaliselt ja juhendatult aega veeta ning toetab lähedaste hoolduskoormuse vähendamist. Tartu linna veebilehel on märgitud, et linn rahastab teenust ja Tartu linna elanikele on see tasuta. Teenusele suunavad piirkonnakeskuste heaolu spetsialistid.",
+      "targetGroup": "Tartu linnas elavad mäluprobleemidega eakad ja nende pered",
+      "conditions": "Teenuse vajaduse hindab piirkonnakeskuse heaolu spetsialist. Taotleja peab olema Tartu linna elanik.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "in_person"
+        ],
+        "steps": "Esita vabas vormis või linnaportaali taotlus piirkonnakeskuse heaolu spetsialistile. Spetsialist hindab vajadust ja suunab teenusele.",
+        "deadline": null
+      },
+      "pricing": "Tartu linna elanikele tasuta",
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/paevahoiuteenus",
+      "relatedForms": [
+        "tartu_linn_form_uldtaotlus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_kaunase_22_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "paevahoiuteenus_page",
+        "paevakeskused_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "paevahoiuteenus_page",
+        "paevakeskused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_service_paevahoiuteenus_maluprobleemiga_eakatele",
+      "document_id": "tartu_linn_service_paevahoiuteenus_maluprobleemiga_eakatele",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/paevahoiuteenus",
+      "content_hash": "b28f8b0850bd4284532122454c911307ccb100819d5edbd735d63dffff37fd2e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_service_koduteenus",
+      "canonical_item_id": "tartu_linn:service:koduteenus",
+      "itemType": "service",
+      "title": "Koduteenus",
+      "status": "active",
+      "summary": "Koduteenuse eesmärk on tagada täisealise inimese iseseisev ja turvaline toimetulek kodus. Teenus hõlmab abi tegevustes, mis on vajalikud koduses keskkonnas elamiseks, sealhulgas eluruumi ja riietega seotud toimingud ning vajalike kaupade ostmine. Teenus on mõeldud Tartu linna elanikule, kes vajab kõrvalabi igapäevaelus. Alates 1. aprillist 2025 on teenusel omaosalus ning tunnitasu sõltub inimese sissetulekust.",
+      "targetGroup": "Tartu linnas elavad täisealised inimesed, kes vajavad kõrvalabi koduses toimetulekus",
+      "conditions": "Taotleja peab elama Tartu linnas ja vajama abi kodustes toimingutes. Teenuse vajaduse hindab piirkonnakeskuse sotsiaaltöö spetsialist.",
+      "application": {
+        "channels": [
+          "online",
+          "email",
+          "in_person"
+        ],
+        "steps": "Pöördu piirkonnakeskuse sotsiaaltöö spetsialisti poole või esita üldtaotlus/linnaportaali taotlus. Spetsialist hindab abivajadust ja korraldab teenuse.",
+        "deadline": null
+      },
+      "pricing": "Omaosalus 1 euro iga visiidi eest ning tunnitasu sissetulekust sõltuvalt; vajadusel saab taotleda omaosaluse vähendamist või vabastamist.",
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/koduhooldusteenus",
+      "relatedForms": [
+        "tartu_linn_form_uldtaotlus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_kaunase_22_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "koduteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "koduteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_service_koduteenus",
+      "document_id": "tartu_linn_service_koduteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/koduhooldusteenus",
+      "content_hash": "06329143a537591857d954ff3d82b5b9f1a6a17b2e5021a14042833f30a62afb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_service_heaolumeistri_teenus",
+      "canonical_item_id": "tartu_linn:service:heaolumeistri_teenus",
+      "itemType": "service",
+      "title": "Heaolumeistri teenus",
+      "status": "active",
+      "summary": "Heaolumeistri teenus aitab eakatel ja abivajavatel inimestel muuta kodu turvalisemaks ja vähendada kukkumisriski. Heaolumeister hindab kodukeskkonda, aitab väiksemate kohanduste ja lihtsamate töödega ning annab nõu abivahendite kasutamiseks ja paigaldamiseks. Teenus võib hõlmata näiteks käsipuude või tualetipoti kõrgenduse paigaldamise nõu, kardinate või lambipirni vahetamist ning suitsuanduri patarei vahetust. Vajadusel aitab heaolumeister leida sobiva teenusepakkuja suuremateks töödeks.",
+      "targetGroup": "Tartu linna eakad ja teised kodukeskkonna turvalisemaks muutmisel abi vajavad inimesed",
+      "conditions": "Teenuse vajadus on seotud kodus toimetuleku ja kukkumisriski vähendamisega. Täpsemad tingimused määratakse abivajaduse hindamisel.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email",
+          "phone"
+        ],
+        "steps": "Pöördu piirkonnakeskuse sotsiaaltöö või heaolu spetsialisti poole. Spetsialist hindab vajadust ja suunab teenusele.",
+        "deadline": null
+      },
+      "pricing": null,
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/heaolumeistri-teenus",
+      "relatedForms": [],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_kaunase_22_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "heaolumeister_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "heaolumeister_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_service_heaolumeistri_teenus",
+      "document_id": "tartu_linn_service_heaolumeistri_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/heaolumeistri-teenus",
+      "content_hash": "63ba8d6a0bed5943899cbcb9951401522ed19cec6ab4a2ac97ea995687b5f3af",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_service_hoolduskoordinaatorite_teenus",
+      "canonical_item_id": "tartu_linn:service:hoolduskoordinaatorite_teenus",
+      "itemType": "service",
+      "title": "Hoolduskoordinaatorid",
+      "status": "active",
+      "summary": "Hoolduskoordinaatorid aitavad inimestel ja nende peredel korraldada tervishoiu- ja sotsiaalteenuseid ning toetavad perearste keerulisemate juhtumite koordineerimisel. Tartu linnas töötavad hoolduskoordinaatorid koostöös Raatuse perearstikeskuse, Tartu Tervisekeskuse ja Maarjamõisa perearstikeskusega. Nad aitavad inimesel leida sobiva teenuse, selgitada abi saamise võimalusi ja siduda tervishoiu ning sotsiaalhoolekande tuge.",
+      "targetGroup": "Tartu linna elanikud ja pered, kes vajavad tervishoiu- ja sotsiaalteenuste koordineeritud korraldamist",
+      "conditions": "Teenuse või toe vajadus ilmneb perearstikeskuse või sotsiaalvaldkonna koostöös. Pöördumine võib toimuda perearsti või sotsiaalvaldkonna kaudu.",
+      "application": {
+        "channels": [
+          "phone",
+          "email",
+          "in_person"
+        ],
+        "steps": "Võta ühendust hoolduskoordinaatoriga või pöördu perearstikeskuse/sotsiaal- ja tervishoiuosakonna poole. Hoolduskoordinaator aitab teenuseid seostada ja korraldada.",
+        "deadline": null
+      },
+      "pricing": null,
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/hoolduskoordinaatorid",
+      "relatedForms": [],
+      "relatedContacts": [
+        "tartu_linn_contact_ave_tooming",
+        "tartu_linn_contact_aigi_puusepp",
+        "tartu_linn_contact_merle_pahk"
+      ],
+      "sourceKeys": [
+        "hoolduskoordinaatorid_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "hoolduskoordinaatorid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_service_hoolduskoordinaatorite_teenus",
+      "document_id": "tartu_linn_service_hoolduskoordinaatorite_teenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/hoolduskoordinaatorid",
+      "content_hash": "ac4bd7bfbe285832d3ec6c51a45fbe9e7cc32221ba3b69abf5cea54bde44da1d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "canonical_item_id": "tartu_linn:service:valjaspool_kodu_osutatav_uldhooldusteenus",
+      "itemType": "service",
+      "title": "Väljaspool kodu osutatav üldhooldusteenus",
+      "status": "active",
+      "summary": "Väljaspool kodu osutatav üldhooldusteenus ehk hooldekoduteenus on mõeldud täisealisele inimesele, kes ei suuda oma kodus iseseisvalt toime tulla ning vajab ajutiselt või püsivalt ööpäevaringset hooldust ja turvalist elukeskkonda. Teenuseosutaja kehtestab kohatasu. Alates 1. juulist 2023 jaguneb hooldekodu kohatasu inimese ja omavalitsuse vahel: linn tasub hooldustöötajate ja abi tugiteenustega seotud osa ning inimene tasub majutuse, toitlustuse ja muud isiklikud kulud.",
+      "targetGroup": "Täisealised Tartu linna elanikud, kes vajavad ööpäevaringset hooldust väljaspool kodu",
+      "conditions": "Teenuse vajadus selgitatakse abivajaduse hindamisel. Inimene peab vajama püsivat või ajutist kõrvalabi ja turvalist elukeskkonda väljaspool kodu.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email",
+          "online"
+        ],
+        "steps": "Pöördu piirkonnakeskuse sotsiaaltöö spetsialisti poole. Spetsialist hindab hooldusvajadust ja aitab sobiva hooldekoduteenuse korraldamisel.",
+        "deadline": null
+      },
+      "pricing": "Teenuseosutaja kohatasu jaguneb teenuse saaja ja Tartu linna vahel vastavalt hooldereformi põhimõtetele; inimene tasub majutuse, toitlustuse ja muud isiklikud kulud.",
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/hooldusteenus-hooldekodus",
+      "relatedForms": [
+        "tartu_linn_form_uldtaotlus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_kaunase_22_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "uldhooldusteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "uldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "document_id": "tartu_linn_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/hooldusteenus-hooldekodus",
+      "content_hash": "a5ce9a7b668e881ea32a980d864d09a413193ac980a6fe89f093e9fcb0080f2e",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_service_ajutine_hooldusteenus_hoolekandeasutuses",
+      "canonical_item_id": "tartu_linn:service:ajutine_hooldusteenus_hoolekandeasutuses",
+      "itemType": "service",
+      "title": "Ajutine hooldusteenus hoolekandeasutuses",
+      "status": "active",
+      "summary": "Tartu linna sotsiaalvaldkonna koondlehel on ajutine hooldusteenus hoolekandeasutuses nimetatud teenusena, mille puhul inimene saab kuni üheks kuuks hooldekodu teenust kasutada. Teenus on mõeldud olukordades, kus inimese hooldusvajadus on ajutine või kus lähedase hoolduskoormus vajab lühiajalist leevendust. Detailne taotlemise kord ja hinnastamine vajavad täiendavat kontrolli konkreetse detaillehe või teenuseosutaja info põhjal.",
+      "targetGroup": "Tartu linna elanikud, kes vajavad lühiajalist hooldust hoolekandeasutuses",
+      "conditions": "Täpsemad tingimused ja teenuse maht vajavad abivajaduse hindamist; koondlehel on märgitud kuni ühekuuline hooldekodu teenus.",
+      "application": {
+        "channels": [
+          "in_person",
+          "email",
+          "online"
+        ],
+        "steps": "Pöördu piirkonnakeskuse sotsiaaltöö spetsialisti poole ja esita üldtaotlus. Spetsialist hindab vajadust ja teenuse sobivust.",
+        "deadline": null
+      },
+      "pricing": null,
+      "decisionTime": null,
+      "officialUrl": "https://www.tartu.ee/et/ToetusedTeenused",
+      "relatedForms": [
+        "tartu_linn_form_uldtaotlus",
+        "tartu_linn_form_linnaportaal_sotsiaalteenused"
+      ],
+      "relatedContacts": [
+        "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+        "tartu_linn_contact_kaunase_22_piirkonnakeskus",
+        "tartu_linn_contact_rahu_15_piirkonnakeskus",
+        "tartu_linn_contact_vaksali_14_piirkonnakeskus"
+      ],
+      "sourceKeys": [
+        "social_overview",
+        "uldhooldusteenus_page"
+      ],
+      "item_type": "service",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_overview",
+        "uldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_service_ajutine_hooldusteenus_hoolekandeasutuses",
+      "document_id": "tartu_linn_service_ajutine_hooldusteenus_hoolekandeasutuses",
+      "source_type": "kov_service_info",
+      "resource_type": "service",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/ToetusedTeenused",
+      "content_hash": "056a3418930589b9ce57cdec4623ac31c42c73ff9cfe47833ae22feee7d54e02",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_resource_tartu_vaimse_tervise_hooldekeskus",
+      "canonical_item_id": "tartu_linn:resource:tartu_vaimse_tervise_hooldekeskus",
+      "itemType": "resource",
+      "title": "SA Tartu Vaimse Tervise Hooldekeskus",
+      "status": "active",
+      "summary": "SA Tartu Vaimse Tervise Hooldekeskus on Tartu linna veebilehel nimetatud täiskasvanute hoolekandeasutus ja teenuseosutaja. Veebilehel on toodud mitu tegevuskohta, sealhulgas Kaunase pst 22, Nõlvaku 10/12 ja Puiestee 13a. Asutus on seotud vaimse tervise, erihoolekande, päevahoiu ja teiste täiskasvanute hoolekandeteenustega.",
+      "targetGroup": "Täiskasvanud, eakad ja vaimse tervise või mäluprobleemidega inimesed",
+      "officialUrl": "https://www.tartu.ee/et/hoolekandeasutused-ja-allasutused",
+      "relatedTo": [
+        "tartu_linn_service_paevahoiuteenus_maluprobleemiga_eakatele"
+      ],
+      "sourceKeys": [
+        "hoolekandeasutused_page",
+        "paevahoiuteenus_page",
+        "paevakeskused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "hoolekandeasutused_page",
+        "paevahoiuteenus_page",
+        "paevakeskused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_resource_tartu_vaimse_tervise_hooldekeskus",
+      "document_id": "tartu_linn_resource_tartu_vaimse_tervise_hooldekeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/hoolekandeasutused-ja-allasutused",
+      "content_hash": "89a68b8a638af35f40c99260a3e282274f80bedd0ac0ab2f2ab08d19afff27d2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_resource_tartu_hooldekodu",
+      "canonical_item_id": "tartu_linn:resource:tartu_hooldekodu",
+      "itemType": "resource",
+      "title": "Tartu Hooldekodu",
+      "status": "active",
+      "summary": "Tartu Hooldekodu on Tartu linna veebilehel nimetatud täiskasvanute hoolekandeasutus aadressil Liiva 32. Asutus on seotud väljaspool kodu osutatava üldhooldusteenusega ning pakub ööpäevaringset hooldust inimestele, kes ei tule kodus iseseisvalt toime.",
+      "targetGroup": "Täisealised inimesed, kes vajavad üldhooldusteenust",
+      "officialUrl": "https://www.tartu.ee/et/hoolekandeasutused-ja-allasutused",
+      "relatedTo": [
+        "tartu_linn_service_valjaspool_kodu_osutatav_uldhooldusteenus"
+      ],
+      "sourceKeys": [
+        "hoolekandeasutused_page",
+        "uldhooldusteenus_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "hoolekandeasutused_page",
+        "uldhooldusteenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_resource_tartu_hooldekodu",
+      "document_id": "tartu_linn_resource_tartu_hooldekodu",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/hoolekandeasutused-ja-allasutused",
+      "content_hash": "cb843ce5f2a60c406605cefd09009a1faae4293c2cc07e12959fd4ead2df2217",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_resource_tartu_varjupaik",
+      "canonical_item_id": "tartu_linn:resource:tartu_varjupaik",
+      "itemType": "resource",
+      "title": "Tartu Varjupaik",
+      "status": "active",
+      "summary": "Tartu Varjupaik on Tartu linna veebilehel nimetatud teenuseosutaja aadressil Peetri 16c. Tartu Varjupaik on seotud varjupaigateenuse, kodutute päevakeskuse, sotsiaalmajutuse ning vältimatu sotsiaalabi, toidu- ja riideabi korraldamisega. KOV lehel on kirjeldatud, et Peetri 16c aadressil jagatakse ka sooja toitu ja pakutakse ajutist majutust.",
+      "targetGroup": "Koduta või ajutiselt majutust ja vältimatut abi vajavad täisealised inimesed",
+      "officialUrl": "https://www.tartu.ee/et/hoolekandeasutused-ja-allasutused",
+      "relatedTo": [
+        "tartu_linn_service_varjupaigateenus_ja_kodutute_paevakeskus",
+        "tartu_linn_service_sotsiaalmajutusteenus",
+        "tartu_linn_service_valtimatu_sotsiaalabi_toidu_ja_riideabi"
+      ],
+      "sourceKeys": [
+        "hoolekandeasutused_page",
+        "sotsiaalmajutusteenus_page",
+        "valtimatu_sotsiaalabi_page",
+        "varjupaigateenus_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "hoolekandeasutused_page",
+        "sotsiaalmajutusteenus_page",
+        "valtimatu_sotsiaalabi_page",
+        "varjupaigateenus_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_resource_tartu_varjupaik",
+      "document_id": "tartu_linn_resource_tartu_varjupaik",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/hoolekandeasutused-ja-allasutused",
+      "content_hash": "3012392b7c44318089c97b1882e49ca96d82faa6db4318f5cabea53ef02747ec",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_resource_tartu_perekeskus",
+      "canonical_item_id": "tartu_linn:resource:tartu_perekeskus",
+      "itemType": "resource",
+      "title": "Tartu Perekeskus",
+      "status": "active",
+      "summary": "Tartu Perekeskus on Tartu linna veebilehel nimetatud teenuseosutaja, kelle juurde kuulub laste ja perede turvakoduteenus aadressil Tiigi 55. Turvakoduteenus pakub ajutist turvalist keskkonda, esmast abi, kriisiabi ja infot edasiste abivõimaluste kohta.",
+      "targetGroup": "Lapsed ja pered kriisi- või ohusituatsioonis",
+      "officialUrl": "https://www.tartu.ee/et/turvakoduteenus",
+      "relatedTo": [
+        "tartu_linn_service_turvakoduteenus_lastele_ja_peredele"
+      ],
+      "sourceKeys": [
+        "turvakoduteenus_laps_pere_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "turvakoduteenus_laps_pere_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_resource_tartu_perekeskus",
+      "document_id": "tartu_linn_resource_tartu_perekeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/turvakoduteenus",
+      "content_hash": "9ddac44dc5d2e01b92b38a053259aa4c10f7a097d4b52f23a1de0327a776f4bc",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_resource_naiste_tugi_ja_teabekeskus",
+      "canonical_item_id": "tartu_linn:resource:naiste_tugi_ja_teabekeskus",
+      "itemType": "resource",
+      "title": "Naiste Tugi- ja Teabekeskus",
+      "status": "active",
+      "summary": "Naiste Tugi- ja Teabekeskus on Tartu linna veebilehel nimetatud täisealise isiku turvakoduteenuse osutajana. KOV lehel on selle teenuse juures avaldatud ja kontakt e-posti aadress varjestatud kujul. Ressurss on seotud vägivalla ja kriisi korral turvalise majutuse ning toe pakkumisega.",
+      "targetGroup": "Täisealised inimesed, eelkõige naised, kes vajavad vägivalla või kriisi tõttu turvalist kohta",
+      "officialUrl": "https://www.tartu.ee/et/taisealise-isiku-turvakoduteenus",
+      "relatedTo": [
+        "tartu_linn_service_taisealise_isiku_turvakoduteenus"
+      ],
+      "sourceKeys": [
+        "hoolekandeasutused_page",
+        "turvakoduteenus_taisealisele_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "hoolekandeasutused_page",
+        "turvakoduteenus_taisealisele_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_resource_naiste_tugi_ja_teabekeskus",
+      "document_id": "tartu_linn_resource_naiste_tugi_ja_teabekeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/taisealise-isiku-turvakoduteenus",
+      "content_hash": "296467200e13e844f4658e339eb218773d42ad2e6d0e07664a32a72e4e8d73a3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_resource_tahtvere_avatud_naistekeskus",
+      "canonical_item_id": "tartu_linn:resource:tahtvere_avatud_naistekeskus",
+      "itemType": "resource",
+      "title": "Tähtvere Avatud Naistekeskus",
+      "status": "active",
+      "summary": "Tähtvere Avatud Naistekeskus on Tartu linna veebilehel nimetatud täisealise isiku turvakoduteenuse osutajana. KOV lehel on teenuse juures avaldatud ja kontakt e-posti aadress varjestatud kujul. Ressurss on seotud kriisi või vägivalla korral turvalise majutuse ja abiga.",
+      "targetGroup": "Täisealised inimesed, kes vajavad kriisi või vägivalla tõttu turvalist kohta",
+      "officialUrl": "https://www.tartu.ee/et/taisealise-isiku-turvakoduteenus",
+      "relatedTo": [
+        "tartu_linn_service_taisealise_isiku_turvakoduteenus"
+      ],
+      "sourceKeys": [
+        "turvakoduteenus_taisealisele_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "turvakoduteenus_taisealisele_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_resource_tahtvere_avatud_naistekeskus",
+      "document_id": "tartu_linn_resource_tahtvere_avatud_naistekeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/taisealise-isiku-turvakoduteenus",
+      "content_hash": "319d81781a4a7822b520dc68bd86f2199f899a14768009e935fb011354cd1c53",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_resource_paevakeskus_kalda",
+      "canonical_item_id": "tartu_linn:resource:paevakeskus_kalda",
+      "itemType": "resource",
+      "title": "Päevakeskus Kalda",
+      "status": "active",
+      "summary": "Päevakeskus Kalda on Tartu linna veebilehel nimetatud päevakeskus aadressil Kaunase pst 22. Päevakeskused pakuvad eakatele ja puudega inimestele suhtlemist, tegevusi ja igapäevast tuge ning aitavad vähendada sotsiaalset isolatsiooni.",
+      "targetGroup": "Eakad ja puudega inimesed",
+      "officialUrl": "https://www.tartu.ee/et/paevakeskused",
+      "relatedTo": [],
+      "sourceKeys": [
+        "hoolekandeasutused_page",
+        "paevakeskused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "hoolekandeasutused_page",
+        "paevakeskused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_resource_paevakeskus_kalda",
+      "document_id": "tartu_linn_resource_paevakeskus_kalda",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/paevakeskused",
+      "content_hash": "1a926bfc25090b9e71b817c980c30fe742cd226dc7d9195b7f67b069708a904a",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_resource_paevakeskus_tahtvere",
+      "canonical_item_id": "tartu_linn:resource:paevakeskus_tahtvere",
+      "itemType": "resource",
+      "title": "Päevakeskus Tähtvere",
+      "status": "active",
+      "summary": "Päevakeskus Tähtvere on Tartu linna veebilehel nimetatud päevakeskus aadressil Veski 35. Päevakeskused toetavad eakate ja puudega inimeste sotsiaalset aktiivsust, suhtlemisvõimalusi ja igapäevaelu.",
+      "targetGroup": "Eakad ja puudega inimesed",
+      "officialUrl": "https://www.tartu.ee/et/paevakeskused",
+      "relatedTo": [],
+      "sourceKeys": [
+        "hoolekandeasutused_page",
+        "paevakeskused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "hoolekandeasutused_page",
+        "paevakeskused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_resource_paevakeskus_tahtvere",
+      "document_id": "tartu_linn_resource_paevakeskus_tahtvere",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/paevakeskused",
+      "content_hash": "8fc4694306d5bd2ae58bc498b291610bdabb526b907e1c221b3654195df4cd2f",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_resource_ropka_karlova_paevakeskus",
+      "canonical_item_id": "tartu_linn:resource:ropka_karlova_paevakeskus",
+      "itemType": "resource",
+      "title": "Ropka-Karlova päevakeskus",
+      "status": "active",
+      "summary": "Ropka-Karlova päevakeskus on Tartu linna veebilehel nimetatud päevakeskus aadressil Rahu 8. Ressurss toetab eakate ja puudega inimeste tegevusi, suhtlust ja kogukondlikku osalust.",
+      "targetGroup": "Eakad ja puudega inimesed",
+      "officialUrl": "https://www.tartu.ee/et/paevakeskused",
+      "relatedTo": [],
+      "sourceKeys": [
+        "hoolekandeasutused_page",
+        "paevakeskused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "hoolekandeasutused_page",
+        "paevakeskused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_resource_ropka_karlova_paevakeskus",
+      "document_id": "tartu_linn_resource_ropka_karlova_paevakeskus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/paevakeskused",
+      "content_hash": "1fa0140507ae42f3cc5b1fe8c02a77798b4432c8867f3bf2a1bae801f5c80349",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_resource_kodukotus",
+      "canonical_item_id": "tartu_linn:resource:kodukotus",
+      "itemType": "resource",
+      "title": "Kodukotus",
+      "status": "active",
+      "summary": "Kodukotus on Tartu linna veebilehel nimetatud päevakeskus aadressil Viljandi mnt 75. Ressurss on suunatud eakate ja puudega inimeste suhtlemise, tegevuste ja toimetuleku toetamisele.",
+      "targetGroup": "Eakad ja puudega inimesed",
+      "officialUrl": "https://www.tartu.ee/et/paevakeskused",
+      "relatedTo": [],
+      "sourceKeys": [
+        "hoolekandeasutused_page",
+        "paevakeskused_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "hoolekandeasutused_page",
+        "paevakeskused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_resource_kodukotus",
+      "document_id": "tartu_linn_resource_kodukotus",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/paevakeskused",
+      "content_hash": "d76e76ccfaaeffec2ec4e09701f3ff2b1bf9e32b95ec7d359eaad16ade02a652",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_resource_tartu_toidupank",
+      "canonical_item_id": "tartu_linn:resource:tartu_toidupank",
+      "itemType": "resource",
+      "title": "Tartu Toidupank",
+      "status": "active",
+      "summary": "Tartu Toidupank on Tartu linna veebilehel nimetatud toiduabi jagamisega seotud ressurss. Tartu Toidupangast jagatakse annetatud toiduabi sotsiaaltöötaja abivajaduse hindamise alusel. Linnas kasutatakse ka Rimi toidukaarti kindlatele sihtrühmadele, näiteks toimetulekutoetuse saajatele või taotlejatele ja muudele toimetulekuraskustes inimestele.",
+      "targetGroup": "Toimetulekuraskustes Tartu linna elanikud",
+      "officialUrl": "https://www.tartu.ee/et/euroopa-abifondi-toiduabi-jagamine-tartus",
+      "relatedTo": [
+        "tartu_linn_service_valtimatu_sotsiaalabi_toidu_ja_riideabi"
+      ],
+      "sourceKeys": [
+        "toiduabi_page"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "toiduabi_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_resource_tartu_toidupank",
+      "document_id": "tartu_linn_resource_tartu_toidupank",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/euroopa-abifondi-toiduabi-jagamine-tartus",
+      "content_hash": "b1501d6b945a6442f7a58208f9fe6bb5dba1c646a0359088d608a903725d81ce",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_resource_lasteabi_telefon",
+      "canonical_item_id": "tartu_linn:resource:lasteabi_telefon",
+      "itemType": "resource",
+      "title": "Lasteabi",
+      "status": "active",
+      "summary": "Tartu linna sotsiaalvaldkonna koondleht suunab hädas või abi vajava lapse puhul Lasteabi telefonile. Ressurss sobib lapse abivajaduse, hädaohu või mure korral nõu ja edasise abi saamiseks.",
+      "targetGroup": "Lapsed, lapsevanemad ja spetsialistid lapse abivajaduse korral",
+      "officialUrl": "https://www.tartu.ee/et/ToetusedTeenused",
+      "relatedTo": [],
+      "sourceKeys": [
+        "social_overview"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_resource_lasteabi_telefon",
+      "document_id": "tartu_linn_resource_lasteabi_telefon",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/ToetusedTeenused",
+      "content_hash": "47f8cd57aac97309bf52d1b6ee1362ab58726e5da178b270df601c4e9db43327",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_resource_ohvriabi_kriisitelefon",
+      "canonical_item_id": "tartu_linn:resource:ohvriabi_kriisitelefon",
+      "itemType": "resource",
+      "title": "Ohvriabi kriisitelefon",
+      "status": "active",
+      "summary": "Tartu linna leht suunab vägivalla, kuriteo või kriisi korral Ohvriabi kriisitelefonile. Ressurss on mõeldud ohvritele ja nende lähedastele esmaseks nõustamiseks ja edasise abi leidmiseks.",
+      "targetGroup": "Vägivalla, kuriteo või kriisi ohvrid ja nende lähedased",
+      "officialUrl": "https://www.tartu.ee/et/ToetusedTeenused",
+      "relatedTo": [],
+      "sourceKeys": [
+        "social_overview"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_resource_ohvriabi_kriisitelefon",
+      "document_id": "tartu_linn_resource_ohvriabi_kriisitelefon",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/ToetusedTeenused",
+      "content_hash": "6d476c9d87bfe26d3a3b150ef22dae705b9e65375ac25d922b6e1fd22f4f6bcf",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_resource_parkimiskaart_puudega_inimesele",
+      "canonical_item_id": "tartu_linn:resource:parkimiskaart_puudega_inimesele",
+      "itemType": "resource",
+      "title": "Puudega inimese parkimiskaart",
+      "status": "active",
+      "summary": "Tartu linna sotsiaalvaldkonna koondleht viitab puudega inimese parkimiskaardi taotlemisele eraldi praktilise ressursina. Parkimiskaart aitab liikumisraskustega inimesel kasutada puudega inimesele ette nähtud parkimisvõimalusi.",
+      "targetGroup": "Puudega inimesed, kellel on õigus parkimiskaardile",
+      "officialUrl": "https://www.tartu.ee/et/ToetusedTeenused",
+      "relatedTo": [],
+      "sourceKeys": [
+        "social_overview"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_resource_parkimiskaart_puudega_inimesele",
+      "document_id": "tartu_linn_resource_parkimiskaart_puudega_inimesele",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/ToetusedTeenused",
+      "content_hash": "8ebadfdb434ac075c672f1a9db225675d954a8989493dcb2c402e050986489f3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_resource_abivahendid",
+      "canonical_item_id": "tartu_linn:resource:abivahendid",
+      "itemType": "resource",
+      "title": "Abivahendite info",
+      "status": "active",
+      "summary": "Tartu linna sotsiaalvaldkonna koondleht suunab abivahendite info juurde. Ressurss on seotud igapäevaelu toetavate abivahendite, nende kasutamise ja taotlemise võimalustega.",
+      "targetGroup": "Eakad, puudega inimesed ja teised abivahendeid vajavad inimesed",
+      "officialUrl": "https://www.tartu.ee/et/ToetusedTeenused",
+      "relatedTo": [],
+      "sourceKeys": [
+        "social_overview"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_resource_abivahendid",
+      "document_id": "tartu_linn_resource_abivahendid",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/ToetusedTeenused",
+      "content_hash": "21a355acec79c91e83508bbe6d1962f01b29b3d756268b6ec0fcbe01d4b66d8d",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_resource_hairenupp_ja_koduandur",
+      "canonical_item_id": "tartu_linn:resource:hairenupp_ja_koduandur",
+      "itemType": "resource",
+      "title": "Häirenupp ja koduandur",
+      "status": "active",
+      "summary": "Tartu linna sotsiaalvaldkonna koondleht viitab häirenupu ja koduanduri võimalustele. Need on praktilised turvalahendused, mis aitavad abivajaval või üksi elaval inimesel kodus turvalisemalt toime tulla ning vajadusel abi kutsuda.",
+      "targetGroup": "Eakad, puudega inimesed ja teised kodus turvalisust vajavad inimesed",
+      "officialUrl": "https://www.tartu.ee/et/ToetusedTeenused",
+      "relatedTo": [],
+      "sourceKeys": [
+        "social_overview"
+      ],
+      "item_type": "resource",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_resource_hairenupp_ja_koduandur",
+      "document_id": "tartu_linn_resource_hairenupp_ja_koduandur",
+      "source_type": "kov_service_info",
+      "resource_type": "resource",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/ToetusedTeenused",
+      "content_hash": "6d9b3a15cabd4a08a50c984572b46f5c44c83d81f1d448137e4c627dc02c5bf3",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+      "canonical_item_id": "tartu_linn:contact:sotsiaal_ja_tervishoiuosakond",
+      "itemType": "contact",
+      "title": "Sotsiaal- ja tervishoiuosakond",
+      "status": "active",
+      "summary": "Tartu linna sotsiaal- ja tervishoiuosakond on peamine üldkontakt sotsiaaltoetuste ja -teenuste kohta. Osakonna ametlik aadress on Raekoja plats 3, 51003 Tartu. KOV lehel on üldtelefoniks märgitud ning pöördumisi saab esitada ka e-keskkonna, e-posti või piirkonnakeskuste kaudu.",
+      "name": "Tartu linna sotsiaal- ja tervishoiuosakond",
+      "role": "sotsiaalvaldkonna üldkontakt",
+      "department": "Tartu Linnavalitsus",
+      "address": "Raekoja plats 3, 51003 Tartu",
+      "officialUrl": "https://www.tartu.ee/et/ToetusedTeenused",
+      "sourceKeys": [
+        "piirkonnakeskused_page",
+        "social_overview"
+      ],
+      "item_type": "contact",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "piirkonnakeskused_page",
+        "social_overview"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+      "document_id": "tartu_linn_contact_sotsiaal_ja_tervishoiuosakond",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/ToetusedTeenused",
+      "content_hash": "44c628c2f3e8a77d51665f03d43b8694f030daa15b8dc6d42b923f29c920b8db",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_contact_anne_44_piirkonnakeskus",
+      "canonical_item_id": "tartu_linn:contact:anne_44_piirkonnakeskus",
+      "itemType": "contact",
+      "title": "Annelinna-Ülejõe piirkonnakeskus – Anne 44",
+      "status": "active",
+      "summary": "Anne 44 piirkonnakeskus on Tartu linna sotsiaal- ja tervishoiuosakonna kontaktpunkt, kus Tartu linna veebilehel on nimetatud lapse heaolu, sotsiaaltöö, eestkoste ja võlanõustamise spetsialistid. Keskus on oluline pöördumiskoht laste ja perede ning täisealiste sotsiaalvaldkonna küsimustes.",
+      "name": "Annelinna-Ülejõe piirkonnakeskus",
+      "role": "piirkonnakeskus",
+      "department": "Sotsiaal- ja tervishoiuosakond",
+      "address": "Anne 44, Tartu",
+      "officialUrl": "https://www.tartu.ee/et/piirkonnakeskused",
+      "sourceKeys": [
+        "piirkonnakeskused_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "piirkonnakeskused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_contact_anne_44_piirkonnakeskus",
+      "document_id": "tartu_linn_contact_anne_44_piirkonnakeskus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/piirkonnakeskused",
+      "content_hash": "cd5c131d9286a5846f512bbd4feb055abdcbd94511ad4b62be605f80215df685",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_contact_kaunase_22_piirkonnakeskus",
+      "canonical_item_id": "tartu_linn:contact:kaunase_22_piirkonnakeskus",
+      "itemType": "contact",
+      "title": "Annelinna-Ülejõe sotsiaaltööteenistus – Kaunase pst 22",
+      "status": "active",
+      "summary": "Kaunase pst 22 piirkonnakeskus on Tartu linna sotsiaal- ja tervishoiuosakonna sotsiaaltööteenistuse kontaktpunkt. Tartu linna lehel on selle aadressi juures nimetatud sotsiaaltöö, heaolu ja hooldusvaldkonna kontaktid.",
+      "name": "Annelinna-Ülejõe sotsiaaltööteenistus",
+      "role": "piirkonnakeskus",
+      "department": "Sotsiaal- ja tervishoiuosakond",
+      "address": "Kaunase pst 22, Tartu",
+      "officialUrl": "https://www.tartu.ee/et/piirkonnakeskused",
+      "sourceKeys": [
+        "paevahoiuteenus_page",
+        "piirkonnakeskused_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "paevahoiuteenus_page",
+        "piirkonnakeskused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_contact_kaunase_22_piirkonnakeskus",
+      "document_id": "tartu_linn_contact_kaunase_22_piirkonnakeskus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/piirkonnakeskused",
+      "content_hash": "976007ceddfe7e60277223a8cfcff31926400053ab544ad6f95d66b585de5784",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_contact_rahu_15_piirkonnakeskus",
+      "canonical_item_id": "tartu_linn:contact:rahu_15_piirkonnakeskus",
+      "itemType": "contact",
+      "title": "Karlova-Tamme piirkonnakeskus – Rahu 15",
+      "status": "active",
+      "summary": "Rahu 15 piirkonnakeskus on Tartu linna sotsiaal- ja tervishoiuosakonna piirkondlik kontaktpunkt. KOV lehel on see seotud piirkonna sotsiaaltöö, lapse heaolu ja hooldusvaldkonna vastuvõtuga.",
+      "name": "Karlova-Tamme piirkonnakeskus",
+      "role": "piirkonnakeskus",
+      "department": "Sotsiaal- ja tervishoiuosakond",
+      "address": "Rahu 15, Tartu",
+      "officialUrl": "https://www.tartu.ee/et/piirkonnakeskused",
+      "sourceKeys": [
+        "piirkonnakeskused_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "piirkonnakeskused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_contact_rahu_15_piirkonnakeskus",
+      "document_id": "tartu_linn_contact_rahu_15_piirkonnakeskus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/piirkonnakeskused",
+      "content_hash": "fb114360324a992f771a16c02963403454339c7d735bcc27387aa70b957c7cfb",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_contact_vaksali_14_piirkonnakeskus",
+      "canonical_item_id": "tartu_linn:contact:vaksali_14_piirkonnakeskus",
+      "itemType": "contact",
+      "title": "Tähtvere-Veeriku piirkonnakeskus – Vaksali 14",
+      "status": "active",
+      "summary": "Vaksali 14 piirkonnakeskus on Tartu linna sotsiaal- ja tervishoiuosakonna piirkondlik kontaktpunkt. KOV lehel on see seotud piirkonna sotsiaaltöö, lapse heaolu ja hooldusvaldkonna vastuvõtuga.",
+      "name": "Tähtvere-Veeriku piirkonnakeskus",
+      "role": "piirkonnakeskus",
+      "department": "Sotsiaal- ja tervishoiuosakond",
+      "address": "Vaksali 14, Tartu",
+      "officialUrl": "https://www.tartu.ee/et/piirkonnakeskused",
+      "sourceKeys": [
+        "piirkonnakeskused_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "piirkonnakeskused_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_contact_vaksali_14_piirkonnakeskus",
+      "document_id": "tartu_linn_contact_vaksali_14_piirkonnakeskus",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/piirkonnakeskused",
+      "content_hash": "1cd5b4ec547409a2a9e4149ee6af94c028cf0dac2700473b6e7789347a7d7a74",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_contact_ave_tooming",
+      "canonical_item_id": "tartu_linn:contact:ave_tooming",
+      "itemType": "contact",
+      "title": "Ave Tooming",
+      "status": "active",
+      "summary": "Ave Tooming on Tartu linna veebilehel nimetatud hoolduskoordinaatorina Raatuse perearstikeskusega koostööks. Hoolduskoordinaator aitab siduda tervishoiu- ja sotsiaalteenuseid ning toetada inimese ja pere toimetulekut.",
+      "name": "Ave Tooming",
+      "role": "hoolduskoordinaator",
+      "department": "Sotsiaal- ja tervishoiuosakond / Raatuse perearstikeskus",
+      "address": null,
+      "officialUrl": "https://www.tartu.ee/et/hoolduskoordinaatorid",
+      "sourceKeys": [
+        "hoolduskoordinaatorid_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "hoolduskoordinaatorid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_contact_ave_tooming",
+      "document_id": "tartu_linn_contact_ave_tooming",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/hoolduskoordinaatorid",
+      "content_hash": "63b7b50c9e241b118598598b7bc8d92341be1a2844adb4b76344df17d6c1163b",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_contact_aigi_puusepp",
+      "canonical_item_id": "tartu_linn:contact:aigi_puusepp",
+      "itemType": "contact",
+      "title": "Aigi Puusepp",
+      "status": "active",
+      "summary": "Aigi Puusepp on Tartu linna veebilehel nimetatud hoolduskoordinaatorina Maarjamõisa perearstikeskusega koostööks. Hoolduskoordinaator aitab inimesel ja perel tervishoiu- ja sotsiaalteenuseid korraldada.",
+      "name": "Aigi Puusepp",
+      "role": "hoolduskoordinaator",
+      "department": "Sotsiaal- ja tervishoiuosakond / Maarjamõisa perearstikeskus",
+      "address": null,
+      "officialUrl": "https://www.tartu.ee/et/hoolduskoordinaatorid",
+      "sourceKeys": [
+        "hoolduskoordinaatorid_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "hoolduskoordinaatorid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_contact_aigi_puusepp",
+      "document_id": "tartu_linn_contact_aigi_puusepp",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/hoolduskoordinaatorid",
+      "content_hash": "1b2ea834c57df29dc422bc03a76155a29626a1b73320d098a71a62198b251098",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_contact_merle_pahk",
+      "canonical_item_id": "tartu_linn:contact:merle_pahk",
+      "itemType": "contact",
+      "title": "Merle Pahk",
+      "status": "active",
+      "summary": "Merle Pahk on Tartu linna veebilehel nimetatud hoolduskoordinaatorina Tartu Tervisekeskusega koostööks. Hoolduskoordinaator toetab inimest ja perekonda tervishoiu- ning sotsiaalteenuste seostamisel.",
+      "name": "Merle Pahk",
+      "role": "hoolduskoordinaator",
+      "department": "Sotsiaal- ja tervishoiuosakond / Tartu Tervisekeskus",
+      "address": null,
+      "officialUrl": "https://www.tartu.ee/et/hoolduskoordinaatorid",
+      "sourceKeys": [
+        "hoolduskoordinaatorid_page"
+      ],
+      "item_type": "contact",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "hoolduskoordinaatorid_page"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_contact_merle_pahk",
+      "document_id": "tartu_linn_contact_merle_pahk",
+      "source_type": "official_contact",
+      "resource_type": "contact",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/et/hoolduskoordinaatorid",
+      "content_hash": "6638b5ca32e8fad0ed259bd67a82e1581482664e071493ee92b6cea47371050c",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_form_uldtaotlus",
+      "canonical_item_id": "tartu_linn:form:uldtaotlus",
+      "itemType": "form",
+      "title": "Üldtaotlus Tartu linna sotsiaaltoetuse või -teenuse taotlemiseks",
+      "status": "active",
+      "summary": "Üldtaotlus on PDF-vorm Tartu linna sotsiaaltoetuse või sotsiaalteenuse taotlemiseks. Vormis esitatakse taotleja andmed, perekonna koosseis, kontaktandmed ning taotluse sisu ja põhjendus. Üldtaotlust kasutatakse siis, kui eraldi teenuse- või toetusevormi ei ole vaja või kui KOV leht suunab üldavaldusele.",
+      "format": "pdf",
+      "submissionChannels": [
+        "online",
+        "email",
+        "in_person",
+        "post"
+      ],
+      "sections_present": [
+        "taotleja andmed",
+        "kontaktandmed",
+        "perekonna koosseis",
+        "taotluse sisu"
+      ],
+      "officialUrl": "https://www.tartu.ee/sites/default/files/uploads/Sotsiaalabi-ja-tervishoid/avaldused/%C3%9Cldine%20avaldus_t%C3%A4idetav.pdf",
+      "relatedTo": [
+        "tartu_linn_benefit_sunnitoetus",
+        "tartu_linn_benefit_lasteaia_osalustasu_ja_toidukulu_toetus",
+        "tartu_linn_benefit_lapse_hooldaja_toetus",
+        "tartu_linn_benefit_hooldajatoetus_taisealise_isiku_hooldamise_eest",
+        "tartu_linn_benefit_erakorraline_toetus",
+        "tartu_linn_benefit_erakorraline_tervisetoetus",
+        "tartu_linn_benefit_eluruumi_kohandamise_toetus",
+        "tartu_linn_benefit_matusetoetus",
+        "tartu_linn_service_tugiisikuteenus_puudega_lapsele",
+        "tartu_linn_service_lapsehoiuteenus_puudega_lapsele",
+        "tartu_linn_service_sotsiaaltransporditeenus_puudega_lapsele",
+        "tartu_linn_service_asendus_ja_jarelhooldusteenus",
+        "tartu_linn_service_turvakoduteenus_lastele_ja_peredele",
+        "tartu_linn_service_eluruumi_tagamise_teenus",
+        "tartu_linn_service_sotsiaalmajutusteenus",
+        "tartu_linn_service_taisealise_isiku_turvakoduteenus",
+        "tartu_linn_service_varjupaigateenus_ja_kodutute_paevakeskus",
+        "tartu_linn_service_valtimatu_sotsiaalabi_toidu_ja_riideabi",
+        "tartu_linn_service_isikliku_abistaja_teenus",
+        "tartu_linn_service_vaimse_tervise_teenus",
+        "tartu_linn_service_sotsiaaltransporditeenus_taisealistele",
+        "tartu_linn_service_tugiisikuteenus_taisealistele",
+        "tartu_linn_service_viipekeele_tolketeenus",
+        "tartu_linn_service_volanoustamisteenus",
+        "tartu_linn_service_paevahoiuteenus_maluprobleemiga_eakatele",
+        "tartu_linn_service_koduteenus",
+        "tartu_linn_service_heaolumeistri_teenus",
+        "tartu_linn_service_hoolduskoordinaatorite_teenus",
+        "tartu_linn_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+        "tartu_linn_service_ajutine_hooldusteenus_hoolekandeasutuses"
+      ],
+      "sourceKeys": [
+        "general_application_pdf"
+      ],
+      "item_type": "form",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "general_application_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_form_uldtaotlus",
+      "document_id": "tartu_linn_form_uldtaotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/sites/default/files/uploads/Sotsiaalabi-ja-tervishoid/avaldused/%C3%9Cldine%20avaldus_t%C3%A4idetav.pdf",
+      "content_hash": "b9a89cb95e25c4a5919113b1cd1bb53dcbb94db2b80656be719add38e76b0c73",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_form_toimetulekutoetuse_avaldus",
+      "canonical_item_id": "tartu_linn:form:toimetulekutoetuse_avaldus",
+      "itemType": "form",
+      "title": "Avaldus toimetulekutoetuse taotlemiseks",
+      "status": "active",
+      "summary": "Toimetulekutoetuse avaldus on erivorm toimetulekutoetuse taotlemiseks. Vormis küsitakse taotleja andmeid, toimetulekutoetuse määramisel arvessevõetavate isikute andmeid, tegelikku elukohta, eluruumi kasutamise õiguslikku alust ja pangakontot. Avaldus esitatakse koos sissetuleku ja eluasemekulusid tõendavate dokumentidega.",
+      "format": "pdf",
+      "submissionChannels": [
+        "online",
+        "email",
+        "in_person",
+        "post"
+      ],
+      "sections_present": [
+        "taotleja andmed",
+        "perekonnaliikmete andmed",
+        "elukoht",
+        "eluruumi kasutamise alus",
+        "pangaandmed",
+        "allkiri"
+      ],
+      "officialUrl": "https://www.tartu.ee/sites/default/files/uploads/Sotsiaalabi-ja-tervishoid/avaldused/TTT%20avaldus%202016.pdf",
+      "relatedTo": [
+        "tartu_linn_benefit_toimetulekutoetus"
+      ],
+      "sourceKeys": [
+        "toimetulekutoetus_application_pdf"
+      ],
+      "item_type": "form",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "toimetulekutoetus_application_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_form_toimetulekutoetuse_avaldus",
+      "document_id": "tartu_linn_form_toimetulekutoetuse_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/sites/default/files/uploads/Sotsiaalabi-ja-tervishoid/avaldused/TTT%20avaldus%202016.pdf",
+      "content_hash": "7da7b6756ced9f6ba5244a52728d4b94544c7181568b355936ed92864b580261",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_form_hooldaja_maaramise_avaldus",
+      "canonical_item_id": "tartu_linn:form:hooldaja_maaramise_avaldus",
+      "itemType": "form",
+      "title": "Hooldaja määramise avaldus",
+      "status": "active",
+      "summary": "Hooldaja määramise avaldus on vorm täisealise inimese hooldaja määramiseks. Vormis esitatakse hooldatava ja hooldaja andmed ning hooldaja nõusolek hoolduse võtmiseks. Vorm on seotud täisealise isiku hooldamise ja hooldajatoetuse taotlemisega.",
+      "format": "pdf",
+      "submissionChannels": [
+        "online",
+        "email",
+        "in_person",
+        "post"
+      ],
+      "sections_present": [
+        "hooldatava andmed",
+        "hooldaja andmed",
+        "hooldaja nõusolek",
+        "allkirjad"
+      ],
+      "officialUrl": "https://www.tartu.ee/sites/default/files/uploads/Sotsiaalabi-ja-tervishoid/avaldused/Hooldaja%20m%C3%A4%C3%A4ramise%20avaldus.%20doc.pdf",
+      "relatedTo": [
+        "tartu_linn_benefit_hooldajatoetus_taisealise_isiku_hooldamise_eest"
+      ],
+      "sourceKeys": [
+        "hooldaja_maaramise_application_pdf"
+      ],
+      "item_type": "form",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "hooldaja_maaramise_application_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_form_hooldaja_maaramise_avaldus",
+      "document_id": "tartu_linn_form_hooldaja_maaramise_avaldus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/sites/default/files/uploads/Sotsiaalabi-ja-tervishoid/avaldused/Hooldaja%20m%C3%A4%C3%A4ramise%20avaldus.%20doc.pdf",
+      "content_hash": "4a8c98f6e16a6664410901e86f07b764fc191ff1d162a8feb5ecb1707c7c5167",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_form_matusetoetuse_taotlus",
+      "canonical_item_id": "tartu_linn:form:matusetoetuse_taotlus",
+      "itemType": "form",
+      "title": "Matusetoetuse taotlus",
+      "status": "active",
+      "summary": "Matusetoetuse taotlus on erivorm Tartu linna matusetoetuse taotlemiseks. Vorm on mõeldud matuse korraldajale, kes taotleb toetust inimese eest, kelle rahvastikuregistrijärgne elukoht oli surma hetkel Tartu linn. Taotlusele lisatakse surmatõend või meditsiiniline surmateatis.",
+      "format": "pdf",
+      "submissionChannels": [
+        "online",
+        "email",
+        "in_person",
+        "post"
+      ],
+      "sections_present": [
+        "taotleja andmed",
+        "surnu andmed",
+        "pangakonto",
+        "lisad",
+        "allkiri"
+      ],
+      "officialUrl": "https://www.tartu.ee/sites/default/files/uploads/Sotsiaalabi-ja-tervishoid/avaldused/Matusetoetuse%20taotlus.pdf",
+      "relatedTo": [
+        "tartu_linn_benefit_matusetoetus"
+      ],
+      "sourceKeys": [
+        "matusetoetuse_application_pdf"
+      ],
+      "item_type": "form",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "matusetoetuse_application_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_form_matusetoetuse_taotlus",
+      "document_id": "tartu_linn_form_matusetoetuse_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/sites/default/files/uploads/Sotsiaalabi-ja-tervishoid/avaldused/Matusetoetuse%20taotlus.pdf",
+      "content_hash": "83c27685f16d4c2d140bf0d6f866f20d5963a74630690b156a928a8563dd64ee",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_form_sotsiaaltranspordi_taotlus",
+      "canonical_item_id": "tartu_linn:form:sotsiaaltranspordi_taotlus",
+      "itemType": "form",
+      "title": "Sotsiaaltranspordi taotluse vorm",
+      "status": "active",
+      "summary": "Sotsiaaltranspordi taotluse vorm on mõeldud sotsiaaltransporditeenuse taotlemiseks. Vormis esitatakse taotleja andmed ning põhjendus, miks inimene või laps vajab sotsiaaltransporti. Vorm on seotud nii täisealise inimese kui ka puudega lapse sotsiaaltransporditeenusega.",
+      "format": "pdf",
+      "submissionChannels": [
+        "online",
+        "email",
+        "in_person",
+        "post"
+      ],
+      "sections_present": [
+        "taotleja andmed",
+        "teenuse vajaduse põhjendus",
+        "lisad",
+        "allkiri"
+      ],
+      "officialUrl": "https://www.tartu.ee/sites/default/files/uploads/Sotsiaalabi-ja-tervishoid/avaldused/Sotsiaaltranspordi%20taotluse%20vorm%20%202016.pdf",
+      "relatedTo": [
+        "tartu_linn_service_sotsiaaltransporditeenus_taisealistele",
+        "tartu_linn_service_sotsiaaltransporditeenus_puudega_lapsele"
+      ],
+      "sourceKeys": [
+        "sotsiaaltranspordi_application_pdf"
+      ],
+      "item_type": "form",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "sotsiaaltranspordi_application_pdf"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_form_sotsiaaltranspordi_taotlus",
+      "document_id": "tartu_linn_form_sotsiaaltranspordi_taotlus",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://www.tartu.ee/sites/default/files/uploads/Sotsiaalabi-ja-tervishoid/avaldused/Sotsiaaltranspordi%20taotluse%20vorm%20%202016.pdf",
+      "content_hash": "6a1d4d62084aed13e5aeb4e11a6405c7c47a01a9973390a1edc63b1b64c293a2",
+      "evidence_allowed": true
+    },
+    {
+      "id": "tartu_linn_form_linnaportaal_sotsiaalteenused",
+      "canonical_item_id": "tartu_linn:form:linnaportaal_sotsiaalteenused",
+      "itemType": "form",
+      "title": "Tartu linnaportaali sotsiaaltoetuste ja -teenuste e-taotlused",
+      "status": "active",
+      "summary": "Tartu linnaportaal on Tartu linna ametlik e-keskkond, mille kaudu saab esitada mitmeid sotsiaaltoetuste ja -teenuste taotlusi. KOV lehtedel on e-keskkond nimetatud toimetulekutoetuse, matusetoetuse, sotsiaaltranspordi, hooldajatoetuse ja teiste taotluste esitamise kanalina. Konkreetse e-vormi täpne otselink võib sõltuda teenusest ja sisselogimisest.",
+      "format": "web_form",
+      "submissionChannels": [
+        "online"
+      ],
+      "sections_present": [],
+      "officialUrl": "https://linnaportaal.tartu.ee",
+      "relatedTo": [
+        "tartu_linn_benefit_sunnitoetus",
+        "tartu_linn_benefit_lasteaia_osalustasu_ja_toidukulu_toetus",
+        "tartu_linn_benefit_lapse_hooldaja_toetus",
+        "tartu_linn_benefit_hooldajatoetus_taisealise_isiku_hooldamise_eest",
+        "tartu_linn_benefit_erakorraline_toetus",
+        "tartu_linn_benefit_erakorraline_tervisetoetus",
+        "tartu_linn_benefit_toimetulekutoetus",
+        "tartu_linn_benefit_eluruumi_kohandamise_toetus",
+        "tartu_linn_benefit_matusetoetus",
+        "tartu_linn_service_tugiisikuteenus_puudega_lapsele",
+        "tartu_linn_service_lapsehoiuteenus_puudega_lapsele",
+        "tartu_linn_service_sotsiaaltransporditeenus_puudega_lapsele",
+        "tartu_linn_service_asendus_ja_jarelhooldusteenus",
+        "tartu_linn_service_turvakoduteenus_lastele_ja_peredele",
+        "tartu_linn_service_eluruumi_tagamise_teenus",
+        "tartu_linn_service_sotsiaalmajutusteenus",
+        "tartu_linn_service_taisealise_isiku_turvakoduteenus",
+        "tartu_linn_service_varjupaigateenus_ja_kodutute_paevakeskus",
+        "tartu_linn_service_valtimatu_sotsiaalabi_toidu_ja_riideabi",
+        "tartu_linn_service_isikliku_abistaja_teenus",
+        "tartu_linn_service_vaimse_tervise_teenus",
+        "tartu_linn_service_sotsiaaltransporditeenus_taisealistele",
+        "tartu_linn_service_tugiisikuteenus_taisealistele",
+        "tartu_linn_service_viipekeele_tolketeenus",
+        "tartu_linn_service_volanoustamisteenus",
+        "tartu_linn_service_paevahoiuteenus_maluprobleemiga_eakatele",
+        "tartu_linn_service_koduteenus",
+        "tartu_linn_service_heaolumeistri_teenus",
+        "tartu_linn_service_hoolduskoordinaatorite_teenus",
+        "tartu_linn_service_valjaspool_kodu_osutatav_uldhooldusteenus",
+        "tartu_linn_service_ajutine_hooldusteenus_hoolekandeasutuses"
+      ],
+      "sourceKeys": [
+        "linnaportaal"
+      ],
+      "item_type": "form",
+      "municipality_id": "tartu_linn",
+      "municipality_name": "Tartu linn",
+      "county": "Tartumaa",
+      "source_keys": [
+        "linnaportaal"
+      ],
+      "metadata_schema_version": "v2.5",
+      "source_id": "tartu_linn_form_linnaportaal_sotsiaalteenused",
+      "document_id": "tartu_linn_form_linnaportaal_sotsiaalteenused",
+      "source_type": "application_form",
+      "resource_type": "form",
+      "collection_id": "kov_services",
+      "authority": "KOV",
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "language": "et",
+      "checked_at": "2026-04-30",
+      "last_checked": "2026-04-30",
+      "retrieved_at": "2026-04-30",
+      "valid_from": null,
+      "valid_to": null,
+      "historical": false,
+      "source_status": "active",
+      "url_canonical": "https://linnaportaal.tartu.ee",
+      "content_hash": "eff0ef59ffd404273a1663117edc0078ae354d1dec52ab3b18ba9adbc2095230",
+      "evidence_allowed": true
+    }
+  ],
+  "municipality_name": "Tartu linn",
+  "checked_at": "2026-04-30",
+  "lastMetadataUpgradeAt": "2026-04-29"
+}

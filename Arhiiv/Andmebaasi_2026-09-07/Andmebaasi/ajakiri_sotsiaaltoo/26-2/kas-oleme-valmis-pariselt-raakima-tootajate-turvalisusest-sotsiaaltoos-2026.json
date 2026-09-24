@@ -1,0 +1,49 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "kas-oleme-valmis-pariselt-raakima-tootajate-turvalisusest-sotsiaaltoos-2026",
+  "title": "Kas oleme valmis päriselt rääkima töötajate turvalisusest sotsiaaltöös?",
+  "authors": [
+    "Aljona Kõpp"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Sotsiaaltöötaja huvid ja kaitse",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel käsitleb sotsiaaltöötajate turvalisust olukorras, kus spetsialistid puutuvad kokku agressiooni ja ähvardustega nii tööl kui ka eraelus. Autor väidab, et professionaalsus ei tohi tähendada vaikivat talumist, ning nõuab töötajatele süsteemset tuge. Artiklile on lisatud eriala- ja poliitikakujundajate kommentaarid.",
+  "tags": [
+    "töötajate turvalisus",
+    "vägivald sotsiaaltöös",
+    "tööheaolu",
+    "eetika",
+    "emotsionaalne koormus",
+    "tööalane tugi",
+    "professionaalsus",
+    "sotsiaaltöötaja kaitse"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-06-09",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/kas-oleme-valmis-pariselt-raakima-tootajate-turvalisusest-sotsiaaltoos",
+  "source_type": "web",
+  "source_path": "kas-oleme-valmis-pariselt-raakima-tootajate-turvalisusest-sotsiaaltoos.html",
+  "lead": "Sotsiaaltöötaja võib ohtlikke olukordi kogeda nii töökohas, kliente kodus külastades kui ka pärast tööaega. Töötaja jääb sageli üksi ja peab ise toime tulema nii hirmu, stressi, kui ka teadmisega, et abi ning kaitse ei pruugi õigel ajal kohale jõuda või ei ole seda üldse.",
+  "document_id": "sotsiaaltoo-2-2026-kas-oleme-valmis-pariselt-raakima-tootajate-turvalisusest-sotsiaaltoos-2026",
+  "source_format": "html",
+  "source_sha256": "53fe7bd3892099b0f25b033be1f403f0589b11e377561b38963dd92ca37cd9e2",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-kas-oleme-valmis-pariselt-raakima-tootajate-turvalisusest-sotsiaaltoos-2026",
+    "previous_source_path": "kas-oleme-valmis-pariselt-raakima-tootajate-turvalisusest-sotsiaaltoos.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "13764ed76c423f297bc1c0d4469a76c5ff83fffa30cc4a890fef2d0d4c2427b9",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "565462276dbb2ab46bca249e33a3e8cd15e7cf4428e114a98a32a687cdf665f5",
+    "observed_web_title": "Kas oleme valmis päriselt rääkima töötajate turvalisusest sotsiaaltöös?"
+  },
+  "retrieved_at": "2026-09-07T19:39:37.193554+00:00"
+}

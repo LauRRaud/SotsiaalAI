@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-1-2020",
+  "articleId": "kogemuslood-noored-2020-1",
+  "title": "Vaimse tervise kogemuslugude jagamine: täisealiste noorte perspektiiv",
+  "authors": [
+    "Kelli Ilisson"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2020",
+  "section": "Taastumist toetavad meetodid",
+  "pageRange": "25-30",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel kirjeldab, kuidas noored täiskasvanud tajuvad vaimse tervise kogemuslugude rääkimist ja kuulamist. Esile tõstetakse mõju enesemõistmisele, kuuluvustundele ja stigmade vähenemisele. Samuti käsitletakse riskikohti nagu liigse haavatavuse jagamine, piiride seadmine ja turvalise keskkonna loomine.",
+  "tags": [
+    "kogemuslood",
+    "vaimne tervis",
+    "noored",
+    "stigma",
+    "taastumine",
+    "psühhosotsiaalne tugi",
+    "enesereflektsioon",
+    "turvaline jagamine",
+    "kogemusnõustamine"
+  ],
+  "source_type": "file",
+  "source_path": "ST1_2020_web_link_Part7.pdf",
+  "mapping_fixed": "20260814-161821",
+  "document_id": "sotsiaaltoo-1-2020-kogemuslood-noored-2020-1",
+  "source_format": "pdf",
+  "source_sha256": "20bd94dc7ba252cf1442f1d2d3925d4e106af2cb887491904890180d80543fb2",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2020-kogemuslood-noored-2020-1",
+    "previous_source_path": "ST1_2020_web_link_Part7.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "20bd94dc7ba252cf1442f1d2d3925d4e106af2cb887491904890180d80543fb2",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

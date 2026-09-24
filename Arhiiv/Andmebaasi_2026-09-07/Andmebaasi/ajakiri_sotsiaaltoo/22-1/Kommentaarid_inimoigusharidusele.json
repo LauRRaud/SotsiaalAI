@@ -1,0 +1,45 @@
+{
+  "docId": "sotsiaaltoo-1-2022",
+  "articleId": "kommentaarid-artiklile-inimoigusharidus-sotsiaaltoos-2022-1",
+  "title": "Kommentaarid artiklile „Inimõigusharidus sotsiaaltöös“",
+  "authors": [
+    "Judit Strömpl",
+    "Marju Medar",
+    "Mariann Märtsin",
+    "Ingrid Sindi"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2022",
+  "section": "Kommentaar",
+  "pageRange": "56-58",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kaks kommentaari inimõigushariduse tähendusest sotsiaaltöö õpetamisel ja praktikas.",
+  "tags": [
+    "inimõigused",
+    "inimõigusharidus",
+    "sotsiaaltöö haridus",
+    "kommentaar"
+  ],
+  "source_type": "file",
+  "source_path": "2022_artikkel_12_kommentaarid.pdf",
+  "mapping_status": "VERIFIED",
+  "mapping_note": "Pealkiri, autor(id) ja kohalik täistekst kontrollitud artikli enda ning väljaandja ametliku allika järgi.",
+  "mapping_checked": "2026-08-14",
+  "source_url": "https://www.tai.ee/et/valjaanded/sotsiaaltoo-12022",
+  "document_id": "sotsiaaltoo-1-2022-kommentaarid-artiklile-inimoigusharidus-sotsiaaltoos-2022-1",
+  "source_format": "pdf",
+  "source_sha256": "b52155ba33fb7eaa6b7d4e26d99df37aa4aa740160868bd0324bf541995e6690",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2022-kommentaarid-artiklile-inimoigusharidus-sotsiaaltoos-2022-1",
+    "previous_source_path": "2022_artikkel_12_kommentaarid.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b52155ba33fb7eaa6b7d4e26d99df37aa4aa740160868bd0324bf541995e6690",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

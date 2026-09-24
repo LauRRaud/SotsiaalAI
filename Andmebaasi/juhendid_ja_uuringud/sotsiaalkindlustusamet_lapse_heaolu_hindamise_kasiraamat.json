@@ -1,0 +1,145 @@
+{
+  "source_path": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat.pdf",
+  "source_format": "pdf",
+  "sha256": "28d850ac84c92da4b66b3d99e081da69fafe0560a36f4831b9e394fa822e45bc",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "title": "Lapse heaolu hindamise käsiraamat",
+          "url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/k%C3%A4siraamat.pdf",
+          "normalized_url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/käsiraamat.pdf",
+          "source_format": "pdf",
+          "source_type": "official_guideline",
+          "resource_type": "method_guidance",
+          "publisher": "Sotsiaalkindlustusamet",
+          "organization_id": "sotsiaalkindlustusamet",
+          "collection_hint": "guidance_and_methods",
+          "evidence_role": "practice_guidance",
+          "topic_tags": [
+            "Sotsiaalkindlustusamet",
+            "lapsed ja pered",
+            "laps",
+            "lastekaitse",
+            "lapse heaolu",
+            "abivajav laps",
+            "heaolu",
+            "spetsialisti juhend",
+            "SKA"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "high",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "SKA",
+            "heading_3": "Puue, rehabilitatsioon, hoolekanne",
+            "heading_4": null,
+            "line": 511,
+            "order": 270
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Lapse heaolu hindamise käsiraamat"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "official_guideline"
+          ],
+          "resource_types_seen": [
+            "method_guidance"
+          ],
+          "publishers_seen": [
+            "Sotsiaalkindlustusamet"
+          ],
+          "organizations_seen": [
+            "sotsiaalkindlustusamet"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "SKA",
+              "heading_3": "Puue, rehabilitatsioon, hoolekanne",
+              "line": 511,
+              "order": 270
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/käsiraamat.pdf"
+        },
+        "final_url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/k%C3%A4siraamat.pdf",
+        "redirects": [],
+        "sha256": "28d850ac84c92da4b66b3d99e081da69fafe0560a36f4831b9e394fa822e45bc",
+        "bytes": 859212,
+        "downloaded_at": "2026-08-14T08:00:53.289Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+      "metadata": {
+        "createdAt": "2026-06-11T18:58:48.691475+00:00",
+        "type": "FILE",
+        "fileName": "käsiraamat.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-11T18:58:48.628738+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/dbbf1b4f170e/käsiraamat.pdf",
+        "title": "Lapse heaolu hindamise käsiraamat",
+        "description": "Source master headings: SKA; Puue, rehabilitatsioon, hoolekanne",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2025,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–69",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+        "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+        "source_type": "official_guideline",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-11",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "72be1d0654642d2af0bdb88332d1da4ee06f75215e6de329f99a44b010524bc2",
+        "url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/k%C3%A4siraamat.pdf",
+        "url_canonical": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/käsiraamat.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+        "updatedAt": "2026-06-11T18:58:48.691498+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

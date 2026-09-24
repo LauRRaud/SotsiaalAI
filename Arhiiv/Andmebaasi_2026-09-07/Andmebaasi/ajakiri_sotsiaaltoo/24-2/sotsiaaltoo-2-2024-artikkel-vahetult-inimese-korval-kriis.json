@@ -1,0 +1,39 @@
+{
+  "docId": "sotsiaaltoo-2-2024",
+  "year": 2024,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2024",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "file",
+  "articleId": "vahetult-inimese-korval-olles-ei-saa-jatta-probleeme-lahendamata-2024-2",
+  "title": "Vahetult inimese kõrval olles ei saa jätta probleeme lahendamata",
+  "authors": [
+    "Marelle Erlenheim"
+  ],
+  "section": "Kriisivalmidus sotsiaaltöös",
+  "pageRange": "56-58",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "description": "KOV-i sotsiaalosakonna juhi vaade kriisijuhtimisele: rollid, vastutused ja vajadus praktiliste lahenduste ning koolituste järele.",
+  "tags": [
+    "kriisivalmidus",
+    "kriisijuhtimine",
+    "KOV",
+    "sotsiaaltöö",
+    "toimepidevus"
+  ],
+  "source_path": "Sotsiaaltoo_2_2024_web_Part14.pdf",
+  "document_id": "sotsiaaltoo-2-2024-vahetult-inimese-korval-olles-ei-saa-jatta-probleeme-lahendamata-2024-2",
+  "source_format": "pdf",
+  "source_sha256": "58ced190c6979b48a4df0c9ee80a40690b3930dfcb7b0b9f16fe72ea9100c880",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2024-vahetult-inimese-korval-olles-ei-saa-jatta-probleeme-lahendamata-2024-2",
+    "previous_source_path": "Sotsiaaltoo_2_2024_web_Part14.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "58ced190c6979b48a4df0c9ee80a40690b3930dfcb7b0b9f16fe72ea9100c880",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "docId": "sotsiaaltoo-3-2016",
+  "articleId": "sotsiaaltoo-3-2016-artikkel-02-deinstitutsionaliseerimine-ja-normaalsus-printsi",
+  "title": "Deinstitutsionaliseerimine ja normaalsus- printsiip karistuse täideviimise praktikas",
+  "authors": [
+    "Krister Tüllinen"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2016",
+  "section": "Taasühiskonnastamine vanglas",
+  "pageRange": "3-7",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tüllinen väidab, et Eesti karistuspraktika on muutunud vangistusekesksemaks: 2016. aasta keskel oli vanglas ligikaudu 2900 ja kriminaalhoolduses 4300 inimest ehk 100 vangi kohta 147 hooldusalust (1:1,5), viie aasta eest oli suhe 1:2,4 ja Euroopa Liidus on see enamasti 1:2–1:3. Eestis on 100 000 elaniku kohta 225 vangi, Euroopa keskmine on 133. Vangi ülalpidamine maksab 1313 eurot kuus, kriminaalhooldus 52,5 eurot ehk 25 korda vähem. Autor pooldab normaalsusprintsiipi ja minimaalset sekkumist, viidates Euroopa vanglareeglistiku artiklitele 3 ja 5.",
+  "tags": [
+    "vangistus",
+    "kriminaalhooldus",
+    "normaalsusprintsiip",
+    "deinstitutsionaliseerimine",
+    "karistuspoliitika",
+    "taasühiskonnastamine"
+  ],
+  "source_type": "file",
+  "source_path": "2016_3_artikkel_02_deinstitutsionaliseerimine_ja_normaalsus_printsiip_k.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2016-sotsiaaltoo-3-2016-artikkel-02-deinstitutsionaliseerimine-ja-normaalsus-printsi",
+  "source_sha256": "5f609d7a3c4f1990d1aff03f75e8d7120e99ee19667594bc697e4ec5011164da",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2016-sotsiaaltoo-3-2016-artikkel-02-deinstitutsionaliseerimine-ja-normaalsus-printsi",
+    "previous_source_path": "2016_3_artikkel_02_deinstitutsionaliseerimine_ja_normaalsus_printsiip_k.txt",
+    "previous_source_original_path": "3-2016.pdf",
+    "reference_stored_source_sha256": "0600a91e294fcbe686cea1b467eeaed520922604c39e3534d6d926efb4892739",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\3-2016.pdf",
+      "source_sha256": "7a9be30ca3f1a959b3d48a3f12065bc9c37d0f618f6cbb71e681f6e83199aacc",
+      "pdf_start_page": 5,
+      "pdf_end_page": 9,
+      "printed_page_range": "3-8",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 10,
+      "source_regions": [
+        {
+          "source_pdf_page": 5,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 6,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 7,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 8,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        },
+        {
+          "source_pdf_page": 9,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "3-7",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\3-2016.pdf"
+    },
+    "server_page_range": "3-8"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-3-2021",
+  "articleId": "eessona-2021-3",
+  "title": "Eessõna",
+  "authors": [
+    "Karmen Toros"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2021",
+  "section": "Eessõna",
+  "pageRange": "2-2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tallinna Ülikooli sotsiaaltöö professori Karmen Torose eessõna avab ajakirjanumbri fookuse koroonapandeemiaaegsele sotsiaaltööle. Autor refereerib maakondade lastekaitsetöötajate kogemusi – märkamise, toetamise ja emotsionaalse toe vajadust ning uusi lahendusi, nagu virtuaalsed kodukülastused ja valla kriisitelefon. Samuti seob ta teema Euroopa sotsiaaltöö hariduse konverentsiga, kus arutleti säilenõtkuse, inimväärikuse ja sotsiaalse sidususe üle. Eessõna rõhutab, et ebakindlal ajal vajavad tuge nii kliendid kui ka sotsiaaltöötajad ise ning sotsiaaltöötaja heaolu on otseselt seotud klientide heaoluga.",
+  "tags": [
+    "eessõna",
+    "COVID-19",
+    "lastekaitsetöö",
+    "säilenõtkus",
+    "emotsionaalne tugi",
+    "virtuaalsed teenused",
+    "sotsiaaltöö haridus"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_3_2021_web_link_Part2.pdf",
+  "document_id": "sotsiaaltoo-3-2021-eessona-2021-3",
+  "source_format": "pdf",
+  "source_sha256": "7ff88c43c24edc49baabb076cd89da8ea1a2b40519c95594a9d112a40bdb3fb8",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2021-eessona-2021-3",
+    "previous_source_path": "Sotsiaaltoo_3_2021_web_link_Part2.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "7ff88c43c24edc49baabb076cd89da8ea1a2b40519c95594a9d112a40bdb3fb8",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

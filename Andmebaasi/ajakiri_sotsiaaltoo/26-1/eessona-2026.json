@@ -1,0 +1,50 @@
+{
+  "docId": "sotsiaaltoo-1-2026",
+  "articleId": "eessona-2026",
+  "title": "Eessõna",
+  "authors": [
+    "Ingrid Sindi"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2026",
+  "section": "Eessõna",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Erinumbri eessõna, mis selgitab, miks pühendati ajakirja number solidaarsusele. Autor viitab Tallinna ülikooli sotsiaaltöö eriala konverentsile, kus solidaarsust käsitleti rahvusvahelise sotsiaaltöö päeva juhtteemana, ja tõdeb, et kuigi solidaarsus on sotsiaaltöö alusväärtus, ei ole seda Eesti sotsiaaltöös süvitsi avatud. Number koondab Eesti ja väliskolleegide artikleid ühise küsimuse ümber: mida solidaarsus tähendab ja kuidas seda nüüdisaegses sotsiaaltöös praktiseerida.",
+  "tags": [
+    "eessõna",
+    "solidaarsus",
+    "sotsiaaltöö alusväärtused",
+    "erinumber",
+    "Tallinna ülikool",
+    "sotsiaaltöö haridus"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-01-26",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/eessona-12026",
+  "source_type": "web",
+  "source_path": "eessona.html",
+  "lead": "„Solidaarsusel on sotsiaaltöös sügavad juured. See on läbi aegade tähendanud haavatavate inimeste kõrval seismist, ebavõrdsuse vähendamist, ka inimõiguste edendamist ja inimväärikuse kaitsmist. Just sellest arusaamast, et solidaarsus on küll alati olnud kohal, ent vajab teadlikumat avamist, sündiski mõte pühendada ajakirja Sotsiaaltöö erinumber sellele teemale,“ kirjutab eessõnas numbri külalistoimetaja Ingrid Sindi.",
+  "mapping_status": "VERIFIED",
+  "mapping_checked": "2026-08-14",
+  "mapping_note": "Ametlik 1/2026 eessõna URL kontrollitud väljaandja veebilehe järgi.",
+  "document_id": "sotsiaaltoo-1-2026-eessona-2026",
+  "source_format": "html",
+  "source_sha256": "716eb4a4a14224bedfa71d6d4e39bcb11e88f21b1748c929196274c03c094b0b",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2026-eessona-2026",
+    "previous_source_path": "eessona.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "4b07c3bae385906b42e2fc4b5d1e23a95deb8d1b8cbe1afe2e0e0311d0625c9a",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "3db1906f7f23c07a1eb415701b5311b2d2a4af60cd3696b7e60fefd548de7532",
+    "observed_web_title": "Eessõna 1/2026"
+  },
+  "retrieved_at": "2026-09-07T19:39:33.064488+00:00"
+}

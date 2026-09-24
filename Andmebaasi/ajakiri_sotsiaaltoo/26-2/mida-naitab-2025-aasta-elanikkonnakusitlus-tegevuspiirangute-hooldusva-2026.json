@@ -1,0 +1,50 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "mida-naitab-2025-aasta-elanikkonnakusitlus-tegevuspiirangute-hooldusva-2026",
+  "title": "Mida näitab 2025. aasta elanikkonnaküsitlus tegevuspiirangute, hooldusvajaduse ja teenuseni jõudmise kohta?",
+  "authors": [
+    "Ketri Kupper"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Uurimus",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade 2025. aasta elanikkonnaküsitluse tulemustest, mille järgi on kroonilised tervisemured ja vaimse tervise probleemid laienenud, eriti nooremas tööealises rahvastikus. Ametlike teenuste kasutamine jääb tagasihoidlikuks, kuigi vajadus täiendavate teenuste järele on kasvanud. Teenuseni jõudmist takistavad vähene teadlikkus, rahalised piirangud ja infopuudus.",
+  "tags": [
+    "elanikkonnaküsitlus",
+    "tegevuspiirangud",
+    "hooldusvajadus",
+    "pikaajaline hooldus",
+    "omastehooldus",
+    "teenuste kättesaadavus",
+    "kodus elamist toetavad teenused",
+    "uuring"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-02-12",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/mida-naitab-2025-aasta-elanikkonnakusitlus-tegevuspiirangute-hooldusvajaduse",
+  "source_type": "web",
+  "source_path": "mida-naitab-2025-aasta-elanikkonnakusitlus-tegevuspiirangute-hooldusvajaduse-ja-.html",
+  "lead": "Hooldus- ja abivajadus ei teki ainult väga kõrges vanuses, vaid kujuneb sageli juba tööeas, kui terviseprobleemid ja tegevuspiirangud hakkavad igapäevaelu mõjutama. Teenuste korralduses on määrav, kas abi saadakse õigel ajal, enne kui toimetulek on juba tugevalt häiritud.",
+  "abstract": "Sotsiaalministeerium tellis Turu-uuringute AS-ilt 2025. aastal kordusuuringu täisealiste tegevuspiirangute[1], abi- ja teenusevajaduse ning teenuseni jõudmise takistuste kohta. Veebis ja telefoni teel korraldatud küsitlusest võttis osa 10 485 Eesti elanikku. Esimest korda analüüsiti andmeid ka maakonniti.",
+  "document_id": "sotsiaaltoo-2-2026-mida-naitab-2025-aasta-elanikkonnakusitlus-tegevuspiirangute-hooldusva-2026",
+  "source_format": "html",
+  "source_sha256": "411a0b75db596701d252c290f95e0bee6c7e193a537dc20098bc1357eac95cd3",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-mida-naitab-2025-aasta-elanikkonnakusitlus-tegevuspiirangute-hooldusva-2026",
+    "previous_source_path": "mida-naitab-2025-aasta-elanikkonnakusitlus-tegevuspiirangute-hooldusvajaduse-ja-.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "eca5e3a204b7c1365827aa404b734f5cbdec9a0ea141842787807249ef7887fd",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "084e3837656872ec654571ac2bdabe44e14055c4d7c9d798e0e25b466a6435ba",
+    "observed_web_title": "Mida näitab 2025. aasta elanikkonnaküsitlus tegevuspiirangute, hooldusvajaduse ja teenuseni jõudmise kohta?"
+  },
+  "retrieved_at": "2026-09-07T19:39:37.095253+00:00"
+}

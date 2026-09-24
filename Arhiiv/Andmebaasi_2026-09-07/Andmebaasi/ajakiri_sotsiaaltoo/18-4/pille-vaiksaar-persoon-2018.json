@@ -1,0 +1,43 @@
+{
+  "docId": "sotsiaaltoo-4-2018",
+  "articleId": "pille-vaiksaar-eesmärk-on-et-lapsed-saaksid-meie-juurest-lahkudes-eluga-paremini-hakkama-2018",
+  "title": "Pille Vaiksaar: eesmärk on, et lapsed saaksid meie juurest lahkudes eluga paremini hakkama",
+  "authors": [
+    "Kristina Traks"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2018",
+  "section": "Persoon",
+  "pageRange": "3-7",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Persoonilugu Maarjamaa Hariduskolleegiumi juhist Pille Vaiksaarest, tema tööst raskete käitumisprobleemidega noortega, koolikeskkonna muutmisest ning koostööst perede, omavalitsuste ja eri süsteemidega.",
+  "tags": [
+    "persoonilugu",
+    "Pille Vaiksaar",
+    "Maarjamaa Hariduskolleegium",
+    "raskete laste käitumisprobleemid",
+    "haridus- ja sotsiaaltöö lõimumine",
+    "asendushooldus",
+    "võrgustikutöö",
+    "perega töö",
+    "noortega tehtav töö"
+  ],
+  "source_type": "file",
+  "source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part3.pdf",
+  "document_id": "sotsiaaltoo-4-2018-pille-vaiksaar-eesm-rk-on-et-lapsed-saaksid-meie-juurest-lahkudes-eluga-paremini-hakkama-2018",
+  "source_format": "pdf",
+  "source_sha256": "3d7ce588d54a0e26f82b60cbeda71994c30f5796291f608b8c62598ba39d3f4e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2018-pille-vaiksaar-eesm-rk-on-et-lapsed-saaksid-meie-juurest-lahkudes-eluga-paremini-hakkama-2018",
+    "previous_source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part3.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "3d7ce588d54a0e26f82b60cbeda71994c30f5796291f608b8c62598ba39d3f4e",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

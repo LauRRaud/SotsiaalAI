@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "v2.5-sourcepackage",
+  "docId": "kov-tartu-linn",
+  "document_id": "kov-tartu-linn",
+  "municipality": "Tartu linn",
+  "municipality_id": "tartu_linn",
+  "county": "Tartumaa",
+  "checkedAt": "2026-04-30",
+  "status": "ingest_ready",
+  "collection_id": "kov_services",
+  "source_type": "kov_service_info",
+  "source_format": "rag_md",
+  "jurisdiction_level": "MUNICIPALITY",
+  "legal_basis": false,
+  "rt_layer_separate": true,
+  "expected_rt_docId": "kov-rt-tartu-linn",
+  "coverage": {
+    "services": 22,
+    "benefits": 10,
+    "resources": 16,
+    "contacts": 8,
+    "forms": 6,
+    "regulations": 0
+  },
+  "sourcePackageReadiness": {
+    "ok": true,
+    "collection_id": "kov_services",
+    "municipality_id": "tartu_linn",
+    "source_register_file": "tartu-linn.sources.json",
+    "service_benefit_resource_items": 48,
+    "items_with_source_keys": 48,
+    "items_missing_source_keys": [],
+    "items_with_related_forms": 25,
+    "items_without_related_forms": 23,
+    "items_with_related_contacts": 31,
+    "items_without_related_contacts": 17,
+    "form_sources": 6,
+    "contact_sources": 0,
+    "regulation_sources": 0,
+    "warnings": [
+      "1 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+    ]
+  },
+  "notes": [
+    "Pakett on parandatud nii, et masinloetavas JSON-is ja RAG Markdownis ei kasutata veebitööriista sisemisi tsitaadimarkereid ega lõpuviidete loendit.",
+    "Paketis on Tartu linna veebilt eraldi nimetatud sotsiaalteenused ja -toetused viidud võimalikult eraldi itemiteks."
+  ],
+  "unresolvedIssues": [
+    "Tartu linnaportaali e-taotluste täpsed teenusepõhised otselingid võivad sõltuda autentimisest; seetõttu on e-taotluste allikana kasutatud üldist linnaportaali linki.",
+    "Mõnel teenusel on KOV veebis taotlemise detailid esitatud üldiselt piirkonnakeskuse või üldtaotluse kaudu; täpne menetlustähtaeg ei ole kõigi teenuste puhul avaldatud.",
+    "Sotsiaal- ja tervishoiuosakonna piirkonnakeskuste lehel on väga palju üksikspetsialiste; käesolevas paketis normaliseeriti eelkõige piirkonnakeskuste üldkontaktid ja hoolduskoordinaatorid, mitte kõik üksikametnikud.",
+    "Väliste teenuseosutajate kohta on kasutatud ainult Tartu linna veebis avaldatud infot; teenuseosutajate enda veebilehti ei kasutatud.",
+    "Ajutise hooldusteenuse kohta oli KOV koondlehel praktiline viide, kuid eraldi detailne teenuse kirjeldus jäi piiratud mahus kättesaadavaks; teenuse menetlus ja hind vajavad vajadusel lisakontrolli Tartu linna veebis või spetsialistilt."
+  ],
+  "municipality_name": "Tartu linn",
+  "checked_at": "2026-04-30",
+  "lastMetadataUpgradeAt": "2026-04-29",
+  "ingestReady": true,
+  "country": "EE",
+  "language": "et",
+  "sourceRegisterFile": "tartu-linn.sources.json",
+  "sourceCount": 41,
+  "counts": {
+    "services": 22,
+    "benefits": 10,
+    "resources": 16,
+    "contacts": 8,
+    "forms": 6,
+    "regulations": 0
+  },
+  "warnings": [
+    "1 source'i jäid üldiseks kov_service_info/service_page allikaks ilma otsese item seoseta."
+  ]
+}

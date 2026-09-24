@@ -1,0 +1,49 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "turvalisuse-markide-rakendamine-saue-vallas-teekond-uhtsema-kasitluse--2026",
+  "title": "„Turvalisuse märkide“ rakendamine Saue vallas: teekond ühtsema käsitluse suunas",
+  "authors": [
+    "Reili Brandt"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Metoodika",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kogemuslugu mudeli „Turvalisuse märgid“ rakendamisest Saue valla lastekaitsetöös alates 2025. aasta kevadest. Mudeli eesmärk on tuua juhtumikorraldusse rohkem ühtsust ja selgust ning rõhutada pere ja lapse kaasamist. Praktika näitab, et metoodika toetab süsteemsemat analüüsi ja lapse hääle paremat kuulmist.",
+  "tags": [
+    "Turvalisuse märgid",
+    "lastekaitse",
+    "Saue vald",
+    "juhtumikorraldus",
+    "perede kaasamine",
+    "metoodika rakendamine",
+    "kohalik omavalitsus",
+    "lapse hääl"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-04-13",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/turvalisuse-markide-rakendamine-saue-vallas-teekond-uhtsema-kasitluse-suunas",
+  "source_type": "web",
+  "source_path": "turvalisuse-markide-rakendamine-saue-vallas-teekond-uhtsema-kasitluse-suunas.html",
+  "lead": "„Turvalisuse märkide“ mudeli rakendamine Saue vallas on kujunemisjärgus. Eesmärk on tuua lastekaitsetöösse rohkem ühtsust, selgust ja teadlikkust eelkõige juhtumikorralduse vaates. Tähtis aga on ka organisatsioonis ühtse mõtteviisi ja koostöökultuuri kujunemine.",
+  "document_id": "sotsiaaltoo-2-2026-turvalisuse-markide-rakendamine-saue-vallas-teekond-uhtsema-kasitluse-2026",
+  "source_format": "html",
+  "source_sha256": "2445e2035849314d22df76ee17d8f842bc5bc065abfee7ce13debbaebb741082",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-turvalisuse-markide-rakendamine-saue-vallas-teekond-uhtsema-kasitluse-2026",
+    "previous_source_path": "turvalisuse-markide-rakendamine-saue-vallas-teekond-uhtsema-kasitluse-suunas.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b074b841e3bbd024f2aa9b0069b8d3b6504c6eb51c7d212761233f5ec4f327e5",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "938e1e4c33a6ed230d503af607828faeca82744b32e49748880ad2e96278f1a2",
+    "observed_web_title": "„Turvalisuse märkide“ rakendamine Saue vallas: teekond ühtsema käsitluse suunas"
+  },
+  "retrieved_at": "2026-09-07T19:39:41.397244+00:00"
+}

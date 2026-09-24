@@ -1,0 +1,146 @@
+{
+  "source_path": "tarkvanem_infomaterjal_beebivanematele_kodu_kohandamiseks_lapse_esimes.pdf",
+  "source_format": "pdf",
+  "sha256": "b4e936ef149255e9c59273ae83920994472b8187f59c408922212587e05b55fd",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/tarkvanem_infomaterjal_beebivanematele_kodu_kohandamiseks_lapse_esimes.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "tarkvanem_infomaterjal_beebivanematele_kodu_kohandamiseks_lapse_esimes",
+          "title": "Infomaterjal beebivanematele kodu kohandamiseks lapse esimesel eluaastal",
+          "url": "https://tarkvanem.ee/wp-content/uploads/2023/10/infomaterjal-beebivanematele-kodu-kohandamiseks-lapse-esimesel-eluaastal.pdf",
+          "normalized_url": "https://tarkvanem.ee/wp-content/uploads/2023/10/infomaterjal-beebivanematele-kodu-kohandamiseks-lapse-esimesel-eluaastal.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "Tarkvanem",
+          "organization_id": "tarkvanem",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Tarkvanem",
+            "lapsed ja pered",
+            "laps",
+            "lapsevanem",
+            "pere",
+            "vanemlus",
+            "koduohutus",
+            "kodukeskkond",
+            "kodukülastus",
+            "infomaterjal"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": null,
+          "notes": "",
+          "source_context": {
+            "heading_2": "Partnerid",
+            "heading_3": "Tarkvanem",
+            "heading_4": null,
+            "line": 633,
+            "order": 321
+          },
+          "duplicate_count": 0,
+          "duplicate_merged": false,
+          "merged_titles": [
+            "Infomaterjal beebivanematele kodu kohandamiseks lapse esimesel eluaastal"
+          ],
+          "collection_hints": [
+            "organization_materials"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "Tarkvanem"
+          ],
+          "organizations_seen": [
+            "tarkvanem"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "Partnerid",
+              "heading_3": "Tarkvanem",
+              "line": 633,
+              "order": 321
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://tarkvanem.ee/wp-content/uploads/2023/10/infomaterjal-beebivanematele-kodu-kohandamiseks-lapse-esimesel-eluaastal.pdf"
+        },
+        "final_url": "https://tarkvanem.ee/wp-content/uploads/2023/10/infomaterjal-beebivanematele-kodu-kohandamiseks-lapse-esimesel-eluaastal.pdf",
+        "redirects": [],
+        "sha256": "b4e936ef149255e9c59273ae83920994472b8187f59c408922212587e05b55fd",
+        "bytes": 2130512,
+        "downloaded_at": "2026-08-14T08:00:59.016Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "tarkvanem_infomaterjal_beebivanematele_kodu_kohandamiseks_lapse_esimes",
+      "metadata": {
+        "createdAt": "2026-06-12T03:59:55.526090+00:00",
+        "type": "FILE",
+        "fileName": "infomaterjal-beebivanematele-kodu-kohandamiseks-lapse-esimesel-eluaastal.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:59:55.452241+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/0327b89444a8/infomaterjal-beebivanematele-kodu-kohandamiseks-lapse-esimesel-eluaastal.pdf",
+        "title": "Infomaterjal beebivanematele kodu kohandamiseks lapse esimesel eluaastal",
+        "description": "Source master headings: Partnerid; Tarkvanem",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2023,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–12",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "organization_materials",
+        "source_id": "tarkvanem_infomaterjal_beebivanematele_kodu_kohandamiseks_lapse_esimes",
+        "document_id": "tarkvanem_infomaterjal_beebivanematele_kodu_kohandamiseks_lapse_esimes",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "b80a726618e0e693e46f09635f7f91b4e5f1cff4f34064bbe7b4be1200579282",
+        "url": "https://tarkvanem.ee/wp-content/uploads/2023/10/infomaterjal-beebivanematele-kodu-kohandamiseks-lapse-esimesel-eluaastal.pdf",
+        "url_canonical": "https://tarkvanem.ee/wp-content/uploads/2023/10/infomaterjal-beebivanematele-kodu-kohandamiseks-lapse-esimesel-eluaastal.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "tarkvanem_infomaterjal_beebivanematele_kodu_kohandamiseks_lapse_esimes",
+        "updatedAt": "2026-06-12T03:59:55.526114+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

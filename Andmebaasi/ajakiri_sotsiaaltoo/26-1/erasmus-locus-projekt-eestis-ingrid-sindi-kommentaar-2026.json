@@ -1,0 +1,51 @@
+{
+  "docId": "sotsiaaltoo-1-2026",
+  "articleId": "erasmus-locus-projekt-eestis-kommentaar-2026-1",
+  "title": "Erasmus+ LOCUS projekt Eestis",
+  "authors": [
+    "Ingrid Sindi"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2026",
+  "section": "Kommentaar",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ingrid Sindi kommentaar projekti LOCUS Eesti tegevusest Põhja-Tallinnas ning sotsiaaltöö üliõpilaste kogemusõppest linnakeskkonnas.",
+  "tags": [
+    "LOCUS",
+    "linnasotsiaaltöö",
+    "Põhja-Tallinn",
+    "kogukonnatöö",
+    "sotsiaaltöö haridus",
+    "kogemusõpe",
+    "kommentaar"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-04-06",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/kuuluvustunne-ja-naabruskonna-solidaarsus-uued-teadmised-projektist-locus",
+  "source_type": "web",
+  "source_path": "erasmus-locus-projekt-eestis-ingrid-sindi-kommentaar.html",
+  "combined_source_path": "kuuluvustunne-ja-naabruskonna-solidaarsus-uued-teadmised-projektist-locus.txt",
+  "mapping_status": "VERIFIED",
+  "mapping_checked": "2026-08-15",
+  "mapping_note": "Kommentaar oli väljaandja veebilehel põhiartikliga samas tekstifailis; RAG-i jaoks eraldatud autori ja teema õigeks omistamiseks.",
+  "document_id": "sotsiaaltoo-1-2026-erasmus-locus-projekt-eestis-kommentaar-2026-1",
+  "source_format": "html",
+  "source_sha256": "f3aebfcdb51450b6e777c5c0146033f131ad7ef7325691d8c5d6391c7cc7a33d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2026-erasmus-locus-projekt-eestis-kommentaar-2026-1",
+    "previous_source_path": "erasmus-locus-projekt-eestis-ingrid-sindi-kommentaar.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "87d2e7fbb8863c6c65fdae83cacc2e25a6788e03784ae1d583fdde85463ec673",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "e31a399d68efba466c55bdd41c7085f2104054a490b392eb1adfd3daad94efb6",
+    "observed_web_title": "Kuuluvustunne ja naabruskonna solidaarsus. Uued teadmised projektist LOCUS"
+  },
+  "retrieved_at": "2026-09-07T19:39:33.541520+00:00"
+}

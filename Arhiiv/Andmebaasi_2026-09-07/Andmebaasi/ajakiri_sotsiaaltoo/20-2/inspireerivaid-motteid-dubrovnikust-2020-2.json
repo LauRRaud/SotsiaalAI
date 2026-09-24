@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2020",
+  "articleId": "inspireerivaid-motteid-dubrovnikust-2020-2",
+  "title": "Inspireerivaid mõtteid Dubrovnikust",
+  "authors": [
+    "Reeli Sirotkina"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2020",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "56-59",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel võtab kokku Dubrovnikus toimunud sotsiaaltöö teooria ja praktika konverentsi peamised ideed ning nende seosed Eesti kontekstiga. Esile tõusevad arutelud sotsiaaltöö hariduse, kogukonnatöö, digitaliseerumise ja sotsiaalpoliitiliste muutuste üle.",
+  "tags": [
+    "konverents",
+    "Dubrovnik",
+    "sotsiaaltöö teooria",
+    "rahvusvaheline kogemus",
+    "digitaliseerumine",
+    "kogukonnatöö"
+  ],
+  "source_type": "file",
+  "source_path": "ST2_2020_web_link_Part17.pdf",
+  "document_id": "sotsiaaltoo-2-2020-inspireerivaid-motteid-dubrovnikust-2020-2",
+  "source_format": "pdf",
+  "source_sha256": "5d6227abfa2fd2c9c6868c5a06f93fb20990b05470f65b7f0ebb8511be24b503",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2020-inspireerivaid-motteid-dubrovnikust-2020-2",
+    "previous_source_path": "ST2_2020_web_link_Part17.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "5d6227abfa2fd2c9c6868c5a06f93fb20990b05470f65b7f0ebb8511be24b503",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

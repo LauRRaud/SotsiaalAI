@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2021",
+  "articleId": "kinnise-lasteasutuse-teenusele-suunatud-noorte-toetamine-mitteformaalse-oppega-2021-4",
+  "title": "Kinnise lasteasutuse teenusele suunatud noorte toetamine mitteformaalse õppega",
+  "authors": [
+    "Merle Salusoo"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2021",
+  "section": "Uurimus",
+  "pageRange": "65-72",
+  "pdf_start_page": 1,
+  "pdf_end_page": 8,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Magistriuurimus, mis käsitleb kinnise lasteasutuse teenusele (KLAT) suunatud noorte positiivse arengu toetamist mitteformaalse õppe kaudu. Autor lähtub tugevatel külgedel põhinevast lähenemisest ning analüüsib dokumentide, statistika ja töötajate intervjuude põhjal, millised võimalused on noortel kogeda toetavaid suheteid, arendada oskusi ja kogeda eduelamusi. Uurimus näitab, et paljudel noortel on puudunud turvaline pere- ja kasvukeskkond ning piisav vanemlik tugi, kuid samas on nii noortel endil kui ka KLATi meeskonnal eeldused muutuste toetamiseks. Artikkel toob välja, kuidas noorsootöö mitteformaalne õpe, valdkondade vaheline koostöö ja noorte suurem kaasamine aitavad vähendada riskikäitumist ja toetada noorte positiivset arengut.",
+  "tags": [
+    "kinnise lasteasutuse teenus",
+    "noorte positiivne areng",
+    "mitteformaalne õpe",
+    "noorsootöö",
+    "riskikäitumine",
+    "magistriuurimus",
+    "KLAT"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_4_2021_web_Part16.pdf",
+  "document_id": "sotsiaaltoo-4-2021-kinnise-lasteasutuse-teenusele-suunatud-noorte-toetamine-mitteformaalse-oppega-2021-4",
+  "source_format": "pdf",
+  "source_sha256": "fd95f808613fd41a30c5dc10814c3417713f00d50cc5aa08d25e9261fd29d985",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2021-kinnise-lasteasutuse-teenusele-suunatud-noorte-toetamine-mitteformaalse-oppega-2021-4",
+    "previous_source_path": "Sotsiaaltoo_4_2021_web_Part16.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "fd95f808613fd41a30c5dc10814c3417713f00d50cc5aa08d25e9261fd29d985",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

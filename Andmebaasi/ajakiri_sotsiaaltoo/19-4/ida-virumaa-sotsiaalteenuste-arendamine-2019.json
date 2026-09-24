@@ -1,0 +1,38 @@
+{
+  "docId": "sotsiaaltoo-4-2019",
+  "articleId": "ida-virumaa-sotsiaalteenuste-arendamine-2019",
+  "title": "Ida-Virumaa sotsiaalteenuste arendamist toetav projekt",
+  "authors": [
+    "Regina Sergejeva"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2019",
+  "section": "Projekt",
+  "pageRange": "36-37",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade Ida-Virumaa sotsiaalteenuste arendamise projektist ja piirkonna vajadustest.",
+  "tags": [
+    "Ida-Virumaa",
+    "sotsiaalteenused",
+    "projekt"
+  ],
+  "source_type": "file",
+  "source_path": "ST4_2019_web_link_Part10.pdf",
+  "mapping_fixed": "20260814-161821",
+  "document_id": "sotsiaaltoo-4-2019-ida-virumaa-sotsiaalteenuste-arendamine-2019",
+  "source_format": "pdf",
+  "source_sha256": "87cb8d2c4249ef10293f81d84c07f4c362e4f1633f1b5cfbece13cba8599d709",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2019-ida-virumaa-sotsiaalteenuste-arendamine-2019",
+    "previous_source_path": "ST4_2019_web_link_Part10.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "87cb8d2c4249ef10293f81d84c07f4c362e4f1633f1b5cfbece13cba8599d709",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "docId": "sotsiaaltoo-3-2017",
+  "articleId": "leedu-sotsiaaltoo-areng-2017-3",
+  "title": "Leedu sotsiaaltöö areng ja sotsiaaltöötajate hariduse aktuaalsed küsimused",
+  "authors": [
+    "Jūratė Charenkova"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "3/2017",
+  "section": "Uued suunad Euroopas",
+  "pageRange": "82-86",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Vilniuse Ülikooli doktorandi ülevaade Leedu hoolekande korraldusest ja sotsiaaltöötajate hariduse aktuaalsetest küsimustest. Leedus on 60 suuremat omavalitsusüksust, mis jagunevad 500 vallaks, ning neil on hoolekande korraldamisel suur otsustusõigus. Valitsuse tegevuskava üks suundi on sotsiaalteenuste kättesaadavuse ja kvaliteedi ning sotsiaaltöötajate töötingimuste parandamine.",
+  "tags": [
+    "Leedu",
+    "rahvusvaheline võrdlus",
+    "sotsiaaltööharidus",
+    "hoolekande korraldus",
+    "detsentraliseerimine"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part21.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-3-2017-leedu-sotsiaaltoo-areng-2017-3",
+  "source_sha256": "4ba3028c1dd605b6fa5f2627e03ac48ad404cb6ebe97d011241872b480448cc7",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-3-2017-leedu-sotsiaaltoo-areng-2017-3",
+    "previous_source_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part21.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2017_3_veebi_uus_link_Part21.pdf",
+    "reference_stored_source_sha256": "bf6f66918c4dfb00c44939f5f7c0d58289265b7df1ab17f649631f3dda2f3f5d",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf",
+      "source_sha256": "3f27c22982b22a396dace8a957798cc21d3240489c7ce4d92802bf1a94bde7a8",
+      "pdf_start_page": 84,
+      "pdf_end_page": 88,
+      "printed_page_range": "82-86",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 88,
+      "source_regions": [
+        {
+          "source_pdf_page": 84,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 85,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 86,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 87,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 88,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "82-86",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2017_3_veebi_uus_link.pdf"
+    },
+    "server_page_range": "82-86"
+  }
+}

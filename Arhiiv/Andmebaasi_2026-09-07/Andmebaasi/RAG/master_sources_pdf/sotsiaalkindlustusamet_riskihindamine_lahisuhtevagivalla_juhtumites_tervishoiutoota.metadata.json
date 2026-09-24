@@ -1,0 +1,82 @@
+{
+  "source": {
+    "source_id": "sotsiaalkindlustusamet_riskihindamine_lahisuhtevagivalla_juhtumites_tervishoiutoota",
+    "title": "Riskihindamine lähisuhtevägivalla juhtumites – tervishoiutöötajatele",
+    "url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-06/Riskihindamine%20l%C3%A4hisuhtev%C3%A4givalla%20juhtumites.pdf",
+    "normalized_url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-06/Riskihindamine lähisuhtevägivalla juhtumites.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "Sotsiaalkindlustusamet",
+    "organization_id": "sotsiaalkindlustusamet",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "Sotsiaalkindlustusamet",
+      "tervishoid",
+      "esmatasand",
+      "patsient",
+      "abivajaduse hindamine",
+      "hindamisvahend",
+      "uuring",
+      "raport",
+      "analüüs",
+      "SKA",
+      "vägivald",
+      "ohvriabi"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": null,
+    "notes": "",
+    "source_context": {
+      "heading_2": "SKA",
+      "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+      "heading_4": null,
+      "line": 467,
+      "order": 249
+    },
+    "duplicate_count": 0,
+    "duplicate_merged": false,
+    "merged_titles": [
+      "Riskihindamine lähisuhtevägivalla juhtumites – tervishoiutöötajatele"
+    ],
+    "collection_hints": [
+      "research_reports"
+    ],
+    "source_types_seen": [
+      "research_report"
+    ],
+    "resource_types_seen": [
+      "research_evidence"
+    ],
+    "publishers_seen": [
+      "Sotsiaalkindlustusamet"
+    ],
+    "organizations_seen": [
+      "sotsiaalkindlustusamet"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "SKA",
+        "heading_3": "Ohvriabi, MARAC, naiste tugikeskused",
+        "line": 467,
+        "order": 249
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-06/Riskihindamine lähisuhtevägivalla juhtumites.pdf"
+  },
+  "final_url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-06/Riskihindamine%20l%C3%A4hisuhtev%C3%A4givalla%20juhtumites.pdf",
+  "redirects": [],
+  "sha256": "c24060bf164dde711fb604b768da62ccb36820c29a3980bf878a7fd6e4e402e4",
+  "bytes": 335229,
+  "downloaded_at": "2026-08-14T08:00:49.728Z"
+}

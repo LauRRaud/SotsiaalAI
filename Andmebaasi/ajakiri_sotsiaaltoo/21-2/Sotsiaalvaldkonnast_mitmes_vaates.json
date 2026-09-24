@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2021",
+  "articleId": "sotsiaalvaldkonnast-mitmes-vaates-2021-2",
+  "title": "Sotsiaalvaldkonnast mitmes vaates",
+  "authors": [
+    "Marelle Erlenheim"
+  ],
+  "year": 2021,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2021",
+  "section": "Kohalik omavalitsus",
+  "pageRange": "45-48",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Saue valla sotsiaalosakonna juhataja arutleb sotsiaalvaldkonna üle erinevatest vaatenurkadest – riigi, kohaliku omavalitsuse, kiriku ja üksikisiku tasandilt. Artikkel käsitleb küsimust, kui kaugele ulatub omavalitsuse vastutus abivajajate ees, kuidas jagada rollid riigi ja KOV-i vahel ning millist kohta mängivad kogukond ja inimese enda vastutus. Autor seob isikliku töökogemuse ministeeriumis ja Saue vallas laiemate aruteludega sotsiaalpoliitika, hoolekande ning hoolivama kogukonna kujundamisest.",
+  "tags": [
+    "sotsiaalvaldkond",
+    "kohalik omavalitsus",
+    "riigi ja KOV rollid",
+    "vastutus",
+    "kogukond",
+    "Saue vald",
+    "sotsiaalpoliitika"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2_2021_web_link_Part11.pdf",
+  "document_id": "sotsiaaltoo-2-2021-sotsiaalvaldkonnast-mitmes-vaates-2021-2",
+  "source_format": "pdf",
+  "source_sha256": "c781424b85a27635487ec3d92f414975bc8ace0741457c7a4c702d965e375d74",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2021-sotsiaalvaldkonnast-mitmes-vaates-2021-2",
+    "previous_source_path": "Sotsiaaltoo_2_2021_web_link_Part11.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "c781424b85a27635487ec3d92f414975bc8ace0741457c7a4c702d965e375d74",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

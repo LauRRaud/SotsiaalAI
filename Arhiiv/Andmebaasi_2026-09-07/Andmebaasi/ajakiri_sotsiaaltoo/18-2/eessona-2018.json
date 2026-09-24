@@ -1,0 +1,38 @@
+{
+  "docId": "sotsiaaltoo-2-2018",
+  "articleId": "eessona-2018",
+  "title": "Eessõna",
+  "authors": [
+    "Hans van Ewijk"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2018",
+  "section": "Eessõna",
+  "pageRange": "2-2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ajakirja Sotsiaaltöö 2/2018 avaartikkel, mis käsitleb sotsiaaltöö rolli muutuvatest ühiskondlikest vajadustest ja väärtustest lähtudes.",
+  "tags": [
+    "eessõna",
+    "sotsiaaltöö väärtused",
+    "sotsiaalpoliitika",
+    "ühiskondlikud muutused"
+  ],
+  "source_type": "file",
+  "source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part2.pdf",
+  "document_id": "sotsiaaltoo-2-2018-eessona-2018",
+  "source_format": "pdf",
+  "source_sha256": "22a8987c7bed8f4c84555cb48dace689208d436d9c36cd7e8f3ac8c43c3b915e",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2018-eessona-2018",
+    "previous_source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part2.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "22a8987c7bed8f4c84555cb48dace689208d436d9c36cd7e8f3ac8c43c3b915e",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

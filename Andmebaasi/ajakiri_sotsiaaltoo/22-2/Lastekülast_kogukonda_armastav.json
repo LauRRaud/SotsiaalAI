@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2022",
+  "articleId": "lastekulast-kogukonda-armastav-hoolitsus-ja-lapse-osalusel-pohinev-lapsekesksus-kolm-voistlevat-heaoludiskursust-asenduskodus-2022-2",
+  "title": "Lastekülast kogukonda, armastav hoolitsus ja lapse osalusel põhinev lapsekesksus – kolm võistlevat heaoludiskursust asenduskodus",
+  "authors": [
+    "Ingrid Sindi"
+  ],
+  "year": 2022,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2022",
+  "section": "Uurimus",
+  "pageRange": "69-78",
+  "pdf_start_page": 1,
+  "pdf_end_page": 10,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Uurimus põhineb etnograafilisel välitööl SOS Lastekülas ja analüüsib, millistest diskursustest lähtutakse laste institutsionaalses asendushoolduses nende heaolu tagamisel. Autor eristab kolme omavahel võistlevat heaoludiskursust: kogukonnast eraldatud laste küla mudelit, armastaval hoolitsusel põhinevat perekesksust ning lapse osalusele ja autonoomsusele rajatud lapsekeskset lähenemist. Artikkel näitab, kuidas need arusaamad laste kaitse, hoolitsuse ja osalemise õigustest (3P raamistik) kujundavad igapäevapraktikat, milliseid pingekohti ja vastuolusid need loovad ning milliseid suundumusi võiks arvestada asendushoolduse edasisel reformimisel.",
+  "tags": [
+    "asendushooldus",
+    "laste heaolu",
+    "diskursusanalüüs",
+    "lapse õigused",
+    "lapse osalus",
+    "lapsekeskne lähenemine",
+    "SOS Lasteküla"
+  ],
+  "source_type": "file",
+  "source_path": "2022_2_artikkel_13_asenduskodude_heaolu.pdf",
+  "document_id": "sotsiaaltoo-2-2022-lastekulast-kogukonda-armastav-hoolitsus-ja-lapse-osalusel-pohinev-lapsekesksus-kolm-voistlevat-heaoludiskursust-asenduskodus-2022-2",
+  "source_format": "pdf",
+  "source_sha256": "608d1d533619febfe612191d690cbf6a792bc4ad2a2ed4de699134f72ca182db",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2022-lastekulast-kogukonda-armastav-hoolitsus-ja-lapse-osalusel-pohinev-lapsekesksus-kolm-voistlevat-heaoludiskursust-asenduskodus-2022-2",
+    "previous_source_path": "2022_2_artikkel_13_asenduskodude_heaolu.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "608d1d533619febfe612191d690cbf6a792bc4ad2a2ed4de699134f72ca182db",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

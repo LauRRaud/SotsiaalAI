@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2018",
+  "articleId": "valjaspool-kodu-osutatav-uldhooldusteenus-2018",
+  "title": "Väljaspool kodu osutatav üldhooldusteenus",
+  "authors": [
+    "Kersti Lõhmus"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2018",
+  "section": "Sotsiaaltöö korraldus",
+  "pageRange": "37-38",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade väljaspool kodu osutatava üldhooldusteenuse eesmärgist, sihtrühmast, hooldusplaani koostamisest, personali rollist ja Sotsiaalkindlustusameti järelevalve tulemustest.",
+  "tags": [
+    "üldhooldusteenus",
+    "eakad",
+    "hooldekodu",
+    "hooldusplaan",
+    "Sotsiaalkindlustusamet",
+    "kvaliteedijärelevalve",
+    "sotsiaalteenuste korraldus"
+  ],
+  "source_type": "file",
+  "source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part11.pdf",
+  "document_id": "sotsiaaltoo-2-2018-valjaspool-kodu-osutatav-uldhooldusteenus-2018",
+  "source_format": "pdf",
+  "source_sha256": "16de786694e5601f6d0688a21e93ce9f5455b1cf9e2d26441ba0bf4ff16ec300",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2018-valjaspool-kodu-osutatav-uldhooldusteenus-2018",
+    "previous_source_path": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part11.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "16de786694e5601f6d0688a21e93ce9f5455b1cf9e2d26441ba0bf4ff16ec300",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

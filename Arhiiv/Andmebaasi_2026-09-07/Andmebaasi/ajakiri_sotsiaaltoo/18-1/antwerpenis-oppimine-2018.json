@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-1-2018",
+  "articleId": "kultuuriliselt-mitmekesine-oppekogemus-antwerpenis-2018",
+  "title": "Kultuuriliselt mitmekesine sotsiaaltööõpe Antwerpenis",
+  "authors": [
+    "Triin Rebbas"
+  ],
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2018",
+  "section": "Üliõpilaskogemus",
+  "pageRange": "87-88",
+  "pdf_start_page": 1,
+  "pdf_end_page": 2,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel kirjeldab rahvusvahelist sotsiaaltööõpet Antwerpenis, kultuurilist mitmekesisust, projektitööd ja erialast arengut välisõpingute kaudu.",
+  "tags": [
+    "rahvusvaheline sotsiaaltöö",
+    "õpiränne",
+    "kultuuridevaheline kompetents",
+    "projektitöö",
+    "Erasmus+",
+    "õppimine välismaal"
+  ],
+  "source_type": "file",
+  "source_path": "Part22_155619647682_ST1_2018_link.pdf",
+  "mapping_fixed": "20260814-161821",
+  "document_id": "sotsiaaltoo-1-2018-kultuuriliselt-mitmekesine-oppekogemus-antwerpenis-2018",
+  "source_format": "pdf",
+  "source_sha256": "37833feb126391c1653de0b7e25ac242ab8be635b5b492d2c50d6bcdb282adf3",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2018-kultuuriliselt-mitmekesine-oppekogemus-antwerpenis-2018",
+    "previous_source_path": "Part22_155619647682_ST1_2018_link.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "37833feb126391c1653de0b7e25ac242ab8be635b5b492d2c50d6bcdb282adf3",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

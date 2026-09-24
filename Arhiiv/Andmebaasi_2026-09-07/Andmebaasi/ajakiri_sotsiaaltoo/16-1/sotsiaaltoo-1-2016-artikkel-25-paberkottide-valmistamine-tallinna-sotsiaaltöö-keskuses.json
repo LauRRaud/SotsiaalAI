@@ -1,0 +1,65 @@
+{
+  "docId": "sotsiaaltoo-1-2016",
+  "articleId": "sotsiaaltoo-1-2016-artikkel-25-paberkottide-valmistamine-tallinna-sotsiaaltöö-keskuses",
+  "title": "Paberkottide valmistamine Tallinna Sotsiaaltöö Keskuses",
+  "authors": [
+    "Hille Tarto"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2016",
+  "section": "Projekt",
+  "pageRange": "81",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Tallinna Sotsiaaltöö Keskuse töötaja kirjeldab 2014. aasta märtsis Varre üksuses alustatud ja tänaseks kuude sotsiaalmajutus- ja resotsialiseerimisüksusesse laienenud paberkottide valmistamise projekti. Eesmärk on pakkuda mittetöötavatele klientidele käelise tegevuse kaudu töökasvatust, arendada kohusetunnet ja sisustada vaba aega; kotte valmistatakse taaskasutusmaterjalist (plakatid, tapeet) ja neid ei müüda, vaid antakse koostööpartneritele tasuta. Sihiks seati, et iga mittetöötav resotsialiseerimisteenuse kasutaja valmistaks aastas vähemalt 100 kotti. 2015. aastal oli projektiga hõivatud 67,5% mittetöötavatest klientidest ehk ligi 250 inimest; valmistati 18 574 kotti (2014. aastal 21 062). Autor rõhutab, et kottide arvust olulisem on see, et kliendid tunnevad end vajalikuna ja leiavad tegevuse kaudu uue sisu — projekti suurim väljakutse on olnud just klientide kaasamine.",
+  "tags": [
+    "resotsialiseerimine",
+    "sotsiaalmajutusüksus",
+    "töökasvatus",
+    "tegevusteraapia",
+    "taaskasutus",
+    "tallinna sotsiaaltöö keskus",
+    "kodutus",
+    "vaba aja sisustamine"
+  ],
+  "source_type": "file",
+  "source_path": "2016_1_artikkel_25_paberkottide_valmistamine_tallinna_sotsiaaltoo_keskuses.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-25-paberkottide-valmistamine-tallinna-sotsiaalt-keskuses",
+  "source_sha256": "ac3a6dedfccda9d6c112b1cca222ac64d5ec3c9dc37619ba8ace8c8d8eca9cbb",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2016-sotsiaaltoo-1-2016-artikkel-25-paberkottide-valmistamine-tallinna-sotsiaalt-keskuses",
+    "previous_source_path": "2016_1_artikkel_25_paberkottide_valmistamine_tallinna_sotsiaaltoo_keskuses.txt",
+    "previous_source_original_path": "1-2016.pdf",
+    "reference_stored_source_sha256": "dcbd0950eb8f471d70f3492c707f67b8b3ee0214d885b5b149e72ff9e72fd9e4",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\1-2016.pdf",
+      "source_sha256": "2c193295e54f58982562b509b6283e93aa58b1695464671e1768e24e90888a6c",
+      "pdf_start_page": 83,
+      "pdf_end_page": 83,
+      "printed_page_range": "81",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 83,
+      "source_regions": [
+        {
+          "source_pdf_page": 83,
+          "bounds": [
+            0,
+            0,
+            467.72,
+            680.32
+          ]
+        }
+      ],
+      "effective_printed_page_range": "81"
+    },
+    "server_page_range": "81"
+  }
+}

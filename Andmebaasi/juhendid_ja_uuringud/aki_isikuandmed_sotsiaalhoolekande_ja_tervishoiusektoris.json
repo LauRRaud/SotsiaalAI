@@ -1,0 +1,154 @@
+{
+  "source_path": "aki_isikuandmed_sotsiaalhoolekande_ja_tervishoiusektoris.pdf",
+  "source_format": "pdf",
+  "sha256": "4fed2bd6ed302f2bbe6e5206193fe3f46fc512c67a01e2304d6525b4f69888d8",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/aki_isikuandmed_sotsiaalhoolekande_ja_tervishoiusektoris.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "aki_isikuandmed_sotsiaalhoolekande_ja_tervishoiusektoris",
+          "title": "Isikuandmed sotsiaalhoolekande- ja tervishoiusektoris",
+          "url": "https://www.aki.ee/sites/default/files/dokumendid/isikuandmed_sotsiaalhoolekande-_ja_tervishoiusektoris.pdf",
+          "normalized_url": "https://www.aki.ee/sites/default/files/dokumendid/isikuandmed_sotsiaalhoolekande-_ja_tervishoiusektoris.pdf",
+          "source_format": "pdf",
+          "source_type": "information_material",
+          "resource_type": "information_material",
+          "publisher": "AKI",
+          "organization_id": "aki",
+          "collection_hint": "information_materials",
+          "evidence_role": "background",
+          "topic_tags": [
+            "Andmekaitse Inspektsioon",
+            "hoolekanne",
+            "sotsiaalteenused",
+            "hooldus",
+            "tervishoid",
+            "esmatasand",
+            "patsient",
+            "andmekaitse",
+            "isikuandmed",
+            "GDPR",
+            "andmetöötlus",
+            "privaatsus",
+            "infomaterjal",
+            "AKI"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_008",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "AKI",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 195,
+            "order": 130
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Isikuandmed sotsiaalhoolekande- ja tervishoiusektoris"
+          ],
+          "collection_hints": [
+            "national_guidelines"
+          ],
+          "source_types_seen": [
+            "information_material"
+          ],
+          "resource_types_seen": [
+            "information_material"
+          ],
+          "publishers_seen": [
+            "AKI"
+          ],
+          "organizations_seen": [
+            "aki"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "AKI",
+              "line": 195,
+              "order": 130
+            },
+            {
+              "heading_2": "AKI",
+              "line": 669,
+              "order": 337
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://www.aki.ee/sites/default/files/dokumendid/isikuandmed_sotsiaalhoolekande-_ja_tervishoiusektoris.pdf"
+        },
+        "final_url": "https://www.aki.ee/sites/default/files/dokumendid/isikuandmed_sotsiaalhoolekande-_ja_tervishoiusektoris.pdf",
+        "redirects": [],
+        "sha256": "4fed2bd6ed302f2bbe6e5206193fe3f46fc512c67a01e2304d6525b4f69888d8",
+        "bytes": 1176696,
+        "downloaded_at": "2026-08-14T08:00:34.473Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "aki_isikuandmed_sotsiaalhoolekande_ja_tervishoiusektoris",
+      "metadata": {
+        "createdAt": "2026-06-12T03:37:00.871312+00:00",
+        "type": "FILE",
+        "fileName": "isikuandmed_sotsiaalhoolekande-_ja_tervishoiusektoris.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T03:37:00.805088+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/862a844d33a9/isikuandmed_sotsiaalhoolekande-_ja_tervishoiusektoris.pdf",
+        "title": "Isikuandmed sotsiaalhoolekande- ja tervishoiusektoris",
+        "description": "Duplikaadid ühendatud: 1 lisakirjet. Source master headings: AKI",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": null,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–58",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "national_guidelines",
+        "source_id": "aki_isikuandmed_sotsiaalhoolekande_ja_tervishoiusektoris",
+        "document_id": "aki_isikuandmed_sotsiaalhoolekande_ja_tervishoiusektoris",
+        "source_type": "information_material",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "84fd3d0bd00994473bc86d2dc5d318b486845e4a1ded0817f76e6beb178bdd4e",
+        "url": "https://www.aki.ee/sites/default/files/dokumendid/isikuandmed_sotsiaalhoolekande-_ja_tervishoiusektoris.pdf",
+        "url_canonical": "https://www.aki.ee/sites/default/files/dokumendid/isikuandmed_sotsiaalhoolekande-_ja_tervishoiusektoris.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "aki_isikuandmed_sotsiaalhoolekande_ja_tervishoiusektoris",
+        "updatedAt": "2026-06-12T03:37:00.871341+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

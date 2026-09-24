@@ -1,0 +1,79 @@
+{
+  "docId": "sotsiaaltoo-2-2017",
+  "articleId": "iga-inimese-jaoks-oige-amet-2017-2",
+  "title": "Iga inimese jaoks on kuskil õige amet",
+  "authors": [
+    "Karis Reilent"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2017",
+  "section": "Sotsiaaltöö kui elukutse",
+  "pageRange": "12-14",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Vilistlaslugu Tartu Ülikooli karjäärinõustajalt, kes õppis sotsioloogiat, sotsiaaltööd ja sotsiaalpoliitikat. Näide sellest, kuidas sotsiaaltööharidusega inimene töötab erialaga külgnevas ametis — teema, mida numbri eessõna OSKA raportile viidates probleemina käsitleb.",
+  "tags": [
+    "erialavalik",
+    "karjäärinõustamine",
+    "sotsiaaltööharidus",
+    "tööturg"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_2-2017_veebi_link_Part6.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-2-2017-iga-inimese-jaoks-oige-amet-2017-2",
+  "source_sha256": "46d74ed6dd104508b2b9c128fc3a5b58e6e988a41076643a6713c6750815e5cb",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2017-iga-inimese-jaoks-oige-amet-2017-2",
+    "previous_source_path": "Sotsiaaltoo_2-2017_veebi_link_Part6.txt",
+    "previous_source_original_path": "Sotsiaaltoo_2-2017_veebi_link_Part6.pdf",
+    "reference_stored_source_sha256": "5a0a0e1cb997d141e9da78240d8998a90e924acd4f85442a9a8123aadb6a272b",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\Sotsiaaltoo_2-2017_veebi_link.pdf",
+      "source_sha256": "609af110244e684ccbb68aea9504f2490fce2852b1e7caa7bedacb621d661a8a",
+      "pdf_start_page": 14,
+      "pdf_end_page": 16,
+      "printed_page_range": "12-14",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 16,
+      "source_regions": [
+        {
+          "source_pdf_page": 14,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 15,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 16,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "12-14"
+    },
+    "server_page_range": "12-14"
+  }
+}

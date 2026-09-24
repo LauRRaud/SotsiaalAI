@@ -1,0 +1,150 @@
+{
+  "source_path": "tai_eesti_laste_vaimse_tervise_uuring.pdf",
+  "source_format": "pdf",
+  "sha256": "aded606b2ef6f5f574876a7c5050f252ac8b6bb956a7ab1a17e8597620d67f49",
+  "metadata_variants": [
+    {
+      "original_path": "RAG/master_sources_pdf/tai_eesti_laste_vaimse_tervise_uuring.metadata.json",
+      "metadata": {
+        "source": {
+          "source_id": "tai_eesti_laste_vaimse_tervise_uuring",
+          "title": "Eesti laste vaimse tervise uuring",
+          "url": "https://tai.ee/sites/default/files/2025-05/lvtu_lopparuanne_16mai2025.pdf",
+          "normalized_url": "https://tai.ee/sites/default/files/2025-05/lvtu_lopparuanne_16mai2025.pdf",
+          "source_format": "pdf",
+          "source_type": "research_report",
+          "resource_type": "research_evidence",
+          "publisher": "TAI",
+          "organization_id": "tai",
+          "collection_hint": "research_and_reports",
+          "evidence_role": "research_evidence",
+          "topic_tags": [
+            "Tervise Arengu Instituut",
+            "lapsed ja pered",
+            "laps",
+            "uuring",
+            "raport",
+            "analüüs",
+            "TAI",
+            "vaimne tervis",
+            "psüühiline heaolu",
+            "nõustamine"
+          ],
+          "audience": "BOTH",
+          "language": "et",
+          "link_check_status": [],
+          "ingest_status": "ingest_candidate",
+          "ingest_priority": "medium",
+          "source_status": "known",
+          "duplicate_group_id": "dup_exact_011",
+          "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+          "source_context": {
+            "heading_2": "TAI",
+            "heading_3": null,
+            "heading_4": null,
+            "line": 203,
+            "order": 133
+          },
+          "duplicate_count": 1,
+          "duplicate_merged": true,
+          "merged_titles": [
+            "Eesti laste vaimse tervise uuring"
+          ],
+          "collection_hints": [
+            "research_reports"
+          ],
+          "source_types_seen": [
+            "research_report"
+          ],
+          "resource_types_seen": [
+            "research_evidence"
+          ],
+          "publishers_seen": [
+            "TAI"
+          ],
+          "organizations_seen": [
+            "tai"
+          ],
+          "source_contexts": [
+            {
+              "heading_2": "TAI",
+              "line": 203,
+              "order": 133
+            },
+            {
+              "heading_2": "TAI",
+              "line": 677,
+              "order": 340
+            }
+          ],
+          "registry_schema_version": "source-master-v1",
+          "registry_role": "dedupe_seed_and_ingest_planning",
+          "user_facing_knowledge": false,
+          "recommended_pipeline": "knowledge_doc_pipeline",
+          "dedupe_key": "https://tai.ee/sites/default/files/2025-05/lvtu_lopparuanne_16mai2025.pdf"
+        },
+        "final_url": "https://tai.ee/sites/default/files/2025-05/lvtu_lopparuanne_16mai2025.pdf",
+        "redirects": [],
+        "sha256": "aded606b2ef6f5f574876a7c5050f252ac8b6bb956a7ab1a17e8597620d67f49",
+        "bytes": 7374832,
+        "downloaded_at": "2026-08-14T08:00:35.127Z"
+      }
+    }
+  ],
+  "server_metadata": [
+    {
+      "document_id": "tai_eesti_laste_vaimse_tervise_uuring",
+      "metadata": {
+        "createdAt": "2026-06-12T04:18:31.615997+00:00",
+        "type": "FILE",
+        "fileName": "lvtu_lopparuanne_16mai2025.pdf",
+        "mimeType": "application/pdf",
+        "lastIngested": "2026-06-12T04:18:31.552157+00:00",
+        "path": "/var/lib/sotsiaalai-rag/docs/3a17c013450a/lvtu_lopparuanne_16mai2025.pdf",
+        "title": "Eesti laste vaimse tervise uuring",
+        "description": "Duplikaadid ühendatud: 1 lisakirjet. Source master headings: TAI",
+        "original_doc_id": null,
+        "originalDocId": null,
+        "audience": "BOTH",
+        "authors": [],
+        "issueId": null,
+        "issueLabel": null,
+        "year": 2025,
+        "articleId": null,
+        "section": null,
+        "pages": [],
+        "pageRange": "1–268",
+        "journalTitle": null,
+        "tags": [],
+        "language": "et",
+        "collection_id": "research_reports",
+        "source_id": "tai_eesti_laste_vaimse_tervise_uuring",
+        "document_id": "tai_eesti_laste_vaimse_tervise_uuring",
+        "source_type": "research_report",
+        "legacy_source_type": null,
+        "authority": null,
+        "source_status": "active",
+        "last_checked": "2026-06-12",
+        "retrieved_at": null,
+        "valid_from": null,
+        "valid_to": null,
+        "historical": false,
+        "canonical_item_id": null,
+        "content_hash": "86f8e48e0a7c2426aaf1ef776e45bd4d77c9d87574332699fc5aba865b9f347b",
+        "url": "https://tai.ee/sites/default/files/2025-05/lvtu_lopparuanne_16mai2025.pdf",
+        "url_canonical": "https://tai.ee/sites/default/files/2025-05/lvtu_lopparuanne_16mai2025.pdf",
+        "country": "EE",
+        "jurisdiction_level": "NATIONAL",
+        "municipality_name": null,
+        "municipality_id": null,
+        "district_name": null,
+        "district_id": null,
+        "geo_detection_method": null,
+        "geo_detection_confidence": null,
+        "docId": "tai_eesti_laste_vaimse_tervise_uuring",
+        "updatedAt": "2026-06-12T04:18:31.616029+00:00"
+      }
+    }
+  ],
+  "review_status": "metadata_conversion_pending"
+}

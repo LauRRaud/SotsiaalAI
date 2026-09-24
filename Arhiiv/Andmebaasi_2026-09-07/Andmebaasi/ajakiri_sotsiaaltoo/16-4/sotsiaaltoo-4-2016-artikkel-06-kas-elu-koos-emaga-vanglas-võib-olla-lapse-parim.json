@@ -1,0 +1,81 @@
+{
+  "docId": "sotsiaaltoo-4-2016",
+  "articleId": "sotsiaaltoo-4-2016-artikkel-06-kas-elu-koos-emaga-vanglas-võib-olla-lapse-parim",
+  "title": "Kas elu koos emaga vanglas võib olla lapse parimates huvides?",
+  "authors": [
+    "Andres Aru"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2016",
+  "section": "Lapse õigused",
+  "pageRange": "38-40",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Õiguskantsleri kantselei laste ja noorte õiguste osakonna juhataja Andres Aru kirjutab, et Eestis on ligikaudu 1000 last, kelle vähemalt üks vanem viibib kinnipidamisasutuses, ning et õiguskantslerini on jõudnud juhtumeid, kus otsustamisel ei ole lapse õigustega arvestatud. Vangistusseaduse järgi otsustab ema ja kuni kolmeaastase lapse kooselu vanglas kohalik omavalitsusüksus. Aru esitab lapse parimate huvide väljaselgitamise mudeli: juhtumipõhine hindamine, teiste spetsialistide ja lapse enda kaasamine, alternatiivide kaalumine ning kirjalikult põhjendatud haldusakt.",
+  "tags": [
+    "lapse õigused",
+    "lapse parimad huvid",
+    "vangla",
+    "lastekaitseseadus",
+    "õiguskantsler",
+    "haldusakt"
+  ],
+  "source_type": "file",
+  "source_path": "2016_4_artikkel_06_kas_elu_koos_emaga_vanglas_voib_olla_lapse_parimates.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-06-kas-elu-koos-emaga-vanglas-v-ib-olla-lapse-parim",
+  "source_sha256": "2c65e4ac279488f0c1596c8eccb5463d8120439cdfbaa77057c6d69fad8ee512",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-06-kas-elu-koos-emaga-vanglas-v-ib-olla-lapse-parim",
+    "previous_source_path": "2016_4_artikkel_06_kas_elu_koos_emaga_vanglas_voib_olla_lapse_parimates.txt",
+    "previous_source_original_path": "4-2016.pdf",
+    "reference_stored_source_sha256": "df1403e9d69c3d9186246d96c4b6577b34153f80406ade3fc51a2802af411266",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf",
+      "source_sha256": "0f07da03ffde36588435e96f8dda0f52a8140fbf9cc4201bb95e85b594e03fc9",
+      "pdf_start_page": 40,
+      "pdf_end_page": 42,
+      "printed_page_range": "38-41",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 43,
+      "source_regions": [
+        {
+          "source_pdf_page": 40,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 41,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 42,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "38-40"
+    },
+    "server_page_range": "38-41"
+  }
+}

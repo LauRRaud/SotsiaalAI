@@ -1,0 +1,82 @@
+{
+  "docId": "sotsiaaltoo-4-2016",
+  "articleId": "sotsiaaltoo-4-2016-artikkel-16-rehabilitatsioonitöö-viru-vangla-noorteüksuses",
+  "title": "Rehabilitatsioonitöö Viru vangla noorteüksuses",
+  "authors": [
+    "Kai Kapp",
+    "Anu Möldri"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2016",
+  "section": "Abi võimalused / praktika",
+  "pageRange": "87-89",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Viru vangla töötajad Kai Kapp ja Anu Möldri kirjeldavad noorteüksuse tööd, kuhu kuuluvad nii vanglas kui kriminaalhoolduses noortega töötavad ametnikud ning mille sihtrühm on 14–21aastased kriminaalhooldusalused ja kinnipeetavad. Töö käib rehabilitatsioonimeeskonnana ja juhtumikorralduse põhimõttel: riskide hindamine, kaitsetegurite väljaselgitamine ja sekkumisplaan koos elukohajärgse kriminaalhooldusametnikuga. 2016. aastal lisandus sotsiaalprogramm „Minu Valik”, kasutusel on ka kunsti- ja loovteraapia, koerateraapia ning 2015. aastast MDFT-pereteraapia. Autorid märgivad, et vanglasse satub üha rohkem psüühilise erivajadusega noori.",
+  "tags": [
+    "sotsiaaltöö praktika",
+    "vangla",
+    "kriminaalhooldus",
+    "noored õigusrikkujad",
+    "rehabilitatsioon",
+    "sotsiaalprogramm"
+  ],
+  "source_type": "file",
+  "source_path": "2016_4_artikkel_16_rehabilitatsioonitoo_viru_vangla_noorteuksuses.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-16-rehabilitatsioonit-viru-vangla-noorte-ksuses",
+  "source_sha256": "10785026591449bbe2a52ebd899a9c11b4bea57092be31db43b0f963956873fd",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-16-rehabilitatsioonit-viru-vangla-noorte-ksuses",
+    "previous_source_path": "2016_4_artikkel_16_rehabilitatsioonitoo_viru_vangla_noorteuksuses.txt",
+    "previous_source_original_path": "4-2016.pdf",
+    "reference_stored_source_sha256": "2c4208c81c33251f18eb51af72a33af73fdad97e21fb66e377a9890bd1ed2193",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf",
+      "source_sha256": "0f07da03ffde36588435e96f8dda0f52a8140fbf9cc4201bb95e85b594e03fc9",
+      "pdf_start_page": 89,
+      "pdf_end_page": 91,
+      "printed_page_range": "87-90",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 92,
+      "source_regions": [
+        {
+          "source_pdf_page": 89,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 90,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 91,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "87-89"
+    },
+    "server_page_range": "87-90"
+  }
+}

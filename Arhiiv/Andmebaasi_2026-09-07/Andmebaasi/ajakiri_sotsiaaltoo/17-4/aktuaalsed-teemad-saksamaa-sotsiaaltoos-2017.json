@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-4-2017",
+  "articleId": "aktuaalsed-teemad-saksamaa-sotsiaaltoos-2017",
+  "title": "Aktuaalsed teemad Saksamaa sotsiaaltöö poliitikas, hariduses ja kutsetegevuses",
+  "authors": [
+    "Peter Erath",
+    "Jutta Harrer"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2017",
+  "section": "Uued suunad Euroopas",
+  "pageRange": "85-88",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade Saksamaa sotsiaaltöö poliitilistest, hariduslikest ja kutsealastest arengutest, sh uued juhtimismudelid, õppekorraldus ning võtmetähtsusega töövaldkonnad nagu laste ja noorte hoolekanne, kriminaalhooldus, rehabilitatsioon ja migratsioon.",
+  "tags": [
+    "rahvusvaheline võrdlus",
+    "Saksamaa",
+    "sotsiaalpoliitika",
+    "sotsiaaltöö haridus",
+    "hoolekandeorganisatsioonid",
+    "laste ja noorte hoolekanne",
+    "kriminaalhooldus",
+    "rehabilitatsioon",
+    "migratsioon"
+  ],
+  "source_type": "file",
+  "source_path": "Aktuaalsed teemad Saksamaa sotsiaaltöö poliitikas, hariduses ja kutsetegevuses.pdf",
+  "document_id": "sotsiaaltoo-4-2017-aktuaalsed-teemad-saksamaa-sotsiaaltoos-2017",
+  "source_format": "pdf",
+  "source_sha256": "b5210717d97ce18f131b9c5456798378d6f5013a5f2ade7621667010dcb3fa02",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2017-aktuaalsed-teemad-saksamaa-sotsiaaltoos-2017",
+    "previous_source_path": "Aktuaalsed teemad Saksamaa sotsiaaltöö poliitikas, hariduses ja kutsetegevuses.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b5210717d97ce18f131b9c5456798378d6f5013a5f2ade7621667010dcb3fa02",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

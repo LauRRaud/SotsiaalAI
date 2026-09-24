@@ -1,0 +1,44 @@
+{
+  "docId": "sotsiaaltoo-1-2020",
+  "articleId": "kogemusnoustaja-too-2020-1",
+  "title": "Kogemusnõustaja töö ja kogemuslugu kui töövahend",
+  "authors": [
+    "Inge Vallandi"
+  ],
+  "year": 2020,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2020",
+  "section": "Taastumist toetavad meetodid",
+  "pageRange": "32-36",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Artikkel selgitab kogemusnõustaja rolli taastumises, rõhutades isikliku kogemusloo jõudu usalduse loomisel, lootuse kasvatamisel ja üksilduse vähendamisel. Kirjeldatakse töö piire, enesehoiu olulisust, supervisiooni rolli ning eetilisi kaalutlusi, mis tagavad turvalise ja professionaalse toe.",
+  "tags": [
+    "kogemusnõustamine",
+    "kogemuslugu",
+    "taastumine",
+    "nõustamine",
+    "supervisioon",
+    "enesetugi",
+    "vaimne tervis",
+    "suhtlusoskused",
+    "piirid"
+  ],
+  "source_type": "file",
+  "source_path": "ST1_2020_web_link_Part8.pdf",
+  "mapping_fixed": "20260814-161821",
+  "document_id": "sotsiaaltoo-1-2020-kogemusnoustaja-too-2020-1",
+  "source_format": "pdf",
+  "source_sha256": "c35aa45601cc2d6cdbdb5c7055e3b9afa431f889f4228807f897c2825925653d",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2020-kogemusnoustaja-too-2020-1",
+    "previous_source_path": "ST1_2020_web_link_Part8.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "c35aa45601cc2d6cdbdb5c7055e3b9afa431f889f4228807f897c2825925653d",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

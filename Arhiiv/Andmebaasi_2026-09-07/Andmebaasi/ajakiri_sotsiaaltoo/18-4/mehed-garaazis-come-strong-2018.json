@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-4-2018",
+  "articleId": "mehed-garaazis-come-strong-2018",
+  "title": "Mehed garaažis ehk CoMe Strong projekt",
+  "authors": [
+    "Felika Tuul"
+  ],
+  "authors_fixed": "2026-08-15",
+  "year": 2018,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2018",
+  "section": "Projekt",
+  "pageRange": "71-74",
+  "pdf_start_page": 1,
+  "pdf_end_page": 4,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Projekt, mis käsitleb meeste toetust ja hoiakute kujundamist kogukonnas.",
+  "tags": [
+    "meeste tervis",
+    "kogukonnatöö",
+    "projektitöö"
+  ],
+  "source_type": "file",
+  "source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part18.pdf",
+  "mapping_status": "VERIFIED",
+  "mapping_checked": "2026-08-15",
+  "mapping_note": "Autor kontrollitud kohaliku Part18 täisteksti järgi: Felika Tuul.",
+  "document_id": "sotsiaaltoo-4-2018-mehed-garaazis-come-strong-2018",
+  "source_format": "pdf",
+  "source_sha256": "27fd34dd5ab9cfb0d1f51f1565991fd3c18d5d10aa180dc2ca545a8207dd365f",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2018-mehed-garaazis-come-strong-2018",
+    "previous_source_path": "155619690985_Sotsiaaltoo_nr4_2018_veeb_link_Part18.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "27fd34dd5ab9cfb0d1f51f1565991fd3c18d5d10aa180dc2ca545a8207dd365f",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

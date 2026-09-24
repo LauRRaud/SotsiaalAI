@@ -1,0 +1,41 @@
+{
+  "docId": "sotsiaaltoo-2-2019",
+  "articleId": "ambla-kihelkonna-tugiteenused-kogukonna-toetamine-2019",
+  "title": "Kuidas MTÜ Ambla Kihelkonna Tugiteenused oma kliente toetab",
+  "authors": [
+    "Silvia Utt",
+    "Ülle Muru"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2019",
+  "section": "Kogemus",
+  "pageRange": "37-39",
+  "pdf_start_page": 1,
+  "pdf_end_page": 3,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Kogemuslugu MTÜ Ambla Kihelkonna Tugiteenused tegevusest psüühikahäirega inimeste toetamisel kogukonnas, tugiisikuteenuse osutamisest ja koostööst kohalike partneritega.",
+  "tags": [
+    "tugiisikuteenus",
+    "kogukonnapõhised teenused",
+    "psüühikahäire",
+    "MTÜ Ambla Kihelkonna Tugiteenused",
+    "rehabilitatsioon",
+    "koostöö kogukonnas"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part9.pdf",
+  "document_id": "sotsiaaltoo-2-2019-ambla-kihelkonna-tugiteenused-kogukonna-toetamine-2019",
+  "source_format": "pdf",
+  "source_sha256": "11619852b4b7dcac9fe094cc7348199ef402d3d7bdda6df2d345006cd67c8a89",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2019-ambla-kihelkonna-tugiteenused-kogukonna-toetamine-2019",
+    "previous_source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part9.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "11619852b4b7dcac9fe094cc7348199ef402d3d7bdda6df2d345006cd67c8a89",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

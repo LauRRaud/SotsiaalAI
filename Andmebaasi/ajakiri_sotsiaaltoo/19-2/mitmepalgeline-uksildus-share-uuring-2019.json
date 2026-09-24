@@ -1,0 +1,42 @@
+{
+  "docId": "sotsiaaltoo-2-2019",
+  "articleId": "mitmepalgeline-uksildus-share-vanemaealiste-uuringu-andmetel-2019",
+  "title": "Mitmepalgeline üksildus SHARE vanemaealiste uuringu andmetel",
+  "authors": [
+    "Merike Sisask",
+    "Katrin Roosipuu"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2019",
+  "section": "Analüüs",
+  "pageRange": "86-92",
+  "pdf_start_page": 1,
+  "pdf_end_page": 7,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Analüüs Euroopa vanemaealiste paneeluuringu SHARE andmetest, mis käsitleb üksilduse levimust ja seoseid tervise, sotsiaalsete suhete ja majandusliku olukorraga Eesti eakate seas.",
+  "tags": [
+    "üksildus",
+    "eakad",
+    "SHARE uuring",
+    "vaimne tervis",
+    "sotsiaalsed suhted",
+    "Euroopa võrdlus",
+    "heaolu vanemas eas"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part17.pdf",
+  "document_id": "sotsiaaltoo-2-2019-mitmepalgeline-uksildus-share-vanemaealiste-uuringu-andmetel-2019",
+  "source_format": "pdf",
+  "source_sha256": "b2bb78527cb7ff5fbec10eede9bc62a4db280be492ad6dd1c749595a5f4234c1",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2019-mitmepalgeline-uksildus-share-vanemaealiste-uuringu-andmetel-2019",
+    "previous_source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part17.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "b2bb78527cb7ff5fbec10eede9bc62a4db280be492ad6dd1c749595a5f4234c1",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "docId": "sotsiaaltoo-4-2016",
+  "articleId": "sotsiaaltoo-4-2016-artikkel-18-sotsiaaltöö-ja-sotsiaaltööharidusega-seotud-päev",
+  "title": "Sotsiaaltöö ja sotsiaaltööharidusega seotud päevakajalised teemad Ühendkuningriigis",
+  "authors": [
+    "Malcolm Payne"
+  ],
+  "year": 2016,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "4/2016",
+  "section": "Uued suunad Euroopas",
+  "pageRange": "94-98",
+  "pdf_start_page": 1,
+  "pdf_end_page": 5,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Emeriitprofessor Malcolm Payne kirjeldab Ühendkuningriigi, eeskätt Inglismaa hoolekande arenguid. Sotsiaaltöö on kaitstud kutseala ja 2016. aastal oli nelja riigi registrites 116 126 sotsiaaltöötajat, samal ajal kui täiskasvanute hoolekandes on ligi 1,3 miljonit töökohta, neist üle kahe kolmandiku erasektoris. 2007. aastal Londonis surnud Baby P juhtum tõi kaasa terava kriitika ja rakkerühma ettepanekud. Payne käsitleb Munro 2011. aasta lastekaitseülevaadet, Hackney „sotsiaaltöö tagasivõitmise” projekti, isikliku eelarve süsteemi ning kiirkoolitusi „Step up to social work” ja „Frontline”.",
+  "tags": [
+    "uued suunad euroopas",
+    "ühendkuningriik",
+    "sotsiaaltööharidus",
+    "lastekaitse",
+    "isikukeskne hoolekanne",
+    "kutseregister"
+  ],
+  "source_type": "file",
+  "source_path": "2016_4_artikkel_18_sotsiaaltoo_ja_sotsiaaltooharidusega_seotud_paevakaj.pdf",
+  "added": "2026-08-17",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-18-sotsiaalt-ja-sotsiaalt-haridusega-seotud-p-ev",
+  "source_sha256": "57ab5e4dd31d2b92420b2ffc637d775ce82edb8c04eb28a9bd322a66e8823124",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-18-sotsiaalt-ja-sotsiaalt-haridusega-seotud-p-ev",
+    "previous_source_path": "2016_4_artikkel_18_sotsiaaltoo_ja_sotsiaaltooharidusega_seotud_paevakaj.txt",
+    "previous_source_original_path": "4-2016.pdf",
+    "reference_stored_source_sha256": "dbc277ae5110788d9b447fc0c51038410fe45d671a5122eb859267c6a9c28c2e",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Arhiiv\\Andmebaasi_2026-09-07\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf",
+      "source_sha256": "0f07da03ffde36588435e96f8dda0f52a8140fbf9cc4201bb95e85b594e03fc9",
+      "pdf_start_page": 96,
+      "pdf_end_page": 100,
+      "printed_page_range": "94-99",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 101,
+      "source_regions": [
+        {
+          "source_pdf_page": 96,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 97,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 98,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 99,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        },
+        {
+          "source_pdf_page": 100,
+          "bounds": [
+            0,
+            0,
+            467.717,
+            680.315
+          ]
+        }
+      ],
+      "effective_printed_page_range": "94-98",
+      "source_before_organization": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\4-2016.pdf"
+    },
+    "server_page_range": "94-99"
+  }
+}

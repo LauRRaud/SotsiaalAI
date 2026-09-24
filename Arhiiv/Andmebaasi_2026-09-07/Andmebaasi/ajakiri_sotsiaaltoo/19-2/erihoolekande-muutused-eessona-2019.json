@@ -1,0 +1,40 @@
+{
+  "docId": "sotsiaaltoo-2-2019",
+  "articleId": "erihoolekande-muutused-eessona-2019",
+  "title": "Erihoolekande muutused ja kogukonda sulandumine",
+  "authors": [
+    "Elen Preimann"
+  ],
+  "year": 2019,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2019",
+  "section": "Eessõna",
+  "pageRange": "2-2",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Eessõna, milles vaadeldakse erihoolekande arengut viimase kümne aasta jooksul: suurtest mõisahoonekodudest pereküladesse ja kogukonnapõhistele teenustele ning kogukonna hoiakute ja toetuse olulisust.",
+  "tags": [
+    "erihoolekanne",
+    "deinstitutsionaliseerimine",
+    "kogukonnapõhised teenused",
+    "inimväärikus",
+    "sotsiaalhoolekanne",
+    "poliitikamuudatused"
+  ],
+  "source_type": "file",
+  "source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part2.pdf",
+  "document_id": "sotsiaaltoo-2-2019-erihoolekande-muutused-eessona-2019",
+  "source_format": "pdf",
+  "source_sha256": "dc1bd543c8bf021cf0a1570b4a332f0536d6c4aac8d5b8f48423f1a399023346",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2019-erihoolekande-muutused-eessona-2019",
+    "previous_source_path": "Sotsiaaltoo_nr2_2019_veeb_link_Part2.pdf",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "dc1bd543c8bf021cf0a1570b4a332f0536d6c4aac8d5b8f48423f1a399023346",
+    "reference_stored_source_mime_type": "application/pdf"
+  }
+}

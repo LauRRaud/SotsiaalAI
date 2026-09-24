@@ -1,0 +1,50 @@
+{
+  "docId": "sotsiaaltoo-2-2026",
+  "articleId": "elva-perekeskus-laste-ja-noorte-hea-kaekaik-on-kogukonna-uhine-sudamea-2026",
+  "title": "Elva perekeskus: laste ja noorte hea käekäik on kogukonna ühine südameasi",
+  "authors": [
+    "Tiina Trees"
+  ],
+  "year": 2026,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2026",
+  "section": "Hea praktika",
+  "pageRange": null,
+  "pdf_start_page": null,
+  "pdf_end_page": null,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "Ülevaade Elva perekeskusest, mis koondab sotsiaalteenused ja hariduse tugiteenused, sh asendushoolduse, nõustamise ning ennetus- ja vanemhariduse. Keskus koordineerib valdkonnaüleseid juhtumikohtumisi ning korraldab konverentse ja võrgustikukohtumisi lastega töötavatele spetsialistidele.",
+  "tags": [
+    "lapse heaolu",
+    "perekeskus",
+    "asendushooldus",
+    "ennetustöö",
+    "võrgustikutöö",
+    "juhtumikorraldus",
+    "vanemharidus",
+    "kogukondlik koostöö",
+    "Elva vald"
+  ],
+  "publisher": "Sotsiaalkindlustusamet",
+  "published": "2026-05-18",
+  "url": "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/laste-ja-noorte-hea-kaekaik-kogukonna-uhine-sudameasi",
+  "source_type": "web",
+  "source_path": "elva-perekeskus-laste-ja-noorte-hea-kaekaik-on-kogukonna-uhine-sudameasi.html",
+  "lead": "Elva perekeskus on valla laste ja perede vajadustest lähtuv ühe ukse põhimõttel toimiv kompetentsikeskus, mis osutab nüüdisaegseid sotsiaalteenuseid ning haridusvaldkonna tugiteenuseid. Meie eesmärk on parandada teenuste kättesaadavust ja kvaliteeti ning olla osaks hästi toimivas koostöövõrgustikus, kuhu kuuluvad lapsed, lapsevanemad, omavalitsuse osakonnad, haridusasutused ja teised koostööpartnerid.",
+  "document_id": "sotsiaaltoo-2-2026-elva-perekeskus-laste-ja-noorte-hea-kaekaik-on-kogukonna-uhine-sudamea-2026",
+  "source_format": "html",
+  "source_sha256": "3e832ca639583b20e94bb9b44d52dc9aab5b3c350b31d673aaf49f542b6a6239",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-2-2026-elva-perekeskus-laste-ja-noorte-hea-kaekaik-on-kogukonna-uhine-sudamea-2026",
+    "previous_source_path": "elva-perekeskus-laste-ja-noorte-hea-kaekaik-on-kogukonna-uhine-sudameasi.txt",
+    "previous_source_original_path": null,
+    "reference_stored_source_sha256": "df4b25b9da2b34d2f5c6d895567f7591bafba328004b17ce6cb5aad2bd71cb1e",
+    "reference_stored_source_mime_type": "text/plain",
+    "original_html_sha256": "1503cc34b6b47614a7d8d14fbb5bdaa35f6b403be399b62babc4da89032e59bd",
+    "observed_web_title": "Laste ja noorte hea käekäik on kogukonna ühine südameasi"
+  },
+  "retrieved_at": "2026-09-07T19:39:36.291811+00:00"
+}

@@ -1,0 +1,83 @@
+{
+  "source": {
+    "source_id": "oiguskantsler_2025_aasta_tegevuse_ulevaade_puuetega_inimeste_oigused",
+    "title": "2025. aasta tegevuse ülevaade: puuetega inimeste õigused",
+    "url": "https://www.oiguskantsler.ee/ylevaade2025/pdf/puuetega-inimeste-oigused.pdf",
+    "normalized_url": "https://www.oiguskantsler.ee/ylevaade2025/pdf/puuetega-inimeste-oigused.pdf",
+    "source_format": "pdf",
+    "source_type": "research_report",
+    "resource_type": "research_evidence",
+    "publisher": "Õiguskantsler",
+    "organization_id": "oiguskantsler",
+    "collection_hint": "research_and_reports",
+    "evidence_role": "research_evidence",
+    "topic_tags": [
+      "Õiguskantsler",
+      "puue",
+      "puudega inimene",
+      "erivajadus",
+      "õigused",
+      "inimõigused",
+      "uuring",
+      "raport",
+      "analüüs"
+    ],
+    "audience": "BOTH",
+    "language": "et",
+    "link_check_status": [],
+    "ingest_status": "ingest_candidate",
+    "ingest_priority": "medium",
+    "source_status": "known",
+    "duplicate_group_id": "dup_exact_004",
+    "notes": "Duplikaadid ühendatud: 1 lisakirjet.",
+    "source_context": {
+      "heading_2": "Õiguskantsler",
+      "heading_3": null,
+      "heading_4": null,
+      "line": 185,
+      "order": 126
+    },
+    "duplicate_count": 1,
+    "duplicate_merged": true,
+    "merged_titles": [
+      "2025. aasta tegevuse ülevaade: puuetega inimeste õigused"
+    ],
+    "collection_hints": [
+      "national_guidelines"
+    ],
+    "source_types_seen": [
+      "information_material"
+    ],
+    "resource_types_seen": [
+      "information_material"
+    ],
+    "publishers_seen": [
+      "Õiguskantsler"
+    ],
+    "organizations_seen": [
+      "oiguskantsler"
+    ],
+    "source_contexts": [
+      {
+        "heading_2": "Õiguskantsler",
+        "line": 185,
+        "order": 126
+      },
+      {
+        "heading_2": "Õiguskantsler",
+        "line": 659,
+        "order": 333
+      }
+    ],
+    "registry_schema_version": "source-master-v1",
+    "registry_role": "dedupe_seed_and_ingest_planning",
+    "user_facing_knowledge": false,
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.oiguskantsler.ee/ylevaade2025/pdf/puuetega-inimeste-oigused.pdf"
+  },
+  "final_url": "https://www.oiguskantsler.ee/ylevaade2025/pdf/puuetega-inimeste-oigused.pdf",
+  "redirects": [],
+  "sha256": "fd9e5c62b97ffefb6f139a350a00edb9728238e86e69e1ba97b0b4f28591e380",
+  "bytes": 39359,
+  "downloaded_at": "2026-08-14T08:00:33.821Z"
+}

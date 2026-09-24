@@ -1,0 +1,63 @@
+{
+  "docId": "sotsiaaltoo-1-2017",
+  "articleId": "mahajaetud-maja-keskus-2017-1",
+  "title": "Mahajäetud majast saab keskus erivajadustega inimestele ja eakatele",
+  "authors": [
+    "MTÜ Johanna"
+  ],
+  "year": 2017,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "1/2017",
+  "section": "Uus lahendus sotsiaaltöös",
+  "pageRange": "89",
+  "pdf_start_page": 1,
+  "pdf_end_page": 1,
+  "audience": "BOTH",
+  "language": "et",
+  "description": "MTÜ Johanna teatab, et rajas 2010. aastal Vinni valla Lepiku külla mahajäetud sovhoosimaja 300 m² keldrisse päevakeskuse erivajadustega inimestele ja plaanib nüüd LEADER-toetusega renoveerida kogu 12-korterilise maja, et hakata pakkuma toetatud elamise teenust. Projekti kogumaksumus ületab 300 000 eurot ja taotletav LEADER-toetus on 186 000 eurot; Vinni vald on otsustanud ehitust kaasrahastada Rägavere ja Laekvere liitumisel saadava ühinemistoetuse arvelt. Teade kutsub teisi liituvaid omavalitsusi mahajäetud maju samamoodi kasutusele võtma.",
+  "tags": [
+    "uus lahendus",
+    "erivajadus",
+    "päevakeskus",
+    "LEADER",
+    "haldusreform",
+    "toetatud elamine"
+  ],
+  "source_type": "file",
+  "source_path": "2017_1_Part22.pdf",
+  "added": "2026-08-16",
+  "source_format": "pdf",
+  "document_id": "sotsiaaltoo-1-2017-mahajaetud-maja-keskus-2017-1",
+  "source_sha256": "78247e11d5be5c38f5656e32e5aaa17ca0cb1a68c691277324739a2dddcffa58",
+  "source_repair": {
+    "date": "2026-09-07",
+    "reference_registry": "/var/lib/sotsiaalai-rag/registry.json",
+    "reference_document_id": "sotsiaaltoo-1-2017-mahajaetud-maja-keskus-2017-1",
+    "previous_source_path": "2017_1_Part22.txt",
+    "previous_source_original_path": "2017_1.pdf",
+    "reference_stored_source_sha256": "bd19388806027c78c55b717562bbe6927f2150760c5110533bcf82afd89db26a",
+    "reference_stored_source_mime_type": "text/plain",
+    "extraction": {
+      "source": "C:\\Users\\rauds\\Desktop\\SotsiaalAI\\Andmebaasi\\ajakiri_sotsiaaltoo\\2017_1.pdf",
+      "source_sha256": "335f81467a555f12c55d0e8bf60122a178c5267567cf79607448a5d987629e50",
+      "pdf_start_page": 91,
+      "pdf_end_page": 91,
+      "printed_page_range": "89-89",
+      "page_number_offset": 2,
+      "server_pdf_end_page": 91,
+      "source_regions": [
+        {
+          "source_pdf_page": 91,
+          "bounds": [
+            0,
+            0,
+            488,
+            709
+          ]
+        }
+      ],
+      "effective_printed_page_range": "89"
+    },
+    "server_page_range": "89-89"
+  }
+}
